@@ -6,7 +6,7 @@ const OrdersLayout: React.FC<{ children: React.ReactNode; }> = ({
 	children,
 }) => {
 	return (
-		<div className='bg-black min-h-screen'>
+		<div className='bg-primary min-h-screen'>
 			<Navbar />
 			{ children }
 		</div>

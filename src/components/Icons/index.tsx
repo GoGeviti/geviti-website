@@ -62,7 +62,7 @@ export const ChevronDown = (props?: React.SVGProps<SVGSVGElement>) => (
 	>
 		<path
 			d='M3.75 5.625L7.5 9.375L11.25 5.625'
-			stroke='#181A1C'
+			stroke='currentColor'
 			strokeWidth='1.25'
 			strokeLinecap='round'
 			strokeLinejoin='round' />
@@ -161,7 +161,7 @@ export const CheckIcon = (props?: React.SVGProps<SVGSVGElement>) => (
 	>
 		<path
 			d='M7.5 2.25L3.375 6.375L1.5 4.5'
-			stroke='#181A1C'
+			stroke='currentColor'
 			strokeLinecap='round'
 			strokeLinejoin='round' />
 	</svg>

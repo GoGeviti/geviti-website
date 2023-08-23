@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 
+import { statesData } from '@/constant/data';
 import clsxm from '@/helpers/clsxm';
 
 import {
@@ -95,7 +96,7 @@ const PackagesSection: React.FC = () => {
 	const [selectedPackageIdx, setSelectedPackageIdx] = useState<number>(-1);
 	const [openPopover, setOpenPopover] = useState<boolean>(false);
 	const [openDialogHelp, setOpenDialogHelp] = useState<boolean>(false);
-	const [state, setState] = useState<string>('arizona-1');
+	const [state, setState] = useState<string>(statesData.options[0].value);
 
 	const handleMouseEnter = (component: ComponentItem) => {
 		setOpenPopover(true);
@@ -123,7 +124,7 @@ const PackagesSection: React.FC = () => {
 					onMouseLeave={ () => handleMouseLeave(component) }
 					asChild
 				>
-					<span className='flex items-center gap-1'>
+					<span className='flex items-center gap-1 text-primary'>
 						<CheckIcon />
 
 						<p className='text-[10px] text-primary font-BRSonoma leading-5'>{ component.name }</p>
@@ -138,7 +139,11 @@ const PackagesSection: React.FC = () => {
 						<InfoCircle className='w-[13px] h-[13px]' />
 
 						<p className='text-sm text-primary font-medium font-Poppins'>What is { detailPopover.name }?</p>
-						<p className='text-xs leading-4 text-grey-primary font-BRSonoma'>{ detailPopover.description }</p>
+						<p className='text-xs leading-4 text-grey-primary font-BRSonoma'>
+							{ detailPopover.description && (
+								<span dangerouslySetInnerHTML={ { __html: detailPopover.description } } />
+							) }
+						</p>
 					</div>
 				</PopoverContent>
 			</Popover>
@@ -163,7 +168,11 @@ const PackagesSection: React.FC = () => {
 							<div className='flex flex-col xxs:flex-row xxs:grid xxs:grid-cols-11 gap-3 xxs:gap-6 items-start'>
 								<div className='xxs:col-span-8 w-full'>
 									<p className='text-primary text-sm font-medium font-Poppins'>{ packageItem.name }</p>
-									<p className='text-grey-primary text-[10px] lg:text-xs leading-[145%] lg:leading-5 font-BRSonoma mt-0.5'>{ packageItem.description }</p>
+									<p className='text-grey-primary text-[10px] lg:text-xs leading-[145%] lg:leading-5 font-BRSonoma mt-0.5'>
+										{ packageItem.description && (
+											<span dangerouslySetInnerHTML={ { __html: packageItem.description } } />
+										) }
+									</p>
 								</div>
 
 								<div className='xxs:col-span-3 flex max-lg:flex-col xxs:items-end lg:items-center lg:justify-end lg:gap-15px xxs:text-right lg:text-left'>
@@ -211,11 +220,11 @@ const PackagesSection: React.FC = () => {
 	const renderTitleDescPage = () => {
 		return (
 			<div className='flex flex-col max-lg:items-center text-center lg:text-left'>
-				<p className='font-semibold font-BRSonoma uppercase text-[10px] lg:text-sm leading-[150%] lg:leading-6 tracking-[0.11em]'>TAILORED TO YOUR SPECIFIC NEEDS</p>
+				<p className='text-pretitle text-grey-primary'>TAILORED TO YOUR SPECIFIC NEEDS</p>
 
 				<h2 className='mt-11px lg:mt-9px text-primary font-Poppins text-3xl lg:text-4xl leading-[100%] lg:leading-[119%] -tracking-[0.04em]'>Select Your Package</h2>
 
-				<p className='mt-[17px] lg:mt-9px font-BRSonoma text-xs lg:text-sm leading-[167%] lg:leading-[143%]'>
+				<p className='mt-[17px] lg:mt-9px text-grey-primary font-BRSonoma text-xs lg:text-sm leading-[167%] lg:leading-[143%]'>
 					Begin your personalized healthcare journey with us today. An initial consultation is included at just $199.
 				</p>
 			</div>
@@ -223,28 +232,27 @@ const PackagesSection: React.FC = () => {
 	};
 
 	const renderSelectState = () => {
-		const selectOptions = [
-			{ value: 'arizona-1', label: 'Arizona 1' },
-			{ value: 'arizona-2', label: 'Arizona 2' },
-			{ value: 'arizona-3', label: 'Arizona 3' },
-			{ value: 'arizona-4', label: 'Arizona 4' },
-		];
+		const selectOptions = statesData.options;
 
 		return (
 			<div className='mt-10'>
-				<p className='text-xs lg:text-sm leading-5 font-BRSonoma mb-[13px]'>Select State</p>
+				<p className='text-xs lg:text-sm leading-5 font-BRSonoma mb-[13px]'>{ statesData.label }</p>
 
 				<Select
 					value={ state }
-					onValueChange={ setState }>
-					<SelectTrigger className='w-full lg:w-[297px]'>
+					onValueChange={ setState }
+				>
+					<SelectTrigger className='w-full lg:w-[297px] bg-grey-secondary text-primary'>
 						<SelectValue placeholder='Select state' />
 					</SelectTrigger>
-					<SelectContent>
+					<SelectContent className='bg-grey-secondary text-primary'>
 						<SelectGroup className='overflow-x-hidden'>
 							{ selectOptions.map((option, optionIdx) => (
 								<div key={ optionIdx }>
-									<SelectItem value={ option.value }>{ option.label }</SelectItem>
+									<SelectItem
+										value={ option.value }
+										className='data-[state=unchecked]:text-grey-primary data-[state=checked]:text-primary'
+									>{ option.label }</SelectItem>
 									{ optionIdx < selectOptions.length - 1 && (
 										<SelectSeparator />
 									) }

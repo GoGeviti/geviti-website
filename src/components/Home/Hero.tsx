@@ -12,7 +12,7 @@ const Hero: React.FC = () => {
 		<div className='lg:px-3 lg:py-15px'>
 			<div className='bg-primary w-full h-full lg:rounded-[19px] relative'>
 				<div className='absolute top-0 inset-x-0 w-full h-[193px] bg-gradient-to-b from-primary to-[#181a1c00] lg:rounded-t-[19px]' />
-				<Navbar />
+				<Navbar position='absolute' />
 
 				<div className='pt-60px lg:pt-20 lg:min-h-[646.8px] relative overflow-hidden isolate'>
 					<div className='container-center flex max-lg:flex-col items-center lg:gap-x-5'>

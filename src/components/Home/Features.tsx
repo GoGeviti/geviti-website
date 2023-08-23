@@ -97,7 +97,7 @@ const Features: React.FC = () => {
 			<div className='relative isolate overflow-hidden bg-blue-1 lg:rounded-[19px]'>
 				<div className='container-center pb-[41px] pt-[52px] lg:flex lg:py-[102px]'>
 					<div className='mx-auto max-w-2xl text-center lg:text-left flex-shrink-0 lg:mx-0 lg:max-w-xl flex flex-col max-lg:items-center'>
-						<p className='text-blue-2 font-BRSonoma font-semibold text-[10px] sm:text-xs md:text-sm leading-6 uppercase tracking-[0.11em]'>
+						<p className='text-blue-2 text-pretitle'>
 							{ featuresData.preTitle }
 						</p>
 						{ featuresData.title && (

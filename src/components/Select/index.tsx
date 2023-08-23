@@ -20,14 +20,14 @@ const SelectTrigger = React.forwardRef<
 	<SelectPrimitive.Trigger
 		ref={ ref }
 		className={ clsxm(
-			'flex w-full items-center justify-between rounded-[5px] bg-grey-secondary px-18px py-2.5 text-sm font-medium focus:outline-none focus:ring-0 disabled:cursor-not-allowed disabled:opacity-50',
+			'flex w-full items-center justify-between rounded-[5px] px-18px py-2.5 text-sm font-medium font-Poppins leading-6 focus:outline-none focus:ring-0 disabled:cursor-not-allowed disabled:opacity-50',
 			className
 		) }
 		{ ...props }
 	>
 		{ children }
 		<SelectPrimitive.Icon asChild>
-			<ChevronDown className='h-15px w-15px text-primary' />
+			<ChevronDown className='h-15px w-15px' />
 		</SelectPrimitive.Icon>
 	</SelectPrimitive.Trigger>
 ));
@@ -41,7 +41,7 @@ const SelectContent = React.forwardRef<
 		<SelectPrimitive.Content
 			ref={ ref }
 			className={ clsxm(
-				'relative z-50 min-w-[8rem] overflow-hidden rounded-[5px] bg-grey-secondary shadow-[0px_32px_105px_0px_rgba(16,24,40,0.13)] data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2',
+				'relative z-50 min-w-[8rem] overflow-hidden rounded-[5px] shadow-[0px_32px_105px_0px_rgba(16,24,40,0.13)] data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2',
 				position === 'popper' &&
 				'data-[side=bottom]:translate-y-1 data-[side=left]:-translate-x-1 data-[side=right]:translate-x-1 data-[side=top]:-translate-y-1',
 				className
@@ -81,7 +81,7 @@ const SelectItem = React.forwardRef<
 	<SelectPrimitive.Item
 		ref={ ref }
 		className={ clsxm(
-			'relative flex w-full cursor-default select-none items-center rounded-sm px-18px py-2 text-sm leading-6 font-medium font-Poppins data-[state=unchecked]:text-grey-primary data-[state=checked]:text-primary outline-none data-[disabled]:pointer-events-none data-[disabled]:opacity-50 data-[highlighted]:bg-primary data-[highlighted]:!text-grey-secondary',
+			'relative flex w-full cursor-default select-none items-center rounded-sm px-18px py-2 text-sm leading-6 font-medium font-Poppins outline-none data-[disabled]:pointer-events-none data-[disabled]:opacity-50 data-[highlighted]:bg-primary data-[highlighted]:!text-grey-secondary',
 			className
 		) }
 		{ ...props }

@@ -46,7 +46,7 @@ const DialogHelp: React.FC<DialogHelpProps> = ({ open, onOpenChange }) => {
 			>
 				<DialogContent className='max-w-sm md:max-w-md lg:max-w-[904px] px-7 lg:px-12 py-8 lg:py-[46px]'>
 					<div className='flex flex-col'>
-						<p className='text-grey-primary text-[10px] md:text-xs lg:text-sm font-BRSonoma font-semibold uppercase leading-[150%] lg:leading-6 tracking-[0.11em]'>
+						<p className='text-grey-primary text-pretitle'>
 							geviti packages
 						</p>
 						<p className='text-2xl md:text-3xl lg:text-4xl text-primary leading-[114%] lg:leading-[120%] font-Poppins mt-2.5 lg:mt-[1px] -tracking-[0.04em]'>Need help deciding your package?</p>

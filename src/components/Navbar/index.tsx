@@ -12,7 +12,9 @@ import CustomLink from '../CustomLink';
 import { Bars3Icon } from '../Icons';
 import { Sheet, SheetContent } from '../Sheet';
 
-const Navbar: React.FC = () => {
+type NavbarProps = { position?: 'fixed' | 'absolute'; };
+
+const Navbar: React.FC<NavbarProps> = ({ position = 'fixed' }) => {
 	const pathname = usePathname();
 	const router = useRouter();
 
@@ -31,7 +33,7 @@ const Navbar: React.FC = () => {
 							externalLink={ link.externalLink }
 							className={ clsxm(
 								'rounded-md font-BRSonoma px-3 py-2 text-sm font-medium text-grey-secondary hover:text-white',
-								isActive ? 'bg-gray-900' : 'hover:bg-gray-700'
+								isActive ? 'bg-black-background' : 'hover:bg-black-background/90'
 							) }
 						>
 							{ link.name }
@@ -50,7 +52,7 @@ const Navbar: React.FC = () => {
 						<button
 							type='button'
 							key={ iconMenu.id }
-							className='relative rounded-full hover:bg-gray-700 p-1'
+							className='relative rounded-full hover:bg-black-background/90 p-1'
 							onClick={ () => {
 								if (iconMenu.href) {
 									router.push(iconMenu.href);
@@ -136,7 +138,10 @@ const Navbar: React.FC = () => {
 
 	return (
 		<>
-			<header className='absolute inset-x-0 top-0 z-50'>
+			<header className={ clsxm(
+				'inset-x-0 top-0 z-50',
+				position === 'fixed' ? 'fixed bg-primary shadow-sm' : 'absolute'
+			) }>
 				<nav className='w-full container-center'>
 					<div className='flex h-60px lg:h-20 items-center justify-between'>
 						<div className='flex items-center'>

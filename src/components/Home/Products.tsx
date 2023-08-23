@@ -13,36 +13,36 @@ const products = [
 	{
 		id: 1,
 		name: 'Product Name',
-		newPrice: '$256',
+		price: 256,
 		description: 'Product Info',
-		oldPrice: '$39.99',
+		priceValue: 39.99,
 		imageSrc: '/images/home/product_1.png',
 		imageAlt: 'Eight shirts arranged on table in black, olive, grey, blue, white, red, mustard, and green.',
 	},
 	{
 		id: 2,
 		name: 'Product Name',
-		newPrice: '$32',
+		price: 32,
 		description: 'Product Info',
-		oldPrice: '$39.99',
+		priceValue: 39.99,
 		imageSrc: '/images/home/product_1.png',
 		imageAlt: 'product-1',
 	},
 	{
 		id: 3,
 		name: 'Product Name',
-		newPrice: '$32',
+		price: 32,
 		description: 'Product Info',
-		oldPrice: '$39.99',
+		priceValue: '$39.99',
 		imageSrc: '/images/home/product_1.png',
 		imageAlt: 'product-1',
 	},
 	{
 		id: 4,
 		name: 'Product Name',
-		newPrice: '$32',
+		price: 32,
 		description: 'Product Info',
-		oldPrice: '$39.99',
+		priceValue: 39.99,
 		imageSrc: '/images/home/product_1.png',
 		imageAlt: 'product-1',
 	},
@@ -135,10 +135,10 @@ const ProductsSection: React.FC = () => {
 							<p className='font-BRSonoma leading-[143%] lg:leading-[144%] text-xs lg:text-sm text-grey-primary whitespace-normal'>{ product.description }</p>
 							<div className='flex flex-1 flex-col justify-end font-BRSonoma text-primary pt-[17px]'>
 								<div className='flex items-center gap-9px'>
-									{ product.oldPrice && (
-										<p className='text-xs lg:text-sm leading-[130%] lg:leading-[131%]'>{ product.oldPrice }</p>
+									{ product.priceValue && (
+										<p className='text-xs lg:text-sm leading-[130%] lg:leading-[131%]'>${ product.priceValue }</p>
 									) }
-									{ product.newPrice && (
+									{ product.price && (
 										<div className='text-xs leading-[158%] bg-blue-1 rounded-full py-1 px-1.5 flex items-center gap-1 flex-shrink-0'>
 											<svg
 												xmlns='http://www.w3.org/2000/svg'
@@ -158,7 +158,7 @@ const ProductsSection: React.FC = () => {
 													fill='#A3E0FF' />
 											</svg>
 
-											<p>{ product.newPrice }</p>
+											<p>${ product.price }</p>
 										</div>
 									) }
 								</div>

@@ -38,7 +38,9 @@ const config: Config = {
         blue: {
           '1': '#A3E0FF',
           '2': '#5E899E'
-        }
+        },
+        'black-background': '#222426',
+        'black-secondary': '#242628'
       }
     },
     fontFamily: {
@@ -47,6 +49,7 @@ const config: Config = {
     }
   },
   plugins: [
+    require('@tailwindcss/forms'),
     ({ addComponents }: Config['PluginAPI']) => {
       addComponents(
         {
@@ -54,7 +57,8 @@ const config: Config = {
           '.absolute-center': { '@apply absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2': {} },
           '.btn': { '@apply rounded-full text-center py-3 px-4 xxs:px-5 transition-transform duration-100 hover:[&:not([disabled])]:-translate-y-[2px] active:[&:not([disabled])]:translate-y-0 focus:outline-0 focus:ring-0': {} },
           '.btn-primary': { '@apply bg-primary hover:bg-opacity-80 disabled:bg-opacity-50 text-grey-secondary font-medium': {} },
-          '.btn-secondary': { '@apply bg-grey-secondary text-primary font-medium': {} }
+          '.btn-secondary': { '@apply bg-grey-secondary text-primary font-medium': {} },
+          '.text-pretitle': { '@apply font-BRSonoma font-semibold text-[10px] sm:text-xs md:text-sm leading-6 uppercase tracking-[0.11em]': {} }
         }
       );
     }
