@@ -50,15 +50,17 @@ const Footer: React.FC = () => {
 			<div className='container-center'>
 				<div className='lg:grid lg:grid-cols-5'>
 					<div className='flex flex-col lg:col-span-3'>
-						<div className='relative overflow-hidden w-[85px] h-5'>
-							<Image
-								alt='logo'
-								src={ footerData.logo }
-								fill
-								className='object-contain'
-								sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
-							/>
-						</div>
+						<CustomLink href='/'>
+							<div className='relative overflow-hidden w-[85px] h-5'>
+								<Image
+									alt='logo'
+									src={ footerData.logo }
+									fill
+									className='object-contain'
+									sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
+								/>
+							</div>
+						</CustomLink>
 
 						<div className='mt-7'>
 							<p className='font-BRSonoma text-sm font-medium'>{ footerData.content }</p>

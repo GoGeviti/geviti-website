@@ -52,15 +52,13 @@ const Navbar: React.FC<NavbarProps> = ({ position = 'fixed' }) => {
 						<button
 							type='button'
 							key={ iconMenu.id }
-							className='relative rounded-full hover:bg-black-background/90 p-1'
+							className='relative rounded-full hover:bg-black-background/90 p-1 focus:outline-0 focus:ring-0 focus:border-0'
 							onClick={ () => {
 								if (iconMenu.href) {
 									router.push(iconMenu.href);
 								}
 							} }
 						>
-							<span className='absolute -inset-1.5' />
-
 							<div className='relative overflow-hidden w-[17px] h-[17px]'>
 								<Image
 									src={ iconMenu.src }
@@ -93,15 +91,17 @@ const Navbar: React.FC<NavbarProps> = ({ position = 'fixed' }) => {
 
 	const renderLogo = () => {
 		return (
-			<div className='flex-shrink-0 relative overflow-hidden w-[85px] h-5'>
-				<Image
-					src={ navbarData.logo }
-					alt=''
-					fill
-					className='object-contain'
-					sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
-				/>
-			</div>
+			<CustomLink href='/'>
+				<div className='flex-shrink-0 relative overflow-hidden w-[85px] h-5'>
+					<Image
+						src={ navbarData.logo }
+						alt=''
+						fill
+						className='object-contain'
+						sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
+					/>
+				</div>
+			</CustomLink>
 		);
 	};
 
