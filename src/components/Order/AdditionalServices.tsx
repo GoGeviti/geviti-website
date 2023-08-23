@@ -84,7 +84,7 @@ const AdditionalServices: React.FC<AdditionalServicesProps> = ({
 				<span className='flex-shrink-0'>
 					<CheckIcon className='w-15px h-3.5' />
 				</span>
-				<span>Added to Cart</span>
+				<span className='text-[13px] lg:text-xs leading-5 font-Poppins font-medium'>Added to Cart</span>
 			</button>
 		);
 	};
@@ -121,7 +121,7 @@ const AdditionalServices: React.FC<AdditionalServicesProps> = ({
 						</defs>
 					</svg>
 				</span>
-				<span>Add to Cart</span>
+				<span className='text-[13px] lg:text-xs leading-5 font-Poppins font-medium text-black-secondary'>Add to Cart</span>
 			</button>
 		);
 	};
