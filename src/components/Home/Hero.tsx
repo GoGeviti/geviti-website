@@ -22,7 +22,10 @@ const Hero: React.FC = () => {
 						>
 							<div className='lg:flex-shrink-0 lg:flex-grow lg:absolute lg:left-0 lg:inset-y-0 w-full'>
 								{ heroData.image && (
-									<div className='aspect-[53/47] h-full max-h-[646.8px] relative overflow-hidden max-lg:hidden'>
+									<div
+										data-aos='fade-in'
+										className='aspect-[53/47] h-full max-h-[646.8px] relative overflow-hidden max-lg:hidden'
+									>
 										<Image
 											src={ heroData.image }
 											alt=''
@@ -35,16 +38,25 @@ const Hero: React.FC = () => {
 						</div>
 
 						<div className='mx-auto sm:max-w-2xl lg:mx-0 lg:flex-auto text-center lg:text-left pt-4 lg:pt-[53px]'>
-							<h2 className='text-grey-secondary font-BRSonoma font-semibold text-xs sm:text-sm leading-[150%] sm:leading-6 uppercase tracking-[0.092em] sm:tracking-[0.11em]'>
+							<h2
+								data-aos='zoom-in-right'
+								className='text-grey-secondary font-BRSonoma font-semibold text-xs sm:text-sm leading-[150%] sm:leading-6 uppercase tracking-[0.092em] sm:tracking-[0.11em]'
+							>
 								{ heroData.preTitle }
 							</h2>
 							{ heroData.title && (
-								<h1 className='mt-3 font-Poppins sm:max-w-xl text-[32px] sm:text-[40px] leading-[98%] sm:-tracking-[0.04em] text-grey-secondary'>
+								<h1
+									data-aos='zoom-in-right'
+									className='mt-3 font-Poppins sm:max-w-xl text-[32px] sm:text-[40px] leading-[98%] sm:-tracking-[0.04em] text-grey-secondary'
+								>
 									<span dangerouslySetInnerHTML={ { __html: heroData.title } } />
 								</h1>
 							) }
 							{ heroData.description && (
-								<p className='mt-3.5 sm:max-w-md lg:pr-10 font-BRSonoma font-normal text-xs sm:text-sm leading-5 text-grey-primary'>
+								<p
+									data-aos='zoom-in-right'
+									className='mt-3.5 sm:max-w-md lg:pr-10 font-BRSonoma font-normal text-xs sm:text-sm leading-5 text-grey-primary'
+								>
 									<span dangerouslySetInnerHTML={ { __html: heroData.description } } />
 								</p>
 							) }
@@ -52,7 +64,10 @@ const Hero: React.FC = () => {
 
 						<div className='max-lg:pb-20'>
 							{ (heroData.image || heroData.imageMobile) && (
-								<div className='mx-auto aspect-[47/53] h-[410px] w-full relative overflow-hidden lg:hidden'>
+								<div
+									data-aos='zoom-in-left'
+									className='mx-auto aspect-[47/53] h-[410px] w-full relative overflow-hidden lg:hidden'
+								>
 									<Image
 										src={ heroData.imageMobile ?? heroData.image }
 										alt=''
@@ -68,9 +83,11 @@ const Hero: React.FC = () => {
 				<div className='absolute bottom-0 inset-x-0 max-lg:top-1/2 w-full bg-gradient-to-t from-primary to-[#181a1c00] lg:rounded-b-[19px]'>
 					<div className='container-center pb-[52px] lg:pb-[106px] h-full flex items-end'>
 						<div className='grid grid-cols-2 md:grid-cols-4 gap-y-7 max-w-5xl w-full'>
-							{ heroData.mainKeys.map(feature => (
+							{ heroData.mainKeys.map((feature, featureIdx) => (
 								<div
 									key={ feature.text }
+									data-aos='zoom-in-up'
+									data-aos-delay={ `${ featureIdx * 100 }` }
 									className='flex flex-col max-lg:text-center max-lg:items-center gap-y-1 md:gap-y-5px'
 								>
 									{ feature.image && (
@@ -85,7 +102,6 @@ const Hero: React.FC = () => {
 									) }
 									<p className='font-Poppins leading-[225%] -tracking-[0.04em] text-grey-secondary text-base sm:text-lg lg:text-xl'>{ feature.text }</p>
 								</div>
-
 							)) }
 						</div>
 					</div>

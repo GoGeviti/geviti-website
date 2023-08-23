@@ -27,6 +27,7 @@ const Features: React.FC = () => {
 		if (actionData.href) {
 			return (
 				<CustomLink
+					data-aos='zoom-in'
 					href={ actionData.href }
 					className={ wrapper }
 				>
@@ -36,7 +37,10 @@ const Features: React.FC = () => {
 		}
 
 		return (
-			<button className={ wrapper }>
+			<button
+				data-aos='zoom-in'
+				className={ wrapper }
+			>
 				{ renderContentButtonAction() }
 			</button>
 		);
@@ -48,6 +52,7 @@ const Features: React.FC = () => {
 				{ featuresData.list.map(item => (
 					<div
 						key={ item.title }
+						data-aos='zoom-in-down'
 						className='rounded-md bg-[#BCE8FF] py-[17px] sm:py-5 px-18px sm:px-[22px] relative'
 					>
 						<div className='flex justify-between gap-3'>
@@ -97,17 +102,26 @@ const Features: React.FC = () => {
 			<div className='relative isolate overflow-hidden bg-blue-1 lg:rounded-[19px]'>
 				<div className='container-center pb-[41px] pt-[52px] lg:flex lg:py-[102px]'>
 					<div className='mx-auto max-w-2xl text-center lg:text-left flex-shrink-0 lg:mx-0 lg:max-w-xl flex flex-col max-lg:items-center'>
-						<p className='text-blue-2 text-pretitle'>
+						<p
+							data-aos='zoom-in-right'
+							className='text-blue-2 text-pretitle'
+						>
 							{ featuresData.preTitle }
 						</p>
 						{ featuresData.title && (
-							<div className='mt-11px lg:mt-9px'>
+							<div
+								data-aos='zoom-in-right'
+								className='mt-11px lg:mt-9px'
+							>
 								<h2 className='text-primary text-[21px] md:text-3xl lg:text-4xl font-Poppins leading-[128%] lg:leading-[125%] -tracking-[0.04em]'>
 									<span dangerouslySetInnerHTML={ { __html: featuresData.title } } />
 								</h2>
 							</div>
 						) }
-						<p className='mt-[13px] lg:mt-9px text-xs sm:text-sm leading-5 text-primary sm:max-w-[400px]'>
+						<p
+							data-aos='zoom-in-right'
+							className='mt-[13px] lg:mt-9px text-xs sm:text-sm leading-5 text-primary sm:max-w-[400px]'
+						>
 							{ featuresData.description }
 						</p>
 						<div className='max-lg:hidden'>
@@ -119,7 +133,10 @@ const Features: React.FC = () => {
 					</div>
 					{ featuresData.image && (
 						<div className='mx-auto mt-50px flex max-w-2xl max-sm:-mr-6 lg:mr-0 lg:mt-0 lg:ml-32 xl:ml-[173px] xl:py-36'>
-							<div className='max-sm:w-full flex-none sm:max-w-4xl lg:max-w-2xl'>
+							<div
+								data-aos='zoom-in-left'
+								className='max-sm:w-full flex-none sm:max-w-4xl lg:max-w-2xl'
+							>
 								<Image
 									src={ featuresData.image }
 									alt='dashboard'

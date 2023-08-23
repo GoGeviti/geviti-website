@@ -5,7 +5,7 @@ import React from 'react';
 import { statesData } from '@/constant/data';
 import { IProducts } from '@/interfaces';
 
-import { CheckIcon } from '../Icons';
+import { ArrowNarrowRight, CheckIcon } from '../Icons';
 import {
 	Select,
 	SelectContent,
@@ -139,7 +139,14 @@ const AdditionalServices: React.FC<AdditionalServicesProps> = ({
 	const renderServiceList = () => {
 		return (
 			<div className='mt-[51px]'>
-				<div className='flex flex-col gap-y-3'>
+				<div className='flex justify-between gap-2'>
+					<p className='text-sm leading-5 text-grey-secondary font-BRSonoma'>Additional Services</p>
+					<div className='flex items-center gap-[5px] cursor-pointer lg:hidden'>
+						<p className='text-grey-primary text-xs leading-5 font-BRSonoma'>Skip</p>
+						<ArrowNarrowRight className='text-grey-primary w-3.5 h-3.5' />
+					</div>
+				</div>
+				<div className='flex flex-col gap-y-3 mt-15px lg:mt-[13px]'>
 					{ services.map(service => (
 						<div
 							key={ service.id }

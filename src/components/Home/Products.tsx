@@ -3,50 +3,12 @@
 import { useCallback, useState } from 'react';
 import Image from 'next/image';
 
+import { homeData, productsData } from '@/constant/data';
 import clsxm from '@/helpers/clsxm';
 import { screens } from '@/helpers/style';
 import { useWindowDimensions } from '@/hooks';
 
 import { ArrowNarrowLeft, ArrowNarrowRight, ChevronRight } from '../Icons';
-
-const products = [
-	{
-		id: 1,
-		name: 'Product Name',
-		price: 256,
-		description: 'Product Info',
-		priceValue: 39.99,
-		imageSrc: '/images/home/product_1.png',
-		imageAlt: 'Eight shirts arranged on table in black, olive, grey, blue, white, red, mustard, and green.',
-	},
-	{
-		id: 2,
-		name: 'Product Name',
-		price: 32,
-		description: 'Product Info',
-		priceValue: 39.99,
-		imageSrc: '/images/home/product_1.png',
-		imageAlt: 'product-1',
-	},
-	{
-		id: 3,
-		name: 'Product Name',
-		price: 32,
-		description: 'Product Info',
-		priceValue: '$39.99',
-		imageSrc: '/images/home/product_1.png',
-		imageAlt: 'product-1',
-	},
-	{
-		id: 4,
-		name: 'Product Name',
-		price: 32,
-		description: 'Product Info',
-		priceValue: 39.99,
-		imageSrc: '/images/home/product_1.png',
-		imageAlt: 'product-1',
-	},
-];
 
 const ProductsSection: React.FC = () => {
 	const windowDimensions = useWindowDimensions();
@@ -106,7 +68,7 @@ const ProductsSection: React.FC = () => {
 
 	const renderProductList = () => {
 		const isMobile = windowDimensions.width < screens.lg;
-		const productList = isMobile ? products : products?.slice(0, 4);
+		const productList = isMobile ? productsData : productsData?.slice(0, 4);
 
 		return (
 			<div
@@ -114,10 +76,12 @@ const ProductsSection: React.FC = () => {
 				onScroll={ handleScrollProducts }
 				className='no-scrollbar overflow-y-hidden transition-all select-none transform flex flex-nowrap overflow-x-auto scrolling-touch scroll-smooth gap-x-18px lg:gap-x-5 py-1 -mr-4 lg:-mr-0 last:pr-[17px] lg:last:pr-0 lg:grid lg:overflow-hidden lg:gap-y-4 lg:grid-cols-4'
 			>
-				{ productList.map(product => (
+				{ productList.map((product, productIdx) => (
 					<div
 						key={ product.id }
 						id='home-product-card'
+						data-aos='zoom-in-down'
+						data-aos-delay={ `${ productIdx * 100 }` }
 						className='group relative flex flex-col overflow-hidden bg-grey-secondary max-lg:flex-none w-[248px] lg:w-full'
 					>
 						<div className='relative overflow-hidden bg-[#E5E5E5] group-hover:opacity-75 w-full h-[225px] lg:h-[260px]'>
@@ -173,20 +137,32 @@ const ProductsSection: React.FC = () => {
 	return (
 		<div className='container-center w-full'>
 			<div className='flex items-center justify-between'>
-				<div>
-					<h2 className='text-primary font-Poppins text-[21px] md:text-3xl lg:text-4xl leading-[128%] lg:leading-[119%] -tracking-[0.04em]'>Discover Geviti</h2>
+				<div data-aos='zoom-in-right'>
+					<h2 className='text-primary font-Poppins text-[21px] md:text-3xl lg:text-4xl leading-[128%] lg:leading-[119%] -tracking-[0.04em]'>
+						{ homeData.products.title }
+					</h2>
 
-					<p className='text-grey-primary mt-5px text-xs sm:text-sm leading-5 font-BRSonoma'>Browse our wide range of products!</p>
+					<p className='text-grey-primary mt-5px text-xs sm:text-sm leading-5 font-BRSonoma'>
+						{ homeData.products.description }
+					</p>
 				</div>
 
-				<div className='lg:hidden flex items-center gap-6'>
+				<div
+					data-aos='zoom-in-left'
+					className='lg:hidden flex items-center gap-6'
+				>
 					{ renderArrowNarrow('left') }
 					{ renderArrowNarrow('right') }
 				</div>
 
-				<div className='max-lg:hidden'>
+				<div
+					data-aos='zoom-in-left'
+					className='max-lg:hidden'
+				>
 					<button className='btn btn-primary flex items-center gap-2 !translate-y-0 group'>
-						<span className='text-sm font-medium leading-6 font-Poppins'>View All Products</span>
+						<span className='text-sm font-medium leading-6 font-Poppins'>
+							{ homeData.products.viewAll }
+						</span>
 
 						<ChevronRight className='stroke-grey-secondary w-18px h-18px group-hover:translate-x-1 transform transition-all duration-100' />
 					</button>

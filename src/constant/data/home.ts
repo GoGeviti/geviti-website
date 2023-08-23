@@ -58,7 +58,23 @@ const homeData = {
 				description: 'Enjoy personalized recommendations based on your health patterns, helping you stay on track with your wellness journey.'
 			}
 		]
-	}
+	},
+	packages: {
+		preTitle: 'TAILORED TO YOUR SPECIFIC NEEDS',
+		title: 'Select Your Package',
+		description: 'Begin your personalized healthcare journey with us today. An initial consultation is included at just $199.',
+		titlePackageList: 'Select one of the following options',
+		helpText: 'Need Help?'
+	},
+	products: {
+		title: 'Discover Geviti',
+		description: 'Browse our wide range of products!',
+		viewAll: 'View All Products'
+	},
+	sliderPackageImages: [
+		'/images/home/package_1.png',
+		'/images/home/product_1.png'
+	]
 };
 
 export default homeData;

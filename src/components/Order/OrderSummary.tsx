@@ -39,7 +39,7 @@ const OrderSummary: React.FC<OrderSummaryProps> = ({ shoppingCarts }) => {
 							</div>
 							<div className='ml-[17px] flex-auto'>
 								<h4 className='font-medium text-sm font-Poppins line-clamp-1'>
-									{ product.name } { product.name } { product.name }
+									{ product.name }
 								</h4>
 								<p className='text-xl font-medium font-Poppins'>${ product.price }</p>
 							</div>

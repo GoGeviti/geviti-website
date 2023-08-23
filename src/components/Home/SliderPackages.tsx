@@ -4,14 +4,12 @@ import React, { useRef, useState } from 'react';
 import Slider from 'react-slick';
 import Image from 'next/image';
 
+import { homeData } from '@/constant/data';
 import clsxm from '@/helpers/clsxm';
 
 import { ChevronRight } from '../Icons';
 
-const images = [
-	'/images/home/package_1.png',
-	'/images/home/product_1.png'
-];
+const images = homeData.sliderPackageImages;
 
 const SliderPackages: React.FC = () => {
 	const sliderRef = useRef<Slider | null>(null);

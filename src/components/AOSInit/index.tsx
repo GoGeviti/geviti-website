@@ -5,7 +5,7 @@ import AOS from 'aos';
 
 const AOSInit = () => {
 	useEffect(() => {
-		AOS.init({ once: true });
+		AOS.init({ once: false });
 		AOS.refresh();
 	}, []);
 
