@@ -117,17 +117,10 @@ const PackagesSection: React.FC = () => {
 								data-aos='zoom-in-down'
 								onClick={ () => setSelectedPackageIdx(packageItemIdx) }
 							>
-								<div className='flex flex-col xxs:flex-row xxs:grid xxs:grid-cols-11 gap-3 xxs:gap-6 items-start'>
-									<div className='xxs:col-span-8 w-full'>
-										<p className='text-primary text-sm font-medium font-Poppins'>{ packageItem.name }</p>
-										<p className='text-grey-primary text-[10px] lg:text-xs leading-[145%] lg:leading-5 font-BRSonoma mt-0.5'>
-											{ packageItem.description && (
-												<span dangerouslySetInnerHTML={ { __html: packageItem.description } } />
-											) }
-										</p>
-									</div>
+								<div className='flex flex-col xxs:flex-row justify-between gap-3 xxs:gap-6 items-start'>
+									<p className='text-primary text-sm font-medium font-Poppins'>{ packageItem.name }</p>
 
-									<div className='xxs:col-span-3 flex max-lg:flex-col xxs:items-end lg:items-center lg:justify-end lg:gap-15px xxs:text-right lg:text-left'>
+									<div className='flex max-lg:flex-col xxs:items-end lg:items-center lg:justify-end lg:gap-15px xxs:text-right lg:text-left'>
 										<div className='lg:rounded-full lg:bg-primary lg:bg-opacity-10 lg:py-1.5 lg:px-3 text-[10px] leading-5 text-grey-primary lg:text-primary font-BRSonoma'>
 											<span>{ packageItem.oldPrice } Value</span>
 										</div>
@@ -136,8 +129,16 @@ const PackagesSection: React.FC = () => {
 									</div>
 								</div>
 
+								<div className='mt-3 xxs:mt-1 lg:mt-11px'>
+									<p className='text-grey-primary text-[10px] lg:text-xs leading-[145%] lg:leading-5 font-BRSonoma'>
+										{ packageItem.description && (
+											<span dangerouslySetInnerHTML={ { __html: packageItem.description } } />
+										) }
+									</p>
+								</div>
+
 								<div className='mt-[26px] lg:mt-5'>
-									<div className='flex flex-wrap gap-x-25px gap-y-4'>
+									<div className='flex flex-wrap gap-x-25px gap-y-3.5 lg:gap-y-4'>
 										{ packageItem.components?.map((component, componentIdx) => (
 											<div key={ componentIdx }>
 												{ renderTooltipProductDetail({ ...component, packageId: packageItemIdx, componentId: componentIdx }) }
