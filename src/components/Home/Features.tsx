@@ -102,28 +102,21 @@ const Features: React.FC = () => {
 			<div className='relative isolate overflow-hidden bg-blue-1 lg:rounded-[19px]'>
 				<div className='container-center pb-[41px] pt-[52px] lg:flex lg:py-[102px]'>
 					<div className='mx-auto max-w-2xl text-center lg:text-left flex-shrink-0 lg:mx-0 lg:max-w-xl flex flex-col max-lg:items-center'>
-						<p
-							data-aos='zoom-in-right'
-							className='text-blue-2 text-pretitle'
-						>
-							{ featuresData.preTitle }
-						</p>
-						{ featuresData.title && (
-							<div
-								data-aos='zoom-in-right'
-								className='mt-11px lg:mt-9px'
-							>
-								<h2 className='text-primary text-[21px] md:text-3xl lg:text-4xl font-Poppins leading-[128%] lg:leading-[125%] -tracking-[0.04em]'>
-									<span dangerouslySetInnerHTML={ { __html: featuresData.title } } />
-								</h2>
-							</div>
-						) }
-						<p
-							data-aos='zoom-in-right'
-							className='mt-[13px] lg:mt-9px text-xs sm:text-sm leading-5 text-primary sm:max-w-[400px]'
-						>
-							{ featuresData.description }
-						</p>
+						<div data-aos='zoom-in-right'>
+							<p className='text-blue-2 text-pretitle'>
+								{ featuresData.preTitle }
+							</p>
+							{ featuresData.title && (
+								<div className='mt-11px lg:mt-9px'>
+									<h2 className='text-primary text-[21px] md:text-3xl lg:text-4xl font-Poppins leading-[128%] lg:leading-[125%] -tracking-[0.04em]'>
+										<span dangerouslySetInnerHTML={ { __html: featuresData.title } } />
+									</h2>
+								</div>
+							) }
+							<p className='mt-[13px] lg:mt-9px text-xs sm:text-sm leading-5 text-primary sm:max-w-[400px]'>
+								{ featuresData.description }
+							</p>
+						</div>
 						<div className='max-lg:hidden'>
 							{ renderFeatureList() }
 						</div>

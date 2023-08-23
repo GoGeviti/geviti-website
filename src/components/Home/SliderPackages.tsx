@@ -68,35 +68,33 @@ const SliderPackages: React.FC = () => {
 
 	return (
 		<div className='w-full sm:max-w-[333px] mx-auto lg:max-w-none lg:mx-0'>
-			<Slider
-				{ ...settings }
-				ref={ sliderRef }
-			>
-				{ images.map((image: string, imageIdx: number) => (
-					<div
-						key={ imageIdx }
-						className='relative overflow-hidden w-full h-full aspect-square rounded-[28px] bg-[#E5E5E5] focus:outline-none focus:ring-0'
-					>
-						{ renderPrevArrow() }
+			<div className='relative overflow-hidden w-full h-full aspect-square rounded-[28px] bg-[#E5E5E5] focus:outline-none focus:ring-0'>
+				{ renderPrevArrow() }
+				<Slider
+					{ ...settings }
+					ref={ sliderRef }
+				>
+					{ images.map((image: string, imageIdx: number) => (
+						<div key={ imageIdx }>
 
-						<div className='w-full h-full aspect-square rounded-[28px] relative overflow-hidden'>
-							<Image
-								src={ image }
-								alt=''
-								sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
-								className='object-contain'
-								fill
-							/>
+							<div className='w-full h-full aspect-square rounded-[28px] relative overflow-hidden'>
+								<Image
+									src={ image }
+									alt=''
+									sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
+									className='object-contain'
+									fill
+								/>
+							</div>
 						</div>
+					)) }
+				</Slider>
+				{ renderNextArrow() }
 
-						{ renderNextArrow() }
-
-						<div className='absolute bottom-7 w-full z-10'>
-							{ renderDots() }
-						</div>
-					</div>
-				)) }
-			</Slider>
+				<div className='absolute bottom-7 w-full z-10'>
+					{ renderDots() }
+				</div>
+			</div>
 		</div>
 	);
 };

@@ -24,6 +24,7 @@ import {
 
 import DialogHelp from './DialogHelp';
 import SliderPackages from './SliderPackages';
+import WrapperAnimation from './WrapperAnimation';
 
 type ComponentItem = {
 	packageId: number;
@@ -108,53 +109,56 @@ const PackagesSection: React.FC = () => {
 						const isSelected = packageItemIdx === selectedPackageIdx;
 
 						return (
-							<div
+							<WrapperAnimation
 								key={ packageItem.id }
-								className={ clsxm(
-									'rounded-md py-[25px] px-[27px] border cursor-pointer',
-									isSelected ? 'bg-blue-1 border-[#65CBFF]' : 'bg-grey-secondary border-transparent'
-								) }
 								data-aos='zoom-in-down'
-								onClick={ () => setSelectedPackageIdx(packageItemIdx) }
 							>
-								<div className='flex flex-col xxs:flex-row justify-between gap-3 xxs:gap-6 items-start'>
-									<p className='text-primary text-sm font-medium font-Poppins'>{ packageItem.name }</p>
+								<div
+									onClick={ () => setSelectedPackageIdx(packageItemIdx) }
+									className={ clsxm(
+										'rounded-md py-[25px] px-[27px] border cursor-pointer',
+										isSelected ? 'bg-blue-1 border-[#65CBFF]' : 'bg-grey-secondary border-transparent hover:bg-blue-1 hover:bg-opacity-50 hover:border-[#65CBFF] hover:border-opacity-50 transform transition-all duration-500'
+									) }
+								>
+									<div className='flex flex-col xxs:flex-row justify-between gap-3 xxs:gap-6 items-start'>
+										<p className='text-primary text-sm font-medium font-Poppins'>{ packageItem.name }</p>
 
-									<div className='flex max-lg:flex-col xxs:items-end lg:items-center lg:justify-end lg:gap-15px xxs:text-right lg:text-left'>
-										<div className='lg:rounded-full lg:bg-primary lg:bg-opacity-10 lg:py-1.5 lg:px-3 text-[10px] leading-5 text-grey-primary lg:text-primary font-BRSonoma'>
-											<span>{ packageItem.oldPrice } Value</span>
-										</div>
-
-										<p className='text-primary font-Poppins text-base lg:text-xl font-medium'>{ packageItem.newPrice }</p>
-									</div>
-								</div>
-
-								<div className='mt-3 xxs:mt-1 lg:mt-11px'>
-									<p className='text-grey-primary text-[10px] lg:text-xs leading-[145%] lg:leading-5 font-BRSonoma'>
-										{ packageItem.description && (
-											<span dangerouslySetInnerHTML={ { __html: packageItem.description } } />
-										) }
-									</p>
-								</div>
-
-								<div className='mt-[26px] lg:mt-5'>
-									<div className='flex flex-wrap gap-x-25px gap-y-3.5 lg:gap-y-4'>
-										{ packageItem.components?.map((component, componentIdx) => (
-											<div key={ componentIdx }>
-												{ renderTooltipProductDetail({ ...component, packageId: packageItemIdx, componentId: componentIdx }) }
+										<div className='flex max-lg:flex-col xxs:items-end lg:items-center lg:justify-end lg:gap-15px xxs:text-right lg:text-left'>
+											<div className='lg:rounded-full lg:bg-primary lg:bg-opacity-10 lg:py-1.5 lg:px-3 text-[10px] leading-5 text-grey-primary lg:text-primary font-BRSonoma'>
+												<span>{ packageItem.oldPrice } Value</span>
 											</div>
-										)) }
+
+											<p className='text-primary font-Poppins text-base lg:text-xl font-medium'>{ packageItem.newPrice }</p>
+										</div>
 									</div>
+
+									<div className='mt-3 xxs:mt-1 lg:mt-11px'>
+										<p className='text-grey-primary text-[10px] lg:text-xs leading-[145%] lg:leading-5 font-BRSonoma'>
+											{ packageItem.description && (
+												<span dangerouslySetInnerHTML={ { __html: packageItem.description } } />
+											) }
+										</p>
+									</div>
+
+									<div className='mt-[26px] lg:mt-5'>
+										<div className='flex flex-wrap gap-x-25px gap-y-3.5 lg:gap-y-4'>
+											{ packageItem.components?.map((component, componentIdx) => (
+												<div key={ componentIdx }>
+													{ renderTooltipProductDetail({ ...component, packageId: packageItemIdx, componentId: componentIdx }) }
+												</div>
+											)) }
+										</div>
+									</div>
+
+									{ isSelected && (
+										<button className='btn btn-primary mt-5 flex items-center gap-1.5 max-lg:hidden'>
+											<span className='text-xs font-medium font-BRSonoma leading-[159%]'>Continue</span>
+
+											<ArrowNarrowRight />
+										</button>
+									) }
 								</div>
-
-								{ isSelected && (
-									<button className='btn btn-primary mt-5 flex items-center gap-1.5 max-lg:hidden'>
-										<span className='text-xs font-medium font-BRSonoma leading-[159%]'>Continue</span>
-
-										<ArrowNarrowRight />
-									</button>
-								) }
-							</div>
+							</WrapperAnimation>
 						);
 					}) }
 				</div>
@@ -173,7 +177,7 @@ const PackagesSection: React.FC = () => {
 
 	const renderTitleDescPage = () => {
 		return (
-			<div
+			<WrapperAnimation
 				data-aos='zoom-in-right'
 				className='flex flex-col max-lg:items-center text-center lg:text-left'
 			>
@@ -186,7 +190,7 @@ const PackagesSection: React.FC = () => {
 				<p className='mt-[17px] lg:mt-9px text-grey-primary font-BRSonoma text-xs lg:text-sm leading-[167%] lg:leading-[143%]'>
 					{ homeData.packages.description }
 				</p>
-			</div>
+			</WrapperAnimation>
 		);
 	};
 
@@ -194,7 +198,7 @@ const PackagesSection: React.FC = () => {
 		const selectOptions = statesData.options;
 
 		return (
-			<div
+			<WrapperAnimation
 				data-aos='zoom-in-right'
 				className='mt-10'
 			>
@@ -223,7 +227,7 @@ const PackagesSection: React.FC = () => {
 						</SelectGroup>
 					</SelectContent>
 				</Select>
-			</div>
+			</WrapperAnimation>
 		);
 	};
 
@@ -231,17 +235,17 @@ const PackagesSection: React.FC = () => {
 		<>
 			<div className='container-center w-full py-[94px]'>
 				<div className='lg:grid lg:grid-cols-10 lg:gap-x-32'>
-					<div
+					<WrapperAnimation
 						className='lg:hidden'
 						data-aos='zoom-in'
-					>{ renderTitleDescPage() }</div>
+					>{ renderTitleDescPage() }</WrapperAnimation>
 
-					<div
+					<WrapperAnimation
 						className='lg:col-span-4 max-lg:mt-10'
 						data-aos='fade-in'
 					>
 						<SliderPackages />
-					</div>
+					</WrapperAnimation>
 
 					<div className='lg:col-span-6'>
 						<div className='max-lg:hidden'>
@@ -251,7 +255,7 @@ const PackagesSection: React.FC = () => {
 						{ renderSelectState() }
 
 						<div className='flex max-lg:flex-col gap-11px items-center lg:justify-between mt-10'>
-							<div
+							<WrapperAnimation
 								data-aos='zoom-in-right'
 								className='flex items-center gap-5px'
 							>
@@ -259,9 +263,9 @@ const PackagesSection: React.FC = () => {
 									{ homeData.packages.titlePackageList }
 								</span>
 								<ArrowNarrowDown className='text-primary lg:text-grey-primary' />
-							</div>
+							</WrapperAnimation>
 
-							<div
+							<WrapperAnimation
 								data-aos='zoom-in-left'
 								className='flex items-center gap-[7px] cursor-pointer'
 								onClick={ () => setOpenDialogHelp(true) }
@@ -270,7 +274,7 @@ const PackagesSection: React.FC = () => {
 								<span className='text-sm font-semibold font-BRSonoma leading-5 text-grey-primary'>
 									{ homeData.packages.helpText }
 								</span>
-							</div>
+							</WrapperAnimation>
 						</div>
 
 						{ renderPackageList() }

@@ -32,8 +32,8 @@ const Navbar: React.FC<NavbarProps> = ({ position = 'fixed' }) => {
 							href={ link.href }
 							externalLink={ link.externalLink }
 							className={ clsxm(
-								'rounded-md font-BRSonoma px-3 py-2 text-sm font-medium text-grey-secondary hover:text-white',
-								isActive ? 'bg-black-background' : 'hover:bg-black-background/90'
+								'rounded-md px-3 py-2 text-sm text-grey-secondary hover:text-white',
+								isActive ? 'font-BRSonoma font-medium' : 'font-Poppins font-medium'
 							) }
 						>
 							{ link.name }
@@ -52,7 +52,7 @@ const Navbar: React.FC<NavbarProps> = ({ position = 'fixed' }) => {
 						<button
 							type='button'
 							key={ iconMenu.id }
-							className='relative rounded-full hover:bg-black-background/90 p-1 focus:outline-0 focus:ring-0 focus:border-0'
+							className='relative rounded-full focus:outline-0 focus:ring-0 focus:border-0'
 							onClick={ () => {
 								if (iconMenu.href) {
 									router.push(iconMenu.href);
@@ -91,7 +91,9 @@ const Navbar: React.FC<NavbarProps> = ({ position = 'fixed' }) => {
 
 	const renderLogo = () => {
 		return (
-			<CustomLink href='/'>
+			<CustomLink
+				href='/'
+				className='focus:outline-0 focus:ring-0 focus:border-0'>
 				<div className='flex-shrink-0 relative overflow-hidden w-[85px] h-5'>
 					<Image
 						src={ navbarData.logo }

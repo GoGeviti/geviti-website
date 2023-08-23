@@ -1,8 +1,8 @@
 const homeData = {
 	hero: {
 		preTitle: 'GET STARTED WITH GEVITI',
-		title: '<span class="lg:hidden">Live Long, Feel Good</span><span class="max-lg:hidden">Leveraging the power of modern telehealth technology,</span>',
-		description: '<span class="lg:hidden">Join us and become the best version of yourself. Personalized plans to make you look and feel better for longer. Hormones, peptides, supplements, and more. We can give your body what it needs to attack aging. All access in the palm of your hand. Say \'hello to a younger, healthier you.</span><span class="max-lg:hidden">Achieve vitality through our personalized nutrition and fitness regimes, hormone and peptide therapies, and more! All designed to keep your body in its prime for longer.</span > ',
+		title: 'Live Long, Feel Good',
+		description: '<span class="max-lg:hidden">Join us and become the best version of yourself. Personalized plans to make you look and feel better for longer. Hormones, peptides, supplements, and more. We can give your body what it needs to attack aging. All access in the palm of your hand. Say \'hello to a younger, healthier you.</span><span class="lg:hidden">Join us and become the best version of yourself. Hormones, peptides, supplements, and more. Give your body what it needs to attack aging. All access in the palm of your hand.</span>',
 		image: '/images/home/hero.png',
 		imageMobile: '/images/home/hero_mobile.png',
 		mainKeys: [
@@ -73,7 +73,7 @@ const homeData = {
 	},
 	sliderPackageImages: [
 		'/images/home/package_1.png',
-		'/images/home/product_1.png'
+		'/images/home/package_1.png'
 	]
 };
 
