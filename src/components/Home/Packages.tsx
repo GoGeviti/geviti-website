@@ -27,8 +27,8 @@ import SliderPackages from './SliderPackages';
 import WrapperAnimation from './WrapperAnimation';
 
 type ComponentItem = {
-	packageId: number;
-	componentId: number;
+	packageId?: number;
+	componentId?: number;
 	name: string;
 	description: string;
 };
@@ -55,6 +55,16 @@ const PackagesSection: React.FC = () => {
 		setDetailPopover(component);
 	};
 
+	const renderTextComponentPackage = (component: ComponentItem) => {
+		return (
+			<span className='flex items-center gap-1 text-primary'>
+				<CheckIcon />
+
+				<p className='text-[10px] text-primary font-BRSonoma leading-5'>{ component.name }</p>
+			</span>
+		);
+	};
+
 	const renderTooltipProductDetail = (component: ComponentItem) => {
 		const isOpen = openPopover
 			&& detailPopover.componentId === component.componentId
@@ -72,11 +82,7 @@ const PackagesSection: React.FC = () => {
 					onMouseLeave={ () => handleMouseLeave(component) }
 					asChild
 				>
-					<span className='flex items-center gap-1 text-primary'>
-						<CheckIcon />
-
-						<p className='text-[10px] text-primary font-BRSonoma leading-5'>{ component.name }</p>
-					</span>
+					{ renderTextComponentPackage(component) }
 				</PopoverTrigger>
 				<PopoverContent
 					className='p-18px'
@@ -99,7 +105,7 @@ const PackagesSection: React.FC = () => {
 	};
 
 	const resolveCardPackageClassName = (isSelected: boolean) => {
-		if (!state) return 'opacity-50 cursor-default';
+		if (!state) return 'opacity-50 bg-grey-secondary border-transparent cursor-default';
 
 		if (isSelected) {
 			return 'bg-blue-1 border-[#65CBFF]';
@@ -157,11 +163,17 @@ const PackagesSection: React.FC = () => {
 									<div className='flex flex-wrap gap-x-25px gap-y-3.5 lg:gap-y-4'>
 										{ packageItem.components?.map((component, componentIdx) => (
 											<div key={ componentIdx }>
-												{ renderTooltipProductDetail({
-													...component,
-													packageId: packageItemIdx,
-													componentId: componentIdx
-												}) }
+												<div className='max-lg:hidden'>
+													{ renderTooltipProductDetail({
+														...component,
+														packageId: packageItemIdx,
+														componentId: componentIdx
+													}) }
+												</div>
+
+												<div className='lg:hidden'>
+													{ renderTextComponentPackage(component) }
+												</div>
 											</div>
 										)) }
 									</div>
