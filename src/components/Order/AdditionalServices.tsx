@@ -56,7 +56,9 @@ const AdditionalServices: React.FC<AdditionalServicesProps> = ({
 					onValueChange={ setState }
 				>
 					<SelectTrigger className='text-grey-secondary w-full lg:w-[398px] bg-black-background shadow-[0px_1px_2px_0px_rgba(16,24,40,0.05)]'>
-						<SelectValue placeholder='Select state' />
+						<SelectValue placeholder='Select state'>
+							{ state || 'Select state' }
+						</SelectValue>
 					</SelectTrigger>
 					<SelectContent className='bg-black-background !text-grey-secondary'>
 						<SelectGroup className='overflow-x-hidden'>
@@ -80,7 +82,8 @@ const AdditionalServices: React.FC<AdditionalServicesProps> = ({
 
 	const renderButtonAddedToCart = () => {
 		return (
-			<button className='btn btn-primary !bg-[#1A1C1E] !px-4 flex items-center justify-center max-sm:w-full gap-1.5 text-grey-secondary'>
+			<button
+				className='btn btn-primary !bg-[#1A1C1E] !px-4 flex items-center justify-center max-sm:w-full gap-1.5 text-grey-secondary'>
 				<span className='flex-shrink-0'>
 					<CheckIcon className='w-15px h-3.5' />
 				</span>
@@ -92,7 +95,8 @@ const AdditionalServices: React.FC<AdditionalServicesProps> = ({
 	const renderButtonAddToCart = (service: IProducts.ProductItem) => {
 		return (
 			<button
-				className='btn btn-secondary !px-4 flex items-center justify-center gap-1.5 max-sm:w-full'
+				disabled={ !state }
+				className='btn btn-secondary disabled:bg-grey-secondary/50 disabled:cursor-not-allowed !px-4 flex items-center justify-center gap-1.5 max-sm:w-full'
 				onClick={ () => onClickProduct(service) }
 			>
 				<span className='flex-shrink-0'>

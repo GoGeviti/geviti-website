@@ -2,14 +2,13 @@
 
 import React, { useState } from 'react';
 
-import { statesData } from '@/constant/data';
 import { IProducts } from '@/interfaces';
 
 import AdditionalServices from './AdditionalServices';
 import OrderSummary from './OrderSummary';
 
 const Content: React.FC = () => {
-	const [state, setState] = useState<string>(statesData.options[0].value);
+	const [state, setState] = useState<string>('');
 	const [shoppingCarts, setShoppingCarts] = useState<IProducts.ProductItem[]>([
 		{
 			id: 1,

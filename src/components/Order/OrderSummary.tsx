@@ -53,7 +53,9 @@ const OrderSummary: React.FC<OrderSummaryProps> = ({ shoppingCarts }) => {
 			</div>
 
 			<div className='mt-[26px]'>
-				<button className='btn btn-secondary w-full text-xs font-medium leading-[159%] font-Poppins text-black-secondary'>
+				<button
+					disabled={ shoppingCarts.length <= 1 }
+					className='btn btn-secondary w-full disabled:bg-black-secondary disabled:text-[#383B3F] text-xs font-medium leading-[159%] font-Poppins text-black-secondary'>
 					Proceed to checkout
 				</button>
 			</div>
