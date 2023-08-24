@@ -106,7 +106,7 @@ const packagesData = [
 		name: 'Tier 3 Male',
 		price: 429.99,
 		description: 'A comprehensive panel specifically designed for men, includes all tests from Tier 2, plus:',
-		value: '$1500+',
+		value: '$1,500+',
 		components: [
 			{
 				name: 'Thyroid Cascade',
@@ -147,7 +147,7 @@ const packagesData = [
 		name: 'Tier 3 Female',
 		price: 339.99,
 		description: 'Designed for women, includes all tests from Tier 2, plus...',
-		value: '$1400+',
+		value: '$1,400+',
 		components: [
 			{
 				name: 'Progesterone',

@@ -5,10 +5,6 @@ const statesData = {
 		{
 			label: 'Arizona',
 			value: 'Arizona'
-		},
-		{
-			label: 'Korea',
-			value: 'Korea'
 		}
 	]
 };
