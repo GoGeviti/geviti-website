@@ -1,10 +1,16 @@
-import packagesData from './packages';
-
-const stateOptions = packagesData.map(packageItem => packageItem.state);
-
 const statesData = {
 	label: 'Select state',
-	options: stateOptions
+	placeholder: 'Select state',
+	options: [
+		{
+			label: 'Arizona',
+			value: 'Arizona'
+		},
+		{
+			label: 'Korea',
+			value: 'Korea'
+		}
+	]
 };
 
 export default statesData;

@@ -81,7 +81,7 @@ const SelectItem = React.forwardRef<
 	<SelectPrimitive.Item
 		ref={ ref }
 		className={ clsxm(
-			'relative flex w-full cursor-default select-none items-center rounded-sm px-18px py-2 text-sm leading-6 font-medium font-Poppins outline-none data-[disabled]:pointer-events-none data-[disabled]:opacity-50 data-[highlighted]:bg-primary data-[highlighted]:!text-grey-secondary',
+			'relative cursor-pointer flex w-full select-none items-center rounded-sm px-18px py-2 text-sm leading-6 font-medium font-Poppins outline-none data-[disabled]:pointer-events-none data-[disabled]:opacity-50',
 			className
 		) }
 		{ ...props }

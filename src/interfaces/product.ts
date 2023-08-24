@@ -3,7 +3,7 @@ export interface ProductItem {
 	name: string;
 	price: number;
 	description?: string;
-	priceValue?: number;
+	value?: string;
 	imageSrc?: string;
 	imageAlt?: string;
 };

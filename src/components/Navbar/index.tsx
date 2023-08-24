@@ -2,8 +2,7 @@
 
 import React, { useState } from 'react';
 import Image from 'next/image';
-import { usePathname } from 'next/navigation';
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 
 import { navbarData } from '@/constant/data';
 import clsxm from '@/helpers/clsxm';
@@ -12,9 +11,9 @@ import CustomLink from '../CustomLink';
 import { Bars3Icon } from '../Icons';
 import { Sheet, SheetContent } from '../Sheet';
 
-type NavbarProps = { position?: 'fixed' | 'absolute'; };
+type NavbarProps = { position?: 'sticky' | 'absolute'; };
 
-const Navbar: React.FC<NavbarProps> = ({ position = 'fixed' }) => {
+const Navbar: React.FC<NavbarProps> = ({ position = 'absolute' }) => {
 	const pathname = usePathname();
 	const router = useRouter();
 
@@ -142,7 +141,7 @@ const Navbar: React.FC<NavbarProps> = ({ position = 'fixed' }) => {
 		<>
 			<header className={ clsxm(
 				'inset-x-0 top-0 z-50',
-				position === 'fixed' ? 'fixed bg-primary shadow-sm' : 'absolute'
+				position === 'sticky' ? 'sticky bg-primary shadow-sm' : 'absolute'
 			) }>
 				<nav className='w-full container-center'>
 					<div className='flex h-60px lg:h-20 items-center justify-between'>

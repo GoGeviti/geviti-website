@@ -100,10 +100,10 @@ const ProductsSection: React.FC = () => {
 							<p className='font-BRSonoma leading-[143%] lg:leading-[144%] text-xs lg:text-sm text-grey-primary whitespace-normal'>{ product.description }</p>
 							<div className='flex flex-1 flex-col justify-end font-BRSonoma text-primary pt-[17px]'>
 								<div className='flex items-center gap-9px'>
-									{ product.priceValue && (
-										<p className='text-xs lg:text-sm leading-[130%] lg:leading-[131%]'>${ product.priceValue }</p>
+									{ product.value && (
+										<p className='text-xs lg:text-sm leading-[130%] lg:leading-[131%]'>{ product.value }</p>
 									) }
-									{ product.price && (
+									{ product.price !== undefined && (
 										<div className='text-xs leading-[158%] bg-blue-1 rounded-full py-1 px-1.5 flex items-center gap-1 flex-shrink-0'>
 											<svg
 												xmlns='http://www.w3.org/2000/svg'

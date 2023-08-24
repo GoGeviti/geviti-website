@@ -53,7 +53,7 @@ const config: Config = {
     ({ addComponents }: Config['PluginAPI']) => {
       addComponents(
         {
-          '.container-center': { '@apply max-w-7xl mx-auto px-4': {} },
+          '.container-center': { '@apply max-w-7xl mx-auto px-4 lg:px-10': {} },
           '.absolute-center': { '@apply absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2': {} },
           '.btn': { '@apply rounded-full text-center py-3 px-4 xxs:px-5 transition-transform duration-100 hover:[&:not([disabled])]:-translate-y-[2px] active:[&:not([disabled])]:translate-y-0 focus:outline-0 focus:ring-0': {} },
           '.btn-primary': { '@apply bg-primary hover:bg-opacity-80 disabled:bg-opacity-50 text-grey-secondary font-medium': {} },

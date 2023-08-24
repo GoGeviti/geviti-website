@@ -46,7 +46,7 @@ const Footer: React.FC = () => {
 	};
 
 	return (
-		<div className='pt-[45px] pb-10 lg:pt-[92px] lg:pb-[88px]'>
+		<div className='pt-[45px] pb-[42px] lg:pt-[92px] lg:pb-[109px]'>
 			<div className='container-center'>
 				<div className='lg:grid lg:grid-cols-5'>
 					<div className='flex flex-col lg:col-span-3'>
@@ -72,7 +72,7 @@ const Footer: React.FC = () => {
 								value={ email }
 								onChange={ (e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value) }
 								placeholder='Email*'
-								className='!border-b !border-[#C4C4C4] focus:!border-primary py-3 sm:py-15px pr-5 bg-transparent placeholder:text-primary text-primary text-xs sm:text-sm font-medium font-BRSonoma border-0 focus:border-0 focus:ring-0 focus:outline-0'
+								className='!border-b !border-[#C4C4C4] w-full sm:w-[447px] focus:!border-primary py-3 sm:py-15px pr-5 !pl-0 bg-transparent placeholder:text-primary text-primary text-xs sm:text-sm font-medium font-BRSonoma border-0 focus:border-0 focus:ring-0 focus:outline-0'
 							/>
 						</div>
 

@@ -2,27 +2,17 @@ const navigationData = {
 	logo: '/images/logo/logo_light.png',
 	menu: [
 		{
-			name: 'Go Geviti',
+			name: 'Get Started',
 			href: '/',
 			externalLink: false
 		},
 		{
-			name: 'Supplements',
+			name: 'Products',
 			href: '#',
 			externalLink: false
 		},
 		{
-			name: 'Hormones',
-			href: '#',
-			externalLink: false
-		},
-		{
-			name: 'Technology',
-			href: '#',
-			externalLink: false
-		},
-		{
-			name: 'Blog',
+			name: 'Resources',
 			href: '#',
 			externalLink: false
 		}
@@ -44,7 +34,7 @@ const navigationData = {
 	],
 	actionsMenu: [
 		{
-			name: 'Get Started',
+			name: 'Dashboard',
 			href: '#',
 			externalLink: false
 		}

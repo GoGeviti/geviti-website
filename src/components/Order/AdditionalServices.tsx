@@ -64,7 +64,7 @@ const AdditionalServices: React.FC<AdditionalServicesProps> = ({
 								<div key={ optionIdx }>
 									<SelectItem
 										value={ option.value }
-										className='data-[state=unchecked]:font-normal data-[state=checked]:font-semibold'
+										className='data-[state=unchecked]:font-normal data-[state=checked]:font-semibold data-[highlighted]:bg-black-secondary'
 									>{ option.label }</SelectItem>
 									{ optionIdx < options.length - 1 && (
 										<SelectSeparator />
