@@ -3,40 +3,40 @@ const packagesData = [
 		id: 1,
 		name: 'Tier 1',
 		price: 124.99,
-		description: 'Includes the following tests',
-		value: '$300+',
+		description: 'Includes a foundational set of tests for general health assessment:',
+		value: '27+ biomarkers',
 		components: [
 			{
-				name: 'TSH',
-				description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+				name: 'Thyroid Cascade',
+				description: 'A series of tests evaluating thyroid function. It starts with TSH and can reflex to Free T4, Free T3, and Anti-TPO based on results.'
 			},
 			{
-				name: 'LH',
-				description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+				name: 'LH (Luteinizing Hormone)',
+				description: 'A hormone regulating the menstrual cycle and ovulation in females and testosterone production in males.'
 			},
 			{
 				name: 'Testosterone, Total',
-				description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+				description: 'Measures the total amount of testosterone, a male sex hormone also present in females.'
 			},
 			{
 				name: 'Testosterone, Free',
-				description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+				description: 'Assesses the unbound testosterone in the blood, indicating the active form of the hormone.'
 			},
 			{
 				name: 'Comp. Metabolic Panel (14)',
-				description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+				description: 'A comprehensive blood test measuring glucose, calcium, and electrolytes, providing insights into heart, kidney, and muscle function.'
 			},
 			{
 				name: 'HbA1C',
-				description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+				description: 'Indicates average blood sugar levels over the past 2-3 months, used for diagnosing and monitoring diabetes.'
 			},
 			{
-				name: 'CBC',
-				description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+				name: 'CBC (Complete Blood Count)',
+				description: 'Evaluates different blood components, offering insights into overall health and potential disorders like anemia.'
 			},
 			{
 				name: 'Lipid Panel',
-				description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+				description: 'Assesses fats in the blood, including cholesterol and triglycerides, to evaluate heart disease risk.'
 			},
 		]
 	},
@@ -44,60 +44,52 @@ const packagesData = [
 		id: 2,
 		name: 'Tier 2',
 		price: 299.99,
-		description: 'Includes all tests from Tier 1, plus...',
-		value: '$1,000+',
+		description: 'Includes all tests from Tier 1, plus:',
+		value: '40+ biomarkers',
 		components: [
 			{
-				name: 'FSH',
-				description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+				name: 'FSH (Follicle Stimulating Hormone)',
+				description: 'Regulates reproductive processes, including the menstrual cycle and sperm production.'
 			},
 			{
 				name: 'Estradiol',
-				description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+				description: 'A form of estrogen, vital for reproductive and sexual function in females.'
 			},
 			{
-				name: 'DHEA',
-				description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+				name: 'DHEA (Dehydroepiandrosterone)',
+				description: 'A precursor steroid hormone leading to the production of androgens and estrogens.'
 			},
 			{
-				name: 'IGF-1',
-				description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+				name: 'IGF-1 (Insulin-like Growth Factor 1)',
+				description: 'A hormone influencing growth and development and having anabolic effects in adults.'
 			},
 			{
 				name: 'Homocyst(e)ine',
-				description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+				description: 'An amino acid; elevated levels can indicate a higher risk of heart disease.'
 			},
 			{
 				name: 'Magnesium',
-				description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
-			},
-			{
-				name: 'Apo B',
-				description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+				description: 'An essential mineral crucial for numerous biochemical reactions in the body.'
 			},
 			{
 				name: 'Vitamin D, 25-Hydroxy',
-				description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+				description: 'Indicates vitamin D status, essential for bone health and immune function.'
 			},
 			{
-				name: 'PSA',
-				description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
-			},
-			{
-				name: 'ALT',
-				description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
-			},
-			{
-				name: 'AST',
-				description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+				name: 'PSA (Prostate-Specific Antigen)',
+				description: 'A marker for prostate health; elevated levels can suggest prostate conditions.'
 			},
 			{
 				name: 'C-Reactive Protein',
-				description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+				description: 'Indicates inflammation in the body, which can be a marker for disease.'
+			},
+			{
+				name: 'Apo B',
+				description: 'A main protein in LDL cholesterol, used to assess heart disease risk.'
 			},
 			{
 				name: 'Lipoprotein A',
-				description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+				description: 'A cholesterol type; elevated levels can increase heart disease risk.'
 			},
 		]
 	},
@@ -106,80 +98,72 @@ const packagesData = [
 		name: 'Tier 3 Male',
 		price: 429.99,
 		description: 'A comprehensive panel specifically designed for men, includes all tests from Tier 2, plus:',
-		value: '$1,500+',
+		value: '46+ biomarkers',
 		components: [
 			{
-				name: 'Thyroid Cascade',
-				description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+				name: 'Insulin',
+				description: 'Regulates blood sugar levels, and its assessment can indicate metabolic health.'
 			},
 			{
-				name: 'SHBG',
-				description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+				name: 'SHBG (Sex Hormone Binding Globulin)',
+				description: 'Binds to sex hormones, affecting their bioavailability.'
 			},
 			{
 				name: 'Cortisol - AM',
-				description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+				description: 'A stress hormone, with levels peaking in the morning.'
 			},
 			{
 				name: 'Growth Hormone',
-				description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+				description: 'Stimulates growth, cell reproduction, and regeneration.'
 			},
 			{
 				name: 'Vitamin B12',
-				description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+				description: 'Essential for nerve health, brain function, and red blood cell formation.'
 			},
 			{
 				name: 'Ferritin',
-				description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+				description: 'Indicates iron storage in the body, helping diagnose iron-related disorders.'
 			},
 			{
 				name: 'Iron and TIBC',
-				description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+				description: 'Measures blood iron and the body\'s capacity to bind iron.'
 			},
-			{
-				name: 'Free T4',
-				description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
-			}
 		]
 	},
 	{
 		id: 4,
 		name: 'Tier 3 Female',
 		price: 339.99,
-		description: 'Designed for women, includes all tests from Tier 2, plus...',
-		value: '$1,400+',
+		description: 'A comprehensive panel specifically designed for women, includes all tests from Tier 2, plus:',
+		value: '47+ biomarkers',
 		components: [
 			{
 				name: 'Progesterone',
-				description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+				description: 'A female hormone vital for the menstrual cycle and pregnancy.'
 			},
 			{
 				name: 'Prolactin',
-				description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+				description: 'Influences reproductive functions and milk production.'
+			},
+			{
+				name: 'Insulin',
+				description: 'Regulates blood sugar levels, and its assessment can indicate metabolic health.'
 			},
 			{
 				name: 'Cortisol - AM',
-				description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
-			},
-			{
-				name: 'Thyroid Cascade',
-				description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+				description: 'A stress hormone, with levels peaking in the morning.'
 			},
 			{
 				name: 'Vitamin B12',
-				description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+				description: 'Essential for nerve health, brain function, and red blood cell formation.'
 			},
 			{
 				name: 'Ferritin',
-				description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+				description: 'Indicates iron storage in the body, helping diagnose iron-related disorders.'
 			},
 			{
 				name: 'Iron and TIBC',
-				description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
-			},
-			{
-				name: 'Free T4',
-				description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+				description: 'Measures blood iron and the body\'s capacity to bind iron.'
 			}
 		]
 	},
