@@ -32,7 +32,7 @@ const homeData = {
 		action: {
 			id: 'start-now',
 			name: 'Start Now',
-			href: '#',
+			href: '#packages',
 			externalLink: false
 		},
 		list: [

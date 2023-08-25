@@ -239,7 +239,8 @@ const PackagesSection: React.FC = () => {
 					value={ state }
 					onValueChange={ e => { setState(e); e === '' && window.open('https://cchtpaycds0.typeform.com/to/BVFNdpwc', '_blank'); } }
 				>
-					<SelectTrigger className='w-full lg:w-[297px] bg-grey-secondary text-primary'>
+					<SelectTrigger
+						className='w-full lg:w-[297px] bg-grey-secondary text-primary'>
 						<SelectValue
 							aria-label={ state }
 							placeholder={ statesData.placeholder }
@@ -250,7 +251,8 @@ const PackagesSection: React.FC = () => {
 					<SelectContent className='bg-grey-secondary text-primary'>
 						<SelectGroup className='overflow-x-hidden'>
 							{ selectOptions.map((option, optionIdx) => (
-								<div key={ optionIdx }>
+								<div
+									key={ optionIdx }>
 									<SelectItem
 										value={ option.value }
 										className='data-[state=unchecked]:font-medium data-[state=checked]:font-semibold text-primary data-[highlighted]:bg-white'
@@ -269,7 +271,9 @@ const PackagesSection: React.FC = () => {
 
 	return (
 		<>
-			<div className='container-center w-full py-[94px] relative'>
+			<div
+				id='packages'
+				className='container-center w-full py-[94px] relative'>
 				<div className='lg:grid lg:grid-cols-10 lg:gap-x-32'>
 					<WrapperAnimation
 						className='lg:hidden'

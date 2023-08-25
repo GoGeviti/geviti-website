@@ -1,9 +1,11 @@
+'use client';
+
 import React from 'react';
 import Image from 'next/image';
 
 import { homeData } from '@/constant/data';
+import { handleScroll } from '@/helpers/handleScroll';
 
-import CustomLink from '../CustomLink';
 import { ChevronRight } from '../Icons';
 
 const featuresData = homeData.features;
@@ -26,13 +28,12 @@ const Features: React.FC = () => {
 
 		if (actionData.href) {
 			return (
-				<CustomLink
+				<button
+					onClick={ () => handleScroll(actionData.href) }
 					data-aos='zoom-in'
-					href={ actionData.href }
-					className={ wrapper }
-				>
+					className={ wrapper }>
 					{ renderContentButtonAction() }
-				</CustomLink>
+				</button>
 			);
 		}
 
