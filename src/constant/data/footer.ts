@@ -7,27 +7,27 @@ const footerData = {
 			menu: [
 				{
 					name: 'Contact Us',
-					href: '#',
+					href: '/',
 					externalLink: false
 				},
 				{
 					name: 'FAQs',
-					href: '#',
+					href: '/',
 					externalLink: false
 				},
 				{
 					name: 'Membership Details',
-					href: '#',
+					href: '/',
 					externalLink: false
 				},
 				{
 					name: 'Terms & Conditions',
-					href: '#',
+					href: '/',
 					externalLink: false
 				},
 				{
 					name: 'Privacy Policy',
-					href: '#',
+					href: '/',
 					externalLink: false
 				}
 			]
@@ -37,17 +37,17 @@ const footerData = {
 			menu: [
 				{
 					name: 'About Us',
-					href: '#',
+					href: '/',
 					externalLink: false
 				},
 				{
 					name: 'Invest',
-					href: '#',
+					href: '/',
 					externalLink: false
 				},
 				{
 					name: 'Careers',
-					href: '#',
+					href: '/',
 					externalLink: false
 				}
 			]

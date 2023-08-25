@@ -8,12 +8,12 @@ const navigationData = {
 		},
 		{
 			name: 'Products',
-			href: '#',
+			href: '/',
 			externalLink: false
 		},
 		{
 			name: 'Resources',
-			href: '#',
+			href: '/',
 			externalLink: false
 		}
 	],
@@ -35,7 +35,7 @@ const navigationData = {
 	actionsMenu: [
 		{
 			name: 'Dashboard',
-			href: '#',
+			href: '/',
 			externalLink: false
 		}
 	]
