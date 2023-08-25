@@ -186,7 +186,7 @@ const packagesData = [
 	{
 		id: 5,
 		name: 'No Bloodwork Consultation',
-		price: 199,
+		price: 139,
 		description: 'For those who are interested in our products that don’t require a bloodwork panel, such as NAD, or Glutathione, simply schedule an initial consultation. It is $199, then $99/month following.',
 		value: '$300',
 		components: []

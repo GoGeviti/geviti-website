@@ -58,7 +58,7 @@ const DialogHelp: React.FC<DialogHelpProps> = ({ open, onOpenChange }) => {
 						</p>
 						<p className='text-2xl md:text-3xl lg:text-4xl text-primary leading-[114%] lg:leading-[120%] font-Poppins mt-2.5 lg:mt-[1px] -tracking-[0.04em]'>Need help deciding your package?</p>
 
-						<div className='mt-8 grid max-h-[35vh] overflow-y-auto pr-4 -mr-4'>
+						<div className='mt-8 grid h-[50vh] lg:max-h-[35vh] overflow-y-auto pr-4 -mr-4'>
 							{ renderAccordion() }
 						</div>
 					</div>

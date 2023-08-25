@@ -1,7 +1,9 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useSearchParams } from 'next/navigation';
 
+import { packagesData } from '@/constant/data';
 import { IProducts } from '@/interfaces';
 
 import AdditionalServices from './AdditionalServices';
@@ -9,17 +11,30 @@ import OrderSummary from './OrderSummary';
 
 const Content: React.FC = () => {
 	const [state, setState] = useState<string>('');
+	const searchParams = useSearchParams();
 	const [shoppingCarts, setShoppingCarts] = useState<IProducts.ProductItem[]>([
 		{
 			id: 1,
-			name: 'Product Name',
-			price: 256,
+			name: 'Medical Consult ',
+			price: 139.99,
 			description: 'Product Info',
 			value: '$300+',
 			imageSrc: '/images/home/product_1.png',
 			imageAlt: 'Eight shirts arranged on table in black, olive, grey, blue, white, red, mustard, and green.',
 		}
 	]);
+
+	useEffect(() => {
+		if (searchParams.get('selectedProduct')) {
+			const select = packagesData.find(e => e.id.toString() === searchParams.get('selectedProduct')) as IProducts.ProductItem;
+			setShoppingCarts(prev => {
+				return [
+					...prev,
+					select
+				];
+			});
+		}
+	}, [searchParams.get('selectedProduct')]);
 
 	return (
 		<div className='flex flex-col-reverse lg:grid lg:grid-cols-11 lg:gap-20'>

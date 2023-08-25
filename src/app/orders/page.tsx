@@ -1,10 +1,8 @@
 'use client';
 
-import { NextPage } from 'next';
-
 import { OrderComponent } from '@/components';
 
-const OrdersPage: NextPage = () => {
+const OrdersPage = () => {
 	return (
 		<div className='container-center w-full pt-[100px] lg:pt-[156px] pb-20 lg:pb-[435px]'>
 			<OrderComponent.Hero />

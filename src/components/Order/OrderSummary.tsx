@@ -18,7 +18,7 @@ const OrderSummary: React.FC<OrderSummaryProps> = ({ state, shoppingCarts }) => 
 		return (
 			<div className='text-grey-secondary'>
 				<p className='mb-3 font-BRSonoma text-sm leading-5'>Subtotal</p>
-				<p className='font-Poppins text-xl font-medium'>${ subtotalPrice }</p>
+				<p className='font-Poppins text-xl font-medium'>${ subtotalPrice.toFixed(2) }</p>
 			</div>
 		);
 
@@ -32,9 +32,9 @@ const OrderSummary: React.FC<OrderSummaryProps> = ({ state, shoppingCarts }) => 
 					role='list'
 					className='flex flex-col gap-y-8 border-b border-black-secondary pb-[26px]'
 				>
-					{ shoppingCarts.map(product => (
+					{ shoppingCarts.map((product, productIdx) => (
 						<li
-							key={ product.id }
+							key={ productIdx }
 							className='flex items-center text-grey-secondary'
 						>
 							<div className='w-11 h-11 flex-shrink-0 flex items-center justify-center rounded-[6px] bg-black-secondary'>

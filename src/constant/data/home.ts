@@ -62,7 +62,7 @@ const homeData = {
 	packages: {
 		preTitle: 'TAILORED TO YOUR SPECIFIC NEEDS',
 		title: 'Select Your Package',
-		description: 'Begin your personalized healthcare journey with us today. An initial consultation is included at just $199.',
+		description: 'Begin your personalized healthcare journey with us today. An initial consultation is included at just $139.',
 		titlePackageList: 'Select one of the following options',
 		helpText: 'Need Help?'
 	},

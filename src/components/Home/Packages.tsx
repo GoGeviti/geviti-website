@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import Link from 'next/link';
 
 import { homeData, packagesData, statesData } from '@/constant/data';
 import clsxm from '@/helpers/clsxm';
@@ -180,11 +181,13 @@ const PackagesSection: React.FC = () => {
 								</div>
 
 								{ isSelected && (
-									<button className='btn btn-primary mt-5 flex items-center gap-1.5 max-lg:hidden'>
+									<Link
+										href={ `/orders?selectedProduct=${packageItem.id}` }
+										className='btn btn-primary mt-5 flex items-center gap-1.5 w-fit'>
 										<span className='text-xs font-medium font-BRSonoma leading-[159%]'>Continue</span>
 
 										<ArrowNarrowRight />
-									</button>
+									</Link>
 								) }
 							</div>
 						</div>
@@ -234,7 +237,7 @@ const PackagesSection: React.FC = () => {
 
 				<Select
 					value={ state }
-					onValueChange={ setState }
+					onValueChange={ e => { setState(e); e === '' && window.open('https://cchtpaycds0.typeform.com/to/BVFNdpwc', '_blank'); } }
 				>
 					<SelectTrigger className='w-full lg:w-[297px] bg-grey-secondary text-primary'>
 						<SelectValue
@@ -277,7 +280,7 @@ const PackagesSection: React.FC = () => {
 						className='lg:col-span-4 max-lg:mt-10'
 						data-aos='fade-in'
 					>
-						<div className='sticky top-20'>
+						<div className='sticky top-10'>
 							<SliderPackages />
 						</div>
 					</WrapperAnimation>
@@ -303,7 +306,8 @@ const PackagesSection: React.FC = () => {
 							<WrapperAnimation
 								data-aos='zoom-in-left'
 								className='flex items-center gap-[7px] cursor-pointer'
-								onClick={ () => setOpenDialogHelp(true) }
+								disableMobile={ false }
+								onClick={ () => { setOpenDialogHelp(true); } }
 							>
 								<InfoCircle className='w-4 h-4' />
 								<span className='text-sm font-semibold font-BRSonoma leading-5 text-grey-primary'>
