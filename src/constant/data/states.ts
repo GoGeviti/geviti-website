@@ -4,13 +4,7 @@ const statesData = {
 	options: [
 		{
 			label: 'Arizona',
-			value: 'Arizona',
-			link: null
-		},
-		{
-			label: 'Don\'t see your state? Click here!',
-			value: '',
-			link: 'https://cchtpaycds0.typeform.com/to/BVFNdpwc'
+			value: 'Arizona'
 		}
 	]
 };
