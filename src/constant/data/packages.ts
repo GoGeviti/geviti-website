@@ -190,38 +190,6 @@ const packagesData = [
 		description: 'For those who are interested in our products that don’t require a bloodwork panel, such as NAD, or Glutathione, simply schedule an initial consultation. It is $199, then $99/month following.',
 		value: '$300',
 		components: []
-	},
-	{
-		id: 6,
-		name: 'Mobile Phlebotomy',
-		price: 34.99,
-		description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
-		value: '',
-		components: []
-	},
-	{
-		id: 7,
-		name: 'Genetic Test',
-		price: 199.00,
-		description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
-		value: '',
-		components: []
-	},
-	{
-		id: 8,
-		name: 'Initial Consultation',
-		price: 139.99,
-		description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
-		value: '',
-		components: []
-	},
-	{
-		id: 9,
-		name: 'Monthly Membership',
-		price: 99.00,
-		description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
-		value: '',
-		components: []
 	}
 ];
 

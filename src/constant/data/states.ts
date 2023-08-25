@@ -5,6 +5,10 @@ const statesData = {
 		{
 			label: 'Arizona',
 			value: 'Arizona'
+		},
+		{
+			label: 'Don\'t see your state? Click here!',
+			value: 'Other'
 		}
 	]
 };

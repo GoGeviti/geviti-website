@@ -1,14 +1,17 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 
 import { IProducts } from '@/interfaces';
 
 type OrderSummaryProps = {
+	state: string;
 	shoppingCarts: IProducts.ProductItem[];
 };
 
-const OrderSummary: React.FC<OrderSummaryProps> = ({ shoppingCarts }) => {
+const OrderSummary: React.FC<OrderSummaryProps> = ({ state, shoppingCarts }) => {
+	const [checkedPrivacy, setCheckedPrivacy] = useState<boolean>(false);
+
 	const renderSubtotal = () => {
 		const subtotalPrice = shoppingCarts.reduce((acc, curr) => acc + (curr.price || 0), 0);
 
@@ -54,7 +57,7 @@ const OrderSummary: React.FC<OrderSummaryProps> = ({ shoppingCarts }) => {
 
 			<div className='mt-[26px]'>
 				<button
-					disabled={ shoppingCarts.length <= 1 }
+					disabled={ !state || !checkedPrivacy }
 					className='btn btn-secondary w-full disabled:bg-black-secondary disabled:text-[#383B3F] text-xs font-medium leading-[159%] font-Poppins text-black-secondary'>
 					Proceed to checkout
 				</button>
@@ -66,6 +69,8 @@ const OrderSummary: React.FC<OrderSummaryProps> = ({ shoppingCarts }) => {
 						id='policy'
 						name='policy'
 						type='checkbox'
+						checked={ checkedPrivacy }
+						onChange={ (e: React.ChangeEvent<HTMLInputElement>) => setCheckedPrivacy(e.target.checked) }
 						className='h-4 w-4 bg-transparent rounded border border-blue-1 text-blue-1/25 focus:outline-0 focus:ring-0 focus:ring-offset-0'
 					/>
 				</div>

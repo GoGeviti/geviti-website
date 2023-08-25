@@ -250,7 +250,7 @@ const PackagesSection: React.FC = () => {
 								<div key={ optionIdx }>
 									<SelectItem
 										value={ option.value }
-										className='data-[state=unchecked]:text-grey-primary data-[state=checked]:text-primary data-[highlighted]:bg-white'
+										className='data-[state=unchecked]:font-medium data-[state=checked]:font-semibold text-primary data-[highlighted]:bg-white'
 									>{ option.label }</SelectItem>
 									{ optionIdx < selectOptions.length - 1 && (
 										<SelectSeparator />
@@ -266,7 +266,7 @@ const PackagesSection: React.FC = () => {
 
 	return (
 		<>
-			<div className='container-center w-full py-[94px]'>
+			<div className='container-center w-full py-[94px] relative'>
 				<div className='lg:grid lg:grid-cols-10 lg:gap-x-32'>
 					<WrapperAnimation
 						className='lg:hidden'
@@ -277,7 +277,9 @@ const PackagesSection: React.FC = () => {
 						className='lg:col-span-4 max-lg:mt-10'
 						data-aos='fade-in'
 					>
-						<SliderPackages />
+						<div className='sticky top-20'>
+							<SliderPackages />
+						</div>
 					</WrapperAnimation>
 
 					<div className='lg:col-span-6'>

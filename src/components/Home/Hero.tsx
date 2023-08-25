@@ -11,18 +11,18 @@ const heroData = homeData.hero;
 
 const Hero: React.FC = () => {
 	return (
-		<div className='lg:px-3 lg:py-15px'>
-			<div className='bg-primary w-full h-full lg:rounded-[19px] relative'>
+		<div className='lg:px-3 lg:py-15px overflow-hidden'>
+			<div className='bg-primary w-full h-full lg:rounded-[19px] relative pt-11px lg:pt-5'>
 				<div className='absolute top-0 inset-x-0 w-full h-[193px] bg-gradient-to-b from-primary to-[#181a1c00] lg:rounded-t-[19px]' />
-				<Navbar />
+				<Navbar className='pt-11px lg:pt-5' />
 
-				<div className='pt-60px lg:pt-20 lg:min-h-[646.8px] relative overflow-hidden isolate'>
+				<div className='pt-60px lg:pt-20 lg:min-h-[646.8px] relative overflow-hidden isolate lg:pl-5'>
 					<div className='container-center w-full flex max-lg:flex-col items-center lg:gap-x-5'>
 						<div
 							aria-hidden='true'
 							className='max-lg:hidden lg:absolute lg:inset-y-0 lg:left-[44%] lg:w-screen'
 						>
-							<div className='lg:flex-shrink-0 lg:flex-grow lg:absolute lg:left-0 lg:inset-y-0 w-full'>
+							<div className='lg:flex-shrink-0 lg:flex-grow lg:absolute lg:left-0 lg:inset-y-0 w-full lg:pt-5'>
 								{ heroData.image && (
 									<div className='aspect-[53/43.5] h-full relative overflow-hidden max-lg:hidden'>
 										<Image
@@ -36,7 +36,7 @@ const Hero: React.FC = () => {
 							</div>
 						</div>
 
-						<div className='mx-auto sm:max-w-2xl lg:mx-0 lg:flex-auto text-center lg:text-left pt-4 lg:pt-[53px]'>
+						<div className='mx-auto sm:max-w-2xl lg:mx-0 lg:flex-auto text-center lg:text-left pt-[33px] lg:pt-[53px]'>
 							<h2 className='text-grey-secondary font-BRSonoma font-semibold text-xs sm:text-sm leading-[150%] sm:leading-6 uppercase tracking-[0.092em] sm:tracking-[0.11em]'>
 								{ heroData.preTitle }
 							</h2>
@@ -72,7 +72,8 @@ const Hero: React.FC = () => {
 					<div className='container-center pb-[52px] lg:pb-[106px] h-full flex items-end'>
 						<div
 							id='main-keys'
-							className='grid grid-cols-2 md:grid-cols-4 gap-y-7 max-w-5xl w-full'>
+							className='grid grid-cols-2 md:grid-cols-4 gap-y-7 max-w-5xl w-full lg:px-5'
+						>
 							{ heroData.mainKeys.map((feature, featureIdx) => (
 								<WrapperAnimation
 									key={ feature.text }

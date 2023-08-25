@@ -32,7 +32,10 @@ const Content: React.FC = () => {
 				/>
 			</div>
 			<div className='lg:col-span-4 h-full w-full'>
-				<OrderSummary shoppingCarts={ shoppingCarts } />
+				<OrderSummary
+					shoppingCarts={ shoppingCarts }
+					state={ state }
+				/>
 			</div>
 		</div>
 	);

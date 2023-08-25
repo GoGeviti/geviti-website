@@ -136,7 +136,7 @@ const ProductsSection: React.FC = () => {
 	};
 
 	return (
-		<div className='container-center w-full'>
+		<div className='container-center w-full overflow-hidden'>
 			<div className='flex items-center justify-between'>
 				<div data-aos='zoom-in-right'>
 					<h2 className='text-primary font-Poppins text-[21px] md:text-3xl lg:text-4xl leading-[128%] lg:leading-[119%] -tracking-[0.04em]'>

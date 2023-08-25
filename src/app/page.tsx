@@ -4,7 +4,7 @@ import { Footer, HomeComponent } from '@/components';
 
 const HomePage: NextPage = () => {
 	return (
-		<div className='flex min-h-screen flex-col w-full bg-grey-background overflow-hidden'>
+		<div className='flex min-h-screen flex-col w-full bg-grey-background'>
 			<HomeComponent.Hero />
 			<HomeComponent.Packages />
 			<HomeComponent.Products />

@@ -11,9 +11,15 @@ import CustomLink from '../CustomLink';
 import { Bars3Icon } from '../Icons';
 import { Sheet, SheetContent } from '../Sheet';
 
-type NavbarProps = { position?: 'sticky' | 'absolute'; };
+type NavbarProps = {
+	position?: 'sticky' | 'absolute';
+	className?: string;
+};
 
-const Navbar: React.FC<NavbarProps> = ({ position = 'absolute' }) => {
+const Navbar: React.FC<NavbarProps> = ({
+	position = 'absolute',
+	className
+}) => {
 	const pathname = usePathname();
 	const router = useRouter();
 
@@ -141,6 +147,7 @@ const Navbar: React.FC<NavbarProps> = ({ position = 'absolute' }) => {
 		<>
 			<header className={ clsxm(
 				'inset-x-0 top-0 z-50',
+				className,
 				position === 'sticky' ? 'sticky bg-primary shadow-sm' : 'absolute'
 			) }>
 				<nav className='w-full container-center'>
