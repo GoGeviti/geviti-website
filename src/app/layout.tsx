@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import NextTopLoader from 'nextjs-toploader';
 
 import { AOSInit } from '@/components';
 import { brSonoma, poppins } from '@/constant/fonts';
@@ -19,6 +20,9 @@ const RootLayout: React.FC<{ children: React.ReactNode; }> = ({ children }) => {
 			<AOSInit />
 
 			<body className={ `${ poppins.variable } ${ brSonoma.variable }` }>
+				<NextTopLoader
+					showSpinner={ false }
+					color='#A3E0FF' />
 				{ children }
 			</body>
 		</html>
