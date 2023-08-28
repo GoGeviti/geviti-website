@@ -10,12 +10,11 @@ import AdditionalServices from './AdditionalServices';
 import OrderSummary from './OrderSummary';
 
 const Content: React.FC = () => {
-	const [state, setState] = useState<string>('');
 	const searchParams = useSearchParams();
 	const [shoppingCarts, setShoppingCarts] = useState<IProducts.ProductItem[]>([
 		{
 			id: 1,
-			name: 'Medical Consult ',
+			name: 'Clinical Consultation ',
 			price: 139.99,
 			description: 'Product Info',
 			value: '$300+',
@@ -25,14 +24,19 @@ const Content: React.FC = () => {
 	]);
 
 	useEffect(() => {
-		if (searchParams.get('selectedProduct')) {
-			const select = packagesData.find(e => e.id.toString() === searchParams.get('selectedProduct')) as IProducts.ProductItem;
-			setShoppingCarts(prev => {
-				return [
-					...prev,
-					select
-				];
-			});
+		const selectedProduct = searchParams.get('selectedProduct');
+		if (selectedProduct) {
+			const select = packagesData.find(e => e.id.toString() === selectedProduct) as IProducts.ProductItem;
+			if (selectedProduct === '5') {
+				setShoppingCarts([select]);
+			} else {
+				setShoppingCarts(prev => {
+					return [
+						...prev,
+						select
+					];
+				});
+			}
 		}
 	}, [searchParams.get('selectedProduct')]);
 
@@ -40,16 +44,15 @@ const Content: React.FC = () => {
 		<div className='flex flex-col-reverse lg:grid lg:grid-cols-11 lg:gap-20'>
 			<div className='lg:col-span-7'>
 				<AdditionalServices
+					selectedProduct={ searchParams.get('selectedProduct') ?? '' }
 					shoppingCarts={ shoppingCarts }
 					onClickProduct={ (productToAdd: IProducts.ProductItem) => setShoppingCarts(prevCart => ([...prevCart, productToAdd])) }
-					state={ state }
-					setState={ setState }
+					onClickRemoveProduct={ (productToRemove: IProducts.ProductItem) => setShoppingCarts(prevCart => (prevCart.filter(e => e.id !== productToRemove.id))) }
 				/>
 			</div>
 			<div className='lg:col-span-4 h-full w-full'>
 				<OrderSummary
 					shoppingCarts={ shoppingCarts }
-					state={ state }
 				/>
 			</div>
 		</div>
