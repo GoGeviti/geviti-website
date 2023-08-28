@@ -69,7 +69,10 @@ const homeData = {
 	products: {
 		title: 'Discover Geviti',
 		description: 'Browse our wide range of products!',
-		viewAll: 'View All Products'
+		viewAll: {
+			text: 'View All Products',
+			href: '/products'
+		}
 	},
 	sliderPackageImages: [
 		'/images/home/package_1.png',

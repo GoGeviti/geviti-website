@@ -12,13 +12,13 @@ import { Bars3Icon } from '../Icons';
 import { Sheet, SheetContent } from '../Sheet';
 
 type NavbarProps = {
-	position?: 'sticky' | 'absolute';
 	className?: string;
+	theme?: 'light' | 'dark';
 };
 
 const Navbar: React.FC<NavbarProps> = ({
-	position = 'absolute',
-	className
+	className,
+	theme = 'dark'
 }) => {
 	const pathname = usePathname();
 	const router = useRouter();
@@ -37,8 +37,9 @@ const Navbar: React.FC<NavbarProps> = ({
 							href={ link.href }
 							externalLink={ link.externalLink }
 							className={ clsxm(
-								'rounded-md px-3 py-2 text-sm text-grey-secondary hover:text-white',
-								isActive ? 'font-BRSonoma font-medium' : 'font-Poppins font-medium'
+								'rounded-md px-3 py-2 text-sm',
+								isActive ? 'font-BRSonoma font-medium' : 'font-Poppins font-medium',
+								theme === 'dark' ? 'text-grey-secondary hover:text-white' : 'text-primary'
 							) }
 						>
 							{ link.name }
@@ -53,6 +54,8 @@ const Navbar: React.FC<NavbarProps> = ({
 		return (
 			<>
 				{ navbarData.iconsMenu.map(iconMenu => {
+					const Icon = iconMenu.icon;
+
 					return (
 						<button
 							type='button'
@@ -64,15 +67,7 @@ const Navbar: React.FC<NavbarProps> = ({
 								}
 							} }
 						>
-							<div className='relative overflow-hidden w-[17px] h-[17px]'>
-								<Image
-									src={ iconMenu.src }
-									alt=''
-									sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
-									fill
-									priority
-								/>
-							</div>
+							<Icon className={ clsxm('w-[17px] h-[17px]', theme === 'dark' ? 'text-grey-secondary' : 'text-primary') } />
 						</button>
 					);
 				}) }
@@ -85,7 +80,10 @@ const Navbar: React.FC<NavbarProps> = ({
 			<>
 				{ navbarData.actionsMenu.map(menu => (
 					<button
-						className='btn btn-secondary font-Poppins text-sm font-medium leading-6'
+						className={ clsxm(
+							'btn font-Poppins text-sm font-medium leading-6',
+							theme === 'dark' ? 'btn-secondary' : 'btn-primary !text-[#F2F2F2]'
+						) }
 						key={ menu.name }
 					>
 						{ menu.name }
@@ -96,13 +94,15 @@ const Navbar: React.FC<NavbarProps> = ({
 	};
 
 	const renderLogo = () => {
+		const src = theme === 'dark' ? navbarData.logoLight : navbarData.logoDark;
+
 		return (
 			<CustomLink
 				href='/'
 				className='focus:outline-0 focus:ring-0 focus:border-0'>
 				<div className='flex-shrink-0 relative overflow-hidden w-[85px] h-5'>
 					<Image
-						src={ navbarData.logo }
+						src={ src }
 						alt=''
 						fill
 						priority
@@ -120,7 +120,7 @@ const Navbar: React.FC<NavbarProps> = ({
 				open={ openSheet }
 				onOpenChange={ setOpenSheet }
 			>
-				<SheetContent className='bg-primary text-white'>
+				<SheetContent className={ theme === 'dark' ? 'bg-primary text-white' : 'bg-grey-secondary text-primary' }>
 					<div className='mt-8 mb-5'>
 						{ renderLogo() }
 					</div>
@@ -148,9 +148,8 @@ const Navbar: React.FC<NavbarProps> = ({
 	return (
 		<>
 			<header className={ clsxm(
-				'inset-x-0 top-0 z-50',
-				className,
-				position === 'sticky' ? 'sticky bg-primary shadow-sm' : 'absolute'
+				'inset-x-0 top-0 z-50 absolute',
+				className
 			) }>
 				<nav className='w-full container-center'>
 					<div className='flex h-60px lg:h-20 items-center justify-between'>
@@ -175,12 +174,11 @@ const Navbar: React.FC<NavbarProps> = ({
 								</div>
 							</div>
 						</div>
-						<div className='-mr-2 flex lg:hidden'>
+						<div className='flex lg:hidden'>
 							<button
-								className='relative inline-flex items-center justify-center rounded-md p-2 text-grey-secondary focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white'
+								className={ clsxm('focus:outline-none focus:border-0 focus:ring-0', theme === 'dark' ? 'text-grey-secondary' : 'text-primary') }
 								onClick={ () => setOpenSheet(prevOpen => !prevOpen) }
 							>
-								<span className='absolute -inset-0.5' />
 								<Bars3Icon
 									className='block h-6 w-6'
 									aria-hidden='true' />
