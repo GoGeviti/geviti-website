@@ -5,11 +5,10 @@ import React, { useState } from 'react';
 import { IProducts } from '@/interfaces';
 
 type OrderSummaryProps = {
-	state: string;
 	shoppingCarts: IProducts.ProductItem[];
 };
 
-const OrderSummary: React.FC<OrderSummaryProps> = ({ state, shoppingCarts }) => {
+const OrderSummary: React.FC<OrderSummaryProps> = ({ shoppingCarts }) => {
 	const [checkedPrivacy, setCheckedPrivacy] = useState<boolean>(false);
 
 	const renderSubtotal = () => {
@@ -57,7 +56,7 @@ const OrderSummary: React.FC<OrderSummaryProps> = ({ state, shoppingCarts }) => 
 
 			<div className='mt-[26px]'>
 				<button
-					disabled={ !state || !checkedPrivacy }
+					disabled={ !checkedPrivacy }
 					className='btn btn-secondary w-full disabled:bg-black-secondary disabled:text-[#383B3F] text-xs font-medium leading-[159%] font-Poppins text-black-secondary'>
 					Proceed to checkout
 				</button>
