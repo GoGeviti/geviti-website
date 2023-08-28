@@ -1,10 +1,10 @@
 const packagesData = [
 	{
 		id: 1,
-		name: 'Tier 1',
+		name: 'Essential Health Check',
 		price: 124.99,
 		description: 'Includes a foundational set of tests for general health assessment:',
-		value: '27+ biomarkers',
+		value: '$300+',
 		components: [
 			{
 				name: 'Thyroid Cascade',
@@ -42,10 +42,10 @@ const packagesData = [
 	},
 	{
 		id: 2,
-		name: 'Tier 2',
+		name: 'Comprehensive Health Dive',
 		price: 299.99,
-		description: 'Includes all tests from Tier 1, plus:',
-		value: '40+ biomarkers',
+		description: 'Includes all tests from Essential Health Check, plus:',
+		value: '$1,000+',
 		components: [
 			{
 				name: 'FSH (Follicle Stimulating Hormone)',
@@ -95,10 +95,10 @@ const packagesData = [
 	},
 	{
 		id: 3,
-		name: 'Tier 3 Male',
+		name: 'Ultimate Men\'s Health Assessment ',
 		price: 429.99,
-		description: 'A comprehensive panel specifically designed for men, includes all tests from Tier 2, plus:',
-		value: '46+ biomarkers',
+		description: 'A comprehensive panel specifically designed for men, includes all tests from Comprehensive Health Dive, plus:',
+		value: '$1,500+',
 		components: [
 			{
 				name: 'Insulin',
@@ -132,10 +132,10 @@ const packagesData = [
 	},
 	{
 		id: 4,
-		name: 'Tier 3 Female',
+		name: 'Ultimate Women\'s Health Assessment',
 		price: 339.99,
-		description: 'A comprehensive panel specifically designed for women, includes all tests from Tier 2, plus:',
-		value: '47+ biomarkers',
+		description: 'A comprehensive panel specifically designed for women, includes all tests from Comprehensive Health Dive, plus:',
+		value: '$1,400+',
 		components: [
 			{
 				name: 'Progesterone',
@@ -170,8 +170,8 @@ const packagesData = [
 	{
 		id: 5,
 		name: 'No Bloodwork Consultation',
-		price: 139,
-		description: 'For those who are interested in our products that don’t require a bloodwork panel, such as NAD, or Glutathione, simply schedule an initial consultation. It is $199, then $99/month following.',
+		price: 169,
+		description: 'For those who are interested in our products that don’t require a bloodwork panel, such as NAD, or Glutathione, simply schedule an initial consultation. It is $169, then $99/month following. Medical history must be provided. * ',
 		value: '$300',
 		components: []
 	}
