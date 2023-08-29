@@ -2,6 +2,7 @@
 
 import { useCallback, useState } from 'react';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 
 import { homeData, productsData } from '@/constant/data';
 import clsxm from '@/helpers/clsxm';
@@ -12,6 +13,7 @@ import CustomLink from '../CustomLink';
 import { ArrowNarrowLeft, ArrowNarrowRight, ChevronRight } from '../Icons';
 
 const ProductsSection: React.FC = () => {
+	const router = useRouter();
 	const windowDimensions = useWindowDimensions();
 
 	const [disableArrowLeft, setDisableArrowLeft] = useState<boolean>(true);
@@ -83,7 +85,8 @@ const ProductsSection: React.FC = () => {
 						id='discover-product-card'
 						data-aos='zoom-in-down'
 						data-aos-delay={ `${ productIdx * 100 }` }
-						className='group relative flex flex-col overflow-hidden bg-grey-secondary max-lg:flex-none w-[248px] lg:w-full'
+						className='group cursor-pointer relative flex flex-col overflow-hidden bg-grey-secondary max-lg:flex-none w-[248px] lg:w-full'
+						onClick={ () => router.push(`/products/${ product.id }`) }
 					>
 						<div className='relative overflow-hidden bg-[#E5E5E5] group-hover:opacity-75 w-full h-[225px] lg:h-[260px]'>
 							{ product.imageSrc && (
@@ -138,6 +141,20 @@ const ProductsSection: React.FC = () => {
 		);
 	};
 
+	const renderButtonViewAll = () => {
+		return (
+			<CustomLink
+				href={ homeData.products.viewAll.href }
+				className='btn btn-primary flex items-center gap-7px sm:gap-2 !translate-y-0 group'>
+				<span className='text-xs sm:text-sm font-medium leading-5 sm:leading-6 font-Poppins'>
+					{ homeData.products.viewAll.text }
+				</span>
+
+				<ChevronRight className='stroke-grey-secondary w-4 h-4 sm:w-18px sm:h-18px group-hover:translate-x-1 transform transition-all duration-100' />
+			</CustomLink>
+		);
+	};
+
 	return (
 		<div className='container-center w-full overflow-hidden'>
 			<div className='flex items-center justify-between'>
@@ -163,20 +180,16 @@ const ProductsSection: React.FC = () => {
 					data-aos='zoom-in-left'
 					className='max-lg:hidden'
 				>
-					<CustomLink
-						href={ homeData.products.viewAll.href }
-						className='btn btn-primary flex items-center gap-2 !translate-y-0 group'>
-						<span className='text-sm font-medium leading-6 font-Poppins'>
-							{ homeData.products.viewAll.text }
-						</span>
-
-						<ChevronRight className='stroke-grey-secondary w-18px h-18px group-hover:translate-x-1 transform transition-all duration-100' />
-					</CustomLink>
+					{ renderButtonViewAll() }
 				</div>
 			</div>
 
 			<div className='relative mt-9'>
 				{ renderProductList() }
+			</div>
+
+			<div className='mt-10 lg:hidden flex justify-center'>
+				{ renderButtonViewAll() }
 			</div>
 		</div>
 	);

@@ -2,9 +2,13 @@
 import { useState } from 'react';
 import { NextPage } from 'next';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 
+import { Navbar } from '@/components';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/Accordion';
-import { ArrowNarrowDown, ChevronDown, SearchIcon, SettingsIcon } from '@/components/Icons';
+import {
+	AlertSquareIcon, ArrowNarrowDown, ChevronDown, SearchIcon, SettingsIcon
+} from '@/components/Icons';
 import { Sheet, SheetContent } from '@/components/Sheet';
 import { productListData, productsData } from '@/constant/data';
 import { IProducts } from '@/interfaces';
@@ -24,6 +28,8 @@ type FilterValue = {
 type GroupedProduct = { category: string, products: IProducts.ProductItem[]; };
 
 const ProductsPage: NextPage = () => {
+	const router = useRouter();
+
 	const [filterValues, setFilterValues] = useState<FilterValue[]>(productListData.filters);
 	const [tempFilterValues, setTempFilterValues] = useState<FilterValue[]>(productListData.filters);
 	const [query, setQuery] = useState('');
@@ -187,20 +193,7 @@ const ProductsPage: NextPage = () => {
 							</div>
 
 							<div className='flex lg:flex-col gap-5px text-primary lg:max-w-[172px]'>
-								<svg
-									xmlns='http://www.w3.org/2000/svg'
-									width='18'
-									height='18'
-									viewBox='0 0 18 18'
-									fill='none'
-									className='w-15px h-15px sm:w-18px sm:h-18px flex-shrink-0'>
-									<path
-										d='M9 6V9M9 12H9.0075M5.85 15.75H12.15C13.4101 15.75 14.0402 15.75 14.5215 15.5048C14.9448 15.289 15.289 14.9448 15.5048 14.5215C15.75 14.0402 15.75 13.4101 15.75 12.15V5.85C15.75 4.58988 15.75 3.95982 15.5048 3.47852C15.289 3.05516 14.9448 2.71095 14.5215 2.49524C14.0402 2.25 13.4101 2.25 12.15 2.25H5.85C4.58988 2.25 3.95982 2.25 3.47852 2.49524C3.05516 2.71095 2.71095 3.05516 2.49524 3.47852C2.25 3.95982 2.25 4.58988 2.25 5.85V12.15C2.25 13.4101 2.25 14.0402 2.49524 14.5215C2.71095 14.9448 3.05516 15.289 3.47852 15.5048C3.95982 15.75 4.58988 15.75 5.85 15.75Z'
-										stroke='#181A1C'
-										strokeWidth='1.5'
-										strokeLinecap='round'
-										strokeLinejoin='round' />
-								</svg>
+								<AlertSquareIcon className='w-15px h-15px sm:w-18px sm:h-18px flex-shrink-0' />
 
 								<p className='text-[10px] sm:text-xs font-BRSonoma leading-5 sm:leading-[18px] font-medium'>Products available based on blood test results</p>
 							</div>
@@ -210,7 +203,8 @@ const ProductsPage: NextPage = () => {
 							{ item.products.map(product => (
 								<div
 									key={ product.id }
-									className='group relative flex flex-col overflow-hidden bg-grey-secondary w-full text-left'
+									className='group cursor-pointer relative flex flex-col overflow-hidden bg-grey-secondary w-full text-left'
+									onClick={ () => router.push(`/products/${ product.id }`) }
 								>
 									<div className='relative overflow-hidden bg-[#E7E7E7] group-hover:opacity-75 w-full h-[117px] sm:h-[202px]'>
 										{ product.imageSrc && (
@@ -267,6 +261,7 @@ const ProductsPage: NextPage = () => {
 					name='search'
 					id='search'
 					value={ query }
+					autoComplete='off'
 					onChange={ (e: React.ChangeEvent<HTMLInputElement>) => setQuery(e.target.value) }
 					className='block w-full bg-grey-secondary rounded-[10px] border-0 py-1.5 pl-10 text-primary text-sm font-Poppins leading-8 -tracking-0.04em placeholder:text-primary focus:ring-0 focus:outline-none focus:border-0'
 					placeholder='Search'
@@ -320,6 +315,8 @@ const ProductsPage: NextPage = () => {
 
 	return (
 		<>
+			<Navbar theme='light' />
+
 			<div className='py-[88px] lg:py-[152px]'>
 				<div className='container-center'>
 					<div className='lg:hidden flex flex-col items-center text-center gap-y-[35px] mb-[49px] w-full max-w-md mx-auto'>

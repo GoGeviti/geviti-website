@@ -8,4 +8,9 @@ export interface ProductItem {
 	value?: string;
 	imageSrc?: string;
 	imageAlt?: string;
+	images?: string[];
+	details?: {
+		question: string;
+		answer: string;
+	}[];
 };
