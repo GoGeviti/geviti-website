@@ -11,9 +11,9 @@ const productsData = [
 		bloodTest: 'yes',
 		images: [
 			'/images/products/synergi_1.png',
-			'/images/home/synergi_1.png',
 			'/images/products/synergi_1.png',
-			'/images/home/synergi_1.png'
+			'/images/products/synergi_1.png',
+			'/images/products/synergi_1.png'
 		],
 		details: [
 			{
@@ -42,9 +42,9 @@ const productsData = [
 		bloodTest: 'no',
 		images: [
 			'/images/products/synergi_1.png',
-			'/images/home/synergi_1.png',
 			'/images/products/synergi_1.png',
-			'/images/home/synergi_1.png'
+			'/images/products/synergi_1.png',
+			'/images/products/synergi_1.png'
 		],
 		details: [
 			{
@@ -73,9 +73,9 @@ const productsData = [
 		bloodTest: 'no',
 		images: [
 			'/images/products/synergi_1.png',
-			'/images/home/synergi_1.png',
 			'/images/products/synergi_1.png',
-			'/images/home/synergi_1.png'
+			'/images/products/synergi_1.png',
+			'/images/products/synergi_1.png'
 		],
 		details: [
 			{
@@ -104,9 +104,9 @@ const productsData = [
 		bloodTest: 'yes',
 		images: [
 			'/images/products/synergi_1.png',
-			'/images/home/synergi_1.png',
 			'/images/products/synergi_1.png',
-			'/images/home/synergi_1.png'
+			'/images/products/synergi_1.png',
+			'/images/products/synergi_1.png'
 		],
 		details: [
 			{
@@ -135,9 +135,9 @@ const productsData = [
 		bloodTest: 'no',
 		images: [
 			'/images/products/synergi_1.png',
-			'/images/home/synergi_1.png',
 			'/images/products/synergi_1.png',
-			'/images/home/synergi_1.png'
+			'/images/products/synergi_1.png',
+			'/images/products/synergi_1.png'
 		],
 		details: [
 			{
@@ -166,9 +166,9 @@ const productsData = [
 		bloodTest: 'no',
 		images: [
 			'/images/products/synergi_1.png',
-			'/images/home/synergi_1.png',
 			'/images/products/synergi_1.png',
-			'/images/home/synergi_1.png'
+			'/images/products/synergi_1.png',
+			'/images/products/synergi_1.png'
 		],
 		details: [
 			{
@@ -197,9 +197,9 @@ const productsData = [
 		bloodTest: 'no',
 		images: [
 			'/images/products/synergi_1.png',
-			'/images/home/synergi_1.png',
 			'/images/products/synergi_1.png',
-			'/images/home/synergi_1.png'
+			'/images/products/synergi_1.png',
+			'/images/products/synergi_1.png'
 		],
 		details: [
 			{
@@ -228,9 +228,9 @@ const productsData = [
 		bloodTest: 'no',
 		images: [
 			'/images/products/synergi_1.png',
-			'/images/home/synergi_1.png',
 			'/images/products/synergi_1.png',
-			'/images/home/synergi_1.png'
+			'/images/products/synergi_1.png',
+			'/images/products/synergi_1.png'
 		],
 		details: [
 			{
