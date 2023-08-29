@@ -4,6 +4,7 @@ import Footer from './Footer';
 import * as HomeComponent from './Home';
 import Navbar from './Navbar';
 import * as OrderComponent from './Order';
+import * as ProductsComponent from './Products';
 
 export {
 	AOSInit,
@@ -11,5 +12,6 @@ export {
 	Footer,
 	HomeComponent,
 	Navbar,
-	OrderComponent
+	OrderComponent,
+	ProductsComponent
 };
