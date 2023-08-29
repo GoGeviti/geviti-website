@@ -109,7 +109,7 @@ const Features: React.FC = () => {
 							</p>
 							{ featuresData.title && (
 								<div className='mt-11px lg:mt-9px'>
-									<h2 className='text-primary text-[21px] md:text-3xl lg:text-4xl font-Poppins leading-[128%] lg:leading-[125%] -tracking-[0.04em]'>
+									<h2 className='text-primary text-[21px] md:text-3xl lg:text-4xl font-Poppins leading-[128%] lg:leading-[125%] -tracking-0.04em'>
 										<span dangerouslySetInnerHTML={ { __html: featuresData.title } } />
 									</h2>
 								</div>

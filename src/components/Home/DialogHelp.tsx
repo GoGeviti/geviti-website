@@ -26,7 +26,7 @@ const DialogHelp: React.FC<DialogHelpProps> = ({ open, onOpenChange }) => {
 					<AccordionItem
 						key={ recommendationPackage.id }
 						value={ `item-${ recommendationIdx + 1 }` }
-						className={ clsxm(recommendationIdx > 0 ? 'py-5 lg:py-[23px]' : 'pb-5 lg:pb-[23px]') }
+						className={ clsxm(recommendationIdx > 0 ? 'py-5 lg:py-[23px]' : 'pb-5 lg:pb-[23px]', 'border-[#D1DADE]') }
 					>
 						<AccordionTrigger className='flex items-start justify-between gap-4 w-full'>
 							<div className='flex items-center gap-1'>
@@ -56,7 +56,7 @@ const DialogHelp: React.FC<DialogHelpProps> = ({ open, onOpenChange }) => {
 						<p className='text-grey-primary text-pretitle'>
 							geviti packages
 						</p>
-						<p className='text-2xl md:text-3xl lg:text-4xl text-primary leading-[114%] lg:leading-[120%] font-Poppins mt-2.5 lg:mt-[1px] -tracking-[0.04em]'>Need help deciding your package?</p>
+						<p className='text-2xl md:text-3xl lg:text-4xl text-primary leading-[114%] lg:leading-[120%] font-Poppins mt-2.5 lg:mt-[1px] -tracking-0.04em'>Need help deciding your package?</p>
 
 						<div className='mt-8 grid h-[50vh] lg:max-h-[45vh] overflow-y-auto pr-4 -mr-4'>
 							{ renderAccordion() }

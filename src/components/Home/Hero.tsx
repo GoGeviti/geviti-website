@@ -38,11 +38,11 @@ const Hero: React.FC = () => {
 						</div>
 
 						<div className='mx-auto sm:max-w-2xl lg:mx-0 lg:flex-auto text-center lg:text-left pt-[33px] lg:pt-[53px]'>
-							<h2 className='text-grey-secondary font-BRSonoma font-semibold text-xs sm:text-sm leading-[150%] sm:leading-6 uppercase tracking-[0.092em] sm:tracking-[0.11em]'>
+							<h2 className='text-grey-secondary font-BRSonoma font-semibold text-xs sm:text-sm leading-[150%] sm:leading-6 uppercase tracking-[0.092em] sm:tracking-0.11em'>
 								{ heroData.preTitle }
 							</h2>
 							{ heroData.title && (
-								<h1 className='mt-3 font-Poppins sm:max-w-xl text-[32px] sm:text-[40px] leading-[98%] sm:-tracking-[0.04em] text-grey-secondary'>
+								<h1 className='mt-3 font-Poppins sm:max-w-xl text-[32px] sm:text-[40px] leading-[98%] sm:-tracking-0.04em text-grey-secondary'>
 									<span dangerouslySetInnerHTML={ { __html: heroData.title } } />
 								</h1>
 							) }
@@ -93,7 +93,7 @@ const Hero: React.FC = () => {
 											/>
 										</div>
 									) }
-									<p className='font-Poppins leading-[225%] -tracking-[0.04em] text-grey-secondary text-base sm:text-lg lg:text-xl'>{ feature.text }</p>
+									<p className='font-Poppins leading-[225%] -tracking-0.04em text-grey-secondary text-base sm:text-lg lg:text-xl'>{ feature.text }</p>
 								</WrapperAnimation>
 							)) }
 						</div>

@@ -182,7 +182,7 @@ const PackagesSection: React.FC = () => {
 
 								{ isSelected && (
 									<Link
-										href={ `/orders?selectedProduct=${packageItem.id}` }
+										href={ `/orders?selectedProduct=${ packageItem.id }` }
 										className='btn btn-primary mt-5 flex items-center gap-1.5 w-fit'>
 										<span className='text-xs font-medium font-BRSonoma leading-[159%]'>Continue</span>
 
@@ -214,7 +214,7 @@ const PackagesSection: React.FC = () => {
 			>
 				<p className='text-pretitle text-grey-primary'>{ homeData.packages.preTitle }</p>
 
-				<h2 className='mt-11px lg:mt-9px text-primary font-Poppins text-3xl lg:text-4xl leading-[100%] lg:leading-[119%] -tracking-[0.04em]'>
+				<h2 className='mt-11px lg:mt-9px text-primary font-Poppins text-3xl lg:text-4xl leading-[100%] lg:leading-[119%] -tracking-0.04em'>
 					{ homeData.packages.title }
 				</h2>
 
