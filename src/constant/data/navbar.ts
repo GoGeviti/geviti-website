@@ -1,5 +1,8 @@
+import { SearchIcon, ShoppingBagIcon, UserIcon } from '@/components/Icons';
+
 const navigationData = {
-	logo: '/images/logo/logo_light.png',
+	logoLight: '/images/logo/logo_light.png',
+	logoDark: '/images/logo/logo_dark.png',
 	menu: [
 		{
 			name: 'Get Started',
@@ -8,7 +11,7 @@ const navigationData = {
 		},
 		{
 			name: 'Products',
-			href: '/',
+			href: '/products',
 			externalLink: false
 		},
 		{
@@ -20,16 +23,16 @@ const navigationData = {
 	iconsMenu: [
 		{
 			id: 'search',
-			src: '/images/icons/search.svg'
+			icon: SearchIcon
 		},
 		{
 			id: 'shopping',
 			href: '/orders',
-			src: '/images/icons/shopping_bag.svg'
+			icon: ShoppingBagIcon
 		},
 		{
 			id: 'user',
-			src: '/images/icons/user.svg'
+			icon: UserIcon
 		}
 	],
 	actionsMenu: [

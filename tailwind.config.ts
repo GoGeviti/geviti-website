@@ -37,10 +37,15 @@ const config: Config = {
         },
         blue: {
           '1': '#A3E0FF',
-          '2': '#5E899E'
+          '2': '#5E899E',
+          '3': '#CDD8DC'
         },
         'black-background': '#222426',
         'black-secondary': '#242628'
+      },
+      letterSpacing: {
+        '0.04em': '0.04em',
+        '0.11em': '0.11em'
       }
     },
     fontFamily: {
@@ -58,7 +63,7 @@ const config: Config = {
           '.btn': { '@apply rounded-full text-center py-3 px-4 xxs:px-5 transition-transform duration-100 hover:[&:not([disabled])]:-translate-y-[2px] active:[&:not([disabled])]:translate-y-0 focus:outline-0 focus:ring-0': {} },
           '.btn-primary': { '@apply bg-primary hover:bg-opacity-80 disabled:bg-opacity-50 text-grey-secondary font-medium': {} },
           '.btn-secondary': { '@apply bg-grey-secondary text-primary font-medium': {} },
-          '.text-pretitle': { '@apply font-BRSonoma font-semibold text-[10px] sm:text-xs md:text-sm leading-6 uppercase tracking-[0.11em]': {} }
+          '.text-pretitle': { '@apply font-BRSonoma font-semibold text-[10px] sm:text-xs md:text-sm leading-6 uppercase tracking-0.11em': {} }
         }
       );
     }

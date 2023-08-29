@@ -8,6 +8,7 @@ import clsxm from '@/helpers/clsxm';
 import { screens } from '@/helpers/style';
 import { useWindowDimensions } from '@/hooks';
 
+import CustomLink from '../CustomLink';
 import { ArrowNarrowLeft, ArrowNarrowRight, ChevronRight } from '../Icons';
 
 const ProductsSection: React.FC = () => {
@@ -17,7 +18,7 @@ const ProductsSection: React.FC = () => {
 	const [disableArrowRight, setDisableArrowRight] = useState<boolean>(false);
 
 	const handleScrollProducts = useCallback(() => {
-		const el = document.getElementById('home-products-scroll');
+		const el = document.getElementById('discover-products-scroll');
 
 		if (el) {
 			const widthContainer = el?.clientWidth || 0;
@@ -39,8 +40,8 @@ const ProductsSection: React.FC = () => {
 	}, []);
 
 	const moveCardProduct = (direction: 'left' | 'right') => {
-		const el = document.getElementById('home-products-scroll');
-		const widthCard = document.getElementById('home-product-card')?.clientWidth || 248;
+		const el = document.getElementById('discover-products-scroll');
+		const widthCard = document.getElementById('discover-product-card')?.clientWidth || 248;
 
 		if (el) {
 			if (direction === 'left') {
@@ -72,29 +73,31 @@ const ProductsSection: React.FC = () => {
 
 		return (
 			<div
-				id='home-products-scroll'
+				id='discover-products-scroll'
 				onScroll={ handleScrollProducts }
 				className='no-scrollbar overflow-y-hidden transition-all select-none transform flex flex-nowrap overflow-x-auto scrolling-touch scroll-smooth gap-x-18px lg:gap-x-5 py-1 -mr-4 lg:-mr-0 last:pr-[17px] lg:last:pr-0 lg:grid lg:overflow-hidden lg:gap-y-4 lg:grid-cols-4'
 			>
 				{ productList.map((product, productIdx) => (
 					<div
 						key={ product.id }
-						id='home-product-card'
+						id='discover-product-card'
 						data-aos='zoom-in-down'
 						data-aos-delay={ `${ productIdx * 100 }` }
 						className='group relative flex flex-col overflow-hidden bg-grey-secondary max-lg:flex-none w-[248px] lg:w-full'
 					>
 						<div className='relative overflow-hidden bg-[#E5E5E5] group-hover:opacity-75 w-full h-[225px] lg:h-[260px]'>
-							<Image
-								src={ product.imageSrc }
-								alt={ product.imageAlt }
-								className='object-cover object-center'
-								sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
-								fill
-							/>
+							{ product.imageSrc && (
+								<Image
+									src={ product.imageSrc }
+									alt={ product.imageAlt }
+									className='object-cover object-center'
+									sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
+									fill
+								/>
+							) }
 						</div>
 						<div className='flex flex-1 flex-col space-y-1 py-5 px-[22px] lg:px-25px lg:py-[23px]'>
-							<h3 className='font-Poppins text-sm lg:text-base font-medium text-primary leading-[158%] lg:leading-[156%] -tracking-[0.04em] whitespace-normal'>
+							<h3 className='font-Poppins text-sm lg:text-base font-medium text-primary leading-[158%] lg:leading-[156%] -tracking-0.04em whitespace-normal'>
 								{ product.name }
 							</h3>
 							<p className='font-BRSonoma leading-[143%] lg:leading-[144%] text-xs lg:text-sm text-grey-primary whitespace-normal'>{ product.description }</p>
@@ -139,7 +142,7 @@ const ProductsSection: React.FC = () => {
 		<div className='container-center w-full overflow-hidden'>
 			<div className='flex items-center justify-between'>
 				<div data-aos='zoom-in-right'>
-					<h2 className='text-primary font-Poppins text-[21px] md:text-3xl lg:text-4xl leading-[128%] lg:leading-[119%] -tracking-[0.04em]'>
+					<h2 className='text-primary font-Poppins text-[21px] md:text-3xl lg:text-4xl leading-[128%] lg:leading-[119%] -tracking-0.04em'>
 						{ homeData.products.title }
 					</h2>
 
@@ -160,13 +163,15 @@ const ProductsSection: React.FC = () => {
 					data-aos='zoom-in-left'
 					className='max-lg:hidden'
 				>
-					<button className='btn btn-primary flex items-center gap-2 !translate-y-0 group'>
+					<CustomLink
+						href={ homeData.products.viewAll.href }
+						className='btn btn-primary flex items-center gap-2 !translate-y-0 group'>
 						<span className='text-sm font-medium leading-6 font-Poppins'>
-							{ homeData.products.viewAll }
+							{ homeData.products.viewAll.text }
 						</span>
 
 						<ChevronRight className='stroke-grey-secondary w-18px h-18px group-hover:translate-x-1 transform transition-all duration-100' />
-					</button>
+					</CustomLink>
 				</div>
 			</div>
 
