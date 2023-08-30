@@ -7,7 +7,6 @@ export interface ProductItem {
 	bloodTest?: string;
 	value?: string;
 	imageSrc?: string;
-	imageAlt?: string;
 	images?: string[];
 	details?: {
 		question: string;

@@ -2,7 +2,7 @@
 
 import { NextPage } from 'next';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+import { notFound, useRouter } from 'next/navigation';
 
 import { HomeComponent, Navbar, ProductsComponent } from '@/components';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/Accordion';
@@ -17,6 +17,11 @@ const ProductDetailPage: NextPage<ProductDetailPageProps> = ({ params }) => {
 
 	const id = params.id;
 	const product = productsData.find(e => e.id.toString() === id.toString());
+
+	if (!product) {
+		notFound();
+	}
+
 	const pages = [
 		{ name: 'Products', href: '/products', current: false },
 		{ name: product?.name, href: `/products/${ product?.id }`, current: true },
@@ -90,7 +95,7 @@ const ProductDetailPage: NextPage<ProductDetailPageProps> = ({ params }) => {
 												<li key={ answerItemIdx }>{ answerItem }</li>
 											)) }
 										</ul>
-									) : <p>{ detail.answer }</p> }
+									) : <span>{ detail.answer && <p dangerouslySetInnerHTML={ { __html: detail.answer } } /> }</span> }
 							</AccordionContent>
 						</AccordionItem>
 					)) }
@@ -119,7 +124,7 @@ const ProductDetailPage: NextPage<ProductDetailPageProps> = ({ params }) => {
 				<div className='pb-[42px] lg:pb-[116px] pt-24 lg:pt-[172px] container-center flex flex-col max-lg:items-center'>
 					{ renderBreadcrumb() }
 
-					<div className='flex max-lg:flex-col lg:grid lg:grid-cols-2 gap-10 pt-[27px] lg:pt-12'>
+					<div className='flex max-lg:flex-col lg:grid lg:grid-cols-2 gap-10 pt-[27px] lg:pt-12 w-full'>
 						<div className='w-full max-lg:pb-1'>
 							<ProductsComponent.SliderProducts images={ product?.images ?? [] } />
 						</div>
