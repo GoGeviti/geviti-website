@@ -74,7 +74,10 @@ const productsData = [
 				answer: 'Testosterone Cypionate stands out in the world of hormone replacement therapies. Renowned for its consistent release and longer duration in the body, it offers a balanced approach to testosterone supplementation. Whether you\'re addressing low testosterone levels or seeking enhanced athletic performance, Testosterone Cypionate provides a reliable and effective solution.Dive into the benefits and discover why it\'s a top choice for many.'
 			}
 		],
-		benefits: []
+		benefits: [
+			'Hormonal Balance & Enhancement',
+			'Muscle & Physical Performance'
+		]
 	},
 	{
 		id: 3,
@@ -106,7 +109,10 @@ const productsData = [
 				answer: 'Topical Testosterone Cream is a game-changer in the realm of hormone replacement therapies. Designed for direct skin application, it ensures consistent absorption and steady testosterone levels. Whether you\'re combating low testosterone or aiming for peak wellness, this cream offers a non-invasive, reliable, and potent solution. Explore the advantages and see why it\'s becoming the preferred choice for many.'
 			}
 		],
-		benefits: []
+		benefits: [
+			'Hormonal Balance & Enhancement',
+			'Muscle & Physical Performance'
+		]
 	},
 	{
 		id: 4,
@@ -138,7 +144,9 @@ const productsData = [
 				answer: ''
 			}
 		],
-		benefits: []
+		benefits: [
+			'Hormonal Balance & Enhancement'
+		]
 	},
 	{
 		id: 5,
@@ -170,7 +178,9 @@ const productsData = [
 				answer: ''
 			}
 		],
-		benefits: []
+		benefits: [
+			'Hormonal Balance & Enhancement'
+		]
 	},
 	{
 		id: 6,
@@ -202,7 +212,9 @@ const productsData = [
 				answer: ''
 			}
 		],
-		benefits: []
+		benefits: [
+			'Hormonal Balance & Enhancement'
+		]
 	},
 	{
 		id: 7,
@@ -234,7 +246,9 @@ const productsData = [
 				answer: ''
 			}
 		],
-		benefits: []
+		benefits: [
+			'Hormonal Balance & Enhancement'
+		]
 	},
 	{
 		id: 8,
@@ -266,7 +280,9 @@ const productsData = [
 				answer: ''
 			}
 		],
-		benefits: []
+		benefits: [
+			'Hormonal Balance & Enhancement'
+		]
 	},
 	{
 		id: 9,
@@ -298,7 +314,9 @@ const productsData = [
 				answer: ''
 			}
 		],
-		benefits: []
+		benefits: [
+			'Muscle & Physical Performance'
+		]
 	},
 	{
 		id: 10,
@@ -330,7 +348,9 @@ const productsData = [
 				answer: ''
 			}
 		],
-		benefits: []
+		benefits: [
+			'Muscle & Physical Performance'
+		]
 	},
 	{
 		id: 11,
@@ -362,7 +382,9 @@ const productsData = [
 				answer: ''
 			}
 		],
-		benefits: []
+		benefits: [
+			'Metabolic & Blood Sugar Management'
+		]
 	},
 	{
 		id: 12,
@@ -394,7 +416,9 @@ const productsData = [
 				answer: ''
 			}
 		],
-		benefits: []
+		benefits: [
+			'Metabolic & Blood Sugar Management'
+		]
 	},
 	{
 		id: 13,
@@ -426,7 +450,9 @@ const productsData = [
 				answer: ''
 			}
 		],
-		benefits: []
+		benefits: [
+			'Cellular Health & Detoxification'
+		]
 	},
 	{
 		id: 14,
@@ -458,7 +484,9 @@ const productsData = [
 				answer: ''
 			}
 		],
-		benefits: []
+		benefits: [
+			'Cellular Health & Detoxification'
+		]
 	},
 	{
 		id: 15,
@@ -490,7 +518,9 @@ const productsData = [
 				answer: ''
 			}
 		],
-		benefits: []
+		benefits: [
+			'Sexual Health & Performance'
+		]
 	},
 	{
 		id: 16,
@@ -522,7 +552,9 @@ const productsData = [
 				answer: ''
 			}
 		],
-		benefits: []
+		benefits: [
+			'Sexual Health & Performance'
+		]
 	},
 	{
 		id: 17,
@@ -554,7 +586,9 @@ const productsData = [
 				answer: ''
 			}
 		],
-		benefits: []
+		benefits: [
+			'Sexual Health & Performance'
+		]
 	},
 ];
 
