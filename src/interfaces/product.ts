@@ -11,6 +11,7 @@ export interface ProductItem {
 	images?: string[];
 	details?: {
 		question: string;
-		answer: string;
+		answer: string | string[];
 	}[];
+	benefits?: string[];
 };

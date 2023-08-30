@@ -83,7 +83,14 @@ const ProductDetailPage: NextPage<ProductDetailPageProps> = ({ params }) => {
 							</AccordionTrigger>
 
 							<AccordionContent className='pt-11px sm:pt-[13px] text-grey-primary font-BRSonoma text-[10px] sm:text-xs leading-[17px] sm:leading-5'>
-								<p>{ detail.answer }</p>
+								{ Array.isArray(detail.answer) && detail.answer?.length
+									? (
+										<ul className='flex flex-col gap-y-1'>
+											{ detail.answer?.map((answerItem: string, answerItemIdx: number) => (
+												<li key={ answerItemIdx }>{ answerItem }</li>
+											)) }
+										</ul>
+									) : <p>{ detail.answer }</p> }
 							</AccordionContent>
 						</AccordionItem>
 					)) }
@@ -125,15 +132,17 @@ const ProductDetailPage: NextPage<ProductDetailPageProps> = ({ params }) => {
 									<p className='text-xl lg:text-2xl leading-[77%] lg:leading-[75%] font-BRSonoma'>${ product?.price }</p>
 								</div>
 
-								<div>
-									<div className='flex gap-5px text-primary'>
-										<AlertSquareIcon className='w-15px h-15px sm:w-18px sm:h-18px flex-shrink-0' />
+								<div className='flex flex-col gap-1.5 sm:gap-2.5'>
+									{ product?.bloodTest === 'yes' && (
+										<div className='flex gap-5px text-primary'>
+											<AlertSquareIcon className='w-15px h-15px sm:w-18px sm:h-18px flex-shrink-0' />
 
-										<p className='text-[10px] sm:text-xs font-BRSonoma leading-5 sm:leading-[18px] font-medium'>Products available based on blood test results</p>
-									</div>
+											<p className='text-[10px] sm:text-xs font-BRSonoma leading-5 sm:leading-[18px] font-medium'>Products available based on blood test results</p>
+										</div>
+									) }
 
 									{ product?.description && (
-										<p className='mt-1.5 sm:mt-2.5 text-[10px] sm:text-xs font-BRSonoma text-grey-primary leading-[17px] sm:leading-5'>{ product?.description }</p>
+										<p className='text-[10px] sm:text-xs font-BRSonoma text-grey-primary leading-[17px] sm:leading-5'>{ product?.description }</p>
 									) }
 								</div>
 

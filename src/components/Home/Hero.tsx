@@ -12,9 +12,9 @@ const heroData = homeData.hero;
 const Hero: React.FC = () => {
 	return (
 		<div className='lg:px-3 lg:py-15px overflow-hidden'>
+			<Navbar />
 			<div className='bg-primary w-full h-full lg:rounded-[19px] relative pt-11px lg:pt-5'>
 				<div className='absolute top-0 inset-x-0 w-full h-[193px] bg-gradient-to-b from-primary to-[#181a1c00] lg:rounded-t-[19px]' />
-				<Navbar className='pt-11px lg:pt-5' />
 
 				<div className='pt-60px lg:pt-20 lg:min-h-[646.8px] relative overflow-hidden isolate lg:pl-5'>
 					<div className='container-center w-full flex max-lg:flex-col items-center lg:gap-x-5'>
