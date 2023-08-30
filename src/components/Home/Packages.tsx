@@ -288,12 +288,12 @@ const PackagesSection: React.FC = () => {
 						className='lg:col-span-4 max-lg:mt-10'
 						data-aos='fade-in'
 					>
-						<div className='sticky top-10'>
+						<div className='lg:sticky lg:top-10'>
 							<SliderPackages />
 						</div>
 					</WrapperAnimation>
 
-					<div className='lg:col-span-6'>
+					<div className='lg:col-span-6 overflow-hidden'>
 						<div className='max-lg:hidden'>
 							{ renderTitleDescPage() }
 						</div>

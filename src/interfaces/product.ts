@@ -7,10 +7,10 @@ export interface ProductItem {
 	bloodTest?: string;
 	value?: string;
 	imageSrc?: string;
-	imageAlt?: string;
 	images?: string[];
 	details?: {
 		question: string;
-		answer: string;
+		answer: string | string[];
 	}[];
+	benefits?: string[];
 };

@@ -2,37 +2,38 @@ const productListData = {
 	preTitle: 'GET STARTED WITH GEVITI',
 	title: 'Our Products',
 	categoriesDescription: {
-		'Hormone Therapy': 'To explore our range of functional medicines, an initial consultation or membership plan is essential. This ensures personalized product recommendations tailored to your requirements.',
-		'Longevity': 'To explore our range of functional medicines, an initial consultation or membership plan is essential. This ensures personalized product recommendations tailored to your requirements.',
-		'Sexual Function': 'To explore our range of functional medicines, an initial consultation or membership plan is essential. This ensures personalized product recommendations tailored to your requirements.'
+		'Hormone Therapy': 'Discover our hormone therapy options with an essential initial consultation, membership, and bloodwork package. Get tailored, personalized recommendations for your needs.',
+		'Longevity': 'Dive into our selection of functional medicines. For certain products, bloodwork may be necessary, guaranteeing recommendations that align with your unique needs.',
+		'Sexual Function': 'Discover our sexual function medicine offerings. While an initial consultation and membership are crucial, blood tests might not be. Get recommendations perfectly aligned with your needs.'
 	},
 	filters: [
 		{
 			id: 'category',
 			name: 'Category',
 			options: [
-				{ value: 'Hormone Therapy', label: 'Hormone Therapy', checked: true },
-				{ value: 'Longevity', label: 'Longevity', checked: true },
-				{ value: 'Sexual Function', label: 'Sexual Function', checked: true }
+				{ value: 'Hormone Therapy', label: 'Hormone Therapy', checked: false },
+				{ value: 'Longevity', label: 'Longevity', checked: false },
+				{ value: 'Sexual Function', label: 'Sexual Function', checked: false }
 			],
-		},
-		{
-			id: 'ingredients',
-			name: 'Ingredients',
-			options: [],
 		},
 		{
 			id: 'bloodTest',
 			name: 'Blood test required',
 			options: [
-				{ value: 'yes', label: 'Yes', checked: true },
-				{ value: 'no', label: 'No', checked: true },
+				{ value: 'yes', label: 'Yes', checked: false },
+				{ value: 'no', label: 'No', checked: false },
 			],
 		},
 		{
 			id: 'benefits',
 			name: 'Benefits',
-			options: [],
+			options: [
+				{ value: 'Hormonal Balance & Enhancement', label: 'Hormonal Balance & Enhancement', checked: false },
+				{ value: 'Muscle & Physical Performance', label: 'Muscle & Physical Performance', checked: false },
+				{ value: 'Metabolic & Blood Sugar Management', label: 'Metabolic & Blood Sugar Management', checked: false },
+				{ value: 'Cellular Health & Detoxification', label: 'Cellular Health & Detoxification', checked: false },
+				{ value: 'Sexual Health & Performance', label: 'Sexual Health & Performance', checked: false },
+			],
 		},
 	]
 };

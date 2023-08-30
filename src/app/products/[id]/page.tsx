@@ -2,7 +2,7 @@
 
 import { NextPage } from 'next';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+import { notFound, useRouter } from 'next/navigation';
 
 import { HomeComponent, Navbar, ProductsComponent } from '@/components';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/Accordion';
@@ -17,6 +17,11 @@ const ProductDetailPage: NextPage<ProductDetailPageProps> = ({ params }) => {
 
 	const id = params.id;
 	const product = productsData.find(e => e.id.toString() === id.toString());
+
+	if (!product) {
+		notFound();
+	}
+
 	const pages = [
 		{ name: 'Products', href: '/products', current: false },
 		{ name: product?.name, href: `/products/${ product?.id }`, current: true },
@@ -83,7 +88,14 @@ const ProductDetailPage: NextPage<ProductDetailPageProps> = ({ params }) => {
 							</AccordionTrigger>
 
 							<AccordionContent className='pt-11px sm:pt-[13px] text-grey-primary font-BRSonoma text-[10px] sm:text-xs leading-[17px] sm:leading-5'>
-								<p>{ detail.answer }</p>
+								{ Array.isArray(detail.answer) && detail.answer?.length
+									? (
+										<ul className='flex flex-col gap-y-1'>
+											{ detail.answer?.map((answerItem: string, answerItemIdx: number) => (
+												<li key={ answerItemIdx }>{ answerItem }</li>
+											)) }
+										</ul>
+									) : <span>{ detail.answer && <p dangerouslySetInnerHTML={ { __html: detail.answer } } /> }</span> }
 							</AccordionContent>
 						</AccordionItem>
 					)) }
@@ -112,7 +124,7 @@ const ProductDetailPage: NextPage<ProductDetailPageProps> = ({ params }) => {
 				<div className='pb-[42px] lg:pb-[116px] pt-24 lg:pt-[172px] container-center flex flex-col max-lg:items-center'>
 					{ renderBreadcrumb() }
 
-					<div className='flex max-lg:flex-col lg:grid lg:grid-cols-2 gap-10 pt-[27px] lg:pt-12'>
+					<div className='flex max-lg:flex-col lg:grid lg:grid-cols-2 gap-10 pt-[27px] lg:pt-12 w-full'>
 						<div className='w-full max-lg:pb-1'>
 							<ProductsComponent.SliderProducts images={ product?.images ?? [] } />
 						</div>
@@ -125,15 +137,17 @@ const ProductDetailPage: NextPage<ProductDetailPageProps> = ({ params }) => {
 									<p className='text-xl lg:text-2xl leading-[77%] lg:leading-[75%] font-BRSonoma'>${ product?.price }</p>
 								</div>
 
-								<div>
-									<div className='flex gap-5px text-primary'>
-										<AlertSquareIcon className='w-15px h-15px sm:w-18px sm:h-18px flex-shrink-0' />
+								<div className='flex flex-col gap-1.5 sm:gap-2.5'>
+									{ product?.bloodTest === 'yes' && (
+										<div className='flex gap-5px text-primary'>
+											<AlertSquareIcon className='w-15px h-15px sm:w-18px sm:h-18px flex-shrink-0' />
 
-										<p className='text-[10px] sm:text-xs font-BRSonoma leading-5 sm:leading-[18px] font-medium'>Products available based on blood test results</p>
-									</div>
+											<p className='text-[10px] sm:text-xs font-BRSonoma leading-5 sm:leading-[18px] font-medium'>Products available based on blood test results</p>
+										</div>
+									) }
 
 									{ product?.description && (
-										<p className='mt-1.5 sm:mt-2.5 text-[10px] sm:text-xs font-BRSonoma text-grey-primary leading-[17px] sm:leading-5'>{ product?.description }</p>
+										<p className='text-[10px] sm:text-xs font-BRSonoma text-grey-primary leading-[17px] sm:leading-5'>{ product?.description }</p>
 									) }
 								</div>
 

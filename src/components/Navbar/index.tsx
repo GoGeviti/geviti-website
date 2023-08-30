@@ -148,7 +148,7 @@ const Navbar: React.FC<NavbarProps> = ({
 	return (
 		<>
 			<header className={ clsxm(
-				'inset-x-0 top-0 z-50 absolute',
+				'inset-x-0 top-0 z-50 absolute pt-11px lg:pt-6',
 				className
 			) }>
 				<nav className='w-full container-center'>

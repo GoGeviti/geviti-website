@@ -91,7 +91,7 @@ const ProductsPage: NextPage = () => {
 				return filtered;
 			}, []);
 
-			if (filter.id === 'category') {
+			if (filter.id === 'category' && options?.length) {
 				filterByCategories = filterByCategories.filter(item => {
 					return options?.some(category => category === item.category);
 				});
@@ -100,7 +100,13 @@ const ProductsPage: NextPage = () => {
 					if (options.length) {
 						return {
 							...item,
-							products: item.products.filter((product: any) => !!options.find(opt => product[filter.id] === opt))
+							products: item.products.filter((product: any) => !!options.find(opt => {
+								const productVal = product[filter.id];
+								if (Array.isArray(productVal)) {
+									return productVal.includes(opt);
+								}
+								return product[filter.id] === opt;
+							}))
 						};
 					}
 					return item;
@@ -133,7 +139,7 @@ const ProductsPage: NextPage = () => {
 						value={ `item-${ filterIdx + 1 }` }
 						className='py-3 border-blue-3'
 					>
-						<AccordionTrigger className='flex items-start justify-between w-full'>
+						<AccordionTrigger className='flex items-center justify-between w-full'>
 							<p className='text-sm -tracking-0.04em leading-8 font-Poppins text-primary'>{ filter.name }</p>
 							<ChevronDown className='w-3.5 h-3.5 text-primary ease-[cubic-bezier(0.87,_0,_0.13,_1)] transition-transform duration-300 group-data-[state=open]:rotate-180' />
 						</AccordionTrigger>
@@ -210,11 +216,17 @@ const ProductsPage: NextPage = () => {
 										{ product.imageSrc && (
 											<Image
 												src={ product.imageSrc }
-												alt={ product.imageAlt ?? '' }
+												alt={ product.name ?? '' }
 												className='object-cover object-center'
 												sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
 												fill
 											/>
+										) }
+
+										{ product.bloodTest === 'yes' && (
+											<div className='absolute bottom-0 right-0 p-1.5 sm:p-2'>
+												<AlertSquareIcon className='w-15px h-15px sm:w-18px sm:h-18px flex-shrink-0' />
+											</div>
 										) }
 									</div>
 									<div className='flex flex-1 flex-col space-y-1 py-[13px] sm:py-18px px-[13px] sm:px-[21px]'>
@@ -277,11 +289,19 @@ const ProductsPage: NextPage = () => {
 		);
 	};
 
+	const onCloseSheet = () => {
+		setTempFilterValues(filterValues);
+		setOpenSheet(false);
+	};
+
 	const renderSheet = () => {
 		return (
 			<Sheet
 				open={ openSheet }
-				onOpenChange={ setOpenSheet }
+				onOpenChange={ (open: boolean) => {
+					if (!open) onCloseSheet();
+					else setOpenSheet(open);
+				} }
 			>
 				<SheetContent
 					className='bg-grey-secondary rounded-t-[22px] !px-[22px] !py-6'
@@ -303,10 +323,7 @@ const ProductsPage: NextPage = () => {
 							} }>Save</button>
 						<button
 							className='btn bg-primary bg-opacity-10 w-full text-primary font-medium !py-11px'
-							onClick={ () => {
-								setTempFilterValues(filterValues);
-								setOpenSheet(false);
-							} }>Cancel</button>
+							onClick={ onCloseSheet }>Cancel</button>
 					</div>
 				</SheetContent>
 			</Sheet>

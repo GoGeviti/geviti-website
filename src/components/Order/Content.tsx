@@ -18,8 +18,7 @@ const Content: React.FC = () => {
 			price: 139.99,
 			description: 'Product Info',
 			value: '$300+',
-			imageSrc: '/images/home/product_1.png',
-			imageAlt: 'Eight shirts arranged on table in black, olive, grey, blue, white, red, mustard, and green.',
+			imageSrc: '/images/home/product_1.png'
 		}
 	]);
 
