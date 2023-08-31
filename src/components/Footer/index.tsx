@@ -9,7 +9,11 @@ import { getNumofCols } from '@/helpers/style';
 
 import CustomLink from '../CustomLink';
 
-const Footer: React.FC = () => {
+type FooterProps = {
+	landingPage?: boolean;
+};
+
+const Footer: React.FC<FooterProps> = ({ landingPage }) => {
 	const [email, setEmail] = useState<string>('');
 
 	const renderMenuList = () => {
@@ -17,31 +21,57 @@ const Footer: React.FC = () => {
 		const gridColList = getNumofCols(menuList?.length);
 
 		return (
-			<div className={ clsxm('grid gap-y-7 gap-x-20 max-lg:hidden lg:col-span-2', gridColList) }>
-				{ menuList.map(item => (
-					<div key={ item.title }>
-						<p className='text-base font-medium font-BRSonoma'>{ item.title }</p>
-					</div>
-				)) }
+			<>
+				<div className={ clsxm('grid gap-y-7 gap-x-20 max-lg:hidden lg:col-span-2', gridColList) }>
+					{ menuList.map(item => (
+						<div key={ item.title }>
+							<p className='text-base font-medium font-BRSonoma text-primary'>{ item.title }</p>
+						</div>
+					)) }
 
-				{ menuList.map(item => (
-					<div
-						key={ `child-${ item.title }` }
-						className='flex flex-col gap-y-9px'
-					>
-						{ item.menu.map(childItem => (
-							<CustomLink
-								key={ childItem.name }
-								href={ childItem.href }
-								externalLink={ childItem.externalLink }
-								className='text-grey-primary text-xs font-medium font-BRSonoma'
+					{ menuList.map(item => (
+						<div
+							key={ `child-${ item.title }` }
+							className='flex flex-col gap-y-9px'
+						>
+							{ item.menu.map(childItem => (
+								<CustomLink
+									key={ childItem.name }
+									href={ childItem.href }
+									externalLink={ childItem.externalLink }
+									className='text-grey-primary text-xs font-medium font-BRSonoma'
+								>
+									{ childItem.name }
+								</CustomLink>
+							)) }
+						</div>
+					)) }
+				</div>
+
+				{ landingPage && (
+					<div className='flex flex-col lg:hidden mt-[53px] gap-y-[53px]'>
+						{ menuList.map(item => (
+							<div
+								key={ `child-${ item.title }` }
+								className='flex flex-col gap-y-9px'
 							>
-								{ childItem.name }
-							</CustomLink>
+								<p className='text-base font-medium font-BRSonoma mb-18px text-primary'>{ item.title }</p>
+
+								{ item.menu.map(childItem => (
+									<CustomLink
+										key={ childItem.name }
+										href={ childItem.href }
+										externalLink={ childItem.externalLink }
+										className='text-grey-primary text-xs font-medium font-BRSonoma'
+									>
+										{ childItem.name }
+									</CustomLink>
+								)) }
+							</div>
 						)) }
 					</div>
-				)) }
-			</div>
+				) }
+			</>
 		);
 	};
 
@@ -76,7 +106,7 @@ const Footer: React.FC = () => {
 							/>
 						</div>
 
-						<div className='mt-[54px] flex items-center gap-[23px]'>
+						<div className='mt-[34px] sm:mt-[54px] flex items-center gap-[23px]'>
 							{ footerData.socialMedia.map(item => (
 								<CustomLink
 									key={ item.alt }

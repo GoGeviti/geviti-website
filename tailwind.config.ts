@@ -46,6 +46,11 @@ const config: Config = {
       letterSpacing: {
         '0.04em': '0.04em',
         '0.11em': '0.11em'
+      },
+      backgroundImage: {
+        'hero-landing-top': 'linear-gradient(180deg, #181A1C 37.05%, rgba(24, 26, 28, 0.00) 100%)',
+        'hero-landing-bottom': 'linear-gradient(0deg, #181A1C 39.06%, rgba(24, 26, 28, 0.00) 100%)',
+        'mission-landing': 'linear-gradient(0deg, #181A1C 28.72%, rgba(24, 26, 28, 0.00) 100%)'
       }
     },
     fontFamily: {

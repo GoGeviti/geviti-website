@@ -4,8 +4,7 @@ import Image from 'next/image';
 import { homeData } from '@/constant/data';
 
 import Navbar from '../Navbar';
-
-import WrapperAnimation from './WrapperAnimation';
+import WrapperAnimation from '../WrapperAnimation';
 
 const heroData = homeData.hero;
 

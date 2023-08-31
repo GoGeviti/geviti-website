@@ -6,7 +6,7 @@ const navigationData = {
 	menu: [
 		{
 			name: 'Get Started',
-			href: '/',
+			href: '/get-started',
 			externalLink: false
 		},
 		{
