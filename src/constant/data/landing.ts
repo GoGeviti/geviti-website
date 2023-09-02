@@ -54,6 +54,18 @@ const landingData = {
 		},
 		titleMobile: 'Our Products'
 	},
+	investment: {
+		preTitle: 'INVESTMENT IN YOUR FUTURE',
+		title: 'Prioritizing longevity is an investment in your future self.',
+		description: 'Live longer without compromising your lifestyle—our longevity solutions are designed to fit seamlessly into your everyday life.',
+		image: '/images/landing/investment.png',
+		imageMobile: '/images/landing/investment_mobile.png',
+		btnCta: {
+			href: '/get-started',
+			externalLink: false,
+			text: 'Get Started'
+		}
+	},
 	mission: {
 		title: 'Our Mission',
 		description: 'Geviti is built on the premise that our bodies are merely vessels of consciousness. Our mission is to extend time spent in our conscious experience so we may share it with our loved ones.<br /><br />We strive to slow down, maintain, or even reverse one’s biological age my promoting actionable plans.',
@@ -64,6 +76,42 @@ const landingData = {
 			externalLink: false,
 			text: 'Read More'
 		}
+	},
+	steps: {
+		preTitle: 'completely custom',
+		title: 'Start on the path towards a longer, more enjoyable life.',
+		btnCta: {
+			href: '/',
+			externalLink: false,
+			text: 'See if I qualify',
+			textMobile: 'Take Our 3 Minute Quiz'
+		},
+		list: [
+			{
+				id: 'package',
+				title: 'Select your package.',
+				image: '/images/landing/step_1.png',
+				imageMobile: '/images/landing/step_1_mobile.png'
+			},
+			{
+				id: 'testing',
+				title: 'Complete your testing.',
+				image: '/images/landing/step_2.png',
+				imageMobile: '/images/landing/step_2_mobile.png'
+			},
+			{
+				id: 'treatment',
+				title: 'Get treatment in the mail.',
+				image: '/images/landing/step_3.png',
+				imageMobile: '/images/landing/step_3.png'
+			},
+			{
+				id: 'best',
+				title: 'Become the best possible you.',
+				image: '/images/landing/step_4.png',
+				imageMobile: '/images/landing/step_4.png'
+			},
+		]
 	}
 };
 

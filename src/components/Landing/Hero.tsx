@@ -50,32 +50,31 @@ const Hero: React.FC = () => {
 									</h1>
 								) }
 
-								<div className='flex justify-center mt-7 sm:mt-9'>
+								<div
+									id='main-keys-landing'
+									className='flex justify-center mt-7 sm:mt-9'>
 									<CustomLink
 										href={ heroData.btnCta.href }
 										externalLink={ heroData.btnCta.externalLink }
-										className='btn !py-2.5 sm:!py-3 btn-secondary flex items-center gap-7px sm:gap-2 !translate-y-0 group'
+										className='btn-cta-landing group'
 									>
-										<span className='text-xs sm:text-sm font-medium leading-5 sm:leading-6 font-Poppins'>
+										<span className='text-btn-cta-landing'>
 											<span className='max-sm:hidden'>{ heroData.btnCta.text }</span>
 											<span className='sm:hidden'>{ heroData.btnCta.textMobile }</span>
 										</span>
 
-										<ChevronRight className='stroke-primary w-4 h-4 sm:w-18px sm:h-18px group-hover:translate-x-1 transform transition-all duration-100' />
+										<ChevronRight className='arrow-btn-cta-landing' />
 									</CustomLink>
 								</div>
 							</div>
 
-							<div
-								id='main-keys'
-								className='grid grid-cols-3 sm:max-w-xl w-full mt-[53px] sm:mt-20'
-							>
+							<div className='grid grid-cols-3 sm:max-w-xl w-full mt-[53px] sm:mt-20'>
 								{ heroData.mainKeys.map((feature, featureIdx) => (
 									<WrapperAnimation
 										key={ feature.text }
 										data-aos='zoom-in-up'
 										data-aos-delay={ `${ featureIdx * 100 }` }
-										data-aos-anchor='#main-keys'
+										data-aos-anchor='#main-keys-landing'
 										className='flex flex-col text-center items-center gap-y-1 md:gap-y-5px'
 									>
 										{ feature.image && (

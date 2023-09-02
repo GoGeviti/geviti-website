@@ -41,7 +41,8 @@ const config: Config = {
           '3': '#CDD8DC'
         },
         'black-background': '#222426',
-        'black-secondary': '#242628'
+        'black-secondary': '#242628',
+        'black-landing': '#353738'
       },
       letterSpacing: {
         '0.04em': '0.04em',
@@ -50,8 +51,24 @@ const config: Config = {
       backgroundImage: {
         'hero-landing-top': 'linear-gradient(180deg, #181A1C 37.05%, rgba(24, 26, 28, 0.00) 100%)',
         'hero-landing-bottom': 'linear-gradient(0deg, #181A1C 39.06%, rgba(24, 26, 28, 0.00) 100%)',
-        'mission-landing': 'linear-gradient(0deg, #181A1C 28.72%, rgba(24, 26, 28, 0.00) 100%)'
-      }
+        'mission-landing': 'linear-gradient(0deg, #181A1C 28.72%, rgba(24, 26, 28, 0.00) 100%)',
+        'investment-landing': 'linear-gradient(109deg, #181A1C 17.5%, rgba(24, 26, 28, 0.71) 76.83%)',
+        'investment-landing-bottom': 'linear-gradient(0deg, #181A1C 39.06%, rgba(24, 26, 28, 0.00) 100%)'
+      },
+      animation: {
+        marquee: 'marquee 40s linear infinite',
+        marquee2: 'marquee2 40s linear infinite'
+      },
+      keyframes: {
+        marquee: {
+          '0%': { transform: 'translateX(-100%)' },
+          '100%': { transform: 'translateX(0%)' },
+        },
+        marquee2: {
+          '0%': { transform: 'translateX(0%)' },
+          '100%': { transform: 'translateX(100%)' },
+        }
+      },
     },
     fontFamily: {
       'Poppins': ['var(--font-Poppins)', 'sans-serif'],
@@ -68,7 +85,11 @@ const config: Config = {
           '.btn': { '@apply rounded-full text-center py-3 px-4 xxs:px-5 transition-transform duration-100 hover:[&:not([disabled])]:-translate-y-[2px] active:[&:not([disabled])]:translate-y-0 focus:outline-0 focus:ring-0': {} },
           '.btn-primary': { '@apply bg-primary hover:bg-opacity-80 disabled:bg-opacity-50 text-grey-secondary font-medium': {} },
           '.btn-secondary': { '@apply bg-grey-secondary text-primary font-medium': {} },
-          '.text-pretitle': { '@apply font-BRSonoma font-semibold text-[10px] sm:text-xs md:text-sm leading-6 uppercase tracking-0.11em': {} }
+          '.btn-cta-landing': { '@apply btn !py-2.5 sm:!py-3 btn-secondary flex items-center gap-7px sm:gap-2 !translate-y-0': {} },
+          '.text-pretitle': { '@apply font-BRSonoma font-semibold text-[10px] sm:text-xs md:text-sm leading-6 uppercase tracking-0.11em': {} },
+          '.text-heading-2': { '@apply font-Poppins text-[21px] sm:text-2xl md:text-[32px] lg:text-4xl leading-[129%] sm:leading-[125%] -tracking-0.04em': {} },
+          '.text-btn-cta-landing': { '@apply text-xs sm:text-sm font-medium leading-5 sm:leading-6 font-Poppins': {} },
+          '.arrow-btn-cta-landing': { '@apply stroke-primary w-4 h-4 sm:w-18px sm:h-18px group-hover:translate-x-1 transform transition-all duration-100': {} }
         }
       );
     }

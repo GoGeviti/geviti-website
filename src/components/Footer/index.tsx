@@ -18,57 +18,44 @@ const Footer: React.FC<FooterProps> = ({ landingPage }) => {
 
 	const renderMenuList = () => {
 		const menuList = footerData.list;
+
+		return (
+			<>
+				{ menuList.map(item => (
+					<div
+						key={ `child-${ item.title }` }
+						className='flex flex-col gap-y-9px'
+					>
+						<p className='text-base font-medium font-BRSonoma mb-18px text-primary'>{ item.title }</p>
+
+						{ item.menu.map(childItem => (
+							<CustomLink
+								key={ childItem.name }
+								href={ childItem.href }
+								externalLink={ childItem.externalLink }
+								className='text-grey-primary text-xs font-medium font-BRSonoma'
+							>
+								{ childItem.name }
+							</CustomLink>
+						)) }
+					</div>
+				)) }
+			</>
+		);
+	};
+	const renderMenuListContent = () => {
+		const menuList = footerData.list;
 		const gridColList = getNumofCols(menuList?.length);
 
 		return (
 			<>
 				<div className={ clsxm('grid gap-y-7 gap-x-20 max-lg:hidden lg:col-span-2', gridColList) }>
-					{ menuList.map(item => (
-						<div key={ item.title }>
-							<p className='text-base font-medium font-BRSonoma text-primary'>{ item.title }</p>
-						</div>
-					)) }
-
-					{ menuList.map(item => (
-						<div
-							key={ `child-${ item.title }` }
-							className='flex flex-col gap-y-9px'
-						>
-							{ item.menu.map(childItem => (
-								<CustomLink
-									key={ childItem.name }
-									href={ childItem.href }
-									externalLink={ childItem.externalLink }
-									className='text-grey-primary text-xs font-medium font-BRSonoma'
-								>
-									{ childItem.name }
-								</CustomLink>
-							)) }
-						</div>
-					)) }
+					{ renderMenuList() }
 				</div>
 
 				{ landingPage && (
 					<div className='flex flex-col lg:hidden mt-[53px] gap-y-[53px]'>
-						{ menuList.map(item => (
-							<div
-								key={ `child-${ item.title }` }
-								className='flex flex-col gap-y-9px'
-							>
-								<p className='text-base font-medium font-BRSonoma mb-18px text-primary'>{ item.title }</p>
-
-								{ item.menu.map(childItem => (
-									<CustomLink
-										key={ childItem.name }
-										href={ childItem.href }
-										externalLink={ childItem.externalLink }
-										className='text-grey-primary text-xs font-medium font-BRSonoma'
-									>
-										{ childItem.name }
-									</CustomLink>
-								)) }
-							</div>
-						)) }
+						{ renderMenuList() }
 					</div>
 				) }
 			</>
@@ -126,7 +113,7 @@ const Footer: React.FC<FooterProps> = ({ landingPage }) => {
 						</div>
 					</div>
 
-					{ renderMenuList() }
+					{ renderMenuListContent() }
 				</div>
 			</div>
 		</div>

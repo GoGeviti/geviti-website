@@ -12,8 +12,8 @@ const missionData = landingData.mission;
 
 const Mission: React.FC = () => {
 	return (
-		<div className='lg:px-3 lg:py-15px overflow-hidden'>
-			<div className='bg-primary h-[812px] lg:h-[483px] w-full lg:rounded-[19px] relative overflow-hidden pt-11px lg:pt-5'>
+		<div className='lg:px-3 lg:pb-15px overflow-hidden'>
+			<div className='bg-primary h-[812px] lg:h-[483px] w-full lg:rounded-[19px] relative overflow-hidden'>
 				<div className='max-lg:hidden absolute inset-0 w-full h-full'>
 					{ missionData.image && (
 						<div className='relative overflow-hidden w-full h-full lg:rounded-[19px]'>
@@ -59,13 +59,13 @@ const Mission: React.FC = () => {
 							<CustomLink
 								href={ missionData.btnCta.href }
 								externalLink={ missionData.btnCta.externalLink }
-								className='btn !py-2.5 sm:!py-3 btn-secondary flex items-center gap-7px sm:gap-2 !translate-y-0 group'
+								className='btn-cta-landing group'
 							>
-								<span className='text-xs sm:text-sm font-medium leading-5 sm:leading-6 font-Poppins'>
+								<span className='text-btn-cta-landing'>
 									{ missionData.btnCta.text }
 								</span>
 
-								<ChevronRight className='stroke-primary w-4 h-4 sm:w-18px sm:h-18px group-hover:translate-x-1 transform transition-all duration-100' />
+								<ChevronRight className='arrow-btn-cta-landing' />
 							</CustomLink>
 						</div>
 					</div>
