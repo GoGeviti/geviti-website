@@ -8,6 +8,7 @@ const HomePage: NextPage = () => {
 			<LandingComponent.Hero />
 			<LandingComponent.RunningLogo />
 			<LandingComponent.Steps />
+			<LandingComponent.Dashboard />
 			<LandingComponent.Investment />
 			<LandingComponent.Products />
 			<LandingComponent.Mission />

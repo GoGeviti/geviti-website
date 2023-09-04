@@ -62,7 +62,7 @@ const Investment: React.FC = () => {
 							<CustomLink
 								href={ investmentData.btnCta.href }
 								externalLink={ investmentData.btnCta.externalLink }
-								className='btn-cta-landing group'
+								className='btn-cta-landing btn-secondary group'
 							>
 								<span className='text-btn-cta-landing'>
 									{ investmentData.btnCta.text }

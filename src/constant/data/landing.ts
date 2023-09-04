@@ -1,4 +1,6 @@
-import { ShoppingBagIcon } from '@/components/Icons';
+import {
+	BarChartSquareIcon, DiamondIcon, EmergencyCallAddIcon, RocketIcon, ShoppingBagIcon
+} from '@/components/Icons';
 
 const landingData = {
 	navbar: {
@@ -112,6 +114,45 @@ const landingData = {
 				imageMobile: '/images/landing/step_4.png'
 			},
 		]
+	},
+	dashboard: {
+		preTitle: 'AI DRIVEN',
+		title: 'Cutting-edge health monitoring technology.',
+		btnCta: {
+			href: '/get-started',
+			externalLink: false,
+			text: 'Start Now'
+		},
+		image: '/images/landing/dashboard_geviti.png'
+	},
+	application: {
+		preTitle: 'On-the-fly access',
+		title: 'Access to a longer life in the palm of your hand.',
+		description: 'Geviti’s applications make managing longevity easy and convenient.',
+		list: [
+			{
+				icon: BarChartSquareIcon,
+				text: 'track your metrics'
+			},
+			{
+				icon: DiamondIcon,
+				text: 'direct specialist access'
+			},
+			{
+				icon: RocketIcon,
+				text: 'manage your goals'
+			},
+			{
+				icon: EmergencyCallAddIcon,
+				text: 'field telehealth calls'
+			}
+		],
+		btnCta: {
+			href: '/get-started',
+			externalLink: false,
+			text: 'Start Now'
+		},
+		image: '/images/landing/application.png'
 	}
 };
 

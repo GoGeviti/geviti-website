@@ -68,7 +68,7 @@ const StepsSection: React.FC = () => {
 							<CustomLink
 								href={ stepsData.btnCta.href }
 								externalLink={ stepsData.btnCta.externalLink }
-								className='btn-cta-landing group'
+								className='btn-cta-landing btn-secondary group'
 							>
 								<span className='text-btn-cta-landing'>
 									<span className='max-sm:hidden'>{ stepsData.btnCta.text }</span>
@@ -81,7 +81,7 @@ const StepsSection: React.FC = () => {
 					</div>
 
 					<div className='sm:max-w-6xl sm:mx-auto w-full'>
-						<div className='hidden lg:flex items-start w-full gap-x-5 mb-50px'>
+						<div className='hidden lg:flex items-start w-full gap-x-5'>
 							{ stepsData.list.map((step, stepIdx) => (
 								<div
 									key={ `image-step-${ step.id }` }
@@ -96,11 +96,11 @@ const StepsSection: React.FC = () => {
 							)) }
 						</div>
 
-						<div className='lg:hidden flex justify-center w-full px-5 xxs:px-12 mb-[43px] transition duration-300 ease-in-out'>
+						<div className='lg:hidden flex justify-center w-full px-5 xxs:px-12 transition duration-300 ease-in-out'>
 							{ renderImageStep(stepsData.list[selectedIdx]?.id, stepsData.list[selectedIdx]?.imageMobile) }
 						</div>
 
-						<div className='flex items-start w-full no-scrollbar overflow-y-hidden transition-all select-none transform flex-nowrap overflow-x-auto lg:overflow-hidden scrolling-touch scroll-smooth gap-x-18px lg:gap-x-5 py-1 -mr-4 lg:-mr-0 last:pr-[17px] lg:last:pr-0'>
+						<div className='pt-[54px] lg:pt-[73px] flex items-start w-full no-scrollbar overflow-y-hidden transition-all select-none transform flex-nowrap overflow-x-auto lg:overflow-hidden scrolling-touch scroll-smooth gap-x-18px lg:gap-x-5 py-1 -mr-4 lg:-mr-0 last:pr-[17px] lg:last:pr-0'>
 							{ stepsData.list.map((step, stepIdx) => {
 								const isSelected = stepIdx === selectedIdx;
 
@@ -108,15 +108,17 @@ const StepsSection: React.FC = () => {
 									(
 										<div
 											key={ `step-${ step.id }` }
-											className='w-full flex flex-col items-center'
+											className={ clsxm('w-full flex flex-col items-center transform transition-all duration-100 ease-in', isSelected ? '-translate-y-3 lg:-translate-y-5' : 'translate-y-0') }
 										>
 											<div
 												onClick={ () => onSelectStep(stepIdx) }
 												onMouseEnter={ () => onMouseEnter(stepIdx) }
 												className={ clsxm(
-													'cursor-pointer transition-all duration-300 ease-in w-[46px] h-[46px] rounded-full flex items-center justify-center flex-shrink-0',
-													'text-[11px] sm:text-sm leading-[18px] sm:leading-6 font-medium font-Poppins text-center',
-													isSelected ? 'bg-grey-secondary text-black-landing' : 'bg-black-landing text-grey-secondary'
+													'cursor-pointer rounded-full flex items-center justify-center flex-shrink-0',
+													'font-Poppins text-center',
+													isSelected
+														? 'text-sm sm:text-base font-bold sm:font-medium leading-6 sm:leading-[29px] bg-grey-secondary text-black-landing w-[46px] h-[46px] lg:w-[55px] lg:h-[55px] shadow-[0px_-8px_24px_0px_rgba(251,251,251,0.35)]'
+														: 'text-[11px] sm:text-sm font-medium leading-[18px] sm:leading-6 bg-black-landing text-grey-secondary w-[34px] h-[34px] lg:w-[46px] lg:h-[46px]'
 												) }
 											>
 												{ stepIdx + 1 }
@@ -125,7 +127,10 @@ const StepsSection: React.FC = () => {
 											<p
 												onClick={ () => onSelectStep(stepIdx) }
 												onMouseEnter={ () => onMouseEnter(stepIdx) }
-												className='pt-3.5 sm:pt-18px cursor-pointer text-center text-xs sm:text-sm md:text-base font-Poppins text-grey-secondary font-medium leading-[134%] w-[105px] sm:w-[139px]'
+												className={ clsxm(
+													'cursor-pointer text-center font-Poppins text-grey-secondary font-medium leading-[134%]',
+													isSelected ? 'pt-3.5 sm:pt-[22px] text-base md:text-[19px] w-[140px] sm:w-[180px]' : 'pt-3.5 sm:pt-18px text-xs sm:text-sm md:text-base w-[105px] sm:w-[139px]'
+												) }
 											>
 												{ step.title }
 											</p>

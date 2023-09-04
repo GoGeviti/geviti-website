@@ -59,7 +59,7 @@ const Mission: React.FC = () => {
 							<CustomLink
 								href={ missionData.btnCta.href }
 								externalLink={ missionData.btnCta.externalLink }
-								className='btn-cta-landing group'
+								className='btn-cta-landing btn-secondary group'
 							>
 								<span className='text-btn-cta-landing'>
 									{ missionData.btnCta.text }

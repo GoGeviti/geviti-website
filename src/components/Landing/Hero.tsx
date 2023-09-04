@@ -56,7 +56,7 @@ const Hero: React.FC = () => {
 									<CustomLink
 										href={ heroData.btnCta.href }
 										externalLink={ heroData.btnCta.externalLink }
-										className='btn-cta-landing group'
+										className='btn-cta-landing btn-secondary group'
 									>
 										<span className='text-btn-cta-landing'>
 											<span className='max-sm:hidden'>{ heroData.btnCta.text }</span>
