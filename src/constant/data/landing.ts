@@ -153,6 +153,53 @@ const landingData = {
 			text: 'Start Now'
 		},
 		image: '/images/landing/application.png'
+	},
+	functional: {
+		preTitle: 'Tailored Functional Medicine',
+		title: 'A holistic approach to an<br />optimized <span class="font-semibold">you.</span>',
+		btnCta: {
+			href: '/products',
+			externalLink: false,
+			text: 'See Products'
+		},
+		list: [
+			'Compounds shipped direct to your door',
+			'Cutting edge anti-aging compounds',
+			'Oral testosterone replacement therapy',
+			'Data-driven care by a board certified physician'
+		]
+	},
+	quality: {
+		preTitle: 'Highest quality standards',
+		title: 'Hormones, peptides, and more shipped straight to your door.',
+		list: [
+			'Regenerative Medicine',
+			'Hormone Therapy',
+			'Anti-aging Protocols',
+			'Innovative Therapies'
+		],
+		btnCtaList: [
+			{
+				href: '/get-started',
+				externalLink: false,
+				text: 'Start Now'
+			},
+			{
+				href: '/products',
+				externalLink: false,
+				text: 'See Products'
+			}
+		],
+	},
+	therapy: {
+		preTitle: 'Innovative anti-aging therapies',
+		title: 'Hormone therapy, peptide therapy, and anti-aging medicine.',
+		description: 'We go beyond the traditional one-size-fits-all approach. We understand that each individual has unique needs and goals.',
+		btnCta: {
+			href: '/get-started',
+			externalLink: false,
+			text: 'Start Now'
+		}
 	}
 };
 

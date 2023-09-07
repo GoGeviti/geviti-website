@@ -343,7 +343,7 @@ export const CheckCircleIcon = (props?: React.SVGProps<SVGSVGElement>) => {
 			<g clipPath='url(#clip0_1355_553)'>
 				<path
 					d='M3.69458 6.39866L5.1031 7.80718L7.92013 4.99015M10.5024 6.39866C10.5024 8.99167 8.40036 11.0937 5.80735 11.0937C3.21435 11.0937 1.1123 8.99167 1.1123 6.39866C1.1123 3.80566 3.21435 1.70361 5.80735 1.70361C8.40036 1.70361 10.5024 3.80566 10.5024 6.39866Z'
-					stroke='#181A1C'
+					stroke='currentColor'
 					strokeWidth='0.93901'
 					strokeLinecap='round'
 					strokeLinejoin='round' />

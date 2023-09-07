@@ -9,7 +9,7 @@ import { CheckCircleIcon, ChevronRight } from '../Icons';
 
 const dashboardData = landingData.dashboard;
 
-type BoxShortDescProps = {
+type BoxShortDescProps = React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement> & {
 	outerClassName?: string;
 	className?: string;
 	children?: string;
@@ -18,15 +18,19 @@ type BoxShortDescProps = {
 const BoxShortDesc: React.FC<BoxShortDescProps> = ({
 	outerClassName,
 	className,
-	children
+	children,
+	...props
 }) => {
 	return (
-		<div className={ clsxm('absolute z-10', outerClassName) }>
-			<div className={ clsxm(
-				'bg-white bg-opacity-50 inline-flex items-center gap-1.5 md:gap-2.5 font-BRSonoma text-primary font-medium',
-				className
-			) }>
-				<CheckCircleIcon className='flex-shrink-0 w-2 h-2 md:w-[13px] md:h-[13px]' />
+		<div
+			{ ...props }
+			className={ clsxm('absolute z-10', outerClassName) }>
+			<div
+				className={ clsxm(
+					'bg-white bg-opacity-50 inline-flex items-center gap-1.5 md:gap-2.5 font-BRSonoma text-primary font-medium',
+					className
+				) }>
+				<CheckCircleIcon className='flex-shrink-0 w-2 h-2 md:w-[13px] md:h-[13px] text-primary' />
 				<span>{ children }</span>
 			</div>
 		</div>
@@ -36,8 +40,8 @@ const BoxShortDesc: React.FC<BoxShortDescProps> = ({
 const Dashboard: React.FC = () => {
 	return (
 		<div className='lg:px-3 lg:py-15px overflow-hidden'>
-			<div className='bg-blue-1 container-center h-full w-full lg:rounded-[19px] relative overflow-hidden'>
-				<div className='max-md:pb-[93px] pt-[41px] sm:pt-[113px] relative isolate'>
+			<div className='bg-blue-1 h-full w-full lg:rounded-[19px] relative overflow-hidden'>
+				<div className='container-center max-md:pb-[93px] pt-[41px] sm:pt-[113px] relative isolate'>
 					<div className='mx-auto max-w-2xl text-center'>
 						<p className='text-pretitle text-blue-2'>
 							{ dashboardData.preTitle }
@@ -70,6 +74,7 @@ const Dashboard: React.FC = () => {
 					</div>
 
 					<BoxShortDesc
+						data-aos='fade-right'
 						outerClassName='top-[250px] sm:top-[294px] left-10'
 						className='rounded-[5px] md:rounded-[10px] shadow-[0px_10.20453px_20.83426px_0px_rgba(0,0,0,0.05)] md:shadow-[0px_21.74702px_44.40016px_0px_rgba(0,0,0,0.05)] py-2.5 md:py-5 px-[13px] md:px-7 text-[8px] md:text-[17px] backdrop-blur-sm md:backdrop-blur-[10px]'
 					>
@@ -77,6 +82,7 @@ const Dashboard: React.FC = () => {
 					</BoxShortDesc>
 
 					<BoxShortDesc
+						data-aos='fade-right'
 						outerClassName='bottom-[124px] left-0'
 						className='rounded-[5px] md:rounded-[11px] shadow-[0px_10.70435px_21.85471px_0px_rgba(0,0,0,0.05)] md:shadow-[0px_23.15005px_47.26468px_0px_rgba(0,0,0,0.05)] py-2.5 md:py-[22px] px-[13px] md:px-30px text-[9px] md:text-[19px] backdrop-blur-[5px] md:backdrop-blur-[11px]'
 					>
@@ -84,6 +90,7 @@ const Dashboard: React.FC = () => {
 					</BoxShortDesc>
 
 					<BoxShortDesc
+						data-aos='fade-left'
 						outerClassName='top-[213px] sm:top-[225px] right-10'
 						className='rounded md:rounded-lg shadow-[0px_9.27843px_18.94345px_0px_rgba(0,0,0,0.05)] md:shadow-[0px_16.41462px_33.51317px_0px_rgba(0,0,0,0.05)] py-9px md:py-15px px-3 md:px-5 text-[7px] md:text-[13px] backdrop-blur-sm md:backdrop-blur'
 					>
@@ -91,6 +98,7 @@ const Dashboard: React.FC = () => {
 					</BoxShortDesc>
 
 					<BoxShortDesc
+						data-aos='fade-left'
 						outerClassName='max-md:bottom-[161px] md:top-[486px] right-0'
 						className='rounded-md md:rounded-[11px] shadow-[0px_12.70039px_25.92997px_0px_rgba(0,0,0,0.05)] md:shadow-[0px_24px_49px_0px_rgba(0,0,0,0.05)] py-3 md:py-[22px] px-4 md:px-30px text-[10px] md:text-[19px] backdrop-blur-[6px] md:backdrop-blur-md'
 					>
@@ -98,8 +106,17 @@ const Dashboard: React.FC = () => {
 					</BoxShortDesc>
 
 					<BoxShortDesc
-						outerClassName='bottom-9 md:bottom-[95px] max-md:left-[63px] md:right-2.5'
-						className='rounded-[5px] md:rounded-[9px] shadow-[0px_18.91892px_20.27815px_0px_rgba(0,0,0,0.09)] md:shadow-[0px_19.09002px_38.97546px_0px_rgba(0,0,0,0.05)] py-9px md:py-18px px-[13px] md:px-25px text-[8px] md:text-[15px] backdrop-blur-[5px] md:backdrop-blur-[9px]'
+						data-aos='fade-left'
+						outerClassName='bottom-[95px] right-2.5 max-md:hidden'
+						className='rounded-[9px] shadow-[0px_19.09002px_38.97546px_0px_rgba(0,0,0,0.05)] py-18px px-25px text-[15px] backdrop-blur-[9px]'
+					>
+						& More
+					</BoxShortDesc>
+
+					<BoxShortDesc
+						data-aos='fade-right'
+						outerClassName='bottom-9 left-[63px] md:hidden'
+						className='rounded-[5px] shadow-[0px_18.91892px_20.27815px_0px_rgba(0,0,0,0.09)] py-9px px-[13px] text-[8px] backdrop-blur-[5px]'
 					>
 						& More
 					</BoxShortDesc>

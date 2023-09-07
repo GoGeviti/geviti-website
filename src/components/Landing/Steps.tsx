@@ -53,8 +53,8 @@ const StepsSection: React.FC = () => {
 
 	return (
 		<div className='lg:px-3 lg:py-15px overflow-hidden'>
-			<div className='bg-primary container-center h-full w-full lg:rounded-[19px] relative overflow-hidden'>
-				<div className='py-[79px] sm:py-[106px] flex flex-col-reverse lg:flex-col gap-y-[109px] lg:gap-y-[62px] items-center justify-center text-center'>
+			<div className='bg-primary h-full w-full lg:rounded-[19px] relative overflow-hidden'>
+				<div className='container-center py-[79px] sm:py-[106px] flex flex-col-reverse lg:flex-col gap-y-[109px] lg:gap-y-[62px] items-center justify-center text-center'>
 					<div className='text-center sm:max-w-xl sm:mx-auto'>
 						<p className='mb-11px sm:mb-7px text-pretitle text-grey-primary'>{ stepsData.preTitle }</p>
 
