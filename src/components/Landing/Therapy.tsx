@@ -59,7 +59,6 @@ const Therapy: React.FC = () => {
 					<div className='absolute bottom-[265px] sm:-bottom-7 max-sm:left-5 sm:right-[250px] md:right-[460px] z-[9]'>
 						<video
 							autoPlay
-							loop
 							muted
 							playsInline
 							className='w-[155.912px] h-[123.884px] sm:w-[309.6px] sm:h-[246px] object-cover'>
@@ -76,7 +75,6 @@ const Therapy: React.FC = () => {
 					<div className='absolute bottom-[195px] sm:bottom-[280px] md:bottom-[400px] -right-6 sm:-right-[76px] z-[9]'>
 						<video
 							autoPlay
-							loop
 							muted
 							playsInline
 							className='w-[103.796px] h-[82.474px] sm:w-[194px] sm:h-[154.147px] object-cover drop-shadow-[0px_49.31284713745117px_107.80018615722656px_rgba(0,0,0,0.25)] blur-[1.7202154397964478px]'>
