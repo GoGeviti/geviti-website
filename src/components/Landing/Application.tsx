@@ -39,11 +39,11 @@ const Application: React.FC = () => {
 								playsInline
 								className='absolute w-full h-full inset-0 object-cover shadow-[0px_3.12473px_50px_0px_rgba(0,0,0,0.25)] lg:shadow-[0px_4.12834px_258.02103px_0px_rgba(0,0,0,0.25)] z-10'>
 								<source
+									src='/videos/application_safari.mov'
+									type='video/mp4' />
+								<source
 									src='/videos/application.webm'
 									type='video/webm' />
-								<source
-									src='/videos/application_safari.mp4'
-									type='video/mp4' />
 								Your browser does not support the video tag.
 							</video>
 						</div>
