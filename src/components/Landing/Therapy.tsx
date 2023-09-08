@@ -63,11 +63,11 @@ const Therapy: React.FC = () => {
 							playsInline
 							className='w-[155.912px] h-[123.884px] sm:w-[309.6px] sm:h-[246px] object-cover'>
 							<source
+								src='/videos/graphic_weight_safari.mov'
+								type='video/mp4' />
+							<source
 								src='/videos/graphic_weight.webm'
 								type='video/webm' />
-							<source
-								src='/videos/graphic_weight_safari.mp4'
-								type='video/mp4' />
 							Your browser does not support the video tag.
 						</video>
 					</div>
@@ -79,11 +79,11 @@ const Therapy: React.FC = () => {
 							playsInline
 							className='w-[103.796px] h-[82.474px] sm:w-[194px] sm:h-[154.147px] object-cover drop-shadow-[0px_49.31284713745117px_107.80018615722656px_rgba(0,0,0,0.25)] blur-[1.7202154397964478px]'>
 							<source
+								src='/videos/graphic_bmr_safari.mov'
+								type='video/mp4' />
+							<source
 								src='/videos/graphic_bmr.webm'
 								type='video/webm' />
-							<source
-								src='/videos/graphic_bmr_safari.mp4'
-								type='video/mp4' />
 							Your browser does not support the video tag.
 						</video>
 					</div>
