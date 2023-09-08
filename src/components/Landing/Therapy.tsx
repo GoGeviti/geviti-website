@@ -45,7 +45,7 @@ const Therapy: React.FC = () => {
 					</div>
 				</div>
 
-				<div className='relative flex justify-end -ml-[150px] lg:absolute right-0 -bottom-[120px] sm:bottom-0 sm:ml-auto sm:max-w-lg md:max-w-2xl z-10'>
+				<div className='relative flex justify-end -ml-[150px] lg:absolute right-0 -bottom-[120px] -mt-[50px] sm:bottom-0 sm:ml-auto sm:max-w-lg md:max-w-2xl z-10'>
 					<Image
 						src='/images/landing/clinician.png'
 						alt=''
@@ -55,28 +55,42 @@ const Therapy: React.FC = () => {
 					/>
 				</div>
 
-				<div className='sm:hidden'>
-					<div className='absolute left-0 bottom-[155px] z-[9]'>
-						<Image
-							src='/images/landing/graphic_1_mobile.png'
-							alt=''
-							width={ 156 }
-							height={ 124 }
-							className='w-[256px]'
-						/>
+				<div>
+					<div className='absolute bottom-[265px] sm:-bottom-7 max-sm:left-5 sm:right-[250px] md:right-[460px] z-[9]'>
+						<video
+							autoPlay
+							loop
+							muted
+							playsInline
+							className='w-[155.912px] h-[123.884px] sm:w-[309.6px] sm:h-[246px] object-cover'>
+							<source
+								src='/videos/graphic_weight.webm'
+								type='video/webm' />
+							<source
+								src='/videos/graphic_weight_safari.mp4'
+								type='video/mp4' />
+							Your browser does not support the video tag.
+						</video>
 					</div>
 
-					<div className='absolute -right-4 bottom-[125px] z-[9]'>
-						<Image
-							src='/images/landing/graphic_2_mobile.png'
-							alt=''
-							width={ 103.796 }
-							height={ 82.474 }
-							className='w-[153px]'
-						/>
+					<div className='absolute bottom-[195px] sm:bottom-[280px] md:bottom-[400px] -right-6 sm:-right-[76px] z-[9]'>
+						<video
+							autoPlay
+							loop
+							muted
+							playsInline
+							className='w-[103.796px] h-[82.474px] sm:w-[194px] sm:h-[154.147px] object-cover drop-shadow-[0px_49.31284713745117px_107.80018615722656px_rgba(0,0,0,0.25)] blur-[1.7202154397964478px]'>
+							<source
+								src='/videos/graphic_bmr.webm'
+								type='video/webm' />
+							<source
+								src='/videos/graphic_bmr_safari.mp4'
+								type='video/mp4' />
+							Your browser does not support the video tag.
+						</video>
 					</div>
 
-					<div className='absolute bottom-0 inset-x-0 z-[8]'>
+					<div className='sm:hidden absolute bottom-0 inset-x-0 z-[8]'>
 						<svg
 							width='375'
 							height='270'
@@ -90,30 +104,8 @@ const Therapy: React.FC = () => {
 								fill='white' />
 						</svg>
 					</div>
-				</div>
 
-				<div className='max-sm:hidden'>
-					<div className='absolute bottom-0 right-[250px] md:right-[340px] z-[9]'>
-						<Image
-							src='/images/landing/graphic_1.png'
-							alt=''
-							width={ 309.6 }
-							height={ 246 }
-							className='w-[359.6px] md:w-[450.6px]'
-						/>
-					</div>
-
-					<div className='absolute bottom-[180px] md:bottom-[300px] right-0 z-[9]'>
-						<Image
-							src='/images/landing/graphic_2.png'
-							alt=''
-							width={ 194 }
-							height={ 154 }
-							className='w-[194px]'
-						/>
-					</div>
-
-					<div className='absolute right-0 bottom-0'>
+					<div className='max-sm:hidden absolute right-0 bottom-0'>
 						<svg
 							width='667'
 							height='596'
@@ -126,7 +118,6 @@ const Therapy: React.FC = () => {
 								r='463.629'
 								fill='white' />
 						</svg>
-
 					</div>
 				</div>
 			</div>

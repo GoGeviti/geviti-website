@@ -1,5 +1,4 @@
 import React from 'react';
-import Image from 'next/image';
 
 import { landingData } from '@/constant/data';
 import clsxm from '@/helpers/clsxm';
@@ -33,26 +32,21 @@ const Application: React.FC = () => {
 					<div className='lg:hidden'>{ renderTitleDesc() }</div>
 
 					<div className='relative w-full h-full flex justify-center'>
-						<div className='relative overflow-hidden rounded-[35.359px] lg:rounded-[46.716px] lg:w-[297.02px] lg:h-[613.581px] w-[225px] h-[464px] aspect-[1/2] shadow-[0px_3.12473px_50px_0px_rgba(0,0,0,0.25)] lg:shadow-[0px_4.12834px_258.02103px_0px_rgba(0,0,0,0.25)]'>
-							<Image
-								src={ applicationData.image }
-								alt=''
-								sizes='100vw'
-								fill
-								className='object-cover z-10'
-							/>
-
-							<div className='absolute inset-x-[9px] lg:inset-x-[11px] inset-y-[8.97px] lg:inset-y-[11.85px] rounded-[25.86px] lg:rounded-[34.165px]'>
-								<div className='relative overflow-hidden w-[208px] lg:w-[275px] h-[445.42px] lg:h-[588.48px]'>
-									<Image
-										src='/images/landing/application_screen.png'
-										alt=''
-										sizes='100vw'
-										fill
-										className='object-cover z-[11]'
-									/>
-								</div>
-							</div>
+						<div className='relative overflow-hidden rounded-[35.359px] lg:rounded-[46.716px] lg:w-[297.02px] lg:h-[613.581px] w-[225px] h-[464px]'>
+							<video
+								autoPlay
+								loop
+								muted
+								playsInline
+								className='absolute w-full h-full inset-0 object-cover shadow-[0px_3.12473px_50px_0px_rgba(0,0,0,0.25)] lg:shadow-[0px_4.12834px_258.02103px_0px_rgba(0,0,0,0.25)] z-10'>
+								<source
+									src='/videos/application.webm'
+									type='video/webm' />
+								<source
+									src='/videos/application_safari.mp4'
+									type='video/mp4' />
+								Your browser does not support the video tag.
+							</video>
 						</div>
 						<div className='absolute-center -z-0 w-full flex justify-center'>
 							<div className='rounded-full w-[313px] h-[313px] lg:w-[414px] lg:h-[414px] bg-black' />

@@ -12,7 +12,7 @@ const Functional: React.FC = () => {
 	return (
 		<div className='lg:px-3 lg:pb-15px overflow-hidden'>
 			<div className='bg-grey-secondary h-full w-full lg:rounded-[19px] relative overflow-hidden'>
-				<div className='container-center'>
+				<div className='container-center relative overflow-hidden'>
 					<div className='mx-auto max-w-5xl max-md:pb-[93px] pt-[41px] sm:pt-[113px] lg:relative isolate overflow-hidden'>
 						<div className='text-center'>
 							<p className='text-pretitle text-grey-primary'>
@@ -52,46 +52,16 @@ const Functional: React.FC = () => {
 								</CustomLink>
 							</div>
 						</div>
+					</div>
 
-						<div className='min-h-[250px] md:min-h-[397px]'>
-							<div className='absolute top-[60%] md:top-[50%] lg:top-auto sm:-bottom-[642px] -inset-x-[72px] sm:inset-x-[14px] z-[9]'>
-								<Image
-									src='/images/landing/effect_blue_full.png'
-									alt=''
-									width={ 911 }
-									height={ 1122 }
-									className='w-full lg:w-[911px]'
-								/>
-							</div>
-							<div className='absolute bottom-0 md:-bottom-[160px] left-1/2 -translate-x-1/2 z-10'>
-								<Image
-									src='/images/landing/pill_bottle.png'
-									alt=''
-									width={ 306 }
-									height={ 602 }
-									className='w-[189px] md:w-[306px]'
-								/>
-							</div>
-							<div className='absolute bottom-20 md:bottom-0 -right-[85px] sm:right-0 lg:right-[73px] z-[8]'>
-								<Image
-									src='/images/landing/metformin_bottle.png'
-									alt=''
-									width={ 890 }
-									height={ 1514 }
-									className='w-[205px] md:w-[333px]'
-								/>
-							</div>
-
-							<div className='absolute bottom-[137px] md:bottom-[95px] -left-[60px] sm:left-0 md:left-[90px] z-[8]'>
-								<Image
-									src='/images/landing/vaccine_bottle.png'
-									alt=''
-									width={ 864 }
-									height={ 1184 }
-									className='w-[133px] md:w-[216px]'
-								/>
-							</div>
-						</div>
+					<div className='-mx-[240px] -mb-[128px] sm:-mb-[200px] xl:-mb-[288px] -mt-[130px] sm:-mt-[110px] xl:-mt-[140px]'>
+						<Image
+							src='/images/landing/functional_products.png'
+							alt=''
+							width={ 1139 }
+							height={ 778 }
+							className='w-full'
+						/>
 					</div>
 				</div>
 			</div>
