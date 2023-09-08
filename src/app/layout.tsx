@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+// import Script from 'next/script';
 import NextTopLoader from 'nextjs-toploader';
 
 import { AOSInit } from '@/components';
@@ -18,6 +19,7 @@ const RootLayout: React.FC<{ children: React.ReactNode; }> = ({ children }) => {
 	return (
 		<html lang='en'>
 			<AOSInit />
+			{ /* <Script src='//embed.typeform.com/next/embed.js' /> */ }
 
 			<body className={ `${ poppins.variable } ${ brSonoma.variable }` }>
 				<NextTopLoader

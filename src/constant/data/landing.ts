@@ -13,21 +13,21 @@ const landingData = {
 		],
 		actionsMenu: [
 			{
-				name: 'Get Started',
-				href: '/get-started',
+				name: 'Dashboard',
+				href: '/',
 				externalLink: false
 			}
 		]
 	},
 	hero: {
 		preTitle: 'LED BY INDUSTRY EXPERTS',
-		title: 'Longevity that works for you.<br />Personalized life- extension plans.',
+		title: 'Longevity that works for you.<br />Telehealth made simple.',
 		image: '/images/landing/hero.png',
 		btnCta: {
 			text: 'See if I qualify',
 			textMobile: 'Take Our 3 Minute Quiz',
-			href: '/',
-			externalLink: false
+			href: 'https://gogeviti.typeform.com/qualify',
+			externalLink: true
 		},
 		mainKeys: [
 			{
@@ -164,7 +164,7 @@ const landingData = {
 		},
 		list: [
 			'Compounds shipped direct to your door',
-			'Cutting edge anti-aging compounds',
+			'Cutting edge anti-aging therapies',
 			'Oral testosterone replacement therapy',
 			'Data-driven care by a board certified physician'
 		]

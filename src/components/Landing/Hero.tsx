@@ -5,10 +5,11 @@ import Image from 'next/image';
 
 import { landingData } from '@/constant/data';
 
-import CustomLink from '../CustomLink';
+// import CustomLink from '../CustomLink';
 import { ChevronRight } from '../Icons';
 import Navbar from '../Navbar';
 import WrapperAnimation from '../WrapperAnimation';
+import { CustomLink } from '..';
 
 const heroData = landingData.hero;
 
@@ -19,7 +20,7 @@ const Hero: React.FC = () => {
 				iconsMenu={ landingData.navbar.iconsMenu }
 				actionsMenu={ landingData.navbar.actionsMenu }
 			/>
-			<div className='bg-primary h-screen lg:h-full w-full lg:rounded-[19px] relative pt-11px lg:pt-5'>
+			<div className='bg-primary h-[calc(100vh-25px)] w-full lg:rounded-[19px] relative pt-11px lg:pt-5'>
 				<div className='absolute inset-0 w-full h-full'>
 					{ heroData.image && (
 						<div className='relative overflow-hidden w-full h-full lg:rounded-[19px]'>
@@ -37,9 +38,9 @@ const Hero: React.FC = () => {
 
 				<div className='max-sm:hidden absolute top-0 inset-x-0 w-full h-[193px] bg-hero-landing-top lg:rounded-t-[19px] opacity-50' />
 
-				<div className='pt-[193px] lg:pt-[329px] h-full'>
+				<div className='h-full'>
 					<div className='relative w-full h-full bg-hero-landing-bottom lg:rounded-b-[19px]'>
-						<div className='container-center pt-[193px] lg:pt-[186px] pb-11 lg:pb-[113px] h-full w-full flex flex-col items-center justify-end'>
+						<div className='container-center pb-11 lg:pb-[113px] h-full w-full flex flex-col items-center justify-end'>
 							<div className='text-center'>
 								<h2 className='text-grey-secondary font-BRSonoma font-semibold text-[10px] sm:text-xs lg:text-sm leading-[150%] lg:leading-6 uppercase tracking-0.11em'>
 									{ heroData.preTitle }

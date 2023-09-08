@@ -68,7 +68,7 @@ const Application: React.FC = () => {
 										>
 											<div className={ clsxm(
 												'rounded-full flex items-center justify-center w-[52px] h-[52px]',
-												detailIdx === 0 ? 'bg-white drop-shadow-[0px_31px_40px_rgba(0,0,0,0.05)]' : 'bg-[#F5F5F5]'
+												'bg-[#F5F5F5] hover:bg-white hover:drop-shadow-[0px_31px_40px_rgba(0,0,0,0.05)]'
 											) }>
 												<Icon className='w-5 h-5' />
 											</div>

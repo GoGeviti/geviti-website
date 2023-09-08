@@ -11,7 +11,7 @@ const qualityData = landingData.quality;
 
 const Quality: React.FC = () => {
 	return (
-		<div className='lg:px-3 lg:py-15px overflow-hidden'>
+		<div className='lg:px-3 overflow-hidden'>
 			<div className='bg-blue-1 h-full w-full lg:rounded-[19px] relative overflow-hidden'>
 				<div className='container-center relative'>
 					<div className='pt-[60px] lg:pt-[106px] lg:pb-[105px] relative z-10'>
@@ -34,7 +34,7 @@ const Quality: React.FC = () => {
 										return (
 											<div
 												key={ functionItemIdx }
-												className='rounded-lg bg-[#C3EBFF] px-5 py-4 flex items-center gap-[11px]'
+												className='rounded-lg bg-[#C3EBFF] px-5 py-4 flex items-center gap-[11px] hover:outline hover:outline-2 hover:outline-[#C3EBFF]'
 												data-aos='fade-up'
 												data-aos-delay={ `${ functionItemIdx * 100 }` }
 												data-aos-anchor='#main-quality-list'

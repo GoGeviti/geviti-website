@@ -23,7 +23,7 @@ const Hero: React.FC = () => {
 								<Image
 									src={ heroData.image }
 									alt=''
-									sizes='(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw'
+									sizes='(max-width: 768px) 100vw, (max-width: 1200px) 55vw, 55vw'
 									fill
 									className='object-cover'
 									priority
