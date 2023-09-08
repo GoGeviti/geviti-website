@@ -1,16 +1,23 @@
 import { NextPage } from 'next';
 
-import { Footer, HomeComponent } from '@/components';
+import { Footer, LandingComponent } from '@/components';
 
 const HomePage: NextPage = () => {
 	return (
 		<div className='flex min-h-screen flex-col w-full bg-grey-background'>
-			<HomeComponent.Hero />
-			<HomeComponent.Packages />
-			<HomeComponent.Products />
-			<HomeComponent.Features />
+			<LandingComponent.Hero />
+			<LandingComponent.Therapy />
+			<LandingComponent.Quality />
+			<LandingComponent.RunningLogo />
+			<LandingComponent.Steps />
+			<LandingComponent.Functional />
+			<LandingComponent.Application />
+			<LandingComponent.Dashboard />
+			<LandingComponent.Investment />
+			<LandingComponent.Products />
+			<LandingComponent.Mission />
 
-			<Footer />
+			<Footer landingPage />
 		</div>
 	);
 };

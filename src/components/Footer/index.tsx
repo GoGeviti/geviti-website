@@ -9,26 +9,25 @@ import { getNumofCols } from '@/helpers/style';
 
 import CustomLink from '../CustomLink';
 
-const Footer: React.FC = () => {
+type FooterProps = {
+	landingPage?: boolean;
+};
+
+const Footer: React.FC<FooterProps> = ({ landingPage }) => {
 	const [email, setEmail] = useState<string>('');
 
 	const renderMenuList = () => {
 		const menuList = footerData.list;
-		const gridColList = getNumofCols(menuList?.length);
 
 		return (
-			<div className={ clsxm('grid gap-y-7 gap-x-20 max-lg:hidden lg:col-span-2', gridColList) }>
-				{ menuList.map(item => (
-					<div key={ item.title }>
-						<p className='text-base font-medium font-BRSonoma'>{ item.title }</p>
-					</div>
-				)) }
-
+			<>
 				{ menuList.map(item => (
 					<div
 						key={ `child-${ item.title }` }
 						className='flex flex-col gap-y-9px'
 					>
+						<p className='text-base font-medium font-BRSonoma mb-18px text-primary'>{ item.title }</p>
+
 						{ item.menu.map(childItem => (
 							<CustomLink
 								key={ childItem.name }
@@ -41,7 +40,25 @@ const Footer: React.FC = () => {
 						)) }
 					</div>
 				)) }
-			</div>
+			</>
+		);
+	};
+	const renderMenuListContent = () => {
+		const menuList = footerData.list;
+		const gridColList = getNumofCols(menuList?.length);
+
+		return (
+			<>
+				<div className={ clsxm('grid gap-y-7 gap-x-20 max-lg:hidden lg:col-span-2', gridColList) }>
+					{ renderMenuList() }
+				</div>
+
+				{ landingPage && (
+					<div className='flex flex-col lg:hidden mt-[53px] gap-y-[53px]'>
+						{ renderMenuList() }
+					</div>
+				) }
+			</>
 		);
 	};
 
@@ -76,7 +93,7 @@ const Footer: React.FC = () => {
 							/>
 						</div>
 
-						<div className='mt-[54px] flex items-center gap-[23px]'>
+						<div className='mt-[34px] sm:mt-[54px] flex items-center gap-[23px]'>
 							{ footerData.socialMedia.map(item => (
 								<CustomLink
 									key={ item.alt }
@@ -96,7 +113,7 @@ const Footer: React.FC = () => {
 						</div>
 					</div>
 
-					{ renderMenuList() }
+					{ renderMenuListContent() }
 				</div>
 			</div>
 		</div>

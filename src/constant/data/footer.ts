@@ -33,7 +33,7 @@ const footerData = {
 			]
 		},
 		{
-			title: 'About Geviti  ',
+			title: 'About Geviti',
 			menu: [
 				{
 					name: 'About Us',

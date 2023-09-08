@@ -22,10 +22,10 @@ import {
 	SelectTrigger,
 	SelectValue
 } from '../Select';
+import WrapperAnimation from '../WrapperAnimation';
 
 import DialogHelp from './DialogHelp';
 import SliderPackages from './SliderPackages';
-import WrapperAnimation from './WrapperAnimation';
 
 type ComponentItem = {
 	packageId?: number;

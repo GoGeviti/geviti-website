@@ -14,11 +14,23 @@ import { Sheet, SheetContent } from '../Sheet';
 type NavbarProps = {
 	className?: string;
 	theme?: 'light' | 'dark';
+	iconsMenu?: {
+		id: string;
+		href: string;
+		icon: (props?: React.SVGProps<SVGSVGElement>) => React.JSX.Element; // eslint-disable-line no-unused-vars
+	}[];
+	actionsMenu?: {
+		name: string;
+		href: string;
+		externalLink?: boolean;
+	}[];
 };
 
 const Navbar: React.FC<NavbarProps> = ({
 	className,
-	theme = 'dark'
+	theme = 'dark',
+	iconsMenu = navbarData.iconsMenu,
+	actionsMenu = navbarData.actionsMenu
 }) => {
 	const pathname = usePathname();
 	const router = useRouter();
@@ -53,7 +65,7 @@ const Navbar: React.FC<NavbarProps> = ({
 	const renderIconMenuList = () => {
 		return (
 			<>
-				{ navbarData.iconsMenu.map(iconMenu => {
+				{ iconsMenu?.map(iconMenu => {
 					const Icon = iconMenu.icon;
 
 					return (
@@ -78,11 +90,11 @@ const Navbar: React.FC<NavbarProps> = ({
 	const renderActionMenuList = () => {
 		return (
 			<>
-				{ navbarData.actionsMenu.map(menu => (
+				{ actionsMenu?.map(menu => (
 					<button
 						className={ clsxm(
 							'btn font-Poppins text-sm font-medium leading-6',
-							theme === 'dark' ? 'btn-secondary' : 'btn-primary !text-[#F2F2F2]'
+							theme === 'dark' ? 'btn-secondary' : 'btn-primary !text-grey-background'
 						) }
 						key={ menu.name }
 					>
