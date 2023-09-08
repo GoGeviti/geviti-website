@@ -3,7 +3,7 @@ const homeData = {
 		preTitle: 'GET STARTED WITH GEVITI',
 		title: 'Live Long, Feel Good',
 		description: '<span class="max-lg:hidden">Join us and become the best version of yourself. Personalized plans to make you look and feel better for longer. Hormones, peptides, supplements, and more. We can give your body what it needs to attack aging. All access in the palm of your hand. Say \'hello to a younger, healthier you.</span><span class="lg:hidden">Join us and become the best version of yourself. Hormones, peptides, supplements, and more. Give your body what it needs to attack aging. All access in the palm of your hand.</span>',
-		image: '/images/home/hero.png',
+		image: '/images/home/hero.jpeg',
 		imageMobile: '/images/home/hero_mobile.png',
 		mainKeys: [
 			{

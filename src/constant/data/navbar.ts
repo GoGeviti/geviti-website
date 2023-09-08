@@ -1,4 +1,4 @@
-import { SearchIcon, ShoppingBagIcon, UserIcon } from '@/components/Icons';
+import { ShoppingBagIcon } from '@/components/Icons';
 
 const navigationData = {
 	logoLight: '/images/logo/logo_light.png',
@@ -21,19 +21,19 @@ const navigationData = {
 		}
 	],
 	iconsMenu: [
-		{
-			id: 'search',
-			icon: SearchIcon
-		},
+		// {
+		// 	id: 'search',
+		// 	icon: SearchIcon
+		// },
 		{
 			id: 'shopping',
 			href: '/orders',
 			icon: ShoppingBagIcon
 		},
-		{
-			id: 'user',
-			icon: UserIcon
-		}
+		// {
+		// 	id: 'user',
+		// 	icon: UserIcon
+		// }
 	],
 	actionsMenu: [
 		{
