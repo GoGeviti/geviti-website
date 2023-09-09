@@ -79,7 +79,7 @@ const Footer: React.FC<FooterProps> = ({ landingPage }) => {
 							</div>
 						</CustomLink>
 
-						<div className='mt-7'>
+						<div className='mt-7 max-sm:max-w-[330px]'>
 							<p className='font-BRSonoma text-sm font-medium'>{ footerData.content }</p>
 						</div>
 

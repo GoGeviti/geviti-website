@@ -7,8 +7,6 @@ const ProductsSection: React.FC = () => {
 		<DiscoverGeviti
 			title={ homeData.products.title }
 			description={ homeData.products.description }
-			titleMobile={ homeData.products.title }
-			descriptionMobile={ homeData.products.description }
 			viewAll={ homeData.products.viewAll }
 		/>
 	);

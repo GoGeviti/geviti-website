@@ -25,7 +25,6 @@ const landingData = {
 		image: '/images/landing/hero.png',
 		btnCta: {
 			text: 'See if I qualify',
-			textMobile: 'Take Our 3 Minute Quiz',
 			href: 'https://gogeviti.typeform.com/qualify',
 			externalLink: true
 		},
@@ -83,10 +82,9 @@ const landingData = {
 		preTitle: 'completely custom',
 		title: 'Start on the path towards a longer, more enjoyable life.',
 		btnCta: {
-			href: '/',
-			externalLink: false,
-			text: 'See if I qualify',
-			textMobile: 'Take Our 3 Minute Quiz'
+			href: 'https://gogeviti.typeform.com/qualify',
+			externalLink: true,
+			text: 'See if I qualify'
 		},
 		list: [
 			{

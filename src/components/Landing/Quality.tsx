@@ -22,19 +22,19 @@ const Quality: React.FC = () => {
 								</p>
 								{ qualityData.title && (
 									<div className='max-lg:mx-auto max-w-[278px] sm:max-w-[433px] order-2'>
-										<h2 className='text-heading-2 mt-11px sm:mt-7px'>
+										<h2 className='text-heading-2 text-primary mt-11px sm:mt-7px'>
 											{ qualityData.title }
 										</h2>
 									</div>
 								) }
 								<div
 									id='main-quality-list'
-									className='mt-[45px] lg:mt-12 w-full grid gap-2.5 order-4 lg:order-3 lg:max-w-[405px]'>
+									className='mt-[45px] lg:mt-12 w-full grid gap-5px sm:gap-2.5 order-4 lg:order-3 lg:max-w-[405px]'>
 									{ qualityData.list.map((functionItem, functionItemIdx) => {
 										return (
 											<div
 												key={ functionItemIdx }
-												className='rounded-lg bg-[#C3EBFF] px-5 py-4 flex items-center gap-[11px] hover:outline hover:outline-2 hover:outline-[#C3EBFF]'
+												className='rounded-lg bg-[#C3EBFF] px-[13px] sm:px-5 py-15px sm:py-4 flex items-center gap-[11px] hover:outline hover:outline-2 hover:outline-[#C3EBFF]'
 												data-aos='fade-up'
 												data-aos-delay={ `${ functionItemIdx * 100 }` }
 												data-aos-anchor='#main-quality-list'
@@ -75,7 +75,7 @@ const Quality: React.FC = () => {
 						</div>
 					</div>
 
-					<div className='max-sm:-mx-[50px] max-sm:-mb-[118px] relative lg:flex lg:justify-end lg:absolute lg:right-0 bottom-0 lg:-mt-[50px] sm:bottom-0 mx-auto lg:ml-auto sm:max-w-lg md:max-w-2xl xl:max-w-3xl'>
+					<div className='max-sm:-ml-[83px] max-sm:-mr-[58px] max-sm:-mb-[120px] max-sm:-mt-[17px] relative lg:flex lg:justify-end lg:absolute lg:right-0 bottom-0 lg:-mt-[50px] sm:bottom-0 mx-auto lg:ml-auto sm:max-w-lg md:max-w-2xl xl:max-w-3xl'>
 						<Image
 							src='/images/landing/quality_products.png'
 							alt=''
@@ -84,7 +84,6 @@ const Quality: React.FC = () => {
 							className='w-full'
 						/>
 					</div>
-
 				</div>
 			</div>
 		</div>

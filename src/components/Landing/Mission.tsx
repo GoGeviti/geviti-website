@@ -50,7 +50,7 @@ const Mission: React.FC = () => {
 						) }
 
 						{ missionData.description && (
-							<p className='text-grey-primary text-xs sm:text-sm leading-5 font-BRSonoma sm:max-w-[532px]'>
+							<p className='text-grey-primary text-xs sm:text-sm leading-5 font-BRSonoma max-w-[330px] max-sm:mx-auto sm:max-w-[532px]'>
 								<span dangerouslySetInnerHTML={ { __html: missionData.description } } />
 							</p>
 						) }

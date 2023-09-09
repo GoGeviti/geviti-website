@@ -13,17 +13,17 @@ const Functional: React.FC = () => {
 		<div className='lg:px-3 lg:pb-15px overflow-hidden'>
 			<div className='bg-grey-secondary h-full w-full lg:rounded-[19px] relative overflow-hidden'>
 				<div className='container-center relative overflow-hidden'>
-					<div className='mx-auto max-w-5xl max-md:pb-[93px] pt-[41px] sm:pt-[113px] lg:relative isolate overflow-hidden'>
+					<div className='mx-auto max-w-5xl max-md:pb-[93px] pt-[52px] sm:pt-[113px] lg:relative isolate overflow-hidden'>
 						<div className='text-center'>
 							<p className='text-pretitle text-grey-primary'>
 								{ functionalData.preTitle }
 							</p>
 							{ functionalData.title && (
-								<h2 className='text-heading-2 mt-11px sm:mt-7px'>
+								<h2 className='text-heading-2 text-primary mt-11px sm:mt-7px'>
 									<span dangerouslySetInnerHTML={ { __html: functionalData.title } } />
 								</h2>
 							) }
-							<div className='mt-[35px] sm:mt-12 w-full grid md:grid-cols-4 gap-1.5 md:gap-15px lg:gap-30px'>
+							<div className='mt-[35px] sm:mt-12 w-full grid md:grid-cols-4 gap-5px md:gap-15px lg:gap-30px'>
 								{ functionalData.list.map((functionItem, functionItemIdx) => {
 									return (
 										<div
@@ -54,7 +54,7 @@ const Functional: React.FC = () => {
 						</div>
 					</div>
 
-					<div className='-mx-[240px] -mb-[128px] sm:-mb-[200px] xl:-mb-[288px] -mt-[130px] sm:-mt-[110px] xl:-mt-[140px]'>
+					<div className='-mx-[265px] lg:-mx-[150px] -mb-[128px] sm:-mb-[200px] lg:-mb-[210px] xl:-mb-[270px] -mt-[139px] sm:-mt-[110px] xl:-mt-[170px]'>
 						<Image
 							src='/images/landing/functional_products.png'
 							alt=''

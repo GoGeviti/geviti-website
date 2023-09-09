@@ -47,13 +47,13 @@ const Investment: React.FC = () => {
 						<p className='mb-11px sm:mb-7px text-pretitle text-grey-primary'>{ investmentData.preTitle }</p>
 
 						{ investmentData.title && (
-							<h2 className='mb-11px sm:mb-30px text-heading-2 text-grey-secondary'>
+							<h2 className='mb-11px sm:mb-30px max-sm:max-w-[331px] max-sm:mx-auto text-heading-2 text-grey-secondary'>
 								<span dangerouslySetInnerHTML={ { __html: investmentData.title } } />
 							</h2>
 						) }
 
 						{ investmentData.description && (
-							<p className='text-grey-primary text-xs sm:text-sm leading-5 font-BRSonoma'>
+							<p className='text-grey-primary max-sm:max-w-[330px] max-sm:mx-auto text-xs sm:text-sm leading-5 font-BRSonoma'>
 								<span dangerouslySetInnerHTML={ { __html: investmentData.description } } />
 							</p>
 						) }

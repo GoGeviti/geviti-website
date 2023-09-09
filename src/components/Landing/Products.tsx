@@ -10,9 +10,9 @@ const ProductsSection: React.FC = () => {
 			<DiscoverGeviti
 				title={ landingData.products.title }
 				description={ landingData.products.description }
-				titleMobile={ landingData.products.titleMobile }
 				viewAll={ landingData.products.viewAll }
-				viewAllMobile={ false }
+				viewAllMobileClassName='mt-[49px] flex'
+				productsWrapperClassName='mt-[49px] lg:mt-[50px]'
 			/>
 		</div>
 	);

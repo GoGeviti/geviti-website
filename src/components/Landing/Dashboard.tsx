@@ -50,7 +50,7 @@ const Dashboard: React.FC = () => {
 						<p className='text-pretitle text-blue-2'>
 							{ dashboardData.preTitle }
 						</p>
-						<h2 className='text-heading-2 mt-11px sm:mt-7px'>
+						<h2 className='text-heading-2 text-primary max-w-[287px] mx-auto sm:max-w-[447px] mt-11px sm:mt-7px'>
 							{ dashboardData.title }
 						</h2>
 						<div className='flex justify-center mt-[22px] sm:mt-9'>
