@@ -46,7 +46,7 @@ const Hero: React.FC = () => {
 									{ heroData.preTitle }
 								</h2>
 								{ heroData.title && (
-									<h1 className='mt-3 lg:mt-7px font-Poppins text-[21px] sm:text-2xl md:text-[32px] lg:text-[40px] leading-[100%] sm:leading-[98%] -tracking-0.04em text-grey-secondary'>
+									<h1 className='mt-11px lg:mt-7px font-Poppins text-[21px] sm:text-2xl md:text-[32px] lg:text-[40px] sm:leading-[98%] -tracking-0.04em text-grey-secondary'>
 										<span dangerouslySetInnerHTML={ { __html: heroData.title } } />
 									</h1>
 								) }
@@ -60,8 +60,7 @@ const Hero: React.FC = () => {
 										className='btn-cta-landing btn-secondary group'
 									>
 										<span className='text-btn-cta-landing'>
-											<span className='max-sm:hidden'>{ heroData.btnCta.text }</span>
-											<span className='sm:hidden'>{ heroData.btnCta.textMobile }</span>
+											{ heroData.btnCta.text }
 										</span>
 
 										<ChevronRight className='arrow-btn-cta-landing' />
@@ -79,7 +78,7 @@ const Hero: React.FC = () => {
 										className='flex flex-col text-center items-center gap-y-1 md:gap-y-5px'
 									>
 										{ feature.image && (
-											<div className='relative overflow-hidden w-5 h-5 sm:w-[26px] sm:h-[26px]'>
+											<div className='relative overflow-hidden w-[21px] h-[21px] sm:w-[26px] sm:h-[26px]'>
 												<Image
 													src={ feature.image }
 													alt={ feature.text }
@@ -88,7 +87,7 @@ const Hero: React.FC = () => {
 												/>
 											</div>
 										) }
-										<p className='font-Poppins leading-[225%] -tracking-0.04em text-grey-secondary text-base sm:text-lg lg:text-xl'>{ feature.text }</p>
+										<p className='font-Poppins leading-[225%] -tracking-0.04em text-grey-secondary text-[15.861px] sm:text-lg lg:text-xl'>{ feature.text }</p>
 										<span className='inline-flex items-center gap-5px'>
 											<svg
 												xmlns='http://www.w3.org/2000/svg'

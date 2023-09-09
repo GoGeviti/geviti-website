@@ -19,9 +19,8 @@ type DiscoverGevitiProps = {
 		text: string;
 		href: string;
 	};
-	titleMobile?: string;
-	descriptionMobile?: string;
-	viewAllMobile?: boolean;
+	viewAllMobileClassName?: string;
+	productsWrapperClassName?: string;
 	desktopScroll?: boolean;
 };
 
@@ -29,9 +28,8 @@ const DiscoverGeviti: React.FC<DiscoverGevitiProps> = ({
 	title = homeData.products.title,
 	description = homeData.products.description,
 	viewAll = homeData.products.viewAll,
-	titleMobile = title,
-	descriptionMobile,
-	viewAllMobile = true,
+	viewAllMobileClassName = 'flex justify-center mt-10',
+	productsWrapperClassName = 'mt-7 lg:mt-[50px]',
 	desktopScroll = false
 }) => {
 	const router = useRouter();
@@ -195,17 +193,11 @@ const DiscoverGeviti: React.FC<DiscoverGevitiProps> = ({
 				<div className='flex items-center justify-between'>
 					<div data-aos='zoom-in-right'>
 						<h2 className='text-primary font-Poppins text-[21px] md:text-3xl lg:text-4xl leading-[128%] lg:leading-[119%] -tracking-0.04em'>
-							<span className='max-lg:hidden'>{ title }</span>
-							<span className='lg:hidden'>{ titleMobile }</span>
+							{ title }
 						</h2>
 
-						<p className={ clsxm(
-							'text-grey-primary font-BRSonoma',
-							descriptionMobile ? 'mt-5px text-xs sm:text-sm leading-5' : 'lg:mt-5px lg:text-sm lg:leading-5'
-						) }>
-							<span className='max-lg:hidden'>{ description }</span>
-							{ descriptionMobile &&
-								<span className='lg:hidden'>{ descriptionMobile }</span> }
+						<p className='text-grey-primary font-BRSonoma mt-5px text-xs sm:text-sm leading-5'>
+							{ description }
 						</p>
 					</div>
 
@@ -225,15 +217,13 @@ const DiscoverGeviti: React.FC<DiscoverGevitiProps> = ({
 					</div>
 				</div>
 
-				<div className='relative mt-7 lg:mt-[50px]'>
+				<div className={ clsxm('relative', productsWrapperClassName) }>
 					{ renderProductList() }
 				</div>
 
-				{ viewAllMobile && (
-					<div className='mt-10 lg:hidden flex justify-center'>
-						{ renderButtonViewAll() }
-					</div>
-				) }
+				<div className={ clsxm('lg:hidden', viewAllMobileClassName) }>
+					{ renderButtonViewAll() }
+				</div>
 			</div>
 		</div>
 	);

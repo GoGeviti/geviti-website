@@ -1,5 +1,4 @@
 import React from 'react';
-import Image from 'next/image';
 
 import { landingData } from '@/constant/data';
 import clsxm from '@/helpers/clsxm';
@@ -13,12 +12,14 @@ type BoxShortDescProps = React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivEle
 	outerClassName?: string;
 	className?: string;
 	children?: string;
+	iconClassName?: string;
 };
 
 const BoxShortDesc: React.FC<BoxShortDescProps> = ({
 	outerClassName,
 	className,
 	children,
+	iconClassName,
 	...props
 }) => {
 	return (
@@ -30,7 +31,10 @@ const BoxShortDesc: React.FC<BoxShortDescProps> = ({
 					'bg-white bg-opacity-50 inline-flex items-center gap-1.5 md:gap-2.5 font-BRSonoma text-primary font-medium',
 					className
 				) }>
-				<CheckCircleIcon className='flex-shrink-0 w-2 h-2 md:w-[13px] md:h-[13px] text-primary' />
+				<CheckCircleIcon className={ clsxm(
+					'flex-shrink-0 text-primary',
+					iconClassName
+				) } />
 				<span>{ children }</span>
 			</div>
 		</div>
@@ -46,7 +50,7 @@ const Dashboard: React.FC = () => {
 						<p className='text-pretitle text-blue-2'>
 							{ dashboardData.preTitle }
 						</p>
-						<h2 className='text-heading-2 mt-11px sm:mt-7px'>
+						<h2 className='text-heading-2 text-primary max-w-[287px] mx-auto sm:max-w-[447px] mt-11px sm:mt-7px'>
 							{ dashboardData.title }
 						</h2>
 						<div className='flex justify-center mt-[22px] sm:mt-9'>
@@ -63,19 +67,30 @@ const Dashboard: React.FC = () => {
 							</CustomLink>
 						</div>
 					</div>
-					<div className='mt-[82px] flow-root sm:mt-[90px] max-w-5xl mx-auto px-5 sm:px-30px'>
-						<Image
-							src={ dashboardData.image }
-							alt=''
+					<div className='mt-[72px] flow-root sm:mt-[90px] lg:-mb-10 max-w-5xl mx-auto relative'>
+						<div className='absolute-center rounded-[3.383px] sm:rounded-[10.689px] w-[90%] h-[90%] bg-[#EBEFF0] -z-10 shadow-[0px_-13.29418px_79.13201px_0px_rgba(0,0,0,0.15)] sm:shadow-[0px_-42px_250px_0px_rgba(0,0,0,0.15)]' />
+						<video
+							autoPlay
+							muted
+							playsInline
 							width={ 1924 }
 							height={ 1282 }
-							className='shadow-[0px_-42px_250px_0px_rgba(0,0,0,0.15)] rounded sm:rounded-t'
-						/>
+							className='w-full h-full object-cover'
+						>
+							<source
+								src='/videos/dashboard_safari.mp4'
+								type='video/mp4;codecs=hvc1' />
+							<source
+								src='/videos/dashboard.webm'
+								type='video/webm' />
+							Your browser does not support the video tag.
+						</video>
 					</div>
 
 					<BoxShortDesc
 						data-aos='fade-right'
-						outerClassName='top-[250px] sm:top-[294px] left-10'
+						iconClassName='w-[9px] h-[9px] md:w-4 md:h-4'
+						outerClassName='top-[248px] sm:top-[294px] left-10 xl:left-[80px]'
 						className='rounded-[5px] md:rounded-[10px] shadow-[0px_10.20453px_20.83426px_0px_rgba(0,0,0,0.05)] md:shadow-[0px_21.74702px_44.40016px_0px_rgba(0,0,0,0.05)] py-2.5 md:py-5 px-[13px] md:px-7 text-[8px] md:text-[17px] backdrop-blur-sm md:backdrop-blur-[10px]'
 					>
 						Health Metric Tracking
@@ -83,7 +98,8 @@ const Dashboard: React.FC = () => {
 
 					<BoxShortDesc
 						data-aos='fade-right'
-						outerClassName='bottom-[124px] left-0'
+						iconClassName='w-[9px] h-[9px] md:w-[17px] md:h-[17px]'
+						outerClassName='bottom-[110px] left-3 lg:left-0 xl:left-[10px]'
 						className='rounded-[5px] md:rounded-[11px] shadow-[0px_10.70435px_21.85471px_0px_rgba(0,0,0,0.05)] md:shadow-[0px_23.15005px_47.26468px_0px_rgba(0,0,0,0.05)] py-2.5 md:py-[22px] px-[13px] md:px-30px text-[9px] md:text-[19px] backdrop-blur-[5px] md:backdrop-blur-[11px]'
 					>
 						Direct Messaging
@@ -91,7 +107,8 @@ const Dashboard: React.FC = () => {
 
 					<BoxShortDesc
 						data-aos='fade-left'
-						outerClassName='top-[213px] sm:top-[225px] right-10'
+						iconClassName='w-2 h-2 md:w-[13px] md:h-[13px]'
+						outerClassName='top-[213px] sm:top-[225px] right-10 xl:right-[80px]'
 						className='rounded md:rounded-lg shadow-[0px_9.27843px_18.94345px_0px_rgba(0,0,0,0.05)] md:shadow-[0px_16.41462px_33.51317px_0px_rgba(0,0,0,0.05)] py-9px md:py-15px px-3 md:px-5 text-[7px] md:text-[13px] backdrop-blur-sm md:backdrop-blur'
 					>
 						Goal Tracking
@@ -99,7 +116,8 @@ const Dashboard: React.FC = () => {
 
 					<BoxShortDesc
 						data-aos='fade-left'
-						outerClassName='max-md:bottom-[161px] md:top-[486px] right-0'
+						iconClassName='w-2.5 h-2.5 md:w-18px md:h-18px'
+						outerClassName='max-md:bottom-[161px] md:top-[486px] right-3 xl:right-[40px]'
 						className='rounded-md md:rounded-[11px] shadow-[0px_12.70039px_25.92997px_0px_rgba(0,0,0,0.05)] md:shadow-[0px_24px_49px_0px_rgba(0,0,0,0.05)] py-3 md:py-[22px] px-4 md:px-30px text-[10px] md:text-[19px] backdrop-blur-[6px] md:backdrop-blur-md'
 					>
 						Video Calls
@@ -107,7 +125,8 @@ const Dashboard: React.FC = () => {
 
 					<BoxShortDesc
 						data-aos='fade-left'
-						outerClassName='bottom-[95px] right-2.5 max-md:hidden'
+						iconClassName='w-2.5 h-2.5 md:w-3.5 md:h-3.5'
+						outerClassName='bottom-[95px] xl:bottom-[130px] right-2.5 max-md:hidden xl:right-[44px]'
 						className='rounded-[9px] shadow-[0px_19.09002px_38.97546px_0px_rgba(0,0,0,0.05)] py-18px px-25px text-[15px] backdrop-blur-[9px]'
 					>
 						& More

@@ -54,7 +54,7 @@ const StepsSection: React.FC = () => {
 	return (
 		<div className='lg:px-3 lg:py-15px overflow-hidden'>
 			<div className='bg-primary h-full w-full lg:rounded-[19px] relative overflow-hidden'>
-				<div className='container-center py-[79px] sm:py-[106px] flex flex-col-reverse lg:flex-col gap-y-[109px] lg:gap-y-[62px] items-center justify-center text-center'>
+				<div className='container-center pt-60px pb-[56px] lg:pt-[107px] lg:pb-[106px] flex flex-col-reverse lg:flex-col gap-y-[54px] lg:gap-y-[62px] items-center justify-center text-center'>
 					<div className='text-center sm:max-w-xl sm:mx-auto'>
 						<p className='mb-11px sm:mb-7px text-pretitle text-grey-primary'>{ stepsData.preTitle }</p>
 
@@ -71,8 +71,7 @@ const StepsSection: React.FC = () => {
 								className='btn-cta-landing btn-secondary group'
 							>
 								<span className='text-btn-cta-landing'>
-									<span className='max-sm:hidden'>{ stepsData.btnCta.text }</span>
-									<span className='sm:hidden'>{ stepsData.btnCta.textMobile }</span>
+									{ stepsData.btnCta.text }
 								</span>
 
 								<ChevronRight className='arrow-btn-cta-landing' />
@@ -100,44 +99,48 @@ const StepsSection: React.FC = () => {
 							{ renderImageStep(stepsData.list[selectedIdx]?.id, stepsData.list[selectedIdx]?.imageMobile) }
 						</div>
 
-						<div className='pt-[54px] lg:pt-[73px] flex items-start w-full no-scrollbar overflow-y-hidden transition-all select-none transform flex-nowrap overflow-x-auto lg:overflow-hidden scrolling-touch scroll-smooth gap-x-18px lg:gap-x-5 py-1 -mr-4 lg:-mr-0 last:pr-[17px] lg:last:pr-0'>
-							{ stepsData.list.map((step, stepIdx) => {
-								const isSelected = stepIdx === selectedIdx;
+						<div className='max-lg:-mx-4'>
+							<div className='pt-[54px] lg:pt-[73px] flex items-start w-full no-scrollbar overflow-y-hidden transition-all select-none transform flex-nowrap overflow-x-auto lg:overflow-hidden scrolling-touch scroll-smooth gap-x-18px lg:gap-x-5 py-1'>
+								{ stepsData.list.map((step, stepIdx) => {
+									const isSelected = stepIdx === selectedIdx;
 
-								return (
-									(
-										<div
-											key={ `step-${ step.id }` }
-											className={ clsxm('w-full flex flex-col items-center transform transition-all duration-100 ease-in', isSelected ? '-translate-y-3 lg:-translate-y-5' : 'translate-y-0') }
-										>
+									return (
+										(
 											<div
-												onClick={ () => onSelectStep(stepIdx) }
-												onMouseEnter={ () => onMouseEnter(stepIdx) }
-												className={ clsxm(
-													'cursor-pointer rounded-full flex items-center justify-center flex-shrink-0',
-													'font-Poppins text-center',
-													isSelected
-														? 'text-sm sm:text-base font-bold sm:font-medium leading-6 sm:leading-[29px] bg-grey-secondary text-black-landing w-[46px] h-[46px] lg:w-[55px] lg:h-[55px] shadow-[0px_-8px_24px_0px_rgba(251,251,251,0.35)]'
-														: 'text-[11px] sm:text-sm font-medium leading-[18px] sm:leading-6 bg-black-landing text-grey-secondary w-[34px] h-[34px] lg:w-[46px] lg:h-[46px]'
-												) }
+												key={ `step-${ step.id }` }
+												className={ clsxm('w-full flex flex-col items-center transform transition-all duration-100 ease-in', isSelected ? '-translate-y-3 lg:-translate-y-5' : 'translate-y-0') }
 											>
-												{ stepIdx + 1 }
-											</div>
+												<div
+													onClick={ () => onSelectStep(stepIdx) }
+													onMouseEnter={ () => onMouseEnter(stepIdx) }
+													className={ clsxm(
+														'cursor-pointer rounded-full flex items-center justify-center flex-shrink-0',
+														'font-Poppins text-center',
+														isSelected
+															? 'text-sm sm:text-base font-bold sm:font-medium leading-6 sm:leading-[29px] bg-grey-secondary text-black-landing w-[46px] h-[46px] lg:w-[55px] lg:h-[55px] shadow-[0px_-8px_24px_0px_rgba(251,251,251,0.35)]'
+															: 'max-sm:bg-opacity-20 max-sm:text-opacity-20 text-[11px] sm:text-sm font-medium leading-[18px] sm:leading-6 bg-black-landing text-grey-secondary w-[34px] h-[34px] lg:w-[46px] lg:h-[46px]'
+													) }
+												>
+													{ stepIdx + 1 }
+												</div>
 
-											<p
-												onClick={ () => onSelectStep(stepIdx) }
-												onMouseEnter={ () => onMouseEnter(stepIdx) }
-												className={ clsxm(
-													'cursor-pointer text-center font-Poppins text-grey-secondary font-medium leading-[134%]',
-													isSelected ? 'pt-3.5 sm:pt-[22px] text-base md:text-[19px] w-[140px] sm:w-[180px]' : 'pt-3.5 sm:pt-18px text-xs sm:text-sm md:text-base w-[105px] sm:w-[139px]'
-												) }
-											>
-												{ step.title }
-											</p>
-										</div>
-									)
-								);
-							}) }
+												<p
+													onClick={ () => onSelectStep(stepIdx) }
+													onMouseEnter={ () => onMouseEnter(stepIdx) }
+													className={ clsxm(
+														'cursor-pointer text-center font-Poppins text-grey-secondary leading-[134%]',
+														isSelected
+															? 'pt-3.5 sm:pt-[22px] text-[16.64px] md:text-[19px] w-[140px] sm:w-[180px] font-semibold sm:font-medium'
+															: 'max-sm:text-opacity-20 font-medium pt-3.5 sm:pt-18px text-xs sm:text-sm md:text-base w-[105px] sm:w-[139px]'
+													) }
+												>
+													{ step.title }
+												</p>
+											</div>
+										)
+									);
+								}) }
+							</div>
 						</div>
 
 						<div className='flex justify-center mt-[46px] sm:mt-20'>

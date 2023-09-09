@@ -14,11 +14,11 @@ const Application: React.FC = () => {
 			<>
 				<p className='mb-11px sm:mb-7px text-pretitle text-grey-primary'>{ applicationData.preTitle }</p>
 
-				<h2 className='mb-3.5 text-heading-2 text-primary lg:max-w-[433px]'>
+				<h2 className='mb-3.5 text-heading-2 text-primary max-sm:max-w-[293px] max-sm:mx-auto lg:max-w-[433px]'>
 					{ applicationData.title }
 				</h2>
 
-				<p className='text-grey-primary text-xs sm:text-sm leading-5 font-BRSonoma lg:max-w-[338px]'>
+				<p className='text-grey-primary text-xs sm:text-sm leading-5 font-BRSonoma max-sm:max-w-[292px] max-sm:mx-auto lg:max-w-[338px]'>
 					{ applicationData.description }
 				</p>
 			</>
@@ -31,16 +31,16 @@ const Application: React.FC = () => {
 				<div className='container-center pt-[46px] pb-[63px] lg:py-24 flex flex-col lg:grid lg:grid-cols-2 lg:flex-row items-center sm:max-w-5xl mx-auto gap-[42px] xl:gap-24 text-center lg:text-left'>
 					<div className='lg:hidden'>{ renderTitleDesc() }</div>
 
-					<div className='relative w-full h-full flex justify-center'>
-						<div className='relative overflow-hidden rounded-[35.359px] lg:rounded-[46.716px] lg:w-[297.02px] lg:h-[613.581px] w-[225px] h-[464px]'>
+					<div className='relative w-full h-full flex justify-center -my-5'>
+						<div className='relative overflow-hidden lg:w-[297.02px] lg:h-[613.581px] w-[225px] h-[464px]'>
 							<video
 								autoPlay
 								muted
 								playsInline
-								className='absolute w-full h-full inset-0 object-cover shadow-[0px_3.12473px_50px_0px_rgba(0,0,0,0.25)] lg:shadow-[0px_4.12834px_258.02103px_0px_rgba(0,0,0,0.25)] z-10'>
+								className='absolute w-full h-full inset-0 object-cover z-10'>
 								<source
-									src='/videos/application_safari.mov'
-									type='video/mp4' />
+									src='/videos/application_safari.mp4'
+									type='video/mp4;codecs=hvc1' />
 								<source
 									src='/videos/application.webm'
 									type='video/webm' />
@@ -67,10 +67,10 @@ const Application: React.FC = () => {
 											className='flex lg:flex-col items-center justify-start gap-[21px] lg:gap-[17px]'
 										>
 											<div className={ clsxm(
-												'rounded-full flex items-center justify-center w-[52px] h-[52px]',
-												'bg-[#F5F5F5] hover:bg-white hover:drop-shadow-[0px_31px_40px_rgba(0,0,0,0.05)]'
+												'rounded-full flex items-center justify-center w-[42px] h-[42px] sm:w-[52px] sm:h-[52px]',
+												'bg-[#F5F5F5] hover:bg-white hover:drop-shadow-[0px_25.038461685180664px_32.30769348144531px_rgba(0,0,0,0.05)] sm:hover:drop-shadow-[0px_31px_40px_rgba(0,0,0,0.05)]'
 											) }>
-												<Icon className='w-5 h-5' />
+												<Icon className='w-4 h-4 sm:w-5 sm:h-5' />
 											</div>
 
 											<h4 className='text-xs leading-6 uppercase font-BRSonoma font-semibold text-center tracking-0.11em'>

@@ -18,14 +18,14 @@ const Therapy: React.FC = () => {
 							{ therapyData.preTitle }
 						</p>
 						{ therapyData.title && (
-							<div className='max-lg:mx-auto max-w-[278px] sm:max-w-[575px] mt-11px sm:mt-3'>
-								<h2 className='text-heading-2'>
+							<div className='max-lg:mx-auto sm:max-w-[575px] mt-11px sm:mt-3'>
+								<h2 className='font-Poppins text-xl sm:text-2xl md:text-[32px] lg:text-4xl leading-[135%] sm:leading-[121%] -tracking-0.04em'>
 									{ therapyData.title }
 								</h2>
 							</div>
 						) }
-						<div className='max-lg:mx-auto max-w-[408px] mt-11px lg:mt-5'>
-							<p className='text-grey-primary text-sm leading-5 font-BRSonoma'>
+						<div className='max-lg:mx-auto max-w-[330px] sm:max-w-[408px] mt-11px lg:mt-5'>
+							<p className='text-grey-primary text-xs sm:text-sm leading-5 font-BRSonoma'>
 								{ therapyData.description }
 							</p>
 						</div>
@@ -45,26 +45,33 @@ const Therapy: React.FC = () => {
 					</div>
 				</div>
 
-				<div className='relative flex justify-end -ml-[150px] lg:absolute right-0 -bottom-[120px] -mt-[50px] sm:bottom-0 sm:ml-auto sm:max-w-lg md:max-w-2xl z-10'>
+				<div className='relative flex justify-end lg:absolute right-0 bottom-0 sm:ml-auto sm:max-w-lg md:max-w-2xl z-10'>
 					<Image
 						src='/images/landing/clinician.png'
 						alt=''
 						width={ 683.492 }
 						height={ 1704 }
-						className='w-full'
+						className='w-full max-sm:hidden'
+					/>
+					<Image
+						src='/images/landing/clinician_mobile.png'
+						alt=''
+						width={ 440 }
+						height={ 1094 }
+						className='w-full sm:hidden'
 					/>
 				</div>
 
 				<div>
-					<div className='absolute bottom-[265px] sm:-bottom-7 max-sm:left-5 sm:right-[250px] md:right-[460px] z-[9]'>
+					<div className='absolute bottom-[245px] sm:-bottom-7 max-sm:left-5 sm:right-[250px] md:right-[460px] z-[9]'>
 						<video
 							autoPlay
 							muted
 							playsInline
 							className='w-[155.912px] h-[123.884px] sm:w-[309.6px] sm:h-[246px] object-cover'>
 							<source
-								src='/videos/graphic_weight_safari.mov'
-								type='video/mp4' />
+								src='/videos/graphic_weight_safari.mp4'
+								type='video/mp4;codecs=hvc1' />
 							<source
 								src='/videos/graphic_weight.webm'
 								type='video/webm' />
@@ -72,15 +79,15 @@ const Therapy: React.FC = () => {
 						</video>
 					</div>
 
-					<div className='absolute bottom-[195px] sm:bottom-[280px] md:bottom-[400px] -right-6 sm:-right-[76px] z-[9]'>
+					<div className='absolute bottom-[175px] sm:bottom-[280px] md:bottom-[400px] -right-1 sm:-right-[76px] z-[9]'>
 						<video
 							autoPlay
 							muted
 							playsInline
-							className='w-[103.796px] h-[82.474px] sm:w-[194px] sm:h-[154.147px] object-cover drop-shadow-[0px_49.31284713745117px_107.80018615722656px_rgba(0,0,0,0.25)] blur-[1.7202154397964478px]'>
+							className='w-[103.796px] h-[82.474px] sm:w-[194px] sm:h-[154.147px] object-cover drop-shadow-[0px_26.383874893188477px_57.6763801574707px_rgba(0,0,0,0.25)] sm:drop-shadow-[0px_49.31284713745117px_107.80018615722656px_rgba(0,0,0,0.25)] blur-[0.9203675389289856px] sm:blur-[1.7202154397964478px]'>
 							<source
-								src='/videos/graphic_bmr_safari.mov'
-								type='video/mp4' />
+								src='/videos/graphic_bmr_safari.mp4'
+								type='video/mp4;codecs=hvc1' />
 							<source
 								src='/videos/graphic_bmr.webm'
 								type='video/webm' />
