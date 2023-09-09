@@ -32,12 +32,12 @@ const Application: React.FC = () => {
 					<div className='lg:hidden'>{ renderTitleDesc() }</div>
 
 					<div className='relative w-full h-full flex justify-center'>
-						<div className='relative overflow-hidden rounded-[35.359px] lg:rounded-[46.716px] lg:w-[297.02px] lg:h-[613.581px] w-[225px] h-[464px]'>
+						<div className='relative overflow-hidden lg:w-[297.02px] lg:h-[613.581px] w-[225px] h-[464px]'>
 							<video
 								autoPlay
 								muted
 								playsInline
-								className='absolute w-full h-full inset-0 object-cover shadow-[0px_3.12473px_50px_0px_rgba(0,0,0,0.25)] lg:shadow-[0px_4.12834px_258.02103px_0px_rgba(0,0,0,0.25)] z-10'>
+								className='absolute w-full h-full inset-0 object-cover z-10'>
 								<source
 									src='/videos/application_safari.mov'
 									type='video/mp4' />
