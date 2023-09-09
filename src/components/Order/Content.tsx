@@ -18,7 +18,8 @@ const Content: React.FC = () => {
 			price: 139.99,
 			description: 'Product Info',
 			value: '$300+',
-			imageSrc: '/images/home/product_1.png'
+			imageSrc: '/images/home/product_1.png',
+			shopify_variant_id: '46553678643490:1',
 		}
 	]);
 

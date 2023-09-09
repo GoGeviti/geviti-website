@@ -5,6 +5,7 @@ const packagesData = [
 		price: 124.99,
 		description: 'Includes a foundational set of tests for general health assessment:',
 		value: '$300+',
+		shopify_variant_id: '46434899755298:1',
 		components: [
 			{
 				name: 'Thyroid Cascade',
@@ -46,6 +47,7 @@ const packagesData = [
 		price: 299.99,
 		description: 'Includes all tests from Essential Health Check, plus:',
 		value: '$1,000+',
+		shopify_variant_id: '46434900541730:1',
 		components: [
 			{
 				name: 'FSH (Follicle Stimulating Hormone)',
@@ -99,6 +101,7 @@ const packagesData = [
 		price: 429.99,
 		description: 'A comprehensive panel specifically designed for men, includes all tests from Comprehensive Health Dive, plus:',
 		value: '$1,500+',
+		shopify_variant_id: '46434905719074:1',
 		components: [
 			{
 				name: 'Insulin',
@@ -136,6 +139,7 @@ const packagesData = [
 		price: 339.99,
 		description: 'A comprehensive panel specifically designed for women, includes all tests from Comprehensive Health Dive, plus:',
 		value: '$1,400+',
+		shopify_variant_id: '46434916598050:1',
 		components: [
 			{
 				name: 'Progesterone',
@@ -173,7 +177,8 @@ const packagesData = [
 		price: 169,
 		description: 'For those who are interested in our products that don’t require a bloodwork panel, such as NAD, or Glutathione, simply schedule an initial consultation. It is $169, then $99/month following. Medical history must be provided. * ',
 		value: '$300',
-		components: []
+		components: [],
+		shopify_variant_id: '46553675596066:1',
 	}
 ];
 

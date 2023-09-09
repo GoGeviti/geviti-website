@@ -11,13 +11,15 @@ const services = [
 		id: 15,
 		name: 'Mobile Blood-draw',
 		price: 35.99,
-		description: 'Avoid the stress of lab visits with our mobile blood draw service. We\'ll send a trained professional to your home for the collection of samples and ensure their safe delivery to the lab. If unselected, you\'ll have to go into a Labcorp near you.'
+		description: 'Avoid the stress of lab visits with our mobile blood draw service. We\'ll send a trained professional to your home for the collection of samples and ensure their safe delivery to the lab. If unselected, you\'ll have to go into a Labcorp near you.',
+		shopify_variant_id: '46434941436194:1',
 	},
 	{
 		id: 16,
 		name: 'Genetic Sequencing Test',
 		price: 199.99,
-		description: 'Take your health management to the next level with our genetic sequencing test. This non-invasive test uses a simple cheek swab kit you can use at home and provides:<br /><br /><ul class="list-disc list-outside pl-3"><li>Genotype results for 83 million SNPs.</li><li>Genetic risk analysis</li><li>Food sensitivities & nutrient deficiencies</li><li>Ancestry & heritage</li></ul>'
+		description: 'Take your health management to the next level with our genetic sequencing test. This non-invasive test uses a simple cheek swab kit you can use at home and provides:<br /><br /><ul class="list-disc list-outside pl-3"><li>Genotype results for 83 million SNPs.</li><li>Genetic risk analysis</li><li>Food sensitivities & nutrient deficiencies</li><li>Ancestry & heritage</li></ul>',
+		shopify_variant_id: '46434957033762:1',
 	},
 ];
 
@@ -34,47 +36,6 @@ const AdditionalServices: React.FC<AdditionalServicesProps> = ({
 	shoppingCarts,
 	selectedProduct
 }) => {
-	
-	// const renderSelectState = () => {
-	// 	const options = statesData.options;
-
-	// 	return (
-	// 		<div className='mt-12 lg:mt-[58px]'>
-	// 			<p className='text-xs lg:text-sm leading-5 font-BRSonoma mb-[13px] text-grey-secondary'>{ statesData.label }</p>
-
-	// 			<Select
-	// 				value={ state }
-	// 				onValueChange={ setState }
-	// 			>
-	// 				<SelectTrigger
-	// 					className='text-grey-secondary w-full lg:w-[398px] bg-black-background shadow-[0px_1px_2px_0px_rgba(16,24,40,0.05)]'>
-	// 					<SelectValue placeholder='Select state'>
-	// 						{ state || 'Select state' }
-	// 					</SelectValue>
-	// 				</SelectTrigger>
-	// 				<SelectContent className='bg-black-background !text-grey-secondary'>
-	// 					<SelectGroup className='overflow-x-hidden'>
-	// 						{ options.map((option, optionIdx) => (
-	// 							<div key={ optionIdx }>
-	// 								<SelectItem
-	// 									value={ option.value }
-	// 									className='data-[state=unchecked]:font-normal data-[state=checked]:font-semibold data-[highlighted]:bg-black-secondary'
-	// 								>{ option.label }</SelectItem>
-	// 								{ optionIdx < options.length - 1 && (
-	// 									<SelectSeparator />
-	// 								) }
-	// 							</div>
-	// 						)) }
-	// 						<SelectSeparator />
-	// 						<button
-	// 							className='cursor-pointer flex w-full select-none items-center rounded-sm px-18px py-2 text-sm leading-6 font-medium font-Poppins'
-	// 							onClick={ () => window.open('https://cchtpaycds0.typeform.com/to/BVFNdpwc', '_blank') }>Don&apos;t see your state? Click here!</button>
-	// 					</SelectGroup>
-	// 				</SelectContent>
-	// 			</Select>
-	// 		</div>
-	// 	);
-	// };
 
 	const renderButtonAddedToCart = (service: IProducts.ProductItem) => {
 		return (
