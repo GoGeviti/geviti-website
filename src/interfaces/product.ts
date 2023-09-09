@@ -6,7 +6,7 @@ export interface ProductItem {
 	category?: string;
 	bloodTest?: string;
 	value?: string;
-	shopify_variant_id: string;
+	shopify_variant_id?: string;
 	imageSrc?: string;
 	images?: string[];
 	details?: {
