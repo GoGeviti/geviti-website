@@ -10,7 +10,8 @@ import {
 	ArrowNarrowDown,
 	ArrowNarrowRight,
 	CheckIcon,
-	InfoCircle
+	InfoCircle,
+	Vial
 } from '../Icons';
 import { Popover, PopoverContent, PopoverTrigger } from '../Popover';
 import {
@@ -225,6 +226,14 @@ const PackagesSection: React.FC = () => {
 		);
 	};
 
+	const renderNumber = (number:number) => {
+		return (
+			<div className='w-5 h-5 rounded-full bg-primary/5 flex items-center justify-center text-primary font-Poppins text-[10px] mr-2'>
+				{ number }
+			</div>
+		);
+	};
+
 	const renderSelectState = () => {
 		const selectOptions = statesData.options;
 
@@ -233,7 +242,7 @@ const PackagesSection: React.FC = () => {
 				data-aos='zoom-in-right'
 				className='mt-10'
 			>
-				<p className='text-xs lg:text-sm leading-5 font-BRSonoma mb-[13px]'>{ statesData.label }</p>
+				<p className='text-xs lg:text-sm leading-5 font-BRSonoma mb-[13px] flex'>{ renderNumber(1) }{ statesData.label }</p>
 
 				<Select
 					value={ state }
@@ -277,38 +286,40 @@ const PackagesSection: React.FC = () => {
 		<>
 			<div
 				id='packages'
-				className='container-center w-full py-[94px] relative'>
+				className='container-center w-full py-14 lg:py-[94px] relative'>
 				<div className='lg:grid lg:grid-cols-10 lg:gap-x-32'>
 					<WrapperAnimation
-						className='lg:hidden'
-						data-aos='zoom-in'
-					>{ renderTitleDescPage() }</WrapperAnimation>
-
-					<WrapperAnimation
-						className='lg:col-span-4 max-lg:mt-10'
+						className='lg:col-span-4 lg:hidden'
 						data-aos='fade-in'
 					>
 						<div className='lg:sticky lg:top-10'>
 							<SliderPackages />
 						</div>
 					</WrapperAnimation>
-
-					<div className='lg:col-span-6 overflow-hidden'>
-						<div className='max-lg:hidden'>
-							{ renderTitleDescPage() }
-						</div>
+					<div className='lg:col-span-6 max-lg:mt-10 overflow-hidden'>
+						{ renderTitleDescPage() }
 
 						{ renderSelectState() }
 
+						<WrapperAnimation
+							data-aos='zoom-in-right'
+							className='flex lg:flex-col gap-5px mt-10'
+						>
+							<Vial className='text-primary' />
+							<span className='text-primary max-lg:text-center text-sm leading-5 font-Poppins font-semibold max-lg:pt-0 py-2 border-b border-grey-primary w-fit'>
+								An initial consultation is required for each package at just $199.00
+							</span>
+						</WrapperAnimation>
 						<div className='flex max-lg:flex-col gap-11px items-center lg:justify-between mt-10'>
 							<WrapperAnimation
 								data-aos='zoom-in-right'
 								className='flex items-center gap-5px'
 							>
-								<span className='text-primary lg:text-grey-primary text-sm leading-5 font-BRSonoma'>
+								{ renderNumber(2) }
+								<span className='text-primary text-sm leading-5 font-BRSonoma'>
 									{ homeData.packages.titlePackageList }
 								</span>
-								<ArrowNarrowDown className='text-primary lg:text-grey-primary' />
+								<ArrowNarrowDown className='text-primary' />
 							</WrapperAnimation>
 
 							<WrapperAnimation
@@ -318,7 +329,7 @@ const PackagesSection: React.FC = () => {
 								onClick={ () => { setOpenDialogHelp(true); } }
 							>
 								<InfoCircle className='w-4 h-4' />
-								<span className='text-sm font-semibold font-BRSonoma leading-5 text-grey-primary'>
+								<span className='text-sm font-semibold font-BRSonoma leading-5 text-primary'>
 									{ homeData.packages.helpText }
 								</span>
 							</WrapperAnimation>
@@ -326,6 +337,14 @@ const PackagesSection: React.FC = () => {
 
 						{ renderPackageList() }
 					</div>
+					<WrapperAnimation
+						className='lg:col-span-4 max-lg:mt-10 max-lg:hidden'
+						data-aos='fade-in'
+					>
+						<div className='lg:sticky lg:top-10'>
+							<SliderPackages />
+						</div>
+					</WrapperAnimation>
 				</div>
 			</div>
 
