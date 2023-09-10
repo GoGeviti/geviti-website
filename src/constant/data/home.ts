@@ -75,8 +75,10 @@ const homeData = {
 		}
 	},
 	sliderPackageImages: [
-		'/images/home/package_1.png',
-		'/images/home/package_1.png'
+		'Select your package.',
+		'Complete your testing.',
+		'Receive your medication.',
+		'Track your progress.',
 	]
 };
 

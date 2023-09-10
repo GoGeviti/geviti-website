@@ -122,6 +122,25 @@ export const ArrowNarrowDown = (props?: React.SVGProps<SVGSVGElement>) => (
 	</svg>
 );
 
+export const Vial = (props?: React.SVGProps<SVGSVGElement>) => (
+	<svg
+		width='21'
+		height='21'
+		viewBox='0 0 21 21'
+		fill='none'
+		xmlns='http://www.w3.org/2000/svg'
+		{ ...props }
+	>
+		<path
+			d='M11.1952 5.28242C10.7809 4.8681 10.7809 4.19637 11.1952 3.78206L12.085 2.89227C12.4267 2.55056 12.9807 2.55056 13.3224 2.89227L18.1081 7.678C18.4498 8.01971 18.4498 8.57373 18.1081 8.91543L17.2183 9.80523C16.804 10.2195 16.1323 10.2195 15.718 9.80523M11.1952 5.28242L5.21789 11.2651M11.1952 5.28242L15.718 9.80523M15.718 9.80523L13.4308 12.087M5.21789 11.2651L13.4308 12.087M5.21789 11.2651L3.5004 12.9826C2.25747 14.2255 2.26562 16.2489 3.50855 17.4918C4.75149 18.7348 6.77484 18.7429 8.01777 17.5L13.4308 12.087'
+			stroke='#181A1C'
+			strokeWidth='1.75'
+			strokeLinecap='round'
+			strokeLinejoin='round'/>
+	</svg>
+
+);
+
 export const InfoCircle = (props?: React.SVGProps<SVGSVGElement>) => (
 	<svg
 		xmlns='http://www.w3.org/2000/svg'
