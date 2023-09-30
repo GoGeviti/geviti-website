@@ -50,7 +50,8 @@ const Flexible: React.FC = () => {
 					<div className='max-lg:order-0 lg:flex h-full lg:justify-end lg:absolute lg:right-0 lg:top-0 hidden'>
 						<Image
 							src={ flexibleData.image }
-							alt=''
+							alt='flexible'
+							loading='lazy'
 							width={ 1440 }
 							height={ 801 }
 							className='w-full'
@@ -59,7 +60,8 @@ const Flexible: React.FC = () => {
 					<div className='lg:hidden order-0'>
 						<Image
 							src={ flexibleData.imageMobile }
-							alt=''
+							alt='flexible mobile'
+							loading='lazy'
 							className='object-contain w-full'
 							width={ 337 }
 							height={ 216 }

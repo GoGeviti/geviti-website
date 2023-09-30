@@ -6,13 +6,13 @@ const productsData = [
 		description: 'Product Info',
 		category: 'Hormone Therapy',
 		value: '$39.99',
-		imageSrc: '/images/home/product_1.png',
+		imageSrc: '/images/home/product_1.webp',
 		bloodTest: 'yes',
 		images: [
-			'/images/products/synergi_1.png',
-			'/images/products/synergi_1.png',
-			'/images/products/synergi_1.png',
-			'/images/products/synergi_1.png'
+			'/images/products/synergi_1.webp',
+			'/images/products/synergi_1.webp',
+			'/images/products/synergi_1.webp',
+			'/images/products/synergi_1.webp'
 		],
 		details: [
 			{
@@ -45,13 +45,13 @@ const productsData = [
 		description: 'Product Info',
 		category: 'Hormone Therapy',
 		value: '$39.99',
-		imageSrc: '/images/home/product_1.png',
+		imageSrc: '/images/home/product_1.webp',
 		bloodTest: 'yes',
 		images: [
-			'/images/products/synergi_1.png',
-			'/images/products/synergi_1.png',
-			'/images/products/synergi_1.png',
-			'/images/products/synergi_1.png'
+			'/images/products/synergi_1.webp',
+			'/images/products/synergi_1.webp',
+			'/images/products/synergi_1.webp',
+			'/images/products/synergi_1.webp'
 		],
 		details: [
 			{
@@ -84,13 +84,13 @@ const productsData = [
 		description: 'Product Info',
 		category: 'Hormone Therapy',
 		value: '$39.99',
-		imageSrc: '/images/home/product_1.png',
+		imageSrc: '/images/home/product_1.webp',
 		bloodTest: 'yes',
 		images: [
-			'/images/products/synergi_1.png',
-			'/images/products/synergi_1.png',
-			'/images/products/synergi_1.png',
-			'/images/products/synergi_1.png'
+			'/images/products/synergi_1.webp',
+			'/images/products/synergi_1.webp',
+			'/images/products/synergi_1.webp',
+			'/images/products/synergi_1.webp'
 		],
 		details: [
 			{
@@ -123,13 +123,13 @@ const productsData = [
 		description: 'Product Info',
 		category: 'Hormone Therapy',
 		value: '$39.99',
-		imageSrc: '/images/home/product_1.png',
+		imageSrc: '/images/home/product_1.webp',
 		bloodTest: 'yes',
 		images: [
-			'/images/products/synergi_1.png',
-			'/images/products/synergi_1.png',
-			'/images/products/synergi_1.png',
-			'/images/products/synergi_1.png'
+			'/images/products/synergi_1.webp',
+			'/images/products/synergi_1.webp',
+			'/images/products/synergi_1.webp',
+			'/images/products/synergi_1.webp'
 		],
 		details: [
 			{
@@ -161,13 +161,13 @@ const productsData = [
 		description: 'Product Info',
 		category: 'Hormone Therapy',
 		value: '$39.99',
-		imageSrc: '/images/home/product_1.png',
+		imageSrc: '/images/home/product_1.webp',
 		bloodTest: 'yes',
 		images: [
-			'/images/products/synergi_1.png',
-			'/images/products/synergi_1.png',
-			'/images/products/synergi_1.png',
-			'/images/products/synergi_1.png'
+			'/images/products/synergi_1.webp',
+			'/images/products/synergi_1.webp',
+			'/images/products/synergi_1.webp',
+			'/images/products/synergi_1.webp'
 		],
 		details: [
 			{
@@ -199,13 +199,13 @@ const productsData = [
 		description: 'Product Info',
 		category: 'Hormone Therapy',
 		value: '$39.99',
-		imageSrc: '/images/home/product_1.png',
+		imageSrc: '/images/home/product_1.webp',
 		bloodTest: 'yes',
 		images: [
-			'/images/products/synergi_1.png',
-			'/images/products/synergi_1.png',
-			'/images/products/synergi_1.png',
-			'/images/products/synergi_1.png'
+			'/images/products/synergi_1.webp',
+			'/images/products/synergi_1.webp',
+			'/images/products/synergi_1.webp',
+			'/images/products/synergi_1.webp'
 		],
 		details: [
 			{
@@ -237,13 +237,13 @@ const productsData = [
 		description: 'Product Info',
 		category: 'Hormone Therapy',
 		value: '$39.99',
-		imageSrc: '/images/home/product_1.png',
+		imageSrc: '/images/home/product_1.webp',
 		bloodTest: 'yes',
 		images: [
-			'/images/products/synergi_1.png',
-			'/images/products/synergi_1.png',
-			'/images/products/synergi_1.png',
-			'/images/products/synergi_1.png'
+			'/images/products/synergi_1.webp',
+			'/images/products/synergi_1.webp',
+			'/images/products/synergi_1.webp',
+			'/images/products/synergi_1.webp'
 		],
 		details: [
 			{
@@ -275,13 +275,13 @@ const productsData = [
 		description: 'Product Info',
 		category: 'Hormone Therapy',
 		value: '$39.99',
-		imageSrc: '/images/home/product_1.png',
+		imageSrc: '/images/home/product_1.webp',
 		bloodTest: 'yes',
 		images: [
-			'/images/products/synergi_1.png',
-			'/images/products/synergi_1.png',
-			'/images/products/synergi_1.png',
-			'/images/products/synergi_1.png'
+			'/images/products/synergi_1.webp',
+			'/images/products/synergi_1.webp',
+			'/images/products/synergi_1.webp',
+			'/images/products/synergi_1.webp'
 		],
 		details: [
 			{
@@ -313,13 +313,13 @@ const productsData = [
 		description: 'Product Info',
 		category: 'Longevity',
 		value: '$39.99',
-		imageSrc: '/images/home/product_1.png',
+		imageSrc: '/images/home/product_1.webp',
 		bloodTest: 'yes',
 		images: [
-			'/images/products/synergi_1.png',
-			'/images/products/synergi_1.png',
-			'/images/products/synergi_1.png',
-			'/images/products/synergi_1.png'
+			'/images/products/synergi_1.webp',
+			'/images/products/synergi_1.webp',
+			'/images/products/synergi_1.webp',
+			'/images/products/synergi_1.webp'
 		],
 		details: [
 			{
@@ -351,13 +351,13 @@ const productsData = [
 		description: 'Product Info',
 		category: 'Longevity',
 		value: '$39.99',
-		imageSrc: '/images/home/product_1.png',
+		imageSrc: '/images/home/product_1.webp',
 		bloodTest: 'yes',
 		images: [
-			'/images/products/synergi_1.png',
-			'/images/products/synergi_1.png',
-			'/images/products/synergi_1.png',
-			'/images/products/synergi_1.png'
+			'/images/products/synergi_1.webp',
+			'/images/products/synergi_1.webp',
+			'/images/products/synergi_1.webp',
+			'/images/products/synergi_1.webp'
 		],
 		details: [
 			{
@@ -389,13 +389,13 @@ const productsData = [
 		description: 'Product Info',
 		category: 'Longevity',
 		value: '$39.99',
-		imageSrc: '/images/home/product_1.png',
+		imageSrc: '/images/home/product_1.webp',
 		bloodTest: 'yes',
 		images: [
-			'/images/products/synergi_1.png',
-			'/images/products/synergi_1.png',
-			'/images/products/synergi_1.png',
-			'/images/products/synergi_1.png'
+			'/images/products/synergi_1.webp',
+			'/images/products/synergi_1.webp',
+			'/images/products/synergi_1.webp',
+			'/images/products/synergi_1.webp'
 		],
 		details: [
 			{
@@ -427,13 +427,13 @@ const productsData = [
 		description: 'Product Info',
 		category: 'Longevity',
 		value: '$39.99',
-		imageSrc: '/images/home/product_1.png',
+		imageSrc: '/images/home/product_1.webp',
 		bloodTest: 'no',
 		images: [
-			'/images/products/synergi_1.png',
-			'/images/products/synergi_1.png',
-			'/images/products/synergi_1.png',
-			'/images/products/synergi_1.png'
+			'/images/products/synergi_1.webp',
+			'/images/products/synergi_1.webp',
+			'/images/products/synergi_1.webp',
+			'/images/products/synergi_1.webp'
 		],
 		details: [
 			{
@@ -465,13 +465,13 @@ const productsData = [
 		description: 'Product Info',
 		category: 'Longevity',
 		value: '$39.99',
-		imageSrc: '/images/home/product_1.png',
+		imageSrc: '/images/home/product_1.webp',
 		bloodTest: 'no',
 		images: [
-			'/images/products/synergi_1.png',
-			'/images/products/synergi_1.png',
-			'/images/products/synergi_1.png',
-			'/images/products/synergi_1.png'
+			'/images/products/synergi_1.webp',
+			'/images/products/synergi_1.webp',
+			'/images/products/synergi_1.webp',
+			'/images/products/synergi_1.webp'
 		],
 		details: [
 			{
@@ -503,13 +503,13 @@ const productsData = [
 		description: 'Product Info',
 		category: 'Longevity',
 		value: '$39.99',
-		imageSrc: '/images/home/product_1.png',
+		imageSrc: '/images/home/product_1.webp',
 		bloodTest: 'no',
 		images: [
-			'/images/products/synergi_1.png',
-			'/images/products/synergi_1.png',
-			'/images/products/synergi_1.png',
-			'/images/products/synergi_1.png'
+			'/images/products/synergi_1.webp',
+			'/images/products/synergi_1.webp',
+			'/images/products/synergi_1.webp',
+			'/images/products/synergi_1.webp'
 		],
 		details: [
 			{
@@ -541,13 +541,13 @@ const productsData = [
 		description: 'Product Info',
 		category: 'Sexual Function',
 		value: '$39.99',
-		imageSrc: '/images/home/product_1.png',
+		imageSrc: '/images/home/product_1.webp',
 		bloodTest: 'no',
 		images: [
-			'/images/products/synergi_1.png',
-			'/images/products/synergi_1.png',
-			'/images/products/synergi_1.png',
-			'/images/products/synergi_1.png'
+			'/images/products/synergi_1.webp',
+			'/images/products/synergi_1.webp',
+			'/images/products/synergi_1.webp',
+			'/images/products/synergi_1.webp'
 		],
 		details: [
 			{
@@ -579,13 +579,13 @@ const productsData = [
 		description: 'Product Info',
 		category: 'Sexual Function',
 		value: '$39.99',
-		imageSrc: '/images/home/product_1.png',
+		imageSrc: '/images/home/product_1.webp',
 		bloodTest: 'no',
 		images: [
-			'/images/products/synergi_1.png',
-			'/images/products/synergi_1.png',
-			'/images/products/synergi_1.png',
-			'/images/products/synergi_1.png'
+			'/images/products/synergi_1.webp',
+			'/images/products/synergi_1.webp',
+			'/images/products/synergi_1.webp',
+			'/images/products/synergi_1.webp'
 		],
 		details: [
 			{
@@ -617,13 +617,13 @@ const productsData = [
 		description: 'Product Info',
 		category: 'Sexual Function',
 		value: '$39.99',
-		imageSrc: '/images/home/product_1.png',
+		imageSrc: '/images/home/product_1.webp',
 		bloodTest: 'no',
 		images: [
-			'/images/products/synergi_1.png',
-			'/images/products/synergi_1.png',
-			'/images/products/synergi_1.png',
-			'/images/products/synergi_1.png'
+			'/images/products/synergi_1.webp',
+			'/images/products/synergi_1.webp',
+			'/images/products/synergi_1.webp',
+			'/images/products/synergi_1.webp'
 		],
 		details: [
 			{

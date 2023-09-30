@@ -67,7 +67,8 @@ const SliderProducts: React.FC<SliderProductsProps> = ({ images }) => {
 								className='w-full h-full relative overflow-hidden aspect-square focus:ring-0 focus:outline-none focus:border-none'>
 								<Image
 									src={ image }
-									alt=''
+									alt='slider'
+									loading='lazy'
 									fill
 									className='object-contain'
 								/>

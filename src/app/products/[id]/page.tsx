@@ -111,6 +111,7 @@ const ProductDetailPage: NextPage<ProductDetailPageProps> = ({ params }) => {
 			<button
 				className='btn btn-primary w-full text-xs sm:text-sm font-medium font-Poppins leading-[21px] sm:leading-[26px] py-2.5 sm:py-[13px]'
 				onClick={ () => router.push(`/orders?selectedProduct=${ id }`) }
+				aria-label='Purchase'
 			>
 				Purchase
 			</button>

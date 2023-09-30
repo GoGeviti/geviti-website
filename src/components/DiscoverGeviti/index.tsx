@@ -111,6 +111,7 @@ const DiscoverGeviti: React.FC<DiscoverGevitiProps> = ({
 						<div className='relative overflow-hidden bg-[#E5E5E5] group-hover:opacity-75 w-full h-[225px] lg:h-[260px]'>
 							{ product.imageSrc && (
 								<Image
+									loading='lazy'
 									src={ product.imageSrc }
 									alt={ product.name ?? '' }
 									className='object-cover object-center'

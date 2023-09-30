@@ -60,8 +60,9 @@ const Functional: React.FC = () => {
 
 					<div className='-mx-[265px] lg:-mx-[150px] -mb-[128px] sm:-mb-[200px] lg:-mb-[210px] xl:-mb-[270px] -mt-[139px] sm:-mt-[110px] xl:-mt-[170px]'>
 						<Image
-							src='/images/landing/functional_products.png'
-							alt=''
+							src='/images/landing/functional_products.webp'
+							alt='product'
+							loading='lazy'
 							width={ 1139 }
 							height={ 778 }
 							className='w-full'

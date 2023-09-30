@@ -19,7 +19,8 @@ const Investment: React.FC = () => {
 						<div className='relative overflow-hidden w-full h-full lg:rounded-[19px]'>
 							<Image
 								src={ investmentData.image }
-								alt=''
+								alt='investment'
+								loading='lazy'
 								className='object-cover'
 								fill
 							/>
@@ -31,7 +32,8 @@ const Investment: React.FC = () => {
 						<div className='relative overflow-hidden w-full h-full'>
 							<Image
 								src={ investmentData.imageMobile }
-								alt=''
+								alt='investment mobile'
+								loading='lazy'
 								className='object-cover'
 								fill
 							/>

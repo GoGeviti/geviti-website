@@ -47,18 +47,20 @@ const Therapy: React.FC = () => {
 
 				<div className='relative flex justify-end lg:absolute right-0 bottom-0 sm:ml-auto sm:max-w-lg md:max-w-2xl z-10'>
 					<Image
-						src='/images/landing/clinician.png'
-						alt=''
+						src='/images/landing/clinician.webp'
+						alt='clinician'
+						loading='lazy'
 						width={ 683.492 }
 						height={ 1704 }
 						className='w-full max-sm:hidden'
 					/>
 					<Image
-						src='/images/landing/clinician_mobile.png'
-						alt=''
+						src='/images/landing/clinician_mobile.webp'
+						alt='clinician mobile'
+						loading='lazy'
 						width={ 440 }
 						height={ 1094 }
-						className='w-full sm:hidden'
+						className='w-full h-full sm:hidden'
 					/>
 				</div>
 

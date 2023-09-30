@@ -34,51 +34,11 @@ const AdditionalServices: React.FC<AdditionalServicesProps> = ({
 	shoppingCarts,
 	selectedProduct
 }) => {
-	
-	// const renderSelectState = () => {
-	// 	const options = statesData.options;
-
-	// 	return (
-	// 		<div className='mt-12 lg:mt-[58px]'>
-	// 			<p className='text-xs lg:text-sm leading-5 font-BRSonoma mb-[13px] text-grey-secondary'>{ statesData.label }</p>
-
-	// 			<Select
-	// 				value={ state }
-	// 				onValueChange={ setState }
-	// 			>
-	// 				<SelectTrigger
-	// 					className='text-grey-secondary w-full lg:w-[398px] bg-black-background shadow-[0px_1px_2px_0px_rgba(16,24,40,0.05)]'>
-	// 					<SelectValue placeholder='Select state'>
-	// 						{ state || 'Select state' }
-	// 					</SelectValue>
-	// 				</SelectTrigger>
-	// 				<SelectContent className='bg-black-background !text-grey-secondary'>
-	// 					<SelectGroup className='overflow-x-hidden'>
-	// 						{ options.map((option, optionIdx) => (
-	// 							<div key={ optionIdx }>
-	// 								<SelectItem
-	// 									value={ option.value }
-	// 									className='data-[state=unchecked]:font-normal data-[state=checked]:font-semibold data-[highlighted]:bg-black-secondary'
-	// 								>{ option.label }</SelectItem>
-	// 								{ optionIdx < options.length - 1 && (
-	// 									<SelectSeparator />
-	// 								) }
-	// 							</div>
-	// 						)) }
-	// 						<SelectSeparator />
-	// 						<button
-	// 							className='cursor-pointer flex w-full select-none items-center rounded-sm px-18px py-2 text-sm leading-6 font-medium font-Poppins'
-	// 							onClick={ () => window.open('https://cchtpaycds0.typeform.com/to/BVFNdpwc', '_blank') }>Don&apos;t see your state? Click here!</button>
-	// 					</SelectGroup>
-	// 				</SelectContent>
-	// 			</Select>
-	// 		</div>
-	// 	);
-	// };
 
 	const renderButtonAddedToCart = (service: IProducts.ProductItem) => {
 		return (
 			<button
+				aria-label='Added To Cart'
 				onClick={ () => onClickRemoveProduct(service) }
 				className='btn btn-primary !bg-[#1A1C1E] !px-4 flex items-center justify-center max-sm:w-full gap-1.5 text-grey-secondary'>
 				<span className='flex-shrink-0'>
@@ -92,6 +52,7 @@ const AdditionalServices: React.FC<AdditionalServicesProps> = ({
 	const renderButtonAddToCart = (service: IProducts.ProductItem) => {
 		return (
 			<button
+				aria-label='Added To Cart'
 				disabled={ service.id === 15 && selectedProduct === '5' }
 				className='btn btn-secondary disabled:bg-grey-secondary/50 disabled:cursor-not-allowed !px-4 flex items-center justify-center gap-1.5 max-sm:w-full'
 				onClick={ () => onClickProduct(service) }
@@ -177,7 +138,6 @@ const AdditionalServices: React.FC<AdditionalServicesProps> = ({
 
 	return (
 		<div>
-			{ /* { renderSelectState() } */ }
 			{ renderServiceList() }
 		</div>
 	);

@@ -19,7 +19,8 @@ const Mission: React.FC = () => {
 						<div className='relative overflow-hidden w-full h-full lg:rounded-[19px]'>
 							<Image
 								src={ missionData.image }
-								alt=''
+								alt='mission'
+								loading='lazy'
 								className='object-cover'
 								fill
 							/>
@@ -31,7 +32,8 @@ const Mission: React.FC = () => {
 						<div className='relative overflow-hidden w-full h-full'>
 							<Image
 								src={ missionData.imageMobile }
-								alt=''
+								alt='mission'
+								loading='lazy'
 								className='object-cover'
 								fill
 							/>

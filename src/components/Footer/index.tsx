@@ -73,6 +73,7 @@ const Footer: React.FC<FooterProps> = ({ landingPage }) => {
 									alt='logo'
 									src={ footerData.logo }
 									fill
+									loading='lazy'
 									className='object-contain'
 									sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
 								/>
@@ -106,6 +107,7 @@ const Footer: React.FC<FooterProps> = ({ landingPage }) => {
 											alt={ item.alt }
 											sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
 											fill
+											loading='lazy'
 										/>
 									</div>
 								</CustomLink>

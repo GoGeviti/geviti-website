@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useState } from 'react';
-import Image from 'next/image';
 
 import { landingData } from '@/constant/data';
 import clsxm from '@/helpers/clsxm';
@@ -23,32 +22,6 @@ const StepsSection: React.FC = () => {
 
 	const onMouseEnter = (stepIdx: number) => {
 		if (!isMobile) onSelectStep(stepIdx);
-	};
-
-	const resolveImageClassName = (id?: string) => {
-		if (id === 'package') return 'bg-[#EAEDF4]';
-		if (id === 'testing') return 'bg-[#272b2e6b]';
-
-		return '';
-	};
-
-	const renderImageStep = (id?: string, src?: string) => {
-		return (
-			<div className='relative overflow-hidden lg:w-full h-[218px] sm:h-[255px] lg:h-full lg:max-h-[255px] aspect-[1.1/1] rounded-[30px]'>
-				{ src && (
-					<Image
-						src={ src }
-						alt=''
-						className={ clsxm(
-							'object-cover',
-							resolveImageClassName(id)
-						) }
-						sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
-						fill
-					/>
-				) }
-			</div>
-		);
 	};
 
 	return (

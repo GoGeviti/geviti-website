@@ -56,6 +56,7 @@ const OrderSummary: React.FC<OrderSummaryProps> = ({ shoppingCarts }) => {
 
 			<div className='mt-[26px]'>
 				<button
+					aria-label='checkout'
 					disabled={ !checkedPrivacy }
 					className='btn btn-secondary w-full disabled:bg-black-secondary disabled:text-[#383B3F] text-xs font-medium leading-[159%] font-Poppins text-black-secondary'>
 					Proceed to checkout

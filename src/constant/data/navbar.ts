@@ -1,8 +1,8 @@
 import { ShoppingBagIcon } from '@/components/Icons';
 
 const navigationData = {
-	logoLight: '/images/logo/logo_light.png',
-	logoDark: '/images/logo/logo_dark.png',
+	logoLight: '/images/logo/logo_light.webp',
+	logoDark: '/images/logo/logo_dark.webp',
 	menu: [
 		{
 			name: 'Get Started',
@@ -21,19 +21,11 @@ const navigationData = {
 		}
 	],
 	iconsMenu: [
-		// {
-		// 	id: 'search',
-		// 	icon: SearchIcon
-		// },
 		{
 			id: 'shopping',
 			href: '/orders',
 			icon: ShoppingBagIcon
 		},
-		// {
-		// 	id: 'user',
-		// 	icon: UserIcon
-		// }
 	],
 	actionsMenu: [
 		{

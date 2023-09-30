@@ -15,6 +15,7 @@ const CustomLink: React.FC<CustomLinkProps> = ({
 }) => {
 	return (
 		<Link
+			aria-label={ 'Redirect page' }
 			href={ href }
 			{ ...restProps }
 			{ ...externalLink

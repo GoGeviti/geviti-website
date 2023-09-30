@@ -5,7 +5,6 @@ import Image from 'next/image';
 
 import { landingData } from '@/constant/data';
 
-// import CustomLink from '../CustomLink';
 import { ChevronRight } from '../Icons';
 import Navbar from '../Navbar';
 import WrapperAnimation from '../WrapperAnimation';
@@ -27,6 +26,7 @@ const Hero: React.FC = () => {
 							<Image
 								src={ heroData.image }
 								alt='hero'
+								priority
 								className='object-cover'
 								fill
 							/>
@@ -95,6 +95,7 @@ const Hero: React.FC = () => {
 													alt={ feature.text }
 													sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
 													fill
+													loading='lazy'
 												/>
 											</div>
 										) }

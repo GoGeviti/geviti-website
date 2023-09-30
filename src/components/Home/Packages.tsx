@@ -273,6 +273,7 @@ const PackagesSection: React.FC = () => {
 							)) }
 							<SelectSeparator />
 							<button
+								aria-label='Action'
 								className='cursor-pointer flex w-full select-none items-center rounded-sm px-18px py-2 text-sm leading-6 font-medium font-Poppins'
 								onClick={ () => window.open('https://cchtpaycds0.typeform.com/to/BVFNdpwc', '_blank') }>Don&apos;t see your state? Click here!</button>
 						</SelectGroup>
