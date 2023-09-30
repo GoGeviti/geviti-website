@@ -22,11 +22,16 @@ const landingData = {
 	hero: {
 		preTitle: 'LED BY INDUSTRY EXPERTS',
 		title: 'Longevity that works for you.<br />Telehealth made simple.',
-		image: '/images/landing/hero.png',
+		image: '/images/landing/hero.webp',
 		btnCta: {
 			text: 'See if I qualify',
 			href: 'https://gogeviti.typeform.com/qualify',
 			externalLink: true
+		},
+		btnCta2: {
+			href: '/get-started',
+			externalLink: false,
+			text: 'Get Started'
 		},
 		mainKeys: [
 			{
@@ -198,7 +203,19 @@ const landingData = {
 			externalLink: false,
 			text: 'Start Now'
 		}
-	}
+	},
+	flexible: {
+		preTitle: 'flexible plans that are right for you',
+		title: 'Starting from just $99/month',
+		description: 'With at-home blood testing, facilitated by professional mobile phlebotomists, we will design a care plan precisely for your needs.',
+		image: '/images/landing/flexible.png',
+		imageMobile: '/images/landing/flexible-mobile.png',
+		btnCta: {
+			href: '/get-started',
+			externalLink: false,
+			text: 'Get Started'
+		}
+	},
 };
 
 export default landingData;

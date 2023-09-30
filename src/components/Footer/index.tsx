@@ -111,6 +111,9 @@ const Footer: React.FC<FooterProps> = ({ landingPage }) => {
 								</CustomLink>
 							)) }
 						</div>
+						<div className='mt-7 hidden md:block'>
+							<p className='font-BRSonoma text-sm font-medium'>{ footerData.bottomContent }</p>
+						</div>
 					</div>
 
 					{ renderMenuListContent() }

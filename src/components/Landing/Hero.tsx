@@ -26,7 +26,7 @@ const Hero: React.FC = () => {
 						<div className='relative overflow-hidden w-full h-full lg:rounded-[19px]'>
 							<Image
 								src={ heroData.image }
-								alt=''
+								alt='hero'
 								className='object-cover'
 								fill
 							/>
@@ -53,7 +53,7 @@ const Hero: React.FC = () => {
 
 								<div
 									id='main-keys-landing'
-									className='flex justify-center mt-7 sm:mt-9'>
+									className='flex justify-center mt-7 sm:mt-9 space-x-5'>
 									<CustomLink
 										href={ heroData.btnCta.href }
 										externalLink={ heroData.btnCta.externalLink }
@@ -64,6 +64,17 @@ const Hero: React.FC = () => {
 										</span>
 
 										<ChevronRight className='arrow-btn-cta-landing' />
+									</CustomLink>
+									<CustomLink
+										href={ heroData.btnCta2.href }
+										externalLink={ heroData.btnCta2.externalLink }
+										className='btn-cta-landing  group '
+									>
+										<span className='text-btn-cta-landing text-grey-secondary'>
+											{ heroData.btnCta2.text }
+										</span>
+
+										<ChevronRight className='arrow-btn-cta-landing text-grey-secondary' />
 									</CustomLink>
 								</div>
 							</div>

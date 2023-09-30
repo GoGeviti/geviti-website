@@ -6,10 +6,12 @@ const HomePage: NextPage = () => {
 	return (
 		<div className='flex min-h-screen flex-col w-full bg-grey-background'>
 			<LandingComponent.Hero />
-			<LandingComponent.Therapy />
-			<LandingComponent.Quality />
-			<LandingComponent.RunningLogo />
+	
 			<LandingComponent.Steps />
+			<LandingComponent.Flexible />
+			<LandingComponent.RunningLogo />
+			<LandingComponent.Quality />
+			<LandingComponent.Therapy />
 			<LandingComponent.Functional />
 			<LandingComponent.Application />
 			<LandingComponent.Dashboard />
