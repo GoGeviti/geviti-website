@@ -1,4 +1,4 @@
-import { ShoppingBagIcon } from '@/components/Icons';
+import ShoppingBagIcon from '@/components/Icons/ShoppingBagIcon';
 
 const navigationData = {
 	logoLight: '/images/logo/logo_light.webp',

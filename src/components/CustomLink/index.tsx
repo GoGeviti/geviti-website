@@ -15,6 +15,7 @@ const CustomLink: React.FC<CustomLinkProps> = ({
 }) => {
 	return (
 		<Link
+			prefetch={ false }
 			aria-label={ 'Redirect page' }
 			href={ href }
 			{ ...restProps }

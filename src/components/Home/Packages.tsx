@@ -183,6 +183,7 @@ const PackagesSection: React.FC = () => {
 
 								{ isSelected && (
 									<Link
+										prefetch={ false }
 										href={ `/orders?selectedProduct=${ packageItem.id }` }
 										className='btn btn-primary mt-5 flex items-center gap-1.5 w-fit'>
 										<span className='text-xs font-medium font-BRSonoma leading-[159%]'>Continue</span>

@@ -52,6 +52,7 @@ const ProductDetailPage: NextPage<ProductDetailPageProps> = ({ params }) => {
 								</svg>
 							) }
 							<Link
+								prefetch={ false }
 								href={ page.href }
 								className={ clsxm(
 									'text-xs sm:text-sm font-Poppins font-medium sm:leading-5',

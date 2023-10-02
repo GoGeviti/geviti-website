@@ -22,7 +22,7 @@ const landingData = {
 	hero: {
 		preTitle: 'LED BY INDUSTRY EXPERTS',
 		title: 'Longevity that works for you.<br />Telehealth made simple.',
-		image: '/images/landing/hero.webp',
+		image: '/images/landing/hero-resize.webp',
 		btnCta: {
 			text: 'See if I qualify',
 			href: 'https://gogeviti.typeform.com/qualify',

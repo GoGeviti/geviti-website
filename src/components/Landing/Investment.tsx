@@ -44,7 +44,7 @@ const Investment: React.FC = () => {
 				<div className='absolute inset-x-0 h-[662px] -bottom-[119px] bg-investment-landing-bottom lg:hidden' />
 				<div className='absolute h-[843px] -top-[100px] -left-full -right-full lg:-left-1/4 lg:-right-1/4 inset-0 lg:-top-[200px] lg:-bottom-[200px] bg-investment-landing lg:rounded-[19px]' />
 
-				<div className='container-center max-lg:pb-[65px] h-full w-full flex flex-col items-center lg:items-start justify-end lg:justify-center relative z-10 lg:pl-[94px]'>
+				<div className='container-center max-lg:pb-[65px] h-full w-full flex flex-col items-center lg:items-start justify-end lg:justify-center relative z-10'>
 					<div className='text-center lg:text-left sm:max-w-xl'>
 						<p className='mb-11px sm:mb-7px text-pretitle text-grey-primary'>{ investmentData.preTitle }</p>
 

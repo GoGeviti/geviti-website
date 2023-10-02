@@ -1,9 +1,8 @@
 'use client';
-
 import React from 'react';
 import Image from 'next/image';
 
-import { landingData } from '@/constant/data';
+import landingData from '@/constant/data/landing';
 
 import { ChevronRight } from '../Icons';
 import Navbar from '../Navbar';
@@ -11,15 +10,14 @@ import WrapperAnimation from '../WrapperAnimation';
 import { CustomLink } from '..';
 
 const heroData = landingData.hero;
-
-const Hero: React.FC = () => {
+const Hero = () => {
 	return (
 		<div className='lg:px-3 lg:py-15px overflow-hidden'>
 			<Navbar
 				iconsMenu={ landingData.navbar.iconsMenu }
 				actionsMenu={ landingData.navbar.actionsMenu }
 			/>
-			<div className='bg-primary h-[calc(100vh-25px)] w-full lg:rounded-[19px] relative pt-11px lg:pt-5'>
+			<div className='bg-primary max-h-[850px] h-[calc(100vh-25px)] w-full lg:rounded-[19px] relative pt-11px lg:pt-5'>
 				<div className='absolute inset-0 w-full h-full'>
 					{ heroData.image && (
 						<div className='relative overflow-hidden w-full h-full lg:rounded-[19px]'>
@@ -29,6 +27,8 @@ const Hero: React.FC = () => {
 								priority
 								className='object-cover'
 								fill
+								objectPosition='top'
+								quality={ 75 }
 							/>
 						</div>
 					) }
