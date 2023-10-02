@@ -56,7 +56,7 @@ const Hero: React.FC = () => {
 							{ (heroData.image || heroData.imageMobile) && (
 								<div className='mx-auto aspect-[43.5/53] sm:max-h-[430px] h-full w-full relative overflow-hidden lg:hidden'>
 									<Image
-										loading='lazy'
+										priority
 										src={ heroData.imageMobile ?? heroData.image }
 										alt='hero'
 										sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
