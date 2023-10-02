@@ -94,7 +94,7 @@ const Navbar: React.FC<NavbarProps> = ({
 			<>
 				{ actionsMenu?.map(menu => (
 					<button
-						aria-label='icon menu list'
+						aria-label={ menu.name }
 						className={ clsxm(
 							'btn font-Poppins text-sm font-medium leading-6',
 							theme === 'dark' ? 'btn-secondary' : 'btn-primary !text-grey-background'
