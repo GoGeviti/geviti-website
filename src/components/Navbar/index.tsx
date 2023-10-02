@@ -53,6 +53,7 @@ const Navbar: React.FC<NavbarProps> = ({
 								isActive ? 'font-BRSonoma font-medium' : 'font-Poppins font-medium',
 								theme === 'dark' ? 'text-grey-secondary hover:text-white' : 'text-primary'
 							) }
+							aria-label={ link.name }
 						>
 							{ link.name }
 						</CustomLink>
@@ -93,7 +94,7 @@ const Navbar: React.FC<NavbarProps> = ({
 			<>
 				{ actionsMenu?.map(menu => (
 					<button
-						aria-label='icon menu list'
+						aria-label={ menu.name }
 						className={ clsxm(
 							'btn font-Poppins text-sm font-medium leading-6',
 							theme === 'dark' ? 'btn-secondary' : 'btn-primary !text-grey-background'
@@ -113,7 +114,9 @@ const Navbar: React.FC<NavbarProps> = ({
 		return (
 			<CustomLink
 				href='/'
-				className='focus:outline-0 focus:ring-0 focus:border-0'>
+				className='focus:outline-0 focus:ring-0 focus:border-0'
+				aria-label='Logo'
+			>
 				<div className='flex-shrink-0 relative overflow-hidden w-[85px] h-5'>
 					<Image
 						src={ src }

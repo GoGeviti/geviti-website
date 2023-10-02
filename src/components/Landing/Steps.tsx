@@ -42,6 +42,7 @@ const StepsSection: React.FC = () => {
 								href={ stepsData.btnCta.href }
 								externalLink={ stepsData.btnCta.externalLink }
 								className='btn-cta-landing btn-primary group'
+								aria-label={ stepsData.btnCta.text }
 							>
 								<span className='text-btn-cta-landing'>
 									{ stepsData.btnCta.text }

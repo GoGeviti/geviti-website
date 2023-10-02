@@ -62,6 +62,7 @@ const Mission: React.FC = () => {
 								href={ missionData.btnCta.href }
 								externalLink={ missionData.btnCta.externalLink }
 								className='btn-cta-landing btn-secondary group'
+								aria-label={ missionData.btnCta.text }
 							>
 								<span className='text-btn-cta-landing'>
 									{ missionData.btnCta.text }

@@ -58,6 +58,7 @@ const Dashboard: React.FC = () => {
 								href={ dashboardData.btnCta.href }
 								externalLink={ dashboardData.btnCta.externalLink }
 								className='btn-cta-landing btn-secondary group'
+								aria-label={ dashboardData.btnCta.text }
 							>
 								<span className='text-btn-cta-landing'>
 									{ dashboardData.btnCta.text }

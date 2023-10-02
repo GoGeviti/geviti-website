@@ -30,6 +30,7 @@ const Footer: React.FC<FooterProps> = ({ landingPage }) => {
 
 						{ item.menu.map(childItem => (
 							<CustomLink
+								aria-label={ childItem.name }
 								key={ childItem.name }
 								href={ childItem.href }
 								externalLink={ childItem.externalLink }
@@ -67,7 +68,9 @@ const Footer: React.FC<FooterProps> = ({ landingPage }) => {
 			<div className='container-center'>
 				<div className='lg:grid lg:grid-cols-5'>
 					<div className='flex flex-col lg:col-span-3'>
-						<CustomLink href='/'>
+						<CustomLink
+							aria-label='footer logo'
+							href='/'>
 							<div className='relative overflow-hidden w-[85px] h-5'>
 								<Image
 									alt='logo'
@@ -100,6 +103,7 @@ const Footer: React.FC<FooterProps> = ({ landingPage }) => {
 									key={ item.alt }
 									href={ item.url }
 									externalLink
+									aria-label={ item.alt }
 								>
 									<div className='relative overflow-hidden w-4 sm:w-5 h-4 sm:h-5'>
 										<Image

@@ -34,6 +34,7 @@ const Therapy: React.FC = () => {
 								href={ therapyData.btnCta.href }
 								externalLink={ therapyData.btnCta.externalLink }
 								className='btn-cta-landing group btn-primary'
+								aria-label={ therapyData.btnCta.text }
 							>
 								<span className='text-btn-cta-landing'>
 									{ therapyData.btnCta.text }

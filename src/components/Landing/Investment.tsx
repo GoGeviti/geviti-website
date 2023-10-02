@@ -65,6 +65,7 @@ const Investment: React.FC = () => {
 								href={ investmentData.btnCta.href }
 								externalLink={ investmentData.btnCta.externalLink }
 								className='btn-cta-landing btn-secondary group'
+								aria-label={ investmentData.btnCta.text }
 							>
 								<span className='text-btn-cta-landing'>
 									{ investmentData.btnCta.text }
