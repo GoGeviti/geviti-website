@@ -166,6 +166,7 @@ const DiscoverGeviti: React.FC<DiscoverGevitiProps> = ({
 		return (
 			<CustomLink
 				href={ viewAll.href }
+				aria-label={ viewAll.text }
 				className='btn btn-primary flex items-center gap-7px sm:gap-2 !translate-y-0 group'
 			>
 				<span className='text-xs sm:text-sm font-medium leading-5 sm:leading-6 font-Poppins'>

@@ -87,6 +87,7 @@ const Application: React.FC = () => {
 								href={ applicationData.btnCta.href }
 								externalLink={ applicationData.btnCta.externalLink }
 								className='btn-cta-landing btn-primary group'
+								aria-label={ applicationData.btnCta.text }
 							>
 								<span className='text-btn-cta-landing'>
 									{ applicationData.btnCta.text }

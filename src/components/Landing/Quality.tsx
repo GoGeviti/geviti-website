@@ -59,6 +59,7 @@ const Quality: React.FC = () => {
 															'btn-cta-landing group',
 															btnCtaIdx === 0 ? 'btn-secondary lg:btn-primary' : ''
 														) }
+														aria-label={ btnCta.text }
 													>
 														<span className='text-btn-cta-landing'>
 															{ btnCta.text }

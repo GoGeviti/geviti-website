@@ -58,6 +58,7 @@ const Hero = () => {
 										href={ heroData.btnCta.href }
 										externalLink={ heroData.btnCta.externalLink }
 										className='btn-cta-landing btn-secondary group'
+										aria-label={ heroData.btnCta.text }
 									>
 										<span className='text-btn-cta-landing'>
 											{ heroData.btnCta.text }
@@ -69,6 +70,7 @@ const Hero = () => {
 										href={ heroData.btnCta2.href }
 										externalLink={ heroData.btnCta2.externalLink }
 										className='btn-cta-landing  group '
+										aria-label={ heroData.btnCta2.text }
 									>
 										<span className='text-btn-cta-landing text-grey-secondary'>
 											{ heroData.btnCta2.text }

@@ -47,6 +47,7 @@ const Functional: React.FC = () => {
 									href={ functionalData.btnCta.href }
 									externalLink={ functionalData.btnCta.externalLink }
 									className='btn-cta-landing btn-secondary group'
+									aria-label={ functionalData.btnCta.text }
 								>
 									<span className='text-btn-cta-landing '>
 										{ functionalData.btnCta.text }

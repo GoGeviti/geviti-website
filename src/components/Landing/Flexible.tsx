@@ -35,6 +35,7 @@ const Flexible: React.FC = () => {
 									href={ flexibleData.btnCta.href }
 									externalLink={ flexibleData.btnCta.externalLink }
 									className='btn-cta-landing btn-primary group'
+									aria-label={ flexibleData.btnCta.text }
 								>
 									<span className='text-btn-cta-landing'>
 										{ flexibleData.btnCta.text }
