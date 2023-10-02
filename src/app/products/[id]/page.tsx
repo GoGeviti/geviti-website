@@ -52,6 +52,7 @@ const ProductDetailPage: NextPage<ProductDetailPageProps> = ({ params }) => {
 								</svg>
 							) }
 							<Link
+								prefetch={ false }
 								href={ page.href }
 								className={ clsxm(
 									'text-xs sm:text-sm font-Poppins font-medium sm:leading-5',
@@ -111,6 +112,7 @@ const ProductDetailPage: NextPage<ProductDetailPageProps> = ({ params }) => {
 			<button
 				className='btn btn-primary w-full text-xs sm:text-sm font-medium font-Poppins leading-[21px] sm:leading-[26px] py-2.5 sm:py-[13px]'
 				onClick={ () => router.push(`/orders?selectedProduct=${ id }`) }
+				aria-label='Purchase'
 			>
 				Purchase
 			</button>

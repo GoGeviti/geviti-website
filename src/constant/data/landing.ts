@@ -22,11 +22,16 @@ const landingData = {
 	hero: {
 		preTitle: 'LED BY INDUSTRY EXPERTS',
 		title: 'Longevity that works for you.<br />Telehealth made simple.',
-		image: '/images/landing/hero.png',
+		image: '/images/landing/hero-resize.webp',
 		btnCta: {
 			text: 'See if I qualify',
 			href: 'https://gogeviti.typeform.com/qualify',
 			externalLink: true
+		},
+		btnCta2: {
+			href: '/get-started',
+			externalLink: false,
+			text: 'Get Started'
 		},
 		mainKeys: [
 			{
@@ -59,8 +64,8 @@ const landingData = {
 		preTitle: 'INVESTMENT IN YOUR FUTURE',
 		title: 'Prioritizing longevity is an investment in your future self.',
 		description: 'Live longer without compromising your lifestyle—our longevity solutions are designed to fit seamlessly into your everyday life.',
-		image: '/images/landing/investment.png',
-		imageMobile: '/images/landing/investment_mobile.png',
+		image: '/images/landing/investment.webp',
+		imageMobile: '/images/landing/investment_mobile.webp',
 		btnCta: {
 			href: '/get-started',
 			externalLink: false,
@@ -70,8 +75,8 @@ const landingData = {
 	mission: {
 		title: 'Our Mission',
 		description: 'Geviti is built on the premise that our bodies are merely vessels of consciousness. Our mission is to extend time spent in our conscious experience so we may share it with our loved ones.<br /><br />We strive to slow down, maintain, or even reverse one’s biological age my promoting actionable plans.',
-		image: '/images/landing/mission.png',
-		imageMobile: '/images/landing/mission_mobile.png',
+		image: '/images/landing/mission.webp',
+		imageMobile: '/images/landing/mission_mobile.webp',
 		btnCta: {
 			href: '/',
 			externalLink: false,
@@ -90,26 +95,26 @@ const landingData = {
 			{
 				id: 'package',
 				title: 'Select your package.',
-				image: '/images/landing/step_1.png',
-				imageMobile: '/images/landing/step_1_mobile.png'
+				image: '/images/landing/step_1.webp',
+				imageMobile: '/images/landing/step_1_mobile.webp'
 			},
 			{
 				id: 'testing',
 				title: 'Complete your testing.',
-				image: '/images/landing/step_2.png',
-				imageMobile: '/images/landing/step_2_mobile.png'
+				image: '/images/landing/step_2.webp',
+				imageMobile: '/images/landing/step_2_mobile.webp'
 			},
 			{
 				id: 'treatment',
 				title: 'Get treatment in the mail.',
-				image: '/images/landing/step_3.png',
-				imageMobile: '/images/landing/step_3.png'
+				image: '/images/landing/step_3.webp',
+				imageMobile: '/images/landing/step_3.webp'
 			},
 			{
 				id: 'best',
 				title: 'Become the best possible you.',
-				image: '/images/landing/step_4.png',
-				imageMobile: '/images/landing/step_4.png'
+				image: '/images/landing/step_4.webp',
+				imageMobile: '/images/landing/step_4.webp'
 			},
 		]
 	},
@@ -121,7 +126,7 @@ const landingData = {
 			externalLink: false,
 			text: 'Start Now'
 		},
-		image: '/images/landing/dashboard_geviti.png'
+		image: '/images/landing/dashboard_geviti.webp'
 	},
 	application: {
 		preTitle: 'On-the-fly access',
@@ -150,7 +155,7 @@ const landingData = {
 			externalLink: false,
 			text: 'Start Now'
 		},
-		image: '/images/landing/application.png'
+		image: '/images/landing/application.webp'
 	},
 	functional: {
 		preTitle: 'Tailored Functional Medicine',
@@ -198,7 +203,19 @@ const landingData = {
 			externalLink: false,
 			text: 'Start Now'
 		}
-	}
+	},
+	flexible: {
+		preTitle: 'flexible plans that are right for you',
+		title: 'Starting from just $99/month',
+		description: 'With at-home blood testing, facilitated by professional mobile phlebotomists, we will design a care plan precisely for your needs.',
+		image: '/images/landing/flexible.webp',
+		imageMobile: '/images/landing/flexible-mobile.webp',
+		btnCta: {
+			href: '/get-started',
+			externalLink: false,
+			text: 'Get Started'
+		}
+	},
 };
 
 export default landingData;

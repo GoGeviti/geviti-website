@@ -3,8 +3,8 @@ const homeData = {
 		preTitle: 'GET STARTED WITH GEVITI',
 		title: 'Live Long, Feel Good',
 		description: '<span class="max-lg:hidden">Join us and become the best version of yourself. Personalized plans to make you look and feel better for longer. Hormones, peptides, supplements, and more. We can give your body what it needs to attack aging. All access in the palm of your hand. Say \'hello to a younger, healthier you.</span><span class="lg:hidden">Join us and become the best version of yourself. Hormones, peptides, supplements, and more. Give your body what it needs to attack aging. All access in the palm of your hand.</span>',
-		image: '/images/home/hero.jpg',
-		imageMobile: '/images/home/hero_mobile.png',
+		image: '/images/home/hero_1.webp',
+		imageMobile: '/images/home/hero_mobile.webp',
 		mainKeys: [
 			{
 				image: '/images/icons/codepen.svg',
@@ -25,7 +25,7 @@ const homeData = {
 		]
 	},
 	features: {
-		image: '/images/home/dashboard.png',
+		image: '/images/home/dashboard.webp',
 		preTitle: 'digital health management',
 		title: 'Digital Health Management<br />at Your Fingertips',
 		description: 'With our intuitive web and mobile app, Geviti provides a seamless digital health ecosystem for you.',

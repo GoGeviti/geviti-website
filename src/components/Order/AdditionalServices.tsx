@@ -40,6 +40,7 @@ const AdditionalServices: React.FC<AdditionalServicesProps> = ({
 	const renderButtonAddedToCart = (service: IProducts.ProductItem) => {
 		return (
 			<button
+				aria-label='Added To Cart'
 				onClick={ () => onClickRemoveProduct(service) }
 				className='btn btn-primary !bg-[#1A1C1E] !px-4 flex items-center justify-center max-sm:w-full gap-1.5 text-grey-secondary'>
 				<span className='flex-shrink-0'>
@@ -53,6 +54,7 @@ const AdditionalServices: React.FC<AdditionalServicesProps> = ({
 	const renderButtonAddToCart = (service: IProducts.ProductItem) => {
 		return (
 			<button
+				aria-label='Added To Cart'
 				disabled={ service.id === 15 && selectedProduct === '5' }
 				className='btn btn-secondary disabled:bg-grey-secondary/50 disabled:cursor-not-allowed !px-4 flex items-center justify-center gap-1.5 max-sm:w-full'
 				onClick={ () => onClickProduct(service) }
@@ -138,7 +140,6 @@ const AdditionalServices: React.FC<AdditionalServicesProps> = ({
 
 	return (
 		<div>
-			{ /* { renderSelectState() } */ }
 			{ renderServiceList() }
 		</div>
 	);

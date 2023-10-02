@@ -1,34 +1,34 @@
 'use client';
-
 import React from 'react';
 import Image from 'next/image';
 
-import { landingData } from '@/constant/data';
+import landingData from '@/constant/data/landing';
 
-// import CustomLink from '../CustomLink';
 import { ChevronRight } from '../Icons';
 import Navbar from '../Navbar';
 import WrapperAnimation from '../WrapperAnimation';
 import { CustomLink } from '..';
 
 const heroData = landingData.hero;
-
-const Hero: React.FC = () => {
+const Hero = () => {
 	return (
 		<div className='lg:px-3 lg:py-15px overflow-hidden'>
 			<Navbar
 				iconsMenu={ landingData.navbar.iconsMenu }
 				actionsMenu={ landingData.navbar.actionsMenu }
 			/>
-			<div className='bg-primary h-[calc(100vh-25px)] w-full lg:rounded-[19px] relative pt-11px lg:pt-5'>
+			<div className='bg-primary max-h-[850px] h-[calc(100vh-25px)] w-full lg:rounded-[19px] relative pt-11px lg:pt-5'>
 				<div className='absolute inset-0 w-full h-full'>
 					{ heroData.image && (
 						<div className='relative overflow-hidden w-full h-full lg:rounded-[19px]'>
 							<Image
 								src={ heroData.image }
-								alt=''
+								alt='hero'
+								priority
 								className='object-cover'
 								fill
+								objectPosition='top'
+								quality={ 75 }
 							/>
 						</div>
 					) }
@@ -53,7 +53,7 @@ const Hero: React.FC = () => {
 
 								<div
 									id='main-keys-landing'
-									className='flex justify-center mt-7 sm:mt-9'>
+									className='flex justify-center mt-7 sm:mt-9 space-x-5'>
 									<CustomLink
 										href={ heroData.btnCta.href }
 										externalLink={ heroData.btnCta.externalLink }
@@ -64,6 +64,17 @@ const Hero: React.FC = () => {
 										</span>
 
 										<ChevronRight className='arrow-btn-cta-landing' />
+									</CustomLink>
+									<CustomLink
+										href={ heroData.btnCta2.href }
+										externalLink={ heroData.btnCta2.externalLink }
+										className='btn-cta-landing  group '
+									>
+										<span className='text-btn-cta-landing text-grey-secondary'>
+											{ heroData.btnCta2.text }
+										</span>
+
+										<ChevronRight className='arrow-btn-cta-landing text-grey-secondary' />
 									</CustomLink>
 								</div>
 							</div>
@@ -84,6 +95,7 @@ const Hero: React.FC = () => {
 													alt={ feature.text }
 													sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
 													fill
+													loading='lazy'
 												/>
 											</div>
 										) }

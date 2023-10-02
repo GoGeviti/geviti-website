@@ -91,13 +91,13 @@ const DiscoverGeviti: React.FC<DiscoverGevitiProps> = ({
 
 	const renderProductList = () => {
 		const isMobile = windowDimensions.width < screens.lg;
-		const productList = isMobile ? productsData : productsData?.slice(0, 4);
+		const productList = isMobile ? productsData : productsData;
 
 		return (
 			<div
 				id='discover-products-scroll'
 				onScroll={ handleScrollProducts }
-				className='no-scrollbar overflow-y-hidden transition-all select-none transform flex flex-nowrap overflow-x-auto scrolling-touch scroll-smooth gap-x-18px lg:gap-x-5 py-1 -mr-4 lg:-mr-0 last:pr-[17px] lg:last:pr-0 lg:grid lg:overflow-hidden lg:gap-y-4 lg:grid-cols-4'
+				className='no-scrollbar overflow-y-hidden transition-all select-none transform flex flex-nowrap overflow-x-auto scrolling-touch scroll-smooth gap-x-18px py-1 -mr-4 last:pr-[17px] lg:last:pr-0'
 			>
 				{ productList.map((product, productIdx) => (
 					<div
@@ -105,12 +105,13 @@ const DiscoverGeviti: React.FC<DiscoverGevitiProps> = ({
 						id='discover-product-card'
 						data-aos='zoom-in-down'
 						data-aos-delay={ `${ productIdx * 100 }` }
-						className='group cursor-pointer relative flex flex-col overflow-hidden bg-grey-secondary max-lg:flex-none w-[248px] lg:w-full'
+						className='group cursor-pointer relative flex flex-col overflow-hidden bg-grey-secondary flex-none w-[248px] lg:w-[287px]'
 						onClick={ () => router.push(`/products/${ product.id }`) }
 					>
 						<div className='relative overflow-hidden bg-[#E5E5E5] group-hover:opacity-75 w-full h-[225px] lg:h-[260px]'>
 							{ product.imageSrc && (
 								<Image
+									loading='lazy'
 									src={ product.imageSrc }
 									alt={ product.name ?? '' }
 									className='object-cover object-center'
@@ -179,16 +180,16 @@ const DiscoverGeviti: React.FC<DiscoverGevitiProps> = ({
 	return (
 		<div className='relative overflow-hidden'>
 			<div className='container-center w-full relative'>
-				{ desktopScroll && (
-					<>
-						<div className='absolute bottom-0 -left-4'>
-							{ renderArrowNarrow('left') }
-						</div>
-						<div className='absolute bottom-0 -right-4'>
-							{ renderArrowNarrow('right') }
-						</div>
-					</>
-				) }
+				{ /* { desktopScroll && ( */ }
+				<div>
+					<div className='absolute bottom-0 -left-4'>
+						{ renderArrowNarrow('left') }
+					</div>
+					<div className='absolute bottom-0 -right-4'>
+						{ renderArrowNarrow('right') }
+					</div>
+				</div>
+				{ /* ) } */ }
 
 				<div className='flex items-center justify-between'>
 					<div data-aos='zoom-in-right'>

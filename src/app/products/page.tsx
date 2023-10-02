@@ -215,6 +215,7 @@ const ProductsPage: NextPage = () => {
 									<div className='relative overflow-hidden bg-[#E7E7E7] group-hover:opacity-75 w-full h-[117px] sm:h-[202px]'>
 										{ product.imageSrc && (
 											<Image
+												loading='lazy'
 												src={ product.imageSrc }
 												alt={ product.name ?? '' }
 												className='object-cover object-center'
@@ -282,6 +283,7 @@ const ProductsPage: NextPage = () => {
 				<button
 					className='absolute inset-y-0 right-0 flex items-center px-4 lg:hidden focus:ring-0 focus:outline-none focus:border-0'
 					onClick={ () => setOpenSheet(prev => !prev) }
+					aria-label='prev'
 				>
 					<SettingsIcon aria-hidden='true' />
 				</button>
@@ -323,7 +325,8 @@ const ProductsPage: NextPage = () => {
 							} }>Save</button>
 						<button
 							className='btn bg-primary bg-opacity-10 w-full text-primary font-medium !py-11px'
-							onClick={ onCloseSheet }>Cancel</button>
+							onClick={ onCloseSheet }
+							aria-label='Cancel'>Cancel</button>
 					</div>
 				</SheetContent>
 			</Sheet>

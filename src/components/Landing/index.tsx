@@ -1,5 +1,6 @@
 import Application from './Application';
 import Dashboard from './Dashboard';
+import Flexible from './Flexible';
 import Functional from './Functional';
 import Hero from './Hero';
 import Investment from './Investment';
@@ -13,6 +14,7 @@ import Therapy from './Therapy';
 export {
 	Application,
 	Dashboard,
+	Flexible,
 	Functional,
 	Hero,
 	Investment,

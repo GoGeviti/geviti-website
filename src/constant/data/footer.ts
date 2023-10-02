@@ -1,6 +1,7 @@
 const footerData = {
-	logo: '/images/logo/logo_dark.png',
+	logo: '/images/logo/logo_dark.webp',
 	content: 'Stay in the loop with exclusive offers and product previews.',
+	bottomContent: '*Product images are for display purposes; actual items from US-based pharmacies may vary.',
 	list: [
 		{
 			title: 'Help & Support',

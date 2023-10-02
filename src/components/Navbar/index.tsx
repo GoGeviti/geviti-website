@@ -70,6 +70,7 @@ const Navbar: React.FC<NavbarProps> = ({
 
 					return (
 						<button
+							aria-label='Action'
 							type='button'
 							key={ iconMenu.id }
 							className='relative rounded-full focus:outline-0 focus:ring-0 focus:border-0'
@@ -92,6 +93,7 @@ const Navbar: React.FC<NavbarProps> = ({
 			<>
 				{ actionsMenu?.map(menu => (
 					<button
+						aria-label='Action'
 						className={ clsxm(
 							'btn font-Poppins text-sm font-medium leading-6',
 							theme === 'dark' ? 'btn-secondary' : 'btn-primary !text-grey-background'
@@ -115,7 +117,7 @@ const Navbar: React.FC<NavbarProps> = ({
 				<div className='flex-shrink-0 relative overflow-hidden w-[85px] h-5'>
 					<Image
 						src={ src }
-						alt=''
+						alt='logo'
 						fill
 						priority
 						className='object-contain'
@@ -190,6 +192,7 @@ const Navbar: React.FC<NavbarProps> = ({
 							<button
 								className={ clsxm('focus:outline-none focus:border-0 focus:ring-0', theme === 'dark' ? 'text-grey-secondary' : 'text-primary') }
 								onClick={ () => setOpenSheet(prevOpen => !prevOpen) }
+								aria-label='Toggle Menu'
 							>
 								<Bars3Icon
 									className='block h-6 w-6'

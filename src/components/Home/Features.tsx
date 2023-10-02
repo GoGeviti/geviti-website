@@ -31,6 +31,7 @@ const Features: React.FC = () => {
 				<button
 					onClick={ () => handleScroll(actionData.href) }
 					data-aos='zoom-in'
+					aria-label='Action'
 					className={ wrapper }>
 					{ renderContentButtonAction() }
 				</button>
@@ -41,6 +42,7 @@ const Features: React.FC = () => {
 			<button
 				data-aos='zoom-in'
 				className={ wrapper }
+				aria-label='Action'
 			>
 				{ renderContentButtonAction() }
 			</button>
@@ -79,8 +81,9 @@ const Features: React.FC = () => {
 											className='relative overflow-hidden w-3 h-2.5 lg:w-5 lg:h-15px'
 										>
 											<Image
+												loading='lazy'
 												src={ icon }
-												alt=''
+												alt='icon'
 												fill
 												className='object-contain'
 											/>
@@ -132,6 +135,7 @@ const Features: React.FC = () => {
 								className='max-sm:w-full flex-none sm:max-w-4xl lg:max-w-2xl'
 							>
 								<Image
+									loading='lazy'
 									src={ featuresData.image }
 									alt='dashboard'
 									width={ 2432 }

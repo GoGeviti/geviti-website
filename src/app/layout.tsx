@@ -1,5 +1,4 @@
 import type { Metadata } from 'next';
-// import Script from 'next/script';
 import NextTopLoader from 'nextjs-toploader';
 
 import { AOSInit } from '@/components';
