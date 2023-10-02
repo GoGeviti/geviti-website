@@ -31,7 +31,7 @@ const Features: React.FC = () => {
 				<button
 					onClick={ () => handleScroll(actionData.href) }
 					data-aos='zoom-in'
-					aria-label='Action'
+					aria-label='content btn action'
 					className={ wrapper }>
 					{ renderContentButtonAction() }
 				</button>
@@ -42,7 +42,7 @@ const Features: React.FC = () => {
 			<button
 				data-aos='zoom-in'
 				className={ wrapper }
-				aria-label='Action'
+				aria-label='content btn action'
 			>
 				{ renderContentButtonAction() }
 			</button>
