@@ -70,7 +70,7 @@ const Navbar: React.FC<NavbarProps> = ({
 
 					return (
 						<button
-							aria-label='Action'
+							aria-label='icon menu list'
 							type='button'
 							key={ iconMenu.id }
 							className='relative rounded-full focus:outline-0 focus:ring-0 focus:border-0'
@@ -93,7 +93,7 @@ const Navbar: React.FC<NavbarProps> = ({
 			<>
 				{ actionsMenu?.map(menu => (
 					<button
-						aria-label='Action'
+						aria-label='icon menu list'
 						className={ clsxm(
 							'btn font-Poppins text-sm font-medium leading-6',
 							theme === 'dark' ? 'btn-secondary' : 'btn-primary !text-grey-background'
