@@ -20,8 +20,8 @@ const landingData = {
 		]
 	},
 	hero: {
-		preTitle: 'LED BY INDUSTRY EXPERTS',
-		title: 'Longevity that works for you.<br />Telehealth made simple.',
+		preTitle: 'We’ll Help You Live Longer and Live Healthier',
+		title: 'Your online hormone therapy and<br/>functional medicine provider.',
 		image: '/images/landing/hero-resize.webp',
 		btnCta: {
 			text: 'See if I qualify',
@@ -36,18 +36,18 @@ const landingData = {
 		mainKeys: [
 			{
 				image: '/images/icons/helix.svg',
-				text: 'Hormone',
-				subtext: 'Optimization'
+				text: 'Hormone therapy',
+				subtext: 'if applicable'
 			},
 			{
 				image: '/images/icons/chemical.svg',
-				text: 'Genetic',
-				subtext: 'Navigation'
+				text: 'Bloodwork screening',
+				subtext: 'at-home'
 			},
 			{
 				image: '/images/icons/traced.svg',
-				text: 'Lifestyle',
-				subtext: 'Maximization'
+				text: 'Prescription care',
+				subtext: 'cash pay'
 			}
 		]
 	},
@@ -84,8 +84,8 @@ const landingData = {
 		}
 	},
 	steps: {
-		preTitle: 'completely custom',
-		title: 'Start on the path towards a longer, more enjoyable life.',
+		preTitle: 'Easy online care',
+		title: 'Access to better care in just 4 easy steps.',
 		btnCta: {
 			href: 'https://gogeviti.typeform.com/qualify',
 			externalLink: true,
@@ -94,25 +94,25 @@ const landingData = {
 		list: [
 			{
 				id: 'package',
-				title: 'Select your package.',
+				title: 'Select your blood test',
 				image: '/images/landing/step_1.webp',
 				imageMobile: '/images/landing/step_1_mobile.webp'
 			},
 			{
 				id: 'testing',
-				title: 'Complete your testing.',
+				title: 'Complete in-home testing',
 				image: '/images/landing/step_2.webp',
 				imageMobile: '/images/landing/step_2_mobile.webp'
 			},
 			{
 				id: 'treatment',
-				title: 'Get treatment in the mail.',
+				title: 'Telehealth doctor visit',
 				image: '/images/landing/step_3.webp',
 				imageMobile: '/images/landing/step_3.webp'
 			},
 			{
 				id: 'best',
-				title: 'Become the best possible you.',
+				title: 'Receive treatment in mail',
 				image: '/images/landing/step_4.webp',
 				imageMobile: '/images/landing/step_4.webp'
 			},
@@ -174,12 +174,13 @@ const landingData = {
 	},
 	quality: {
 		preTitle: 'Highest quality standards',
-		title: 'Hormones, peptides, and more shipped straight to your door.',
+		title: 'Pharmacy Dispensed Medicines',
+		notes: '*Product images are for display purposes; actual items from US-based pharmacies may vary.',
 		list: [
-			'Regenerative Medicine',
-			'Hormone Therapy',
-			'Anti-aging Protocols',
-			'Innovative Therapies'
+			'Oral testosterone replacement (TRT)',
+			'Online peptide and hormone therapy',
+			'Integrated telehealth care app',
+			'And more tailored treatments'
 		],
 		btnCtaList: [
 			{
@@ -196,8 +197,8 @@ const landingData = {
 	},
 	therapy: {
 		preTitle: 'Innovative anti-aging therapies',
-		title: 'Hormone therapy, peptide therapy, and anti-aging medicine.',
-		description: 'We go beyond the traditional one-size-fits-all approach. We understand that each individual has unique needs and goals.',
+		title: 'No need to leave home. Anti-aging care that goes where you go.',
+		description: 'Through on-site blood analysis by certified mobile phlebotomists, we\'ll tailor a healthcare plan specifically for your requirements.',
 		btnCta: {
 			href: '/get-started',
 			externalLink: false,
