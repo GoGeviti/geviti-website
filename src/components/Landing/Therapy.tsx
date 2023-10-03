@@ -18,7 +18,7 @@ const Therapy: React.FC = () => {
 							{ therapyData.preTitle }
 						</p>
 						{ therapyData.title && (
-							<div className='max-lg:mx-auto sm:max-w-[575px] mt-11px sm:mt-3'>
+							<div className='max-lg:mx-auto sm:max-w-[600px] mt-11px sm:mt-3'>
 								<h2 className='font-Poppins text-xl sm:text-2xl md:text-[32px] lg:text-4xl leading-[135%] sm:leading-[121%] -tracking-0.04em'>
 									{ therapyData.title }
 								</h2>
