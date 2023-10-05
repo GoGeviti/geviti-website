@@ -4,7 +4,7 @@ import { NextPage } from 'next';
 import Link from 'next/link';
 import { notFound, useRouter } from 'next/navigation';
 
-import { HomeComponent, Navbar, ProductsComponent } from '@/components';
+import { HomeComponent, LandingComponent, Navbar, ProductsComponent } from '@/components';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/Accordion';
 import { AlertSquareIcon, ChevronDown } from '@/components/Icons';
 import { productsData } from '@/constant/data';
@@ -123,7 +123,7 @@ const ProductDetailPage: NextPage<ProductDetailPageProps> = ({ params }) => {
 		<>
 			<div className='relative overflow-hidden bg-[#CFD8DB]'>
 				<Navbar theme='light' />
-				<div className='pb-[42px] lg:pb-[116px] pt-24 lg:pt-[172px] container-center flex flex-col max-lg:items-center'>
+				<div className='pt-24 lg:pt-[172px] container-center flex flex-col max-lg:items-center'>
 					{ renderBreadcrumb() }
 
 					<div className='flex max-lg:flex-col lg:grid lg:grid-cols-2 gap-10 pt-[27px] lg:pt-12 w-full'>
@@ -136,7 +136,10 @@ const ProductDetailPage: NextPage<ProductDetailPageProps> = ({ params }) => {
 							<div className='flex flex-col gap-y-[26px] lg:gap-y-[42px] mt-[7px] lg:mt-[17px]'>
 								<div className='flex items-center justify-between text-primary'>
 									<h1 className='text-3xl lg:text-4xl -tracking-0.04em font-Poppins leading-[124%] lg:leading-[121%]'>{ product?.name }</h1>
-									<p className='text-xl lg:text-2xl leading-[77%] lg:leading-[75%] font-BRSonoma'>${ product?.price }</p>
+									<div className='flex flex-col items-center'>
+										<p className='text-xl lg:text-2xl md:font-semibold leading-[77%] lg:leading-[75%] font-Poppins'>${ product?.price } <span className='hidden md:block text-base text-grey-primary font-medium'>monthly</span></p>
+										<p className='text-[13px] font-medium leading-[77%] lg:leading-[75%] font-Poppins hidden md:block '>with Geviti membership</p>
+									</div>
 								</div>
 
 								<div className='flex flex-col gap-1.5 sm:gap-2.5'>
@@ -144,12 +147,12 @@ const ProductDetailPage: NextPage<ProductDetailPageProps> = ({ params }) => {
 										<div className='flex gap-5px text-primary'>
 											<AlertSquareIcon className='w-15px h-15px sm:w-18px sm:h-18px flex-shrink-0' />
 
-											<p className='text-[10px] sm:text-xs font-BRSonoma leading-5 sm:leading-[18px] font-medium'>Products available based on blood test results</p>
+											<p className='text-xs sm:text-sm font-Poppins leading-5 sm:leading-[18px] font-medium'>Products available based on blood test results</p>
 										</div>
 									) }
 
 									{ product?.description && (
-										<p className='text-[10px] sm:text-xs font-BRSonoma text-grey-primary leading-[17px] sm:leading-5'>{ product?.description }</p>
+										<p className='text-[10px] sm:text-xs font-BRSonoma text-primary leading-[17px] sm:leading-5'>{ product?.description }</p>
 									) }
 								</div>
 
@@ -161,9 +164,16 @@ const ProductDetailPage: NextPage<ProductDetailPageProps> = ({ params }) => {
 							</div>
 						</div>
 					</div>
+					<p className='text-start w-full font-Poppins text-[6px] md:text-[10px] font-medium pt-7 lg:pt-20 mb-7 lg:mb-10'>*Product images are for display purposes; actual items from US-based pharmacies may vary.</p>
 				</div>
 			</div>
 
+			<div className='pt-9 lg:pt-[121px] pb-[32px] lg:pb-[51px]'>
+				<LandingComponent.Steps />
+			</div>
+			<div className='pt-9 lg:pt-[121px] pb-[32px] lg:pb-[51px]'>
+				<HomeComponent.LearnMore withBg />
+			</div>
 			<div className='pt-9 lg:pt-[121px] pb-[32px] lg:pb-[51px]'>
 				<HomeComponent.Products />
 			</div>

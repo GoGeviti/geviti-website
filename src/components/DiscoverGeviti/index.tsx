@@ -22,6 +22,7 @@ type DiscoverGevitiProps = {
 	viewAllMobileClassName?: string;
 	productsWrapperClassName?: string;
 	desktopScroll?: boolean;
+	withBg?:boolean;
 };
 
 const DiscoverGeviti: React.FC<DiscoverGevitiProps> = ({
@@ -30,7 +31,8 @@ const DiscoverGeviti: React.FC<DiscoverGevitiProps> = ({
 	viewAll = homeData.products.viewAll,
 	viewAllMobileClassName = 'flex justify-center mt-10',
 	productsWrapperClassName = 'mt-7 lg:mt-[50px]',
-	desktopScroll = false
+	desktopScroll = false,
+	withBg = false
 }) => {
 	const router = useRouter();
 	const windowDimensions = useWindowDimensions();
@@ -179,7 +181,7 @@ const DiscoverGeviti: React.FC<DiscoverGevitiProps> = ({
 	};
 
 	return (
-		<div className='relative overflow-hidden'>
+		<div className={ clsxm('relative overflow-hidden', withBg && 'bg-[#EAEAEA] lg:rounded-[19px] lg:mx-3 py-10 sm:py-20') }>
 			<div className='container-center w-full relative'>
 				{ /* { desktopScroll && ( */ }
 				<div>

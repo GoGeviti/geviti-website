@@ -35,16 +35,22 @@ const config: Config = {
 					'primary': '#919B9F',
 					'secondary': '#FBFBFB',
 					'dark': '#2D3135',
-					'shadow': '#CFCFCF'
+					'shadow': '#CFCFCF',
+					'background-2': '#EAEAEA',
+					'date': '#767A7C',
+					'cta': '#757C80'
 				},
 				blue: {
 					'1': '#A3E0FF',
 					'2': '#5E899E',
-					'3': '#CDD8DC'
+					'3': '#CDD8DC',
+					'4': '#78C3E9'
 				},
 				'black-background': '#222426',
 				'black-secondary': '#242628',
-				'black-landing': '#353738'
+				'black-landing': '#353738',
+				'black-icons': '#2C2F34',
+				'table-light': '#F9FAFB'
 			},
 			letterSpacing: {
 				'0.04em': '0.04em',
