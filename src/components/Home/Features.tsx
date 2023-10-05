@@ -102,7 +102,7 @@ const Features: React.FC = () => {
 	};
 
 	return (
-		<div className='lg:px-3 mt-10 sm:mt-20'>
+		<div className='lg:px-3 mt-10'>
 			<div className='relative isolate overflow-hidden bg-blue-1 lg:rounded-[19px]'>
 				<div className='container-center pb-[41px] pt-[52px] lg:flex lg:py-[102px]'>
 					<div className='mx-auto max-w-2xl text-center lg:text-left flex-shrink-0 lg:mx-0 lg:max-w-xl flex flex-col max-lg:items-center'>

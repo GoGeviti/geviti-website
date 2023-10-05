@@ -3,17 +3,15 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 
-import { homeData, packagesData, statesData } from '@/constant/data';
+import { homeData, statesData } from '@/constant/data';
 import clsxm from '@/helpers/clsxm';
 
 import {
 	ArrowNarrowDown,
 	ArrowNarrowRight,
-	CheckIcon,
+	CheckBlue,
 	InfoCircle,
-	Vial
 } from '../Icons';
-import { Popover, PopoverContent, PopoverTrigger } from '../Popover';
 import {
 	Select,
 	SelectContent,
@@ -26,94 +24,42 @@ import {
 import WrapperAnimation from '../WrapperAnimation';
 
 import DialogHelp from './DialogHelp';
-import SliderPackages from './SliderPackages';
+import TablePackage from './TablePackage';
 
 type ComponentItem = {
 	packageId?: number;
 	componentId?: number;
 	name: string;
-	description: string;
+	description: any;
 };
 
 const PackagesSection: React.FC = () => {
-	const [detailPopover, setDetailPopover] = useState<ComponentItem>({
-		packageId: -1,
-		componentId: -1,
-		name: '',
-		description: ''
-	});
 	const [selectedPackageIdx, setSelectedPackageIdx] = useState<number>(-1);
-	const [openPopover, setOpenPopover] = useState<boolean>(false);
+	const [openFeatures, setOpenFeatures] =  useState<number>(-1);
 	const [openDialogHelp, setOpenDialogHelp] = useState<boolean>(false);
 	const [state, setState] = useState<string>('');
-
-	const handleMouseEnter = (component: ComponentItem) => {
-		setOpenPopover(true);
-		setDetailPopover(component);
-	};
-
-	const handleMouseLeave = (component: ComponentItem) => {
-		setOpenPopover(false);
-		setDetailPopover(component);
-	};
+	const [stateGender, setStateGender] = useState<string>('');
 
 	const renderTextComponentPackage = (component: ComponentItem) => {
 		return (
 			<span className='flex items-center gap-1 text-primary'>
-				<CheckIcon />
-
-				<p className='text-[10px] text-primary font-BRSonoma leading-5'>{ component.name }</p>
+				{
+					component.description === true &&
+					<CheckBlue />
+				}
+				<p className='text-[10px] text-primary font-BRSonoma leading-5'>{ component.description !== true && <span className='font-bold'>{ component.description }</span> } { component.name }</p>
 			</span>
 		);
 	};
 
-	const renderTooltipProductDetail = (component: ComponentItem) => {
-		const isOpen = openPopover
-			&& detailPopover.componentId === component.componentId
-			&& detailPopover.packageId === component.packageId
-			&& !!state;
-
-		return (
-			<Popover
-				open={ isOpen }
-				onOpenChange={ isOpen ? setOpenPopover : undefined }
-			>
-				<PopoverTrigger
-					onClick={ () => handleMouseEnter(component) }
-					onMouseEnter={ () => handleMouseEnter(component) }
-					onMouseLeave={ () => handleMouseLeave(component) }
-					asChild
-				>
-					{ renderTextComponentPackage(component) }
-				</PopoverTrigger>
-				<PopoverContent
-					className='p-18px'
-					onMouseEnter={ () => handleMouseEnter(component) }
-					onMouseLeave={ () => handleMouseLeave(component) }
-				>
-					<div className='flex flex-col gap-y-1'>
-						<InfoCircle className='w-[13px] h-[13px]' />
-
-						<p className='text-sm text-primary font-medium font-Poppins'>What is { detailPopover.name }?</p>
-						<p className='text-xs leading-4 text-grey-primary font-BRSonoma'>
-							{ detailPopover.description && (
-								<span dangerouslySetInnerHTML={ { __html: detailPopover.description } } />
-							) }
-						</p>
-					</div>
-				</PopoverContent>
-			</Popover>
-		);
-	};
-
 	const resolveCardPackageClassName = (isSelected: boolean) => {
-		if (!state) return 'opacity-50 bg-grey-secondary border-transparent cursor-default';
+		if (!state || !stateGender) return 'opacity-50 bg-grey-secondary border-transparent cursor-default';
 
 		if (isSelected) {
-			return 'bg-blue-1 border-[#65CBFF]';
+			return 'bg-blue-1/30 border-[#65CBFF]';
 		}
 
-		return 'bg-grey-secondary border-transparent cursor-pointer lg:hover:bg-blue-1 lg:hover:bg-opacity-50 lg:hover:border-[#65CBFF] lg:hover:border-opacity-50';
+		return 'bg-grey-secondary border-transparent cursor-pointer lg:hover:bg-blue-1 lg:hover:bg-opacity-30 lg:hover:border-[#65CBFF] lg:hover:border-opacity-50';
 	};
 
 	const renderPackageList = () => {
@@ -122,12 +68,12 @@ const PackagesSection: React.FC = () => {
 				id='package-list'
 				className='mt-10 lg:mt-5 flex flex-col gap-3'
 			>
-				{ packagesData.map((packageItem, packageItemIdx) => {
+				{ homeData.bloodPanel.map((packageItem, packageItemIdx) => {
 					const isSelected = packageItemIdx === selectedPackageIdx;
 
 					return (
 						<div
-							key={ packageItem.id }
+							key={ packageItemIdx }
 							data-aos='zoom-in-down'
 							data-aos-delay={ `${ packageItemIdx * 100 }` }
 							data-aos-anchor='#package-list'
@@ -139,52 +85,37 @@ const PackagesSection: React.FC = () => {
 									resolveCardPackageClassName(isSelected)
 								) }
 							>
-								<div className='flex flex-col xxs:flex-row justify-between gap-3 xxs:gap-6 items-start'>
-									<p className='text-primary text-sm font-medium font-Poppins'>{ packageItem.name }</p>
+								<div className='flex flex-col justify-between items-start'>
+									{
+										packageItem.isPopular &&
+										<p className='bg-blue-1/30 text-blue-4 px-5 py-[2px] rounded-full w-fit font-Poppins text-sm font-medium leading-5'>Most Popular</p>
+									}
+									<p className='font-Poppins text-base font-medium text-primary my-3'>{ packageItem.title }</p>
+									<p className='font-Poppins text-4xl font-medium text-primary leading-[125%] -tracking-[0.72px;]'>{ packageItem.price } <span className='text-grey-primary text-[10px] leading-[150%] tracking-normal'>{ packageItem.priceNote }</span></p>
+									<p className='text-primary text-base leading-[150%] font-Poppins font-medium'>{ packageItem.priceThen } <span className='text-grey-primary text-[10px]'>{ packageItem.priceThenNote }</span></p>
+									<p className='text-grey-primary text-xs leading-[150%] font-Poppins mt-3'>{ packageItem.desc }</p>
+								</div>
+								<div
+									className='text-primary mt-8 mb-3 flex items-center gap-2'
+									onClick={ () => setOpenFeatures(packageItemIdx) }>
+									<p className='font-Poppins text-sm text-primary'>View Plan Features</p>
+									<ArrowNarrowDown className='text-primary' />
+								</div>
 
-									<div className='flex max-lg:flex-col xxs:items-end lg:items-center lg:justify-end lg:gap-15px xxs:text-right lg:text-left'>
-										{ packageItem.value && (
-											<div className='lg:rounded-full lg:bg-primary lg:bg-opacity-10 lg:py-1.5 lg:px-3 text-[10px] leading-5 text-grey-primary lg:text-primary font-BRSonoma'>
-												<span>{ packageItem.value } value</span>
+								<div className={ clsxm('flex-col gap-x-25px gap-y-3.5 lg:gap-y-4', state && stateGender ? (packageItemIdx === openFeatures ? 'flex' : 'hidden') : 'hidden') }>
+									{ packageItem.components?.map((component, componentIdx) => (
+										<div key={ componentIdx }>
+											<div className=''>
+												{ renderTextComponentPackage(component) }
 											</div>
-										) }
-
-										<p className='text-primary font-Poppins text-base lg:text-xl font-medium'>${ packageItem.price }</p>
-									</div>
+										</div>
+									)) }
 								</div>
 
-								<div className='mt-3 xxs:mt-1 lg:mt-11px'>
-									<p className='text-grey-primary text-[10px] lg:text-xs leading-[145%] lg:leading-5 font-BRSonoma'>
-										{ packageItem.description && (
-											<span dangerouslySetInnerHTML={ { __html: packageItem.description } } />
-										) }
-									</p>
-								</div>
-
-								<div className='mt-[26px] lg:mt-5'>
-									<div className='flex flex-wrap gap-x-25px gap-y-3.5 lg:gap-y-4'>
-										{ packageItem.components?.map((component, componentIdx) => (
-											<div key={ componentIdx }>
-												<div className='max-lg:hidden'>
-													{ renderTooltipProductDetail({
-														...component,
-														packageId: packageItemIdx,
-														componentId: componentIdx
-													}) }
-												</div>
-
-												<div className='lg:hidden'>
-													{ renderTextComponentPackage(component) }
-												</div>
-											</div>
-										)) }
-									</div>
-								</div>
-
-								{ isSelected && (
+								{  state && stateGender && isSelected && (
 									<Link
 										prefetch={ false }
-										href={ `/orders?selectedProduct=${ packageItem.id }` }
+										href={ `/orders?selectedProduct=${ packageItemIdx + 1 }` }
 										className='btn btn-primary mt-5 flex items-center gap-1.5 w-fit'>
 										<span className='text-xs font-medium font-BRSonoma leading-[159%]'>Continue</span>
 
@@ -227,35 +158,65 @@ const PackagesSection: React.FC = () => {
 		);
 	};
 
+	const renderPopularPackage = () => {
+		return (
+			<div className={ clsxm('grid grid-cols-4 w-full gap-12 mt-24', (!state || !stateGender) && 'opacity-50 border-transparent cursor-default') }>
+				<div />
+				{ homeData.bloodPanel.map((items, id) => (
+					<div
+						key={ id }
+						className='max-w-[250px] flex flex-col justify-end'>
+						{
+							items.isPopular &&
+						<p className='bg-blue-1/30 text-blue-4 px-5 py-[2px] rounded-full w-fit font-Poppins text-sm font-medium leading-5 mb-4'>Most Popular</p>
+						}
+						<p className='font-Poppins text-xl font-medium mb-4 text-primary'>{ items.title }</p>
+						<p className='font-Poppins text-5xl font-medium text-primary leading-[125%] -tracking-[0.96px;]'>{ items.price } <span className='text-grey-primary text-base leading-[150%] tracking-normal'>{ items.priceNote }</span></p>
+						<p className='text-primary text-base leading-[150%] font-Poppins font-medium'>{ items.priceThen } <span className='text-grey-primary text-sm'>{ items.priceThenNote }</span></p>
+						<p className='text-grey-primary text-sm leading-[150%] font-Poppins mt-4'>{ items.desc }</p>
+						<button
+							className='btn-cta-landing group btn-primary w-full text-center mt-14'
+							aria-label={ items.btn }
+						>
+							<span className='text-btn-cta-landing w-full'>
+								{ items.btn }
+							</span>
+						</button>
+					</div>
+				)) }
+			</div>
+		);
+	};
+
 	const renderNumber = (number:number) => {
 		return (
-			<div className='w-5 h-5 rounded-full bg-primary/5 flex items-center justify-center text-primary font-Poppins text-[10px] mr-2'>
+			<div className=' lg:flex hidden w-5 h-5 rounded-full bg-primary/5  items-center justify-center text-primary font-Poppins text-[10px] mr-2'>
 				{ number }
 			</div>
 		);
 	};
 
-	const renderSelectState = () => {
-		const selectOptions = statesData.options;
+	const renderSelectState = (data:any) => {
+		const selectOptions = data.options;
 
 		return (
 			<WrapperAnimation
 				data-aos='zoom-in-right'
 				className='mt-10'
 			>
-				<p className='text-xs lg:text-sm leading-5 font-BRSonoma mb-[13px] flex'>{ renderNumber(1) }{ statesData.label }</p>
+				<p className='text-xs lg:text-sm leading-5 font-BRSonoma mb-[13px] flex'>{ renderNumber(data.number) }{ data.label }</p>
 
 				<Select
-					value={ state }
-					onValueChange={ setState }
+					value={ data.number === '2' ? stateGender : state }
+					onValueChange={ data.number === '2' ? setStateGender : setState  }
 				>
 					<SelectTrigger
 						className='w-full lg:w-[297px] bg-grey-secondary text-primary'>
 						<SelectValue
-							aria-label={ state }
-							placeholder={ statesData.placeholder }
+							aria-label={  data.number === '2' ? stateGender : state }
+							placeholder={ data.placeholder }
 						>
-							{ state || statesData.placeholder }
+							{  data.number === '2' ? stateGender || data.placeholder : state || data.placeholder }
 						</SelectValue>
 					</SelectTrigger>
 					<SelectContent className='bg-grey-secondary text-primary'>
@@ -273,10 +234,13 @@ const PackagesSection: React.FC = () => {
 								</div>
 							)) }
 							<SelectSeparator />
-							<button
-								aria-label='Don&apos;t see your state? Click here!'
-								className='cursor-pointer flex w-full select-none items-center rounded-sm px-18px py-2 text-sm leading-6 font-medium font-Poppins'
-								onClick={ () => window.open('https://cchtpaycds0.typeform.com/to/BVFNdpwc', '_blank') }>Don&apos;t see your state? Click here!</button>
+							{
+								 data.number === '1' &&
+								 <button
+								 aria-label='Don&apos;t see your state? Click here!'
+								 className='cursor-pointer flex w-full select-none items-center rounded-sm px-18px py-2 text-sm leading-6 font-medium font-Poppins'
+								 onClick={ () => window.open('https://cchtpaycds0.typeform.com/to/BVFNdpwc', '_blank') }>Don&apos;t see your state? Click here!</button>
+							}
 						</SelectGroup>
 					</SelectContent>
 				</Select>
@@ -289,65 +253,62 @@ const PackagesSection: React.FC = () => {
 			<div
 				id='packages'
 				className='container-center w-full py-14 lg:py-[94px] relative'>
-				<div className='lg:grid lg:grid-cols-10 lg:gap-x-32'>
-					<WrapperAnimation
-						className='lg:col-span-4 lg:hidden'
-						data-aos='fade-in'
-					>
-						<div className='lg:sticky lg:top-10'>
-							<SliderPackages />
-						</div>
-					</WrapperAnimation>
-					<div className='lg:col-span-6 max-lg:mt-10 overflow-hidden'>
-						{ renderTitleDescPage() }
+				<div className='w-full max-lg:mt-10 flex flex-col lg:flex-row justify-between items-center'>
+					{ renderTitleDescPage() }
 
-						{ renderSelectState() }
-
-						<WrapperAnimation
-							data-aos='zoom-in-right'
-							className='flex lg:flex-col gap-5px mt-10'
-						>
-							<Vial className='text-primary' />
-							<span className='text-primary max-lg:text-center text-sm leading-5 font-Poppins font-semibold max-lg:pt-0 py-2 border-b border-grey-primary w-fit'>
-								An initial consultation is required for each package at just $199.00
-							</span>
-						</WrapperAnimation>
-						<div className='flex max-lg:flex-col gap-11px items-center lg:justify-between mt-10'>
-							<WrapperAnimation
-								data-aos='zoom-in-right'
-								className='flex items-center gap-5px'
-							>
-								{ renderNumber(2) }
-								<span className='text-primary text-sm leading-5 font-BRSonoma'>
-									{ homeData.packages.titlePackageList }
-								</span>
-								<ArrowNarrowDown className='text-primary' />
-							</WrapperAnimation>
-
-							<WrapperAnimation
-								data-aos='zoom-in-left'
-								className='flex items-center gap-[7px] cursor-pointer'
-								disableMobile={ false }
-								onClick={ () => { setOpenDialogHelp(true); } }
-							>
-								<InfoCircle className='w-4 h-4' />
-								<span className='text-sm font-semibold font-BRSonoma leading-5 text-primary'>
-									{ homeData.packages.helpText }
-								</span>
-							</WrapperAnimation>
-						</div>
-
-						{ renderPackageList() }
+					<div className='flex-col lg:flex-row flex gap-x-10 max-lg:w-full'>
+						{ renderSelectState(statesData.states) }
+						{ renderSelectState(statesData.gender) }
 					</div>
+				</div>
+				
+				<div className='flex max-lg:flex-col gap-11px items-center lg:justify-between mt-10'>
 					<WrapperAnimation
-						className='lg:col-span-4 max-lg:mt-10 max-lg:hidden'
-						data-aos='fade-in'
+						data-aos='zoom-in-right'
+						className='flex items-center gap-5px lg:hidden'
 					>
-						<div className='lg:sticky lg:top-10'>
-							<SliderPackages />
-						</div>
+						{ renderNumber(2) }
+						<span className='text-primary text-sm leading-5 font-BRSonoma'>
+							{ homeData.packages.titlePackageList }
+						</span>
+						<ArrowNarrowDown className='text-primary' />
+					</WrapperAnimation>
+
+					<WrapperAnimation
+						data-aos='zoom-in-left'
+						className='flex items-center gap-[7px] cursor-pointer lg:hidden'
+						disableMobile={ false }
+						onClick={ () => { setOpenDialogHelp(true); } }
+					>
+						<InfoCircle className='w-4 h-4' />
+						<span className='text-sm font-semibold font-BRSonoma leading-5 text-primary'>
+							{ homeData.packages.helpText }
+						</span>
 					</WrapperAnimation>
 				</div>
+				<WrapperAnimation
+					data-aos='zoom-in-right'
+				>
+					<div className='lg:block hidden'>
+						{ renderPopularPackage() }
+					</div>
+				</WrapperAnimation>
+
+				<WrapperAnimation
+					data-aos='zoom-in-right'
+				>
+					<div className='lg:hidden'>
+						{ renderPackageList() }
+					</div>
+				</WrapperAnimation>
+				<WrapperAnimation
+					data-aos='zoom-in-right'
+				>
+					<div className='hidden lg:block mt-14'>
+						<TablePackage classname={	(!state || !stateGender) ? 'opacity-50 bg-grey-secondary border-transparent cursor-default' : '' }/>
+					</div>
+				</WrapperAnimation>
+
 			</div>
 
 			{ renderDialogHelp() }

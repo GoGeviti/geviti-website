@@ -27,9 +27,9 @@ const StepsSection: React.FC = () => {
 	return (
 		<div className='lg:px-3 lg:py-15px overflow-hidden'>
 			<div className='h-full w-full lg:rounded-[19px] relative overflow-hidden'>
-				<div className='container-center pt-60px pb-[56px] lg:pt-[107px] lg:pb-[106px] flex flex-col gap-y-[54px] lg:gap-y-[62px] items-center justify-center text-center'>
+				<div className='container-center pt-60px pb-[56px] flex flex-col gap-y-[54px] lg:gap-y-[62px] items-center justify-center text-center'>
 					<div className='text-center sm:mx-auto'>
-						<p className='mb-11px sm:mb-7px text-pretitle text-grey-primary'>{ stepsData.preTitle }</p>
+						<p className='mb-11px sm:mb-7px text-pretitle text-grey-primary leading-[45px]'>{ stepsData.preTitle }</p>
 
 						{ stepsData.title && (
 							<h2 className='text-heading-2 text-primary'>

@@ -7,7 +7,9 @@ const HomePage: NextPage = () => {
 		<div className='flex min-h-screen flex-col w-full bg-grey-background'>
 			<HomeComponent.Hero />
 			<HomeComponent.Packages />
-			<HomeComponent.Products />
+			<HomeComponent.CTA />
+			<HomeComponent.LearnMore/>
+			<HomeComponent.Products withBg/>
 			<HomeComponent.Features />
 
 			<Footer />

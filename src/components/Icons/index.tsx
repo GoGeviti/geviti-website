@@ -456,3 +456,57 @@ export const EmergencyCallAddIcon = () => (
 			strokeLinejoin='round' />
 	</svg>
 );
+
+export const CheckBlue = () => (
+	<svg
+		xmlns='http://www.w3.org/2000/svg'
+		width='16'
+		height='17'
+		viewBox='0 0 16 17'
+		fill='none'>
+		<g clipPath='url(#clip0_823_849)'>
+			<path
+				d='M5.00016 8.15943L7.00016 10.1594L11.0002 6.15943M14.6668 8.15943C14.6668 11.8413 11.6821 14.8261 8.00016 14.8261C4.31826 14.8261 1.3335 11.8413 1.3335 8.15943C1.3335 4.47754 4.31826 1.49277 8.00016 1.49277C11.6821 1.49277 14.6668 4.47754 14.6668 8.15943Z'
+				stroke='#A3E0FF'
+				strokeWidth='1.33333'
+				strokeLinecap='round'
+				strokeLinejoin='round'/>
+		</g>
+		<defs>
+			<clipPath id='clip0_823_849'>
+				<rect
+					width='16'
+					height='16'
+					fill='white'
+					transform='translate(0 0.159424)'/>
+			</clipPath>
+		</defs>
+	</svg>
+);
+
+export const HelpIcons = () => (
+	<svg
+		xmlns='http://www.w3.org/2000/svg'
+		width='17'
+		height='16'
+		viewBox='0 0 17 16'
+		fill='none'>
+		<g clipPath='url(#clip0_823_744)'>
+			<path
+				d='M6.18516 5.99998C6.3419 5.55442 6.65126 5.17872 7.05847 4.9394C7.46567 4.70009 7.94443 4.61261 8.40995 4.69245C8.87547 4.7723 9.29771 5.01433 9.60188 5.37567C9.90606 5.737 10.0725 6.19433 10.0718 6.66665C10.0718 7.99998 8.07183 8.66665 8.07183 8.66665M8.12516 11.3333H8.13183M14.7918 7.99998C14.7918 11.6819 11.8071 14.6666 8.12516 14.6666C4.44326 14.6666 1.4585 11.6819 1.4585 7.99998C1.4585 4.31808 4.44326 1.33331 8.12516 1.33331C11.8071 1.33331 14.7918 4.31808 14.7918 7.99998Z'
+				stroke='#919B9F'
+				strokeWidth='1.33333'
+				strokeLinecap='round'
+				strokeLinejoin='round'/>
+		</g>
+		<defs>
+			<clipPath id='clip0_823_744'>
+				<rect
+					width='16'
+					height='16'
+					fill='white'
+					transform='translate(0.125)'/>
+			</clipPath>
+		</defs>
+	</svg>
+);
