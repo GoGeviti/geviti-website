@@ -197,7 +197,7 @@ const PackagesSection: React.FC = () => {
 	};
 
 	const renderSelectState = (data:any) => {
-		const selectOptions = data.options;
+		const selectOptions: { value: string; label: string }[] = data.options;
 
 		return (
 			<WrapperAnimation
