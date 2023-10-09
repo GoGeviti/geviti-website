@@ -1,5 +1,5 @@
 'use client';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Image from 'next/image';
 
 import landingData from '@/constant/data/landing';
@@ -11,22 +11,6 @@ import { CustomLink } from '..';
 
 const heroData = landingData.hero;
 const Hero = () => {
-
-	const [isMobile, setIsMobile] = useState(false);
-
-	useEffect(() => {
-		const handleResize = () => {
-			setIsMobile(window.innerWidth <= 768);
-		};
-
-		handleResize(); // Initialize state
-		window.addEventListener('resize', handleResize);
-
-		return () => {
-			window.removeEventListener('resize', handleResize);
-		};
-	}, []);
-
 	return (
 		<div className='lg:px-3 lg:py-15px overflow-hidden'>
 			<Navbar
@@ -35,36 +19,19 @@ const Hero = () => {
 			/>
 			<div className='bg-primary max-h-[850px] h-[calc(100vh-25px)] w-full lg:rounded-[19px] relative pt-11px lg:pt-5'>
 				<div className='absolute inset-0 w-full h-full'>
-					{ isMobile ? (
-						(
-							<div className='relative overflow-hidden w-full h-full lg:rounded-[19px]'>
-								<Image
-									src={ heroData.imageMobile }
-									alt='hero'
-									priority
-									className='object-cover'
-									fill
-									objectPosition='top'
-									quality={ 75 }
-								/>
-							</div>
-						)
-					) : (
-						(
-							<div className='relative overflow-hidden w-full h-full lg:rounded-[19px]'>
-								<Image
-									src={ heroData.image }
-									alt='hero'
-									priority
-									className='object-cover'
-									fill
-									objectPosition='top'
-									quality={ 75 }
-								/>
-							</div>
-						)
+					{ heroData.image && (
+						<div className='relative overflow-hidden w-full h-full lg:rounded-[19px]'>
+							<Image
+								src={ heroData.image }
+								alt='hero'
+								priority
+								className='object-cover'
+								fill
+								objectPosition='top'
+								quality={ 75 }
+							/>
+						</div>
 					) }
-
 				</div>
 
 				<div className='sm:hidden absolute top-0 inset-x-0 w-full h-[270px] bg-gradient-to-b from-primary to-[#181a1c00]' />
@@ -119,7 +86,7 @@ const Hero = () => {
 									<WrapperAnimation
 										key={ feature.text }
 										data-aos='zoom-in-up'
-										data-aos-delay={ `${featureIdx * 100}` }
+										data-aos-delay={ `${ featureIdx * 100 }` }
 										data-aos-anchor='#main-keys-landing'
 										className='flex flex-col text-center items-center gap-y-1 md:gap-y-5px'
 									>
