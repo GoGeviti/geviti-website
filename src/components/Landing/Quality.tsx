@@ -78,7 +78,7 @@ const Quality: React.FC = () => {
 
 					<div className='max-sm:-ml-[83px] max-sm:-mr-[58px] max-sm:-mb-[120px] max-sm:-mt-[17px] relative lg:flex lg:justify-end lg:absolute lg:right-0 bottom-0 lg:-mt-[50px] mx-auto lg:ml-auto'>
 						<Image
-							src='/images/landing/quality_products.webp'
+							src='/images/landing/compressed/quality_products.webp'
 							alt='quality'
 							loading='lazy'
 							width={ 1600 }
