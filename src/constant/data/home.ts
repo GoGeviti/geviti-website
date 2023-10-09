@@ -3,8 +3,8 @@ const homeData = {
 		preTitle: 'Functional Medicine Online',
 		title: '<p><span style="font-weight: bold; @media (max-width: 1024px) { font-weight: normal; }">Get Started</span> With Geviti</p>',
 		description: '<span>Unlock a Healthier You: Personalized Anti-Aging Plans with Telehealth Hormone Therapy, Peptides & More. Feel Younger, Longer.</span>',
-		image: '/images/home/hero_1.webp',
-		imageMobile: '/images/home/hero_mobile.png',
+		image: '/images/home/compressed/hero_1.webp',
+		imageMobile: '/images/home/compressed/hero_mobile.png',
 		mainKeys: [
 			{
 				image: '/images/icons/codepen.svg',
@@ -25,7 +25,7 @@ const homeData = {
 		]
 	},
 	features: {
-		image: '/images/home/dashboard.webp',
+		image: '/images/home/compressed/dashboard.webp',
 		preTitle: 'digital health management',
 		title: 'Digital Health Management<br />at Your Fingertips',
 		description: 'With our intuitive web and mobile app, Geviti provides a seamless digital health ecosystem for you.',
@@ -245,21 +245,21 @@ const homeData = {
 		list: [
 			{
 				id: 1,
-				image: '/images/products/learnmore-1.jpeg',
+				image: '/images/products/compressed/learnmore-1.jpeg',
 				date: 'July 21, 2023',
 				title: 'Blog Title Goes Here',
 				subtitle: 'For those needing a fundamental at-home blood panel for key health markers.'
 			},
 			{
 				id: 2,
-				image: '/images/products/learnmore-2.jpeg',
+				image: '/images/products/compressed/learnmore-2.jpeg',
 				date: 'July 21, 2023',
 				title: 'Blog Title Goes Here',
 				subtitle: 'For those needing a fundamental at-home blood panel for key health markers.'
 			},
 			{
 				id: 3,
-				image: '/images/products/learnmore-3.jpeg',
+				image: '/images/products/compressed/learnmore-3.jpeg',
 				date: 'July 21, 2023',
 				title: 'Blog Title Goes Here',
 				subtitle: 'For those needing a fundamental at-home blood panel for key health markers.'
