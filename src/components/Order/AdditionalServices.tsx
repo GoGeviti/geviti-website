@@ -11,13 +11,15 @@ const services = [
 		id: 15,
 		name: 'Mobile Blood-draw',
 		price: 35.99,
-		description: 'Avoid the stress of lab visits with our mobile blood draw service. We\'ll send a trained professional to your home for the collection of samples and ensure their safe delivery to the lab. If unselected, you\'ll have to go into a Labcorp near you.'
+		description: 'Avoid the stress of lab visits with our mobile blood draw service. We\'ll send a trained professional to your home for the collection of samples and ensure their safe delivery to the lab. If unselected, you\'ll have to go into a Labcorp near you.',
+		shopify_variant_id: '46434941436194:1',
 	},
 	{
 		id: 16,
 		name: 'Genetic Sequencing Test',
 		price: 199.99,
-		description: 'Take your health management to the next level with our genetic sequencing test. This non-invasive test uses a simple cheek swab kit you can use at home and provides:<br /><br /><ul class="list-disc list-outside pl-3"><li>Genotype results for 83 million SNPs.</li><li>Genetic risk analysis</li><li>Food sensitivities & nutrient deficiencies</li><li>Ancestry & heritage</li></ul>'
+		description: 'Take your health management to the next level with our genetic sequencing test. This non-invasive test uses a simple cheek swab kit you can use at home and provides:<br /><br /><ul class="list-disc list-outside pl-3"><li>Genotype results for 83 million SNPs.</li><li>Genetic risk analysis</li><li>Food sensitivities & nutrient deficiencies</li><li>Ancestry & heritage</li></ul>',
+		shopify_variant_id: '46434957033762:1',
 	},
 ];
 

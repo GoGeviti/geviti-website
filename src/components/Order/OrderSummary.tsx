@@ -22,6 +22,15 @@ const OrderSummary: React.FC<OrderSummaryProps> = ({ shoppingCarts }) => {
 		);
 
 	};
+
+	const generateCheckoutLink = () => {
+		const variantIds = shoppingCarts
+			.map(product => product.shopify_variant_id)
+			.filter(Boolean)
+			.join(',');
+		return `https://geviti.myshopify.com/cart/${variantIds}`;
+	};
+
 	return (
 		<div>
 			<div className='flex flex-col gap-y-8'>
@@ -55,14 +64,16 @@ const OrderSummary: React.FC<OrderSummaryProps> = ({ shoppingCarts }) => {
 			</div>
 
 			<div className='mt-[26px]'>
-				<button
-					aria-label='checkout'
-					disabled={ !checkedPrivacy }
-					className='btn btn-secondary w-full disabled:bg-black-secondary disabled:text-[#383B3F] text-xs font-medium leading-[159%] font-Poppins text-black-secondary'>
-					Proceed to checkout
-				</button>
+				<a
+					href={ generateCheckoutLink() }
+					className={ checkedPrivacy ? '' : 'pointer-events-none' }>
+					<button
+						disabled={ !checkedPrivacy }
+						className='btn btn-secondary w-full disabled:bg-black-secondary disabled:text-[#383B3F] text-xs font-medium leading-[159%] font-Poppins text-black-secondary'>
+						Proceed to checkout
+					</button>
+				</a>
 			</div>
-
 			<div className='relative flex items-start mt-[26px]'>
 				<div className='flex h-6 items-center'>
 					<input
