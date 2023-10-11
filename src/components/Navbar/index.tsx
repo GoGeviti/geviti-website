@@ -122,7 +122,7 @@ const Navbar: React.FC<NavbarProps> = ({
 						src={ src }
 						alt='logo'
 						fill
-						priority
+						priority={ true }
 						className='object-contain'
 						sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
 					/>
