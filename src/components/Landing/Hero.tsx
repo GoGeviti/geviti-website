@@ -24,7 +24,7 @@ const Hero = () => {
 							<Image
 								src={ heroData.image }
 								alt='hero'
-								priority
+								priority={ true }
 								className='object-cover'
 								fill
 								objectPosition='top'

@@ -211,6 +211,7 @@ const PackagesSection: React.FC = () => {
 					onValueChange={ data.number === '2' ? setStateGender : setState  }
 				>
 					<SelectTrigger
+						aria-label={  data.number === '2' ? stateGender : state }
 						className='w-full lg:w-[297px] bg-grey-secondary text-primary'>
 						<SelectValue
 							aria-label={  data.number === '2' ? stateGender : state }
