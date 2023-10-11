@@ -20,9 +20,10 @@ const landingData = {
 		]
 	},
 	hero: {
-		preTitle: 'We’ll Help You Live Longer and Live Healthier',
-		title: 'Your online hormone therapy and<br/>functional medicine provider.',
-		image: '/images/landing/hero-resize.webp',
+		preTitle: 'Your at-home health and wellness clinic',
+		title: '<p>Online hormone therapy, peptide <br class="max-md:hidden"/> therapy, and functional medicine.</p>',
+		image: '/images/landing/hero.webp',
+		imageMobile: '/images/landing/hero_mobile.png',
 		btnCta: {
 			text: 'See if I qualify',
 			href: 'https://gogeviti.typeform.com/qualify',

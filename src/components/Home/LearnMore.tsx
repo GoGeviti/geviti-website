@@ -27,7 +27,7 @@ const LearnMore: React.FC<LearnMoreProps> = ({ withBg = false }) => {
 						) }
 					</div>
 
-					<div className='md:max-w-6xl md:mx-auto w-full max-md:flex max-md:justify-center'>
+					<div className='md:mx-auto w-full max-md:flex max-md:justify-center'>
 						<div className=''>
 							<div className='pt-10 md:pt-16 flex md:flex-row flex-col items-start w-full no-scrollbar overflow-y-hidden transition-all select-none transform flex-nowrap overflow-x-auto lg:overflow-hidden scrolling-touch scroll-smooth max-md:space-y-10  gap-x-18px lg:gap-x-[33px] py-1'>
 								{ learnMore.list.map(items => {
@@ -45,9 +45,9 @@ const LearnMore: React.FC<LearnMoreProps> = ({ withBg = false }) => {
 														width={ 100 }
 														height={ 100 }
 													/>
-													<p className='mt-[5px] md:mt-[32px] text-pretitle text-grey-date tracking-[1.54px] leading-6'> { items.date }</p>
-													<p className='text-xl md:text-2xl font-Poppins text-primary leading-[43.5px] -tracking-[0.96px]'> { items.title }</p>
-													<p className='text-xs md:text-sm text-grey-date font-Poppins'> { items.subtitle }</p>
+													<p className='mt-[15px] md:mt-[32px] text-pretitle text-grey-primary tracking-[1.54px] leading-6'> { items.date }</p>
+													<p className='text-xl md:text-2xl font-Poppins text-primary leading-[181.25%] -tracking-[0.96px] my-1'> { items.title }</p>
+													<p className='text-xs md:text-sm text-grey-primary font-Poppins'> { items.subtitle }</p>
 												</div>
 											</div>
 										)

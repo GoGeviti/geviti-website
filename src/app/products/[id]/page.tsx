@@ -88,7 +88,7 @@ const ProductDetailPage: NextPage<ProductDetailPageProps> = ({ params }) => {
 								<ChevronDown className='w-3 h-3 sm:w-3.5 sm:h-3.5 text-primary ease-[cubic-bezier(0.87,_0,_0.13,_1)] transition-transform duration-300 group-data-[state=open]:rotate-180' />
 							</AccordionTrigger>
 
-							<AccordionContent className='pt-11px sm:pt-[13px] text-grey-primary font-BRSonoma text-[10px] sm:text-xs leading-[17px] sm:leading-5'>
+							<AccordionContent className='pt-11px sm:pt-[13px] text-primary font-BRSonoma text-[10px] sm:text-xs leading-[17px] sm:leading-5'>
 								{ Array.isArray(detail.answer) && detail.answer?.length
 									? (
 										<ul className='flex flex-col gap-y-1'>
@@ -137,8 +137,8 @@ const ProductDetailPage: NextPage<ProductDetailPageProps> = ({ params }) => {
 								<div className='flex items-center justify-between text-primary'>
 									<h1 className='text-3xl lg:text-4xl -tracking-0.04em font-Poppins leading-[124%] lg:leading-[121%]'>{ product?.name }</h1>
 									<div className='flex flex-col items-center'>
-										<p className='text-xl lg:text-2xl md:font-semibold leading-[77%] lg:leading-[75%] font-Poppins'>${ product?.price } <span className='hidden md:block text-base text-grey-primary font-medium'>monthly</span></p>
-										<p className='text-[13px] font-medium leading-[77%] lg:leading-[75%] font-Poppins hidden md:block '>with Geviti membership</p>
+										<p className='flex gap-2 text-xl lg:text-2xl md:font-semibold leading-[77%] lg:leading-[75%] font-Poppins'>${ product?.price } <span className='hidden md:block text-base text-grey-primary font-medium'>monthly</span></p>
+										<p className='text-[13px] font-medium leading-[77%] lg:leading-[75%] font-Poppins hidden md:block whitespace-nowrap'>with Geviti membership</p>
 									</div>
 								</div>
 

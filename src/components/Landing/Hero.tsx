@@ -17,15 +17,24 @@ const Hero = () => {
 				iconsMenu={ landingData.navbar.iconsMenu }
 				actionsMenu={ landingData.navbar.actionsMenu }
 			/>
-			<div className='bg-primary max-h-[850px] h-[calc(100vh-25px)] w-full lg:rounded-[19px] relative pt-11px lg:pt-5'>
+			<div className='bg-primary h-[812px] md:h-[1011px] w-full lg:rounded-[19px] relative pt-11px lg:pt-5'>
 				<div className='absolute inset-0 w-full h-full'>
 					{ heroData.image && (
-						<div className='relative overflow-hidden w-full h-full lg:rounded-[19px]'>
+						<div className='relative overflow-hidden w-full h-full lg:rounded-[19px] max-lg:mt-10'>
 							<Image
 								src={ heroData.image }
 								alt='hero'
 								priority={ true }
-								className='object-cover'
+								className='object-cover md:block hidden'
+								fill
+								objectPosition='top'
+								quality={ 75 }
+							/>
+							<Image
+								src={ heroData.imageMobile }
+								alt='hero mobile'
+								priority={ true }
+								className='object-contain md:hidden'
 								fill
 								objectPosition='top'
 								quality={ 75 }
@@ -34,19 +43,19 @@ const Hero = () => {
 					) }
 				</div>
 
-				<div className='sm:hidden absolute top-0 inset-x-0 w-full h-[270px] bg-gradient-to-b from-primary to-[#181a1c00]' />
+				<div className='sm:hidden absolute top-10 inset-x-0 w-full h-[270px] bg-gradient-to-b from-primary to-[#181a1c00]' />
 
 				<div className='max-sm:hidden absolute top-0 inset-x-0 w-full h-[193px] bg-hero-landing-top lg:rounded-t-[19px] opacity-50' />
 
 				<div className='h-full'>
 					<div className='relative w-full h-full bg-hero-landing-bottom lg:rounded-b-[19px]'>
-						<div className='container-center pb-11 lg:pb-[113px] h-full w-full flex flex-col items-center justify-end'>
+						<div className='container-center pb-11 lg:pb-[112px] h-full w-full flex flex-col items-center justify-end'>
 							<div className='text-center'>
 								<h2 className='text-grey-secondary font-BRSonoma font-semibold text-[10px] sm:text-xs lg:text-sm leading-[150%] lg:leading-6 uppercase tracking-0.11em'>
 									{ heroData.preTitle }
 								</h2>
 								{ heroData.title && (
-									<h1 className='mt-11px lg:mt-7px font-Poppins text-[21px] sm:text-2xl md:text-[32px] lg:text-[40px] sm:leading-[98%] -tracking-0.04em text-grey-secondary'>
+									<h1 className='max-md:px-5 mt-11px lg:mt-7px font-Poppins text-[21px] sm:text-2xl md:text-[32px] lg:text-[40px] sm:leading-[98%] -tracking-0.04em text-grey-secondary'>
 										<span dangerouslySetInnerHTML={ { __html: heroData.title } } />
 									</h1>
 								) }
@@ -101,7 +110,7 @@ const Hero = () => {
 												/>
 											</div>
 										) }
-										<p className='font-Poppins leading-[225%] -tracking-0.04em text-grey-secondary text-[15.861px] sm:text-lg lg:text-xl'>{ feature.text }</p>
+										<p className='max-md:max-w-[100px] font-Poppins leading-[108.442%] md:leading-[225%] -tracking-0.04em text-grey-secondary text-[15.861px] sm:text-lg lg:text-xl'>{ feature.text }</p>
 										<span className='inline-flex items-center gap-5px'>
 											<svg
 												xmlns='http://www.w3.org/2000/svg'
