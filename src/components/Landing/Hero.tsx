@@ -28,7 +28,7 @@ const Hero = () => {
 								className='object-cover md:block hidden'
 								fill
 								objectPosition='top'
-								quality={ 75 }
+								quality={ 100 }
 							/>
 							<Image
 								src={ heroData.imageMobile }
@@ -37,7 +37,7 @@ const Hero = () => {
 								className='object-contain md:hidden'
 								fill
 								objectPosition='top'
-								quality={ 75 }
+								quality={ 100 }
 							/>
 						</div>
 					) }
