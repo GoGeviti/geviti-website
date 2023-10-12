@@ -10,6 +10,7 @@ import {
 	ArrowNarrowDown,
 	ArrowNarrowRight,
 	CheckBlue,
+	ChevronDown,
 	InfoCircle,
 } from '../Icons';
 import {
@@ -204,13 +205,14 @@ const PackagesSection: React.FC = () => {
 				data-aos='zoom-in-right'
 				className='mt-10'
 			>
-				<p className='text-xs lg:text-sm leading-5 font-BRSonoma mb-[13px] flex'>{ renderNumber(data.number) }{ data.label }</p>
+				<p className='text-xs lg:text-sm leading-5 font-BRSonoma mb-[13px] flex'>{ data.label }</p>
 
 				<Select
 					value={ data.number === '2' ? stateGender : state }
 					onValueChange={ data.number === '2' ? setStateGender : setState  }
 				>
 					<SelectTrigger
+						aria-label={  data.number === '2' ? stateGender : state }
 						className='w-full lg:w-[297px] bg-grey-secondary text-primary'>
 						<SelectValue
 							aria-label={  data.number === '2' ? stateGender : state }
@@ -252,7 +254,7 @@ const PackagesSection: React.FC = () => {
 		<>
 			<div
 				id='packages'
-				className='container-center w-full py-14 lg:py-[94px] relative'>
+				className='container-center w-full max-lg:py-14 lg:pt-[94px] relative'>
 				<div className='w-full max-lg:mt-10 flex flex-col lg:flex-row justify-between items-center'>
 					{ renderTitleDescPage() }
 
@@ -308,7 +310,14 @@ const PackagesSection: React.FC = () => {
 						<TablePackage classname={	(!state || !stateGender) ? 'opacity-50 bg-grey-secondary border-transparent cursor-default' : '' }/>
 					</div>
 				</WrapperAnimation>
-
+				<WrapperAnimation
+					data-aos='zoom-in-right'
+				>
+					<div className='my-10 justify-center items-center gap-3 hidden lg:flex'>
+						<p className='font-Poppins text-[15px] font-semibold'>Compare biomarkers </p>
+						<ChevronDown className='w-6 h-6'/>
+					</div>
+				</WrapperAnimation>
 			</div>
 
 			{ renderDialogHelp() }

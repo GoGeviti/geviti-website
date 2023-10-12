@@ -215,7 +215,7 @@ const ProductsPage: NextPage = () => {
 									<div className='relative overflow-hidden bg-[#E7E7E7] group-hover:opacity-75 w-full h-[117px] sm:h-[202px]'>
 										{ product.imageSrc && (
 											<Image
-												priority
+												priority={ true }
 												src={ product.imageSrc }
 												alt={ product.name ?? '' }
 												className='object-cover object-center'

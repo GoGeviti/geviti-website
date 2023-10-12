@@ -68,7 +68,7 @@ const SliderProducts: React.FC<SliderProductsProps> = ({ images }) => {
 								<Image
 									src={ image }
 									alt='slider'
-									priority
+									priority={ true }
 									fill
 									className='object-contain'
 								/>
