@@ -45,7 +45,7 @@ const Hero = () => {
 									className='object-cover'
 									fill
 									objectPosition='top'
-									quality={ 75 }
+									quality={ 100 }
 								/>
 							</div>
 						)
@@ -59,7 +59,7 @@ const Hero = () => {
 									className='object-cover'
 									fill
 									objectPosition='top'
-									quality={ 75 }
+									quality={ 100 }
 								/>
 							</div>
 						)
