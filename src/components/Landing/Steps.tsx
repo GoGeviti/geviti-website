@@ -86,7 +86,7 @@ const StepsSection: React.FC = () => {
 														'cursor-pointer text-center font-Poppins text-primary leading-[134%]',
 														isSelected
 															? 'md:pt-[22px] text-sm md:text-[19px] lg:w-[180px] font-medium'
-															: 'font-medium md:pt-18px text-sm md:text-base lg:w-[139px]'
+															: 'font-medium md:pt-18px text-sm md:text-base lg:w-[150px]'
 													) }
 												>
 													{ step.title }

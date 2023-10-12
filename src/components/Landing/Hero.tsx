@@ -28,7 +28,6 @@ const Hero = () => {
 								className='object-cover md:block hidden'
 								fill
 								objectPosition='top'
-								quality={ 75 }
 							/>
 							<Image
 								src={ heroData.imageMobile }
@@ -37,7 +36,6 @@ const Hero = () => {
 								className='object-contain md:hidden'
 								fill
 								objectPosition='top'
-								quality={ 75 }
 							/>
 						</div>
 					) }
@@ -49,7 +47,7 @@ const Hero = () => {
 
 				<div className='h-full'>
 					<div className='relative w-full h-full bg-hero-landing-bottom lg:rounded-b-[19px]'>
-						<div className='container-center pb-11 lg:pb-[112px] h-full w-full flex flex-col items-center justify-end'>
+						<div className='container-center pb-[38px] lg:pb-[112px] h-full w-full flex flex-col items-center justify-end'>
 							<div className='text-center'>
 								<h2 className='text-grey-secondary font-BRSonoma font-semibold text-[10px] sm:text-xs lg:text-sm leading-[150%] lg:leading-6 uppercase tracking-0.11em'>
 									{ heroData.preTitle }
@@ -90,7 +88,7 @@ const Hero = () => {
 								</div>
 							</div>
 
-							<div className='grid grid-cols-3 sm:max-w-xl w-full mt-[53px] sm:mt-20'>
+							<div className='grid grid-cols-3 sm:max-w-2xl w-full mt-[53px] sm:mt-[96px]'>
 								{ heroData.mainKeys.map((feature, featureIdx) => (
 									<WrapperAnimation
 										key={ feature.text }
@@ -110,32 +108,8 @@ const Hero = () => {
 												/>
 											</div>
 										) }
-										<p className='max-md:max-w-[100px] font-Poppins leading-[108.442%] md:leading-[225%] -tracking-0.04em text-grey-secondary text-[15.861px] sm:text-lg lg:text-xl'>{ feature.text }</p>
+										<p className='md:whitespace-nowrap max-md:max-w-[100px] font-Poppins leading-[108.442%] md:leading-[225%] -tracking-0.04em text-grey-secondary text-[15.861px] sm:text-lg lg:text-xl'>{ feature.text }</p>
 										<span className='inline-flex items-center gap-5px'>
-											<svg
-												xmlns='http://www.w3.org/2000/svg'
-												width='12'
-												height='12'
-												viewBox='0 0 12 12'
-												fill='none'
-												className='w-2.5 h-2.5 sm:w-3 sm:h-3 flex-shrink-0'>
-												<g clipPath='url(#clip0_1355_260)'>
-													<path
-														d='M3.75 6L5.25 7.5L8.25 4.5M11 6C11 8.76142 8.76142 11 6 11C3.23858 11 1 8.76142 1 6C1 3.23858 3.23858 1 6 1C8.76142 1 11 3.23858 11 6Z'
-														stroke='#95A2AE'
-														strokeLinecap='round'
-														strokeLinejoin='round' />
-												</g>
-												<defs>
-													<clipPath id='clip0_1355_260'>
-														<rect
-															width='12'
-															height='12'
-															fill='white' />
-													</clipPath>
-												</defs>
-											</svg>
-
 											<p className='text-grey-primary font-medium font-BRSonoma text-[11px] sm:text-sm'>{ feature.subtext }</p>
 										</span>
 									</WrapperAnimation>
