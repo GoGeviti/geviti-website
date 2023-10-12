@@ -4,7 +4,7 @@ const homeData = {
 		title: '<p><span style="font-weight: bold; @media (max-width: 1024px) { font-weight: normal; }">Get Started</span> With Geviti</p>',
 		description: '<span>Unlock a Healthier You: Personalized Anti-Aging Plans with Telehealth Hormone Therapy, Peptides & More. Feel Younger, Longer.</span>',
 		image: '/images/home/hero_1.webp',
-		imageMobile: '/images/home/hero_mobile.png',
+		imageMobile: '/images/home/hero_mobile.webp',
 		mainKeys: [
 			{
 				image: '/images/icons/codepen.svg',

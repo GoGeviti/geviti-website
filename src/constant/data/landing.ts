@@ -23,7 +23,7 @@ const landingData = {
 		preTitle: 'Your at-home health and wellness clinic',
 		title: '<p>Online hormone therapy, peptide <br class="max-md:hidden"/> therapy, and functional medicine.</p>',
 		image: '/images/landing/hero.webp',
-		imageMobile: '/images/landing/hero_mobile.png',
+		imageMobile: '/images/landing/hero_mobile.webp',
 		btnCta: {
 			text: 'See if I qualify',
 			href: 'https://gogeviti.typeform.com/qualify',

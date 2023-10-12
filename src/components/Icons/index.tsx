@@ -459,29 +459,31 @@ export const EmergencyCallAddIcon = () => (
 
 export const CheckBlue = () => (
 	<svg
-		xmlns='http://www.w3.org/2000/svg'
-		width='16'
-		height='17'
-		viewBox='0 0 16 17'
-		fill='none'>
-		<g clipPath='url(#clip0_823_849)'>
+		width='25'
+		height='24'
+		viewBox='0 0 25 24'
+		fill='none'
+		xmlns='http://www.w3.org/2000/svg'>
+		<g clipPath='url(#clip0_375_9061)'>
 			<path
-				d='M5.00016 8.15943L7.00016 10.1594L11.0002 6.15943M14.6668 8.15943C14.6668 11.8413 11.6821 14.8261 8.00016 14.8261C4.31826 14.8261 1.3335 11.8413 1.3335 8.15943C1.3335 4.47754 4.31826 1.49277 8.00016 1.49277C11.6821 1.49277 14.6668 4.47754 14.6668 8.15943Z'
+				d='M7.875 12L10.875 15L16.875 9M22.375 12C22.375 17.5228 17.8978 22 12.375 22C6.85215 22 2.375 17.5228 2.375 12C2.375 6.47715 6.85215 2 12.375 2C17.8978 2 22.375 6.47715 22.375 12Z'
 				stroke='#A3E0FF'
-				strokeWidth='1.33333'
+				strokeWidth='2'
 				strokeLinecap='round'
 				strokeLinejoin='round'/>
 		</g>
 		<defs>
-			<clipPath id='clip0_823_849'>
+			<clipPath id='clip0_375_9061'>
 				<rect
-					width='16'
-					height='16'
-					fill='white'
-					transform='translate(0 0.159424)'/>
+					x='0.375'
+					width='24'
+					height='24'
+					rx='12'
+					fill='white'/>
 			</clipPath>
 		</defs>
 	</svg>
+
 );
 
 export const HelpIcons = () => (
