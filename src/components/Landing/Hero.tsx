@@ -17,7 +17,7 @@ const Hero = () => {
 				iconsMenu={ landingData.navbar.iconsMenu }
 				actionsMenu={ landingData.navbar.actionsMenu }
 			/>
-			<div className='bg-primary h-[812px] md:h-[calc(100vh-30px)] w-full lg:rounded-[19px] relative pt-11px lg:pt-5'>
+			<div className='bg-primary h-screen lg:h-[calc(100vh-30px)] w-full lg:rounded-[19px] relative pt-11px lg:pt-5'>
 				<div className='absolute inset-0 w-full h-full'>
 					{ heroData.image && (
 						<div className='relative overflow-hidden w-full h-full lg:rounded-[19px]'>
@@ -28,13 +28,12 @@ const Hero = () => {
 								className='object-cover'
 								fill
 								objectPosition='top'
-								quality={ 75 }
 							/>
 						</div>
 					) }
 				</div>
 
-				<div className='sm:hidden absolute top-10 inset-x-0 w-full h-[270px] bg-gradient-to-b from-primary to-[#181a1c00]' />
+				<div className='sm:hidden absolute top-0 inset-x-0 w-full h-[270px] bg-gradient-to-b from-primary to-[#181a1c00]' />
 
 				<div className='max-sm:hidden absolute top-0 inset-x-0 w-full h-[193px] bg-hero-landing-top lg:rounded-t-[19px] opacity-50' />
 
@@ -46,7 +45,7 @@ const Hero = () => {
 									{ heroData.preTitle }
 								</h2>
 								{ heroData.title && (
-									<h1 className='mt-11px lg:mt-7px font-Poppins text-[21px] sm:text-2xl md:text-[32px] lg:text-[40px] sm:leading-[98%] -tracking-0.04em text-grey-secondary'>
+									<h1 className='mt-11px lg:mt-7px font-Poppins text-[21px] sm:text-2xl md:text-[32px] lg:text-[40px] sm:leading-[42.5px] -tracking-0.04em text-grey-secondary'>
 										<span dangerouslySetInnerHTML={ { __html: heroData.title } } />
 									</h1>
 								) }
@@ -81,7 +80,7 @@ const Hero = () => {
 								</div>
 							</div>
 
-							<div className='grid grid-cols-3 sm:max-w-xl w-full mt-[53px] sm:mt-20'>
+							<div className='flex items-center justify-center gap-5 lg:gap-12 mt-[53px] sm:mt-20'>
 								{ heroData.mainKeys.map((feature, featureIdx) => (
 									<WrapperAnimation
 										key={ feature.text }
@@ -101,7 +100,7 @@ const Hero = () => {
 												/>
 											</div>
 										) }
-										<p className='font-Poppins leading-[225%] -tracking-0.04em text-grey-secondary text-[15.861px] sm:text-lg lg:text-xl'>{ feature.text }</p>
+										<p className='font-Poppins leading-[17.187px] lg:leading-[225%] -tracking-0.04em text-grey-secondary text-[15.861px] sm:text-lg lg:text-xl'>{ feature.text }</p>
 										<span className='inline-flex items-center gap-5px'>
 											<svg
 												xmlns='http://www.w3.org/2000/svg'
