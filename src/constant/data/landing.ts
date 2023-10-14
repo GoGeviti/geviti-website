@@ -75,7 +75,7 @@ const landingData = {
 	},
 	mission: {
 		title: 'Our Mission',
-		description: 'Geviti is built on the premise that our bodies are merely vessels of consciousness. Our mission is to extend time spent in our conscious experience so we may share it with our loved ones.<br /><br />We strive to slow down, maintain, or even reverse one’s biological age my promoting actionable plans.',
+		description: 'Geviti is built on the premise that our bodies are merely vessels of consciousness. Our mission is to extend time spent in our conscious experience so we may share it with our loved ones.<br /><br />We strive to slow down, maintain, or even reverse one’s biological age by promoting actionable plans.',
 		image: '/images/landing/mission.webp',
 		imageMobile: '/images/landing/mission_mobile.webp',
 		btnCta: {
@@ -208,7 +208,7 @@ const landingData = {
 	},
 	flexible: {
 		preTitle: 'flexible plans that are right for you',
-		title: 'Starting from just $99/month',
+		title: 'Starting from just $99',
 		description: 'With at-home blood testing, facilitated by professional mobile phlebotomists, we will design a care plan precisely for your needs.',
 		image: '/images/landing/flexible.webp',
 		imageMobile: '/images/landing/flexible-mobile.webp',

@@ -1,8 +1,9 @@
 const homeData = {
 	hero: {
 		preTitle: 'Functional Medicine Online',
-		title: '<p><span style="font-weight: bold; @media (max-width: 1024px) { font-weight: normal; }">Get Started</span> With Geviti</p>',
+		title: '<p><span style="font-weight: 600;">Get Started</span> With Geviti</p>',
 		description: '<span>Unlock a Healthier You: Personalized Anti-Aging Plans with Telehealth Hormone Therapy, Peptides & More. Feel Younger, Longer.</span>',
+		descriptionMobile: '<span>Telehealth Hormone Therapy, Peptide Therapy &<br/>More. Feel Younger, Longer.</span>',
 		image: '/images/home/hero_1.webp',
 		imageMobile: '/images/home/hero_mobile.webp',
 		mainKeys: [
@@ -15,7 +16,7 @@ const homeData = {
 				text: '<p>Do at-home <br/>blood test.</p>'
 			},
 			{
-				image: '/images/icons/helix.svg',
+				image: '/images/icons/smile.svg',
 				text: '<p>Meet with<br/> your clinician.</p>'
 			},
 			{
