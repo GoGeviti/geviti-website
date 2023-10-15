@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import Image from 'next/image';
-import { usePathname, useRouter } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 
 import { navbarData } from '@/constant/data';
 import clsxm from '@/helpers/clsxm';
@@ -32,7 +32,7 @@ const Navbar: React.FC<NavbarProps> = ({
 	iconsMenu = navbarData.iconsMenu,
 	actionsMenu = navbarData.actionsMenu
 }) => {
-	const pathname = usePathname();
+	// const pathname = usePathname();
 	const router = useRouter();
 
 	const [openSheet, setOpenSheet] = useState<boolean>(false);
@@ -41,7 +41,6 @@ const Navbar: React.FC<NavbarProps> = ({
 		return (
 			<>
 				{ navbarData.menu.map(link => {
-					const isActive = pathname === link.href;
 
 					return (
 						<CustomLink
@@ -49,8 +48,7 @@ const Navbar: React.FC<NavbarProps> = ({
 							href={ link.href }
 							externalLink={ link.externalLink }
 							className={ clsxm(
-								'rounded-md px-3 py-2 text-sm font-Poppins',
-								isActive ? 'font-normal' : 'font-medium',
+								'rounded-md px-3 py-2 text-sm font-Poppins font-medium',
 								theme === 'dark' ? 'text-grey-secondary hover:text-white' : 'text-primary'
 							) }
 							aria-label={ link.name }

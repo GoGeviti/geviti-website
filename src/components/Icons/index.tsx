@@ -463,7 +463,8 @@ export const CheckBlue = () => (
 		height='24'
 		viewBox='0 0 25 24'
 		fill='none'
-		xmlns='http://www.w3.org/2000/svg'>
+		xmlns='http://www.w3.org/2000/svg'
+		className='w-4 h-4 md:h-6 md:w-6'>
 		<g clipPath='url(#clip0_375_9061)'>
 			<path
 				d='M7.875 12L10.875 15L16.875 9M22.375 12C22.375 17.5228 17.8978 22 12.375 22C6.85215 22 2.375 17.5228 2.375 12C2.375 6.47715 6.85215 2 12.375 2C17.8978 2 22.375 6.47715 22.375 12Z'

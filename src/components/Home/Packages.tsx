@@ -43,13 +43,13 @@ const PackagesSection: React.FC = () => {
 
 	const renderTextComponentPackage = (component: ComponentItem) => {
 		return (
-			<span className='flex items-center gap-1 text-primary'>
+			<div className='flex items-center gap-1 text-primary'>
 				{
 					component.description === true &&
 					<CheckBlue />
 				}
-				<p className='text-[10px] text-primary font-BRSonoma leading-5'>{ component.description !== true && <span className='font-bold'>{ component.description }</span> } { component.name }</p>
-			</span>
+				<p className='text-xs text-primary font-medium font-BRSonoma leading-5'>{ component.description !== true && <span className='font-bold'>{ component.description }</span> } { component.name }</p>
+			</div>
 		);
 	};
 
@@ -94,7 +94,7 @@ const PackagesSection: React.FC = () => {
 									<p className='font-Poppins text-base font-medium text-primary my-3'>{ packageItem.title }</p>
 									<p className='font-Poppins text-4xl font-medium text-primary leading-[125%] -tracking-[0.72px;]'>{ packageItem.price } <span className='text-grey-primary text-[10px] leading-[150%] tracking-normal'>{ packageItem.priceNote }</span></p>
 									<p className='text-primary text-base leading-[150%] font-Poppins font-medium'>{ packageItem.priceThen } <span className='text-grey-primary text-[10px]'>{ packageItem.priceThenNote }</span></p>
-									<p className='text-grey-primary text-xs leading-[150%] font-Poppins mt-3'>{ packageItem.desc }</p>
+									<p className='text-grey-primary text-xs leading-[150%] font-Poppins mt-3 font-medium'>{ packageItem.desc }</p>
 								</div>
 								<div
 									className='text-primary mt-8 mb-3 flex items-center gap-2'
@@ -148,11 +148,11 @@ const PackagesSection: React.FC = () => {
 			>
 				<p className='text-pretitle text-grey-primary'>{ homeData.packages.preTitle }</p>
 
-				<h2 className='mt-11px lg:mt-9px text-primary font-Poppins text-3xl lg:text-4xl leading-[100%] lg:leading-[119%] -tracking-0.04em'>
+				<h2 className='mt-11px lg:mt-9px text-primary font-Poppins text-[32px] lg:text-4xl leading-[100%] lg:leading-[119%] -tracking-0.04em'>
 					{ homeData.packages.title }
 				</h2>
 
-				<p className='mt-[17px] lg:mt-9px text-grey-primary font-BRSonoma text-xs lg:text-sm leading-[167%] lg:leading-[143%]'>
+				<p className='mt-[14px] lg:mt-9px text-grey-primary font-BRSonoma text-xs lg:text-sm leading-[167%] lg:leading-[143%] max-md:max-w-[250px]'>
 					{ homeData.packages.description }
 				</p>
 			</WrapperAnimation>
@@ -203,7 +203,7 @@ const PackagesSection: React.FC = () => {
 		return (
 			<WrapperAnimation
 				data-aos='zoom-in-right'
-				className='mt-10'
+				className='mt-[29px]'
 			>
 				<p className='text-xs lg:text-sm leading-5 font-BRSonoma mb-[13px] flex'>{ data.label }</p>
 
@@ -255,16 +255,16 @@ const PackagesSection: React.FC = () => {
 			<div
 				id='packages'
 				className='container-center w-full max-lg:py-14 lg:pt-[94px] relative'>
-				<div className='w-full max-lg:mt-10 flex flex-col lg:flex-row justify-between items-center'>
+				<div className='w-full flex flex-col lg:flex-row justify-between items-center'>
 					{ renderTitleDescPage() }
 
-					<div className='flex-col lg:flex-row flex gap-x-10 max-lg:w-full'>
+					<div className='flex-col lg:flex-row flex gap-x-10 max-lg:w-full mt-[9px]'>
 						{ renderSelectState(statesData.states) }
 						{ renderSelectState(statesData.gender) }
 					</div>
 				</div>
 				
-				<div className='flex max-lg:flex-col gap-11px items-center lg:justify-between mt-10'>
+				<div className='flex max-lg:flex-col gap-11px items-center lg:justify-between mt-[38px]'>
 					<WrapperAnimation
 						data-aos='zoom-in-right'
 						className='flex items-center gap-5px lg:hidden'

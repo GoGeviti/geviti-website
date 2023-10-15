@@ -20,9 +20,10 @@ const landingData = {
 		]
 	},
 	hero: {
-		preTitle: 'We’ll Help You Live Longer and Live Healthier',
-		title: 'Your online hormone therapy and<br/>functional medicine provider.',
-		image: '/images/landing/compressed/hero.webp',
+		preTitle: 'Your at-home health and wellness clinic',
+		title: '<p>Online hormone therapy, peptide <br class="max-md:hidden"/> therapy, and functional medicine.</p>',
+		image: '/images/landing/hero.webp',
+		imageMobile: '/images/landing/hero_mobile.webp',
 		btnCta: {
 			text: 'See if I qualify',
 			href: 'https://gogeviti.typeform.com/qualify',
@@ -74,7 +75,7 @@ const landingData = {
 	},
 	mission: {
 		title: 'Our Mission',
-		description: 'Geviti is built on the premise that our bodies are merely vessels of consciousness. Our mission is to extend time spent in our conscious experience so we may share it with our loved ones.<br /><br />We strive to slow down, maintain, or even reverse one’s biological age my promoting actionable plans.',
+		description: 'Geviti is built on the premise that our bodies are merely vessels of consciousness. Our mission is to extend time spent in our conscious experience so we may share it with our loved ones.<br /><br />We strive to slow down, maintain, or even reverse one’s biological age by promoting actionable plans.',
 		image: '/images/landing/compressed/mission.webp',
 		imageMobile: '/images/landing/compressed/mission_mobile.webp',
 		btnCta: {
@@ -207,7 +208,7 @@ const landingData = {
 	},
 	flexible: {
 		preTitle: 'flexible plans that are right for you',
-		title: 'Starting from just $99/month',
+		title: 'Starting from just $99',
 		description: 'With at-home blood testing, facilitated by professional mobile phlebotomists, we will design a care plan precisely for your needs.',
 		image: '/images/landing/compressed/flexible.webp',
 		imageMobile: '/images/landing/compressed/flexible-mobile.webp',

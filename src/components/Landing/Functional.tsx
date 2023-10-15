@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
 import Image from 'next/image';
 
 import { landingData } from '@/constant/data';
@@ -11,7 +11,6 @@ import { CheckCircleIcon, ChevronRight } from '../Icons';
 const functionalData = landingData.functional;
 
 const Functional: React.FC = () => {
-	const [openSheet, setOpenSheet] = useState<number>(1);
 	return (
 		<div className='lg:px-3 lg:pb-15px overflow-hidden'>
 			<div className='h-full w-full lg:rounded-[19px] relative overflow-hidden bg-primary'>
@@ -30,9 +29,8 @@ const Functional: React.FC = () => {
 								{ functionalData.list.map((functionItem, functionItemIdx) => {
 									return (
 										<div
-											onClick={ () => setOpenSheet(functionItemIdx) }
 											key={ functionItemIdx }
-											className={ `${ openSheet === functionItemIdx ? 'md:bg-white bg-grey-dark text-white md:text-grey-dark ' : 'bg-grey-dark text-white'} rounded-lg py-15px md:py-5 px-[13px] lg:px-[23px] flex md:flex-col items-center md:items-start text-left gap-2.5 md:gap-1` }
+											className='cursor-pointer md:hover:transform md:hover:translate-y-[-10px] md:hover:transition-transform md:hover:duration-300 md:hover:ease-linear hover:md:bg-white hover:bg-grey-dark hover:text-white hover:md:text-grey-dark bg-grey-dark text-white rounded-lg py-15px md:py-5 px-[13px] lg:px-[23px] flex md:flex-col items-center md:items-start text-left gap-2.5 md:gap-1'
 										>
 											<CheckCircleIcon className='text-[#9CD6F4] w-[15px] h-[15px] sm:w-[21px] sm:h-[21px] flex-shrink-0' />
 											<p className='text-xs sm:text-[15px] font-Poppins font-medium leading-[12px] sm:leading-[17.5px] -tracking-0.04em'>

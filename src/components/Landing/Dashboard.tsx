@@ -69,7 +69,7 @@ const Dashboard: React.FC = () => {
 						</div>
 					</div>
 					<div className='mt-[72px] flow-root sm:mt-[90px] lg:-mb-10 max-w-5xl mx-auto relative'>
-						<div className='absolute-center rounded-[3.383px] sm:rounded-[10.689px] w-[90%] h-[90%] bg-[#EBEFF0] -z-10 shadow-[0px_-13.29418px_79.13201px_0px_rgba(0,0,0,0.15)] sm:shadow-[0px_-42px_250px_0px_rgba(0,0,0,0.15)]' />
+						{ /* <div className='absolute-center rounded-[3.383px] sm:rounded-[10.689px] w-[90%] h-[90%] bg-[#EBEFF0] -z-10 shadow-[0px_-13.29418px_79.13201px_0px_rgba(0,0,0,0.15)] sm:shadow-[0px_-42px_250px_0px_rgba(0,0,0,0.15)]' /> */ }
 						<video
 							autoPlay
 							muted

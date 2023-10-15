@@ -19,8 +19,8 @@ const Flexible: React.FC = () => {
 							{ /* <p className='mb-11px sm:mb-7px text-pretitle text-grey-primary'>{ flexibleData.preTitle }</p> */ }
 
 							{ flexibleData.title && (
-								<h2 className='mb-11px sm:mb-30px max-sm:max-w-[331px] max-sm:mx-auto text-heading-2 text-primary'>
-									<span dangerouslySetInnerHTML={ { __html: flexibleData.title } } />
+								<h2 className='mb-11px sm:mb-30px max-sm:max-w-[331px] max-sm:mx-auto text-heading-2 text-primary md:text-4xl text-2xl'>
+									<span dangerouslySetInnerHTML={ { __html: flexibleData.title } } /><span className='text-base md:text-2xl'>/month</span>
 								</h2>
 							) }
 
