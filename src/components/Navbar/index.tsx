@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import Image from 'next/image';
-import { usePathname, useRouter } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 
 import { navbarData } from '@/constant/data';
 import clsxm from '@/helpers/clsxm';
@@ -32,7 +32,7 @@ const Navbar: React.FC<NavbarProps> = ({
 	iconsMenu = navbarData.iconsMenu,
 	actionsMenu = navbarData.actionsMenu
 }) => {
-	const pathname = usePathname();
+	// const pathname = usePathname();
 	const router = useRouter();
 
 	const [openSheet, setOpenSheet] = useState<boolean>(false);

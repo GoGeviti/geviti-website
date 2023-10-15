@@ -484,6 +484,7 @@ export const CheckBlue = () => (
 			</clipPath>
 		</defs>
 	</svg>
+
 );
 
 export const HelpIcons = () => (
