@@ -16,7 +16,7 @@ const Flexible: React.FC = () => {
 					className='max-lg:p-5 container-center grid-cols-1 grid lg:grid-cols-2 h-fit lg:h-[700px]'>
 					<div className='max-lg:order-1 h-full flex flex-col justify-center relative lg:z-10 max-lg:w-full lg:max-w-lg max-lg:py-5'>
 						<div className='text-center lg:text-left lg:max-w-xl'>
-							{ /* <p className='mb-11px sm:mb-7px text-pretitle text-grey-primary'>{ flexibleData.preTitle }</p> */ }
+							<p className='mb-11px sm:mb-7px text-pretitle text-grey-primary'>{ flexibleData.preTitle }</p>
 
 							{ flexibleData.title && (
 								<h2 className='mb-11px sm:mb-30px max-sm:max-w-[331px] max-sm:mx-auto text-heading-2 text-primary md:text-4xl text-2xl'>
@@ -55,7 +55,7 @@ const Flexible: React.FC = () => {
 							loading='lazy'
 							width={ 1440 }
 							height={ 801 }
-							className='w-full'
+							className='w-[650px] object-cover'
 						/>
 					</div>
 					<div className='lg:hidden order-0'>
@@ -63,7 +63,7 @@ const Flexible: React.FC = () => {
 							src={ flexibleData.imageMobile }
 							alt='flexible mobile'
 							loading='lazy'
-							className='object-contain w-full'
+							className='object-cover w-full h-[216px] rounded-[7px]'
 							width={ 337 }
 							height={ 216 }
 						/>
