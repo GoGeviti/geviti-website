@@ -24,7 +24,6 @@ const Hero: React.FC = () => {
 								<Image
 									src={ heroData.image }
 									alt='hero'
-									sizes='(max-width: 768px) 33vw, (max-width: 1200px) 55vw, 50vw'
 									fill
 									className='object-cover'
 									priority={ true }
@@ -60,13 +59,12 @@ const Hero: React.FC = () => {
 
 						<div className='max-lg:pb-60 w-full'>
 							{ (heroData.image || heroData.imageMobile) && (
-								<div className='mx-auto aspect-[43.5/53] sm:max-h-[430px] h-full w-full relative overflow-hidden lg:hidden'>
+								<div className='mx-auto aspect-[43.5/53] h-full w-full relative overflow-hidden lg:hidden'>
 									<Image
 										priority={ true }
 										src={ heroData.imageMobile ?? heroData.image }
 										alt='hero'
-										sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
-										className='object-contain'
+										className='object-cover'
 										fill
 									/>
 								</div>

@@ -58,7 +58,7 @@ const config: Config = {
 			},
 			backgroundImage: {
 				'hero-landing-top': 'linear-gradient(180deg, #181A1C 40.05%, rgba(24, 26, 28, 0.00) 100%)',
-				'hero-landing-bottom': 'linear-gradient(0deg, #181A1C 25.06%, rgba(24, 26, 28, 0.00) 100%)',
+				'hero-landing-bottom': 'linear-gradient(0deg, #181A1C 40.06%, rgba(24, 26, 28, 0.00) 100%)',
 				'mission-landing': 'linear-gradient(0deg, #181A1C 28.72%, rgba(24, 26, 28, 0.00) 100%)',
 				'investment-landing': 'linear-gradient(109deg, #181A1C 17.5%, rgba(24, 26, 28, 0.71) 76.83%)',
 				'investment-landing-bottom': 'linear-gradient(0deg, #181A1C 39.06%, rgba(24, 26, 28, 0.00) 100%)'

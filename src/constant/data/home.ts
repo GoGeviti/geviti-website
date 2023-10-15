@@ -4,8 +4,8 @@ const homeData = {
 		title: '<p><span style="font-weight: 600;">Get Started</span> With Geviti</p>',
 		description: '<span>Unlock a Healthier You: Personalized Anti-Aging Plans with Telehealth Hormone Therapy, Peptides & More. Feel Younger, Longer.</span>',
 		descriptionMobile: '<span>Telehealth Hormone Therapy, Peptide Therapy &<br/>More. Feel Younger, Longer.</span>',
-		image: '/images/home/hero_1.webp',
-		imageMobile: '/images/home/hero_mobile.webp',
+		image: '/images/home/compressed/hero_1.webp',
+		imageMobile: '/images/home/compressed/hero_mobile.webp',
 		mainKeys: [
 			{
 				image: '/images/icons/codepen.svg',
@@ -246,21 +246,21 @@ const homeData = {
 		list: [
 			{
 				id: 1,
-				image: '/images/products/compressed/learnmore-1.jpeg',
+				image: '/images/products/compressed/learnmore-1.webp',
 				date: 'July 21, 2023',
 				title: 'Blog Title Goes Here',
 				subtitle: 'For those needing a fundamental at-home blood panel for key health markers.'
 			},
 			{
 				id: 2,
-				image: '/images/products/compressed/learnmore-2.jpeg',
+				image: '/images/products/compressed/learnmore-2.webp',
 				date: 'July 21, 2023',
 				title: 'Blog Title Goes Here',
 				subtitle: 'For those needing a fundamental at-home blood panel for key health markers.'
 			},
 			{
 				id: 3,
-				image: '/images/products/compressed/learnmore-3.jpeg',
+				image: '/images/products/compressed/learnmore-3.webp',
 				date: 'July 21, 2023',
 				title: 'Blog Title Goes Here',
 				subtitle: 'For those needing a fundamental at-home blood panel for key health markers.'
