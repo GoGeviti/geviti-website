@@ -12,15 +12,15 @@ import OrderSummary from './OrderSummary';
 const Content: React.FC = () => {
 	const searchParams = useSearchParams();
 	const [shoppingCarts, setShoppingCarts] = useState<IProducts.ProductItem[]>([
-		{
-			id: 1,
-			name: 'Clinical Consultation ',
-			price: 139.99,
-			description: 'Product Info',
-			value: '$300+',
-			imageSrc: '/images/home/compressed/product_1.webp',
-			shopify_variant_id: '46553678643490:1'
-		}
+		// {
+		// 	id: 1,
+		// 	name: 'Clinical Consultation ',
+		// 	price: 139.99,
+		// 	description: 'Product Info',
+		// 	value: '$300+',
+		// 	imageSrc: '/images/home/compressed/product_1.webp',
+		// 	shopify_variant_id: '46553678643490:1'
+		// }
 	]);
 
 	useEffect(() => {

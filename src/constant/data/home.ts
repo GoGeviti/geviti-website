@@ -2,22 +2,21 @@ const homeData = {
 	hero: {
 		preTitle: 'Functional Medicine Online',
 		title: '<p><span style="font-weight: 600;">Get Started</span> With Geviti</p>',
-		description: '<span>Unlock a Healthier You: Personalized Anti-Aging Plans with Telehealth Hormone Therapy, Peptides & More. Feel Younger, Longer.</span>',
-		descriptionMobile: '<span>Telehealth Hormone Therapy, Peptide Therapy &<br/>More. Feel Younger, Longer.</span>',
+		description: '<span>Your bloodwork panel is the entry-fee to the Geviti online ecosystem where you can receive telehealth hormone therapy, peptides & more.</span>',
 		image: '/images/home/compressed/hero_1.webp',
 		imageMobile: '/images/home/compressed/hero_mobile.webp',
 		mainKeys: [
 			{
 				image: '/images/icons/codepen.svg',
-				text: '<p>Select your<br/>bloodwork panel.</p>'
+				text: '<p>Select your<br/> bloodwork panel.</p>'
 			},
 			{
 				image: '/images/icons/settings.svg',
-				text: '<p>Do at-home <br/>blood test.</p>'
+				text: '<p>Do at-home <br/> blood test.</p>'
 			},
 			{
 				image: '/images/icons/smile.svg',
-				text: '<p>Meet with<br/> your clinician.</p>'
+				text: '<p>Video call<br/> your clinician.</p>'
 			},
 			{
 				image: '/images/icons/truck.svg',
@@ -63,7 +62,7 @@ const homeData = {
 	packages: {
 		preTitle: 'TAILORED TO YOUR SPECIFIC NEEDS',
 		title: 'Choose A Blood Panel',
-		description: 'Begin your personalized healthcare journey with us today.',
+		description: 'Your bloodwork is your entry-fee into Geviti’s online clinic.',
 		titlePackageList: 'Select one of the following options',
 		helpText: 'Need Help?'
 	},
@@ -82,6 +81,8 @@ const homeData = {
 			priceNote: 'one time',
 			priceThen: 'then $99',
 			priceThenNote: 'monthly',
+			isForMale: true,
+			isForFemale: true,
 			desc: 'For those needing a fundamental at-home blood panel for key health markers.',
 			isPopular: false,
 			btn: 'Get Started',
@@ -134,6 +135,8 @@ const homeData = {
 			priceNote: 'one time',
 			priceThen: 'then $99',
 			priceThenNote: 'monthly',
+			isForMale: true,
+			isForFemale: true,
 			desc: 'For those wanting an expanded at-home blood panel for a deeper health view.',
 			isPopular: true,
 			btn: 'Get Started',
@@ -185,6 +188,8 @@ const homeData = {
 			price: '$605',
 			priceNote: 'one time',
 			priceThen: 'then $99',
+			isForMale: true,
+			isForFemale: false,
 			priceThenNote: 'monthly',
 			desc: 'For men aiming for an exhaustive at-home blood panel for total health scrutiny.',
 			isPopular: false,
@@ -212,7 +217,61 @@ const homeData = {
 				},
 				{
 					name: 'For Males and Females',
+					description: false
+				},
+				{
+					name: 'Custom Treatment Plan',
 					description: true
+				},
+				{
+					name: 'Online Patient Dashboard',
+					description: true
+				},
+				{
+					name: 'IOS Application Access',
+					description: true
+				},
+				{
+					name: 'AI Health Metric Tracking',
+					description: true
+				},
+			]
+		},
+		{
+			title: 'Ultimate Women’s Bloodwork Panel',
+			price: '$515',
+			priceNote: 'one time',
+			priceThen: 'then $99',
+			isForMale: false,
+			isForFemale: true,
+			priceThenNote: 'monthly',
+			desc: 'For women looking for an ultimate deep dive on their current health status.',
+			isPopular: false,
+			btn: 'Get Started',
+			components: [
+				{
+					name: 'Biomarkers Tested',
+					description: '39+'
+				},
+				{
+					name: 'At-home Blood Draw',
+					description: true
+				},
+				{
+					name: 'Personal Assigned Clinician',
+					description: true
+				},
+				{
+					name: 'Telehealth Consult Included',
+					description: true
+				},
+				{
+					name: 'Prescription Therapy Access',
+					description: true
+				},
+				{
+					name: 'For Males and Females',
+					description: false
 				},
 				{
 					name: 'Custom Treatment Plan',
@@ -313,7 +372,7 @@ const homeData = {
 			title: 'For Males and Females',
 			essential: true,
 			comprehensive: true,
-			ultimate: true
+			ultimate: false
 		},
 		{
 			title: 'Custom Treatment Plan',

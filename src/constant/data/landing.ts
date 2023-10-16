@@ -25,7 +25,7 @@ const landingData = {
 		image: '/images/landing/hero.webp',
 		imageMobile: '/images/landing/hero_mobile.webp',
 		btnCta: {
-			text: 'See if I qualify',
+			text: 'See If I Qualify',
 			href: 'https://gogeviti.typeform.com/qualify',
 			externalLink: true
 		},

@@ -7,13 +7,13 @@ import { IProducts } from '@/interfaces';
 import { ArrowNarrowRight, CheckIcon } from '../Icons';
 
 const services = [
-	{
-		id: 15,
-		name: 'Mobile Blood-draw',
-		price: 35.99,
-		description: 'Avoid the stress of lab visits with our mobile blood draw service. We\'ll send a trained professional to your home for the collection of samples and ensure their safe delivery to the lab. If unselected, you\'ll have to go into a Labcorp near you.',
-		shopify_variant_id: '46434941436194:1',
-	},
+	// {
+	// 	id: 15,
+	// 	name: 'Mobile Blood-draw',
+	// 	price: 35.99,
+	// 	description: 'Avoid the stress of lab visits with our mobile blood draw service. We\'ll send a trained professional to your home for the collection of samples and ensure their safe delivery to the lab. If unselected, you\'ll have to go into a Labcorp near you.',
+	// 	shopify_variant_id: '46434941436194:1',
+	// },
 	{
 		id: 16,
 		name: 'Genetic Sequencing Test',

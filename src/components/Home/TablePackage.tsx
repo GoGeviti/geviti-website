@@ -3,7 +3,7 @@ import React from 'react';
 import { homeData } from '@/constant/data';
 import clsxm from '@/helpers/clsxm';
 
-import { CheckBlue, HelpIcons } from '../Icons';
+import { CheckBlue, HelpIcons, Minus } from '../Icons';
 type TablePackageItem = {
   classname?: string;
 };
@@ -31,17 +31,17 @@ const TablePackage: React.FC<TablePackageItem> = ({ classname }) => {
 							</th>
 							<td className='p-5'>
 								<div className='flex justify-center'>
-									{ items.essential === true ? <CheckBlue /> : <div className='flex items-center gap-2'><p>{ items.essential }</p><HelpIcons /></div> }
+									{ items.essential === true ? <CheckBlue /> : items.essential === false ? <Minus/> : <div className='flex items-center gap-2'><p>{ items.essential }</p><HelpIcons /></div> }
 								</div>
 							</td>
 							<td className='p-5'>
 								<div className='flex justify-center'>
-									{ items.comprehensive === true ? <CheckBlue /> : <div className='flex items-center gap-2'><p>{ items.comprehensive }</p><HelpIcons /></div> }
+									{ items.comprehensive === true ? <CheckBlue /> : items.comprehensive === false ? <Minus/> : <div className='flex items-center gap-2'><p>{ items.comprehensive }</p><HelpIcons /></div> }
 								</div>
 							</td>
 							<td className='p-5'>
 								<div className='flex justify-center'>
-									{ items.ultimate === true ? <CheckBlue /> : <div className='flex items-center gap-2'><p>{ items.ultimate }</p><HelpIcons /></div> }
+									{ items.ultimate === true ? <CheckBlue /> : items.ultimate === false ? <Minus/> : <div className='flex items-center gap-2'><p>{ items.ultimate }</p><HelpIcons /></div> }
 								</div>
 							</td>
 						</tr>

@@ -95,7 +95,7 @@ const Hero = () => {
 										data-aos='zoom-in-up'
 										data-aos-delay={ `${ featureIdx * 100 }` }
 										data-aos-anchor='#main-keys-landing'
-										className='flex flex-col text-center items-center gap-y-1 md:gap-y-5px'
+										className='flex flex-col text-center items-center'
 									>
 										{ feature.image && (
 											<div className='relative overflow-hidden w-[21px] h-[21px] sm:w-[26px] sm:h-[26px]'>
@@ -108,10 +108,8 @@ const Hero = () => {
 												/>
 											</div>
 										) }
-										<p className='font-Poppins leading-[17.187px] lg:leading-[225%] -tracking-0.04em text-grey-secondary text-[15.861px] sm:text-lg lg:text-xl'>{ feature.text }</p>
-										<span className='inline-flex items-center gap-5px'>
-											<p className='text-grey-primary font-medium font-BRSonoma text-[11px] sm:text-sm'>{ feature.subtext }</p>
-										</span>
+										<p className='font-Poppins mt-5px -tracking-0.04em text-grey-secondary text-[15.861px] sm:text-lg lg:text-xl'>{ feature.text }</p>
+										<p className='text-grey-primary font-medium font-BRSonoma text-[11px] sm:text-sm mt-[3px]'>{ feature.subtext }</p>
 									</WrapperAnimation>
 								)) }
 							</div>

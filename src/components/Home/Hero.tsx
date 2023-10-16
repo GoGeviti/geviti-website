@@ -48,11 +48,7 @@ const Hero: React.FC = () => {
 							{ heroData.description && (
 								<p className='mt-3.5 lg:pr-11 font-BRSonoma font-normal text-xs sm:text-sm leading-[142.857%] text-grey-primary'>
 									<span
-										dangerouslySetInnerHTML={ { __html: heroData.description } }
-										className='lg:block hidden' />
-									<span
-										dangerouslySetInnerHTML={ { __html: heroData.descriptionMobile } }
-										className='lg:hidden'/>
+										dangerouslySetInnerHTML={ { __html: heroData.description } } />
 								</p>
 							) }
 						</div>
@@ -106,7 +102,7 @@ const Hero: React.FC = () => {
 											/>
 										</div>
 									) }
-									<p className='font-Poppins font-medium leading-[129.403%] text-grey-secondary text-base'><span dangerouslySetInnerHTML={ { __html: feature.text } } /></p>
+									<div className='font-Poppins font-medium leading-[129.403%] text-grey-secondary text-base'><span dangerouslySetInnerHTML={ { __html: feature.text } } /></div>
 								</WrapperAnimation>
 							)) }
 						</div>
