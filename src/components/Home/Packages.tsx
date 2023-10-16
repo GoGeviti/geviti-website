@@ -13,6 +13,7 @@ import {
 	CheckBlue,
 	ChevronDown,
 	InfoCircle,
+	Minus,
 } from '../Icons';
 import {
 	Select,
@@ -49,7 +50,11 @@ const PackagesSection: React.FC = () => {
 					component.description === true &&
 					<CheckBlue />
 				}
-				<p className='text-xs text-primary font-medium font-BRSonoma leading-5'>{ component.description !== true && <span className='font-bold'>{ component.description }</span> } { component.name }</p>
+				{
+					component.description === false &&
+					<Minus />
+				}
+				<p className='text-xs text-primary font-medium font-BRSonoma leading-5'>{ (component.description !== true || component.description !== false) && <span className='font-bold'>{ component.description }</span> } { component.name }</p>
 			</div>
 		);
 	};
@@ -70,64 +75,66 @@ const PackagesSection: React.FC = () => {
 				id='package-list'
 				className='mt-10 lg:mt-5 flex flex-col gap-3'
 			>
-				{ homeData.bloodPanel.map((packageItem, packageItemIdx) => {
-					const isSelected = packageItemIdx === selectedPackageIdx;
+				{ homeData.bloodPanel
+					.filter(packageItem => (stateGender === 'Female' ? packageItem.isForFemale : packageItem.isForMale))
+					.map((packageItem, packageItemIdx) => {
+						const isSelected = packageItemIdx === selectedPackageIdx;
 
-					return (
-						<div
-							key={ packageItemIdx }
-							data-aos='zoom-in-down'
-							data-aos-delay={ `${ packageItemIdx * 100 }` }
-							data-aos-anchor='#package-list'
-						>
+						return (
 							<div
-								onClick={ () => state && setSelectedPackageIdx(packageItemIdx) }
-								className={ clsxm(
-									'rounded-md py-[25px] px-[27px] border transform transition-all duration-500',
-									resolveCardPackageClassName(isSelected)
-								) }
+								key={ packageItemIdx }
+								data-aos='zoom-in-down'
+								data-aos-delay={ `${ packageItemIdx * 100 }` }
+								data-aos-anchor='#package-list'
 							>
-								<div className='flex flex-col justify-between items-start'>
-									{
-										packageItem.isPopular &&
-										<p className='bg-blue-1/30 text-blue-4 px-5 py-[2px] rounded-full w-fit font-Poppins text-sm font-medium leading-5'>Most Popular</p>
-									}
-									<p className='font-Poppins text-base font-medium text-primary my-3'>{ packageItem.title }</p>
-									<p className='font-Poppins text-4xl font-medium text-primary leading-[125%] -tracking-[0.72px;]'>{ packageItem.price } <span className='text-grey-primary text-[10px] leading-[150%] tracking-normal'>{ packageItem.priceNote }</span></p>
-									<p className='text-primary text-base leading-[150%] font-Poppins font-medium'>{ packageItem.priceThen } <span className='text-grey-primary text-[10px]'>{ packageItem.priceThenNote }</span></p>
-									<p className='text-grey-primary text-xs leading-[150%] font-Poppins mt-3 font-medium'>{ packageItem.desc }</p>
-								</div>
 								<div
-									className='text-primary mt-8 mb-3 flex items-center gap-2'
-									onClick={ () => setOpenFeatures(packageItemIdx) }>
-									<p className='font-Poppins text-sm text-primary'>View Plan Features</p>
-									<ArrowNarrowDown className='text-primary' />
-								</div>
+									onClick={ () => state && setSelectedPackageIdx(packageItemIdx) }
+									className={ clsxm(
+										'rounded-md py-[25px] px-[27px] border transform transition-all duration-500',
+										resolveCardPackageClassName(isSelected)
+									) }
+								>
+									<div className='flex flex-col justify-between items-start'>
+										{
+											packageItem.isPopular &&
+										<p className='bg-blue-1/30 text-blue-4 px-5 py-[2px] rounded-full w-fit font-Poppins text-sm font-medium leading-5'>Most Popular</p>
+										}
+										<p className='font-Poppins text-base font-medium text-primary my-3'>{ packageItem.title }</p>
+										<p className='font-Poppins text-4xl font-medium text-primary leading-[125%] -tracking-[0.72px;]'>{ packageItem.price } <span className='text-grey-primary text-[10px] leading-[150%] tracking-normal'>{ packageItem.priceNote }</span></p>
+										<p className='text-primary text-base leading-[150%] font-Poppins font-medium'>{ packageItem.priceThen } <span className='text-grey-primary text-[10px]'>{ packageItem.priceThenNote }</span></p>
+										<p className='text-grey-primary text-xs leading-[150%] font-Poppins mt-3 font-medium'>{ packageItem.desc }</p>
+									</div>
+									<div
+										className='text-primary mt-8 mb-3 flex items-center gap-2'
+										onClick={ () => setOpenFeatures(packageItemIdx) }>
+										<p className='font-Poppins text-sm text-primary'>View Plan Features</p>
+										<ArrowNarrowDown className='text-primary' />
+									</div>
 
-								<div className={ clsxm('flex-col gap-x-25px gap-y-3.5 lg:gap-y-4', state && stateGender ? (packageItemIdx === openFeatures ? 'flex' : 'hidden') : 'hidden') }>
-									{ packageItem.components?.map((component, componentIdx) => (
-										<div key={ componentIdx }>
-											<div className=''>
-												{ renderTextComponentPackage(component) }
+									<div className={ clsxm('flex-col gap-x-25px gap-y-3.5 lg:gap-y-4', state && stateGender ? (packageItemIdx === openFeatures ? 'flex' : 'hidden') : 'hidden') }>
+										{ packageItem.components?.map((component, componentIdx) => (
+											<div key={ componentIdx }>
+												<div className=''>
+													{ renderTextComponentPackage(component) }
+												</div>
 											</div>
-										</div>
-									)) }
+										)) }
+									</div>
+
+									{  state && stateGender && isSelected && (
+										<Link
+											prefetch={ false }
+											href={ `/orders?selectedProduct=${ packageItemIdx + 1 }` }
+											className='btn btn-primary mt-5 flex items-center gap-1.5 w-fit'>
+											<span className='text-xs font-medium font-BRSonoma leading-[159%]'>Continue</span>
+
+											<ArrowNarrowRight />
+										</Link>
+									) }
 								</div>
-
-								{  state && stateGender && isSelected && (
-									<Link
-										prefetch={ false }
-										href={ `/orders?selectedProduct=${ packageItemIdx + 1 }` }
-										className='btn btn-primary mt-5 flex items-center gap-1.5 w-fit'>
-										<span className='text-xs font-medium font-BRSonoma leading-[159%]'>Continue</span>
-
-										<ArrowNarrowRight />
-									</Link>
-								) }
 							</div>
-						</div>
-					);
-				}) }
+						);
+					}) }
 			</div>
 		);
 	};
@@ -164,7 +171,7 @@ const PackagesSection: React.FC = () => {
 		return (
 			<div className={ clsxm('grid grid-cols-4 w-full gap-12 mt-24', (!state || !stateGender) && 'opacity-50 border-transparent cursor-default') }>
 				<div />
-				{ homeData.bloodPanel.map((items, id) => (
+				{ homeData.bloodPanel.filter(packageItem => (stateGender === 'Female' ? packageItem.isForFemale : packageItem.isForMale)).map((items, id) => (
 					<div
 						key={ id }
 						className='max-w-[250px] flex flex-col justify-end'>
@@ -176,14 +183,16 @@ const PackagesSection: React.FC = () => {
 						<p className='font-Poppins text-5xl font-medium text-primary leading-[125%] -tracking-[0.96px;]'>{ items.price } <span className='text-grey-primary text-base leading-[150%] tracking-normal'>{ items.priceNote }</span></p>
 						<p className='text-primary text-base leading-[150%] font-Poppins font-medium'>{ items.priceThen } <span className='text-grey-primary text-sm'>{ items.priceThenNote }</span></p>
 						<p className='text-grey-primary text-sm leading-[150%] font-Poppins mt-4'>{ items.desc }</p>
-						<button
+						<Link
+							prefetch={ false }
+							href={ `/orders?selectedProduct=${ id + 1 }` }
 							className='btn-cta-landing group btn-primary w-full text-center mt-14'
 							aria-label={ items.btn }
 						>
 							<span className='text-btn-cta-landing w-full'>
 								{ items.btn }
 							</span>
-						</button>
+						</Link>
 					</div>
 				)) }
 			</div>

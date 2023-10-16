@@ -4,7 +4,9 @@ import { NextPage } from 'next';
 import Link from 'next/link';
 import { notFound, useRouter } from 'next/navigation';
 
-import { HomeComponent, LandingComponent, Navbar, ProductsComponent } from '@/components';
+import {
+	CustomLink, HomeComponent, LandingComponent, Navbar, ProductsComponent
+} from '@/components';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/Accordion';
 import { AlertSquareIcon, ChevronDown } from '@/components/Icons';
 import { productsData } from '@/constant/data';
@@ -109,13 +111,20 @@ const ProductDetailPage: NextPage<ProductDetailPageProps> = ({ params }) => {
 
 	const renderButtonPurchase = () => {
 		return (
-			<button
+			// <button
+			// 	className='btn btn-primary w-full text-xs sm:text-sm font-medium font-Poppins leading-[21px] sm:leading-[26px] py-2.5 sm:py-[13px]'
+			// 	onClick={ () => router.push(`/orders?selectedProduct=${ id }`) }
+			// 	aria-label='Purchase'
+			// >
+			// Get Started
+			// </button>
+			<CustomLink
+				href='/get-started'
 				className='btn btn-primary w-full text-xs sm:text-sm font-medium font-Poppins leading-[21px] sm:leading-[26px] py-2.5 sm:py-[13px]'
-				onClick={ () => router.push(`/orders?selectedProduct=${ id }`) }
 				aria-label='Purchase'
 			>
-				Purchase
-			</button>
+			Get Started
+			</CustomLink>
 		);
 	};
 

@@ -487,6 +487,23 @@ export const CheckBlue = () => (
 
 );
 
+export const Minus = () => (
+	<svg
+		xmlns='http://www.w3.org/2000/svg'
+		width='21'
+		height='20'
+		viewBox='0 0 21 20'
+		fill='none'
+		className='w-4 h-4 md:h-6 md:w-6'>
+		<path
+			d='M5.0415 10H16.7082'
+			stroke='#919B9F'
+			strokeWidth='2'
+			strokeLinecap='round'
+			strokeLinejoin='round'/>
+	</svg>
+);
+
 export const HelpIcons = () => (
 	<svg
 		xmlns='http://www.w3.org/2000/svg'

@@ -13,13 +13,13 @@ const Flexible: React.FC = () => {
 		<div className='lg:px-3 overflow-hidden'>
 			<div className='bg-grey-secondary h-full w-full lg:rounded-[19px] relative overflow-hidden'>
 				<div
-					className='max-lg:p-5 container-center grid-cols-1 grid lg:grid-cols-2 h-fit lg:h-[700px]'>
-					<div className='max-lg:order-1 h-full flex flex-col justify-center relative lg:z-10 max-lg:w-full lg:max-w-lg max-lg:py-5'>
+					className='max-lg:px-5 max-lg:py-9 container-center grid-cols-1 grid lg:grid-cols-2 h-fit lg:h-[700px]'>
+					<div className='max-lg:order-1 h-full flex flex-col justify-center relative lg:z-10 max-lg:w-full lg:max-w-lg '>
 						<div className='text-center lg:text-left lg:max-w-xl'>
-							<p className='mb-11px sm:mb-7px text-pretitle text-grey-primary'>{ flexibleData.preTitle }</p>
+							<p className='mb-[10px] md:mb-3 text-pretitle text-grey-primary max-md:mt-7'>{ flexibleData.preTitle }</p>
 
 							{ flexibleData.title && (
-								<h2 className='mb-11px sm:mb-30px max-sm:max-w-[331px] max-sm:mx-auto text-heading-2 text-primary md:text-4xl text-2xl'>
+								<h2 className='mb-[10px] md:mb-[14px] max-sm:max-w-[331px] leading-[120.833%] -tracking-[0.96px] max-sm:mx-auto text-heading-2 text-primary md:text-4xl text-2xl'>
 									<span dangerouslySetInnerHTML={ { __html: flexibleData.title } } /><span className='text-base md:text-2xl'>/month</span>
 								</h2>
 							) }
@@ -30,7 +30,7 @@ const Flexible: React.FC = () => {
 								</p>
 							) }
 
-							<div className='flex max-lg:justify-center mt-8 sm:mt-[70px]'>
+							<div className='flex max-lg:justify-center mt-7 sm:mt-[60px]'>
 								<CustomLink
 									href={ flexibleData.btnCta.href }
 									externalLink={ flexibleData.btnCta.externalLink }
@@ -55,7 +55,7 @@ const Flexible: React.FC = () => {
 							loading='lazy'
 							width={ 1440 }
 							height={ 801 }
-							className='w-[650px] object-cover'
+							className='w-[707px] object-cover'
 						/>
 					</div>
 					<div className='lg:hidden order-0'>

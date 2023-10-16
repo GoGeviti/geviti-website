@@ -91,7 +91,9 @@ const Navbar: React.FC<NavbarProps> = ({
 		return (
 			<>
 				{ actionsMenu?.map(menu => (
-					<button
+					<CustomLink
+						href='https://app.gogeviti.com/'
+						externalLink={ true }
 						aria-label={ menu.name }
 						className={ clsxm(
 							'btn font-Poppins text-sm font-medium leading-6',
@@ -100,7 +102,7 @@ const Navbar: React.FC<NavbarProps> = ({
 						key={ menu.name }
 					>
 						{ menu.name }
-					</button>
+					</CustomLink>
 				)) }
 			</>
 		);
