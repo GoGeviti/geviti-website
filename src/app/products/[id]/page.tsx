@@ -2,7 +2,7 @@
 
 import { NextPage } from 'next';
 import Link from 'next/link';
-import { notFound, useRouter } from 'next/navigation';
+import { notFound } from 'next/navigation';
 
 import {
 	CustomLink, HomeComponent, LandingComponent, Navbar, ProductsComponent
@@ -15,7 +15,7 @@ import clsxm from '@/helpers/clsxm';
 type ProductDetailPageProps = { params: { id: string; }; };
 
 const ProductDetailPage: NextPage<ProductDetailPageProps> = ({ params }) => {
-	const router = useRouter();
+	// const router = useRouter();
 
 	const id = params.id;
 	const product = productsData.find(e => e.id.toString() === id.toString());
