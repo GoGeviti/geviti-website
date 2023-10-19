@@ -27,17 +27,17 @@ const StepsSection: React.FC = () => {
 	return (
 		<div className='lg:px-3 lg:py-15px overflow-hidden'>
 			<div className='h-full w-full lg:rounded-[19px] relative overflow-hidden'>
-				<div className='container-center pt-60px pb-[56px] flex flex-col gap-y-[54px] lg:gap-y-[62px] items-center justify-center text-center'>
+				<div className='container-center py-[62px] flex flex-col gap-y-[62px] items-center justify-center text-center'>
 					<div className='text-center sm:mx-auto'>
-						<p className='mb-11px sm:mb-7px text-pretitle text-grey-primary leading-[45px]'>{ stepsData.preTitle }</p>
+						<p className='mb-[15px] md:mb-7px text-pretitle text-grey-primary leading-[15px] md:leading-[24px]'>{ stepsData.preTitle }</p>
 
 						{ stepsData.title && (
-							<h2 className='text-heading-2 text-primary'>
+							<h2 className='text-heading-2 text-primary !text-2xl md:text-[32px] lg:text-4xl leading-[102.083%] md:leading-[125%] max-md:max-w-[243px]'>
 								<span dangerouslySetInnerHTML={ { __html: stepsData.title } } />
 							</h2>
 						) }
 
-						<div className='flex justify-center mt-6 sm:mt-30px'>
+						<div className='flex justify-center mt-6 md:mt-30px'>
 							<CustomLink
 								href={ stepsData.btnCta.href }
 								externalLink={ stepsData.btnCta.externalLink }
@@ -83,10 +83,10 @@ const StepsSection: React.FC = () => {
 													onClick={ () => onSelectStep(stepIdx) }
 													onMouseEnter={ () => onMouseEnter(stepIdx) }
 													className={ clsxm(
-														'cursor-pointer text-center font-Poppins text-primary leading-[134%]',
+														'cursor-pointer text-center font-Poppins text-primary leading-[134%] text-sm',
 														isSelected
 															? 'md:pt-[22px] text-sm md:text-[19px] lg:w-[180px] font-medium'
-															: 'font-medium md:pt-18px text-sm md:text-base lg:w-[150px]'
+															: 'font-medium md:pt-18px text-[14.042px] md:text-base lg:w-[150px]'
 													) }
 												>
 													{ step.title }

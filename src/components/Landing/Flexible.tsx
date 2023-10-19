@@ -19,18 +19,18 @@ const Flexible: React.FC = () => {
 							<p className='mb-[10px] md:mb-3 text-pretitle text-grey-primary max-md:mt-7'>{ flexibleData.preTitle }</p>
 
 							{ flexibleData.title && (
-								<h2 className='mb-[10px] md:mb-[14px] max-sm:max-w-[331px] leading-[120.833%] -tracking-[0.96px] max-sm:mx-auto text-heading-2 text-primary md:text-4xl text-2xl'>
+								<h2 className='mb-[10px] md:mb-[14px] max-sm:max-w-[331px] md:leading-[120.833%] md:-tracking-[0.96px] leading-[32px] -tracking-[0.64px] max-sm:mx-auto font-medium font-Poppins text-primary md:text-4xl text-2xl'>
 									<span dangerouslySetInnerHTML={ { __html: flexibleData.title } } /><span className='text-base md:text-2xl'>/month</span>
 								</h2>
 							) }
 
 							{ flexibleData.description && (
-								<p className='text-grey-primary max-sm:max-w-[330px] max-sm:mx-auto text-xs sm:text-sm leading-5 font-BRSonoma'>
+								<p className='text-grey-primary max-sm:max-w-[330px] max-sm:mx-auto text-xs md:text-sm leading-5 font-BRSonoma'>
 									<span dangerouslySetInnerHTML={ { __html: flexibleData.description } } />
 								</p>
 							) }
 
-							<div className='flex max-lg:justify-center mt-7 sm:mt-[60px]'>
+							<div className='flex max-lg:justify-center mt-6 sm:mt-[60px]'>
 								<CustomLink
 									href={ flexibleData.btnCta.href }
 									externalLink={ flexibleData.btnCta.externalLink }

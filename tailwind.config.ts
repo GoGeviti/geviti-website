@@ -94,9 +94,9 @@ const config: Config = {
 					'.btn-primary': { '@apply bg-primary hover:bg-opacity-80 disabled:bg-opacity-50 text-grey-secondary font-medium': {} },
 					'.btn-secondary': { '@apply bg-grey-secondary text-primary font-medium': {} },
 					'.btn-cta-landing': { '@apply btn !py-2.5 sm:!py-3 flex items-center gap-7px sm:gap-2 !translate-y-0': {} },
-					'.text-pretitle': { '@apply font-BRSonoma font-semibold text-[10px] sm:text-xs md:text-sm leading-6 uppercase tracking-0.11em': {} },
+					'.text-pretitle': { '@apply font-BRSonoma font-semibold text-[10px] md:text-sm leading-6 uppercase tracking-0.11em': {} },
 					'.text-heading-2': { '@apply font-Poppins text-[21px] sm:text-2xl md:text-[32px] lg:text-4xl leading-[129%] sm:leading-[125%] -tracking-0.04em': {} },
-					'.text-btn-cta-landing': { '@apply text-xs sm:text-sm font-medium leading-5 sm:leading-6 font-Poppins': {} },
+					'.text-btn-cta-landing': { '@apply text-xs sm:text-sm font-medium leading-6 font-Poppins': {} },
 					'.arrow-btn-cta-landing': { '@apply stroke-primary w-4 h-4 sm:w-18px sm:h-18px group-hover:translate-x-1 transform transition-all duration-100': {} }
 				}
 			);
