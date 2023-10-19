@@ -176,6 +176,7 @@ const landingData = {
 	quality: {
 		preTitle: 'Highest quality standards',
 		title: 'Pharmacy Dispensed Medicines',
+		titleMobile: 'Pharmacy Dispensed Medicines Shipped Straight To Your Door',
 		notes: '*Product images are for display purposes; actual items from US-based pharmacies may vary.',
 		list: [
 			'Oral testosterone replacement (TRT)',

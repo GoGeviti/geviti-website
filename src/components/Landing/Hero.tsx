@@ -49,18 +49,18 @@ const Hero = () => {
 					<div className='relative w-full h-full bg-hero-landing-bottom lg:rounded-b-[19px]'>
 						<div className='container-center pb-[38px] lg:pb-[112px] h-full w-full flex flex-col items-center justify-end'>
 							<div className='text-center'>
-								<h2 className='text-grey-secondary font-BRSonoma font-semibold text-[10px] sm:text-xs lg:text-sm leading-[150%] lg:leading-6 uppercase tracking-0.11em'>
+								<h2 className='text-grey-secondary font-Poppins font-semibold text-[10px] sm:text-xs lg:text-sm leading-[240%] lg:leading-6 uppercase tracking-[1.1px] md:tracking-0.11em'>
 									{ heroData.preTitle }
 								</h2>
 								{ heroData.title && (
-									<h1 className='mt-11px lg:mt-7px font-Poppins text-[21px] sm:text-2xl md:text-[32px] lg:text-[40px] sm:leading-[42.5px] -tracking-0.04em text-grey-secondary'>
+									<h1 className='mt-11px lg:mt-7px font-Poppins text-[25px] md:text-[32px] lg:text-[40px] leading-[120%] sm:leading-[42.5px] tracking-[-1px] md:-tracking-0.04em text-grey-secondary'>
 										<span dangerouslySetInnerHTML={ { __html: heroData.title } } />
 									</h1>
 								) }
 
 								<div
 									id='main-keys-landing'
-									className='flex justify-center mt-7 sm:mt-9 space-x-5'>
+									className='flex justify-center mt-9 space-x-5'>
 									<CustomLink
 										href={ heroData.btnCta.href }
 										externalLink={ heroData.btnCta.externalLink }
@@ -88,7 +88,7 @@ const Hero = () => {
 								</div>
 							</div>
 
-							<div className='flex items-center justify-center gap-5 lg:gap-12 mt-[53px] sm:mt-20'>
+							<div className='flex items-center justify-center gap-5 lg:gap-12 mt-[54px] sm:mt-20'>
 								{ heroData.mainKeys.map((feature, featureIdx) => (
 									<WrapperAnimation
 										key={ feature.text }
@@ -108,8 +108,8 @@ const Hero = () => {
 												/>
 											</div>
 										) }
-										<p className='font-Poppins mt-5px -tracking-0.04em text-grey-secondary text-[15.861px] sm:text-lg lg:text-xl'>{ feature.text }</p>
-										<p className='text-grey-primary font-medium font-BRSonoma text-[11px] sm:text-sm mt-[3px]'>{ feature.subtext }</p>
+										<p className='font-Poppins mt-5px -tracking-[0.634px] md:-tracking-0.04em text-grey-secondary text-[15.861px] md:text-lg lg:text-xl leading-[108.362%]'>{ feature.text }</p>
+										<p className='text-grey-primary font-medium font-Poppins text-[11px] md:text-sm mt-[3px]'>{ feature.subtext }</p>
 									</WrapperAnimation>
 								)) }
 							</div>

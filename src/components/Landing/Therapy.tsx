@@ -19,13 +19,13 @@ const Therapy: React.FC = () => {
 						</p>
 						{ therapyData.title && (
 							<div className='max-lg:mx-auto sm:max-w-[600px] mt-11px sm:mt-3'>
-								<h2 className='font-Poppins text-xl sm:text-2xl md:text-[32px] lg:text-4xl leading-[135%] sm:leading-[121%] -tracking-0.04em'>
+								<h2 className='font-Poppins font-medium text-xl md:text-[32px] lg:text-4xl leading-[30px] sm:leading-[121%] -tracking-[0.8px] md:-tracking-0.04em'>
 									{ therapyData.title }
 								</h2>
 							</div>
 						) }
 						<div className='max-lg:mx-auto max-w-[330px] sm:max-w-[408px] mt-11px lg:mt-5'>
-							<p className='text-grey-primary text-xs sm:text-sm leading-5 font-BRSonoma'>
+							<p className='text-grey-primary text-xs md:text-sm leading-5 font-Poppins'>
 								{ therapyData.description }
 							</p>
 						</div>
@@ -46,18 +46,25 @@ const Therapy: React.FC = () => {
 					</div>
 				</div>
 
-				<div className='relative flex justify-end lg:absolute lg:-right-40 lg:-bottom-8 sm:ml-auto sm:max-w-lg md:max-w-4xl z-10'>
+				<div className='relative flex justify-end lg:absolute -right-5 lg:-right-40 lg:-bottom-8 md:ml-auto md:max-w-4xl z-10'>
 					<Image
 						src='/images/landing/compressed/clinician.webp'
 						alt='clinician'
 						loading='lazy'
 						width={ 683.492 }
 						height={ 1704 }
-						className='h-full max-md:w-[440px] lg:h-[742px] lg:w-auto'/>
+						className='h-[742px] w-auto md:block hidden'/>
+					<Image
+						src='/images/landing/compressed/clinician_mobile.webp'
+						alt='clinician'
+						loading='lazy'
+						width={ 683.492 }
+						height={ 1704 }
+						className='md:hidden'/>
 				</div>
 
 				<div>
-					<div className='absolute bottom-[245px] sm:-bottom-7 max-sm:left-5 sm:right-[250px] md:right-[460px] z-[9]'>
+					<div className='absolute bottom-[220px] sm:-bottom-7 max-sm:left-5 sm:right-[250px] md:right-[460px] z-[9]'>
 						<video
 							autoPlay
 							muted

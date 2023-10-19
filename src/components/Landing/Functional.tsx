@@ -21,7 +21,7 @@ const Functional: React.FC = () => {
 								{ functionalData.preTitle }
 							</p>
 							{ functionalData.title && (
-								<h2 className='text-heading-2 mt-11px sm:mt-7px text-grey-secondary'>
+								<h2 className='font-Poppins text-[21px] md:text-[32px] lg:text-4xl leading-[27px] sm:leading-[125%] -tracking-[0.84px] md:-tracking-0.04em mt-11px sm:mt-7px text-grey-secondary'>
 									<span dangerouslySetInnerHTML={ { __html: functionalData.title } } />
 								</h2>
 							) }
@@ -30,10 +30,10 @@ const Functional: React.FC = () => {
 									return (
 										<div
 											key={ functionItemIdx }
-											className='cursor-pointer md:hover:transform md:hover:translate-y-[-10px] md:hover:transition-transform md:hover:duration-300 md:hover:ease-linear hover:md:bg-white hover:bg-grey-dark hover:text-white hover:md:text-grey-dark bg-grey-dark text-white rounded-lg py-15px md:py-5 px-[13px] lg:px-[23px] flex md:flex-col items-center md:items-start text-left gap-2.5 md:gap-1'
+											className='cursor-pointer md:hover:transform md:hover:translate-y-[-10px] md:hover:transition-transform md:hover:duration-300 md:hover:ease-linear hover:md:bg-white hover:bg-grey-dark hover:text-white hover:md:text-grey-dark bg-grey-dark text-white rounded-lg py-15px md:py-5 px-[13px] lg:px-[23px] flex md:flex-col items-center md:items-start text-left gap-[5.16px] md:gap-1'
 										>
-											<CheckCircleIcon className='text-[#9CD6F4] w-[15px] h-[15px] sm:w-[21px] sm:h-[21px] flex-shrink-0' />
-											<p className='text-xs sm:text-[15px] font-Poppins font-medium leading-[12px] sm:leading-[17.5px] -tracking-0.04em'>
+											<CheckCircleIcon className='text-[#9CD6F4] w-[14.843px] h-[14.843px] sm:w-[21px] sm:h-[21px] flex-shrink-0' />
+											<p className='text-xs sm:text-[15px] font-Poppins font-medium leading-[103.077%] sm:leading-[17.5px] -tracking-[0.48px]'>
 												{ functionItem }
 											</p>
 										</div>

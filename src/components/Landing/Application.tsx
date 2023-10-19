@@ -12,9 +12,9 @@ const Application: React.FC = () => {
 	const renderTitleDesc = () => {
 		return (
 			<>
-				<p className='mb-11px sm:mb-7px text-pretitle text-grey-primary'>{ applicationData.preTitle }</p>
+				<p className='mb-7px text-pretitle text-grey-primary'>{ applicationData.preTitle }</p>
 
-				<h2 className='mb-3.5 text-heading-2 text-primary max-sm:max-w-[293px] max-sm:mx-auto lg:max-w-[433px]'>
+				<h2 className='mb-3.5 font-Poppins text-[21px] md:text-[32px] lg:text-4xl leading-[27px] sm:leading-[125%] -tracking-[0.84px] md:-tracking-0.04em text-primary max-sm:max-w-[293px] max-sm:mx-auto lg:max-w-[433px]'>
 					{ applicationData.title }
 				</h2>
 
