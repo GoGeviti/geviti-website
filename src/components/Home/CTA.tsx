@@ -2,14 +2,16 @@
 
 import React from 'react';
 
-import { homeData } from '@/constant/data';
+import { ICTA } from '@/interfaces';
 
 import { ChevronRight } from '../Icons';
 import { CustomLink } from '..';
 
-const cta = homeData.cta;
+type CTAProps = {
+	cta: ICTA.CTA;
+};
 
-const CTA: React.FC = () => {
+const CTA: React.FC<CTAProps> = ({ cta }) => {
 	return (
 		<div className='lg:px-3 lg:py-15px overflow-hidden'>
 			<div className='h-full w-full lg:rounded-[19px] relative overflow-hidden bg-grey-background-2'>

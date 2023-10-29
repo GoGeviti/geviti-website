@@ -24,36 +24,37 @@ const Content: React.FC = () => {
 	]);
 
 	useEffect(() => {
-		const selectedProduct = searchParams.get('selectedProduct');
+		const selectedProduct = searchParams?.get('selectedProduct');
 		if (selectedProduct) {
-			const select = packagesData.find(e => e.id.toString() === selectedProduct) as IProducts.ProductItem;
+			const select = packagesData.find(
+				e => e.id.toString() === selectedProduct
+			) as IProducts.ProductItem;
 			if (selectedProduct === '5') {
 				setShoppingCarts([select]);
 			} else {
 				setShoppingCarts(prev => {
-					return [
-						...prev,
-						select
-					];
+					return [...prev, select];
 				});
 			}
 		}
-	}, [searchParams.get('selectedProduct')]);
+	}, [searchParams?.get('selectedProduct')]);
 
 	return (
 		<div className='flex flex-col-reverse lg:grid lg:grid-cols-11 lg:gap-20'>
 			<div className='lg:col-span-7'>
 				<AdditionalServices
-					selectedProduct={ searchParams.get('selectedProduct') ?? '' }
+					selectedProduct={ searchParams?.get('selectedProduct') ?? '' }
 					shoppingCarts={ shoppingCarts }
-					onClickProduct={ (productToAdd: IProducts.ProductItem) => setShoppingCarts(prevCart => ([...prevCart, productToAdd])) }
-					onClickRemoveProduct={ (productToRemove: IProducts.ProductItem) => setShoppingCarts(prevCart => (prevCart.filter(e => e.id !== productToRemove.id))) }
+					onClickProduct={ (productToAdd: IProducts.ProductItem) =>
+						setShoppingCarts(prevCart => [...prevCart, productToAdd]) }
+					onClickRemoveProduct={ (productToRemove: IProducts.ProductItem) =>
+						setShoppingCarts(prevCart =>
+							prevCart.filter(e => e.id !== productToRemove.id)
+						) }
 				/>
 			</div>
 			<div className='lg:col-span-4 h-full w-full'>
-				<OrderSummary
-					shoppingCarts={ shoppingCarts }
-				/>
+				<OrderSummary shoppingCarts={ shoppingCarts } />
 			</div>
 		</div>
 	);
