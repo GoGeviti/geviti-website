@@ -7,15 +7,15 @@ const productListData = {
 		'Sexual Function': 'Discover our sexual function medicine offerings. While an initial consultation and membership are crucial, blood tests might not be. Get recommendations perfectly aligned with your needs.'
 	},
 	filters: [
-		{
-			id: 'category',
-			name: 'Category',
-			options: [
-				{ value: 'Hormone Therapy', label: 'Hormone Therapy', checked: false },
-				{ value: 'Longevity', label: 'Longevity', checked: false },
-				{ value: 'Sexual Function', label: 'Sexual Function', checked: false }
-			],
-		},
+		// {
+		// 	id: 'category',
+		// 	name: 'Category',
+		// 	options: [
+		// 		{ value: 'Hormone Therapy', label: 'Hormone Therapy', checked: false },
+		// 		{ value: 'Longevity', label: 'Longevity', checked: false },
+		// 		{ value: 'Sexual Function', label: 'Sexual Function', checked: false }
+		// 	],
+		// },
 		{
 			id: 'bloodTest',
 			name: 'Blood test required',
@@ -24,17 +24,17 @@ const productListData = {
 				{ value: 'no', label: 'No', checked: false },
 			],
 		},
-		{
-			id: 'benefits',
-			name: 'Benefits',
-			options: [
-				{ value: 'Hormonal Balance & Enhancement', label: 'Hormonal Balance & Enhancement', checked: false },
-				{ value: 'Muscle & Physical Performance', label: 'Muscle & Physical Performance', checked: false },
-				{ value: 'Metabolic & Blood Sugar Management', label: 'Metabolic & Blood Sugar Management', checked: false },
-				{ value: 'Cellular Health & Detoxification', label: 'Cellular Health & Detoxification', checked: false },
-				{ value: 'Sexual Health & Performance', label: 'Sexual Health & Performance', checked: false },
-			],
-		},
+		// {
+		// 	id: 'benefits',
+		// 	name: 'Benefits',
+		// 	options: [
+		// 		{ value: 'Hormonal Balance & Enhancement', label: 'Hormonal Balance & Enhancement', checked: false },
+		// 		{ value: 'Muscle & Physical Performance', label: 'Muscle & Physical Performance', checked: false },
+		// 		{ value: 'Metabolic & Blood Sugar Management', label: 'Metabolic & Blood Sugar Management', checked: false },
+		// 		{ value: 'Cellular Health & Detoxification', label: 'Cellular Health & Detoxification', checked: false },
+		// 		{ value: 'Sexual Health & Performance', label: 'Sexual Health & Performance', checked: false },
+		// 	],
+		// },
 	]
 };
 
