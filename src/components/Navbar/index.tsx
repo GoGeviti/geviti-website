@@ -24,13 +24,15 @@ type NavbarProps = {
 		href: string;
 		externalLink?: boolean;
 	}[];
+	isWithnavbarData?: boolean;
 };
 
 const Navbar: React.FC<NavbarProps> = ({
 	className,
 	theme = 'dark',
 	iconsMenu = navbarData.iconsMenu,
-	actionsMenu = navbarData.actionsMenu
+	actionsMenu = navbarData.actionsMenu,
+	isWithnavbarData = true
 }) => {
 	// const pathname = usePathname();
 	const router = useRouter();
@@ -49,7 +51,8 @@ const Navbar: React.FC<NavbarProps> = ({
 							externalLink={ link.externalLink }
 							className={ clsxm(
 								'rounded-md px-3 py-2 text-sm font-Poppins font-medium',
-								theme === 'dark' ? 'text-grey-secondary hover:text-white' : 'text-primary'
+								theme === 'dark' ? 'text-grey-secondary hover:text-white' : 'text-primary',
+								isWithnavbarData ? 'block' : 'hidden'
 							) }
 							aria-label={ link.name }
 						>

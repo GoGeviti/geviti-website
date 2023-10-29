@@ -38,13 +38,19 @@ const config: Config = {
 					'shadow': '#CFCFCF',
 					'background-2': '#EAEAEA',
 					'date': '#767A7C',
-					'cta': '#757C80'
+					'cta': '#757C80',
+					'search': '#E4EBEE'
 				},
 				blue: {
 					'1': '#A3E0FF',
 					'2': '#5E899E',
 					'3': '#CDD8DC',
-					'4': '#78C3E9'
+					'4': '#78C3E9',
+				},
+				neutral: {
+					'300': '#EFF0F6',
+					'600': '#6F6C90',
+					'800': '#170F49'
 				},
 				'black-background': '#222426',
 				'black-secondary': '#242628',

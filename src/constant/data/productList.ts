@@ -17,6 +17,15 @@ const productListData = {
 		// 	],
 		// },
 		{
+			id: 'ingredients',
+			name: 'Ingredients',
+			options: [
+				{ value: 'Hormone Therapy', label: 'Hormone Therapy', checked: false },
+				{ value: 'Longevity', label: 'Longevity', checked: false },
+				{ value: 'Sexual Function', label: 'Sexual Function', checked: false }
+			],
+		},
+		{
 			id: 'bloodTest',
 			name: 'Blood test required',
 			options: [
