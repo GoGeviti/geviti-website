@@ -27,7 +27,7 @@ const Hero = () => {
 								priority
 								className='object-cover md:block hidden'
 								fill
-								objectPosition='top'
+								objectPosition='right center'
 							/>
 							<Image
 								src={ heroData.imageMobile }
