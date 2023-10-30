@@ -4,9 +4,13 @@ import React from 'react';
 import { Sheet, SheetContent } from '@/components/Sheet';
 import { useProductStore } from '@/store/productStore';
 
-import ProductFilter from './filter';
+import ProductFilter, { ProductFilterProps } from './filter';
 
-const CategorySheet = () => {
+const CategorySheet:React.FC<ProductFilterProps> = ({
+	benefits,
+	categories
+
+}) => {
 
 	const { filterValues, openSheet, setTempFilterValues, toogleOpenSheet, setFilterValues, tempFilterValues } = useProductStore();
 	const onCloseSheet = () => {
@@ -30,7 +34,9 @@ const CategorySheet = () => {
 					<p className='text-primary text-xl -tracking-0.04em font-Poppins'>Filter Products</p>
 				</div>
 				<div className='max-h-[40vh] overflow-y-auto overflow-x-hidden my-7'>
-					<ProductFilter/>
+					<ProductFilter
+						benefits={ benefits }
+						categories={ categories } />
 				</div>
 
 				<div className='flex flex-col gap-y-7px text-xs leading-5 font-Poppins'>
