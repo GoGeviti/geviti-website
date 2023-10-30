@@ -7,7 +7,7 @@ import { productListData } from '@/constant/data';
 import { Benefit, Category } from '@/payload/payload-types';
 import { FilterValue, useProductStore } from '@/store/productStore';
 
-type ProductFilterProps = {
+export type ProductFilterProps = {
 	categories : Category[];
 	benefits : Benefit[];
 };
@@ -129,7 +129,7 @@ const FilterOptions = ({
 	const { openSheet, tempFilterValues, filterValues, setFilterValues, setTempFilterValues } = useProductStore();
 
 	const handleUpdateFilterValues = (prevFilters: FilterValue[], e: React.ChangeEvent<HTMLInputElement>, filterIdX: string) => {
-		console.log(prevFilters);
+		// console.log(prevFilters);
 		return prevFilters.map(filterVal => {
 			if (filterVal.id === filterIdX) {
 				return {

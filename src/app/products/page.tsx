@@ -62,7 +62,9 @@ const ProductsPage: NextPage = async() => {
 				</div>
 			</div>
 
-			<CategorySheet/>
+			<CategorySheet
+				benefits={ benefits.docs }
+				categories={ categories.docs } />
 		</>
 	);
 };
