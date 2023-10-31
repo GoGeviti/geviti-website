@@ -12,6 +12,7 @@ import './globals.css';
 export const metadata: Metadata = {
 	title: 'Geviti',
 	description: 'Leveraging the power of modern telehealth technology',
+	themeColor: '#181A1C'
 };
 
 const RootLayout: React.FC<{ children: React.ReactNode; }> = ({ children }) => {
