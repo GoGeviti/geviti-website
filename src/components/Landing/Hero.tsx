@@ -33,9 +33,10 @@ const Hero = () => {
 								src={ heroData.imageMobile }
 								alt='hero mobile'
 								priority={ true }
-								className='object-contain md:hidden'
+								className='object-cover md:hidden'
 								fill
-								objectPosition='top'
+								objectPosition='center'
+								quality={90}
 							/>
 						</div>
 					) }
