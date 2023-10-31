@@ -14,19 +14,33 @@ const Therapy: React.FC = () => {
 			<div className='bg-grey-secondary h-full w-full lg:rounded-[19px] relative overflow-hidden'>
 				<div className='container-center pt-[46px] lg:pt-[193px] lg:pb-[194px] relative overflow-hidden'>
 					<div className='text-center lg:text-left relative z-[11]'>
-						<p className='text-pretitle text-grey-primary'>
+						<p className='hidden lg:block text-pretitle text-grey-primary'>
 							{ therapyData.preTitle }
 						</p>
+						<p className='lg:hidden text-pretitle text-grey-primary'>
+							{ therapyData.preTitleMobile }
+						</p>
 						{ therapyData.title && (
-							<div className='max-lg:mx-auto sm:max-w-[600px] mt-11px sm:mt-3'>
+							<div className='hidden lg:block max-lg:mx-auto sm:max-w-[600px] mt-11px sm:mt-3'>
 								<h2 className='font-Poppins font-medium text-xl md:text-[32px] lg:text-4xl leading-[30px] sm:leading-[121%] -tracking-[0.8px] md:-tracking-0.04em'>
 									{ therapyData.title }
 								</h2>
 							</div>
 						) }
+						{ therapyData.titleMobile && (
+							<div className='lg:hidden max-lg:mx-auto sm:max-w-[600px] mt-11px sm:mt-3'>
+								<h2 className='font-Poppins font-medium text-xl md:text-[32px] lg:text-4xl leading-[30px] sm:leading-[121%] -tracking-[0.8px] md:-tracking-0.04em'>
+									{ therapyData.titleMobile }
+								</h2>
+							</div>
+
+						) }
 						<div className='max-lg:mx-auto max-w-[330px] sm:max-w-[408px] mt-11px lg:mt-5'>
-							<p className='text-grey-primary text-xs md:text-sm leading-5 font-Poppins'>
+							<p className='hidden lg:block text-grey-primary text-xs md:text-sm leading-5 font-Poppins'>
 								{ therapyData.description }
+							</p>
+							<p className='lg:hidden text-grey-primary text-xs md:text-sm leading-5 font-Poppins'>
+								{ therapyData.descriptionMobile }
 							</p>
 						</div>
 						<div className='flex max-lg:justify-center mt-[27px] lg:mt-[70px]'>
@@ -46,21 +60,13 @@ const Therapy: React.FC = () => {
 					</div>
 				</div>
 
-				<div className='relative flex justify-end lg:absolute -right-5 lg:-right-40 lg:-bottom-8 md:ml-auto md:max-w-4xl z-10'>
+				<div className='relative flex justify-end lg:absolute right-1 lg:right-0 lg:-bottom-8 md:ml-auto md:max-w-4xl z-10'>
 					<Image
-						src='/images/landing/compressed/clinician.webp'
+						src='/images/landing/clinician.png'
 						alt='clinician'
-						loading='lazy'
-						width={ 683.492 }
-						height={ 1704 }
-						className='h-[742px] w-auto md:block hidden'/>
-					<Image
-						src='/images/landing/compressed/clinician_mobile.webp'
-						alt='clinician'
-						loading='lazy'
-						width={ 683.492 }
-						height={ 1704 }
-						className='md:hidden'/>
+						width={ 618 }
+						height={ 1035 }
+					/>
 				</div>
 
 				<div>

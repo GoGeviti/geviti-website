@@ -14,8 +14,11 @@ const Application: React.FC = () => {
 			<>
 				<p className='mb-7px text-pretitle text-grey-primary'>{ applicationData.preTitle }</p>
 
-				<h2 className='mb-3.5 font-Poppins text-[21px] md:text-[32px] lg:text-4xl leading-[27px] sm:leading-[125%] -tracking-[0.84px] md:-tracking-0.04em text-primary max-sm:max-w-[293px] max-sm:mx-auto lg:max-w-[433px]'>
+				<h2 className='hidden lg:block mb-3.5 font-Poppins text-[21px] md:text-[32px] lg:text-4xl leading-[27px] sm:leading-[125%] -tracking-[0.84px] md:-tracking-0.04em text-primary max-sm:max-w-[293px] max-sm:mx-auto lg:max-w-[450px]'>
 					{ applicationData.title }
+				</h2>
+				<h2 className='lg:hidden mb-3.5 font-Poppins text-[21px] md:text-[32px] lg:text-4xl leading-[27px] sm:leading-[125%] -tracking-[0.84px] md:-tracking-0.04em text-primary max-sm:max-w-[293px] max-sm:mx-auto lg:max-w-[450px]'>
+					{ applicationData.titleMobile }
 				</h2>
 
 				<p className='text-grey-primary text-xs sm:text-sm leading-5 font-BRSonoma max-sm:max-w-[292px] max-sm:mx-auto lg:max-w-[338px]'>

@@ -43,7 +43,7 @@ const BoxShortDesc: React.FC<BoxShortDescProps> = ({
 
 const Dashboard: React.FC = () => {
 	return (
-		<div className='lg:px-3 lg:py-15px overflow-hidden'>
+		<div className='hidden lg:block lg:px-3 lg:py-15px overflow-hidden'>
 			<div className='bg-blue-1 h-full w-full lg:rounded-[19px] relative overflow-hidden'>
 				<div className='container-center max-md:pb-[93px] pt-[41px] sm:pt-[113px] relative isolate'>
 					<div className='mx-auto max-w-2xl text-center'>

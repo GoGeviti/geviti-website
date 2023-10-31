@@ -32,7 +32,7 @@ const StepsSection: React.FC = () => {
 						<p className='mb-[15px] md:mb-7px text-pretitle text-grey-primary leading-[15px] md:leading-[24px]'>{ stepsData.preTitle }</p>
 
 						{ stepsData.title && (
-							<h2 className='text-heading-2 text-primary !text-2xl md:text-[32px] lg:text-4xl leading-[102.083%] md:leading-[125%] max-md:max-w-[243px]'>
+							<h2 className='text-heading-2 text-primary md:text-[32px] lg:text-4xl leading-[102.083%] md:leading-[125%] max-md:max-w-[243px]'>
 								<span dangerouslySetInnerHTML={ { __html: stepsData.title } } />
 							</h2>
 						) }

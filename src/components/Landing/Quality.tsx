@@ -14,11 +14,14 @@ const Quality: React.FC = () => {
 		<div className='lg:px-3 overflow-hidden'>
 			<div className='bg-blue-1 h-full w-full lg:rounded-[19px] relative overflow-hidden'>
 				<div className='container-center relative'>
-					<div className='pt-[60px] lg:pt-[106px] lg:pb-[105px] relative z-10'>
+					<div className='pt-[60px] lg:pt-[106px] lg:pb-[58px] relative z-10'>
 						<div className='max-lg:mx-auto max-w-lg'>
 							<div className='text-center lg:text-left flex flex-col'>
-								<p className='text-pretitle text-blue-2 order-1'>
+								<p className='text-pretitle text-blue-2 order-1 hidden lg:block'>
 									{ qualityData.preTitle }
+								</p>
+								<p className='text-pretitle text-blue-2 order-1 lg:hidden'>
+									{ qualityData.preTitleMobile }
 								</p>
 								<div className='max-lg:mx-auto max-w-[300px] sm:max-w-[433px] order-2'>
 									<h2 className='text-heading-2 text-primary mt-11px sm:mt-7px md:block hidden'>
@@ -48,7 +51,7 @@ const Quality: React.FC = () => {
 										);
 									}) }
 								</div>
-								<div className='flex max-lg:justify-center mt-7 lg:mt-[108px] order-3 lg:order-4'>
+								<div className='flex max-lg:justify-center mt-7 lg:mt-[48px] order-3 lg:order-4'>
 									<div className='flex max-sm:flex-wrap justify-center items-center gap-2.5 lg:gap-[11px]'>
 										{ qualityData.btnCtaList.map((btnCta, btnCtaIdx) => {
 											return (
@@ -87,8 +90,8 @@ const Quality: React.FC = () => {
 							className='sm:max-w-lg md:max-w-2xl xl:max-w-4xl'
 						/>
 					</div>
-					<div className='mb-3 hidden md:block'>
-						<p className='font-BRSonoma text-sm font-medium'>{ qualityData.notes }</p>
+					<div className='mb-20 hidden md:block'>
+						<p className='font-BRSonoma font-medium text-[10px] text-[#537586] max-w-[285px]'>{ qualityData.notes }</p>
 					</div>
 				</div>
 			</div>

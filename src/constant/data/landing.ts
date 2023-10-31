@@ -21,18 +21,18 @@ const landingData = {
 	},
 	hero: {
 		preTitle: 'Your at-home health and wellness clinic',
-		title: '<p>Online hormone therapy, peptide <br class="max-md:hidden"/> therapy, and functional medicine.</p>',
+		title: '<p>Online HRT, peptide therapy, <br class="max-md:hidden"/>and personalized wellness.</p>',
 		image: '/images/landing/hero.png',
 		imageMobile: '/images/landing/hero_mobile.png',
 		btnCta: {
-			text: 'See If I Qualify',
-			href: 'https://gogeviti.typeform.com/qualify',
-			externalLink: true
+			text: 'See Products',
+			href: '/products',
+			externalLink: false
 		},
 		btnCta2: {
 			href: '/get-started',
 			externalLink: false,
-			text: 'Get Started'
+			text: 'Join Geviti'
 		},
 		mainKeys: [
 			{
@@ -62,11 +62,11 @@ const landingData = {
 		titleMobile: 'Our Products'
 	},
 	investment: {
-		preTitle: 'INVESTMENT IN YOUR FUTURE',
+		preTitle: 'An INVESTMENT IN YOUR FUTURE',
 		title: 'Prioritizing longevity is an investment in your future self.',
 		description: 'Live longer without compromising your lifestyle—our longevity solutions are designed to fit seamlessly into your everyday life.',
-		image: '/images/landing/compressed/investment.webp',
-		imageMobile: '/images/landing/compressed/investment_mobile.webp',
+		image: '/images/landing/investment.png',
+		imageMobile: '/images/landing/investment_mobile.png',
 		btnCta: {
 			href: '/get-started',
 			externalLink: false,
@@ -86,11 +86,11 @@ const landingData = {
 	},
 	steps: {
 		preTitle: 'Easy online care',
-		title: 'Access to better care in just 4 easy steps.',
+		title: 'A healthier you in just 4 easy steps.',
 		btnCta: {
-			href: 'https://gogeviti.typeform.com/qualify',
-			externalLink: true,
-			text: 'See if I qualify'
+			href: '/get-started',
+			externalLink: false,
+			text: 'Get Started'
 		},
 		list: [
 			{
@@ -120,8 +120,8 @@ const landingData = {
 		]
 	},
 	dashboard: {
-		preTitle: 'AI DRIVEN',
-		title: 'Cutting-edge health monitoring technology.',
+		preTitle: 'Quality Care made accessible',
+		title: 'Easy to use telehealth dashboard.',
 		btnCta: {
 			href: '/get-started',
 			externalLink: false,
@@ -131,16 +131,17 @@ const landingData = {
 	},
 	application: {
 		preTitle: 'On-the-fly access',
-		title: 'Access to a longer life in the palm of your hand.',
+		title: 'Integrated health tracking mobile application.',
+		titleMobile: 'Integrated health monitoring mobile application.',
 		description: 'Geviti’s applications make managing longevity easy and convenient.',
 		list: [
 			{
 				icon: BarChartSquareIcon,
-				text: 'track your metrics'
+				text: 'track Key metrics'
 			},
 			{
 				icon: DiamondIcon,
-				text: 'direct specialist access'
+				text: 'Medical team access'
 			},
 			{
 				icon: RocketIcon,
@@ -148,7 +149,7 @@ const landingData = {
 			},
 			{
 				icon: EmergencyCallAddIcon,
-				text: 'field telehealth calls'
+				text: 'field telehealth calls '
 			}
 		],
 		btnCta: {
@@ -160,6 +161,7 @@ const landingData = {
 	},
 	functional: {
 		preTitle: 'Tailored Functional Medicine',
+		preTitleMobile: 'Longevity made easy',
 		title: 'A holistic approach to an<br />optimized <span class="font-semibold">you.</span>',
 		btnCta: {
 			href: '/products',
@@ -167,22 +169,23 @@ const landingData = {
 			text: 'See Products'
 		},
 		list: [
-			'Compounds shipped direct to your door',
-			'Cutting edge anti-aging therapies',
-			'Oral testosterone replacement therapy',
-			'Data-driven care by a board certified physician'
+			'Custom treatment sent straight to your door',
+			'Cutting edge anti-aging peptide therapy',
+			'New generation hormone replacement therapy',
+			'All made in fully accredited USA pharmacies'
 		]
 	},
 	quality: {
-		preTitle: 'Highest quality standards',
-		title: 'Pharmacy Dispensed Medicines',
-		titleMobile: 'Pharmacy Dispensed Medicines Shipped Straight To Your Door',
+		preTitle: 'USA Pharmacy dispensed',
+		preTitleMobile: 'Tailor-made longevity',
+		title: 'HRT, peptide therapy, and so much more.',
+		titleMobile: 'HRT, peptide therapy, and so much more.',
 		notes: '*Product images are for display purposes; actual items from US-based pharmacies may vary.',
 		list: [
-			'Oral testosterone replacement (TRT)',
-			'Online peptide and hormone therapy',
-			'Integrated telehealth care app',
-			'And more tailored treatments'
+			'Treatments for both men and women',
+			'Data-driven care to truly optimize your life',
+			'24/7 health tracking via wearable integrations ',
+			'Driven by technology to make your life simpler'
 		],
 		btnCtaList: [
 			{
@@ -199,8 +202,11 @@ const landingData = {
 	},
 	therapy: {
 		preTitle: 'Innovative anti-aging therapies',
+		preTitleMobile: 'Geviti is the cutting edge',
 		title: 'No need to leave home. Anti-aging care that goes where you go.',
+		titleMobile: 'Why leave home? Anti-aging care that goes where you go.',
 		description: 'Through on-site blood analysis by certified mobile phlebotomists, we\'ll tailor a healthcare plan specifically for your requirements.',
+		descriptionMobile: 'Geviti aims to increase both healthspan and lifespan by making longevity accessible.',
 		btnCta: {
 			href: '/get-started',
 			externalLink: false,
@@ -208,15 +214,15 @@ const landingData = {
 		}
 	},
 	flexible: {
-		preTitle: 'flexible plans that are right for you',
-		title: 'Starting from just $99',
-		description: 'With at-home blood testing, facilitated by professional mobile phlebotomists, we will design a care plan precisely for your needs.',
+		preTitle: 'Personalized plans that are right for you',
+		title: 'Full access for just $99',
+		description: 'Unlock personalized healthcare on the Geviti platform. From hormone optimization to peptide therapies and advanced diagnostics—all at your fingertips.',
 		image: '/images/landing/compressed/flexible.webp',
 		imageMobile: '/images/landing/compressed/flexible-mobile.webp',
 		btnCta: {
 			href: '/get-started',
 			externalLink: false,
-			text: 'Get Started'
+			text: 'Join Geviti'
 		}
 	},
 };
