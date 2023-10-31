@@ -1,6 +1,5 @@
 import { webpackBundler } from '@payloadcms/bundler-webpack';
 import { postgresAdapter } from '@payloadcms/db-postgres';
-// import { mongooseAdapter } from '@payloadcms/db-mongodb';
 import { cloudStorage } from '@payloadcms/plugin-cloud-storage';
 import { s3Adapter } from '@payloadcms/plugin-cloud-storage/s3';
 // import seo from '@payloadcms/plugin-seo';
@@ -12,9 +11,6 @@ import Benefits from './collections/Benefits';
 import Categories from './collections/Categories';
 import { Media } from './collections/Media';
 import Products from './collections/Products';
-// import { Pages } from './collections/Pages';
-// import { Users } from './collections/Users';
-// import { MainMenu } from './globals/MainMenu';
 
 const adapter = s3Adapter({
 	config: {
@@ -35,7 +31,7 @@ export default buildConfig({
 	}),
 	editor: slateEditor({}),
 	admin: {
-		bundler: webpackBundler()
+		bundler: webpackBundler(),
 	},
 	collections: [
 		Categories,

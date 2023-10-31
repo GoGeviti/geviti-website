@@ -1,7 +1,12 @@
 import type { CollectionConfig } from 'payload/types';
 
 const Products: CollectionConfig = {
-	access: {},
+	access: {
+		read: () => true,
+		create: ({ req }) => req.session?.role === 'admin',
+		update: ({ req }) => req.session?.role === 'admin',
+		delete: ({ req }) => req.session?.role === 'admin',
+	},
 	admin: {
 		useAsTitle: 'name',
 	},
@@ -57,8 +62,7 @@ const Products: CollectionConfig = {
 			type: 'array',
 			minRows: 1,
 			maxRows: 10,
-			fields:
-			[
+			fields: [
 				{
 					name: 'image',
 					label: 'Image',
@@ -69,7 +73,7 @@ const Products: CollectionConfig = {
 						mimeType: { contains: 'image' },
 					},
 				},
-			]
+			],
 		},
 		{
 			name: 'faq',
@@ -87,7 +91,7 @@ const Products: CollectionConfig = {
 					type: 'textarea',
 				},
 			],
-		}
+		},
 	],
 	slug: 'products',
 };

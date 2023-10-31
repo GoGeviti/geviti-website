@@ -4,10 +4,10 @@ import NextTopLoader from 'nextjs-toploader';
 import { AOSInit } from '@/components';
 import { brSonoma, poppins } from '@/constant/fonts';
 
-import './globals.css';
 import 'aos/dist/aos.css';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import './globals.css';
 
 export const metadata: Metadata = {
 	title: 'Geviti',

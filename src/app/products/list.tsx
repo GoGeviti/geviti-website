@@ -7,16 +7,17 @@ import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 
 import { AlertSquareIcon } from '@/components/Icons';
-import { productListData } from '@/constant/data';
-import { Product } from '@/payload/payload-types';
+import { productListData, productsData as productsDataType   } from '@/constant/data';
+// import { Product } from '@/payload/payload-types';
+// import { Product } from '@/payload/payload-types';
 // import { IProducts } from '@/interfaces';
 import { useProductStore } from '@/store/productStore';
 ;
 
-type GroupedProduct = { category: string, products: Product[]; };
+type GroupedProduct = { category: string, products: typeof productsDataType };
 
 type ProductType = {
-	products: Product[]
+	products: typeof productsDataType
 }
 
 const ProductList:React.FC<ProductType> = ({
@@ -27,8 +28,8 @@ const ProductList:React.FC<ProductType> = ({
 	const { filterValues, query } = useProductStore();
 
 	const groupByCategory = Object.entries(
-		productsData.reduce((acc: { [key: string]: Product[]; }, curr) => {
-			const category = curr.category.title;
+		productsData.reduce((acc: { [key: string]: typeof productsDataType }, curr) => {
+			const category = curr.category;
 			// Group initialization
 			if (!acc[category]) {
 				acc[category] = [];
@@ -119,8 +120,8 @@ const ProductList:React.FC<ProductType> = ({
 									{ product.images.length > 0 && (
 										<Image
 											priority={ true }
-											src={ product.images[0].image.url ?? '' }
-											alt={ product.images[0].image.alt ?? '' }
+											src={ product.imageSrc ?? '' }
+											alt={ product.name ?? '' }
 											className='object-cover object-center'
 											sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
 											fill
