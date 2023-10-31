@@ -1,32 +1,26 @@
 import { NextPage } from 'next';
 
 import { ArrowNarrowDown } from '@/components/Icons';
-import getPayloadClient from '@/payload/payloadClient';
+import { productsData } from '@/constant/data';
 
+// import { productsData } from '@/constant/data';
+// import { getProducts } from '@/services/products';
+// import { getProducts } from '@/services/products';
+// import getPayloadClient from '@/payload/payloadClient';
 import CategorySheet from './categorySheet';
 import ProductFilter from './filter';
 import ProductList from './list';
 import PageTitle from './PageTitle';
 import ProductSearchInput from './search';
+// import getPayloadClient from '@/payload/payloadClient';
 
 const ProductsPage: NextPage = async() => {
 
-	const payload  = await getPayloadClient();
-	const products = await payload.find({
-		collection: 'products',
-		depth: 1,
-		pagination: false,
-	});
-	const benefits = await payload.find({
-		collection: 'benefits',
-		depth: 1,
-		pagination: false,
-	});
-	const categories = await payload.find({
-		collection: 'categories',
-		depth: 1,
-		pagination: false,
-	});
+	// const products = await getProducts();
+
+	const products = productsData;
+
+	// console.log(products.docs[0]);
 
 	return (
 		<>
@@ -49,22 +43,18 @@ const ProductsPage: NextPage = async() => {
 									<p className='font-Poppins text-sm font-medium leading-8 -tracking-0.04em'>Filters</p>
 									<ArrowNarrowDown className='w-[13px] h-[13px] text-primary' />
 								</div>
-								<ProductFilter
-									benefits={ benefits.docs }
-									categories={ categories.docs }/>
+								<ProductFilter />
 							</div>
 						</form>
 
 						<div className='lg:col-span-3'>
-							<ProductList products={ products.docs }/>
+							<ProductList products={ products }/>
 						</div>
 					</div>
 				</div>
 			</div>
 
-			<CategorySheet
-				benefits={ benefits.docs }
-				categories={ categories.docs } />
+			<CategorySheet />
 		</>
 	);
 };

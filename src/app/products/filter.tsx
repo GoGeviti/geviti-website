@@ -8,13 +8,13 @@ import { Benefit, Category } from '@/payload/payload-types';
 import { FilterValue, useProductStore } from '@/store/productStore';
 
 export type ProductFilterProps = {
-	categories : Category[];
-	benefits : Benefit[];
+	categories? : Category[];
+	benefits? : Benefit[];
 };
 
 const ProductFilter:React.FC<ProductFilterProps> = ({
-	benefits,
-	categories
+	// benefits,
+	// categories
 }) => {
 
 	const { openSheet, tempFilterValues, filterValues } = useProductStore();
@@ -24,7 +24,7 @@ const ProductFilter:React.FC<ProductFilterProps> = ({
 			type='multiple'
 			className='w-full'
 		>
-			<AccordionItem
+			{ /* <AccordionItem
 				key='category'
 				value={ 'category' }
 				className='py-3 border-blue-3'
@@ -51,7 +51,7 @@ const ProductFilter:React.FC<ProductFilterProps> = ({
 						}) }
 					</div>
 				</AccordionContent>
-			</AccordionItem>
+			</AccordionItem> */ }
 			{ productListData.filters.map((filter, filterIdx) => (
 				<AccordionItem
 					key={ filter.id }
@@ -82,7 +82,7 @@ const ProductFilter:React.FC<ProductFilterProps> = ({
 					</AccordionContent>
 				</AccordionItem>
 			)) }
-			<AccordionItem
+			{ /* <AccordionItem
 				key='benefits'
 				value={ 'benefits' }
 				className='py-3 border-blue-3'
@@ -109,7 +109,7 @@ const ProductFilter:React.FC<ProductFilterProps> = ({
 						}) }
 					</div>
 				</AccordionContent>
-			</AccordionItem>
+			</AccordionItem> */ }
 		</Accordion>
 	);
 };
