@@ -9,7 +9,6 @@ import clsxm from '@/helpers/clsxm';
 
 import CustomLink from '../CustomLink';
 import { Bars3Icon } from '../Icons';
-import { Sheet, SheetContent } from '../Sheet';
 
 import MobileNav from './MobileNav';
 
@@ -141,38 +140,6 @@ const Navbar: React.FC<NavbarProps> = ({
 					/>
 				</div>
 			</CustomLink>
-		);
-	};
-
-	const renderSheet = () => {
-		return (
-			<Sheet
-				open={ openSheet }
-				onOpenChange={ setOpenSheet }>
-				<SheetContent
-					className={
-						theme === 'dark'
-							? 'bg-primary text-white'
-							: 'bg-grey-secondary text-primary'
-					}
-				>
-					<div className='mt-8 mb-5'>{ renderLogo() }</div>
-
-					<div className='flex flex-col divide-y divide-white'>
-						<div className='flex flex-col gap-4 -mx-3 pb-5'>
-							{ renderMenuList() }
-						</div>
-
-						<div>
-							<div className='flex gap-4 pt-4'>{ renderIconMenuList() }</div>
-
-							<div className='mt-10 flex flex-col justify-center'>
-								{ renderActionMenuList() }
-							</div>
-						</div>
-					</div>
-				</SheetContent>
-			</Sheet>
 		);
 	};
 
