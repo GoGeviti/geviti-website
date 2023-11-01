@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -13,9 +14,20 @@ interface MobileNavProps {
 const MobileNav = (props: MobileNavProps) => {
 	if (!props.isOpen) return null;
 
+	useEffect(() => {
+		document.body.style.overflow = props.isOpen ? 'hidden' : 'unset';
+
+		return () => {
+			document.body.style.overflow = 'unset';
+		};
+	}, [props.isOpen]);
+
 	return (
 		<div
-			onClick={ props.onClose }
+			onClick={ () => {
+				props.onClose();
+				document.body.style.overflow = 'unset';
+			} }
 			className='max-h-[calc(100dvh)] h-screen fixed top-0 left-0 animate-fadeIn bg-[#181A1C] flex flex-col px-[16px] pt-[100px] pb-[23px] z-10 w-screen'
 		>
 			<Link

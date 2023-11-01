@@ -178,7 +178,10 @@ const Navbar: React.FC<NavbarProps> = ({
 									'focus:outline-none focus:border-0 focus:ring-0',
 									theme === 'dark' ? 'text-grey-secondary' : 'text-primary'
 								) }
-								onClick={ () => setOpenSheet(prevOpen => !prevOpen) }
+								onClick={ () => {
+									setOpenSheet(prevOpen => !prevOpen);
+									document.body.style.overflow = openSheet ? 'unset' : 'hidden';
+								} }
 								aria-label='Toggle Menu'
 							>
 								<Bars3Icon
