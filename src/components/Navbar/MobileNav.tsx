@@ -16,7 +16,7 @@ const MobileNav = (props: MobileNavProps) => {
 	return (
 		<div
 			onClick={ props.onClose }
-			className='fixed top-0 left-0 animate-fadeIn bg-[#181A1C] flex flex-col px-[16px] pt-[100px] pb-[23px] z-10 min-h-screen w-screen'
+			className='max-h-[calc(100dvh)] h-screen fixed top-0 left-0 animate-fadeIn bg-[#181A1C] flex flex-col px-[16px] pt-[100px] pb-[23px] z-10 w-screen'
 		>
 			<Link
 				href='/'
