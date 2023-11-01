@@ -77,6 +77,7 @@ const config: Config = {
 			animation: {
 				marquee: 'marquee 40s linear infinite',
 				marquee2: 'marquee2 40s linear infinite',
+				fadeIn: 'fadeIn 0.2s ease-out',
 			},
 			keyframes: {
 				marquee: {
@@ -86,6 +87,10 @@ const config: Config = {
 				marquee2: {
 					'0%': { transform: 'translateX(0%)' },
 					'100%': { transform: 'translateX(100%)' },
+				},
+				fadeIn: {
+					'0%': { opacity: '0' },
+					'100%': { opacity: '1' },
 				},
 			},
 		},

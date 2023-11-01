@@ -11,6 +11,8 @@ import CustomLink from '../CustomLink';
 import { Bars3Icon } from '../Icons';
 import { Sheet, SheetContent } from '../Sheet';
 
+import MobileNav from './MobileNav';
+
 type NavbarProps = {
 	className?: string;
 	theme?: 'light' | 'dark';
@@ -32,7 +34,7 @@ const Navbar: React.FC<NavbarProps> = ({
 	theme = 'dark',
 	iconsMenu = navbarData.iconsMenu,
 	actionsMenu = navbarData.actionsMenu,
-	isWithnavbarData = true
+	isWithnavbarData = true,
 }) => {
 	// const pathname = usePathname();
 	const router = useRouter();
@@ -43,7 +45,6 @@ const Navbar: React.FC<NavbarProps> = ({
 		return (
 			<>
 				{ navbarData.menu.map(link => {
-
 					return (
 						<CustomLink
 							key={ link.name }
@@ -51,7 +52,9 @@ const Navbar: React.FC<NavbarProps> = ({
 							externalLink={ link.externalLink }
 							className={ clsxm(
 								'rounded-md px-3 py-2 text-sm font-Poppins font-medium',
-								theme === 'dark' ? 'text-grey-secondary hover:text-white' : 'text-primary',
+								theme === 'dark'
+									? 'text-grey-secondary hover:text-white'
+									: 'text-primary',
 								isWithnavbarData ? 'block' : 'hidden'
 							) }
 							aria-label={ link.name }
@@ -82,7 +85,12 @@ const Navbar: React.FC<NavbarProps> = ({
 								}
 							} }
 						>
-							<Icon className={ clsxm('w-[17px] h-[17px]', theme === 'dark' ? 'text-grey-secondary' : 'text-primary') } />
+							<Icon
+								className={ clsxm(
+									'w-[17px] h-[17px]',
+									theme === 'dark' ? 'text-grey-secondary' : 'text-primary'
+								) }
+							/>
 						</button>
 					);
 				}) }
@@ -100,7 +108,9 @@ const Navbar: React.FC<NavbarProps> = ({
 						aria-label={ menu.name }
 						className={ clsxm(
 							'btn font-Poppins text-sm font-medium leading-6',
-							theme === 'dark' ? 'btn-secondary' : 'btn-primary !text-grey-background'
+							theme === 'dark'
+								? 'btn-secondary'
+								: 'btn-primary !text-grey-background'
 						) }
 						key={ menu.name }
 					>
@@ -138,12 +148,15 @@ const Navbar: React.FC<NavbarProps> = ({
 		return (
 			<Sheet
 				open={ openSheet }
-				onOpenChange={ setOpenSheet }
-			>
-				<SheetContent className={ theme === 'dark' ? 'bg-primary text-white' : 'bg-grey-secondary text-primary' }>
-					<div className='mt-8 mb-5'>
-						{ renderLogo() }
-					</div>
+				onOpenChange={ setOpenSheet }>
+				<SheetContent
+					className={
+						theme === 'dark'
+							? 'bg-primary text-white'
+							: 'bg-grey-secondary text-primary'
+					}
+				>
+					<div className='mt-8 mb-5'>{ renderLogo() }</div>
 
 					<div className='flex flex-col divide-y divide-white'>
 						<div className='flex flex-col gap-4 -mx-3 pb-5'>
@@ -151,9 +164,7 @@ const Navbar: React.FC<NavbarProps> = ({
 						</div>
 
 						<div>
-							<div className='flex gap-4 pt-4'>
-								{ renderIconMenuList() }
-							</div>
+							<div className='flex gap-4 pt-4'>{ renderIconMenuList() }</div>
 
 							<div className='mt-10 flex flex-col justify-center'>
 								{ renderActionMenuList() }
@@ -167,10 +178,12 @@ const Navbar: React.FC<NavbarProps> = ({
 
 	return (
 		<>
-			<header className={ clsxm(
-				'inset-x-0 top-0 z-50 absolute pt-11px lg:pt-6',
-				className
-			) }>
+			<header
+				className={ clsxm(
+					'inset-x-0 top-0 z-50 absolute pt-11px lg:pt-6',
+					className
+				) }
+			>
 				<nav className='w-full container-center'>
 					<div className='flex h-60px lg:h-20 items-center justify-between'>
 						<div className='flex items-center'>
@@ -188,15 +201,16 @@ const Navbar: React.FC<NavbarProps> = ({
 								</div>
 
 								<div className='relative ml-8'>
-									<div>
-										{ renderActionMenuList() }
-									</div>
+									<div>{ renderActionMenuList() }</div>
 								</div>
 							</div>
 						</div>
 						<div className='flex lg:hidden'>
 							<button
-								className={ clsxm('focus:outline-none focus:border-0 focus:ring-0', theme === 'dark' ? 'text-grey-secondary' : 'text-primary') }
+								className={ clsxm(
+									'focus:outline-none focus:border-0 focus:ring-0',
+									theme === 'dark' ? 'text-grey-secondary' : 'text-primary'
+								) }
 								onClick={ () => setOpenSheet(prevOpen => !prevOpen) }
 								aria-label='Toggle Menu'
 							>
@@ -209,7 +223,9 @@ const Navbar: React.FC<NavbarProps> = ({
 				</nav>
 			</header>
 
-			{ renderSheet() }
+			<MobileNav
+				isOpen={ openSheet }
+				onClose={ () => setOpenSheet(false) } />
 		</>
 	);
 };
