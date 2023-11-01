@@ -8,7 +8,10 @@ import { CheckCircleIcon, ChevronRight } from '../Icons';
 
 const dashboardData = landingData.dashboard;
 
-type BoxShortDescProps = React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement> & {
+type BoxShortDescProps = React.DetailedHTMLProps<
+	React.HTMLAttributes<HTMLDivElement>,
+	HTMLDivElement
+> & {
 	outerClassName?: string;
 	className?: string;
 	children?: string;
@@ -30,11 +33,11 @@ const BoxShortDesc: React.FC<BoxShortDescProps> = ({
 				className={ clsxm(
 					'bg-white bg-opacity-50 inline-flex items-center gap-1.5 md:gap-2.5 font-BRSonoma text-primary font-medium',
 					className
-				) }>
-				<CheckCircleIcon className={ clsxm(
-					'flex-shrink-0 text-primary',
-					iconClassName
-				) } />
+				) }
+			>
+				<CheckCircleIcon
+					className={ clsxm('flex-shrink-0 text-primary', iconClassName) }
+				/>
 				<span>{ children }</span>
 			</div>
 		</div>
@@ -50,7 +53,7 @@ const Dashboard: React.FC = () => {
 						<p className='text-pretitle text-blue-2'>
 							{ dashboardData.preTitle }
 						</p>
-						<h2 className='font-Poppins text-[21px] md:text-[32px] lg:text-4xl leading-[27px] sm:leading-[125%] -tracking-[0.84px] md:-tracking-0.04em font-medium text-primary max-w-[287px] mx-auto sm:max-w-[447px] mt-11px sm:mt-7px'>
+						<h2 className='font-Poppins text-[21px] md:text-[32px] lg:text-[36px]  leading-[27px] sm:leading-[125%] -tracking-[0.84px] md:-tracking-0.04em text-primary max-w-[287px] mx-auto sm:max-w-[447px] mt-11px sm:mt-7px'>
 							{ dashboardData.title }
 						</h2>
 						<div className='flex justify-center mt-[22px] sm:mt-9'>
@@ -80,7 +83,8 @@ const Dashboard: React.FC = () => {
 						>
 							<source
 								src='/videos/dashboard_safari.mp4'
-								type='video/mp4;codecs=hvc1' />
+								type='video/mp4;codecs=hvc1'
+							/>
 							<source
 								src='/videos/dashboard.webm'
 								type='video/webm' />

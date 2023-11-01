@@ -41,19 +41,21 @@ const Mission: React.FC = () => {
 					) }
 				</div>
 
-				<div className='absolute inset-0 top-[205px] lg:-top-[182px] bg-mission-landing lg:rounded-[19px]' />
+				<div className='absolute inset-0 bg-mission-landing lg:rounded-[19px] h-full' />
 
 				<div className='container-center max-lg:pb-[65px] h-full w-full flex flex-col items-center lg:items-start justify-end lg:justify-center relative z-10'>
 					<div className='text-center lg:text-left'>
 						{ missionData.title && (
-							<h2 className='h-[52px] flex justify-center items-center mb-5px sm:mb-3.5 font-Poppins text-[28px] md:text-[32px] lg:text-[40px] leading-[96.429%] sm:leading-[132.5%] -tracking-[1.12px] md:-tracking-0.04em text-grey-secondary'>
+							<h2 className='h-[52px] lg:justify-start flex justify-center items-center mb-5px sm:mb-3.5 font-Poppins text-[28px] md:text-[32px] lg:text-[40px] leading-[96.429%] sm:leading-[132.5%] -tracking-[1.12px] md:-tracking-0.04em text-grey-secondary'>
 								<span dangerouslySetInnerHTML={ { __html: missionData.title } } />
 							</h2>
 						) }
 
 						{ missionData.description && (
 							<p className='text-grey-primary text-xs sm:text-sm leading-5 font-Poppins max-w-[330px] max-sm:mx-auto sm:max-w-[532px]'>
-								<span dangerouslySetInnerHTML={ { __html: missionData.description } } />
+								<span
+									dangerouslySetInnerHTML={ { __html: missionData.description } }
+								/>
 							</p>
 						) }
 
