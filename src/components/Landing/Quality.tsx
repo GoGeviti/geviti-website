@@ -84,7 +84,7 @@ const Quality: React.FC = () => {
 						</div>
 					</div>
 
-					<div className='max-sm:-ml-[83px] max-sm:-mr-[58px] max-md:-mb-[120px] relative lg:flex lg:justify-end lg:absolute lg:bottom-1/2 lg:right-0 bottom-10 lg:translate-y-1/2 mx-auto'>
+					<div className='max-sm:-ml-[83px] max-sm:-mr-[58px] max-md:-mb-[120px] relative lg:flex lg:justify-end lg:absolute lg:bottom-1/2 lg:-right-[100px] bottom-10 lg:translate-y-1/2 mx-auto'>
 						<Image
 							src='/images/landing/compressed/quality_products.webp'
 							alt='quality'
