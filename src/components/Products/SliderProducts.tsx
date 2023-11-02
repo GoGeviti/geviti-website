@@ -24,8 +24,8 @@ const SliderProducts: React.FC<SliderProductsProps> = ({ images }) => {
 
 	return (
 		<div>
-			<div className='w-full bg-white h-full max-h-[462px] aspect-square rounded-lg flex flex-col items-center justify-center relative'>
-				<div className='w-full px-5 max-w-[289px] lg:max-w-[431px] mx-auto'>
+			<div className='w-full bg-white h-full overflow-hidden max-h-[462px] aspect-square rounded-lg flex flex-col items-center justify-center relative'>
+				<div className='w-full mx-auto'>
 					<Swiper
 						pagination={ {
 							clickable: true,
@@ -40,13 +40,13 @@ const SliderProducts: React.FC<SliderProductsProps> = ({ images }) => {
 						{ images?.map((image, imageIdx) => {
 							return (
 								<SwiperSlide key={ imageIdx }>
-									<div className='w-full h-full relative overflow-hidden aspect-square focus:ring-0 focus:outline-none focus:border-none'>
+									<div className='w-full h-full max-h-[462px] relative overflow-hidden aspect-square focus:ring-0 focus:outline-none focus:border-none'>
 										<Image
 											src={ image }
 											alt='slider'
 											priority={ true }
 											fill
-											className='object-contain'
+											className='object-cover'
 										/>
 									</div>
 								</SwiperSlide>
@@ -54,7 +54,7 @@ const SliderProducts: React.FC<SliderProductsProps> = ({ images }) => {
 						}) }
 					</Swiper>
 				</div>
-				<div className='flex items-center absolute left-1/2 -translate-x-1/2 bottom-3 lg:bottom-6 justify-center gap-3'>
+				<div className='flex items-center z-10 absolute left-1/2 -translate-x-1/2 bottom-3 lg:bottom-6 justify-center gap-3'>
 					{ Array.from(Array(images.length).keys()).map(i => {
 						return (
 							<div
@@ -100,7 +100,7 @@ const SliderProducts: React.FC<SliderProductsProps> = ({ images }) => {
 									alt='slider'
 									priority={ true }
 									fill
-									className='object-contain'
+									className='object-cover'
 								/>
 							</div>
 						</SwiperSlide>
