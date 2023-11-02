@@ -7,29 +7,26 @@ import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 
 import { AlertSquareIcon } from '@/components/Icons';
-import { productListData, productsData as productsDataType   } from '@/constant/data';
+import { productListData } from '@/constant/data';
+import { Product } from '@/payload/payload-types';
 // import { Product } from '@/payload/payload-types';
 // import { Product } from '@/payload/payload-types';
 // import { IProducts } from '@/interfaces';
 import { useProductStore } from '@/store/productStore';
-;
-
-type GroupedProduct = { category: string, products: typeof productsDataType };
+type GroupedProduct = { category: string; products: Product[] };
 
 type ProductType = {
-	products: typeof productsDataType
-}
+	products: Product[];
+};
 
-const ProductList:React.FC<ProductType> = ({
-	products: productsData
-}) => {
+const ProductList: React.FC<ProductType> = ({ products: productsData }) => {
 	const router = useRouter();
 
 	const { filterValues, query } = useProductStore();
 
 	const groupByCategory = Object.entries(
-		productsData.reduce((acc: { [key: string]: typeof productsDataType }, curr) => {
-			const category = curr.category;
+		productsData.reduce((acc: { [key: string]: Product[] }, curr) => {
+			const category = curr.category.title;
 			// Group initialization
 			if (!acc[category]) {
 				acc[category] = [];
@@ -51,7 +48,7 @@ const ProductList:React.FC<ProductType> = ({
 				return filtered;
 			}, []);
 
-			if (filter.id === 'category' && options?.length) {
+			if (filter.id === 'ingredients' && options?.length) {
 				filterByCategories = filterByCategories.filter(item => {
 					return options?.some(category => category === item.category);
 				});
@@ -60,13 +57,28 @@ const ProductList:React.FC<ProductType> = ({
 					if (options.length) {
 						return {
 							...item,
-							products: item.products.filter((product: any) => !!options.find(opt => {
-								const productVal = product[filter.id];
-								if (Array.isArray(productVal)) {
-									return productVal.includes(opt);
-								}
-								return product[filter.id] === opt;
-							}))
+							products: item.products.filter(
+								(product: any) =>
+									!!options.find(opt => {
+										const productVal = product[filter.id];
+										if (
+											Array.isArray(productVal) &&
+											typeof productVal[0] === 'object'
+										) {
+											return productVal.some((val: any) => val.title === opt);
+										}
+										if (Array.isArray(productVal)) {
+											return productVal.includes(opt);
+										}
+										if (typeof productVal === 'boolean') {
+											return productVal.toString() === opt.toString();
+										}
+										if (typeof productVal === 'object') {
+											return Object.values(productVal).includes(opt);
+										}
+										return product[filter.id] === opt;
+									})
+							),
 						};
 					}
 					return item;
@@ -79,12 +91,12 @@ const ProductList:React.FC<ProductType> = ({
 			: filterByCategories.map(item => ({
 				...item,
 				products: item.products?.filter(product =>
-					product.name.toLowerCase()
+					product.name
+						.toLowerCase()
 						.replace(/\s+/g, '')
 						.includes(query.toLowerCase().replace(/\s+/g, ''))
-
-				)
-			}));
+				),
+			  }));
 	};
 	const productsByCategory = filterProductsByCategory();
 	return (
@@ -93,19 +105,29 @@ const ProductList:React.FC<ProductType> = ({
 				<div
 					key={ item.category }
 					className='text-center lg:text-left'>
-					<h3 className='font-Poppins text-primary text-[21px] md:text-3xl lg:text-4xl -tracking-0.04em leading-[121%]'>{ item.category }</h3>
+					<h3 className='font-Poppins text-primary text-[21px] md:text-3xl lg:text-4xl -tracking-0.04em leading-[121%]'>
+						{ item.category }
+					</h3>
 
 					<div className='mt-5px sm:mt-9px flex items-center max-lg:flex-col-reverse lg:items-end lg:justify-between gap-3'>
 						<div className='sm:max-w-xl lg:max-w-md'>
 							<p className='text-grey-primary font-BRSonoma text-xs leading-5 sm:leading-[18px]'>
-								{ (productListData.categoriesDescription as { [key: string]: string; })[item.category] }
+								{
+									(
+										productListData.categoriesDescription as {
+											[key: string]: string;
+										}
+									)[item.category]
+								}
 							</p>
 						</div>
 
 						<div className='flex lg:flex-col gap-5px text-primary lg:max-w-[172px]'>
 							<AlertSquareIcon className='w-15px h-15px sm:w-18px sm:h-18px flex-shrink-0' />
 
-							<p className='text-[10px] sm:text-xs font-BRSonoma leading-5 sm:leading-[18px] font-medium'>Products available based on blood test results</p>
+							<p className='text-[10px] sm:text-xs font-BRSonoma leading-5 sm:leading-[18px] font-medium'>
+								Products available based on blood test results
+							</p>
 						</div>
 					</div>
 
@@ -114,14 +136,22 @@ const ProductList:React.FC<ProductType> = ({
 							<div
 								key={ product.id }
 								className='group cursor-pointer relative flex flex-col overflow-hidden bg-grey-secondary w-full text-left'
-								onClick={ () => router.push(`/products/${ product.id }`) }
+								onClick={ () => router.push(`/products/${product.id}`) }
 							>
 								<div className='relative overflow-hidden bg-[#E7E7E7] group-hover:opacity-75 w-full h-[117px] sm:h-[202px]'>
 									{ product.images.length > 0 && (
 										<Image
 											priority={ true }
-											src={ product.imageSrc ?? '' }
-											alt={ product.name ?? '' }
+											src={
+												product.images.length > 0
+													? product.images[0].image.url ?? ''
+													: ''
+											}
+											alt={
+												product.images.length > 0
+													? product.images[0].image.alt ?? ''
+													: ''
+											}
 											className='object-cover object-center'
 											sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
 											fill
@@ -138,10 +168,14 @@ const ProductList:React.FC<ProductType> = ({
 									<h4 className='font-Poppins text-sm font-medium text-primary leading-[146%] -tracking-0.04em'>
 										{ product.name }
 									</h4>
-									<p className='text-xs font-BRSonoma leading-[134%] text-grey-primary'>{ product.description }</p>
+									<p className='text-xs font-BRSonoma leading-[134%] text-grey-primary'>
+										{ product.description }
+									</p>
 									<div className='flex flex-1 flex-col justify-end font-BRSonoma text-primary pt-18px'>
 										{ product.price && (
-											<p className='text-xs lg:text-[15px] leading-[130%] lg:leading-[100%] font-BRSonoma'>${ product.price }</p>
+											<p className='text-xs lg:text-[15px] leading-[130%] lg:leading-[100%] font-BRSonoma'>
+												${ product.price }
+											</p>
 										) }
 									</div>
 								</div>

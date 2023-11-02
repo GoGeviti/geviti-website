@@ -27,15 +27,16 @@ const Hero = () => {
 								priority
 								className='object-cover md:block hidden'
 								fill
-								objectPosition='top'
+								objectPosition='right center'
 							/>
 							<Image
 								src={ heroData.imageMobile }
 								alt='hero mobile'
 								priority={ true }
-								className='object-contain md:hidden'
+								className='object-cover md:hidden'
 								fill
-								objectPosition='top'
+								objectPosition='center'
+								quality={ 90 }
 							/>
 						</div>
 					) }
@@ -53,14 +54,17 @@ const Hero = () => {
 									{ heroData.preTitle }
 								</h2>
 								{ heroData.title && (
-									<h1 className='mt-11px lg:mt-7px font-Poppins text-[25px] md:text-[32px] lg:text-[40px] leading-[120%] sm:leading-[42.5px] tracking-[-1px] md:-tracking-0.04em text-grey-secondary'>
-										<span dangerouslySetInnerHTML={ { __html: heroData.title } } />
+									<h1 className='mt-11px lg:mt-7px font-Poppins text-[25px] md:text-[32px] lg:text-[40px] leading-[140%] sm:leading-[42.5px] tracking-[-1px] md:-tracking-0.04em text-grey-secondary'>
+										<span
+											dangerouslySetInnerHTML={ { __html: heroData.title } }
+										/>
 									</h1>
 								) }
 
 								<div
 									id='main-keys-landing'
-									className='flex justify-center mt-9 space-x-5'>
+									className='flex justify-center mt-9 space-x-5'
+								>
 									<CustomLink
 										href={ heroData.btnCta.href }
 										externalLink={ heroData.btnCta.externalLink }
@@ -93,7 +97,7 @@ const Hero = () => {
 									<WrapperAnimation
 										key={ feature.text }
 										data-aos='zoom-in-up'
-										data-aos-delay={ `${ featureIdx * 100 }` }
+										data-aos-delay={ `${featureIdx * 100}` }
 										data-aos-anchor='#main-keys-landing'
 										className='flex flex-col text-center items-center'
 									>
@@ -108,8 +112,12 @@ const Hero = () => {
 												/>
 											</div>
 										) }
-										<p className='font-Poppins mt-5px -tracking-[0.634px] md:-tracking-0.04em text-grey-secondary text-[15.861px] md:text-lg lg:text-xl leading-[108.362%]'>{ feature.text }</p>
-										<p className='text-grey-primary font-medium font-Poppins text-[11px] md:text-sm mt-[3px]'>{ feature.subtext }</p>
+										<p className='font-Poppins mt-5px -tracking-[0.634px] md:-tracking-0.04em text-grey-secondary text-[15.861px] md:text-lg lg:text-xl leading-[108.362%]'>
+											{ feature.text }
+										</p>
+										<p className='text-grey-primary font-medium font-Poppins text-[11px] md:text-sm mt-[3px]'>
+											{ feature.subtext }
+										</p>
 									</WrapperAnimation>
 								)) }
 							</div>

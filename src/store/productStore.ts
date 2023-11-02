@@ -1,35 +1,35 @@
 /* eslint-disable no-unused-vars */
 import { create } from 'zustand';
 
-import { productListData } from '@/constant/data';
+// import { productListData } from '@/constant/data';
 
 export type FilterValue = {
 	id: string;
 	name: string;
 	options: {
-		value: string;
+		value: string | boolean;
 		label: string;
 		checked: boolean;
 	}[];
 };
 
 type State = {
-  filterValues: FilterValue[],
-  tempFilterValues: FilterValue[],
-  query: string,
-  openSheet: boolean,
-}
+	filterValues: FilterValue[];
+	tempFilterValues: FilterValue[];
+	query: string;
+	openSheet: boolean;
+};
 
 type Action = {
-  setFilterValues: (value: FilterValue[]) => void,
-  setTempFilterValues: (value: FilterValue[]) => void,
-  setQuery: (value: string) => void,
-  toogleOpenSheet: (value:boolean) => void,
-}
+	setFilterValues: (value: FilterValue[]) => void;
+	setTempFilterValues: (value: FilterValue[]) => void;
+	setQuery: (value: string) => void;
+	toogleOpenSheet: (value: boolean) => void;
+};
 
 export const useProductStore = create<State & Action>(set => ({
-	filterValues: productListData.filters,
-	tempFilterValues: productListData.filters,
+	filterValues: [],
+	tempFilterValues: [],
 	query: '',
 	openSheet: false,
 	setFilterValues: value => set(() => ({ filterValues: value })),
