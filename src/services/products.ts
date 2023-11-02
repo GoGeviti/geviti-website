@@ -1,6 +1,9 @@
-import { PaginatedDocs } from 'payload/database';
-
-import { Benefit, Category, Product } from '@/payload/payload-types';
+import {
+	Benefit,
+	Category,
+	PaginatedDocs,
+	Product,
+} from '@/payload/payload-types';
 
 export const getProducts = async(): Promise<PaginatedDocs<Product>> => {
 	try {

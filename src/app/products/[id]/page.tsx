@@ -9,11 +9,8 @@ import {
 	ProductsComponent,
 } from '@/components';
 import { AlertSquareIcon, ClockIcon } from '@/components/Icons';
-// import { AlertSquareIcon } from '@/components/Icons';
 import { getProductById } from '@/services/products';
 
-// import { productsData } from '@/constant/data';
-// import getPayloadClient from '@/payload/payloadClient';
 import Breadcrumb from './breadcrumb';
 import ProductFaq from './productFaq';
 

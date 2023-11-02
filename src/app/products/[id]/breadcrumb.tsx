@@ -1,8 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
 
-// import { Product } from '@/payload/payload-types';
-// import { productsData } from '@/constant/data';
 import clsxm from '@/helpers/clsxm';
 import { Product } from '@/payload/payload-types';
 
