@@ -1,12 +1,7 @@
 import type { CollectionConfig } from 'payload/types';
 
 const Products: CollectionConfig = {
-	access: {
-		read: () => true,
-		create: ({ req }) => req.session?.role === 'admin',
-		update: ({ req }) => req.session?.role === 'admin',
-		delete: ({ req }) => req.session?.role === 'admin',
-	},
+	access: {},
 	admin: {
 		useAsTitle: 'name',
 	},

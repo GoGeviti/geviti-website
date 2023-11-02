@@ -2,17 +2,18 @@ import React from 'react';
 import Link from 'next/link';
 
 // import { Product } from '@/payload/payload-types';
-import { productsData } from '@/constant/data';
+// import { productsData } from '@/constant/data';
 import clsxm from '@/helpers/clsxm';
+import { Product } from '@/payload/payload-types';
 
 type BreadcrumbProps = {
-	product: typeof productsData[0];
-}
+	product: Product;
+};
 
-const Breadcrumb:React.FC<BreadcrumbProps> = ({ product }) => {
+const Breadcrumb: React.FC<BreadcrumbProps> = ({ product }) => {
 	const pages = [
 		{ name: 'Products', href: '/products', current: false },
-		{ name: product?.name, href: `/products/${ product?.id }`, current: true },
+		{ name: product?.name, href: `/products/${product?.id}`, current: true },
 	];
 	return (
 		<ol
@@ -34,7 +35,8 @@ const Breadcrumb:React.FC<BreadcrumbProps> = ({ product }) => {
 									d='M5.83333 18.3333L14.1667 1.66663'
 									stroke='#919B9F'
 									strokeLinecap='round'
-									strokeLinejoin='round' />
+									strokeLinejoin='round'
+								/>
 							</svg>
 						) }
 						<Link
