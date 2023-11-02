@@ -1,13 +1,13 @@
 # Build plan from the provider
 [phases.setup]
-nixPkgs = ['nodejs', 'yarn']
+nixPkgs = ['nodejs', 'pnpm']
 providers = ['...','pnpm']
 
 [phases.install]
-cmds=['yarn install']
+cmds=['pnpm install']
 
 [phases.build]
-cmds = ['yarn build']
+cmds = ['pnpm build']
 
 [start]
-cmd = 'yarn start'
+cmd = 'pnpm start'
