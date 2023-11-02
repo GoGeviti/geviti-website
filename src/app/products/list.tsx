@@ -43,7 +43,7 @@ const ProductList: React.FC<ProductType> = ({ products: productsData }) => {
 		filterValues.forEach(filter => {
 			const options = filter.options?.reduce((filtered: string[], option) => {
 				if (option.checked) {
-					filtered.push(option.value);
+					filtered.push(option.value.toString());
 				}
 				return filtered;
 			}, []);
