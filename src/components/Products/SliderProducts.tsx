@@ -24,7 +24,7 @@ const SliderProducts: React.FC<SliderProductsProps> = ({ images }) => {
 
 	return (
 		<div>
-			<div className='w-full bg-white h-[462px] rounded-lg flex flex-col items-center justify-center relative'>
+			<div className='w-full bg-white h-full max-h-[462px] aspect-square rounded-lg flex flex-col items-center justify-center relative'>
 				<div className='w-full px-5 max-w-[289px] lg:max-w-[431px] mx-auto'>
 					<Swiper
 						pagination={ {
@@ -54,7 +54,7 @@ const SliderProducts: React.FC<SliderProductsProps> = ({ images }) => {
 						}) }
 					</Swiper>
 				</div>
-				<div className='flex items-center justify-center gap-3'>
+				<div className='flex items-center absolute left-1/2 -translate-x-1/2 bottom-3 lg:bottom-6 justify-center gap-3'>
 					{ Array.from(Array(images.length).keys()).map(i => {
 						return (
 							<div
@@ -75,13 +75,23 @@ const SliderProducts: React.FC<SliderProductsProps> = ({ images }) => {
 				slidesPerView={ 5 }
 				modules={ [Thumbs] }
 				className='mt-6'
+				breakpoints={ {
+					0: {
+						slidesPerView: 4,
+						spaceBetween: 10,
+					},
+					768: {
+						slidesPerView: 5,
+						spaceBetween: 14,
+					},
+				} }
 			>
 				{ images?.map((image, imageIdx) => {
 					return (
 						<SwiperSlide key={ imageIdx }>
 							<div
 								className={ clsxm(
-									'w-full h-[84px] relative bg-white cursor-pointer rounded-lg overflow-hidden aspect-square',
+									'w-full h-full max-h-[84px] relative bg-white cursor-pointer rounded-lg overflow-hidden aspect-square',
 									imageIdx === activeIndex ? 'opacity-100' : 'opacity-25'
 								) }
 							>

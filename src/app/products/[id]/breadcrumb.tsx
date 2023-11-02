@@ -18,7 +18,8 @@ const Breadcrumb: React.FC<BreadcrumbProps> = ({ product }) => {
 	return (
 		<ol
 			role='list'
-			className='flex items-center gap-x-3.5 sm:gap-x-4'>
+			className='flex items-center gap-x-3.5 sm:gap-x-4 max-lg:hidden'
+		>
 			{ pages.map((page, pageIdx) => (
 				<li key={ pageIdx }>
 					<div className='flex items-center'>
