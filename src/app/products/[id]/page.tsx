@@ -32,7 +32,7 @@ const ProductDetailPage: NextPage<ProductDetailPageProps> = async({
 		<>
 			<div className='relative overflow-hidden bg-[#CFD8DB]'>
 				<Navbar theme='light' />
-				<div className='pt-24 lg:pt-[172px] container-center flex flex-col max-lg:items-center'>
+				<div className='pt-24 lg:pt-[172px] lg:pb-[95px] container-center flex flex-col max-lg:items-center'>
 					<Breadcrumb product={ product } />
 
 					<div className='flex max-lg:flex-col lg:grid lg:grid-cols-2 gap-10 pt-[27px] lg:pt-12 w-full'>

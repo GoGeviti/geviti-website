@@ -4,7 +4,12 @@ import { Benefit, Category, Product } from '@/payload/payload-types';
 
 export const getProducts = async(): Promise<PaginatedDocs<Product>> => {
 	try {
-		const res = await fetch(process.env.BASE_API_URL + '/api/products?depth=1');
+		const res = await fetch(
+			process.env.BASE_API_URL + '/api/products?depth=1',
+			{
+				cache: 'no-store',
+			}
+		);
 		const data = await res.json();
 		return data;
 	} catch (error) {

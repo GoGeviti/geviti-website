@@ -46,9 +46,6 @@ const ProductsPage: NextPage = async() => {
 			})),
 		},
 	];
-
-	console.log(products.docs[0].images);
-
 	return (
 		<>
 			<div className='py-[88px] lg:py-[152px]'>

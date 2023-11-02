@@ -1,14 +1,14 @@
 'use client';
 
 import { useRef, useState } from 'react';
-import Slider from 'react-slick';
 import Image from 'next/image';
-import { Pagination } from 'swiper/modules';
+import { Swiper as SwiperType } from 'swiper';
+import { Thumbs } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 import clsxm from '@/helpers/clsxm';
 
-import 'swiper/css/pagination';
+import 'swiper/css/thumbs';
 
 import 'swiper/css';
 
@@ -17,76 +17,10 @@ type SliderProductsProps = {
 };
 
 const SliderProducts: React.FC<SliderProductsProps> = ({ images }) => {
-	const sliderRef = useRef<Slider | null>(null);
-	const sliderRef2 = useRef<Slider | null>(null);
+	const swiperRef = useRef<SwiperType>();
+	const [thumbsSwiper, setThumbsSwiper] = useState<SwiperType>();
+
 	const [activeIndex, setActiveIndex] = useState<number>(0);
-	const [activeIndex2, setActiveIndex2] = useState<number>(0);
-
-	const settings = {
-		dots: false,
-		arrows: false,
-		infinite: true,
-		slidesToShow: 1,
-		slidesToScroll: 1,
-		vertical: false,
-		verticalSwiping: false,
-		swipeToSlide: true,
-		beforeChange: (current: number, next: number) => setActiveIndex(next),
-		responsive: [
-			{
-				breakpoint: 1024,
-				settings: {
-					vertical: false,
-					verticalSwiping: false,
-				},
-			},
-		],
-	};
-	const settings2: Slider['props'] = {
-		dots: true,
-		arrows: true,
-		infinite: false,
-		centerMode: true,
-		slidesToShow: 3,
-		slidesToScroll: 1,
-		vertical: false,
-		verticalSwiping: false,
-		swipeToSlide: true,
-		beforeChange: (current: number, next: number) => {
-			console.log(current);
-			console.log(next);
-			sliderRef?.current?.slickGoTo(next);
-			setActiveIndex2(next);
-		},
-		responsive: [
-			{
-				breakpoint: 1024,
-				settings: {
-					vertical: false,
-					verticalSwiping: false,
-				},
-			},
-		],
-	};
-
-	const renderDots = () => {
-		return (
-			<div className='mt-5 lg:-mt-5 flex items-center justify-center gap-9px sm:gap-3'>
-				{ Array.from(Array(images.length).keys()).map(i => {
-					return (
-						<div
-							key={ i }
-							className={ clsxm(
-								'rounded-full w-1.5 sm:w-2 h-1.5 sm:h-2 bg-primary cursor-pointer',
-								i === activeIndex ? 'bg-opacity-100' : 'bg-opacity-[0.13]'
-							) }
-							onClick={ () => sliderRef?.current?.slickGoTo(i) }
-						/>
-					);
-				}) }
-			</div>
-		);
-	};
 
 	return (
 		<div>
@@ -96,7 +30,12 @@ const SliderProducts: React.FC<SliderProductsProps> = ({ images }) => {
 						pagination={ {
 							clickable: true,
 						} }
-						modules={ [Pagination] }
+						onBeforeInit={ swiper => {
+							swiperRef.current = swiper;
+						} }
+						thumbs={ { swiper: thumbsSwiper } }
+						onSlideChange={ swiper => setActiveIndex(swiper.activeIndex) }
+						modules={ [Thumbs] }
 					>
 						{ images?.map((image, imageIdx) => {
 							return (
@@ -114,44 +53,36 @@ const SliderProducts: React.FC<SliderProductsProps> = ({ images }) => {
 							);
 						}) }
 					</Swiper>
-					{ /* <Slider
-						ref={ sliderRef }
-						{ ...settings }>
-						{ images?.map((image, imageIdx) => {
-							return (
-								<div
-									key={ imageIdx }
-									className='w-full h-full relative overflow-hidden aspect-square focus:ring-0 focus:outline-none focus:border-none'
-								>
-									<Image
-										src={ image }
-										alt='slider'
-										priority={ true }
-										fill
-										className='object-contain'
-									/>
-								</div>
-							);
-						}) }
-					</Slider> */ }
 				</div>
-				{ /* <div className='absolute left-1/2 bottom-6'>{ renderDots() }</div> */ }
-			</div>
-			{ /* <div className='mt-6'>
-				<Slider
-					ref={ sliderRef2 }
-					{ ...settings2 }
-					centerPadding='24px'
-					className=''
-				>
-					{ images?.map((image, imageIdx) => {
+				<div className='flex items-center justify-center gap-3'>
+					{ Array.from(Array(images.length).keys()).map(i => {
 						return (
 							<div
-								key={ imageIdx }
-								onClick={ () => sliderRef.current?.slickGoTo(imageIdx) }
+								key={ i }
 								className={ clsxm(
-									'w-full bg-white cursor-pointer rounded-lg h-[84px] relative overflow-hidden aspect-square focus:ring-0 focus:outline-none focus:border-none',
-									activeIndex2 === imageIdx ? 'opacity-100' : 'opacity-25'
+									'rounded-full w-1.5 sm:w-2 h-1.5 sm:h-2 bg-primary cursor-pointer',
+									i === activeIndex ? 'bg-opacity-100' : 'bg-opacity-[0.13]'
+								) }
+								onClick={ () => swiperRef?.current?.slideTo(i) }
+							/>
+						);
+					}) }
+				</div>
+			</div>
+			<Swiper
+				onSwiper={ setThumbsSwiper }
+				spaceBetween={ 14 }
+				slidesPerView={ 5 }
+				modules={ [Thumbs] }
+				className='mt-6'
+			>
+				{ images?.map((image, imageIdx) => {
+					return (
+						<SwiperSlide key={ imageIdx }>
+							<div
+								className={ clsxm(
+									'w-full h-[84px] relative bg-white cursor-pointer rounded-lg overflow-hidden aspect-square',
+									imageIdx === activeIndex ? 'opacity-100' : 'opacity-25'
 								) }
 							>
 								<Image
@@ -162,10 +93,10 @@ const SliderProducts: React.FC<SliderProductsProps> = ({ images }) => {
 									className='object-contain'
 								/>
 							</div>
-						);
-					}) }
-				</Slider>
-			</div> */ }
+						</SwiperSlide>
+					);
+				}) }
+			</Swiper>
 		</div>
 	);
 };
