@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
-// import { useRouter } from 'next/router';
 import React from 'react';
 import Image from 'next/image';
 // import Image from 'next/image';
@@ -9,9 +8,6 @@ import { useRouter } from 'next/navigation';
 import { AlertSquareIcon } from '@/components/Icons';
 import { productListData } from '@/constant/data';
 import { Product } from '@/payload/payload-types';
-// import { Product } from '@/payload/payload-types';
-// import { Product } from '@/payload/payload-types';
-// import { IProducts } from '@/interfaces';
 import { useProductStore } from '@/store/productStore';
 type GroupedProduct = { category: string; products: Product[] };
 

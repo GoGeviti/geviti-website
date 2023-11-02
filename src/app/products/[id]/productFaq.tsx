@@ -7,7 +7,6 @@ import {
 	AccordionTrigger,
 } from '@/components/Accordion';
 import { ChevronDown } from '@/components/Icons';
-// import { productsData } from '@/constant/data';
 import { Product } from '@/payload/payload-types';
 
 type ProductFaqProps = {
