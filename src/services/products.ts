@@ -24,7 +24,10 @@ export const getProducts = async(): Promise<PaginatedDocs<Product>> => {
 export const getProductById = async(id: string): Promise<Product> => {
 	try {
 		const res = await fetch(
-			process.env.BASE_API_URL + `/api/products/${id}?depth=1`
+			process.env.BASE_API_URL + `/api/products/${id}?depth=1`,
+			{
+				cache: 'no-store',
+			}
 		);
 		const data = await res.json();
 		return data;
@@ -37,7 +40,10 @@ export const getProductById = async(id: string): Promise<Product> => {
 export const getCategory = async(): Promise<PaginatedDocs<Category>> => {
 	try {
 		const res = await fetch(
-			process.env.BASE_API_URL + '/api/categories?depth=1'
+			process.env.BASE_API_URL + '/api/categories?depth=1',
+			{
+				cache: 'no-store',
+			}
 		);
 		const data = await res.json();
 		return data;
@@ -48,7 +54,12 @@ export const getCategory = async(): Promise<PaginatedDocs<Category>> => {
 };
 export const getBenefits = async(): Promise<PaginatedDocs<Benefit>> => {
 	try {
-		const res = await fetch(process.env.BASE_API_URL + '/api/benefits?depth=1');
+		const res = await fetch(
+			process.env.BASE_API_URL + '/api/benefits?depth=1',
+			{
+				cache: 'no-store',
+			}
+		);
 		const data = await res.json();
 		return data;
 	} catch (error) {
