@@ -40,9 +40,9 @@ const Quality: React.FC = () => {
 											<div
 												key={ functionItemIdx }
 												className='rounded-lg bg-[#C3EBFF] px-[13px] sm:px-5 py-15px sm:py-4 flex items-center gap-[11px] hover:outline hover:outline-2 hover:outline-[#C3EBFF]'
-												data-aos='fade-up'
-												data-aos-delay={ `${functionItemIdx * 100}` }
-												data-aos-anchor='#main-quality-list'
+												// data-aos='fade-up'
+												// data-aos-delay={ `${functionItemIdx * 100}` }
+												// data-aos-anchor='#main-quality-list'
 											>
 												<CheckCircleIcon className='text-primary w-3 h-3 flex-shrink-0 scale-125' />
 												<p

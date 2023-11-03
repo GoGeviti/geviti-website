@@ -93,34 +93,34 @@ const landingData = {
 	},
 	steps: {
 		preTitle: 'Easy online care',
-		title: 'A healthier you in just 4 easy steps.',
+		title: 'Access to better care in just 4 easy steps.',
 		btnCta: {
 			href: '/get-started',
 			externalLink: false,
-			text: 'Get Started',
+			text: 'Get Labs Done',
 		},
 		list: [
 			{
 				id: 'package',
-				title: 'Select your blood test',
+				title: 'Select your <br class="max-lg-hidden" />blood test',
 				image: '/images/landing/compressed/step_1.webp',
 				imageMobile: '/images/landing/compressed/step_1_mobile.webp',
 			},
 			{
 				id: 'testing',
-				title: 'Complete in-home testing',
+				title: 'Complete in-<br class="max-lg-hidden" />home testing',
 				image: '/images/landing/compressed/step_2.webp',
 				imageMobile: '/images/landing/compressed/step_2_mobile.webp',
 			},
 			{
 				id: 'treatment',
-				title: 'Telehealth doctor visit',
+				title: 'Telehealth <br class="max-lg-hidden" />doctor visit',
 				image: '/images/landing/compressed/step_3.webp',
 				imageMobile: '/images/landing/compressed/step_3.webp',
 			},
 			{
 				id: 'best',
-				title: 'Receive treatment in mail',
+				title: 'Receive treatment <br class="max-lg-hidden" />in mail',
 				image: '/images/landing/compressed/step_4.webp',
 				imageMobile: '/images/landing/compressed/step_4.webp',
 			},
