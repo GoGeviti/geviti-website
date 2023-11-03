@@ -33,49 +33,59 @@ const ProductDetailPage: NextPage<ProductDetailPageProps> = async({
 				<div className='pt-24 lg:pt-[172px] pb-4 sm:pb-[95px] container-center flex flex-col max-lg:items-center'>
 					<Breadcrumb product={ product } />
 
-					<div className='flex max-lg:flex-col lg:grid lg:grid-cols-2 gap-10 lg:pt-12 w-full'>
-						<div className='w-full max-lg:pb-1'>
+					<div className='flex max-lg:flex-col items-start justify-between gap-10 lg:pt-12 w-full relative'>
+						<div className='w-full lg:w-1/2 sticky top-10 max-lg:pb-1'>
 							<ProductsComponent.SliderProducts
 								images={ product.images.map(e => e.image.url ?? '') ?? [] }
 							/>
 						</div>
-						<div className='flex flex-col gap-9 w-full lg:max-w-md lg:mx-auto'>
-							<div className='flex flex-col lg:gap-2'>
+						<div className='flex flex-col gap-9 w-full lg:w-1/2 lg:max-w-md lg:mx-auto'>
+							<div className='flex flex-col lg:gap-2 relative'>
 								<p className='uppercase text-grey-primary font-BRSonoma font-semibold text-[10px] sm:text-sm leading-[21px] sm:leading-6 tracking-0.11em'>
 									{ product.category.title }
 								</p>
 								<h1 className='text-3xl lg:text-4xl -tracking-0.04em font-Poppins leading-[124%] lg:leading-[121%]'>
 									{ product.name }
 								</h1>
+								{ product?.fdaApproved && (
+									<span className='text-[9px] absolute -bottom-4 left-0 bg-blue-1/[0.34] rounded-full w-fit text-primary font-Poppins font-medium py-[1px] px-[7px]'>
+                    FDA approved
+									</span>
+								) }
 							</div>
 							<div className='flex flex-col gap-2 sm:gap-[9px] text-primary'>
 								<p className='font-Poppins text-primary text-2xl  font-semibold w-fit leading-[18px] pb-[9px] border-b border-[#B8C6CC]'>
-									${ product?.price }{ ' ' }
+                  ${ product?.price }{ ' ' }
 									<span className='text-grey-primary font-medium text-base'>
-										per month
+                    per month
 									</span>
 								</p>
-								<p className='text-primary/[0.60] text-xs font-medium leading-6 sm:text-sm font-Poppins'>
-									$99/m Geviti Membership
-								</p>
-								<p className='text-primary/[0.60] text-xs font-medium leading-6 sm:text-sm font-Poppins'>
-									$99/m Product Name
-								</p>
+								{
+									product.price_membership.map((e, i) => (
+										<p
+											key={ i }
+											className='text-primary/[0.60] text-xs font-medium leading-6 sm:text-sm font-Poppins'>
+											{ e.title }
+										</p>
+									))
+								}
 							</div>
 							<div className='p-[17.75px] lg:p-[25px] bg-primary/[0.03] rounded-lg flex flex-col gap-[30px] lg:gap-10'>
-								<div className='flex flex-col gap-2 lg:gap-[10px]'>
-									<div className='flex gap-5px text-primary'>
-										<div className='flex items-center justify-center'>
-											<ClockIcon className='w-15px h-15px sm:w-18px sm:h-18px flex-shrink-0' />
+								{ product?.laedTime && (
+									<div className='flex flex-col gap-2 lg:gap-[10px]'>
+										<div className='flex gap-5px text-primary'>
+											<div className='flex items-center justify-center'>
+												<ClockIcon className='w-15px h-15px sm:w-18px sm:h-18px flex-shrink-0' />
+											</div>
+											<p className='text-xs sm:text-sm font-Poppins leading-5 sm:leading-[18px] font-medium'>
+												{ product?.laedTime.title }
+											</p>
 										</div>
-										<p className='text-xs sm:text-sm font-Poppins leading-5 sm:leading-[18px] font-medium'>
-											5-7 Day Lead Time
+										<p className='text-xs font-BRSonoma text-primary/60 leading-[17px] sm:leading-5'>
+											{ product?.laedTime.description }
 										</p>
 									</div>
-									<p className='text-xs font-BRSonoma text-primary/60 leading-[17px] sm:leading-5'>
-										{ product?.description }
-									</p>
-								</div>
+								) }
 								{ product?.bloodTest && (
 									<div className='flex flex-col gap-2 lg:gap-[10px]'>
 										<div className='flex gap-5px text-primary'>
@@ -83,7 +93,7 @@ const ProductDetailPage: NextPage<ProductDetailPageProps> = async({
 												<AlertSquareIcon className='w-15px h-15px sm:w-18px sm:h-18px flex-shrink-0' />
 											</div>
 											<p className='text-xs sm:text-sm font-Poppins leading-5 sm:leading-[18px] font-medium'>
-												Products available based on blood test results
+                        Products available based on blood test results
 											</p>
 										</div>
 										<p className='text-xs font-BRSonoma text-primary/60 leading-[17px] sm:leading-5'>
@@ -100,7 +110,7 @@ const ProductDetailPage: NextPage<ProductDetailPageProps> = async({
 									className='btn btn-primary w-full text-xs sm:text-sm font-medium font-Poppins leading-[21px] sm:leading-[26px] py-2.5 sm:py-[13px]'
 									aria-label='Purchase'
 								>
-									Get Started
+                  Get Started
 								</CustomLink>
 							</div>
 						</div>

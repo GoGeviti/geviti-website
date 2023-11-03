@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import Image from 'next/image';
 import { Swiper as SwiperType } from 'swiper';
 import { Thumbs } from 'swiper/modules';
@@ -23,7 +23,7 @@ const SliderProducts: React.FC<SliderProductsProps> = ({ images }) => {
 	const [activeIndex, setActiveIndex] = useState<number>(0);
 
 	return (
-		<div>
+		<React.Fragment>
 			<div className='w-full bg-white h-full overflow-hidden max-h-[462px] aspect-square rounded-lg flex flex-col items-center justify-center relative'>
 				<div className='w-full mx-auto'>
 					<Swiper
@@ -107,7 +107,7 @@ const SliderProducts: React.FC<SliderProductsProps> = ({ images }) => {
 					);
 				}) }
 			</Swiper>
-		</div>
+		</React.Fragment>
 	);
 };
 
