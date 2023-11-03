@@ -285,7 +285,8 @@ const homeData = {
 
 	tablePackage: [
 		{
-			title: 'Biomarkers Tested',
+			title: 'Amount of Biomarkers Tested',
+			description: 'A biomarker is a measurable indicator within the blood that can signal the state of health or disease, potentially offering insights into lifespan and aging processes.',
 			essential: '39+',
 			comprehensive: '50+',
 			ultimate: '58+'
@@ -310,6 +311,7 @@ const homeData = {
 		},
 		{
 			title: 'Prescription Therapy Access',
+			description: 'Doctors will determine if you qualify for our line of prescription-only cutting edge therapies.',
 			essential: true,
 			comprehensive: true,
 			ultimate: true
@@ -322,6 +324,7 @@ const homeData = {
 		},
 		{
 			title: 'Custom Treatment Plan',
+			description: 'We\'ll take a deep look into your health and build a custom anti-aging regiment with our line or HRT, peptide therapy, and anti-aging products.',
 			essential: true,
 			comprehensive: true,
 			ultimate: true
@@ -356,6 +359,7 @@ const homeData = {
 		},
 		{
 			title: 'Thyroid Cascade',
+			description: 'Evaluates thyroid function and disorders with 3-4 biomarkers.',
 			essential: true,
 			comprehensive: true,
 			ultimateMale: true,
@@ -363,6 +367,7 @@ const homeData = {
 		},
 		{
 			title: 'LH (Lutheinizing Hormone)',
+			description: 'Indicates reproductive health and function.',
 			essential: true,
 			comprehensive: true,
 			ultimateMale: true,
@@ -370,6 +375,7 @@ const homeData = {
 		},
 		{
 			title: 'Total Testosterone',
+			description: 'Measures overall level of male sex hormone.',
 			essential: true,
 			comprehensive: true,
 			ultimateMale: true,
@@ -377,6 +383,7 @@ const homeData = {
 		},
 		{
 			title: 'Free Testosterone',
+			description: 'Assesses biologically active testosterone fraction.',
 			essential: true,
 			comprehensive: true,
 			ultimateMale: true,
@@ -384,6 +391,7 @@ const homeData = {
 		},
 		{
 			title: 'Comprenhensive Metabolic Panel',
+			description: 'Provides a broad overview of metabolism and organ function with 14 biomarkers.',
 			essential: true,
 			comprehensive: true,
 			ultimateMale: true,
@@ -391,6 +399,7 @@ const homeData = {
 		},
 		{
 			title: 'HbA1C',
+			description: 'Reflects average blood sugar levels over three months.',
 			essential: true,
 			comprehensive: true,
 			ultimateMale: true,
@@ -398,6 +407,7 @@ const homeData = {
 		},
 		{
 			title: 'Complete Blood Count',
+			description: 'Measures different blood cell types for overall health status with 14 biomarkers.',
 			essential: true,
 			comprehensive: true,
 			ultimateMale: true,
@@ -405,6 +415,7 @@ const homeData = {
 		},
 		{
 			title: 'Lipid Panel',
+			description: 'Assesses risk for cardiovascular disease through cholesterol levels with 4 biomarkers.',
 			essential: true,
 			comprehensive: true,
 			ultimateMale: true,
@@ -412,6 +423,7 @@ const homeData = {
 		},
 		{
 			title: 'FSH (Follicle Stimulating Hormone)',
+			description: 'Integral for reproductive system functioning.',
 			essential: false,
 			comprehensive: true,
 			ultimateMale: true,
@@ -419,6 +431,7 @@ const homeData = {
 		},
 		{
 			title: 'Estradiol',
+			description: 'A form of estrogen important for reproductive and sexual health.',
 			essential: false,
 			comprehensive: true,
 			ultimateMale: true,
@@ -426,6 +439,7 @@ const homeData = {
 		},
 		{
 			title: 'DHEA (Dehydroepiandrosterone)',
+			description: 'A hormone that\'s a precursor to sex hormones.',
 			essential: false,
 			comprehensive: true,
 			ultimateMale: true,
@@ -433,6 +447,7 @@ const homeData = {
 		},
 		{
 			title: 'IGF-1 (Insulin-like Growth Factor 1)',
+			description: 'Reflects human growth hormone levels.',
 			essential: false,
 			comprehensive: true,
 			ultimateMale: true,
@@ -440,6 +455,7 @@ const homeData = {
 		},
 		{
 			title: 'Homocysteine',
+			description: 'Linked with cardiovascular disease risk.',
 			essential: false,
 			comprehensive: true,
 			ultimateMale: true,
@@ -447,6 +463,7 @@ const homeData = {
 		},
 		{
 			title: 'Magnesium',
+			description: 'Vital for muscle, nerve function, and bone health.',
 			essential: false,
 			comprehensive: true,
 			ultimateMale: true,
@@ -454,6 +471,7 @@ const homeData = {
 		},
 		{
 			title: 'Vitamin D, 25-Hydroxy',
+			description: 'Assesses vitamin D status related to bone health.',
 			essential: false,
 			comprehensive: true,
 			ultimateMale: true,
@@ -461,6 +479,7 @@ const homeData = {
 		},
 		{
 			title: 'PSA (Prostate-Specific Antigen)',
+			descriptoin: 'Screens for prostate health issues.',
 			essential: false,
 			comprehensive: true,
 			ultimateMale: true,
@@ -468,6 +487,7 @@ const homeData = {
 		},
 		{
 			title: 'C-Reactive Protein',
+			description: 'Indicates liver health.',
 			essential: false,
 			comprehensive: true,
 			ultimateMale: true,
@@ -475,6 +495,7 @@ const homeData = {
 		},
 		{
 			title: 'Apo B',
+			description: 'Assists in evaluating liver function.',
 			essential: false,
 			comprehensive: true,
 			ultimateMale: true,
@@ -482,6 +503,7 @@ const homeData = {
 		},
 		{
 			title: 'Lipoprotein A',
+			description: 'A marker for inflammation in the body.',
 			essential: false,
 			comprehensive: true,
 			ultimateMale: true,
@@ -489,6 +511,7 @@ const homeData = {
 		},
 		{
 			title: 'ALT (Alanine Aminotransferase)',
+			description: 'Involved in cholesterol metabolism; linked to heart disease',
 			essential: false,
 			comprehensive: false,
 			ultimateMale: true,
@@ -496,6 +519,7 @@ const homeData = {
 		},
 		{
 			title: 'AST (Aspartate Aminotransferase)',
+			description: 'Genetic marker associated with an increased risk of heart disease.',
 			essential: false,
 			comprehensive: false,
 			ultimateMale: true,
@@ -503,6 +527,7 @@ const homeData = {
 		},
 		{
 			title: 'Insulin',
+			description: 'Monitors insulin production and blood sugar regulation.',
 			essential: false,
 			comprehensive: false,
 			ultimateMale: true,
@@ -510,6 +535,7 @@ const homeData = {
 		},
 		{
 			title: 'SHBG',
+			description: 'Binds to sex hormones and regulates their effect.',
 			essential: false,
 			comprehensive: false,
 			ultimateMale: true,
@@ -517,13 +543,15 @@ const homeData = {
 		},
 		{
 			title: 'Cortisol',
+			description: 'Measures stress response and adrenal function.',
 			essential: false,
 			comprehensive: false,
 			ultimateMale: true,
 			ultimateFemale: true,
 		},
 		{
-			title: 'Growht Hormone',
+			title: 'Growth Hormone',
+			description: 'Important for growth, metabolism, and muscle mass.',
 			essential: false,
 			comprehensive: false,
 			ultimateMale: true,
@@ -531,6 +559,7 @@ const homeData = {
 		},
 		{
 			title: 'Vitamin B12',
+			description: 'Essential for nerve function and blood cell production.',
 			essential: false,
 			comprehensive: false,
 			ultimateMale: true,
@@ -538,6 +567,7 @@ const homeData = {
 		},
 		{
 			title: 'Ferritin',
+			description: 'Indicates the amount of stored iron in the body.',
 			essential: false,
 			comprehensive: false,
 			ultimateMale: true,
@@ -545,6 +575,7 @@ const homeData = {
 		},
 		{
 			title: 'Iron and TIBC',
+			description: 'Assesses iron status and transport capacity.',
 			essential: false,
 			comprehensive: false,
 			ultimateMale: true,
@@ -553,12 +584,14 @@ const homeData = {
 		{
 			title: 'Free T4',
 			essential: false,
+			description: 'Directly measures active thyroid hormone levels.',
 			comprehensive: false,
 			ultimateMale: true,
 			ultimateFemale: true,
 		},
 		{
 			title: 'Prolactin',
+			description: 'Essential for menstrual cycle regulation and pregnancy in females.',
 			essential: false,
 			comprehensive: false,
 			ultimateMale: false,
@@ -566,6 +599,7 @@ const homeData = {
 		},
 		{
 			title: 'Progesterone',
+			description: 'Affects menstrual cycles and milk production.',
 			essential: false,
 			comprehensive: false,
 			ultimateMale: false,

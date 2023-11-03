@@ -4,6 +4,9 @@ import { homeData } from '@/constant/data';
 import clsxm from '@/helpers/clsxm';
 
 import { CheckBlue, HelpIcons, Minus } from '../Icons';
+
+import QuestionTooltip from './QuestionTooltip';
+
 type TablePackageBiomarkersItem = {
   classname?: string;
 };
@@ -54,7 +57,7 @@ const TablePackageBiomarkers: React.FC<TablePackageBiomarkersItem> = ({ classnam
 								className='p-4 font-medium whitespace-nowrap'>
 								<div className='flex items-center gap-2'>
 									<p>{ items.title }</p>
-									<HelpIcons />
+									{ !!items.description && <QuestionTooltip text={ items.description } /> }
 								</div>
 							</th>
 							<td className='p-5'>
