@@ -63,12 +63,16 @@ const Topics: React.FC = () => {
 									{
 										it.list.length > 3 &&
 										<div
-											className='btn-cta-landing group btn-primary px-9 md:hidden w-fit absolute -bottom-5 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10'
+											className='btn-cta-landing group btn-primary px-9 md:hidden w-fit absolute -bottom-5 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20'
 											onClick={ () => setShowAllTabs(!showAllTabs) }>
 											<span className='text-btn-cta-landing'>
 												{ showAllTabs ? 'View Less' : articleData.btnRight }
 											</span>
 										</div>
+									}
+									{
+										!showAllTabs &&
+										<div className='bg-gradient-to-t from-grey-background/90 to-grey-background/0 absolute -bottom-5 z-10 w-full h-[131px]' />
 									}
 								</TabsContent>
 							);
