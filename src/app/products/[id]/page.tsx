@@ -118,13 +118,9 @@ const ProductDetailPage: NextPage<ProductDetailPageProps> = async({
 				</div>
 			</div>
 
-			<div className='pt-9 lg:pt-[121px] pb-[32px] lg:pb-[51px]'>
-				<LandingComponent.Steps />
-			</div>
-			<div className='pt-9 lg:pt-[121px] pb-[32px] lg:pb-[51px]'>
-				<HomeComponent.LearnMore withBg />
-			</div>
-			<div className='pt-9 lg:pt-[121px] pb-[32px] lg:pb-[51px]'>
+			<LandingComponent.Steps />
+			<HomeComponent.LearnMore withBg />
+			<div className='py-[70px] lg:py-[95px]'>
 				<HomeComponent.Products />
 			</div>
 		</>

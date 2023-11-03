@@ -25,14 +25,14 @@ const StepsSection: React.FC = () => {
 	};
 
 	return (
-		<div className='lg:px-3 lg:py-15px overflow-hidden'>
+		<div className='overflow-hidden'>
 			<div className='h-full w-full lg:rounded-[19px] relative overflow-hidden'>
-				<div className='container-center py-[62px] flex flex-col gap-y-[62px] items-center justify-center text-center'>
+				<div className='container-center py-[70px] lg:py-[95px] flex flex-col gap-y-[62px] items-center justify-center text-center'>
 					<div className='text-center sm:mx-auto'>
 						<p className='mb-[15px] md:mb-7px text-pretitle text-grey-primary leading-[15px] md:leading-[24px]'>{ stepsData.preTitle }</p>
 
 						{ stepsData.title && (
-							<h2 className='text-heading-2 text-primary md:text-[32px] lg:text-4xl max-md:max-w-[243px]'>
+							<h2 className='text-heading-2 text-2xl font-normal text-primary md:text-[32px] lg:text-4xl'>
 								<span dangerouslySetInnerHTML={ { __html: stepsData.title } } />
 							</h2>
 						) }
@@ -55,7 +55,7 @@ const StepsSection: React.FC = () => {
 
 					<div className='md:max-w-6xl md:mx-auto w-full max-md:flex max-md:justify-center'>
 						<div className=''>
-							<div className='md:pt-[54px] flex md:flex-row flex-col items-start w-full no-scrollbar overflow-y-hidden transition-all select-none transform flex-nowrap overflow-x-auto lg:overflow-hidden scrolling-touch scroll-smooth max-md:space-y-10  gap-x-18px lg:gap-x-5 py-1'>
+							<div className='md:pt-[54px] flex md:flex-row max-w-[1015px] mx-auto flex-col items-start w-full no-scrollbar overflow-y-hidden transition-all select-none transform flex-nowrap overflow-x-auto lg:overflow-hidden scrolling-touch scroll-smooth max-md:space-y-10  gap-x-18px lg:gap-x-[108px] py-1'>
 								{ stepsData.list.map((step, stepIdx) => {
 									const isSelected = stepIdx === selectedIdx;
 
@@ -83,13 +83,15 @@ const StepsSection: React.FC = () => {
 													onClick={ () => onSelectStep(stepIdx) }
 													onMouseEnter={ () => onMouseEnter(stepIdx) }
 													className={ clsxm(
-														'cursor-pointer text-center font-Poppins text-primary leading-[134%] text-sm',
+														'cursor-pointer text-center font-Poppins max-md:text-left text-primary leading-[134%] text-sm',
 														isSelected
-															? 'md:pt-[22px] text-sm md:text-[19px] lg:w-[180px] font-medium'
-															: 'font-medium md:pt-18px text-[14.042px] md:text-base lg:w-[150px]'
+															? 'md:pt-[22px] text-sm md:text-[19px] font-medium'
+															: 'font-medium md:pt-18px text-[14.042px] md:text-base'
 													) }
 												>
-													{ step.title }
+													<span
+														className='max-md:text-left max-lg:text-sm whitespace-nowrap'
+														dangerouslySetInnerHTML={ { __html: step.title } } />
 												</p>
 											</div>
 										)
