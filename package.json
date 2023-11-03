@@ -27,6 +27,7 @@
     "clsx": "^2.0.0",
     "eslint": "8.47.0",
     "eslint-config-next": "13.4.19",
+    "framer-motion": "^10.16.4",
     "mini-svg-data-uri": "^1.4.4",
     "next": "13.4.19",
     "nextjs-toploader": "^1.4.2",

@@ -2,6 +2,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
 import Link from 'next/link';
 
 import { homeData } from '@/constant/data';
@@ -19,6 +20,7 @@ import WrapperAnimation from '../WrapperAnimation';
 
 import DialogHelp from './DialogHelp';
 import TablePackage from './TablePackage';
+import TablePackageBiomarkers from './TablePackageBiomarkers';
 
 type ComponentItem = {
 	packageId?: number;
@@ -31,6 +33,7 @@ const PackagesSection: React.FC = () => {
 	const [selectedPackageIdx, setSelectedPackageIdx] = useState<number>(-1);
 	const [openFeatures, setOpenFeatures] =  useState<number>(-1);
 	const [openDialogHelp, setOpenDialogHelp] = useState<boolean>(false);
+	const [isBiomarkersTableOpen, setIsBiomarkersTableOpen] = useState(false);
 
 	const renderTextComponentPackage = (component: ComponentItem) => {
 		return (
@@ -241,10 +244,25 @@ const PackagesSection: React.FC = () => {
 				</WrapperAnimation>
 				<WrapperAnimation
 				>
-					<div className='my-10 justify-center items-center gap-3 hidden lg:flex'>
+					<div
+						className='my-10 justify-center items-center gap-3 hidden lg:flex cursor-pointer'
+						onClick={ () => setIsBiomarkersTableOpen(prev => !prev) }>
 						<p className='font-Poppins text-[15px] font-semibold'>Compare biomarkers </p>
-						<ChevronDown className='w-6 h-6'/>
+						<ChevronDown className={ clsxm('w-6 h-6 mb-[2px] transform transition-all duration-200', isBiomarkersTableOpen && 'rotate-180') } />
 					</div>
+				</WrapperAnimation>
+				<WrapperAnimation>
+					<AnimatePresence>
+						{ isBiomarkersTableOpen && (
+							<motion.div
+								initial={ { opacity: 0, height: 0 } }
+								animate={ { opacity: 1, height: 'auto' } }
+								exit={ { opacity: 0, height: 0 } }
+							>
+								<TablePackageBiomarkers />
+							</motion.div>
+						) }
+					</AnimatePresence>
 				</WrapperAnimation>
 			</div>
 
