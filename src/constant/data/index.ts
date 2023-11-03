@@ -1,3 +1,4 @@
+import articleData from './article';
 import blogData from './blog';
 import contactUsData from './contactUs';
 import faqData from './faq';
@@ -13,6 +14,7 @@ import recommendationPackages from './recommendationPackages';
 import statesData from './states';
 
 export {
+	articleData,
 	blogData,
 	contactUsData,
 	faqData,
