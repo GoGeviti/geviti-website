@@ -22,7 +22,7 @@ const ProductList: React.FC<ProductType> = ({ products: productsData }) => {
 
 	const groupByCategory = Object.entries(
 		productsData.reduce((acc: { [key: string]: Product[] }, curr) => {
-			const category = curr.category.title;
+			const category = curr?.category?.title;
 			// Group initialization
 			if (!acc[category]) {
 				acc[category] = [];
@@ -108,7 +108,7 @@ const ProductList: React.FC<ProductType> = ({ products: productsData }) => {
 					<div className='mt-5px sm:mt-9px flex items-center max-lg:flex-col-reverse lg:items-end lg:justify-between gap-3'>
 						<div className='sm:max-w-xl lg:max-w-md'>
 							<p className='text-grey-primary font-BRSonoma text-xs leading-5 sm:leading-[18px]'>
-								{ item.products.find(product => product.category.title === item.category)?.category.description ?? '' }
+								{ item.products.find(product => product?.category?.title === item.category)?.category?.description ?? '' }
 							</p>
 						</div>
 
