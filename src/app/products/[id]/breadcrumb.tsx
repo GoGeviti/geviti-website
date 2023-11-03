@@ -1,8 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
 
-// import { Product } from '@/payload/payload-types';
-// import { productsData } from '@/constant/data';
 import clsxm from '@/helpers/clsxm';
 import { Product } from '@/payload/payload-types';
 
@@ -18,7 +16,8 @@ const Breadcrumb: React.FC<BreadcrumbProps> = ({ product }) => {
 	return (
 		<ol
 			role='list'
-			className='flex items-center gap-x-3.5 sm:gap-x-4'>
+			className='flex items-center gap-x-3.5 sm:gap-x-4 max-lg:hidden'
+		>
 			{ pages.map((page, pageIdx) => (
 				<li key={ pageIdx }>
 					<div className='flex items-center'>

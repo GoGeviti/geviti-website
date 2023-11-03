@@ -1,6 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 
+import clsxm from '@/helpers/clsxm';
 import { IHero } from '@/interfaces';
 
 import CustomLink from '../CustomLink';
@@ -9,13 +10,16 @@ import Navbar from '../Navbar';
 
 type HeroProps = {
 	hero: IHero.Hero;
+	classname : string
 };
 
-const Hero: React.FC<HeroProps> = ({ hero }) => {
+const Hero: React.FC<HeroProps> = ({ hero, classname }) => {
 	return (
 		<div className='lg:px-3 lg:py-15px overflow-hidden'>
-			<Navbar/>
-			<div className='bg-primary h-screen lg:h-[calc(100vh-30px)] w-full lg:rounded-[19px] relative pt-11px lg:pt-5 '>
+			<Navbar
+				withBgWhite
+				className='max-md:!pt-0'/>
+			<div className={ clsxm('bg-primary max-md:mt-[60px] h-[372px] lg:h-[calc(100vh-30px)] w-full lg:rounded-[19px] relative pt-11px lg:pt-5 ', classname) }>
 				<div className='absolute inset-0 w-full h-full z-0'>
 					{ hero.image  && (
 						<div className='relative overflow-hidden w-full h-full lg:rounded-[19px]'>
@@ -23,17 +27,9 @@ const Hero: React.FC<HeroProps> = ({ hero }) => {
 								src={ hero.image }
 								alt='hero'
 								priority
-								className='object-cover md:block hidden'
+								className='object-cover'
 								fill
-								objectPosition='top'
-							/>
-							<Image
-								src={ hero.image }
-								alt='hero mobile'
-								priority={ true }
-								className='object-contain md:hidden'
-								fill
-								objectPosition='top'
+								objectPosition='center'
 							/>
 						</div>
 					) }
@@ -42,8 +38,8 @@ const Hero: React.FC<HeroProps> = ({ hero }) => {
 
 				<div className='relative w-full h-full lg:rounded-b-[19px]'>
 					<div className='container-center text-center sm:mx-auto flex flex-col items-center justify-center w-full h-full z-100'>
-						<p className='font-Poppins text-xs md:text-base font-semibold text-white leading-[1.54px] md:leading-[15px] tracking-[1.76px] uppercase'>{ hero.preTitle }</p>
-						<div className='font-Poppins text-white text-[32px] md:!text-[40px] mt-5 mb-3'>
+						<p className='font-BRSonoma text-sm font-semibold text-white leading-[1.54px] uppercase'>{ hero.preTitle }</p>
+						<div className='font-Poppins text-white text-[30px] md:text-[40px] md:mt-5 mt-[10px] md:mb-3 mb-[14px]'>
 							<span
 								className='hidden md:block'
 								dangerouslySetInnerHTML={ { __html: hero.title } } />

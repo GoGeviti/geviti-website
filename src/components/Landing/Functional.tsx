@@ -17,8 +17,11 @@ const Functional: React.FC = () => {
 				<div className='container-center relative overflow-hidden'>
 					<div className='mx-auto max-w-5xl max-md:pb-[93px] pt-[52px] sm:pt-[113px] lg:relative isolate overflow-hidden'>
 						<div className='text-center'>
-							<p className='text-pretitle text-grey-primary'>
+							<p className='hidden lg:block text-pretitle text-grey-primary'>
 								{ functionalData.preTitle }
+							</p>
+							<p className='lg:hidden text-pretitle text-grey-primary'>
+								{ functionalData.preTitleMobile }
 							</p>
 							{ functionalData.title && (
 								<h2 className='font-Poppins text-[21px] md:text-[32px] lg:text-4xl leading-[27px] sm:leading-[125%] -tracking-[0.84px] md:-tracking-0.04em mt-11px sm:mt-7px text-grey-secondary'>

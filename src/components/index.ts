@@ -1,4 +1,5 @@
 import AOSInit from './AOSInit';
+import * as ArticleComponent from './Article';
 import * as BlogComponent from './Blog';
 import * as ContactUsComponent from './Contact';
 import CustomLink from './CustomLink';
@@ -13,6 +14,7 @@ import * as ProductsComponent from './Products';
 
 export {
 	AOSInit,
+	ArticleComponent,
 	BlogComponent,
 	ContactUsComponent,
 	CustomLink,

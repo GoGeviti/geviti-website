@@ -1,17 +1,13 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
-// import { useRouter } from 'next/router';
 import React from 'react';
 import Image from 'next/image';
 // import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 
 import { AlertSquareIcon } from '@/components/Icons';
-import { productListData } from '@/constant/data';
+// import { productListData } from '@/constant/data';
 import { Product } from '@/payload/payload-types';
-// import { Product } from '@/payload/payload-types';
-// import { Product } from '@/payload/payload-types';
-// import { IProducts } from '@/interfaces';
 import { useProductStore } from '@/store/productStore';
 type GroupedProduct = { category: string; products: Product[] };
 
@@ -26,7 +22,7 @@ const ProductList: React.FC<ProductType> = ({ products: productsData }) => {
 
 	const groupByCategory = Object.entries(
 		productsData.reduce((acc: { [key: string]: Product[] }, curr) => {
-			const category = curr.category.title;
+			const category = curr?.category?.title;
 			// Group initialization
 			if (!acc[category]) {
 				acc[category] = [];
@@ -43,7 +39,7 @@ const ProductList: React.FC<ProductType> = ({ products: productsData }) => {
 		filterValues.forEach(filter => {
 			const options = filter.options?.reduce((filtered: string[], option) => {
 				if (option.checked) {
-					filtered.push(option.value);
+					filtered.push(option.value.toString());
 				}
 				return filtered;
 			}, []);
@@ -112,13 +108,7 @@ const ProductList: React.FC<ProductType> = ({ products: productsData }) => {
 					<div className='mt-5px sm:mt-9px flex items-center max-lg:flex-col-reverse lg:items-end lg:justify-between gap-3'>
 						<div className='sm:max-w-xl lg:max-w-md'>
 							<p className='text-grey-primary font-BRSonoma text-xs leading-5 sm:leading-[18px]'>
-								{
-									(
-										productListData.categoriesDescription as {
-											[key: string]: string;
-										}
-									)[item.category]
-								}
+								{ item.products.find(product => product?.category?.title === item.category)?.category?.description ?? '' }
 							</p>
 						</div>
 
@@ -138,7 +128,7 @@ const ProductList: React.FC<ProductType> = ({ products: productsData }) => {
 								className='group cursor-pointer relative flex flex-col overflow-hidden bg-grey-secondary w-full text-left'
 								onClick={ () => router.push(`/products/${product.id}`) }
 							>
-								<div className='relative overflow-hidden bg-[#E7E7E7] group-hover:opacity-75 w-full h-[117px] sm:h-[202px]'>
+								<div className='relative overflow-hidden bg-[#E7E7E7] group-hover:opacity-75 w-full h-[202px]'>
 									{ product.images.length > 0 && (
 										<Image
 											priority={ true }
@@ -174,7 +164,7 @@ const ProductList: React.FC<ProductType> = ({ products: productsData }) => {
 									<div className='flex flex-1 flex-col justify-end font-BRSonoma text-primary pt-18px'>
 										{ product.price && (
 											<p className='text-xs lg:text-[15px] leading-[130%] lg:leading-[100%] font-BRSonoma'>
-												${ product.price }
+												${ product.price } <span className='text-grey-primary max-lg:text-[10px] lg:text-sm'>per month</span>
 											</p>
 										) }
 									</div>

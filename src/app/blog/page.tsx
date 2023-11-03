@@ -8,7 +8,11 @@ const BlogPage: NextPage = () => {
   
 	return (
 		<div className='flex min-h-screen flex-col w-full bg-grey-background'>
-			<BlogComponent.Hero hero={ blogData.hero }/>
+			<BlogComponent.Hero
+				hero={ blogData.hero }
+				classname=''/>
+			<BlogComponent.Topics/>
+			<BlogComponent.Articles/>
 			<BlogComponent.Updated/>
 		</div>
 	);

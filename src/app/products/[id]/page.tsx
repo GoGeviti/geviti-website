@@ -8,11 +8,9 @@ import {
 	Navbar,
 	ProductsComponent,
 } from '@/components';
-import { AlertSquareIcon } from '@/components/Icons';
+import { AlertSquareIcon, ClockIcon } from '@/components/Icons';
 import { getProductById } from '@/services/products';
 
-// import { productsData } from '@/constant/data';
-// import getPayloadClient from '@/payload/payloadClient';
 import Breadcrumb from './breadcrumb';
 import ProductFaq from './productFaq';
 
@@ -32,85 +30,97 @@ const ProductDetailPage: NextPage<ProductDetailPageProps> = async({
 		<>
 			<div className='relative overflow-hidden bg-[#CFD8DB]'>
 				<Navbar theme='light' />
-				<div className='pt-24 lg:pt-[172px] container-center flex flex-col max-lg:items-center'>
+				<div className='pt-24 lg:pt-[172px] pb-4 sm:pb-[95px] container-center flex flex-col max-lg:items-center'>
 					<Breadcrumb product={ product } />
 
-					<div className='flex max-lg:flex-col lg:grid lg:grid-cols-2 gap-10 pt-[27px] lg:pt-12 w-full'>
-						<div className='w-full max-lg:pb-1'>
+					<div className='flex max-lg:flex-col items-start justify-between gap-10 lg:pt-12 w-full relative'>
+						<div className='w-full lg:w-1/2 sticky top-10 max-lg:pb-1'>
 							<ProductsComponent.SliderProducts
 								images={ product.images.map(e => e.image.url ?? '') ?? [] }
 							/>
 						</div>
-						<div className='flex flex-col w-full lg:max-w-md lg:mx-auto'>
-							{ product?.category && (
+						<div className='flex flex-col gap-9 w-full lg:w-1/2 lg:max-w-md lg:mx-auto'>
+							<div className='flex flex-col lg:gap-2 relative'>
 								<p className='uppercase text-grey-primary font-BRSonoma font-semibold text-[10px] sm:text-sm leading-[21px] sm:leading-6 tracking-0.11em'>
-									{ product?.category.title }
+									{ product.category.title }
 								</p>
-							) }
-							<div className='flex flex-col gap-y-[26px] lg:gap-y-[42px] mt-[7px] lg:mt-[17px]'>
-								<div className='flex items-center justify-between text-primary'>
-									<h1 className='text-3xl lg:text-4xl -tracking-0.04em font-Poppins leading-[124%] lg:leading-[121%]'>
-										{ product?.name }
-									</h1>
-									<div className='flex flex-col items-center'>
-										<p className='flex gap-2 text-xl lg:text-2xl md:font-semibold leading-[77%] lg:leading-[75%] font-Poppins'>
-											${ product?.price }{ ' ' }
-											<span className='hidden md:block text-base text-grey-primary font-medium'>
-												monthly
-											</span>
+								<h1 className='text-3xl lg:text-4xl -tracking-0.04em font-Poppins leading-[124%] lg:leading-[121%]'>
+									{ product.name }
+								</h1>
+								{ product?.fdaApproved && (
+									<span className='text-[9px] absolute -bottom-4 left-0 bg-blue-1/[0.34] rounded-full w-fit text-primary font-Poppins font-medium py-[1px] px-[7px]'>
+                    FDA approved
+									</span>
+								) }
+							</div>
+							<div className='flex flex-col gap-2 sm:gap-[9px] text-primary'>
+								<p className='font-Poppins text-primary text-2xl  font-semibold w-fit leading-[18px] pb-[9px] border-b border-[#B8C6CC]'>
+                  ${ product?.price }{ ' ' }
+									<span className='text-grey-primary font-medium text-base'>
+                    per month
+									</span>
+								</p>
+								{
+									product.price_membership.map((e, i) => (
+										<p
+											key={ i }
+											className='text-primary/[0.60] text-xs font-medium leading-6 sm:text-sm font-Poppins'>
+											{ e.title }
 										</p>
-										<p className='text-[13px] font-medium leading-[77%] lg:leading-[75%] font-Poppins hidden md:block whitespace-nowrap'>
-											with Geviti membership
-										</p>
-									</div>
-								</div>
-
-								<div className='flex flex-col gap-1.5 sm:gap-2.5'>
-									{ product?.bloodTest && (
+									))
+								}
+							</div>
+							<div className='p-[17.75px] lg:p-[25px] bg-primary/[0.03] rounded-lg flex flex-col gap-[30px] lg:gap-10'>
+								{ product?.laedTime && (
+									<div className='flex flex-col gap-2 lg:gap-[10px]'>
 										<div className='flex gap-5px text-primary'>
-											<AlertSquareIcon className='w-15px h-15px sm:w-18px sm:h-18px flex-shrink-0' />
-
+											<div className='flex items-center justify-center'>
+												<ClockIcon className='w-15px h-15px sm:w-18px sm:h-18px flex-shrink-0' />
+											</div>
 											<p className='text-xs sm:text-sm font-Poppins leading-5 sm:leading-[18px] font-medium'>
-												Products available based on blood test results
+												{ product?.laedTime.title }
 											</p>
 										</div>
-									) }
-
-									{ product?.description && (
-										<p className='text-[10px] sm:text-xs font-BRSonoma text-primary leading-[17px] sm:leading-5'>
+										<p className='text-xs font-BRSonoma text-primary/60 leading-[17px] sm:leading-5'>
+											{ product?.laedTime.description }
+										</p>
+									</div>
+								) }
+								{ product?.bloodTest && (
+									<div className='flex flex-col gap-2 lg:gap-[10px]'>
+										<div className='flex gap-5px text-primary'>
+											<div className='flex items-center justify-center'>
+												<AlertSquareIcon className='w-15px h-15px sm:w-18px sm:h-18px flex-shrink-0' />
+											</div>
+											<p className='text-xs sm:text-sm font-Poppins leading-5 sm:leading-[18px] font-medium'>
+                        Products available based on blood test results
+											</p>
+										</div>
+										<p className='text-xs font-BRSonoma text-primary/60 leading-[17px] sm:leading-5'>
 											{ product?.description }
 										</p>
-									) }
-								</div>
+									</div>
+								) }
+							</div>
+							<div className='flex flex-col gap-y-[36px]'>
+								<ProductFaq product={ product } />
 
-								<div className='flex flex-col-reverse lg:flex-col gap-y-[26px] lg:gap-y-[42px]'>
-									<ProductFaq product={ product } />
-
-									<CustomLink
-										href='/get-started'
-										className='btn btn-primary w-full text-xs sm:text-sm font-medium font-Poppins leading-[21px] sm:leading-[26px] py-2.5 sm:py-[13px]'
-										aria-label='Purchase'
-									>
-										Get Started
-									</CustomLink>
-								</div>
+								<CustomLink
+									href='/get-started'
+									className='btn btn-primary w-full text-xs sm:text-sm font-medium font-Poppins leading-[21px] sm:leading-[26px] py-2.5 sm:py-[13px]'
+									aria-label='Purchase'
+								>
+                  Get Started
+								</CustomLink>
 							</div>
 						</div>
 					</div>
-					{ /* <p className='text-start w-full font-Poppins text-[6px] md:text-[10px] font-medium pt-7 lg:pt-20 mb-7 lg:mb-10'>
-						*Product images are for display purposes; actual items from US-based
-						pharmacies may vary.
-					</p> */ }
 				</div>
 			</div>
 
-			<div className='pt-9 lg:pt-[121px] pb-[32px] lg:pb-[51px]'>
-				<LandingComponent.Steps />
-			</div>
-			<div className='pt-9 lg:pt-[121px] pb-[32px] lg:pb-[51px]'>
-				<HomeComponent.LearnMore withBg />
-			</div>
-			<div className='pt-9 lg:pt-[121px] pb-[32px] lg:pb-[51px]'>
+			<LandingComponent.Steps />
+			<HomeComponent.LearnMore withBg />
+			<div className='py-[70px] lg:py-[95px]'>
 				<HomeComponent.Products />
 			</div>
 		</>

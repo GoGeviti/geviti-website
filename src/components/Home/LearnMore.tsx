@@ -14,9 +14,9 @@ type LearnMoreProps = {
 
 const LearnMore: React.FC<LearnMoreProps> = ({ withBg = false }) => {
 	return (
-		<div className='lg:px-3 lg:py-15px overflow-hidden'>
+		<div className='overflow-hidden'>
 			<div className={ clsxm('h-full w-full lg:rounded-[19px] relative overflow-hidden', withBg && 'bg-[#EAEAEA]') }>
-				<div className='container-center items-center md:items-start flex flex-col py-[102px]'>
+				<div className='container-center items-center md:items-start flex flex-col py-[70px] lg:py-[95px]'>
 					<div className='sm:mx-auto lg:w-full max-lg:text-center'>
 						<p className='mb-11px sm:mb-7px text-pretitle text-grey-primary'>{ learnMore.preTitle }</p>
 
