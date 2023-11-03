@@ -4,7 +4,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 
-import { homeData, statesData } from '@/constant/data';
+import { homeData } from '@/constant/data';
 import clsxm from '@/helpers/clsxm';
 
 import {
@@ -15,15 +15,6 @@ import {
 	InfoCircle,
 	Minus,
 } from '../Icons';
-import {
-	Select,
-	SelectContent,
-	SelectGroup,
-	SelectItem,
-	SelectSeparator,
-	SelectTrigger,
-	SelectValue
-} from '../Select';
 import WrapperAnimation from '../WrapperAnimation';
 
 import DialogHelp from './DialogHelp';
@@ -40,8 +31,6 @@ const PackagesSection: React.FC = () => {
 	const [selectedPackageIdx, setSelectedPackageIdx] = useState<number>(-1);
 	const [openFeatures, setOpenFeatures] =  useState<number>(-1);
 	const [openDialogHelp, setOpenDialogHelp] = useState<boolean>(false);
-	const [state, setState] = useState<string>('');
-	const [stateGender, setStateGender] = useState<string>('');
 
 	const renderTextComponentPackage = (component: ComponentItem) => {
 		return (
@@ -60,8 +49,6 @@ const PackagesSection: React.FC = () => {
 	};
 
 	const resolveCardPackageClassName = (isSelected: boolean) => {
-		if (!state || !stateGender) return 'opacity-50 bg-grey-secondary border-transparent cursor-default';
-
 		if (isSelected) {
 			return 'bg-blue-1/30 border-[#65CBFF]';
 		}
@@ -76,19 +63,15 @@ const PackagesSection: React.FC = () => {
 				className='mt-10 lg:mt-5 flex flex-col gap-3'
 			>
 				{ homeData.bloodPanel
-					.filter(packageItem => (stateGender === 'Female' ? packageItem.isForFemale : packageItem.isForMale))
 					.map((packageItem, packageItemIdx) => {
 						const isSelected = packageItemIdx === selectedPackageIdx;
 
 						return (
 							<div
 								key={ packageItemIdx }
-								data-aos='zoom-in-down'
-								data-aos-delay={ `${ packageItemIdx * 100 }` }
-								data-aos-anchor='#package-list'
 							>
 								<div
-									onClick={ () => state && setSelectedPackageIdx(packageItemIdx) }
+									onClick={ () => setSelectedPackageIdx(packageItemIdx) }
 									className={ clsxm(
 										'rounded-md py-[25px] px-[27px] border transform transition-all duration-500',
 										resolveCardPackageClassName(isSelected)
@@ -111,7 +94,7 @@ const PackagesSection: React.FC = () => {
 										<ArrowNarrowDown className='text-primary' />
 									</div>
 
-									<div className={ clsxm('flex-col gap-x-25px gap-y-3.5 lg:gap-y-4', state && stateGender ? (packageItemIdx === openFeatures ? 'flex' : 'hidden') : 'hidden') }>
+									<div className={ clsxm('flex-col gap-x-25px gap-y-3.5 lg:gap-y-4', packageItemIdx === openFeatures ? 'flex' : 'hidden') }>
 										{ packageItem.components?.map((component, componentIdx) => (
 											<div key={ componentIdx }>
 												<div className=''>
@@ -121,7 +104,7 @@ const PackagesSection: React.FC = () => {
 										)) }
 									</div>
 
-									{  state && stateGender && isSelected && (
+									{   isSelected && (
 										<Link
 											prefetch={ false }
 											href={ `/orders?selectedProduct=${ packageItemIdx + 1 }` }
@@ -151,7 +134,6 @@ const PackagesSection: React.FC = () => {
 	const renderTitleDescPage = () => {
 		return (
 			<WrapperAnimation
-				data-aos='zoom-in-right'
 				className='flex flex-col max-lg:items-center text-center lg:text-left'
 			>
 				<p className='text-pretitle text-grey-primary'>{ homeData.packages.preTitle }</p>
@@ -169,9 +151,9 @@ const PackagesSection: React.FC = () => {
 
 	const renderPopularPackage = () => {
 		return (
-			<div className={ clsxm('grid grid-cols-4 w-full gap-12 mt-24', (!state || !stateGender) && 'opacity-50 border-transparent cursor-default') }>
+			<div className={ clsxm('grid grid-cols-4 w-full gap-12 mt-24') }>
 				<div />
-				{ homeData.bloodPanel.filter(packageItem => (stateGender === 'Female' ? packageItem.isForFemale : packageItem.isForMale)).map((items, id) => (
+				{ homeData.bloodPanel.map((items, id) => (
 					<div
 						key={ id }
 						className='max-w-[250px] flex flex-col justify-end'>
@@ -180,7 +162,7 @@ const PackagesSection: React.FC = () => {
 						<p className='bg-blue-1/30 text-blue-4 px-5 py-[2px] rounded-full w-fit font-Poppins text-sm font-medium leading-5 mb-4'>Most Popular</p>
 						}
 						<p className='font-Poppins text-xl font-medium mb-4 text-primary'>{ items.title }</p>
-						<p className='font-Poppins text-5xl font-medium text-primary leading-[125%] -tracking-[0.96px;]'>{ items.price } <span className='text-grey-primary text-base leading-[150%] tracking-normal'>{ items.priceNote }</span></p>
+						<p className='font-Poppins text-5xl font-medium text-primary leading-[125%] -tracking-[0.96px;]'>{ items.price }<span className='text-grey-primary text-base leading-[150%] tracking-normal'>{ items.priceNote }</span></p>
 						<p className='text-primary text-base leading-[150%] font-Poppins font-medium'>{ items.priceThen } <span className='text-grey-primary text-sm'>{ items.priceThenNote }</span></p>
 						<p className='text-grey-primary text-sm leading-[150%] font-Poppins mt-4'>{ items.desc }</p>
 						<Link
@@ -207,59 +189,6 @@ const PackagesSection: React.FC = () => {
 		);
 	};
 
-	const renderSelectState = (data:any) => {
-		const selectOptions: { value: string; label: string }[] = data.options;
-
-		return (
-			<WrapperAnimation
-				data-aos='zoom-in-right'
-				className='mt-[29px]'
-			>
-				<p className='text-xs lg:text-sm leading-5 font-BRSonoma mb-[13px] flex'>{ data.label }</p>
-
-				<Select
-					value={ data.number === '2' ? stateGender : state }
-					onValueChange={ data.number === '2' ? setStateGender : setState  }
-				>
-					<SelectTrigger
-						aria-label={  data.number === '2' ? stateGender : state }
-						className='w-full lg:w-[297px] bg-grey-secondary text-primary'>
-						<SelectValue
-							aria-label={  data.number === '2' ? stateGender : state }
-							placeholder={ data.placeholder }
-						>
-							{  data.number === '2' ? stateGender || data.placeholder : state || data.placeholder }
-						</SelectValue>
-					</SelectTrigger>
-					<SelectContent className='bg-grey-secondary text-primary'>
-						<SelectGroup className='overflow-x-hidden'>
-							{ selectOptions.map((option, optionIdx) => (
-								<div
-									key={ optionIdx }>
-									<SelectItem
-										value={ option.value }
-										className='data-[state=unchecked]:font-medium data-[state=checked]:font-semibold text-primary data-[highlighted]:bg-white'
-									>{ option.label }</SelectItem>
-									{ optionIdx < selectOptions.length - 1 && (
-										<SelectSeparator />
-									) }
-								</div>
-							)) }
-							<SelectSeparator />
-							{
-								 data.number === '1' &&
-								 <button
-								 aria-label='Don&apos;t see your state? Click here!'
-								 className='cursor-pointer flex w-full select-none items-center rounded-sm px-18px py-2 text-sm leading-6 font-medium font-Poppins'
-								 onClick={ () => window.open('https://cchtpaycds0.typeform.com/to/BVFNdpwc', '_blank') }>Don&apos;t see your state? Click here!</button>
-							}
-						</SelectGroup>
-					</SelectContent>
-				</Select>
-			</WrapperAnimation>
-		);
-	};
-
 	return (
 		<>
 			<div
@@ -267,16 +196,10 @@ const PackagesSection: React.FC = () => {
 				className='container-center w-full max-lg:py-14 lg:pt-[94px] relative'>
 				<div className='w-full flex flex-col lg:flex-row justify-between items-center'>
 					{ renderTitleDescPage() }
-
-					<div className='flex-col lg:flex-row flex gap-x-10 max-lg:w-full mt-[9px]'>
-						{ renderSelectState(statesData.states) }
-						{ renderSelectState(statesData.gender) }
-					</div>
 				</div>
 				
 				<div className='flex max-lg:flex-col gap-11px items-center lg:justify-between mt-[38px]'>
 					<WrapperAnimation
-						data-aos='zoom-in-right'
 						className='flex items-center gap-5px lg:hidden'
 					>
 						{ renderNumber(2) }
@@ -287,7 +210,6 @@ const PackagesSection: React.FC = () => {
 					</WrapperAnimation>
 
 					<WrapperAnimation
-						data-aos='zoom-in-left'
 						className='flex items-center gap-[7px] cursor-pointer lg:hidden'
 						disableMobile={ false }
 						onClick={ () => { setOpenDialogHelp(true); } }
@@ -299,7 +221,6 @@ const PackagesSection: React.FC = () => {
 					</WrapperAnimation>
 				</div>
 				<WrapperAnimation
-					data-aos='zoom-in-right'
 				>
 					<div className='lg:block hidden'>
 						{ renderPopularPackage() }
@@ -307,21 +228,18 @@ const PackagesSection: React.FC = () => {
 				</WrapperAnimation>
 
 				<WrapperAnimation
-					data-aos='zoom-in-right'
 				>
 					<div className='lg:hidden'>
 						{ renderPackageList() }
 					</div>
 				</WrapperAnimation>
 				<WrapperAnimation
-					data-aos='zoom-in-right'
 				>
 					<div className='hidden lg:block mt-14'>
-						<TablePackage classname={	(!state || !stateGender) ? 'opacity-50 bg-grey-secondary border-transparent cursor-default' : '' }/>
+						<TablePackage />
 					</div>
 				</WrapperAnimation>
 				<WrapperAnimation
-					data-aos='zoom-in-right'
 				>
 					<div className='my-10 justify-center items-center gap-3 hidden lg:flex'>
 						<p className='font-Poppins text-[15px] font-semibold'>Compare biomarkers </p>

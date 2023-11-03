@@ -77,10 +77,10 @@ const homeData = {
 	bloodPanel: [
 		{
 			title: 'Essential Bloodwork Panel',
-			price: '$300',
-			priceNote: 'one time',
-			priceThen: 'then $99',
-			priceThenNote: 'monthly',
+			price: '$299',
+			priceNote: '.99 one time',
+			priceThen: 'then $75',
+			priceThenNote: 'per month',
 			isForMale: true,
 			isForFemale: true,
 			desc: 'For those needing a fundamental at-home blood panel for key health markers.',
@@ -131,10 +131,10 @@ const homeData = {
 		},
 		{
 			title: 'Comprehensive Bloodwork Panel',
-			price: '$475',
-			priceNote: 'one time',
-			priceThen: 'then $99',
-			priceThenNote: 'monthly',
+			price: '$469',
+			priceNote: '.99 one time',
+			priceThen: 'then $75',
+			priceThenNote: 'per month',
 			isForMale: true,
 			isForFemale: true,
 			desc: 'For those wanting an expanded at-home blood panel for a deeper health view.',
@@ -184,13 +184,13 @@ const homeData = {
 			]
 		},
 		{
-			title: 'Ultimate Men’s Bloodwork Panel',
-			price: '$605',
-			priceNote: 'one time',
-			priceThen: 'then $99',
+			title: 'Ultimate Bloodwork Panel',
+			price: '$599',
+			priceNote: '.99 one time',
+			priceThen: 'then $75',
 			isForMale: true,
 			isForFemale: false,
-			priceThenNote: 'monthly',
+			priceThenNote: 'per month',
 			desc: 'For men aiming for an exhaustive at-home blood panel for total health scrutiny.',
 			isPopular: false,
 			btn: 'Get Started',
@@ -237,60 +237,6 @@ const homeData = {
 				},
 			]
 		},
-		{
-			title: 'Ultimate Women’s Bloodwork Panel',
-			price: '$515',
-			priceNote: 'one time',
-			priceThen: 'then $99',
-			isForMale: false,
-			isForFemale: true,
-			priceThenNote: 'monthly',
-			desc: 'For women looking for an ultimate deep dive on their current health status.',
-			isPopular: false,
-			btn: 'Get Started',
-			components: [
-				{
-					name: 'Biomarkers Tested',
-					description: '39+'
-				},
-				{
-					name: 'At-home Blood Draw',
-					description: true
-				},
-				{
-					name: 'Personal Assigned Clinician',
-					description: true
-				},
-				{
-					name: 'Telehealth Consult Included',
-					description: true
-				},
-				{
-					name: 'Prescription Therapy Access',
-					description: true
-				},
-				{
-					name: 'For Males and Females',
-					description: false
-				},
-				{
-					name: 'Custom Treatment Plan',
-					description: true
-				},
-				{
-					name: 'Online Patient Dashboard',
-					description: true
-				},
-				{
-					name: 'IOS Application Access',
-					description: true
-				},
-				{
-					name: 'AI Health Metric Tracking',
-					description: true
-				},
-			]
-		}
 	],
 	sliderPackageImages: [
 		'Select your package.',
