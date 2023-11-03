@@ -18,9 +18,9 @@ const Articles: React.FC = () => {
 		setHoveredItem(id);
 	};
 
-	const handleMouseLeave = () => {
-		setHoveredItem(1);
-	};
+	// const handleMouseLeave = () => {
+	// 	setHoveredItem(1);
+	// };
 	return (
 		<div className='w-full relative my-20'>
 			<div className='container-center mx-auto  w-full'>
@@ -33,13 +33,13 @@ const Articles: React.FC = () => {
 								key={ id }
 								className='relative'
 								onMouseEnter={ () => handleMouseEnter(id) }
-								onMouseLeave={ handleMouseLeave }
+								// onMouseLeave={ handleMouseLeave }
 							>
 								<Image
 									src={ items.image }
 									width={ 270 }
 									height={ 500 }
-									className={ `object-cover !h-[500px] ${isHovered ? 'w-[500px] ' : 'w-[320px]'} rounded-[20px]` }
+									className={ `object-cover transition-all ease-in-out duration-300 !h-[500px] ${isHovered ? 'w-[500px] ' : 'w-[320px]'} rounded-[20px]` }
 									alt={ items.title }
 								/>
 								<div className='absolute z-10 left-0 bottom-0 flex flex-col text-start px-[30px] py-[26px]'>

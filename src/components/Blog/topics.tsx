@@ -44,7 +44,7 @@ const Topics: React.FC = () => {
 						{ articleData.tab.map((items, id) => (
 							<TabsTrigger
 								key={ id }
-								className='text-[15px] pb-[9px] pt-[25px] leading-none text-primary select-none hover:font-bold data-[state=active]:font-bold data-[state=active]:focus:relative data-[state=active]:focus:border-b data-[state=active]:focus:border-primary outline-none cursor-default'
+								className='text-[15px] cursor-pointer pb-[9px] pt-[25px] leading-none text-primary select-none hover:font-bold data-[state=active]:font-bold data-[state=active]:focus:relative data-[state=active]:focus:border-b data-[state=active]:focus:border-primary outline-none'
 								value={ `tab-${id}` }
 							>
 								{ items.name }
