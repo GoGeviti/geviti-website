@@ -1,70 +1,100 @@
 'use client';
 
 import { useRef, useState } from 'react';
-import Slider from 'react-slick';
 import Image from 'next/image';
+import { Swiper as SwiperType } from 'swiper';
+import { Thumbs } from 'swiper/modules';
+import { Swiper, SwiperSlide } from 'swiper/react';
 
 import clsxm from '@/helpers/clsxm';
+
+import 'swiper/css/thumbs';
+
+import 'swiper/css';
 
 type SliderProductsProps = {
 	images: string[];
 };
 
 const SliderProducts: React.FC<SliderProductsProps> = ({ images }) => {
-	const sliderRef = useRef<Slider | null>(null);
+	const swiperRef = useRef<SwiperType>();
+	const [thumbsSwiper, setThumbsSwiper] = useState<SwiperType>();
+
 	const [activeIndex, setActiveIndex] = useState<number>(0);
 
-	const settings = {
-		dots: false,
-		arrows: false,
-		infinite: true,
-		slidesToShow: 1,
-		slidesToScroll: 1,
-		vertical: true,
-		verticalSwiping: true,
-		swipeToSlide: true,
-		beforeChange: (current: number, next: number) => setActiveIndex(next),
-		responsive: [
-			{
-				breakpoint: 1024,
-				settings: {
-					vertical: false,
-					verticalSwiping: false
-				}
-			},
-		]
-	};
-
-	const renderDots = () => {
-		return (
-			<div className='mt-5 lg:-mt-5 flex max-lg:items-center lg:flex-col justify-center gap-9px sm:gap-3'>
-				{ Array.from(Array(images.length).keys()).map(i => {
-					return (
-						<div
-							key={ i }
-							className={ clsxm(
-								'rounded-full w-1.5 sm:w-2 h-1.5 sm:h-2 bg-primary cursor-pointer',
-								i === activeIndex ? 'bg-opacity-100' : 'bg-opacity-[0.13]'
-							) }
-							onClick={ () => sliderRef?.current?.slickGoTo(i) }
-						/>
-					);
-				}) }
-			</div>
-		);
-	};
-
 	return (
-		<div className='flex flex-col w-full'>
-			<div className='w-full px-5 max-w-[289px] lg:max-w-[431px] mx-auto'>
-				<Slider
-					ref={ sliderRef }
-					{ ...settings }>
-					{ images?.map((image, imageIdx) => {
+		<div>
+			<div className='w-full bg-white h-full max-h-[462px] aspect-square rounded-lg flex flex-col items-center justify-center relative'>
+				<div className='w-full px-5 max-w-[289px] lg:max-w-[431px] mx-auto'>
+					<Swiper
+						pagination={ {
+							clickable: true,
+						} }
+						onBeforeInit={ swiper => {
+							swiperRef.current = swiper;
+						} }
+						thumbs={ { swiper: thumbsSwiper } }
+						onSlideChange={ swiper => setActiveIndex(swiper.activeIndex) }
+						modules={ [Thumbs] }
+					>
+						{ images?.map((image, imageIdx) => {
+							return (
+								<SwiperSlide key={ imageIdx }>
+									<div className='w-full h-full relative overflow-hidden aspect-square focus:ring-0 focus:outline-none focus:border-none'>
+										<Image
+											src={ image }
+											alt='slider'
+											priority={ true }
+											fill
+											className='object-contain'
+										/>
+									</div>
+								</SwiperSlide>
+							);
+						}) }
+					</Swiper>
+				</div>
+				<div className='flex items-center absolute left-1/2 -translate-x-1/2 bottom-3 lg:bottom-6 justify-center gap-3'>
+					{ Array.from(Array(images.length).keys()).map(i => {
 						return (
 							<div
-								key={ imageIdx }
-								className='w-full h-full relative overflow-hidden aspect-square focus:ring-0 focus:outline-none focus:border-none'>
+								key={ i }
+								className={ clsxm(
+									'rounded-full w-1.5 sm:w-2 h-1.5 sm:h-2 bg-primary cursor-pointer',
+									i === activeIndex ? 'bg-opacity-100' : 'bg-opacity-[0.13]'
+								) }
+								onClick={ () => swiperRef?.current?.slideTo(i) }
+							/>
+						);
+					}) }
+				</div>
+			</div>
+			<Swiper
+				onSwiper={ setThumbsSwiper }
+				spaceBetween={ 14 }
+				slidesPerView={ 5 }
+				modules={ [Thumbs] }
+				className='mt-6'
+				breakpoints={ {
+					0: {
+						slidesPerView: 4,
+						spaceBetween: 10,
+					},
+					768: {
+						slidesPerView: 5,
+						spaceBetween: 14,
+					},
+				} }
+			>
+				{ images?.map((image, imageIdx) => {
+					return (
+						<SwiperSlide key={ imageIdx }>
+							<div
+								className={ clsxm(
+									'w-full h-full max-h-[84px] relative bg-white cursor-pointer rounded-lg overflow-hidden aspect-square',
+									imageIdx === activeIndex ? 'opacity-100' : 'opacity-25'
+								) }
+							>
 								<Image
 									src={ image }
 									alt='slider'
@@ -73,12 +103,10 @@ const SliderProducts: React.FC<SliderProductsProps> = ({ images }) => {
 									className='object-contain'
 								/>
 							</div>
-						);
-					}) }
-				</Slider>
-			</div>
-
-			{ renderDots() }
+						</SwiperSlide>
+					);
+				}) }
+			</Swiper>
 		</div>
 	);
 };

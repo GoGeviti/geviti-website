@@ -30,7 +30,7 @@ const Hero: React.FC<HeroProps> = ({ hero }) => {
 							dangerouslySetInnerHTML={ { __html: hero.desc } } />
 						<span
 							className='md:hidden block'
-							dangerouslySetInnerHTML={ { __html: hero.descMobile } } /></div>
+							dangerouslySetInnerHTML={ { __html: hero.descMobile ?? '' } } /></div>
 					}
 					
 				</div>
