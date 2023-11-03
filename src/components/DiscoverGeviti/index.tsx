@@ -108,12 +108,12 @@ const DiscoverGeviti: React.FC<DiscoverGevitiProps> = ({
 				onScroll={ handleScrollProducts }
 				className='no-scrollbar overflow-y-hidden transition-all select-none transform flex flex-nowrap overflow-x-auto scrolling-touch scroll-smooth gap-x-18px py-1 -mr-4 last:pr-[17px] lg:last:pr-0'
 			>
-				{ productList.map((product, productIdx) => (
+				{ productList.map(product => (
 					<div
 						key={ product.id }
 						id='discover-product-card'
-						data-aos='zoom-in-down'
-						data-aos-delay={ `${productIdx * 100}` }
+						// data-aos='zoom-in-down'
+						// data-aos-delay={ `${productIdx * 100}` }
 						className='group cursor-pointer relative flex flex-col overflow-hidden bg-grey-secondary flex-none w-[248px] lg:w-[287px]'
 						onClick={ () => router.push(`/products/${product.id}`) }
 					>
