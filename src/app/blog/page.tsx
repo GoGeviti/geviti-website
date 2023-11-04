@@ -1,4 +1,3 @@
-'use client';
 import { NextPage } from 'next';
 
 import { BlogComponent } from '@/components';

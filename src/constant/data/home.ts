@@ -11,7 +11,7 @@ const homeData = {
 				text: '<p>Select your<br/> bloodwork panel.</p>'
 			},
 			{
-				image: '/images/icons/settings.svg',
+				image: '/images/icons/blood-drop.svg',
 				text: '<p>Do at-home <br/> blood test.</p>'
 			},
 			{

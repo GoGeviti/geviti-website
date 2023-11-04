@@ -13,6 +13,7 @@ export interface Product {
 	category: Category;
 	benefits: Benefit[];
 	bloodTest?: boolean;
+	fdaApproved?: boolean;
 	shopify_variant_id?: string;
 	images: {
 		image: Media;
@@ -22,6 +23,14 @@ export interface Product {
 		title?: string;
 		description?: string;
 		id?: string;
+	}[];
+	laedTime: {
+		title?: string;
+		description?: string;
+	},
+	price_membership: {
+		id?: string;
+		title?: string;
 	}[];
 	updatedAt: string;
 	createdAt: string;

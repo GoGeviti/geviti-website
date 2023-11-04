@@ -14,17 +14,17 @@ import CustomLink from '../CustomLink';
 import { ArrowNarrowLeft, ArrowNarrowRight, ChevronRight } from '../Icons';
 
 type DiscoverGevitiProps = {
-	title?: string;
-	description?: string;
-	viewAll?: {
-		text: string;
-		href: string;
-	};
-	viewAllMobileClassName?: string;
-	productsWrapperClassName?: string;
-	desktopScroll?: boolean;
-	withBg?: boolean;
-	products: Product[];
+  title?: string;
+  description?: string;
+  viewAll?: {
+    text: string;
+    href: string;
+  };
+  viewAllMobileClassName?: string;
+  productsWrapperClassName?: string;
+  desktopScroll?: boolean;
+  withBg?: boolean;
+  products: Product[];
 };
 
 const DiscoverGeviti: React.FC<DiscoverGevitiProps> = ({
@@ -68,7 +68,7 @@ const DiscoverGeviti: React.FC<DiscoverGevitiProps> = ({
 	const moveCardProduct = (direction: 'left' | 'right') => {
 		const el = document.getElementById('discover-products-scroll');
 		const widthCard =
-			document.getElementById('discover-product-card')?.clientWidth || 248;
+      document.getElementById('discover-product-card')?.clientWidth || 248;
 
 		if (el) {
 			if (direction === 'left') {
@@ -81,9 +81,9 @@ const DiscoverGeviti: React.FC<DiscoverGevitiProps> = ({
 
 	const renderArrowNarrow = (direction: 'left' | 'right') => {
 		const ArrowNarrow =
-			direction === 'left' ? ArrowNarrowLeft : ArrowNarrowRight;
+      direction === 'left' ? ArrowNarrowLeft : ArrowNarrowRight;
 		const disabled =
-			direction === 'left' ? disableArrowLeft : disableArrowRight;
+      direction === 'left' ? disableArrowLeft : disableArrowRight;
 
 		return (
 			<div onClick={ () => moveCardProduct(direction) }>
@@ -108,12 +108,12 @@ const DiscoverGeviti: React.FC<DiscoverGevitiProps> = ({
 				onScroll={ handleScrollProducts }
 				className='no-scrollbar overflow-y-hidden transition-all select-none transform flex flex-nowrap overflow-x-auto scrolling-touch scroll-smooth gap-x-18px py-1 -mr-4 last:pr-[17px] lg:last:pr-0'
 			>
-				{ productList.map((product, productIdx) => (
+				{ productList.map(product => (
 					<div
 						key={ product.id }
 						id='discover-product-card'
-						data-aos='zoom-in-down'
-						data-aos-delay={ `${productIdx * 100}` }
+						// data-aos='zoom-in-down'
+						// data-aos-delay={ `${productIdx * 100}` }
 						className='group cursor-pointer relative flex flex-col overflow-hidden bg-grey-secondary flex-none w-[248px] lg:w-[287px]'
 						onClick={ () => router.push(`/products/${product.id}`) }
 					>
@@ -146,7 +146,7 @@ const DiscoverGeviti: React.FC<DiscoverGevitiProps> = ({
 								<div className='flex items-center gap-9px'>
 									{ product.price && (
 										<p className='text-xs lg:text-sm leading-[130%] lg:leading-[131%]'>
-											${ product.price }
+                      ${ product.price }
 										</p>
 									) }
 									{ product.price !== undefined && (
@@ -219,7 +219,7 @@ const DiscoverGeviti: React.FC<DiscoverGevitiProps> = ({
 				{ /* ) } */ }
 
 				<div className='flex items-center justify-between'>
-					<div data-aos='zoom-in-right'>
+					<div>
 						<h2 className='text-primary font-Poppins text-[21px] md:text-3xl lg:text-4xl leading-[128%] lg:leading-[119%] -tracking-0.04em'>
 							{ title }
 						</h2>
@@ -229,19 +229,12 @@ const DiscoverGeviti: React.FC<DiscoverGevitiProps> = ({
 						</p>
 					</div>
 
-					<div
-						data-aos='zoom-in-left'
-						className='lg:hidden flex items-center gap-6'
-					>
+					<div className='lg:hidden flex items-center gap-6'>
 						{ renderArrowNarrow('left') }
 						{ renderArrowNarrow('right') }
 					</div>
 
-					<div
-						data-aos='zoom-in-left'
-						className='max-lg:hidden'>
-						{ renderButtonViewAll() }
-					</div>
+					<div className='max-lg:hidden'>{ renderButtonViewAll() }</div>
 				</div>
 
 				<div className={ clsxm('relative', productsWrapperClassName) }>
