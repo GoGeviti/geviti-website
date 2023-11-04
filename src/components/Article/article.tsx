@@ -44,7 +44,7 @@ const Articles: React.FC = () => {
 					</div>
 					{
 						!showAllTabs &&
-						<div className='bg-gradient-to-t from-grey-background/90 to-grey-background/0 absolute -bottom-5 z-10 w-full h-[131px]' />
+						<div className='md:hidden bg-gradient-to-t from-grey-background/90 to-grey-background/0 absolute -bottom-5 z-10 w-full h-[131px]' />
 					}
 				</div>
 			</div>

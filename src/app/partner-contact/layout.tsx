@@ -8,7 +8,7 @@ const InvestInquiryLayout: React.FC<{ children: React.ReactNode; }> = ({
 	return (
 		<div className='min-h-screen bg-grey-background'>
 			{ children }
-			<Footer />
+			<Footer landingPage/>
 		</div>
 	);
 };

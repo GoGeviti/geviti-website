@@ -1,41 +1,37 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable no-unused-vars */
 'use client';
 import React, { useState } from 'react';
+import {
+	Select, SelectContent, SelectGroup, SelectIcon, SelectItem, SelectSeparator, SelectTrigger, SelectValue
+} from '@radix-ui/react-select';
 
-import clsxm from '@/helpers/clsxm';
-
-import { CheckCircleBlue, CheckDisable } from '../Icons';
-import Navbar from '../Navbar';
+import { ChevronDown } from '../Icons';
+import WrapperAnimation from '../WrapperAnimation';
 
 interface FormProps {
   initialFirstName: string;
-  initialLastName: string;
   initialEmail: string;
-  initialPhone: string;
+  initialPhone?: string | null;
   initialMessage: string;
   initialCompany?: string | null;
   initialRole?: string | null;
   onUpdateFirstName: (value: string) => void;
-  onUpdateLastName: (value: string) => void;
   onUpdateEmail: (value: string) => void;
-  onUpdatePhone: (value: string) => void;
+  onUpdatePhone?: (value: string) => void| null;
   onUpdateMessage: (value: string) => void;
   onUpdateCompany?: (value: string) => void| null;
   onUpdateRole?: (value: string) => void| null;
-  subject: string[];
+  subject: { value: string; label: string }[];
 }
 
 const Form: React.FC<FormProps> = ({
 	initialFirstName,
-	initialLastName,
 	initialEmail,
 	initialPhone,
 	initialMessage,
 	initialCompany,
 	initialRole,
 	onUpdateFirstName,
-	onUpdateLastName,
 	onUpdateEmail,
 	onUpdatePhone,
 	onUpdateMessage,
@@ -43,93 +39,126 @@ const Form: React.FC<FormProps> = ({
 	onUpdateRole,
 	subject
 }) => {
-	const [subjectState, setSubjectState] = useState(subject.map(() => false));
+	const [state, setState] = useState<string>('');
 
-	const handleToggleSubject = (index:number) => {
-		const newSubjectState = subjectState.map((state, i) => (i === index ? !state : false));
-		setSubjectState(newSubjectState);
+	const renderInput = (label: string, placeholder: string, value: any, action: (newValue: any) => void, type:string) => {
+		return (
+			<WrapperAnimation
+				data-aos='zoom'
+				className='flex flex-col items-start'>
+				<p className='text-xs font-BRSonoma text-primary'>{ label }</p>
+				<input
+					type={ type }
+					value={ value }
+					onChange={ (e: React.ChangeEvent<HTMLInputElement>) => action(e.target.value) }
+					placeholder={ placeholder }
+					className='w-full bg-white rounded-[10px] text-primary leading-5 text-xs font-medium font-Poppins border-0 focus:border-0 focus:ring-0 focus:outline-0 placeholder:text-grey-primary py-3 mt-[5px]'
+				/>
+			</WrapperAnimation>
+		);
 	};
-  
+	
+	const renderTextArea = (label: string, placeholder: string, value: any, action: (newValue: any) => void) => {
+		return (
+			<div
+				className='flex flex-col items-start'>
+				<p className='text-xs font-BRSonoma text-primary'>{ label }</p>
+				<textarea
+					value={ value }
+					onChange={ (e: React.ChangeEvent<HTMLTextAreaElement>) => action(e.target.value) }
+					placeholder={ placeholder }
+					className='w-full bg-white rounded-[10px] bg-transparent text-primary leading-5 text-xs font-medium font-Poppins border-0 focus:border-0 focus:ring-0 focus:outline-0 placeholder:text-grey-primary py-3 mt-[5px] h-[184px]'
+				/>
+			</div>
+		);
+	};
+	
+	const renderSelectState = (data:any) => {
+		const selectOptions: { value: string; label: string }[] = data;
+
+		return (
+			<WrapperAnimation
+				data-aos='zoom'
+				className='w-full'
+			>
+				<Select
+					value={ state }
+					onValueChange={ setState  }
+				>
+					<SelectTrigger
+						aria-label={ state }
+						className='w-full bg-white text-xs font-Poppins font-medium rounded-[10px] text-primary flex justify-between items-center py-3 px-4'>
+						<SelectValue>{ state || data[0].label }</SelectValue>
+						<SelectIcon >
+							<ChevronDown />
+						</SelectIcon>
+					</SelectTrigger>
+					<SelectContent className=' bg-grey-secondary text-xs font-BRSonoma text-primary z-10 rounded-[10px] border'>
+						<SelectGroup className='overflow-x-hidden text-start'>
+							{ selectOptions.map((option, optionIdx) => (
+								<div
+									key={ optionIdx }>
+									<SelectItem
+										value={ option.label }
+										className='data-[state=unchecked]:font-medium data-[state=checked]:font-semibold text-primary data-[highlighted]:bg-white py-3 px-4'
+									>{ option.label }</SelectItem>
+									{ optionIdx < selectOptions.length - 1 && (
+										<SelectSeparator />
+									) }
+								</div>
+							)) }
+							<SelectSeparator />
+						</SelectGroup>
+					</SelectContent>
+				</Select>
+			</WrapperAnimation>
+		);
+	};
 	return (
 		<div className='lg:px-3 lg:py-15px overflow-hidden'>
-			<Navbar theme='light'/>
-			<div className='bg-white w-full h-full lg:rounded-[19px] max-md:pb-[63px] max-md:pt-[22px] md:py-[100px] relative overflow-hidden'>
-				<div className='max-md:container-center text-center sm:mx-auto flex flex-col space-y-[25px] md:space-y-[42px] !max-w-sm md:!max-w-2xl'>
-					<div className='grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-10 w-full'>
-						{ renderInput('First Name*', '', initialFirstName, onUpdateFirstName, 'text') }
-						{ renderInput('Last Name*', '', initialLastName, onUpdateLastName, 'text') }
-						{ renderInput('Email*', '', initialEmail, onUpdateEmail, 'email') }
+			<div className='w-full h-full lg:rounded-[19px] pt-[30px] lg:pt-[70px] overflow-hidden'>
+				<div className='max-md:container-center text-center sm:mx-auto flex flex-col gap-2 !max-w-sm md:!max-w-[360px]'>
+					{ renderInput('First Name*', 'John Doe', initialFirstName, onUpdateFirstName, 'text') }
+					{ renderInput('Email Address*', 'Enter Email Address', initialEmail, onUpdateEmail, 'email') }
+					{
+						onUpdatePhone &&
+						<div>
+							{ renderInput('Phone*', 'Enter Phone Number', initialPhone, onUpdatePhone, 'number') }
+						</div>
+					}
+					<div className='grid grid-cols-2 gap-2'>
 						{
 							onUpdateCompany &&
              <div>
-             	{ renderInput('Company*', '', initialCompany, onUpdateCompany, 'text') }
+             	{ renderInput('Company*', 'Enter Company', initialCompany, onUpdateCompany, 'text') }
              </div>
 						}
 						{
 							onUpdateRole &&
              <div>
-             	{ renderInput('Role*', '', initialRole, onUpdateRole, 'text') }
+             	{ renderInput('Role*', 'Enter Role', initialRole, onUpdateRole, 'text') }
              </div>
 						}
-						{ renderInput('Phone*', '', initialPhone, onUpdatePhone, 'number') }
 					</div>
 					{
 						subject &&
-					<div className='flex flex-col space-y-[15px] items-start'>
-						<p className='font-Poppins text-sm md:text-base font-semibold leading-5'>Select Subject?*</p>
-						<div className='grid grid-cols-2 md:grid-cols-4 justify-between w-full items-start mb-[42px] gap-[14px]'>
-							{
-								subject.map((item, index) => (
-									renderCheckbox(item, subjectState[index], () => handleToggleSubject(index))
-								))
-							}
-						</div>
-					</div>
+							<div className='flex flex-col space-y-[5px] items-start w-full'>
+								<p className='text-xs font-BRSonoma text-primary'>Select Subject?*</p>
+								{ renderSelectState(subject) }
+							</div>
 					}
-					{ renderInput('Message*', 'Write your message..', initialMessage, onUpdateMessage, 'text') }
-					<div className='flex justify-end mt-6 md:mt-30px'>
+					{ renderTextArea('Message*', 'Enter your message here...', initialMessage, onUpdateMessage) }
+					<div className='flex justify-end mt-6'>
 						<div
-							className='btn-cta-landing !rounded-[5px] max-md:!w-full md:!px-12 btn-primary group text-center'
+							className='btn-cta-landing w-full md:!px-12 btn-primary group text-center'
 						>
 							<span className='text-btn-cta-landing text-center w-full'>
-							Send Message
+							Submit
 							</span>
 						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-	);
-};
-
-const renderInput = (label: string, placeholder: string, value: any, action: (newValue: any) => void, type:string) => {
-	const isValueEmpty = !value;
-	return (
-		<div className='flex flex-col items-start'>
-			<p className={ clsxm('text-[#8D8D8D] text-xs sm:text-sm font-medium font-BRSonoma leading-5', isValueEmpty ? 'text-[#8D8D8D]' : 'text-primary') }>{ label }</p>
-			<input
-				type={ type }
-				value={ value }
-				onChange={ (e: React.ChangeEvent<HTMLInputElement>) => action(e.target.value) }
-				placeholder={ placeholder }
-				className='!border-b !border-[#C4C4C4] w-full focus:!border-primary h-[35px] bg-transparent text-primary leading-5 text-sm font-medium font-BRSonoma border-0 focus:border-0 focus:ring-0 focus:outline-0 placeholder:text-[#8D8D8D]'
-			/>
-		</div>
-	);
-};
-const renderCheckbox = (label: string, checked: boolean, onToggle: (newValue: boolean)  => void) => {
-	return (
-		<div
-			className='flex items-center space-x-[9px]'
-			onClick={ () => onToggle(!checked) }>
-			{ checked ?
-				<CheckCircleBlue className='w-4 md:w-[18px] h-4 md:h-[18px]' /> :
-				<CheckDisable className='w-[13px] md:w-[15.275px] h-[13px] md:h-[15.275px]' /> }
-			<label
-				className='Label font-Poppins text-xs md:text-sm font-medium leading-5'
-				htmlFor='c1'>
-				{ label }
-			</label>
 		</div>
 	);
 };
