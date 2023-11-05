@@ -77,10 +77,10 @@ const homeData = {
 	bloodPanel: [
 		{
 			title: 'Essential Bloodwork Panel',
-			price: '$300',
-			priceNote: 'one time',
-			priceThen: 'then $99',
-			priceThenNote: 'monthly',
+			price: '$299',
+			priceNote: '.99 one time',
+			priceThen: 'then $75',
+			priceThenNote: 'per month',
 			isForMale: true,
 			isForFemale: true,
 			desc: 'For those needing a fundamental at-home blood panel for key health markers.',
@@ -131,10 +131,10 @@ const homeData = {
 		},
 		{
 			title: 'Comprehensive Bloodwork Panel',
-			price: '$475',
-			priceNote: 'one time',
-			priceThen: 'then $99',
-			priceThenNote: 'monthly',
+			price: '$469',
+			priceNote: '.99 one time',
+			priceThen: 'then $75',
+			priceThenNote: 'per month',
 			isForMale: true,
 			isForFemale: true,
 			desc: 'For those wanting an expanded at-home blood panel for a deeper health view.',
@@ -184,13 +184,13 @@ const homeData = {
 			]
 		},
 		{
-			title: 'Ultimate Men’s Bloodwork Panel',
-			price: '$605',
-			priceNote: 'one time',
-			priceThen: 'then $99',
+			title: 'Ultimate Bloodwork Panel',
+			price: '$599',
+			priceNote: '.99 one time',
+			priceThen: 'then $75',
 			isForMale: true,
 			isForFemale: false,
-			priceThenNote: 'monthly',
+			priceThenNote: 'per month',
 			desc: 'For men aiming for an exhaustive at-home blood panel for total health scrutiny.',
 			isPopular: false,
 			btn: 'Get Started',
@@ -237,60 +237,6 @@ const homeData = {
 				},
 			]
 		},
-		{
-			title: 'Ultimate Women’s Bloodwork Panel',
-			price: '$515',
-			priceNote: 'one time',
-			priceThen: 'then $99',
-			isForMale: false,
-			isForFemale: true,
-			priceThenNote: 'monthly',
-			desc: 'For women looking for an ultimate deep dive on their current health status.',
-			isPopular: false,
-			btn: 'Get Started',
-			components: [
-				{
-					name: 'Biomarkers Tested',
-					description: '39+'
-				},
-				{
-					name: 'At-home Blood Draw',
-					description: true
-				},
-				{
-					name: 'Personal Assigned Clinician',
-					description: true
-				},
-				{
-					name: 'Telehealth Consult Included',
-					description: true
-				},
-				{
-					name: 'Prescription Therapy Access',
-					description: true
-				},
-				{
-					name: 'For Males and Females',
-					description: false
-				},
-				{
-					name: 'Custom Treatment Plan',
-					description: true
-				},
-				{
-					name: 'Online Patient Dashboard',
-					description: true
-				},
-				{
-					name: 'IOS Application Access',
-					description: true
-				},
-				{
-					name: 'AI Health Metric Tracking',
-					description: true
-				},
-			]
-		}
 	],
 	sliderPackageImages: [
 		'Select your package.',
@@ -339,7 +285,8 @@ const homeData = {
 
 	tablePackage: [
 		{
-			title: 'Biomarkers Tested',
+			title: 'Amount of Biomarkers Tested',
+			description: 'A biomarker is a measurable indicator within the blood that can signal the state of health or disease, potentially offering insights into lifespan and aging processes.',
 			essential: '39+',
 			comprehensive: '50+',
 			ultimate: '58+'
@@ -364,6 +311,7 @@ const homeData = {
 		},
 		{
 			title: 'Prescription Therapy Access',
+			description: 'Doctors will determine if you qualify for our line of prescription-only cutting edge therapies.',
 			essential: true,
 			comprehensive: true,
 			ultimate: true
@@ -376,6 +324,7 @@ const homeData = {
 		},
 		{
 			title: 'Custom Treatment Plan',
+			description: 'We\'ll take a deep look into your health and build a custom anti-aging regiment with our line or HRT, peptide therapy, and anti-aging products.',
 			essential: true,
 			comprehensive: true,
 			ultimate: true
@@ -397,6 +346,264 @@ const homeData = {
 			essential: true,
 			comprehensive: true,
 			ultimate: true
+		},
+	],
+
+	biomarkersTable: [
+		{
+			title: 'Biomarkers Tested',
+			essential: true,
+			comprehensive: true,
+			ultimateMale: true,
+			ultimateFemale: true,
+		},
+		{
+			title: 'Thyroid Cascade',
+			description: 'Evaluates thyroid function and disorders with 3-4 biomarkers.',
+			essential: true,
+			comprehensive: true,
+			ultimateMale: true,
+			ultimateFemale: true,
+		},
+		{
+			title: 'LH (Lutheinizing Hormone)',
+			description: 'Indicates reproductive health and function.',
+			essential: true,
+			comprehensive: true,
+			ultimateMale: true,
+			ultimateFemale: true,
+		},
+		{
+			title: 'Total Testosterone',
+			description: 'Measures overall level of male sex hormone.',
+			essential: true,
+			comprehensive: true,
+			ultimateMale: true,
+			ultimateFemale: true,
+		},
+		{
+			title: 'Free Testosterone',
+			description: 'Assesses biologically active testosterone fraction.',
+			essential: true,
+			comprehensive: true,
+			ultimateMale: true,
+			ultimateFemale: true,
+		},
+		{
+			title: 'Comprenhensive Metabolic Panel',
+			description: 'Provides a broad overview of metabolism and organ function with 14 biomarkers.',
+			essential: true,
+			comprehensive: true,
+			ultimateMale: true,
+			ultimateFemale: true,
+		},
+		{
+			title: 'HbA1C',
+			description: 'Reflects average blood sugar levels over three months.',
+			essential: true,
+			comprehensive: true,
+			ultimateMale: true,
+			ultimateFemale: true,
+		},
+		{
+			title: 'Complete Blood Count',
+			description: 'Measures different blood cell types for overall health status with 14 biomarkers.',
+			essential: true,
+			comprehensive: true,
+			ultimateMale: true,
+			ultimateFemale: true,
+		},
+		{
+			title: 'Lipid Panel',
+			description: 'Assesses risk for cardiovascular disease through cholesterol levels with 4 biomarkers.',
+			essential: true,
+			comprehensive: true,
+			ultimateMale: true,
+			ultimateFemale: true,
+		},
+		{
+			title: 'FSH (Follicle Stimulating Hormone)',
+			description: 'Integral for reproductive system functioning.',
+			essential: false,
+			comprehensive: true,
+			ultimateMale: true,
+			ultimateFemale: true,
+		},
+		{
+			title: 'Estradiol',
+			description: 'A form of estrogen important for reproductive and sexual health.',
+			essential: false,
+			comprehensive: true,
+			ultimateMale: true,
+			ultimateFemale: true,
+		},
+		{
+			title: 'DHEA (Dehydroepiandrosterone)',
+			description: 'A hormone that\'s a precursor to sex hormones.',
+			essential: false,
+			comprehensive: true,
+			ultimateMale: true,
+			ultimateFemale: true,
+		},
+		{
+			title: 'IGF-1 (Insulin-like Growth Factor 1)',
+			description: 'Reflects human growth hormone levels.',
+			essential: false,
+			comprehensive: true,
+			ultimateMale: true,
+			ultimateFemale: true,
+		},
+		{
+			title: 'Homocysteine',
+			description: 'Linked with cardiovascular disease risk.',
+			essential: false,
+			comprehensive: true,
+			ultimateMale: true,
+			ultimateFemale: true,
+		},
+		{
+			title: 'Magnesium',
+			description: 'Vital for muscle, nerve function, and bone health.',
+			essential: false,
+			comprehensive: true,
+			ultimateMale: true,
+			ultimateFemale: true,
+		},
+		{
+			title: 'Vitamin D, 25-Hydroxy',
+			description: 'Assesses vitamin D status related to bone health.',
+			essential: false,
+			comprehensive: true,
+			ultimateMale: true,
+			ultimateFemale: true,
+		},
+		{
+			title: 'PSA (Prostate-Specific Antigen)',
+			descriptoin: 'Screens for prostate health issues.',
+			essential: false,
+			comprehensive: true,
+			ultimateMale: true,
+			ultimateFemale: true,
+		},
+		{
+			title: 'C-Reactive Protein',
+			description: 'Indicates liver health.',
+			essential: false,
+			comprehensive: true,
+			ultimateMale: true,
+			ultimateFemale: true,
+		},
+		{
+			title: 'Apo B',
+			description: 'Assists in evaluating liver function.',
+			essential: false,
+			comprehensive: true,
+			ultimateMale: true,
+			ultimateFemale: true,
+		},
+		{
+			title: 'Lipoprotein A',
+			description: 'A marker for inflammation in the body.',
+			essential: false,
+			comprehensive: true,
+			ultimateMale: true,
+			ultimateFemale: true,
+		},
+		{
+			title: 'ALT (Alanine Aminotransferase)',
+			description: 'Involved in cholesterol metabolism; linked to heart disease',
+			essential: false,
+			comprehensive: false,
+			ultimateMale: true,
+			ultimateFemale: true,
+		},
+		{
+			title: 'AST (Aspartate Aminotransferase)',
+			description: 'Genetic marker associated with an increased risk of heart disease.',
+			essential: false,
+			comprehensive: false,
+			ultimateMale: true,
+			ultimateFemale: true,
+		},
+		{
+			title: 'Insulin',
+			description: 'Monitors insulin production and blood sugar regulation.',
+			essential: false,
+			comprehensive: false,
+			ultimateMale: true,
+			ultimateFemale: true,
+		},
+		{
+			title: 'SHBG',
+			description: 'Binds to sex hormones and regulates their effect.',
+			essential: false,
+			comprehensive: false,
+			ultimateMale: true,
+			ultimateFemale: false,
+		},
+		{
+			title: 'Cortisol',
+			description: 'Measures stress response and adrenal function.',
+			essential: false,
+			comprehensive: false,
+			ultimateMale: true,
+			ultimateFemale: true,
+		},
+		{
+			title: 'Growth Hormone',
+			description: 'Important for growth, metabolism, and muscle mass.',
+			essential: false,
+			comprehensive: false,
+			ultimateMale: true,
+			ultimateFemale: false,
+		},
+		{
+			title: 'Vitamin B12',
+			description: 'Essential for nerve function and blood cell production.',
+			essential: false,
+			comprehensive: false,
+			ultimateMale: true,
+			ultimateFemale: true,
+		},
+		{
+			title: 'Ferritin',
+			description: 'Indicates the amount of stored iron in the body.',
+			essential: false,
+			comprehensive: false,
+			ultimateMale: true,
+			ultimateFemale: true,
+		},
+		{
+			title: 'Iron and TIBC',
+			description: 'Assesses iron status and transport capacity.',
+			essential: false,
+			comprehensive: false,
+			ultimateMale: true,
+			ultimateFemale: true,
+		},
+		{
+			title: 'Free T4',
+			essential: false,
+			description: 'Directly measures active thyroid hormone levels.',
+			comprehensive: false,
+			ultimateMale: true,
+			ultimateFemale: true,
+		},
+		{
+			title: 'Prolactin',
+			description: 'Essential for menstrual cycle regulation and pregnancy in females.',
+			essential: false,
+			comprehensive: false,
+			ultimateMale: false,
+			ultimateFemale: true,
+		},
+		{
+			title: 'Progesterone',
+			description: 'Affects menstrual cycles and milk production.',
+			essential: false,
+			comprehensive: false,
+			ultimateMale: false,
+			ultimateFemale: true,
 		},
 	]
 };
