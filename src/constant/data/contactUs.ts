@@ -1,25 +1,34 @@
 const contactUsData = {
 	hero: {
-		preTitle: 'Hey there friend!',
-		title: 'Contact Us',
-		titleMobile: 'Contact Us',
-		desc: '<p>Any question or remarks? Just write us a message!</p>',
-		descMobile: '<p>Any question or remarks? Just write <br/> us a message!</p>'
+		preTitle: 'contact us',
+		title: 'We’re here to help.',
+		desc: '<p>Any questions or remarks? Just write us a message.</p>',
+		image: '/images/contact/contact.webp'
 	},
 	form: {
 		subject: [
-			'General Inquiry',
-			'General Inquiry',
-			'General Inquiry',
-			'General Inquiry'
+			{
+				value: '1',
+				label: 'General Inquiry 1'
+			},
+			{
+				value: '2',
+				label: 'General Inquiry 2'
+			},
+			{
+				value: '3',
+				label: 'General Inquiry 3'
+			},
+			{
+				value: '4',
+				label: 'General Inquiry 4'
+			},
 		]
 	},
 	heroInvest: {
-		preTitle: 'Hey there friend!',
-		title: '<p>Interesting in growing with us?</p>',
-		titleMobile: '<p>Interested in <br/>growing <span style="font-weight: 600;">with us?</span></p>',
-		desc: '<p>Lets connect! Geviti is rewriting the script when it comes to <br/> telehealth care.</p>',
-		descMobile: '<p>Geviti is rewriting the script when it comes <br/> to telehealth care.</p>'
+		preTitle: 'hey there partner!',
+		title: '<p>Interested in growing with us?</p>',
+		desc: '<p>Let’s connect! Geviti is rewriting the script when it comes to telehealth care.</p>'
 	},
 
 };

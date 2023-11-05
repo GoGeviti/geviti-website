@@ -8,7 +8,6 @@ import { contactUsData } from '@/constant/data';
 const hero = contactUsData.heroInvest;
 const InvestInquiryPage: NextPage = () => {
 	const [firstName, setFirstName] = useState<string>('');
-	const [lastName, setLastName] = useState<string>('');
 	const [email, setEmail] = useState<string>('');
 	const [phone, setPhone] = useState<string>('');
 	const [message, setMessage] = useState<string>('');
@@ -16,18 +15,18 @@ const InvestInquiryPage: NextPage = () => {
 	const [role, setRole] = useState<string>('');
 	
 	return (
-		<div className='flex min-h-screen flex-col w-full bg-grey-background'>
-			<ContactUsComponent.Hero hero={ hero } />
+		<div className='flex min-h-screen flex-col w-full'>
+			<ContactUsComponent.Hero
+				hero={ hero }
+				isPartner/>
 			<ContactUsComponent.Form
 				initialFirstName={ firstName }
-				initialLastName={ lastName }
 				initialEmail={ email }
 				initialPhone={ phone }
 				initialMessage= { message }
 				initialCompany= { company }
 				initialRole= { role }
 				onUpdateFirstName={ setFirstName }
-				onUpdateLastName={ setLastName }
 				onUpdateEmail={ setEmail }
 				onUpdatePhone={ setPhone }
 				onUpdateMessage={ setMessage }

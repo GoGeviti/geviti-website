@@ -56,7 +56,6 @@ const Navbar: React.FC<NavbarProps> = ({
 							className={ clsxm(
 								'rounded-md px-3 py-2 text-sm font-Poppins font-medium',
 								theme === 'dark' ? 'text-grey-secondary hover:text-white' : 'text-primary',
-								withBgWhite && 'text-primary md:text-grey-secondary md:hover:text-white',
 								isWithnavbarData ? 'block' : 'hidden'
 							) }
 							aria-label={ link.name }
@@ -87,7 +86,7 @@ const Navbar: React.FC<NavbarProps> = ({
 								}
 							} }
 						>
-							<Icon className={ clsxm('w-[17px] h-[17px]', theme === 'dark' ? 'text-grey-secondary' : 'text-primary', withBgWhite && 'text-primary md:text-grey-secondary') } />
+							<Icon className={ clsxm('w-[17px] h-[17px]', theme === 'dark' ? 'text-grey-secondary' : 'text-primary') } />
 						</button>
 					);
 				}) }
@@ -106,7 +105,6 @@ const Navbar: React.FC<NavbarProps> = ({
 						className={ clsxm(
 							'btn font-Poppins text-sm font-medium leading-6',
 							theme === 'dark' ? 'btn-secondary' : 'btn-primary !text-grey-background',
-							withBgWhite && 'btn-secondary max-md:btn-primary max-md:!text-grey-background'
 						) }
 						key={ menu.name }
 					>
@@ -121,7 +119,7 @@ const Navbar: React.FC<NavbarProps> = ({
 		const windowDimensions = useWindowDimensions();
 		const isMobile = windowDimensions.width < screens.lg;
 
-		const src = isMobile && withBgWhite ? navbarData.logoDark : !isMobile && withBgWhite ? navbarData.logoLight : theme === 'dark' ? navbarData.logoLight : navbarData.logoDark;
+		const src = isMobile && withBgWhite ? navbarData.logoDark : theme === 'dark' ? navbarData.logoLight : navbarData.logoDark;
 
 		return (
 			<CustomLink
@@ -148,7 +146,7 @@ const Navbar: React.FC<NavbarProps> = ({
 			<header
 				className={ clsxm(
 					'inset-x-0 top-0 z-50 absolute pt-11px lg:pt-6',
-					withBgWhite && 'max-md:bg-white',
+					withBgWhite && 'max-lg:bg-white',
 					className
 				) }
 			>
