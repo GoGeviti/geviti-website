@@ -1,7 +1,7 @@
 'use client';
 import { NextPage } from 'next';
 
-import { ArticleComponent, ContactUsComponent, FAQComponent, Footer } from '@/components';
+import { ArticleComponent, ContactUsComponent, FAQComponent } from '@/components';
 import { faqData } from '@/constant/data';
 
 const FAQPage: NextPage = () => {
@@ -15,7 +15,6 @@ const FAQPage: NextPage = () => {
 				list={ faqData.article.list }
 				btn={ faqData.article.btn }
 				title={ faqData.article.title }/>
-			<Footer landingPage />
 		</div>
 	);
 };

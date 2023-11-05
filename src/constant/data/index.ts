@@ -8,6 +8,7 @@ import landingData from './landing';
 import marketplaceData from './marketplace';
 import navbarData from './navbar';
 import packagesData from './packages';
+import privacyPolicyData from './privacyPolicy';
 import productListData from './productList';
 import productsData from './products';
 import recommendationPackages from './recommendationPackages';
@@ -24,6 +25,7 @@ export {
 	marketplaceData,
 	navbarData,
 	packagesData,
+	privacyPolicyData,
 	productListData,
 	productsData,
 	recommendationPackages,

@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Footer } from '@/components';
 
-const FAQLayout: React.FC<{ children: React.ReactNode; }> = ({
+const PrivacyPolicyLayout: React.FC<{ children: React.ReactNode; }> = ({
 	children,
 }) => {
 	return (
@@ -13,4 +13,4 @@ const FAQLayout: React.FC<{ children: React.ReactNode; }> = ({
 	);
 };
 
-export default FAQLayout;
+export default PrivacyPolicyLayout;
