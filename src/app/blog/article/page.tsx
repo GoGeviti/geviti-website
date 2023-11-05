@@ -11,7 +11,10 @@ const ArticlePage: NextPage = () => {
 				hero={ articleData.hero }
 				classname= '!h-[372px] md:!h-[514px]'/>
 			<ArticleComponent.News/>
-			<ArticleComponent.Articles/>
+			<ArticleComponent.Articles
+				list={ articleData.article.list }
+				btn={ articleData.article.btn }
+				title={ articleData.article.title }/>
 		</div>
 	);
 };

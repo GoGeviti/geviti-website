@@ -12,7 +12,7 @@ const article = articleData.news;
 const News: React.FC = () => {
 
 	return (
-		<div className='container-center mx-auto w-full relative mt-10 md:mt-[70px] mb-[70px]'>
+		<div className='container-center mx-auto w-full relative mt-10 md:mt-[70px] pb-[70px] border-b border-primary/10 '>
 			<div className='w-full '>
 				<div className='w-full flex  justify-center md:justify-between items-center'>
 					<div className='flex justify-start items-center space-x-2'>
