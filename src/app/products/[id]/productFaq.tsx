@@ -25,31 +25,20 @@ const ProductFaq: React.FC<ProductFaqProps> = ({ product }) => {
 					className='py-[13px] sm:py-4 border-[#B8C6CC]'
 				>
 					<AccordionTrigger className='flex items-start justify-between w-full'>
-						<p className='text-xs sm:text-sm -tracking-0.04em leading-[27px] sm:leading-8 font-Poppins text-primary'>
+						<p className='text-[14px] sm:text-sm -tracking-0.04em leading-[27px] sm:leading-8 font-Poppins text-primary font-medium'>
 							{ detail.title }
 						</p>
-						<ChevronDown className='w-3 h-3 sm:w-3.5 sm:h-3.5 text-primary ease-[cubic-bezier(0.87,_0,_0.13,_1)] transition-transform duration-300 group-data-[state=open]:rotate-180' />
+						<ChevronDown className='w-5 h-5 sm:w-5 sm:h-5 mt-1 text-primary ease-[cubic-bezier(0.87,_0,_0.13,_1)] transition-transform duration-300 group-data-[state=open]:rotate-180' />
 					</AccordionTrigger>
 
-					<AccordionContent className='pt-11px sm:pt-[13px] text-primary font-BRSonoma text-[10px] sm:text-xs leading-[17px] sm:leading-5'>
+					<AccordionContent className='pt-11px sm:pt-[13px] text-primary font-BRSonoma text-[14px] sm:text-xs leading-[20px] sm:leading-5'>
 						<span>
 							{ detail.description && (
-								<p dangerouslySetInnerHTML={ { __html: detail.description } } />
+								<p
+									className='text-[14px] text-[#181A1C] opacity-60 leading-[20px]'
+									dangerouslySetInnerHTML={ { __html: detail.description } } />
 							) }
 						</span>
-						{ /* {
-							Array.isArray(detail.) && detail.answer?.length
-								? (
-									<ul className='flex flex-col gap-y-1'>
-										{ detail.answer?.map((answerItem: string, answerItemIdx: number) => (
-											<li key={ answerItemIdx }>{ answerItem }</li>
-										)) }
-									</ul>)
-								:
-								(
-									<span>{ detail.answer && <p dangerouslySetInnerHTML={ { __html: detail.answer } } /> }</span>
-								)
-						} */ }
 					</AccordionContent>
 				</AccordionItem>
 			)) }
