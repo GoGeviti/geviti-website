@@ -5,6 +5,7 @@ import Link from 'next/link';
 import cartIcon from '@/assets/mobile-nav/cart.svg';
 import dashboardIcon from '@/assets/mobile-nav/dashboard.svg';
 import navigationData from '@/constant/data/navbar';
+import { usePathname } from 'next/navigation';
 
 interface MobileNavProps {
 	isOpen: boolean;
@@ -13,6 +14,8 @@ interface MobileNavProps {
 
 const MobileNav = (props: MobileNavProps) => {
 	if (!props.isOpen) return null;
+
+	const pathname = usePathname();
 
 	useEffect(() => {
 		document.body.style.overflow = props.isOpen ? 'hidden' : 'unset';
@@ -32,7 +35,7 @@ const MobileNav = (props: MobileNavProps) => {
 		>
 			<Link
 				href='/'
-				className='text-white text-[25px] font-Poppins tracking-tight mb-25px'
+				className={ `text-white text-[25px] font-Poppins tracking-tight mb-25px opacity-${pathname === '/' ? '100' : '30'}` }
 			>
 				Home
 			</Link>
@@ -42,7 +45,7 @@ const MobileNav = (props: MobileNavProps) => {
 					target={ item.externalLink ? '_blank' : '_self' }
 					rel='noopener noreferrer'
 					key={ item.name }
-					className='text-white text-[25px] font-Poppins tracking-tight opacity-30 mb-25px'
+					className={ `text-white text-[25px] font-Poppins tracking-tight opacity-${pathname === item.href ? '100' : '30'} mb-25px` }
 				>
 					{ item.name }
 				</Link>

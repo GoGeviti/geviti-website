@@ -16,7 +16,7 @@ const navigationData = {
 		},
 		{
 			name: 'Resources',
-			href: '/',
+			href: '/resources',
 			externalLink: false
 		}
 	],
