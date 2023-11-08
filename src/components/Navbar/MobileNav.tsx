@@ -1,11 +1,11 @@
 import { useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 import cartIcon from '@/assets/mobile-nav/cart.svg';
 import dashboardIcon from '@/assets/mobile-nav/dashboard.svg';
 import navigationData from '@/constant/data/navbar';
-import { usePathname } from 'next/navigation';
 
 interface MobileNavProps {
 	isOpen: boolean;
