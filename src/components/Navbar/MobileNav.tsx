@@ -8,8 +8,8 @@ import dashboardIcon from '@/assets/mobile-nav/dashboard.svg';
 import navigationData from '@/constant/data/navbar';
 
 interface MobileNavProps {
-	isOpen: boolean;
-	onClose: () => void;
+  isOpen: boolean;
+  onClose: () => void;
 }
 
 const MobileNav = (props: MobileNavProps) => {
@@ -35,9 +35,11 @@ const MobileNav = (props: MobileNavProps) => {
 		>
 			<Link
 				href='/'
-				className={ `text-white text-[25px] font-Poppins tracking-tight mb-25px opacity-${pathname === '/' ? '100' : '30'}` }
+				className={ `text-white text-[25px] font-Poppins tracking-tight mb-25px opacity-${
+					pathname === '/' ? '100' : '30'
+				}` }
 			>
-				Home
+        Home
 			</Link>
 			{ navigationData.menu.map(item => (
 				<Link
@@ -45,11 +47,40 @@ const MobileNav = (props: MobileNavProps) => {
 					target={ item.externalLink ? '_blank' : '_self' }
 					rel='noopener noreferrer'
 					key={ item.name }
-					className={ `text-white text-[25px] font-Poppins tracking-tight opacity-${pathname === item.href ? '100' : '30'} mb-25px` }
+					className={ `text-white text-[25px] font-Poppins tracking-tight opacity-${
+						pathname === item.href ? '100' : '30'
+					} mb-25px` }
 				>
 					{ item.name }
 				</Link>
 			)) }
+			<Link
+				href='/blog'
+				rel='noopener noreferrer'
+				className={ `text-white text-[25px] font-Poppins tracking-tight opacity-${
+					pathname === '/blog' ? '100' : '30'
+				} mb-25px` }
+			>
+        Blog
+			</Link>
+			<Link
+				href='/blog'
+				rel='noopener noreferrer'
+				className={ `text-white text-[25px] font-Poppins tracking-tight opacity-${
+					pathname === '/blog' ? '100' : '30'
+				} mb-25px` }
+			>
+        FAQ
+			</Link>
+			<Link
+				href='/blog'
+				rel='noopener noreferrer'
+				className={ `text-white text-[25px] font-Poppins tracking-tight opacity-${
+					pathname === '/blog' ? '100' : '30'
+				} mb-25px` }
+			>
+        Help Center
+			</Link>
 			<div className='bg-[#2D2F31] h-[1px] -mx-[16px] mb-[30px] mt-auto' />
 			<a
 				className='flex items-center gap-[10px] mb-[22px]'
@@ -60,7 +91,7 @@ const MobileNav = (props: MobileNavProps) => {
 					width={ 25 }
 					alt='' />
 				<span className='font-Poppins text-white text-[20px] tracking-tight'>
-					Cart
+          Cart
 				</span>
 			</a>
 			<a
@@ -72,7 +103,7 @@ const MobileNav = (props: MobileNavProps) => {
 					width={ 25 }
 					alt='' />
 				<span className='font-Poppins text-white text-[20px] tracking-tight'>
-					Dashboard
+          Dashboard
 				</span>
 			</a>
 		</div>

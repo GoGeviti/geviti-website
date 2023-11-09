@@ -24,8 +24,6 @@ const Container = styled.div`
 	transition: 0.2s transform ease-out;
   }
   
-  //transition: 0.3s height linear, 0.3s transform linear;
-
   &:hover {
     height: 128px;
     transform: translateY(43px);
