@@ -1,6 +1,6 @@
 import styled, { keyframes } from 'styled-components';
 
-import { ViewState } from '@/app/precheckout/page';
+import { ViewState } from '@/components/precheckout/WelcomeTransition';
 
 const Column = styled.div<{ viewState: ViewState }>`
   position: absolute;

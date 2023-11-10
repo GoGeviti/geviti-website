@@ -1,12 +1,12 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import styled from 'styled-components';
 
 import PreCheckoutNav from '@/components/precheckout/PreCheckoutNav';
 import PreCheckoutProgressBar from '@/components/precheckout/PreCheckoutProgressBar';
 import QuestionLethargic from '@/components/precheckout/QuestionLethargic';
-import WelcomeTransition from '@/components/precheckout/WelcomeTransition';
+import WelcomeTransition, { ViewState } from '@/components/precheckout/WelcomeTransition';
 
 const Column = styled.div`
   display: flex;
@@ -28,13 +28,6 @@ enum FormStep {
   FORM_MORE_INFO,
   TRANSITION_ELIGIBLE,
   PRICING_TABLE,
-}
-
-export enum ViewState {
-  COMPLETED,
-  IN_PROGRESS,
-  NEXT_UP,
-  HIDDEN,
 }
 
 const currentViewState = (
@@ -97,7 +90,7 @@ const PreCheckoutFlowPage = () => {
 					ViewState.HIDDEN && (
 					<QuestionLethargic
 						viewState={ currentViewState(FormStep.QUESTION_HOW_OFTEN_LETHARGIC, formStep) }
-						onContinue={ () => setFormStep(prev => prev + 1) }
+						// onContinue={ () => setFormStep(prev => prev + 1) }
 					/>
 				) }
 			</StepContainer>

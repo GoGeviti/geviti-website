@@ -33,7 +33,6 @@ const DiscoverGeviti: React.FC<DiscoverGevitiProps> = ({
 	viewAll = homeData.products.viewAll,
 	viewAllMobileClassName = 'flex justify-center mt-10',
 	productsWrapperClassName = 'mt-7 lg:mt-[50px]',
-	desktopScroll = false,
 	withBg = false,
 	products,
 }) => {

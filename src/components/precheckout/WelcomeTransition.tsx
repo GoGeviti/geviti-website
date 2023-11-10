@@ -2,8 +2,6 @@ import { useEffect } from 'react';
 import { Player } from '@lottiefiles/react-lottie-player';
 import styled, { keyframes } from 'styled-components';
 
-import { ViewState } from '@/app/precheckout/page';
-
 const Column = styled.div<{ viewState: ViewState }>`
   position: absolute;
   left: 50%;
@@ -89,6 +87,14 @@ const leaveToLeft = keyframes`
 	//transform: translateX(-100vw);
   }
 `;
+
+// TODO: Move elsewhere
+export enum ViewState {
+	COMPLETED,
+	IN_PROGRESS,
+	NEXT_UP,
+	HIDDEN,
+}
 
 interface WelcomeTransitionProps {
   viewState: ViewState;
