@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import NextTopLoader from 'nextjs-toploader';
 
 import { AOSInit } from '@/components';
+import Provider from '@/components/Provider';
 import { brSonoma, poppins } from '@/constant/fonts';
 import StyledComponentsRegistry from '@/lib/registry';
 
@@ -27,6 +28,7 @@ const RootLayout: React.FC<{ children: React.ReactNode; }> = ({ children }) => {
 					<NextTopLoader
 						showSpinner={ false }
 						color='#A3E0FF' />
+					<Provider/>
 					{ children }
 				</body>
 			</StyledComponentsRegistry>

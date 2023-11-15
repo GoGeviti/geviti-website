@@ -3,6 +3,7 @@ import qs from 'qs';
 import {
 	Benefit,
 	Category,
+	ContactSubject,
 	Faq,
 	PaginatedDocs,
 	Post,
@@ -58,6 +59,7 @@ export const getCategory = async(): Promise<PaginatedDocs<Category>> => {
 		return Promise.reject(error);
 	}
 };
+
 export const getBenefits = async(): Promise<PaginatedDocs<Benefit>> => {
 	try {
 		const res = await fetch(
@@ -137,6 +139,27 @@ export const getAllFaq = async(): Promise<PaginatedDocs<Faq>> => {
 	try {
 		const res = await fetch(
 			process.env.BASE_API_URL + `/api/faq?${stringifiedQuery}`,
+			{
+				cache: 'no-store',
+			}
+		);
+		const data = await res.json();
+		return data;
+	} catch (error) {
+		// console.log(error);
+		return Promise.reject(error);
+	}
+};
+
+export const getAllContactSubjects = async(): Promise<PaginatedDocs<ContactSubject>> => {
+	const stringifiedQuery = qs.stringify({
+		depth: 1,
+		draft: false,
+	});
+
+	try {
+		const res = await fetch(
+			process.env.BASE_API_URL + `/api/contact-subject?${stringifiedQuery}`,
 			{
 				cache: 'no-store',
 			}
