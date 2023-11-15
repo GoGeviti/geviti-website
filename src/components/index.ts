@@ -6,6 +6,7 @@ import CustomLink from './CustomLink';
 import * as FAQComponent from './Faq';
 import Footer from './Footer';
 import * as HomeComponent from './Home';
+import * as HowItWorksComponent from './HowItWorks';
 import * as LandingComponent from './Landing';
 import * as MarketPlaceComponent from './Marketplace';
 import Navbar from './Navbar';
@@ -21,6 +22,7 @@ export {
 	FAQComponent,
 	Footer,
 	HomeComponent,
+	HowItWorksComponent,
 	LandingComponent,
 	MarketPlaceComponent,
 	Navbar,

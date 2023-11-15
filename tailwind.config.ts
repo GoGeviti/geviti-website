@@ -51,6 +51,13 @@ const config: Config = {
 					'300': '#EFF0F6',
 					'600': '#6F6C90',
 					'800': '#170F49',
+					'700': '#101828'
+				},
+				product: {
+					'1': '#DBDBCF',
+					'2': '#CFD8DB',
+					'3': '#CFDBCF',
+					'4': '#DBCFCF',
 				},
 				'black-background': '#222426',
 				'black-secondary': '#242628',
