@@ -4,6 +4,7 @@ import contactUsData from './contactUs';
 import faqData from './faq';
 import footerData from './footer';
 import homeData from './home';
+import howItWorksData from './howItWorks';
 import landingData from './landing';
 import marketplaceData from './marketplace';
 import navbarData from './navbar';
@@ -21,6 +22,7 @@ export {
 	faqData,
 	footerData,
 	homeData,
+	howItWorksData,
 	landingData,
 	marketplaceData,
 	navbarData,
