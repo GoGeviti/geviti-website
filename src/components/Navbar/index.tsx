@@ -13,6 +13,7 @@ import CustomLink from '../CustomLink';
 import { Bars3Icon } from '../Icons';
 
 import MobileNav from './MobileNav';
+import ResourcesDropdown from '@/components/Navbar/ResourcesDropdown';
 
 type NavbarProps = {
 	className?: string;
@@ -41,7 +42,7 @@ const Navbar: React.FC<NavbarProps> = ({
 }) => {
 	// const pathname = usePathname();
 	const router = useRouter();
-	
+
 	const [openSheet, setOpenSheet] = useState<boolean>(false);
 
 	const renderMenuList = () => {
@@ -157,6 +158,7 @@ const Navbar: React.FC<NavbarProps> = ({
 							<div className='hidden lg:ml-10 lg:block'>
 								<div className='flex items-center gap-x-5'>
 									{ renderMenuList() }
+									<ResourcesDropdown />
 								</div>
 							</div>
 						</div>

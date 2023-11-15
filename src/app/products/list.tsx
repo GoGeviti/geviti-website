@@ -116,7 +116,7 @@ const ProductList: React.FC<ProductType> = ({ products: productsData }) => {
 							<AlertSquareIcon className='w-15px h-15px sm:w-18px sm:h-18px flex-shrink-0' />
 
 							<p className='text-[10px] sm:text-xs font-BRSonoma leading-5 sm:leading-[18px] font-medium'>
-								Products available based on blood test results
+								Available based on blood test results
 							</p>
 						</div>
 					</div>

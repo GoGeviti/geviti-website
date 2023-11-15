@@ -3,20 +3,33 @@
 import React, { useState } from 'react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@radix-ui/react-tabs';
 import Image from 'next/image';
+import Link from 'next/link';
 
-import { blogData } from '@/constant/data';
+// import { blogData } from '@/constant/data';
 import { screens } from '@/helpers/style';
 import { useWindowDimensions } from '@/hooks';
 
-const articleData = blogData.topics;
+// const articleData = blogData.topics;
 
 interface TopicsProps {
+	id:number
   image: string;
   pretitle: string;
   title: string;
 }
 
-const Topics: React.FC = () => {
+const Topics: React.FC<{
+	articleData: {
+    title: string;
+    btnRight: string;
+    tab: {
+        name: string;
+        list: TopicsProps[];
+    }[];
+}
+}> = ({
+	articleData
+}) => {
 	const [showAllTabs, setShowAllTabs] = useState(false);
 	const windowDimensions = useWindowDimensions();
 	const isMobile = windowDimensions.width < screens.md;
@@ -89,22 +102,24 @@ const renderItem = (data : TopicsProps[]) => {
 		<div className='w-full grid grid-cols-1 md:grid-cols-4 gap-[10px] md:gap-[30px] pt-[30px]'>
 			{ data.map((items, id) => {
 				return (
-					<div
+					<Link
+						href={ `/blog/${ items.id }` }
 						key={ id }
-						className='relative bg-white rounded-3xl flex flex-row md:flex-col max-md:items-center max-md:p-5 max-md:space-x-[9px]'
+						className='relative bg-white rounded-3xl overflow-hidden flex flex-row md:flex-col max-md:items-center max-md:p-5 max-md:space-x-[9px]'
 					>
-						<Image
-							src={ items.image }
-							width={ 253 }
-							height={ 253 }
-							className='object-cover w-[74px] md:w-full h-[74px] md:h-auto max-md:rounded-md'
-							alt={ items.title }
-						/>
+						<div className='relative md:h-[254px] w-[74px] h-[74px] max-md:rounded-lg overflow-hidden md:w-full'>
+							<Image
+								src={ items.image }
+								fill
+								className='object-cover object-center hover:scale-105 transition-all duration-300 ease-in-out'
+								alt={ items.title }
+							/>
+						</div>
 						<div className='flex flex-col text-start md:p-5'>
 							<p className='text-grey-primary font-BRSonoma text-xs'>{ items.pretitle }</p>
 							<p className='text-primary font-Poppins text-base font-medium -tracking-[0.64px] leading-5 md:leading-6'>{ items.title }</p>
 						</div>
-					</div>
+					</Link>
 				);
 			}) }
 		</div>

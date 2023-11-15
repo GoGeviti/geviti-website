@@ -28,28 +28,28 @@ const ProductDetailPage: NextPage<ProductDetailPageProps> = async({
 
 	return (
 		<>
-			<div className='relative overflow-hidden bg-[#CFD8DB]'>
+			<div className='overflow-hidden bg-[#CFD8DB]'>
 				<Navbar theme='light' />
 				<div className='pt-24 lg:pt-[172px] pb-4 sm:pb-[95px] container-center flex flex-col max-lg:items-center'>
 					<Breadcrumb product={ product } />
 
-					<div className='flex max-lg:flex-col items-start justify-between gap-10 lg:pt-12 w-full relative'>
-						<div className='w-full lg:w-1/2 sticky top-10 max-lg:pb-1'>
+					<div className='flex max-lg:flex-col items-start justify-between gap-10 lg:pt-12 w-full'>
+						<div className='w-full lg:w-1/2 sticky top-[10vh] max-lg:pb-1'>
 							<ProductsComponent.SliderProducts
 								images={ product.images.map(e => e.image.url ?? '') ?? [] }
 							/>
 						</div>
 						<div className='flex flex-col gap-9 w-full lg:w-1/2 lg:max-w-md lg:mx-auto'>
 							<div className='flex flex-col lg:gap-2 relative'>
-								<p className='uppercase text-grey-primary font-BRSonoma font-semibold text-[10px] sm:text-sm leading-[21px] sm:leading-6 tracking-0.11em'>
+								<p className='uppercase text-grey-primary font-BRSonoma font-semibold text-[14px] sm:text-sm leading-[21px] sm:leading-6 tracking-0.11em'>
 									{ product.category.title }
 								</p>
-								<h1 className='text-3xl lg:text-4xl -tracking-0.04em font-Poppins leading-[124%] lg:leading-[121%]'>
+								<h1 className='text-[36px] lg:text-4xl -tracking-0.04em font-Poppins leading-[124%] lg:leading-[121%]'>
 									{ product.name }
 								</h1>
 								{ product?.fdaApproved && (
-									<span className='text-[9px] absolute -bottom-4 left-0 bg-blue-1/[0.34] rounded-full w-fit text-primary font-Poppins font-medium py-[1px] px-[7px]'>
-                    FDA approved
+									<span className='text-[12px] mt-[6px] bg-[#A3E0FF] rounded-full w-fit text-primary font-Poppins font-semibold py-[2px] px-[8px]'>
+                    					FDA approved
 									</span>
 								) }
 							</div>
@@ -64,7 +64,7 @@ const ProductDetailPage: NextPage<ProductDetailPageProps> = async({
 									product.price_membership.map((e, i) => (
 										<p
 											key={ i }
-											className='text-primary/[0.60] text-xs font-medium leading-6 sm:text-sm font-Poppins'>
+											className='text-primary/[0.60] text-[14px] font-medium leading-6 sm:text-sm font-Poppins'>
 											{ e.title }
 										</p>
 									))
@@ -73,30 +73,30 @@ const ProductDetailPage: NextPage<ProductDetailPageProps> = async({
 							<div className='p-[17.75px] lg:p-[25px] bg-primary/[0.03] rounded-lg flex flex-col gap-[30px] lg:gap-10'>
 								{ product?.laedTime && (
 									<div className='flex flex-col gap-2 lg:gap-[10px]'>
-										<div className='flex gap-5px text-primary'>
+										<div className='flex gap-[8px] text-primary'>
 											<div className='flex items-center justify-center'>
 												<ClockIcon className='w-15px h-15px sm:w-18px sm:h-18px flex-shrink-0' />
 											</div>
-											<p className='text-xs sm:text-sm font-Poppins leading-5 sm:leading-[18px] font-medium'>
+											<p className='text-[14px] sm:text-sm font-Poppins leading-5 sm:leading-[18px] font-medium'>
 												{ product?.laedTime.title }
 											</p>
 										</div>
-										<p className='text-xs font-BRSonoma text-primary/60 leading-[17px] sm:leading-5'>
+										<p className='text-[12px] font-BRSonoma text-primary/60 leading-[17px] sm:leading-5'>
 											{ product?.laedTime.description }
 										</p>
 									</div>
 								) }
 								{ product?.bloodTest && (
 									<div className='flex flex-col gap-2 lg:gap-[10px]'>
-										<div className='flex gap-5px text-primary'>
+										<div className='flex gap-7px text-primary'>
 											<div className='flex items-center justify-center'>
 												<AlertSquareIcon className='w-15px h-15px sm:w-18px sm:h-18px flex-shrink-0' />
 											</div>
-											<p className='text-xs sm:text-sm font-Poppins leading-5 sm:leading-[18px] font-medium'>
-                        Products available based on blood test results
+											<p className='text-[14px] sm:text-sm font-Poppins leading-5 sm:leading-[18px] font-medium'>
+												Available based on blood test results
 											</p>
 										</div>
-										<p className='text-xs font-BRSonoma text-primary/60 leading-[17px] sm:leading-5'>
+										<p className='text-[12px] font-BRSonoma text-primary/60 leading-[17px] sm:leading-5'>
 											{ product?.description }
 										</p>
 									</div>
@@ -107,7 +107,7 @@ const ProductDetailPage: NextPage<ProductDetailPageProps> = async({
 
 								<CustomLink
 									href='/get-started'
-									className='btn btn-primary w-full text-xs sm:text-sm font-medium font-Poppins leading-[21px] sm:leading-[26px] py-2.5 sm:py-[13px]'
+									className='btn btn-primary w-full text-[14px] sm:text-sm font-medium font-Poppins leading-[21px] sm:leading-[26px] py-3 sm:py-[13px]'
 									aria-label='Purchase'
 								>
                   Get Started

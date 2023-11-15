@@ -192,7 +192,7 @@ const landingData = {
 		notes:
 			'*Product images are for display purposes; actual items from US-based pharmacies may vary.',
 		list: [
-			'Treatments for both <strong>men</strong> and <strong>women</women>',
+			'Treatments for both <span class="font-semibold">men</span> and <span class="font-semibold">women</women>',
 			'Data-driven care to truly optimize your life',
 			'24/7 health tracking via wearable integrations ',
 			'Driven by technology to make your life simpler',

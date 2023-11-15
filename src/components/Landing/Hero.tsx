@@ -17,7 +17,7 @@ const Hero = () => {
 				iconsMenu={ landingData.navbar.iconsMenu }
 				actionsMenu={ landingData.navbar.actionsMenu }
 			/>
-			<div className='bg-primary h-screen lg:h-[calc(100vh-30px)] w-full lg:rounded-[19px] relative pt-11px lg:pt-5'>
+			<div className='bg-primary h-[calc(100dvh)] lg:h-[calc(100vh-30px)] w-full lg:rounded-[19px] relative pt-11px lg:pt-5'>
 				<div className='absolute inset-0 w-full h-full'>
 					{ heroData.image && (
 						<div className='relative overflow-hidden w-full h-full lg:rounded-[19px]'>
