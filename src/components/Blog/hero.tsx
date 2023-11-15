@@ -50,7 +50,7 @@ const Hero: React.FC<HeroProps> = ({ hero, classname }) => {
 						{
 							hero.btn &&
 							<CustomLink
-								href='/'
+								href={ hero.btnLink ?? '/blog' }
 								aria-label=	{ hero.btn }
 								className='btn btn-secondary flex items-center justify-center gap-7px sm:gap-2 !translate-y-0 group !w-[172px]'
 							>

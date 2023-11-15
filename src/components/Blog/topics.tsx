@@ -12,6 +12,7 @@ import { useWindowDimensions } from '@/hooks';
 // const articleData = blogData.topics;
 
 interface TopicsProps {
+	id:number
   image: string;
   pretitle: string;
   title: string;
@@ -23,11 +24,7 @@ const Topics: React.FC<{
     btnRight: string;
     tab: {
         name: string;
-        list: {
-            image: string;
-            pretitle: string;
-            title: string;
-        }[];
+        list: TopicsProps[];
     }[];
 }
 }> = ({
@@ -106,7 +103,7 @@ const renderItem = (data : TopicsProps[]) => {
 			{ data.map((items, id) => {
 				return (
 					<Link
-						href={ `/blog/${ id }` }
+						href={ `/blog/${ items.id }` }
 						key={ id }
 						className='relative bg-white rounded-3xl flex flex-row md:flex-col max-md:items-center max-md:p-5 max-md:space-x-[9px]'
 					>

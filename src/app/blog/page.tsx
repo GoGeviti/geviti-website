@@ -16,6 +16,7 @@ const BlogPage: NextPage = async() => {
 				{
 					name: 'All',
 					list: postDataArray.map(post => ({
+						id: post.id,
 						image: post.hero.media.url as string,
 						pretitle: post.hero.categories?.title as string,
 						title: post.title,
@@ -29,6 +30,7 @@ const BlogPage: NextPage = async() => {
 					return {
 						name: item.hero.categories?.title as string,
 						list: categoryPosts.map((post:Post) => ({
+							id: post.id,
 							image: post.hero.media.url as string,
 							pretitle: post.hero.categories?.title as string,
 							title: post.title,
@@ -49,7 +51,8 @@ const BlogPage: NextPage = async() => {
 					titleMobile: allPost.docs[0].title,
 					image: allPost.docs[0].hero.media.url,
 					preTitle: allPost.docs[0].hero.categories?.title ?? '',
-					btn: 'Read Article'
+					btn: 'Read Article',
+					btnLink: `/blog/${allPost.docs[0].id}`,
 				} }
 				classname=''
 			/>
