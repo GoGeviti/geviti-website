@@ -116,7 +116,12 @@ export function serializeLexical({ nodes }: Props): JSX.Element {
             type Heading = Extract<keyof JSX.IntrinsicElements, 'h1' | 'h2' | 'h3' | 'h4' | 'h5'>
             const Tag = node?.tag as Heading;
             return <Tag
-            	className='font-Poppins text-primary text-[26px] leading-[33px] font-semibold lg:mt-[70px] lg:mb-5 mt-10 mb-[10px]'
+            	className={
+            		clsxm(
+            			'font-Poppins text-primary text-[26px] leading-[33px] font-semibold lg:mt-[70px] lg:mb-5 mt-10 mb-[10px]',
+            			node?.tag === 'h3' && 'my-[10px] lg:my-5 text-[24px]',
+            		)
+            	}
             	key={ index }>{ serializedChildren }</Tag>;
 					}
 
@@ -182,7 +187,7 @@ export function serializeLexical({ nodes }: Props): JSX.Element {
             return (
             	<Tag
             		className={ clsxm(
-            			'lg:text-xl font-Poppins text-primary list-inside',
+            			'lg:text-xl font-Poppins text-primary list-inside flex flex-col gap-2 mt-2',
             			node?.tag === 'ol' && 'list-decimal',
             			node?.tag === 'ul' && 'list-disc',
             		) }
