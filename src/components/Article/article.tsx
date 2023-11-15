@@ -66,7 +66,7 @@ const renderItem = (data? : Post[]) => {
 					<Link
 						href={ `/blog/${ items.id }` }
 						key={ id }
-						className='relative bg-white rounded-3xl flex flex-row md:flex-col max-md:items-center max-md:p-5 max-md:space-x-[9px]'
+						className='relative bg-white overflow-hidden rounded-3xl flex flex-row md:flex-col max-md:items-center max-md:p-5 max-md:space-x-[9px]'
 					>
 						<div>
 							<div className='relative md:h-[254px] w-[74px] h-[74px] max-md:rounded-lg max-md:overflow-hidden md:w-full'>
