@@ -3,6 +3,7 @@ import qs from 'qs';
 import {
 	Benefit,
 	Category,
+	Faq,
 	PaginatedDocs,
 	Post,
 	Privacy,
@@ -123,6 +124,27 @@ export const getPrivacyById = async(id:number): Promise<Privacy> => {
 		const data = await res.json();
 		return data;
 	} catch (error) {
+		return Promise.reject(error);
+	}
+};
+
+export const getAllFaq = async(): Promise<PaginatedDocs<Faq>> => {
+	const stringifiedQuery = qs.stringify({
+		depth: 1,
+		draft: false,
+	});
+
+	try {
+		const res = await fetch(
+			process.env.BASE_API_URL + `/api/faq?${stringifiedQuery}`,
+			{
+				cache: 'no-store',
+			}
+		);
+		const data = await res.json();
+		return data;
+	} catch (error) {
+		// console.log(error);
 		return Promise.reject(error);
 	}
 };
