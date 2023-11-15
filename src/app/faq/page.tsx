@@ -1,20 +1,24 @@
-'use client';
-import { NextPage } from 'next';
-
-import { ArticleComponent, ContactUsComponent, FAQComponent } from '@/components';
+import {
+	ArticleComponent,
+	ContactUsComponent,
+	FAQComponent,
+} from '@/components';
 import { faqData } from '@/constant/data';
+import { getAllPost } from '@/services/products';
 
-const FAQPage: NextPage = () => {
+const FAQPage = async() => {
+	const allPost = await getAllPost(3);
 
 	return (
 		<div className='flex min-h-screen flex-col w-full bg-grey-background'>
-			<ContactUsComponent.Hero hero={ faqData.hero }/>
-			<FAQComponent.QnA/>
-			<FAQComponent.CompletelyCustom/>
+			<ContactUsComponent.Hero hero={ faqData.hero } />
+			<FAQComponent.QnA />
+			<FAQComponent.CompletelyCustom />
 			<ArticleComponent.Articles
-				list={ faqData.article.list }
+				list={ allPost.docs }
 				btn={ faqData.article.btn }
-				title={ faqData.article.title }/>
+				title={ faqData.article.title }
+			/>
 		</div>
 	);
 };

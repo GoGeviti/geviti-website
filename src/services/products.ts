@@ -88,10 +88,10 @@ export const getPostById = async(id:string): Promise<Post> => {
 	}
 };
 
-export const getAllPost = async(): Promise<PaginatedDocs<Post>> => {
+export const getAllPost = async(limit?:number): Promise<PaginatedDocs<Post>> => {
 	const stringifiedQuery = qs.stringify({
 		depth: 1,
-		limit: 100,
+		limit: limit ?? 100,
 		draft: false,
 		sort: '-publishedOn'
 	});
