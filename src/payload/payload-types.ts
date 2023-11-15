@@ -53,6 +53,9 @@ export interface Media {
 	filesize?: number;
 	width?: number;
 	height?: number;
+	caption?: {
+    [k: string]: unknown;
+  }[];
 	sizes?: {
 		thumbnail?: {
 			url?: string;
@@ -105,3 +108,71 @@ export type PaginatedDocs<T> = {
 	totalDocs: number;
 	totalPages: number;
 };
+
+export interface Post {
+  id: number;
+  title: string;
+  categories?: (number | PostCategory)[] | null;
+  publishedOn?: string | null;
+  authors: (number | User)[];
+  populatedAuthors?:
+    | {
+        id?: string | null;
+        name?: string | null;
+      }[]
+    | null;
+  hero: {
+    categories?: PostCategory;
+    media: Media;
+  };
+  layout: (
+    | {
+        invertBackground?: boolean | null;
+        columns?:
+          | {
+              size?: ('oneThird' | 'half' | 'twoThirds' | 'full') | null;
+              richText: {
+                [k: string]: unknown;
+              }[];
+              enableLink?: boolean | null;
+              link?: {
+                type?: ('reference' | 'custom') | null;
+                newTab?: boolean | null;
+                reference?: string | null;
+                url?: string | null;
+                label: string;
+                appearance?: ('default' | 'primary' | 'secondary') | null;
+              };
+              id?: string | null;
+            }[]
+          | null;
+        id: string;
+        blockName?: string | null;
+        blockType: 'content';
+      }
+    | {
+        description: string;
+        author: string;
+        id: string;
+        blockName?: string | null;
+        blockType: 'quote';
+      }
+  )[];
+  relatedPosts?: Post[];
+  slug?: string | null;
+  meta?: {
+    title?: string;
+    description?: string;
+    image?: number | Media;
+  };
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+export interface PostCategory {
+  id: number;
+  title: string;
+  description: string;
+  updatedAt: string;
+  createdAt: string;
+}
