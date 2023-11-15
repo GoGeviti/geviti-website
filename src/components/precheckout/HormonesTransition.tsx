@@ -2,19 +2,30 @@ import { useEffect } from 'react';
 import { Player } from '@lottiefiles/react-lottie-player';
 import styled, { keyframes } from 'styled-components';
 
+import { ViewState } from '@/components/precheckout/WelcomeTransition';
+
 const Column = styled.div<{ viewState: ViewState }>`
   position: absolute;
   left: 50%;
   top: 140px;
-  //border: 1px solid blue;
+  //border: 1px solid green;
 
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
 
-	transform: translateX(-50%);
+  transform: translateX(-50%);
   //transition: transform 0.5s cubic-bezier(.21,1.04,.58,1.15);
+`;
+
+const moveFromRight = keyframes`
+  from {
+	transform: translateX(100vw);
+  }
+  to {
+	transform: translateX(0);
+  }
 `;
 
 const LogoLottie = styled(Player)<{ viewState: ViewState }>`
@@ -22,8 +33,8 @@ const LogoLottie = styled(Player)<{ viewState: ViewState }>`
   height: 300px;
 
   animation: ${props =>
-		props.viewState === ViewState.IN_PROGRESS && moveFromBottom}
-  0.75s cubic-bezier(0.21, 1.04, 0.58, 1.15);
+		props.viewState === ViewState.IN_PROGRESS && moveFromRight}
+    0.75s cubic-bezier(0.21, 1.04, 0.58, 1.15);
   animation-fill-mode: forwards;
 
   transform: translateY(100vh);
@@ -38,8 +49,10 @@ const Title = styled.h1<{ viewState: ViewState }>`
   margin-bottom: 12px;
 
   animation: ${props =>
-		props.viewState === ViewState.IN_PROGRESS ? moveFromBottom : ViewState.COMPLETED && leaveToLeft}
-  0.5s cubic-bezier(0.21, 1.04, 0.58, 1.15);
+		props.viewState === ViewState.IN_PROGRESS
+			? moveFromRight
+			: ViewState.COMPLETED && leaveToLeft}
+    0.5s cubic-bezier(0.21, 1.04, 0.58, 1.15);
   animation-delay: 0.08s;
   animation-fill-mode: forwards;
 
@@ -51,9 +64,13 @@ const Subtitle = styled.h2<{ viewState: ViewState }>`
   font-size: 28px;
   color: #181a1c;
   letter-spacing: -1.12px;
+  width: 430px;
+  text-align: center;
 
   animation: ${props =>
-		props.viewState === ViewState.IN_PROGRESS ? fadeFromBottom : ViewState.COMPLETED && leaveToLeft}
+		props.viewState === ViewState.IN_PROGRESS
+			? fadeFromBottom
+			: ViewState.COMPLETED && leaveToLeft}
     2.25s cubic-bezier(0.21, 1.04, 0.58, 1.15);
   animation-delay: 1.25s;
   animation-fill-mode: forwards;
@@ -70,44 +87,37 @@ const fadeFromBottom = keyframes`
   }
 `;
 
-const moveFromBottom = keyframes`
-  from {
-	transform: translateY(100vh);
-  }
-  to {
-	transform: translateY(0);
-  }
-`;
+// const moveFromBottom = keyframes`
+//   from {
+// 	transform: translateY(100vh);
+//   }
+//   to {
+// 	transform: translateY(0);
+//   }
+// `;
 
 const leaveToLeft = keyframes`
   from {
 	transform: translateX(0);
   }
   to {
-	transform: translateX(-100vw);
+	//transform: translateX(-100vw);
   }
 `;
 
-// TODO: Move elsewhere
-export enum ViewState {
-	COMPLETED,
-	IN_PROGRESS,
-	NEXT_UP,
-	HIDDEN,
+interface HormonesTransitionProps {
+	viewState: ViewState;
+	onContinue: () => void;
 }
 
-interface WelcomeTransitionProps {
-  viewState: ViewState;
-  onContinue: () => void;
-}
-
-const WelcomeTransition = (props: WelcomeTransitionProps) => {
-
+const HormonesTransition = (props: HormonesTransitionProps) => {
 	useEffect(() => {
-		setTimeout(() => {
-			props.onContinue();
-		}, 3_000);
-	}, []);
+		if (props.viewState === ViewState.IN_PROGRESS) {
+			setTimeout(() => {
+				props.onContinue();
+			}, 3_000);
+		}
+	}, [props.viewState]);
 
 	return (
 		<Column viewState={ props.viewState }>
@@ -117,12 +127,12 @@ const WelcomeTransition = (props: WelcomeTransitionProps) => {
 				keepLastFrame
 				viewState={ props.viewState }
 			/>
-			<Title viewState={ props.viewState }>Welcome to Geviti</Title>
+			<Title viewState={ props.viewState }>Hormones can play a key role here.</Title>
 			<Subtitle viewState={ props.viewState }>
-        Let&apos;s start by making sure you are eligible.
+				No worries, Geviti can help.
 			</Subtitle>
 		</Column>
 	);
 };
 
-export default WelcomeTransition;
+export default HormonesTransition;

@@ -89,7 +89,7 @@ const BoxArrow = styled(Player)`
   width: 26px;
 `;
 
-interface QuestionLethargicProps {
+interface QuestionLibidoProps {
   viewState: ViewState;
   onSelectOption: (optionText: string) => void;
 }
@@ -124,42 +124,36 @@ const ResponseBox = ({
 	);
 };
 
-const QuestionLethargic = (props: QuestionLethargicProps) => {
+const QuestionLibido = (props: QuestionLibidoProps) => {
 	return (
 		<Column viewState={ props.viewState }>
 			<Title viewState={ props.viewState }>
-        How often are you feeling lethargic, even with sufficient sleep?
+        Have you noticed a decline in your libido, desire to be active, or
+        overall energy levels?
 			</Title>
 			<ResponseBox
 				viewState={ props.viewState }
 				index={ 1 }
 				onSelectOption={ props.onSelectOption }
 			>
-        Everyday
+        Sure have
 			</ResponseBox>
 			<ResponseBox
 				viewState={ props.viewState }
 				index={ 2 }
 				onSelectOption={ props.onSelectOption }
 			>
-        Half the time
+        Maybe slightly
 			</ResponseBox>
 			<ResponseBox
 				viewState={ props.viewState }
 				index={ 3 }
 				onSelectOption={ props.onSelectOption }
 			>
-        Hardly ever
-			</ResponseBox>
-			<ResponseBox
-				viewState={ props.viewState }
-				index={ 4 }
-				onSelectOption={ props.onSelectOption }
-			>
-        Only occasionally
+        No I have not
 			</ResponseBox>
 		</Column>
 	);
 };
 
-export default QuestionLethargic;
+export default QuestionLibido;

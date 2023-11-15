@@ -89,7 +89,7 @@ const BoxArrow = styled(Player)`
   width: 26px;
 `;
 
-interface QuestionLethargicProps {
+interface QuestionGoalsProps {
   viewState: ViewState;
   onSelectOption: (optionText: string) => void;
 }
@@ -124,42 +124,42 @@ const ResponseBox = ({
 	);
 };
 
-const QuestionLethargic = (props: QuestionLethargicProps) => {
+const QuestionGoals = (props: QuestionGoalsProps) => {
 	return (
 		<Column viewState={ props.viewState }>
 			<Title viewState={ props.viewState }>
-        How often are you feeling lethargic, even with sufficient sleep?
+        What goals are you looking to achieve?
 			</Title>
 			<ResponseBox
 				viewState={ props.viewState }
 				index={ 1 }
 				onSelectOption={ props.onSelectOption }
 			>
-        Everyday
+        Have increased daily energy
 			</ResponseBox>
 			<ResponseBox
 				viewState={ props.viewState }
 				index={ 2 }
 				onSelectOption={ props.onSelectOption }
 			>
-        Half the time
+        Maintain optimal hormone levels
 			</ResponseBox>
 			<ResponseBox
 				viewState={ props.viewState }
 				index={ 3 }
 				onSelectOption={ props.onSelectOption }
 			>
-        Hardly ever
+        Slow the aging process
 			</ResponseBox>
 			<ResponseBox
 				viewState={ props.viewState }
 				index={ 4 }
 				onSelectOption={ props.onSelectOption }
 			>
-        Only occasionally
+				All of the above
 			</ResponseBox>
 		</Column>
 	);
 };
 
-export default QuestionLethargic;
+export default QuestionGoals;

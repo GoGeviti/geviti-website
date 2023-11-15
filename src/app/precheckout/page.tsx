@@ -3,10 +3,15 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 
+import HormonesTransition from '@/components/precheckout/HormonesTransition';
+import NotAloneTransition from '@/components/precheckout/NotAloneTransition';
 import PreCheckoutNav from '@/components/precheckout/PreCheckoutNav';
 import PreCheckoutProgressBar from '@/components/precheckout/PreCheckoutProgressBar';
+import QuestionGoals from '@/components/precheckout/QuestionGoals';
 import QuestionLethargic from '@/components/precheckout/QuestionLethargic';
-import WelcomeTransition, { ViewState } from '@/components/precheckout/WelcomeTransition';
+import QuestionLibido from '@/components/precheckout/QuestionLibido';
+import QuestionWeight from '@/components/precheckout/QuestionWeight';
+import WelcomeTransition, { ViewState, } from '@/components/precheckout/WelcomeTransition';
 
 const Column = styled.div`
   display: flex;
@@ -36,13 +41,13 @@ const currentViewState = (
 ): ViewState => {
 	if (formStep === currentFormStep + 1) return ViewState.NEXT_UP;
 	if (formStep === currentFormStep) return ViewState.IN_PROGRESS;
-	if (formStep < currentFormStep) return ViewState.COMPLETED;
+	if (formStep === currentFormStep - 1) return ViewState.COMPLETED;
 
 	return ViewState.HIDDEN;
 };
 
 const formStepToPercentage = (formStep: FormStep): number => {
-	return formStep / Object.keys(FormStep).length;
+	return (formStep / 12) * 100;
 };
 
 const formStepToBackground = (formStep: FormStep): string => {
@@ -87,10 +92,54 @@ const PreCheckoutFlowPage = () => {
 					/>
 				) }
 				{ currentViewState(FormStep.QUESTION_HOW_OFTEN_LETHARGIC, formStep) !==
-					ViewState.HIDDEN && (
+          ViewState.HIDDEN && (
 					<QuestionLethargic
-						viewState={ currentViewState(FormStep.QUESTION_HOW_OFTEN_LETHARGIC, formStep) }
-						// onContinue={ () => setFormStep(prev => prev + 1) }
+						viewState={ currentViewState(
+							FormStep.QUESTION_HOW_OFTEN_LETHARGIC,
+							formStep,
+						) }
+						onSelectOption={ () => setFormStep(prev => prev + 1) }
+					/>
+				) }
+				{ currentViewState(FormStep.TRANSITION_NOT_ALONE, formStep) !==
+          ViewState.HIDDEN && (
+					<NotAloneTransition
+						viewState={ currentViewState(
+							FormStep.TRANSITION_NOT_ALONE,
+							formStep,
+						) }
+						onContinue={ () => setFormStep(prev => prev + 1) }
+					/>
+				) }
+				{ currentViewState(FormStep.QUESTION_DIFFICULTY_WEIGHT, formStep) !==
+          ViewState.HIDDEN && (
+					<QuestionWeight
+						viewState={ currentViewState(
+							FormStep.QUESTION_DIFFICULTY_WEIGHT,
+							formStep,
+						) }
+						onSelectOption={ () => setFormStep(prev => prev + 1) }
+					/>
+				) }
+				{ currentViewState(FormStep.TRANSITION_HORMONES, formStep) !==
+          ViewState.HIDDEN && (
+					<HormonesTransition
+						viewState={ currentViewState(FormStep.TRANSITION_HORMONES, formStep) }
+						onContinue={ () => setFormStep(prev => prev + 1) }
+					/>
+				) }
+				{ currentViewState(FormStep.QUESTION_LIBIDO, formStep) !==
+          ViewState.HIDDEN && (
+					<QuestionLibido
+						viewState={ currentViewState(FormStep.QUESTION_LIBIDO, formStep) }
+						onSelectOption={ () => setFormStep(prev => prev + 1) }
+					/>
+				) }
+				{ currentViewState(FormStep.QUESTION_GOALS, formStep) !==
+          ViewState.HIDDEN && (
+					<QuestionGoals
+						viewState={ currentViewState(FormStep.QUESTION_GOALS, formStep) }
+						onSelectOption={ () => setFormStep(prev => prev + 1) }
 					/>
 				) }
 			</StepContainer>

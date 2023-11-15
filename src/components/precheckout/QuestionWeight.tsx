@@ -89,7 +89,7 @@ const BoxArrow = styled(Player)`
   width: 26px;
 `;
 
-interface QuestionLethargicProps {
+interface QuestionWeightProps {
   viewState: ViewState;
   onSelectOption: (optionText: string) => void;
 }
@@ -124,42 +124,36 @@ const ResponseBox = ({
 	);
 };
 
-const QuestionLethargic = (props: QuestionLethargicProps) => {
+const QuestionWeight = (props: QuestionWeightProps) => {
 	return (
 		<Column viewState={ props.viewState }>
 			<Title viewState={ props.viewState }>
-        How often are you feeling lethargic, even with sufficient sleep?
+        Have you noticed a difficulty in keeping unwanted weight off even with
+        exercise?
 			</Title>
 			<ResponseBox
 				viewState={ props.viewState }
 				index={ 1 }
 				onSelectOption={ props.onSelectOption }
 			>
-        Everyday
+        Yes
 			</ResponseBox>
 			<ResponseBox
 				viewState={ props.viewState }
 				index={ 2 }
 				onSelectOption={ props.onSelectOption }
 			>
-        Half the time
+        No
 			</ResponseBox>
 			<ResponseBox
 				viewState={ props.viewState }
 				index={ 3 }
 				onSelectOption={ props.onSelectOption }
 			>
-        Hardly ever
-			</ResponseBox>
-			<ResponseBox
-				viewState={ props.viewState }
-				index={ 4 }
-				onSelectOption={ props.onSelectOption }
-			>
-        Only occasionally
+        Not sure
 			</ResponseBox>
 		</Column>
 	);
 };
 
-export default QuestionLethargic;
+export default QuestionWeight;
