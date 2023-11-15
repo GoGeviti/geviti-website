@@ -107,7 +107,7 @@ export function serializeLexical({ nodes }: Props): JSX.Element {
 					}
 					case 'paragraph': {
 						return <p
-							className='lg:text-xl font-Poppins text-primary lg:leading-[40px]'
+							className='lg:text-xl font-Poppins text-primary'
 							key={ index }>{ serializedChildren }</p>;
 					}
 					case 'heading': {
@@ -181,7 +181,11 @@ export function serializeLexical({ nodes }: Props): JSX.Element {
             const Tag = node?.tag as List;
             return (
             	<Tag
-            		className={ node?.listType }
+            		className={ clsxm(
+            			'lg:text-xl font-Poppins text-primary list-inside',
+            			node?.tag === 'ol' && 'list-decimal',
+            			node?.tag === 'ul' && 'list-disc',
+            		) }
             		key={ index }>
             		{ serializedChildren }
             	</Tag>
@@ -190,32 +194,13 @@ export function serializeLexical({ nodes }: Props): JSX.Element {
 					case 'listitem': {
 						const node = _node as SerializedListItemNode;
 
-						if (node?.checked !== null) {
-							return (
-								<li
-									aria-checked={ node.checked ? 'true' : 'false' }
-									className={ `component--list-item-checkbox ${
-										node.checked
-											? 'component--list-item-checkbox-checked'
-											: 'component--list-item-checked-unchecked'
-									}` }
-									key={ index }
-									role='checkbox'
-									tabIndex={ -1 }
-									value={ node?.value }
-								>
-									{ serializedChildren }
-								</li>
-							);
-						} else {
-							return (
-								<li
-									key={ index }
-									value={ node?.value }>
-									{ serializedChildren }
-								</li>
-							);
-						}
+						return (
+							<li
+								key={ index }
+								value={ node?.value }>
+								{ serializedChildren }
+							</li>
+						);
 					}
 					case 'quote': {
 						// const node = _node a;

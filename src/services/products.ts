@@ -5,6 +5,7 @@ import {
 	Category,
 	PaginatedDocs,
 	Post,
+	Privacy,
 	Product,
 } from '@/payload/payload-types'; ;
 
@@ -107,6 +108,21 @@ export const getAllPost = async(limit?:number): Promise<PaginatedDocs<Post>> => 
 		return data;
 	} catch (error) {
 		// console.log(error);
+		return Promise.reject(error);
+	}
+};
+
+export const getPrivacyById = async(id:number): Promise<Privacy> => {
+	try {
+		const res = await fetch(
+			process.env.BASE_API_URL + `/api/privacy/${id}?depth=1&draft=false`,
+			{
+				cache: 'no-store',
+			}
+		);
+		const data = await res.json();
+		return data;
+	} catch (error) {
 		return Promise.reject(error);
 	}
 };

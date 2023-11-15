@@ -176,3 +176,48 @@ export interface PostCategory {
   updatedAt: string;
   createdAt: string;
 }
+
+export interface ContactSubject {
+  id: number;
+  title: string;
+  description?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+export interface Contact {
+  id: number;
+  full_name: string;
+  email: string;
+  isPartner?: boolean | null;
+  phone_number?: number | null;
+  company?: string | null;
+  role?: string | null;
+  subject?: ContactSubject;
+  message: string;
+  updatedAt: string;
+  createdAt: string;
+}
+export interface FaqCategory {
+  id: number;
+  title: string;
+  description?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+export interface Faq {
+  id: number;
+  title: string;
+  description: string;
+  category: FaqCategory;
+  updatedAt: string;
+  createdAt: string;
+}
+
+export interface Privacy {
+  id: number;
+  content:{
+        [k: string]: unknown;
+      }[];
+  updatedAt: string;
+  createdAt: string;
+}
