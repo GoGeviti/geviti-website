@@ -1,4 +1,6 @@
+'use client';
 import React from 'react';
+import { BigPlayButton, Player } from 'video-react';
 
 import { howItWorksData } from '@/constant/data';
 import clsxm from '@/helpers/clsxm';
@@ -7,6 +9,8 @@ import CustomLink from '../CustomLink';
 import { ChevronRight } from '../Icons';
 import Navbar from '../Navbar';
 import WrapperAnimation from '../WrapperAnimation';
+
+import 'video-react/dist/video-react.css';
 
 const heroData = howItWorksData.hero;
 
@@ -87,21 +91,13 @@ const Hero: React.FC = () => {
 								)) }
 							</div>
 						</div>
-						<video
-							autoPlay
-							muted
-							playsInline
-							className='w-full lg:h-[508px] inset-0 object-cover z-10 rounded-lg max-lg:order-0 max-lg:my-[60px]'
-						>
-							<source
-								src='/videos/dashboard_safari.mp4'
-								type='video/mp4;codecs=hvc1'
-							/>
-							<source
-								src='/videos/dashboard.webm'
-								type='video/webm' />
-								Your browser does not support the video tag.
-						</video>
+						<div className='w-full inset-0 object-cover z-10 rounded-lg max-lg:order-0 max-lg:my-[60px'>
+							<Player>
+								<source src='/videos/dummy.mp4' />
+								<BigPlayButton position='center' />
+							</Player>
+						</div>
+					
 					</div>
 				</div>
 				

@@ -54,6 +54,7 @@
     "tailwind-merge": "^1.14.0",
     "tailwindcss": "3.3.3",
     "typescript": "5.1.6",
+    "video-react": "^0.16.0",
     "zustand": "^4.4.4"
   },
   "devDependencies": {
@@ -62,6 +63,7 @@
     "@types/escape-html": "^1.0.4",
     "@types/qs": "^6.9.10",
     "@types/react-slick": "^0.23.10",
+    "@types/video-react": "^0.15.4",
     "@typescript-eslint/eslint-plugin": "^6.4.0",
     "cross-env": "^7.0.3",
     "eslint-plugin-simple-import-sort": "^10.0.0"
