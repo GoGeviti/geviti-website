@@ -104,7 +104,7 @@ const renderItem = (data : Post[]) => {
 			{ data.map((items, id) => {
 				return (
 					<Link
-						href={ `/blog/${ items.id }` }
+						href={ `/blog/${ items.slug }` }
 						key={ id }
 						className='relative bg-white rounded-3xl overflow-hidden flex flex-row md:flex-col max-md:items-center max-md:p-5 max-md:space-x-[9px]'
 					>

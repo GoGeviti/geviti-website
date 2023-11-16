@@ -79,7 +79,7 @@ const BlogPage: NextPage = async() => {
 					image: allPost.docs[0].hero.media.url,
 					preTitle: allPost.docs[0].hero.categories?.title ?? '',
 					btn: 'Read Article',
-					btnLink: `/blog/${allPost.docs[0].id}`,
+					btnLink: `/blog/${allPost.docs[0].slug}`,
 				} }
 				classname=''
 			/>

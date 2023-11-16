@@ -76,16 +76,29 @@ export const getBenefits = async(): Promise<PaginatedDocs<Benefit>> => {
 	}
 };
 
-export const getPostById = async(id:string): Promise<Post> => {
+export const getPostById = async(slug:string): Promise<Post> => {
+	const stringifiedQuery = qs.stringify({
+		depth: 2,
+		draft: false,
+		where: {
+			slug: {
+				equals: slug
+			}
+		},
+		limit: 1
+	}, { addQueryPrefix: true },);
 	try {
 		const res = await fetch(
-			process.env.BASE_API_URL + `/api/posts/${id}?depth=2&draft=false`,
+			process.env.BASE_API_URL + `/api/posts/${stringifiedQuery}`,
 			{
 				cache: 'no-store',
 			}
 		);
 		const data = await res.json();
-		return data;
+		if (!res.ok) {
+			return Promise.reject('Not Found');
+		}
+		return data.docs[0];
 	} catch (error) {
 		// console.log(error);
 		return Promise.reject(error);
