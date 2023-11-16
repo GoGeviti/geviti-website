@@ -2,7 +2,9 @@ import type { Metadata } from 'next';
 import NextTopLoader from 'nextjs-toploader';
 
 import { AOSInit } from '@/components';
+import Provider from '@/components/Provider';
 import { brSonoma, poppins } from '@/constant/fonts';
+import StyledComponentsRegistry from '@/lib/registry';
 
 import 'aos/dist/aos.css';
 import 'slick-carousel/slick/slick.css';
@@ -21,12 +23,15 @@ const RootLayout: React.FC<{ children: React.ReactNode; }> = ({ children }) => {
 			<AOSInit />
 			{ /* <Script src='//embed.typeform.com/next/embed.js' /> */ }
 
-			<body className={ `${ poppins.variable } ${ brSonoma.variable }` }>
-				<NextTopLoader
-					showSpinner={ false }
-					color='#A3E0FF' />
-				{ children }
-			</body>
+			<StyledComponentsRegistry>
+				<body className={ `${ poppins.variable } ${ brSonoma.variable }` }>
+					<NextTopLoader
+						showSpinner={ false }
+						color='#A3E0FF' />
+					<Provider/>
+					{ children }
+				</body>
+			</StyledComponentsRegistry>
 		</html>
 	);
 };

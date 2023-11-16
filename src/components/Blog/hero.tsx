@@ -45,12 +45,12 @@ const Hero: React.FC<HeroProps> = ({ hero, classname }) => {
 								dangerouslySetInnerHTML={ { __html: hero.title } } />
 							<span
 								className='md:hidden block'
-								dangerouslySetInnerHTML={ { __html: hero.titleMobile } } />
+								dangerouslySetInnerHTML={ { __html: hero.titleMobile ?? '' } } />
 						</div>
 						{
 							hero.btn &&
 							<CustomLink
-								href='/'
+								href={ hero.btnLink ?? '/blog' }
 								aria-label=	{ hero.btn }
 								className='btn btn-secondary flex items-center justify-center gap-7px sm:gap-2 !translate-y-0 group !w-[172px]'
 							>

@@ -8,7 +8,7 @@ const FAQLayout: React.FC<{ children: React.ReactNode; }> = ({
 	return (
 		<div className='min-h-screen bg-grey-background'>
 			{ children }
-			<Footer landingPage />
+			<Footer/>
 		</div>
 	);
 };

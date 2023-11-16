@@ -7,4 +7,5 @@ export interface Hero {
 	image?: string | null,
 	imageMobile?: string | null,
 	btn?: string | null,
+	btnLink?: string | null,
 }

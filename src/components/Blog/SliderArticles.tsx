@@ -5,11 +5,12 @@ import Slider from 'react-slick';
 import Image from 'next/image';
 
 import clsxm from '@/helpers/clsxm';
+import { Post } from '@/payload/payload-types';
 
 import { ArrowEmail } from '../Icons';
 
 type SliderArticlesProps = {
-  data: { pretitle: string; title: string; image: string }[];
+  data: Post[]
 };
 
 const SliderArticles: React.FC<SliderArticlesProps> = ({ data }) => {
@@ -68,14 +69,14 @@ const SliderArticles: React.FC<SliderArticlesProps> = ({ data }) => {
 								key={ id }
 								className='w-full h-full relative focus:ring-0 focus:outline-none focus:border-none pl-[10px]'>
 								<Image
-									src={ items.image }
+									src={ items.hero.media.url ?? '' }
 									width={ 270 }
 									height={ 500 }
 									className='object-cover !h-[500px] w-full rounded-[20px]'
 									alt={ items.title }
 								/>
 								<div className='absolute z-10 left-0 bottom-0 flex flex-col text-start px-[30px] py-[26px]'>
-									<p className='text-[#CDDCE2] font-BRSonoma text-sm'>{ items.pretitle }</p>
+									<p className='text-[#CDDCE2] font-BRSonoma text-sm'>{ items.hero.categories?.title }</p>
 									<p className='text-white font-Poppins text-[22px] -tracking-[0.88px'>{ items.title }</p>
 								</div>
 								<ArrowEmail className='absolute top-0 right-0 w-[45px] h-[45px] m-5'/>

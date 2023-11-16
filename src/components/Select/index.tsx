@@ -12,6 +12,7 @@ const Select = SelectPrimitive.Root;
 const SelectGroup = SelectPrimitive.Group;
 
 const SelectValue = SelectPrimitive.Value;
+const SelectIcon = SelectPrimitive.Icon;
 
 const SelectTrigger = React.forwardRef<
 	React.ElementRef<typeof SelectPrimitive.Trigger>,
@@ -107,9 +108,10 @@ export {
 	Select,
 	SelectContent,
 	SelectGroup,
+	SelectIcon,
 	SelectItem,
 	SelectLabel,
 	SelectSeparator,
 	SelectTrigger,
-	SelectValue,
+	SelectValue
 };

@@ -14,11 +14,6 @@ const navigationData = {
 			href: '/products',
 			externalLink: false
 		},
-		{
-			name: 'Resources',
-			href: '/',
-			externalLink: false
-		}
 	],
 	iconsMenu: [
 		{
