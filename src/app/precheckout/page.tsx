@@ -5,6 +5,7 @@ import styled from 'styled-components';
 
 import HormonesTransition from '@/components/precheckout/HormonesTransition';
 import NotAloneTransition from '@/components/precheckout/NotAloneTransition';
+import PreCheckoutNameCollection from '@/components/precheckout/PreCheckoutNameCollection';
 import PreCheckoutNav from '@/components/precheckout/PreCheckoutNav';
 import PreCheckoutProgressBar from '@/components/precheckout/PreCheckoutProgressBar';
 import QuestionGoals from '@/components/precheckout/QuestionGoals';
@@ -140,6 +141,13 @@ const PreCheckoutFlowPage = () => {
 					<QuestionGoals
 						viewState={ currentViewState(FormStep.QUESTION_GOALS, formStep) }
 						onSelectOption={ () => setFormStep(prev => prev + 1) }
+					/>
+				) }
+				{ currentViewState(FormStep.FORM_NAME_EMAIL, formStep) !==
+					ViewState.HIDDEN && (
+					<PreCheckoutNameCollection
+						viewState={ currentViewState(FormStep.FORM_NAME_EMAIL, formStep) }
+						onContinue={ () => setFormStep(prev => prev + 1) }
 					/>
 				) }
 			</StepContainer>
