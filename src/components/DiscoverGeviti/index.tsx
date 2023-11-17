@@ -91,7 +91,7 @@ const DiscoverGeviti: React.FC<DiscoverGevitiProps> = ({
 						'stroke-primary',
 						disabled ? 'opacity-25' : 'opacity-100',
 						disabled ? 'cursor-default' : 'cursor-pointer',
-						'w-4 h-4 sm:w-8 sm:h-8'
+						'w-4 h-4 sm:w-5 sm:h-5'
 					) }
 				/>
 			</div>

@@ -13,13 +13,16 @@ const comprehensive = howItWorksData.comprehensive;
 
 const Comprehensive: React.FC = () => {
 	const [selectedItem, setselectedItem] = useState(1);
+	const handleMouseEnter = (id:number) => {
+		setselectedItem(id);
+	};
 	const renderPopularPackage = () => {
 		return (
 			<div className='grid grid-cols-1 lg:grid-cols-3 w-full gap-4 lg:gap-5'>
 				{ comprehensive.list.map((items, id) => (
 					<div
 						key={ id }
-						onClick={ () => setselectedItem(id) }
+						onMouseEnter={ () => handleMouseEnter(id) }
 						className={ clsxm('flex flex-col justify-end p-6 lg:p-[30px]', selectedItem === id && 'bg-white rounded-lg') }>
 						<p className={ clsxm(' px-2 lg:px-[10px] py-[2px] rounded-full w-fit font-Poppins text-[11.353px] lg:text-sm font-medium leading-[16.219px] lg:leading-5 mb-5 lg:mb-6', selectedItem === id ? 'bg-blue-1/30 text-blue-4' : 'bg-primary/[0.06] text-primary') }>{ items.tag }</p>
 						<p className='font-Poppins text-base lg:text-xl font-medium leading-[22.706px] lg:leading-7 text-primary'>{ items.title }</p>

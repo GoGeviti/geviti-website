@@ -5,8 +5,8 @@ const navigationData = {
 	logoDark: '/images/logo/logo_dark.webp',
 	menu: [
 		{
-			name: 'Get Started',
-			href: '/get-started',
+			name: 'How it Works',
+			href: '/how-it-works',
 			externalLink: false
 		},
 		{

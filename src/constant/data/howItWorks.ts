@@ -39,7 +39,7 @@ const howItWorksData = {
 	},
 	product: [
 		{
-			image: '/images/howitworks/product-1.png',
+			image: '/images/howitworks/product-1.webp',
 			className: 'bg-product-1',
 			title: '<p>Testosterone <br/>Therapy</p>',
 			titleMobile: '<p>Testosterone Therapy</p>',
@@ -47,7 +47,7 @@ const howItWorksData = {
 			btn: 'Get Started'
 		},
 		{
-			image: '/images/howitworks/product-2.png',
+			image: '/images/howitworks/product-2.webp',
 			className: 'bg-product-2',
 			title: '<p>Menopausal <br/>Treatments</p>',
 			titleMobile: '<p>Menopausal Treatments</p>',
@@ -55,7 +55,7 @@ const howItWorksData = {
 			btn: 'Get Started'
 		},
 		{
-			image: '/images/howitworks/product-3.png',
+			image: '/images/howitworks/product-3.webp',
 			className: 'bg-product-3',
 			title: '<p>Anti-aging <br/>Care</p>',
 			titleMobile: '<p>Anti-aging Care</p>',
@@ -63,10 +63,10 @@ const howItWorksData = {
 			btn: 'Get Started'
 		},
 		{
-			image: '/images/howitworks/product-4.png',
+			image: '/images/howitworks/product-4.webp',
 			className: 'bg-product-4',
 			title: '<p>At-home Health <br/>Screening</p>',
-			titleMobile: '<p>At-home Health Screening</p>',
+			titleMobile: '<p>At-home Bloodwork</p>',
 			desc: 'Take charge of your health with Geviti\'s deep-dive bloodwork panels at-home.',
 			btn: 'Get Started'
 		},
@@ -109,7 +109,7 @@ const howItWorksData = {
 			},
 			{
 				tag: 'Most In-Depth',
-				title: 'Ultimate Men’s Panel',
+				title: 'Ultimate Panel',
 				price: '$499',
 				priceNote: '+ $99 monthly',
 				notes: '58 Biomarkers Tested',
