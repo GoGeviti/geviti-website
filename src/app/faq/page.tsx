@@ -8,7 +8,7 @@ import { Faq } from '@/payload/payload-types';
 import { getAllFaq, getAllPost } from '@/services/products';
 
 const FAQPage = async() => {
-	const allPost = await getAllPost(3);
+	const allPost = await getAllPost();
 	const faqList = await getAllFaq();
 
 	function transformFaq(postDataArray:Faq[]) {

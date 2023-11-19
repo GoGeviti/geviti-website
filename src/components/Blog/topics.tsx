@@ -5,6 +5,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@radix-ui/react-tabs';
 import Image from 'next/image';
 import Link from 'next/link';
 
+import clsxm from '@/helpers/clsxm';
 // import { blogData } from '@/constant/data';
 import { screens } from '@/helpers/style';
 import { useWindowDimensions } from '@/hooks';
@@ -54,21 +55,24 @@ const Topics: React.FC<{
 					defaultValue='tab-0'
 				>
 					<TabsList
-						className='shrink-0 flex border-b border-primary/10 md:space-x-[56px] max-md:justify-between'
+						className='shrink-0 flex border-b border-primary/10 gap-[56px] max-md:justify-between'
 						aria-label={ articleData.title }>
 						{ articleData.tab.map((items, id) => (
-							<TabsTrigger
+							<div
 								key={ id }
-								className='text-[15px] cursor-pointer pb-[9px] pt-[25px] leading-none text-primary select-none data-[state=active]:font-bold relative outline-none'
-								value={ `tab-${id}` }
-								onClick={ () => setSelectedItem(id) }
-							>
-								<p>{ items.name }</p>
-								{
-									selectedItem === id &&
+								className={ clsxm(id === 0 ? 'w-[18px]' : id === 1 ? 'w-[75px]' : id === 2 ? 'w-[46px]' : 'w-[59px]') }>
+								<TabsTrigger
+									className='text-[15px] cursor-pointer pb-[9px] pt-[25px] leading-none text-primary select-none data-[state=active]:font-bold relative outline-none'
+									value={ `tab-${id}` }
+									onClick={ () => setSelectedItem(id) }
+								>
+									<p>{ items.name }</p>
+									{
+										selectedItem === id &&
 									<div className='absolute h-[1px] rounded w-full bg-primary -bottom-0'/>
-								}
-							</TabsTrigger>
+									}
+								</TabsTrigger>
+							</div>
 						)) }
 					</TabsList>
 					<div>

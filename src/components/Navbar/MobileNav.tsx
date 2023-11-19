@@ -73,7 +73,7 @@ const MobileNav = (props: MobileNavProps) => {
         FAQ
 			</Link>
 			<Link
-				href='/blog'
+				href='/contact-us'
 				rel='noopener noreferrer'
 				className={ `text-white text-[25px] font-Poppins tracking-tight opacity-${
 					pathname === '/blog' ? '100' : '30'

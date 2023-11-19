@@ -81,13 +81,14 @@ const howItWorksData = {
 				tag: 'Most Affordable',
 				title: 'Essentials Panel',
 				price: '$299',
-				priceNote: '+ $99 monthly',
-				notes: '39 Biomarkers Tested',
+				priceNote: '+ $89 monthly',
+				biomarkers: '38+',
+				notes: 'Biomarkers Tested',
 				btn: 'Get Started',
 				list: [
 					'At-home blood draw',
 					'Access To Geviti Platform',
-					'Perscription Product Access',
+					'Prescription Product Access',
 					'Personally Assigned Health Coach',
 					'Custom Treatment Plan'
 				]
@@ -96,13 +97,14 @@ const howItWorksData = {
 				tag: 'Most Popular',
 				title: 'Comprehensive Panel',
 				price: '$469',
-				priceNote: '+ $99 monthly',
-				notes: '50 Biomarkers Tested',
+				priceNote: '+ $89 monthly',
+				biomarkers: '50+',
+				notes: 'Biomarkers Tested',
 				btn: 'Get Started',
 				list: [
 					'At-home blood draw',
 					'Access To Geviti Platform',
-					'Perscription Product Access',
+					'Prescription Product Access',
 					'Personally Assigned Health Coach',
 					'Custom Treatment Plan'
 				]
@@ -110,14 +112,15 @@ const howItWorksData = {
 			{
 				tag: 'Most In-Depth',
 				title: 'Ultimate Panel',
-				price: '$499',
-				priceNote: '+ $99 monthly',
-				notes: '58 Biomarkers Tested',
+				price: '$599',
+				priceNote: '+ $89 monthly',
+				biomarkers: '58+',
+				notes: 'Biomarkers Tested',
 				btn: 'Get Started',
 				list: [
 					'At-home blood draw',
 					'Access To Geviti Platform',
-					'Perscription Product Access',
+					'Prescription Product Access',
 					'Personally Assigned Health Coach',
 					'Custom Treatment Plan'
 				]
@@ -161,28 +164,28 @@ const howItWorksData = {
 		title: 'Frequently asked questions',
 		list: [
 			{
-				questions: 'What states are we in?',
+				questions: 'What states does Geviti currently support?',
 				answer: 'As of now, we are only in Arizona. We plan on being in each state by the end of 2024. Be sure to opt-in to our progress so we can notify you if we don’t currently support your state.'
 			},
 			{
-				questions: 'How much is the membership?',
-				answer: 'As of now, we are only in Arizona. We plan on being in each state by the end of 2024. Be sure to opt-in to our progress so we can notify you if we don’t currently support your state.'
+				questions: 'How much is a membership for Geviti?',
+				answer: 'A membership is $99 monthly for full-access to the Geviti platform. Your membership gives you direct access to your assigned health specialist and so much more.'
 			},
 			{
 				questions: 'What is your cancellation policy?',
-				answer: 'As of now, we are only in Arizona. We plan on being in each state by the end of 2024. Be sure to opt-in to our progress so we can notify you if we don’t currently support your state.'
+				answer: 'You can cancel whenever you\'d like. If for whatever reason Geviti is not a fit for you, you can cancel your membership at any given time.'
 			},
 			{
-				questions: 'Do I only need one Geviti membership?',
-				answer: 'As of now, we are only in Arizona. We plan on being in each state by the end of 2024. Be sure to opt-in to our progress so we can notify you if we don’t currently support your state.'
+				questions: 'Does the membership include cost of pharmaceuticals or supplements?',
+				answer: 'No! Access to the Geviti platform is $99 monthly. Any supplements or pharmaceuticals prescribed to you are an additional cost.'
 			},
 			{
 				questions: 'What does the membership include?',
-				answer: 'As of now, we are only in Arizona. We plan on being in each state by the end of 2024. Be sure to opt-in to our progress so we can notify you if we don’t currently support your state.'
+				answer: 'Members of Geviti are given direct access to an assigned clinician within the Geviti platform. Prescription products are made available based on the judgement of the assigned clinician based on the results of one\'s blood-draw and other health data. Moreover, 24/7 health metric tracking paired with innovative AI is available within our IOS app with smart-device integration capabilities. Our platform allows better data driven care, and so much more.'
 			},
 			{
 				questions: 'Does a blood panel guarantee treatment?',
-				answer: 'As of now, we are only in Arizona. We plan on being in each state by the end of 2024. Be sure to opt-in to our progress so we can notify you if we don’t currently support your state.'
+				answer: 'No. Getting your bloodwork done, establishing baseline biomarkers, and staying on top of your health is made accessible through the Geviti platform, but our bloodwork and membership plans do not guarantee specific therapies will be applicable or prescribed.'
 			},
 		]
 	}

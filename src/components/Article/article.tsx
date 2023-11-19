@@ -33,6 +33,7 @@ const Articles: React.FC<ArticlesProps> = ({ list, title, btn }) => {
 					<p className='text-primary font-Poppins text-4xl -tracking-[1.44px] text-center'>{ title }</p>
 					<div
 						className='btn-cta-landing group btn-primary px-9 md:block hidden'
+						onClick={ () => setShowAllTabs(!showAllTabs) }
 					>
 						<span className='text-btn-cta-landing'>
 							{ btn }
@@ -40,7 +41,11 @@ const Articles: React.FC<ArticlesProps> = ({ list, title, btn }) => {
 					</div>
 				</div>
 				<div className='relative'>
-					{ !isMobile ? renderItem(list) : showAllTabs ? renderItem(list) : renderItem(list?.slice(0, 3)) }
+					{
+						isMobile ?
+							showAllTabs ? renderItem(list) : renderItem(list?.slice(0, 3)) :
+							showAllTabs ? renderItem(list) : renderItem(list?.slice(0, 4))
+					}
 					<div
 						className='btn-cta-landing group btn-primary px-9 md:hidden w-fit absolute -bottom-5 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20'
 						onClick={ () => setShowAllTabs(!showAllTabs) }>

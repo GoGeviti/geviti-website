@@ -19,7 +19,7 @@ const Product:  React.FC = () => {
 		<div className='overflow-hidden'>
 			<div className='h-full w-full lg:rounded-[19px] relative overflow-hidden mt-[70px] lg:mt-[143px]'>
 				<div className='container-center mx-auto'>
-					<div className='grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-4 justify-center items-center gap-2 lg:gap-5 xl:h-[402px]'>
+					<div className='grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-4 place-items-center place-content-center gap-2 xl:gap-5 xl:h-[402px]'>
 						{ product.map((items, id) => {
 							return (
 								(

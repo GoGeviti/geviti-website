@@ -1,11 +1,11 @@
 'use client';
 
 import React, { useState } from 'react';
-import Link from 'next/link';
 
 import { howItWorksData } from '@/constant/data';
 import clsxm from '@/helpers/clsxm';
 
+import CustomLink from '../CustomLink';
 import { CheckBlue2, ChevronRight, HelpIcons } from '../Icons';
 import WrapperAnimation from '../WrapperAnimation';
 
@@ -26,10 +26,14 @@ const Comprehensive: React.FC = () => {
 						className={ clsxm('flex flex-col justify-end p-6 lg:p-[30px]', selectedItem === id && 'bg-white rounded-lg') }>
 						<p className={ clsxm(' px-2 lg:px-[10px] py-[2px] rounded-full w-fit font-Poppins text-[11.353px] lg:text-sm font-medium leading-[16.219px] lg:leading-5 mb-5 lg:mb-6', selectedItem === id ? 'bg-blue-1/30 text-blue-4' : 'bg-primary/[0.06] text-primary') }>{ items.tag }</p>
 						<p className='font-Poppins text-base lg:text-xl font-medium leading-[22.706px] lg:leading-7 text-primary'>{ items.title }</p>
-						<p className='font-Poppins text-[38.104px] lg:text-5xl font-medium text-primary leading-[127.692%] lg:leading-[125%] -tracking-[0.762px] lg:-tracking-[0.96px;]'>{ items.price }</p>
+					
+						<div className='flex justify-between items-end'>
+							<p className='font-Poppins text-[38.104px] lg:text-5xl font-medium text-primary leading-[127.692%] lg:leading-[125%] -tracking-[0.762px] lg:-tracking-[0.96px;]'>{ items.price }</p>
+							<p className='font-Poppins hidden md:block text-4xl font-semibold text-[#99D4FF] lg:-tracking-[1.44px]'>{ items.biomarkers }</p>
+						</div>
 						<div className='flex justify-between items-center'>
 							<p className='text-grey-primary text-sm leading-[19.462px] lg:leading-6 font-medium'>{ items.priceNote }</p>
-							<p className='text-grey-primary text-xs lg:text-[13px] -tracking-[0.377px] lg:-tracking-[0.464px] font-Poppins font-medium lg:font-semibold'>{ items.notes } </p>
+							<p className='flex items-center text-grey-primary gap-[6px] text-xs lg:text-[13px] -tracking-[0.377px] lg:-tracking-[0.464px] font-Poppins font-medium lg:font-semibold'>	<HelpIcons className='md:hidden w-[10.542px] h-[10.542px]'/>{ items.notes } </p>
 						</div>
 						<div className='flex-col gap-y-2 lg:gap-y-[11px] flex my-[18px] lg:my-[23px]'>
 							{ items.list?.map((component, componentIdx) => (
@@ -44,9 +48,8 @@ const Comprehensive: React.FC = () => {
 								</div>
 							)) }
 						</div>
-						<Link
-							prefetch={ false }
-							href={ `/orders?selectedProduct=${ id + 1 }` }
+						<CustomLink
+							href='/get-started'
 							className='btn-cta-landing group btn-primary w-full text-center flex items-center justify-center'
 							aria-label={ items.btn }
 						>
@@ -54,7 +57,7 @@ const Comprehensive: React.FC = () => {
 								{ items.btn }
 							</span>
 							<ChevronRight className='text-white'/>
-						</Link>
+						</CustomLink>
 					</div>
 				)) }
 			</div>
@@ -86,10 +89,15 @@ const Comprehensive: React.FC = () => {
 				>
 					{ renderPopularPackage() }
 				</WrapperAnimation>
-				<div className='lg:flex justify-center items-center space-x-[10px] hidden'>
+				<CustomLink
+					href='/get-started'
+					className='lg:flex justify-center items-center space-x-[10px] hidden'
+					aria-label='Compare Tested Biomarkers'
+				>
 					<p className='text-primary font-Poppins text-sm font-semibold leading-6'>Compare Tested Biomarkers</p>
 					<ChevronRight/>
-				</div>
+				</CustomLink>
+				
 			</div>
 		</>
 	);

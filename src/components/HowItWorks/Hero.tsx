@@ -82,14 +82,14 @@ const Hero: React.FC = () => {
 										<div className=''>
 											<div className={ clsxm(
 												'font-Poppins bg-white rounded-full p-1 w-6 h-6 font-medium text-primary text-[11px] flex justify-center items-center mb-5',
-												featureIdx + 1 !== heroData.mainKeys.length && 'lg:before:absolute lg:before:bg-[#C7C7C7] lg:before:h-[1px] lg:before:w-[180px] lg:before:top-3 lg:before:left-[100px] xl:before:left-[82px]', hoveredItem === featureIdx && 'lg:w-7 lg:h-7 lg:text-sm'
+												featureIdx + 1 !== heroData.mainKeys.length && 'lg:before:absolute lg:before:bg-[#C7C7C7] lg:before:h-[1px] lg:before:w-[180px] lg:before:top-3 lg:before:left-[100px] xl:before:left-[82px]',
 											) }
 											>{ featureIdx + 1 }</div>
 										</div>
 										<div
 											onMouseEnter={ () => handleMouseEnter(featureIdx) }
 											onMouseLeave={ handleMouseLeave }
-											className={ clsxm('flex flex-col text-center items-center gap-y-1 lg:gap-y-5px', hoveredItem === featureIdx ? 'lg:-translate-y-3' : 'lg:translate-y-0') }>
+											className={ clsxm('flex flex-col text-center items-center gap-y-1 lg:gap-y-5px', hoveredItem === featureIdx ? 'lg:-translate-y-1' : 'lg:translate-y-0') }>
 											{ feature.image && (
 												<div className='relative overflow-hidden w-[22px] h-[22px] sm:w-[26px] sm:h-[26px]'>
 													<feature.image className='w-[22px] h-[22px] sm:w-[26px] sm:h-[26px]'/>

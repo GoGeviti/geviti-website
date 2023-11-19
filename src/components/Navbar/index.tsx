@@ -1,9 +1,10 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 
+import ResourcesDropdown from '@/components/Navbar/ResourcesDropdown';
 import { navbarData } from '@/constant/data';
 import clsxm from '@/helpers/clsxm';
 import { screens } from '@/helpers/style';
@@ -13,7 +14,6 @@ import CustomLink from '../CustomLink';
 import { Bars3Icon } from '../Icons';
 
 import MobileNav from './MobileNav';
-import ResourcesDropdown from '@/components/Navbar/ResourcesDropdown';
 
 type NavbarProps = {
 	className?: string;
@@ -40,24 +40,41 @@ const Navbar: React.FC<NavbarProps> = ({
 	isWithnavbarData = true,
 	withBgWhite = false
 }) => {
-	// const pathname = usePathname();
+	const pathname = usePathname();
 	const router = useRouter();
 
 	const [openSheet, setOpenSheet] = useState<boolean>(false);
+	const [selectedItem, setSelectedItem] = useState<number>(5);
+
+	useEffect(() => {
+		const currentIndex = navbarData.menu.findIndex(link => link.href === pathname);
+		if (currentIndex !== -1) {
+			setSelectedItem(currentIndex);
+		} else {
+			setSelectedItem(4);
+		}
+
+	}, [pathname]);
+
+	const handleSelectedItem = (id:number) => {
+		setSelectedItem(id);
+	};
 
 	const renderMenuList = () => {
 		return (
 			<>
-				{ navbarData.menu.map(link => {
+				{ navbarData.menu.map((link, id) => {
 					return (
 						<CustomLink
 							key={ link.name }
+							onClick={ () => handleSelectedItem(id) }
 							href={ link.href }
 							externalLink={ link.externalLink }
 							className={ clsxm(
-								'rounded-md px-3 py-2 text-sm font-Poppins font-medium',
+								'lg:w-[120px] rounded-md px-3 py-2 text-sm font-Poppins hover:font-medium',
 								theme === 'dark' ? 'text-grey-secondary hover:text-white' : 'text-primary',
-								isWithnavbarData ? 'block' : 'hidden'
+								isWithnavbarData ? 'block' : 'hidden',
+								selectedItem === id ? '!font-medium' : 'font-semibold'
 							) }
 							aria-label={ link.name }
 						>
@@ -163,12 +180,24 @@ const Navbar: React.FC<NavbarProps> = ({
 							</div>
 						</div>
 						<div className='hidden lg:ml-6 lg:block'>
-							<div className='flex items-center'>
+							<div className='flex items-center space-x-25px'>
 								<div className='flex items-center gap-x-25px'>
 									{ renderIconMenuList() }
 								</div>
-
-								<div className='relative ml-8'>
+								<CustomLink
+									href='/'
+									onClick={ () => handleSelectedItem(4) }
+									className={ clsxm(
+										'lg:w-[120px] rounded-md px-3 py-2 text-sm font-Poppins hover:font-medium md:block hidden',
+										theme === 'dark' ? 'text-grey-secondary hover:text-white' : 'text-primary',
+										isWithnavbarData ? 'block' : 'hidden',
+										selectedItem === 4 ? 'font-medium' : 'font-semibold'
+									) }
+									aria-label='Dashboard'
+								>
+									Dashboard
+								</CustomLink>
+								<div className='relative'>
 									<div>{ renderActionMenuList() }</div>
 								</div>
 							</div>
