@@ -13,7 +13,7 @@ const faq: React.FC = () => {
 	return (
 		<div className='container-center mx-auto w-full overflow-hidden mt-[70px] md:mt-[143px]'>
 			<div className='w-full flex flex-col md:flex-row'>
-				<div className='flex flex-col text-center md:text-start md:w-[40%] space-y-4 px-10'>
+				<div className='flex flex-col text-center md:text-start md:w-[45%] space-y-4 px-10'>
 					<p className='text-grey-primary font-Poppins text-[10px] md:text-sm font-semibold leading-[15px] md:leading-6 tracking-[1.1px] md:tracking-[1.54px] uppercase'>{ howItWorks.preTitle }</p>
 					<p className='text-primary font-Poppins text-[27.941px] md:text-4xl -tracking-[1.118px] md:-tracking-[1.44px] leading-[32.3px] md:leading-[45px]'>{ howItWorks.title }</p>
 				</div>

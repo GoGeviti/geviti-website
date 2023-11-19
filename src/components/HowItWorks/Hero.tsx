@@ -1,5 +1,5 @@
 'use client';
-import React from 'react';
+import React, { useState } from 'react';
 import { BigPlayButton, Player } from 'video-react';
 
 import { howItWorksData } from '@/constant/data';
@@ -8,19 +8,27 @@ import clsxm from '@/helpers/clsxm';
 import CustomLink from '../CustomLink';
 import { ChevronRight } from '../Icons';
 import Navbar from '../Navbar';
-import WrapperAnimation from '../WrapperAnimation';
 
 import 'video-react/dist/video-react.css';
 
 const heroData = howItWorksData.hero;
 
 const Hero: React.FC = () => {
+	const [hoveredItem, setHoveredItem] = useState(5);
+
+	const handleMouseEnter = (id:number) => {
+		setHoveredItem(id);
+	};
+
+	const handleMouseLeave = () => {
+		setHoveredItem(5);
+	};
 	return (
 		<div className='lg:px-3 lg:py-15px overflow-hidden'>
 			<Navbar theme='light'/>
 			<div className=' w-full h-full lg:rounded-[19px] pt-[96px] lg:pt-[180px] container-center relative overflow-hidden'>
 				<div className='relative w-full mx-auto lg:mx-0 flex justify-center'>
-					<div className='sm:max-w-4xl text-center flex flex-col items-center'>
+					<div className='text-center flex flex-col items-center w-full'>
 						<h2 className='text-grey-primary font-Poppins font-semibold text-[10px] lg:text-sm eading-6 uppercase tracking-[1.1px] lg:tracking-[1.54px]'>
 							{ heroData.preTitle }
 						</h2>
@@ -61,41 +69,45 @@ const Hero: React.FC = () => {
 								}) }
 							</div>
 						</div>
-						<div className='container-center lg:py-[95px] h-full flex items-end max-lg:order-1'>
+						<div className='sm:max-w-4xl container-center lg:py-[95px] h-full flex items-end max-lg:order-1'>
 							<div
 								id='main-keys'
 								className='grid grid-cols-2 lg:grid-cols-4 gap-11 lg:gap-[54px] w-full'
 							>
 								{ heroData.mainKeys.map((feature, featureIdx) => (
-									<WrapperAnimation
+									<div
 										key={ feature.text }
-										data-aos='zoom-in-up'
-										data-aos-delay={ `${ featureIdx * 100 }` }
-										data-aos-anchor='#main-keys'
-										className='flex flex-col text-center items-center gap-y-1 lg:gap-y-5px relative'
+										className='flex flex-col text-center items-center gap-y-1 lg:gap-y-5px relative lg:h-[130px]'
 									>
 										<div className=''>
 											<div className={ clsxm(
 												'font-Poppins bg-white rounded-full p-1 w-6 h-6 font-medium text-primary text-[11px] flex justify-center items-center mb-5',
-												featureIdx + 1 !== heroData.mainKeys.length && 'lg:before:absolute lg:before:bg-[#C7C7C7] lg:before:h-[1px] lg:before:w-[180px] lg:before:top-3 lg:before:left-[100px] xl:before:left-[82px] '
+												featureIdx + 1 !== heroData.mainKeys.length && 'lg:before:absolute lg:before:bg-[#C7C7C7] lg:before:h-[1px] lg:before:w-[180px] lg:before:top-3 lg:before:left-[100px] xl:before:left-[82px]',
 											) }
 											>{ featureIdx + 1 }</div>
 										</div>
-										{ feature.image && (
-											<div className='relative overflow-hidden w-[22px] h-[22px] sm:w-[26px] sm:h-[26px]'>
-												<feature.image className='w-[22px] h-[22px] sm:w-[26px] sm:h-[26px]'/>
-											</div>
-										) }
-										<div className='font-Poppins font-medium leading-[129.403%] text-primary text-sm lg:text-base'><span dangerouslySetInnerHTML={ { __html: feature.text } } /></div>
-									</WrapperAnimation>
+										<div
+											onMouseEnter={ () => handleMouseEnter(featureIdx) }
+											onMouseLeave={ handleMouseLeave }
+											className={ clsxm('flex flex-col text-center items-center gap-y-1 lg:gap-y-5px', hoveredItem === featureIdx ? 'lg:-translate-y-1' : 'lg:translate-y-0') }>
+											{ feature.image && (
+												<div className='relative overflow-hidden w-[22px] h-[22px] sm:w-[26px] sm:h-[26px]'>
+													<feature.image className='w-[22px] h-[22px] sm:w-[26px] sm:h-[26px]'/>
+												</div>
+											) }
+											<div className='font-Poppins font-medium leading-[129.403%] text-primary text-sm lg:text-base'><span dangerouslySetInnerHTML={ { __html: feature.text } } /></div>
+										</div>
+									</div>
 								)) }
 							</div>
 						</div>
-						<div className='w-full inset-0 object-cover z-10 rounded-lg max-lg:order-0 max-lg:my-[60px'>
-							<Player>
-								<source src='/videos/dummy.mp4' />
-								<BigPlayButton position='center' />
-							</Player>
+						<div className='w-full inset-0 object-cover max-lg:order-0 max-lg:my-[60px] xl:px-[100px]'>
+							<div className='w-full rounded-[10px] overflow-hidden'>
+								<Player>
+									<source src='/videos/dummy.mp4' />
+									<BigPlayButton position='center' />
+								</Player>
+							</div>
 						</div>
 					
 					</div>

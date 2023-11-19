@@ -97,7 +97,7 @@ const Form: React.FC<FormProps> = ({
 	return (
 		<form
 			onSubmit={ e => handleSubmit(e) }
-			className='lg:px-3 lg:py-15px overflow-hidden'>
+			className='lg:px-3 overflow-hidden'>
 			<div className='w-full h-full lg:rounded-[19px] pt-[30px] lg:pt-[70px] overflow-hidden'>
 				<div className='max-md:container-center text-center sm:mx-auto flex flex-col gap-2 !max-w-sm md:!max-w-[360px]'>
 					{ renderInput('First Name*', 'John Doe', firstName, setFirstName, 'text', true) }
@@ -105,7 +105,7 @@ const Form: React.FC<FormProps> = ({
 					{
 						isPartner &&
 						<div>
-							{ renderInput('Phone*', 'Enter Phone Number', phone, setPhone, 'number', true) }
+							{ renderInput('Phone*', 'Enter Phone Number', phone, setPhone, 'tel', true) }
 						</div>
 					}
 					<div className='grid grid-cols-2 gap-2'>
@@ -155,7 +155,6 @@ const Form: React.FC<FormProps> = ({
 													) }
 												</div>
 											)) }
-											<SelectSeparator />
 										</SelectGroup>
 									</SelectContent>
 								</Select>

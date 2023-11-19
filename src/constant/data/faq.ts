@@ -166,7 +166,7 @@ const faqData = {
 		]
 	},
 	article: {
-		title: 'Related Articles',
+		title: 'Check Out The Blog',
 		btn: 'View All',
 		list: [
 			{ pretitle: 'Nutrition',

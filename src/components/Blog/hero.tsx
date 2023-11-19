@@ -19,7 +19,7 @@ const Hero: React.FC<HeroProps> = ({ hero, classname }) => {
 			<Navbar
 				withBgWhite
 				className='max-md:!pt-0'/>
-			<div className={ clsxm('bg-primary max-md:mt-[60px] h-[372px] lg:h-[calc(100vh-30px)] w-full lg:rounded-[19px] relative pt-11px lg:pt-5 ', classname) }>
+			<div className={ clsxm('bg-primary max-md:mt-[60px] h-[372px] lg:h-[calc(100vh-30px)] max-h-[750px] w-full lg:rounded-[19px] relative pt-11px lg:pt-5 ', classname) }>
 				<div className='absolute inset-0 w-full h-full z-0'>
 					{ hero.image  && (
 						<div className='relative overflow-hidden w-full h-full lg:rounded-[19px]'>

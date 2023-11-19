@@ -12,7 +12,7 @@ interface GroupedFaq {
   listQna: Faq[];
 }
 const FAQPage = async() => {
-	const allPost = await getAllPost(3);
+	const allPost = await getAllPost();
 	const faqList = await getAllFaq();
 
 	const groupFaqsByCategory = (faqs: Faq[]): GroupedFaq[] =>  {

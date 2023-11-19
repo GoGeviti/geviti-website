@@ -5,6 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 import { blogData } from '@/constant/data';
+import clsxm from '@/helpers/clsxm';
 import { Post } from '@/payload/payload-types';
 
 import { ArrowEmail } from '../Icons';
@@ -39,18 +40,19 @@ const Articles = ({ post }:{post:Post[]}) => {
 							>
 								<Image
 									src={ items.hero.media.url ?? '' }
-									width={ 270 }
-									height={ 500 }
+									width={ 1000 }
+									height={ 1000 }
 									className={ `object-cover transition-all ease-in-out duration-300 !h-[500px] ${isHovered ? 'w-[500px] ' : 'w-[320px]'} rounded-[20px]` }
 									alt={ items.title }
 								/>
 								<div className='absolute z-10 left-0 bottom-0 flex flex-col text-start px-[30px] py-[26px]'>
 									<p className={ `text-[#CDDCE2] font-BRSonoma ${isHovered ? 'text-base' : 'text-sm'}` }>{ items.hero.categories?.title }</p>
-									<p className={ `text-white font-Poppins  ${isHovered ? 'text-[27px] -tracking-[1.08px]' : 'text-[22px] -tracking-[0.88px]'}` } >{ items.title }</p>
+									<p className={ `text-white font-Poppins  ${isHovered ? 'text-[22px] lg:text-[27px] -tracking-[1.08px]' : 'text-lg lg:text-[22px] -tracking-[0.88px]'}` } >{ items.title }</p>
 								</div>
 								<Link href={ `/blog/${items.slug}` }>
 									<ArrowEmail className='absolute top-0 right-0 w-[45px] h-[45px] m-5'/>
 								</Link>
+								<div className='z-0 bottom-0 absolute bg-gradient-to-t from-black/70 via-black/30 to-black/0 h-full w-full rounded-[20px]'/>
 							</div>
 						);
 					}) }

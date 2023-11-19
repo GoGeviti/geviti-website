@@ -13,7 +13,7 @@ type HeroProps = {
 
 const Hero: React.FC<HeroProps> = ({ hero, isPartner = false }) => {
 	return (
-		<div className='lg:px-3 lg:py-15px overflow-hidden'>
+		<div className='lg:px-3 lg:pt-15px overflow-hidden'>
 			<Navbar
 				theme={ isPartner ? 'light' : 'dark' }
 				withBgWhite

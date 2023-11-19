@@ -5,6 +5,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@radix-ui/react-tabs';
 import Image from 'next/image';
 import Link from 'next/link';
 
+import clsxm from '@/helpers/clsxm';
 // import { blogData } from '@/constant/data';
 import { screens } from '@/helpers/style';
 import { useWindowDimensions } from '@/hooks';
@@ -32,6 +33,7 @@ const Topics: React.FC<{
 	btnRight
 }) => {
 	const [showAllTabs, setShowAllTabs] = useState(false);
+	const [selectedItem, setSelectedItem] = useState(0);
 	const windowDimensions = useWindowDimensions();
 	const isMobile = windowDimensions.width < screens.md;
 
@@ -42,9 +44,10 @@ const Topics: React.FC<{
 					<p className='text-primary font-Poppins text-4xl -tracking-[1.44px] text-center'>{ title }</p>
 					<div
 						className='btn-cta-landing group btn-primary px-9 md:block hidden'
+						onClick={ () => setShowAllTabs(!showAllTabs) }
 					>
 						<span className='text-btn-cta-landing'>
-							{ btnRight }
+							{ showAllTabs ? 'View Less' : btnRight }
 						</span>
 					</div>
 				</div>
@@ -56,13 +59,21 @@ const Topics: React.FC<{
 						className='shrink-0 flex border-b border-primary/10 md:space-x-[56px] max-md:justify-between'
 						aria-label={ title }>
 						{ articleData.map((items, id) => (
-							<TabsTrigger
+							<div
 								key={ id }
-								className='text-[15px] cursor-pointer pb-[9px] pt-[25px] leading-none text-primary select-none hover:font-bold data-[state=active]:font-bold data-[state=active]:focus:relative data-[state=active]:focus:border-b data-[state=active]:focus:border-primary outline-none'
-								value={ `tab-${id}` }
-							>
-								{ items.name }
-							</TabsTrigger>
+								className={ clsxm(id === 0 ? 'w-[18px]' : id === 1 ? 'w-[75px]' : id === 2 ? 'w-[46px]' : 'w-[59px]') }>
+								<TabsTrigger
+									className='text-[15px] cursor-pointer pb-[9px] pt-[25px] leading-none text-primary select-none data-[state=active]:font-bold relative outline-none'
+									value={ `tab-${id}` }
+									onClick={ () => setSelectedItem(id) }
+								>
+									<p>{ items.name }</p>
+									{
+										selectedItem === id &&
+									<div className='absolute h-[1px] rounded w-full bg-primary -bottom-0'/>
+									}
+								</TabsTrigger>
+							</div>
 						)) }
 					</TabsList>
 					<div>
@@ -72,8 +83,11 @@ const Topics: React.FC<{
 									key={ id }
 									value={ `tab-${id}` }
 								>
-									
-									{ !isMobile ? renderItem(it.list) : showAllTabs ? renderItem(it.list) : renderItem(it.list.slice(0, 3)) }
+									{
+										isMobile ?
+											showAllTabs ? renderItem(it.list) : renderItem(it.list.slice(0, 3)) :
+											showAllTabs ? renderItem(it.list) : renderItem(it.list.slice(0, 4))
+									}
 									{
 										it.list.length > 3 &&
 										<div
@@ -85,7 +99,7 @@ const Topics: React.FC<{
 										</div>
 									}
 									{
-										!showAllTabs &&
+										it.list.length > 3 && isMobile && !showAllTabs &&
 										<div className='bg-gradient-to-t from-grey-background/90 to-grey-background/0 absolute -bottom-5 z-10 w-full h-[131px]' />
 									}
 								</TabsContent>

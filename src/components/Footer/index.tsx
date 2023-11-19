@@ -64,7 +64,7 @@ const Footer: React.FC<FooterProps> = ({ landingPage }) => {
 	};
 
 	return (
-		<div className='pt-[45px] pb-[42px] lg:pt-[92px] lg:pb-[109px]'>
+		<div className='pt-[45px] pb-[42px] lg:pt-[70px] lg:pb-[109px]'>
 			<div className='container-center'>
 				<div className='lg:grid lg:grid-cols-5'>
 					<div className='flex flex-col lg:col-span-3'>

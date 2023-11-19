@@ -64,7 +64,7 @@ const ResourcesDropdown = () => {
 			</div>
 			<OtherLink href='/blog'>Blog</OtherLink>
 			<OtherLink href='/faq'>FAQ</OtherLink>
-			<OtherLink href='/help-center'>Help Center</OtherLink>
+			<OtherLink href='/contact-us'>Help Center</OtherLink>
 		</Container>
 	);
 };

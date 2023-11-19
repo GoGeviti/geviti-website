@@ -41,9 +41,13 @@ const Articles: React.FC<ArticlesProps> = ({ list, title, btn }) => {
 					</button>
 				</div>
 				<div className='relative'>
-					{ !isMobile ? renderItem(list) : showAllTabs ? renderItem(list) : renderItem(list?.slice(0, 3)) }
+					{
+						isMobile ?
+							showAllTabs ? renderItem(list) : renderItem(list?.slice(0, 3)) :
+							showAllTabs ? renderItem(list) : renderItem(list?.slice(0, 4))
+					}
 					<button
-						className='btn-cta-landing cursor-pointer group btn-primary px-9 md:hidden w-fit absolute -bottom-5 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20'
+						className='btn-cta-landing group btn-primary px-9 md:hidden w-fit absolute -bottom-5 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20'
 						onClick={ () => setShowAllTabs(!showAllTabs) }>
 						<span className='text-btn-cta-landing'>
 							{ showAllTabs ? 'View Less' : btn }
@@ -61,7 +65,7 @@ const Articles: React.FC<ArticlesProps> = ({ list, title, btn }) => {
 
 const renderItem = (data? : Post[]) => {
 	return (
-		<div className={ clsxm('w-full grid grid-cols-1 gap-[10px] md:gap-[30px] pt-[30px]', data?.length === 3 ? 'md:grid-cols-3' : 'md:grid-cols-4') }>
+		<div className={ clsxm('w-full grid grid-cols-1 gap-[10px] md:gap-[30px] pt-[30px] md:grid-cols-4') }>
 			{ data?.map((items, id) => {
 				return (
 					<Link

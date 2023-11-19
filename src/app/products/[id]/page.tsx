@@ -28,18 +28,20 @@ const ProductDetailPage: NextPage<ProductDetailPageProps> = async({
 
 	return (
 		<>
-			<div className='overflow-hidden bg-[#CFD8DB]'>
+			<div className=' max-lg:overflow-hidden bg-[#CFD8DB]'>
 				<Navbar theme='light' />
-				<div className='pt-24 lg:pt-[172px] pb-4 sm:pb-[95px] container-center flex flex-col max-lg:items-center'>
+				<div className='pt-24 lg:pt-[172px] pb-4 sm:pb-[95px] container-center  max-lg:flex  max-lg:flex-col max-lg:items-center'>
 					<Breadcrumb product={ product } />
-
-					<div className='flex max-lg:flex-col items-start justify-between gap-10 lg:pt-12 w-full'>
-						<div className='w-full lg:w-1/2 sticky top-[10vh] max-lg:pb-1'>
-							<ProductsComponent.SliderProducts
-								images={ product.images.map(e => e.image.url ?? '') ?? [] }
-							/>
+					<div className='grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-2 lg:pt-12'>
+						<div>
+							<div className='w-full sticky top-10 max-lg:pb-1 overflow-y-auto overflow-x-hidden no-scrollbar'>
+								<ProductsComponent.SliderProducts
+									images={ product.images.map(e => e.image.url ?? '') ?? [] }
+								/>
+							</div>
 						</div>
-						<div className='flex flex-col gap-9 w-full lg:w-1/2 lg:max-w-md lg:mx-auto'>
+
+						<div className='flex flex-col gap-9 w-full lg:max-w-md lg:mx-auto'>
 							<div className='flex flex-col lg:gap-2 relative'>
 								<p className='uppercase text-grey-primary font-BRSonoma font-semibold text-[14px] sm:text-sm leading-[21px] sm:leading-6 tracking-0.11em'>
 									{ product.category.title }

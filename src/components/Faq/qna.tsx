@@ -12,7 +12,7 @@ import {
 	AccordionItem,
 	AccordionTrigger,
 } from '../Accordion';
-import { ChevronDown, ChevronRight, SearchIcon } from '../Icons';
+import { ChevronDown, ChevronRight, SearchIcon3 } from '../Icons';
 
 // const qnaData = faqData.faq;
 // interface QnaProps {
@@ -92,8 +92,8 @@ const QnA: React.FC<QnAProps> = ({ qnaData, title, btnRight }) => {
 					<p className='text-primary font-Poppins text-4xl -tracking-[1.44px] text-center'>
 						{ title }
 					</p>
-					<div className='flex items-center gap-[5px] md:gap-[10px] bg-white border border-neutral-300 rounded-[76px] md:w-[308px] px-[25px] py-[5px] w-full shadow-md'>
-						<SearchIcon className='w-4 h-4 text-[#697175]' />
+					<div className='flex items-center gap-[2px] bg-white rounded-[76px] md:w-[308px] px-[15px] py-[5px] w-full shadow-md'>
+						<SearchIcon3 className='w-4 h-4 text-[#697175]' />
 						<input
 							type='text'
 							placeholder={ btnRight }

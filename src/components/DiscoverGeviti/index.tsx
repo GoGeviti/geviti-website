@@ -91,7 +91,7 @@ const DiscoverGeviti: React.FC<DiscoverGevitiProps> = ({
 						'stroke-primary',
 						disabled ? 'opacity-25' : 'opacity-100',
 						disabled ? 'cursor-default' : 'cursor-pointer',
-						'w-4 h-4 sm:w-8 sm:h-8'
+						'w-4 h-4 sm:w-5 sm:h-5'
 					) }
 				/>
 			</div>
@@ -144,11 +144,11 @@ const DiscoverGeviti: React.FC<DiscoverGevitiProps> = ({
 							</p>
 							<div className='flex flex-1 flex-col justify-end font-BRSonoma text-primary pt-[17px]'>
 								<div className='flex items-center gap-9px'>
-									{ product.price && (
+									{ /* { product.price && (
 										<p className='text-xs lg:text-sm leading-[130%] lg:leading-[131%]'>
                       ${ product.price }
 										</p>
-									) }
+									) } */ }
 									{ product.price !== undefined && (
 										<div className='text-xs leading-[158%] bg-blue-1 rounded-full py-1 px-1.5 flex items-center gap-1 flex-shrink-0'>
 											<svg
