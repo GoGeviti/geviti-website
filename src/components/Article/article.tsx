@@ -31,14 +31,14 @@ const Articles: React.FC<ArticlesProps> = ({ list, title, btn }) => {
 			<div className='w-full pt-[70px] '>
 				<div className='flex justify-center md:justify-between items-center'>
 					<p className='text-primary font-Poppins text-4xl -tracking-[1.44px] text-center'>{ title }</p>
-					<div
-						className='btn-cta-landing group btn-primary px-9 md:block hidden'
+					<button
 						onClick={ () => setShowAllTabs(!showAllTabs) }
+						className='btn-cta-landing group btn-primary px-9 md:block hidden'
 					>
 						<span className='text-btn-cta-landing'>
-							{ btn }
+							{ showAllTabs ? 'View Less' : btn }
 						</span>
-					</div>
+					</button>
 				</div>
 				<div className='relative'>
 					{
@@ -46,13 +46,13 @@ const Articles: React.FC<ArticlesProps> = ({ list, title, btn }) => {
 							showAllTabs ? renderItem(list) : renderItem(list?.slice(0, 3)) :
 							showAllTabs ? renderItem(list) : renderItem(list?.slice(0, 4))
 					}
-					<div
+					<button
 						className='btn-cta-landing group btn-primary px-9 md:hidden w-fit absolute -bottom-5 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20'
 						onClick={ () => setShowAllTabs(!showAllTabs) }>
 						<span className='text-btn-cta-landing'>
 							{ showAllTabs ? 'View Less' : btn }
 						</span>
-					</div>
+					</button>
 					{
 						!showAllTabs &&
 						<div className='md:hidden bg-gradient-to-t from-grey-background/90 to-grey-background/0 absolute -bottom-5 z-10 w-full h-[131px]' />
@@ -69,7 +69,7 @@ const renderItem = (data? : Post[]) => {
 			{ data?.map((items, id) => {
 				return (
 					<Link
-						href={ `/blog/${ items.id }` }
+						href={ `/blog/${ items.slug }` }
 						key={ id }
 						className='relative bg-white overflow-hidden rounded-3xl flex flex-row md:flex-col max-md:items-center max-md:p-5 max-md:space-x-[9px]'
 					>
