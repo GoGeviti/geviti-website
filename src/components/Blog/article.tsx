@@ -5,7 +5,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 import { blogData } from '@/constant/data';
-import clsxm from '@/helpers/clsxm';
 import { Post } from '@/payload/payload-types';
 
 import { ArrowEmail } from '../Icons';
