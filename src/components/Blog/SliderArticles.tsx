@@ -80,6 +80,7 @@ const SliderArticles: React.FC<SliderArticlesProps> = ({ data }) => {
 									<p className='text-white font-Poppins text-[22px] -tracking-[0.88px'>{ items.title }</p>
 								</div>
 								<ArrowEmail className='absolute top-0 right-0 w-[45px] h-[45px] m-5'/>
+								<div className='z-0 bottom-0 absolute bg-gradient-to-t from-black/70 via-black/30 to-black/0 h-full w-full rounded-[20px]'/>
 							</div>
 						);
 					}) }

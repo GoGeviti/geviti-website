@@ -13,7 +13,7 @@ const CompletelyCustom: React.FC = () => {
 
 	return (
 		<div className='pt-[50px] lg:pt-[70px] md:container-center md:mx-auto w-full overflow-hidden'>
-			<div className='px-5 lg:px-3 h-full w-full bg-primary lg:rounded-[19px] relative'>
+			<div className='px-5 lg:px-3 h-full w-full bg-gradient-t from-black to-black-[0.75] bg-primary shadow-[#A7ACBC0D] lg:rounded-[19px] relative'>
 				<div className='flex flex-col items-center justify-center text-center pt-[70px] md:pt-[38px] pb-[70px] md:pb-[46px]'>
 					<h2 className='text-center font-Poppins text-white !text-[30px] md:!text-4xl -tracking-[1.28px] md:-tracking-[1.44px]'>
 						<span dangerouslySetInnerHTML={ { __html: completelyCustomData.title } } />

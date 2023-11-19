@@ -31,6 +31,7 @@ const Topics: React.FC<{
 	articleData
 }) => {
 	const [showAllTabs, setShowAllTabs] = useState(false);
+	const [selectedItem, setSelectedItem] = useState(0);
 	const windowDimensions = useWindowDimensions();
 	const isMobile = windowDimensions.width < screens.md;
 
@@ -41,9 +42,10 @@ const Topics: React.FC<{
 					<p className='text-primary font-Poppins text-4xl -tracking-[1.44px] text-center'>{ articleData.title }</p>
 					<div
 						className='btn-cta-landing group btn-primary px-9 md:block hidden'
+						onClick={ () => setShowAllTabs(!showAllTabs) }
 					>
 						<span className='text-btn-cta-landing'>
-							{ articleData.btnRight }
+							{ showAllTabs ? 'View Less' : articleData.btnRight }
 						</span>
 					</div>
 				</div>
@@ -57,10 +59,15 @@ const Topics: React.FC<{
 						{ articleData.tab.map((items, id) => (
 							<TabsTrigger
 								key={ id }
-								className='text-[15px] cursor-pointer pb-[9px] pt-[25px] leading-none text-primary select-none hover:font-bold data-[state=active]:font-bold data-[state=active]:focus:relative data-[state=active]:focus:border-b data-[state=active]:focus:border-primary outline-none'
+								className='text-[15px] cursor-pointer pb-[9px] pt-[25px] leading-none text-primary select-none data-[state=active]:font-bold relative outline-none'
 								value={ `tab-${id}` }
+								onClick={ () => setSelectedItem(id) }
 							>
-								{ items.name }
+								<p>{ items.name }</p>
+								{
+									selectedItem === id &&
+									<div className='absolute h-[1px] rounded w-full bg-primary -bottom-0'/>
+								}
 							</TabsTrigger>
 						)) }
 					</TabsList>
@@ -71,8 +78,11 @@ const Topics: React.FC<{
 									key={ id }
 									value={ `tab-${id}` }
 								>
-									
-									{ !isMobile ? renderItem(it.list) : showAllTabs ? renderItem(it.list) : renderItem(it.list.slice(0, 3)) }
+									{
+										isMobile ?
+											showAllTabs ? renderItem(it.list) : renderItem(it.list.slice(0, 3)) :
+											showAllTabs ? renderItem(it.list) : renderItem(it.list.slice(0, 4))
+									}
 									{
 										it.list.length > 3 &&
 										<div
@@ -84,7 +94,7 @@ const Topics: React.FC<{
 										</div>
 									}
 									{
-										!showAllTabs &&
+										it.list.length > 3 && isMobile && !showAllTabs &&
 										<div className='bg-gradient-to-t from-grey-background/90 to-grey-background/0 absolute -bottom-5 z-10 w-full h-[131px]' />
 									}
 								</TabsContent>
@@ -107,13 +117,15 @@ const renderItem = (data : TopicsProps[]) => {
 						key={ id }
 						className='relative bg-white rounded-3xl overflow-hidden flex flex-row md:flex-col max-md:items-center max-md:p-5 max-md:space-x-[9px]'
 					>
-						<div className='relative md:h-[254px] w-[74px] h-[74px] max-md:rounded-lg overflow-hidden md:w-full'>
-							<Image
-								src={ items.image }
-								fill
-								className='object-cover object-center hover:scale-105 transition-all duration-300 ease-in-out'
-								alt={ items.title }
-							/>
+						<div className=''>
+							<div className='relative md:h-[254px] w-[74px] h-[74px] max-md:rounded-lg overflow-hidden md:w-full'>
+								<Image
+									src={ items.image }
+									fill
+									className='object-cover object-center hover:scale-105 transition-all duration-300 ease-in-out'
+									alt={ items.title }
+								/>
+							</div>
 						</div>
 						<div className='flex flex-col text-start md:p-5'>
 							<p className='text-grey-primary font-BRSonoma text-xs'>{ items.pretitle }</p>

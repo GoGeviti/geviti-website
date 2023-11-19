@@ -51,6 +51,7 @@ const Articles = ({ post }:{post:Post[]}) => {
 								<Link href={ `/blog/${items.id}` }>
 									<ArrowEmail className='absolute top-0 right-0 w-[45px] h-[45px] m-5'/>
 								</Link>
+								<div className='z-0 bottom-0 absolute bg-gradient-to-t from-black/70 via-black/30 to-black/0 h-full w-full rounded-[20px]'/>
 							</div>
 						);
 					}) }

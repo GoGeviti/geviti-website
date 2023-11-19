@@ -34,7 +34,7 @@ const Updated: React.FC = () => {
 						<p className='font-Poppins text-sm md:text-base font-medium text-grey-primary -tracking-[0.56px] md:-tracking-[0.64px] md:hidden'>{ updatednData.descMobile }</p>
 						<p className='font-Poppins text-sm md:text-base font-medium text-grey-primary -tracking-[0.56px] md:-tracking-[0.64px] hidden md:block'>{ updatednData.desc }</p>
 						<div
-							className='flex items-center pl-px justify-between w-[319px] bg-white rounded-full py-[10px] md:py-3 px-[10px] md:px-5 mt-[29px]'>
+							className='flex items-center pl-px justify-between w-[319px] h-[46px] bg-white rounded-full px-[10px] md:px-3 mt-[29px]'>
 							<input
 								type='text'
 								name='email'

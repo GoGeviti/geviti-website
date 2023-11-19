@@ -60,7 +60,7 @@ const Articles: React.FC<ArticlesProps> = ({ list, title, btn }) => {
 
 const renderItem = (data? : Post[]) => {
 	return (
-		<div className={ clsxm('w-full grid grid-cols-1 gap-[10px] md:gap-[30px] pt-[30px]', data?.length === 3 ? 'md:grid-cols-3' : 'md:grid-cols-4') }>
+		<div className={ clsxm('w-full grid grid-cols-1 gap-[10px] md:gap-[30px] pt-[30px] md:grid-cols-4') }>
 			{ data?.map((items, id) => {
 				return (
 					<Link
