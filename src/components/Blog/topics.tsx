@@ -55,7 +55,7 @@ const Topics: React.FC<{
 					defaultValue='tab-0'
 				>
 					<TabsList
-						className='shrink-0 flex border-b border-primary/10 gap-[56px] max-md:justify-between'
+						className='shrink-0 flex border-b border-primary/10 md:gap-[56px] max-md:justify-between'
 						aria-label={ articleData.title }>
 						{ articleData.tab.map((items, id) => (
 							<div

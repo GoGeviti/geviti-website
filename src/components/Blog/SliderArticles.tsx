@@ -70,8 +70,8 @@ const SliderArticles: React.FC<SliderArticlesProps> = ({ data }) => {
 								className='w-full h-full relative focus:ring-0 focus:outline-none focus:border-none pl-[10px]'>
 								<Image
 									src={ items.hero.media.url ?? '' }
-									width={ 270 }
-									height={ 500 }
+									width={ 1000 }
+									height={ 1000 }
 									className='object-cover !h-[500px] w-full rounded-[20px]'
 									alt={ items.title }
 								/>
@@ -80,7 +80,7 @@ const SliderArticles: React.FC<SliderArticlesProps> = ({ data }) => {
 									<p className='text-white font-Poppins text-[22px] -tracking-[0.88px'>{ items.title }</p>
 								</div>
 								<ArrowEmail className='absolute top-0 right-0 w-[45px] h-[45px] m-5'/>
-								<div className='z-0 bottom-0 absolute bg-gradient-to-t from-black/70 via-black/30 to-black/0 h-full w-full rounded-[20px]'/>
+								<div className='z-0 bottom-0 absolute bg-gradient-to-t from-black/70 via-black/30 to-black/0 h-full w-[calc(100vw-50px)] rounded-[20px]'/>
 							</div>
 						);
 					}) }
