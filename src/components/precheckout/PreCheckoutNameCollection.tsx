@@ -1,9 +1,6 @@
-import { ReactNode, useState } from 'react';
-import { Player } from '@lottiefiles/react-lottie-player';
-import { AnimationItem } from 'lottie-web';
+import { useState } from 'react';
 import styled, { keyframes } from 'styled-components';
 
-import ProductSearchInput from '@/app/products/search';
 import InputField from '@/components/precheckout/InputField';
 import { ViewState } from '@/components/precheckout/WelcomeTransition';
 
