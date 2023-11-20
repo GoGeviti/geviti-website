@@ -73,7 +73,7 @@ const Navbar: React.FC<NavbarProps> = ({
 							href={ link.href }
 							externalLink={ link.externalLink }
 							className={ clsxm(
-								'lg:w-[120px] rounded-md px-3 py-2 text-sm font-Poppins hover:font-semibold',
+								'rounded-md px-3 py-2 text-sm font-Poppins hover:font-semibold',
 								theme === 'dark' ? 'text-grey-secondary hover:text-white' : 'text-primary',
 								isWithnavbarData ? 'block' : 'hidden',
 								selectedItem === id ?  'font-semibold' : '!font-medium'
