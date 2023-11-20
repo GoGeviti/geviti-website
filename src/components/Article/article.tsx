@@ -54,7 +54,7 @@ const Articles: React.FC<ArticlesProps> = ({ list, title, preTitle, btn, btnLink
 							<CustomLink
 								href={ btnLink }
 								aria-label={ btn }
-								className='btn btn-primary flex items-center gap-7px sm:gap-2 !translate-y-0 group'
+								className='btn btn-primary max-md:hidden flex items-center gap-7px sm:gap-2 !translate-y-0 group'
 							>
 								<span className='text-xs sm:text-sm font-medium leading-5 sm:leading-6 font-Poppins'>
 									{ btn }
@@ -99,13 +99,13 @@ const Articles: React.FC<ArticlesProps> = ({ list, title, preTitle, btn, btnLink
 
 const renderItem = (data? : Post[]) => {
 	return (
-		<div className={ clsxm('w-full grid grid-cols-1 gap-[10px] md:gap-[30px] pt-[30px] md:grid-cols-4') }>
+		<div className={ clsxm('w-full grid grid-cols-1 gap-[10px] md:gap-[18px] pt-[30px] md:grid-cols-4') }>
 			{ data?.map((items, id) => {
 				return (
 					<Link
 						href={ `/blog/${ items.slug }` }
 						key={ id }
-						className='relative bg-white overflow-hidden rounded-3xl flex flex-row md:flex-col max-md:items-center max-md:p-5 max-md:space-x-[9px]'
+						className='relative bg-white max-md:rounded-lg overflow-hidden flex flex-row md:flex-col max-md:items-center max-md:p-5 max-md:space-x-[9px]'
 					>
 						<div>
 							<div className='relative md:h-[254px] w-[74px] h-[74px] max-md:rounded-lg max-md:overflow-hidden md:w-full'>
