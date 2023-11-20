@@ -3,8 +3,7 @@ import { Box, Mail, Smile, Water } from '@/components/Icons';
 const howItWorksData = {
 	hero: {
 		preTitle: 'HOW IT WORKS',
-		title: '<p>It’s never been easier to get the <br/> healthcare you deserve.</p>',
-		titleMobile: '<p>It’s never been easier to get the healthcare you deserve.</p>',
+		title: '<p>It’s never been easier to get the <br class="max-md:hidden"/> healthcare you deserve.</p>',
 		btnCtaList: [
 			{
 				href: '/get-started',
@@ -41,32 +40,28 @@ const howItWorksData = {
 		{
 			image: '/images/howitworks/product-1.webp',
 			className: 'bg-product-1',
-			title: '<p>Testosterone <br/>Therapy</p>',
-			titleMobile: '<p>Testosterone Therapy</p>',
+			title: '<p>Testosterone <br class="max-md:hidden"/>Therapy</p>',
 			desc: 'Explore Geviti\'s essentials for optimized testosterone levels. Click to get optimized.',
 			btn: 'Get Started'
 		},
 		{
 			image: '/images/howitworks/product-2.webp',
 			className: 'bg-product-2',
-			title: '<p>Menopausal <br/>Treatments</p>',
-			titleMobile: '<p>Menopausal Treatments</p>',
+			title: '<p>Menopausal <br class="max-md:hidden"/>Treatments</p>',
 			desc: 'Prioritize well-being with Geviti\'s hormonal balance solutions. Get started today.',
 			btn: 'Get Started'
 		},
 		{
 			image: '/images/howitworks/product-3.webp',
 			className: 'bg-product-3',
-			title: '<p>Anti-aging <br/>Care</p>',
-			titleMobile: '<p>Anti-aging Care</p>',
+			title: '<p>Anti-aging <br class="max-md:hidden"/>Care</p>',
 			desc: 'Achieve well-rounded wellness with Geviti\'s anti-aging products. Click for personalized care.',
 			btn: 'Get Started'
 		},
 		{
 			image: '/images/howitworks/product-4.webp',
 			className: 'bg-product-4',
-			title: '<p>At-home Health <br/>Screening</p>',
-			titleMobile: '<p>At-home Bloodwork</p>',
+			title: '<p>At-home Health <br class="max-md:hidden"/>Screening</p>',
 			desc: 'Take charge of your health with Geviti\'s deep-dive bloodwork panels at-home.',
 			btn: 'Get Started'
 		},
@@ -74,8 +69,7 @@ const howItWorksData = {
 	comprehensive: {
 		preTitle: 'Care based off of biomarkers',
 		title: 'Comprehensive Blood panels',
-		desc: '<p>An a at-home blood draw must be done in order to to enter <br/>the Geviti platform.</p>',
-		descMobile: '<p>An a at-home blood draw must be done in order to to enter the Geviti platform.</p>',
+		desc: '<p>An a at-home blood draw must be done in order to to enter <br class="max-lg:hidden"/>the Geviti platform.</p>',
 		list: [
 			{
 				tag: 'Most Affordable',

@@ -2,8 +2,7 @@ const faqData = {
 	hero: {
 		preTitle: 'Our team is here to help',
 		title: 'Frequently asked questions',
-		desc: '<p>We aim to offer a frictionless experience for everyone within the Geviti <br/>ecosystem. Below you can find our frequently asked questions.</p>',
-		descMobile: '<p>We aim to offer a frictionless experience for everyone within the Geviti ecosystem. Below you can find our frequently asked questions.</p>',
+		desc: '<p>We aim to offer a frictionless experience for everyone within the Geviti <br class="max-md:hidden"/>ecosystem. Below you can find our frequently asked questions.</p>',
 		image: '/images/blog/faq.webp'
 	},
 	categories: {
@@ -149,7 +148,7 @@ const faqData = {
 		list: [
 			{
 				image: '',
-				text: '<p>Select your <br> bloodwork panel.</p>'
+				text: '<p>Select your <br/> bloodwork panel.</p>'
 			},
 			{
 				image: '',

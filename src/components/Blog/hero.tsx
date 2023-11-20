@@ -41,11 +41,7 @@ const Hero: React.FC<HeroProps> = ({ hero, classname }) => {
 						<p className='font-BRSonoma text-sm font-semibold text-white leading-[1.54px] uppercase'>{ hero.preTitle }</p>
 						<div className='font-Poppins text-white text-[30px] md:text-[40px] md:mt-5 mt-[10px] md:mb-3 mb-[14px]'>
 							<span
-								className='hidden md:block'
 								dangerouslySetInnerHTML={ { __html: hero.title } } />
-							<span
-								className='md:hidden block'
-								dangerouslySetInnerHTML={ { __html: hero.titleMobile ?? '' } } />
 						</div>
 						{
 							hero.btn &&

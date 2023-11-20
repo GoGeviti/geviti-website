@@ -15,7 +15,6 @@ const Hero = () => {
 		<div className='lg:px-3 lg:py-15px overflow-hidden'>
 			<Navbar
 				iconsMenu={ landingData.navbar.iconsMenu }
-				actionsMenu={ landingData.navbar.actionsMenu }
 			/>
 			<div className='bg-primary h-[calc(100dvh)] lg:h-[calc(100vh-30px)] w-full lg:rounded-[19px] relative pt-11px lg:pt-5'>
 				<div className='absolute inset-0 w-full h-full'>

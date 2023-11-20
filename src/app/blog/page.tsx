@@ -48,7 +48,6 @@ const BlogPage: NextPage = async() => {
 			<BlogComponent.Hero
 				hero={ {
 					title: allPost.docs[0].title,
-					titleMobile: allPost.docs[0].title,
 					image: allPost.docs[0].hero.media.url,
 					preTitle: allPost.docs[0].hero.categories?.title ?? '',
 					btn: 'Read Article',

@@ -14,7 +14,6 @@ export const PageClient: React.FC<{
 			<BlogComponent.Hero
 				hero={ {
 					title: post.title,
-					titleMobile: post.title,
 					image: post.hero.media.url,
 					preTitle: post.hero.categories?.title ?? ''
 				} }

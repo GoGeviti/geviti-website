@@ -39,11 +39,7 @@ const Product:  React.FC = () => {
 											<div>
 												<h4 className='text-base lg:text-xl font-Poppins text-primary leading-7 font-medium'>
 													<span
-														className='xl:block hidden'
 														dangerouslySetInnerHTML={ { __html: items.title } } />
-													<span
-														className='xl:hidden'
-														dangerouslySetInnerHTML={ { __html: items.titleMobile } } />
 												</h4>
 												<p className='text-xs leading-5 text-primary/[0.51] font-Poppins w-[70%] xl:w-[230px] mt-2'> { items.desc }</p></div>
 											<div className='flex space-x-2 justify-start items-center z-10'>

@@ -24,8 +24,8 @@ const navigationData = {
 	],
 	actionsMenu: [
 		{
-			name: 'Dashboard',
-			href: '/',
+			name: 'Get Started',
+			href: '/get-started',
 			externalLink: false
 		}
 	]

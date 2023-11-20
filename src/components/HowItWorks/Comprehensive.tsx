@@ -1,11 +1,13 @@
 'use client';
 
 import React, { useState } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
 
 import { howItWorksData } from '@/constant/data';
 import clsxm from '@/helpers/clsxm';
 
 import CustomLink from '../CustomLink';
+import TablePackageBiomarkers from '../Home/TablePackageBiomarkers';
 import { CheckBlue2, ChevronRight, HelpIcons } from '../Icons';
 import WrapperAnimation from '../WrapperAnimation';
 
@@ -13,6 +15,7 @@ const comprehensive = howItWorksData.comprehensive;
 
 const Comprehensive: React.FC = () => {
 	const [selectedItem, setselectedItem] = useState(1);
+	const [isBiomarkersTableOpen, setIsBiomarkersTableOpen] = useState(false);
 	const handleMouseEnter = (id:number) => {
 		setselectedItem(id);
 	};
@@ -78,26 +81,37 @@ const Comprehensive: React.FC = () => {
 						{ comprehensive.title }
 					</h2>
 					<div
-						className='text-grey-cta font-Poppins text-sm lg:leading-5 lg:block hidden'
+						className='text-grey-cta font-Poppins text-sm lg:leading-5 max-lg:max-w-sm '
 						dangerouslySetInnerHTML={ { __html: comprehensive.desc  } } />
-					<div
-						className='text-grey-cta font-Poppins text-xs lg:leading-5 lg:hidden max-w-sm'
-						dangerouslySetInnerHTML={ { __html: comprehensive.descMobile  } } />
 				</WrapperAnimation>
 				<WrapperAnimation
 					className='max-lg:mt-[47px] lg:my-[60px]'
 				>
 					{ renderPopularPackage() }
 				</WrapperAnimation>
-				<CustomLink
-					href='/get-started'
-					className='lg:flex justify-center items-center space-x-[10px] hidden'
-					aria-label='Compare Tested Biomarkers'
+				<WrapperAnimation
 				>
-					<p className='text-primary font-Poppins text-sm font-semibold leading-6'>Compare Tested Biomarkers</p>
-					<ChevronRight/>
-				</CustomLink>
+					<div
+						className='lg:flex justify-center items-center space-x-[10px] hidden cursor-pointer'
+						onClick={ () => setIsBiomarkersTableOpen(prev => !prev) }>
+						<p className='text-primary font-Poppins text-sm font-semibold leading-6'>Compare Tested Biomarkers</p>
+						<ChevronRight/>
+					</div>
+				</WrapperAnimation>
 				
+				<WrapperAnimation className='mt-5'>
+					<AnimatePresence>
+						{ isBiomarkersTableOpen && (
+							<motion.div
+								initial={ { opacity: 0, height: 0 } }
+								animate={ { opacity: 1, height: 'auto' } }
+								exit={ { opacity: 0, height: 0 } }
+							>
+								<TablePackageBiomarkers />
+							</motion.div>
+						) }
+					</AnimatePresence>
+				</WrapperAnimation>
 			</div>
 		</>
 	);

@@ -24,11 +24,8 @@ const Quality: React.FC = () => {
 									{ qualityData.preTitleMobile }
 								</p>
 								<div className='max-lg:mx-auto max-w-[320px] sm:max-w-[443px] order-2'>
-									<h2 className='text-heading-2 text-primary mt-11px sm:mt-7px md:block hidden'>
+									<h2 className='text-[25px] font-Poppins leading-[31px] -tracking-[0.88px] md:text-heading-2 text-primary mt-7px'>
 										{ qualityData.title }
-									</h2>
-									<h2 className='text-[25px] font-Poppins leading-[31px] -tracking-[0.88px] text-primary mt-7px md:hidden'>
-										{ qualityData.titleMobile }
 									</h2>
 								</div>
 								<div

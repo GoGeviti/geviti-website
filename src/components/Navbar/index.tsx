@@ -50,8 +50,10 @@ const Navbar: React.FC<NavbarProps> = ({
 		const currentIndex = navbarData.menu.findIndex(link => link.href === pathname);
 		if (currentIndex !== -1) {
 			setSelectedItem(currentIndex);
-		} else {
+		} else if (pathname === '/') {
 			setSelectedItem(4);
+		} else {
+			setSelectedItem(5);
 		}
 
 	}, [pathname]);
@@ -71,10 +73,10 @@ const Navbar: React.FC<NavbarProps> = ({
 							href={ link.href }
 							externalLink={ link.externalLink }
 							className={ clsxm(
-								'lg:w-[120px] rounded-md px-3 py-2 text-sm font-Poppins hover:font-medium',
+								'lg:w-[120px] rounded-md px-3 py-2 text-sm font-Poppins hover:font-semibold',
 								theme === 'dark' ? 'text-grey-secondary hover:text-white' : 'text-primary',
 								isWithnavbarData ? 'block' : 'hidden',
-								selectedItem === id ? '!font-medium' : 'font-semibold'
+								selectedItem === id ?  'font-semibold' : '!font-medium'
 							) }
 							aria-label={ link.name }
 						>
@@ -117,8 +119,8 @@ const Navbar: React.FC<NavbarProps> = ({
 			<>
 				{ actionsMenu?.map(menu => (
 					<CustomLink
-						href='https://app.gogeviti.com/'
-						externalLink={ true }
+						href={ menu.href }
+						externalLink={ menu.externalLink }
 						aria-label={ menu.name }
 						className={ clsxm(
 							'btn font-Poppins text-sm font-medium leading-6',
@@ -188,10 +190,10 @@ const Navbar: React.FC<NavbarProps> = ({
 									href='/'
 									onClick={ () => handleSelectedItem(4) }
 									className={ clsxm(
-										'lg:w-[120px] rounded-md px-3 py-2 text-sm font-Poppins hover:font-medium md:block hidden',
+										'lg:w-[120px] rounded-md px-3 py-2 text-sm font-Poppins hover:font-semibold md:block hidden',
 										theme === 'dark' ? 'text-grey-secondary hover:text-white' : 'text-primary',
 										isWithnavbarData ? 'block' : 'hidden',
-										selectedItem === 4 ? 'font-medium' : 'font-semibold'
+										selectedItem === 4 ? 'font-semibold' : 'font-medium'
 									) }
 									aria-label='Dashboard'
 								>

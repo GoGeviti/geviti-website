@@ -1,6 +1,6 @@
 'use client';
 import React, { useState } from 'react';
-import { BigPlayButton, Player } from 'video-react';
+import { BigPlayButton, Player, PosterImage } from 'video-react';
 
 import { howItWorksData } from '@/constant/data';
 import clsxm from '@/helpers/clsxm';
@@ -35,11 +35,7 @@ const Hero: React.FC = () => {
 						{ heroData.title && (
 							<h1 className='mt-[14px] font-Poppins text-[25px] lg:text-[40px] leading-[32.254px] lg:leading-[42.5px] -tracking-[1px] sm:-tracking-[1.6px] text-primary'>
 								<span
-									className='lg:block hidden'
 									dangerouslySetInnerHTML={ { __html: heroData.title } } />
-								<span
-									className='lg:hidden'
-									dangerouslySetInnerHTML={ { __html: heroData.titleMobile } } />
 							</h1>
 						) }
 						<div className='flex max-lg:justify-center mt-[26px] lg:mt-[35px]'>
@@ -103,7 +99,11 @@ const Hero: React.FC = () => {
 						</div>
 						<div className='w-full inset-0 object-cover max-lg:order-0 max-lg:my-[60px] xl:px-[100px]'>
 							<div className='w-full rounded-[10px] overflow-hidden'>
-								<Player>
+								<Player
+									playsInline
+									poster='/images/howitworks/thumbnail.png'>
+									<PosterImage
+										poster='/images/howitworks/thumbnail.png'/>
 									<source src='/videos/dummy.mp4' />
 									<BigPlayButton position='center' />
 								</Player>
