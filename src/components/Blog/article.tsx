@@ -48,8 +48,10 @@ const Articles = ({ post }:{post:Post[]}) => {
 									<p className={ `text-[#CDDCE2] font-BRSonoma ${isHovered ? 'text-base' : 'text-sm'}` }>{ items.hero.categories?.title }</p>
 									<p className={ `text-white font-Poppins  ${isHovered ? 'text-[22px] lg:text-[27px] -tracking-[1.08px]' : 'text-lg lg:text-[22px] -tracking-[0.88px]'}` } >{ items.title }</p>
 								</div>
-								<Link href={ `/blog/${items.slug}` }>
-									<ArrowEmail className='absolute top-0 right-0 w-[45px] h-[45px] m-5'/>
+								<Link
+									href={ `/blog/${items.slug}` }
+									className='cursor-pointer z-10 absolute top-0 right-0 m-5'>
+									<ArrowEmail className='w-[45px] h-[45px]'/>
 								</Link>
 								<div className='z-0 bottom-0 absolute bg-gradient-to-t from-black/70 via-black/30 to-black/0 h-full w-full rounded-[20px]'/>
 							</div>

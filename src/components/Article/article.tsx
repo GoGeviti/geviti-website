@@ -18,10 +18,11 @@ import { Post } from '@/payload/payload-types';
 interface ArticlesProps {
 	list?: Post[]
 	title:string;
+	preTitle?:string;
 	btn: string;
 }
 
-const Articles: React.FC<ArticlesProps> = ({ list, title, btn }) => {
+const Articles: React.FC<ArticlesProps> = ({ list, title, preTitle, btn }) => {
 	const [showAllTabs, setShowAllTabs] = useState(false);
 	const windowDimensions = useWindowDimensions();
 	const isMobile = windowDimensions.width < screens.md;
@@ -30,7 +31,14 @@ const Articles: React.FC<ArticlesProps> = ({ list, title, btn }) => {
 		<div className='container-center mx-auto w-full relative'>
 			<div className='w-full pt-[70px] '>
 				<div className='flex justify-center md:justify-between items-center'>
-					<p className='text-primary font-Poppins text-4xl -tracking-[1.44px] text-center'>{ title }</p>
+					<div className='flex flex-col max-md:text-center'>
+						{
+							preTitle && (
+								<p className='sm:mb-7px text-pretitle text-grey-primary'>{ preTitle }</p>
+							)
+						}
+						<h2 className='text-primary font-Poppins text-4xl -tracking-[1.44px] text-center'>{ title }</h2>
+					</div>
 					<button
 						onClick={ () => setShowAllTabs(!showAllTabs) }
 						className='btn-cta-landing group btn-primary px-9 md:block hidden'

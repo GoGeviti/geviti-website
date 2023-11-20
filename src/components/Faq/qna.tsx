@@ -110,10 +110,10 @@ const QnA: React.FC<QnAProps> = ({ qnaData, title, btnRight }) => {
 						className='shrink-0 flex border-b border-primary/10 md:space-x-[56px] max-md:justify-between mb-[34px]'
 						aria-label={ title }
 					>
-						{ qnaData.map((items, id) => (
+						{ qnaData.sort((a, b) => a.name.localeCompare(b.name)).map((items, id) => (
 							<TabsTrigger
 								key={ id }
-								className='text-[15px] cursor-pointer pb-[9px] pt-[25px] leading-none text-primary select-none hover:font-bold data-[state=active]:font-bold data-[state=active]:focus:relative data-[state=active]:focus:border-b data-[state=active]:focus:border-primary outline-none'
+								className='text-[15px] cursor-pointer pb-[9px] pt-[25px] leading-none text-primary select-none data-[state=active]:font-bold data-[state=active]:focus:relative data-[state=active]:focus:border-b data-[state=active]:focus:border-primary outline-none'
 								value={ `tab-${id}` }
 							>
 								{ items.name }

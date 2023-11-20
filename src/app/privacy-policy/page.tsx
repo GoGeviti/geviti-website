@@ -6,7 +6,7 @@ import { getPrivacyById } from '@/services/products';
 
 import PrivacyClientPage from './page.client';
 const PrivacyPolicyPage: NextPage = async() => {
-	const data = await getPrivacyById(2);
+	const data = await getPrivacyById();
 	const date = new Date(data.updatedAt);
 	const formattedDate = date.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
 	return (

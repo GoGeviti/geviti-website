@@ -12,9 +12,15 @@ import {
 } from '@/payload/payload-types'; ;
 
 export const getProducts = async(): Promise<PaginatedDocs<Product>> => {
+	const stringifiedQuery = qs.stringify({
+		depth: 1,
+		limit: 100,
+		draft: false,
+		sort: 'order'
+	});
 	try {
 		const res = await fetch(
-			process.env.BASE_API_URL + '/api/products?depth=1',
+			process.env.BASE_API_URL + `/api/products?${stringifiedQuery}`,
 			{
 				cache: 'no-store',
 			}
@@ -89,7 +95,7 @@ export const getPostById = async(slug:string): Promise<Post> => {
 	}, { addQueryPrefix: true },);
 	try {
 		const res = await fetch(
-			process.env.BASE_API_URL + `/api/posts/${stringifiedQuery}`,
+			process.env.BASE_API_URL + `/api/posts?${stringifiedQuery}`,
 			{
 				cache: 'no-store',
 			}
@@ -110,7 +116,7 @@ export const getAllPost = async(limit?:number): Promise<PaginatedDocs<Post>> => 
 		depth: 1,
 		limit: limit ?? 100,
 		draft: false,
-		sort: '-publishedOn'
+		sort: 'order'
 	});
 
 	try {
@@ -128,16 +134,22 @@ export const getAllPost = async(limit?:number): Promise<PaginatedDocs<Post>> => 
 	}
 };
 
-export const getPrivacyById = async(id:number): Promise<Privacy> => {
+export const getPrivacyById = async(): Promise<Privacy> => {
+	const stringifiedQuery = qs.stringify({
+		depth: 1,
+		limit: 1,
+		draft: false,
+		sort: '-updatedAt'
+	});
 	try {
 		const res = await fetch(
-			process.env.BASE_API_URL + `/api/privacy/${id}?depth=1&draft=false`,
+			process.env.BASE_API_URL + `/api/privacy?${stringifiedQuery}`,
 			{
 				cache: 'no-store',
 			}
 		);
 		const data = await res.json();
-		return data;
+		return data.docs[0];
 	} catch (error) {
 		return Promise.reject(error);
 	}
@@ -146,7 +158,9 @@ export const getPrivacyById = async(id:number): Promise<Privacy> => {
 export const getAllFaq = async(): Promise<PaginatedDocs<Faq>> => {
 	const stringifiedQuery = qs.stringify({
 		depth: 1,
+		limit: 99,
 		draft: false,
+		sort: 'order'
 	});
 
 	try {
@@ -167,6 +181,7 @@ export const getAllFaq = async(): Promise<PaginatedDocs<Faq>> => {
 export const getAllContactSubjects = async(): Promise<PaginatedDocs<ContactSubject>> => {
 	const stringifiedQuery = qs.stringify({
 		depth: 1,
+		limit: 99,
 		draft: false,
 	});
 
