@@ -1,35 +1,38 @@
-import Image from 'next/image';
 import Link from 'next/link';
 import styled from 'styled-components';
+
+import clsxm from '@/helpers/clsxm';
+
+import { ChevronDown } from '../Icons';
 
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  cursor: default;
-  background: linear-gradient(
-    180deg,
-    rgba(15, 23, 27, 0.44) 0%,
-    rgba(15, 23, 27, 0) 100%
-  );
+  cursor: pointer;
   gap: 9px;
-  backdrop-filter: blur(27px);
   padding: 11px 14px;
   border-radius: 9px;
   height: 43px;
   align-self: flex-start;
   overflow: hidden;
 
-  img {
-    transform: rotate(180deg);
+  svg {
+  transform: rotate(0deg);
 	transition: 0.2s transform ease-out;
   }
   
   &:hover {
+    background: linear-gradient(
+      180deg,
+      rgba(15, 23, 27, 0.44) 0%,
+      rgba(15, 23, 27, 0.44) 100%
+    );
+    backdrop-filter: blur(27px);
     height: 128px;
     transform: translateY(43px);
 
-    img {
-      transform: rotate(0deg);
+    svg {
+      transform: rotate(180deg);
     }
   }
 `;
@@ -50,17 +53,38 @@ const OtherLink = styled(Link)`
   }
 `;
 
-const ResourcesDropdown = () => {
+type ResourcesDropdownProps = {
+  theme?: 'dark' | 'light';
+}
+
+const ResourcesDropdown:React.FC<ResourcesDropdownProps> = ({
+	theme
+}) => {
 	return (
 		<Container>
 			<div className='flex items-center gap-[15px] font-Poppins'>
-				<PrimaryText>Resources</PrimaryText>
-				<Image
+				<PrimaryText className={
+					clsxm(
+						theme === 'dark' ? '!text-grey-secondary' : '!text-primary'
+					)
+				}>Resources</PrimaryText>
+				<ChevronDown className={
+					clsxm(
+						'w-4 h-4',
+						theme === 'dark' ? '!text-grey-secondary' : '!text-primary'
+					)
+				}/>
+				{ /* <Image
+          className={
+            clsxm(
+              theme === 'dark' ? '' : '!text-primary'
+            )
+          }
 					src='/images/icons/caret-down.svg'
 					width={ 16 }
 					height={ 16 }
 					alt='Dropdown caret'
-				/>
+				/> */ }
 			</div>
 			<OtherLink href='/blog'>Blog</OtherLink>
 			<OtherLink href='/faq'>FAQ</OtherLink>
