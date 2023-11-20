@@ -89,6 +89,7 @@ const ResourcesDropdown:React.FC<ResourcesDropdownProps> = ({
 			<OtherLink
 				className={
 					clsxm(
+						'!font-Poppins',
 						theme === 'dark' ? '!text-grey-primary hover:!text-grey-secondary' : '!text-primary/70 hover:!text-primary'
 					)
 				}
@@ -96,6 +97,7 @@ const ResourcesDropdown:React.FC<ResourcesDropdownProps> = ({
 			<OtherLink
 				className={
 					clsxm(
+						'!font-Poppins',
 						theme === 'dark' ? '!text-grey-primary hover:!text-grey-secondary' : '!text-primary/70 hover:!text-primary'
 					)
 				}
@@ -103,6 +105,7 @@ const ResourcesDropdown:React.FC<ResourcesDropdownProps> = ({
 			<OtherLink
 				className={
 					clsxm(
+						'!font-Poppins',
 						theme === 'dark' ? '!text-grey-primary hover:!text-grey-secondary' : '!text-primary/70 hover:!text-primary'
 					)
 				}
