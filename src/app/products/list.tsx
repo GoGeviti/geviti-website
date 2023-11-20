@@ -159,7 +159,7 @@ const ProductList: React.FC<ProductType> = ({ products: productsData }) => {
 										{ product.name }
 									</h4>
 									<p className='text-xs font-BRSonoma leading-[134%] text-grey-primary'>
-										{ product.description }
+										{ product.sort_description }
 									</p>
 									<div className='flex flex-1 flex-col justify-end font-BRSonoma text-primary pt-18px'>
 										{ product.price && (

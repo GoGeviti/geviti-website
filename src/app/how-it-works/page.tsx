@@ -6,7 +6,7 @@ import { getAllPost } from '@/services/products';
 
 const FAQPage: NextPage = async() => {
 
-	const allPost = await getAllPost();
+	const allPost = await getAllPost(4);
 
 	return (
 		<div className='flex min-h-screen flex-col w-full bg-grey-background'>
@@ -20,6 +20,7 @@ const FAQPage: NextPage = async() => {
 			<ArticleComponent.Articles
 				list={ allPost.docs }
 				btn='View All'
+				btnLink='/blog'
 				title='Learn More'
 				preTitle='Research'
 			/>

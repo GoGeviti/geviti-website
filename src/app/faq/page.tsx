@@ -12,7 +12,7 @@ interface GroupedFaq {
   listQna: Faq[];
 }
 const FAQPage = async() => {
-	const allPost = await getAllPost();
+	const allPost = await getAllPost(4);
 	const faqList = await getAllFaq();
 
 	const groupFaqsByCategory = (faqs: Faq[]): GroupedFaq[] =>  {
@@ -45,6 +45,7 @@ const FAQPage = async() => {
 			<ArticleComponent.Articles
 				list={ allPost.docs }
 				btn={ faqData.article.btn }
+				btnLink='/blog'
 				title={ faqData.article.title }
 			/>
 		</div>

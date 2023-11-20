@@ -140,7 +140,7 @@ const DiscoverGeviti: React.FC<DiscoverGevitiProps> = ({
 								{ product.name }
 							</h3>
 							<p className='font-BRSonoma leading-[143%] lg:leading-[144%] text-xs lg:text-sm text-grey-primary whitespace-normal'>
-								{ product.description }
+								{ product.sort_description }
 							</p>
 							<div className='flex flex-1 flex-col justify-end font-BRSonoma text-primary pt-[17px]'>
 								<div className='flex items-center gap-9px'>

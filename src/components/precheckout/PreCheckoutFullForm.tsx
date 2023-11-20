@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Player } from '@lottiefiles/react-lottie-player';
 import styled, { keyframes } from 'styled-components';
 
@@ -36,7 +36,7 @@ const Title = styled.h1<{ viewState: ViewState }>`
 `;
 
 const Subtitle = styled.p<{ viewState: ViewState }>`
-  font-size: 15px;
+  font-size: 14px;
   color: #919b9f;
   width: 430px;
   margin-bottom: 24px;
@@ -101,7 +101,7 @@ const SecondInputField = styled(InputField)<{ viewState: ViewState }>`
   animation-delay: 0.24s;
   width: 430px;
 
-  margin-bottom: 24px;
+  margin-bottom: 12px;
 
   transform: translateX(100vw);
 `;
@@ -126,7 +126,7 @@ const Button = styled.button<{ viewState: ViewState }>`
 		props.viewState === ViewState.IN_PROGRESS && moveFromRight}
     0.5s cubic-bezier(0.21, 1.04, 0.58, 1.15);
   animation-fill-mode: forwards;
-  animation-delay: 0.32s;
+  animation-delay: 0.4s;
 `;
 
 const SelectInputCol = styled.div`
@@ -144,11 +144,15 @@ const Label = styled.label`
 const FreeVisitRow = styled.div<{ viewState: ViewState }>`
   display: flex;
   align-items: center;
-  background: #EFF9F2;
-  border: 1.5px solid #60c57c;
+  background: #eff9f2;
+  border: 2px solid #60c57c;
   border-radius: 10px;
   padding: 8px;
+  height: 50px;
   width: 430px;
+  box-sizing: border-box;
+  position: relative;
+  margin-bottom: 22px;
 
   opacity: ${props => (props.viewState === ViewState.IN_PROGRESS ? 1 : 0)};
   transform: scale(
@@ -159,12 +163,86 @@ const FreeVisitRow = styled.div<{ viewState: ViewState }>`
     opacity 0.5s cubic-bezier(0.15, 1.14, 0.88, 0.98),
     transform 0.75s cubic-bezier(0.21, 1.04, 0.58, 1.15);
 
-  transition-delay: 1.33s;
+  transition-delay: ${props => (props.viewState === ViewState.IN_PROGRESS ? 1.33 : 0)}s;
 `;
 
-const LogoLottie = styled(Player)`
-  width: 60px;
-  height: 60px;
+const CheckmarkLottie = styled(Player)`
+  position: absolute;
+  top: 50%;
+  left: -19px;
+  width: 70px;
+  height: 70px;
+  transform: translateY(-50%);
+`;
+
+const FreeVisitCol = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-left: 27px;
+`;
+
+const FreeVisitTitle = styled.span`
+  font-weight: 500;
+  font-size: 14px;
+  color: #181a1c;
+  margin-bottom: -3px;
+  //margin-top: 1px;
+`;
+
+const FreeVisitSubtitle = styled.span`
+  font-size: 12px;
+  color: #919b9f;
+`;
+
+const CheckboxRow = styled.div<{ viewState: ViewState }>`
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  margin-bottom: 24px;
+
+  transform: translateX(100vw);
+  animation: ${props =>
+		props.viewState === ViewState.IN_PROGRESS && moveFromRight}
+    0.5s cubic-bezier(0.21, 1.04, 0.58, 1.15);
+  animation-fill-mode: forwards;
+  animation-delay: 0.32s;
+`;
+
+const CheckboxBox = styled.div<{ isChecked: boolean }>`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 24px;
+  width: 24px;
+  box-sizing: border-box;
+  border: 2px solid #181a1c;
+  border-radius: 5px;
+
+  div {
+    height: 14px;
+    width: 14px;
+    border-radius: 2px;
+    background: #181a1c;
+    transform: scale(${props => (props.isChecked ? 1 : 0.95)});
+    opacity: ${props => (props.isChecked ? 1 : 0)};
+    transition:
+      0.2s transform ease-out,
+      0.2s opacity ease-out;
+  }
+`;
+
+const CheckboxText = styled.span`
+  margin-left: 8px;
+  font-size: 12px;
+  color: #181a1c;
+  width: 400px;
+  line-height: 135%;
+
+  a {
+    color: #181a1c;
+    text-decoration: underline;
+    font-weight: 500;
+  }
 `;
 
 interface PreCheckoutFullFormProps {
@@ -176,21 +254,41 @@ const PreCheckoutFullForm = (props: PreCheckoutFullFormProps) => {
 	const [usState, setUsState] = useState('AZ');
 	const [sex, setSex] = useState('male');
 	const [birthday, setBirthday] = useState('');
+	const [isAgreed, setIsAgreed] = useState(false);
+
+	const lottieRef = useRef<Player>(null);
+
+	useEffect(() => {
+		if (props.viewState === ViewState.IN_PROGRESS) {
+			setTimeout(() => {
+				lottieRef.current?.play();
+			}, 1_333);
+		}
+	}, [props.viewState]);
 
 	return (
 		<Column viewState={ props.viewState }>
 			<FreeVisitRow viewState={ props.viewState }>
-				<LogoLottie
+				<CheckmarkLottie
 					src='https://lottie.host/f3372ff0-3570-431d-a529-7cc4fbd5481a/huZVbKVygH.json'
-					autoplay
 					keepLastFrame
+					ref={ lottieRef }
 				/>
-				WIP
+				<FreeVisitCol>
+					<FreeVisitTitle className='font-BRSonoma'>
+            Free doctor telehealth visit applied!
+					</FreeVisitTitle>
+					<FreeVisitSubtitle className='font-BRSonoma'>
+            Get peace of mind with a free initial telehealth session.
+					</FreeVisitSubtitle>
+				</FreeVisitCol>
 			</FreeVisitRow>
 			<Title viewState={ props.viewState }>
         We need some final information to determine eligibility.
 			</Title>
-			<Subtitle viewState={ props.viewState }>
+			<Subtitle
+				viewState={ props.viewState }
+				className='font-BRSonoma'>
         We need this information in order to confirm your eligibility.
 			</Subtitle>
 			<SelectInputsRow viewState={ props.viewState }>
@@ -271,8 +369,29 @@ const PreCheckoutFullForm = (props: PreCheckoutFullFormProps) => {
 				onChange={ newEmail => setBirthday(newEmail) }
 				viewState={ props.viewState }
 			/>
-			<span style={ { display: props.viewState === ViewState.IN_PROGRESS ? 'flex' : 'none' } }>Checkbox WIP</span>
-
+			<CheckboxRow
+				viewState={ props.viewState }
+				onClick={ () => setIsAgreed(prev => !prev) }
+			>
+				<CheckboxBox isChecked={ isAgreed }>
+					<div />
+				</CheckboxBox>
+				<CheckboxText className='font-BRSonoma'>
+          I agree to Geviti{ ' ' }
+					<a
+						href='/'
+						target='_blank'>
+            Terms of Service
+					</a>{ ' ' }
+          and{ ' ' }
+					<a
+						href='/'
+						target='_blank'>
+            Privacy Policy
+					</a>{ ' ' }
+          as well as confirm my selected state is correct.
+				</CheckboxText>
+			</CheckboxRow>
 			<Button
 				viewState={ props.viewState }
 				onClick={ () => props.onContinue(usState, sex, birthday) }
