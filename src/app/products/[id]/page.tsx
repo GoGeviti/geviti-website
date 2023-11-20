@@ -32,11 +32,13 @@ const ProductDetailPage: NextPage<ProductDetailPageProps> = async({
 		<>
 			<div className=' max-lg:overflow-hidden bg-[#CFD8DB]'>
 				<Navbar theme='light' />
-				<div className='pt-24 lg:pt-[172px] pb-4 sm:pb-[95px] container-center  max-lg:flex  max-lg:flex-col max-lg:items-center'>
-					<Breadcrumb product={ product } />
-					<div className='grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-2 lg:pt-12'>
-						<div>
+				<div className='pt-24 lg:pt-[202px] pb-4 sm:pb-[95px] container-center  max-lg:flex  max-lg:flex-col max-lg:items-center'>
+					<div className='grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-2'>
+						<div className='lg:-mt-[61px]'>
 							<div className='w-full sticky top-10 max-lg:pb-1 overflow-y-auto overflow-x-hidden no-scrollbar'>
+								<div className='lg:pb-[51px]'>
+									<Breadcrumb product={ product } />
+								</div>
 								<ProductsComponent.SliderProducts
 									images={ product.images.map(e => e.image.url ?? '') ?? [] }
 								/>
