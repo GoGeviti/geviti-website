@@ -50,7 +50,7 @@ const Footer: React.FC<FooterProps> = ({ landingPage }) => {
 
 		return (
 			<>
-				<div className={ clsxm('grid gap-y-7 gap-x-20 max-lg:hidden lg:col-span-2', gridColList) }>
+				<div className={ clsxm('grid gap-y-7 gap-x-20 max-lg:hidden', gridColList) }>
 					{ renderMenuList() }
 				</div>
 
@@ -67,7 +67,7 @@ const Footer: React.FC<FooterProps> = ({ landingPage }) => {
 		<div className='pt-[45px] pb-[42px] lg:pt-[70px] lg:pb-[109px]'>
 			<div className='container-center'>
 				<div className='lg:grid lg:grid-cols-5'>
-					<div className='flex flex-col lg:col-span-3'>
+					<div className='flex flex-col lg:col-span-4'>
 						<CustomLink
 							aria-label='footer logo'
 							href='/'>
@@ -118,7 +118,7 @@ const Footer: React.FC<FooterProps> = ({ landingPage }) => {
 							)) }
 						</div>
 						<div className='mt-7 hidden md:block'>
-							<p className='font-BRSonoma text-sm font-medium'>{ footerData.bottomContent }</p>
+							<p className='font-BRSonoma text-[10px] font-medium'>{ footerData.bottomContent }</p>
 						</div>
 					</div>
 

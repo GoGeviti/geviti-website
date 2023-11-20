@@ -8,51 +8,46 @@ const footerData = {
 			menu: [
 				{
 					name: 'Contact Us',
-					href: '/',
+					href: '/contact-us',
 					externalLink: false
 				},
 				{
 					name: 'FAQs',
-					href: '/',
-					externalLink: false
-				},
-				{
-					name: 'Membership Details',
-					href: '/',
+					href: '/faq',
 					externalLink: false
 				},
 				{
 					name: 'Terms & Conditions',
-					href: '/',
+					href: '/terms-and-conditions',
 					externalLink: false
 				},
 				{
 					name: 'Privacy Policy',
-					href: '/',
+					href: '/privacy-policy',
 					externalLink: false
 				}
 			]
 		},
-		{
-			title: 'About Geviti',
-			menu: [
-				{
-					name: 'About Us',
-					href: '/',
-					externalLink: false
-				},
-				{
-					name: 'Invest',
-					href: '/',
-					externalLink: false
-				},
-				{
-					name: 'Careers',
-					href: '/',
-					externalLink: false
-				}
-			]
-		}
+		// {
+		// 	title: 'About Geviti',
+		// 	menu: [
+		// 		{
+		// 			name: 'About Us',
+		// 			href: '/',
+		// 			externalLink: false
+		// 		},
+		// 		{
+		// 			name: 'Invest',
+		// 			href: '/',
+		// 			externalLink: false
+		// 		},
+		// 		{
+		// 			name: 'Careers',
+		// 			href: '/',
+		// 			externalLink: false
+		// 		}
+		// 	]
+		// }
 	],
 	socialMedia: [
 		{

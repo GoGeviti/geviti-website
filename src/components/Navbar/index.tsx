@@ -177,7 +177,7 @@ const Navbar: React.FC<NavbarProps> = ({
 							<div className='hidden lg:ml-10 lg:block'>
 								<div className='flex items-center gap-x-5'>
 									{ renderMenuList() }
-									<ResourcesDropdown />
+									<ResourcesDropdown/>
 								</div>
 							</div>
 						</div>

@@ -1,10 +1,9 @@
-'use client';
-
 import React from 'react';
 import Image from 'next/image';
 
 import { homeData } from '@/constant/data';
 import clsxm from '@/helpers/clsxm';
+import { getAllPost } from '@/services/products';
 
 const learnMore = homeData.learnMore;
 
@@ -12,7 +11,10 @@ type LearnMoreProps = {
 	withBg?: boolean;
 };
 
-const LearnMore: React.FC<LearnMoreProps> = ({ withBg = false }) => {
+const LearnMore: React.FC<LearnMoreProps> = async({ withBg = false }) => {
+
+	const allPost = await getAllPost(3);
+
 	return (
 		<div className='overflow-hidden'>
 			<div className={ clsxm('h-full w-full lg:rounded-[19px] relative overflow-hidden', withBg && 'bg-[#EAEAEA]') }>
@@ -30,7 +32,7 @@ const LearnMore: React.FC<LearnMoreProps> = ({ withBg = false }) => {
 					<div className='md:mx-auto w-full max-md:flex max-md:justify-center'>
 						<div className=''>
 							<div className='pt-10 md:pt-16 flex md:flex-row flex-col items-start w-full no-scrollbar overflow-y-hidden transition-all select-none transform flex-nowrap overflow-x-auto lg:overflow-hidden scrolling-touch scroll-smooth max-md:space-y-10  gap-x-18px lg:gap-x-[33px] py-1'>
-								{ learnMore.list.map(items => {
+								{ allPost.docs.map(items => {
 									return (
 										(
 											<div
@@ -39,15 +41,15 @@ const LearnMore: React.FC<LearnMoreProps> = ({ withBg = false }) => {
 											>
 												<div>
 													<Image
-														src={ items.image }
+														src={ items.hero.media.url ?? '' }
 														alt={ items.title ?? '' }
 														className='object-cover object-center w-full md:w-[382px] h-[189px] md:h-[233px] rounded-[13px]'
 														width={ 100 }
 														height={ 100 }
 													/>
-													<p className='mt-[15px] md:mt-[32px] text-pretitle text-grey-primary tracking-[1.54px] leading-6'> { items.date }</p>
+													<p className='mt-[15px] md:mt-[32px] text-pretitle text-grey-primary tracking-[1.54px] leading-6'> { new Date(items.publishedOn as string).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }) }</p>
 													<p className='text-xl md:text-2xl font-Poppins text-primary leading-[181.25%] -tracking-[0.96px] my-1'> { items.title }</p>
-													<p className='text-xs md:text-sm text-grey-primary font-Poppins'> { items.subtitle }</p>
+													{ /* <p className='text-xs md:text-sm text-grey-primary font-Poppins'> { items. }</p> */ }
 												</div>
 											</div>
 										)
