@@ -91,13 +91,13 @@ const Topics: React.FC<{
 									}
 									{
 										it.list.length > 3 &&
-										<div
+										<button
 											className='btn-cta-landing group btn-primary px-9 md:hidden w-fit absolute -bottom-5 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20'
 											onClick={ () => setShowAllTabs(!showAllTabs) }>
 											<span className='text-btn-cta-landing'>
 												{ showAllTabs ? 'View Less' : btnRight }
 											</span>
-										</div>
+										</button>
 									}
 									{
 										it.list.length > 3 && isMobile && !showAllTabs &&
@@ -115,21 +115,23 @@ const Topics: React.FC<{
 
 const renderItem = (data : Post[]) => {
 	return (
-		<div className='w-full grid grid-cols-1 md:grid-cols-4 gap-[10px] md:gap-[30px] pt-[30px]'>
+		<div className='w-full grid grid-cols-1 md:grid-cols-4 gap-[10px] md:gap-[18px] pt-[30px]'>
 			{ data.map((items, id) => {
 				return (
 					<Link
 						href={ `/blog/${ items.slug }` }
 						key={ id }
-						className='relative bg-white rounded-3xl overflow-hidden flex flex-row md:flex-col max-md:items-center max-md:p-5 max-md:space-x-[9px]'
+						className='relative bg-white max-md:rounded-lg overflow-hidden flex flex-row md:flex-col max-md:items-center max-md:p-5 max-md:space-x-[9px]'
 					>
-						<div className='relative md:h-[254px] w-[74px] h-[74px] max-md:rounded-lg overflow-hidden md:w-full'>
-							<Image
-								src={ items.hero.media.url ?? '' }
-								fill
-								className='object-cover object-center hover:scale-105 transition-all duration-300 ease-in-out'
-								alt={ items.title }
-							/>
+						<div>
+							<div className='relative md:h-[254px] w-[74px] h-[74px] max-md:rounded-lg overflow-hidden md:w-full'>
+								<Image
+									src={ items.hero.media.url ?? '' }
+									fill
+									className='object-cover object-center hover:scale-105 transition-all duration-300 ease-in-out'
+									alt={ items.title }
+								/>
+							</div>
 						</div>
 						<div className='flex flex-col text-start md:p-5'>
 							<p className='text-grey-primary font-BRSonoma text-xs'>{ items.hero.categories?.title }</p>
