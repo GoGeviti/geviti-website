@@ -1,9 +1,12 @@
 import { NextPage } from 'next';
 
-import { HomeComponent, HowItWorksComponent, LandingComponent } from '@/components';
+import { ArticleComponent, HomeComponent, HowItWorksComponent, LandingComponent } from '@/components';
 import { howItWorksData } from '@/constant/data';
+import { getAllPost } from '@/services/products';
 
-const FAQPage: NextPage = () => {
+const FAQPage: NextPage = async() => {
+
+	const allPost = await getAllPost();
 
 	return (
 		<div className='flex min-h-screen flex-col w-full bg-grey-background'>
@@ -13,7 +16,13 @@ const FAQPage: NextPage = () => {
 			<HomeComponent.CTA cta={ howItWorksData.cta }/>
 			<HowItWorksComponent.Quality/>
 			<HowItWorksComponent.FAQ/>
-			<HomeComponent.LearnMore/>
+			{ /* <HomeComponent.LearnMore/> */ }
+			<ArticleComponent.Articles
+				list={ allPost.docs }
+				btn='View All'
+				title='Learn More'
+				preTitle='Research'
+			/>
 			<LandingComponent.Products />
 		</div>
 	);

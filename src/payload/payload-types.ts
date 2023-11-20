@@ -201,6 +201,7 @@ export interface FaqCategory {
   id: number;
   title: string;
   description?: string | null;
+  order?: number | null;
   updatedAt: string;
   createdAt: string;
 }

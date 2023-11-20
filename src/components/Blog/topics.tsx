@@ -5,7 +5,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@radix-ui/react-tabs';
 import Image from 'next/image';
 import Link from 'next/link';
 
-import clsxm from '@/helpers/clsxm';
+// import clsxm from '@/helpers/clsxm';
 // import { blogData } from '@/constant/data';
 import { screens } from '@/helpers/style';
 import { useWindowDimensions } from '@/hooks';
@@ -58,10 +58,11 @@ const Topics: React.FC<{
 					<TabsList
 						className='shrink-0 flex border-b border-primary/10 md:space-x-[56px] max-md:justify-between'
 						aria-label={ title }>
-						{ articleData.map((items, id) => (
+						{ articleData.sort((a, b) => a.name.localeCompare(b.name)).map((items, id) => (
 							<div
 								key={ id }
-								className={ clsxm(id === 0 ? 'w-[18px]' : id === 1 ? 'w-[75px]' : id === 2 ? 'w-[46px]' : 'w-[59px]') }>
+								// className={ clsxm(id === 0 ? 'w-[18px]' : id === 1 ? 'w-[75px]' : id === 2 ? 'w-[46px]' : 'w-[59px]') }
+							>
 								<TabsTrigger
 									className='text-[15px] cursor-pointer pb-[9px] pt-[25px] leading-none text-primary select-none data-[state=active]:font-bold relative outline-none'
 									value={ `tab-${id}` }

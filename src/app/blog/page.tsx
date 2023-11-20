@@ -13,39 +13,6 @@ const BlogPage: NextPage = async() => {
 
 	const allPost = await getAllPost();
 
-	// function transformPostDataToTopics(postDataArray:Post[]) {
-	// 	return {
-	// 		title: 'Popular Topics',
-	// 		btnRight: 'View All',
-	// 		tab: [
-	// 			{
-	// 				name: 'All',
-	// 				list: postDataArray.map(post => ({
-	// 					id: post.id,
-	// 					image: post.hero.media.url as string,
-	// 					pretitle: post.hero.categories?.title as string,
-	// 					title: post.title,
-	// 				})),
-	// 			},
-	// 			...postDataArray.map((item:Post) => {
-	// 				const categoryPosts = postDataArray.filter(
-	// 					post => post.hero.categories?.title && post.hero.categories?.title.includes(item.hero.categories?.title as string)
-	// 				);
-	
-	// 				return {
-	// 					name: item.hero.categories?.title as string,
-	// 					list: categoryPosts.map((post:Post) => ({
-	// 						id: post.id,
-	// 						image: post.hero.media.url as string,
-	// 						pretitle: post.hero.categories?.title as string,
-	// 						title: post.title,
-	// 					})),
-	// 				};
-	// 			}),
-	// 		],
-	// 	};
-	// }
-
 	const groupFaqsByCategory = (posts: Post[]): GroupedPost[] =>  {
 		return posts.reduce((result: GroupedPost[], post: Post) => {
 			const existingCategory = result.find(group => group.name === post.hero.categories?.title);
