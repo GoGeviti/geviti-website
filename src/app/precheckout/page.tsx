@@ -5,12 +5,15 @@ import styled from 'styled-components';
 
 import HormonesTransition from '@/components/precheckout/HormonesTransition';
 import NotAloneTransition from '@/components/precheckout/NotAloneTransition';
+import PreCheckoutFullForm from '@/components/precheckout/PreCheckoutFullForm';
+import PreCheckoutNameCollection from '@/components/precheckout/PreCheckoutNameCollection';
 import PreCheckoutNav from '@/components/precheckout/PreCheckoutNav';
 import PreCheckoutProgressBar from '@/components/precheckout/PreCheckoutProgressBar';
 import QuestionGoals from '@/components/precheckout/QuestionGoals';
 import QuestionLethargic from '@/components/precheckout/QuestionLethargic';
 import QuestionLibido from '@/components/precheckout/QuestionLibido';
 import QuestionWeight from '@/components/precheckout/QuestionWeight';
+import SuccessTransition from '@/components/precheckout/SuccessTransition';
 import WelcomeTransition, { ViewState, } from '@/components/precheckout/WelcomeTransition';
 
 const Column = styled.div`
@@ -58,7 +61,7 @@ const formStepToBackground = (formStep: FormStep): string => {
 	if (formStep === FormStep.TRANSITION_HORMONES)
 		return 'rgba(163, 224, 255, 0.25)';
 	if (formStep === FormStep.TRANSITION_ELIGIBLE)
-		return 'rgba(163, 224, 255, 0.25)';
+		return 'rgba(96, 197, 124, 0.1)';
 
 	return '#F2F2F2';
 };
@@ -140,6 +143,27 @@ const PreCheckoutFlowPage = () => {
 					<QuestionGoals
 						viewState={ currentViewState(FormStep.QUESTION_GOALS, formStep) }
 						onSelectOption={ () => setFormStep(prev => prev + 1) }
+					/>
+				) }
+				{ currentViewState(FormStep.FORM_NAME_EMAIL, formStep) !==
+					ViewState.HIDDEN && (
+					<PreCheckoutNameCollection
+						viewState={ currentViewState(FormStep.FORM_NAME_EMAIL, formStep) }
+						onContinue={ () => setFormStep(prev => prev + 1) }
+					/>
+				) }
+				{ currentViewState(FormStep.FORM_MORE_INFO, formStep) !==
+					ViewState.HIDDEN && (
+					<PreCheckoutFullForm
+						viewState={ currentViewState(FormStep.FORM_MORE_INFO, formStep) }
+						onContinue={ () => setFormStep(prev => prev + 1) }
+					/>
+				) }
+				{ currentViewState(FormStep.PRICING_TABLE, formStep) !==
+					ViewState.HIDDEN && (
+					<SuccessTransition
+						viewState={ currentViewState(FormStep.TRANSITION_ELIGIBLE, formStep) }
+						onContinue={ () => setFormStep(prev => prev + 1) }
 					/>
 				) }
 			</StepContainer>

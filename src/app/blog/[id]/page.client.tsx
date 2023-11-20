@@ -21,10 +21,14 @@ export const PageClient: React.FC<{
 			<Blocks
 				blocks={ post.layout }
 			/>
-			<ArticleComponent.Articles
-				list={ post.relatedPosts }
-				btn={ articleData.article.btn }
-				title={ articleData.article.title }/>
+			{
+				post?.relatedPosts && post?.relatedPosts?.length > 0 && (
+					<ArticleComponent.Articles
+						list={ post.relatedPosts }
+						btn={ articleData.article.btn }
+						title={ articleData.article.title }/>
+				)
+			}
 		</div>
 	);
 };
