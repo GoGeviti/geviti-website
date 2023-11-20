@@ -9,6 +9,9 @@ import { screens } from '@/helpers/style';
 import { useWindowDimensions } from '@/hooks';
 import { Post } from '@/payload/payload-types';
 
+import { ChevronRight } from '../Icons';
+import { CustomLink } from '..';
+
 // interface ArticleProps {
 // 	pretitle: string;
 // 	title: string;
@@ -20,16 +23,23 @@ interface ArticlesProps {
 	title:string;
 	preTitle?:string;
 	btn: string;
+	btnLink?: string;
+	className?: string;
 }
 
-const Articles: React.FC<ArticlesProps> = ({ list, title, preTitle, btn }) => {
+const Articles: React.FC<ArticlesProps> = ({ list, title, preTitle, btn, btnLink, className }) => {
 	const [showAllTabs, setShowAllTabs] = useState(false);
 	const windowDimensions = useWindowDimensions();
 	const isMobile = windowDimensions.width < screens.md;
 
 	return (
 		<div className='container-center mx-auto w-full relative'>
-			<div className='w-full pt-[70px] '>
+			<div className={
+				clsxm(
+					'w-full pt-[70px]',
+					className && className,
+				)
+			}>
 				<div className='flex justify-center md:justify-between items-center'>
 					<div className='flex flex-col max-md:text-center'>
 						{
@@ -39,14 +49,30 @@ const Articles: React.FC<ArticlesProps> = ({ list, title, preTitle, btn }) => {
 						}
 						<h2 className='text-primary font-Poppins text-4xl -tracking-[1.44px] text-center'>{ title }</h2>
 					</div>
-					<button
-						onClick={ () => setShowAllTabs(!showAllTabs) }
-						className='btn-cta-landing group btn-primary px-9 md:block hidden'
-					>
-						<span className='text-btn-cta-landing'>
-							{ showAllTabs ? 'View Less' : btn }
-						</span>
-					</button>
+					{
+						btnLink ? (
+							<CustomLink
+								href={ btnLink }
+								aria-label={ btn }
+								className='btn btn-primary flex items-center gap-7px sm:gap-2 !translate-y-0 group'
+							>
+								<span className='text-xs sm:text-sm font-medium leading-5 sm:leading-6 font-Poppins'>
+									{ btn }
+								</span>
+
+								<ChevronRight className='stroke-grey-secondary w-4 h-4 sm:w-18px sm:h-18px group-hover:translate-x-1 transform transition-all duration-100' />
+							</CustomLink>
+						) : (
+							<button
+								onClick={ () => setShowAllTabs(!showAllTabs) }
+								className='btn-cta-landing group btn-primary px-9 md:block hidden'
+							>
+								<span className='text-btn-cta-landing'>
+									{ showAllTabs ? 'View Less' : btn }
+								</span>
+							</button>
+						)
+					}
 				</div>
 				<div className='relative'>
 					{

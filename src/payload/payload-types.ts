@@ -9,6 +9,7 @@ export interface Product {
 	id: number;
 	name: string;
 	description: string;
+	sort_description?: string;
 	price: number;
 	category: Category;
 	benefits: Benefit[];

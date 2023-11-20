@@ -42,14 +42,14 @@ const Topics: React.FC<{
 			<div className='w-full '>
 				<div className='flex justify-center md:justify-between items-center'>
 					<p className='text-primary font-Poppins text-4xl -tracking-[1.44px] text-center'>{ title }</p>
-					<div
+					<button
 						className='btn-cta-landing group btn-primary px-9 md:block hidden'
 						onClick={ () => setShowAllTabs(!showAllTabs) }
 					>
 						<span className='text-btn-cta-landing'>
 							{ showAllTabs ? 'View Less' : btnRight }
 						</span>
-					</div>
+					</button>
 				</div>
 				<Tabs
 					className='flex flex-col'

@@ -2,6 +2,7 @@ import { NextPage } from 'next';
 import { notFound } from 'next/navigation';
 
 import {
+	ArticleComponent,
 	CustomLink,
 	HomeComponent,
 	LandingComponent,
@@ -9,7 +10,7 @@ import {
 	ProductsComponent,
 } from '@/components';
 import { AlertSquareIcon, ClockIcon } from '@/components/Icons';
-import { getProductById } from '@/services/products';
+import { getAllPost, getProductById } from '@/services/products';
 
 import Breadcrumb from './breadcrumb';
 import ProductFaq from './productFaq';
@@ -21,6 +22,7 @@ const ProductDetailPage: NextPage<ProductDetailPageProps> = async({
 }) => {
 	const id = params.id;
 	const product = await getProductById(id);
+	const allPost = await getAllPost(4);
 
 	if (!product) {
 		notFound();
@@ -121,7 +123,14 @@ const ProductDetailPage: NextPage<ProductDetailPageProps> = async({
 			</div>
 
 			<LandingComponent.Steps />
-			<HomeComponent.LearnMore withBg />
+			{ /* <HomeComponent.LearnMore withBg /> */ }
+			<ArticleComponent.Articles
+				list={ allPost.docs }
+				btnLink='/blog'
+				btn='View All'
+				title='Learn More'
+				preTitle='RESEARCH'
+			/>
 			<div className='py-[70px] lg:py-[95px]'>
 				<HomeComponent.Products />
 			</div>
