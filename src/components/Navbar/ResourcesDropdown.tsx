@@ -86,9 +86,27 @@ const ResourcesDropdown:React.FC<ResourcesDropdownProps> = ({
 					alt='Dropdown caret'
 				/> */ }
 			</div>
-			<OtherLink href='/blog'>Blog</OtherLink>
-			<OtherLink href='/faq'>FAQ</OtherLink>
-			<OtherLink href='/contact-us'>Help Center</OtherLink>
+			<OtherLink
+				className={
+					clsxm(
+						theme === 'dark' ? '!text-grey-primary hover:!text-grey-secondary' : '!text-primary/70 hover:!text-primary'
+					)
+				}
+				href='/blog'>Blog</OtherLink>
+			<OtherLink
+				className={
+					clsxm(
+						theme === 'dark' ? '!text-grey-primary hover:!text-grey-secondary' : '!text-primary/70 hover:!text-primary'
+					)
+				}
+				href='/faq'>FAQ</OtherLink>
+			<OtherLink
+				className={
+					clsxm(
+						theme === 'dark' ? '!text-grey-primary hover:!text-grey-secondary' : '!text-primary/70 hover:!text-primary'
+					)
+				}
+				href='/contact-us'>Help Center</OtherLink>
 		</Container>
 	);
 };
