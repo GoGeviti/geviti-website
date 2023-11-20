@@ -33,7 +33,11 @@ const Container = styled.div`
 
     svg {
       transform: rotate(180deg);
+			color: white !important;
     }
+		span {
+			color: white !important;
+		}
   }
 `;
 
@@ -41,6 +45,9 @@ const PrimaryText = styled.span`
   color: white;
   font-size: 14px;
   font-weight: 500;
+	&:hover {
+		color: white !important;
+	}
 `;
 
 const OtherLink = styled(Link)`
@@ -90,7 +97,7 @@ const ResourcesDropdown:React.FC<ResourcesDropdownProps> = ({
 				className={
 					clsxm(
 						'!font-Poppins',
-						theme === 'dark' ? '!text-grey-primary hover:!text-grey-secondary' : '!text-primary/70 hover:!text-primary'
+						'!text-white hover:!text-grey-secondary'
 					)
 				}
 				href='/blog'>Blog</OtherLink>
@@ -98,7 +105,7 @@ const ResourcesDropdown:React.FC<ResourcesDropdownProps> = ({
 				className={
 					clsxm(
 						'!font-Poppins',
-						theme === 'dark' ? '!text-grey-primary hover:!text-grey-secondary' : '!text-primary/70 hover:!text-primary'
+						'!text-white hover:!text-grey-secondary'
 					)
 				}
 				href='/faq'>FAQ</OtherLink>
@@ -106,7 +113,7 @@ const ResourcesDropdown:React.FC<ResourcesDropdownProps> = ({
 				className={
 					clsxm(
 						'!font-Poppins',
-						theme === 'dark' ? '!text-grey-primary hover:!text-grey-secondary' : '!text-primary/70 hover:!text-primary'
+						'!text-white hover:!text-grey-secondary'
 					)
 				}
 				href='/contact-us'>Help Center</OtherLink>
