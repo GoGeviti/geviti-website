@@ -1,8 +1,7 @@
 const blogData = {
 	hero: {
 		preTitle: 'Nutrition',
-		title: '<p>How The Meat You Eat Can Be<br/> Impacting Your Physical Health</p>',
-		titleMobile: '<p>How The Meat You Eat Can Be Impacting Your Physical Health</p>',
+		title: '<p>How The Meat You Eat Can Be<br class="max-md:hidden"/> Impacting Your Physical Health</p>',
 		btn: 'Read Article',
 		image: '/images/blog/hero.webp'
 	},

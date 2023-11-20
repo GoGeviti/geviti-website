@@ -14,19 +14,12 @@ const landingData = {
 				href: '/orders',
 				icon: ShoppingBagIcon,
 			},
-		],
-		actionsMenu: [
-			{
-				name: 'Dashboard',
-				href: '/',
-				externalLink: false,
-			},
-		],
+		]
 	},
 	hero: {
 		preTitle: 'Your at-home health and wellness clinic',
 		title:
-			'<p>Online HRT, peptide therapy, <br class="max-md:hidden"/>and personalized wellness.</p>',
+			'<p>Online hormone therapy <br class="max-md:hidden"/>and personalized wellness.</p>',
 		image: '/images/landing/hero.png',
 		imageMobile: '/images/landing/hero_mobile.png',
 		btnCta: {
@@ -188,7 +181,6 @@ const landingData = {
 		preTitle: 'USA Pharmacy dispensed',
 		preTitleMobile: 'Tailor-made longevity',
 		title: 'Hormone therapy, peptide therapy, and more.',
-		titleMobile: 'Hormone therapy, peptide therapy, and more.',
 		notes:
 			'*Product images are for display purposes; actual items from US-based pharmacies may vary.',
 		list: [
