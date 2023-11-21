@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { Player } from '@lottiefiles/react-lottie-player';
 import styled, { keyframes } from 'styled-components';
 

@@ -68,31 +68,6 @@ const moveFromRight = keyframes`
   }
 `;
 
-const SelectInputsRow = styled.div<{ viewState: ViewState }>`
-  display: flex;
-  gap: 8px;
-
-  animation: ${props =>
-		props.viewState === ViewState.IN_PROGRESS && moveFromRight}
-    0.5s cubic-bezier(0.21, 1.04, 0.58, 1.15);
-  animation-fill-mode: forwards;
-  animation-delay: 0.24s;
-  width: 430px;
-
-  transform: translateX(100vw);
-
-  margin-bottom: 8px;
-`;
-
-const SelectInput = styled.select`
-  border: none;
-  border-radius: 10px;
-  height: 46px;
-  font-weight: 500;
-  font-size: 13px;
-  color: #181a1c;
-`;
-
 const SecondInputField = styled(InputField)<{ viewState: ViewState }>`
   animation: ${props =>
 		props.viewState === ViewState.IN_PROGRESS && moveFromRight}
@@ -127,18 +102,6 @@ const Button = styled.button<{ viewState: ViewState }>`
     0.5s cubic-bezier(0.21, 1.04, 0.58, 1.15);
   animation-fill-mode: forwards;
   animation-delay: 0.4s;
-`;
-
-const SelectInputCol = styled.div`
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-`;
-
-const Label = styled.label`
-  font-size: 12px;
-  color: #181a1c;
-  margin-bottom: 4px;
 `;
 
 const FreeVisitRow = styled.div<{ viewState: ViewState }>`
@@ -194,67 +157,15 @@ const FreeVisitSubtitle = styled.span`
   color: #919b9f;
 `;
 
-const CheckboxRow = styled.div<{ viewState: ViewState }>`
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-  margin-bottom: 24px;
-
-  transform: translateX(100vw);
-  animation: ${props =>
-		props.viewState === ViewState.IN_PROGRESS && moveFromRight}
-    0.5s cubic-bezier(0.21, 1.04, 0.58, 1.15);
-  animation-fill-mode: forwards;
-  animation-delay: 0.32s;
-`;
-
-const CheckboxBox = styled.div<{ isChecked: boolean }>`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 24px;
-  width: 24px;
-  box-sizing: border-box;
-  border: 2px solid #181a1c;
-  border-radius: 5px;
-
-  div {
-    height: 14px;
-    width: 14px;
-    border-radius: 2px;
-    background: #181a1c;
-    transform: scale(${props => (props.isChecked ? 1 : 0.95)});
-    opacity: ${props => (props.isChecked ? 1 : 0)};
-    transition:
-      0.2s transform ease-out,
-      0.2s opacity ease-out;
-  }
-`;
-
-const CheckboxText = styled.span`
-  margin-left: 8px;
-  font-size: 12px;
-  color: #181a1c;
-  width: 400px;
-  line-height: 135%;
-
-  a {
-    color: #181a1c;
-    text-decoration: underline;
-    font-weight: 500;
-  }
-`;
-
 interface PreCheckoutWaitlistProps {
 	viewState: ViewState;
 	onContinue: (usState: string, sex: string, birthday: string) => void;
 }
 
 const PreCheckoutWaitlist = (props: PreCheckoutWaitlistProps) => {
-	const [usState, setUsState] = useState('AZ');
-	const [sex, setSex] = useState('male');
+	const [usState] = useState('AZ');
+	const [sex] = useState('male');
 	const [birthday, setBirthday] = useState('email@example.com');
-	const [isAgreed, setIsAgreed] = useState(false);
 
 	const lottieRef = useRef<Player>(null);
 
