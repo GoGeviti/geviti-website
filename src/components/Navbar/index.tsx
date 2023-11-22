@@ -187,7 +187,7 @@ const Navbar: React.FC<NavbarProps> = ({
 									{ renderIconMenuList() }
 								</div>
 								<CustomLink
-									href='https://app.gogeviti.om/'
+									href='https://app.gogeviti.com/'
 									onClick={ () => handleSelectedItem(4) }
 									className={ clsxm(
 										'lg:w-[120px] rounded-md px-3 py-2 text-sm font-Poppins hover:font-semibold md:block hidden',
