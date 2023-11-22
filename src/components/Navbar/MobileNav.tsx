@@ -79,7 +79,7 @@ const MobileNav = (props: MobileNavProps) => {
 					pathname === '/blog' ? '100' : '30'
 				} mb-25px` }
 			>
-        Help Center
+        Contact Us
 			</Link>
 			<div className='bg-[#2D2F31] h-[1px] -mx-[16px] mb-[30px] mt-auto' />
 			<a

@@ -5,8 +5,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 import clsxm from '@/helpers/clsxm';
-import { screens } from '@/helpers/style';
-import { useWindowDimensions } from '@/hooks';
 import { Post } from '@/payload/payload-types';
 
 import { ChevronRight } from '../Icons';
@@ -29,8 +27,8 @@ interface ArticlesProps {
 
 const Articles: React.FC<ArticlesProps> = ({ list, title, preTitle, btn, btnLink, className }) => {
 	const [showAllTabs, setShowAllTabs] = useState(false);
-	const windowDimensions = useWindowDimensions();
-	const isMobile = windowDimensions.width < screens.md;
+	// const windowDimensions = useWindowDimensions();
+	// const isMobile = windowDimensions.width < screens.md;
 
 	return (
 		<div className='container-center mx-auto w-full relative'>
@@ -76,17 +74,32 @@ const Articles: React.FC<ArticlesProps> = ({ list, title, preTitle, btn, btnLink
 				</div>
 				<div className='relative'>
 					{
-						isMobile ?
-							showAllTabs ? renderItem(list) : renderItem(list?.slice(0, 3)) :
-							showAllTabs ? renderItem(list) : renderItem(list?.slice(0, 4))
+						renderItem(list?.slice(0, 4))
 					}
-					<button
-						className='btn-cta-landing group btn-primary px-9 md:hidden w-fit absolute -bottom-5 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20'
-						onClick={ () => setShowAllTabs(!showAllTabs) }>
-						<span className='text-btn-cta-landing'>
-							{ showAllTabs ? 'View Less' : btn }
-						</span>
-					</button>
+					{
+						btnLink ? (
+							<CustomLink
+								href={ btnLink }
+								aria-label={ btn }
+								className='btn-cta-landing group btn-primary px-9 md:hidden w-fit absolute -bottom-5 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20'
+							>
+								<span className='text-btn-cta-landing'>
+									{ btn }
+								</span>
+
+								<ChevronRight className='stroke-grey-secondary w-4 h-4 sm:w-18px sm:h-18px group-hover:translate-x-1 transform transition-all duration-100' />
+							</CustomLink>
+						) : (
+							<button
+								className='btn-cta-landing group btn-primary px-9 md:hidden w-fit absolute -bottom-5 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20'
+								onClick={ () => setShowAllTabs(!showAllTabs) }>
+								<span className='text-btn-cta-landing'>
+									{ showAllTabs ? 'View Less' : btn }
+								</span>
+							</button>
+						)
+					}
+					
 					{
 						!showAllTabs &&
 						<div className='md:hidden bg-gradient-to-t from-grey-background/90 to-grey-background/0 absolute -bottom-5 z-10 w-full h-[131px]' />

@@ -14,7 +14,7 @@ const PrivacyClientPage:React.FC<PrivacyClientPageProps> = ({ content }) => {
 	return (
 		<div className='md:bg-white rounded-xl md:p-[10px]'>
 			<ScrollArea className='w-full md:h-[467px] relative'>
-				<ScrollAreaViewport className='h-full '>
+				<ScrollAreaViewport className='h-full md:overflow-x-hidden md:overflow-y-auto max-md:!overflow-hidden'>
 					<div className='text-start text-primary font-Poppins text-sm md:text-base md:m-[30px]'>
 						<RichText content={ content } />
 					</div>

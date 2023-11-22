@@ -116,7 +116,7 @@ const ResourcesDropdown:React.FC<ResourcesDropdownProps> = ({
 						'!text-white hover:!text-grey-secondary'
 					)
 				}
-				href='/contact-us'>Help Center</OtherLink>
+				href='/contact-us'>Contact Us</OtherLink>
 		</Container>
 	);
 };

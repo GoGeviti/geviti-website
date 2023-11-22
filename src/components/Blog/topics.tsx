@@ -38,7 +38,7 @@ const Topics: React.FC<{
 	const isMobile = windowDimensions.width < screens.md;
 
 	return (
-		<div className='container-center mx-auto w-full relative mt-20'>
+		<div className='container-center mx-auto w-full relative mt-20 overflow-x-hidden'>
 			<div className='w-full '>
 				<div className='flex justify-center md:justify-between items-center'>
 					<p className='text-primary font-Poppins text-4xl -tracking-[1.44px] text-center'>{ title }</p>
@@ -77,7 +77,7 @@ const Topics: React.FC<{
 							</div>
 						)) }
 					</TabsList>
-					<div>
+					<div className=''>
 						{ articleData.map((it, id) => {
 							return (
 								<TabsContent
