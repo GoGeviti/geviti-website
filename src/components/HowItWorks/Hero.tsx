@@ -1,6 +1,5 @@
 'use client';
 import React, { useState } from 'react';
-import { BigPlayButton, Player, PosterImage } from 'video-react';
 
 import { howItWorksData } from '@/constant/data';
 import clsxm from '@/helpers/clsxm';
