@@ -14,8 +14,8 @@ const Functional: React.FC = () => {
 	return (
 		<div className='lg:px-3 lg:pb-15px overflow-hidden'>
 			<div className='h-full w-full lg:rounded-[19px] relative overflow-hidden bg-primary'>
-				<div className='container-center relative overflow-hidden'>
-					<div className='mx-auto max-w-5xl max-md:pb-[93px] pt-[52px] sm:pt-[113px] lg:relative isolate overflow-hidden'>
+				<div className='relative overflow-hidden'>
+					<div className='mx-auto container-center  max-w-5xl pt-[52px] sm:pt-[113px] lg:relative isolate overflow-hidden'>
 						<div className='text-center'>
 							<p className='hidden lg:block text-pretitle text-grey-primary'>
 								{ functionalData.preTitle }
@@ -60,14 +60,13 @@ const Functional: React.FC = () => {
 						</div>
 					</div>
 
-					<div className='-mx-[265px] lg:-mx-[150px] -mb-[128px] sm:-mb-[200px] lg:-mb-[210px] xl:-mb-[270px] -mt-[139px] sm:-mt-[110px] xl:-mt-[170px]'>
+					<div className='max-h-[349px] relative w-full h-full aspect-square max-w-[629px] mx-auto mt-6 flex items-center justify-center'>
 						<Image
-							src='/images/landing/compressed/functional_products.webp'
+							src='/images/landing/compressed/functional_products.png'
 							alt='product'
 							loading='lazy'
-							width={ 1139 }
-							height={ 778 }
-							className='w-full'
+							fill
+							className='w-full object-center object-cover'
 						/>
 					</div>
 				</div>
