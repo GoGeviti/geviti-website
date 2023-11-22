@@ -25,7 +25,7 @@ const navigationData = {
 	actionsMenu: [
 		{
 			name: 'Get Started',
-			href: '/get-started',
+			href: '/precheckout',
 			externalLink: false
 		}
 	]
