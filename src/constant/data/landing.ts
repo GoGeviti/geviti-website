@@ -28,7 +28,7 @@ const landingData = {
 			externalLink: false,
 		},
 		btnCta2: {
-			href: '/get-started',
+			href: '/precheckout',
 			externalLink: false,
 			text: 'Join Geviti',
 		},
@@ -225,7 +225,7 @@ const landingData = {
 		image: '/images/landing/compressed/flexible.webp',
 		imageMobile: '/images/landing/compressed/flexible-mobile.webp',
 		btnCta: {
-			href: '/get-started',
+			href: '/precheckout',
 			externalLink: false,
 			text: 'Join Geviti',
 		},

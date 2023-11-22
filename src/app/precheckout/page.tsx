@@ -9,6 +9,7 @@ import PreCheckoutFullForm from '@/components/precheckout/PreCheckoutFullForm';
 import PreCheckoutNameCollection from '@/components/precheckout/PreCheckoutNameCollection';
 import PreCheckoutNav from '@/components/precheckout/PreCheckoutNav';
 import PreCheckoutProgressBar from '@/components/precheckout/PreCheckoutProgressBar';
+import PreCheckoutWaitlist from '@/components/precheckout/PreCheckoutWaitlist';
 import QuestionGoals from '@/components/precheckout/QuestionGoals';
 import QuestionLethargic from '@/components/precheckout/QuestionLethargic';
 import QuestionLibido from '@/components/precheckout/QuestionLibido';
@@ -34,6 +35,7 @@ enum FormStep {
   QUESTION_GOALS,
   FORM_NAME_EMAIL,
   FORM_MORE_INFO,
+  CONFIRM_WAITLIST_EMAIL,
   TRANSITION_ELIGIBLE,
   PRICING_TABLE,
 }
@@ -156,6 +158,13 @@ const PreCheckoutFlowPage = () => {
 					ViewState.HIDDEN && (
 					<PreCheckoutFullForm
 						viewState={ currentViewState(FormStep.FORM_MORE_INFO, formStep) }
+						onContinue={ () => setFormStep(prev => prev + 1) }
+					/>
+				) }
+				{ currentViewState(FormStep.CONFIRM_WAITLIST_EMAIL, formStep) !==
+					ViewState.HIDDEN && (
+					<PreCheckoutWaitlist
+						viewState={ currentViewState(FormStep.CONFIRM_WAITLIST_EMAIL, formStep) }
 						onContinue={ () => setFormStep(prev => prev + 1) }
 					/>
 				) }
