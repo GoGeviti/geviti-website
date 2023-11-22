@@ -65,7 +65,7 @@ const Hero: React.FC = () => {
 								}) }
 							</div>
 						</div>
-						<div className='sm:max-w-4xl container-center lg:py-[95px] h-full flex items-end max-lg:order-1'>
+						<div className='sm:max-w-4xl container-center lg:py-[95px] lg:pb-0 h-full flex items-end max-lg:order-1'>
 							<div
 								id='main-keys'
 								className='grid grid-cols-2 lg:grid-cols-4 gap-11 lg:gap-[54px] w-full'
@@ -97,22 +97,22 @@ const Hero: React.FC = () => {
 								)) }
 							</div>
 						</div>
-						<div className='w-full inset-0 object-cover max-lg:order-0 max-lg:my-[60px] xl:px-[100px]'>
-							<div className='w-full rounded-[10px] overflow-hidden'>
-								<Player
-									playsInline
-									poster='/images/howitworks/thumbnail.png'>
-									<PosterImage
-										poster='/images/howitworks/thumbnail.png'/>
-									<source src='/videos/dummy.mp4' />
-									<BigPlayButton position='center' />
-								</Player>
-							</div>
-						</div>
-					
+						{ /* <div className='w-full inset-0 object-cover max-lg:order-0 max-lg:my-[60px] xl:px-[100px]'> */ }
+						{ /* 	<div className='w-full rounded-[10px] overflow-hidden'> */ }
+						{ /* 		<Player */ }
+						{ /* 			playsInline */ }
+						{ /* 			poster='/images/howitworks/thumbnail.png'> */ }
+						{ /* 			<PosterImage */ }
+						{ /* 				poster='/images/howitworks/thumbnail.png'/> */ }
+						{ /* 			<source src='/videos/dummy.mp4' /> */ }
+						{ /* 			<BigPlayButton position='center' /> */ }
+						{ /* 		</Player> */ }
+						{ /* 	</div> */ }
+						{ /* </div> */ }
+
 					</div>
 				</div>
-				
+
 			</div>
 		</div>
 	);

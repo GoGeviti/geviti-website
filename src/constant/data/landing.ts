@@ -79,7 +79,7 @@ const landingData = {
 		image: '/images/landing/mission.png',
 		imageMobile: '/images/landing/mission_mobile.png',
 		btnCta: {
-			href: '/',
+			href: '/blog/the-mission-of-geviti-the-birth-of-a-better-telehealth',
 			externalLink: false,
 			text: 'Read More',
 		},
