@@ -22,7 +22,9 @@ export const ContentBlock: React.FC<
 
           	return (
           		<div
-          			key={ index }>
+          			key={ index }
+          			className={ `${index !== 0 ? 'mt-10 lg:mt-[70px]' : ''}` }
+          		>
           			<RichText content={ richText } />
           		</div>
           	);

@@ -31,7 +31,8 @@ const Articles = ({ post }:{post:Post[]}) => {
 					{ post?.map((items, id) => {
 						const isHovered = hoveredItem === id;
 						return (
-							<div
+							<Link
+								href={ `/blog/${items.slug}` }
 								key={ id }
 								className='relative'
 								onMouseEnter={ () => handleMouseEnter(id) }
@@ -48,13 +49,12 @@ const Articles = ({ post }:{post:Post[]}) => {
 									<p className={ `text-[#CDDCE2] font-BRSonoma ${isHovered ? 'text-base' : 'text-sm'}` }>{ items.hero.categories?.title }</p>
 									<p className={ `text-white font-Poppins  ${isHovered ? 'text-[22px] lg:text-[27px] -tracking-[1.08px]' : 'text-lg lg:text-[22px] -tracking-[0.88px]'}` } >{ items.title }</p>
 								</div>
-								<Link
-									href={ `/blog/${items.slug}` }
+								<button
 									className='cursor-pointer z-10 absolute top-0 right-0 m-5'>
 									<ArrowEmail className='w-[45px] h-[45px]'/>
-								</Link>
+								</button>
 								<div className='z-0 bottom-0 absolute bg-gradient-to-t from-black/70 via-black/30 to-black/0 h-full w-full rounded-[20px]'/>
-							</div>
+							</Link>
 						);
 					}) }
 				</div>

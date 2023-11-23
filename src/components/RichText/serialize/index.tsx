@@ -36,7 +36,9 @@ export function serializeLexical({ nodes }: Props): JSX.Element {
 							key={ index } />
 					);
 					if (node.format & IS_BOLD) {
-						text = <strong key={ index }>{ text }</strong>;
+						text = <strong
+							className='font-semibold'
+							key={ index }>{ text }</strong>;
 					}
 					if (node.format & IS_ITALIC) {
 						text = <em key={ index }>{ text }</em>;
@@ -118,8 +120,10 @@ export function serializeLexical({ nodes }: Props): JSX.Element {
             return <Tag
             	className={
             		clsxm(
-            			'font-Poppins text-primary text-[26px] leading-[33px] font-semibold lg:mt-[70px] lg:mb-5 mt-10 mb-[10px]',
-            			node?.tag === 'h3' && 'my-[10px] lg:my-5 text-[24px]',
+            			'font-Poppins text-primary text-lg md:text-[21px] leading-none font-semibold',
+            			node?.tag === 'h1' && 'text-[30px] md:text-[32px] mb-[10px] md:mb-[31px]',
+            			node?.tag === 'h2' && 'text-[24px] md:text-[26px] mb-[10px] md:mb-[31px]',
+            			node?.tag === 'h3' && 'text-[20.5px] md:text-[22.5px]',
             		)
             	}
             	key={ index }>{ serializedChildren }</Tag>;

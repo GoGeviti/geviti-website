@@ -23,14 +23,14 @@ const landingData = {
 		image: '/images/landing/hero.png',
 		imageMobile: '/images/landing/hero_mobile.png',
 		btnCta: {
-			text: 'See Products',
-			href: '/products',
+			text: 'Get Started',
+			href: '/precheckout',
 			externalLink: false,
 		},
 		btnCta2: {
-			href: '/precheckout',
+			href: '/products',
 			externalLink: false,
-			text: 'Join Geviti',
+			text: 'See Products',
 		},
 		mainKeys: [
 			{
@@ -79,7 +79,7 @@ const landingData = {
 		image: '/images/landing/mission.png',
 		imageMobile: '/images/landing/mission_mobile.png',
 		btnCta: {
-			href: '/',
+			href: '/blog/the-mission-of-geviti-the-birth-of-a-better-telehealth',
 			externalLink: false,
 			text: 'Read More',
 		},
@@ -90,7 +90,7 @@ const landingData = {
 		btnCta: {
 			href: '/get-started',
 			externalLink: false,
-			text: 'Get Labs Done',
+			text: 'Get Started',
 		},
 		list: [
 			{
@@ -227,7 +227,7 @@ const landingData = {
 		btnCta: {
 			href: '/precheckout',
 			externalLink: false,
-			text: 'Join Geviti',
+			text: 'Join Now',
 		},
 	},
 };

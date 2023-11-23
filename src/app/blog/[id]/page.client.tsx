@@ -18,9 +18,11 @@ export const PageClient: React.FC<{
 					preTitle: post.hero.categories?.title ?? ''
 				} }
 				classname= '!h-[372px] md:!h-[514px]'/>
-			<Blocks
-				blocks={ post.layout }
-			/>
+			<div className='max-w-[842px] mx-auto'>
+				<Blocks
+					blocks={ post.layout }
+				/>
+			</div>
 			{
 				post?.relatedPosts && post?.relatedPosts?.length > 0 && (
 					<ArticleComponent.Articles

@@ -38,7 +38,7 @@ const Topics: React.FC<{
 	const isMobile = windowDimensions.width < screens.md;
 
 	return (
-		<div className='container-center mx-auto w-full relative mt-20 overflow-x-hidden'>
+		<div className='container-center mx-auto w-full relative mt-20'>
 			<div className='w-full '>
 				<div className='flex justify-center md:justify-between items-center'>
 					<p className='text-primary font-Poppins text-4xl -tracking-[1.44px] text-center'>{ title }</p>
@@ -101,7 +101,7 @@ const Topics: React.FC<{
 									}
 									{
 										it.list.length > 3 && isMobile && !showAllTabs &&
-										<div className='bg-gradient-to-t from-grey-background/90 to-grey-background/0 absolute -bottom-5 z-10 w-full h-[131px]' />
+										<div className='bg-gradient-to-t from-grey-background/90 to-grey-background/0 absolute -bottom-5 z-10 w-[calc(100vw-24px)] h-[131px]' />
 									}
 								</TabsContent>
 							);
