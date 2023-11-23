@@ -1,10 +1,21 @@
+'use client';
+
 import React from 'react';
 import Image from 'next/image';
+import styled from 'styled-components';
 
 import { landingData } from '@/constant/data';
 
 import CustomLink from '../CustomLink';
 import { ChevronRight } from '../Icons';
+
+const DesktopImageWrapper = styled.div` 
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 45vw;
+  justify-content: flex-end;
+`;
 
 const flexibleData = landingData.flexible;
 
@@ -48,16 +59,16 @@ const Flexible: React.FC = () => {
 					</div>
 					<div />
 
-					<div className='max-lg:order-0 lg:flex h-full lg:justify-end lg:absolute lg:right-0 lg:top-0 hidden'>
+					<DesktopImageWrapper className='lg:absolute hidden lg:flex'>
 						<Image
 							src={ flexibleData.image }
 							alt='flexible'
 							loading='lazy'
 							width={ 1440 }
 							height={ 801 }
-							className='w-[707px] object-cover'
+							className='object-cover'
 						/>
-					</div>
+					</DesktopImageWrapper>
 					<div className='lg:hidden order-0'>
 						<Image
 							src={ flexibleData.imageMobile }

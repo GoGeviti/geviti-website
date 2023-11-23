@@ -187,13 +187,13 @@ const Navbar: React.FC<NavbarProps> = ({
 									{ renderIconMenuList() }
 								</div>
 								<CustomLink
-									href='/'
+									href='https://app.gogeviti.com/'
 									onClick={ () => handleSelectedItem(4) }
 									className={ clsxm(
 										'lg:w-[120px] rounded-md px-3 py-2 text-sm font-Poppins hover:font-semibold md:block hidden',
 										theme === 'dark' ? 'text-grey-secondary hover:text-white' : 'text-primary',
 										isWithnavbarData ? 'block' : 'hidden',
-										selectedItem === 4 ? 'font-semibold' : 'font-medium'
+										selectedItem === 4 ? 'font-medium' : 'font-medium'
 									) }
 									aria-label='Dashboard'
 								>

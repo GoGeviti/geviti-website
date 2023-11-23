@@ -96,24 +96,21 @@ const ResourcesDropdown:React.FC<ResourcesDropdownProps> = ({
 			<OtherLink
 				className={
 					clsxm(
-						'!font-Poppins',
-						'!text-white hover:!text-grey-secondary'
+						'!font-Poppins'
 					)
 				}
 				href='/blog'>Blog</OtherLink>
 			<OtherLink
 				className={
 					clsxm(
-						'!font-Poppins',
-						'!text-white hover:!text-grey-secondary'
+						'!font-Poppins'
 					)
 				}
 				href='/faq'>FAQ</OtherLink>
 			<OtherLink
 				className={
 					clsxm(
-						'!font-Poppins',
-						'!text-white hover:!text-grey-secondary'
+						'!font-Poppins'
 					)
 				}
 				href='/contact-us'>Contact Us</OtherLink>
