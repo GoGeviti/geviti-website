@@ -10,8 +10,8 @@ body {
 
 @media (max-width: 1024px) {
   span,
-  p {
-    zoom: 1.1;
+  p, h1, h2, h3 {
+    zoom: 1.2;
   }
 }
 

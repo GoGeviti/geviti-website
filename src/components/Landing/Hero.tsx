@@ -53,9 +53,9 @@ const Hero = () => {
 									{ heroData.preTitle }
 								</h2>
 								{ heroData.title && (
-									<h1 className='zoom-0 mt-[2px] lg:mt-7px font-Poppins text-[25px] md:text-[32px] lg:text-[40px] leading-[130%] sm:leading-[42.5px] tracking-[-1px] md:-tracking-0.04em text-grey-secondary'>
-										{ heroData.title }
-									</h1>
+									<h1
+										className='mt-[2px] lg:mt-7px font-Poppins text-[25px] md:text-[32px] lg:text-[40px] leading-[130%] sm:leading-[42.5px] tracking-[-1px] md:-tracking-0.04em text-grey-secondary'
+										dangerouslySetInnerHTML={ { __html: heroData.title } } />
 								) }
 
 								<div
