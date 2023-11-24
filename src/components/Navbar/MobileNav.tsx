@@ -35,9 +35,8 @@ const MobileNav = (props: MobileNavProps) => {
 		>
 			<Link
 				href='/'
-				className={ `text-white text-[25px] font-Poppins tracking-tight mb-25px opacity-${
-					pathname === '/' ? '100' : '30'
-				}` }
+				className={ 'text-white text-[25px] font-Poppins tracking-tight mb-25px' }
+				style={ { opacity: pathname === '/' ? 1 : 0.3 } }
 			>
         Home
 			</Link>
@@ -47,9 +46,8 @@ const MobileNav = (props: MobileNavProps) => {
 					target={ item.externalLink ? '_blank' : '_self' }
 					rel='noopener noreferrer'
 					key={ item.name }
-					className={ `text-white text-[25px] font-Poppins tracking-tight opacity-${
-						pathname === item.href ? '100' : '30'
-					} mb-25px` }
+					className={ 'text-white text-[25px] font-Poppins tracking-tight mb-25px' }
+					style={ { opacity: pathname === item.href ? 1 : 0.3 } }
 				>
 					{ item.name }
 				</Link>
@@ -57,27 +55,24 @@ const MobileNav = (props: MobileNavProps) => {
 			<Link
 				href='/blog'
 				rel='noopener noreferrer'
-				className={ `text-white text-[25px] font-Poppins tracking-tight opacity-${
-					pathname === '/blog' ? '100' : '30'
-				} mb-25px` }
+				className={ 'text-white text-[25px] font-Poppins tracking-tight mb-25px' }
+				style={ { opacity: pathname === '/blog' ? 1 : 0.3, marginTop: '20%' } }
 			>
         Blog
 			</Link>
 			<Link
-				href='/blog'
+				href='/faq'
 				rel='noopener noreferrer'
-				className={ `text-white text-[25px] font-Poppins tracking-tight opacity-${
-					pathname === '/blog' ? '100' : '30'
-				} mb-25px` }
+				className={ 'text-white text-[25px] font-Poppins tracking-tight mb-25px' }
+				style={ { opacity: pathname === '/faq' ? 1 : 0.3 } }
 			>
         FAQ
 			</Link>
 			<Link
 				href='/contact-us'
 				rel='noopener noreferrer'
-				className={ `text-white text-[25px] font-Poppins tracking-tight opacity-${
-					pathname === '/blog' ? '100' : '30'
-				} mb-25px` }
+				className={ 'text-white text-[25px] font-Poppins tracking-tight mb-25px' }
+				style={ { opacity: pathname === '/contact-us' ? 1 : 0.3 } }
 			>
         Contact Us
 			</Link>

@@ -65,6 +65,7 @@ const Therapy: React.FC = () => {
 						alt='clinician'
 						width={ 618 }
 						height={ 1035 }
+						quality={ 100 }
 					/>
 				</div>
 
