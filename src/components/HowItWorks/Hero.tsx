@@ -1,5 +1,6 @@
 'use client';
 import React, { useState } from 'react';
+import { BigPlayButton, Player, PosterImage } from 'video-react';
 
 import { howItWorksData } from '@/constant/data';
 import clsxm from '@/helpers/clsxm';
@@ -96,18 +97,18 @@ const Hero: React.FC = () => {
 								)) }
 							</div>
 						</div>
-						{ /* <div className='w-full inset-0 object-cover max-lg:order-0 max-lg:my-[60px] xl:px-[100px]'> */ }
-						{ /* 	<div className='w-full rounded-[10px] overflow-hidden'> */ }
-						{ /* 		<Player */ }
-						{ /* 			playsInline */ }
-						{ /* 			poster='/images/howitworks/thumbnail.png'> */ }
-						{ /* 			<PosterImage */ }
-						{ /* 				poster='/images/howitworks/thumbnail.png'/> */ }
-						{ /* 			<source src='/videos/dummy.mp4' /> */ }
-						{ /* 			<BigPlayButton position='center' /> */ }
-						{ /* 		</Player> */ }
-						{ /* 	</div> */ }
-						{ /* </div> */ }
+						<div className='w-full inset-0 object-cover max-lg:order-0 max-lg:my-[60px] xl:px-[100px] lg:mt-[35px]'>
+							<div className='w-full rounded-[10px] overflow-hidden'>
+								<Player
+									playsInline
+									poster='/images/howitworks/thumbnail.png'>
+									<PosterImage
+										poster='/images/howitworks/thumbnail.png'/>
+									<source src='/videos/dummy.mp4' />
+									<BigPlayButton position='center' />
+								</Player>
+							</div>
+						</div>
 
 					</div>
 				</div>
