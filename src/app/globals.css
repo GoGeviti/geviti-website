@@ -8,13 +8,6 @@ body {
   margin: 0 !important;
 }
 
-@media (max-width: 1024px) {
-  span,
-  p, h1, h2, h3 {
-    zoom: 1.2;
-  }
-}
-
 /* Hide scrollbar for Chrome, Safari and Opera */
 .no-scrollbar::-webkit-scrollbar {
   display: none;
