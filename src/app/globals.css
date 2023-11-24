@@ -18,6 +18,10 @@ body {
     .hero-landing-page span, p, h1, h2, h3 {
       zoom: 1.2;
     }
+
+    .products-page span, p, h1, h2, h3 {
+      zoom: 1.1;
+    }
   }
 
 
