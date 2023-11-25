@@ -25,6 +25,9 @@ interface ArticlesProps {
 	className?: string;
 }
 
+// TODO: You're probably aware but React.FC creates awkward types here - see https://github.com/facebook/create-react-app/pull/8177
+// Just thought I'd add, since I edited this component and noticed it :)
+
 const Articles: React.FC<ArticlesProps> = ({ list, title, preTitle, btn, btnLink, className }) => {
 	const [showAllTabs, setShowAllTabs] = useState(false);
 	// const windowDimensions = useWindowDimensions();
@@ -99,7 +102,7 @@ const Articles: React.FC<ArticlesProps> = ({ list, title, preTitle, btn, btnLink
 							</button>
 						)
 					}
-					
+
 					{
 						!showAllTabs &&
 						<div className='md:hidden bg-gradient-to-t from-grey-background/90 to-grey-background/0 absolute -bottom-5 z-10 w-full h-[131px]' />

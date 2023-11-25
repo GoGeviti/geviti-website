@@ -23,6 +23,7 @@ const FAQPage: NextPage = async() => {
 				btnLink='/blog'
 				title='Learn More'
 				preTitle='Research'
+				className='max-md:bg-white rounded-lg'
 			/>
 			<LandingComponent.Products />
 		</div>
