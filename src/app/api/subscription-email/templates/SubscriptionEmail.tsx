@@ -21,7 +21,7 @@ interface SubscriptionEmailTemplateProps {
 export default function SubscriptionEmail(
   props: SubscriptionEmailTemplateProps
 ) {
-  const { name, subscriptionKey } = props;
+  const { subscriptionKey } = props;
   return (
     <Tailwind>
       <Html>
@@ -45,7 +45,7 @@ export default function SubscriptionEmail(
                     Nathan, welcome to the Geviti family.
                   </Heading>
                   <Text className="my-1  text-xs text-white">
-                    we're glad to have you, let's started
+                    {`we're glad to have you, let's get started`}
                   </Text>
                 </Column>
               </Row>
@@ -55,7 +55,7 @@ export default function SubscriptionEmail(
               <Row>
                 <Column className="py-8">
                   <Heading className="text-2xl font-semibold text-black">
-                    Let's get you started.
+                    {`Let's get you started.`}
                   </Heading>
                   <Text
                     className=" text-gray-400"

@@ -1,7 +1,6 @@
 import SubscriptionEmail from "./templates/SubscriptionEmail";
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
-import * as React from "react";
 interface requestPayload {
   email: string;
   name: string;
