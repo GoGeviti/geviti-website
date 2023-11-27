@@ -46,6 +46,8 @@
     "react-popper": "^2.3.0",
     "react-popper-tooltip": "^4.4.2",
     "react-slick": "^0.29.0",
+    "resend": "^2.0.0",
+    "responsive-react-email": "^0.0.5",
     "sharp": "^0.32.6",
     "slick-carousel": "^1.8.1",
     "sonner": "^1.2.0",
@@ -58,6 +60,7 @@
     "zustand": "^4.4.4"
   },
   "devDependencies": {
+    "@react-email/components": "0.0.6",
     "@next/eslint-plugin-next": "^13.4.19",
     "@types/aos": "^3.0.4",
     "@types/escape-html": "^1.0.4",
@@ -66,6 +69,7 @@
     "@types/video-react": "^0.15.4",
     "@typescript-eslint/eslint-plugin": "^6.4.0",
     "cross-env": "^7.0.3",
+    "react-email": "1.9.3",
     "eslint-plugin-simple-import-sort": "^10.0.0"
   }
 }
