@@ -1,6 +1,6 @@
-import SubscriptionEmail from "./templates/SubscriptionEmail";
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
+import SubscriptionEmail from "./templates/SubscriptionEmail";
 interface requestPayload {
   email: string;
   name: string;
