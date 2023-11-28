@@ -1,5 +1,6 @@
 import {
 	Body,
+	Button,
 	Column,
 	Container,
 	Head,
@@ -15,10 +16,15 @@ import {
 } from "@react-email/components";
 import { DualColumn } from "responsive-react-email";
 
-import logo from "../../../../assets/email/logo.png";
-import playStore from "../../../../assets/email/play-store.png";
-import appStore from "../../../../assets/email/app-store.png";
-import heroImage from "../../../../assets/email/hero-bg.png";
+import logo from "../../../../../static/email/logo.png";
+import playStore from "../../../../../static/email/play-store.png";
+import appStore from "../../../../../static/email/app-store.png";
+import headerImage from "../../../../../static/email/header.png";
+import phoneImage from "../../../../../static/email/Phones.png";
+import facebookIcon from "../../../../../static/email/_Facebook.png";
+import instagramIcon from "../../../../../static/email/_Instagram.png";
+import linkedinIcon from "../../../../../static/email/_Linkedin.png";
+import twitterIcon from "../../../../../static/email/_Twitter.png";
 
 interface SubscriptionEmailTemplateProps {
 	name: string;
@@ -40,7 +46,7 @@ export default function SubscriptionEmail(
 						</Section>
 						<Section
 							style={section}
-							className="section-background w-11/12 rounded-2xl"
+							className="section-background w-11/12  content-center rounded-2xl"
 						>
 							<Row>
 								<Column align="center" className="py-12">
@@ -59,27 +65,23 @@ export default function SubscriptionEmail(
 									<Heading className="text-2xl font-semibold text-black">
 										Let&apos;s get you started.
 									</Heading>
-									<Text
-										className=" text-gray-400"
-										style={{ margin: "0px", fontSize: "12px" }}
-									>
+									<Text className=" text-gray-400" style={{ margin: '0px', fontSize: '12px' }}>
 										You need to create an account to start
 									</Text>
 									<Section className="mt-4 w-2/3">
 										<Link
 											className="block rounded-3xl bg-[#99d4ff] py-2.5 text-sm font-bold text-black"
-											href="https://stackoverflow.blog/2019/10/22/"
+											href={process.env.DASHBOARD_BASE_URL + `/signup?key=${subscriptionKey}`}
 										>
 											Get Started
 										</Link>
 									</Section>
 									<Section className="mt-2 w-2/3">
-										<Link
+										<Button
 											className="font-base block rounded-3xl border-2 border-dotted border-gray-400 bg-[#f2f2f2] py-2.5 text-sm text-black"
-											href="https://stackoverflow.blog/2019/10/22/"
 										>
 											{subscriptionKey}
-										</Link>
+										</Button>
 									</Section>
 									<Text className="mt-1 text-[9px] font-medium uppercase tracking-widest text-gray-400">
 										your subscription key
@@ -88,59 +90,62 @@ export default function SubscriptionEmail(
 							</Row>
 						</Section>
 						<DualColumn
-							styles={{
-								width: "91.6667%",
-								backgroundColor: "#181A1C",
-								borderRadius: "16px",
-							}}
+							styles={{ width: '91.6667%', backgroundColor: '#181A1C', borderRadius: '16px' }}
 							columnOneContent={
 								<Row>
-									<Column className="py-8 text-left"></Column>
+									<Column className="pt-8 text-left">
+										<Img src={phoneImage.src} />
+									</Column>
 								</Row>
 							}
+							columnOneStyles={{ width: '20%' }}
+							columnTwoStyles={{ width: '80%' }}
 							columnTwoContent={
 								<Row>
-									<Column className="py-8 text-left">
+									<Column className="py-10 pl-6 text-left">
 										<Heading className="text-2xl font-medium  text-white">
 											Use Geviti anytime, anywhere with our mobile app.
 										</Heading>
 										<Row>
 											<Column className="px-0.5 py-8 pb-0">
-												<Img
-													className="h-10 w-48 rounded-md"
-													src={appStore.src}
-												/>
+												<Img className="h-10 w-48 rounded-md" src={appStore.src} />
 											</Column>
 											<Column className="px-0.5 py-8 pb-0">
-												<Img
-													className="h-12 w-48 rounded-md"
-													src={playStore.src}
-												/>
+												<Img className="h-10 w-48 rounded-md" src={playStore.src} />
 											</Column>
 										</Row>
 									</Column>
 								</Row>
 							}
 						/>
-						<Section className="mb-[18px] mt-[32px]">
-							<Img className="mx-auto" src={logo.src} />
+						<Section className="w-1/5  my-3">
+							<Row>
+								<Column className="py-4" align='center'>
+									<Img className="mx-auto" src={facebookIcon.src} />
+								</Column>
+								<Column className="py-4">
+									<Img className="mx-auto" src={twitterIcon.src} />
+								</Column>
+								<Column className="py-4">
+									<Img className="mx-auto" src={instagramIcon.src} />
+								</Column>
+								<Column className="py-4">
+									<Img className="mx-auto" src={linkedinIcon.src} />
+								</Column>
+							</Row>
+
+
 						</Section>
 						<Section className="w-11/12 text-center">
 							<Text className="text-[8px] leading-4 text-[#9199a1]">
-								This email may contain confidential information that is
-								privileged and legally protected from disclosure by federal law
-								including the Health Insurance Portability and Accountability
-								Act (HIPAA). This information is intended for only the use of
-								the individual or entity named above. If you are not the
-								intended recipient, you are hereby notified that reading,
-								disseminating, disclosing, distributing, copying, acting upon,
-								or otherwise using the information contained in this
-								correspondence is strictly prohibited. If you have received this
-								email in error, please notify
-								<Link
-									href=""
-									className="ml-1 font-semibold text-black underline"
-								>
+								This email may contain confidential information that is privileged and legally
+								protected from disclosure by federal law including the Health Insurance Portability
+								and Accountability Act (HIPAA). This information is intended for only the use of the
+								individual or entity named above. If you are not the intended recipient, you are
+								hereby notified that reading, disseminating, disclosing, distributing, copying, acting
+								upon, or otherwise using the information contained in this correspondence is strictly
+								prohibited. If you have received this email in error, please notify
+								<Link href="" className="ml-1 font-semibold text-black underline">
 									hello@gogeviti.com
 								</Link>
 								immediately.
@@ -154,7 +159,7 @@ export default function SubscriptionEmail(
 }
 
 const section = {
-	backgroundSize: "cover",
-	backgroundPosition: "center",
-	backgroundImage: `url(${heroImage.src})`,
+	backgroundSize: 'cover',
+	backgroundPosition: 'center',
+	backgroundImage: `url(${headerImage.src})`
 };
