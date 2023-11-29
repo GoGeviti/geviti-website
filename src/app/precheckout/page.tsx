@@ -85,7 +85,7 @@ const StepContainer = styled.div`
 
 const PreCheckoutFlowPage = () => {
 	const [formStep, setFormStep] = useState<FormStep>(
-		FormStep.TRANSITION_WELCOME,
+		FormStep.PRICING_TABLE,
 	);
 
 	return (
