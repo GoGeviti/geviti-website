@@ -16,15 +16,15 @@ import {
 } from "@react-email/components";
 import { DualColumn } from "responsive-react-email";
 
-import logo from "./../public/images/email/logo.png";
-import playStore from "./../public/images/email/play-store.png";
-import appStore from "./../public/images/email/app-store.png";
-import headerImage from "./../public/images/email/header.png";
-import phoneImage from "./../public/images/email/Phones.png";
-import facebookIcon from "./../public/images/email/_Facebook.png";
-import instagramIcon from "./../public/images/email/_Instagram.png";
-import linkedinIcon from "./../public/images/email/_Linkedin.png";
-import twitterIcon from "./../public/images/email/_Twitter.png";
+import logo from "/images/email/logo.png";
+import playStore from "/images/email/play-store.png";
+import appStore from "/images/email/app-store.png";
+import headerImage from "/images/email/header.png";
+import phoneImage from "/images/email/Phones.png";
+import facebookIcon from "/images/email/_Facebook.png";
+import instagramIcon from "/images/email/_Instagram.png";
+import linkedinIcon from "/images/email/_Linkedin.png";
+import twitterIcon from "/images/email/_Twitter.png";
 
 interface SubscriptionEmailTemplateProps {
 	name: string;
@@ -42,7 +42,7 @@ export default function SubscriptionEmail(
 				<Body className="mx-auto my-auto font-sans">
 					<Container className="max-w-screen-md bg-[#f2f2f2]">
 						<Section className="my-[32px]">
-							<Img className="mx-auto" src={logo.src} />
+							<Img className="mx-auto" src='/images/email/logo.png' />
 						</Section>
 						<Section
 							style={section}
