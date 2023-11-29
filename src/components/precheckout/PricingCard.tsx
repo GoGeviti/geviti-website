@@ -198,7 +198,7 @@ const PricingCard = (props: PricingCardProps) => {
 					{ !!feature.description && (
 						<QuestionTooltip
 							text={ feature.description }
-							isTooltipGrey={ true } />
+						/>
 					) }
 					<FeatureText>{ feature.name }</FeatureText>
 					<Image
