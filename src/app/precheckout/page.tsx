@@ -8,6 +8,7 @@ import NotAloneTransition from '@/components/precheckout/NotAloneTransition';
 import PreCheckoutFullForm from '@/components/precheckout/PreCheckoutFullForm';
 import PreCheckoutNameCollection from '@/components/precheckout/PreCheckoutNameCollection';
 import PreCheckoutNav from '@/components/precheckout/PreCheckoutNav';
+import PreCheckoutPricingTable from '@/components/precheckout/PreCheckoutPricingTable';
 import PreCheckoutProgressBar from '@/components/precheckout/PreCheckoutProgressBar';
 import PreCheckoutWaitlist from '@/components/precheckout/PreCheckoutWaitlist';
 import QuestionGoals from '@/components/precheckout/QuestionGoals';
@@ -22,6 +23,8 @@ const Column = styled.div`
   flex-direction: column;
   position: relative;
   min-height: 100dvh;
+  max-width: 100vw;
+  overflow: hidden;
 `;
 
 enum FormStep {
@@ -38,6 +41,7 @@ enum FormStep {
   CONFIRM_WAITLIST_EMAIL,
   TRANSITION_ELIGIBLE,
   PRICING_TABLE,
+  CHECKOUT_SUMMARY,
 }
 
 const currentViewState = (
@@ -81,7 +85,7 @@ const StepContainer = styled.div`
 
 const PreCheckoutFlowPage = () => {
 	const [formStep, setFormStep] = useState<FormStep>(
-		FormStep.TRANSITION_WELCOME,
+		FormStep.PRICING_TABLE,
 	);
 
 	return (
@@ -172,6 +176,13 @@ const PreCheckoutFlowPage = () => {
 					ViewState.HIDDEN && (
 					<SuccessTransition
 						viewState={ currentViewState(FormStep.TRANSITION_ELIGIBLE, formStep) }
+						onContinue={ () => setFormStep(prev => prev + 1) }
+					/>
+				) }
+				{ currentViewState(FormStep.PRICING_TABLE, formStep) !==
+					ViewState.HIDDEN && (
+					<PreCheckoutPricingTable
+						viewState={ currentViewState(FormStep.PRICING_TABLE, formStep) }
 						onContinue={ () => setFormStep(prev => prev + 1) }
 					/>
 				) }

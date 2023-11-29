@@ -12,8 +12,8 @@ type TablePackageBiomarkersItem = {
 };
 const TablePackageBiomarkers: React.FC<TablePackageBiomarkersItem> = ({ classname }) => {
 	const tablePackage = homeData.biomarkersTable;
+
 	return (
-	
 		<div className={ clsxm(
 			'relative overflow-x-auto',
 			classname
