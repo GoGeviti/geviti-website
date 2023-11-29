@@ -196,7 +196,9 @@ const PricingCard = (props: PricingCardProps) => {
 					key={ feature.name }
 					className='font-Poppins'>
 					{ !!feature.description && (
-						<QuestionTooltip text={ feature.description } />
+						<QuestionTooltip
+							text={ feature.description }
+							isTooltipGrey={ true } />
 					) }
 					<FeatureText>{ feature.name }</FeatureText>
 					<Image

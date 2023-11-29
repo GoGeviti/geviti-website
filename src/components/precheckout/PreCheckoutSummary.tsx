@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Link from 'next/link';
 import styled, { keyframes } from 'styled-components';
 
 import { ChevronRight } from '@/components/Icons';
@@ -81,6 +82,22 @@ const PricingTableRow = styled.div`
   align-items: center;
 `;
 
+const DisclaimerText = styled.p`
+  color: rgba(24, 26, 28, 0.7);
+  font-size: 12px;
+  text-align: center;
+  position: absolute;
+  bottom: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+`;
+
+const DisclaimerLink = styled(Link)`
+  color: #181a1c;
+  font-weight: 500;
+  text-decoration: underline;
+`;
+
 const commonFeatures = [
 	{
 		name: 'At-home blood draw',
@@ -104,12 +121,13 @@ const commonFeatures = [
 	},
 ];
 
-interface PreCheckoutPricingTableProps {
-  viewState: ViewState;
-  onContinue: (planID: string) => void;
+interface PreCheckoutSummaryProps {
+	viewState: ViewState;
+	onContinue: (planID: string) => void;
+	selectedPlanID: string;
 }
 
-const PreCheckoutPricingTable = (props: PreCheckoutPricingTableProps) => {
+const PreCheckoutSummary = (props: PreCheckoutSummaryProps) => {
 	const [isExpanded, setIsExpanded] = useState(false);
 
 	return (
@@ -119,12 +137,12 @@ const PreCheckoutPricingTable = (props: PreCheckoutPricingTableProps) => {
 				onClose={ () => setIsExpanded(false) }
 			/>
 			<Column viewState={ props.viewState }>
-				<Title viewState={ props.viewState }>Choose a blood panel</Title>
+				<Title viewState={ props.viewState }>Summary</Title>
 				<Subtitle
 					viewState={ props.viewState }
 					className='font-BRSonoma'>
-          An a at-home Blood Draw must be done in order to prescribe you this
-          treatment.
+					An a at-home Blood Draw must be done in order to prescribe you this
+					treatment.
 				</Subtitle>
 				<ExpandTablesRow onClick={ () => setIsExpanded(true) }>
 					<span>Compare Tested Biomarkers</span>
@@ -165,4 +183,4 @@ const PreCheckoutPricingTable = (props: PreCheckoutPricingTableProps) => {
 	);
 };
 
-export default PreCheckoutPricingTable;
+export default PreCheckoutSummary;

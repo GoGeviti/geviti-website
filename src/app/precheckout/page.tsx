@@ -10,6 +10,7 @@ import PreCheckoutNameCollection from '@/components/precheckout/PreCheckoutNameC
 import PreCheckoutNav from '@/components/precheckout/PreCheckoutNav';
 import PreCheckoutPricingTable from '@/components/precheckout/PreCheckoutPricingTable';
 import PreCheckoutProgressBar from '@/components/precheckout/PreCheckoutProgressBar';
+import PreCheckoutSummary from '@/components/precheckout/PreCheckoutSummary';
 import PreCheckoutWaitlist from '@/components/precheckout/PreCheckoutWaitlist';
 import QuestionGoals from '@/components/precheckout/QuestionGoals';
 import QuestionLethargic from '@/components/precheckout/QuestionLethargic';
@@ -87,6 +88,8 @@ const PreCheckoutFlowPage = () => {
 	const [formStep, setFormStep] = useState<FormStep>(
 		FormStep.PRICING_TABLE,
 	);
+
+	const [selectedPlanID, setSelectedPlanID] = useState('');
 
 	return (
 		<Column className='font-Poppins'>
@@ -183,6 +186,17 @@ const PreCheckoutFlowPage = () => {
 					ViewState.HIDDEN && (
 					<PreCheckoutPricingTable
 						viewState={ currentViewState(FormStep.PRICING_TABLE, formStep) }
+						onContinue={ planID => {
+							setFormStep(prev => prev + 1);
+							setSelectedPlanID(planID);
+						} }
+					/>
+				) }
+				{ currentViewState(FormStep.CHECKOUT_SUMMARY, formStep) !==
+					ViewState.HIDDEN && (
+					<PreCheckoutSummary
+						viewState={ currentViewState(FormStep.CHECKOUT_SUMMARY, formStep) }
+						selectedPlanID={ selectedPlanID }
 						onContinue={ () => setFormStep(prev => prev + 1) }
 					/>
 				) }
