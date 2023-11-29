@@ -62,7 +62,7 @@ const moveFromRight = keyframes`
   }
 `;
 
-const ExpandTablesRow = styled.div`
+const ExpandTablesRow = styled.div<{ viewState: ViewState }>`
   display: flex;
   align-items: center;
   cursor: pointer;
@@ -74,11 +74,27 @@ const ExpandTablesRow = styled.div`
     font-size: 14px;
     font-weight: 600;
   }
+
+  animation: ${props =>
+		props.viewState === ViewState.IN_PROGRESS && moveFromRight}
+    0.5s cubic-bezier(0.21, 1.04, 0.58, 1.15);
+  animation-fill-mode: forwards;
+  animation-delay: 0.12s;
+
+  transform: translateX(100vw);
 `;
 
-const PricingTableRow = styled.div`
+const PricingTableRow = styled.div<{ viewState: ViewState }>`
   display: flex;
   align-items: center;
+
+  animation: ${props =>
+		props.viewState === ViewState.IN_PROGRESS && moveFromRight}
+    0.5s cubic-bezier(0.21, 1.04, 0.58, 1.15);
+  animation-fill-mode: forwards;
+  animation-delay: 0.16s;
+
+  transform: translateX(100vw);
 `;
 
 const commonFeatures = [
@@ -111,6 +127,7 @@ interface PreCheckoutPricingTableProps {
 
 const PreCheckoutPricingTable = (props: PreCheckoutPricingTableProps) => {
 	const [isExpanded, setIsExpanded] = useState(false);
+	const [hoveredPlan, setHoveredPlan] = useState('');
 
 	return (
 		<>
@@ -126,11 +143,14 @@ const PreCheckoutPricingTable = (props: PreCheckoutPricingTableProps) => {
           An a at-home Blood Draw must be done in order to prescribe you this
           treatment.
 				</Subtitle>
-				<ExpandTablesRow onClick={ () => setIsExpanded(true) }>
+				<ExpandTablesRow
+					onClick={ () => setIsExpanded(true) }
+					viewState={ props.viewState }
+				>
 					<span>Compare Tested Biomarkers</span>
 					<ChevronRight />
 				</ExpandTablesRow>
-				<PricingTableRow>
+				<PricingTableRow viewState={ props.viewState }>
 					<PricingCard
 						name='Essentials Panel'
 						priceUpfront='$300'
@@ -139,6 +159,10 @@ const PreCheckoutPricingTable = (props: PreCheckoutPricingTableProps) => {
 						biomarkersTested='39+'
 						pillText='Most Affordable'
 						onChoose={ () => props.onContinue('essentials') }
+						isHovered={ hoveredPlan === 'essentials' }
+						onHover={ () => setHoveredPlan('essentials') }
+						onStopHover={ () => setHoveredPlan('') }
+						isInView={ props.viewState === ViewState.IN_PROGRESS }
 					/>
 					<PricingCard
 						name='Comprehensive Panel'
@@ -148,6 +172,10 @@ const PreCheckoutPricingTable = (props: PreCheckoutPricingTableProps) => {
 						biomarkersTested='50+'
 						pillText='Recommended'
 						onChoose={ () => props.onContinue('comprehensive') }
+						isHovered={ hoveredPlan === 'comprehensive' || !hoveredPlan }
+						onHover={ () => setHoveredPlan('comprehensive') }
+						onStopHover={ () => setHoveredPlan('') }
+						isInView={ props.viewState === ViewState.IN_PROGRESS }
 					/>
 					<PricingCard
 						name={ 'Ultimate Men\'s Panel' }
@@ -156,8 +184,11 @@ const PreCheckoutPricingTable = (props: PreCheckoutPricingTableProps) => {
 						features={ commonFeatures }
 						biomarkersTested='58+'
 						pillText='Most In-Depth'
-						isHighlighted={ true }
 						onChoose={ () => props.onContinue('ultimate') }
+						isHovered={ hoveredPlan === 'ultimate' }
+						onHover={ () => setHoveredPlan('ultimate') }
+						onStopHover={ () => setHoveredPlan('') }
+						isInView={ props.viewState === ViewState.IN_PROGRESS }
 					/>
 				</PricingTableRow>
 			</Column>

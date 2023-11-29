@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { Player } from '@lottiefiles/react-lottie-player';
 import styled, { keyframes } from 'styled-components';
 
@@ -86,15 +87,6 @@ const fadeFromBottom = keyframes`
   }
 `;
 
-// const moveFromBottom = keyframes`
-//   from {
-// 	transform: translateY(100vh);
-//   }
-//   to {
-// 	transform: translateY(0);
-//   }
-// `;
-
 const leaveToLeft = keyframes`
   from {
 	transform: translateX(0);
@@ -111,13 +103,13 @@ interface SuccessTransitionProps {
 }
 
 const SuccessTransition = (props: SuccessTransitionProps) => {
-	// useEffect(() => {
-	// 	if (props.viewState === ViewState.IN_PROGRESS) {
-	// 		setTimeout(() => {
-	// 			props.onContinue();
-	// 		}, 3_000);
-	// 	}
-	// }, [props.viewState]);
+	useEffect(() => {
+		if (props.viewState === ViewState.IN_PROGRESS) {
+			setTimeout(() => {
+				props.onContinue();
+			}, 3_000);
+		}
+	}, [props.viewState]);
 
 	return (
 		<Column viewState={ props.viewState }>
@@ -129,7 +121,6 @@ const SuccessTransition = (props: SuccessTransitionProps) => {
 			/>
 			<Title viewState={ props.viewState }>Thanks for your interest in Geviti</Title>
 			<Subtitle viewState={ props.viewState }>
-				{ /* We need to do a bloodwork panel to ensure you qualify for treatment. */ }
 				We will be in touch with you as soon as a spot opens up.
 			</Subtitle>
 		</Column>

@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import styled from 'styled-components';
+import styled, { css, keyframes } from 'styled-components';
 
 import blueCheckCircle from '@/assets/precheckout/blue-check-circle.svg';
 import QuestionTooltip from '@/components/Home/QuestionTooltip';
@@ -34,7 +34,31 @@ const GreyPillText = styled.span`
   transition: 0.2s background ease-out;
 `;
 
-const Card = styled.div`
+const revealFromLeft = keyframes`
+  0% {
+    transform: translateX(100%);
+  }
+  70% {
+	transform: translateX(100%);
+  }
+  100% {
+	transform: translateX(0);
+  }
+`;
+
+const revealFromRight = keyframes`
+  0% {
+    transform: translateX(-100%);
+  }
+  70% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+`;
+
+const Card = styled.div<{ isHovered?: boolean; isInView: boolean }>`
   display: flex;
   flex-direction: column;
   padding: 30px;
@@ -45,44 +69,58 @@ const Card = styled.div`
     border-radius: 30px 0 0 30px;
     border-right: 1px solid rgba(145, 155, 159, 0.2);
     transform-origin: left;
+    transform: ${props =>
+		props.isHovered ? 'scale(1.1) translateX(-9%)' : 'none'};
 
-    &:hover {
-      transform: scale(1.1) translateX(-9%);
-    }
+    animation: ${props =>
+		props.isInView
+			? css`
+            ${revealFromLeft} 1.7s ease-out
+          `
+			: 'none'};
   }
 
   &:last-child {
     border-radius: 0 30px 30px 0;
     transform-origin: right;
 
-    &:hover {
-      transform: scale(1.1) translateX(9%);
-    }
+    //transform: scale(1.1) translateX(9%);
+    transform: ${props =>
+		props.isHovered ? 'scale(1.1) translateX(9%)' : 'none'};
+
+    animation: ${props =>
+		props.isInView
+			? css`
+            ${revealFromRight} 1.7s ease-out
+          `
+			: 'none'};
   }
 
   &:nth-child(2) {
     border-right: 1px solid rgba(145, 155, 159, 0.2);
 
-    &:hover {
-      &:first-child {
-        transform: scale(1.1) translateX(-9%);
-      }
-      transform: scale(1.1);
+    &:first-child {
+      transform: ${props =>
+		props.isHovered ? 'scale(1.1) translateX(9%)' : 'none'};
     }
+    transform: ${props => (props.isHovered ? 'scale(1.1)' : 'none')};
   }
 
-  &:hover {
-    border-radius: 30px;
-    border: 2px solid #a3e0ff !important;
-    box-shadow: 0 15px 30px 0 rgba(16, 24, 40, 0.1);
-    padding: 40px;
-    opacity: 1;
-    z-index: 10;
+  ${props =>
+		props.isHovered
+			? css`
+          border-radius: 30px;
+          border: 2px solid #a3e0ff !important;
+          box-shadow: 0 15px 30px 0 rgba(16, 24, 40, 0.1);
+          padding: 40px;
+          opacity: 1;
+          z-index: 10;
 
-    ${GreyPillText} {
-      background: #a3e0ff;
-    }
-  }
+          ${GreyPillText} {
+            background: #a3e0ff;
+          }
+        `
+			: ''}
 
   transition:
     0.2s border-radius ease-in-out,
@@ -170,13 +208,22 @@ interface PricingCardProps {
   }[];
   biomarkersTested: string;
   pillText: string;
-  isHighlighted?: boolean;
   onChoose: () => void;
+  isHovered?: boolean;
+  onHover?: () => void;
+  onStopHover?: () => void;
+  isInView: boolean;
 }
 
 const PricingCard = (props: PricingCardProps) => {
 	return (
-		<Card className='font-BRSonoma'>
+		<Card
+			className={ 'font-BRSonoma ' }
+			isHovered={ props.isHovered }
+			onMouseEnter={ props.onHover }
+			onMouseLeave={ props.onStopHover }
+			isInView={ props.isInView }
+		>
 			<GreyPillText>{ props.pillText }</GreyPillText>
 			<TopRow>
 				<div className='flex flex-col font-Poppins'>
@@ -196,9 +243,7 @@ const PricingCard = (props: PricingCardProps) => {
 					key={ feature.name }
 					className='font-Poppins'>
 					{ !!feature.description && (
-						<QuestionTooltip
-							text={ feature.description }
-						/>
+						<QuestionTooltip text={ feature.description } />
 					) }
 					<FeatureText>{ feature.name }</FeatureText>
 					<Image

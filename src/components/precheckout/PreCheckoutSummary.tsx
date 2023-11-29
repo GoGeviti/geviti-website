@@ -1,10 +1,6 @@
-import React, { useState } from 'react';
-import Link from 'next/link';
+import React from 'react';
 import styled, { keyframes } from 'styled-components';
 
-import { ChevronRight } from '@/components/Icons';
-import BiomarkerCompareModal from '@/components/precheckout/BiomarkerCompareModal';
-import PricingCard from '@/components/precheckout/PricingCard';
 import { ViewState } from '@/components/precheckout/WelcomeTransition';
 
 const Column = styled.div<{ viewState: ViewState }>`
@@ -63,121 +59,23 @@ const moveFromRight = keyframes`
   }
 `;
 
-const ExpandTablesRow = styled.div`
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-  margin-bottom: 34px;
-  gap: 4px;
-
-  span {
-    color: #181a1c;
-    font-size: 14px;
-    font-weight: 600;
-  }
-`;
-
-const PricingTableRow = styled.div`
-  display: flex;
-  align-items: center;
-`;
-
-const DisclaimerText = styled.p`
-  color: rgba(24, 26, 28, 0.7);
-  font-size: 12px;
-  text-align: center;
-  position: absolute;
-  bottom: 80px;
-  left: 50%;
-  transform: translateX(-50%);
-`;
-
-const DisclaimerLink = styled(Link)`
-  color: #181a1c;
-  font-weight: 500;
-  text-decoration: underline;
-`;
-
-const commonFeatures = [
-	{
-		name: 'At-home blood draw',
-		description: 'Description text goes here.',
-	},
-	{
-		name: 'Access To Geviti Platform',
-		description: 'Description text goes here.',
-	},
-	{
-		name: 'Prescription Product Access',
-		description: 'Description text goes here.',
-	},
-	{
-		name: 'Personally Assigned Health Coach',
-		description: 'Description text goes here.',
-	},
-	{
-		name: 'Custom Treatment Plan',
-		description: 'Description text goes here.',
-	},
-];
-
 interface PreCheckoutSummaryProps {
-	viewState: ViewState;
-	onContinue: (planID: string) => void;
-	selectedPlanID: string;
+  viewState: ViewState;
+  onContinue: (planID: string) => void;
+  selectedPlanID: string;
 }
 
 const PreCheckoutSummary = (props: PreCheckoutSummaryProps) => {
-	const [isExpanded, setIsExpanded] = useState(false);
-
 	return (
 		<>
-			<BiomarkerCompareModal
-				isOpen={ isExpanded }
-				onClose={ () => setIsExpanded(false) }
-			/>
 			<Column viewState={ props.viewState }>
 				<Title viewState={ props.viewState }>Summary</Title>
 				<Subtitle
 					viewState={ props.viewState }
 					className='font-BRSonoma'>
-					An a at-home Blood Draw must be done in order to prescribe you this
-					treatment.
+          An a at-home Blood Draw must be done in order to prescribe you this
+          treatment.
 				</Subtitle>
-				<ExpandTablesRow onClick={ () => setIsExpanded(true) }>
-					<span>Compare Tested Biomarkers</span>
-					<ChevronRight />
-				</ExpandTablesRow>
-				<PricingTableRow>
-					<PricingCard
-						name='Essentials Panel'
-						priceUpfront='$300'
-						priceMonthly='$99'
-						features={ commonFeatures }
-						biomarkersTested='39+'
-						pillText='Most Affordable'
-						onChoose={ () => props.onContinue('essentials') }
-					/>
-					<PricingCard
-						name='Comprehensive Panel'
-						priceUpfront='$475'
-						priceMonthly='$99'
-						features={ commonFeatures }
-						biomarkersTested='50+'
-						pillText='Recommended'
-						onChoose={ () => props.onContinue('comprehensive') }
-					/>
-					<PricingCard
-						name={ 'Ultimate Men\'s Panel' }
-						priceUpfront='$605'
-						priceMonthly='$99'
-						features={ commonFeatures }
-						biomarkersTested='58+'
-						pillText='Most In-Depth'
-						isHighlighted={ true }
-						onChoose={ () => props.onContinue('ultimate') }
-					/>
-				</PricingTableRow>
 			</Column>
 		</>
 	);

@@ -86,7 +86,7 @@ const StepContainer = styled.div`
 
 const PreCheckoutFlowPage = () => {
 	const [formStep, setFormStep] = useState<FormStep>(
-		FormStep.PRICING_TABLE,
+		FormStep.CONFIRM_WAITLIST_EMAIL,
 	);
 
 	const [selectedPlanID, setSelectedPlanID] = useState('');
