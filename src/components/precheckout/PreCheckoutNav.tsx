@@ -29,10 +29,16 @@ const Logo = styled.div`
   transform: translate(-50%, -50%);
 `;
 
-const PreCheckoutNav = () => {
+const PreCheckoutNav = ({
+	shouldInvertColors,
+	onGoBack,
+}: {
+  shouldInvertColors: boolean;
+  onGoBack: () => void;
+}) => {
 	return (
-		<Row>
-			<PreviousStepButton>
+		<Row style={ { filter: `invert(${shouldInvertColors ? 1 : 0})` } }>
+			<PreviousStepButton onClick={ onGoBack }>
 				<Image
 					src={ previousStepIcon }
 					height={ 50 }

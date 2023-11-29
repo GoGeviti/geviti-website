@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import styled from 'styled-components';
 
 import HormonesTransition from '@/components/precheckout/HormonesTransition';
@@ -85,15 +86,38 @@ const StepContainer = styled.div`
 `;
 
 const PreCheckoutFlowPage = () => {
-	const [formStep, setFormStep] = useState<FormStep>(
-		FormStep.PRICING_TABLE,
-	);
+	const router = useRouter();
 
+	const [formStep, setFormStep] = useState<FormStep>(FormStep.PRICING_TABLE);
 	const [selectedPlanID, setSelectedPlanID] = useState('');
 
 	return (
-		<Column className='font-Poppins'>
-			<PreCheckoutNav />
+		<Column
+			className='font-Poppins'
+			style={ {
+				background:
+          formStep === FormStep.CHECKOUT_SUMMARY ? '#181A1C' : undefined,
+			} }
+		>
+			<PreCheckoutNav
+				shouldInvertColors={ formStep === FormStep.CHECKOUT_SUMMARY }
+				onGoBack={ () => {
+					// TODO: Custom logic for things like skipping animations (double go back, or situations that are not possible to skip?
+					if (formStep === FormStep.TRANSITION_WELCOME) {
+						router.back();
+					}
+
+					if (
+						formStep - 1 === FormStep.TRANSITION_NOT_ALONE ||
+            formStep - 1 === FormStep.TRANSITION_HORMONES ||
+            formStep - 1 === FormStep.TRANSITION_ELIGIBLE
+					) {
+						setFormStep(prev => prev - 2);
+					} else {
+						setFormStep(prev => prev - 1);
+					}
+				} }
+			/>
 			<PreCheckoutProgressBar percentage={ formStepToPercentage(formStep) } />
 			<StepContainer style={ { background: formStepToBackground(formStep) } }>
 				{ currentViewState(FormStep.TRANSITION_WELCOME, formStep) !==
@@ -155,35 +179,38 @@ const PreCheckoutFlowPage = () => {
 					/>
 				) }
 				{ currentViewState(FormStep.FORM_NAME_EMAIL, formStep) !==
-					ViewState.HIDDEN && (
+          ViewState.HIDDEN && (
 					<PreCheckoutNameCollection
 						viewState={ currentViewState(FormStep.FORM_NAME_EMAIL, formStep) }
 						onContinue={ () => setFormStep(prev => prev + 1) }
 					/>
 				) }
 				{ currentViewState(FormStep.FORM_MORE_INFO, formStep) !==
-					ViewState.HIDDEN && (
+          ViewState.HIDDEN && (
 					<PreCheckoutFullForm
 						viewState={ currentViewState(FormStep.FORM_MORE_INFO, formStep) }
 						onContinue={ () => setFormStep(prev => prev + 1) }
 					/>
 				) }
 				{ currentViewState(FormStep.CONFIRM_WAITLIST_EMAIL, formStep) !==
-					ViewState.HIDDEN && (
+          ViewState.HIDDEN && (
 					<PreCheckoutWaitlist
-						viewState={ currentViewState(FormStep.CONFIRM_WAITLIST_EMAIL, formStep) }
+						viewState={ currentViewState(
+							FormStep.CONFIRM_WAITLIST_EMAIL,
+							formStep,
+						) }
 						onContinue={ () => setFormStep(prev => prev + 1) }
 					/>
 				) }
 				{ currentViewState(FormStep.PRICING_TABLE, formStep) !==
-					ViewState.HIDDEN && (
+          ViewState.HIDDEN && (
 					<SuccessTransition
 						viewState={ currentViewState(FormStep.TRANSITION_ELIGIBLE, formStep) }
 						onContinue={ () => setFormStep(prev => prev + 1) }
 					/>
 				) }
 				{ currentViewState(FormStep.PRICING_TABLE, formStep) !==
-					ViewState.HIDDEN && (
+          ViewState.HIDDEN && (
 					<PreCheckoutPricingTable
 						viewState={ currentViewState(FormStep.PRICING_TABLE, formStep) }
 						onContinue={ planID => {
@@ -193,7 +220,7 @@ const PreCheckoutFlowPage = () => {
 					/>
 				) }
 				{ currentViewState(FormStep.CHECKOUT_SUMMARY, formStep) !==
-					ViewState.HIDDEN && (
+          ViewState.HIDDEN && (
 					<PreCheckoutSummary
 						viewState={ currentViewState(FormStep.CHECKOUT_SUMMARY, formStep) }
 						selectedPlanID={ selectedPlanID }
