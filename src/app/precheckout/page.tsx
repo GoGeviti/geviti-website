@@ -88,7 +88,9 @@ const StepContainer = styled.div`
 const PreCheckoutFlowPage = () => {
 	const router = useRouter();
 
-	const [formStep, setFormStep] = useState<FormStep>(FormStep.PRICING_TABLE);
+	const [formStep, setFormStep] = useState<FormStep>(
+		FormStep.TRANSITION_WELCOME,
+	);
 	const [selectedPlanID, setSelectedPlanID] = useState('');
 
 	return (
@@ -102,7 +104,6 @@ const PreCheckoutFlowPage = () => {
 			<PreCheckoutNav
 				shouldInvertColors={ formStep === FormStep.CHECKOUT_SUMMARY }
 				onGoBack={ () => {
-					// TODO: Custom logic for things like skipping animations (double go back, or situations that are not possible to skip?
 					if (formStep === FormStep.TRANSITION_WELCOME) {
 						router.back();
 					}
