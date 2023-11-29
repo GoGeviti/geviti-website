@@ -32,7 +32,7 @@ export default function SubscriptionEmail(
 				<Body className="mx-auto my-auto font-sans">
 					<Container className="max-w-screen-md bg-[#f2f2f2]">
 						<Section className="my-[32px]">
-							<Img className="mx-auto" src='/images/email/logo.png' />
+							<Img className="mx-auto" src='./../public/images/email/logo.png' />
 						</Section>
 						<Section
 							style={section}
@@ -84,7 +84,7 @@ export default function SubscriptionEmail(
 							columnOneContent={
 								<Row>
 									<Column className="pt-8 text-left">
-										<Img src='/images/email/Phones.png' />
+										<Img src='./../public/images/email/Phones.png' />
 									</Column>
 								</Row>
 							}
@@ -98,10 +98,10 @@ export default function SubscriptionEmail(
 										</Heading>
 										<Row>
 											<Column className="px-0.5 py-8 pb-0">
-												<Img className="h-10 w-48 rounded-md" src='/images/email/app-store.png' />
+												<Img className="h-10 w-48 rounded-md" src='./../public/images/email/app-store.png' />
 											</Column>
 											<Column className="px-0.5 py-8 pb-0">
-												<Img className="h-10 w-48 rounded-md" src='/images/email/play-store.png' />
+												<Img className="h-10 w-48 rounded-md" src='./../public/images/email/play-store.png' />
 											</Column>
 										</Row>
 									</Column>
@@ -111,16 +111,16 @@ export default function SubscriptionEmail(
 						<Section className="w-1/5  my-3">
 							<Row>
 								<Column className="py-4" align='center'>
-									<Img className="mx-auto" src='/images/email/_Facebook.png' />
+									<Img className="mx-auto" src='./../public/images/email/_Facebook.png' />
 								</Column>
 								<Column className="py-4">
-									<Img className="mx-auto" src='/images/email/_Instagram.png' />
+									<Img className="mx-auto" src='./../public/images/email/_Instagram.png' />
 								</Column>
 								<Column className="py-4">
-									<Img className="mx-auto" src='/images/email/_Linkedin.png' />
+									<Img className="mx-auto" src='./../public/images/email/_Linkedin.png' />
 								</Column>
 								<Column className="py-4">
-									<Img className="mx-auto" src='/images/email/_Twitter.png' />
+									<Img className="mx-auto" src='./../public/images/email/_Twitter.png' />
 								</Column>
 							</Row>
 
@@ -151,5 +151,5 @@ export default function SubscriptionEmail(
 const section = {
 	backgroundSize: 'cover',
 	backgroundPosition: 'center',
-	backgroundImage: `url(/images/email/header.png)`
+	backgroundImage: `url(./../public/images/email/header.png)`
 };
