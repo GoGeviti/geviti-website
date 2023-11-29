@@ -16,16 +16,6 @@ import {
 } from "@react-email/components";
 import { DualColumn } from "responsive-react-email";
 
-import logo from "/images/email/logo.png";
-import playStore from "/images/email/play-store.png";
-import appStore from "/images/email/app-store.png";
-import headerImage from "/images/email/header.png";
-import phoneImage from "/images/email/Phones.png";
-import facebookIcon from "/images/email/_Facebook.png";
-import instagramIcon from "/images/email/_Instagram.png";
-import linkedinIcon from "/images/email/_Linkedin.png";
-import twitterIcon from "/images/email/_Twitter.png";
-
 interface SubscriptionEmailTemplateProps {
 	name: string;
 	subscriptionKey: string;
@@ -94,7 +84,7 @@ export default function SubscriptionEmail(
 							columnOneContent={
 								<Row>
 									<Column className="pt-8 text-left">
-										<Img src={phoneImage.src} />
+										<Img src='/images/email/Phones.png' />
 									</Column>
 								</Row>
 							}
@@ -108,10 +98,10 @@ export default function SubscriptionEmail(
 										</Heading>
 										<Row>
 											<Column className="px-0.5 py-8 pb-0">
-												<Img className="h-10 w-48 rounded-md" src={appStore.src} />
+												<Img className="h-10 w-48 rounded-md" src='/images/email/app-store.png' />
 											</Column>
 											<Column className="px-0.5 py-8 pb-0">
-												<Img className="h-10 w-48 rounded-md" src={playStore.src} />
+												<Img className="h-10 w-48 rounded-md" src='/images/email/play-store.png' />
 											</Column>
 										</Row>
 									</Column>
@@ -121,16 +111,16 @@ export default function SubscriptionEmail(
 						<Section className="w-1/5  my-3">
 							<Row>
 								<Column className="py-4" align='center'>
-									<Img className="mx-auto" src={facebookIcon.src} />
+									<Img className="mx-auto" src='/images/email/_Facebook.png' />
 								</Column>
 								<Column className="py-4">
-									<Img className="mx-auto" src={twitterIcon.src} />
+									<Img className="mx-auto" src='/images/email/_Instagram.png' />
 								</Column>
 								<Column className="py-4">
-									<Img className="mx-auto" src={instagramIcon.src} />
+									<Img className="mx-auto" src='/images/email/_Linkedin.png' />
 								</Column>
 								<Column className="py-4">
-									<Img className="mx-auto" src={linkedinIcon.src} />
+									<Img className="mx-auto" src='/images/email/_Twitter.png' />
 								</Column>
 							</Row>
 
@@ -161,5 +151,5 @@ export default function SubscriptionEmail(
 const section = {
 	backgroundSize: 'cover',
 	backgroundPosition: 'center',
-	backgroundImage: `url(${headerImage.src})`
+	backgroundImage: `url(/images/email/header.png)`
 };
