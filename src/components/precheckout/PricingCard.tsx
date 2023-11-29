@@ -138,6 +138,10 @@ const TopRow = styled.div`
   padding-bottom: 13px;
   border-bottom: 1px solid rgba(24, 26, 28, 0.1);
   margin-bottom: 24px;
+
+  @media (max-width: 1350px) {
+    width: 315px;
+  }
 `;
 
 const Name = styled.h2`

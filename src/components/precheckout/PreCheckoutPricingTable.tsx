@@ -111,7 +111,7 @@ const commonFeatures = [
 		description: 'Description text goes here.',
 	},
 	{
-		name: 'Personally Assigned Health Coach',
+		name: 'Personal Health Coach',
 		description: 'Description text goes here.',
 	},
 	{
