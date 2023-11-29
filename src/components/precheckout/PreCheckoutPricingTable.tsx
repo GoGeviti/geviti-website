@@ -1,11 +1,9 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { Player } from '@lottiefiles/react-lottie-player';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import styled, { keyframes } from 'styled-components';
 
 import { ChevronRight } from '@/components/Icons';
 import BiomarkerCompareModal from '@/components/precheckout/BiomarkerCompareModal';
-import InputField from '@/components/precheckout/InputField';
 import PricingCard from '@/components/precheckout/PricingCard';
 import { ViewState } from '@/components/precheckout/WelcomeTransition';
 

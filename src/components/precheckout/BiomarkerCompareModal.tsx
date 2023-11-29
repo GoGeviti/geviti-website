@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import TablePackageBiomarkers from '@/components/Home/TablePackageBiomarkers';
 import { ChevronRight } from '@/components/Icons';
 import PreCheckoutBiomarkersTable from '@/components/precheckout/PreChechkoutBiomarkersTable';
 
