@@ -16,15 +16,15 @@ import {
 } from "@react-email/components";
 import { DualColumn } from "responsive-react-email";
 
-import logo from "../../../../../static/email/logo.png";
-import playStore from "../../../../../static/email/play-store.png";
-import appStore from "../../../../../static/email/app-store.png";
-import headerImage from "../../../../../static/email/header.png";
-import phoneImage from "../../../../../static/email/Phones.png";
-import facebookIcon from "../../../../../static/email/_Facebook.png";
-import instagramIcon from "../../../../../static/email/_Instagram.png";
-import linkedinIcon from "../../../../../static/email/_Linkedin.png";
-import twitterIcon from "../../../../../static/email/_Twitter.png";
+import logo from "./../public/images/email/logo.png";
+import playStore from "./../public/images/email/play-store.png";
+import appStore from "./../public/images/email/app-store.png";
+import headerImage from "./../public/images/email/header.png";
+import phoneImage from "./../public/images/email/Phones.png";
+import facebookIcon from "./../public/images/email/_Facebook.png";
+import instagramIcon from "./../public/images/email/_Instagram.png";
+import linkedinIcon from "./../public/images/email/_Linkedin.png";
+import twitterIcon from "./../public/images/email/_Twitter.png";
 
 interface SubscriptionEmailTemplateProps {
 	name: string;
@@ -145,7 +145,7 @@ export default function SubscriptionEmail(
 								hereby notified that reading, disseminating, disclosing, distributing, copying, acting
 								upon, or otherwise using the information contained in this correspondence is strictly
 								prohibited. If you have received this email in error, please notify
-								<Link href="" className="ml-1 font-semibold text-black underline">
+								<Link href="mailto:hello@gogeviti.com" className="ml-1 font-semibold text-black underline">
 									hello@gogeviti.com
 								</Link>
 								immediately.
