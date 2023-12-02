@@ -23,11 +23,10 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 export async function POST(request: Request) {
 	const requestPayload = (await request.json()) as RequestPayload;
 
-	const reqHeaders = headers();
+	const reqHeaders = Array.from(headers().entries());
 	console.log('request headers');
-	for (const item in reqHeaders) {
-		console.log(`${item}`);
-		console.log(JSON.stringify(reqHeaders[item as keyof Headers]));
+	for (const [key, value] of reqHeaders) {
+		console.log(`${key}: ${value}`);
 	}
 
 	console.log('request payload');
