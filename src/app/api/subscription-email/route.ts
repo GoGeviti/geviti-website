@@ -3,8 +3,11 @@ import { Resend } from 'resend';
 
 import SubscriptionEmail from '../../../../templates/SubscriptionEmail';
 interface requestPayload {
-  email: string;
-  name: string;
+  customer: {
+    email: string;
+    first_name: string;
+    last_name: string;
+  }
 }
 
 export interface subscriptionKeyResponse {
@@ -18,9 +21,13 @@ export interface subscriptionKeyResponse {
 const resend = new Resend(process.env.RESEND_API_KEY);
 export async function POST(request: Request) {
 	const requestPayload = (await request.json()) as requestPayload;
+	const headers = request.headers;
 
-  console.log('request payload');
-  console.log(JSON.stringify(requestPayload));
+	console.log('headers');
+	console.log(JSON.stringify(headers));
+
+	console.log('request payload');
+	console.log(JSON.stringify(requestPayload));
 
 	try {
 		const { subscriptionKey } = await getSubscriptionKey();
@@ -46,7 +53,8 @@ async function sendSubscriptionEmail(
 	requestPayload: requestPayload,
 	subscriptionKey: string
 ) {
-	const { name, email } = requestPayload;
+	const { customer: { email, first_name, last_name } } = requestPayload;
+	const name = `${first_name} ${last_name}`;
 	const emailPayload = {
 		from: 'onboarding@resend.dev',
 		to: email,
