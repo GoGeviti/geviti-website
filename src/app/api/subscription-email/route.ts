@@ -1,8 +1,9 @@
+import { headers } from 'next/headers';
 import { NextResponse } from 'next/server';
 import { Resend } from 'resend';
 
 import SubscriptionEmail from '../../../../templates/SubscriptionEmail';
-interface requestPayload {
+interface RequestPayload {
   customer: {
     email: string;
     first_name: string;
@@ -20,23 +21,39 @@ export interface subscriptionKeyResponse {
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 export async function POST(request: Request) {
-	const requestPayload = (await request.json()) as requestPayload;
-	const headers = request.headers;
+	const requestPayload = (await request.json()) as RequestPayload;
 
-	console.log('headers');
-	console.log(JSON.stringify(headers));
+	const reqHeaders = headers();
+	console.log('request headers');
+	for (const item in reqHeaders) {
+		console.log(`${item}`);
+		console.log(JSON.stringify(reqHeaders[item as keyof Headers]));
+	}
 
 	console.log('request payload');
-	console.log(JSON.stringify(requestPayload));
+
+	for (const item in requestPayload) {
+		console.log(`${item}`);
+		console.log(JSON.stringify(requestPayload[item as keyof RequestPayload]));
+	}
+
+	const { customer: { email, first_name, last_name } } = requestPayload;
+
+	if (!email || !first_name || !last_name) {
+		return NextResponse.json({ error: 'Invalid request payload' }, { status: 400 });
+	}
 
 	try {
 		const { subscriptionKey } = await getSubscriptionKey();
 		const { data, error } = await sendSubscriptionEmail(
-			requestPayload,
+			email,
+			first_name,
+			last_name,
 			subscriptionKey
 		);
+
 		if (error) {
-			return NextResponse.json(error);
+			return NextResponse.json({ error }, { status: 500 });
 		}
 
 		return NextResponse.json({
@@ -45,22 +62,21 @@ export async function POST(request: Request) {
 			emailId: data?.id,
 		});
 	} catch (error) {
-		return NextResponse.json(error);
+		return NextResponse.json({ error }, { status: 500 });
 	}
 }
 
 async function sendSubscriptionEmail(
-	requestPayload: requestPayload,
+	email: string, firstName: string, lastName: string,
 	subscriptionKey: string
 ) {
-	const { customer: { email, first_name, last_name } } = requestPayload;
-	const name = `${first_name} ${last_name}`;
 	const emailPayload = {
-		from: 'onboarding@resend.dev',
+		from: 'app@gogeviti.com',
 		to: email,
 		subject: 'Welcome to Geviti',
-		react: SubscriptionEmail({ name, subscriptionKey }),
+		react: SubscriptionEmail({ firstName, lastName, subscriptionKey }),
 	};
+
 	return resend.emails.send(emailPayload);
 }
 
