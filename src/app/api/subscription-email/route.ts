@@ -50,7 +50,9 @@ export const POST = withAxiom(async(req: AxiomRequest) => {
 
 	const basePath = req.nextUrl.basePath;
 	req.log.info(`basePath: ${basePath}`);
-	req.log.info('Next URL: ', { url: JSON.stringify(req.nextUrl) });
+	req.log.info('Next URL: ', { url: `${req.url}` });
+	req.log.info('Next URL Type: ', { url: `${typeof req.nextUrl}` });
+	req.log.info('New Request: ', { newReq: new Request('/images/email/logo.png') });
 
 	try {
 		const { subscriptionKey } = await getSubscriptionKey();
