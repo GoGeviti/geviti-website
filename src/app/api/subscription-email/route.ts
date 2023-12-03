@@ -6,6 +6,9 @@ import { Resend } from 'resend';
 
 import SubscriptionEmail from '../../../../templates/SubscriptionEmail';
 
+export const dynamic = 'force-dynamic';
+export const runtime = 'edge';
+
 interface RequestPayload {
   customer: {
     email: string;
@@ -51,7 +54,7 @@ export const POST = withAxiom(async(req: AxiomRequest) => {
 
 	const basePath = req.nextUrl.basePath;
 	req.log.info(`basePath: ${basePath}`);
-	req.log.info('Next URL: ', req.nextUrl);
+	req.log.info('Next URL: ', { url: req.nextUrl.toJSON() });
 
 	try {
 		const { subscriptionKey } = await getSubscriptionKey();
@@ -123,7 +126,7 @@ async function calculateShopifyWebhookHmacUsingSubtle(secret: string, data: stri
 	const encodedData = encoder.encode(data);
 	const encodedSecret = encoder.encode(secret);
 
-	// calculate hmac using the secret and data using cypto.subtle
+	// calculate hmac using the secret and data using crypto.subtle
 	const key = await crypto.subtle.importKey(
 		'raw',
 		encodedSecret,
