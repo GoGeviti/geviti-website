@@ -1,3 +1,4 @@
+import crypto from 'crypto';
 import { AxiomRequest, withAxiom } from 'next-axiom';
 import { headers } from 'next/headers';
 import { NextResponse } from 'next/server';
@@ -30,10 +31,12 @@ export const POST = withAxiom(async(req: AxiomRequest) => {
 	req.log.info('request payload', requestPayload);
 
 	const preCalcHmac = headers().get('x-shopify-hmac-sha256');
-	const calcHmac = await calculateShopifyWebhookHmac(process.env.SHOPIFY_WEBHOOK_SECRET ?? '', rawData);
+	const calcHmacSubtle = await calculateShopifyWebhookHmacUsingSubtle(process.env.SHOPIFY_WEBHOOK_SECRET ?? '', rawData);
+	const calcHmacCrypto = await calculateShopifyWebhookHmacUsingCrypto(process.env.SHOPIFY_WEBHOOK_SECRET ?? '', rawData);
 
 	req.log.info(`preCalcHmac: ${preCalcHmac}`);
-	req.log.info(`calcHmac: ${calcHmac}`);
+	req.log.info(`calcHmacSubtle: ${calcHmacSubtle}`);
+	req.log.info(`calcHmacCrypto: ${calcHmacSubtle}`);
 
 	const { customer: { email, first_name, last_name } } = requestPayload;
 
@@ -96,7 +99,13 @@ async function getSubscriptionKey() {
 	return (await response.json()) as subscriptionKeyResponse;
 }
 
-async function calculateShopifyWebhookHmac(secret: string, data: string) {
+async function calculateShopifyWebhookHmacUsingCrypto(secret: string, data: string) {
+	const hmac = crypto.createHmac('sha256', secret);
+	hmac.update(data);
+	return hmac.digest('base64');
+}
+
+async function calculateShopifyWebhookHmacUsingSubtle(secret: string, data: string) {
 	const encoder = new TextEncoder();
 	const encodedData = encoder.encode(data);
 	const encodedSecret = encoder.encode(secret);
