@@ -49,13 +49,18 @@ export const POST = withAxiom(async(req: AxiomRequest) => {
 		return NextResponse.json({ error: 'Invalid request payload' }, { status: 400 });
 	}
 
+	const basePath = req.nextUrl.basePath;
+	req.log.info(`basePath: ${basePath}`);
+	req.log.info('Next URL: ', req.nextUrl);
+
 	try {
 		const { subscriptionKey } = await getSubscriptionKey();
 		const { data, error } = await sendSubscriptionEmail(
 			email,
 			first_name,
 			last_name,
-			subscriptionKey
+			subscriptionKey,
+			basePath
 		);
 
 		if (error) {
@@ -73,14 +78,17 @@ export const POST = withAxiom(async(req: AxiomRequest) => {
 });
 
 async function sendSubscriptionEmail(
-	email: string, firstName: string, lastName: string,
-	subscriptionKey: string
+	email: string,
+	firstName: string,
+	lastName: string,
+	subscriptionKey: string,
+	basePath: string
 ) {
 	const emailPayload = {
 		from: 'app@gogeviti.com',
 		to: email,
 		subject: 'Welcome to Geviti',
-		react: SubscriptionEmail({ firstName, lastName, subscriptionKey }),
+		react: SubscriptionEmail({ firstName, lastName, subscriptionKey, basePath }),
 	};
 
 	return resend.emails.send(emailPayload);
