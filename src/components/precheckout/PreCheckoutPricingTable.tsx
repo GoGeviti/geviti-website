@@ -122,7 +122,7 @@ const commonFeatures = [
 
 interface PreCheckoutPricingTableProps {
   viewState: ViewState;
-  onContinue: (planID: string) => void;
+  onContinue: (planID: 'essentials' | 'ultimate' | 'comprehensive') => void;
 }
 
 const PreCheckoutPricingTable = (props: PreCheckoutPricingTableProps) => {
@@ -178,7 +178,7 @@ const PreCheckoutPricingTable = (props: PreCheckoutPricingTableProps) => {
 						isInView={ props.viewState === ViewState.IN_PROGRESS }
 					/>
 					<PricingCard
-						name={ 'Ultimate Men\'s Panel' }
+						name='Ultimate Panel'
 						priceUpfront='$605'
 						priceMonthly='$99'
 						features={ commonFeatures }

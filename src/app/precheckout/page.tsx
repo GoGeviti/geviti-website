@@ -85,13 +85,24 @@ const StepContainer = styled.div`
   transition: 0.5s background ease-out;
 `;
 
+const mensVariantIDs = {
+	comprehensive: '47242217521442',
+	essentials: '47242220634402',
+	ultimate: '47242224140578',
+};
+
+const womensVariantIDs = {
+	comprehensive: '47242217554210',
+	essentials: '47242220667170',
+	ultimate: '47242224173346',
+};
+
 const PreCheckoutFlowPage = () => {
 	const router = useRouter();
 
-	const [formStep, setFormStep] = useState<FormStep>(
-		FormStep.TRANSITION_WELCOME,
-	);
-	const [selectedPlanID, setSelectedPlanID] = useState('');
+	const [formStep, setFormStep] = useState<FormStep>(FormStep.FORM_MORE_INFO);
+	const [selectedPlanID, setSelectedPlanID] = useState<'essentials' | 'ultimate' | 'comprehensive'>('');
+	const [selectedSex, setSelectedSex] = useState<'male' | 'female' | ''>('');
 
 	return (
 		<Column
@@ -190,7 +201,10 @@ const PreCheckoutFlowPage = () => {
           ViewState.HIDDEN && (
 					<PreCheckoutFullForm
 						viewState={ currentViewState(FormStep.FORM_MORE_INFO, formStep) }
-						onContinue={ () => setFormStep(prev => prev + 1) }
+						onContinue={ (usState, sex) => {
+							setSelectedSex(sex as 'male' | 'female');
+							setFormStep(prev => prev + 1);
+						} }
 					/>
 				) }
 				{ currentViewState(FormStep.CONFIRM_WAITLIST_EMAIL, formStep) !==
@@ -225,7 +239,16 @@ const PreCheckoutFlowPage = () => {
 					<PreCheckoutSummary
 						viewState={ currentViewState(FormStep.CHECKOUT_SUMMARY, formStep) }
 						selectedPlanID={ selectedPlanID }
-						onContinue={ () => setFormStep(prev => prev + 1) }
+						onContinue={ planID => {
+							router.push(
+								`https://geviti.myshopify.com/cart/${
+									selectedSex === 'male' ?
+										mensVariantIDs[planID]
+										: womensVariantIDs[planID]
+								}:1`,
+							);
+							setFormStep(prev => prev + 1);
+						} }
 					/>
 				) }
 			</StepContainer>

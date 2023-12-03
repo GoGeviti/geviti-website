@@ -199,8 +199,8 @@ const steps = [
 
 interface PreCheckoutSummaryProps {
   viewState: ViewState;
-  onContinue: (planID: string) => void;
-  selectedPlanID: string;
+  onContinue: (planID: 'essentials' | 'ultimate' | 'comprehensive') => void;
+  selectedPlanID: 'essentials' | 'ultimate' | 'comprehensive';
 }
 
 const PreCheckoutSummary = (props: PreCheckoutSummaryProps) => {
@@ -270,7 +270,7 @@ const PreCheckoutSummary = (props: PreCheckoutSummaryProps) => {
 							<div className='flex flex-col'>
 								<ItemName>
 									{ props.selectedPlanID === 'ultimate'
-										? 'Ultimate Men\'s Panel'
+										? 'Ultimate Panel'
 										: props.selectedPlanID === 'comprehensive'
 											? 'Comprehensive Panel'
 											: props.selectedPlanID === 'essentials'
