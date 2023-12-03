@@ -32,12 +32,16 @@ export const POST = withAxiom(async(req: AxiomRequest) => {
 	req.log.info('request payload', requestPayload);
 
 	const preCalcHmac = headers().get('x-shopify-hmac-sha256');
-	const calcHmacSubtle = await calculateShopifyWebhookHmacUsingSubtle(process.env.SHOPIFY_WEBHOOK_SECRET ?? '', rawData, preCalcHmac ?? '');
+	const hmacVerificationResult = await calculateShopifyWebhookHmacUsingSubtle(process.env.SHOPIFY_WEBHOOK_SECRET ?? '', rawData, preCalcHmac ?? '');
 	const calcHmacCrypto = await calculateShopifyWebhookHmacUsingCrypto(process.env.SHOPIFY_WEBHOOK_SECRET ?? '', rawData);
 
 	req.log.info(`preCalcHmac: ${preCalcHmac}`);
-	req.log.info(`calcHmacSubtle: ${calcHmacSubtle}`);
+	req.log.info(`hmacVerificationResult: ${hmacVerificationResult}`);
 	req.log.info(`calcHmacCrypto: ${calcHmacCrypto}`);
+
+	if (!hmacVerificationResult) {
+		return NextResponse.json({ error: 'Unauthorized Request: Signature Verification Failed.' }, { status: 403 });
+	}
 
 	const { customer: { email, first_name, last_name } } = requestPayload;
 
