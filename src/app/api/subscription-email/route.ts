@@ -123,10 +123,9 @@ async function calculateShopifyWebhookHmacUsingSubtle(secret: string, data: stri
 		['sign', 'verify']
 	);
 
-  const signBytes = Uint8Array.from(atob(sign), c => c.charCodeAt(0));
+	const signBytes = Uint8Array.from(atob(sign), c => c.charCodeAt(0));
 
 	const hmacResult = await crypto.subtle.verify('HMAC', key, signBytes, encodedData);
-
 
 	// const result = await crypto.subtle.verify(', key, signature, data)
 
