@@ -23,7 +23,7 @@ export interface subscriptionKeyResponse {
 const resend = new Resend(process.env.RESEND_API_KEY);
 export const POST = withAxiom(async(req: AxiomRequest) => {
 	const rawData = await req.text();
-	const requestPayload = (await req.json()) as RequestPayload;
+	const requestPayload = JSON.parse(rawData) as RequestPayload;
 
 	const reqHeaders = Array.from(headers().entries()).reduce((acc, [key, value]) => ({ ...acc, [key]: value }), {});
 	req.log.info('request headers', reqHeaders);
