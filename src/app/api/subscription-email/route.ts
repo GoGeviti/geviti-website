@@ -3,7 +3,7 @@ import { headers } from 'next/headers';
 import { NextResponse } from 'next/server';
 import { Resend } from 'resend';
 
-import SubscriptionEmail from '../../../../templates/SubscriptionEmail';
+import SubscriptionEmail from '../../../../emails/SubscriptionEmail';
 
 export const dynamic = 'force-dynamic';
 
