@@ -6,7 +6,6 @@ import { Resend } from 'resend';
 import SubscriptionEmail from '../../../../templates/SubscriptionEmail';
 
 export const dynamic = 'force-dynamic';
-export const runtime = 'edge';
 
 interface RequestPayload {
   customer: {
@@ -16,7 +15,7 @@ interface RequestPayload {
   }
 }
 
-export interface subscriptionKeyResponse {
+export interface SubscriptionKeyResponse {
   id: number;
   createdAt: string;
   subscriptionKey: string;
@@ -109,7 +108,7 @@ async function getSubscriptionKey() {
 		throw new Error(`HTTP error! Status: ${response.status}`);
 	}
 
-	return (await response.json()) as subscriptionKeyResponse;
+	return (await response.json()) as SubscriptionKeyResponse;
 }
 
 async function calculateShopifyWebhookHmacUsingSubtle(secret: string, data: string, sign: string) {

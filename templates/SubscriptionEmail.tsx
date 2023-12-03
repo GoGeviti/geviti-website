@@ -21,6 +21,7 @@ interface SubscriptionEmailTemplateProps {
 	subscriptionKey: string;
 	basePath?: string;
 }
+
 export default function SubscriptionEmail(
 	props: SubscriptionEmailTemplateProps
 ) {
