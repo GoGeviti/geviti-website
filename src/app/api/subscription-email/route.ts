@@ -1,4 +1,3 @@
-import crypto from 'crypto';
 import { AxiomRequest, withAxiom } from 'next-axiom';
 import { headers } from 'next/headers';
 import { NextResponse } from 'next/server';
@@ -30,17 +29,15 @@ export const POST = withAxiom(async(req: AxiomRequest) => {
 	const rawData = await req.text();
 	const requestPayload = JSON.parse(rawData) as RequestPayload;
 
-	const reqHeaders = Array.from(headers().entries()).reduce((acc, [key, value]) => ({ ...acc, [key]: value }), {});
-	req.log.info('request headers', reqHeaders);
-	req.log.info('request payload', requestPayload);
+	// const reqHeaders = Array.from(headers().entries()).reduce((acc, [key, value]) => ({ ...acc, [key]: value }), {});
+	// req.log.info('request headers', reqHeaders);
+	// req.log.info('request payload', requestPayload);
 
 	const preCalcHmac = headers().get('x-shopify-hmac-sha256');
 	const hmacVerificationResult = await calculateShopifyWebhookHmacUsingSubtle(process.env.SHOPIFY_WEBHOOK_SECRET ?? '', rawData, preCalcHmac ?? '');
-	const calcHmacCrypto = await calculateShopifyWebhookHmacUsingCrypto(process.env.SHOPIFY_WEBHOOK_SECRET ?? '', rawData);
-
-	req.log.info(`preCalcHmac: ${preCalcHmac}`);
-	req.log.info(`hmacVerificationResult: ${hmacVerificationResult}`);
-	req.log.info(`calcHmacCrypto: ${calcHmacCrypto}`);
+	
+	// req.log.info(`preCalcHmac: ${preCalcHmac}`);
+	// req.log.info(`hmacVerificationResult: ${hmacVerificationResult}`);
 
 	if (!hmacVerificationResult) {
 		return NextResponse.json({ error: 'Unauthorized Request: Signature Verification Failed.' }, { status: 403 });
@@ -98,7 +95,7 @@ async function sendSubscriptionEmail(
 }
 
 async function getSubscriptionKey() {
-	const apiUrl = `${process.env.SUBSCRIPTION_API_URL}/subscription-keys`; // Replace with your actual API endpoint
+	const apiUrl = `${process.env.SUBSCRIPTION_API_URL}/subscription-keys`;
 
 	const response = await fetch(apiUrl, {
 		method: 'POST',
@@ -113,12 +110,6 @@ async function getSubscriptionKey() {
 	}
 
 	return (await response.json()) as subscriptionKeyResponse;
-}
-
-async function calculateShopifyWebhookHmacUsingCrypto(secret: string, data: string) {
-	const hmac = crypto.createHmac('sha256', secret);
-	hmac.update(data);
-	return hmac.digest('base64');
 }
 
 async function calculateShopifyWebhookHmacUsingSubtle(secret: string, data: string, sign: string) {
@@ -139,11 +130,7 @@ async function calculateShopifyWebhookHmacUsingSubtle(secret: string, data: stri
 	);
 
 	const signBytes = Uint8Array.from(atob(sign), c => c.charCodeAt(0));
-
 	const hmacResult = await crypto.subtle.verify('HMAC', key, signBytes, encodedData);
 
-	// const result = await crypto.subtle.verify(', key, signature, data)
-
 	return hmacResult;
-  
 }
