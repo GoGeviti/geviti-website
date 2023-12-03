@@ -37,7 +37,7 @@ export default function SubscriptionEmail(
 						<Section className='my-[32px]'>
 							<Img
 								className='mx-auto'
-								src={ '/static/email/logo.png' } />
+								src='/static/email/logo.png' />
 						</Section>
 						<Section
 							style={ section }
@@ -93,7 +93,7 @@ export default function SubscriptionEmail(
 							columnOneContent={
 								<Row>
 									<Column className='pt-8 text-left'>
-										<Img src={ '/static/email/Phones.png' } />
+										<Img src='/static/email/Phones.png' />
 									</Column>
 								</Row>
 							}
@@ -109,12 +109,12 @@ export default function SubscriptionEmail(
 											<Column className='px-0.5 py-8 pb-0'>
 												<Img
 													className='h-10 w-48 rounded-md'
-													src={ '/static/email/app-store.png' } />
+													src='/static/email/app-store.png' />
 											</Column>
 											<Column className='px-0.5 py-8 pb-0'>
 												<Img
 													className='h-10 w-48 rounded-md'
-													src={ '/static/email/play-store.png' } />
+													src='/static/email/play-store.png' />
 											</Column>
 										</Row>
 									</Column>
@@ -128,22 +128,22 @@ export default function SubscriptionEmail(
 									align='center'>
 									<Img
 										className='mx-auto'
-										src={ '/static/email/_Facebook.png' } />
+										src='/static/email/_Facebook.png' />
 								</Column>
 								<Column className='py-4'>
 									<Img
 										className='mx-auto'
-										src={ '/static/email/_Instagram.png' } />
+										src='/static/email/_Instagram.png' />
 								</Column>
 								<Column className='py-4'>
 									<Img
 										className='mx-auto'
-										src={ '/static/email/_Linkedin.png' } />
+										src='/static/email/_Linkedin.png' />
 								</Column>
 								<Column className='py-4'>
 									<Img
 										className='mx-auto'
-										src={ '/static/email/_Twitter.png' } />
+										src='/static/email/_Twitter.png' />
 								</Column>
 							</Row>
 
