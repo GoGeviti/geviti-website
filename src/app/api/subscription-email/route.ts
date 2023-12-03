@@ -5,6 +5,7 @@ import { NextResponse } from 'next/server';
 import { Resend } from 'resend';
 
 import SubscriptionEmail from '../../../../templates/SubscriptionEmail';
+
 interface RequestPayload {
   customer: {
     email: string;
@@ -36,7 +37,7 @@ export const POST = withAxiom(async(req: AxiomRequest) => {
 
 	req.log.info(`preCalcHmac: ${preCalcHmac}`);
 	req.log.info(`calcHmacSubtle: ${calcHmacSubtle}`);
-	req.log.info(`calcHmacCrypto: ${calcHmacSubtle}`);
+	req.log.info(`calcHmacCrypto: ${calcHmacCrypto}`);
 
 	const { customer: { email, first_name, last_name } } = requestPayload;
 
