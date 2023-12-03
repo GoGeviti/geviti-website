@@ -115,6 +115,11 @@ async function calculateShopifyWebhookHmac(secret: string, data: string) {
 
 	const hmac = await crypto.subtle.sign('HMAC', key, encodedData);
 
+	const hashArray = Array.from(new Uint8Array(hmac));
+	const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+
+	return btoa(hashHex);
+
 	// const result = await crypto.subtle.verify(', key, signature, data)
 
 	return hmac;
