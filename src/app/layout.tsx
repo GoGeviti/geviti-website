@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { AxiomWebVitals } from 'next-axiom';
 import NextTopLoader from 'nextjs-toploader';
 
 import { AOSInit } from '@/components';
@@ -7,8 +8,8 @@ import { brSonoma, poppins } from '@/constant/fonts';
 import StyledComponentsRegistry from '@/lib/registry';
 
 import 'aos/dist/aos.css';
-import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import 'slick-carousel/slick/slick.css';
 import './globals.css';
 
 export const metadata: Metadata = {
@@ -21,6 +22,7 @@ const RootLayout: React.FC<{ children: React.ReactNode; }> = ({ children }) => {
 	return (
 		<html lang='en'>
 			<AOSInit />
+			<AxiomWebVitals />
 			{ /* <Script src='//embed.typeform.com/next/embed.js' /> */ }
 
 			<StyledComponentsRegistry>

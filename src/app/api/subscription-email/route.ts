@@ -1,3 +1,4 @@
+import { AxiomRequest, withAxiom } from 'next-axiom';
 import { headers } from 'next/headers';
 import { NextResponse } from 'next/server';
 import { Resend } from 'resend';
@@ -20,21 +21,19 @@ export interface subscriptionKeyResponse {
 }
 
 const resend = new Resend(process.env.RESEND_API_KEY);
-export async function POST(request: Request) {
-	const requestPayload = (await request.json()) as RequestPayload;
+export const POST = withAxiom(async(req: AxiomRequest) => {
+	const rawData = await req.text();
+	const requestPayload = (await req.json()) as RequestPayload;
 
-	const reqHeaders = Array.from(headers().entries());
-	console.log('request headers');
-	for (const [key, value] of reqHeaders) {
-		console.log(`${key}: ${value}`);
-	}
+	const reqHeaders = Array.from(headers().entries()).reduce((acc, [key, value]) => ({ ...acc, [key]: value }), {});
+	req.log.info('request headers', reqHeaders);
+	req.log.info('request payload', requestPayload);
 
-	console.log('request payload');
+	const preCalcHmac = headers().get('x-shopify-hmac-sha256');
+	const calcHmac = await calculateShopifyWebhookHmac(process.env.SHOPIFY_WEBHOOK_SECRET ?? '', rawData);
 
-	for (const item in requestPayload) {
-		console.log(`${item}`);
-		console.log(JSON.stringify(requestPayload[item as keyof RequestPayload]));
-	}
+	req.log.info(`preCalcHmac: ${preCalcHmac}`);
+	req.log.info(`calcHmac: ${calcHmac}`);
 
 	const { customer: { email, first_name, last_name } } = requestPayload;
 
@@ -63,7 +62,7 @@ export async function POST(request: Request) {
 	} catch (error) {
 		return NextResponse.json({ error }, { status: 500 });
 	}
-}
+});
 
 async function sendSubscriptionEmail(
 	email: string, firstName: string, lastName: string,
@@ -95,4 +94,29 @@ async function getSubscriptionKey() {
 	}
 
 	return (await response.json()) as subscriptionKeyResponse;
+}
+
+async function calculateShopifyWebhookHmac(secret: string, data: string) {
+	const encoder = new TextEncoder();
+	const encodedData = encoder.encode(data);
+	const encodedSecret = encoder.encode(secret);
+
+	// calculate hmac using the secret and data using cypto.subtle
+	const key = await crypto.subtle.importKey(
+		'raw',
+		encodedSecret,
+		{
+			name: 'HMAC',
+			hash: 'SHA-256',
+		},
+		false,
+		['sign', 'verify']
+	);
+
+	const hmac = await crypto.subtle.sign('HMAC', key, encodedData);
+
+	// const result = await crypto.subtle.verify(', key, signature, data)
+
+	return hmac;
+  
 }
