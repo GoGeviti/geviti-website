@@ -32,7 +32,7 @@ export const POST = withAxiom(async(req: AxiomRequest) => {
 	req.log.info('request payload', requestPayload);
 
 	const preCalcHmac = headers().get('x-shopify-hmac-sha256');
-	const calcHmacSubtle = await calculateShopifyWebhookHmacUsingSubtle(process.env.SHOPIFY_WEBHOOK_SECRET ?? '', rawData);
+	const calcHmacSubtle = await calculateShopifyWebhookHmacUsingSubtle(process.env.SHOPIFY_WEBHOOK_SECRET ?? '', rawData, preCalcHmac ?? '');
 	const calcHmacCrypto = await calculateShopifyWebhookHmacUsingCrypto(process.env.SHOPIFY_WEBHOOK_SECRET ?? '', rawData);
 
 	req.log.info(`preCalcHmac: ${preCalcHmac}`);
@@ -106,7 +106,7 @@ async function calculateShopifyWebhookHmacUsingCrypto(secret: string, data: stri
 	return hmac.digest('base64');
 }
 
-async function calculateShopifyWebhookHmacUsingSubtle(secret: string, data: string) {
+async function calculateShopifyWebhookHmacUsingSubtle(secret: string, data: string, sign: string) {
 	const encoder = new TextEncoder();
 	const encodedData = encoder.encode(data);
 	const encodedSecret = encoder.encode(secret);
@@ -117,21 +117,19 @@ async function calculateShopifyWebhookHmacUsingSubtle(secret: string, data: stri
 		encodedSecret,
 		{
 			name: 'HMAC',
-			hash: 'SHA-256',
+			hash: { name: 'SHA-256' },
 		},
-		false,
+		true,
 		['sign', 'verify']
 	);
 
-	const hmac = await crypto.subtle.sign('HMAC', key, encodedData);
+  const signBytes = Uint8Array.from(atob(sign), c => c.charCodeAt(0));
 
-	const hashArray = Array.from(new Uint8Array(hmac));
-	const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+	const hmacResult = await crypto.subtle.verify('HMAC', key, signBytes, encodedData);
 
-	return btoa(hashHex);
 
 	// const result = await crypto.subtle.verify(', key, signature, data)
 
-	return hmac;
+	return hmacResult;
   
 }
