@@ -101,7 +101,7 @@ const PreCheckoutFlowPage = () => {
 	const router = useRouter();
 
 	const [formStep, setFormStep] = useState<FormStep>(FormStep.FORM_MORE_INFO);
-	const [selectedPlanID, setSelectedPlanID] = useState<'essentials' | 'ultimate' | 'comprehensive'>('');
+	const [selectedPlanID, setSelectedPlanID] = useState<'essentials' | 'ultimate' | 'comprehensive' | ''>('');
 	const [selectedSex, setSelectedSex] = useState<'male' | 'female' | ''>('');
 
 	return (
@@ -238,7 +238,7 @@ const PreCheckoutFlowPage = () => {
           ViewState.HIDDEN && (
 					<PreCheckoutSummary
 						viewState={ currentViewState(FormStep.CHECKOUT_SUMMARY, formStep) }
-						selectedPlanID={ selectedPlanID }
+						selectedPlanID={ selectedPlanID as 'essentials' | 'ultimate' | 'comprehensive' }
 						onContinue={ planID => {
 							router.push(
 								`https://geviti.myshopify.com/cart/${

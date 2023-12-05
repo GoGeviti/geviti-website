@@ -154,6 +154,26 @@ export const getPrivacyById = async(): Promise<Privacy> => {
 		return Promise.reject(error);
 	}
 };
+export const getTermsAndConditions = async(): Promise<Privacy> => {
+	const stringifiedQuery = qs.stringify({
+		depth: 1,
+		limit: 1,
+		draft: false,
+		sort: '-updatedAt'
+	});
+	try {
+		const res = await fetch(
+			process.env.BASE_API_URL + `/api/terms?${stringifiedQuery}`,
+			{
+				cache: 'no-store',
+			}
+		);
+		const data = await res.json();
+		return data.docs[0];
+	} catch (error) {
+		return Promise.reject(error);
+	}
+};
 
 export const getAllFaq = async(): Promise<PaginatedDocs<Faq>> => {
 	const stringifiedQuery = qs.stringify({
