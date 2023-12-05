@@ -19,14 +19,16 @@ interface SubscriptionEmailTemplateProps {
 	firstName: string;
 	lastName: string;
 	subscriptionKey: string;
-	basePath?: string;
+	baseUrl?: string;
+	dashboardUrl?: string;
 }
 
 export default function SubscriptionEmail(
 	props: SubscriptionEmailTemplateProps
 ) {
 	const { subscriptionKey } = props;
-	const basePath = props.basePath || '';
+	const baseUrl = props.baseUrl || '';
+	const dashboardUrl = props.dashboardUrl || '';
 	return (
 		<Tailwind>
 			<Html>
@@ -37,10 +39,14 @@ export default function SubscriptionEmail(
 						<Section className='my-[32px]'>
 							<Img
 								className='mx-auto'
-								src='/static/email/logo.png' />
+								src={ `${baseUrl}/static/email/logo.png` } />
 						</Section>
 						<Section
-							style={ section }
+							style={ {
+								backgroundSize: 'cover',
+								backgroundPosition: 'center',
+								backgroundImage: `url(${baseUrl}/images/email/header.png)`
+							} }
 							className='section-background w-11/12  content-center rounded-2xl'
 						>
 							<Row>
@@ -70,7 +76,7 @@ export default function SubscriptionEmail(
 									<Section className='mt-4 w-2/3'>
 										<Link
 											className='block rounded-3xl bg-[#99d4ff] py-2.5 text-sm font-bold text-black'
-											href={ process.env.DASHBOARD_BASE_URL + `/signup?key=${subscriptionKey}` }
+											href={ `${dashboardUrl}/signup?key=${subscriptionKey}` }
 										>
 											Get Started
 										</Link>
@@ -93,7 +99,7 @@ export default function SubscriptionEmail(
 							columnOneContent={
 								<Row>
 									<Column className='pt-8 text-left'>
-										<Img src='/static/email/Phones.png' />
+										<Img src={ `${baseUrl}/static/email/Phones.png` } />
 									</Column>
 								</Row>
 							}
@@ -109,12 +115,12 @@ export default function SubscriptionEmail(
 											<Column className='px-0.5 py-8 pb-0'>
 												<Img
 													className='h-10 w-48 rounded-md'
-													src='/static/email/app-store.png' />
+													src={ `${baseUrl}/static/email/app-store.png` } />
 											</Column>
 											<Column className='px-0.5 py-8 pb-0'>
 												<Img
 													className='h-10 w-48 rounded-md'
-													src='/static/email/play-store.png' />
+													src={ `${baseUrl}/static/email/play-store.png` } />
 											</Column>
 										</Row>
 									</Column>
@@ -128,22 +134,22 @@ export default function SubscriptionEmail(
 									align='center'>
 									<Img
 										className='mx-auto'
-										src='/static/email/_Facebook.png' />
+										src={ `${baseUrl}/static/email/_Facebook.png` } />
 								</Column>
 								<Column className='py-4'>
 									<Img
 										className='mx-auto'
-										src='/static/email/_Instagram.png' />
+										src={ `${baseUrl}/static/email/_Instagram.png` } />
 								</Column>
 								<Column className='py-4'>
 									<Img
 										className='mx-auto'
-										src='/static/email/_Linkedin.png' />
+										src={ `${baseUrl}/static/email/_Linkedin.png` } />
 								</Column>
 								<Column className='py-4'>
 									<Img
 										className='mx-auto'
-										src='/static/email/_Twitter.png' />
+										src={ `${baseUrl}/static/email/_Twitter.png` } />
 								</Column>
 							</Row>
 
@@ -171,9 +177,3 @@ export default function SubscriptionEmail(
 		</Tailwind>
 	);
 }
-
-const section = {
-	backgroundSize: 'cover',
-	backgroundPosition: 'center',
-	backgroundImage: 'url(/images/email/header.png)'
-};
