@@ -80,11 +80,14 @@ async function sendSubscriptionEmail(
 	const dashboardUrl = process.env.DASHBOARD_BASE_URL ?? '';
 	const baseUrl = process.env.VERCEL_URL ?? '';
 
+	const appStoreUrl = process.env.APP_STORE_URL ?? '';
+	const playStoreUrl = process.env.PLAY_STORE_URL ?? '';
+
 	const emailPayload = {
-		from: 'app@gogeviti.com',
-		to: email,
+		from: 'Geviti <app@gogeviti.com>',
+		to: `${firstName} ${lastName} <${email}>`,
 		subject: 'Welcome to Geviti',
-		react: SubscriptionEmail({ firstName, lastName, subscriptionKey, baseUrl, dashboardUrl }),
+		react: SubscriptionEmail({ firstName, lastName, subscriptionKey, baseUrl, dashboardUrl, appStoreUrl, playStoreUrl }),
 	};
 
 	return resend.emails.send(emailPayload);
