@@ -27,7 +27,7 @@ export default function SubscriptionEmail(
 	props: SubscriptionEmailTemplateProps
 ) {
 	const { subscriptionKey } = props;
-	const baseUrl = props.baseUrl || '';
+	const baseUrl = !(props.baseUrl || '').startsWith('http') ? `https://${ props.baseUrl }` : props.baseUrl;
 	const dashboardUrl = props.dashboardUrl || '';
 	return (
 		<Tailwind>
@@ -39,7 +39,7 @@ export default function SubscriptionEmail(
 						<Section className='my-[32px]'>
 							<Img
 								className='mx-auto'
-								src={ `${baseUrl}/static/email/logo.png` } />
+								src={ `${baseUrl}/images/email/logo.png` } />
 						</Section>
 						<Section
 							style={ {
@@ -99,7 +99,7 @@ export default function SubscriptionEmail(
 							columnOneContent={
 								<Row>
 									<Column className='pt-8 text-left'>
-										<Img src={ `${baseUrl}/static/email/Phones.png` } />
+										<Img src={ `${baseUrl}/images/email/Phones.png` } />
 									</Column>
 								</Row>
 							}
@@ -115,12 +115,12 @@ export default function SubscriptionEmail(
 											<Column className='px-0.5 py-8 pb-0'>
 												<Img
 													className='h-10 w-48 rounded-md'
-													src={ `${baseUrl}/static/email/app-store.png` } />
+													src={ `${baseUrl}/images/email/app-store.png` } />
 											</Column>
 											<Column className='px-0.5 py-8 pb-0'>
 												<Img
 													className='h-10 w-48 rounded-md'
-													src={ `${baseUrl}/static/email/play-store.png` } />
+													src={ `${baseUrl}/images/email/play-store.png` } />
 											</Column>
 										</Row>
 									</Column>
@@ -134,22 +134,22 @@ export default function SubscriptionEmail(
 									align='center'>
 									<Img
 										className='mx-auto'
-										src={ `${baseUrl}/static/email/_Facebook.png` } />
+										src={ `${baseUrl}/images/email/_Facebook.png` } />
 								</Column>
 								<Column className='py-4'>
 									<Img
 										className='mx-auto'
-										src={ `${baseUrl}/static/email/_Instagram.png` } />
+										src={ `${baseUrl}/images/email/_Instagram.png` } />
 								</Column>
 								<Column className='py-4'>
 									<Img
 										className='mx-auto'
-										src={ `${baseUrl}/static/email/_Linkedin.png` } />
+										src={ `${baseUrl}/images/email/_Linkedin.png` } />
 								</Column>
 								<Column className='py-4'>
 									<Img
 										className='mx-auto'
-										src={ `${baseUrl}/static/email/_Twitter.png` } />
+										src={ `${baseUrl}/images/email/_Twitter.png` } />
 								</Column>
 							</Row>
 
