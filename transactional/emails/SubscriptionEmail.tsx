@@ -29,6 +29,7 @@ export default function SubscriptionEmail(
 	const { subscriptionKey } = props;
 	const baseUrl = !(props.baseUrl || '').startsWith('http') ? `https://${ props.baseUrl }` : props.baseUrl;
 	const dashboardUrl = props.dashboardUrl || '';
+	
 	return (
 		<Tailwind>
 			<Html>
@@ -45,9 +46,10 @@ export default function SubscriptionEmail(
 							style={ {
 								backgroundSize: 'cover',
 								backgroundPosition: 'center',
-								backgroundImage: `url(${baseUrl}/images/email/header.png)`
+								backgroundImage: `url(${baseUrl}/images/email/header.png)`,
+								backgroundColor: '#181A1C'
 							} }
-							className='section-background w-11/12  content-center rounded-2xl'
+							className='section-background w-11/12 content-center rounded-2xl'
 						>
 							<Row>
 								<Column
@@ -56,7 +58,7 @@ export default function SubscriptionEmail(
 									<Heading className='text-xl font-semibold text-white'>
 										{ props.firstName }, welcome to the Geviti family.
 									</Heading>
-									<Text className='my-1  text-xs text-white'>
+									<Text className='my-1 text-xs text-white'>
 										we&apos;re glad to have you, let&apos;s started
 									</Text>
 								</Column>
@@ -97,59 +99,75 @@ export default function SubscriptionEmail(
 						<DualColumn
 							styles={ { width: '91.6667%', backgroundColor: '#181A1C', borderRadius: '16px' } }
 							columnOneContent={
-								<Row>
-									<Column className='pt-8 text-left'>
-										<Img src={ `${baseUrl}/images/email/Phones.png` } />
-									</Column>
-								</Row>
+								<Section className='pt-8 text-left'>
+									<Img src={ `${baseUrl}/images/email/Phones.png` } />
+								</Section>
 							}
-							columnOneStyles={ { width: '20%' } }
-							columnTwoStyles={ { width: '80%' } }
+							columnOneStyles={ { } }
+							columnTwoStyles={ { } }
 							columnTwoContent={
-								<Row>
-									<Column className='py-10 pl-6 text-left'>
-										<Heading className='text-2xl font-medium  text-white'>
+								<Section className='py-10 pl-6 text-left'>
+									<Heading className='text-2xl font-medium text-white'>
 											Use Geviti anytime, anywhere with our mobile app.
-										</Heading>
-										<Row>
-											<Column className='px-0.5 py-8 pb-0'>
+									</Heading>
+									<DualColumn
+										columnOneContent={
+											<Link
+												className='px-0.5 py-8 pb-0'
+												href='https://apps.apple.com/us/app/geviti/id1570199789'>
 												<Img
 													className='h-10 w-48 rounded-md'
 													src={ `${baseUrl}/images/email/app-store.png` } />
-											</Column>
-											<Column className='px-0.5 py-8 pb-0'>
+											</Link>
+										}
+										columnTwoContent={
+											<Link
+												className='px-0.5 py-8 pb-0'
+												href='https://play.google.com/store/apps/details?id=com.geviti.app'>
 												<Img
 													className='h-10 w-48 rounded-md'
 													src={ `${baseUrl}/images/email/play-store.png` } />
-											</Column>
-										</Row>
-									</Column>
-								</Row>
+											</Link>
+										}
+									/>
+								</Section>
 							}
 						/>
-						<Section className='w-1/5  my-3'>
+						<Section className='w-1/5 my-3'>
 							<Row>
 								<Column
 									className='py-4'
 									align='center'>
-									<Img
+									<Link
 										className='mx-auto'
-										src={ `${baseUrl}/images/email/_Facebook.png` } />
+										href='https://www.facebook.com/Geviti-100101542327622' >
+										<Img
+											src={ `${baseUrl}/images/email/_Facebook.png` } />
+									</Link>
 								</Column>
 								<Column className='py-4'>
-									<Img
+									<Link
 										className='mx-auto'
-										src={ `${baseUrl}/images/email/_Instagram.png` } />
+										href='https://www.instagram.com/geviti/'>
+										<Img
+											src={ `${baseUrl}/images/email/_Instagram.png` } />
+									</Link>
 								</Column>
 								<Column className='py-4'>
-									<Img
+									<Link
 										className='mx-auto'
-										src={ `${baseUrl}/images/email/_Linkedin.png` } />
+										href='https://www.linkedin.com/company/geviti'>
+										<Img
+											src={ `${baseUrl}/images/email/_Linkedin.png` } />
+									</Link>
 								</Column>
 								<Column className='py-4'>
-									<Img
+									<Link
 										className='mx-auto'
-										src={ `${baseUrl}/images/email/_Twitter.png` } />
+										href='https://twitter.com/geviti'>
+										<Img
+											src={ `${baseUrl}/images/email/_Twitter.png` } />
+									</Link>
 								</Column>
 							</Row>
 
