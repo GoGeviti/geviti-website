@@ -97,9 +97,9 @@ const leaveToLeft = keyframes`
 `;
 
 interface SuccessTransitionProps {
-	viewState: ViewState;
-	onContinue: () => void;
-
+  viewState: ViewState;
+  onContinue: () => void;
+  isAlreadyOnHRT?: boolean;
 }
 
 const SuccessTransition = (props: SuccessTransitionProps) => {
@@ -119,9 +119,13 @@ const SuccessTransition = (props: SuccessTransitionProps) => {
 				keepLastFrame
 				viewState={ props.viewState }
 			/>
-			<Title viewState={ props.viewState }>Thanks for your interest in Geviti</Title>
+			<Title viewState={ props.viewState }>
+        You&apos;re eligible to join Geviti.
+			</Title>
 			<Subtitle viewState={ props.viewState }>
-				We will be in touch with you as soon as a spot opens up.
+				{ props.isAlreadyOnHRT
+					? 'We need to connect you with a clinician to ensure you can switch over to us as your provider.'
+					: 'We need to do a bloodwork panel to ensure you qualify for treatment.' }
 			</Subtitle>
 		</Column>
 	);

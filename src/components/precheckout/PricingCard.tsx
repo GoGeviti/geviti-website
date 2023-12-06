@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import Image from 'next/image';
 import styled, { css, keyframes } from 'styled-components';
 
@@ -58,7 +59,11 @@ const revealFromRight = keyframes`
   }
 `;
 
-const Card = styled.div<{ isHovered?: boolean; isInView: boolean }>`
+const Card = styled.div<{
+  isHovered?: boolean;
+  isInView: boolean;
+  isSwitchCard?: boolean;
+}>`
   display: flex;
   flex-direction: column;
   padding: 30px;
@@ -202,6 +207,53 @@ const FeatureText = styled.span`
   margin-right: auto;
 `;
 
+const CheckboxRow = styled.div`
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  margin-bottom: 5px;
+  margin-top: 10px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(24, 26, 28, 0.1);
+`;
+
+const CheckboxBox = styled.div<{ isChecked: boolean }>`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 24px;
+  width: 24px;
+  box-sizing: border-box;
+  border: 2px solid #181a1c;
+  border-radius: 5px;
+
+  div {
+    height: 14px;
+    width: 14px;
+    border-radius: 2px;
+    background: #181a1c;
+    transform: scale(${props => (props.isChecked ? 1 : 0.95)});
+    opacity: ${props => (props.isChecked ? 1 : 0)};
+    transition:
+      0.2s transform ease-out,
+      0.2s opacity ease-out;
+  }
+`;
+
+const CheckboxText = styled.span`
+  margin-left: 8px;
+  font-size: 12px;
+  color: #181a1c;
+  width: 315px;
+  line-height: 135%;
+
+  a {
+    color: #181a1c;
+    text-decoration: underline;
+    font-weight: 500;
+  }
+`;
+
 interface PricingCardProps {
   name: string;
   priceUpfront: string;
@@ -210,16 +262,19 @@ interface PricingCardProps {
     name: string;
     description?: string;
   }[];
-  biomarkersTested: string;
+  biomarkersTested?: string;
   pillText: string;
   onChoose: () => void;
   isHovered?: boolean;
   onHover?: () => void;
   onStopHover?: () => void;
   isInView: boolean;
+  isSwitchCard?: boolean;
 }
 
 const PricingCard = (props: PricingCardProps) => {
+	const [isAgreed, setIsAgreed] = useState(false);
+
 	return (
 		<Card
 			className={ 'font-BRSonoma ' }
@@ -227,6 +282,7 @@ const PricingCard = (props: PricingCardProps) => {
 			onMouseEnter={ props.onHover }
 			onMouseLeave={ props.onStopHover }
 			isInView={ props.isInView }
+			isSwitchCard={ props.isSwitchCard }
 		>
 			<GreyPillText>{ props.pillText }</GreyPillText>
 			<TopRow>
@@ -237,10 +293,12 @@ const PricingCard = (props: PricingCardProps) => {
 						<PriceSmall>+{ props.priceMonthly } monthly</PriceSmall>
 					</PriceRow>
 				</div>
-				<div className='flex flex-col'>
-					<BiomarkersTested>{ props.biomarkersTested }</BiomarkersTested>
-					<BioTestedText>Biomarkers tested</BioTestedText>
-				</div>
+				{ !!props.biomarkersTested && (
+					<div className='flex flex-col'>
+						<BiomarkersTested>{ props.biomarkersTested }</BiomarkersTested>
+						<BioTestedText>Biomarkers tested</BioTestedText>
+					</div>
+				) }
 			</TopRow>
 			{ props.features.map(feature => (
 				<FeatureRow
@@ -258,6 +316,16 @@ const PricingCard = (props: PricingCardProps) => {
 					/>
 				</FeatureRow>
 			)) }
+			{ props.isSwitchCard && (
+				<CheckboxRow onClick={ () => setIsAgreed(prev => !prev) }>
+					<CheckboxBox isChecked={ isAgreed }>
+						<div />
+					</CheckboxBox>
+					<CheckboxText className='font-BRSonoma'>
+						I acknowledge that buying the Clinical Consultation does not guarantee the option to change therapy to Geviti.
+					</CheckboxText>
+				</CheckboxRow>
+			) }
 			<SelectPlanButton
 				className='font-Poppins'
 				onClick={ props.onChoose }>

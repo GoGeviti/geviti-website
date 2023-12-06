@@ -199,19 +199,23 @@ const steps = [
 
 interface PreCheckoutSummaryProps {
   viewState: ViewState;
-  onContinue: (planID: 'essentials' | 'ultimate' | 'comprehensive') => void;
-  selectedPlanID: 'essentials' | 'ultimate' | 'comprehensive';
+  onContinue: (
+    planID: 'essentials' | 'ultimate' | 'comprehensive' | 'switch',
+  ) => void;
+  selectedPlanID: 'essentials' | 'ultimate' | 'comprehensive' | 'switch';
 }
 
 const PreCheckoutSummary = (props: PreCheckoutSummaryProps) => {
 	const panelPrice =
-    props.selectedPlanID === 'ultimate'
-    	? '$605.00'
-    	: props.selectedPlanID === 'comprehensive'
-    		? '$475.00'
-    		: props.selectedPlanID === 'essentials'
-    			? '$300.00'
-    			: 'Continue to see price';
+    props.selectedPlanID === 'switch'
+    	? '$139.99'
+    	: props.selectedPlanID === 'ultimate'
+    		? '$605.00'
+    		: props.selectedPlanID === 'comprehensive'
+    			? '$475.00'
+    			: props.selectedPlanID === 'essentials'
+    				? '$300.00'
+    				: 'Continue to see price';
 
 	return (
 		<>
@@ -269,13 +273,15 @@ const PreCheckoutSummary = (props: PreCheckoutSummaryProps) => {
 								alt='' />
 							<div className='flex flex-col'>
 								<ItemName>
-									{ props.selectedPlanID === 'ultimate'
-										? 'Ultimate Panel'
-										: props.selectedPlanID === 'comprehensive'
-											? 'Comprehensive Panel'
-											: props.selectedPlanID === 'essentials'
-												? 'Essentials Panel'
-												: 'Blood Panel' }
+									{ props.selectedPlanID === 'switch'
+										? 'Clinical Consultation'
+										: props.selectedPlanID === 'ultimate'
+											? 'Ultimate Panel'
+											: props.selectedPlanID === 'comprehensive'
+												? 'Comprehensive Panel'
+												: props.selectedPlanID === 'essentials'
+													? 'Essentials Panel'
+													: 'Blood Panel' }
 								</ItemName>
 								<ItemPrice>{ panelPrice }</ItemPrice>
 							</div>
