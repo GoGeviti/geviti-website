@@ -10,6 +10,10 @@ const Row = styled.div`
   height: 90px;
   padding: 0 20px;
   position: relative;
+  
+  @media (max-width: 1300px) {
+	height: 60px;
+  }
 `;
 
 const PreviousStepButton = styled.div`
@@ -18,6 +22,10 @@ const PreviousStepButton = styled.div`
 
   &:hover {
     opacity: 0.8;
+  }
+
+  @media (max-width: 1300px) {
+   transform: scale(0.9);
   }
 `;
 

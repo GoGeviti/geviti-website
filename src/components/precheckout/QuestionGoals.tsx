@@ -18,6 +18,11 @@ const Column = styled.div<{ viewState: ViewState }>`
   align-items: center;
 
   z-index: ${props => (props.viewState === ViewState.IN_PROGRESS ? 1 : 0)};
+
+  @media (max-width: 1300px) {
+    max-width: 90vw;
+    top: 40px;
+  }
 `;
 
 const Title = styled.h1<{ viewState: ViewState }>`
@@ -33,6 +38,12 @@ const Title = styled.h1<{ viewState: ViewState }>`
   animation-fill-mode: forwards;
 
   transform: translateX(100vw);
+
+  @media (max-width: 1300px) {
+    max-width: 85vw;
+    font-size: 24px;
+    text-align: center;
+  }
 `;
 
 // const fadeFromBottom = keyframes`
@@ -76,6 +87,10 @@ const AnswerBox = styled.div<{ viewState: ViewState; delayMultiplier: number }>`
   }
 
   transition: 0.2s box-shadow ease-out;
+
+  @media (max-width: 1300px) {
+    max-width: 90vw;
+  }
 `;
 
 const BoxText = styled.span`
@@ -156,7 +171,7 @@ const QuestionGoals = (props: QuestionGoalsProps) => {
 				index={ 4 }
 				onSelectOption={ props.onSelectOption }
 			>
-				All of the above
+        All of the above
 			</ResponseBox>
 		</Column>
 	);

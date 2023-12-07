@@ -15,6 +15,10 @@ const Column = styled.div<{ viewState: ViewState }>`
 
 	transform: translateX(-50%);
   //transition: transform 0.5s cubic-bezier(.21,1.04,.58,1.15);
+  
+  @media (max-width: 1300px) {
+    max-width: 90vw;
+  }
 `;
 
 const LogoLottie = styled(Player)<{ viewState: ViewState }>`

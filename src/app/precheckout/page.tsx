@@ -87,6 +87,11 @@ const StepContainer = styled.div`
   border-radius: 20px;
   position: relative;
   transition: 0.5s background ease-out;
+  
+  @media (max-width: 1200px) {
+	margin: 0;
+	border-radius: 0;
+  }
 `;
 
 const mensVariantIDs = {

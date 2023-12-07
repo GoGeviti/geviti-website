@@ -46,6 +46,7 @@ const Title = styled.h1<{ viewState: ViewState }>`
   font-weight: 500;
   letter-spacing: -1.44px;
   color: #181a1c;
+  max-width: 90vw;
   margin-bottom: 12px;
 
   animation: ${props =>
@@ -65,6 +66,7 @@ const Subtitle = styled.h2<{ viewState: ViewState }>`
   color: #181a1c;
   letter-spacing: -1.12px;
   width: 430px;
+  max-width: 90vw;
   text-align: center;
 
   animation: ${props =>
