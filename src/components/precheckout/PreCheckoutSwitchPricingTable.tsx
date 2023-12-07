@@ -39,7 +39,7 @@ const Subtitle = styled.p<{ viewState: ViewState }>`
   font-size: 14px;
   color: #919b9f;
   width: 430px;
-  margin-bottom: 60px;
+  margin-bottom: 40px;
   text-align: center;
 
   animation: ${props =>
@@ -115,7 +115,6 @@ const PreCheckoutSwitchPricingTable = (
 						priceUpfront='$139.99'
 						priceMonthly='$99'
 						features={ commonFeatures }
-						pillText='Recommended'
 						onChoose={ props.onContinue }
 						isHovered
 						isSwitchCard

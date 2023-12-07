@@ -263,7 +263,7 @@ interface PricingCardProps {
     description?: string;
   }[];
   biomarkersTested?: string;
-  pillText: string;
+  pillText?: string;
   onChoose: () => void;
   isHovered?: boolean;
   onHover?: () => void;
@@ -283,8 +283,9 @@ const PricingCard = (props: PricingCardProps) => {
 			onMouseLeave={ props.onStopHover }
 			isInView={ props.isInView }
 			isSwitchCard={ props.isSwitchCard }
+			style={ { transform: props.isSwitchCard ? 'scale(1)' : undefined } }
 		>
-			<GreyPillText>{ props.pillText }</GreyPillText>
+			{ !!props.pillText && <GreyPillText>{ props.pillText }</GreyPillText> }
 			<TopRow>
 				<div className='flex flex-col font-Poppins'>
 					<Name>{ props.name }</Name>
