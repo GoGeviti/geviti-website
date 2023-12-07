@@ -17,6 +17,11 @@ const Column = styled.div<{ viewState: ViewState }>`
   align-items: center;
 
   z-index: ${props => (props.viewState === ViewState.IN_PROGRESS ? 1 : 0)};
+  
+  @media (max-width: 1300px) {
+	max-width: 90vw;
+	top: 40px;
+  }
 `;
 
 const Title = styled.h1<{ viewState: ViewState }>`
@@ -32,6 +37,11 @@ const Title = styled.h1<{ viewState: ViewState }>`
   animation-fill-mode: forwards;
 
   transform: translateX(100vw);
+  
+  @media (max-width: 1300px) {
+	max-width: 80vw;
+	font-size: 24px;
+  }
 `;
 
 const Subtitle = styled.p<{ viewState: ViewState }>`
@@ -47,6 +57,11 @@ const Subtitle = styled.p<{ viewState: ViewState }>`
   animation-delay: 0.08s;
 
   transform: translateX(100vw);
+
+  @media (max-width: 1300px) {
+    max-width: 80vw;
+    font-size: 14px;
+  }
 `;
 
 // const fadeFromBottom = keyframes`
@@ -75,6 +90,7 @@ const FirstInputField = styled(InputField)<{ viewState: ViewState }>`
   animation-delay: 0.16s;
 
   width: 430px;
+  max-width: 90vw;
   margin-bottom: 8px;
 
   transform: translateX(100vw);
@@ -87,6 +103,7 @@ const SecondInputField = styled(InputField)<{ viewState: ViewState }>`
   animation-fill-mode: forwards;
   animation-delay: 0.24s;
   width: 430px;
+  max-width: 90vw;
 
   margin-bottom: 24px;
 
@@ -101,6 +118,7 @@ const Button = styled.button<{ viewState: ViewState }>`
   align-items: center;
   justify-content: center;
   width: 430px;
+  max-width: 90vw;
   border-radius: 1000px;
   cursor: pointer;
 

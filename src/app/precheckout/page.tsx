@@ -111,7 +111,7 @@ const womensVariantIDs = {
 const PreCheckoutFlowPage = () => {
 	const router = useRouter();
 	const [formStep, setFormStep] = useState<FormStep>(
-		FormStep.TRANSITION_WELCOME,
+		FormStep.FORM_NAME_EMAIL,
 	);
 	const [selectedPlanID, setSelectedPlanID] = useState<
     'essentials' | 'ultimate' | 'comprehensive'
