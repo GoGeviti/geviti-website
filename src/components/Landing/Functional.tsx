@@ -66,6 +66,7 @@ const Functional: React.FC = () => {
 							alt='product'
 							loading='lazy'
 							fill
+							quality={ 100 }
 							className='w-full object-center object-cover'
 						/>
 					</div>

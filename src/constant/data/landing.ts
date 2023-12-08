@@ -19,11 +19,11 @@ const landingData = {
 	hero: {
 		preTitle: 'Your at-home health and wellness clinic',
 		title:
-			'<p>Online hormone therapy <br class="max-md:hidden"/>and personalized wellness.</p>',
+			'Online anti-aging care and <br /> personalized wellness.',
 		image: '/images/landing/hero.png',
 		imageMobile: '/images/landing/hero_mobile.png',
 		btnCta: {
-			text: 'Get Started',
+			text: 'Join Geviti',
 			href: '/precheckout',
 			externalLink: false,
 		},
@@ -206,7 +206,7 @@ const landingData = {
 		preTitle: 'Innovative anti-aging therapies',
 		preTitleMobile: 'Geviti is the cutting edge',
 		title: 'No need to leave home. Anti-aging care that goes where you go.',
-		titleMobile: 'Why leave home? Anti-aging care that goes where you go.',
+		titleMobile: 'Anti-aging care that goes where you go.',
 		description:
 			'Through on-site blood analysis by certified mobile phlebotomists, we\'ll tailor a healthcare plan specifically for your requirements.',
 		descriptionMobile:

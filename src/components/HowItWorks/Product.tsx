@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 import { howItWorksData } from '@/constant/data';
 import clsxm from '@/helpers/clsxm';
@@ -23,7 +24,8 @@ const Product:  React.FC = () => {
 						{ product.map((items, id) => {
 							return (
 								(
-									<div
+									<Link
+										href='/precheckout'
 										key={ id }
 										onMouseEnter={ () => handleMouseEnter(id) }
 										className={ clsxm('bg-product-2 bg-product-1 bg-product-3 bg-product-4 p-[22px] lg:p-[30px] relative rounded-lg flex flex-col max-lg:space-x-5 items-center lg:transform lg:transition-all lg:duration-100 lg:ease-in', items.className, hoveredItem === id ? 'h-[181px] xl:h-[402px] w-full xl:w-[300px]' : 'h-[181px] xl:h-[386px] w-full xl:w-[288px]') }
@@ -47,8 +49,8 @@ const Product:  React.FC = () => {
 												<ChevronRight/>
 											</div>
 										</div>
-									
-									</div>
+
+									</Link>
 								)
 							);
 						}) }
