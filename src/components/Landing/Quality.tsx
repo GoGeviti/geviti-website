@@ -23,7 +23,7 @@ const Quality: React.FC = () => {
 								{ qualityData.preTitleMobile }
 							</p>
 							<div className='max-lg:mx-auto max-w-[320px] sm:max-w-[443px] order-2'>
-								<h2 className='text-[25px] font-Poppins leading-[31px] -tracking-[0.88px] md:text-heading-2 text-primary mt-7px'>
+								<h2 className='text-[25px] font-Poppins !leading-[125%] -tracking-[0.88px] md:text-heading-2 text-primary mt-7px'>
 									{ qualityData.title }
 								</h2>
 							</div>
@@ -36,9 +36,9 @@ const Quality: React.FC = () => {
 										<div
 											key={ functionItemIdx }
 											className='rounded-lg bg-[#C3EBFF] px-[13px] sm:px-5 py-15px sm:py-4 flex items-center gap-[11px] hover:outline hover:outline-2 hover:outline-[#C3EBFF]'
-											// data-aos='fade-up'
-											// data-aos-delay={ `${functionItemIdx * 100}` }
-											// data-aos-anchor='#main-quality-list'
+										// data-aos='fade-up'
+										// data-aos-delay={ `${functionItemIdx * 100}` }
+										// data-aos-anchor='#main-quality-list'
 										>
 											<CheckCircleIcon className='text-primary w-3 h-3 flex-shrink-0 scale-125' />
 											<p

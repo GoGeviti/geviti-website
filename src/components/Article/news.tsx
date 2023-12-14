@@ -50,7 +50,7 @@ const News: React.FC = () => {
 				<div className='bg-primary/[0.03] border-primary border-l-2 rounded-tr-[20px] rounded-br-[20px] px-5 py-[10px] mt-10 md:mt-[70px] relative'>
 					<p className='font-Poppins text-primary text-xs md:text-base italic font-semibold leading-6 md:leading-[33px]'>{ article.quote.text }</p>
 					<p className='font-Poppins text-primary text-xs md:text-base italic font-semibold leading-6 md:leading-[33px] mt-[10px] md:mt-5'>{ article.quote.author }</p>
-					<Quote className='absolute bottom-0 right-0 m-[30px] md:m-5'/>
+					<Quote className='absolute bottom-0 right-0 m-[30px] md:m-5' />
 				</div>
 				<div className=''>
 					{ article.news.map((item, id) => {
@@ -58,39 +58,37 @@ const News: React.FC = () => {
 							<div key={ id }>
 								<p className='text-primary font-Poppins text-[26px] font-semibold leading-[33px] mb-[10px] md:mb-5 mt-[30px] md:mt-[70px]'>{ item.title }</p>
 								{ item.image &&
-                  <div className='w-full h-[350px] md:h-[340px] relative'>
-                  	<Image
-                  		src={ item.image }
-                  		alt={ item.title }
-                  		fill
-                  		className='object-cover rounded-[30px]'
-                  		objectPosition='center'
-                  	/>
-                  </div> }
+									<div className='w-full h-[350px] md:h-[340px] relative'>
+										<Image
+											src={ item.image }
+											alt={ item.title }
+											fill
+											className='object-cover rounded-[30px] object-center'
+										/>
+									</div> }
 								<div
 									className='text-primary font-Poppins text-base md:text-xl leading-[30px] md:leading-10 -tracking-[0.64px] md:-tracking-[0.8px] mt-5 md:mt-[30px]'
 									dangerouslySetInnerHTML={ { __html: item.desc } } />
 								{ item.imageRight && item.textLeft &&
-								<div className='flex flex-col md:flex-row gap-[30px] mt-[30px] items-center'>
-									{ item.imageRight &&
-                  <div className='w-full md:w-[60%] h-[280px] relative'>
-                  	<Image
-                  		src={ item.imageRight }
-                  		alt={ item.title }
-                  		fill
-                  		className='object-cover rounded-[30px]'
-                  		objectPosition='center'
-                  	/>
-                  </div> }
-									{ item.textLeft &&
-									<div
-										className='md:w-[40%] text-primary font-Poppins text-base md:text-xl leading-[30px] md:leading-10 -tracking-[0.64px] md:-tracking-[0.8px]'
-										dangerouslySetInnerHTML={ { __html: item.textLeft } } /> }
-								</div> }
+									<div className='flex flex-col md:flex-row gap-[30px] mt-[30px] items-center'>
+										{ item.imageRight &&
+											<div className='w-full md:w-[60%] h-[280px] relative'>
+												<Image
+													src={ item.imageRight }
+													alt={ item.title }
+													fill
+													className='object-cover rounded-[30px] object-center'
+												/>
+											</div> }
+										{ item.textLeft &&
+											<div
+												className='md:w-[40%] text-primary font-Poppins text-base md:text-xl leading-[30px] md:leading-10 -tracking-[0.64px] md:-tracking-[0.8px]'
+												dangerouslySetInnerHTML={ { __html: item.textLeft } } /> }
+									</div> }
 							</div>
 						);
 					}) }
-         
+
 				</div>
 			</div>
 		</div>

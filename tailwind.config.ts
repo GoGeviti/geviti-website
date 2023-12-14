@@ -46,6 +46,7 @@ const config: Config = {
 					'2': '#5E899E',
 					'3': '#CDD8DC',
 					'4': '#78C3E9',
+					'1-background': '#f6fcff'
 				},
 				neutral: {
 					'300': '#EFF0F6',
@@ -64,6 +65,14 @@ const config: Config = {
 				'black-landing': '#353738',
 				'black-icons': '#2C2F34',
 				'table-light': '#F9FAFB',
+				green: {
+					success: '#60C57C',
+					'success-background': '#eff9f2'
+				},
+				red: {
+					primary: '#EA3F62',
+					'primary-background': '#fdecef'
+				}
 			},
 			letterSpacing: {
 				'0.04em': '0.04em',
@@ -85,6 +94,8 @@ const config: Config = {
 				marquee: 'marquee 40s linear infinite',
 				marquee2: 'marquee2 40s linear infinite',
 				fadeIn: 'fadeIn 0.2s ease-out',
+				'accordion-down': 'accordion-down 0.2s ease-out',
+				'accordion-up': 'accordion-up 0.2s ease-out',
 			},
 			keyframes: {
 				marquee: {
@@ -99,6 +110,17 @@ const config: Config = {
 					'0%': { opacity: '0' },
 					'100%': { opacity: '1' },
 				},
+				'accordion-down': {
+					from: { height: '0' },
+					to: { height: 'var(--radix-accordion-content-height)' },
+				},
+				'accordion-up': {
+					from: { height: 'var(--radix-accordion-content-height)' },
+					to: { height: '0' },
+				},
+			},
+			boxShadow: {
+				card: '0px 15px 30px 0px rgba(16, 24, 40, 0.10)'
 			},
 		},
 		fontFamily: {

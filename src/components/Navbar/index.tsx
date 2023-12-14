@@ -28,7 +28,7 @@ type NavbarProps = {
 		href: string;
 		externalLink?: boolean;
 	}[];
-	withBgWhite?:boolean;
+	withBgWhite?: boolean;
 	isWithnavbarData?: boolean;
 };
 
@@ -42,6 +42,7 @@ const Navbar: React.FC<NavbarProps> = ({
 }) => {
 	const pathname = usePathname();
 	const router = useRouter();
+	const windowDimensions = useWindowDimensions();
 
 	const [openSheet, setOpenSheet] = useState<boolean>(false);
 	const [selectedItem, setSelectedItem] = useState<number>(5);
@@ -58,7 +59,7 @@ const Navbar: React.FC<NavbarProps> = ({
 
 	}, [pathname]);
 
-	const handleSelectedItem = (id:number) => {
+	const handleSelectedItem = (id: number) => {
 		setSelectedItem(id);
 	};
 
@@ -73,10 +74,10 @@ const Navbar: React.FC<NavbarProps> = ({
 							href={ link.href }
 							externalLink={ link.externalLink }
 							className={ clsxm(
-								'rounded-md px-3 py-2 text-sm font-Poppins hover:font-semibold',
+								'rounded-md px-3 py-2 text-sm font-Poppins',
 								theme === 'dark' ? 'text-grey-secondary hover:text-white' : 'text-primary',
 								isWithnavbarData ? 'block' : 'hidden',
-								selectedItem === id ?  'font-semibold' : '!font-medium'
+								selectedItem === id ? 'font-semibold' : '!font-medium hover:!font-semibold'
 							) }
 							aria-label={ link.name }
 						>
@@ -122,13 +123,14 @@ const Navbar: React.FC<NavbarProps> = ({
 						href={ menu.href }
 						externalLink={ menu.externalLink }
 						aria-label={ menu.name }
-						className={ clsxm(
-							'btn font-Poppins text-sm font-medium leading-6',
-							theme === 'dark' ? 'btn-secondary' : 'btn-primary !text-grey-background',
-						) }
 						key={ menu.name }
 					>
-						{ menu.name }
+						<div className={ clsxm(
+							'btn font-Poppins text-sm font-medium leading-6 hover:brightness-110',
+							theme === 'dark' ? 'btn-secondary' : 'btn-primary !text-grey-background',
+						) }>
+							{ menu.name }
+						</div>
 					</CustomLink>
 				)) }
 			</>
@@ -136,7 +138,6 @@ const Navbar: React.FC<NavbarProps> = ({
 	};
 
 	const renderLogo = () => {
-		const windowDimensions = useWindowDimensions();
 		const isMobile = windowDimensions.width < screens.lg;
 
 		const src = isMobile && withBgWhite ? navbarData.logoDark : theme === 'dark' ? navbarData.logoLight : navbarData.logoDark;
@@ -177,7 +178,7 @@ const Navbar: React.FC<NavbarProps> = ({
 							<div className='hidden lg:ml-10 lg:block'>
 								<div className='flex items-center gap-x-5'>
 									{ renderMenuList() }
-									<ResourcesDropdown theme={ theme }/>
+									<ResourcesDropdown theme={ theme } />
 								</div>
 							</div>
 						</div>

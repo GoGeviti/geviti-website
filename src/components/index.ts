@@ -10,6 +10,7 @@ import * as HowItWorksComponent from './HowItWorks';
 import * as LandingComponent from './Landing';
 import * as MarketPlaceComponent from './Marketplace';
 import Navbar from './Navbar';
+import * as OnboardingComponent from './Onboarding';
 import * as OrderComponent from './Order';
 import * as ProductsComponent from './Products';
 
@@ -26,6 +27,7 @@ export {
 	LandingComponent,
 	MarketPlaceComponent,
 	Navbar,
+	OnboardingComponent,
 	OrderComponent,
 	ProductsComponent
 };

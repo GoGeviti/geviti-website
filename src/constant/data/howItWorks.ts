@@ -126,7 +126,7 @@ const howItWorksData = {
 		subtitle: 'A bloodwork package may or may not be required to switch over to Geviti as your online HRT and peptide therapy provider. But lets find out!',
 		btnCta: {
 			title: 'Let’s find out',
-			href: '/precheckout'
+			href: '/onboarding'
 		}
 
 	},

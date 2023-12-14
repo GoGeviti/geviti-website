@@ -1,0 +1,147 @@
+'use client';
+
+import React, { useEffect } from 'react';
+import { Player } from '@lottiefiles/react-lottie-player';
+import { motion, Variants } from 'framer-motion';
+
+import { slideInCenterToLeftProps } from './transitions';
+
+export type TipProps = {
+	title: string;
+	desc: string;
+	type?: string; // info | success
+	onContinue?: () => void;
+};
+
+export const getTipBackgroundColor = (type: string) => {
+	if (type === 'info') return 'rgba(163, 224, 255, 0.25)';
+	if (type === 'success') return 'rgba(227,237,230,255)';
+	return 'rgba(222,238,245,255)';
+};
+
+const Tip: React.FC<TipProps> = ({
+	title,
+	desc,
+	type = 'info',
+	onContinue
+}) => {
+	useEffect(() => {
+		if (onContinue) {
+			setTimeout(() => {
+				onContinue();
+			}, 4_000);
+		}
+	}, []);
+
+	const getLottieSource = () => {
+		if (type === 'info') return 'https://lottie.host/5057054d-678f-4c6f-a7e6-6c327a613933/QfaWhTNjwk.json';
+		if (type === 'success') return 'https://lottie.host/abd0daf2-edae-4d5c-9631-22142fea5513/Wl99Hl9ztM.json';
+		return '';
+	};
+
+	const renderPlayer = () => {
+		const src = getLottieSource();
+
+		if (src) {
+			return (
+				<Player
+					src={ src }
+					autoplay
+					keepLastFrame
+					className='w-[278px] h-[278px]'
+				/>
+			);
+		}
+
+		return null;
+	};
+
+	const bgColorVariants: Variants = {
+		hidden: {
+			height: '100%',
+			width: '100%',
+			backgroundColor: '#F2F2F2'
+		},
+		visible: {
+			backgroundColor: ['#F2F2F2', getTipBackgroundColor(type)],
+			x: 0,
+			transition: {
+				delay: 0.3,
+				duration: 2,
+				ease: [.21, 1.04, .58, 1.15],
+			}
+		},
+		exit: {
+			backgroundColor: getTipBackgroundColor(type),
+			height: '100%',
+			width: '100%',
+			transition: {
+				duration: .5,
+				ease: [.21, 1.04, .58, 1.15],
+			}
+		},
+	};
+
+	const slideInVariants: Variants = {
+		initial: {
+			x: 0,
+		},
+		visible: {
+			x: 0
+		},
+		exit: {
+			x: '-100vw',
+			transition: slideInCenterToLeftProps
+		}
+	};
+
+	return (
+		<motion.div
+			variants={ bgColorVariants }
+			initial='hidden'
+			animate='visible'
+			exit='exit'
+			className='w-full h-full lg:rounded-[20px] text-center relative'
+		>
+			<motion.div
+				variants={ slideInVariants }
+				animate='visible'
+				exit='exit'
+				className='w-full h-full lg:rounded-[20px] text-center relative'
+			>
+				<div className='absolute top-1/2 -translate-y-1/2 lg:top-1/4 lg:-translate-y-1/4 left-1/2 -translate-x-1/2 w-full max-lg:px-4'>
+					<motion.div
+						initial={ { opacity: 0, y: '100vh' } }
+						animate={ { opacity: 1, y: 0 } }
+						transition={ { duration: 0.75, ease: [.21, 1.04, .58, 1.15] } }
+					>
+						<div className='-m-[78px]'>
+							{ renderPlayer() }
+						</div>
+					</motion.div>
+					<motion.div
+						initial={ { opacity: 0, y: '100vh' } }
+						animate={ { opacity: 1, y: 0 } }
+						transition={ { duration: 0.5, delay: 0.08, ease: [.21, 1.04, .58, 1.15] } }
+					>
+						<h1
+							className='text-[34px] 2xl:text-[36px] font-medium -tracking-[0.04em] leading-normal lg:mt-2 mb-[7px] lg:mb-2'
+							dangerouslySetInnerHTML={ { __html: title } }
+						/>
+					</motion.div>
+					<motion.div
+						initial={ { opacity: 0 } }
+						animate={ { opacity: 1 } }
+						transition={ { duration: 2.25, delay: 1.25, ease: [.74, .16, .88, .98] } }
+					>
+						<h2
+							className='font-medium -tracking-[0.04em] leading-normal text-2xl 2xl:text-[28px]'
+							dangerouslySetInnerHTML={ { __html: desc } } />
+					</motion.div>
+				</div>
+			</motion.div>
+		</motion.div>
+	);
+};
+
+export default Tip;

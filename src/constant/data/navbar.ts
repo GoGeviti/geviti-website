@@ -5,7 +5,7 @@ const navigationData = {
 	logoDark: '/images/logo/logo_dark.webp',
 	menu: [
 		{
-			name: 'How it Works',
+			name: 'How It Works',
 			href: '/how-it-works',
 			externalLink: false
 		},
@@ -25,7 +25,7 @@ const navigationData = {
 	actionsMenu: [
 		{
 			name: 'Get Started',
-			href: '/precheckout',
+			href: '/onboarding',
 			externalLink: false
 		}
 	]

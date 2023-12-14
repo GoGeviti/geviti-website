@@ -24,17 +24,15 @@ const Hero = () => {
 								src={ heroData.image }
 								alt='hero'
 								priority
-								className='object-cover md:block hidden'
+								className='object-cover md:block hidden object-right'
 								fill
-								objectPosition='right center'
 							/>
 							<Image
 								src={ heroData.imageMobile }
 								alt='hero mobile'
 								priority={ true }
-								className='object-cover md:hidden'
+								className='object-cover md:hidden object-center'
 								fill
-								objectPosition='center'
 								quality={ 90 }
 							/>
 						</div>
@@ -94,7 +92,7 @@ const Hero = () => {
 									<WrapperAnimation
 										key={ feature.text }
 										data-aos='zoom-in-up'
-										data-aos-delay={ `${featureIdx * 100}` }
+										data-aos-delay={ `${ featureIdx * 100 }` }
 										data-aos-anchor='#main-keys-landing'
 										className='flex flex-col text-center items-center'
 									>
