@@ -1,7 +1,8 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
+import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 
 import { PageProps } from '@/app/onboarding/page';
@@ -86,8 +87,6 @@ const OrderJourneyPage: React.FC<PageProps> = ({ searchParams }) => {
 	const [eligibleID, setEligibleID] = useState<string>(FormStep.TRANSITION_ELIGIBLE_BLOODWORK);
 	const [listQuestionnaire, setListQuestionnaire] = useState<ListQuestionnaire[]>([]);
 	const [isOverflowAutoOnMobile, setIsOverflowAutoOnMobile] = useState<boolean>(false);
-
-	const navbarRef = useRef<HTMLDivElement | null>(null);
 
 	const theme = formStep === FormStep.ORDER_SUMMARY ? 'dark' : 'light';
 
@@ -178,7 +177,6 @@ const OrderJourneyPage: React.FC<PageProps> = ({ searchParams }) => {
 			setTimeout(() => {
 				router.replace(`/onboarding?variant=${ selectedPlan?.variantID }`);
 				setFormStep(FormStep.ORDER_SUMMARY);
-				setShowPageTransitionOrderSummary(false);
 			}, 500);
 		}
 	}, [showPageTransitionOrderSummary]);
@@ -200,10 +198,9 @@ const OrderJourneyPage: React.FC<PageProps> = ({ searchParams }) => {
 	}, [searchParams?.variant, flowFormSteps]);
 
 	const onMouseEnterBtnSelectPricingPlans = (e: React.MouseEvent<HTMLButtonElement>) => {
-		const rect = e.currentTarget.getBoundingClientRect();
 		setStartCircleMaskPosition({
-			x: rect.left,
-			y: rect.top
+			x: e.pageX,
+			y: e.pageY
 		});
 	};
 
@@ -396,13 +393,6 @@ const OrderJourneyPage: React.FC<PageProps> = ({ searchParams }) => {
 					/>
 				);
 			case FormStep.ORDER_SUMMARY:
-				return (
-					<OnboardingComponent.OrderSummary
-						key={ onboardingData.orderSummary.id }
-						isAlreadyOnHRT={ isAlreadyOnHRT && eligibleID === FormStep.TRANSITION_ELIGIBLE_SWITCH }
-						selectedPlan={ selectedPlan }
-					/>
-				);
 			default: return null;
 		}
 	};
@@ -416,6 +406,7 @@ const OrderJourneyPage: React.FC<PageProps> = ({ searchParams }) => {
 			} else {
 				if (formStep === FormStep.ORDER_SUMMARY) {
 					router.replace('/onboarding');
+					setShowPageTransitionOrderSummary(false);
 				}
 
 				setFormStep(flowFormSteps[currentStepIndex - 1]);
@@ -424,26 +415,79 @@ const OrderJourneyPage: React.FC<PageProps> = ({ searchParams }) => {
 		}
 	};
 
-	const renderTransitionOrderSummary = () => {
+	const renderNavbar = (navbarTheme: 'dark' | 'light') => {
 		return (
-			<OnboardingComponent.CircleMaskTransition
-				key='CIRCLE_MASK_TRANSITION'
-				style={ {
-					left: startCircleMaskPosition.x + 20,
-					top: startCircleMaskPosition.y - (navbarRef?.current?.getBoundingClientRect()?.height ?? 52)
-				} }
+			<OnboardingComponent.Navbar
+				theme={ navbarTheme }
+				onStepBack={ onStepBack }
+				progress={ formStepToPercentage() }
 			/>
 		);
 	};
 
+	const renderTransitionOrderSummary = () => {
+		return (
+			<div
+				key='CIRCLE_MASK_TRANSITION'
+				className={ clsxm(
+					formStep === FormStep.ORDER_SUMMARY
+						? 'w-full h-full flex flex-col'
+						: 'absolute inset-0 w-full h-full z-[100]'
+				) }
+			>
+				<motion.div
+					key='CIRCLE_MASK_TRANSITION'
+					initial={ {
+						clipPath: `circle(80px at ${ startCircleMaskPosition.x }px ${ startCircleMaskPosition.y }px)`
+					} }
+					animate={ {
+						clipPath: 'circle(100% at 50% 50%)',
+						transition: {
+							duration: .5,
+							ease: 'easeOut'
+						}
+					} }
+					className='relative bg-primary bg-cover w-full h-full flex flex-col'
+				>
+					{ renderNavbar('dark') }
+					<div className='lg:px-5 lg:pb-[1.5vh] lg:pt-[1.9vh] flex flex-col h-full w-full'>
+						<div className='w-full h-full lg:rounded-[20px] text-center relative'>
+							<div className='absolute inset-0 w-full h-full max-lg:hidden'>
+								<div className='relative overflow-hidden w-full h-full lg:rounded-[20px]'>
+									<Image
+										src='/images/onboarding/background_order_summary.png'
+										alt=''
+										loading='lazy'
+										className='object-cover object-top'
+										fill
+									/>
+								</div>
+							</div>
+							<AnimatePresence mode='wait'>
+								{ formStep === FormStep.ORDER_SUMMARY && (
+									<OnboardingComponent.OrderSummary
+										key={ onboardingData.orderSummary.id }
+										isAlreadyOnHRT={ isAlreadyOnHRT && eligibleID === FormStep.TRANSITION_ELIGIBLE_SWITCH }
+										selectedPlan={ selectedPlan }
+									/>
+								) }
+							</AnimatePresence>
+						</div>
+					</div>
+				</motion.div>
+			</div>
+		);
+	};
+
 	return (
-		<div className={ clsxm(
-			'flex flex-col w-full font-Poppins relative',
-			isOverflowAutoOnMobile
-				? 'min-h-[calc(100svh)] lg:h-screen lg:overflow-hidden'
-				: 'h-[calc(100svh)] overflow-hidden',
-			theme === 'light' ? 'bg-grey-background lg:bg-white' : 'bg-primary'
-		) }
+		<div
+			className={ clsxm(
+				'flex flex-col w-full font-Poppins relative',
+				isOverflowAutoOnMobile
+					? 'min-h-[calc(100svh)] lg:h-screen lg:overflow-hidden'
+					: 'h-[calc(100svh)] overflow-hidden',
+				theme === 'light' ? 'bg-grey-background lg:bg-white' : 'bg-primary'
+			) }
 		>
 			<motion.div
 				className='w-full h-full flex flex-col'
@@ -452,38 +496,20 @@ const OrderJourneyPage: React.FC<PageProps> = ({ searchParams }) => {
 				transition={ { duration: 0.3, ease: [.15, 1.14, .88, .98] } }
 				layout
 			>
-				<OnboardingComponent.Navbar
-					theme={ theme }
-					navbarRef={ navbarRef }
-					onStepBack={ onStepBack }
-					progress={ formStepToPercentage() }
-				/>
-				<div className='lg:px-5 lg:pb-[1.5vh] lg:pt-[1.9vh] flex flex-col h-full w-full'>
-					<div className={ clsxm(
-						'w-full h-full lg:rounded-[20px] text-center relative',
-						theme === 'light' ? 'bg-grey-background' : 'bg-primary'
-					) }>
-						<AnimatePresence mode='wait'>
-							{ renderContent() }
-							{ showPageTransitionOrderSummary
-								&& renderTransitionOrderSummary() }
-							{ /* { showPageTransitionOrderSummary && (
-								<motion.div
-									className={ clsxm(
-										'circle-masking',
-										'lg:rounded-[20px] bg-cover bg-top bg-no-repeat inset-0 absolute bg-primary'
-									) }
-									animate={ {
-										WebkitMaskSize: '150%',
-										transition: { type: "tween", ease: "backOut", duration: .5 }
-									} }
-								>
-									<div className='lg:rounded-[20px] bg-cover bg-top bg-no-repeat inset-0 absolute bg-onboarding-order-summary' />
-								</motion.div>
-							) } */ }
-						</AnimatePresence>
-					</div>
-				</div>
+				{ formStep !== FormStep.ORDER_SUMMARY && (
+					<>
+						{ renderNavbar('light') }
+						<div className='lg:px-5 lg:pb-[1.5vh] lg:pt-[1.9vh] flex flex-col h-full w-full'>
+							<div className='w-full h-full lg:rounded-[20px] text-center relative bg-grey-background'>
+								<AnimatePresence mode='wait'>
+									{ renderContent() }
+								</AnimatePresence>
+							</div>
+						</div>
+					</>
+				) }
+				{ showPageTransitionOrderSummary
+					&& renderTransitionOrderSummary() }
 			</motion.div>
 		</div>
 	);

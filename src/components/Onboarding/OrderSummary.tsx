@@ -125,19 +125,8 @@ const OrderSummary: React.FC<OrderSummaryProps> = ({
 			initial='initial'
 			animate='visible'
 			exit='exit'
-			className='w-full h-full lg:rounded-[20px] relative bg-primary'>
-			<div className='absolute inset-0 w-full h-full max-lg:hidden'>
-				<div className='relative overflow-hidden w-full h-full lg:rounded-[20px]'>
-					<Image
-						src='/images/onboarding/background_order_summary.png'
-						alt=''
-						loading='lazy'
-						className='object-cover object-top'
-						fill
-					/>
-				</div>
-			</div>
-			<div className='flex flex-col lg:items-center lg:justify-center px-4 xs2:px-6 lg:px-0 max-lg:py-[21px] w-full h-full relative z-10 max-w-5xl mx-auto text-left'>
+			className='w-full h-full lg:rounded-[20px] relative'>
+			<div className='flex flex-col lg:items-center lg:justify-center px-4 xs2:px-6 lg:px-0 max-lg:py-[21px] relative w-full h-full z-10 max-w-5xl mx-auto text-left'>
 				<div className='flex max-lg:flex-col lg:grid lg:grid-cols-2 gap-6 lg:gap-10 w-full'>
 					<motion.div
 						variants={ {

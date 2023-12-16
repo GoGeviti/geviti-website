@@ -216,9 +216,11 @@ const PricingPlans: React.FC<PricingPlansProps> = ({
 			return (
 				<Button
 					className='mt-6 lg:mt-[2.7vh] text-sm lg:text-xs 2xl:text-sm'
-					onClick={ () => onSelect(tier) }
+					onClick={ e => {
+						if (onMouseEnterButtonSelect) onMouseEnterButtonSelect(e);
+						onSelect(tier);
+					} }
 					disabled={ disabled }
-					onMouseEnter={ onMouseEnterButtonSelect }
 				>
 					{ tier.btn }
 				</Button>
@@ -472,7 +474,9 @@ const PricingPlans: React.FC<PricingPlansProps> = ({
 								className={ clsxm(
 									getWrapperClassName(tierIdx, tier.mostPopular),
 									'flex flex-col justify-between border-[0.5px] border-grey-background lg:p-[3.7vh]',
-									hoveredIdx === tierIdx ? 'z-10 lg:my-0 shadow-card p-6' : 'bg-white lg:my-[4.25vh] max-lg:px-6 max-lg:py-[30px]'
+									hoveredIdx === tierIdx
+										? 'z-10 lg:my-0 shadow-card p-6'
+										: 'bg-white lg:my-[4.25vh] max-lg:px-6 max-lg:py-[30px]',
 								) }
 								onMouseEnter={ () => setHoveredIdx(tierIdx) }
 							>
