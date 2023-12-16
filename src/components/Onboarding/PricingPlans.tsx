@@ -427,7 +427,10 @@ const PricingPlans: React.FC<PricingPlansProps> = ({
 							</motion.div>
 						) }
 					</div>
-					<div className='max-lg:px-2.5 lg:hidden max-sm:w-full'>
+					<div className={ clsxm(
+						'max-lg:px-2.5 lg:hidden max-sm:w-full',
+						hoveredIdx === 0 ? 'max-lg:mt-[23px]' : ''
+					) }>
 						<Accordion
 							type='single'
 							onValueChange={ (value: string) => setHoveredIdx(+ value) }
