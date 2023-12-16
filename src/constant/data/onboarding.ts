@@ -359,7 +359,7 @@ const onboardingData = {
 					'Custom Treatment Plan'
 				],
 				mostPopular: false,
-				image: '/images/onboarding/geviti_blue.png'
+				image: '/images/onboarding/bloodwork.png'
 			},
 			{
 				variantID: '47242217521442',
@@ -379,7 +379,7 @@ const onboardingData = {
 					'Custom Treatment Plan'
 				],
 				mostPopular: true,
-				image: '/images/onboarding/geviti_blue.png'
+				image: '/images/onboarding/bloodwork.png'
 			},
 			{
 				variantID: '47242224140578',
@@ -400,7 +400,7 @@ const onboardingData = {
 				],
 				mostPopular: false,
 				longTitle: 'Ultimate Men’s Bloodwork Panel',
-				image: '/images/onboarding/ultimate.png'
+				image: '/images/onboarding/bloodwork.png'
 			},
 		],
 		bloodTiersWomen: [
@@ -422,7 +422,7 @@ const onboardingData = {
 					'Custom Treatment Plan'
 				],
 				mostPopular: false,
-				image: '/images/onboarding/geviti_blue.png'
+				image: '/images/onboarding/bloodwork.png'
 			},
 			{
 				variantID: '47242217554210',
@@ -442,7 +442,7 @@ const onboardingData = {
 					'Custom Treatment Plan'
 				],
 				mostPopular: true,
-				image: '/images/onboarding/geviti_blue.png'
+				image: '/images/onboarding/bloodwork.png'
 			},
 			{
 				variantID: '47242224173346',
@@ -463,7 +463,7 @@ const onboardingData = {
 				],
 				mostPopular: false,
 				longTitle: 'Ultimate Women’s Bloodwork Panel',
-				image: '/images/onboarding/ultimate.png'
+				image: '/images/onboarding/bloodwork.png'
 			},
 		],
 	},
