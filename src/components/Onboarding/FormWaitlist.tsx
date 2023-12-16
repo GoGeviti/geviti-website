@@ -8,7 +8,7 @@ import { onboardingData } from '@/constant/data';
 import Button from './Button';
 import SuccessNotif from './SuccessNotif';
 import TextField from './TextField';
-import { slideInVariants, wrapperListVariants } from './transitions';
+import { slideInVariants, slideInVariantsDelay } from './transitions';
 
 type FormWaitlistProps = {
 	onSubmit?: (email: string) => void; // eslint-disable-line no-unused-vars
@@ -50,12 +50,15 @@ const FormWaitlist: React.FC<FormWaitlistProps> = ({ onSubmit }) => {
 						className='mt-[5px] mb-6 font-BRSonoma font-normal text-sm leading-normal text-grey-primary text-left'>
 						{ onboardingData.formWaitlist.subtitle }
 					</motion.h2>
-					<motion.form
+					<form
 						onSubmit={ onSubmitForm }
-						variants={ wrapperListVariants }
 						className='flex flex-col gap-y-6'
 					>
-						<motion.div variants={ slideInVariants }>
+						<motion.div
+							variants={ slideInVariantsDelay() }
+							initial='initial'
+							animate='visible'
+						>
 							<TextField
 								label='Email'
 								id='email'
@@ -67,12 +70,16 @@ const FormWaitlist: React.FC<FormWaitlistProps> = ({ onSubmit }) => {
 							/>
 						</motion.div>
 
-						<motion.div variants={ slideInVariants }>
+						<motion.div
+							variants={ slideInVariantsDelay(2) }
+							initial='initial'
+							animate='visible'
+						>
 							<Button type='submit'>
 								{ onboardingData.formWaitlist.submitLabel }
 							</Button>
 						</motion.div>
-					</motion.form>
+					</form>
 				</div>
 			</div>
 		</motion.div>

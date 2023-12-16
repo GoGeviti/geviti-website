@@ -57,6 +57,7 @@ export const CheckIcon = ({ className }: { className?: string; }) => {
 
 export type Tier = {
 	id: string;
+	variantID?: string;
 	tag?: string;
 	title: string;
 	price: string;
@@ -73,14 +74,24 @@ export type Tier = {
 
 type PricingPlansProps = {
 	isAlreadyOnHRT?: boolean;
+	gender?: string;
 	onSelect: (tier: Tier) => void; // eslint-disable-line no-unused-vars
 	onMouseEnterButtonSelect?: (e: React.MouseEvent<HTMLButtonElement>) => void; // eslint-disable-line no-unused-vars
 };
 
-const PricingPlans: React.FC<PricingPlansProps> = ({ isAlreadyOnHRT, onMouseEnterButtonSelect, onSelect }) => {
-	const tiers = (isAlreadyOnHRT
-		? onboardingData.pricingPlans.consultationTiers
-		: onboardingData.pricingPlans.bloodTiers) as Tier[];
+const getDataTiers = (isAlreadyOnHRT?: boolean, gender?: string) => {
+	if (isAlreadyOnHRT) return onboardingData.pricingPlans.consultationTiers;
+	if (gender?.toLowerCase() === 'female') return onboardingData.pricingPlans.bloodTiersWomen;
+	return onboardingData.pricingPlans.bloodTiersMen;
+};
+
+const PricingPlans: React.FC<PricingPlansProps> = ({
+	isAlreadyOnHRT,
+	gender,
+	onMouseEnterButtonSelect,
+	onSelect
+}) => {
+	const tiers = getDataTiers(isAlreadyOnHRT, gender) as Tier[];
 	const defaultValueTier = tiers.findIndex(tier => tier.mostPopular) ?? 1;
 
 	const [hoveredIdx, setHoveredIdx] = useState<number>(defaultValueTier);
@@ -138,20 +149,18 @@ const PricingPlans: React.FC<PricingPlansProps> = ({ isAlreadyOnHRT, onMouseEnte
 	};
 
 	const getWrapperClassName = (tierIdx: number, mostPopular: boolean) => {
+		const defaultClassName = hoveredIdx === tierIdx
+			? '!rounded-[30px] ring-2 ring-blue-1 bg-blue-1-background opacity-100' : '!opacity-70';
+
 		if (tierIdx === 0) return clsxm(
 			'max-lg:rounded-t-[30px] max-lg:rounded-b-none lg:rounded-r-none lg:rounded-l-[30px]',
-			hoveredIdx === tiers.length - 1 ? 'opacity-50' : 'opacity-70',
-			hoveredIdx === tierIdx ? '!rounded-[30px] ring-2 ring-blue-1 bg-blue-1-background opacity-100' : ''
+			defaultClassName
 		);
 		if (tierIdx === tiers.length - 1) return clsxm(
-			'max-lg:rounded-b-[30px] max-lg:rounded-t-none lg:rounded-l-none lg:rounded-r-[30px] opacity-70',
-			hoveredIdx === tierIdx ? '!rounded-[30px] ring-2 ring-red-primary bg-red-primary-background opacity-100' : ''
+			'max-lg:rounded-b-[30px] max-lg:rounded-t-none lg:rounded-l-none lg:rounded-r-[30px]',
+			defaultClassName
 		);
-		if (mostPopular) return clsxm(
-			'rounded-none',
-			hoveredIdx === tiers.length - 1 ? 'opacity-60' : 'opacity-70',
-			hoveredIdx === tierIdx ? 'rounded-[30px] ring-2 ring-blue-1 bg-blue-1-background opacity-100' : ''
-		);
+		if (mostPopular) return clsxm('rounded-none', defaultClassName);
 	};
 
 	const renderTopCard = (tier: Tier, tierIdx: number) => {
@@ -162,8 +171,7 @@ const PricingPlans: React.FC<PricingPlansProps> = ({ isAlreadyOnHRT, onMouseEnte
 						<p className={ clsxm(
 							'rounded-full px-2.5 font-BRSonoma py-1 text-xs lg:text-[10px] 2xl:text-xs font-bold leading-normal text-primary',
 							hoveredIdx === tierIdx
-								? tierIdx === tiers.length - 1
-									? 'text-white bg-red-primary' : 'bg-blue-1'
+								? 'bg-blue-1'
 								: 'bg-primary/10'
 						) }>
 							{ tier.tag }
@@ -309,30 +317,44 @@ const PricingPlans: React.FC<PricingPlansProps> = ({ isAlreadyOnHRT, onMouseEnte
 			return {
 				initial: {
 					x: '100%',
-					...tiers.length === 1 ? { opacity: 0 } : {}
+					...tiers.length === 1 ? { opacity: 0 } : { visibility: 'hidden' }
 				},
 				inView: {
 					x: 0,
-					...tiers.length === 1 ? { opacity: 1 } : {},
-					transition: {
-						...slideInCenterToLeftProps,
-						delay: 1.1
-					}
+					...tiers.length === 1
+						? {
+							opacity: 1,
+							transition: {
+								...slideInCenterToLeftProps,
+								delay: 0.08
+							}
+						}
+						: {
+							visibility: 'visible',
+							transition: {
+								...slideInCenterToLeftProps,
+								delay: 1.1
+							}
+						},
 				}
 			};
 		} else if (tierIdx === 1) {
 			return {
-				initial: { x: '100%' },
+				initial: { x: '100vw' },
 				inView: {
 					x: 0,
-					transition: slideInCenterToLeftProps
+					transition: {
+						...slideInRightToCenterProps,
+						delay: .08
+					}
 				}
 			};
 		} else {
 			return {
-				initial: { x: '-100%' },
+				initial: { x: '-100%', visibility: 'hidden' },
 				inView: {
 					x: 0,
+					visibility: 'visible',
 					transition: {
 						...slideInCenterToLeftProps,
 						delay: 1.1
@@ -354,6 +376,8 @@ const PricingPlans: React.FC<PricingPlansProps> = ({ isAlreadyOnHRT, onMouseEnte
 					<div className='max-lg:pb-6 max-lg:px-6 flex flex-col items-center text-center'>
 						<motion.h1
 							variants={ slideInVariants }
+							initial='initial'
+							animate='visible'
 							className={ clsxm(
 								'text-2xl 2xl:text-[36px] leading-normal -tracking-[0.04em] max-lg:font-medium text-center',
 								isAlreadyOnHRT ? 'max-w-[430px] 2xl:max-w-[600px] mx-auto' : 'max-w-[430px] mx-auto'
@@ -362,6 +386,8 @@ const PricingPlans: React.FC<PricingPlansProps> = ({ isAlreadyOnHRT, onMouseEnte
 						</motion.h1>
 						<motion.h2
 							variants={ slideInVariants }
+							initial='initial'
+							animate='visible'
 							className={ clsxm(
 								'max-lg:mt-[7px] text-sm font-BRSonoma leading-normal text-primary/70 font-normal',
 								isAlreadyOnHRT ? 'max-w-[430px] mx-auto' : 'max-w-[360px] mx-auto'
@@ -370,29 +396,9 @@ const PricingPlans: React.FC<PricingPlansProps> = ({ isAlreadyOnHRT, onMouseEnte
 						</motion.h2>
 						{ !isAlreadyOnHRT && (
 							<motion.div
-								variants={ {
-									initial: {
-										opacity: 0,
-										y: 30
-									},
-									inView: {
-										opacity: 1,
-										y: 0,
-										transition: {
-											delay: 1.1,
-											opacity: {
-												duration: .25,
-												ease: [.15, 1.14, .88, .98]
-											},
-											y: {
-												duration: .5,
-												ease: [.15, 1.14, .88, .98]
-											}
-										}
-									}
-								} }
+								variants={ slideInVariants }
 								initial='initial'
-								whileInView='inView'
+								animate='visible'
 								className='max-lg:hidden lg:mt-[2.2vh]'
 							>
 								{ renderCompareLabel() }

@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Player } from '@lottiefiles/react-lottie-player';
 import { motion, Variants } from 'framer-motion';
 
@@ -25,6 +25,16 @@ const Tip: React.FC<TipProps> = ({
 	type = 'info',
 	onContinue
 }) => {
+	const lottieRef = useRef<Player>(null);
+
+	useEffect(() => {
+		if (lottieRef?.current) {
+			setTimeout(() => {
+				lottieRef?.current?.play();
+			}, 450);
+		}
+	}, []);
+
 	useEffect(() => {
 		if (onContinue) {
 			setTimeout(() => {
@@ -46,7 +56,7 @@ const Tip: React.FC<TipProps> = ({
 			return (
 				<Player
 					src={ src }
-					autoplay
+					ref={ lottieRef }
 					keepLastFrame
 					className='w-[278px] h-[278px]'
 				/>
@@ -60,11 +70,12 @@ const Tip: React.FC<TipProps> = ({
 		hidden: {
 			height: '100%',
 			width: '100%',
-			backgroundColor: '#F2F2F2'
+			backgroundColor: '#F2F2F2',
+			opacity: 0
 		},
 		visible: {
 			backgroundColor: ['#F2F2F2', getTipBackgroundColor(type)],
-			x: 0,
+			opacity: 1,
 			transition: {
 				delay: 0.3,
 				duration: 2,
@@ -72,12 +83,11 @@ const Tip: React.FC<TipProps> = ({
 			}
 		},
 		exit: {
-			backgroundColor: getTipBackgroundColor(type),
-			height: '100%',
-			width: '100%',
+			backgroundColor: '#F2F2F2',
+			opacity: 0,
 			transition: {
 				duration: .5,
-				ease: [.21, 1.04, .58, 1.15],
+				ease: 'easeInOut',
 			}
 		},
 	};
@@ -111,18 +121,30 @@ const Tip: React.FC<TipProps> = ({
 			>
 				<div className='absolute top-1/2 -translate-y-1/2 lg:top-1/4 lg:-translate-y-1/4 left-1/2 -translate-x-1/2 w-full max-lg:px-4'>
 					<motion.div
-						initial={ { opacity: 0, y: '100vh' } }
-						animate={ { opacity: 1, y: 0 } }
-						transition={ { duration: 0.75, ease: [.21, 1.04, .58, 1.15] } }
+						initial={ { y: '100vh' } }
+						animate={ {
+							y: 0,
+							transition: {
+								delay: 0.3,
+								duration: 1,
+								ease: [.21, 1.04, .58, 1.15],
+							}
+						} }
 					>
 						<div className='-m-[78px]'>
 							{ renderPlayer() }
 						</div>
 					</motion.div>
 					<motion.div
-						initial={ { opacity: 0, y: '100vh' } }
-						animate={ { opacity: 1, y: 0 } }
-						transition={ { duration: 0.5, delay: 0.08, ease: [.21, 1.04, .58, 1.15] } }
+						initial={ { y: '100vh' } }
+						animate={ {
+							y: 0,
+							transition: {
+								duration: .75,
+								delay: 0.38,
+								ease: [.21, 1.04, .58, 1.15]
+							}
+						} }
 					>
 						<h1
 							className='text-[34px] 2xl:text-[36px] font-medium -tracking-[0.04em] leading-normal lg:mt-2 mb-[7px] lg:mb-2'
@@ -131,8 +153,14 @@ const Tip: React.FC<TipProps> = ({
 					</motion.div>
 					<motion.div
 						initial={ { opacity: 0 } }
-						animate={ { opacity: 1 } }
-						transition={ { duration: 2.25, delay: 1.25, ease: [.74, .16, .88, .98] } }
+						animate={ {
+							opacity: 1,
+							transition: {
+								duration: 2.25,
+								delay: 1.55,
+								ease: [.74, .16, .88, .98]
+							}
+						} }
 					>
 						<h2
 							className='font-medium -tracking-[0.04em] leading-normal text-2xl 2xl:text-[28px]'

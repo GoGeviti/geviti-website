@@ -35,9 +35,26 @@ export const slideInVariants: Variants = {
 	}
 };
 
+export const slideInVariantsDelay = (delayMultiplier = 1): Variants => ({
+	initial: {
+		x: '100vw',
+	},
+	visible: {
+		x: 0,
+		transition: {
+			...slideInRightToCenterProps,
+			delay: (0.08 * delayMultiplier)
+		}
+	},
+	exit: {
+		x: '-100vw',
+		transition: slideInCenterToLeftProps
+	}
+});
+
 export const wrapperListVariants: Variants = {
 	visible: {
-		transition: { staggerChildren: 0.08, delayChildren: 0.02 }
+		transition: { staggerChildren: 0.08, delayChildren: 0.08 }
 	},
 	exit: {
 		transition: { staggerChildren: 0.08 }

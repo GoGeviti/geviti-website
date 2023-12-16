@@ -216,7 +216,7 @@ const OrderSummary: React.FC<OrderSummaryProps> = ({
 							initial='initial'
 							animate='visible'
 							exit='exit'
-							className='w-full rounded-[20px] bg-white/10 shadow-[0px_15px_30px_0px_rgba(0,0,0,0.35)] lg:backdrop-blur-[40.774227142333984px]'
+							className='w-full rounded-[20px] bg-white/10 shadow-[0px_15px_30px_0px_rgba(0,0,0,0.35)]'
 						>
 							<div className='max-lg:hidden px-[30px] py-7 bg-white/5 text-white rounded-t-[20px]'>
 								<h4 className='font-BRSonoma text-2xl font-medium leading-normal -tracking-[0.025em]'>

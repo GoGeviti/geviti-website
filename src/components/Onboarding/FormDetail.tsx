@@ -14,7 +14,7 @@ import Checkbox from './Checkbox';
 import InputLabel, { ErrorMessage } from './InputLabel';
 import Select from './InputSelect';
 import SuccessNotif from './SuccessNotif';
-import { notifTransitionProps, slideInVariants, wrapperListVariants } from './transitions';
+import { notifTransitionProps, slideInVariants, slideInVariantsDelay } from './transitions';
 
 export type FormDetailState = {
 	state: string;
@@ -98,7 +98,7 @@ const FormDetail: React.FC<FormDetailProps> = ({ onSubmit }) => {
 
 	const renderDatePicker = () => {
 		return (
-			<div className='flex flex-col'>
+			<div className='flex flex-col mt-2'>
 				<InputLabel>Birthday (DD/MM/YYYY)</InputLabel>
 				<div>
 					<DatePicker
@@ -116,6 +116,7 @@ const FormDetail: React.FC<FormDetailProps> = ({ onSubmit }) => {
 						) }
 						calendarClassName='font-Poppins !border-0 shadow-[0px_32px_105px_0px_rgba(16,24,40,0.13)] rounded-[10px] bg-grey-secondary text-primary !z-[99]'
 						format='d/M/y'
+						disableCalendar
 					/>
 				</div>
 				{ formik.errors.birthdate && <ErrorMessage>{ formik.errors.birthdate }</ErrorMessage> }
@@ -178,52 +179,68 @@ const FormDetail: React.FC<FormDetailProps> = ({ onSubmit }) => {
 						className='mt-1 text-sm font-BRSonoma leading-normal text-grey-primary font-normal text-left'>
 						{ onboardingData.formDetail.subtitle }
 					</motion.h2>
-					<motion.form
-						variants={ wrapperListVariants }
+					<form
 						onSubmit={ onSubmitForm }
 						className='flex flex-col gap-y-6 lg:gap-y-[2.2vh] mt-6 lg:mt-[2.2vh]'
 					>
 						<div>
-							<div className='flex flex-col gap-y-2'>
-								<motion.div
-									variants={ slideInVariants }
-									className='grid grid-cols-2 gap-2'>
-									<Select
-										label='State'
-										placeholder='State'
-										options={ states }
-										value={ formik.values.state }
-										onChange={ val => onChangeInput('state', val) }
-										isError={ notifErrorMessage.form_id === 'state' || !!formik.errors.state }
-										errorMessage={ formik.errors.state }
-									/>
-
-									<Select
-										label='Biological Sex'
-										placeholder='Biological Sex'
-										options={ gender }
-										value={ formik.values.gender }
-										onChange={ val => onChangeInput('gender', val) }
-										isError={ !!formik.errors.gender }
-										errorMessage={ formik.errors.gender }
-									/>
-								</motion.div>
-								{ renderDatePicker() }
-							</div>
 							<motion.div
-								variants={ slideInVariants }
-								className='mt-6 lg:mt-[1.1vh] flex flex-col gap-y-6 lg:gap-y-[1.1vh]'>
-								<Checkbox
-									id='agreement-statement'
-									checked={ isChecked }
-									onChange={ (e: React.ChangeEvent<HTMLInputElement>) => setIsChecked(e.target.checked) }
-									label={ onboardingData.formDetail.agreementStatement }
+								initial='initial'
+								animate='visible'
+								// exit='exit'
+								variants={ slideInVariantsDelay() }
+								className='grid grid-cols-2 gap-2'>
+								<Select
+									label='State'
+									placeholder='State'
+									options={ states }
+									value={ formik.values.state }
+									onChange={ val => onChangeInput('state', val) }
+									isError={ notifErrorMessage.form_id === 'state' || !!formik.errors.state }
+									errorMessage={ formik.errors.state }
 								/>
-								{ renderErrorNotif() }
+
+								<Select
+									label='Biological Sex'
+									placeholder='Biological Sex'
+									options={ gender }
+									value={ formik.values.gender }
+									onChange={ val => onChangeInput('gender', val) }
+									isError={ !!formik.errors.gender }
+									errorMessage={ formik.errors.gender }
+								/>
+							</motion.div>
+							<motion.div
+								initial='initial'
+								animate='visible'
+								// exit='exit'
+								variants={ slideInVariantsDelay(2) }>
+								{ renderDatePicker() }
+							</motion.div>
+							<motion.div
+								initial='initial'
+								animate='visible'
+								// exit='exit'
+								variants={ slideInVariantsDelay(3) }
+							>
+								<div className='mt-6 lg:mt-[1.1vh] flex flex-col gap-y-6 lg:gap-y-[1.1vh]'>
+									<Checkbox
+										id='agreement-statement'
+										checked={ isChecked }
+										onChange={ (e: React.ChangeEvent<HTMLInputElement>) => setIsChecked(e.target.checked) }
+										label={ onboardingData.formDetail.agreementStatement }
+									/>
+									{ renderErrorNotif() }
+								</div>
 							</motion.div>
 						</div>
 
-						<motion.div variants={ slideInVariants }>
+						<motion.div
+							initial='initial'
+							animate='visible'
+							// exit='exit'
+							variants={ slideInVariantsDelay(4) }
+						>
 							<Button
 								type='submit'
 								disabled={ notifErrorMessage.form_id === 'state' || !isChecked }
@@ -231,7 +248,7 @@ const FormDetail: React.FC<FormDetailProps> = ({ onSubmit }) => {
 								{ onboardingData.formDetail.submitLabel }
 							</Button>
 						</motion.div>
-					</motion.form>
+					</form>
 				</div>
 			</div>
 		</motion.div>

@@ -35,20 +35,6 @@ enum FormStep {
 	TRANSITION_ELIGIBLE_BLOODWORK = 'TRANSITION_ELIGIBLE_BLOODWORK',
 }
 
-const mensVariantIDs: { [key: string]: string; } = {
-	comprehensive: '47242217521442',
-	essentials: '47242220634402',
-	ultimate: '47242224140578',
-	switch: '46553678643490',
-};
-
-const womensVariantIDs: { [key: string]: string; } = {
-	comprehensive: '47242217554210',
-	essentials: '47242220667170',
-	ultimate: '47242224173346',
-	switch: '46553678643490',
-};
-
 type NextStepAction = {
 	transition?: {
 		title: string;
@@ -320,7 +306,7 @@ const OrderJourneyPage: NextPage = () => {
 							onAddQuestionnaireAnswer(onboardingData.questionSwitchToGeviti.id, onboardingData.questionSwitchToGeviti.title, selected.label);
 						} }
 					/>
-				); ;
+				);;
 			case FormStep.FORM_NAME_EMAIL:
 				return (
 					<OnboardingComponent.FormNameEmail
@@ -380,6 +366,7 @@ const OrderJourneyPage: NextPage = () => {
 					<OnboardingComponent.PricingPlans
 						key={ onboardingData.pricingPlans.id }
 						isAlreadyOnHRT={ isAlreadyOnHRT && eligibleID === FormStep.TRANSITION_ELIGIBLE_SWITCH }
+						gender={ userData?.gender }
 						onSelect={ selected => {
 							setShowPageTransitionOrderSummary(true);
 							setSelectedPlan(selected);
@@ -394,17 +381,9 @@ const OrderJourneyPage: NextPage = () => {
 						isAlreadyOnHRT={ isAlreadyOnHRT && eligibleID === FormStep.TRANSITION_ELIGIBLE_SWITCH }
 						selectedPlan={ selectedPlan }
 						onContinue={ () => {
-							const selectedSex = userData.gender?.toLowerCase();
-							const planID = selectedPlan?.id;
-
-							if (planID) {
-								router.push(
-									`https://geviti.myshopify.com/cart/${ selectedSex === 'male'
-										? mensVariantIDs[planID]
-										: womensVariantIDs[planID]
-									}:1`,
-								);
-							}
+							router.push(
+								`https://geviti.myshopify.com/cart/${ selectedPlan?.variantID ?? '' }:1`,
+							);
 						} }
 					/>
 				);
@@ -466,6 +445,20 @@ const OrderJourneyPage: NextPage = () => {
 							{ renderContent() }
 							{ showPageTransitionOrderSummary
 								&& renderTransitionOrderSummary() }
+							{ /* { showPageTransitionOrderSummary && (
+								<motion.div
+									className={ clsxm(
+										'circle-masking',
+										'lg:rounded-[20px] bg-cover bg-top bg-no-repeat inset-0 absolute bg-primary'
+									) }
+									animate={ {
+										WebkitMaskSize: '150%',
+										transition: { type: "tween", ease: "backOut", duration: .5 }
+									} }
+								>
+									<div className='lg:rounded-[20px] bg-cover bg-top bg-no-repeat inset-0 absolute bg-onboarding-order-summary' />
+								</motion.div>
+							) } */ }
 						</AnimatePresence>
 					</div>
 				</div>

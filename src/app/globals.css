@@ -2,6 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer utilities {
+  .animation-pause {
+    animation-play-state: paused;
+  }
+
+  .animation-running {
+    animation-play-state: running;
+  }
+}
+
 html,
 body {
   padding: 0 !important;
@@ -76,4 +86,15 @@ input[type='number']::placeholder {
 
 .react-calendar__tile--active {
   @apply !bg-primary/90 text-white rounded-sm;
+}
+
+.circle-masking {
+  -webkit-mask-image: url('../../public/images/icons/circle.svg');
+  mask-image: url('../../public/images/icons/circle.svg');
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat; 
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-size: 0%; 
+  mask-size: 0%;
 }

@@ -6,6 +6,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { homeData } from '@/constant/data';
 import clsxm from '@/helpers/clsxm';
 
+import QuestionTooltip from '../Home/QuestionTooltip';
 import {
 	Select, SelectContent, SelectGroup, SelectItem, SelectSeparator, SelectTrigger, SelectValue
 } from '../Select';
@@ -64,8 +65,13 @@ const BiomarkerCompare: React.FC<BiomarkerCompareProps> = ({ open, compareLabel,
 
 		if (column.selector === 'title') {
 			return (
-				<span className='items-baseline gap-x-1.5 border-r border-[#E9EBEC] flex'>
-					<FeatureIcon className='inline-block flex-shrink-0 w-[15px] h-[15px]' />
+				<span className='items-center gap-x-1.5 border-r border-[#E9EBEC] flex'>
+					{ !!row.description &&
+						<QuestionTooltip
+							text={ row.description }
+							className='!max-w-[240px] text-left max-sm:p-2'
+							icon={ <FeatureIcon className='inline-block flex-shrink-0 w-[15px] h-[15px]' /> }
+						/> }
 					{ text }
 				</span>
 			);
@@ -73,44 +79,48 @@ const BiomarkerCompare: React.FC<BiomarkerCompareProps> = ({ open, compareLabel,
 
 		if (text === true) {
 			return (
-				<CheckIcon className='w-6 h-6' />
+				<span className='flex justify-end lg:justify-center'>
+					<CheckIcon className='w-6 h-6' />
+				</span>
 			);
 		}
 
 		return (
-			<svg
-				xmlns='http://www.w3.org/2000/svg'
-				width='24'
-				height='24'
-				viewBox='0 0 24 24'
-				fill='none'>
-				<path
-					fillRule='evenodd'
-					clipRule='evenodd'
-					d='M24 12C24 18.6274 18.6274 24 12 24C5.37258 24 0 18.6274 0 12C0 5.37258 5.37258 0 12 0C18.6274 0 24 5.37258 24 12Z'
-					fill='#181A1C'
-					fillOpacity='0.1' />
-				<rect
-					x='6'
-					y='11'
-					width='12'
-					height='2'
-					rx='1'
-					fill='#181A1C'
-					fillOpacity='0.4' />
-			</svg>
+			<span className='flex justify-end lg:justify-center'>
+				<svg
+					xmlns='http://www.w3.org/2000/svg'
+					width='24'
+					height='24'
+					viewBox='0 0 24 24'
+					fill='none'>
+					<path
+						fillRule='evenodd'
+						clipRule='evenodd'
+						d='M24 12C24 18.6274 18.6274 24 12 24C5.37258 24 0 18.6274 0 12C0 5.37258 5.37258 0 12 0C18.6274 0 24 5.37258 24 12Z'
+						fill='#181A1C'
+						fillOpacity='0.1' />
+					<rect
+						x='6'
+						y='11'
+						width='12'
+						height='2'
+						rx='1'
+						fill='#181A1C'
+						fillOpacity='0.4' />
+				</svg>
+			</span>
 		);
 	};
 
 	const getBiomarkersTableFiltered = () => {
 		const biomarkersTableFiltered = biomarkersTable.map(item => {
-
 			let arrItem: BiomarkerTable = { title: item.title };
 
 			for (const key in item) {
 				if (key === activeDropdown.selector) {
 					arrItem = {
 						...arrItem,
+						description: item.description,
 						[key]: item[key]
 					};
 				}
@@ -280,7 +290,7 @@ const BiomarkerCompare: React.FC<BiomarkerCompareProps> = ({ open, compareLabel,
 									className='flex flex-col items-center w-full h-full lg:overflow-y-auto no-scrollbar'>
 									<div className='flow-root w-full'>
 										<div className='overflow-x-hidden'>
-											<div className='inline-block w-full align-middle'>
+											<div className='inline-block w-full align-middle rounded-lg overflow-hidden'>
 												<table className='w-full divide-y divide-[#E9EBEC]'>
 													<thead className='bg-white font-BRSonoma max-lg:hidden'>
 														<tr>
@@ -290,7 +300,7 @@ const BiomarkerCompare: React.FC<BiomarkerCompareProps> = ({ open, compareLabel,
 																		key={ columnIdx }
 																		scope='col'
 																		className='px-4 py-2.5 text-left text-base font-bold text-primary -tracking-[0.025em]'>
-																		<span className={ clsxm('w-full flex', columnIdx === 0 ? 'border-r border-[#E9EBEC]' : '') }>
+																		<span className={ clsxm('w-full flex', columnIdx === 0 ? 'border-r border-[#E9EBEC]' : 'justify-center') }>
 																			{ column.title }
 																		</span>
 																	</th>

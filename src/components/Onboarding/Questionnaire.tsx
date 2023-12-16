@@ -7,15 +7,18 @@ import { AnimationItem } from 'lottie-web';
 
 import type { FormOption } from '@/app/onboarding/page';
 
-import { slideInVariants, wrapperListVariants } from './transitions';
+import { slideInVariants, slideInVariantsDelay } from './transitions';
 
-const AnswerBox: React.FC<{ text: string; onClick?: () => void; }> = ({ text, onClick }) => {
+const AnswerBox: React.FC<{ text: string; index: number; onClick?: () => void; }> = ({ text, index, onClick }) => {
 	const [lottieRef, setLottieRef] = useState<AnimationItem | null>(null);
 
 	return (
 		<motion.li
 			onHoverStart={ () => lottieRef?.play() }
-			variants={ slideInVariants }
+			variants={ slideInVariantsDelay(index + 1) }
+			initial='initial'
+			animate='visible'
+			// exit='exit'
 			whileHover={ {
 				scale: 1.02,
 				boxShadow: '0px 15px 30px 0px rgba(16, 24, 40, 0.10)',
@@ -73,19 +76,18 @@ const Questionnaire: React.FC<QuestionnaireProps> = ({
 						{ title }
 					</motion.h1>
 					<div className='mt-5'>
-						<motion.ul
-							variants={ wrapperListVariants }
-							className='flex flex-col gap-y-3'>
+						<ul className='flex flex-col gap-y-3'>
 							{ options.map((answer, answerIdx) => (
 								<AnswerBox
 									key={ answerIdx }
+									index={ answerIdx }
 									text={ answer.label }
 									onClick={ () => {
 										if (onSelect) onSelect(answer);
 									} }
 								/>
 							)) }
-						</motion.ul>
+						</ul>
 					</div>
 				</div>
 			</div>

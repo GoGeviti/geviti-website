@@ -1,4 +1,7 @@
+import { differenceInYears } from 'date-fns';
 import * as yup from 'yup';
+
+{ /* eslint-disable @typescript-eslint/no-explicit-any */ }
 
 export const FormNameEmailSchema = yup.object().shape({
 	name: yup.string()
@@ -19,4 +22,7 @@ export const FormDetailSchema = yup.object().shape({
 	birthdate: yup.date()
 		.required()
 		.label('Birthday')
+		.test('birthdate', 'Must be 18 years or older', (value: any) => {
+			return differenceInYears(new Date(), new Date(value)) >= 18; ;
+		}),
 });

@@ -9,7 +9,7 @@ import { FormNameEmailSchema } from '@/validator/onboarding';
 
 import Button from './Button';
 import TextField from './TextField';
-import { slideInVariants, wrapperListVariants } from './transitions';
+import { slideInVariants, slideInVariantsDelay } from './transitions';
 
 export type FormNameEmailState = {
 	name: string;
@@ -61,11 +61,14 @@ const FormNameEmail: React.FC<FormNameEmailProps> = ({ onSubmit }) => {
 						className='mt-[5px] mb-6 font-BRSonoma font-normal text-sm leading-normal text-grey-primary text-left'>
 						{ onboardingData.formNameEmail.subtitle }
 					</motion.h2>
-					<motion.form
-						variants={ wrapperListVariants }
+					<form
 						onSubmit={ onSubmitForm }
 						className='flex flex-col text-left'>
-						<motion.div variants={ slideInVariants }>
+						<motion.div
+							variants={ slideInVariantsDelay() }
+							initial='initial'
+							animate='visible'
+						>
 							<TextField
 								label='Full Name'
 								id='name'
@@ -77,7 +80,11 @@ const FormNameEmail: React.FC<FormNameEmailProps> = ({ onSubmit }) => {
 								errorMessage={ formik.errors.name }
 							/>
 						</motion.div>
-						<motion.div variants={ slideInVariants }>
+						<motion.div
+							variants={ slideInVariantsDelay(2) }
+							initial='initial'
+							animate='visible'
+						>
 							<TextField
 								label='Email'
 								id='email'
@@ -91,14 +98,18 @@ const FormNameEmail: React.FC<FormNameEmailProps> = ({ onSubmit }) => {
 								wrapperClassName='mt-2'
 							/>
 						</motion.div>
-						<motion.div variants={ slideInVariants }>
+						<motion.div
+							variants={ slideInVariantsDelay(3) }
+							initial='initial'
+							animate='visible'
+						>
 							<Button
 								type='submit'
 								className='mt-6'>
 								{ onboardingData.formNameEmail.submitLabel }
 							</Button>
 						</motion.div>
-					</motion.form>
+					</form>
 				</div>
 			</div>
 		</motion.div>

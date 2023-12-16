@@ -16,7 +16,7 @@ const onboardingData = {
 	},
 	questionOnHRT: {
 		id: 'QUESTION_ALREADY_ON_HRT',
-		title: 'Are You Currently Taking Dr. Prescribed Hormone Therapy?',
+		title: 'Are you currently taking doctor prescribed hormone therapy?',
 		options: [
 			{
 				label: 'Yes',
@@ -321,6 +321,7 @@ const onboardingData = {
 		},
 		consultationTiers: [
 			{
+				variantID: '46553678643490',
 				id: 'switch',
 				tag: '',
 				title: 'Clinical Consultation',
@@ -339,8 +340,9 @@ const onboardingData = {
 				image: '/images/onboarding/doctor.png'
 			}
 		],
-		bloodTiers: [
+		bloodTiersMen: [
 			{
+				variantID: '47242220634402',
 				id: 'essentials',
 				tag: 'Most Affordable',
 				title: 'Essentials Panel',
@@ -360,6 +362,7 @@ const onboardingData = {
 				image: '/images/onboarding/geviti_blue.png'
 			},
 			{
+				variantID: '47242217521442',
 				id: 'comprehensive',
 				tag: 'Most Popular',
 				title: 'Comprehensive Panel',
@@ -379,7 +382,8 @@ const onboardingData = {
 				image: '/images/onboarding/geviti_blue.png'
 			},
 			{
-				id: 'ultimate',
+				variantID: '47242224140578',
+				id: 'ultimateMen',
 				tag: 'Most In-Depth',
 				title: 'Ultimate Men’s Panel',
 				price: '$605',
@@ -396,6 +400,69 @@ const onboardingData = {
 				],
 				mostPopular: false,
 				longTitle: 'Ultimate Men’s Bloodwork Panel',
+				image: '/images/onboarding/ultimate.png'
+			},
+		],
+		bloodTiersWomen: [
+			{
+				variantID: '47242220667170',
+				id: 'essentials',
+				tag: 'Most Affordable',
+				title: 'Essentials Panel',
+				price: '$300',
+				priceNote: '+ $99 monthly',
+				biomarkers: '39+',
+				notes: 'Biomarkers Tested',
+				btn: 'Select Plan',
+				features: [
+					'At-home blood draw',
+					'Access To Geviti Platform',
+					'Prescription Product Access',
+					'Personally Assigned Health Coach',
+					'Custom Treatment Plan'
+				],
+				mostPopular: false,
+				image: '/images/onboarding/geviti_blue.png'
+			},
+			{
+				variantID: '47242217554210',
+				id: 'comprehensive',
+				tag: 'Most Popular',
+				title: 'Comprehensive Panel',
+				price: '$475',
+				priceNote: '+ $99 monthly',
+				biomarkers: '50+',
+				notes: 'Biomarkers Tested',
+				btn: 'Select Plan',
+				features: [
+					'At-home blood draw',
+					'Access To Geviti Platform',
+					'Prescription Product Access',
+					'Personally Assigned Health Coach',
+					'Custom Treatment Plan'
+				],
+				mostPopular: true,
+				image: '/images/onboarding/geviti_blue.png'
+			},
+			{
+				variantID: '47242224173346',
+				id: 'ultimateFemale',
+				tag: 'Most In-Depth',
+				title: 'Ultimate Women’s Panel',
+				price: '$605',
+				priceNote: '+ $99 monthly',
+				biomarkers: '58+',
+				notes: 'Biomarkers Tested',
+				btn: 'Select Plan',
+				features: [
+					'At-home blood draw',
+					'Access To Geviti Platform',
+					'Prescription Product Access',
+					'Personally Assigned Health Coach',
+					'Custom Treatment Plan'
+				],
+				mostPopular: false,
+				longTitle: 'Ultimate Women’s Bloodwork Panel',
 				image: '/images/onboarding/ultimate.png'
 			},
 		],
