@@ -163,7 +163,7 @@ const FormDetail: React.FC<FormDetailProps> = ({ onSubmit }) => {
 			exit='exit'
 			className='w-full h-full lg:rounded-[20px] text-center relative'
 		>
-			<div className='flex lg:absolute max-lg:py-[30px] lg:top-[5%] 2xl:top-[10%] lg:left-1/2 lg:-translate-x-1/2 w-full max-lg:px-4'>
+			<div className='flex overflow-hidden lg:absolute max-lg:py-[30px] lg:top-[5%] 2xl:top-[10%] lg:left-1/2 lg:-translate-x-1/2 w-full px-4 xs2:px-6 lg:px-0'>
 				<div className='max-w-[430px] mx-auto w-full'>
 					<SuccessNotif
 						title={ onboardingData.formDetail.notifFreeTelehealth.title }

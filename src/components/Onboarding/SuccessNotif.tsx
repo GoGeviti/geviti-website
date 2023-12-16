@@ -42,9 +42,9 @@ const SuccessNotif: React.FC<SuccessNotifProps> = ({ title, subtitle }) => {
 			variants={ variants }
 			initial='initial'
 			animate='visible'
-			className='mb-5 lg:mb-[1.75vh] w-full relative border-[1.5px] border-green-success rounded-[10px] py-2 px-[9px] bg-green-success-background flex gap-x-[9px]'
+			className='mb-[19px] sm:mb-5 lg:mb-[1.75vh] w-full relative border-[1.5px] border-green-success rounded-[10px] py-2 px-[9px] bg-green-success-background flex gap-x-[9px]'
 		>
-			<div className='w-[22px]'>
+			<div className='w-[21px]'>
 				<Player
 					src='https://lottie.host/f3372ff0-3570-431d-a529-7cc4fbd5481a/huZVbKVygH.json'
 					keepLastFrame
@@ -52,11 +52,11 @@ const SuccessNotif: React.FC<SuccessNotifProps> = ({ title, subtitle }) => {
 					ref={ lottieRef }
 				/>
 			</div>
-			<div className='font-BRSonoma flex flex-col max-lg:gap-y-0.5'>
-				<h6 className='text-sm font-semibold text-primary leading-normal text-left'>
+			<div className='font-BRSonoma flex flex-col'>
+				<h6 className='text-sm font-semibold text-primary leading-[17px] sm:leading-normal text-left'>
 					{ title }
 				</h6>
-				<p className='text-[10.5px] lg:text-xs leading-normal text-grey-primary font-normal text-left'>
+				<p className='text-[10.5px] lg:text-xs leading-[13px] sm:leading-normal text-grey-primary font-normal text-left'>
 					{ subtitle }
 				</p>
 			</div>

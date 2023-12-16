@@ -59,7 +59,7 @@ const Button: React.FC<ButtonProps> = ({
 			} }
 			type={ type }
 			className={ clsxm(
-				'focus:ring-0 focus:outline-none bg-primary rounded-full w-full py-3 px-5 text-white disabled:bg-opacity-30 disabled:text-white/50 text-sm leading-normal font-medium',
+				'focus:ring-0 focus:outline-none bg-primary rounded-full w-full h-[45px] px-5 text-white disabled:bg-opacity-30 disabled:text-white/50 text-sm leading-normal font-medium',
 				className
 			) }
 			disabled={ disabled }

@@ -311,7 +311,7 @@ const BiomarkerCompare: React.FC<BiomarkerCompareProps> = ({ open, compareLabel,
 													<tbody className='bg-white/50 divide-y divide-[#E9EBEC] font-Poppins max-lg:hidden'>
 														{ renderTableRowList(biomarkersTable, columns) }
 													</tbody>
-													<tbody className='bg-white/50 divide-y divide-[#E9EBEC] font-Poppins lg:hidden'>
+													<tbody className='bg-white/50 font-Poppins lg:hidden'>
 														{ renderTableRowList(getBiomarkersTableFiltered(), getColumnsFiltered()) }
 													</tbody>
 												</table>

@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
+import Link from 'next/link';
 
 import { onboardingData } from '@/constant/data';
 import clsxm from '@/helpers/clsxm';
@@ -17,7 +18,6 @@ const defaultProducts = onboardingData.orderSummary.defaultProducts;
 type OrderSummaryProps = {
 	selectedPlan?: Tier | null;
 	isAlreadyOnHRT?: boolean;
-	onContinue?: () => void;
 };
 
 type ButtonCheckoutProps = {
@@ -36,7 +36,7 @@ const ButtonCheckout: React.FC<ButtonCheckoutProps> = ({
 	return (
 		<motion.button
 			className={ clsxm(
-				'bg-white disabled:text-white/10 disabled:bg-opacity-10 w-full py-3 px-5 rounded-full text-primary focus:ring-0 focus:outline-none inline-flex items-center justify-center gap-2',
+				'bg-white disabled:text-white/10 disabled:bg-opacity-10 w-full h-[45px] px-5 rounded-full text-primary focus:ring-0 focus:outline-none flex items-center justify-center',
 				className
 			) }
 			disabled={ disabled }
@@ -55,30 +55,30 @@ const ButtonCheckout: React.FC<ButtonCheckoutProps> = ({
 				: undefined }
 			whileTap={ !disabled ? 'tap' : undefined }
 		>
-			<svg
-				xmlns='http://www.w3.org/2000/svg'
-				width='14'
-				height='16'
-				viewBox='0 0 14 16'
-				fill='none'
-				className='inline-block'>
-				<path
-					fillRule='evenodd'
-					clipRule='evenodd'
-					d='M0.169588 3.72489C0 4.19565 0 4.73487 0 5.81332V9.61312C0 10.5102 0 10.9587 0.123641 11.3659C0.233099 11.7263 0.412558 12.0616 0.651739 12.3526C0.921916 12.6814 1.29512 12.9302 2.04151 13.4277H2.04153L3.80552 14.6038H3.80552C4.95438 15.3697 5.52881 15.7526 6.14969 15.9014C6.69841 16.0329 7.27034 16.0329 7.81906 15.9014C8.43991 15.7526 9.01435 15.3697 10.1632 14.6038L11.9272 13.4277C12.6736 12.9302 13.0468 12.6814 13.317 12.3526C13.5562 12.0616 13.7356 11.7263 13.8451 11.3659C13.9687 10.9587 13.9687 10.5102 13.9687 9.61312V5.81332C13.9687 4.73487 13.9687 4.19565 13.7992 3.72489C13.6493 3.30876 13.405 2.93299 13.0856 2.627C12.7244 2.28083 12.2316 2.06183 11.2461 1.62384L8.84637 0.557287C8.16068 0.252548 7.81784 0.100179 7.46146 0.0400011C7.14562 -0.0133337 6.82312 -0.0133337 6.50729 0.0400011C6.1509 0.100179 5.80806 0.252548 5.1224 0.557287L2.72264 1.62384C1.73714 2.06183 1.24439 2.28083 0.883075 2.627C0.5637 2.93299 0.319497 3.30876 0.169588 3.72489ZM9.87146 6.78656C10.0813 6.57675 10.0813 6.23658 9.87146 6.02677C9.66164 5.81695 9.32152 5.81695 9.1117 6.02677L6.26803 8.87041L5.21523 7.81759C5.00542 7.60785 4.66524 7.60785 4.45543 7.81759C4.24562 8.02741 4.24562 8.3676 4.45543 8.57742L5.88815 10.0101C6.09796 10.2199 6.43809 10.2199 6.6479 10.0101L9.87146 6.78656Z'
-					fill='currentColor' />
-			</svg>
-			<span className='text-sm font-semibold leading-normal'>
-				{ onboardingData.orderSummary.cart.btnLabel }
-			</span>
+			<div className='flex items-center justify-center gap-2'>
+				<svg
+					xmlns='http://www.w3.org/2000/svg'
+					width='14'
+					height='16'
+					viewBox='0 0 14 16'
+					fill='none'>
+					<path
+						fillRule='evenodd'
+						clipRule='evenodd'
+						d='M0.169588 3.72489C0 4.19565 0 4.73487 0 5.81332V9.61312C0 10.5102 0 10.9587 0.123641 11.3659C0.233099 11.7263 0.412558 12.0616 0.651739 12.3526C0.921916 12.6814 1.29512 12.9302 2.04151 13.4277H2.04153L3.80552 14.6038H3.80552C4.95438 15.3697 5.52881 15.7526 6.14969 15.9014C6.69841 16.0329 7.27034 16.0329 7.81906 15.9014C8.43991 15.7526 9.01435 15.3697 10.1632 14.6038L11.9272 13.4277C12.6736 12.9302 13.0468 12.6814 13.317 12.3526C13.5562 12.0616 13.7356 11.7263 13.8451 11.3659C13.9687 10.9587 13.9687 10.5102 13.9687 9.61312V5.81332C13.9687 4.73487 13.9687 4.19565 13.7992 3.72489C13.6493 3.30876 13.405 2.93299 13.0856 2.627C12.7244 2.28083 12.2316 2.06183 11.2461 1.62384L8.84637 0.557287C8.16068 0.252548 7.81784 0.100179 7.46146 0.0400011C7.14562 -0.0133337 6.82312 -0.0133337 6.50729 0.0400011C6.1509 0.100179 5.80806 0.252548 5.1224 0.557287L2.72264 1.62384C1.73714 2.06183 1.24439 2.28083 0.883075 2.627C0.5637 2.93299 0.319497 3.30876 0.169588 3.72489ZM9.87146 6.78656C10.0813 6.57675 10.0813 6.23658 9.87146 6.02677C9.66164 5.81695 9.32152 5.81695 9.1117 6.02677L6.26803 8.87041L5.21523 7.81759C5.00542 7.60785 4.66524 7.60785 4.45543 7.81759C4.24562 8.02741 4.24562 8.3676 4.45543 8.57742L5.88815 10.0101C6.09796 10.2199 6.43809 10.2199 6.6479 10.0101L9.87146 6.78656Z'
+						fill='currentColor' />
+				</svg>
+				<span className='text-sm font-semibold leading-normal'>
+					{ onboardingData.orderSummary.cart.btnLabel }
+				</span>
+			</div>
 		</motion.button>
 	);
 };
 
 const OrderSummary: React.FC<OrderSummaryProps> = ({
 	isAlreadyOnHRT,
-	selectedPlan,
-	onContinue
+	selectedPlan
 }) => {
 	const products = [
 		...!isAlreadyOnHRT ? defaultProducts : [],
@@ -99,19 +99,14 @@ const OrderSummary: React.FC<OrderSummaryProps> = ({
 				<>
 					<ButtonCheckout
 						className='lg:hidden'
-						disabled={ !isChecked }
-						onClick={ onContinue }
-					/>
-					<ButtonCheckout
-						className='max-lg:hidden'
-						onClick={ onContinue }
-					/>
+						disabled={ !isChecked } />
+					<ButtonCheckout className='max-lg:hidden' />
 				</>
 			);
 		}
 
 		return (
-			<ButtonCheckout onClick={ onContinue } />
+			<ButtonCheckout />
 		);
 	};
 
@@ -142,7 +137,7 @@ const OrderSummary: React.FC<OrderSummaryProps> = ({
 					/>
 				</div>
 			</div>
-			<div className='flex flex-col lg:items-center lg:justify-center max-lg:px-4 max-lg:py-[21px] w-full h-full relative z-10 max-w-5xl mx-auto text-left'>
+			<div className='flex flex-col lg:items-center lg:justify-center px-4 xs2:px-6 lg:px-0 max-lg:py-[21px] w-full h-full relative z-10 max-w-5xl mx-auto text-left'>
 				<div className='flex max-lg:flex-col lg:grid lg:grid-cols-2 gap-6 lg:gap-10 w-full'>
 					<motion.div
 						variants={ {
@@ -180,7 +175,7 @@ const OrderSummary: React.FC<OrderSummaryProps> = ({
 								return (
 									<li
 										key={ stepIdx }
-										className='flex gap-3 text-xs lg:text-sm 2xl:text-base font-normal leading-normal font-Poppins -tracking-[0.04em] text-white'>
+										className='flex gap-3 text-xs xs2:text-sm 2xl:text-base font-normal leading-normal font-Poppins -tracking-[0.04em] text-white'>
 										<span className='flex-shrink-0 rounded-full relative w-8 h-8 2xl:w-[46px] 2xl:h-[46px] bg-white/20 backdrop-blur-[13.591408729553223px]'>
 											<span className='absolute-center flex-shrink-0 text-base 2xl:text-[26px]'>
 												{ stepIdx + 1 }
@@ -282,7 +277,9 @@ const OrderSummary: React.FC<OrderSummaryProps> = ({
 									</div>
 								) }
 
-								{ renderButtonCheckout() }
+								<Link href={ `https://geviti.myshopify.com/cart/${ selectedPlan?.variantID ?? '' }:1` }>
+									{ renderButtonCheckout() }
+								</Link>
 							</div>
 						</motion.div>
 					</div>

@@ -7,7 +7,12 @@ import { onboardingData } from '@/constant/data';
 import clsxm from '@/helpers/clsxm';
 import { getNumofCols } from '@/helpers/style';
 
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '../Accordion';
+import {
+	Accordion,
+	AccordionContent,
+	AccordionItem,
+	AccordionTrigger
+} from '../Accordion';
 
 import BiomarkerCompare from './BiomarkerCompare';
 import Button from './Button';
@@ -178,21 +183,25 @@ const PricingPlans: React.FC<PricingPlansProps> = ({
 						</p>
 					</div>
 				) }
-				<div className='flex items-end justify-between -mb-2.5'>
-					<div className='flex flex-col items-start'>
+				<div className='flex items-end justify-between -mb-2.5 relative'>
+					<div className='flex flex-col items-start text-left'>
 						<h3 className='whitespace-nowrap text-left text-[17px] 2xl:text-[19px] leading-normal font-BRSonoma font-bold text-primary -leading-[0.025em]'>
 							{ tier.title }
 						</h3>
 						<span>
-							<span className='text-2xl 2xl:text-[36px] leading-normal -tracking-[0.04em] font-bold'>{ tier.price }</span>
-							<span className='mb-2.5 text-[10px] 2xl:text-[13px] font-medium leading-normal text-grey-primary -tracking-[0.036em] inline-block ml-0.5'>{ tier.priceNote }</span>
+							<span className='text-2xl xs2:text-[30px] 2xl:text-[36px] leading-normal -tracking-[0.04em] font-bold'>{ tier.price }</span>
+							<span className='mb-2.5 text-[10px] xs2:text-[13px] font-medium leading-normal text-grey-primary -tracking-[0.036em] inline-block ml-0.5'>
+								{ tier.priceNote }
+							</span>
 						</span>
 					</div>
 					{ tier.biomarkers && tier.notes && (
-						<div className='flex flex-col items-end text-right'>
-							<span className='text-2xl 2xl:text-[36px] leading-normal -tracking-[0.04em] font-bold text-red-primary'>{ tier.biomarkers }</span>
-							<span className='mb-2.5 text-[10px] 2xl:text-[13px] font-semibold leading-normal text-[#52585A] -tracking-[0.036em]'>
-								<FeatureIcon className='w-3 h-3 2xl:w-[15px] 2xl:h-[15px] flex-shrink-0 inline-block mr-[3px] items-baseline' />
+						<div className='flex flex-col items-end text-right max-sm:absolute max-sm:bottom-0 max-sm:right-0'>
+							<span className='text-2xl xs2:text-[30px] 2xl:text-[36px] leading-normal -tracking-[0.04em] font-bold text-red-primary'>
+								{ tier.biomarkers }
+							</span>
+							<span className='mb-2.5 text-[10px] xs2:text-[13px] font-semibold leading-normal text-[#52585A] -tracking-[0.036em] flex items-center'>
+								<FeatureIcon className='w-3 h-3 2xl:w-[15px] 2xl:h-[15px] flex-shrink-0 inline-block mr-[3px]' />
 								{ tier.notes }
 							</span>
 						</div>
@@ -229,7 +238,20 @@ const PricingPlans: React.FC<PricingPlansProps> = ({
 							className='flex items-center justify-between gap-2'
 						>
 							<span className='flex items-baseline gap-x-1.5 text-base lg:text-xs 2xl:text-base font-medium leading-normal text-[#52585A] -leading-[0.036em]'>
-								<FeatureIcon className='w-[13px] h-[13px] 2xl:w-[17px] 2xl:h-[17px] flex-shrink-0' />
+								<FeatureIcon className='w-[15px] h-[15px] 2xl:w-[17px] 2xl:h-[17px] flex-shrink-0 max-sm:hidden' />
+								<svg
+									width='14'
+									height='17'
+									viewBox='0 0 14 17'
+									fill='none'
+									xmlns='http://www.w3.org/2000/svg'
+									className='flex-shrink-0 sm:hidden'>
+									<path
+										id='Shape'
+										d='M4.52869 7.375C4.52869 7.78921 4.86447 8.125 5.27869 8.125C5.6929 8.125 6.02869 7.78921 6.02869 7.375H4.52869ZM7.50808 8.21598L6.94498 7.72057L7.50808 8.21598ZM6.03526 8.7546C5.76166 9.06559 5.79197 9.53949 6.10296 9.8131C6.41395 10.0867 6.88785 10.0564 7.16146 9.7454L6.03526 8.7546ZM7.67828 11.5C7.67828 11.0858 7.34249 10.75 6.92828 10.75C6.51407 10.75 6.17828 11.0858 6.17828 11.5H7.67828ZM7.01844 11.5C7.01844 11.0858 6.68266 10.75 6.26844 10.75C5.85423 10.75 5.51844 11.0858 5.51844 11.5H7.01844ZM6.17828 11.5C6.17828 11.9142 6.51407 12.25 6.92828 12.25C7.34249 12.25 7.67828 11.9142 7.67828 11.5H6.17828ZM5.51844 11.5C5.51844 11.9142 5.85423 12.25 6.26844 12.25C6.68266 12.25 7.01844 11.9142 7.01844 11.5H5.51844ZM6.92828 12.25C7.34249 12.25 7.67828 11.9142 7.67828 11.5C7.67828 11.0858 7.34249 10.75 6.92828 10.75V12.25ZM6.26844 10.75C5.85423 10.75 5.51844 11.0858 5.51844 11.5C5.51844 11.9142 5.85423 12.25 6.26844 12.25V10.75ZM6.02869 7.375V7H4.52869V7.375H6.02869ZM6.02869 7C6.02869 6.49264 6.3711 6.25 6.59836 6.25V4.75C5.36791 4.75 4.52869 5.85051 4.52869 7H6.02869ZM6.59836 6.25C6.82562 6.25 7.16803 6.49264 7.16803 7H8.66803C8.66803 5.85051 7.82881 4.75 6.59836 4.75V6.25ZM7.16803 7V7.09098H8.66803V7H7.16803ZM7.16803 7.09098C7.16803 7.34284 7.07914 7.56809 6.94498 7.72057L8.07117 8.71138C8.46198 8.26716 8.66803 7.68301 8.66803 7.09098H7.16803ZM6.94498 7.72057L6.03526 8.7546L7.16146 9.7454L8.07117 8.71138L6.94498 7.72057ZM6.17828 11.5C6.17828 11.426 6.20465 11.3424 6.26854 11.2698C6.33369 11.1957 6.4487 11.125 6.59836 11.125V12.625C7.28213 12.625 7.67828 12.0281 7.67828 11.5H6.17828ZM6.59836 11.125C6.74803 11.125 6.86303 11.1957 6.92818 11.2698C6.99207 11.3424 7.01844 11.426 7.01844 11.5H5.51844C5.51844 12.0281 5.91459 12.625 6.59836 12.625V11.125ZM7.67828 11.5C7.67828 10.9719 7.28213 10.375 6.59836 10.375V11.875C6.4487 11.875 6.33369 11.8043 6.26854 11.7302C6.20465 11.6576 6.17828 11.574 6.17828 11.5H7.67828ZM6.59836 10.375C5.91459 10.375 5.51844 10.9719 5.51844 11.5H7.01844C7.01844 11.574 6.99207 11.6576 6.92818 11.7302C6.86303 11.8043 6.74803 11.875 6.59836 11.875V10.375ZM6.92828 10.75H6.26844V12.25H6.92828V10.75ZM12.4467 8.5C12.4467 12.321 9.74091 15.25 6.59836 15.25V16.75C10.7441 16.75 13.9467 12.9632 13.9467 8.5H12.4467ZM6.59836 15.25C3.45578 15.25 0.75 12.321 0.75 8.5H-0.75C-0.75 12.9632 2.45259 16.75 6.59836 16.75V15.25ZM0.75 8.5C0.75 4.67893 3.45577 1.75 6.59836 1.75V0.25C2.4526 0.25 -0.75 4.03679 -0.75 8.5H0.75ZM6.59836 1.75C9.74092 1.75 12.4467 4.67894 12.4467 8.5H13.9467C13.9467 4.03679 10.7441 0.25 6.59836 0.25V1.75Z'
+										fill='#919B9F' />
+								</svg>
+
 								{ feature }
 							</span>
 							<CheckIcon className='w-5 h-5 lg:w-[17px] lg:h-[17px] 2xl:w-[23px] 2xl:h-[23px]' />
@@ -372,8 +394,8 @@ const PricingPlans: React.FC<PricingPlansProps> = ({
 			) }>
 				<div
 					ref={ scope }
-					className='relative overflow-hidden flex-1 h-full flex flex-col items-center w-full max-lg:pb-[120px] max-lg:pt-[30px] lg:top-[5%] 2xl:top-[10%]'>
-					<div className='max-lg:pb-6 max-lg:px-6 flex flex-col items-center text-center'>
+					className='relative overflow-hidden flex-1 h-full flex flex-col items-center w-full max-lg:pb-[120px] max-lg:pt-[21px] lg:top-[5%] 2xl:top-[10%]'>
+					<div className='max-lg:pb-[23px] max-lg:px-6 flex flex-col items-center text-center'>
 						<motion.h1
 							variants={ slideInVariants }
 							initial='initial'
@@ -405,7 +427,7 @@ const PricingPlans: React.FC<PricingPlansProps> = ({
 							</motion.div>
 						) }
 					</div>
-					<div className='mt-6 max-lg:px-2.5 lg:hidden'>
+					<div className='max-lg:px-2.5 lg:hidden max-sm:w-full'>
 						<Accordion
 							type='single'
 							onValueChange={ (value: string) => setHoveredIdx(+ value) }
@@ -419,7 +441,7 @@ const PricingPlans: React.FC<PricingPlansProps> = ({
 										value={ tierIdx.toString() }
 										className={ clsxm(
 											getWrapperClassName(tierIdx, tier.mostPopular),
-											'flex flex-col justify-between border-[0.5px] border-grey-background lg:p-[3.7vh]',
+											'flex flex-col justify-between border-[0.5px] border-grey-background lg:p-[3.7vh] max-sm:w-full',
 											hoveredIdx === tierIdx ? 'z-10 relative lg:my-0 max-lg:-my-4 shadow-card p-6' : 'bg-white lg:my-[4.25vh] max-lg:px-6 max-lg:py-[30px] z-[9]'
 										) }
 									>
@@ -537,12 +559,22 @@ const PricingPlans: React.FC<PricingPlansProps> = ({
 					footer={ renderFooter() } />
 			</motion.div>
 			{ !isAlreadyOnHRT && (
-				<div className={ clsxm(
-					'lg:hidden sticky w-full z-[99] bottom-0 inset-x-0 shadow-[0px_5px_10px_0px_rgba(167,172,188,0.05)] flex items-center justify-center pt-3 pb-[14px]',
-					openBiomarkerCompare ? 'bg-primary' : 'bg-white'
-				) }>
+				<motion.div
+					initial={ { y: '100%' } }
+					animate={ { y: 0 } }
+					transition={ { duration: .3, delay: .75, ease: [.15, 1.14, .88, .98] } }
+					exit={ {
+						visibility: 'hidden',
+						transition: {
+							duration: 0
+						}
+					} }
+					className={ clsxm(
+						'lg:hidden sticky w-full z-[99] bottom-0 inset-x-0 shadow-[0px_5px_10px_0px_rgba(167,172,188,0.05)] flex items-center justify-center pt-3 pb-[14px]',
+						openBiomarkerCompare ? 'bg-primary' : 'bg-white'
+					) }>
 					{ openBiomarkerCompare ? renderCloseCompareLabel() : renderCompareLabel() }
-				</div>
+				</motion.div>
 			) }
 		</>
 	);

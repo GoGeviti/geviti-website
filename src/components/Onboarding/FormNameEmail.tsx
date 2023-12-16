@@ -49,11 +49,11 @@ const FormNameEmail: React.FC<FormNameEmailProps> = ({ onSubmit }) => {
 			exit='exit'
 			className='w-full h-full lg:rounded-[20px] text-center relative'
 		>
-			<div className='absolute top-[30px] lg:top-[5%] 2xl:top-[10%] left-1/2 -translate-x-1/2 w-full max-lg:px-4'>
+			<div className='absolute top-[30px] lg:top-[5%] 2xl:top-[10%] left-1/2 -translate-x-1/2 w-full px-4 xs2:px-6 lg:px-0'>
 				<div className='max-w-[430px] mx-auto w-full'>
 					<motion.h1
 						variants={ slideInVariants }
-						className='text-2xl 2xl:text-[36px] leading-normal -tracking-[0.04em] max-lg:font-medium text-center lg:text-left'>
+						className='text-2xl 2xl:text-[36px] leading-normal -tracking-[0.04em] max-lg:font-medium text-left'>
 						{ onboardingData.formNameEmail.title }
 					</motion.h1>
 					<motion.h2
@@ -86,11 +86,11 @@ const FormNameEmail: React.FC<FormNameEmailProps> = ({ onSubmit }) => {
 							animate='visible'
 						>
 							<TextField
-								label='Email'
+								label='Email Address'
 								id='email'
 								name='email'
 								type='email'
-								placeholder='Email'
+								placeholder='Email Address'
 								value={ formik.values.email }
 								onChange={ formik.handleChange }
 								isError={ !!formik.errors.email }

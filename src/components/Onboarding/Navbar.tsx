@@ -10,6 +10,7 @@ type NavbarProps = {
 	onStepBack?: () => void;
 	theme?: 'light' | 'dark';
 	navbarRef?: React.RefObject<HTMLDivElement>;
+	progress: number;
 };
 
 const ArrowLeft = ({ className }: { className?: string; }) => {
@@ -34,35 +35,49 @@ const ArrowLeft = ({ className }: { className?: string; }) => {
 	);
 };
 
-const Navbar: React.FC<NavbarProps> = ({ theme = 'light', navbarRef, onStepBack }) => {
+const Navbar: React.FC<NavbarProps> = ({
+	theme = 'light',
+	navbarRef,
+	onStepBack,
+	progress
+}) => {
 	return (
-		<div
-			ref={ navbarRef }
-			className={ clsxm(
-				'h-[50px] lg:h-[8.65vh] px-2 lg:px-5 flex items-center relative',
-				theme === 'light' ? 'bg-white' : 'bg-primary'
-			) }>
-			<button
-				className='focus:outline-none focus:ring-0'
-				onClick={ onStepBack }
-			>
-				<ArrowLeft
-					className={ clsxm(
-						'relative overflow-hidden w-[33px] h-[33px] lg:h-[4.63vh] lg:w-[4.63vh] hover:opacity-80 cursor-pointer',
-						theme === 'light' ? 'fill-primary' : 'fill-grey-background'
-					) }
+		<div className={ clsxm(
+			'sticky top-0 inset-x-0 w-full z-[99]',
+			theme === 'light' ? 'bg-white' : 'bg-primary'
+		) }>
+			<div
+				ref={ navbarRef }
+				className='h-[50px] lg:h-[8.65vh] px-2 lg:px-5 flex items-center relative'>
+				<button
+					className='focus:outline-none focus:ring-0'
+					onClick={ onStepBack }
+				>
+					<ArrowLeft
+						className={ clsxm(
+							'relative overflow-hidden w-[33px] h-[33px] lg:h-[4.63vh] lg:w-[4.63vh] hover:opacity-80 cursor-pointer',
+							theme === 'light' ? 'fill-primary' : 'fill-grey-background'
+						) }
+					/>
+				</button>
+				<Link
+					href='/'
+					className='absolute-center'>
+					<Image
+						src={ theme === 'light' ? '/images/logo/logo_dark.webp' : '/images/logo/logo_light.webp' }
+						alt='logo'
+						width={ 85 }
+						height={ 20 }
+					/>
+				</Link>
+			</div>
+
+			<div className='flex relative h-0.5 w-full overflow-hidden bg-primary bg-opacity-10 shadow-[0px_5px_10px_rgba(167,172,188,0.05)]'>
+				<div
+					className='bg-blue-1 w-full h-full transition-transform duration-[660ms] ease-[cubic-bezier(0.65, 0, 0.35, 1)]'
+					style={ { transform: `translateX(-${ 100 - progress }%)` } }
 				/>
-			</button>
-			<Link
-				href='/'
-				className='absolute-center'>
-				<Image
-					src={ theme === 'light' ? '/images/logo/logo_dark.webp' : '/images/logo/logo_light.webp' }
-					alt='logo'
-					width={ 85 }
-					height={ 20 }
-				/>
-			</Link>
+			</div>
 		</div>
 	);
 };

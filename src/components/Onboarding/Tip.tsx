@@ -39,7 +39,7 @@ const Tip: React.FC<TipProps> = ({
 		if (onContinue) {
 			setTimeout(() => {
 				onContinue();
-			}, 4_000);
+			}, 4500);
 		}
 	}, []);
 
@@ -119,7 +119,7 @@ const Tip: React.FC<TipProps> = ({
 				exit='exit'
 				className='w-full h-full lg:rounded-[20px] text-center relative'
 			>
-				<div className='absolute top-1/2 -translate-y-1/2 lg:top-1/4 lg:-translate-y-1/4 left-1/2 -translate-x-1/2 w-full max-lg:px-4'>
+				<div className='absolute top-[40%] -translate-y-[40%] lg:top-1/4 lg:-translate-y-1/4 left-1/2 -translate-x-1/2 w-full px-4 xs2:px-6 lg:px-0'>
 					<motion.div
 						initial={ { y: '100vh' } }
 						animate={ {

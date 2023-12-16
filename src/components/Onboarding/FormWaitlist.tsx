@@ -34,7 +34,7 @@ const FormWaitlist: React.FC<FormWaitlistProps> = ({ onSubmit }) => {
 			exit='exit'
 			className='w-full h-full lg:rounded-[20px] text-center relative'
 		>
-			<div className='absolute top-[30px] lg:top-[5%] 2xl:top-[10%] left-1/2 -translate-x-1/2 w-full max-lg:px-4'>
+			<div className='absolute top-[30px] lg:top-[5%] 2xl:top-[10%] left-1/2 -translate-x-1/2 w-full px-4 xs2:px-6 lg:px-0'>
 				<div className='max-w-[430px] mx-auto w-full'>
 					<SuccessNotif
 						title={ onboardingData.formWaitlist.notif.title }
