@@ -84,6 +84,8 @@ const Questionnaire: React.FC<QuestionnaireProps> = ({
 				<div className='max-w-[430px] mx-auto w-full'>
 					<motion.h1
 						variants={ slideInVariants }
+						initial='initial'
+						animate='visible'
 						className='text-2xl 2xl:text-[36px] leading-normal -tracking-[0.04em] max-lg:font-medium text-center lg:text-left'>
 						{ title }
 					</motion.h1>

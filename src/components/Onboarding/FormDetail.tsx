@@ -171,11 +171,15 @@ const FormDetail: React.FC<FormDetailProps> = ({ onSubmit }) => {
 					/>
 					<motion.h1
 						variants={ slideInVariants }
+						initial='initial'
+						animate='visible'
 						className='text-2xl 2xl:text-[36px] leading-normal -tracking-[0.04em] max-lg:font-medium text-left'>
 						{ onboardingData.formDetail.title }
 					</motion.h1>
 					<motion.h2
 						variants={ slideInVariants }
+						initial='initial'
+						animate='visible'
 						className='mt-1 text-sm font-BRSonoma leading-normal text-grey-primary font-normal text-left'>
 						{ onboardingData.formDetail.subtitle }
 					</motion.h2>

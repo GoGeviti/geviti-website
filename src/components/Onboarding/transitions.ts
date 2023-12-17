@@ -2,12 +2,14 @@ import { Variants } from 'framer-motion';
 
 export const slideInCenterToLeftProps = {
 	duration: .5,
-	ease: [.15, 1.14, .88, .98]
+	ease: 'easeOut'
+	// ease: [.15, 1.14, .88, .98]
 };
 
 export const slideInRightToCenterProps = {
 	duration: .75,
-	ease: [.21, 1.04, .58, 1.15],
+	ease: 'easeInOut'
+	// ease: [.21, 1.04, .58, 1.15],
 };
 
 export const notifTransitionProps = {

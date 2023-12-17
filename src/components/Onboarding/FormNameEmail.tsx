@@ -53,11 +53,15 @@ const FormNameEmail: React.FC<FormNameEmailProps> = ({ onSubmit }) => {
 				<div className='max-w-[430px] mx-auto w-full'>
 					<motion.h1
 						variants={ slideInVariants }
+						initial='initial'
+						animate='visible'
 						className='text-2xl 2xl:text-[36px] leading-normal -tracking-[0.04em] max-lg:font-medium text-left'>
 						{ onboardingData.formNameEmail.title }
 					</motion.h1>
 					<motion.h2
 						variants={ slideInVariants }
+						initial='initial'
+						animate='visible'
 						className='mt-[5px] mb-6 font-BRSonoma font-normal text-sm leading-normal text-grey-primary text-left'>
 						{ onboardingData.formNameEmail.subtitle }
 					</motion.h2>
