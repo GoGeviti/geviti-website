@@ -462,7 +462,7 @@ const PricingPlans: React.FC<PricingPlansProps> = ({
 						</Accordion>
 					</div>
 					<div className={ clsxm(
-						'max-lg:hidden isolate mt-[2.2vh] grid mx-0 max-w-none lg:px-2',
+						'max-lg:hidden isolate mt-[2.2vh] grid items-center mx-0 max-w-none lg:px-2',
 						getNumofCols(tiers.length)
 					) }>
 						{ tiers.map((tier: Tier, tierIdx: number) => (
@@ -472,15 +472,17 @@ const PricingPlans: React.FC<PricingPlansProps> = ({
 								initial='initial'
 								animate='inView'
 								className={ clsxm(
-									getWrapperClassName(tierIdx, tier.mostPopular),
-									'flex flex-col justify-between border-[0.5px] border-grey-background lg:p-[3.7vh]',
-									hoveredIdx === tierIdx
-										? 'z-10 lg:my-0 shadow-card p-6'
-										: 'bg-white lg:my-[4.25vh] max-lg:px-6 max-lg:py-[30px]',
+									hoveredIdx === tierIdx ? 'z-10' : ''
 								) }
 								onMouseEnter={ () => setHoveredIdx(tierIdx) }
 							>
-								<div>
+								<div className={ clsxm(
+									getWrapperClassName(tierIdx, tier.mostPopular),
+									'flex flex-col justify-between border-[0.5px] border-grey-background lg:p-[3.7vh] transition-transform duration-[750ms] ease-out',
+									hoveredIdx === tierIdx
+										? 'z-10 shadow-card p-6 scale-[1.01]'
+										: 'bg-white',
+								) }>
 									{ renderTopCard(tier, tierIdx) }
 									{ renderContentCard(tier, tierIdx) }
 								</div>
