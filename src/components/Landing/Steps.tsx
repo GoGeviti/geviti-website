@@ -32,7 +32,7 @@ const StepsSection: React.FC = () => {
 						<p className='mb-[15px] md:mb-7px text-pretitle text-grey-primary leading-[15px] md:leading-[24px]'>{ stepsData.preTitle }</p>
 
 						{ stepsData.title && (
-							<h2 className='text-heading-2 text-2xl font-normal text-primary md:text-[32px] lg:text-4xl'>
+							<h2 className='text-heading-2 max-sm:px-1.5 text-[6.1vw] xs2:text-[25px] font-normal text-primary md:text-[32px] lg:text-4xl'>
 								<span dangerouslySetInnerHTML={ { __html: stepsData.title } } />
 							</h2>
 						) }
@@ -83,14 +83,14 @@ const StepsSection: React.FC = () => {
 													onClick={ () => onSelectStep(stepIdx) }
 													onMouseEnter={ () => onMouseEnter(stepIdx) }
 													className={ clsxm(
-														'cursor-pointer text-center font-Poppins max-md:text-left text-primary leading-[134%] text-sm',
+														'cursor-pointer text-center font-Poppins max-md:text-left text-primary leading-[134%]',
 														isSelected
-															? 'md:pt-[22px] text-sm md:text-[19px] font-medium'
-															: 'font-medium md:pt-18px text-[14.042px] md:text-base'
+															? 'md:pt-[22px] text-[15.033px] md:text-[19px] font-medium'
+															: 'font-medium md:pt-18px text-[15.042px] md:text-base'
 													) }
 												>
 													<span
-														className='max-md:text-left max-lg:text-sm whitespace-nowrap'
+														className='max-md:text-left whitespace-nowrap'
 														dangerouslySetInnerHTML={ { __html: step.title } } />
 												</p>
 											</div>

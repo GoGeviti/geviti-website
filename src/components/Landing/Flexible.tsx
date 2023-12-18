@@ -27,17 +27,21 @@ const Flexible: React.FC = () => {
 					className='max-lg:px-5 max-lg:py-9 container-center grid-cols-1 grid lg:grid-cols-2 h-fit lg:h-[700px]'>
 					<div className='max-lg:order-1 h-full flex flex-col justify-center relative lg:z-10 max-lg:w-full lg:max-w-lg '>
 						<div className='text-center lg:text-left lg:max-w-xl'>
-							<p className='mb-[10px] md:mb-3 text-pretitle text-grey-primary max-md:mt-7'>{ flexibleData.preTitle }</p>
+							<p className='mb-[10px] md:mb-3 text-pretitle text-grey-primary max-md:mt-7'>
+								<span className='max-md:hidden'>{ flexibleData.preTitle }</span>
+								<span className='md:hidden'>{ flexibleData.preTitleMobile }</span>
+							</p>
 
 							{ flexibleData.title && (
-								<h2 className='mb-[10px] md:mb-[14px] max-sm:max-w-[331px] md:leading-[120.833%] md:-tracking-[0.96px] leading-[32px] -tracking-[0.64px] max-sm:mx-auto font-medium font-Poppins text-primary md:text-4xl text-[22px]'>
-									<span dangerouslySetInnerHTML={ { __html: flexibleData.title } } /><span className='text-base md:text-2xl'>/month</span>
+								<h2 className='mb-[10px] md:mb-[14px] md:leading-[120.833%] md:-tracking-[0.96px] leading-[133%] -tracking-[0.64px] font-medium font-Poppins text-primary md:text-4xl text-[5.8vw] xs:text-2xl'>
+									{ flexibleData.title }<span className='text-[3.9vw] xs:text-base md:text-2xl'>/month</span>
 								</h2>
 							) }
 
 							{ flexibleData.description && (
 								<p className='text-grey-primary max-sm:max-w-[330px] max-sm:mx-auto text-xs md:text-sm leading-5 font-BRSonoma'>
-									<span dangerouslySetInnerHTML={ { __html: flexibleData.description } } />
+									<span className='max-md:hidden'>{ flexibleData.description }</span>
+									<span className='md:hidden'>{ flexibleData.descriptionMobile }</span>
 								</p>
 							) }
 

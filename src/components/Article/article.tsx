@@ -17,24 +17,33 @@ import { CustomLink } from '..';
 // }
 
 interface ArticlesProps {
-	list?: Post[]
-	title:string;
-	preTitle?:string;
+	list?: Post[];
+	title: string;
+	preTitle?: string;
 	btn: string;
 	btnLink?: string;
 	className?: string;
+	wrapperClassName?: string;
 }
 
 // TODO: You're probably aware but React.FC creates awkward types here - see https://github.com/facebook/create-react-app/pull/8177
 // Just thought I'd add, since I edited this component and noticed it :)
 
-const Articles: React.FC<ArticlesProps> = ({ list, title, preTitle, btn, btnLink, className }) => {
+const Articles: React.FC<ArticlesProps> = ({
+	list,
+	title,
+	preTitle,
+	btn,
+	btnLink,
+	className,
+	wrapperClassName
+}) => {
 	const [showAllTabs, setShowAllTabs] = useState(false);
 	// const windowDimensions = useWindowDimensions();
 	// const isMobile = windowDimensions.width < screens.md;
 
 	return (
-		<div className='container-center mx-auto w-full relative'>
+		<div className={ clsxm('container-center mx-auto w-full relative', wrapperClassName) }>
 			<div className={
 				clsxm(
 					'w-full pt-[70px]',
@@ -76,44 +85,49 @@ const Articles: React.FC<ArticlesProps> = ({ list, title, preTitle, btn, btnLink
 					}
 				</div>
 				<div className='relative'>
-					{
-						renderItem(list?.slice(0, 4))
-					}
-					{
-						btnLink ? (
-							<CustomLink
-								href={ btnLink }
-								aria-label={ btn }
-								className='btn-cta-landing group btn-primary px-9 md:hidden w-fit absolute -bottom-5 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20'
-							>
-								<span className='text-btn-cta-landing'>
-									{ btn }
-								</span>
+					<div className='max-md:hidden'>
+						{ renderItem(list?.slice(0, 4)) }
+					</div>
+					<div className='md:hidden'>
+						{ renderItem(list?.slice(0, 3)) }
+					</div>
+					<div className='flex w-full justify-center py-[30px]'>
+						{
+							btnLink ? (
+								<CustomLink
+									href={ btnLink }
+									aria-label={ btn }
+									className='btn-cta-landing group btn-primary px-9 md:hidden w-fit'
+								>
+									<span className='text-btn-cta-landing'>
+										{ btn }
+									</span>
 
-								<ChevronRight className='stroke-grey-secondary w-4 h-4 sm:w-18px sm:h-18px group-hover:translate-x-1 transform transition-all duration-100' />
-							</CustomLink>
-						) : (
-							<button
-								className='btn-cta-landing group btn-primary px-9 md:hidden w-fit absolute -bottom-5 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20'
-								onClick={ () => setShowAllTabs(!showAllTabs) }>
-								<span className='text-btn-cta-landing'>
-									{ showAllTabs ? 'View Less' : btn }
-								</span>
-							</button>
-						)
-					}
+									<ChevronRight className='stroke-grey-secondary w-4 h-4 sm:w-18px sm:h-18px group-hover:translate-x-1 transform transition-all duration-100' />
+								</CustomLink>
+							) : (
+								<button
+									className='btn-cta-landing group btn-primary px-9 md:hidden w-fit'
+									onClick={ () => setShowAllTabs(!showAllTabs) }>
+									<span className='text-btn-cta-landing'>
+										{ showAllTabs ? 'View Less' : btn }
+									</span>
+								</button>
+							)
+						}
+					</div>
 
-					{
+					{ /* {
 						!showAllTabs &&
 						<div className='md:hidden bg-gradient-to-t from-grey-background/90 to-grey-background/0 absolute -bottom-5 z-10 w-full h-[131px]' />
-					}
+					} */ }
 				</div>
 			</div>
 		</div>
 	);
 };
 
-const renderItem = (data? : Post[]) => {
+const renderItem = (data?: Post[]) => {
 	return (
 		<div className={ clsxm('w-full grid grid-cols-1 gap-[10px] md:gap-[18px] pt-[30px] md:grid-cols-4') }>
 			{ data?.map((items, id) => {

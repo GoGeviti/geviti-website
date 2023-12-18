@@ -86,7 +86,7 @@ const landingData = {
 	},
 	steps: {
 		preTitle: 'Easy online care',
-		title: 'Access to better care in just 4 easy steps.',
+		title: 'Access to better care in just <span class="sm:hidden"><br /></span>4 easy steps.',
 		btnCta: {
 			href: '/onboarding',
 			externalLink: false,
@@ -184,7 +184,7 @@ const landingData = {
 		notes:
 			'*Product images are for display purposes; actual items from US-based pharmacies may vary.',
 		list: [
-			'Treatments for both <span class="font-semibold">men</span> and <span class="font-semibold">women</women>',
+			'Treatments for both <span class="font-semibold">men</span> and <span class="font-semibold">women</span>',
 			'Data-driven care to truly optimize your life',
 			'24/7 health tracking via wearable integrations ',
 			'Driven by technology to make your life simpler',
@@ -219,9 +219,11 @@ const landingData = {
 	},
 	flexible: {
 		preTitle: 'Personalized plans that are right for you',
+		preTitleMobile: 'Personalized for you',
 		title: 'Full access for just $99',
 		description:
 			'Unlock personalized healthcare on the Geviti platform. From hormone optimization to peptide therapies and advanced diagnostics—all at your fingertips.',
+		descriptionMobile: 'From hormone optimization to peptide therapies and advanced diagnostics—all at your fingertips with the Geviti platform.',
 		image: '/images/landing/compressed/flexible.webp',
 		imageMobile: '/images/landing/compressed/flexible-mobile.webp',
 		btnCta: {

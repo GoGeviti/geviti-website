@@ -22,8 +22,8 @@ const Quality: React.FC = () => {
 							<p className='text-pretitle text-blue-2 order-1 lg:hidden'>
 								{ qualityData.preTitleMobile }
 							</p>
-							<div className='max-lg:mx-auto max-w-[320px] sm:max-w-[443px] order-2'>
-								<h2 className='text-[25px] font-Poppins !leading-[125%] -tracking-[0.88px] md:text-heading-2 text-primary mt-7px'>
+							<div className='max-lg:mx-auto sm:max-w-[443px] order-2'>
+								<h2 className='text-[6.1vw] xs2:text-[25px] font-Poppins !leading-[125%] -tracking-[0.88px] md:text-heading-2 text-primary mt-7px'>
 									{ qualityData.title }
 								</h2>
 							</div>
@@ -42,7 +42,7 @@ const Quality: React.FC = () => {
 										>
 											<CheckCircleIcon className='text-primary w-3 h-3 flex-shrink-0 scale-125' />
 											<p
-												className='text-xs md:text-sm font-BRSonoma leading-[12.369px] sm:leading-[17.5px] -tracking-[0.48px] md:-tracking-0.04em'
+												className='text-left text-xs md:text-sm font-BRSonoma leading-[12.369px] sm:leading-[17.5px] -tracking-[0.48px] md:-tracking-0.04em'
 												dangerouslySetInnerHTML={ { __html: functionItem } }
 											/>
 										</div>

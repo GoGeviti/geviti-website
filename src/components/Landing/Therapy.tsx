@@ -29,7 +29,7 @@ const Therapy: React.FC = () => {
 						) }
 						{ therapyData.titleMobile && (
 							<div className='lg:hidden max-lg:mx-auto sm:max-w-[600px] mt-11px sm:mt-3'>
-								<h2 className='font-Poppins font-medium text-xl md:text-[32px] lg:text-4xl leading-[30px] sm:leading-[121%] -tracking-[0.8px] md:-tracking-0.04em'>
+								<h2 className='font-Poppins font-medium text-[6.1vw] xs2:text-[25px] md:text-[32px] lg:text-4xl leading-[30px] sm:leading-[121%] -tracking-[0.8px] md:-tracking-0.04em'>
 									{ therapyData.titleMobile }
 								</h2>
 							</div>
