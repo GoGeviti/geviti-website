@@ -6,7 +6,7 @@ const howItWorksData = {
 		title: '<p>It’s never been easier to get the <br class="max-md:hidden"/> healthcare you deserve.</p>',
 		btnCtaList: [
 			{
-				href: '/get-started',
+				href: '/onboarding',
 				externalLink: false,
 				text: 'Get Started',
 			},
@@ -126,7 +126,7 @@ const howItWorksData = {
 		subtitle: 'A bloodwork package may or may not be required to switch over to Geviti as your online HRT and peptide therapy provider. But lets find out!',
 		btnCta: {
 			title: 'Let’s find out',
-			href: '/onboarding'
+			href: '/contact-us'
 		}
 
 	},
@@ -142,7 +142,7 @@ const howItWorksData = {
 		],
 		btnCtaList: [
 			{
-				href: '/get-started',
+				href: '/onboarding',
 				externalLink: false,
 				text: 'Start Now',
 			},

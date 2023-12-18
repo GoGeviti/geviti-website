@@ -8,16 +8,16 @@ import clsxm from '@/helpers/clsxm';
 
 import CustomLink from '../CustomLink';
 import TablePackageBiomarkers from '../Home/TablePackageBiomarkers';
-import { CheckBlue2, ChevronRight, HelpIcons } from '../Icons';
+import { CheckBlue2, ChevronDown, ChevronRight, HelpIcons } from '../Icons';
 import WrapperAnimation from '../WrapperAnimation';
 
 const comprehensive = howItWorksData.comprehensive;
 
 const Comprehensive: React.FC = () => {
-	const [selectedItem, setselectedItem] = useState(1);
+	const [selectedItem, setSelectedItem] = useState(1);
 	const [isBiomarkersTableOpen, setIsBiomarkersTableOpen] = useState(false);
-	const handleMouseEnter = (id:number) => {
-		setselectedItem(id);
+	const handleMouseEnter = (id: number) => {
+		setSelectedItem(id);
 	};
 	const renderPopularPackage = () => {
 		return (
@@ -29,21 +29,21 @@ const Comprehensive: React.FC = () => {
 						className={ clsxm('flex flex-col justify-end p-6 lg:p-[30px]', selectedItem === id && 'bg-white rounded-lg') }>
 						<p className={ clsxm(' px-2 lg:px-[10px] py-[2px] rounded-full w-fit font-Poppins text-[11.353px] lg:text-sm font-medium leading-[16.219px] lg:leading-5 mb-5 lg:mb-6', selectedItem === id ? 'bg-blue-1/30 text-blue-4' : 'bg-primary/[0.06] text-primary') }>{ items.tag }</p>
 						<p className='font-Poppins text-base lg:text-xl font-medium leading-[22.706px] lg:leading-7 text-primary'>{ items.title }</p>
-					
+
 						<div className='flex justify-between items-end'>
 							<p className='font-Poppins text-[38.104px] lg:text-5xl font-medium text-primary leading-[127.692%] lg:leading-[125%] -tracking-[0.762px] lg:-tracking-[0.96px;]'>{ items.price }</p>
 							<p className='font-Poppins hidden md:block text-4xl font-semibold text-[#99D4FF] lg:-tracking-[1.44px]'>{ items.biomarkers }</p>
 						</div>
 						<div className='flex justify-between items-center'>
 							<p className='text-grey-primary text-sm leading-[19.462px] lg:leading-6 font-medium'>{ items.priceNote }</p>
-							<p className='flex items-center text-grey-primary gap-[6px] text-xs lg:text-[13px] -tracking-[0.377px] lg:-tracking-[0.464px] font-Poppins font-medium lg:font-semibold'>	<HelpIcons className='md:hidden w-[10.542px] h-[10.542px]'/>{ items.notes } </p>
+							<p className='flex items-center text-grey-primary gap-[6px] text-xs lg:text-[13px] -tracking-[0.377px] lg:-tracking-[0.464px] font-Poppins font-medium lg:font-semibold'>	<HelpIcons className='md:hidden w-[10.542px] h-[10.542px]' />{ items.notes } </p>
 						</div>
 						<div className='flex-col gap-y-2 lg:gap-y-[11px] flex my-[18px] lg:my-[23px]'>
 							{ items.list?.map((component, componentIdx) => (
 								<div key={ componentIdx }>
 									<div className='flex items-center justify-between'>
 										<div className='flex items-center gap-1 lg:gap-[6px] text-primary'>
-											<HelpIcons/>
+											<HelpIcons />
 											<p className='text-xs lg:text-sm text-primary font-medium font-Poppins -tracking-[0.43px] lg:-tracking-[0.53px]'>{ component }</p>
 										</div>
 										<CheckBlue2 />
@@ -52,14 +52,14 @@ const Comprehensive: React.FC = () => {
 							)) }
 						</div>
 						<CustomLink
-							href='/get-started'
+							href='/onboarding'
 							className='btn-cta-landing group btn-primary w-full text-center flex items-center justify-center'
 							aria-label={ items.btn }
 						>
 							<span className='text-btn-cta-landing'>
 								{ items.btn }
 							</span>
-							<ChevronRight className='text-white'/>
+							<ChevronRight className='text-white' />
 						</CustomLink>
 					</div>
 				)) }
@@ -82,7 +82,7 @@ const Comprehensive: React.FC = () => {
 					</h2>
 					<div
 						className='text-grey-cta font-Poppins text-sm lg:leading-5 max-lg:max-w-sm '
-						dangerouslySetInnerHTML={ { __html: comprehensive.desc  } } />
+						dangerouslySetInnerHTML={ { __html: comprehensive.desc } } />
 				</WrapperAnimation>
 				<WrapperAnimation
 					className='max-lg:mt-[47px] lg:my-[60px]'
@@ -95,10 +95,13 @@ const Comprehensive: React.FC = () => {
 						className='lg:flex justify-center items-center space-x-[10px] hidden cursor-pointer'
 						onClick={ () => setIsBiomarkersTableOpen(prev => !prev) }>
 						<p className='text-primary font-Poppins text-sm font-semibold leading-6'>Compare Tested Biomarkers</p>
-						<ChevronRight/>
+						<ChevronDown className={ clsxm(
+							'transition-transform duration-200 ease-out text-primary w-[19px] h-[18px]',
+							isBiomarkersTableOpen ? 'rotate-180' : 'rotate-0'
+						) } />
 					</div>
 				</WrapperAnimation>
-				
+
 				<WrapperAnimation className='mt-5'>
 					<AnimatePresence>
 						{ isBiomarkersTableOpen && (

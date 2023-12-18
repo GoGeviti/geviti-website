@@ -22,7 +22,7 @@ const Therapy: React.FC = () => {
 						</p>
 						{ therapyData.title && (
 							<div className='hidden lg:block max-lg:mx-auto sm:max-w-[600px] mt-11px sm:mt-3'>
-								<h2 className='font-Poppins font-medium text-xl md:text-[32px] lg:text-4xl leading-[30px] sm:leading-[121%] -tracking-[0.8px] md:-tracking-0.04em'>
+								<h2 className='font-Poppins font-normal text-xl md:text-[32px] lg:text-4xl leading-[30px] sm:leading-[121%] -tracking-[0.8px] md:-tracking-0.04em'>
 									{ therapyData.title }
 								</h2>
 							</div>
