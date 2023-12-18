@@ -127,7 +127,7 @@ const Tip: React.FC<TipProps> = ({
 							transition: {
 								delay: 0.3,
 								duration: 1,
-								ease: [.21, 1.04, .58, 1.15],
+								ease: [.21, 1.04, .58, 1],
 							}
 						} }
 					>
@@ -141,13 +141,13 @@ const Tip: React.FC<TipProps> = ({
 							y: 0,
 							transition: {
 								duration: .75,
-								delay: 0.38,
+								delay: 0.48,
 								ease: [.21, 1.04, .58, 1.15]
 							}
 						} }
 					>
 						<h1
-							className='text-[34px] 2xl:text-[36px] font-medium -tracking-[0.04em] leading-normal lg:mt-2 mb-[7px] lg:mb-2'
+							className='text-[34px] 2xl:text-[36px] font-medium -tracking-[0.04em] leading-normal mt-2 mb-[7px] lg:mb-2'
 							dangerouslySetInnerHTML={ { __html: title } }
 						/>
 					</motion.div>
