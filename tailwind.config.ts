@@ -92,7 +92,8 @@ const config: Config = {
 					'linear-gradient(109deg, #181A1C 17.5%, rgba(24, 26, 28, 0.71) 76.83%)',
 				'investment-landing-bottom':
 					'linear-gradient(0deg, #181A1C 39.06%, rgba(24, 26, 28, 0.00) 100%)',
-				'onboarding-order-summary': 'url("/images/onboarding/background_order_summary.png")'
+				'onboarding-order-summary': 'url("/images/onboarding/background_order_summary.png")',
+				'radial-gradient-quality-landing': 'radial-gradient(50% 50% at 50% 50%, #181A1C 0%, rgba(24, 26, 28, 0.00) 100%)'
 			},
 			animation: {
 				marquee: 'marquee 40s linear infinite',

@@ -83,7 +83,7 @@ const Quality: React.FC = () => {
 							</p>
 						</div>
 					</div>
-					<div className='relative w-[318px] md:w-[494px] h-[435px] max-md:-mb-20 md:h-[663px]'>
+					<div className='relative w-[318px] md:w-[494px] h-[435px] max-md:-mb-20 md:h-[663px] max-md:hidden'>
 						<Image
 							src='/images/landing/compressed/quality_products.png'
 							alt='quality'
@@ -91,6 +91,18 @@ const Quality: React.FC = () => {
 							fill
 							className='object-cover object-center'
 						/>
+					</div>
+					<div className='pt-[22px] md:hidden relative'>
+						<Image
+							src='/images/landing/quality_products_mobile.png'
+							alt='quality'
+							loading='lazy'
+							width={ 318.38 }
+							height={ 435.984 }
+							className='relative z-10'
+						/>
+
+						<div className='absolute -bottom-[233px] left-1/2 -translate-x-1/2 bg-radial-gradient-quality-landing w-[411.339px] h-[411.339px]' />
 					</div>
 				</div>
 			</div>
