@@ -16,7 +16,7 @@ const Application: React.FC = () => {
 					{ applicationData.preTitle }
 				</p>
 
-				<h2 className='hidden lg:block mb-3.5 font-Poppins text-[21px] md:text-[32px] lg:text-[36px] sm:leading-[125%] -tracking-[0.84px] md:-tracking-0.04em text-primary lg:max-w-[600px]'>
+				<h2 className='hidden lg:block mb-3.5 font-Poppins text-[21px] md:text-[32px] lg:text-[35px] sm:leading-[125%] -tracking-[0.84px] md:-tracking-0.04em text-primary lg:max-w-[600px]'>
 					{ applicationData.title }
 				</h2>
 				<h2

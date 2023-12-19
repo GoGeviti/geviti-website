@@ -61,11 +61,12 @@ const Therapy: React.FC = () => {
 
 				<div className='relative -mt-[150px] right-1 scale-125 md:scale-100 flex justify-end lg:absolute lg:right-0 -bottom-[160px] md:ml-auto md:max-w-4xl z-10'>
 					<Image
-						src='/images/landing/clinician.png'
+						src='/images/landing/doc_clinician.png'
 						alt='clinician'
-						width={ 618 }
-						height={ 1035 }
+						width={ 1440 }
+						height={ 1800 }
 						quality={ 100 }
+						className='w-[618px]'
 					/>
 				</div>
 
