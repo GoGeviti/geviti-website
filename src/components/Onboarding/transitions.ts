@@ -7,8 +7,8 @@ export const slideInCenterToLeftProps = {
 };
 
 export const slideInRightToCenterProps = {
-	duration: .75,
-	ease: 'easeInOut'
+	duration: .6,
+	ease: [0.21, 1, 0.38, 1.04]
 	// ease: [.21, 1.04, .58, 1.15],
 };
 
