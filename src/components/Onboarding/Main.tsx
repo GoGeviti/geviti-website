@@ -8,9 +8,9 @@ import { useRouter } from 'next/navigation';
 import { PageProps } from '@/app/onboarding/page';
 import { onboardingData } from '@/constant/data';
 import clsxm from '@/helpers/clsxm';
+import { IPrecheckout } from '@/interfaces';
+import { setCartData } from '@/services/precheckout';
 
-import type { FormDetailState } from './FormDetail';
-import type { FormNameEmailState } from './FormNameEmail';
 import * as OnboardingComponent from './index';
 import type { Tier } from './PricingPlans';
 import type { TipProps } from './Tip';
@@ -68,7 +68,7 @@ const OrderJourneyPage: React.FC<PageProps> = ({ searchParams }) => {
 	);
 	const [isAlreadyOnHRT, setIsAlreadyOnHRT] = useState<boolean>(false);
 	const [selectedPlan, setSelectedPlan] = useState<Tier | null>(null);
-	const [userData, setUserData] = useState<FormNameEmailState & FormDetailState>({
+	const [userData, setUserData] = useState<IPrecheckout.UserData>({
 		name: '',
 		email: '',
 		gender: '',
@@ -171,17 +171,6 @@ const OrderJourneyPage: React.FC<PageProps> = ({ searchParams }) => {
 	};
 
 	useEffect(() => {
-		if (showPageTransitionOrderSummary) {
-			onAddFlowFormSteps(FormStep.ORDER_SUMMARY);
-
-			setTimeout(() => {
-				router.replace(`/onboarding?variant=${ selectedPlan?.variantID }`);
-				setFormStep(FormStep.ORDER_SUMMARY);
-			}, 500);
-		}
-	}, [showPageTransitionOrderSummary]);
-
-	useEffect(() => {
 		if (overflowAutoStepOnMobile.includes(formStep)) {
 			setTimeout(() => {
 				setIsOverflowAutoOnMobile(true);
@@ -196,6 +185,23 @@ const OrderJourneyPage: React.FC<PageProps> = ({ searchParams }) => {
 			router.replace('/onboarding');
 		}
 	}, [searchParams?.variant, flowFormSteps]);
+
+	const onSelectPricingPlan = async(selected: Tier) => {
+		setShowPageTransitionOrderSummary(true);
+		setSelectedPlan(selected);
+		onAddFlowFormSteps(FormStep.ORDER_SUMMARY);
+
+		await setCartData({
+			user: userData,
+			isAlreadyOnHRT: isAlreadyOnHRT && eligibleID === FormStep.TRANSITION_ELIGIBLE_SWITCH,
+			variantID: selected.variantID
+		});
+
+		setTimeout(() => {
+			router.replace(`/onboarding?variant=${ selected?.variantID }`);
+			setFormStep(FormStep.ORDER_SUMMARY);
+		}, 500);
+	};
 
 	const onMouseEnterBtnSelectPricingPlans = (e: React.MouseEvent<HTMLButtonElement>) => {
 		setStartCircleMaskPosition({
@@ -329,7 +335,7 @@ const OrderJourneyPage: React.FC<PageProps> = ({ searchParams }) => {
 				return (
 					<OnboardingComponent.FormNameEmail
 						key={ onboardingData.formNameEmail.id }
-						onSubmit={ (data: FormNameEmailState) => {
+						onSubmit={ (data: IPrecheckout.FormNameEmailState) => {
 							setUserData(prevData => ({
 								...prevData,
 								name: data.name,
@@ -385,10 +391,7 @@ const OrderJourneyPage: React.FC<PageProps> = ({ searchParams }) => {
 						key={ onboardingData.pricingPlans.id }
 						isAlreadyOnHRT={ isAlreadyOnHRT && eligibleID === FormStep.TRANSITION_ELIGIBLE_SWITCH }
 						gender={ userData?.gender }
-						onSelect={ selected => {
-							setShowPageTransitionOrderSummary(true);
-							setSelectedPlan(selected);
-						} }
+						onSelect={ onSelectPricingPlan }
 						onMouseEnterButtonSelect={ onMouseEnterBtnSelectPricingPlans }
 					/>
 				);

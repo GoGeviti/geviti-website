@@ -7,10 +7,10 @@ import { howItWorksData } from '@/constant/data';
 import clsxm from '@/helpers/clsxm';
 
 import CustomLink from '../CustomLink';
+import QuestionTooltip from '../Home/QuestionTooltip';
 import TablePackageBiomarkers from '../Home/TablePackageBiomarkers';
 import { CheckBlue2, ChevronDown, ChevronRight, HelpIcons } from '../Icons';
 import WrapperAnimation from '../WrapperAnimation';
-import QuestionTooltip from '../Home/QuestionTooltip';
 
 const comprehensive = howItWorksData.comprehensive;
 

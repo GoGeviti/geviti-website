@@ -5,24 +5,20 @@ import { FormikProps, useFormik } from 'formik';
 import { motion } from 'framer-motion';
 
 import { onboardingData } from '@/constant/data';
+import { IPrecheckout } from '@/interfaces';
 import { FormNameEmailSchema } from '@/validator/onboarding';
 
 import Button from './Button';
 import TextField from './TextField';
 import { slideInVariants, slideInVariantsDelay } from './transitions';
 
-export type FormNameEmailState = {
-	name: string;
-	email: string;
-};
-
 type FormNameEmailProps = {
-	onSubmit: (data: FormNameEmailState) => void; // eslint-disable-line no-unused-vars
+	onSubmit: (data: IPrecheckout.FormNameEmailState) => void; // eslint-disable-line no-unused-vars
 };
 
 const FormNameEmail: React.FC<FormNameEmailProps> = ({ onSubmit }) => {
 	const [enableValidation, setEnableValidation] = useState<boolean>(false);
-	const formik: FormikProps<FormNameEmailState> = useFormik<FormNameEmailState>({
+	const formik: FormikProps<IPrecheckout.FormNameEmailState> = useFormik<IPrecheckout.FormNameEmailState>({
 		validateOnBlur: enableValidation,
 		validateOnChange: enableValidation,
 		validationSchema: FormNameEmailSchema,
@@ -30,7 +26,7 @@ const FormNameEmail: React.FC<FormNameEmailProps> = ({ onSubmit }) => {
 			name: '',
 			email: ''
 		},
-		onSubmit: (form: FormNameEmailState) => {
+		onSubmit: (form: IPrecheckout.FormNameEmailState) => {
 			onSubmit(form);
 		},
 	});

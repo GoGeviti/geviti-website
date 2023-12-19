@@ -18,6 +18,7 @@ const defaultProducts = onboardingData.orderSummary.defaultProducts;
 type OrderSummaryProps = {
 	selectedPlan?: Tier | null;
 	isAlreadyOnHRT?: boolean;
+	withAnimation?: boolean;
 };
 
 type ButtonCheckoutProps = {
@@ -78,7 +79,8 @@ const ButtonCheckout: React.FC<ButtonCheckoutProps> = ({
 
 const OrderSummary: React.FC<OrderSummaryProps> = ({
 	isAlreadyOnHRT,
-	selectedPlan
+	selectedPlan,
+	withAnimation = true
 }) => {
 	const products = [
 		...!isAlreadyOnHRT ? defaultProducts : [],
@@ -112,7 +114,7 @@ const OrderSummary: React.FC<OrderSummaryProps> = ({
 
 	return (
 		<motion.div
-			variants={ {
+			variants={ withAnimation ? {
 				initial: { opacity: 0 },
 				visible: { opacity: 1 },
 				exit: {
@@ -121,7 +123,7 @@ const OrderSummary: React.FC<OrderSummaryProps> = ({
 						duration: 0
 					}
 				}
-			} }
+			} : undefined }
 			initial='initial'
 			animate='visible'
 			exit='exit'
@@ -129,7 +131,7 @@ const OrderSummary: React.FC<OrderSummaryProps> = ({
 			<div className='flex flex-col lg:items-center lg:justify-center px-4 xs2:px-6 lg:px-0 max-lg:py-[21px] relative w-full h-full z-10 max-w-5xl mx-auto text-left'>
 				<div className='flex max-lg:flex-col lg:grid lg:grid-cols-2 gap-6 lg:gap-10 w-full'>
 					<motion.div
-						variants={ {
+						variants={ withAnimation ? {
 							initial: {
 								opacity: 0,
 								y: 30
@@ -147,7 +149,7 @@ const OrderSummary: React.FC<OrderSummaryProps> = ({
 								opacity: 0,
 								y: 30
 							},
-						} }
+						} : undefined }
 						initial='initial'
 						animate='visible'
 						exit='exit'
@@ -178,7 +180,7 @@ const OrderSummary: React.FC<OrderSummaryProps> = ({
 					</motion.div>
 					<div className='max-w-[400px] max-lg:mx-auto lg:ml-auto w-full'>
 						<motion.div
-							variants={ {
+							variants={ withAnimation ? {
 								initial: {
 									opacity: 0,
 									y: 30
@@ -196,7 +198,7 @@ const OrderSummary: React.FC<OrderSummaryProps> = ({
 									opacity: 0,
 									y: 30
 								}
-							} }
+							} : undefined }
 							initial='initial'
 							animate='visible'
 							exit='exit'

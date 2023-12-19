@@ -3,6 +3,7 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 import clsxm from '@/helpers/clsxm';
 
@@ -41,6 +42,13 @@ const Navbar: React.FC<NavbarProps> = ({
 	onStepBack,
 	progress
 }) => {
+	const router = useRouter();
+
+	const handleStepBack = () => {
+		if (onStepBack) onStepBack();
+		else router.back();
+	};
+
 	return (
 		<div className={ clsxm(
 			'sticky top-0 inset-x-0 w-full z-[99]',
@@ -51,7 +59,7 @@ const Navbar: React.FC<NavbarProps> = ({
 				className='h-[50px] lg:h-[8.65vh] px-2 lg:px-5 flex items-center relative'>
 				<button
 					className='focus:outline-none focus:ring-0'
-					onClick={ onStepBack }
+					onClick={ handleStepBack }
 				>
 					<ArrowLeft
 						className={ clsxm(

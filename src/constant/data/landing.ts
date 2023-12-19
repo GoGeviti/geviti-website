@@ -11,7 +11,7 @@ const landingData = {
 		iconsMenu: [
 			{
 				id: 'shopping',
-				href: '/orders',
+				href: '/cart',
 				icon: ShoppingBagIcon,
 			},
 		]

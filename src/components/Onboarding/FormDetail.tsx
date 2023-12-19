@@ -7,6 +7,7 @@ import { motion, Variants } from 'framer-motion';
 
 import { onboardingData, statesData } from '@/constant/data';
 import clsxm from '@/helpers/clsxm';
+import { IPrecheckout } from '@/interfaces';
 import { FormDetailSchema } from '@/validator/onboarding';
 
 import Button from './Button';
@@ -16,12 +17,6 @@ import Select from './InputSelect';
 import SuccessNotif from './SuccessNotif';
 import { notifTransitionProps, slideInVariants, slideInVariantsDelay } from './transitions';
 
-export type FormDetailState = {
-	state: string;
-	gender: string;
-	birthdate: Date | null;
-};
-
 type NotifErrorMessageState = {
 	title: string;
 	subtitle: string;
@@ -29,7 +24,7 @@ type NotifErrorMessageState = {
 };
 
 type FormDetailProps = {
-	onSubmit?: (data: FormDetailState) => void; // eslint-disable-line no-unused-vars
+	onSubmit?: (data: IPrecheckout.FormDetailState) => void; // eslint-disable-line no-unused-vars
 };
 
 const errorNotifVariants: Variants = {
@@ -55,7 +50,7 @@ const FormDetail: React.FC<FormDetailProps> = ({ onSubmit }) => {
 		form_id: ''
 	});
 	const [enableValidation, setEnableValidation] = useState<boolean>(false);
-	const formik: FormikProps<FormDetailState> = useFormik<FormDetailState>({
+	const formik: FormikProps<IPrecheckout.FormDetailState> = useFormik<IPrecheckout.FormDetailState>({
 		validateOnBlur: enableValidation,
 		validateOnChange: enableValidation,
 		validationSchema: FormDetailSchema,
@@ -64,7 +59,7 @@ const FormDetail: React.FC<FormDetailProps> = ({ onSubmit }) => {
 			gender: '',
 			birthdate: null
 		},
-		onSubmit: (form: FormDetailState) => {
+		onSubmit: (form: IPrecheckout.FormDetailState) => {
 			if (form.state !== 'AZ' && form.state) {
 				setNotifErrorMessage({
 					title: 'We do not currently offer services in your state.',
