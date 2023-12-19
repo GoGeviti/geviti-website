@@ -10,6 +10,7 @@ import CustomLink from '../CustomLink';
 import TablePackageBiomarkers from '../Home/TablePackageBiomarkers';
 import { CheckBlue2, ChevronDown, ChevronRight, HelpIcons } from '../Icons';
 import WrapperAnimation from '../WrapperAnimation';
+import QuestionTooltip from '../Home/QuestionTooltip';
 
 const comprehensive = howItWorksData.comprehensive;
 
@@ -42,9 +43,14 @@ const Comprehensive: React.FC = () => {
 							{ items.list?.map((component, componentIdx) => (
 								<div key={ componentIdx }>
 									<div className='flex items-center justify-between'>
-										<div className='flex items-center gap-1 lg:gap-[6px] text-primary'>
-											<HelpIcons />
-											<p className='text-xs lg:text-sm text-primary font-medium font-Poppins -tracking-[0.43px] lg:-tracking-[0.53px]'>{ component }</p>
+										<div className='flex items-center gap-1 lg:gap-[6px] text-primary font-medium'>
+											{ !!component.description &&
+												<QuestionTooltip
+													text={ component.description }
+													icon={ <HelpIcons /> }
+													className='text-left'
+												/> }
+											<p className='text-xs lg:text-sm text-primary font-Poppins -tracking-[0.43px] lg:-tracking-[0.53px]'>{ component.title }</p>
 										</div>
 										<CheckBlue2 />
 									</div>
