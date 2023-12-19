@@ -86,7 +86,7 @@ const landingData = {
 	},
 	steps: {
 		preTitle: 'Easy online care',
-		title: 'Access to better care in just <span class="sm:hidden"><br /></span>4 easy steps.',
+		title: 'Access to better care <span class="sm:hidden"><br /></span>in just 4 easy steps.',
 		btnCta: {
 			href: '/onboarding',
 			externalLink: false,
