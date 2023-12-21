@@ -69,7 +69,7 @@ const howItWorksData = {
 	comprehensive: {
 		preTitle: 'Care based off of biomarkers',
 		title: 'Comprehensive Blood panels',
-		desc: '<p>An a at-home blood draw must be done in order to to enter <br class="max-lg:hidden"/>the Geviti platform.</p>',
+		desc: '<p>An a at-home blood draw must be done in order to enter <br class="max-lg:hidden"/>the Geviti platform.</p>',
 		list: [
 			{
 				tag: 'Most Affordable',
