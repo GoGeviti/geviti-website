@@ -1,9 +1,10 @@
 import { Metadata, NextPage } from 'next';
+import { redirect } from 'next/navigation';
 
 import { OnboardingComponent } from '@/components';
+import { getCartData } from '@/services/precheckout';
 
 export type PageProps = {
-	params: { id: string; };
 	searchParams: { [key: string]: string | string[] | undefined; };
 };
 
@@ -15,9 +16,18 @@ export async function generateMetadata({ searchParams }: PageProps): Promise<Met
 	};
 }
 
-const OnboardingPage: NextPage<PageProps> = pageProps => {
+const OnboardingPage: NextPage<PageProps> = ({ searchParams }) => {
+	const variantID = searchParams?.variant;
+	const cartData = getCartData();
+
+	if (variantID && !cartData?.variantID) {
+		redirect('/onboarding');
+	}
+
 	return (
-		<OnboardingComponent.Main { ...pageProps } />
+		<OnboardingComponent.Main
+			searchParams={ searchParams }
+			state={ cartData } />
 	);
 };
 

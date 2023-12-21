@@ -9,6 +9,7 @@ import { PageProps } from '@/app/onboarding/page';
 import { onboardingData } from '@/constant/data';
 import clsxm from '@/helpers/clsxm';
 import { IPrecheckout } from '@/interfaces';
+import { CheckoutData } from '@/interfaces/precheckout';
 import { setCartData } from '@/services/precheckout';
 
 import * as OnboardingComponent from './index';
@@ -52,19 +53,18 @@ export type FormOption = {
 	nextStep: NextStepAction;
 };
 
-type ListQuestionnaire = {
-	stepID: string;
-	question: string;
-	answer: string;
+type OrderJourneyProps = PageProps & {
+	state?: CheckoutData;
 };
 
 const overflowAutoStepOnMobile = [FormStep.FORM_DETAIL, FormStep.PRICING_PLANS, FormStep.ORDER_SUMMARY] as string[];
 
-const OrderJourneyPage: React.FC<PageProps> = ({ searchParams }) => {
+const OrderJourney: React.FC<OrderJourneyProps> = ({ searchParams, state }) => {
 	const router = useRouter();
 
-	const [formStep, setFormStep] = useState<string>(
-		FormStep.TRANSITION_WELCOME,
+	const [formStep, setFormStep] = useState<string>(searchParams?.variant && state?.variantID
+		? FormStep.ORDER_SUMMARY
+		: FormStep.TRANSITION_WELCOME,
 	);
 	const [isAlreadyOnHRT, setIsAlreadyOnHRT] = useState<boolean>(false);
 	const [selectedPlan, setSelectedPlan] = useState<Tier | null>(null);
@@ -85,7 +85,7 @@ const OrderJourneyPage: React.FC<PageProps> = ({ searchParams }) => {
 		FormStep.TRANSITION_WELCOME,
 	]);
 	const [eligibleID, setEligibleID] = useState<string>(FormStep.TRANSITION_ELIGIBLE_BLOODWORK);
-	const [listQuestionnaire, setListQuestionnaire] = useState<ListQuestionnaire[]>([]);
+	const [listQuestionnaire, setListQuestionnaire] = useState<IPrecheckout.AnswerListQuestionnaire[]>([]);
 	const [isOverflowAutoOnMobile, setIsOverflowAutoOnMobile] = useState<boolean>(false);
 
 	const theme = formStep === FormStep.ORDER_SUMMARY ? 'dark' : 'light';
@@ -181,21 +181,48 @@ const OrderJourneyPage: React.FC<PageProps> = ({ searchParams }) => {
 	}, [formStep]);
 
 	useEffect(() => {
-		if (searchParams?.variant && !flowFormSteps?.includes(FormStep.ORDER_SUMMARY)) {
-			router.replace('/onboarding');
+		if (searchParams?.variant && !flowFormSteps?.includes(FormStep.ORDER_SUMMARY) && state?.variantID) {
+			const allPricingPlans = [
+				...onboardingData.pricingPlans.consultationTiers,
+				...onboardingData.pricingPlans.bloodTiersMen,
+				...onboardingData.pricingPlans.bloodTiersWomen
+			];
+			const currentSelectedPlan = allPricingPlans.find(plan => plan.variantID === state?.variantID) as Tier;
+			if (
+				currentSelectedPlan
+				&& state?.flowFormSteps
+				&& state?.eligibleID
+				&& state?.answerQuestionnaires
+				&& state?.user
+			) {
+				setFormStep(FormStep.ORDER_SUMMARY);
+				setSelectedPlan(currentSelectedPlan);
+				setIsAlreadyOnHRT(!!state?.isAlreadyOnHRT);
+				setFlowFormSteps(state?.flowFormSteps);
+				setEligibleID(state?.eligibleID);
+				setListQuestionnaire(state?.answerQuestionnaires);
+				setUserData(state?.user);
+				setShowPageTransitionOrderSummary(true);
+			} else {
+				router.replace('/onboarding');
+			}
 		}
-	}, [searchParams?.variant, flowFormSteps]);
+	}, [searchParams?.variant, state]);
 
-	const onSelectPricingPlan = async(selected: Tier) => {
+	const onSelectPricingPlan = async (selected: Tier) => {
 		setShowPageTransitionOrderSummary(true);
-		setSelectedPlan(selected);
-		onAddFlowFormSteps(FormStep.ORDER_SUMMARY);
 
 		await setCartData({
 			user: userData,
 			isAlreadyOnHRT: isAlreadyOnHRT && eligibleID === FormStep.TRANSITION_ELIGIBLE_SWITCH,
-			variantID: selected.variantID
+			variantID: selected.variantID,
+			flowFormSteps: [...flowFormSteps, FormStep.ORDER_SUMMARY],
+			answerQuestionnaires: listQuestionnaire,
+			eligibleID: eligibleID
 		});
+
+		setSelectedPlan(selected);
+		onAddFlowFormSteps(FormStep.ORDER_SUMMARY);
 
 		setTimeout(() => {
 			router.replace(`/onboarding?variant=${ selected?.variantID }`);
@@ -330,7 +357,7 @@ const OrderJourneyPage: React.FC<PageProps> = ({ searchParams }) => {
 							onAddQuestionnaireAnswer(onboardingData.questionSwitchToGeviti.id, onboardingData.questionSwitchToGeviti.title, selected.label);
 						} }
 					/>
-				); ;
+				);;
 			case FormStep.FORM_NAME_EMAIL:
 				return (
 					<OnboardingComponent.FormNameEmail
@@ -518,4 +545,4 @@ const OrderJourneyPage: React.FC<PageProps> = ({ searchParams }) => {
 	);
 };
 
-export default OrderJourneyPage;
+export default OrderJourney;
