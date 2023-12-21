@@ -205,6 +205,7 @@ const OrderJourney: React.FC<OrderJourneyProps> = ({ searchParams, state }) => {
 				setShowPageTransitionOrderSummary(true);
 			} else {
 				router.replace('/onboarding');
+				setFormStep(FormStep.TRANSITION_WELCOME);
 			}
 		}
 	}, [searchParams?.variant, state]);
