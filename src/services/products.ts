@@ -154,6 +154,7 @@ export const getPrivacyById = async(): Promise<Privacy> => {
 		return Promise.reject(error);
 	}
 };
+
 export const getTermsAndConditions = async(): Promise<Privacy> => {
 	const stringifiedQuery = qs.stringify({
 		depth: 1,

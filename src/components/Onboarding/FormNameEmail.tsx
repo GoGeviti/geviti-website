@@ -14,17 +14,18 @@ import { slideInVariants, slideInVariantsDelay } from './transitions';
 
 type FormNameEmailProps = {
 	onSubmit: (data: IPrecheckout.FormNameEmailState) => void; // eslint-disable-line no-unused-vars
+	userData : IPrecheckout.UserData
 };
 
-const FormNameEmail: React.FC<FormNameEmailProps> = ({ onSubmit }) => {
+const FormNameEmail: React.FC<FormNameEmailProps> = ({ onSubmit, userData }) => {
 	const [enableValidation, setEnableValidation] = useState<boolean>(false);
 	const formik: FormikProps<IPrecheckout.FormNameEmailState> = useFormik<IPrecheckout.FormNameEmailState>({
 		validateOnBlur: enableValidation,
 		validateOnChange: enableValidation,
 		validationSchema: FormNameEmailSchema,
 		initialValues: {
-			name: '',
-			email: ''
+			name: userData.name,
+			email: userData.email
 		},
 		onSubmit: (form: IPrecheckout.FormNameEmailState) => {
 			onSubmit(form);

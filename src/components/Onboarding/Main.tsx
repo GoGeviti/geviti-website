@@ -210,7 +210,7 @@ const OrderJourney: React.FC<OrderJourneyProps> = ({ searchParams, state }) => {
 		}
 	}, [searchParams?.variant, state]);
 
-	const onSelectPricingPlan = async (selected: Tier) => {
+	const onSelectPricingPlan = async(selected: Tier) => {
 		setShowPageTransitionOrderSummary(true);
 
 		await setCartData({
@@ -358,7 +358,7 @@ const OrderJourney: React.FC<OrderJourneyProps> = ({ searchParams, state }) => {
 							onAddQuestionnaireAnswer(onboardingData.questionSwitchToGeviti.id, onboardingData.questionSwitchToGeviti.title, selected.label);
 						} }
 					/>
-				);;
+				); ;
 			case FormStep.FORM_NAME_EMAIL:
 				return (
 					<OnboardingComponent.FormNameEmail
@@ -371,12 +371,15 @@ const OrderJourney: React.FC<OrderJourneyProps> = ({ searchParams, state }) => {
 							}));
 							onStepNext(onboardingData.formNameEmail.nextStep);
 						} }
+						userData={ userData }
 					/>
 				);
 			case FormStep.FORM_DETAIL:
 				return (
 					<OnboardingComponent.FormDetail
 						key={ onboardingData.formDetail.id }
+						userData={ userData }
+						isAlreadyOnHRT={ isAlreadyOnHRT }
 						onSubmit={ data => {
 							if (data.state === 'AZ') {
 								setUserData(prevData => ({

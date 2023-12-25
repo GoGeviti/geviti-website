@@ -49,7 +49,7 @@ const onboardingData = {
 				nextStep: {
 					transition: {
 						title: 'You’re not alone.',
-						desc: 'Luckily, this can be fixed with right plan.'
+						desc: 'Luckily, this can be fixed with the right plan.'
 					},
 					stepID: 'QUESTION_DIFFICULTY_WEIGHT'
 				}
@@ -59,7 +59,7 @@ const onboardingData = {
 				nextStep: {
 					transition: {
 						title: 'You’re not alone.',
-						desc: 'Luckily, this can be fixed with right plan.'
+						desc: 'Luckily, this can be fixed with the right plan.'
 					},
 					stepID: 'QUESTION_DIFFICULTY_WEIGHT'
 				}
@@ -69,7 +69,7 @@ const onboardingData = {
 				nextStep: {
 					transition: {
 						title: 'You’re not alone.',
-						desc: 'Luckily, this can be fixed with right plan.'
+						desc: 'Luckily, this can be fixed with the right plan.'
 					},
 					stepID: 'QUESTION_DIFFICULTY_WEIGHT'
 				}
@@ -79,7 +79,7 @@ const onboardingData = {
 				nextStep: {
 					transition: {
 						title: 'You’re not alone.',
-						desc: 'Luckily, this can be fixed with right plan.'
+						desc: 'Luckily, this can be fixed with the right plan.'
 					},
 					stepID: 'QUESTION_DIFFICULTY_WEIGHT'
 				}
@@ -325,7 +325,7 @@ const onboardingData = {
 				id: 'switch',
 				tag: '',
 				title: 'Clinical Consultation',
-				price: '$139.99',
+				price: '$299',
 				priceNote: '+ $99 monthly',
 				biomarkers: '',
 				notes: '',
@@ -346,10 +346,10 @@ const onboardingData = {
 				id: 'essentials',
 				tag: 'Most Affordable',
 				title: 'Essentials Panel',
-				price: '$300',
+				price: '$299',
 				priceNote: '+ $99 monthly',
 				biomarkers: '39+',
-				notes: 'Biomarkers Tested',
+				notes: 'By Biomarkers Tested',
 				btn: 'Select Plan',
 				features: [
 					'At-home blood draw',
@@ -366,10 +366,10 @@ const onboardingData = {
 				id: 'comprehensive',
 				tag: 'Most Popular',
 				title: 'Comprehensive Panel',
-				price: '$475',
+				price: '$469',
 				priceNote: '+ $99 monthly',
 				biomarkers: '50+',
-				notes: 'Biomarkers Tested',
+				notes: 'By Biomarkers Tested',
 				btn: 'Select Plan',
 				features: [
 					'At-home blood draw',
@@ -386,10 +386,10 @@ const onboardingData = {
 				id: 'ultimateMen',
 				tag: 'Most In-Depth',
 				title: 'Ultimate Men’s Panel',
-				price: '$605',
+				price: '$599',
 				priceNote: '+ $99 monthly',
 				biomarkers: '58+',
-				notes: 'Biomarkers Tested',
+				notes: 'By Biomarkers Tested',
 				btn: 'Select Plan',
 				features: [
 					'At-home blood draw',
@@ -409,10 +409,10 @@ const onboardingData = {
 				id: 'essentials',
 				tag: 'Most Affordable',
 				title: 'Essentials Panel',
-				price: '$300',
+				price: '$299',
 				priceNote: '+ $99 monthly',
 				biomarkers: '39+',
-				notes: 'Biomarkers Tested',
+				notes: 'By Biomarkers Tested',
 				btn: 'Select Plan',
 				features: [
 					'At-home blood draw',
@@ -429,10 +429,10 @@ const onboardingData = {
 				id: 'comprehensive',
 				tag: 'Most Popular',
 				title: 'Comprehensive Panel',
-				price: '$475',
+				price: '$469',
 				priceNote: '+ $99 monthly',
 				biomarkers: '50+',
-				notes: 'Biomarkers Tested',
+				notes: 'By Biomarkers Tested',
 				btn: 'Select Plan',
 				features: [
 					'At-home blood draw',
@@ -449,10 +449,10 @@ const onboardingData = {
 				id: 'ultimateFemale',
 				tag: 'Most In-Depth',
 				title: 'Ultimate Women’s Panel',
-				price: '$605',
+				price: '$599',
 				priceNote: '+ $99 monthly',
 				biomarkers: '58+',
-				notes: 'Biomarkers Tested',
+				notes: 'By Biomarkers Tested',
 				btn: 'Select Plan',
 				features: [
 					'At-home blood draw',
@@ -472,10 +472,10 @@ const onboardingData = {
 		title: 'Great choice!',
 		subtitle: 'You’re almost ready to begin your Geviti journey. Here’s how to get started:',
 		steps: [
-			'Proceed to checkout, and begin then begin the onboarding process.',
-			'Once account is activated, we’ll send you a link to schedule your clinical consultation.',
-			'Once your clinical consultation is complete,  you will review options with our doctors.',
-			'Finally, if you’re eligible we will switch your therapy to us and mail your plan monthly.'
+			'Proceed to checkout. Once completed, check your email to begin the onboarding process.',
+			'Once account is activated, we’ll send you a link to schedule your bloodwork or clinical consultation.',
+			'Once this step is complete, you will review your options with our qualified medical team.',
+			'Finally, we will ship your custom tailored treatment to your home monthly. '
 		],
 		cart: {
 			title: 'Order Summary',

@@ -2,12 +2,15 @@
 
 import React, { useState } from 'react';
 import DatePicker from 'react-date-picker';
+import { AiFillCloseCircle } from 'react-icons/ai';
 import { FormikProps, useFormik } from 'formik';
 import { motion, Variants } from 'framer-motion';
+import { toast } from 'sonner';
 
 import { onboardingData, statesData } from '@/constant/data';
 import clsxm from '@/helpers/clsxm';
 import { IPrecheckout } from '@/interfaces';
+import { createNotionDatabase } from '@/services/precheckout';
 import { FormDetailSchema } from '@/validator/onboarding';
 
 import Button from './Button';
@@ -24,7 +27,9 @@ type NotifErrorMessageState = {
 };
 
 type FormDetailProps = {
-	onSubmit?: (data: IPrecheckout.FormDetailState) => void; // eslint-disable-line no-unused-vars
+	onSubmit?: (data: IPrecheckout.FormDetailState) => void; // eslint-disable-line no-unused-vars,
+	userData : IPrecheckout.UserData,
+	isAlreadyOnHRT : boolean
 };
 
 const errorNotifVariants: Variants = {
@@ -42,7 +47,7 @@ const errorNotifVariants: Variants = {
 const states = statesData.states.options;
 const gender = statesData.gender.options;
 
-const FormDetail: React.FC<FormDetailProps> = ({ onSubmit }) => {
+const FormDetail: React.FC<FormDetailProps> = ({ onSubmit, userData, isAlreadyOnHRT }) => {
 	const [isChecked, setIsChecked] = useState<boolean>(false);
 	const [notifErrorMessage, setNotifErrorMessage] = useState<NotifErrorMessageState>({
 		title: '',
@@ -50,16 +55,17 @@ const FormDetail: React.FC<FormDetailProps> = ({ onSubmit }) => {
 		form_id: ''
 	});
 	const [enableValidation, setEnableValidation] = useState<boolean>(false);
+	const [loading, setLoading] = useState<boolean>(false);
 	const formik: FormikProps<IPrecheckout.FormDetailState> = useFormik<IPrecheckout.FormDetailState>({
 		validateOnBlur: enableValidation,
 		validateOnChange: enableValidation,
 		validationSchema: FormDetailSchema,
 		initialValues: {
-			state: '',
-			gender: '',
-			birthdate: null
+			state: userData.state,
+			gender: userData.gender,
+			birthdate: userData.birthdate
 		},
-		onSubmit: (form: IPrecheckout.FormDetailState) => {
+		onSubmit: async(form: IPrecheckout.FormDetailState) => {
 			if (form.state !== 'AZ' && form.state) {
 				setNotifErrorMessage({
 					title: 'We do not currently offer services in your state.',
@@ -67,7 +73,24 @@ const FormDetail: React.FC<FormDetailProps> = ({ onSubmit }) => {
 					form_id: 'state'
 				});
 			} else {
-				if (onSubmit) onSubmit(form);
+				setLoading(true);
+				const { status, message: messageResponse } = await createNotionDatabase({
+					birthdate: form.birthdate,
+					email: userData.email,
+					name: userData.name,
+					gender: form.gender,
+					state: form.state,
+					isAlreadyOnHRT: isAlreadyOnHRT
+				});
+				if (status === 'OK') {
+					setLoading(false);
+					if (onSubmit) onSubmit(form);
+				} else {
+					toast.error(messageResponse, {
+						icon: <AiFillCloseCircle className='h-5 w-5 text-danger' />,
+					});
+				}
+				setLoading(false);
 			}
 		},
 	});
@@ -75,7 +98,7 @@ const FormDetail: React.FC<FormDetailProps> = ({ onSubmit }) => {
 	const onSubmitForm = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 		setEnableValidation(true);
-
+		
 		formik.handleSubmit();
 	};
 
@@ -94,7 +117,7 @@ const FormDetail: React.FC<FormDetailProps> = ({ onSubmit }) => {
 	const renderDatePicker = () => {
 		return (
 			<div className='flex flex-col mt-2'>
-				<InputLabel>Birthday (DD/MM/YYYY)</InputLabel>
+				<InputLabel>Birthday (MM/DD/YYYY)</InputLabel>
 				<div>
 					<DatePicker
 						onChange={ val => onChangeInput('birthdate', val as Date) }
@@ -110,7 +133,7 @@ const FormDetail: React.FC<FormDetailProps> = ({ onSubmit }) => {
 							formik.errors.birthdate ? 'bg-red-primary-background ring-[1.5px] ring-red-primary' : 'bg-white'
 						) }
 						calendarClassName='font-Poppins !border-0 shadow-[0px_32px_105px_0px_rgba(16,24,40,0.13)] rounded-[10px] bg-grey-secondary text-primary !z-[99]'
-						format='d/M/y'
+						format='M/d/y'
 						disableCalendar
 					/>
 				</div>
@@ -242,9 +265,9 @@ const FormDetail: React.FC<FormDetailProps> = ({ onSubmit }) => {
 						>
 							<Button
 								type='submit'
-								disabled={ notifErrorMessage.form_id === 'state' || !isChecked }
+								disabled={ notifErrorMessage.form_id === 'state' || !isChecked || loading }
 							>
-								{ onboardingData.formDetail.submitLabel }
+								{ loading ? 'Loading...' : onboardingData.formDetail.submitLabel }
 							</Button>
 						</motion.div>
 					</form>
