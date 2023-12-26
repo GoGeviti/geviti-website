@@ -2,7 +2,7 @@ const onboardingData = {
 	transitionWelcome: {
 		id: 'TRANSITION_WELCOME',
 		title: 'Welcome to Geviti!',
-		desc: 'Lets start by making sure you are eligible'
+		desc: 'Let’s start by making sure you are eligible.'
 	},
 	transitionEligibleBloodwork: {
 		id: 'TRANSITION_ELIGIBLE_BLOODWORK',
@@ -32,7 +32,7 @@ const onboardingData = {
 				label: 'No',
 				nextStep: {
 					transition: {
-						title: 'Thank You.',
+						title: 'Thank you!',
 						desc: 'The following questions will help us better understand you.'
 					},
 					stepID: 'QUESTION_HOW_OFTEN_LETHARGIC'
