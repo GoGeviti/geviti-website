@@ -335,6 +335,11 @@ const onboardingData = {
 					'Professional Medical Evaluation',
 					'Access to Geviti'
 				],
+				tooltips: [
+					'1-on-1 Consultation With Doctor',
+					'Professional Medical Evaluation',
+					'Access to Geviti'
+				],
 				statement: 'I acknowledge that buying the Clinical Consultation does not guarantee the option to change therapy to Geviti.',
 				mostPopular: true,
 				image: '/images/onboarding/doctor.png'
@@ -349,9 +354,16 @@ const onboardingData = {
 				price: '$299',
 				priceNote: '+ $99 monthly',
 				biomarkers: '39+',
-				notes: 'By Biomarkers Tested',
+				notes: 'Biomarkers Tested',
 				btn: 'Select Plan',
 				features: [
+					'At-home blood draw',
+					'Access To Geviti Platform',
+					'Prescription Product Access',
+					'Personally Assigned Health Coach',
+					'Custom Treatment Plan'
+				],
+				tooltips: [
 					'At-home blood draw',
 					'Access To Geviti Platform',
 					'Prescription Product Access',
@@ -369,9 +381,16 @@ const onboardingData = {
 				price: '$469',
 				priceNote: '+ $99 monthly',
 				biomarkers: '50+',
-				notes: 'By Biomarkers Tested',
+				notes: 'Biomarkers Tested',
 				btn: 'Select Plan',
 				features: [
+					'At-home blood draw',
+					'Access To Geviti Platform',
+					'Prescription Product Access',
+					'Personally Assigned Health Coach',
+					'Custom Treatment Plan'
+				],
+				tooltips: [
 					'At-home blood draw',
 					'Access To Geviti Platform',
 					'Prescription Product Access',
@@ -389,9 +408,16 @@ const onboardingData = {
 				price: '$599',
 				priceNote: '+ $99 monthly',
 				biomarkers: '58+',
-				notes: 'By Biomarkers Tested',
+				notes: 'Biomarkers Tested',
 				btn: 'Select Plan',
 				features: [
+					'At-home blood draw',
+					'Access To Geviti Platform',
+					'Prescription Product Access',
+					'Personally Assigned Health Coach',
+					'Custom Treatment Plan'
+				],
+				tooltips: [
 					'At-home blood draw',
 					'Access To Geviti Platform',
 					'Prescription Product Access',
@@ -412,9 +438,16 @@ const onboardingData = {
 				price: '$299',
 				priceNote: '+ $99 monthly',
 				biomarkers: '39+',
-				notes: 'By Biomarkers Tested',
+				notes: 'Biomarkers Tested',
 				btn: 'Select Plan',
 				features: [
+					'At-home blood draw',
+					'Access To Geviti Platform',
+					'Prescription Product Access',
+					'Personally Assigned Health Coach',
+					'Custom Treatment Plan'
+				],
+				tooltips: [
 					'At-home blood draw',
 					'Access To Geviti Platform',
 					'Prescription Product Access',
@@ -432,9 +465,16 @@ const onboardingData = {
 				price: '$469',
 				priceNote: '+ $99 monthly',
 				biomarkers: '50+',
-				notes: 'By Biomarkers Tested',
+				notes: 'Biomarkers Tested',
 				btn: 'Select Plan',
 				features: [
+					'At-home blood draw',
+					'Access To Geviti Platform',
+					'Prescription Product Access',
+					'Personally Assigned Health Coach',
+					'Custom Treatment Plan'
+				],
+				tooltips: [
 					'At-home blood draw',
 					'Access To Geviti Platform',
 					'Prescription Product Access',
@@ -452,9 +492,16 @@ const onboardingData = {
 				price: '$599',
 				priceNote: '+ $99 monthly',
 				biomarkers: '58+',
-				notes: 'By Biomarkers Tested',
+				notes: 'Biomarkers Tested',
 				btn: 'Select Plan',
 				features: [
+					'At-home blood draw',
+					'Access To Geviti Platform',
+					'Prescription Product Access',
+					'Personally Assigned Health Coach',
+					'Custom Treatment Plan'
+				],
+				tooltips: [
 					'At-home blood draw',
 					'Access To Geviti Platform',
 					'Prescription Product Access',

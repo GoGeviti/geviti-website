@@ -13,6 +13,7 @@ import {
 	AccordionItem,
 	AccordionTrigger
 } from '../Accordion';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '../Tooltip';
 
 import BiomarkerCompare from './BiomarkerCompare';
 import Button from './Button';
@@ -71,6 +72,7 @@ export type Tier = {
 	notes?: string;
 	btn: string;
 	features: string[];
+	tooltips: string[];
 	statement?: string;
 	mostPopular: true;
 	longTitle?: string;
@@ -234,13 +236,23 @@ const PricingPlans: React.FC<PricingPlansProps> = ({
 		return (
 			<>
 				<ul className='text-left space-y-3 lg:space-y-[1.1vh] mt-4 lg:mt-[1.1vh] pt-4 lg:pt-[2.2vh] border-t border-grey-primary/10'>
-					{ tier.features.map(feature => (
+					{ tier.features.map((feature, featureIdx) => (
 						<li
 							key={ feature }
 							className='flex items-center justify-between gap-2'
 						>
 							<span className='flex items-center gap-x-1.5 text-base lg:text-xs 2xl:text-base font-medium leading-normal text-[#52585A] -leading-[0.036em]'>
-								<FeatureIcon className='w-[15px] h-[15px] 2xl:w-[17px] 2xl:h-[17px] flex-shrink-0' />
+								<TooltipProvider delayDuration={ 200 }>
+									<Tooltip>
+										<TooltipTrigger>
+											<FeatureIcon className='w-[15px] h-[15px] 2xl:w-[17px] 2xl:h-[17px] flex-shrink-0' />
+										</TooltipTrigger>
+										<TooltipContent>
+											<p>{ tier.tooltips[featureIdx] }</p>
+										</TooltipContent>
+									</Tooltip>
+								</TooltipProvider>
+								
 								{ /* <div>
 									<svg
 										width='14'
