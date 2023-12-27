@@ -39,7 +39,7 @@ const Tip: React.FC<TipProps> = ({
 		if (onContinue) {
 			setTimeout(() => {
 				onContinue();
-			}, 4500);
+			}, 5000);
 		}
 	}, []);
 
@@ -156,8 +156,8 @@ const Tip: React.FC<TipProps> = ({
 						animate={ {
 							opacity: 1,
 							transition: {
-								duration: 2.25,
-								delay: 1.55,
+								duration: 1.75,
+								delay: 1.05,
 								ease: [.74, .16, .88, .98]
 							}
 						} }
