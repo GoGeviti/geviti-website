@@ -48,7 +48,7 @@ const Navbar: React.FC<NavbarProps> = ({
 	const [selectedItem, setSelectedItem] = useState<number>(5);
 
 	useEffect(() => {
-		const currentIndex = navbarData.menu.findIndex(link => link.href === pathname);
+		const currentIndex = navbarData.menu.findIndex(link => pathname.includes(link.href));
 		if (currentIndex !== -1) {
 			setSelectedItem(currentIndex);
 		} else if (pathname === '/') {
@@ -67,6 +67,7 @@ const Navbar: React.FC<NavbarProps> = ({
 		return (
 			<>
 				{ navbarData.menu.map((link, id) => {
+
 					return (
 						<CustomLink
 							key={ link.name }
@@ -77,7 +78,7 @@ const Navbar: React.FC<NavbarProps> = ({
 								'rounded-md px-3 py-2 text-sm font-Poppins',
 								theme === 'dark' ? 'text-grey-secondary hover:text-white' : 'text-primary',
 								isWithnavbarData ? 'block' : 'hidden',
-								selectedItem === id ? 'font-semibold' : '!font-medium hover:!font-semibold'
+								selectedItem === id ? 'font-semibold' : '!font-medium hover:font-semibold',
 							) }
 							aria-label={ link.name }
 						>
