@@ -224,6 +224,7 @@ export function serializeLexical({ nodes }: Props): JSX.Element {
 
 							return (
 								<Link
+									className='break-all'
 									href={ escapeHTML(fields.url) }
 									key={ index }
 									{ ...(fields?.newTab
