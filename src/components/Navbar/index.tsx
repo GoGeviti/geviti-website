@@ -150,7 +150,7 @@ const Navbar: React.FC<NavbarProps> = ({
 			>
 				<div className='flex-shrink-0 relative overflow-hidden w-[85px] h-5'>
 					<Image
-						src={ src }
+						src={ openSheet ? navbarData.logoLight : src }
 						alt='logo'
 						fill
 						priority={ true }
@@ -210,7 +210,8 @@ const Navbar: React.FC<NavbarProps> = ({
 								className={ clsxm(
 									'focus:outline-none focus:border-0 focus:ring-0',
 									theme === 'dark' ? 'text-grey-secondary' : 'text-primary',
-									withBgWhite && 'text-primary'
+									withBgWhite && 'text-primary',
+									openSheet && 'text-grey-secondary'
 								) }
 								onClick={ () => {
 									setOpenSheet(prevOpen => !prevOpen);
