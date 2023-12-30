@@ -44,7 +44,7 @@ const FormWaitlist: React.FC<FormWaitlistProps> = ({ onSubmit }) => {
 						variants={ slideInVariants }
 						initial='initial'
 						animate='visible'
-						className='text-2xl 2xl:text-[36px] leading-normal -tracking-[0.04em] max-lg:font-medium text-center lg:text-left'>
+						className='text-2xl 2xl:text-[36px] leading-normal -tracking-[0.04em] max-lg:font-medium text-left'>
 						{ onboardingData.formWaitlist.title }
 					</motion.h1>
 					<motion.h2

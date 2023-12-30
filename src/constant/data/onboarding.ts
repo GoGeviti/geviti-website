@@ -14,6 +14,11 @@ const onboardingData = {
 		title: 'You\'re eligible to join Geviti.',
 		desc: 'You need to speak with one of our clinicians to see about switching to Geviti.'
 	},
+	transitionNotEligible: {
+		id: 'TRANSITION_NOT_ELIGIBLE',
+		title: 'Good news and bad news!',
+		desc: '<span>You qualify for Geviti, but we aren’t taking new members at the moment.</span><span class="mt-5 sm:mt-10 block">This is to ensure we can offer the highest quality service to our current members.</span>'
+	},
 	questionOnHRT: {
 		id: 'QUESTION_ALREADY_ON_HRT',
 		title: 'Are you currently taking doctor prescribed hormone therapy?',
@@ -301,6 +306,17 @@ const onboardingData = {
 		notif: {
 			title: 'You qualify for Geviti, but we’re currently at capacity.',
 			subtitle: 'This so we can offer the best service to our current members.'
+		},
+		nextStep: {
+			transition: {
+				title: 'You have successfully joined the waitlist.',
+				desc: 'Geviti will reach out to let you know when you are selected',
+				type: 'success',
+				cta: {
+					title: 'Return to Home Page',
+					href: '/'
+				}
+			},
 		}
 	},
 	pricingPlans: {

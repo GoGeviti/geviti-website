@@ -3,18 +3,24 @@
 import React, { useEffect, useRef } from 'react';
 import { Player } from '@lottiefiles/react-lottie-player';
 import { motion, Variants } from 'framer-motion';
+import Link from 'next/link';
 
+import Button from './Button';
 import { slideInCenterToLeftProps } from './transitions';
 
 export type TipProps = {
 	title: string;
 	desc: string;
-	type?: string; // info | success
+	type?: string; // logo | success | exclamation
 	onContinue?: () => void;
+	cta?: {
+		title: string;
+		href?: string;
+	};
 };
 
 export const getTipBackgroundColor = (type: string) => {
-	if (type === 'info') return 'rgba(163, 224, 255, 0.25)';
+	if (type === 'logo' || type === 'exclamation') return 'rgba(163, 224, 255, 0.25)';
 	if (type === 'success') return 'rgba(227,237,230,255)';
 	return 'rgba(222,238,245,255)';
 };
@@ -22,8 +28,9 @@ export const getTipBackgroundColor = (type: string) => {
 const Tip: React.FC<TipProps> = ({
 	title,
 	desc,
-	type = 'info',
-	onContinue
+	type = 'logo',
+	onContinue,
+	cta
 }) => {
 	const lottieRef = useRef<Player>(null);
 
@@ -44,8 +51,9 @@ const Tip: React.FC<TipProps> = ({
 	}, []);
 
 	const getLottieSource = () => {
-		if (type === 'info') return 'https://lottie.host/5057054d-678f-4c6f-a7e6-6c327a613933/QfaWhTNjwk.json';
+		if (type === 'logo') return 'https://lottie.host/5057054d-678f-4c6f-a7e6-6c327a613933/QfaWhTNjwk.json';
 		if (type === 'success') return 'https://lottie.host/abd0daf2-edae-4d5c-9631-22142fea5513/Wl99Hl9ztM.json';
+		if (type === 'exclamation') return 'https://lottie.host/c0ffddc6-4c83-4c8b-9a2b-89f3c6a9dad3/Qr8CgCUEDG.json';
 		return '';
 	};
 
@@ -58,7 +66,8 @@ const Tip: React.FC<TipProps> = ({
 					src={ src }
 					ref={ lottieRef }
 					keepLastFrame
-					className='w-[278px] h-[278px]'
+					speed={ type === 'exclamation' ? 2 : 1 }
+					className={ type === 'exclamation' ? 'w-[268.15px] h-[268.15px]' : 'w-[278px] h-[278px]' }
 				/>
 			);
 		}
@@ -162,9 +171,19 @@ const Tip: React.FC<TipProps> = ({
 							}
 						} }
 					>
-						<h2
-							className='font-medium -tracking-[0.04em] leading-normal text-2xl 2xl:text-[28px]'
-							dangerouslySetInnerHTML={ { __html: desc } } />
+						<div className='max-w-[500px] 2xl:max-w-[550px] mx-auto'>
+							<h2
+								className='font-medium -tracking-[0.04em] leading-normal text-2xl 2xl:text-[28px]'
+								dangerouslySetInnerHTML={ { __html: desc } } />
+
+							{ cta && (
+								<div className='flex justify-center mt-10 sm:mt-20'>
+									<Link href={ cta.href ?? '/' }>
+										<Button className='!bg-grey-secondary !text-primary !font-medium'>{ cta.title }</Button>
+									</Link>
+								</div>
+							) }
+						</div>
 					</motion.div>
 				</div>
 			</motion.div>

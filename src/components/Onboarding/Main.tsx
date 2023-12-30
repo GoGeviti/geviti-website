@@ -34,6 +34,7 @@ enum FormStep {
 	PRICING_PLANS = 'PRICING_PLANS',
 	ORDER_SUMMARY = 'ORDER_SUMMARY',
 	TRANSITION = 'TRANSITION',
+	TRANSITION_NOT_ELIGIBLE = 'TRANSITION_NOT_ELIGIBLE',
 	TRANSITION_ELIGIBLE_SWITCH = 'TRANSITION_ELIGIBLE_SWITCH',
 	TRANSITION_ELIGIBLE_BLOODWORK = 'TRANSITION_ELIGIBLE_BLOODWORK',
 }
@@ -43,8 +44,12 @@ type NextStepAction = {
 		title: string;
 		desc: string;
 		type?: string;
+		cta?: {
+			title: string;
+			href?: string;
+		};
 	},
-	stepID: string;
+	stepID?: string;
 	eligibleID?: string;
 };
 
@@ -129,10 +134,13 @@ const OrderJourney: React.FC<OrderJourneyProps> = ({ searchParams, state }) => {
 			setTransitionData({
 				title: nextStep?.transition?.title,
 				desc: nextStep?.transition?.desc,
-				type: nextStep?.transition?.type ?? 'info',
-				onContinue: () => {
-					setFormStep(nextStep?.stepID);
-				}
+				type: nextStep?.transition?.type ?? 'logo',
+				cta: nextStep?.transition?.cta,
+				...nextStep?.stepID ? {
+					onContinue: () => {
+						setFormStep(nextStep?.stepID ?? '');
+					}
+				} : {}
 			});
 		}
 	};
@@ -148,6 +156,7 @@ const OrderJourney: React.FC<OrderJourneyProps> = ({ searchParams, state }) => {
 						title: nextStep?.transition?.title,
 						desc: nextStep?.transition?.desc,
 						type: nextStep?.transition?.type,
+						cta: nextStep?.transition?.cta,
 					},
 					stepID: FormStep.FORM_NAME_EMAIL
 				});
@@ -155,12 +164,12 @@ const OrderJourney: React.FC<OrderJourneyProps> = ({ searchParams, state }) => {
 				setFormStep(FormStep.FORM_NAME_EMAIL);
 			}
 		} else {
-			onAddFlowFormSteps(nextStep.stepID);
+			onAddFlowFormSteps(nextStep.stepID ?? '');
 
 			if (nextStep?.transition) {
 				onAddTransitionData(nextStep);
 			} else {
-				setFormStep(nextStep?.stepID);
+				setFormStep(nextStep?.stepID ?? '');
 				setTransitionData(null);
 			}
 		}
@@ -258,7 +267,8 @@ const OrderJourney: React.FC<OrderJourneyProps> = ({ searchParams, state }) => {
 						key={ `TRANSITION_${ transitionData?.title?.toUpperCase()?.replaceAll(' ', '_') }` }
 						title={ transitionData?.title ?? '' }
 						desc={ transitionData?.desc ?? '' }
-						type={ transitionData?.type ?? 'info' }
+						type={ transitionData?.type ?? 'logo' }
+						cta={ transitionData?.cta }
 						onContinue={ transitionData?.onContinue }
 					/>
 				);
@@ -386,16 +396,39 @@ const OrderJourney: React.FC<OrderJourneyProps> = ({ searchParams, state }) => {
 									...prevData,
 									...data
 								}));
-								setFormStep(eligibleID);
+								if (process.env.NEXT_PUBLIC_STAGE === 'development') {
+									setFormStep(FormStep.TRANSITION_NOT_ELIGIBLE);
+								} else {
+									setFormStep(eligibleID);
+								}
 							}
+						} }
+					/>
+				);
+			case FormStep.TRANSITION_NOT_ELIGIBLE:
+				return (
+					<OnboardingComponent.Tip
+						key={ onboardingData.transitionNotEligible.id }
+						title={ onboardingData.transitionNotEligible.title }
+						desc={ onboardingData.transitionNotEligible.desc }
+						type='exclamation'
+						onContinue={ () => {
+							setFormStep(FormStep.CONFIRM_WAITLIST_EMAIL);
+							onAddFlowFormSteps(FormStep.CONFIRM_WAITLIST_EMAIL);
 						} }
 					/>
 				);
 			case FormStep.CONFIRM_WAITLIST_EMAIL:
 				return (
 					<OnboardingComponent.FormWaitlist
-						key={ onboardingData.formDetail.id }
-					// onSubmit={ onStepNext }
+						key={ onboardingData.formWaitlist.id }
+						onSubmit={ () => {
+							const nextStep = onboardingData.formWaitlist.nextStep;
+
+							if (nextStep?.transition) {
+								onAddTransitionData(nextStep);
+							}
+						} }
 					/>
 				);
 			case FormStep.TRANSITION_ELIGIBLE_BLOODWORK:

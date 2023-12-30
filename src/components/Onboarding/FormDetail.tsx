@@ -28,8 +28,8 @@ type NotifErrorMessageState = {
 
 type FormDetailProps = {
 	onSubmit?: (data: IPrecheckout.FormDetailState) => void; // eslint-disable-line no-unused-vars,
-	userData : IPrecheckout.UserData,
-	isAlreadyOnHRT : boolean
+	userData: IPrecheckout.UserData,
+	isAlreadyOnHRT: boolean;
 };
 
 const errorNotifVariants: Variants = {
@@ -98,7 +98,7 @@ const FormDetail: React.FC<FormDetailProps> = ({ onSubmit, userData, isAlreadyOn
 	const onSubmitForm = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 		setEnableValidation(true);
-		
+
 		formik.handleSubmit();
 	};
 
