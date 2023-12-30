@@ -352,9 +352,9 @@ const onboardingData = {
 					'Access to Geviti'
 				],
 				tooltips: [
-					'1-on-1 Consultation With Doctor',
-					'Professional Medical Evaluation',
-					'Access to Geviti'
+					'Telehealth Clinician Visit - During a 15-30 minute initial consultation with one of our qualified clinicians, we’ll identify the next best steps for you on your journey towards longevity and vitality.',
+					'Discounted Bloodwork - If we determine that gaining deeper insight into your health status is necessary by examining your blood biomarkers, you will be eligible for a discount on our bloodwork packages, rather than paying the full price listed on our site.',
+					'Access to Geviti - Your subscription to Geviti, which comes with a $99 monthly fee, will begin billing 30 days after signup. You are free to cancel anytime. Through Geviti, you’ll have enhanced access to a clinical team committed to your longevity and well-being, as well as a wide range of cutting-edge pharmaceuticals and nutraceuticals delivered directly to you.'
 				],
 				statement: 'I acknowledge that buying the Clinical Consultation does not guarantee the option to change therapy to Geviti.',
 				mostPopular: true,
@@ -380,11 +380,11 @@ const onboardingData = {
 					'Custom Treatment Plan'
 				],
 				tooltips: [
-					'At-home blood draw',
-					'Access To Geviti Platform',
-					'Prescription Product Access',
-					'Personally Assigned Health Coach',
-					'Custom Treatment Plan'
+					'Experience convenient, personalized healthcare from the comfort of your home or any location of your choice. Our mobile phlebotomy service ensures that a professional team comes to you for blood drawing, making the process as comfortable and stress-free as possible.',
+					'As a member of the Geviti platform, you gain exclusive access to a dedicated clinical team, advanced anti-aging therapies, concierge-level care, wholesale supplements from renowned brands, and much more. This comprehensive approach ensures a personalized and cutting-edge healthcare experience.',
+					'A thorough blood panel serves as your gateway to the Geviti platform, enabling us to design a personalized plan that may encompass various anti-aging therapies, meticulously crafted at our associated compound pharmacies.',
+					'Geviti offers personalized concierge care, featuring qualified professionals dedicated to educating and guiding you towards a path of enhanced longevity.',
+					'After collecting your bloodwork and additional health data through our post-purchase onboarding process, we create a custom-tailored plan designed specifically for your needs.'
 				],
 				mostPopular: false,
 				image: '/images/onboarding/bloodwork.png'
@@ -407,11 +407,11 @@ const onboardingData = {
 					'Custom Treatment Plan'
 				],
 				tooltips: [
-					'At-home blood draw',
-					'Access To Geviti Platform',
-					'Prescription Product Access',
-					'Personally Assigned Health Coach',
-					'Custom Treatment Plan'
+					'Experience convenient, personalized healthcare from the comfort of your home or any location of your choice. Our mobile phlebotomy service ensures that a professional team comes to you for blood drawing, making the process as comfortable and stress-free as possible.',
+					'As a member of the Geviti platform, you gain exclusive access to a dedicated clinical team, advanced anti-aging therapies, concierge-level care, wholesale supplements from renowned brands, and much more. This comprehensive approach ensures a personalized and cutting-edge healthcare experience.',
+					'A thorough blood panel serves as your gateway to the Geviti platform, enabling us to design a personalized plan that may encompass various anti-aging therapies, meticulously crafted at our associated compound pharmacies.',
+					'Geviti offers personalized concierge care, featuring qualified professionals dedicated to educating and guiding you towards a path of enhanced longevity.',
+					'After collecting your bloodwork and additional health data through our post-purchase onboarding process, we create a custom-tailored plan designed specifically for your needs.'
 				],
 				mostPopular: true,
 				image: '/images/onboarding/bloodwork.png'
@@ -434,11 +434,11 @@ const onboardingData = {
 					'Custom Treatment Plan'
 				],
 				tooltips: [
-					'At-home blood draw',
-					'Access To Geviti Platform',
-					'Prescription Product Access',
-					'Personally Assigned Health Coach',
-					'Custom Treatment Plan'
+					'Experience convenient, personalized healthcare from the comfort of your home or any location of your choice. Our mobile phlebotomy service ensures that a professional team comes to you for blood drawing, making the process as comfortable and stress-free as possible.',
+					'As a member of the Geviti platform, you gain exclusive access to a dedicated clinical team, advanced anti-aging therapies, concierge-level care, wholesale supplements from renowned brands, and much more. This comprehensive approach ensures a personalized and cutting-edge healthcare experience.',
+					'A thorough blood panel serves as your gateway to the Geviti platform, enabling us to design a personalized plan that may encompass various anti-aging therapies, meticulously crafted at our associated compound pharmacies.',
+					'Geviti offers personalized concierge care, featuring qualified professionals dedicated to educating and guiding you towards a path of enhanced longevity.',
+					'After collecting your bloodwork and additional health data through our post-purchase onboarding process, we create a custom-tailored plan designed specifically for your needs.'
 				],
 				mostPopular: false,
 				longTitle: 'Ultimate Men’s Bloodwork Panel',
@@ -464,11 +464,11 @@ const onboardingData = {
 					'Custom Treatment Plan'
 				],
 				tooltips: [
-					'At-home blood draw',
-					'Access To Geviti Platform',
-					'Prescription Product Access',
-					'Personally Assigned Health Coach',
-					'Custom Treatment Plan'
+					'Experience convenient, personalized healthcare from the comfort of your home or any location of your choice. Our mobile phlebotomy service ensures that a professional team comes to you for blood drawing, making the process as comfortable and stress-free as possible.',
+					'As a member of the Geviti platform, you gain exclusive access to a dedicated clinical team, advanced anti-aging therapies, concierge-level care, wholesale supplements from renowned brands, and much more. This comprehensive approach ensures a personalized and cutting-edge healthcare experience.',
+					'A thorough blood panel serves as your gateway to the Geviti platform, enabling us to design a personalized plan that may encompass various anti-aging therapies, meticulously crafted at our associated compound pharmacies.',
+					'Geviti offers personalized concierge care, featuring qualified professionals dedicated to educating and guiding you towards a path of enhanced longevity.',
+					'After collecting your bloodwork and additional health data through our post-purchase onboarding process, we create a custom-tailored plan designed specifically for your needs.'
 				],
 				mostPopular: false,
 				image: '/images/onboarding/bloodwork.png'
@@ -491,11 +491,11 @@ const onboardingData = {
 					'Custom Treatment Plan'
 				],
 				tooltips: [
-					'At-home blood draw',
-					'Access To Geviti Platform',
-					'Prescription Product Access',
-					'Personally Assigned Health Coach',
-					'Custom Treatment Plan'
+					'Experience convenient, personalized healthcare from the comfort of your home or any location of your choice. Our mobile phlebotomy service ensures that a professional team comes to you for blood drawing, making the process as comfortable and stress-free as possible.',
+					'As a member of the Geviti platform, you gain exclusive access to a dedicated clinical team, advanced anti-aging therapies, concierge-level care, wholesale supplements from renowned brands, and much more. This comprehensive approach ensures a personalized and cutting-edge healthcare experience.',
+					'A thorough blood panel serves as your gateway to the Geviti platform, enabling us to design a personalized plan that may encompass various anti-aging therapies, meticulously crafted at our associated compound pharmacies.',
+					'Geviti offers personalized concierge care, featuring qualified professionals dedicated to educating and guiding you towards a path of enhanced longevity.',
+					'After collecting your bloodwork and additional health data through our post-purchase onboarding process, we create a custom-tailored plan designed specifically for your needs.'
 				],
 				mostPopular: true,
 				image: '/images/onboarding/bloodwork.png'
@@ -518,11 +518,11 @@ const onboardingData = {
 					'Custom Treatment Plan'
 				],
 				tooltips: [
-					'At-home blood draw',
-					'Access To Geviti Platform',
-					'Prescription Product Access',
-					'Personally Assigned Health Coach',
-					'Custom Treatment Plan'
+					'Experience convenient, personalized healthcare from the comfort of your home or any location of your choice. Our mobile phlebotomy service ensures that a professional team comes to you for blood drawing, making the process as comfortable and stress-free as possible.',
+					'As a member of the Geviti platform, you gain exclusive access to a dedicated clinical team, advanced anti-aging therapies, concierge-level care, wholesale supplements from renowned brands, and much more. This comprehensive approach ensures a personalized and cutting-edge healthcare experience.',
+					'A thorough blood panel serves as your gateway to the Geviti platform, enabling us to design a personalized plan that may encompass various anti-aging therapies, meticulously crafted at our associated compound pharmacies.',
+					'Geviti offers personalized concierge care, featuring qualified professionals dedicated to educating and guiding you towards a path of enhanced longevity.',
+					'After collecting your bloodwork and additional health data through our post-purchase onboarding process, we create a custom-tailored plan designed specifically for your needs.'
 				],
 				mostPopular: false,
 				longTitle: 'Ultimate Women’s Bloodwork Panel',

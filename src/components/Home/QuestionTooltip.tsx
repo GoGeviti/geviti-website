@@ -10,6 +10,7 @@ import 'react-popper-tooltip/dist/styles.css';
 interface QuestionTooltipProps {
 	text: string;
 	className?: string;
+	tooltipClassName?: string;
 	icon?: React.ReactNode;
 }
 
@@ -26,7 +27,7 @@ const QuestionTooltip = (props: QuestionTooltipProps) => {
 		<>
 			<div
 				ref={ setTriggerRef }
-				className='flex items-center'>
+				className='flex items-center w-[16px] h-[16px] justify-center'>
 				{ props.icon
 					? props.icon
 					: (
@@ -34,7 +35,8 @@ const QuestionTooltip = (props: QuestionTooltipProps) => {
 							src={ questionCircle }
 							alt='Question tooltip'
 							width={ 16 }
-							height={ 17 }
+							height={ 16 }
+							className='w-[16px] h-[16px] object-contain'
 						/>
 					) }
 			</div>
@@ -44,14 +46,17 @@ const QuestionTooltip = (props: QuestionTooltipProps) => {
 					{ ...getTooltipProps({
 						className:
 							clsxm(
-								'tooltip-container max-w-[350px] whitespace-normal text-center text-sm !bg-[#A3E0FF] !rounded-md !p-[10px] !shadow-none !border-none',
+								'tooltip-container !border-none max-w-[350px] whitespace-normal text-center text-sm !bg-[#A3E0FF] !rounded-md !p-[10px] !shadow-none !border-none',
 								props.className
 							),
 					}) }
 				>
 					<div
 						{ ...getArrowProps({
-							className: 'tooltip-arrow after:!border-t-[#A3E0FF]',
+							className: clsxm(
+								'tooltip-arrow after:!border-t-[#A3E0FF]',
+								props.tooltipClassName
+							),
 						}) }
 					/>
 					{ props.text }

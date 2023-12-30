@@ -178,8 +178,10 @@ const Tip: React.FC<TipProps> = ({
 
 							{ cta && (
 								<div className='flex justify-center mt-10 sm:mt-20'>
-									<Link href={ cta.href ?? '/' }>
-										<Button className='!bg-grey-secondary !text-primary !font-medium'>{ cta.title }</Button>
+									<Link
+										href={ cta.href ?? '/' }
+										className='w-full max-w-[430px]'>
+										<Button className='!bg-primary !text-white !font-medium w-full max-w-[430px] py-3'>{ cta.title }</Button>
 									</Link>
 								</div>
 							) }

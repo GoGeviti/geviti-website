@@ -27,17 +27,23 @@ body {
   display: none;
 }
 
-
-  @media (max-width: 1024px) {
-    .hero-landing-page span, p, h1, h2, h3 {
-      zoom: 1.2;
-    }
-
-    .products-page span, p, h1, h2, h3 {
-      zoom: 1.1;
-    }
+@media (max-width: 1024px) {
+  .hero-landing-page span,
+  p,
+  h1,
+  h2,
+  h3 {
+    zoom: 1.2;
   }
 
+  .products-page span,
+  p,
+  h1,
+  h2,
+  h3 {
+    zoom: 1.1;
+  }
+}
 
 /* Hide scrollbar for IE, Edge and Firefox */
 .no-scrollbar {
@@ -54,12 +60,12 @@ body {
   @apply max-lg:hidden;
 }
 
-input[type='number'] {
+input[type="number"] {
   font-size: inherit;
   background-color: inherit;
 }
 
-input[type='number']::placeholder {
+input[type="number"]::placeholder {
   font-size: inherit;
   color: inherit;
 }
@@ -69,7 +75,7 @@ input[type='number']::placeholder {
 }
 
 .react-date-picker__inputGroup__input:focus {
- @apply !ring-0 !outline-0;
+  @apply !ring-0 !outline-0;
 }
 
 .react-date-picker__inputGroup__input:invalid {
@@ -90,4 +96,8 @@ input[type='number']::placeholder {
 
 .react-calendar__tile--active {
   @apply !bg-primary/90 text-white rounded-sm;
+}
+
+.tooltip-container[data-popper-placement*="top"] .tooltip-arrow::before {
+  border: none !important;
 }
