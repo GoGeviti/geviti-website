@@ -3,6 +3,8 @@ declare global {
 		interface ProcessEnv {
 			NODE_ENV: 'development' | 'production';
 			BASE_API_URL: string;
+			NOTION_WAITING_LIST_DATABASE_ID: string;
+			NOTION_DATABASE_ID: string;
 			NEXT_PUBLIC_STAGE: 'development' | 'production';
 		}
 	}

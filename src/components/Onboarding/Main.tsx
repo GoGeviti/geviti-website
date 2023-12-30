@@ -422,6 +422,8 @@ const OrderJourney: React.FC<OrderJourneyProps> = ({ searchParams, state }) => {
 				return (
 					<OnboardingComponent.FormWaitlist
 						key={ onboardingData.formWaitlist.id }
+						userData={ userData }
+						isAlreadyOnHRT={ isAlreadyOnHRT }
 						onSubmit={ () => {
 							const nextStep = onboardingData.formWaitlist.nextStep;
 

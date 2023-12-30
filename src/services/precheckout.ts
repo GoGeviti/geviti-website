@@ -32,7 +32,9 @@ export const calculateAge = (birthdate: Date) => {
 
 export const createNotionDatabase = async(
 	formData: IPrecheckout.UserData & {
-		isAlreadyOnHRT : boolean
+	isAlreadyOnHRT : boolean,
+	isWaitingList? : boolean,
+
 	}
 ): Promise<ResponseType> => {
 	const notion = new Client({
@@ -42,7 +44,7 @@ export const createNotionDatabase = async(
 		await notion.pages.create({
 			parent: {
 				type: 'database_id',
-				database_id: process.env.NOTION_DATABASE_ID ?? ''
+				database_id: formData.isWaitingList ? process.env.NOTION_WAITING_LIST_DATABASE_ID : process.env.NOTION_DATABASE_ID
 			},
 			properties: {
 				Name: {
@@ -82,7 +84,18 @@ export const createNotionDatabase = async(
 					select: {
 						name: formData.isAlreadyOnHRT ? 'Yes' : 'No'
 					}
-				}
+				},
+				
+				...(
+					formData.isWaitingList ? {
+						'Waitlist Opt-in': {
+							select: {
+								name: formData.isWaitingList ? 'Yes' : 'Unclear'
+							}
+						}
+					} : {}
+				)
+				
 			}
 		});
 		return { status: 'OK', message: 'Contact created successfully' };

@@ -1,9 +1,13 @@
 'use client';
 
 import React, { useState } from 'react';
+import { AiFillCloseCircle } from 'react-icons/ai';
 import { motion } from 'framer-motion';
+import { toast } from 'sonner';
 
 import { onboardingData } from '@/constant/data';
+import { IPrecheckout } from '@/interfaces';
+import { createNotionDatabase } from '@/services/precheckout';
 
 import Button from './Button';
 import SuccessNotif from './SuccessNotif';
@@ -12,18 +16,40 @@ import { slideInVariants, slideInVariantsDelay } from './transitions';
 
 type FormWaitlistProps = {
 	onSubmit?: (email: string) => void; // eslint-disable-line no-unused-vars
+	userData: IPrecheckout.UserData;
+	isAlreadyOnHRT: boolean;
 };
 
-const FormWaitlist: React.FC<FormWaitlistProps> = ({ onSubmit }) => {
-	const [email, setEmail] = useState<string>('');
+const FormWaitlist: React.FC<FormWaitlistProps> = ({ onSubmit, userData, isAlreadyOnHRT }) => {
+	const [email, setEmail] = useState<string>(userData.email);
+	const [loading, setLoading] = useState(false);
 
 	const onChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setEmail(e.target.value);
 	};
 
-	const onSubmitForm = (e: React.FormEvent<HTMLFormElement>) => {
+	const onSubmitForm = async(e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
-		if (onSubmit) onSubmit(email);
+		// if (onSubmit) onSubmit(email);
+		setLoading(true);
+		const { status, message: messageResponse } = await createNotionDatabase({
+			birthdate: userData.birthdate,
+			email: email,
+			name: userData.name,
+			gender: userData.gender,
+			state: userData.state,
+			isAlreadyOnHRT: isAlreadyOnHRT,
+			isWaitingList: true
+		});
+		if (status === 'OK') {
+			setLoading(false);
+			if (onSubmit) onSubmit(email);
+		} else {
+			toast.error(messageResponse, {
+				icon: <AiFillCloseCircle className='h-5 w-5 text-danger' />,
+			});
+		}
+		setLoading(false);
 	};
 
 	return (
@@ -79,8 +105,10 @@ const FormWaitlist: React.FC<FormWaitlistProps> = ({ onSubmit }) => {
 							initial='initial'
 							animate='visible'
 						>
-							<Button type='submit'>
-								{ onboardingData.formWaitlist.submitLabel }
+							<Button
+								disabled={ loading }
+								type='submit'>
+								{ loading ? 'Loading...' : onboardingData.formWaitlist.submitLabel }
 							</Button>
 						</motion.div>
 					</form>
