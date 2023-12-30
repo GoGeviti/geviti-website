@@ -137,9 +137,9 @@ const Navbar: React.FC<NavbarProps> = ({
 			</>
 		);
 	};
+	const isMobile = windowDimensions.width < screens.lg;
 
 	const renderLogo = () => {
-		const isMobile = windowDimensions.width < screens.lg;
 
 		const src = isMobile && withBgWhite ? navbarData.logoDark : theme === 'dark' ? navbarData.logoLight : navbarData.logoDark;
 
@@ -168,7 +168,7 @@ const Navbar: React.FC<NavbarProps> = ({
 			<header
 				className={ clsxm(
 					'inset-x-0 top-0 z-50 absolute pt-11px lg:pt-6',
-					withBgWhite && 'max-lg:bg-white',
+					(withBgWhite && !isMobile) && 'max-lg:bg-white',
 					className
 				) }
 			>
