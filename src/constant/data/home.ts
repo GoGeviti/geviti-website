@@ -352,6 +352,7 @@ const homeData = {
 	biomarkersTable: [
 		{
 			title: 'Biomarkers Tested',
+			description: 'A biomarker is a measurable indicator within the blood that can signal the state of health or disease, potentially offering insights into lifespan and aging processes.',
 			essential: true,
 			comprehensive: true,
 			ultimateMale: true,

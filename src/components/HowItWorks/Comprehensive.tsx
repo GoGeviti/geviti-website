@@ -77,7 +77,7 @@ const Comprehensive: React.FC = () => {
 		<>
 			<div
 				id='packages'
-				className='container-center w-full py-[70px] lg:py-[143px] relative flex flex-col'>
+				className='container-center w-full pt-[70px] pb-12 lg:py-[143px] relative flex flex-col'>
 				<WrapperAnimation
 					className='flex flex-col items-center text-center space-y-[14px]'
 				>
@@ -108,7 +108,7 @@ const Comprehensive: React.FC = () => {
 					</div>
 				</WrapperAnimation>
 
-				<WrapperAnimation className='mt-5'>
+				<WrapperAnimation className='mt-5 max-lg:hidden'>
 					<AnimatePresence>
 						{ isBiomarkersTableOpen && (
 							<motion.div
@@ -121,6 +121,12 @@ const Comprehensive: React.FC = () => {
 						) }
 					</AnimatePresence>
 				</WrapperAnimation>
+			</div>
+
+			<div className='lg:hidden flex flex-col items-center gap-y-8 container-center pt-[35px] pb-[30px] w-full'>
+				<p className='text-primary text-sm font-semibold leading-5 font-Poppins text-center'>Compare biomarkers</p>
+
+				<TablePackageBiomarkers />
 			</div>
 		</>
 	);

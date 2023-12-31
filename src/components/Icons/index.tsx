@@ -136,7 +136,7 @@ export const Vial = (props?: React.SVGProps<SVGSVGElement>) => (
 			stroke='#181A1C'
 			strokeWidth='1.75'
 			strokeLinecap='round'
-			strokeLinejoin='round'/>
+			strokeLinejoin='round' />
 	</svg>
 
 );
@@ -213,7 +213,7 @@ export const SearchIcon2 = (props?: React.SVGProps<SVGSVGElement>) => (
 	>
 		<path
 			d='M14.2939 12.5786H13.3905L13.0703 12.2699C14.2297 10.9251 14.8669 9.20834 14.8656 7.43282C14.8656 5.96275 14.4297 4.52569 13.613 3.30337C12.7963 2.08105 11.6354 1.12837 10.2772 0.565793C8.91907 0.00322052 7.42457 -0.143974 5.98275 0.142823C4.54092 0.42962 3.21652 1.13753 2.17702 2.17702C1.13753 3.21652 0.42962 4.54092 0.142823 5.98275C-0.143974 7.42457 0.00322052 8.91907 0.565793 10.2772C1.12837 11.6354 2.08105 12.7963 3.30337 13.613C4.52569 14.4297 5.96275 14.8656 7.43282 14.8656C9.27387 14.8656 10.9663 14.191 12.2699 13.0703L12.5786 13.3905V14.2939L18.2962 20L20 18.2962L14.2939 12.5786ZM7.43282 12.5786C4.58548 12.5786 2.28702 10.2802 2.28702 7.43282C2.28702 4.58548 4.58548 2.28702 7.43282 2.28702C10.2802 2.28702 12.5786 4.58548 12.5786 7.43282C12.5786 10.2802 10.2802 12.5786 7.43282 12.5786Z'
-			fill='#272727'/>
+			fill='#272727' />
 	</svg>
 );
 
@@ -228,7 +228,7 @@ export const SearchIcon3 = (props?: React.SVGProps<SVGSVGElement>) => (
 	>
 		<path
 			d='M16.4697 17.5303C16.7626 17.8232 17.2374 17.8232 17.5303 17.5303C17.8232 17.2374 17.8232 16.7626 17.5303 16.4697L16.4697 17.5303ZM14.4684 13.4078C14.1755 13.1149 13.7007 13.1149 13.4078 13.4078C13.1149 13.7007 13.1149 14.1755 13.4078 14.4684L14.4684 13.4078ZM13.9381 13.9381L14.4684 14.4685L14.4685 14.4684L13.9381 13.9381ZM17.5303 16.4697L14.4684 13.4078L13.4078 14.4684L16.4697 17.5303L17.5303 16.4697ZM14.4685 14.4684C15.9748 12.962 16.9079 10.8787 16.9079 8.57895H15.4079C15.4079 10.4649 14.6443 12.1711 13.4078 13.4078L14.4685 14.4684ZM16.9079 8.57895C16.9079 3.979 13.1789 0.25 8.57895 0.25V1.75C12.3505 1.75 15.4079 4.80742 15.4079 8.57895H16.9079ZM8.57895 0.25C3.979 0.25 0.25 3.979 0.25 8.57895H1.75C1.75 4.80743 4.80743 1.75 8.57895 1.75V0.25ZM0.25 8.57895C0.25 13.1789 3.979 16.9079 8.57895 16.9079V15.4079C4.80742 15.4079 1.75 12.3505 1.75 8.57895H0.25ZM8.57895 16.9079C10.8787 16.9079 12.962 15.9748 14.4684 14.4685L13.4078 13.4078C12.1711 14.6443 10.4649 15.4079 8.57895 15.4079V16.9079Z'
-			fill='#697175'/>
+			fill='#697175' />
 	</svg>
 );
 
@@ -418,13 +418,13 @@ export const CheckCircleBlue = (props?: React.SVGProps<SVGSVGElement>) => (
 		{ ...props }>
 		<path
 			d='M10 19.0914C14.9706 19.0914 19 15.2517 19 10.5153C19 5.7788 14.9706 1.93915 10 1.93915C5.02944 1.93915 1 5.7788 1 10.5153C1 15.2517 5.02944 19.0914 10 19.0914Z'
-			fill='#A3E0FF'/>
+			fill='#A3E0FF' />
 		<path
 			d='M5.95 10.5153L8.65 13.0881L14.05 7.94243M19 10.5153C19 15.2517 14.9706 19.0914 10 19.0914C5.02944 19.0914 1 15.2517 1 10.5153C1 5.7788 5.02944 1.93915 10 1.93915C14.9706 1.93915 19 5.7788 19 10.5153Z'
 			stroke='white'
 			strokeWidth='2'
 			strokeLinecap='round'
-			strokeLinejoin='round'/>
+			strokeLinejoin='round' />
 	</svg>
 );
 export const CheckDisable = (props?: React.SVGProps<SVGSVGElement>) => (
@@ -439,7 +439,7 @@ export const CheckDisable = (props?: React.SVGProps<SVGSVGElement>) => (
 			fillRule='evenodd'
 			clipRule='evenodd'
 			d='M0 6.67552C0 4.93596 0.684819 3.26765 1.90381 2.0376C3.12279 0.807552 4.77609 0.116516 6.5 0.116516C8.22391 0.116516 9.87721 0.807552 11.0962 2.0376C12.3152 3.26765 13 4.93596 13 6.67552C13 8.41507 12.3152 10.0834 11.0962 11.3134C9.87721 12.5435 8.22391 13.2345 6.5 13.2345C4.77609 13.2345 3.12279 12.5435 1.90381 11.3134C0.684819 10.0834 0 8.41507 0 6.67552Z'
-			fill='#E0E0E0'/>
+			fill='#E0E0E0' />
 	</svg>
 );
 
@@ -520,21 +520,23 @@ export const EmergencyCallAddIcon = () => (
 	</svg>
 );
 
-export const CheckBlue = () => (
+export const CheckBlue = (props: React.SVGProps<SVGSVGElement>) => (
 	<svg
 		width='25'
 		height='24'
 		viewBox='0 0 25 24'
 		fill='none'
 		xmlns='http://www.w3.org/2000/svg'
-		className='w-4 h-4 md:h-6 md:w-6'>
+		className='w-4 h-4 md:h-6 md:w-6'
+		{ ...props }
+	>
 		<g clipPath='url(#clip0_375_9061)'>
 			<path
 				d='M7.875 12L10.875 15L16.875 9M22.375 12C22.375 17.5228 17.8978 22 12.375 22C6.85215 22 2.375 17.5228 2.375 12C2.375 6.47715 6.85215 2 12.375 2C17.8978 2 22.375 6.47715 22.375 12Z'
 				stroke='#A3E0FF'
 				strokeWidth='2'
 				strokeLinecap='round'
-				strokeLinejoin='round'/>
+				strokeLinejoin='round' />
 		</g>
 		<defs>
 			<clipPath id='clip0_375_9061'>
@@ -543,7 +545,7 @@ export const CheckBlue = () => (
 					width='24'
 					height='24'
 					rx='12'
-					fill='white'/>
+					fill='white' />
 			</clipPath>
 		</defs>
 	</svg>
@@ -561,29 +563,31 @@ export const CheckBlue2 = () => (
 			clipRule='evenodd'
 			d='M22.0001 10.7304C22.0001 16.6241 17.2223 21.4019 11.3286 21.4019C5.43494 21.4019 0.657166 16.6241 0.657166 10.7304C0.657166 4.83675 5.43494 0.0589752 11.3286 0.0589752C17.2223 0.0589752 22.0001 4.83675 22.0001 10.7304Z'
 			fill='#A3E0FF'
-			fillOpacity='0.09'/>
+			fillOpacity='0.09' />
 		<path
 			d='M6.82004 11.6064L9.25993 14.0463L15.3597 7.94658'
 			stroke='#A3E0FF'
 			strokeWidth='1.85591'
 			strokeLinecap='round'
-			strokeLinejoin='round'/>
+			strokeLinejoin='round' />
 	</svg>
 );
-export const Minus = () => (
+export const Minus = (props: React.SVGProps<SVGSVGElement>) => (
 	<svg
 		xmlns='http://www.w3.org/2000/svg'
 		width='21'
 		height='20'
 		viewBox='0 0 21 20'
 		fill='none'
-		className='w-4 h-4 md:h-6 md:w-6'>
+		className='w-4 h-4 md:h-6 md:w-6'
+		{ ...props }
+	>
 		<path
 			d='M5.0415 10H16.7082'
 			stroke='#919B9F'
 			strokeWidth='2'
 			strokeLinecap='round'
-			strokeLinejoin='round'/>
+			strokeLinejoin='round' />
 	</svg>
 );
 
@@ -601,7 +605,7 @@ export const HelpIcons = (props: React.SVGProps<SVGSVGElement>) => (
 				stroke='#919B9F'
 				strokeWidth='1.33333'
 				strokeLinecap='round'
-				strokeLinejoin='round'/>
+				strokeLinejoin='round' />
 		</g>
 		<defs>
 			<clipPath id='clip0_823_744'>
@@ -609,7 +613,7 @@ export const HelpIcons = (props: React.SVGProps<SVGSVGElement>) => (
 					width='16'
 					height='16'
 					fill='white'
-					transform='translate(0.125)'/>
+					transform='translate(0.125)' />
 			</clipPath>
 		</defs>
 	</svg>
@@ -628,7 +632,7 @@ export const CloseMinus = (props: React.SVGProps<SVGSVGElement>) => (
 			stroke='#A3E0FF'
 			strokeWidth='2'
 			strokeLinecap='round'
-			strokeLinejoin='round'/>
+			strokeLinejoin='round' />
 	</svg>
 );
 
@@ -645,13 +649,13 @@ export const AddPlus = (props: React.SVGProps<SVGSVGElement>) => (
 			stroke='#170F49'
 			strokeWidth='2'
 			strokeLinecap='round'
-			strokeLinejoin='round'/>
+			strokeLinejoin='round' />
 		<path
 			d='M1.02441 9.34021H23.603'
 			stroke='#170F49'
 			strokeWidth='2'
 			strokeLinecap='round'
-			strokeLinejoin='round'/>
+			strokeLinejoin='round' />
 	</svg>
 );
 
@@ -667,10 +671,10 @@ export const Circle = (props: React.SVGProps<SVGSVGElement>) => (
 			cx='6.38889'
 			cy='6.95237'
 			r='6.38889'
-			fill='#181A1C'/>
+			fill='#181A1C' />
 		<path
 			d='M6.58204 7.12634V8.40734H7.77054L7.64171 8.53449C7.01408 9.15115 6.15 9.06294 5.98347 9.0391C4.86646 8.87937 4.22626 8.12047 4.22626 6.95628C4.22626 5.62918 5.05106 4.8377 6.43436 4.8377C6.92767 4.8377 7.46026 4.89968 7.88287 5.17781C8.0604 5.29463 8.21593 5.45118 8.31333 5.64349C8.41781 5.84851 8.4453 6.09963 8.4453 6.3277H9.93072C9.93072 6.14016 9.92758 5.94944 9.89695 5.76428C9.81368 5.25807 9.52697 4.7916 9.16798 4.43639C8.82785 4.09945 8.40995 3.84754 7.96613 3.67828C7.47832 3.49153 6.95595 3.40332 6.43436 3.40332C4.28517 3.40332 2.83981 4.83054 2.83981 6.95628C2.83981 7.51811 2.93329 8.03305 3.11632 8.48601C3.28756 8.90878 3.54914 9.2926 3.87278 9.59219C4.18698 9.88622 4.56561 10.1143 4.99686 10.27C5.53337 10.4639 6.10994 10.5347 6.66059 10.4759C7.27173 10.4107 7.83338 10.2041 8.28191 9.87668C8.36518 9.81629 8.44766 9.75113 8.52307 9.6812L8.64482 9.57153V10.5021H9.93858V7.12634H6.58126H6.58204Z'
-			fill='#A3E0FF'/>
+			fill='#A3E0FF' />
 	</svg>
 );
 export const ArrowEmail = (props: React.SVGProps<SVGSVGElement>) => (
@@ -685,10 +689,10 @@ export const ArrowEmail = (props: React.SVGProps<SVGSVGElement>) => (
 			cx='13'
 			cy='13'
 			r='13'
-			fill='black'/>
+			fill='black' />
 		<path
 			d='M8.56968 16.3698C8.27678 16.6627 8.27678 17.1375 8.56968 17.4304C8.86257 17.7233 9.33744 17.7233 9.63034 17.4304L8.56968 16.3698ZM17.4303 9.63043C17.7232 9.33753 17.7232 8.86266 17.4303 8.56977C17.1374 8.27687 16.6626 8.27687 16.3697 8.56977L17.4303 9.63043ZM17.65 9.1001C17.65 8.68588 17.3142 8.3501 16.9 8.3501C16.4858 8.3501 16.15 8.68588 16.15 9.1001H17.65ZM16.15 14.4626C16.15 14.8768 16.4858 15.2126 16.9 15.2126C17.3142 15.2126 17.65 14.8768 17.65 14.4626H16.15ZM16.9 9.8501C17.3142 9.8501 17.65 9.51431 17.65 9.1001C17.65 8.68588 17.3142 8.3501 16.9 8.3501V9.8501ZM11.5375 8.3501C11.1233 8.3501 10.7875 8.68588 10.7875 9.1001C10.7875 9.51431 11.1233 9.8501 11.5375 9.8501V8.3501ZM9.63034 17.4304L17.4303 9.63043L16.3697 8.56977L8.56968 16.3698L9.63034 17.4304ZM16.15 9.1001V14.4626H17.65V9.1001H16.15ZM16.9 8.3501H11.5375V9.8501H16.9V8.3501Z'
-			fill='white'/>
+			fill='white' />
 	</svg>);
 
 export const ClockIcon = (props: React.SVGProps<SVGSVGElement>) => (
@@ -705,7 +709,7 @@ export const ClockIcon = (props: React.SVGProps<SVGSVGElement>) => (
 			stroke='#181A1C'
 			strokeWidth='1.5'
 			strokeLinecap='round'
-			strokeLinejoin='round'/>
+			strokeLinejoin='round' />
 	</svg>
 
 );
@@ -723,7 +727,7 @@ export const Quote = (props: React.SVGProps<SVGSVGElement>) => (
 			clipRule='evenodd'
 			d='M60.3522 60.3523C59.2624 61.4421 59.2624 63.2091 60.3522 64.299C61.4421 65.3888 63.2091 65.3888 64.2989 64.299L68.7202 59.8777L68.9912 59.6066C72.5946 56.0039 74.7441 53.8548 76.2988 51.3176C77.6759 49.0704 78.6907 46.6204 79.306 44.0577C80.0006 41.1642 80.0004 38.1247 80 33.0293V32.6456V20.9854V20.7643V20.6512V17.6745V14.6977V14.5846C80 12.5969 80.0001 10.9381 79.8893 9.58257C79.7738 8.16898 79.5241 6.8421 78.8847 5.58703C77.9037 3.66182 76.3383 2.09643 74.4129 1.11522C73.158 0.47596 71.8309 0.226288 70.4174 0.110565C69.0621 5.34058e-05 67.4031 5.34058e-05 65.4156 5.34058e-05H65.3023H59.3488H59.2355C57.248 5.34058e-05 55.589 5.34058e-05 54.2338 0.110565C52.8202 0.226288 51.4931 0.47596 50.2382 1.11522C48.3128 2.09643 46.7475 3.66182 45.7663 5.58703C45.1271 6.8421 44.8774 8.16898 44.7617 9.58257C44.6512 10.9377 44.6512 12.5969 44.6512 14.5842V14.6977V20.6512V20.7647C44.6512 22.7521 44.6512 24.4109 44.7617 25.7664C44.8774 27.18 45.1271 28.5068 45.7663 29.7619C46.7475 31.6871 48.3128 33.2525 50.2382 34.2337C51.4931 34.873 52.8202 35.1227 54.2338 35.2384C55.589 35.3489 57.248 35.3489 59.2356 35.3489H59.3488H65.3023H65.4155C67.4031 35.3489 69.062 35.3489 70.4174 35.2384C71.8309 35.1227 73.158 34.873 74.4129 34.2337L74.4175 34.2311C74.4099 38.7067 74.3484 40.7988 73.8788 42.7547C73.4003 44.748 72.611 46.6535 71.5399 48.4013C70.372 50.3072 68.7287 51.9758 64.7735 55.931L60.3522 60.3523ZM15.7012 60.3523C14.6114 61.4421 14.6114 63.2091 15.7012 64.299C16.7911 65.3888 18.5578 65.3888 19.6476 64.299L24.0688 59.8777L24.3401 59.6066C27.9435 56.0039 30.093 53.8548 31.6476 51.3176C33.0248 49.0704 34.0395 46.6204 34.6549 44.0577C35.3496 41.1642 35.3492 38.1247 35.3488 33.0293V32.6456V20.9571V20.7647V20.6512V17.6745V14.6977V14.5842C35.3488 12.5969 35.3488 10.9381 35.238 9.58257C35.1226 8.16898 34.8729 6.8421 34.2337 5.58703C33.2525 3.66182 31.6871 2.09643 29.7619 1.11522C28.5068 0.47596 27.1795 0.226288 25.7663 0.110565C24.4108 5.34058e-05 22.752 5.34058e-05 20.7643 5.34058e-05H20.6512H14.6977H14.5842C12.5968 5.34058e-05 10.9377 5.34058e-05 9.58252 0.110565C8.16894 0.226288 6.84205 0.47596 5.58698 1.11522C3.66177 2.09643 2.09637 3.66182 1.11517 5.58703C0.475914 6.8421 0.226234 8.16898 0.110519 9.58257C7.62939e-06 10.9381 7.62939e-06 12.5969 7.62939e-06 14.5842V14.6977V20.6512V20.7647C7.62939e-06 22.7521 7.62939e-06 24.4109 0.110519 25.7664C0.226234 27.18 0.475914 28.5068 1.11517 29.7619C2.09637 31.6871 3.66177 33.2525 5.58698 34.2337C6.84205 34.873 8.16894 35.1227 9.58252 35.2384C10.938 35.3489 12.5968 35.3489 14.5846 35.3489H14.6977H20.6512H20.7643C22.752 35.3489 24.4108 35.3489 25.7663 35.2384C27.1795 35.1227 28.5068 34.873 29.7619 34.2337L29.7663 34.2311C29.7589 38.7067 29.6971 40.7988 29.2275 42.7547C28.749 44.748 27.9598 46.6535 26.8886 48.4013C25.7209 50.3072 24.0774 51.9758 20.1224 55.931L15.7012 60.3523Z'
 			fill='#181A1C'
-			fillOpacity='0.05'/>
+			fillOpacity='0.05' />
 	</svg>
 );
 
@@ -740,7 +744,7 @@ export const Minus2 = (props: React.SVGProps<SVGSVGElement>) => (
 			stroke='#919B9F'
 			strokeWidth='2'
 			strokeLinecap='round'
-			strokeLinejoin='round'/>
+			strokeLinejoin='round' />
 	</svg>
 );
 
@@ -757,7 +761,7 @@ export const Plus2 = (props: React.SVGProps<SVGSVGElement>) => (
 			stroke='#919B9F'
 			strokeWidth='2'
 			strokeLinecap='round'
-			strokeLinejoin='round'/>
+			strokeLinejoin='round' />
 	</svg>
 );
 export const Box = (props: React.SVGProps<SVGSVGElement>) => (
@@ -773,13 +777,13 @@ export const Box = (props: React.SVGProps<SVGSVGElement>) => (
 			stroke='#181A1C'
 			strokeWidth='2.08334'
 			strokeLinecap='round'
-			strokeLinejoin='round'/>
+			strokeLinejoin='round' />
 		<path
 			d='M17.1875 10.1488L7.8125 4.94043'
 			stroke='#181A1C'
 			strokeWidth='2.08334'
 			strokeLinecap='round'
-			strokeLinejoin='round'/>
+			strokeLinejoin='round' />
 	</svg>
 );
 
@@ -796,7 +800,7 @@ export const Water = (props: React.SVGProps<SVGSVGElement>) => (
 			stroke='#181A1C'
 			strokeWidth='2'
 			strokeLinecap='round'
-			strokeLinejoin='round'/>
+			strokeLinejoin='round' />
 	</svg>
 );
 
@@ -813,7 +817,7 @@ export const Smile = (props: React.SVGProps<SVGSVGElement>) => (
 			stroke='#181A1C'
 			strokeWidth='2'
 			strokeLinecap='round'
-			strokeLinejoin='round'/>
+			strokeLinejoin='round' />
 	</svg>
 );
 
@@ -830,6 +834,6 @@ export const Mail = (props: React.SVGProps<SVGSVGElement>) => (
 			stroke='#181A1C'
 			strokeWidth='2.08333'
 			strokeLinecap='round'
-			strokeLinejoin='round'/>
+			strokeLinejoin='round' />
 	</svg>
 );
