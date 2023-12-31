@@ -44,12 +44,12 @@ const columns: Column[] = [
 		count: '(50+)'
 	},
 	{
-		title: 'Ultimate Mens Health Assessment',
+		title: 'Ultimate Mens Health <br />Assessment',
 		selector: 'ultimateMale',
 		count: '(58+)'
 	},
 	{
-		title: 'Ultimate Womens Health Assessment',
+		title: 'Ultimate Womens Health <br /> Assessment',
 		selector: 'ultimateFemale',
 		count: '(58+)'
 	}
@@ -132,7 +132,7 @@ const TablePackageBiomarkers: React.FC<TablePackageBiomarkersItem> = ({ classnam
 				</table>
 			</div>
 
-			<div className={ clsxm('lg:hidden', classname) }>
+			<div className={ clsxm('lg:hidden w-full', classname) }>
 				<Accordion
 					type='single'
 					collapsible
@@ -142,10 +142,10 @@ const TablePackageBiomarkers: React.FC<TablePackageBiomarkersItem> = ({ classnam
 							<AccordionItem
 								key={ columnIdx }
 								value={ column.selector }
-								className='!border-0'>
-								<AccordionTrigger className='px-7 py-[23px] flex justify-between gap-1 bg-white data-[state=open]:rounded-t-lg data-[state=closed]:rounded-lg [&[data-state=open]>svg]:rotate-180'>
+								className='!border-0 w-full'>
+								<AccordionTrigger className='px-7 py-[23px] flex justify-between gap-1 bg-white w-full data-[state=open]:rounded-t-lg data-[state=closed]:rounded-lg [&[data-state=open]>svg]:rotate-180'>
 									<span className='text-left text-sm font-medium leading-5 font-Poppins text-primary'>
-										{ column.title } <span className='inline-block text-grey-primary'>{ column.count }</span>
+										<span dangerouslySetInnerHTML={ { __html: column.title } } />{ ' ' }<span className='inline-block text-grey-primary'>{ column.count }</span>
 									</span>
 
 									<ChevronDown className='transition-transform duration-200 ease-out text-primary w-[19px] h-[19px] flex-shrink-0' />
@@ -164,32 +164,7 @@ const TablePackageBiomarkers: React.FC<TablePackageBiomarkersItem> = ({ classnam
 															<QuestionTooltip
 																text={ data.description }
 																className='!max-w-[240px] text-left max-sm:p-2'
-																icon={ (
-																	<svg
-																		xmlns='http://www.w3.org/2000/svg'
-																		width='14'
-																		height='13'
-																		viewBox='0 0 14 13'
-																		fill='none'>
-																		<g clipPath='url(#clip0_2793_1423)'>
-																			<path
-																				d='M5.46182 5.21053C5.5819 4.86918 5.81891 4.58134 6.13088 4.39799C6.44285 4.21464 6.80965 4.14762 7.1663 4.20879C7.52294 4.26997 7.84644 4.45539 8.07947 4.73222C8.31251 5.00905 8.44005 5.35943 8.43951 5.72128C8.43951 6.74279 6.90725 7.25354 6.90725 7.25354M6.94811 9.29656H6.95322M12.0556 6.74279C12.0556 9.56361 9.76893 11.8503 6.94811 11.8503C4.1273 11.8503 1.84058 9.56361 1.84058 6.74279C1.84058 3.92198 4.1273 1.63525 6.94811 1.63525C9.76893 1.63525 12.0556 3.92198 12.0556 6.74279Z'
-																				stroke='#919B9F'
-																				strokeWidth='1.02151'
-																				strokeLinecap='round'
-																				strokeLinejoin='round' />
-																		</g>
-																		<defs>
-																			<clipPath id='clip0_2793_1423'>
-																				<rect
-																					width='12.2581'
-																					height='12.2581'
-																					fill='white'
-																					transform='translate(0.819092 0.613647)' />
-																			</clipPath>
-																		</defs>
-																	</svg>
-																) }
+																icon={ <HelpIcons className='w-[13px] h-[13px]' /> }
 															/> }
 													</span>
 												</span>
