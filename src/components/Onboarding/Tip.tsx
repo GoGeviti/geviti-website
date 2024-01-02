@@ -5,6 +5,10 @@ import { Player } from '@lottiefiles/react-lottie-player';
 import { motion, Variants } from 'framer-motion';
 import Link from 'next/link';
 
+import LottieExclamationIcon from '../../../public/lottie/exclamation-icon.json';
+import LottieSuccessIcon from '../../../public/lottie/success-icon.json';
+import LottieLogoIcon from '../../../public/lottie/logo-icon.json';
+
 import Button from './Button';
 import { slideInCenterToLeftProps } from './transitions';
 
@@ -51,28 +55,24 @@ const Tip: React.FC<TipProps> = ({
 	}, []);
 
 	const getLottieSource = () => {
-		if (type === 'logo') return 'https://lottie.host/5057054d-678f-4c6f-a7e6-6c327a613933/QfaWhTNjwk.json';
-		if (type === 'success') return 'https://lottie.host/abd0daf2-edae-4d5c-9631-22142fea5513/Wl99Hl9ztM.json';
-		if (type === 'exclamation') return 'https://lottie.host/c0ffddc6-4c83-4c8b-9a2b-89f3c6a9dad3/Qr8CgCUEDG.json';
-		return '';
+		if (type === 'logo') return LottieLogoIcon;
+		if (type === 'success') return LottieSuccessIcon;
+		if (type === 'exclamation') return LottieExclamationIcon;
+		return LottieLogoIcon;
 	};
 
 	const renderPlayer = () => {
 		const src = getLottieSource();
 
-		if (src) {
-			return (
-				<Player
-					src={ src }
-					ref={ lottieRef }
-					keepLastFrame
-					speed={ type === 'exclamation' ? 2 : 1 }
-					className={ type === 'exclamation' ? 'w-[268.15px] h-[268.15px]' : 'w-[278px] h-[278px]' }
-				/>
-			);
-		}
-
-		return null;
+		return (
+			<Player
+				src={ src }
+				ref={ lottieRef }
+				keepLastFrame
+				speed={ type === 'exclamation' ? 2 : 1 }
+				className={ type === 'exclamation' ? 'w-[268.15px] h-[268.15px]' : 'w-[278px] h-[278px]' }
+			/>
+		);
 	};
 
 	const bgColorVariants: Variants = {
