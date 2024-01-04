@@ -154,7 +154,7 @@ const config: Config = {
 					'@apply bg-grey-secondary text-primary font-medium': {},
 				},
 				'.btn-cta-landing': {
-					'@apply btn !py-1.5 sm:!py-3 flex items-center gap-7px sm:gap-2 !translate-y-0':
+					'@apply btn !py-[10px] sm:!py-3 flex items-center gap-7px sm:gap-2 !translate-y-0':
 						{},
 				},
 				'.text-pretitle': {
