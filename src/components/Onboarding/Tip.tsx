@@ -50,7 +50,7 @@ const Tip: React.FC<TipProps> = ({
 		if (onContinue) {
 			setTimeout(() => {
 				onContinue();
-			}, 5000);
+			}, type === 'success' ? 8000 : 5000);
 		}
 	}, []);
 

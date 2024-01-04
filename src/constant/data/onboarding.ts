@@ -310,7 +310,7 @@ const onboardingData = {
 		nextStep: {
 			transition: {
 				title: 'You have successfully joined the waitlist.',
-				desc: 'Geviti will reach out to let you know when you are selected',
+				desc: 'Geviti will reach out to let you know when you are selected.',
 				type: 'success',
 				cta: {
 					title: 'Return to Home Page',
