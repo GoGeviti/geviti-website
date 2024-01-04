@@ -115,9 +115,16 @@ export const getAllPost = async(limit?:number): Promise<PaginatedDocs<Post>> => 
 	const stringifiedQuery = qs.stringify({
 		depth: 1,
 		limit: limit ?? 100,
-		draft: false,
-		sort: 'order'
+		sort: 'order',
+		draft: true,
+		where: {
+			_status: {
+				equals: 'published',
+			},
+		}
 	});
+
+	// console.log('getAllPost ==> ', process.env.BASE_API_URL + `/api/posts?${stringifiedQuery}`);
 
 	try {
 		const res = await fetch(
@@ -154,6 +161,7 @@ export const getPrivacyById = async(): Promise<Privacy> => {
 		return Promise.reject(error);
 	}
 };
+
 export const getTermsAndConditions = async(): Promise<Privacy> => {
 	const stringifiedQuery = qs.stringify({
 		depth: 1,

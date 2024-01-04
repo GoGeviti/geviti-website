@@ -143,7 +143,7 @@ const faqData = {
 		title: '<p>Start your customized longevity plan today.</p>',
 		btnCta: {
 			title: 'Get Started',
-			href: '/precheckout'
+			href: '/onboarding'
 		},
 		list: [
 			{
@@ -168,18 +168,26 @@ const faqData = {
 		title: 'Check Out The Blog',
 		btn: 'View All',
 		list: [
-			{ pretitle: 'Nutrition',
+			{
+				pretitle: 'Nutrition',
 				title: 'The Vibrancy of Plant-Based Diets: Nature\'s Bounty on Your Plate',
-				image: '/images/blog/topics-2.webp' },
-			{ pretitle: 'Lifestyle',
+				image: '/images/blog/topics-2.webp'
+			},
+			{
+				pretitle: 'Lifestyle',
 				title: 'Breath is Life: Exploring the Power of Deep Breathing Exercises',
-				image: '/images/blog/article-1.webp' },
-			{ pretitle: 'Hormones',
+				image: '/images/blog/article-1.webp'
+			},
+			{
+				pretitle: 'Hormones',
 				title: 'More Than Just Quenching Thirst: The Health Benefits of Adequate Hydration',
-				image: '/images/blog/news-article.webp' },
-			{ pretitle: 'Lifestyle',
+				image: '/images/blog/news-article.webp'
+			},
+			{
+				pretitle: 'Lifestyle',
 				title: 'Finding Balance: The Art of Mindful Living in a Busy World',
-				image: '/images/blog/topics-4.webp' },
+				image: '/images/blog/topics-4.webp'
+			},
 		]
 	},
 };

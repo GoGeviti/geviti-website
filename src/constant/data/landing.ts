@@ -11,7 +11,7 @@ const landingData = {
 		iconsMenu: [
 			{
 				id: 'shopping',
-				href: '/orders',
+				href: '/cart',
 				icon: ShoppingBagIcon,
 			},
 		]
@@ -23,14 +23,14 @@ const landingData = {
 		image: '/images/landing/hero.png',
 		imageMobile: '/images/landing/hero_mobile.png',
 		btnCta: {
-			text: 'Join Geviti',
-			href: '/precheckout',
+			text: 'Get Started',
+			href: '/onboarding',
 			externalLink: false,
 		},
 		btnCta2: {
-			href: '/products',
+			href: '/how-it-works',
 			externalLink: false,
-			text: 'See Products',
+			text: 'How It Works',
 		},
 		mainKeys: [
 			{
@@ -67,7 +67,7 @@ const landingData = {
 		image: '/images/landing/investment.png',
 		imageMobile: '/images/landing/investment_mobile.png',
 		btnCta: {
-			href: '/get-started',
+			href: '/onboarding',
 			externalLink: false,
 			text: 'Get Started',
 		},
@@ -86,9 +86,9 @@ const landingData = {
 	},
 	steps: {
 		preTitle: 'Easy online care',
-		title: 'Access to better care in just 4 easy steps.',
+		title: 'Access to better care <span class="sm:hidden"><br /></span>in just 4 easy steps.',
 		btnCta: {
-			href: '/get-started',
+			href: '/onboarding',
 			externalLink: false,
 			text: 'Get Started',
 		},
@@ -123,7 +123,7 @@ const landingData = {
 		preTitle: 'Quality Care made accessible',
 		title: 'Easy to use Geviti telehealth dashboard.',
 		btnCta: {
-			href: '/get-started',
+			href: '/onboarding',
 			externalLink: false,
 			text: 'Start Now',
 		},
@@ -154,7 +154,7 @@ const landingData = {
 			},
 		],
 		btnCta: {
-			href: '/get-started',
+			href: '/onboarding',
 			externalLink: false,
 			text: 'Start Now',
 		},
@@ -184,14 +184,14 @@ const landingData = {
 		notes:
 			'*Product images are for display purposes; actual items from US-based pharmacies may vary.',
 		list: [
-			'Treatments for both <span class="font-semibold">men</span> and <span class="font-semibold">women</women>',
+			'Treatments for both <span class="font-semibold">men</span> and <span class="font-semibold">women</span>',
 			'Data-driven care to truly optimize your life',
 			'24/7 health tracking via wearable integrations ',
 			'Driven by technology to make your life simpler',
 		],
 		btnCtaList: [
 			{
-				href: '/get-started',
+				href: '/onboarding',
 				externalLink: false,
 				text: 'Start Now',
 			},
@@ -212,20 +212,22 @@ const landingData = {
 		descriptionMobile:
 			'Geviti aims to increase both healthspan and lifespan by making longevity accessible.',
 		btnCta: {
-			href: '/get-started',
+			href: '/onboarding',
 			externalLink: false,
 			text: 'Start Now',
 		},
 	},
 	flexible: {
 		preTitle: 'Personalized plans that are right for you',
+		preTitleMobile: 'Personalized for you',
 		title: 'Full access for just $99',
 		description:
 			'Unlock personalized healthcare on the Geviti platform. From hormone optimization to peptide therapies and advanced diagnostics—all at your fingertips.',
+		descriptionMobile: 'From hormone optimization to peptide therapies and advanced diagnostics—all at your fingertips with the Geviti platform.',
 		image: '/images/landing/compressed/flexible.webp',
 		imageMobile: '/images/landing/compressed/flexible-mobile.webp',
 		btnCta: {
-			href: '/precheckout',
+			href: '/onboarding',
 			externalLink: false,
 			text: 'Join Now',
 		},

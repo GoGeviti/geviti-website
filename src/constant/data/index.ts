@@ -8,6 +8,7 @@ import howItWorksData from './howItWorks';
 import landingData from './landing';
 import marketplaceData from './marketplace';
 import navbarData from './navbar';
+import onboardingData from './onboarding';
 import packagesData from './packages';
 import privacyPolicyData from './privacyPolicy';
 import productListData from './productList';
@@ -26,6 +27,7 @@ export {
 	landingData,
 	marketplaceData,
 	navbarData,
+	onboardingData,
 	packagesData,
 	privacyPolicyData,
 	productListData,

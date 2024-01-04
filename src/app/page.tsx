@@ -4,7 +4,7 @@ import { Footer, LandingComponent } from '@/components';
 
 const HomePage: NextPage = () => {
 	return (
-		<div className='hero-landing-page flex min-h-screen flex-col w-full bg-grey-background'>
+		<div className='flex min-h-screen flex-col w-full bg-grey-background'>
 			<LandingComponent.Hero />
 			<LandingComponent.Steps />
 			<LandingComponent.Flexible />

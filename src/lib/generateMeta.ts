@@ -25,9 +25,9 @@ export const generateMeta = async(args: { doc: Post }): Promise<Metadata> => {
 					},
 				]
 				: undefined,
-			title: doc?.meta?.title || 'Payload',
+			title: doc?.meta?.title || 'Geviti',
 			url: Array.isArray(doc?.slug) ? doc?.slug.join('/') : '/',
 		}),
-		title: doc?.meta?.title || 'Payload',
+		title: doc?.meta?.title || 'Geviti',
 	};
 };

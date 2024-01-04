@@ -6,7 +6,7 @@ const howItWorksData = {
 		title: '<p>It’s never been easier to get the <br class="max-md:hidden"/> healthcare you deserve.</p>',
 		btnCtaList: [
 			{
-				href: '/get-started',
+				href: '/onboarding',
 				externalLink: false,
 				text: 'Get Started',
 			},
@@ -69,54 +69,99 @@ const howItWorksData = {
 	comprehensive: {
 		preTitle: 'Care based off of biomarkers',
 		title: 'Comprehensive Blood panels',
-		desc: '<p>An a at-home blood draw must be done in order to to enter <br class="max-lg:hidden"/>the Geviti platform.</p>',
+		desc: '<p>An a at-home blood draw must be done in order to enter <br class="max-lg:hidden"/>the Geviti platform.</p>',
 		list: [
 			{
 				tag: 'Most Affordable',
 				title: 'Essentials Panel',
 				price: '$299',
-				priceNote: '+ $89 monthly',
+				priceNote: '+ $99 monthly',
 				biomarkers: '38+',
 				notes: 'Biomarkers Tested',
 				btn: 'Get Started',
 				list: [
-					'At-home blood draw',
-					'Access To Geviti Platform',
-					'Prescription Product Access',
-					'Personally Assigned Health Coach',
-					'Custom Treatment Plan'
+					{
+						title: 'At-home blood draw',
+						description: 'Experience convenient, personalized healthcare from the comfort of your home or any location of your choice. Our mobile phlebotomy service ensures that a professional team comes to you for blood drawing, making the process as comfortable and stress-free as possible.'
+					},
+					{
+						title: 'Access To Geviti Platform',
+						description: 'As a member of the Geviti platform, you gain exclusive access to a dedicated clinical team, advanced anti-aging therapies, concierge-level care, wholesale supplements from renowned brands, and much more. This comprehensive approach ensures a personalized and cutting-edge healthcare experience.'
+					},
+					{
+						title: 'Prescription Product Access',
+						description: 'A thorough blood panel serves as your gateway to the Geviti platform, enabling us to design a personalized plan that may encompass various anti-aging therapies, meticulously crafted at our associated compound pharmacies.'
+					},
+					{
+						title: 'Personally Assigned Health Coach',
+						description: 'Geviti offers personalized concierge care, featuring qualified professionals dedicated to educating and guiding you towards a path of enhanced longevity.'
+					},
+					{
+						title: 'Custom Treatment Plan',
+						description: 'After collecting your bloodwork and additional health data through our post-purchase onboarding process, we create a custom-tailored plan designed specifically for your needs.'
+					}
 				]
 			},
 			{
 				tag: 'Most Popular',
 				title: 'Comprehensive Panel',
 				price: '$469',
-				priceNote: '+ $89 monthly',
+				priceNote: '+ $99 monthly',
 				biomarkers: '50+',
 				notes: 'Biomarkers Tested',
 				btn: 'Get Started',
 				list: [
-					'At-home blood draw',
-					'Access To Geviti Platform',
-					'Prescription Product Access',
-					'Personally Assigned Health Coach',
-					'Custom Treatment Plan'
+					{
+						title: 'At-home blood draw',
+						description: 'Experience convenient, personalized healthcare from the comfort of your home or any location of your choice. Our mobile phlebotomy service ensures that a professional team comes to you for blood drawing, making the process as comfortable and stress-free as possible.'
+					},
+					{
+						title: 'Access To Geviti Platform',
+						description: 'As a member of the Geviti platform, you gain exclusive access to a dedicated clinical team, advanced anti-aging therapies, concierge-level care, wholesale supplements from renowned brands, and much more. This comprehensive approach ensures a personalized and cutting-edge healthcare experience.'
+					},
+					{
+						title: 'Prescription Product Access',
+						description: 'A thorough blood panel serves as your gateway to the Geviti platform, enabling us to design a personalized plan that may encompass various anti-aging therapies, meticulously crafted at our associated compound pharmacies.'
+					},
+					{
+						title: 'Personally Assigned Health Coach',
+						description: 'Geviti offers personalized concierge care, featuring qualified professionals dedicated to educating and guiding you towards a path of enhanced longevity.'
+					},
+					{
+						title: 'Custom Treatment Plan',
+						description: 'After collecting your bloodwork and additional health data through our post-purchase onboarding process, we create a custom-tailored plan designed specifically for your needs.'
+					}
 				]
 			},
 			{
 				tag: 'Most In-Depth',
 				title: 'Ultimate Panel',
 				price: '$599',
-				priceNote: '+ $89 monthly',
+				priceNote: '+ $99 monthly',
 				biomarkers: '58+',
 				notes: 'Biomarkers Tested',
 				btn: 'Get Started',
 				list: [
-					'At-home blood draw',
-					'Access To Geviti Platform',
-					'Prescription Product Access',
-					'Personally Assigned Health Coach',
-					'Custom Treatment Plan'
+					{
+						title: 'At-home blood draw',
+						description: 'Experience convenient, personalized healthcare from the comfort of your home or any location of your choice. Our mobile phlebotomy service ensures that a professional team comes to you for blood drawing, making the process as comfortable and stress-free as possible.'
+					},
+					{
+						title: 'Access To Geviti Platform',
+						description: 'As a member of the Geviti platform, you gain exclusive access to a dedicated clinical team, advanced anti-aging therapies, concierge-level care, wholesale supplements from renowned brands, and much more. This comprehensive approach ensures a personalized and cutting-edge healthcare experience.'
+					},
+					{
+						title: 'Prescription Product Access',
+						description: 'A thorough blood panel serves as your gateway to the Geviti platform, enabling us to design a personalized plan that may encompass various anti-aging therapies, meticulously crafted at our associated compound pharmacies.'
+					},
+					{
+						title: 'Personally Assigned Health Coach',
+						description: 'Geviti offers personalized concierge care, featuring qualified professionals dedicated to educating and guiding you towards a path of enhanced longevity.'
+					},
+					{
+						title: 'Custom Treatment Plan',
+						description: 'After collecting your bloodwork and additional health data through our post-purchase onboarding process, we create a custom-tailored plan designed specifically for your needs.'
+					}
 				]
 			},
 		],
@@ -126,7 +171,7 @@ const howItWorksData = {
 		subtitle: 'A bloodwork package may or may not be required to switch over to Geviti as your online HRT and peptide therapy provider. But lets find out!',
 		btnCta: {
 			title: 'Let’s find out',
-			href: '/precheckout'
+			href: '/contact-us'
 		}
 
 	},
@@ -142,7 +187,7 @@ const howItWorksData = {
 		],
 		btnCtaList: [
 			{
-				href: '/get-started',
+				href: '/onboarding',
 				externalLink: false,
 				text: 'Start Now',
 			},

@@ -10,12 +10,12 @@ const FAQPage: NextPage = async() => {
 
 	return (
 		<div className='flex min-h-screen flex-col w-full bg-grey-background'>
-			<HowItWorksComponent.Hero/>
-			<HowItWorksComponent.Product/>
-			<HowItWorksComponent.Comprehensive/>
-			<HomeComponent.CTA cta={ howItWorksData.cta }/>
-			<HowItWorksComponent.Quality/>
-			<HowItWorksComponent.FAQ/>
+			<HowItWorksComponent.Hero />
+			<HowItWorksComponent.Product />
+			<HowItWorksComponent.Comprehensive />
+			<HomeComponent.CTA cta={ howItWorksData.cta } />
+			<HowItWorksComponent.Quality />
+			<HowItWorksComponent.FAQ />
 			{ /* <HomeComponent.LearnMore/> */ }
 			<ArticleComponent.Articles
 				list={ allPost.docs }
@@ -23,7 +23,7 @@ const FAQPage: NextPage = async() => {
 				btnLink='/blog'
 				title='Learn More'
 				preTitle='Research'
-				className='max-md:bg-white rounded-lg'
+				wrapperClassName='max-md:bg-white'
 			/>
 			<LandingComponent.Products />
 		</div>

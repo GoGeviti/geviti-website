@@ -479,7 +479,7 @@ const homeData = {
 		},
 		{
 			title: 'PSA (Prostate-Specific Antigen)',
-			descriptoin: 'Screens for prostate health issues.',
+			description: 'Screens for prostate health issues.',
 			essential: false,
 			comprehensive: true,
 			ultimateMale: true,

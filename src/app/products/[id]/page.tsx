@@ -15,7 +15,7 @@ import { getAllPost, getProductById } from '@/services/products';
 import Breadcrumb from './breadcrumb';
 import ProductFaq from './productFaq';
 
-type ProductDetailPageProps = { params: { id: string } };
+type ProductDetailPageProps = { params: { id: string; }; };
 
 const ProductDetailPage: NextPage<ProductDetailPageProps> = async({
 	params,
@@ -55,15 +55,15 @@ const ProductDetailPage: NextPage<ProductDetailPageProps> = async({
 								</h1>
 								{ product?.fdaApproved && (
 									<span className='text-[12px] mt-[6px] bg-[#A3E0FF] rounded-full w-fit text-primary font-Poppins font-semibold py-[2px] px-[8px]'>
-                    					FDA approved
+										FDA approved
 									</span>
 								) }
 							</div>
 							<div className='flex flex-col gap-2 sm:gap-[9px] text-primary'>
 								<p className='font-Poppins text-primary text-2xl  font-semibold w-fit leading-[18px] pb-[9px] border-b border-[#B8C6CC]'>
-                  ${ product?.price }{ ' ' }
+									${ product?.price }{ ' ' }
 									<span className='text-grey-primary font-medium text-base'>
-                    per month
+										per month
 									</span>
 								</p>
 								{
@@ -112,11 +112,11 @@ const ProductDetailPage: NextPage<ProductDetailPageProps> = async({
 								<ProductFaq product={ product } />
 
 								<CustomLink
-									href='/get-started'
+									href='/onboarding'
 									className='btn btn-primary w-full text-[14px] sm:text-sm font-medium font-Poppins leading-[21px] sm:leading-[26px] py-3 sm:py-[13px]'
 									aria-label='Purchase'
 								>
-                  Get Started
+									Get Started
 								</CustomLink>
 							</div>
 						</div>

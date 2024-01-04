@@ -16,7 +16,7 @@ const heroData = howItWorksData.hero;
 const Hero: React.FC = () => {
 	const [hoveredItem, setHoveredItem] = useState(5);
 
-	const handleMouseEnter = (id:number) => {
+	const handleMouseEnter = (id: number) => {
 		setHoveredItem(id);
 	};
 
@@ -25,7 +25,7 @@ const Hero: React.FC = () => {
 	};
 	return (
 		<div className='lg:px-3 lg:py-15px overflow-hidden'>
-			<Navbar theme='light'/>
+			<Navbar theme='light' />
 			<div className=' w-full h-full lg:rounded-[19px] pt-[96px] lg:pt-[180px] container-center relative overflow-hidden'>
 				<div className='relative w-full mx-auto lg:mx-0 flex justify-center'>
 					<div className='text-center flex flex-col items-center w-full'>
@@ -33,7 +33,7 @@ const Hero: React.FC = () => {
 							{ heroData.preTitle }
 						</h2>
 						{ heroData.title && (
-							<h1 className='mt-[14px] font-Poppins text-[25px] lg:text-[40px] leading-[32.254px] lg:leading-[42.5px] -tracking-[1px] sm:-tracking-[1.6px] text-primary'>
+							<h1 className='mt-[14px] font-Poppins text-[6.1vw] xs2:text-[25px] lg:text-[40px] leading-[32.254px] lg:leading-[42.5px] -tracking-[1px] sm:-tracking-[1.6px] text-primary'>
 								<span
 									dangerouslySetInnerHTML={ { __html: heroData.title } } />
 							</h1>
@@ -88,7 +88,7 @@ const Hero: React.FC = () => {
 											className={ clsxm('flex flex-col text-center items-center gap-y-1 lg:gap-y-5px', hoveredItem === featureIdx ? 'lg:-translate-y-1' : 'lg:translate-y-0') }>
 											{ feature.image && (
 												<div className='relative overflow-hidden w-[22px] h-[22px] sm:w-[26px] sm:h-[26px]'>
-													<feature.image className='w-[22px] h-[22px] sm:w-[26px] sm:h-[26px]'/>
+													<feature.image className='w-[22px] h-[22px] sm:w-[26px] sm:h-[26px]' />
 												</div>
 											) }
 											<div className='font-Poppins font-medium leading-[129.403%] text-primary text-sm lg:text-base'><span dangerouslySetInnerHTML={ { __html: feature.text } } /></div>
@@ -103,7 +103,7 @@ const Hero: React.FC = () => {
 									playsInline
 									poster='/images/howitworks/thumbnail.png'>
 									<PosterImage
-										poster='/images/howitworks/thumbnail.png'/>
+										poster='/images/howitworks/thumbnail.png' />
 									<source src='/videos/dummy.mp4' />
 									<BigPlayButton position='center' />
 								</Player>
