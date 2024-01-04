@@ -224,7 +224,7 @@ export function serializeLexical({ nodes }: Props): JSX.Element {
 
 							return (
 								<Link
-									className='break-all'
+									className='break-all text-[#A3E0FF] underline'
 									href={ escapeHTML(fields.url) }
 									key={ index }
 									{ ...(fields?.newTab
