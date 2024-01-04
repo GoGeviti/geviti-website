@@ -6,8 +6,8 @@ import { motion, Variants } from 'framer-motion';
 import Link from 'next/link';
 
 import LottieExclamationIcon from '../../../public/lottie/exclamation-icon.json';
-import LottieSuccessIcon from '../../../public/lottie/success-icon.json';
 import LottieLogoIcon from '../../../public/lottie/logo-icon.json';
+import LottieSuccessIcon from '../../../public/lottie/success-icon.json';
 
 import Button from './Button';
 import { slideInCenterToLeftProps } from './transitions';
@@ -177,7 +177,7 @@ const Tip: React.FC<TipProps> = ({
 								dangerouslySetInnerHTML={ { __html: desc } } />
 
 							{ cta && (
-								<div className='flex justify-center mt-10 sm:mt-20'>
+								<div className='flex justify-center mt-10'>
 									<Link
 										href={ cta.href ?? '/' }
 										className='w-full max-w-[430px]'>
