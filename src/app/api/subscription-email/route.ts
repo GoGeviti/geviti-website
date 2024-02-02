@@ -87,7 +87,7 @@ async function sendSubscriptionEmail(
 		from: 'Geviti <app@gogeviti.com>',
 		to: `${firstName} ${lastName} <${email}>`,
 		subject: 'Welcome to Geviti',
-		react: SubscriptionEmail({ firstName, lastName, subscriptionKey, baseUrl, dashboardUrl, appStoreUrl, playStoreUrl }),
+		react: SubscriptionEmail({ firstName, subscriptionKey, baseUrl, dashboardUrl, appStoreUrl, playStoreUrl }),
 	};
 
 	return resend.emails.send(emailPayload);
