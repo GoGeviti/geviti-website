@@ -10,6 +10,7 @@ const config: Config = {
 		extend: {
 			screens: {
 				xxs: '300px',
+				xs2: '391px',
 				xs: '450px',
 				xxl: '1920px',
 			},
@@ -46,6 +47,7 @@ const config: Config = {
 					'2': '#5E899E',
 					'3': '#CDD8DC',
 					'4': '#78C3E9',
+					'1-background': '#f6fcff'
 				},
 				neutral: {
 					'300': '#EFF0F6',
@@ -64,6 +66,14 @@ const config: Config = {
 				'black-landing': '#353738',
 				'black-icons': '#2C2F34',
 				'table-light': '#F9FAFB',
+				green: {
+					success: '#60C57C',
+					'success-background': '#eff9f2'
+				},
+				red: {
+					primary: '#EA3F62',
+					'primary-background': '#fdecef'
+				}
 			},
 			letterSpacing: {
 				'0.04em': '0.04em',
@@ -76,15 +86,21 @@ const config: Config = {
 					'linear-gradient(0deg, #181A1C 20.06%, rgba(24, 26, 28, 0.00) 100%)',
 				'mission-landing':
 					'linear-gradient(0deg, #181A1C 4.29%, rgba(24, 26, 28, 0.49) 83.98%)',
+				'mission-mobile-landing':
+					'linear-gradient(0deg, #181A1C 36.98%, rgba(24, 26, 28, 0.15) 100%)',
 				'investment-landing':
 					'linear-gradient(109deg, #181A1C 17.5%, rgba(24, 26, 28, 0.71) 76.83%)',
 				'investment-landing-bottom':
 					'linear-gradient(0deg, #181A1C 39.06%, rgba(24, 26, 28, 0.00) 100%)',
+				'onboarding-order-summary': 'url("/images/onboarding/background_order_summary.png")',
+				'radial-gradient-quality-landing': 'radial-gradient(50% 50% at 50% 50%, #181A1C 0%, rgba(24, 26, 28, 0.00) 100%)'
 			},
 			animation: {
 				marquee: 'marquee 40s linear infinite',
 				marquee2: 'marquee2 40s linear infinite',
 				fadeIn: 'fadeIn 0.2s ease-out',
+				'accordion-down': 'accordion-down 0.2s ease-out',
+				'accordion-up': 'accordion-up 0.2s ease-out',
 			},
 			keyframes: {
 				marquee: {
@@ -99,6 +115,17 @@ const config: Config = {
 					'0%': { opacity: '0' },
 					'100%': { opacity: '1' },
 				},
+				'accordion-down': {
+					from: { height: '0' },
+					to: { height: 'var(--radix-accordion-content-height)' },
+				},
+				'accordion-up': {
+					from: { height: 'var(--radix-accordion-content-height)' },
+					to: { height: '0' },
+				},
+			},
+			boxShadow: {
+				card: '0px 15px 30px 0px rgba(16, 24, 40, 0.10)'
 			},
 		},
 		fontFamily: {
@@ -127,7 +154,7 @@ const config: Config = {
 					'@apply bg-grey-secondary text-primary font-medium': {},
 				},
 				'.btn-cta-landing': {
-					'@apply btn !py-1.5 sm:!py-3 flex items-center gap-7px sm:gap-2 !translate-y-0':
+					'@apply btn !py-[10px] sm:!py-3 flex items-center gap-7px sm:gap-2 !translate-y-0':
 						{},
 				},
 				'.text-pretitle': {

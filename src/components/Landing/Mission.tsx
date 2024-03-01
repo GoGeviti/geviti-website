@@ -41,7 +41,7 @@ const Mission: React.FC = () => {
 					) }
 				</div>
 
-				<div className='absolute inset-0 bg-mission-landing lg:rounded-[19px] h-full' />
+				<div className='absolute inset-0 bg-mission-mobile-landing lg:bg-mission-landing lg:rounded-[19px] h-full' />
 
 				<div className='container-center max-lg:pb-[65px] h-full w-full flex flex-col items-center lg:items-start justify-end lg:justify-center relative z-10'>
 					<div className='text-center lg:text-left'>

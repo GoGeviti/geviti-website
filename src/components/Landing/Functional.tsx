@@ -24,7 +24,7 @@ const Functional: React.FC = () => {
 								{ functionalData.preTitleMobile }
 							</p>
 							{ functionalData.title && (
-								<h2 className='font-Poppins text-[21px] md:text-[32px] lg:text-4xl leading-[27px] sm:leading-[125%] -tracking-[0.84px] md:-tracking-0.04em mt-11px sm:mt-7px text-grey-secondary'>
+								<h2 className='font-Poppins text-[6.1vw] xs2:text-[25px] md:text-[32px] lg:text-4xl leading-[27px] sm:leading-[125%] -tracking-[0.84px] md:-tracking-0.04em mt-11px sm:mt-7px text-grey-secondary'>
 									<span dangerouslySetInnerHTML={ { __html: functionalData.title } } />
 								</h2>
 							) }

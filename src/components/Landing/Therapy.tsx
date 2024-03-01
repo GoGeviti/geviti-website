@@ -22,14 +22,14 @@ const Therapy: React.FC = () => {
 						</p>
 						{ therapyData.title && (
 							<div className='hidden lg:block max-lg:mx-auto sm:max-w-[600px] mt-11px sm:mt-3'>
-								<h2 className='font-Poppins font-medium text-xl md:text-[32px] lg:text-4xl leading-[30px] sm:leading-[121%] -tracking-[0.8px] md:-tracking-0.04em'>
+								<h2 className='font-Poppins font-normal text-xl md:text-[32px] lg:text-4xl leading-[30px] sm:leading-[121%] -tracking-[0.8px] md:-tracking-0.04em'>
 									{ therapyData.title }
 								</h2>
 							</div>
 						) }
 						{ therapyData.titleMobile && (
 							<div className='lg:hidden max-lg:mx-auto sm:max-w-[600px] mt-11px sm:mt-3'>
-								<h2 className='font-Poppins font-medium text-xl md:text-[32px] lg:text-4xl leading-[30px] sm:leading-[121%] -tracking-[0.8px] md:-tracking-0.04em'>
+								<h2 className='font-Poppins font-medium text-[6.1vw] xs2:text-[25px] md:text-[32px] lg:text-4xl leading-[30px] sm:leading-[121%] -tracking-[0.8px] md:-tracking-0.04em'>
 									{ therapyData.titleMobile }
 								</h2>
 							</div>
@@ -61,11 +61,12 @@ const Therapy: React.FC = () => {
 
 				<div className='relative -mt-[150px] right-1 scale-125 md:scale-100 flex justify-end lg:absolute lg:right-0 -bottom-[160px] md:ml-auto md:max-w-4xl z-10'>
 					<Image
-						src='/images/landing/clinician.png'
+						src='/images/landing/doc_clinician.png'
 						alt='clinician'
-						width={ 618 }
-						height={ 1035 }
+						width={ 1440 }
+						height={ 1800 }
 						quality={ 100 }
+						className='w-[618px]'
 					/>
 				</div>
 

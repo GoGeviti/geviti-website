@@ -2,6 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer utilities {
+  .animation-pause {
+    animation-play-state: paused;
+  }
+
+  .animation-running {
+    animation-play-state: running;
+  }
+
+  .zoom-1 {
+    zoom: 1;
+  }
+}
+
 html,
 body {
   padding: 0 !important;
@@ -13,17 +27,23 @@ body {
   display: none;
 }
 
-
-  @media (max-width: 1024px) {
-    .hero-landing-page span, p, h1, h2, h3 {
-      zoom: 1.2;
-    }
-
-    .products-page span, p, h1, h2, h3 {
-      zoom: 1.1;
-    }
+@media (max-width: 1024px) {
+  .hero-landing-page span,
+  p,
+  h1,
+  h2,
+  h3 {
+    zoom: 1.2;
   }
 
+  .products-page span,
+  p,
+  h1,
+  h2,
+  h3 {
+    zoom: 1.1;
+  }
+}
 
 /* Hide scrollbar for IE, Edge and Firefox */
 .no-scrollbar {
@@ -38,4 +58,46 @@ body {
 }
 .max-lg-hidden {
   @apply max-lg:hidden;
+}
+
+input[type="number"] {
+  font-size: inherit;
+  background-color: inherit;
+}
+
+input[type="number"]::placeholder {
+  font-size: inherit;
+  color: inherit;
+}
+
+.react-date-picker__inputGroup__input {
+  @apply !p-0;
+}
+
+.react-date-picker__inputGroup__input:focus {
+  @apply !ring-0 !outline-0;
+}
+
+.react-date-picker__inputGroup__input:invalid {
+  @apply !bg-transparent;
+}
+
+.react-date-picker__inputGroup {
+  @apply !w-full px-4 py-3;
+}
+
+.react-date-picker__wrapper {
+  @apply !border-0;
+}
+
+.react-date-picker__calendar {
+  @apply !max-w-full;
+}
+
+.react-calendar__tile--active {
+  @apply !bg-primary/90 text-white rounded-sm;
+}
+
+.tooltip-container[data-popper-placement*="top"] .tooltip-arrow::before {
+  border: none !important;
 }

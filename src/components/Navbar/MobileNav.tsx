@@ -79,7 +79,7 @@ const MobileNav = (props: MobileNavProps) => {
 			<div className='bg-[#2D2F31] h-[1px] -mx-[16px] mb-[30px] mt-auto' />
 			<a
 				className='flex items-center gap-[10px] mb-[22px]'
-				href='/orders'>
+				href='/cart'>
 				<Image
 					src={ cartIcon }
 					height={ 25 }

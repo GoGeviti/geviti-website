@@ -17,23 +17,22 @@ const Hero: React.FC<HeroProps> = ({ hero, isPartner = false }) => {
 			<Navbar
 				theme={ isPartner ? 'light' : 'dark' }
 				withBgWhite
-				className='max-lg:!pt-0'/>
+				className='max-lg:!pt-0' />
 			<div className='w-full h-[250px] md:h-[400px] max-md:mt-[60px] relative overflow-hidden'>
 				<div className='absolute inset-0 w-full h-full z-0'>
-					{ hero.image  && (
+					{ hero.image && (
 						<div className='relative overflow-hidden w-full h-full lg:rounded-[19px]'>
 							<Image
 								src={ hero.image }
 								alt='hero'
 								priority
-								className='object-cover'
+								className='object-cover object-center'
 								fill
-								objectPosition='center'
 							/>
 						</div>
 					) }
 				</div>
-				{ hero.image  ?
+				{ hero.image ?
 					<div className='absolute top-0 inset-x-0 w-full h-full bg-gradient-to-b from-primary via-[#0000007D] to-[#0000007D] lg:rounded-[19px]' /> :
 					<div className='absolute inset-0 overflow-hidden w-full h-full lg:rounded-[19px] z-0 bg-[#D8D8D8]' /> }
 				<div className='relative w-full h-full lg:rounded-b-[19px]'>
@@ -45,8 +44,8 @@ const Hero: React.FC<HeroProps> = ({ hero, isPartner = false }) => {
 						</div>
 						{
 							hero.desc &&
-						<div className={ clsxm('font-BRSonoma !text-sm', isPartner ? 'text-primary' : 'text-grey-secondary') }><span
-							dangerouslySetInnerHTML={ { __html: hero.desc } } /></div>
+							<div className={ clsxm('font-BRSonoma !text-sm', isPartner ? 'text-primary' : 'text-grey-secondary') }><span
+								dangerouslySetInnerHTML={ { __html: hero.desc } } /></div>
 						}
 					</div>
 				</div>

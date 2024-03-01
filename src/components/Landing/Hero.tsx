@@ -24,17 +24,15 @@ const Hero = () => {
 								src={ heroData.image }
 								alt='hero'
 								priority
-								className='object-cover md:block hidden'
+								className='object-cover md:block hidden object-right'
 								fill
-								objectPosition='right center'
 							/>
 							<Image
 								src={ heroData.imageMobile }
 								alt='hero mobile'
 								priority={ true }
-								className='object-cover md:hidden'
+								className='object-cover md:hidden object-center'
 								fill
-								objectPosition='center'
 								quality={ 90 }
 							/>
 						</div>
@@ -54,7 +52,7 @@ const Hero = () => {
 								</h2>
 								{ heroData.title && (
 									<h1
-										className='mt-[2px] lg:mt-7px font-Poppins text-[25px] md:text-[32px] lg:text-[40px] leading-[130%] sm:leading-[42.5px] tracking-[-1px] md:-tracking-0.04em text-grey-secondary'
+										className='mt-[2px] lg:mt-7px font-Poppins text-[6.1vw] xs2:text-[25px] md:text-[32px] lg:text-[40px] leading-[130%] sm:leading-[42.5px] tracking-[-1px] md:-tracking-0.04em text-grey-secondary'
 										dangerouslySetInnerHTML={ { __html: heroData.title } } />
 								) }
 
@@ -94,7 +92,7 @@ const Hero = () => {
 									<WrapperAnimation
 										key={ feature.text }
 										data-aos='zoom-in-up'
-										data-aos-delay={ `${featureIdx * 100}` }
+										data-aos-delay={ `${ featureIdx * 100 }` }
 										data-aos-anchor='#main-keys-landing'
 										className='flex flex-col text-center items-center'
 									>
