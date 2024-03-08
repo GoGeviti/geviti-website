@@ -8,23 +8,24 @@ import SubscriptionEmail from '../../../../transactional/emails/SubscriptionEmai
 export const dynamic = 'force-dynamic';
 
 interface RequestPayload {
-  customer: {
-    email: string;
-    first_name: string;
-    last_name: string;
-  }
+	customer: {
+		email: string;
+		first_name: string;
+		last_name: string;
+		plan_id: string;
+	}
 }
 
 export interface SubscriptionKeyResponse {
-  id: number;
-  createdAt: string;
-  subscriptionKey: string;
-  isValid: boolean;
-  invalidationDate?: null;
+	id: number;
+	createdAt: string;
+	subscriptionKey: string;
+	isValid: boolean;
+	invalidationDate?: null;
 }
 
 const resend = new Resend(process.env.RESEND_API_KEY);
-export const POST = withAxiom(async(req: AxiomRequest) => {
+export const POST = withAxiom(async (req: AxiomRequest) => {
 	const rawData = await req.text();
 	const requestPayload = JSON.parse(rawData) as RequestPayload;
 
@@ -34,7 +35,7 @@ export const POST = withAxiom(async(req: AxiomRequest) => {
 
 	const preCalcHmac = headers().get('x-shopify-hmac-sha256');
 	const hmacVerificationResult = await calculateShopifyWebhookHmacUsingSubtle(process.env.SHOPIFY_WEBHOOK_SECRET ?? '', rawData, preCalcHmac ?? '');
-	
+
 	// req.log.info(`preCalcHmac: ${preCalcHmac}`);
 	// req.log.info(`hmacVerificationResult: ${hmacVerificationResult}`);
 
@@ -42,14 +43,14 @@ export const POST = withAxiom(async(req: AxiomRequest) => {
 		return NextResponse.json({ error: 'Unauthorized Request: Signature Verification Failed.' }, { status: 403 });
 	}
 
-	const { customer: { email, first_name, last_name } } = requestPayload;
+	const { customer: { email, first_name, last_name, plan_id } } = requestPayload;
 
 	if (!email || !first_name || !last_name) {
 		return NextResponse.json({ error: 'Invalid request payload' }, { status: 400 });
 	}
 
 	try {
-		const { subscriptionKey } = await getSubscriptionKey();
+		const { subscriptionKey } = await getSubscriptionKey(plan_id);
 		const { data, error } = await sendSubscriptionEmail(
 			email,
 			first_name,
@@ -93,7 +94,7 @@ async function sendSubscriptionEmail(
 	return resend.emails.send(emailPayload);
 }
 
-async function getSubscriptionKey() {
+async function getSubscriptionKey(planId: string) {
 	const apiUrl = `${process.env.SUBSCRIPTION_API_URL}/subscription-keys`;
 
 	const response = await fetch(apiUrl, {
@@ -102,6 +103,7 @@ async function getSubscriptionKey() {
 			'Content-Type': 'application/json',
 			Authorization: `Bearer ${process.env.SUBSCRIPTION_TOKEN}`,
 		},
+		body: JSON.stringify({ planId })
 	});
 
 	if (!response.ok) {
