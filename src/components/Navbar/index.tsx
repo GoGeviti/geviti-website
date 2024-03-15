@@ -67,6 +67,16 @@ const Navbar: React.FC<NavbarProps> = ({
 		return (
 			<>
 				{ navbarData.menu.map((link, id) => {
+					if (link.items) {
+						return (
+							<ResourcesDropdown
+								key={ link.name }
+								menuName={ link.name }
+								items={ link.items }
+								theme={ theme }
+							/>
+						);
+					}
 
 					return (
 						<CustomLink
@@ -179,7 +189,6 @@ const Navbar: React.FC<NavbarProps> = ({
 							<div className='hidden lg:ml-10 lg:block'>
 								<div className='flex items-center gap-x-5'>
 									{ renderMenuList() }
-									<ResourcesDropdown theme={ theme } />
 								</div>
 							</div>
 						</div>

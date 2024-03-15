@@ -3,6 +3,7 @@ import Script from 'next/script';
 import NextTopLoader from 'nextjs-toploader';
 
 import { AOSInit } from '@/components';
+import LenisScroller from '@/components/LenisScroller';
 import Provider from '@/components/Provider';
 import { brSonoma, poppins } from '@/constant/fonts';
 import StyledComponentsRegistry from '@/lib/registry';
@@ -49,6 +50,7 @@ const RootLayout: React.FC<{ children: React.ReactNode; }> = ({ children }) => {
 						color='#A3E0FF' />
 					<Provider />
 					{ children }
+					<LenisScroller />
 					<noscript>
 						<iframe
 							src='https://www.googletagmanager.com/ns.html?id=GTM-K227ZN5C'

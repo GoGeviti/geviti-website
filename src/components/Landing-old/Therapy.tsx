@@ -11,7 +11,7 @@ const therapyData = landingData.therapy;
 const Therapy: React.FC = () => {
 	return (
 		<div className='lg:px-3 lg:py-15px overflow-hidden'>
-			<div className='bg-grey-secondary w-full lg:rounded-[19px] relative overflow-hidden'>
+			<div className='bg-grey-secondary w-full lg:rounded-19px relative overflow-hidden'>
 				<div className='container-center pt-[46px] lg:pt-[193px] lg:pb-[194px] relative overflow-hidden'>
 					<div className='text-center lg:text-left relative z-[11]'>
 						<p className='hidden lg:block text-pretitle text-grey-primary'>

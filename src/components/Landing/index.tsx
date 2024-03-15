@@ -1,27 +1,31 @@
 import Application from './Application';
-import Dashboard from './Dashboard';
+import Benefits from './Benefits';
+import BiologicalKit from './BiologicalKit';
+import Clinical from './Clinical';
 import Flexible from './Flexible';
-import Functional from './Functional';
 import Hero from './Hero';
-import Investment from './Investment';
+import HomeKits from './HomeKits';
+import Innovative from './Innovative';
 import Mission from './Mission';
 import Products from './Products';
-import Quality from './Quality';
 import RunningLogo from './RunningLogo';
+import SectionCardsParallax from './SectionCardsParallax';
 import Steps from './Steps';
-import Therapy from './Therapy';
+import Supplements from './Supplements';
 
 export {
 	Application,
-	Dashboard,
+	Benefits,
+	BiologicalKit,
+	Clinical,
 	Flexible,
-	Functional,
 	Hero,
-	Investment,
+	HomeKits,
+	Innovative,
 	Mission,
 	Products,
-	Quality,
 	RunningLogo,
+	SectionCardsParallax,
 	Steps,
-	Therapy
+	Supplements
 };

@@ -7,14 +7,14 @@ import DiscoverGeviti from '../DiscoverGeviti';
 
 const ProductsSection: React.FC = async() => {
 	const products = await getProducts();
+
 	return (
-		<div className='py-10 sm:py-20 products-page'>
+		<div className='pt-60px pb-16 sm:py-20'>
 			<DiscoverGeviti
 				title={ landingData.products.title }
 				description={ landingData.products.description }
 				viewAll={ landingData.products.viewAll }
-				viewAllMobileClassName='mt-[49px] flex'
-				productsWrapperClassName='mt-[49px] lg:mt-[50px]'
+				viewAllMobileClassName='flex w-full'
 				products={ products.docs }
 			/>
 		</div>

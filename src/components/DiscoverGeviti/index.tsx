@@ -1,30 +1,52 @@
 'use client';
 
-import React, { useCallback, useState } from 'react';
+import React from 'react';
 import Image from 'next/image';
-import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 
 import { homeData } from '@/constant/data';
 import clsxm from '@/helpers/clsxm';
 import { screens } from '@/helpers/style';
-import { useWindowDimensions } from '@/hooks';
 import { Product } from '@/payload/payload-types';
 
 import CustomLink from '../CustomLink';
-import { ArrowNarrowLeft, ArrowNarrowRight, ChevronRight } from '../Icons';
+import { ArrowNarrowRight, ChevronRight } from '../Icons';
+import ButtonCta from '../Landing/ButtonCta';
 
 type DiscoverGevitiProps = {
-  title?: string;
-  description?: string;
-  viewAll?: {
-    text: string;
-    href: string;
-  };
-  viewAllMobileClassName?: string;
-  productsWrapperClassName?: string;
-  desktopScroll?: boolean;
-  withBg?: boolean;
-  products: Product[];
+	title?: string;
+	description?: string;
+	viewAll?: {
+		text: string;
+		href: string;
+	};
+	viewAllMobileClassName?: string;
+	productsWrapperClassName?: string;
+	desktopScroll?: boolean;
+	withBg?: boolean;
+	products: Product[];
+};
+
+const handleIsElementScrolledIntoHorizontalView = (elm: HTMLAnchorElement | null, container: HTMLDivElement | null) => {
+	if (elm && container && window.innerWidth >= screens.lg) {
+		const checkIsVisible = () => {
+			const visible = container.scrollLeft + container.clientWidth,
+				isStartVisible = visible >= elm.offsetLeft + (elm.clientWidth / 2),
+				isEndVisible = visible <= elm.offsetLeft + container.clientWidth + (elm.clientWidth / 2);
+			// if both are true, item is visible relative to scroll position
+			// this does not mean, it is visible in the viewport
+			// return isStartVisible && isEndVisible;
+			if (isStartVisible && isEndVisible) {
+				elm.removeAttribute('style');
+			} else {
+				elm.setAttribute('style', 'opacity: 0.25;');
+			}
+		};
+
+		checkIsVisible();
+
+		elm.parentNode?.addEventListener('scroll', checkIsVisible);
+	}
 };
 
 const DiscoverGeviti: React.FC<DiscoverGevitiProps> = ({
@@ -32,92 +54,42 @@ const DiscoverGeviti: React.FC<DiscoverGevitiProps> = ({
 	description = homeData.products.description,
 	viewAll = homeData.products.viewAll,
 	viewAllMobileClassName = 'flex justify-center mt-10',
-	productsWrapperClassName = 'mt-7 lg:mt-[50px]',
+	productsWrapperClassName = 'max-lg:mb-10 mt-[26px]',
 	withBg = false,
 	products,
 }) => {
-	const router = useRouter();
-	const windowDimensions = useWindowDimensions();
+	const itemsRef = React.useRef<Array<HTMLAnchorElement | null>>([]);
+	const wrapperItemsRef = React.useRef<HTMLDivElement>(null);
 
-	const [disableArrowLeft, setDisableArrowLeft] = useState<boolean>(true);
-	const [disableArrowRight, setDisableArrowRight] = useState<boolean>(false);
+	React.useEffect(() => {
+		itemsRef.current = itemsRef.current.slice(0, products.length);
+	}, [products]);
 
-	const handleScrollProducts = useCallback(() => {
-		const el = document.getElementById('discover-products-scroll');
-
-		if (el) {
-			const widthContainer = el?.clientWidth || 0;
-			const scrollWidth = el?.scrollWidth || 0;
-			const scrollLeft = el?.scrollLeft || 0;
-
-			if (scrollLeft === 0) {
-				setDisableArrowLeft(true);
-			} else {
-				setDisableArrowLeft(false);
-			}
-
-			if (Math.abs(scrollLeft) < scrollWidth - widthContainer) {
-				setDisableArrowRight(false);
-			} else {
-				setDisableArrowRight(true);
-			}
-		}
-	}, []);
-
-	const moveCardProduct = (direction: 'left' | 'right') => {
-		const el = document.getElementById('discover-products-scroll');
-		const widthCard =
-      document.getElementById('discover-product-card')?.clientWidth || 248;
-
-		if (el) {
-			if (direction === 'left') {
-				el.scrollLeft -= widthCard + 18;
-			} else {
-				el.scrollLeft += widthCard + 18;
-			}
-		}
-	};
-
-	const renderArrowNarrow = (direction: 'left' | 'right') => {
-		const ArrowNarrow =
-      direction === 'left' ? ArrowNarrowLeft : ArrowNarrowRight;
-		const disabled =
-      direction === 'left' ? disableArrowLeft : disableArrowRight;
-
-		return (
-			<div onClick={ () => moveCardProduct(direction) }>
-				<ArrowNarrow
-					className={ clsxm(
-						'stroke-primary',
-						disabled ? 'opacity-25' : 'opacity-100',
-						disabled ? 'cursor-default' : 'cursor-pointer',
-						'w-4 h-4 sm:w-5 sm:h-5'
-					) }
-				/>
-			</div>
-		);
-	};
+	React.useEffect(() => {
+		products.forEach((_, index) => {
+			handleIsElementScrolledIntoHorizontalView(itemsRef.current[index], wrapperItemsRef.current);
+		});
+	}, [itemsRef.current]);
 
 	const renderProductList = () => {
-		const isMobile = windowDimensions.width < screens.lg;
-		const productList = isMobile ? products : products;
-
 		return (
 			<div
 				id='discover-products-scroll'
-				onScroll={ handleScrollProducts }
-				className='no-scrollbar overflow-y-hidden transition-all select-none transform flex flex-nowrap overflow-x-auto scrolling-touch scroll-smooth gap-x-18px py-1 -mr-4 last:pr-[17px] lg:last:pr-0'
+				className={ clsxm(
+					'no-scrollbar overflow-y-hidden transition-all select-none transform flex flex-nowrap overflow-x-auto scrolling-touch scroll-smooth gap-x-6 py-6',
+					'snap-x snap-mandatory ml-4 lg:ml-10 xl:ml-20 last:pr-4 lg:last:pr-10 xl:last:pr-20'
+				) }
+				ref={ wrapperItemsRef }
 			>
-				{ productList.map(product => (
-					<div
+				{ products.map((product, productIdx) => (
+					<Link
+						href={ `/products/${ product.id }` }
 						key={ product.id }
-						id='discover-product-card'
-						// data-aos='zoom-in-down'
-						// data-aos-delay={ `${productIdx * 100}` }
-						className='group cursor-pointer relative flex flex-col overflow-hidden bg-grey-secondary flex-none w-[248px] lg:w-[287px]'
-						onClick={ () => router.push(`/products/${product.id}`) }
+						id={ `discover-product-card-${ product.id }` }
+						className='group snap-start hover:shadow-[0px_4px_24px_rgba(0,0,0,0.15)] transition-shadow duration-200 ease-in cursor-pointer relative flex flex-col overflow-hidden bg-grey-secondary flex-none w-[287px] px-3 pt-3 pb-[21px] rounded-19px'
+						ref={ el => itemsRef.current[productIdx] = el }
 					>
-						<div className='relative overflow-hidden bg-[#E5E5E5] group-hover:opacity-75 w-full h-[225px] lg:h-[260px]'>
+						<div className='relative overflow-hidden rounded-2xl bg-[#EAEAEA] w-full h-[221px]'>
 							<Image
 								loading='lazy'
 								src={
@@ -135,22 +107,22 @@ const DiscoverGeviti: React.FC<DiscoverGevitiProps> = ({
 								fill
 							/>
 						</div>
-						<div className='flex flex-1 flex-col space-y-1 py-5 px-[22px] lg:px-25px lg:py-[23px]'>
-							<h3 className='font-Poppins text-sm lg:text-base font-medium text-primary leading-[158%] lg:leading-[156%] -tracking-0.04em whitespace-normal'>
+						<div className='flex flex-1 flex-col space-y-1 pt-[23px] px-[13px]'>
+							<h3 className='text-lg font-medium text-primary leading-[141%] -tracking-0.04em whitespace-normal'>
 								{ product.name }
 							</h3>
-							<p className='font-BRSonoma leading-[143%] lg:leading-[144%] text-xs lg:text-sm text-grey-primary whitespace-normal'>
+							<p className='text-sm text-grey-primary whitespace-normal'>
 								{ product.sort_description }
 							</p>
-							<div className='flex flex-1 flex-col justify-end font-BRSonoma text-primary pt-[17px]'>
+							<div className='flex flex-1 flex-col justify-end text-primary pt-5'>
 								<div className='flex items-center gap-9px'>
 									{ /* { product.price && (
 										<p className='text-xs lg:text-sm leading-[130%] lg:leading-[131%]'>
-                      ${ product.price }
+											${ product.price }
 										</p>
 									) } */ }
 									{ product.price !== undefined && (
-										<div className='text-xs leading-[158%] bg-blue-1 rounded-full py-1 px-1.5 flex items-center gap-1 flex-shrink-0'>
+										<div className='text-xs leading-[152%] bg-blue-1 rounded-full py-1 px-1.5 flex items-center gap-1 flex-shrink-0'>
 											<svg
 												xmlns='http://www.w3.org/2000/svg'
 												width='13'
@@ -177,7 +149,12 @@ const DiscoverGeviti: React.FC<DiscoverGevitiProps> = ({
 								</div>
 							</div>
 						</div>
-					</div>
+						<div className='absolute right-[11px] bottom-[21px]'>
+							<div className='w-[46px] h-[46px] border border-grey-100 group-hover:border-primary group-hover:bg-primary relative rounded-full transition-all duration-200 ease-in'>
+								<ArrowNarrowRight className='text-gray-100 group-hover:text-blue-primary w-6 h-6 absolute-center flex-shrink-0 -rotate-45 transition-all duration-200 ease-in' />
+							</div>
+						</div>
+					</Link>
 				)) }
 			</div>
 		);
@@ -202,47 +179,37 @@ const DiscoverGeviti: React.FC<DiscoverGevitiProps> = ({
 	return (
 		<div
 			className={ clsxm(
-				'relative overflow-hidden',
+				'relative overflow-hidden font-Poppins',
 				withBg && 'bg-[#EAEAEA] lg:rounded-[19px] lg:mx-3 py-10 sm:py-20'
 			) }
 		>
-			<div className='container-center w-full relative'>
-				{ /* { desktopScroll && ( */ }
-				<div>
-					<div className='absolute bottom-0 -left-4'>
-						{ renderArrowNarrow('left') }
-					</div>
-					<div className='absolute bottom-0 -right-4'>
-						{ renderArrowNarrow('right') }
+			<div className='w-full relative'>
+				<div className='px-4 lg:px-10 xl:px-20'>
+					<div className='flex items-center justify-between'>
+						<div>
+							<h2 className='text-primary text-2xl md:text-3xl lg:text-4xl leading-[179%] sm:leading-[128%] lg:leading-[119%] -tracking-0.04em'>
+								{ title }
+							</h2>
+
+							<p className='text-grey-primary mt-5px text-xs sm:text-sm !leading-5'>
+								{ description }
+							</p>
+						</div>
+						<div className='max-lg:hidden'>{ renderButtonViewAll() }</div>
 					</div>
 				</div>
-				{ /* ) } */ }
 
-				<div className='flex items-center justify-between'>
-					<div>
-						<h2 className='text-primary font-Poppins text-[21px] md:text-3xl lg:text-4xl leading-[128%] lg:leading-[119%] -tracking-0.04em'>
-							{ title }
-						</h2>
-
-						<p className='text-grey-primary font-BRSonoma mt-5px text-xs sm:text-sm leading-5'>
-							{ description }
-						</p>
-					</div>
-
-					<div className='lg:hidden flex items-center gap-6'>
-						{ renderArrowNarrow('left') }
-						{ renderArrowNarrow('right') }
-					</div>
-
-					<div className='max-lg:hidden'>{ renderButtonViewAll() }</div>
-				</div>
-
-				<div className={ clsxm('relative', productsWrapperClassName) }>
+				<div className={ clsxm('relative wrapper-products-list', productsWrapperClassName) }>
 					{ renderProductList() }
 				</div>
 
-				<div className={ clsxm('lg:hidden', viewAllMobileClassName) }>
-					{ renderButtonViewAll() }
+				<div className={ clsxm('lg:hidden flex justify-center max-lg:px-4', viewAllMobileClassName) }>
+					<ButtonCta
+						href={ viewAll.href }
+						aria-label={ viewAll.text }
+						text={ viewAll.text }
+						className='max-sm:w-full'
+					/>
 				</div>
 			</div>
 		</div>

@@ -7,8 +7,7 @@ import clsxm from '@/helpers/clsxm';
 import { screens } from '@/helpers/style';
 import { useWindowDimensions } from '@/hooks';
 
-import CustomLink from '../CustomLink';
-import { ChevronRight } from '../Icons';
+import ButtonCta from './ButtonCta';
 
 const stepsData = landingData.steps;
 
@@ -24,77 +23,85 @@ const StepsSection: React.FC = () => {
 		if (!isMobile) onSelectStep(stepIdx);
 	};
 
+	const renderButtonCta = () => {
+		return (
+			<ButtonCta
+				href={ stepsData.btnCta.href }
+				externalLink={ stepsData.btnCta.externalLink }
+				aria-label={ stepsData.btnCta.text }
+				text={ stepsData.btnCta.text }
+			/>
+		);
+	};
+
 	return (
 		<div className='overflow-hidden'>
-			<div className='h-full w-full lg:rounded-[19px] relative overflow-hidden'>
-				<div className='container-center py-[70px] lg:py-[95px] flex flex-col gap-y-[62px] items-center justify-center text-center'>
+			<div className='h-full w-full lg:rounded-19px relative overflow-hidden'>
+				<div className='container-center pt-[52px] pb-[31px] lg:pt-[76px] lg:pb-[78.16px] flex flex-col gap-y-[52px] md:gap-y-[75px] items-center justify-center text-center'>
 					<div className='text-center sm:mx-auto'>
-						<p className='mb-[15px] md:mb-7px text-pretitle text-grey-primary leading-[15px] md:leading-[24px]'>{ stepsData.preTitle }</p>
+						<p className='mb-5px md:mb-3.5 uppercase lg:text-base text-grey-primary text-pretitle leading-[15px] lg:leading-[24px]'>
+							{ stepsData.preTitle }
+						</p>
 
 						{ stepsData.title && (
-							<h2 className='font-Poppins leading-[103%] md:leading-[125%] text-[6.1vw] xs2:text-[25px] sm:text-2xl md:text-[32px] lg:text-[36px] -tracking-0.04em max-sm:px-1.5'>
+							<h2 className='font-Poppins text-primary leading-[116%] lg:leading-[107%] text-[6.1vw] xs2:text-[25px] sm:text-2xl md:text-[32px] lg:text-[42px] -tracking-0.04em'>
 								<span dangerouslySetInnerHTML={ { __html: stepsData.title } } />
 							</h2>
 						) }
 
-						<div className='flex justify-center mt-6 md:mt-30px'>
-							<CustomLink
-								href={ stepsData.btnCta.href }
-								externalLink={ stepsData.btnCta.externalLink }
-								className='btn-cta-landing btn-primary group'
-								aria-label={ stepsData.btnCta.text }
-							>
-								<span className='text-btn-cta-landing'>
-									{ stepsData.btnCta.text }
-								</span>
-
-								<ChevronRight className='arrow-btn-cta-landing' />
-							</CustomLink>
+						<div className='hidden md:flex justify-center mt-[42px]'>
+							{ renderButtonCta() }
 						</div>
 					</div>
 
 					<div className='md:max-w-6xl md:mx-auto w-full max-md:flex max-md:justify-center'>
-						<div className=''>
+						<div>
 							<div className='md:pt-[54px] flex md:flex-row max-w-[1015px] mx-auto flex-col items-start w-full no-scrollbar overflow-y-hidden transition-all select-none transform flex-nowrap overflow-x-auto lg:overflow-hidden scrolling-touch scroll-smooth max-md:space-y-10  gap-x-18px lg:gap-x-[108px] py-1'>
 								{ stepsData.list.map((step, stepIdx) => {
 									const isSelected = stepIdx === selectedIdx;
+									const Icon = step.icon;
+									const IconMobile = step.iconMobile;
 
 									return (
-										(
-											<div
-												key={ `step-${ step.id }` }
-												className={ clsxm('w-full flex md:flex-col max-md:space-x-5 items-center md:transform md:transition-all md:duration-100 md:ease-in', isSelected ? 'md:-translate-y-5' : 'translate-y-0') }
+										<div
+											key={ `step-${ step.id }` }
+											className={ clsxm('w-full flex md:flex-col max-md:space-x-5 items-center md:transform md:transition-all md:duration-100 md:ease-in', isSelected ? 'md:-translate-y-5' : 'translate-y-0') }
+										>
+											<button
+												onClick={ () => onSelectStep(stepIdx) }
+												onMouseEnter={ () => onMouseEnter(stepIdx) }
+												className={ clsxm(
+													'cursor-pointer rounded-full flex items-center justify-center flex-shrink-0',
+													isSelected
+														? 'bg-white md:bg-blue-1 w-[40px] h-[40px] lg:w-[55px] lg:h-[55px] md:shadow-[0px_-8px_24px_0px_rgba(251,251,251,0.35)]'
+														: 'bg-white w-[40px] h-[40px] lg:w-[46px] lg:h-[46px]'
+												) }
 											>
-												<div
-													onClick={ () => onSelectStep(stepIdx) }
-													onMouseEnter={ () => onMouseEnter(stepIdx) }
-													className={ clsxm(
-														'cursor-pointer rounded-full flex items-center justify-center flex-shrink-0',
-														'font-Poppins text-center text-primary',
-														isSelected
-															? 'text-[13px] md:text-base md:font-bold font-medium leading-6 sm:leading-[29px] bg-white md:bg-blue-1 w-[40px] h-[40px] lg:w-[55px] lg:h-[55px] md:shadow-[0px_-8px_24px_0px_rgba(251,251,251,0.35)]'
-															: 'text-[13px] md:text-sm font-medium leading-[18px] sm:leading-6 bg-white w-[40px] h-[40px] lg:w-[46px] lg:h-[46px]'
-													) }
-												>
-													{ stepIdx + 1 }
-												</div>
+												{ IconMobile
+													? (
+														<>
+															<span className='max-md:hidden'>{ <Icon className={ isSelected ? 'text-primary' : 'text-blue-1' } /> }</span>
+															<span className='md:hidden'>{ <IconMobile className='text-blue-1' /> }</span>
+														</>
+													)
+													: <Icon className={ isSelected ? 'text-blue-1 md:text-primary' : 'text-blue-1' } /> }
+											</button>
 
-												<p
-													onClick={ () => onSelectStep(stepIdx) }
-													onMouseEnter={ () => onMouseEnter(stepIdx) }
-													className={ clsxm(
-														'cursor-pointer text-center font-Poppins max-md:text-left text-primary leading-[134%]',
-														isSelected
-															? 'md:pt-[22px] text-[15.033px] md:text-[19px] font-medium'
-															: 'font-medium md:pt-18px text-[15.042px] md:text-base'
-													) }
-												>
-													<span
-														className='max-md:text-left whitespace-nowrap'
-														dangerouslySetInnerHTML={ { __html: step.title } } />
-												</p>
-											</div>
-										)
+											<p
+												onClick={ () => onSelectStep(stepIdx) }
+												onMouseEnter={ () => onMouseEnter(stepIdx) }
+												className={ clsxm(
+													'cursor-pointer text-center font-Poppins max-md:text-left text-primary leading-[134%]',
+													isSelected
+														? 'md:pt-[22px] text-[15.033px] md:text-[19px] font-medium'
+														: 'font-medium md:pt-18px text-[15.042px] md:text-base'
+												) }
+											>
+												<span
+													className='max-md:text-left whitespace-nowrap'
+													dangerouslySetInnerHTML={ { __html: step.title } } />
+											</p>
+										</div>
 									);
 								}) }
 							</div>
@@ -115,6 +122,10 @@ const StepsSection: React.FC = () => {
 								)) }
 							</div>
 						</div>
+					</div>
+
+					<div className='md:hidden flex justify-center'>
+						{ renderButtonCta() }
 					</div>
 				</div>
 			</div>

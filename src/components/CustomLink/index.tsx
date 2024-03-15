@@ -3,7 +3,7 @@
 import React, { PropsWithChildren } from 'react';
 import Link, { LinkProps } from 'next/link';
 
-type CustomLinkProps = Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, keyof LinkProps> & LinkProps & PropsWithChildren & React.RefAttributes<HTMLAnchorElement> & {
+export type CustomLinkProps = Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, keyof LinkProps> & LinkProps & PropsWithChildren & React.RefAttributes<HTMLAnchorElement> & {
 	externalLink?: boolean;
 };
 

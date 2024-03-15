@@ -12,7 +12,7 @@ const qualityData = landingData.quality;
 const Quality: React.FC = () => {
 	return (
 		<div className='lg:px-3 overflow-hidden'>
-			<div className='bg-blue-1 h-full w-full lg:rounded-[19px] relative overflow-hidden'>
+			<div className='bg-blue-1 h-full w-full lg:rounded-19px relative overflow-hidden'>
 				<div className='container-center flex flex-col lg:flex-row items-center justify-between relative'>
 					<div className='pt-[60px] lg:pt-[106px] lg:pb-[58px] max-lg:mx-auto w-full max-w-lg relative z-10'>
 						<div className='text-center lg:text-left flex flex-col'>

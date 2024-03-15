@@ -13,7 +13,7 @@ const functionalData = landingData.functional;
 const Functional: React.FC = () => {
 	return (
 		<div className='lg:px-3 lg:pb-15px overflow-hidden'>
-			<div className='h-full w-full lg:rounded-[19px] relative overflow-hidden bg-primary'>
+			<div className='h-full w-full lg:rounded-19px relative overflow-hidden bg-primary'>
 				<div className='relative overflow-hidden'>
 					<div className='mx-auto container-center  max-w-5xl pt-[52px] sm:pt-[113px] lg:relative isolate overflow-hidden'>
 						<div className='text-center'>

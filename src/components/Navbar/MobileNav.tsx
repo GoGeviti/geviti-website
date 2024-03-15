@@ -8,8 +8,8 @@ import dashboardIcon from '@/assets/mobile-nav/dashboard.svg';
 import navigationData from '@/constant/data/navbar';
 
 interface MobileNavProps {
-  isOpen: boolean;
-  onClose: () => void;
+	isOpen: boolean;
+	onClose: () => void;
 }
 
 const MobileNav = (props: MobileNavProps) => {
@@ -38,7 +38,7 @@ const MobileNav = (props: MobileNavProps) => {
 				className={ 'text-white text-[25px] font-Poppins tracking-tight mb-25px' }
 				style={ { opacity: pathname === '/' ? 1 : 0.3 } }
 			>
-        Home
+				Home
 			</Link>
 			{ navigationData.menu.map(item => (
 				<Link
@@ -58,7 +58,7 @@ const MobileNav = (props: MobileNavProps) => {
 				className={ 'text-white text-[25px] font-Poppins tracking-tight mb-25px' }
 				style={ { opacity: pathname === '/blog' ? 1 : 0.3, marginTop: '20%' } }
 			>
-        Blog
+				Blog
 			</Link>
 			<Link
 				href='/faq'
@@ -66,7 +66,7 @@ const MobileNav = (props: MobileNavProps) => {
 				className={ 'text-white text-[25px] font-Poppins tracking-tight mb-25px' }
 				style={ { opacity: pathname === '/faq' ? 1 : 0.3 } }
 			>
-        FAQ
+				FAQ
 			</Link>
 			<Link
 				href='/contact-us'
@@ -74,7 +74,7 @@ const MobileNav = (props: MobileNavProps) => {
 				className={ 'text-white text-[25px] font-Poppins tracking-tight mb-25px' }
 				style={ { opacity: pathname === '/contact-us' ? 1 : 0.3 } }
 			>
-        Contact Us
+				Contact Us
 			</Link>
 			<div className='bg-[#2D2F31] h-[1px] -mx-[16px] mb-[30px] mt-auto' />
 			<a
@@ -86,7 +86,7 @@ const MobileNav = (props: MobileNavProps) => {
 					width={ 25 }
 					alt='' />
 				<span className='font-Poppins text-white text-[20px] tracking-tight'>
-          Cart
+					Cart
 				</span>
 			</a>
 			<a
@@ -98,7 +98,7 @@ const MobileNav = (props: MobileNavProps) => {
 					width={ 25 }
 					alt='' />
 				<span className='font-Poppins text-white text-[20px] tracking-tight'>
-          Dashboard
+					Dashboard
 				</span>
 			</a>
 		</div>
