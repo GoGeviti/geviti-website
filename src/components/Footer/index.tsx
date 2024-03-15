@@ -16,7 +16,7 @@ type FooterProps = {
 	landingPage?: boolean;
 };
 
-const WrapperFooter: React.FC<FooterProps & { children: React.ReactNode; }> = ({ landingPage, children }) => {
+const WrapperFooter: React.FC<FooterProps & { children: React.ReactNode; isMobile?: boolean; }> = ({ isMobile, landingPage, children }) => {
 	const wrapperClassName = 'pt-6 pb-[106px] lg:pt-12 lg:h-[569px] lg:pb-[310px] bg-white rounded-19px relative overflow-hidden w-full';
 	const container = useRef<HTMLDivElement>(null);
 	const { scrollYProgress } = useScroll({
@@ -33,16 +33,26 @@ const WrapperFooter: React.FC<FooterProps & { children: React.ReactNode; }> = ({
 		);
 	}
 
+	// temporary workaround for popover bug that won't appear if you have 2 containers div
+	// while if you just use motiondiv with y transform in mobile view it will be weird.
 	return (
 		<>
 			<motion.div
 				ref={ container }
 				style={ { y } }
 				className={ clsxm(wrapperClassName, 'max-lg:hidden') }>
-				{ children }
+				{ !isMobile && (
+					<>
+						{ children }
+					</>
+				) }
 			</motion.div>
 			<div className={ clsxm(wrapperClassName, 'lg:hidden') }>
-				{ children }
+				{ isMobile && (
+					<>
+						{ children }
+					</>
+				) }
 			</div>
 		</>
 	);
@@ -120,27 +130,33 @@ const Footer: React.FC<FooterProps> = ({ landingPage }) => {
 									'text-sm !leading-[21px] font-Poppins underline',
 									openDisclaimer ? 'text-grey-400 sm:text-primary' : 'text-primary'
 								) }
-								onMouseEnter={ handleMouseEnterDisclaimer }
-								onMouseLeave={ handleMouseLeaveDisclaimer }
-								onClick={ () => setOpenDisclaimer(!openDisclaimer) }
+								{ ...isMobile
+									? {
+										onClick: () => setOpenDisclaimer(!openDisclaimer)
+									}
+									: {
+										onMouseEnter: handleMouseEnterDisclaimer,
+										onMouseLeave: handleMouseLeaveDisclaimer
+									}
+								}
 							>
 								{ footerData.disclaimer.label }
 							</span>
 						</PopoverTrigger>
 						<PopoverContent
-							onMouseEnter={ handleMouseEnterDisclaimer }
-							onMouseLeave={ handleMouseLeaveDisclaimer }
 							{ ...isMobile
 								? {
 									side: 'top',
 									align: 'start',
-									sideOffset: 20
+									sideOffset: 20,
 								}
 								: {
 									sideOffset: 15,
 									alignOffset: 17,
 									side: 'bottom',
-									align: 'end'
+									align: 'end',
+									onMouseEnter: handleMouseEnterDisclaimer,
+									onMouseLeave: handleMouseLeaveDisclaimer
 								} }
 							className='border border-grey-100 shadow-[0px_4px_18px_rgba(0,0,0,0.15)] backdrop-blur-[40px] rounded-2xl bg-white/30 px-[15px] py-6 sm:px-6 w-[var(--radix-popover-trigger-width)] md:w-full md:max-w-2xl'
 						>
@@ -156,7 +172,9 @@ const Footer: React.FC<FooterProps> = ({ landingPage }) => {
 
 	return (
 		<div className='pb-[66px] lg:pb-6 px-4 lg:px-3 max-lg:pt-2.5 overflow-hidden font-Poppins'>
-			<WrapperFooter landingPage={ landingPage }>
+			<WrapperFooter
+				landingPage={ landingPage }
+				isMobile={ isMobile }>
 				<div className='container-center'>
 					<div className='flex gap-[39px] max-lg:flex-col lg:justify-between w-full'>
 						<div className='flex flex-col'>
