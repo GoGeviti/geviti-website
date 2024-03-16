@@ -87,7 +87,7 @@ const Mission: React.FC = () => {
 				<div className='container-center max-lg:pb-[54px] grid-cols-1 grid lg:grid-cols-2 max-lg:gap-y-7 lg:gap-x-8 lg:relative'>
 					<div className='h-[811px] lg:py-[100px] xl:h-[39.514vw] w-full'>
 						<div className='h-full flex flex-col justify-end lg:justify-center relative z-10 max-lg:w-full lg:max-w-2xl mx-auto lg:mx-0'>
-							<div className={ clsxm('text-center lg:text-left lg:max-w-2xl mx-auto', currentImageTheme === 'light' ? 'bg-black/40 py-[42px] px-[27px] rounded-19px' : '') }>
+							<div className={ clsxm('text-center lg:text-left lg:max-w-2xl max-lg:mx-auto', currentImageTheme === 'light' ? 'bg-black/40 py-[42px] px-[27px] rounded-19px' : '') }>
 								<p className='mb-3.5 sm:mb-7px text-pretitle text-grey-primary lg:text-white'>{ missionData.preTitle }</p>
 
 								{ missionData.title && (

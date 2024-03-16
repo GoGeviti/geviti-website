@@ -233,7 +233,7 @@ const Footer: React.FC<FooterProps> = ({ landingPage }) => {
 					</div>
 				</div>
 
-				<div className='absolute bottom-0 lg:-bottom-[5%] inset-x-0 z-0'>
+				<div className='absolute bottom-0 lg:-bottom-[5%] inset-x-0 z-0 max-w-[1327.38px] mx-auto'>
 					<div className='relative overflow-hidden w-full h-full'>
 						<Image
 							src={ footerData.image }

@@ -13,7 +13,7 @@ import { ChevronRight } from '../Icons';
 import Navbar from '../Navbar/Landing';
 
 import ButtonCta from './ButtonCta';
-import { revealTextTransition } from './transition';
+import { slideUpTransition } from './transition';
 
 const heroData = landingData.hero;
 
@@ -87,11 +87,11 @@ const Hero: React.FC = () => {
 					variants={ {
 						visible: {
 							y: 0,
-							transition: revealTextTransition
+							transition: slideUpTransition
 						},
 						hidden: { y: '100%' }
 					} }
-					className='inline-block font-medium text-[7.6vw] xs:text-3xl md:text-4xl lg:text-[46px] !leading-normal -tracking-0.04em text-grey-secondary'
+					className='inline-block font-medium text-[7.6vw] xs:text-3xl md:text-4xl lg:text-[5vh] xl:text-[46px] !leading-normal -tracking-0.04em text-grey-secondary'
 				>{ title }</motion.h1>
 			</span>
 		));
@@ -115,7 +115,7 @@ const Hero: React.FC = () => {
 						}
 					}
 				} } />
-			<div className='bg-primary h-[calc(100svh)] lg:h-[calc(100vh-12px)] w-full overflow-hidden lg:rounded-19px relative pt-11px lg:pt-5'>
+			<div className='bg-primary h-[calc(100svh+14px)] lg:h-[calc(100vh-12px)] w-full overflow-hidden max-lg:rounded-t-none rounded-19px relative pt-11px lg:pt-5'>
 				<div className='absolute inset-0 w-full h-full'>
 					{ heroData.image && (
 						<div className='relative overflow-hidden w-full h-full lg:rounded-19px'>
@@ -152,8 +152,8 @@ const Hero: React.FC = () => {
 												visible: {
 													y: 0,
 													transition: {
-														...revealTextTransition,
-														delay: .5
+														...slideUpTransition,
+														delay: .3
 													}
 												},
 												hidden: { y: '100%' },
@@ -172,7 +172,7 @@ const Hero: React.FC = () => {
 									variants={ {
 										visible: {
 											transition: {
-												staggerChildren: .6
+												staggerChildren: .3,
 											}
 										}
 									} }
@@ -194,7 +194,7 @@ const Hero: React.FC = () => {
 									{ renderTitles(heroData.titlesMobile) }
 								</motion.div>
 
-								<div className='flex mt-[5vh] xs:mt-[42px] lg:mt-50px'>
+								<div className='flex mt-[5vh] xs:mt-[42px] lg:mt-[5.435vh] xl:mt-50px'>
 									<motion.div
 										variants={ {
 											visible: {
@@ -266,7 +266,7 @@ const Hero: React.FC = () => {
 								} }
 								initial='hidden'
 								animate='visible'
-								className='mt-[5.2vh] xs:mt-[46px] lg:mt-12'
+								className='mt-[5.2vh] xs:mt-[46px] lg:mt-[9.13vh] xl:mt-[84px]'
 								aria-hidden='true'
 							>
 								<div className='overflow-hidden rounded-full bg-white/10 relative z-20'>

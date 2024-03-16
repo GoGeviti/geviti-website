@@ -8,6 +8,7 @@ const NUMBERS = [
 	6, 7, 8, 9,
 ];
 
+// TODO: create AnimatedNumber types
 const AnimatedNumber = ({
 	className,
 	animateToNumber,
@@ -16,7 +17,7 @@ const AnimatedNumber = ({
 	includeComma,
 	locale,
 	isInView
-}: any) => {
+}: any) => { // eslint-disable-line @typescript-eslint/no-explicit-any
 	const keyCount = React.useRef(0);
 	const animateTonumberString = includeComma
 		? Math.abs(animateToNumber).toLocaleString(locale || 'en-US')

@@ -7,32 +7,32 @@ const flexibleData = landingData.flexible;
 
 const Flexible: React.FC = () => {
 	return (
-		<div className='overflow-hidden'>
-			<div className='bg-grey-secondary h-full w-full rounded-19px relative overflow-hidden'>
+		<div className='overflow-hidden lg:px-3'>
+			<div className='bg-grey-secondary h-full w-full rounded-19px relative overflow-hidden font-Poppins'>
 				<div className='max-lg:pt-[29px] max-lg:pb-[42px] container-center grid-cols-1 grid lg:grid-cols-2 max-lg:gap-y-7 lg:gap-x-8'>
-					<div className='max-lg:order-1 lg:h-[43.125rem]'>
+					<div className='max-lg:order-1 lg:h-[570px] xl2:h-[43.125rem]'>
 						<div className='h-full flex flex-col justify-center relative lg:z-10 max-lg:w-full lg:max-w-lg mx-auto lg:mx-0'>
 							<div className='text-center lg:text-left lg:max-w-xl'>
-								<p className='mb-[10px] md:mb-3 text-pretitle text-grey-primary'>
-									<span className='max-md:hidden'>{ flexibleData.preTitle }</span>
-									<span className='md:hidden'>{ flexibleData.preTitleMobile }</span>
+								<p className='mb-[10px] lg:mb-3 text-pretitle text-grey-primary'>
+									<span className='max-lg:hidden'>{ flexibleData.preTitle }</span>
+									<span className='lg:hidden'>{ flexibleData.preTitleMobile }</span>
 								</p>
 
 								{ flexibleData.title && (
-									<h2 className='mb-[10px] md:mb-[16.5px] md:leading-[121%] -tracking-[0.04em] leading-[133%] font-normal md:font-medium font-Poppins text-primary md:text-4xl text-[5.8vw] xs:text-2xl'>
-										{ flexibleData.title }<span className='text-[3.9vw] xs:text-base md:text-2xl'>/month</span>
+									<h2 className='mb-[10px] lg:mb-[16.5px] lg:leading-[121%] -tracking-[0.04em] leading-[133%] font-normal lg:font-medium font-Poppins text-primary lg:text-4xl text-[5.8vw] xs:text-2xl'>
+										{ flexibleData.title }<span className='text-[3.9vw] xs:text-base lg:text-2xl'>/month</span>
 									</h2>
 								) }
 
 								{ flexibleData.description && (
-									<p className='text-grey-400 max-sm:max-w-[330px] md:max-w-[446px] max-lg:mx-auto text-xs md:text-sm leading-5 font-BRSonoma'>
-										<span className='max-md:hidden'>{ flexibleData.description }</span>
-										<span className='md:hidden'>{ flexibleData.descriptionMobile }</span>
+									<p className='text-grey-400 max-sm:max-w-[330px] lg:max-w-[446px] max-lg:mx-auto text-xs lg:text-sm !leading-5'>
+										<span className='max-lg:hidden'>{ flexibleData.description }</span>
+										<span className='lg:hidden'>{ flexibleData.descriptionMobile }</span>
 									</p>
 								) }
 
-								<div className='mt-6 md:mt-[60.51px] max-sm:max-w-[330px] md:max-w-[446px] max-lg:mx-auto'>
-									<ul className='list-disc list-inside text-black text-sm sm:text-base md:text-lg leading-[229%] sm:leading-[178%] font-Poppins text-left'>
+								<div className='mt-6 lg:mt-[50px] lg2:mt-[60.51px] max-sm:max-w-[330px] lg:max-w-[446px] max-lg:mx-auto'>
+									<ul className='list-disc list-inside text-black text-sm sm:text-base lg:text-lg leading-[229%] sm:leading-[178%] font-Poppins text-left'>
 										{ flexibleData.list.map(item => (
 											<li key={ item }>
 												{ item }

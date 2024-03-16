@@ -227,10 +227,12 @@ const Innovative: React.FC = () => {
 			<div className='container-center text-center lg:text-left mb-[42px] lg:mb-[74px]'>
 				<p className='text-grey-primary text-pretitle max-lg:mb-2.5'>{ innovativeData.preTitle }</p>
 
-				<h2 className='text-2xl md:text-4xl lg:text-[64px] lg:leading-[96px] -tracking-0.04em max-lg:mx-auto max-lg:max-w-[330px]'>
+				<h2 className='text-2xl md:text-4xl lg:text-[64px] lg:leading-normal -tracking-0.04em max-md:mx-auto max-md:max-w-[330px]'>
 					<span dangerouslySetInnerHTML={ { __html: innovativeData.title } } />
 				</h2>
-				<p className='text-grey-400 text-xs lg:text-sm max-lg:mx-auto max-w-[300px] mt-2.5 lg:mt-4 lg:max-w-[561px]'>{ innovativeData.description }</p>
+				<p className='text-grey-400 text-xs lg:text-sm !leading-5 max-lg:mx-auto max-w-[300px] mt-2.5 lg:mt-4 lg:max-w-[561px]'>
+					{ innovativeData.description }
+				</p>
 			</div>
 			<div className='max-lg:px-4 grid grid-cols-1 lg:grid-cols-3 gap-y-6 lg:gap-y-[26px] lg:gap-x-6 lg:auto-rows-fr xl:auto-rows-[32.125rem]'>
 				{ innovativeData.list.map(item => (

@@ -7,11 +7,12 @@ const HomePage: NextPage = () => {
 		<div className='flex min-h-screen flex-col w-full bg-grey-background'>
 			<LandingComponent.Hero />
 			<LandingComponent.Steps />
-			<LandingComponent.RunningLogo />
 			<div className='max-lg:hidden'>
+				{ /** include: RunningLogo, Flexible, Clinical, and Application */ }
 				<LandingComponent.SectionCardsParallax />
 			</div>
 			<div className='flex flex-col gap-y-3.5 lg:gap-y-6 lg:hidden'>
+				<LandingComponent.RunningLogo />
 				<LandingComponent.Flexible />
 				<LandingComponent.Clinical />
 				<LandingComponent.Application />

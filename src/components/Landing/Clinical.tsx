@@ -9,10 +9,10 @@ const clinicalData = landingData.clinical;
 
 const Clinical: React.FC = () => {
 	return (
-		<div className='overflow-hidden'>
+		<div className='overflow-hidden lg:px-3 font-Poppins'>
 			<div className='bg-grey-secondary h-full w-full rounded-[19px] relative overflow-hidden'>
-				<div className='max-lg:pt-[29px] max-lg:pb-[42px] container-center max-xxl:max-w-none grid-cols-1 grid lg:grid-cols-2 max-lg:gap-y-7 lg:gap-x-8'>
-					<div className='max-lg:order-1 lg:h-[43.125rem] lg:col-start-2 lg:col-end-3'>
+				<div className='max-lg:pt-[29px] max-lg:pb-[137px] container-center max-xxl:max-w-none grid-cols-1 grid lg:grid-cols-2 max-lg:gap-y-7 lg:gap-x-8'>
+					<div className='max-lg:order-1 lg:h-[570px] xl2:h-[43.125rem] lg:col-start-2 lg:col-end-3'>
 						<div className='h-full flex flex-col justify-center relative lg:z-10 max-lg:w-full lg:max-w-lg mx-auto'>
 							<div className='text-center lg:text-left lg:max-w-xl'>
 								<p className='mb-[10px] md:mb-3 text-pretitle text-grey-primary'>
@@ -27,7 +27,7 @@ const Clinical: React.FC = () => {
 								) }
 
 								{ clinicalData.description && (
-									<p className='text-grey-400 max-sm:max-w-[331px] md:max-w-[500px] max-lg:mx-auto text-xs md:text-sm leading-5 font-BRSonoma'>
+									<p className='text-grey-400 max-sm:max-w-[331px] md:max-w-[500px] max-lg:mx-auto text-xs md:text-sm !leading-5'>
 										<span
 											className='max-md:hidden'
 											dangerouslySetInnerHTML={ { __html: clinicalData.description } } />

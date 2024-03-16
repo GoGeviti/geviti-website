@@ -12,6 +12,7 @@ const config: Config = {
 				xxs: '300px',
 				xs2: '391px',
 				xs: '450px',
+				xl2: '1380px',
 				xxl: '1920px',
 			},
 			spacing: {
@@ -111,8 +112,8 @@ const config: Config = {
 				'border-innovative-image': 'linear-gradient(91.54deg, rgba(255, 255, 255, 0.15) 11.37%,rgba(228, 235, 238, 0.0375) 56.56%)',
 			},
 			animation: {
-				marquee: 'marquee 40s linear infinite',
-				marquee2: 'marquee2 40s linear infinite',
+				marquee: 'marquee 90s linear infinite',
+				marquee2: 'marquee2 90s linear infinite',
 				fadeIn: 'fadeIn 0.2s ease-out',
 				'accordion-down': 'accordion-down 0.2s ease-out',
 				'accordion-up': 'accordion-up 0.2s ease-out',

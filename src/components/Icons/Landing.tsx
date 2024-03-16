@@ -530,7 +530,7 @@ export const GevitiRotateIcon = (props?: React.SVGProps<SVGSVGElement>) => {
 	);
 };
 
-export const ShadowBlueSvg = () => {
+export const ShadowBlueSvg = (props?: React.SVGProps<SVGSVGElement>) => {
 	return (
 		<>
 			<svg
@@ -539,7 +539,8 @@ export const ShadowBlueSvg = () => {
 				viewBox='0 0 411 604'
 				fill='none'
 				xmlns='http://www.w3.org/2000/svg'
-				className='max-lg:hidden'>
+				{ ...props }
+			>
 				<g filter='url(#filter0_f_1293_11999)'>
 					<ellipse
 						cx='205.25'

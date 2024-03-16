@@ -11,7 +11,7 @@ import clsxm from '@/helpers/clsxm';
 import AnimatedWords from '../AnimatedWords';
 
 import ButtonCta from './ButtonCta';
-import { revealTextTransition } from './transition';
+import { slideUpTransition } from './transition';
 
 const AnimatedNumbers = dynamic(() => import('../AnimatedNumbers'), { ssr: false });
 
@@ -21,6 +21,10 @@ const defaultPropsAnimatedNumbers = {
 	includeComma: true,
 	className: 'text-[160px] leading-[240px] lg:text-[270px] lg:leading-[405px] -tracking-0.04em',
 	transitions: (index: number) => ({
+		// stiffness: 100,
+		// damping: 30,
+		// restDelta: 0.001,
+		// type: 'spring'
 		ease: 'easeInOut',
 		duration: 3 - (index * 0.05),
 		delay: .025 * (2 - index)
@@ -30,6 +34,7 @@ const defaultPropsAnimatedNumbers = {
 
 const BiologicalKit: React.FC = () => {
 	const { ref, inView } = useInView({
+		threshold: .5,
 		triggerOnce: true
 	});
 
@@ -37,14 +42,12 @@ const BiologicalKit: React.FC = () => {
 		const stepsData = biologicalData.step.list;
 
 		return (
-			<div
-				className='mt-6'
-				aria-hidden='true'>
+			<div aria-hidden='true'>
 				<div className='overflow-hidden hidden lg:inline-block w-full'>
 					<motion.div
 						variants={ {
 							hidden: { y: '100%' },
-							visible: { y: 0, transition: revealTextTransition }
+							visible: { y: 0, transition: slideUpTransition }
 						} }
 						initial='hidden'
 						animate={ inView ? 'visible' : 'hidden' }
@@ -85,7 +88,7 @@ const BiologicalKit: React.FC = () => {
 						}
 					} }
 				>
-					<h3 className='text-2xl lg:!leading-[36px] -tracking-0.04em mt-[62px] lg:mt-[5vh]'>
+					<h3 className='text-2xl lg:!leading-[36px] -tracking-0.04em mt-[62px] lg:mt-[5.435vh] xl2:mt-[50px]'>
 						<AnimatedWords text={ biologicalData.step.title } />
 					</h3>
 				</motion.div>
@@ -100,7 +103,7 @@ const BiologicalKit: React.FC = () => {
 							}
 						}
 					} }
-					className='mt-[37px] grid gap-[42px] lg:gap-1 lg:grid-cols-3 text-sm !leading-[21px] text-grey-primary'>
+					className='mt-11 lg:mt-[37px] grid gap-[42px] lg:gap-1 lg:grid-cols-3 text-sm !leading-[21px] text-grey-primary'>
 					{ stepsData.map((stepItem, stepItemIdx) => (
 						<span
 							key={ stepItemIdx }
@@ -110,17 +113,17 @@ const BiologicalKit: React.FC = () => {
 									hidden: { y: '200%' },
 									visible: {
 										y: 0,
-										transition: { ease: revealTextTransition.ease, duration: 1.5 },
+										transition: { ease: slideUpTransition.ease, duration: 1.5 },
 									},
 								} }
 								className={ clsxm(
 									'flex',
-									stepItemIdx === stepsData.length - 1 && 'justify-end',
-									stepItemIdx > 0 && stepItemIdx < stepsData.length - 1 && 'justify-center'
+									stepItemIdx === stepsData.length - 1 && 'lg:justify-end',
+									stepItemIdx > 0 && stepItemIdx < stepsData.length - 1 && 'lg:justify-center'
 								) }
 							>
 								<div className='flex gap-3'>
-									<stepItem.icon className='flex-shrink-0' />
+									<stepItem.icon className='flex-shrink-0 w-10 h-10' />
 									<span className='lg:max-w-[285px]'>
 										<span className='text-white'>{ stepItem.title }{ ' ' }</span>{ stepItem.text }
 									</span>
@@ -138,7 +141,7 @@ const BiologicalKit: React.FC = () => {
 			<div
 				ref={ ref }
 				className='bg-primary w-full rounded-19px relative text-white'>
-				<div className='container-center py-[52px] lg:pt-[3vh] xxl:pt-[68px] lg:pb-[50px] relative isolate w-full h-full'>
+				<div className='container-center py-[52px] lg:pt-[7.391vh] xl2:pt-[68px] lg:pb-[5.435vh] xl2:pb-[50px] relative isolate w-full h-full'>
 					<div className='flex max-lg:flex-col justify-end lg:justify-between lg:gap-6 relative'>
 						<div className='flex flex-col'>
 							<div className='overflow-hidden inline-block'>
@@ -147,7 +150,7 @@ const BiologicalKit: React.FC = () => {
 										hidden: { y: '100%' },
 										visible: {
 											y: 0,
-											transition: { ease: revealTextTransition.ease, duration: 1 },
+											transition: { ease: slideUpTransition.ease, duration: 1 },
 										},
 									} }
 									animate={ inView ? 'visible' : 'hidden' }
@@ -158,13 +161,13 @@ const BiologicalKit: React.FC = () => {
 										dangerouslySetInnerHTML={ { __html: biologicalData.title } } />
 								</motion.span>
 							</div>
-							<div className='mt-2.5 text-grey-primary text-sm lg:max-w-[463px] overflow-hidden inline-block'>
+							<div className='mt-6 lg:mt-[42px] text-grey-primary text-sm lg:max-w-[463px] overflow-hidden inline-block'>
 								<motion.span
 									variants={ {
 										hidden: { y: '100%' },
 										visible: {
 											y: 0,
-											transition: { ease: revealTextTransition.ease, duration: 1 },
+											transition: { ease: slideUpTransition.ease, duration: 1 },
 										},
 									} }
 									animate={ inView ? 'visible' : 'hidden' }
@@ -174,7 +177,7 @@ const BiologicalKit: React.FC = () => {
 								</motion.span>
 							</div>
 						</div>
-						<div className='flex max-lg:my-1 justify-end lg:absolute lg:-top-[68px] lg:bottom-2 lg:right-0'>
+						<div className='flex max-lg:my-1 justify-end lg:absolute lg:-top-[58px] lg:bottom-0 lg:right-0'>
 							<div className='inline-block overflow-hidden'>
 								<div className='lg:hidden'>
 									<AnimatedNumbers
@@ -197,7 +200,7 @@ const BiologicalKit: React.FC = () => {
 								hidden: { y: '100%', },
 								visible: {
 									y: 0,
-									transition: { ease: revealTextTransition.ease, duration: 1, delay: .5 },
+									transition: { ease: slideUpTransition.ease, duration: 1, delay: .5 },
 								},
 							} }
 							animate={ inView ? 'visible' : 'hidden' }
@@ -208,18 +211,18 @@ const BiologicalKit: React.FC = () => {
 							</p>
 						</motion.span>
 					</div>
-					<div className='mt-[62px] lg:mt-[17px] max-sm:w-full max-lg:justify-center overflow-hidden flex'>
+					<div className='mt-[62px] lg:-mt-[7px] max-sm:w-full max-lg:justify-center overflow-hidden flex'>
 						<motion.span
 							variants={ {
 								hidden: { y: '100%' },
 								visible: {
 									y: 0,
-									transition: { ease: revealTextTransition.ease, duration: 1 },
+									transition: { ease: slideUpTransition.ease, duration: 1 },
 								},
 							} }
 							animate={ inView ? 'visible' : 'hidden' }
 							initial='hidden'
-							className='inline-block'>
+							className='inline-block max-sm:w-full max-lg:justify-center'>
 							<ButtonCta
 								href={ biologicalData.btnCta.href }
 								text={ biologicalData.btnCta.text }
@@ -228,7 +231,7 @@ const BiologicalKit: React.FC = () => {
 							/>
 						</motion.span>
 					</div>
-					<div className='mt-[62px] lg:mt-[20vh] xxl:mt-[267px]'>
+					<div className='mt-[62px] lg:mt-[29.022vh] xl2:mt-[267px]'>
 						{ renderStep() }
 					</div>
 				</div>

@@ -36,10 +36,10 @@ const StepsSection: React.FC = () => {
 
 	return (
 		<div className='overflow-hidden'>
-			<div className='h-full w-full lg:rounded-19px relative overflow-hidden'>
-				<div className='container-center pt-[52px] pb-[31px] lg:pt-[76px] lg:pb-[78.16px] flex flex-col gap-y-[52px] md:gap-y-[75px] items-center justify-center text-center'>
+			<div className='h-full w-full relative overflow-hidden'>
+				<div className='container-center pt-[52px] pb-[31px] lg:pt-[76px] lg:pb-[78.16px] flex flex-col gap-y-[52px] lg:gap-y-0 items-center justify-center text-center'>
 					<div className='text-center sm:mx-auto'>
-						<p className='mb-5px md:mb-3.5 uppercase lg:text-base text-grey-primary text-pretitle leading-[15px] lg:leading-[24px]'>
+						<p className='mb-5px lg:mb-3.5 uppercase text-grey-primary text-pretitle lg:text-base lg:leading-6'>
 							{ stepsData.preTitle }
 						</p>
 
@@ -49,14 +49,14 @@ const StepsSection: React.FC = () => {
 							</h2>
 						) }
 
-						<div className='hidden md:flex justify-center mt-[42px]'>
+						<div className='hidden lg:flex justify-center mt-[42px]'>
 							{ renderButtonCta() }
 						</div>
 					</div>
 
-					<div className='md:max-w-6xl md:mx-auto w-full max-md:flex max-md:justify-center'>
+					<div className='lg:max-w-6xl lg:mx-auto w-full max-lg:flex max-lg:justify-center'>
 						<div>
-							<div className='md:pt-[54px] flex md:flex-row max-w-[1015px] mx-auto flex-col items-start w-full no-scrollbar overflow-y-hidden transition-all select-none transform flex-nowrap overflow-x-auto lg:overflow-hidden scrolling-touch scroll-smooth max-md:space-y-10  gap-x-18px lg:gap-x-[108px] py-1'>
+							<div className='lg:pt-[92px] flex lg:flex-row max-w-[1014px] mx-auto flex-col items-start w-full no-scrollbar overflow-y-hidden transition-all select-none transform flex-nowrap overflow-x-auto lg:overflow-hidden scrolling-touch scroll-smooth max-lg:space-y-[42px] gap-x-18px lg:gap-x-[108px]'>
 								{ stepsData.list.map((step, stepIdx) => {
 									const isSelected = stepIdx === selectedIdx;
 									const Icon = step.icon;
@@ -65,40 +65,45 @@ const StepsSection: React.FC = () => {
 									return (
 										<div
 											key={ `step-${ step.id }` }
-											className={ clsxm('w-full flex md:flex-col max-md:space-x-5 items-center md:transform md:transition-all md:duration-100 md:ease-in', isSelected ? 'md:-translate-y-5' : 'translate-y-0') }
+											className={ clsxm(
+												'w-full flex lg:flex-col max-lg:space-x-4 items-center lg:transform lg:transition-all lg:duration-100 lg:ease-in-out',
+												isSelected
+													? 'lg:-translate-y-[17px]'
+													: 'translate-y-0'
+											) }
 										>
 											<button
 												onClick={ () => onSelectStep(stepIdx) }
 												onMouseEnter={ () => onMouseEnter(stepIdx) }
 												className={ clsxm(
-													'cursor-pointer rounded-full flex items-center justify-center flex-shrink-0',
+													'cursor-pointer rounded-full flex items-center justify-center flex-shrink-0 max-lg:shadow-[0px_27.2073px_35.1062px_rgba(0,0,0,0.05)]',
 													isSelected
-														? 'bg-white md:bg-blue-1 w-[40px] h-[40px] lg:w-[55px] lg:h-[55px] md:shadow-[0px_-8px_24px_0px_rgba(251,251,251,0.35)]'
-														: 'bg-white w-[40px] h-[40px] lg:w-[46px] lg:h-[46px]'
+														? 'bg-white lg:bg-blue-1 w-10 h-10 lg:w-[62px] lg:h-[62px] lg:shadow-[0px_41.9842px_54.1731px_rgba(0,0,0,0.05))]'
+														: 'bg-white w-10 h-10 lg:w-[55px] lg:h-[55px] lg:shadow-[0px_37.6636px_48.5981px_rgba(0,0,0,0.05)]'
 												) }
 											>
 												{ IconMobile
 													? (
 														<>
-															<span className='max-md:hidden'>{ <Icon className={ isSelected ? 'text-primary' : 'text-blue-1' } /> }</span>
-															<span className='md:hidden'>{ <IconMobile className='text-blue-1' /> }</span>
+															<span className='max-lg:hidden'>{ <Icon className={ clsxm(isSelected ? 'text-primary' : 'text-blue-1', 'flex-shrink-0 w-6 h-6') } /> }</span>
+															<span className='lg:hidden'>{ <IconMobile className='text-blue-1 flex-shrink-0 w-18px h-18px' /> }</span>
 														</>
 													)
-													: <Icon className={ isSelected ? 'text-blue-1 md:text-primary' : 'text-blue-1' } /> }
+													: <Icon className={ clsxm(isSelected ? 'text-blue-1 lg:text-primary' : 'text-blue-1', 'flex-shrink-0 w-18px h-18px lg:w-6 lg:h-6') } /> }
 											</button>
 
 											<p
 												onClick={ () => onSelectStep(stepIdx) }
 												onMouseEnter={ () => onMouseEnter(stepIdx) }
 												className={ clsxm(
-													'cursor-pointer text-center font-Poppins max-md:text-left text-primary leading-[134%]',
+													'cursor-pointer text-center font-Poppins max-lg:text-left text-primary leading-[134%]',
 													isSelected
-														? 'md:pt-[22px] text-[15.033px] md:text-[19px] font-medium'
-														: 'font-medium md:pt-18px text-[15.042px] md:text-base'
+														? 'lg:pt-[24.84px] text-[14.04px] lg:text-[22px] !leading-normal font-medium'
+														: 'font-medium lg:pt-[22.76px] text-[14.03px] lg:text-[19.4px] !leading-normal'
 												) }
 											>
 												<span
-													className='max-md:text-left whitespace-nowrap'
+													className='max-lg:text-left whitespace-nowrap'
 													dangerouslySetInnerHTML={ { __html: step.title } } />
 											</p>
 										</div>
@@ -107,14 +112,16 @@ const StepsSection: React.FC = () => {
 							</div>
 						</div>
 
-						<div className='md:flex justify-center mt-[46px] sm:mt-20 hidden'>
-							<div className='flex items-center gap-x-2.5 xxs:gap-x-18px'>
+						<div className='lg:flex justify-center mt-20 hidden'>
+							<div className='flex items-center gap-x-18px'>
 								{ stepsData.list.map((step, stepIdx) => (
 									<div
 										key={ `indicator-step-${ step.id }` }
 										className={ clsxm(
 											'h-1 rounded-full cursor-pointer transform transition-all duration-300 ease-linear',
-											stepIdx === selectedIdx ? 'w-[110px] xxs:w-[122px] bg-blue-1 shadow-[0px_-8px_24px_0px_rgba(251,251,251,0.35)]' : 'w-8 xxs:w-[38px] bg-grey-shadow'
+											stepIdx === selectedIdx
+												? 'w-[122px] bg-blue-1 shadow-[0px_-8px_24px_0px_rgba(251,251,251,0.35)]'
+												: 'w-[38px] bg-grey-shadow',
 										) }
 										onClick={ () => onSelectStep(stepIdx) }
 										onMouseEnter={ () => onMouseEnter(stepIdx) }
@@ -124,7 +131,7 @@ const StepsSection: React.FC = () => {
 						</div>
 					</div>
 
-					<div className='md:hidden flex justify-center'>
+					<div className='lg:hidden flex justify-center'>
 						{ renderButtonCta() }
 					</div>
 				</div>

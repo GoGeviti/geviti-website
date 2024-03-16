@@ -77,7 +77,7 @@ const DiscoverGeviti: React.FC<DiscoverGevitiProps> = ({
 				id='discover-products-scroll'
 				className={ clsxm(
 					'no-scrollbar overflow-y-hidden transition-all select-none transform flex flex-nowrap overflow-x-auto scrolling-touch scroll-smooth gap-x-6 py-6',
-					'snap-x snap-mandatory ml-4 lg:ml-10 xl:ml-20 last:pr-4 lg:last:pr-10 xl:last:pr-20'
+					'snap-x snap-mandatory ml-4 lg:ml-10 xl:ml-[calc((100vw-1240px)/2)] last:pr-4 lg:last:pr-10 xl:last:pr-[calc((100vw-1240px)/2)]'
 				) }
 				ref={ wrapperItemsRef }
 			>
@@ -111,7 +111,7 @@ const DiscoverGeviti: React.FC<DiscoverGevitiProps> = ({
 							<h3 className='text-lg font-medium text-primary leading-[141%] -tracking-0.04em whitespace-normal'>
 								{ product.name }
 							</h3>
-							<p className='text-sm text-grey-primary whitespace-normal'>
+							<p className='text-sm text-grey-primary whitespace-normal mt-5px'>
 								{ product.sort_description }
 							</p>
 							<div className='flex flex-1 flex-col justify-end text-primary pt-5'>
@@ -150,8 +150,8 @@ const DiscoverGeviti: React.FC<DiscoverGevitiProps> = ({
 							</div>
 						</div>
 						<div className='absolute right-[11px] bottom-[21px]'>
-							<div className='w-[46px] h-[46px] border border-grey-100 group-hover:border-primary group-hover:bg-primary relative rounded-full transition-all duration-200 ease-in'>
-								<ArrowNarrowRight className='text-gray-100 group-hover:text-blue-primary w-6 h-6 absolute-center flex-shrink-0 -rotate-45 transition-all duration-200 ease-in' />
+							<div className='w-[46px] h-[46px] border border-grey-100 max-lg:border-primary group-hover:border-primary max-lg:bg-primary group-hover:bg-primary relative rounded-full transition-all duration-200 ease-in'>
+								<ArrowNarrowRight className='text-gray-100 max-lg:text-blue-primary group-hover:text-blue-primary w-6 h-6 absolute-center flex-shrink-0 -rotate-45 transition-all duration-200 ease-in' />
 							</div>
 						</div>
 					</Link>
@@ -184,7 +184,7 @@ const DiscoverGeviti: React.FC<DiscoverGevitiProps> = ({
 			) }
 		>
 			<div className='w-full relative'>
-				<div className='px-4 lg:px-10 xl:px-20'>
+				<div className='px-4 lg:px-10 xl:px-[calc((100vw-1240px)/2)]'>
 					<div className='flex items-center justify-between'>
 						<div>
 							<h2 className='text-primary text-2xl md:text-3xl lg:text-4xl leading-[179%] sm:leading-[128%] lg:leading-[119%] -tracking-0.04em'>

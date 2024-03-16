@@ -55,22 +55,22 @@ const Benefits: React.FC = () => {
 								{ benefitsData.preTitle }
 							</p>
 
-							<h2 className='my-2.5 sm:my-6 text-primary text-[6.107vw] max-md:leading-[133%] md:text-3xl lg:text-5xl xl:text-[64px] xl:leading-[68%] -tracking-0.04em'>
+							<h2 className='my-2.5 lg:my-6 text-primary text-[6.107vw] max-md:leading-[133%] md:text-3xl lg:text-[4.444vw] xl:text-[64px] lg:leading-[68%] -tracking-0.04em'>
 								{ benefitsData.title }
 							</h2>
 
-							<p className='text-grey-400 mt-5px text-xs sm:text-sm !leading-5 max-w-[342px] max-lg:mx-auto lg:max-w-[412px]'>
+							<p className='text-grey-400 text-xs sm:text-sm !leading-5 max-w-[342px] max-lg:mx-auto lg:max-w-[412px]'>
 								{ benefitsData.description }
 							</p>
 						</div>
 
 						<div className='max-lg:hidden'>{ renderButtonViewAll() }</div>
 					</div>
-					<div className='mx-auto mt-[42px] grid max-w-2xl auto-rows-fr grid-cols-1 gap-[42px] sm:mt-[58px] lg:mx-0 lg:max-w-none lg:grid-cols-2'>
+					<div className='mx-auto mt-[42px] grid max-w-2xl auto-rows-fr grid-cols-1 gap-[42px] lg:gap-[23px] lg:mt-[58px] lg:mx-0 lg:max-w-none lg:grid-cols-2'>
 						{ benefitsData.list.map(item => (
 							<article
 								key={ item.title }
-								className='relative isolate flex flex-col justify-end overflow-hidden rounded-2xl px-3 pb-3 pt-[271px] group'>
+								className='relative isolate flex flex-col justify-end overflow-hidden rounded-2xl px-3 pb-3 h-[542px] group'>
 								<div className='max-lg:hidden'>
 									{ renderImage(item) }
 								</div>
@@ -110,18 +110,22 @@ const Benefits: React.FC = () => {
 											</div>
 										</div>
 
-										<h3 className='text-2xl !leading-9 sm:text-3xl lg:text-4xl lg:!leading-[54px] -tracking-0.04em'>{ item.title }</h3>
-										<ul className='list-inside list-disc mt-2.5 sm:mt-5px text-xs sm:text-sm !leading-7'>
-											{ item.details.map(detail => (
-												<li key={ detail }>
-													{ detail }
-												</li>
-											)) }
-										</ul>
+										<h3 className='text-2xl !leading-9 sm:text-3xl lg:text-4xl lg:!leading-[54px] -tracking-0.04em'>
+											{ item.title }
+										</h3>
 
-										<div className='absolute right-18px bottom-15px'>
-											<div className='relative w-[62px] h-[62px] rounded-full bg-white/20 border-2 border-white/5'>
-												<ArrowNarrowRight className='w-8 h-8 text-white absolute-center flex-shrink-0 -rotate-45' />
+										<div>
+											<ul className='list-inside list-disc mt-2.5 sm:mt-5px text-xs sm:text-sm !leading-7'>
+												{ item.details.map(detail => (
+													<li key={ detail }>
+														{ detail }
+													</li>
+												)) }
+											</ul>
+											<div className='absolute right-18px bottom-15px max-lg:hidden'>
+												<div className='relative w-[62px] h-[62px] rounded-full bg-white/20 border-2 border-white/5'>
+													<ArrowNarrowRight className='w-8 h-8 text-white absolute-center flex-shrink-0 -rotate-45' />
+												</div>
 											</div>
 										</div>
 									</div>

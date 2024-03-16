@@ -4,7 +4,7 @@ import navbarData from '@/constant/data/navbar';
 
 const GevitiLogo = () => {
 	return (
-		<div className='flex-shrink-0 relative overflow-hidden w-[79.25px] h-5'>
+		<div className='flex-shrink-0 relative overflow-hidden w-[85px] h-5'>
 			<Image
 				src={ navbarData.logoLight }
 				alt='logo'
