@@ -13,7 +13,6 @@ import { ArrowNarrowRight, ChevronRight } from '../Icons';
 const benefitsData = landingData.benefits;
 
 const Benefits: React.FC = () => {
-
 	const renderButtonViewAll = () => {
 		const viewAll = benefitsData.viewAll;
 
@@ -37,7 +36,10 @@ const Benefits: React.FC = () => {
 			<Image
 				src={ isMobile ? item.imageMobile : item.image }
 				alt={ item.title }
-				className='absolute inset-0 -z-10 h-full w-full object-cover pointer-events-none'
+				className={ clsxm(
+					'absolute inset-0 -z-10 h-full w-full object-cover pointer-events-none',
+					isMobile ? 'lg:hidden' : 'max-lg:hidden'
+				) }
 				sizes='100vw'
 				quality={ 100 }
 				fill
@@ -45,8 +47,14 @@ const Benefits: React.FC = () => {
 		);
 	};
 
+	const renderArrowNarrowRight = () => {
+		return (
+			<ArrowNarrowRight className='w-8 h-8 text-white absolute-center flex-shrink-0 -rotate-45' />
+		);
+	};
+
 	return (
-		<div className='lg:px-3 overflow-hidden mt-3.5 lg:mt-11 font-Poppins'>
+		<div className='lg:px-3 mt-3.5 lg:mt-11 font-Poppins'>
 			<div className='bg-white relative overflow-hidden rounded-19px py-[46px] lg:pt-[79px] lg:pb-[49px]'>
 				<div className='container-center'>
 					<div className='flex justify-center lg:items-end lg:justify-between'>
@@ -66,17 +74,13 @@ const Benefits: React.FC = () => {
 
 						<div className='max-lg:hidden'>{ renderButtonViewAll() }</div>
 					</div>
-					<div className='mx-auto mt-[42px] grid max-w-2xl auto-rows-fr grid-cols-1 gap-[42px] lg:gap-[23px] lg:mt-[58px] lg:mx-0 lg:max-w-none lg:grid-cols-2'>
+					<div className='mx-auto mt-[42px] grid max-w-2xl grid-cols-1 gap-[42px] lg:gap-[23px] lg:mt-[58px] lg:mx-0 lg:max-w-none lg:grid-cols-2'>
 						{ benefitsData.list.map(item => (
 							<article
 								key={ item.title }
-								className='relative isolate flex flex-col justify-end overflow-hidden rounded-2xl px-3 pb-3 h-[542px] group'>
-								<div className='max-lg:hidden'>
-									{ renderImage(item) }
-								</div>
-								<div className='lg:hidden'>
-									{ renderImage(item, true) }
-								</div>
+								className='relative isolate flex flex-col justify-end overflow-hidden rounded-2xl px-3 pb-3 h-[542px]'>
+								{ renderImage(item) }
+								{ renderImage(item, true) }
 								<motion.div
 									variants={ {
 										visible: {
@@ -92,10 +96,8 @@ const Benefits: React.FC = () => {
 									initial='hidden'
 									whileInView='visible'
 									viewport={ { once: true } }
-									className={ clsxm(
-										'rounded-2xl p-px bg-border-gradient-white backdrop-blur-[50px]',
-										// 'lg:transform lg:transition-all ease-in-out duration-500 lg:opacity-0 group-hover:opacity-100 lg:scale-90 group-hover:scale-100'
-									) }>
+									className='rounded-2xl p-px bg-border-gradient-white backdrop-blur-[50px] group'
+								>
 									<div className='rounded-[calc(1rem-1px)] bg-[#042A4980] pt-6 sm:pt-[17px] pb-[21px] sm:pb-[15px] px-6 sm:px-18px text-white relative overflow-hidden'>
 										<div className='absolute inset-0 w-full h-full'>
 											<div className='relative overflow-hidden w-full h-full'>
@@ -110,11 +112,14 @@ const Benefits: React.FC = () => {
 											</div>
 										</div>
 
-										<h3 className='text-2xl !leading-9 sm:text-3xl lg:text-4xl lg:!leading-[54px] -tracking-0.04em'>
-											{ item.title }
-										</h3>
+										<div className='flex justify-between items-center w-full'>
+											<h3 className='text-2xl !leading-9 sm:text-3xl lg:text-4xl lg:!leading-[54px] -tracking-0.04em'>
+												{ item.title }
+											</h3>
+											<div className='relative w-8 h-8 max-lg:hidden lg:group-hover:hidden'>{ renderArrowNarrowRight() }</div>
+										</div>
 
-										<div>
+										<div className='max-lg:flex lg:group-hover:block lg:hidden'>
 											<ul className='list-inside list-disc mt-2.5 sm:mt-5px text-xs sm:text-sm !leading-7'>
 												{ item.details.map(detail => (
 													<li key={ detail }>
@@ -124,7 +129,7 @@ const Benefits: React.FC = () => {
 											</ul>
 											<div className='absolute right-18px bottom-15px max-lg:hidden'>
 												<div className='relative w-[62px] h-[62px] rounded-full bg-white/20 border-2 border-white/5'>
-													<ArrowNarrowRight className='w-8 h-8 text-white absolute-center flex-shrink-0 -rotate-45' />
+													{ renderArrowNarrowRight() }
 												</div>
 											</div>
 										</div>

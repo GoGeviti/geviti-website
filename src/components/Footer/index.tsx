@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useRef, useState } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion, MotionValue, useScroll, useTransform } from 'framer-motion';
 import Image from 'next/image';
 
 import { footerData } from '@/constant/data';
@@ -16,13 +16,13 @@ type FooterProps = {
 	landingPage?: boolean;
 };
 
-const WrapperFooter: React.FC<FooterProps & { children: React.ReactNode; isMobile?: boolean; }> = ({ isMobile, landingPage, children }) => {
+const WrapperFooter: React.FC<FooterProps & {
+	children: React.ReactNode;
+	isMobile?: boolean;
+	containerRef?: React.RefObject<HTMLDivElement>;
+	scrollYProgress: MotionValue<number>;
+}> = ({ isMobile, landingPage, children, containerRef, scrollYProgress }) => {
 	const wrapperClassName = 'pt-6 pb-[106px] lg:pt-12 lg:h-[569px] lg:pb-[310px] bg-white rounded-19px relative overflow-hidden w-full';
-	const container = useRef<HTMLDivElement>(null);
-	const { scrollYProgress } = useScroll({
-		target: container,
-		offset: ['start end', 'end end']
-	});
 	const y = useTransform(scrollYProgress, [0, 1], [-569, 0]);
 
 	if (!landingPage) {
@@ -38,7 +38,7 @@ const WrapperFooter: React.FC<FooterProps & { children: React.ReactNode; isMobil
 	return (
 		<>
 			<motion.div
-				ref={ container }
+				ref={ containerRef }
 				style={ { y } }
 				className={ clsxm(wrapperClassName, 'max-lg:hidden') }>
 				{ !isMobile && (
@@ -64,6 +64,13 @@ const Footer: React.FC<FooterProps> = ({ landingPage }) => {
 
 	const windowDimensions = useWindowDimensions();
 	const isMobile = windowDimensions.width < screens.lg;
+
+	const container = useRef<HTMLDivElement>(null);
+	const { scrollYProgress } = useScroll({
+		target: container,
+		offset: ['start end', 'end end']
+	});
+	const gevitiLogoY = useTransform(scrollYProgress, [0, 1], [400, 0]);
 
 	const handleMouseEnterDisclaimer = () => {
 		setOpenDisclaimer(true);
@@ -174,7 +181,10 @@ const Footer: React.FC<FooterProps> = ({ landingPage }) => {
 		<div className='pb-[66px] lg:pb-6 px-4 lg:px-3 max-lg:pt-2.5 overflow-hidden font-Poppins'>
 			<WrapperFooter
 				landingPage={ landingPage }
-				isMobile={ isMobile }>
+				isMobile={ isMobile }
+				containerRef={ container }
+				scrollYProgress={ scrollYProgress }
+			>
 				<div className='container-center'>
 					<div className='flex gap-[39px] max-lg:flex-col lg:justify-between w-full'>
 						<div className='flex flex-col'>
@@ -233,7 +243,9 @@ const Footer: React.FC<FooterProps> = ({ landingPage }) => {
 					</div>
 				</div>
 
-				<div className='absolute bottom-0 lg:-bottom-[5%] inset-x-0 z-0 max-w-[1327.38px] mx-auto'>
+				<motion.div
+					style={ { y: gevitiLogoY } }
+					className='absolute bottom-0 lg:-bottom-[5%] inset-x-0 z-0 max-w-[1327.38px] mx-auto'>
 					<div className='relative overflow-hidden w-full h-full'>
 						<Image
 							src={ footerData.image }
@@ -244,7 +256,7 @@ const Footer: React.FC<FooterProps> = ({ landingPage }) => {
 							className='w-full'
 						/>
 					</div>
-				</div>
+				</motion.div>
 			</WrapperFooter>
 		</div>
 	);
