@@ -7,8 +7,7 @@ import Image from 'next/image';
 import { landingData } from '@/constant/data';
 
 import LogoBlueLayer from '../../../public/images/landing/compressed/blue-geviti.webp';
-import SupplementsLayer from '../../../public/images/landing/compressed/supplements.webp';
-import SupplementsMobileLayer from '../../../public/images/landing/compressed/supplements-mobile.webp';
+import SupplementsLayer from '../../../public/images/landing/compressed/supplements-shadows.webp';
 
 const supplementsData = landingData.supplements;
 
@@ -50,26 +49,26 @@ const Supplements: React.FC = () => {
 					// className='w-full sm:w-[82vw] 2xl:w-[1227px] h-full object-contain z-1 pointer-events-none'
 					/>
 				</motion.div>
-				<div className='relative z-2 max-lg:hidden lg:mt-[5vh] xl:mt-0 -bottom-[80px]'>
+				<div className='relative z-2 max-lg:hidden lg:mt-[5vh] xl:mt-0 -bottom-[160px]'>
 					<motion.div style={ { y: backgroundY } }>
 						<Image
 							src={ SupplementsLayer }
 							alt=''
-							width={ 1636 }
-							height={ 1226 }
-							className='w-screen 2xl:w-[1440px] h-full object-contain pointer-events-none'
+							width={ 1440 }
+							height={ 1065 }
+							className='w-screen 2xl:w-[1440px] h-full object-contain pointer-events-none scale-[1.15]'
 						/>
 					</motion.div>
 				</div>
 				<motion.div
 					style={ { y: backgroundYMobile } }
-					className='absolute bottom-0 z-2 lg:hidden'>
+					className='absolute bottom-[65px] z-2 lg:hidden -right-2'>
 					<Image
-						src={ SupplementsMobileLayer }
+						src={ SupplementsLayer }
 						alt=''
 						width={ 522 }
 						height={ 392 }
-						className='w-screen h-full lg:hidden pointer-events-none'
+						className='w-screen h-full lg:hidden pointer-events-none scale-[1.4]'
 					/>
 				</motion.div>
 			</div>
