@@ -81,6 +81,7 @@ const StepsSection: React.FC = () => {
 														? 'bg-white lg:bg-blue-1 w-10 h-10 lg:w-[62px] lg:h-[62px] lg:shadow-[0px_41.9842px_54.1731px_rgba(0,0,0,0.05))]'
 														: 'bg-white w-10 h-10 lg:w-[55px] lg:h-[55px] lg:shadow-[0px_37.6636px_48.5981px_rgba(0,0,0,0.05)]'
 												) }
+												aria-label={ `step-${ step.id }` }
 											>
 												{ IconMobile
 													? (

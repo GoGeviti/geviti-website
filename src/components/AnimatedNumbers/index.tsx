@@ -109,12 +109,12 @@ const AnimatedNumber = ({
 	);
 };
 
-// const Enhanced = React.memo(AnimatedNumber, (prevProps, nextProps) => {
-// 	return (
-// 		prevProps.animateToNumber === nextProps.animateToNumber &&
-// 		prevProps.fontStyle === nextProps.fontStyle &&
-// 		prevProps.includeComma === nextProps.includeComma
-// 	);
-// });
+const AnimatedNumberMemo = React.memo(AnimatedNumber, (prevProps, nextProps) => {
+	return (
+		prevProps.animateToNumber === nextProps.animateToNumber &&
+		prevProps.fontStyle === nextProps.fontStyle &&
+		prevProps.includeComma === nextProps.includeComma
+	);
+});
 
-export default AnimatedNumber;
+export default AnimatedNumberMemo;

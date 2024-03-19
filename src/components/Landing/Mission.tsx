@@ -66,6 +66,7 @@ const Mission: React.FC = () => {
 					onClick={ handlePrevious }
 					className={ buttonClassName }
 					disabled={ currentIdx === 0 }
+					aria-label={ `prev-slider-${ currentIdx }` }
 				>
 					<ChevronRight className='rotate-180 flex-shrink-0 absolute-center' />
 				</button>
@@ -74,6 +75,7 @@ const Mission: React.FC = () => {
 					onClick={ handleNext }
 					className={ buttonClassName }
 					disabled={ currentIdx === images.length - 1 }
+					aria-label={ `next-slider-${ currentIdx }` }
 				>
 					<ChevronRight className='flex-shrink-0 absolute-center' />
 				</button>
@@ -126,6 +128,7 @@ const Mission: React.FC = () => {
 							custom={ direction }>
 							<motion.img
 								key={ currentIdx }
+								alt=''
 								src={ images[currentIdx] }
 								custom={ direction }
 								variants={ variants }
@@ -136,6 +139,7 @@ const Mission: React.FC = () => {
 									x: { type: 'spring', stiffness: 300, damping: 30 },
 									opacity: { duration: 0.2 }
 								} }
+								loading='lazy'
 								className='absolute inset-0 w-full h-full object-cover'
 							/>
 						</AnimatePresence>

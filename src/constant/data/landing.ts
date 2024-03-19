@@ -2,7 +2,6 @@ import { ShoppingBagIcon } from '@/components/Icons';
 import {
 	BarChartSquareIcon,
 	ChartIcon,
-	CompleteTestIcon,
 	DNAIcon,
 	DocumentIcon,
 	EmergencyCallAddIcon,
@@ -13,10 +12,8 @@ import {
 	HomeOutlineIcon,
 	MedicalDocIcon,
 	MonitoringIcon,
-	PackageIcon,
 	PillIcon,
-	TeamIcon,
-	TestResultIcon
+	TeamIcon
 } from '@/components/Icons/Landing';
 
 const landingData = {
@@ -331,21 +328,21 @@ const landingData = {
 				{
 					title: 'Receive your package',
 					text: 'directly in your mail. Included in this test is a cheek swap collection kit for quick and convenient testing.',
-					icon: PackageIcon,
+					image: '/images/landing/hero-icons/package.png',
 					stepColor: '#EF8E5F',
 					shadowColor: '#DF865A80'
 				},
 				{
 					title: 'Complete the test',
 					text: 'by collecting your sample via a quick and easy cheek swap. The process takes all of 10 minutes max.',
-					icon: CompleteTestIcon,
+					image: '/images/landing/hero-icons/complete-test.png',
 					stepColor: '#D07EE5',
 					shadowColor: '#C941CE80'
 				},
 				{
 					title: 'Receive the test results',
 					text: 'once they are processed by our labs. You’ll be notified when the results are ready for review in roughly 7-14 days.',
-					icon: TestResultIcon,
+					image: '/images/landing/hero-icons/test-result.png',
 					stepColor: '#00D1FF',
 					shadowColor: '#96D4FD80'
 				}

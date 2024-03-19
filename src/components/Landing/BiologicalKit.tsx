@@ -4,6 +4,7 @@ import React from 'react';
 import { useInView } from 'react-intersection-observer';
 import { motion } from 'framer-motion';
 import dynamic from 'next/dynamic';
+import Image from 'next/image';
 
 import { landingData } from '@/constant/data';
 import clsxm from '@/helpers/clsxm';
@@ -123,7 +124,14 @@ const BiologicalKit: React.FC = () => {
 								) }
 							>
 								<div className='flex gap-3'>
-									<stepItem.icon className='flex-shrink-0 w-10 h-10' />
+									<div className='flex flex-shrink-0 w-10 h-10 relative overflow-hidden'>
+										<Image
+											src={ stepItem.image }
+											alt=''
+											fill
+											sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
+										/>
+									</div>
 									<span className='lg:max-w-[285px]'>
 										<span className='text-white'>{ stepItem.title }{ ' ' }</span>{ stepItem.text }
 									</span>

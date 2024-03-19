@@ -105,7 +105,7 @@ const Benefits: React.FC = () => {
 													src='/images/landing/compressed/noise.png'
 													alt=''
 													fill
-													sizes='100vw'
+													sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
 													quality={ 100 }
 													className='object-cover pointer-events-none'
 												/>

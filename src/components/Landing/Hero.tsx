@@ -83,7 +83,7 @@ const Hero: React.FC = () => {
 			<span
 				key={ `title-${ titleIdx }` }
 				className='overflow-hidden inline-block'>
-				<motion.h1
+				<motion.span
 					variants={ {
 						visible: {
 							y: 0,
@@ -92,7 +92,7 @@ const Hero: React.FC = () => {
 						hidden: { y: '100%' }
 					} }
 					className='inline-block font-medium text-[7.6vw] xs:text-3xl md:text-4xl lg:text-[5vh] xl:text-[46px] !leading-normal -tracking-0.04em text-grey-secondary'
-				>{ title }</motion.h1>
+				>{ title }</motion.span>
 			</span>
 		));
 	};
@@ -117,28 +117,26 @@ const Hero: React.FC = () => {
 				} } />
 			<div className='bg-primary h-[calc(100svh+14px)] lg:h-[calc(100vh-12px)] w-full overflow-hidden max-lg:rounded-t-none rounded-19px relative pt-11px lg:pt-5'>
 				<div className='absolute inset-0 w-full h-full'>
-					{ heroData.image && (
-						<div className='relative overflow-hidden w-full h-full lg:rounded-19px'>
-							<Image
-								src={ heroData.image }
-								alt='hero'
-								priority
-								className='object-cover md:block hidden object-right pointer-events-none'
-								fill
-								quality={ 100 }
-								sizes='100vw'
-							/>
-							<Image
-								src={ heroData.imageMobile }
-								alt='hero mobile'
-								priority={ true }
-								className='object-cover md:hidden object-center pointer-events-none'
-								fill
-								quality={ 90 }
-								sizes='100vw'
-							/>
-						</div>
-					) }
+					<div className='relative overflow-hidden w-full h-full'>
+						<Image
+							src={ heroData.image }
+							alt='hero'
+							priority
+							className='object-cover md:block hidden object-right pointer-events-none'
+							fill
+							quality={ 100 }
+							sizes='(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 100vw'
+						/>
+						<Image
+							src={ heroData.imageMobile }
+							alt='hero mobile'
+							priority
+							className='object-cover md:hidden object-center pointer-events-none'
+							fill
+							quality={ 90 }
+							sizes='(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 100vw'
+						/>
+					</div>
 				</div>
 				<div className='absolute bottom-0 inset-x-0 w-full h-[60%] backdrop-hero-landing-bottom -z-0' />
 				<div className='h-full'>
@@ -166,7 +164,7 @@ const Hero: React.FC = () => {
 									</span>
 								</div>
 
-								<motion.div
+								<motion.h1
 									initial='hidden'
 									animate='visible'
 									variants={ {
@@ -176,73 +174,90 @@ const Hero: React.FC = () => {
 											}
 										}
 									} }
-									className='sm:max-w-[738px] flex flex-col mt-5px lg:mt-0 max-sm:hidden'
+									className='sm:max-w-[738px] flex flex-col mt-5px lg:mt-0'
 								>
-									{ renderTitles(heroData.titles) }
-								</motion.div>
-								<motion.div
-									initial='hidden'
-									animate='visible'
-									variants={ {
-										visible: {
-											transition: {
-												staggerChildren: .3
-											}
-										}
-									} }
-									className='sm:hidden flex flex-col'>
-									{ renderTitles(heroData.titlesMobile) }
-								</motion.div>
+									<span className='sm:hidden flex flex-col'>
+										{ renderTitles(heroData.titlesMobile) }
+									</span>
+									<span className='max-sm:hidden flex flex-col'>
+										{ renderTitles(heroData.titles) }
+									</span>
+								</motion.h1>
 
 								<div className='flex mt-[5vh] xs:mt-[42px] lg:mt-[5.435vh] xl:mt-50px'>
-									<motion.div
-										variants={ {
-											visible: {
-												opacity: 1,
-												y: 0,
-												backdropFilter: 'blur(25px)',
-												transition: {
-													delay: 1,
-													opacity: {
-														duration: 2,
-														ease: 'easeInOut'
-													},
-													y: {
-														duration: 1,
-														ease: [0.455, 0.03, 0.515, 0.955]
+									<div className='grid grid-cols-1 auto-rows-fr sm:grid-cols-2 gap-4 sm:gap-6 items-center max-sm:w-full'>
+										<motion.div
+											variants={ {
+												visible: {
+													opacity: 1,
+													y: 0,
+													transition: {
+														delay: 1,
+														opacity: {
+															duration: 2,
+															ease: 'easeInOut'
+														},
+														y: {
+															duration: 1,
+															ease: [0.455, 0.03, 0.515, 0.955]
+														}
 													}
-												}
-											},
-											hidden: { opacity: 0, y: 5 },
-										} }
-										initial='hidden'
-										animate='visible'
-										className='grid grid-cols-1 auto-rows-fr sm:grid-cols-2 gap-4 sm:gap-6 items-center max-sm:w-full'
-									>
-										<div className='flex max-sm:w-full max-sm:justify-center'>
-											<ButtonCta
-												href={ heroData.btnCta.href }
-												externalLink={ heroData.btnCta.externalLink }
-												aria-label={ heroData.btnCta.text }
-												text={ heroData.btnCta.text }
-												theme='secondary'
-												className='max-sm:w-full'
-											/>
-										</div>
-										<CustomLink
-											href={ heroData.btnCta2.href }
-											externalLink={ heroData.btnCta2.externalLink }
-											className='bg-white/10 hover:bg-white/20 group max-md:w-full border border-white/5 backdrop-blur-[25px] rounded-full py-1.5 pl-[42px] pr-1.5 h-full relative grid place-items-center grid-cols-[auto_46px] overflow-hidden gap-6'
-											aria-label={ heroData.btnCta2.text }
+												},
+												hidden: { opacity: 0, y: 5 },
+											} }
+											initial='hidden'
+											animate='visible'
 										>
-											<span className='text-lg leading-[133%] font-medium text-grey-secondary inline-block z-[2]'>
-												{ heroData.btnCta2.text }
-											</span>
-											<span className='w-[46px] relative flex items-center justify-center'>
-												<ChevronRight className='w-18px h-18px text-grey-secondary flex-shrink-0' />
-											</span>
-										</CustomLink>
-									</motion.div>
+											<div className='flex max-sm:w-full max-sm:justify-center'>
+												<ButtonCta
+													href={ heroData.btnCta.href }
+													externalLink={ heroData.btnCta.externalLink }
+													aria-label={ heroData.btnCta.text }
+													text={ heroData.btnCta.text }
+													theme='secondary'
+													className='max-sm:w-full'
+												/>
+											</div>
+										</motion.div>
+										<motion.div
+											variants={ {
+												visible: {
+													opacity: 1,
+													y: 0,
+													backdropFilter: 'blur(25px)',
+													transition: {
+														delay: 1,
+														opacity: {
+															duration: 2,
+															ease: 'easeInOut'
+														},
+														y: {
+															duration: 1,
+															ease: [0.455, 0.03, 0.515, 0.955]
+														}
+													}
+												},
+												hidden: { opacity: 0, y: 5 },
+											} }
+											initial='hidden'
+											animate='visible'
+											className='flex w-full h-full'
+										>
+											<CustomLink
+												href={ heroData.btnCta2.href }
+												externalLink={ heroData.btnCta2.externalLink }
+												className='bg-white/10 hover:bg-white/20 group max-md:w-full border border-white/5 backdrop-blur-[25px] rounded-full py-1.5 pl-[42px] pr-1.5 h-full relative grid place-items-center grid-cols-[auto_46px] overflow-hidden gap-6'
+												aria-label={ heroData.btnCta2.text }
+											>
+												<span className='text-lg leading-[133%] font-medium text-grey-secondary inline-block z-[2]'>
+													{ heroData.btnCta2.text }
+												</span>
+												<span className='w-[46px] relative flex items-center justify-center'>
+													<ChevronRight className='w-18px h-18px text-grey-secondary flex-shrink-0' />
+												</span>
+											</CustomLink>
+										</motion.div>
+									</div>
 								</div>
 							</div>
 							<motion.div
