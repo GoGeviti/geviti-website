@@ -225,6 +225,7 @@ const Hero: React.FC = () => {
 													opacity: 1,
 													y: 0,
 													backdropFilter: 'blur(25px)',
+													borderRadius: '9999px',
 													transition: {
 														delay: 1,
 														opacity: {
