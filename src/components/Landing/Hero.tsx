@@ -78,7 +78,7 @@ const Hero: React.FC = () => {
 		});
 	}, []);
 
-	const renderTitles = (titles: string[]) => {
+	const renderTitles = (titles: string[], titleMobile?: boolean) => {
 		return titles.map((title: string, titleIdx: number) => (
 			<span
 				key={ `title-${ titleIdx }` }
@@ -89,12 +89,31 @@ const Hero: React.FC = () => {
 							y: 0,
 							transition: slideUpTransition
 						},
-						hidden: { y: '100%' }
+						hidden: { y: titleMobile ? '80%' : '100%' }
 					} }
 					className='inline-block font-medium text-[7.6vw] xs:text-3xl md:text-4xl lg:text-[5vh] xl:text-[46px] !leading-normal -tracking-0.04em text-grey-secondary'
 				>{ title }</motion.span>
 			</span>
 		));
+	};
+
+	const renderImage = (type: 'desktop' | 'mobile') => {
+		const imageMobile = type === 'mobile';
+
+		return (
+			<Image
+				src={ imageMobile ? heroData.imageMobile : heroData.image }
+				alt='hero'
+				priority
+				className={ clsxm(
+					'object-cover pointer-events-none',
+					imageMobile ? 'md:hidden object-center' : 'md:block hidden object-right'
+				) }
+				fill
+				quality={ 100 }
+				sizes='(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 100vw'
+			/>
+		);
 	};
 
 	return (
@@ -118,24 +137,8 @@ const Hero: React.FC = () => {
 			<div className='bg-primary h-[calc(100svh+14px)] lg:h-[calc(100vh-12px)] w-full overflow-hidden max-lg:rounded-t-none rounded-19px relative pt-11px lg:pt-5'>
 				<div className='absolute inset-0 w-full h-full'>
 					<div className='relative overflow-hidden w-full h-full'>
-						<Image
-							src={ heroData.image }
-							alt='hero'
-							priority
-							className='object-cover md:block hidden object-right pointer-events-none'
-							fill
-							quality={ 100 }
-							sizes='(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 100vw'
-						/>
-						<Image
-							src={ heroData.imageMobile }
-							alt='hero mobile'
-							priority
-							className='object-cover md:hidden object-center pointer-events-none'
-							fill
-							quality={ 90 }
-							sizes='(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 100vw'
-						/>
+						{ renderImage('desktop') }
+						{ renderImage('mobile') }
 					</div>
 				</div>
 				<div className='absolute bottom-0 inset-x-0 w-full h-[60%] backdrop-hero-landing-bottom -z-0' />
@@ -174,14 +177,23 @@ const Hero: React.FC = () => {
 											}
 										}
 									} }
-									className='sm:max-w-[738px] flex flex-col mt-5px lg:mt-0'
+									className='sm:max-w-[738px] flex flex-col mt-5px lg:mt-0 max-sm:hidden'
 								>
-									<span className='sm:hidden flex flex-col'>
-										{ renderTitles(heroData.titlesMobile) }
-									</span>
-									<span className='max-sm:hidden flex flex-col'>
-										{ renderTitles(heroData.titles) }
-									</span>
+									{ renderTitles(heroData.titles) }
+								</motion.h1>
+								<motion.h1
+									initial='hidden'
+									animate='visible'
+									variants={ {
+										visible: {
+											transition: {
+												staggerChildren: .2,
+											}
+										}
+									} }
+									className='sm:hidden flex flex-col'
+								>
+									{ renderTitles(heroData.titlesMobile, true) }
 								</motion.h1>
 
 								<div className='flex mt-[5vh] xs:mt-[42px] lg:mt-[5.435vh] xl:mt-50px'>

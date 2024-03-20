@@ -8,7 +8,7 @@ import Image from 'next/image';
 import { landingData } from '@/constant/data';
 import clsxm from '@/helpers/clsxm';
 
-import { GevitiRotateIcon, ShadowBlueSvg } from '../Icons/Landing';
+import { GevitiRotateIcon } from '../Icons/Landing';
 
 import ButtonCta from './ButtonCta';
 
@@ -227,7 +227,22 @@ const Application: React.FC = () => {
 											className='w-[246px] h-full pointer-events-none lg:hidden'
 										/>
 										<div className='absolute -right-5 lg:right-[8%] inset-y-0 -z-10'>
-											<ShadowBlueSvg className='max-lg:hidden lg:w-[316px] xl2:w-[411px] lg:h-[464px] xl2:h-[604px]' />
+											<div className='max-lg:hidden lg:w-[316px] xl2:w-[411px] lg:h-[464px] xl2:h-[604px] relative'>
+												<Image
+													alt=''
+													src='/images/landing/hero-icons/shadow-blue.svg'
+													fill
+													sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
+												/>
+											</div>
+											<div className='lg:hidden w-[244px] h-[307px] relative'>
+												<Image
+													alt=''
+													src='/images/landing/hero-icons/shadow-blue-mobile.svg'
+													fill
+													sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
+												/>
+											</div>
 										</div>
 									</div>
 								</motion.div>

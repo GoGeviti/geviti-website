@@ -40,7 +40,7 @@ const Benefits: React.FC = () => {
 					'absolute inset-0 -z-10 h-full w-full object-cover pointer-events-none',
 					isMobile ? 'lg:hidden' : 'max-lg:hidden'
 				) }
-				sizes='100vw'
+				sizes='(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 100vw'
 				quality={ 100 }
 				fill
 			/>
