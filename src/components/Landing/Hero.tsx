@@ -78,7 +78,7 @@ const Hero: React.FC = () => {
 		});
 	}, []);
 
-	const renderTitles = (titles: string[], titleMobile?: boolean) => {
+	const renderTitles = (titles: string[]) => {
 		return titles.map((title: string, titleIdx: number) => (
 			<span
 				key={ `title-${ titleIdx }` }
@@ -89,7 +89,7 @@ const Hero: React.FC = () => {
 							y: 0,
 							transition: slideUpTransition
 						},
-						hidden: { y: titleMobile ? '80%' : '100%' }
+						hidden: { y: '100%' }
 					} }
 					className='inline-block font-medium text-[7.6vw] xs:text-3xl md:text-4xl lg:text-[5vh] xl:text-[46px] !leading-normal -tracking-0.04em text-grey-secondary'
 				>{ title }</motion.span>
@@ -193,7 +193,7 @@ const Hero: React.FC = () => {
 									} }
 									className='sm:hidden flex flex-col'
 								>
-									{ renderTitles(heroData.titlesMobile, true) }
+									{ renderTitles(heroData.titlesMobile) }
 								</motion.h1>
 
 								<div className='flex mt-[5vh] xs:mt-[42px] lg:mt-[5.435vh] xl:mt-50px'>
