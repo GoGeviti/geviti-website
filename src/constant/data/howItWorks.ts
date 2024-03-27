@@ -180,10 +180,10 @@ const howItWorksData = {
 		image: '/images/howitworks/quality.png',
 		title: 'Why Choose Geviti?',
 		list: [
-			'Because why leave home for better care?',
-			'Everything is streamlined and made easy.',
-			'Geviti makes cutting edge care available.',
-			'Optimizing hormones doesn’t have to be hard!',
+			'You never have to leave home for better care',
+			'Optimizing your health is streamlined and made easy',
+			'Geviti makes cutting edge care available',
+			'Wholesale diagnostics and tailored supplements',
 		],
 		btnCtaList: [
 			{

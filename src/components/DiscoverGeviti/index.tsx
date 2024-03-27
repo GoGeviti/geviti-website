@@ -22,7 +22,6 @@ type DiscoverGevitiProps = {
 	};
 	viewAllMobileClassName?: string;
 	productsWrapperClassName?: string;
-	desktopScroll?: boolean;
 	withBg?: boolean;
 	products: Product[];
 };
@@ -83,7 +82,7 @@ const DiscoverGeviti: React.FC<DiscoverGevitiProps> = ({
 			>
 				{ products.map((product, productIdx) => (
 					<Link
-						href={ `/products/${ product.id }` }
+						href={ `/${ encodeURIComponent(product?.category?.title) }/${ encodeURIComponent(product.name) }` }
 						key={ product.id }
 						id={ `discover-product-card-${ product.id }` }
 						className='group snap-start hover:shadow-[0px_4px_24px_rgba(0,0,0,0.15)] transition-shadow duration-200 ease-in cursor-pointer relative flex flex-col overflow-hidden bg-grey-secondary flex-none w-[287px] px-3 pt-3 pb-[21px] rounded-19px'

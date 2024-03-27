@@ -20,7 +20,7 @@ export const getProducts = async(): Promise<PaginatedDocs<Product>> => {
 	});
 	try {
 		const res = await fetch(
-			process.env.BASE_API_URL + `/api/products?${stringifiedQuery}`,
+			process.env.BASE_API_URL + `/api/products?${ stringifiedQuery }`,
 			{
 				cache: 'no-store',
 			}
@@ -33,11 +33,10 @@ export const getProducts = async(): Promise<PaginatedDocs<Product>> => {
 	}
 };
 
-export const getProductById = async(id:string): Promise<Product> => {
-
+export const getProductById = async(id: string): Promise<Product> => {
 	try {
 		const res = await fetch(
-			process.env.BASE_API_URL + `/api/products/${id}?depth=2`,
+			process.env.BASE_API_URL + `/api/products/${ id }?depth=2`,
 			{
 				cache: 'no-store',
 			}
@@ -46,6 +45,33 @@ export const getProductById = async(id:string): Promise<Product> => {
 		return data;
 	} catch (error) {
 		// console.log(error);
+		return Promise.reject(error);
+	}
+};
+
+export const getProductByName = async(productName: string, categoryId?: number): Promise<Product> => {
+	const stringifiedQuery = qs.stringify({
+		depth: 2,
+		draft: false,
+		where: {
+			name: { equals: productName },
+			category: { equals: categoryId }
+		},
+		limit: 1
+	}, { addQueryPrefix: true });
+	try {
+		const res = await fetch(
+			process.env.BASE_API_URL + `/api/products?${ stringifiedQuery }`,
+			{
+				cache: 'no-store',
+			}
+		);
+		const data = await res.json();
+		if (!res.ok) {
+			return Promise.reject('Not Found');
+		}
+		return data.docs[0];
+	} catch (error) {
 		return Promise.reject(error);
 	}
 };
@@ -82,7 +108,7 @@ export const getBenefits = async(): Promise<PaginatedDocs<Benefit>> => {
 	}
 };
 
-export const getPostById = async(slug:string): Promise<Post> => {
+export const getPostById = async(slug: string): Promise<Post> => {
 	const stringifiedQuery = qs.stringify({
 		depth: 2,
 		draft: false,
@@ -95,7 +121,7 @@ export const getPostById = async(slug:string): Promise<Post> => {
 	}, { addQueryPrefix: true },);
 	try {
 		const res = await fetch(
-			process.env.BASE_API_URL + `/api/posts?${stringifiedQuery}`,
+			process.env.BASE_API_URL + `/api/posts?${ stringifiedQuery }`,
 			{
 				cache: 'no-store',
 			}
@@ -111,7 +137,7 @@ export const getPostById = async(slug:string): Promise<Post> => {
 	}
 };
 
-export const getAllPost = async(limit?:number): Promise<PaginatedDocs<Post>> => {
+export const getAllPost = async(limit?: number): Promise<PaginatedDocs<Post>> => {
 	const stringifiedQuery = qs.stringify({
 		depth: 1,
 		limit: limit ?? 100,
@@ -128,7 +154,7 @@ export const getAllPost = async(limit?:number): Promise<PaginatedDocs<Post>> => 
 
 	try {
 		const res = await fetch(
-			process.env.BASE_API_URL + `/api/posts?${stringifiedQuery}`,
+			process.env.BASE_API_URL + `/api/posts?${ stringifiedQuery }`,
 			{
 				cache: 'no-store',
 			}
@@ -150,7 +176,7 @@ export const getPrivacyById = async(): Promise<Privacy> => {
 	});
 	try {
 		const res = await fetch(
-			process.env.BASE_API_URL + `/api/privacy?${stringifiedQuery}`,
+			process.env.BASE_API_URL + `/api/privacy?${ stringifiedQuery }`,
 			{
 				cache: 'no-store',
 			}
@@ -171,7 +197,7 @@ export const getTermsAndConditions = async(): Promise<Privacy> => {
 	});
 	try {
 		const res = await fetch(
-			process.env.BASE_API_URL + `/api/terms?${stringifiedQuery}`,
+			process.env.BASE_API_URL + `/api/terms?${ stringifiedQuery }`,
 			{
 				cache: 'no-store',
 			}
@@ -193,7 +219,7 @@ export const getAllFaq = async(): Promise<PaginatedDocs<Faq>> => {
 
 	try {
 		const res = await fetch(
-			process.env.BASE_API_URL + `/api/faq?${stringifiedQuery}`,
+			process.env.BASE_API_URL + `/api/faq?${ stringifiedQuery }`,
 			{
 				cache: 'no-store',
 			}
@@ -215,7 +241,7 @@ export const getAllContactSubjects = async(): Promise<PaginatedDocs<ContactSubje
 
 	try {
 		const res = await fetch(
-			process.env.BASE_API_URL + `/api/contact-subject?${stringifiedQuery}`,
+			process.env.BASE_API_URL + `/api/contact-subject?${ stringifiedQuery }`,
 			{
 				cache: 'no-store',
 			}

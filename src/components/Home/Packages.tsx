@@ -31,7 +31,7 @@ type ComponentItem = {
 
 const PackagesSection: React.FC = () => {
 	const [selectedPackageIdx, setSelectedPackageIdx] = useState<number>(-1);
-	const [openFeatures, setOpenFeatures] =  useState<number>(-1);
+	const [openFeatures, setOpenFeatures] = useState<number>(-1);
 	const [openDialogHelp, setOpenDialogHelp] = useState<boolean>(false);
 	const [isBiomarkersTableOpen, setIsBiomarkersTableOpen] = useState(false);
 
@@ -83,7 +83,7 @@ const PackagesSection: React.FC = () => {
 									<div className='flex flex-col justify-between items-start'>
 										{
 											packageItem.isPopular &&
-										<p className='bg-blue-1/30 text-blue-4 px-5 py-[2px] rounded-full w-fit font-Poppins text-sm font-medium leading-5'>Most Popular</p>
+											<p className='bg-blue-1/30 text-blue-4 px-5 py-[2px] rounded-full w-fit font-Poppins text-sm font-medium leading-5'>Most Popular</p>
 										}
 										<p className='font-Poppins text-base font-medium text-primary my-3'>{ packageItem.title }</p>
 										<p className='font-Poppins text-4xl font-medium text-primary leading-[125%] -tracking-[0.72px;]'>{ packageItem.price } <span className='text-grey-primary text-[10px] leading-[150%] tracking-normal'>{ packageItem.priceNote }</span></p>
@@ -107,10 +107,10 @@ const PackagesSection: React.FC = () => {
 										)) }
 									</div>
 
-									{   isSelected && (
+									{ isSelected && (
 										<Link
 											prefetch={ false }
-											href={ `/orders?selectedProduct=${ packageItemIdx + 1 }` }
+											href={ `/orders?package=${ packageItemIdx + 1 }` }
 											className='btn btn-primary mt-5 flex items-center gap-1.5 w-fit'>
 											<span className='text-xs font-medium font-BRSonoma leading-[159%]'>Continue</span>
 
@@ -162,7 +162,7 @@ const PackagesSection: React.FC = () => {
 						className='max-w-[250px] flex flex-col justify-end'>
 						{
 							items.isPopular &&
-						<p className='bg-blue-1/30 text-blue-4 px-5 py-[2px] rounded-full w-fit font-Poppins text-sm font-medium leading-5 mb-4'>Most Popular</p>
+							<p className='bg-blue-1/30 text-blue-4 px-5 py-[2px] rounded-full w-fit font-Poppins text-sm font-medium leading-5 mb-4'>Most Popular</p>
 						}
 						<p className='font-Poppins text-xl font-medium mb-4 text-primary'>{ items.title }</p>
 						<p className='font-Poppins text-5xl font-medium text-primary leading-[125%] -tracking-[0.96px;]'>{ items.price }<span className='text-grey-primary text-base leading-[150%] tracking-normal'>{ items.priceNote }</span></p>
@@ -170,7 +170,7 @@ const PackagesSection: React.FC = () => {
 						<p className='text-grey-primary text-sm leading-[150%] font-Poppins mt-4'>{ items.desc }</p>
 						<Link
 							prefetch={ false }
-							href={ `/orders?selectedProduct=${ id + 1 }` }
+							href={ `/orders?package=${ id + 1 }` }
 							className='btn-cta-landing group btn-primary w-full text-center mt-14'
 							aria-label={ items.btn }
 						>
@@ -184,7 +184,7 @@ const PackagesSection: React.FC = () => {
 		);
 	};
 
-	const renderNumber = (number:number) => {
+	const renderNumber = (number: number) => {
 		return (
 			<div className=' lg:flex hidden w-5 h-5 rounded-full bg-primary/5  items-center justify-center text-primary font-Poppins text-[10px] mr-2'>
 				{ number }
@@ -200,7 +200,7 @@ const PackagesSection: React.FC = () => {
 				<div className='w-full flex flex-col lg:flex-row justify-between items-center'>
 					{ renderTitleDescPage() }
 				</div>
-				
+
 				<div className='flex max-lg:flex-col gap-11px items-center lg:justify-between mt-[38px]'>
 					<WrapperAnimation
 						className='flex items-center gap-5px lg:hidden'

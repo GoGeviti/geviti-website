@@ -1,7 +1,7 @@
 'use client';
 import React, { useState } from 'react';
-import { BigPlayButton, Player, PosterImage } from 'video-react';
 
+// import { BigPlayButton, Player, PosterImage } from 'video-react';
 import { howItWorksData } from '@/constant/data';
 import clsxm from '@/helpers/clsxm';
 
@@ -9,7 +9,7 @@ import CustomLink from '../CustomLink';
 import { ChevronRight } from '../Icons';
 import Navbar from '../Navbar';
 
-import 'video-react/dist/video-react.css';
+// import 'video-react/dist/video-react.css';
 
 const heroData = howItWorksData.hero;
 
@@ -97,7 +97,7 @@ const Hero: React.FC = () => {
 								)) }
 							</div>
 						</div>
-						<div className='w-full inset-0 object-cover max-lg:order-0 max-lg:my-[60px] xl:px-[100px] lg:mt-[35px]'>
+						{ /* <div className='w-full inset-0 object-cover max-lg:order-0 max-lg:my-[60px] xl:px-[100px] lg:mt-[35px]'>
 							<div className='w-full rounded-[10px] overflow-hidden'>
 								<Player
 									playsInline
@@ -108,7 +108,7 @@ const Hero: React.FC = () => {
 									<BigPlayButton position='center' />
 								</Player>
 							</div>
-						</div>
+						</div> */ }
 
 					</div>
 				</div>

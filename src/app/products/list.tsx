@@ -2,26 +2,25 @@
 'use client';
 import React from 'react';
 import Image from 'next/image';
-// import Image from 'next/image';
-import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 
+// import Image from 'next/image';
 import { AlertSquareIcon } from '@/components/Icons';
 // import { productListData } from '@/constant/data';
 import { Product } from '@/payload/payload-types';
 import { useProductStore } from '@/store/productStore';
-type GroupedProduct = { category: string; products: Product[] };
+
+type GroupedProduct = { category: string; products: Product[]; };
 
 type ProductType = {
 	products: Product[];
 };
 
 const ProductList: React.FC<ProductType> = ({ products: productsData }) => {
-	const router = useRouter();
-
 	const { filterValues, query } = useProductStore();
 
 	const groupByCategory = Object.entries(
-		productsData.reduce((acc: { [key: string]: Product[] }, curr) => {
+		productsData.reduce((acc: { [key: string]: Product[]; }, curr) => {
 			const category = curr?.category?.title;
 			// Group initialization
 			if (!acc[category]) {
@@ -92,7 +91,7 @@ const ProductList: React.FC<ProductType> = ({ products: productsData }) => {
 						.replace(/\s+/g, '')
 						.includes(query.toLowerCase().replace(/\s+/g, ''))
 				),
-			  }));
+			}));
 	};
 	const productsByCategory = filterProductsByCategory();
 	return (
@@ -123,10 +122,10 @@ const ProductList: React.FC<ProductType> = ({ products: productsData }) => {
 
 					<div className='mt-[35px] sm:mt-10 grid grid-cols-2 md:grid-cols-3 gap-5'>
 						{ item.products.map(product => (
-							<div
+							<Link
+								href={ `/${ encodeURIComponent(product.category.title) }/${ encodeURIComponent(product.name) }` }
 								key={ product.id }
 								className='group cursor-pointer relative flex flex-col overflow-hidden bg-grey-secondary w-full text-left'
-								onClick={ () => router.push(`/products/${product.id}`) }
 							>
 								<div className='relative overflow-hidden bg-[#E7E7E7] group-hover:opacity-75 w-full h-[202px]'>
 									{ product.images.length > 0 && (
@@ -164,12 +163,15 @@ const ProductList: React.FC<ProductType> = ({ products: productsData }) => {
 									<div className='flex flex-1 flex-col justify-end font-BRSonoma text-primary pt-18px'>
 										{ product.price && (
 											<p className='text-xs lg:text-[15px] leading-[130%] lg:leading-[100%] font-BRSonoma'>
-												${ product.price } <span className='text-grey-primary max-lg:text-[10px] lg:text-sm'>per month</span>
+												${ product.price }{ ' ' }
+												{ item.category?.toLowerCase() !== 'diagnostics' && (
+													<span className='text-grey-primary max-lg:text-[10px] lg:text-sm'>per month</span>
+												) }
 											</p>
 										) }
 									</div>
 								</div>
-							</div>
+							</Link>
 						)) }
 					</div>
 				</div>
