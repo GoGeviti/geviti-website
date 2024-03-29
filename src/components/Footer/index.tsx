@@ -1,15 +1,19 @@
 'use client';
 
 import React, { useRef, useState } from 'react';
+import { AiFillCheckCircle, AiFillCloseCircle } from 'react-icons/ai';
 import { motion, MotionValue, useScroll, useTransform } from 'framer-motion';
 import Image from 'next/image';
+import { toast } from 'sonner';
 
 import { footerData } from '@/constant/data';
 import clsxm from '@/helpers/clsxm';
 import { getNumofCols, screens } from '@/helpers/style';
 import { useWindowDimensions } from '@/hooks';
+import { createEmailSubscription } from '@/services/subscription';
 
 import CustomLink from '../CustomLink';
+import { ArrowEmail } from '../Icons';
 import { Popover, PopoverContent, PopoverTrigger } from '../Popover';
 
 type FooterProps = {
@@ -61,6 +65,7 @@ const WrapperFooter: React.FC<FooterProps & {
 const Footer: React.FC<FooterProps> = ({ landingPage }) => {
 	const [email, setEmail] = useState<string>('');
 	const [openDisclaimer, setOpenDisclaimer] = useState<boolean>(false);
+	const [loading, setLoading] = useState<boolean>(false);
 
 	const windowDimensions = useWindowDimensions();
 	const isMobile = windowDimensions.width < screens.lg;
@@ -71,6 +76,24 @@ const Footer: React.FC<FooterProps> = ({ landingPage }) => {
 		offset: ['start end', 'end end']
 	});
 	const gevitiLogoY = useTransform(scrollYProgress, [0, 1], [400, 0]);
+
+	const onSubmitSubscription = async(e: React.FormEvent<HTMLFormElement>) => {
+		e.preventDefault();
+		setLoading(true);
+		const { status, message: messageResponse } = await createEmailSubscription(email);
+		if (status === 'OK') {
+			setLoading(false);
+			toast.success(messageResponse, {
+				icon: <AiFillCheckCircle className='h-5 w-5 text-green-alert' />,
+			});
+			setEmail('');
+		} else {
+			toast.error(messageResponse, {
+				icon: <AiFillCloseCircle className='h-5 w-5 text-danger' />,
+			});
+		}
+		setLoading(false);
+	};
 
 	const handleMouseEnterDisclaimer = () => {
 		setOpenDisclaimer(true);
@@ -108,6 +131,7 @@ const Footer: React.FC<FooterProps> = ({ landingPage }) => {
 			</>
 		);
 	};
+
 	const renderMenuListContent = () => {
 		const menuList = footerData.list;
 		const gridColList = getNumofCols(menuList?.length);
@@ -207,15 +231,24 @@ const Footer: React.FC<FooterProps> = ({ landingPage }) => {
 								<p className='text-xs max-sm:!leading-[19px] sm:text-sm font-medium'>{ footerData.content }</p>
 							</div>
 
-							<div className='mt-5 sm:mt-[26px]'>
+							<form
+								onSubmit={ onSubmitSubscription }
+								className='mt-5 sm:mt-[26px] flex items-center relative'>
 								<input
 									type='email'
 									value={ email }
 									onChange={ (e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value) }
 									placeholder='Email*'
-									className='!border-b !border-[#C4C4C4] w-full sm:w-[447px] focus:!border-primary py-[11px] sm:py-15px pr-5 !pl-0 bg-transparent placeholder:text-primary text-primary text-xs sm:text-sm font-medium border-0 focus:border-0 focus:ring-0 focus:outline-0'
+									className='!border-b !border-[#C4C4C4] w-full sm:w-[447px] focus:!border-primary py-[11px] sm:py-15px pr-8 !pl-0 bg-transparent placeholder:text-primary text-primary text-xs sm:text-sm font-medium border-0 focus:border-0 focus:ring-0 focus:outline-0'
+									required
 								/>
-							</div>
+								<button
+									disabled={ loading }
+									type='submit'
+									className='focus:outline-none focus:ring-0 absolute right-0'>
+									<ArrowEmail />
+								</button>
+							</form>
 
 							<div className='mt-[34px] sm:mt-[65px] flex flex-wrap items-center max-sm:justify-between gap-2 sm:gap-[23px]'>
 								{ footerData.socialMedia.map(item => (

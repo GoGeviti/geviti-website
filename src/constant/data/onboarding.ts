@@ -4,6 +4,11 @@ const onboardingData = {
 		title: 'Welcome to Geviti!',
 		desc: 'Let’s start by making sure you are eligible.'
 	},
+	transitionWelcomeWaitlist: {
+		id: 'TRANSITION_WELCOME_WAITLIST',
+		title: 'Welcome to Geviti!',
+		desc: 'Let’s have you join our waitlist.'
+	},
 	transitionEligibleBloodwork: {
 		id: 'TRANSITION_ELIGIBLE_BLOODWORK',
 		title: 'You\'re eligible to join Geviti.',
@@ -298,7 +303,25 @@ const onboardingData = {
 			subtitle: 'Get peace of mind with a free initial telehealth session.'
 		}
 	},
-	formWaitlist: {
+	formWaitlistDetail: {
+		id: 'FORM_WAITLIST',
+		title: 'Join Our Waitlist!',
+		subtitle: 'We\'ll notify you as soon as we have more availability',
+		submitLabel: 'Join Our Waitlist',
+		agreementStatement: 'I agree to Geviti <a href="/terms-and-conditions" target="_blank" rel="noopener noreferrer" class="underline">Terms of Service</a> and <a href="/privacy-policy" target="_blank" rel="noopener noreferrer" class="underline">Privacy Policy</a> as well as confirm my selected state is correct.',
+		nextStep: {
+			transition: {
+				title: 'Thank you for your interest!',
+				desc: 'As soon as we have more availability<br />we will email you.',
+				type: 'success',
+				cta: {
+					title: 'Return to Home Page',
+					href: '/'
+				}
+			},
+		}
+	},
+	formWaitlistEmail: {
 		id: 'CONFIRM_WAITLIST_EMAIL',
 		title: 'Should we add you to the waitlist?',
 		subtitle: 'We’ll notify you as soon as we have more availability.',
@@ -327,7 +350,7 @@ const onboardingData = {
 		},
 		bloodwork: {
 			title: 'Choose a blood panel.',
-			subtitle: 'An a at-home Blood Draw must be done in order to prescribe you this treatment.',
+			subtitle: 'An at-home Blood Draw must be done in order to prescribe you this treatment.',
 			compareLabel: 'Compare Tested Biomarkers',
 			closeCompareLabel: 'Close Biomarker Comparison',
 			disclaimerLabel: [
@@ -373,8 +396,8 @@ const onboardingData = {
 				notes: 'Biomarkers Tested',
 				btn: 'Select Plan',
 				features: [
-					'At-home blood draw',
-					'Access To Geviti Platform',
+					'At-Home Blood Draw',
+					'Access to Geviti Platform',
 					'Prescription Product Access',
 					'Personally Assigned Health Coach',
 					'Custom Treatment Plan'
@@ -400,8 +423,8 @@ const onboardingData = {
 				notes: 'Biomarkers Tested',
 				btn: 'Select Plan',
 				features: [
-					'At-home blood draw',
-					'Access To Geviti Platform',
+					'At-Home Blood Draw',
+					'Access to Geviti Platform',
 					'Prescription Product Access',
 					'Personally Assigned Health Coach',
 					'Custom Treatment Plan'
@@ -427,8 +450,8 @@ const onboardingData = {
 				notes: 'Biomarkers Tested',
 				btn: 'Select Plan',
 				features: [
-					'At-home blood draw',
-					'Access To Geviti Platform',
+					'At-Home Blood Draw',
+					'Access to Geviti Platform',
 					'Prescription Product Access',
 					'Personally Assigned Health Coach',
 					'Custom Treatment Plan'
@@ -457,8 +480,8 @@ const onboardingData = {
 				notes: 'Biomarkers Tested',
 				btn: 'Select Plan',
 				features: [
-					'At-home blood draw',
-					'Access To Geviti Platform',
+					'At-Home Blood Draw',
+					'Access to Geviti Platform',
 					'Prescription Product Access',
 					'Personally Assigned Health Coach',
 					'Custom Treatment Plan'
@@ -484,8 +507,8 @@ const onboardingData = {
 				notes: 'Biomarkers Tested',
 				btn: 'Select Plan',
 				features: [
-					'At-home blood draw',
-					'Access To Geviti Platform',
+					'At-Home Blood Draw',
+					'Access to Geviti Platform',
 					'Prescription Product Access',
 					'Personally Assigned Health Coach',
 					'Custom Treatment Plan'
@@ -511,8 +534,8 @@ const onboardingData = {
 				notes: 'Biomarkers Tested',
 				btn: 'Select Plan',
 				features: [
-					'At-home blood draw',
-					'Access To Geviti Platform',
+					'At-Home Blood Draw',
+					'Access to Geviti Platform',
 					'Prescription Product Access',
 					'Personally Assigned Health Coach',
 					'Custom Treatment Plan'
