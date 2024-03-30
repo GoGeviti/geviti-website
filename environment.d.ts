@@ -4,8 +4,10 @@ declare global {
 			NODE_ENV: 'development' | 'production';
 			BASE_API_URL: string;
 			NOTION_WAITING_LIST_DATABASE_ID: string;
+			NOTION_SUBSCRIPTION_DATABASE_ID: string;
 			NOTION_DATABASE_ID: string;
 			NEXT_PUBLIC_STAGE: 'development' | 'production';
+			NEXT_PUBLIC_PRECHECKOUT_WAITLIST: 'true' | 'false';
 		}
 	}
 }

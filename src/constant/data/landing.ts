@@ -17,9 +17,9 @@ const landingData = {
 		]
 	},
 	hero: {
-		preTitle: 'Your at-home health and wellness clinic',
+		preTitle: 'the ultimate longevity companion',
 		title:
-			'Online anti-aging care and <br /> personalized wellness.',
+			'Longevity made accessible. <br class="sm:hidden"/>Data <br class="max-sm:hidden"/>driven anti-aging care.',
 		image: '/images/landing/hero.png',
 		imageMobile: '/images/landing/hero_mobile.png',
 		btnCta: {

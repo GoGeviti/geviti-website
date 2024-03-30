@@ -14,17 +14,17 @@ import CustomLink from '../CustomLink';
 import { ArrowNarrowLeft, ArrowNarrowRight, ChevronRight } from '../Icons';
 
 type DiscoverGevitiProps = {
-  title?: string;
-  description?: string;
-  viewAll?: {
-    text: string;
-    href: string;
-  };
-  viewAllMobileClassName?: string;
-  productsWrapperClassName?: string;
-  desktopScroll?: boolean;
-  withBg?: boolean;
-  products: Product[];
+	title?: string;
+	description?: string;
+	viewAll?: {
+		text: string;
+		href: string;
+	};
+	viewAllMobileClassName?: string;
+	productsWrapperClassName?: string;
+	desktopScroll?: boolean;
+	withBg?: boolean;
+	products: Product[];
 };
 
 const DiscoverGeviti: React.FC<DiscoverGevitiProps> = ({
@@ -67,7 +67,7 @@ const DiscoverGeviti: React.FC<DiscoverGevitiProps> = ({
 	const moveCardProduct = (direction: 'left' | 'right') => {
 		const el = document.getElementById('discover-products-scroll');
 		const widthCard =
-      document.getElementById('discover-product-card')?.clientWidth || 248;
+			document.getElementById('discover-product-card')?.clientWidth || 248;
 
 		if (el) {
 			if (direction === 'left') {
@@ -80,9 +80,9 @@ const DiscoverGeviti: React.FC<DiscoverGevitiProps> = ({
 
 	const renderArrowNarrow = (direction: 'left' | 'right') => {
 		const ArrowNarrow =
-      direction === 'left' ? ArrowNarrowLeft : ArrowNarrowRight;
+			direction === 'left' ? ArrowNarrowLeft : ArrowNarrowRight;
 		const disabled =
-      direction === 'left' ? disableArrowLeft : disableArrowRight;
+			direction === 'left' ? disableArrowLeft : disableArrowRight;
 
 		return (
 			<div onClick={ () => moveCardProduct(direction) }>
@@ -115,7 +115,7 @@ const DiscoverGeviti: React.FC<DiscoverGevitiProps> = ({
 						// data-aos='zoom-in-down'
 						// data-aos-delay={ `${productIdx * 100}` }
 						className='group cursor-pointer relative flex flex-col overflow-hidden bg-grey-secondary flex-none w-[248px] lg:w-[287px]'
-						onClick={ () => router.push(`/products/${product.id}`) }
+						onClick={ () => router.push(`/${ encodeURIComponent(product?.category?.title) }/${ encodeURIComponent(product.name) }`) }
 					>
 						<div className='relative overflow-hidden bg-[#E5E5E5] group-hover:opacity-75 w-full h-[225px] lg:h-[260px]'>
 							<Image

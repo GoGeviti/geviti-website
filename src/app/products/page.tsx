@@ -45,7 +45,8 @@ const ProductsPage: NextPage = async() => {
 				checked: false,
 			})),
 		},
-	];
+	].filter(filterItem => filterItem.options.length > 0);
+
 	return (
 		<>
 			<div className='py-[88px] lg:py-[152px]'>

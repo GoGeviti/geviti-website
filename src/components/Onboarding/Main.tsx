@@ -20,6 +20,7 @@ import type { TipProps } from './Tip';
 
 enum FormStep {
 	TRANSITION_WELCOME = 'TRANSITION_WELCOME',
+	TRANSITION_WELCOME_WAITLIST = 'TRANSITION_WELCOME_WAITLIST',
 	QUESTION_ALREADY_ON_HRT = 'QUESTION_ALREADY_ON_HRT',
 	QUESTION_INTERESTED_TO_BE_DELIVERED = 'QUESTION_INTERESTED_TO_BE_DELIVERED',
 	QUESTION_SWITH_TO_GEVITI = 'QUESTION_SWITH_TO_GEVITI',
@@ -30,6 +31,7 @@ enum FormStep {
 	QUESTION_GOALS = 'QUESTION_GOALS',
 	FORM_NAME_EMAIL = 'FORM_NAME_EMAIL',
 	FORM_DETAIL = 'FORM_DETAIL',
+	FORM_WAITLIST = 'FORM_WAITLIST',
 	CONFIRM_WAITLIST_EMAIL = 'CONFIRM_WAITLIST_EMAIL',
 	PRICING_PLANS = 'PRICING_PLANS',
 	ORDER_SUMMARY = 'ORDER_SUMMARY',
@@ -67,10 +69,15 @@ const overflowAutoStepOnMobile = [FormStep.FORM_DETAIL, FormStep.PRICING_PLANS, 
 const OrderJourney: React.FC<OrderJourneyProps> = ({ searchParams, state }) => {
 	const router = useRouter();
 
-	const [formStep, setFormStep] = useState<string>(searchParams?.variant && state?.variantID
-		? FormStep.ORDER_SUMMARY
-		: FormStep.TRANSITION_WELCOME,
-	);
+	const isPrecheckoutWaitlist = process.env.NEXT_PUBLIC_PRECHECKOUT_WAITLIST === 'true';
+
+	const setInitialFormStep = () => {
+		if (searchParams?.variant && state?.variantID) return FormStep.ORDER_SUMMARY;
+		if (isPrecheckoutWaitlist) return FormStep.TRANSITION_WELCOME_WAITLIST;
+		return FormStep.TRANSITION_WELCOME;
+	};
+
+	const [formStep, setFormStep] = useState<string>(setInitialFormStep());
 	const [isAlreadyOnHRT, setIsAlreadyOnHRT] = useState<boolean>(false);
 	const [selectedPlan, setSelectedPlan] = useState<Tier | null>(null);
 	const [userData, setUserData] = useState<IPrecheckout.UserData>({
@@ -87,7 +94,7 @@ const OrderJourney: React.FC<OrderJourneyProps> = ({ searchParams, state }) => {
 	});
 	const [transitionData, setTransitionData] = useState<TipProps | null>(null);
 	const [flowFormSteps, setFlowFormSteps] = useState<string[]>([
-		FormStep.TRANSITION_WELCOME,
+		isPrecheckoutWaitlist ? FormStep.TRANSITION_WELCOME_WAITLIST : FormStep.TRANSITION_WELCOME,
 	]);
 	const [eligibleID, setEligibleID] = useState<string>(FormStep.TRANSITION_ELIGIBLE_BLOODWORK);
 	const [listQuestionnaire, setListQuestionnaire] = useState<IPrecheckout.AnswerListQuestionnaire[]>([]);
@@ -101,6 +108,8 @@ const OrderJourney: React.FC<OrderJourneyProps> = ({ searchParams, state }) => {
 	};
 
 	const maxStep = () => {
+		if (isPrecheckoutWaitlist) return 3;
+
 		const allSteps = 10;
 
 		if (isBloodworkDoneMoreThanSixMonths()) {
@@ -261,6 +270,18 @@ const OrderJourney: React.FC<OrderJourneyProps> = ({ searchParams, state }) => {
 						} }
 					/>
 				);
+			case FormStep.TRANSITION_WELCOME_WAITLIST:
+				return (
+					<OnboardingComponent.Tip
+						key={ onboardingData.transitionWelcomeWaitlist.id }
+						title={ onboardingData.transitionWelcomeWaitlist.title }
+						desc={ onboardingData.transitionWelcomeWaitlist.desc }
+						onContinue={ () => {
+							setFormStep(FormStep.FORM_WAITLIST);
+							onAddFlowFormSteps(FormStep.FORM_WAITLIST);
+						} }
+					/>
+				);
 			case FormStep.TRANSITION:
 				return (
 					<OnboardingComponent.Tip
@@ -396,11 +417,27 @@ const OrderJourney: React.FC<OrderJourneyProps> = ({ searchParams, state }) => {
 									...prevData,
 									...data
 								}));
-								if (process.env.NEXT_PUBLIC_STAGE === 'development') {
-									setFormStep(FormStep.TRANSITION_NOT_ELIGIBLE);
-								} else {
-									setFormStep(eligibleID);
-								}
+								setFormStep(eligibleID);
+							}
+						} }
+					/>
+				);
+			case FormStep.FORM_WAITLIST:
+				return (
+					<OnboardingComponent.FormWaitlistDetail
+						key={ onboardingData.formWaitlistDetail.id }
+						userData={ userData }
+						onSubmit={ data => {
+							setUserData(prevData => ({
+								...prevData,
+								...data
+							}));
+
+							const nextStep = onboardingData.formWaitlistDetail.nextStep;
+
+							if (nextStep?.transition) {
+								onAddTransitionData(nextStep);
+								onAddFlowFormSteps(FormStep.TRANSITION);
 							}
 						} }
 					/>
@@ -420,12 +457,12 @@ const OrderJourney: React.FC<OrderJourneyProps> = ({ searchParams, state }) => {
 				);
 			case FormStep.CONFIRM_WAITLIST_EMAIL:
 				return (
-					<OnboardingComponent.FormWaitlist
-						key={ onboardingData.formWaitlist.id }
+					<OnboardingComponent.FormWaitlistEmail
+						key={ onboardingData.formWaitlistEmail.id }
 						userData={ userData }
 						isAlreadyOnHRT={ isAlreadyOnHRT }
 						onSubmit={ () => {
-							const nextStep = onboardingData.formWaitlist.nextStep;
+							const nextStep = onboardingData.formWaitlistEmail.nextStep;
 
 							if (nextStep?.transition) {
 								onAddTransitionData(nextStep);

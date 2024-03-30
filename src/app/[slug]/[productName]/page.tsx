@@ -10,23 +10,29 @@ import {
 	ProductsComponent,
 } from '@/components';
 import { AlertSquareIcon, ClockIcon } from '@/components/Icons';
-import { getAllPost, getProductById } from '@/services/products';
+import { getAllPost, getCategory, getProductByName } from '@/services/products';
 
 import Breadcrumb from './breadcrumb';
 import ProductFaq from './productFaq';
 
-type ProductDetailPageProps = { params: { id: string; }; };
+type ProductDetailPageProps = { params: { slug: string; productName: string; }; };
 
 const ProductDetailPage: NextPage<ProductDetailPageProps> = async({
 	params,
 }) => {
-	const id = params.id;
-	const product = await getProductById(id);
+	const productName = decodeURIComponent(params.productName);
+	const categoryUrl = decodeURIComponent(params.slug);
+	const categories = await getCategory();
+	const category = categories.docs.find(item => item.title === categoryUrl);
+
+	const product = await getProductByName(productName, category?.id);
 	const allPost = await getAllPost(4);
 
 	if (!product) {
 		notFound();
 	}
+
+	const isCategoryNotDiagnostics = product?.category?.title?.toLowerCase() !== 'diagnostics';
 
 	return (
 		<>
@@ -60,11 +66,18 @@ const ProductDetailPage: NextPage<ProductDetailPageProps> = async({
 								) }
 							</div>
 							<div className='flex flex-col gap-2 sm:gap-[9px] text-primary'>
+								{ isCategoryNotDiagnostics && (
+									<span className='text-primary/60 font-medium text-base font-Poppins'>
+										As low as
+									</span>
+								) }
 								<p className='font-Poppins text-primary text-2xl  font-semibold w-fit leading-[18px] pb-[9px] border-b border-[#B8C6CC]'>
 									${ product?.price }{ ' ' }
-									<span className='text-grey-primary font-medium text-base'>
-										per month
-									</span>
+									{ isCategoryNotDiagnostics && (
+										<span className='text-grey-primary font-medium text-base'>
+											per month
+										</span>
+									) }
 								</p>
 								{
 									product.price_membership.map((e, i) => (
@@ -112,7 +125,9 @@ const ProductDetailPage: NextPage<ProductDetailPageProps> = async({
 								<ProductFaq product={ product } />
 
 								<CustomLink
-									href='/onboarding'
+									href={ isCategoryNotDiagnostics
+										? '/onboarding'
+										: `/orders?product=${ product.id }` }
 									className='btn btn-primary w-full text-[14px] sm:text-sm font-medium font-Poppins leading-[21px] sm:leading-[26px] py-3 sm:py-[13px]'
 									aria-label='Purchase'
 								>
