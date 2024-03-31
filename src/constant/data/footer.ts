@@ -52,22 +52,22 @@ const footerData = {
 	socialMedia: [
 		{
 			alt: 'facebook',
-			url: 'https://facebook.com/',
+			url: 'https://www.facebook.com/profile.php?id=61550625100704',
 			image: '/images/social_media/facebook.svg'
 		},
 		{
 			alt: 'twitter',
-			url: 'https://twitter.com/',
+			url: 'https://twitter.com/gogeviti',
 			image: '/images/social_media/twitter.svg'
 		},
 		{
 			alt: 'instagram',
-			url: 'https://instagram.com/',
+			url: 'https://www.instagram.com/gogeviti/?hl=en',
 			image: '/images/social_media/instagram.svg'
 		},
 		{
 			alt: 'linkedin',
-			url: 'https://linkedin.com/',
+			url: 'https://www.linkedin.com/company/geviti/about/',
 			image: '/images/social_media/linkedin.svg'
 		}
 	]

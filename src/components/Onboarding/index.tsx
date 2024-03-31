@@ -1,6 +1,7 @@
 import FormDetail from './FormDetail';
 import FormNameEmail from './FormNameEmail';
-import FormWaitlist from './FormWaitlist';
+import FormWaitlistDetail from './FormWaitlistDetail';
+import FormWaitlistEmail from './FormWaitlistEmail';
 import Main from './Main';
 import Navbar from './Navbar';
 import OrderSummary from './OrderSummary';
@@ -11,7 +12,8 @@ import Tip from './Tip';
 export {
 	FormDetail,
 	FormNameEmail,
-	FormWaitlist,
+	FormWaitlistDetail,
+	FormWaitlistEmail,
 	Main,
 	Navbar,
 	OrderSummary,

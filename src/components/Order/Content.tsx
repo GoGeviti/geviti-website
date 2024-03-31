@@ -9,27 +9,21 @@ import { IProducts } from '@/interfaces';
 import AdditionalServices from './AdditionalServices';
 import OrderSummary from './OrderSummary';
 
-const Content: React.FC = () => {
+type ContentProps = {
+	product?: IProducts.ProductItem | null;
+};
+
+const Content: React.FC<ContentProps> = ({ product }) => {
 	const searchParams = useSearchParams();
-	const [shoppingCarts, setShoppingCarts] = useState<IProducts.ProductItem[]>([
-		// {
-		// 	id: 1,
-		// 	name: 'Clinical Consultation ',
-		// 	price: 139.99,
-		// 	description: 'Product Info',
-		// 	value: '$300+',
-		// 	imageSrc: '/images/home/compressed/product_1.webp',
-		// 	shopify_variant_id: '46553678643490:1'
-		// }
-	]);
+	const [shoppingCarts, setShoppingCarts] = useState<IProducts.ProductItem[]>(product ? [product] : []);
 
 	useEffect(() => {
-		const selectedProduct = searchParams?.get('selectedProduct');
-		if (selectedProduct) {
+		const selectedPackage = searchParams?.get('package');
+		if (selectedPackage) {
 			const select = packagesData.find(
-				e => e.id.toString() === selectedProduct
+				e => e.id.toString() === selectedPackage
 			) as IProducts.ProductItem;
-			if (selectedProduct === '5') {
+			if (selectedPackage === '5') {
 				setShoppingCarts([select]);
 			} else {
 				setShoppingCarts(prev => {
@@ -37,7 +31,7 @@ const Content: React.FC = () => {
 				});
 			}
 		}
-	}, [searchParams?.get('selectedProduct')]);
+	}, [searchParams?.get('package')]);
 
 	return (
 		<div className='flex flex-col-reverse lg:grid lg:grid-cols-11 lg:gap-20'>

@@ -6,7 +6,7 @@ import * as yup from 'yup';
 export const FormNameEmailSchema = yup.object().shape({
 	name: yup.string()
 		.required()
-		.label('Name'),
+		.label('Full Name'),
 	email: yup.string().email()
 		.required()
 		.label('Email')
@@ -26,3 +26,5 @@ export const FormDetailSchema = yup.object().shape({
 			return differenceInYears(new Date(), new Date(value)) >= 18; ;
 		}),
 });
+
+export const MergedFormSchema = FormNameEmailSchema.concat(FormDetailSchema);

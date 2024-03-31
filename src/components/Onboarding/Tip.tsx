@@ -13,8 +13,8 @@ import Button from './Button';
 import { slideInCenterToLeftProps } from './transitions';
 
 export type TipProps = {
-	title: string;
-	desc: string;
+	title?: string;
+	desc?: string;
 	type?: string; // logo | success | exclamation
 	onContinue?: () => void;
 	cta?: {
@@ -155,10 +155,12 @@ const Tip: React.FC<TipProps> = ({
 							}
 						} }
 					>
-						<h1
-							className='text-[34px] 2xl:text-[36px] font-medium -tracking-[0.04em] leading-normal mt-2 mb-[7px] lg:mb-2'
-							dangerouslySetInnerHTML={ { __html: title } }
-						/>
+						{ title && (
+							<h1
+								className='text-[34px] 2xl:text-[36px] font-medium -tracking-[0.04em] leading-normal mt-2 mb-[7px] lg:mb-2'
+								dangerouslySetInnerHTML={ { __html: title } }
+							/>
+						) }
 					</motion.div>
 					<motion.div
 						initial={ { opacity: 0 } }
@@ -172,9 +174,11 @@ const Tip: React.FC<TipProps> = ({
 						} }
 					>
 						<div className='max-w-[500px] 2xl:max-w-[550px] mx-auto'>
-							<h2
-								className='font-medium -tracking-[0.04em] leading-normal text-2xl 2xl:text-[28px]'
-								dangerouslySetInnerHTML={ { __html: desc } } />
+							{ desc && (
+								<h2
+									className='font-medium -tracking-[0.04em] leading-normal text-2xl 2xl:text-[28px]'
+									dangerouslySetInnerHTML={ { __html: desc } } />
+							) }
 
 							{ cta && (
 								<div className='flex justify-center mt-10'>

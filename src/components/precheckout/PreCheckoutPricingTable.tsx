@@ -6,7 +6,7 @@ import BiomarkerCompareModal from '@/components/precheckout/BiomarkerCompareModa
 import PricingCard from '@/components/precheckout/PricingCard';
 import { ViewState } from '@/components/precheckout/WelcomeTransition';
 
-const Column = styled.div<{ viewState: ViewState }>`
+const Column = styled.div<{ viewState: ViewState; }>`
   position: absolute;
   left: 50%;
   top: 70px;
@@ -18,10 +18,10 @@ const Column = styled.div<{ viewState: ViewState }>`
   flex-direction: column;
   align-items: center;
 
-  z-index: ${props => (props.viewState === ViewState.IN_PROGRESS ? 1 : 0)};
+  z-index: ${ props => (props.viewState === ViewState.IN_PROGRESS ? 1 : 0) };
 `;
 
-const Title = styled.h1<{ viewState: ViewState }>`
+const Title = styled.h1<{ viewState: ViewState; }>`
   font-size: 36px;
   letter-spacing: -1.44px;
   color: #181a1c;
@@ -29,23 +29,23 @@ const Title = styled.h1<{ viewState: ViewState }>`
   width: 430px;
   text-align: center;
 
-  animation: ${props =>
-		props.viewState === ViewState.IN_PROGRESS && moveFromRight}
+  animation: ${ props =>
+		props.viewState === ViewState.IN_PROGRESS && moveFromRight }
     0.5s cubic-bezier(0.21, 1.04, 0.58, 1.15);
   animation-fill-mode: forwards;
 
   transform: translateX(100vw);
 `;
 
-const Subtitle = styled.p<{ viewState: ViewState }>`
+const Subtitle = styled.p<{ viewState: ViewState; }>`
   font-size: 14px;
   color: #919b9f;
   width: 430px;
   margin-bottom: 24px;
   text-align: center;
 
-  animation: ${props =>
-		props.viewState === ViewState.IN_PROGRESS && moveFromRight}
+  animation: ${ props =>
+		props.viewState === ViewState.IN_PROGRESS && moveFromRight }
     0.5s cubic-bezier(0.21, 1.04, 0.58, 1.15);
   animation-fill-mode: forwards;
   animation-delay: 0.08s;
@@ -62,7 +62,7 @@ const moveFromRight = keyframes`
   }
 `;
 
-const ExpandTablesRow = styled.div<{ viewState: ViewState }>`
+const ExpandTablesRow = styled.div<{ viewState: ViewState; }>`
   display: flex;
   align-items: center;
   cursor: pointer;
@@ -75,8 +75,8 @@ const ExpandTablesRow = styled.div<{ viewState: ViewState }>`
     font-weight: 600;
   }
 
-  animation: ${props =>
-		props.viewState === ViewState.IN_PROGRESS && moveFromRight}
+  animation: ${ props =>
+		props.viewState === ViewState.IN_PROGRESS && moveFromRight }
     0.5s cubic-bezier(0.21, 1.04, 0.58, 1.15);
   animation-fill-mode: forwards;
   animation-delay: 0.12s;
@@ -84,12 +84,12 @@ const ExpandTablesRow = styled.div<{ viewState: ViewState }>`
   transform: translateX(100vw);
 `;
 
-const PricingTableRow = styled.div<{ viewState: ViewState }>`
+const PricingTableRow = styled.div<{ viewState: ViewState; }>`
   display: flex;
   align-items: center;
 
-  animation: ${props =>
-		props.viewState === ViewState.IN_PROGRESS && moveFromRight}
+  animation: ${ props =>
+		props.viewState === ViewState.IN_PROGRESS && moveFromRight }
     0.5s cubic-bezier(0.21, 1.04, 0.58, 1.15);
   animation-fill-mode: forwards;
   animation-delay: 0.16s;
@@ -99,11 +99,11 @@ const PricingTableRow = styled.div<{ viewState: ViewState }>`
 
 const commonFeatures = [
 	{
-		name: 'At-home blood draw',
+		name: 'At-Home Blood Draw',
 		description: 'Description text goes here.',
 	},
 	{
-		name: 'Access To Geviti Platform',
+		name: 'Access to Geviti Platform',
 		description: 'Description text goes here.',
 	},
 	{
@@ -121,8 +121,8 @@ const commonFeatures = [
 ];
 
 interface PreCheckoutPricingTableProps {
-  viewState: ViewState;
-  onContinue: (planID: 'essentials' | 'ultimate' | 'comprehensive') => void;
+	viewState: ViewState;
+	onContinue: (planID: 'essentials' | 'ultimate' | 'comprehensive') => void;
 }
 
 const PreCheckoutPricingTable = (props: PreCheckoutPricingTableProps) => {
@@ -140,8 +140,8 @@ const PreCheckoutPricingTable = (props: PreCheckoutPricingTableProps) => {
 				<Subtitle
 					viewState={ props.viewState }
 					className='font-BRSonoma'>
-          An a at-home Blood Draw must be done in order to prescribe you this
-          treatment.
+					An at-home Blood Draw must be done in order to prescribe you this
+					treatment.
 				</Subtitle>
 				<ExpandTablesRow
 					onClick={ () => setIsExpanded(true) }

@@ -14,13 +14,13 @@ import SuccessNotif from './SuccessNotif';
 import TextField from './TextField';
 import { slideInVariants, slideInVariantsDelay } from './transitions';
 
-type FormWaitlistProps = {
+type FormWaitlistEmailProps = {
 	onSubmit?: (email: string) => void; // eslint-disable-line no-unused-vars
 	userData: IPrecheckout.UserData;
 	isAlreadyOnHRT: boolean;
 };
 
-const FormWaitlist: React.FC<FormWaitlistProps> = ({ onSubmit, userData, isAlreadyOnHRT }) => {
+const FormWaitlistEmail: React.FC<FormWaitlistEmailProps> = ({ onSubmit, userData, isAlreadyOnHRT }) => {
 	const [email, setEmail] = useState<string>(userData.email);
 	const [loading, setLoading] = useState(false);
 
@@ -30,7 +30,6 @@ const FormWaitlist: React.FC<FormWaitlistProps> = ({ onSubmit, userData, isAlrea
 
 	const onSubmitForm = async(e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
-		// if (onSubmit) onSubmit(email);
 		setLoading(true);
 		const { status, message: messageResponse } = await createNotionDatabase({
 			birthdate: userData.birthdate,
@@ -63,22 +62,22 @@ const FormWaitlist: React.FC<FormWaitlistProps> = ({ onSubmit, userData, isAlrea
 			<div className='absolute top-[30px] lg:top-[5%] 2xl:top-[10%] left-1/2 -translate-x-1/2 w-full px-4 xs2:px-6 lg:px-0'>
 				<div className='max-w-[430px] mx-auto w-full'>
 					<SuccessNotif
-						title={ onboardingData.formWaitlist.notif.title }
-						subtitle={ onboardingData.formWaitlist.notif.subtitle }
+						title={ onboardingData.formWaitlistEmail.notif.title }
+						subtitle={ onboardingData.formWaitlistEmail.notif.subtitle }
 					/>
 					<motion.h1
 						variants={ slideInVariants }
 						initial='initial'
 						animate='visible'
 						className='text-2xl 2xl:text-[36px] leading-normal -tracking-[0.04em] max-lg:font-medium text-left'>
-						{ onboardingData.formWaitlist.title }
+						{ onboardingData.formWaitlistEmail.title }
 					</motion.h1>
 					<motion.h2
 						variants={ slideInVariants }
 						initial='initial'
 						animate='visible'
 						className='mt-[5px] mb-6 font-BRSonoma font-normal text-sm leading-normal text-grey-primary text-left'>
-						{ onboardingData.formWaitlist.subtitle }
+						{ onboardingData.formWaitlistEmail.subtitle }
 					</motion.h2>
 					<form
 						onSubmit={ onSubmitForm }
@@ -108,7 +107,7 @@ const FormWaitlist: React.FC<FormWaitlistProps> = ({ onSubmit, userData, isAlrea
 							<Button
 								disabled={ loading }
 								type='submit'>
-								{ loading ? 'Loading...' : onboardingData.formWaitlist.submitLabel }
+								{ loading ? 'Loading...' : onboardingData.formWaitlistEmail.submitLabel }
 							</Button>
 						</motion.div>
 					</form>
@@ -118,4 +117,4 @@ const FormWaitlist: React.FC<FormWaitlistProps> = ({ onSubmit, userData, isAlrea
 	);
 };
 
-export default FormWaitlist;
+export default FormWaitlistEmail;

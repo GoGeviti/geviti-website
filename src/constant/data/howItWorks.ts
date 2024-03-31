@@ -69,7 +69,7 @@ const howItWorksData = {
 	comprehensive: {
 		preTitle: 'Care based off of biomarkers',
 		title: 'Comprehensive Blood panels',
-		desc: '<p>An a at-home blood draw must be done in order to enter <br class="max-lg:hidden"/>the Geviti platform.</p>',
+		desc: '<p>An at-home blood draw must be done in order to enter <br class="max-lg:hidden"/>the Geviti platform.</p>',
 		list: [
 			{
 				tag: 'Most Affordable',
@@ -81,11 +81,11 @@ const howItWorksData = {
 				btn: 'Get Started',
 				list: [
 					{
-						title: 'At-home blood draw',
+						title: 'At-Home Blood Draw',
 						description: 'Experience convenient, personalized healthcare from the comfort of your home or any location of your choice. Our mobile phlebotomy service ensures that a professional team comes to you for blood drawing, making the process as comfortable and stress-free as possible.'
 					},
 					{
-						title: 'Access To Geviti Platform',
+						title: 'Access to Geviti Platform',
 						description: 'As a member of the Geviti platform, you gain exclusive access to a dedicated clinical team, advanced anti-aging therapies, concierge-level care, wholesale supplements from renowned brands, and much more. This comprehensive approach ensures a personalized and cutting-edge healthcare experience.'
 					},
 					{
@@ -112,11 +112,11 @@ const howItWorksData = {
 				btn: 'Get Started',
 				list: [
 					{
-						title: 'At-home blood draw',
+						title: 'At-Home Blood Draw',
 						description: 'Experience convenient, personalized healthcare from the comfort of your home or any location of your choice. Our mobile phlebotomy service ensures that a professional team comes to you for blood drawing, making the process as comfortable and stress-free as possible.'
 					},
 					{
-						title: 'Access To Geviti Platform',
+						title: 'Access to Geviti Platform',
 						description: 'As a member of the Geviti platform, you gain exclusive access to a dedicated clinical team, advanced anti-aging therapies, concierge-level care, wholesale supplements from renowned brands, and much more. This comprehensive approach ensures a personalized and cutting-edge healthcare experience.'
 					},
 					{
@@ -143,11 +143,11 @@ const howItWorksData = {
 				btn: 'Get Started',
 				list: [
 					{
-						title: 'At-home blood draw',
+						title: 'At-Home Blood Draw',
 						description: 'Experience convenient, personalized healthcare from the comfort of your home or any location of your choice. Our mobile phlebotomy service ensures that a professional team comes to you for blood drawing, making the process as comfortable and stress-free as possible.'
 					},
 					{
-						title: 'Access To Geviti Platform',
+						title: 'Access to Geviti Platform',
 						description: 'As a member of the Geviti platform, you gain exclusive access to a dedicated clinical team, advanced anti-aging therapies, concierge-level care, wholesale supplements from renowned brands, and much more. This comprehensive approach ensures a personalized and cutting-edge healthcare experience.'
 					},
 					{
@@ -180,10 +180,10 @@ const howItWorksData = {
 		image: '/images/howitworks/quality.png',
 		title: 'Why Choose Geviti?',
 		list: [
-			'Because why leave home for better care?',
-			'Everything is streamlined and made easy.',
-			'Geviti makes cutting edge care available.',
-			'Optimizing hormones doesn’t have to be hard!',
+			'You never have to leave home for better care',
+			'Optimizing your health is streamlined and made easy',
+			'Geviti makes cutting edge care available',
+			'Wholesale diagnostics and tailored supplements',
 		],
 		btnCtaList: [
 			{

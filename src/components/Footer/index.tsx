@@ -1,13 +1,17 @@
 'use client';
 
 import React, { useState } from 'react';
+import { AiFillCheckCircle, AiFillCloseCircle } from 'react-icons/ai';
 import Image from 'next/image';
+import { toast } from 'sonner';
 
 import { footerData } from '@/constant/data';
 import clsxm from '@/helpers/clsxm';
 import { getNumofCols } from '@/helpers/style';
+import { createEmailSubscription } from '@/services/subscription';
 
 import CustomLink from '../CustomLink';
+import { ArrowEmail } from '../Icons';
 
 type FooterProps = {
 	landingPage?: boolean;
@@ -15,6 +19,25 @@ type FooterProps = {
 
 const Footer: React.FC<FooterProps> = ({ landingPage }) => {
 	const [email, setEmail] = useState<string>('');
+	const [loading, setLoading] = useState<boolean>(false);
+
+	const onSubmitSubscription = async(e: React.FormEvent<HTMLFormElement>) => {
+		e.preventDefault();
+		setLoading(true);
+		const { status, message: messageResponse } = await createEmailSubscription(email);
+		if (status === 'OK') {
+			setLoading(false);
+			toast.success(messageResponse, {
+				icon: <AiFillCheckCircle className='h-5 w-5 text-green-alert' />,
+			});
+			setEmail('');
+		} else {
+			toast.error(messageResponse, {
+				icon: <AiFillCloseCircle className='h-5 w-5 text-danger' />,
+			});
+		}
+		setLoading(false);
+	};
 
 	const renderMenuList = () => {
 		const menuList = footerData.list;
@@ -87,14 +110,26 @@ const Footer: React.FC<FooterProps> = ({ landingPage }) => {
 							<p className='font-BRSonoma text-sm font-medium'>{ footerData.content }</p>
 						</div>
 
-						<div className='mt-3.5 sm:mt-18px'>
-							<input
-								type='email'
-								value={ email }
-								onChange={ (e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value) }
-								placeholder='Email*'
-								className='!border-b !border-[#C4C4C4] w-full sm:w-[447px] focus:!border-primary py-3 sm:py-15px pr-5 !pl-0 bg-transparent placeholder:text-primary text-primary text-xs sm:text-sm font-medium font-BRSonoma border-0 focus:border-0 focus:ring-0 focus:outline-0'
-							/>
+						<div className='mt-3.5 sm:mt-18px flex w-full sm:w-[447px]'>
+							<form
+								onSubmit={ onSubmitSubscription }
+								className='flex items-center relative w-full'>
+								<input
+									type='email'
+									value={ email }
+									onChange={ (e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value) }
+									placeholder='Email*'
+									className='!border-b !border-[#C4C4C4] w-full focus:!border-primary py-3 sm:py-15px pr-8 !pl-0 bg-transparent placeholder:text-primary text-primary text-xs sm:text-sm font-medium font-BRSonoma border-0 focus:border-0 focus:ring-0 focus:outline-0'
+									required
+								/>
+
+								<button
+									disabled={ loading }
+									type='submit'
+									className='focus:outline-none focus:ring-0 absolute right-0'>
+									<ArrowEmail />
+								</button>
+							</form>
 						</div>
 
 						<div className='mt-[34px] sm:mt-[54px] flex items-center gap-[23px]'>
@@ -125,7 +160,7 @@ const Footer: React.FC<FooterProps> = ({ landingPage }) => {
 					{ renderMenuListContent() }
 				</div>
 			</div>
-		</div>
+		</div >
 	);
 };
 
