@@ -11,7 +11,7 @@ type BreadcrumbProps = {
 const Breadcrumb: React.FC<BreadcrumbProps> = ({ product }) => {
 	const pages = [
 		{ name: 'Products', href: '/products', current: false },
-		{ name: product?.name, href: `/${ encodeURIComponent(product?.category?.title) }/${ encodeURIComponent(product?.name) }`, current: true },
+		{ name: product?.name, href: `/${ product?.category?.slug }/${ product?.slug }`, current: true },
 	];
 	return (
 		<ol
