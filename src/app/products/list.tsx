@@ -6,6 +6,7 @@ import Link from 'next/link';
 
 // import Image from 'next/image';
 import { AlertSquareIcon } from '@/components/Icons';
+import { toSlug } from '@/lib/toSlug';
 // import { productListData } from '@/constant/data';
 import { Product } from '@/payload/payload-types';
 import { useProductStore } from '@/store/productStore';
@@ -123,7 +124,7 @@ const ProductList: React.FC<ProductType> = ({ products: productsData }) => {
 					<div className='mt-[35px] sm:mt-10 grid grid-cols-2 md:grid-cols-3 gap-5'>
 						{ item.products.map(product => (
 							<Link
-								href={ `/${ encodeURIComponent(product.category.title) }/${ encodeURIComponent(product.name) }` }
+								href={ `/${ toSlug(product.category.title) }/${ toSlug(product.name) }` }
 								key={ product.id }
 								className='group cursor-pointer relative flex flex-col overflow-hidden bg-grey-secondary w-full text-left'
 							>

@@ -4,6 +4,7 @@ export interface Category {
 	description: string;
 	updatedAt: string;
 	createdAt: string;
+  slug?: string | null;
 }
 export interface Product {
 	id: number;
@@ -35,6 +36,7 @@ export interface Product {
 	}[];
 	updatedAt: string;
 	createdAt: string;
+  slug?: string | null;
 }
 export interface Benefit {
 	id: number;

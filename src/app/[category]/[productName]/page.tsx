@@ -10,22 +10,22 @@ import {
 	ProductsComponent,
 } from '@/components';
 import { AlertSquareIcon, ClockIcon } from '@/components/Icons';
-import { getAllPost, getCategory, getProductByName } from '@/services/products';
+import { getAllPost, getProductByName } from '@/services/products';
 
 import Breadcrumb from './breadcrumb';
 import ProductFaq from './productFaq';
 
-type ProductDetailPageProps = { params: { slug: string; productName: string; }; };
+type ProductDetailPageProps = { params: { category: string; productName: string; }; };
 
 const ProductDetailPage: NextPage<ProductDetailPageProps> = async({
 	params,
 }) => {
-	const productName = decodeURIComponent(params.productName);
-	const categoryUrl = decodeURIComponent(params.slug);
-	const categories = await getCategory();
-	const category = categories.docs.find(item => item.title === categoryUrl);
+	const productName = params.productName;
+	const category = params.category;
+	// const categories = await getCategory();
+	// const category = categories.docs.find(item => item.title === categoryUrl);
 
-	const product = await getProductByName(productName, category?.id);
+	const product = await getProductByName(productName, category);
 	const allPost = await getAllPost(4);
 
 	if (!product) {

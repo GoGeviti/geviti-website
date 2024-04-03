@@ -49,13 +49,13 @@ export const getProductById = async(id: string): Promise<Product> => {
 	}
 };
 
-export const getProductByName = async(productName: string, categoryId?: number): Promise<Product> => {
+export const getProductByName = async(productName: string, category: string): Promise<Product> => {
 	const stringifiedQuery = qs.stringify({
 		depth: 2,
 		draft: false,
 		where: {
-			name: { equals: productName },
-			category: { equals: categoryId }
+			slug: { equals: productName },
+			'category.slug': { equals: category }
 		},
 		limit: 1
 	}, { addQueryPrefix: true });
