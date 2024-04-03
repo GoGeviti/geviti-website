@@ -115,7 +115,7 @@ const DiscoverGeviti: React.FC<DiscoverGevitiProps> = ({
 						// data-aos='zoom-in-down'
 						// data-aos-delay={ `${productIdx * 100}` }
 						className='group cursor-pointer relative flex flex-col overflow-hidden bg-grey-secondary flex-none w-[248px] lg:w-[287px]'
-						onClick={ () => router.push(`/${ encodeURIComponent(product?.category?.title) }/${ encodeURIComponent(product.name) }`) }
+						onClick={ () => router.push(`/${ product?.category?.slug }/${ product.slug }`) }
 					>
 						<div className='relative overflow-hidden bg-[#E5E5E5] group-hover:opacity-75 w-full h-[225px] lg:h-[260px]'>
 							<Image
