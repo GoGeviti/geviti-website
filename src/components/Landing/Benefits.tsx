@@ -131,8 +131,8 @@ const Benefits: React.FC = () => {
 												{ ...!isMobile
 													? {
 														variants: {
-															initial: { height: 0, visibility: 'hidden' },
-															visible: { height: 'fit-content', visibility: 'visible' },
+															initial: { height: 0, y: 20 },
+															visible: { height: 'fit-content', y: 0 },
 														},
 														initial: 'initial',
 														animate: hovered ? 'visible' : 'initial',
