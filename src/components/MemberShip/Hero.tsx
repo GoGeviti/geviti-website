@@ -190,6 +190,8 @@ const Hero: React.FC = () => {
 									className=' text-grey-primary max-w-[496px] pt-5 flex flex-col'
 								>
 									{heroData.para}
+
+									
 								</motion.p>
 
 								<div className='flex mt-[5vh] xs:mt-[42px] lg:mt-[5.435vh] xl:mt-50px'>
