@@ -50,9 +50,15 @@ const config: Config = {
 					search: '#E4EBEE',
 					50: '#F5F6F6',
 					100: '#E6E7E7',
+					200: '#CFD0D2',
+					300: '#AEB1B2',
 					400: '#7B7F81',
+					500: '#6A6E70',
 					600: '#5B5D5F',
-					700: '#4D4F51'
+					700: '#4D4F51',
+					800: '#444646',
+					900: '#3B3C3E',
+					950: '#252627'
 				},
 				blue: {
 					'1': '#A3E0FF',
@@ -61,6 +67,7 @@ const config: Config = {
 					'4': '#78C3E9',
 					'primary': '#99D4FF',
 					'1-background': '#f6fcff',
+					alice: '#ECF8FF'
 				},
 				neutral: {
 					'300': '#EFF0F6',
@@ -86,7 +93,11 @@ const config: Config = {
 				},
 				red: {
 					primary: '#EA3F62',
-					'primary-background': '#fdecef'
+					'primary-background': '#fdecef',
+					alert: '#F97066'
+				},
+				yellow: {
+					alert: '#F79009'
 				}
 			},
 			letterSpacing: {
@@ -121,6 +132,9 @@ const config: Config = {
 				slideDownAndFade: 'slideDownAndFade 300ms cubic-bezier(0.16, 0, 0.13, 1)',
 				slideRightAndFade: 'slideRightAndFade 300ms cubic-bezier(0.16, 0, 0.13, 1)',
 				slideLeftAndFade: 'slideLeftAndFade 300ms cubic-bezier(0.16, 0, 0.13, 1)',
+				zoomInAndFade: 'zoomInAndFade 300ms cubic-bezier(0.16, 0, 0.13, 1)',
+				zoomOutAndFade: 'zoomOutAndFade 300ms cubic-bezier(0.16, 0, 0.13, 1)',
+				scroll: "scroll var(--animation-duration, 40s) var(--animation-direction, forwards) linear infinite",
 			},
 			keyframes: {
 				marquee: {
@@ -159,9 +173,35 @@ const config: Config = {
 					'0%': { opacity: '0', transform: 'translateX(2px)' },
 					'100%': { opacity: '1', transform: 'translateX(0)' },
 				},
+				zoomOutAndFade: {
+					'0%': {
+						opacity: '1',
+						transform: 'scale(1, 1)'
+					},
+					'100%': {
+						opacity: '0',
+						transform: 'scale(0, 0)'
+					}
+				},
+				zoomInAndFade: {
+					'0%': {
+						opacity: '0',
+						transform: 'scale(0, 0)'
+					},
+					'100%': {
+						opacity: '1',
+						transform: 'scale(1, 1)'
+					},
+				},
+				scroll: {
+					to: {
+						transform: "translate(calc(-50% - 0.5rem))",
+					},
+				},
 			},
 			boxShadow: {
-				card: '0px 15px 30px 0px rgba(16, 24, 40, 0.10)'
+				card: '0px 15px 30px 0px rgba(16, 24, 40, 0.10)',
+				feature: '0px 8px 16px rgba(0, 0, 0, 0.25), inset 0px 6px 18px rgba(255, 255, 255, 0.15)'
 			},
 		},
 		fontFamily: {

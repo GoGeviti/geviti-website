@@ -7,30 +7,11 @@ import Image from 'next/image';
 import { landingData } from '@/constant/data';
 import clsxm from '@/helpers/clsxm';
 
-import CustomLink from '../CustomLink';
-import { ArrowNarrowRight, ChevronRight } from '../Icons';
+import { ArrowNarrowRight } from '../Icons';
 
 const benefitsData = landingData.benefits;
 
 const Benefits: React.FC = () => {
-	const renderButtonViewAll = () => {
-		const viewAll = benefitsData.viewAll;
-
-		return (
-			<CustomLink
-				href={ viewAll.href }
-				aria-label={ viewAll.text }
-				className='btn btn-primary flex items-center gap-7px sm:gap-2 !translate-y-0 group'
-			>
-				<span className='text-xs sm:text-sm font-medium leading-5 sm:leading-6 font-Poppins'>
-					{ viewAll.text }
-				</span>
-
-				<ChevronRight className='stroke-grey-secondary w-4 h-4 sm:w-18px sm:h-18px group-hover:translate-x-1 transform transition-all duration-100' />
-			</CustomLink>
-		);
-	};
-
 	const renderImage = (item: any, isMobile?: boolean) => { // eslint-disable-line @typescript-eslint/no-explicit-any
 		return (
 			<Image
@@ -54,27 +35,25 @@ const Benefits: React.FC = () => {
 	};
 
 	return (
-		<div className='lg:px-3 mt-3.5 lg:mt-11 font-Poppins'>
+		<div className='lg:px-3 mt-6 font-Poppins'>
 			<div className='bg-white relative overflow-hidden rounded-19px py-[46px] lg:pt-[79px] lg:pb-[49px]'>
 				<div className='container-center'>
-					<div className='flex justify-center lg:items-end lg:justify-between'>
-						<div className='text-center lg:text-left flex flex-col max-lg:justify-center'>
-							<p className='text-pretitle text-grey-primary'>
-								{ benefitsData.preTitle }
+					<div className='text-center flex flex-col justify-center'>
+						<p className='text-pretitle text-grey-primary'>
+							{ benefitsData.preTitle }
+						</p>
+
+						<h2 className='my-2.5 lg:mt-0 lg:mb-2 text-primary text-[6.107vw] max-md:leading-[133%] md:text-3xl lg:text-[4.444vw] xl:text-[64px] lg:!leading-normal -tracking-0.04em'>
+							{ benefitsData.title }
+						</h2>
+
+						{ benefitsData.description && (
+							<p className='text-grey-400 text-xs sm:text-sm !leading-5 max-w-[342px] mx-auto lg:max-w-[628px]'>
+								<span dangerouslySetInnerHTML={ { __html: benefitsData.description } } />
 							</p>
-
-							<h2 className='my-2.5 lg:my-6 text-primary text-[6.107vw] max-md:leading-[133%] md:text-3xl lg:text-[4.444vw] xl:text-[64px] lg:leading-[68%] -tracking-0.04em'>
-								{ benefitsData.title }
-							</h2>
-
-							<p className='text-grey-400 text-xs sm:text-sm !leading-5 max-w-[342px] max-lg:mx-auto lg:max-w-[412px]'>
-								{ benefitsData.description }
-							</p>
-						</div>
-
-						<div className='max-lg:hidden'>{ renderButtonViewAll() }</div>
+						) }
 					</div>
-					<div className='mx-auto mt-[42px] grid max-w-2xl grid-cols-1 gap-[42px] lg:gap-[23px] lg:mt-[58px] lg:mx-0 lg:max-w-none lg:grid-cols-2'>
+					<div className='mx-auto mt-[42px] lg:mt-[68px] grid max-w-2xl grid-cols-1 gap-[42px] lg:gap-[23px] lg:mx-0 lg:max-w-none lg:grid-cols-2'>
 						{ benefitsData.list.map(item => (
 							<article
 								key={ item.title }

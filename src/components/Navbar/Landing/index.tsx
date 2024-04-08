@@ -82,22 +82,6 @@ export const MenuItem = ({
 	);
 };
 
-export const Menu = ({
-	setActive,
-	children,
-}: {
-	setActive: React.Dispatch<React.SetStateAction<string | null>>;
-	children: React.ReactNode;
-}) => {
-	return (
-		<nav
-			onMouseLeave={ () => setActive(null) }
-			className='relative h-[60px] lg:h-[69px] font-Poppins border border-white/5 backdrop-blur-[25px] p-18px lg:pl-[42px] lg:py-3 lg:pr-3 rounded-[100px] bg-white/10 flex items-center space-x-6 xl:space-x-[50px] w-full justify-between'>
-			{ children }
-		</nav>
-	);
-};
-
 type NavbarProps = {
 	className?: string;
 	animationProps?: MotionProps;
@@ -107,6 +91,7 @@ const Navbar: React.FC<NavbarProps> = ({ className, animationProps }) => {
 	const [active, setActive] = useState<string | null>(null);
 	const [openSheet, setOpenSheet] = useState<boolean>(false);
 	const [selectedItem, setSelectedItem] = useState<number>(5);
+	const [overflow, setOverflow] = useState<string>('hidden');
 
 	const pathname = usePathname();
 
@@ -184,29 +169,33 @@ const Navbar: React.FC<NavbarProps> = ({ className, animationProps }) => {
 	return (
 		<header>
 			<div className={ clsxm('inset-x-0 top-0 z-50 absolute pt-4 lg:pt-[30px]', className) }>
-				<div className='container-center relative w-full'>
+				<div
+					className='container-center w-full'
+					style={ { overflow } }>
 					<motion.nav
 						variants={ {
 							visible: {
-								opacity: 1,
 								y: 0,
+								opacity: 1,
 								backdropFilter: 'blur(25px)',
 								borderRadius: '100px',
 								transition: {
-									delay: 2.5,
-									duration: .86,
-									ease: [0.455, 0.03, 0.515, 0.955]
+									delay: 1,
+									duration: 1,
+									ease: 'easeInOut'
 								}
 							},
-							hidden: { opacity: 0, y: -20 },
+							hidden: { y: '-100%', opacity: 0 },
 						} }
 						initial='hidden'
 						animate='visible'
+						className='inline-block w-full'
+						onAnimationComplete={ () => setOverflow('') }
 						{ ...animationProps }
 					>
 						<nav
 							onMouseLeave={ () => setActive(null) }
-							className='relative h-[60px] lg:h-[69px] font-Poppins border border-white/5 backdrop-blur-[25px] p-18px lg:pl-[42px] lg:py-3 lg:pr-3 rounded-[100px] bg-white/10 flex items-center space-x-6 xl:space-x-[50px] w-full justify-between'>
+							className='relative overflow-visible visible h-[60px] lg:h-[69px] font-Poppins border border-white/5 backdrop-blur-[25px] p-18px lg:pl-[42px] lg:py-3 lg:pr-3 rounded-[100px] bg-white/10 flex items-center space-x-6 xl:space-x-[50px] w-full justify-between'>
 							<div className='flex items-center lg:space-x-6 xl:space-x-[50px]'>
 								<GevitiLogo />
 								<div className='hidden lg:flex items-center space-x-6 xl:space-x-[50px]'>

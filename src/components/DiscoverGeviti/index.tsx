@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -9,9 +9,7 @@ import clsxm from '@/helpers/clsxm';
 import { screens } from '@/helpers/style';
 import { Product } from '@/payload/payload-types';
 
-import CustomLink from '../CustomLink';
-import { ArrowNarrowRight, ChevronRight } from '../Icons';
-import ButtonCta from '../Landing/ButtonCta';
+import { ArrowNarrowRight } from '../Icons';
 
 type DiscoverGevitiProps = {
 	title?: string;
@@ -51,21 +49,29 @@ const handleIsElementScrolledIntoHorizontalView = (elm: HTMLAnchorElement | null
 const DiscoverGeviti: React.FC<DiscoverGevitiProps> = ({
 	title = homeData.products.title,
 	description = homeData.products.description,
-	viewAll = homeData.products.viewAll,
-	viewAllMobileClassName = 'flex justify-center mt-10',
-	productsWrapperClassName = 'max-lg:mb-10 mt-[26px]',
+	productsWrapperClassName = 'mt-[18px]',
 	withBg = false,
 	products,
 }) => {
 	const itemsRef = React.useRef<Array<HTMLAnchorElement | null>>([]);
 	const wrapperItemsRef = React.useRef<HTMLDivElement>(null);
+	const [selectedCategory, setSelectedCategory] = useState<number>(0);
+	const [productsByCategory, setProductsByCategory] = useState<Product[]>([]);
 
 	React.useEffect(() => {
-		itemsRef.current = itemsRef.current.slice(0, products.length);
-	}, [products]);
+		const filterProductsByCategory = () => {
+			return products.filter(product => product.category.slug === homeData.products.categories[selectedCategory].slug);
+		};
+
+		setProductsByCategory(filterProductsByCategory());
+	}, [selectedCategory]);
 
 	React.useEffect(() => {
-		products.forEach((_, index) => {
+		itemsRef.current = itemsRef.current.slice(0, productsByCategory.length);
+	}, [productsByCategory, selectedCategory]);
+
+	React.useEffect(() => {
+		productsByCategory.forEach((_, index) => {
 			handleIsElementScrolledIntoHorizontalView(itemsRef.current[index], wrapperItemsRef.current);
 		});
 	}, [itemsRef.current]);
@@ -80,7 +86,7 @@ const DiscoverGeviti: React.FC<DiscoverGevitiProps> = ({
 				) }
 				ref={ wrapperItemsRef }
 			>
-				{ products.map((product, productIdx) => (
+				{ productsByCategory.map((product, productIdx) => (
 					<Link
 						href={ `/${ product?.category?.slug }/${ product.slug }` }
 						key={ product.id }
@@ -159,19 +165,36 @@ const DiscoverGeviti: React.FC<DiscoverGevitiProps> = ({
 		);
 	};
 
-	const renderButtonViewAll = () => {
-		return (
-			<CustomLink
-				href={ viewAll.href }
-				aria-label={ viewAll.text }
-				className='btn btn-primary flex items-center gap-7px sm:gap-2 !translate-y-0 group'
-			>
-				<span className='text-xs sm:text-sm font-medium leading-5 sm:leading-6 font-Poppins'>
-					{ viewAll.text }
-				</span>
+	const renderButtonSwitchProducts = () => {
+		const categories = homeData.products.categories;
 
-				<ChevronRight className='stroke-grey-secondary w-4 h-4 sm:w-18px sm:h-18px group-hover:translate-x-1 transform transition-all duration-100' />
-			</CustomLink>
+		return (
+			<div className='relative w-full rounded-[100px] h-[49px] px-1.5 bg-white'>
+				<div className='relative flex items-center h-full'>
+					{ categories.map((category, categoryIdx) => (
+						<button
+							key={ category.title }
+							aria-label={ category.title }
+							onClick={ () => setSelectedCategory(categoryIdx) }
+							className={ clsxm(
+								'text-sm !leading-[21px] h-full flex items-center justify-center text-grey-400 cursor-pointer whitespace-nowrap',
+								categoryIdx === 0 ? 'px-3.5 w-2/5' : 'px-6 w-3/5'
+							) }>
+							{ category.title }
+						</button>
+					)) }
+				</div>
+
+				<span
+					className={ clsxm(
+						'bg-primary cursor-pointer rounded-[100px] font-medium text-white whitespace-nowrap shadow-[0px_4px_8px_0px_rgba(0,0,0,0.1)] text-sm !leading-[21px] flex items-center justify-center h-[37px] transition-all duration-150 ease-linear top-1/2 -translate-y-1/2 absolute',
+						selectedCategory === 0
+							? 'left-1.5 w-[calc(40%-6px)] px-3.5'
+							: 'left-[40%] w-[calc(60%-6px)] px-6'
+					) }>
+					{ categories[selectedCategory].title }
+				</span>
+			</div>
 		);
 	};
 
@@ -184,7 +207,7 @@ const DiscoverGeviti: React.FC<DiscoverGevitiProps> = ({
 		>
 			<div className='w-full relative'>
 				<div className='px-4 lg:px-10 xl:px-[calc((100vw-1240px)/2)]'>
-					<div className='flex items-center justify-between'>
+					<div className='flex max-lg:gap-y-[42px] max-lg:flex-col lg:items-center lg:justify-between'>
 						<div>
 							<h2 className='text-primary text-2xl md:text-3xl lg:text-4xl leading-[179%] sm:leading-[128%] lg:leading-[119%] -tracking-0.04em'>
 								{ title }
@@ -194,21 +217,12 @@ const DiscoverGeviti: React.FC<DiscoverGevitiProps> = ({
 								{ description }
 							</p>
 						</div>
-						<div className='max-lg:hidden'>{ renderButtonViewAll() }</div>
+						<div>{ renderButtonSwitchProducts() }</div>
 					</div>
 				</div>
 
 				<div className={ clsxm('relative wrapper-products-list', productsWrapperClassName) }>
 					{ renderProductList() }
-				</div>
-
-				<div className={ clsxm('lg:hidden flex justify-center max-lg:px-4', viewAllMobileClassName) }>
-					<ButtonCta
-						href={ viewAll.href }
-						aria-label={ viewAll.text }
-						text={ viewAll.text }
-						className='max-sm:w-full'
-					/>
 				</div>
 			</div>
 		</div>

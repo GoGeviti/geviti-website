@@ -4,29 +4,19 @@ import { Footer, LandingComponent } from '@/components';
 
 const HomePage: NextPage = () => {
 	return (
-		<div className='flex min-h-screen flex-col w-full bg-grey-background'>
+		<div className='flex min-h-screen flex-col w-full bg-grey-background font-Poppins'>
 			<LandingComponent.Hero />
 			<LandingComponent.Steps />
-			<div className='max-lg:hidden'>
-				{ /** include: RunningLogo, Flexible, Clinical, and Application */ }
-				<LandingComponent.SectionCardsParallax />
-			</div>
-			<div className='flex flex-col gap-y-3.5 lg:gap-y-6 lg:hidden'>
-				<LandingComponent.RunningLogo />
-				<LandingComponent.Flexible />
-				<LandingComponent.Clinical />
-				<LandingComponent.Application />
-			</div>
+			<LandingComponent.RunningLogo />
+			<LandingComponent.TextReveal />
+			<LandingComponent.Membership />
+			<LandingComponent.FeaturesCarousel />
 			<LandingComponent.Benefits />
 			<LandingComponent.HomeKits />
-			<LandingComponent.BiologicalKit />
-			<LandingComponent.Supplements />
 			<LandingComponent.Innovative />
 			<LandingComponent.Products />
-			<div className='flex flex-col gap-y-3.5'>
-				<LandingComponent.Mission />
-				<Footer landingPage />
-			</div>
+			<LandingComponent.Mission />
+			<Footer landingPage />
 		</div>
 	);
 };

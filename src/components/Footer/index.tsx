@@ -202,7 +202,7 @@ const Footer: React.FC<FooterProps> = ({ landingPage }) => {
 	};
 
 	return (
-		<div className='pb-[66px] lg:pb-6 px-4 lg:px-3 max-lg:pt-2.5 overflow-hidden font-Poppins'>
+		<div className='pt-6 pb-[66px] lg:pb-6 px-4 lg:px-3 max-lg:pt-2.5 overflow-hidden font-Poppins'>
 			<WrapperFooter
 				landingPage={ landingPage }
 				isMobile={ isMobile }
@@ -245,7 +245,9 @@ const Footer: React.FC<FooterProps> = ({ landingPage }) => {
 								<button
 									disabled={ loading }
 									type='submit'
-									className='focus:outline-none focus:ring-0 absolute right-0'>
+									className='focus:outline-none focus:ring-0 absolute right-0'
+									aria-label='submit-subscription'
+								>
 									<ArrowEmail />
 								</button>
 							</form>

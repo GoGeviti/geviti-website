@@ -1,5 +1,5 @@
 'use client';
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { motion, useAnimationControls } from 'framer-motion';
 import Image from 'next/image';
 
@@ -18,44 +18,21 @@ import { slideUpTransition } from './transition';
 const heroData = landingData.hero;
 
 const Hero: React.FC = () => {
-	const [activeStepIdx, setActiveStepIdx] = useState<number>(0);
-	const [startAutoRunProgress, setStartAutoRunProgress] = useState<boolean>(false);
+	const [activeStepIdx, setActiveStepIdx] = useState<number>(-1);
 	const stepControls = useAnimationControls();
-	const intervalRef = useRef<NodeJS.Timeout | undefined>(undefined);
+
 	const windowDimensions = useWindowDimensions();
 	const isMobile = windowDimensions.width < screens.lg;
 
 	useEffect(() => {
-		const timer = setTimeout(() => {
-			stepControls.start({
-				width: '20%',
-				transition: {
-					delay: 1,
-					duration: 1,
-					ease: 'easeOut'
-				}
-			});
-		}, 1000);
-
-		return () => clearTimeout(timer);
-	}, []);
-
-	useEffect(() => {
-		if (activeStepIdx >= 4) {
-			clearInterval(intervalRef.current);
-			setStartAutoRunProgress(false);
-		}
+		stepControls.start({
+			width: ((activeStepIdx + 1) * 20) + '%',
+			transition: {
+				duration: 1,
+				ease: 'easeOut'
+			}
+		});
 	}, [activeStepIdx]);
-
-	useEffect(() => {
-		if (startAutoRunProgress) {
-			intervalRef.current = setInterval(() => {
-				setActiveStepIdx(prev => prev + 1);
-			}, 750);
-		}
-
-		return () => clearInterval(intervalRef.current);
-	}, [startAutoRunProgress]);
 
 	const handleScrollCarousel = useCallback((e: React.UIEvent<HTMLDivElement>) => {
 		const element = e.currentTarget;
@@ -104,7 +81,7 @@ const Hero: React.FC = () => {
 			<Image
 				src={ imageMobile ? heroData.imageMobile : heroData.image }
 				alt='hero'
-				priority
+				priority={ type === 'desktop' }
 				className={ clsxm(
 					'object-cover pointer-events-none',
 					imageMobile ? 'md:hidden object-center' : 'md:block hidden object-right'
@@ -117,23 +94,8 @@ const Hero: React.FC = () => {
 	};
 
 	return (
-		<div className='lg:px-3 lg:pt-3 pb-[27px] lg:pb-[83px] overflow-hidden font-Poppins'>
-			<Navbar
-				animationProps={ {
-					onAnimationComplete: () => {
-						if (!isMobile) {
-							stepControls.start({
-								width: '100%',
-								transition: {
-									duration: 3,
-									ease: 'easeOut'
-								}
-							});
-							setStartAutoRunProgress(true);
-							setActiveStepIdx(prev => prev + 1);
-						}
-					}
-				} } />
+		<div className='lg:px-3 lg:pt-3 overflow-hidden font-Poppins'>
+			<Navbar />
 			<div className='bg-primary h-[calc(100svh+14px)] lg:h-[calc(100vh-12px)] w-full overflow-hidden max-lg:rounded-t-none rounded-19px relative pt-11px lg:pt-5'>
 				<div className='absolute inset-0 w-full h-full'>
 					<div className='relative overflow-hidden w-full h-full'>
@@ -152,10 +114,7 @@ const Hero: React.FC = () => {
 											variants={ {
 												visible: {
 													y: 0,
-													transition: {
-														...slideUpTransition,
-														delay: .3
-													}
+													transition: slideUpTransition
 												},
 												hidden: { y: '100%' },
 											} }
@@ -173,7 +132,7 @@ const Hero: React.FC = () => {
 									variants={ {
 										visible: {
 											transition: {
-												staggerChildren: .3,
+												staggerChildren: .5,
 											}
 										}
 									} }
@@ -187,7 +146,7 @@ const Hero: React.FC = () => {
 									variants={ {
 										visible: {
 											transition: {
-												staggerChildren: .2,
+												staggerChildren: .25,
 											}
 										}
 									} }
@@ -196,140 +155,150 @@ const Hero: React.FC = () => {
 									{ renderTitles(heroData.titlesMobile) }
 								</motion.h1>
 
-								<div className='flex mt-[5vh] xs:mt-[42px] lg:mt-[5.435vh] xl:mt-50px'>
+								<div className='flex w-full mt-[5vh] xs:mt-[42px] lg:mt-[5.435vh] xl:mt-50px'>
 									<div className='grid grid-cols-1 auto-rows-fr sm:grid-cols-2 gap-4 sm:gap-6 items-center max-sm:w-full'>
-										<motion.div
-											variants={ {
-												visible: {
-													opacity: 1,
-													y: 0,
-													transition: {
-														delay: 1,
-														opacity: {
-															duration: 2,
-															ease: 'easeInOut'
-														},
-														y: {
-															duration: 1,
-															ease: [0.455, 0.03, 0.515, 0.955]
+										<div className='overflow-hidden inline-block'>
+											<motion.div
+												variants={ {
+													visible: {
+														y: 0,
+														transition: {
+															...slideUpTransition,
+															delay: .25,
+															duration: 1
 														}
-													}
-												},
-												hidden: { opacity: 0, y: 5 },
-											} }
-											initial='hidden'
-											animate='visible'
-										>
-											<div className='flex max-sm:w-full max-sm:justify-center'>
-												<ButtonCta
-													href={ heroData.btnCta.href }
-													externalLink={ heroData.btnCta.externalLink }
-													aria-label={ heroData.btnCta.text }
-													text={ heroData.btnCta.text }
-													theme='secondary'
-													className='max-sm:w-full'
-												/>
-											</div>
-										</motion.div>
-										<motion.div
-											variants={ {
-												visible: {
-													opacity: 1,
-													y: 0,
-													backdropFilter: 'blur(25px)',
-													borderRadius: '9999px',
-													transition: {
-														delay: 1,
-														opacity: {
-															duration: 2,
-															ease: 'easeInOut'
-														},
-														y: {
-															duration: 1,
-															ease: [0.455, 0.03, 0.515, 0.955]
-														}
-													}
-												},
-												hidden: { opacity: 0, y: 5 },
-											} }
-											initial='hidden'
-											animate='visible'
-											className='flex w-full h-full'
-										>
-											<CustomLink
-												href={ heroData.btnCta2.href }
-												externalLink={ heroData.btnCta2.externalLink }
-												className='bg-white/10 hover:bg-white/20 group max-md:w-full border border-white/5 backdrop-blur-[25px] rounded-full py-1.5 pl-[42px] pr-1.5 h-full relative grid place-items-center grid-cols-[auto_46px] overflow-hidden gap-6'
-												aria-label={ heroData.btnCta2.text }
+													},
+													hidden: { y: '100%' }
+												} }
+												initial='hidden'
+												animate='visible'
+												className='inline-block w-full'
 											>
-												<span className='text-lg leading-[133%] font-medium text-grey-secondary inline-block z-[2]'>
-													{ heroData.btnCta2.text }
-												</span>
-												<span className='w-[46px] relative flex items-center justify-center'>
-													<ChevronRight className='w-18px h-18px text-grey-secondary flex-shrink-0' />
-												</span>
-											</CustomLink>
-										</motion.div>
+												<div className='flex max-sm:w-full max-sm:justify-center'>
+													<ButtonCta
+														href={ heroData.btnCta.href }
+														externalLink={ heroData.btnCta.externalLink }
+														aria-label={ heroData.btnCta.text }
+														text={ heroData.btnCta.text }
+														theme='secondary'
+														className='max-sm:w-full'
+													/>
+												</div>
+											</motion.div>
+										</div>
+										<div className='overflow-hidden inline-block w-full h-full'>
+											<motion.div
+												variants={ {
+													visible: {
+														y: 0,
+														transition: {
+															...slideUpTransition,
+															delay: .25,
+															duration: 1
+														}
+													},
+													hidden: { y: '100%' }
+												} }
+												initial='hidden'
+												animate='visible'
+												className='flex w-full h-full'
+											>
+												<CustomLink
+													href={ heroData.btnCta2.href }
+													externalLink={ heroData.btnCta2.externalLink }
+													className='bg-white/10 hover:bg-white/20 group max-md:w-full border border-white/5 backdrop-blur-[25px] rounded-full py-1.5 pl-[42px] pr-1.5 h-full relative grid place-items-center grid-cols-[auto_46px] overflow-hidden gap-6'
+													aria-label={ heroData.btnCta2.text }
+												>
+													<span className='text-lg leading-[133%] font-medium text-grey-secondary inline-block z-[2]'>
+														{ heroData.btnCta2.text }
+													</span>
+													<span className='w-[46px] relative flex items-center justify-center'>
+														<ChevronRight className='w-18px h-18px text-grey-secondary flex-shrink-0' />
+													</span>
+												</CustomLink>
+											</motion.div>
+										</div>
 									</div>
 								</div>
 							</div>
-							<motion.div
-								variants={ {
-									visible: {
-										opacity: 1,
-										y: 0,
-										transition: {
-											delay: 1,
-											opacity: {
-												duration: 2,
-												ease: 'easeInOut'
-											},
-											y: {
+
+							<div className='mt-[5.2vh] xs:mt-[46px] lg:mt-[9.13vh] xl:mt-[84px]'>
+								<motion.div
+									variants={ {
+										visible: {
+											opacity: 1,
+											y: 0,
+											transition: {
+												delay: 1,
 												duration: 1,
-												ease: [0.455, 0.03, 0.515, 0.955]
+												ease: 'easeInOut'
+											}
+										},
+										hidden: { opacity: 0, y: 5 },
+									} }
+									initial='hidden'
+									animate='visible'
+									onAnimationComplete={ () => {
+										if (isMobile) setActiveStepIdx(0);
+									} }
+								>
+									<div className='overflow-hidden rounded-full bg-white/10 relative z-20'>
+										<motion.div
+											className='h-px rounded-full bg-blue-primary'
+											initial={ { width: '0%' } }
+											animate={ stepControls }
+										/>
+									</div>
+								</motion.div>
+
+								<motion.div
+									initial='hidden'
+									animate='visible'
+									variants={ {
+										visible: {
+											transition: {
+												staggerChildren: .3,
+												delayChildren: .6
 											}
 										}
-									},
-									hidden: { opacity: 0, y: 5 },
-								} }
-								initial='hidden'
-								animate='visible'
-								className='mt-[5.2vh] xs:mt-[46px] lg:mt-[9.13vh] xl:mt-[84px]'
-								aria-hidden='true'
-							>
-								<div className='overflow-hidden rounded-full bg-white/10 relative z-20'>
-									<motion.div
-										className='h-px rounded-full bg-blue-primary'
-										initial={ { width: '0%' } }
-										animate={ stepControls }
-									/>
-								</div>
-								<div
+									} }
 									onScroll={ handleScrollCarousel }
-									className='pt-18px lg:pt-6 no-scrollbar w-full text-sm !leading-[21px] font-medium text-grey-400 flex flex-nowrap overflow-x-scroll lg:overflow-hidden snap-x snap-mandatory scroll-smooth lg:justify-between'>
+									className='pt-18px lg:pt-6 no-scrollbar w-full text-sm !leading-[21px] font-medium text-grey-400 flex flex-nowrap overflow-y-hidden overflow-x-scroll lg:overflow-hidden snap-x snap-mandatory scroll-smooth lg:justify-between'
+								>
 									{ heroData.mainKeys.map((item, itemIdx) => {
 										const isItemActive = itemIdx <= activeStepIdx;
 
 										return (
-											<div
+											<span
 												key={ itemIdx }
 												className={ clsxm(
-													'flex max-lg:w-full max-lg:justify-center snap-start max-lg:flex-none',
+													'flex lg:overflow-hidden lg:inline-block max-lg:w-full max-lg:justify-center snap-start max-lg:flex-none cursor-pointer',
 													isItemActive && 'text-grey-50'
 												) }
-												onClick={ () => setActiveStepIdx(itemIdx) }
+												onMouseEnter={ () => setActiveStepIdx(itemIdx) }
 											>
-												<div className='flex flex-col gap-3 max-lg:items-center'>
-													<item.icon className={ clsxm('flex-shrink-0', isItemActive ? 'text-blue-primary' : 'text-grey-400') } />
-													<h4 className='text-center lg:text-left'>
-														<span dangerouslySetInnerHTML={ { __html: item.text } } />
-													</h4>
-												</div>
-											</div>
+												<motion.div
+													variants={ {
+														hidden: { y: '200%' },
+														visible: {
+															y: 0,
+															transition: { ease: slideUpTransition.ease, duration: 1.5 },
+														},
+													} }
+												>
+													<div className='flex flex-col gap-3 max-lg:items-center'>
+														<item.icon className={ clsxm('flex-shrink-0', isItemActive ? 'text-blue-primary' : 'text-grey-400') } />
+														<p className='text-center lg:text-left'>
+															<span dangerouslySetInnerHTML={ { __html: item.text } } />
+														</p>
+													</div>
+												</motion.div>
+											</span>
 										);
-									}) }
-								</div>
-							</motion.div>
+									}
+									) }
+								</motion.div>
+							</div>
 						</div>
 					</div>
 				</div>

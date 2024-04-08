@@ -44,7 +44,9 @@ const RootLayout: React.FC<{ children: React.ReactNode; }> = ({ children }) => {
       ` }
 			</Script>
 			<StyledComponentsRegistry>
-				<body className={ `${ poppins.variable } ${ brSonoma.variable }` }>
+				<body
+					className={ `${ poppins.variable } ${ brSonoma.variable }` }
+					suppressHydrationWarning>
 					<NextTopLoader
 						showSpinner={ false }
 						color='#A3E0FF' />

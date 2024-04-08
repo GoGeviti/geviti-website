@@ -23,7 +23,7 @@ const RunningLogo: React.FC = () => {
 	};
 
 	return (
-		<div className='pt-7 max-lg:pb-[42px] lg:h-[120px] xl2:h-[12.875rem] lg:pt-4 xl2:pt-[49.3px]'>
+		<div className='h-[42.01px] lg:h-[62.7px]'>
 			<div className='relative flex justify-center overflow-x-hidden select-none'>
 				<div className='h-[42.01px] lg:h-[62.7px] animate-marquee whitespace-nowrap flex justify-center'>
 					{ keywordsData.map((idx: number) => renderKeyword(idx, 1)) }
