@@ -117,11 +117,14 @@ const Benefits: React.FC = () => {
 												</div>
 											</div>
 
-											<div className='flex justify-between items-center w-full'>
-												<h3 className='text-2xl !leading-9 sm:text-3xl lg:text-4xl lg:!leading-[54px] -tracking-0.04em'>
-													{ item.title }
-												</h3>
-												<div className='relative w-8 h-8 max-lg:hidden lg:group-hover:hidden'>{ renderArrowNarrowRight() }</div>
+											<h3 className='text-2xl !leading-9 sm:text-3xl lg:text-4xl lg:!leading-[54px] -tracking-0.04em'>
+												{ item.title }
+											</h3>
+
+											<div className='absolute right-18px bottom-15px max-lg:hidden'>
+												<div className='relative w-[62px] h-[62px] rounded-full bg-white/20 border-2 border-white/5'>
+													{ renderArrowNarrowRight() }
+												</div>
 											</div>
 
 											<motion.div
@@ -146,11 +149,6 @@ const Benefits: React.FC = () => {
 														</li>
 													)) }
 												</ul>
-												<div className='absolute right-18px bottom-15px max-lg:hidden'>
-													<div className='relative w-[62px] h-[62px] rounded-full bg-white/20 border-2 border-white/5'>
-														{ renderArrowNarrowRight() }
-													</div>
-												</div>
 											</motion.div>
 										</motion.div>
 									</motion.div>
