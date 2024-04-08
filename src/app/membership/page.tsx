@@ -16,8 +16,9 @@ const page = () => {
 <Hero/>
 <RunningLogo/>
 <StepsSection/> 
-<Pricing/>
 <SliderCustom/>
+<Pricing/>
+
 <BioMakersSection/>
 <ChooseGeviti/>
 <Products/>

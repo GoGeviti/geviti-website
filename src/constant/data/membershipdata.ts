@@ -31,6 +31,7 @@ const membershipdata = {
     title:
       'Longevity made <br class="sm:hidden"/>accessible. Data driven <br class="sm:hidden"/>anti-aging care.',
     titles: ["Optimize your health, transform ", "your wellness."],
+    para:"A Geviti membership makes longevity easy and accessible with our wide range of at-home diagnostics, innovative anti-aging therapies, and a dedicated qualified care team.",
     titlesMobile: [
       "Longevity made",
       "accessible. Data driven",
@@ -171,7 +172,7 @@ const membershipdata = {
         title: "Data-driven health and wellness, made simple.",
         heading:
           "The ultimate wellness membership for as low as $99 per month.",
-        subheading: "Data-driven health and wellness, made simple.",
+        subheading: "Geviti transcends the usual health and wellness offerings, providing unparalleled value at a lower cost. Our mission is to make longevity-focused care exceptionally accessible.",
         list:[
             "Geviti Platform Access",
             "Mobile App Integration",
@@ -184,45 +185,48 @@ const membershipdata = {
             "Wholesale At-home Diagnostics",
         ],
         hide:"hidden",
+        img:"/images/membership/slider1.png"
       },
       {
         title: "Data-driven health and wellness, made simple.",
         heading:
-          "A complete wellness team in your pocket",
+          "Doctor  monitored cutting edge care",
         subheading: "Geviti offers a comprehensive care team for our clients. Instead of having to choose between a healthcare provider and a health coach, Geviti provides a solution where the two collaborate to create the ultimate longevity regimen.",
         list:[
             
         ],
         hide:"flex",
+        img:"/images/membership/slider2.png"
+      },
+      {
+        title: "Data-driven health and wellness, made simple.",
+        heading:
+          "A complete wellness team in your pocket",
+        subheading: " ",
+        list:[
+            "Hormone Therapy",
+            "Anti-aging Peptides",
+            "Medical Weight Loss",
+            "Sexual Health Medication",
+            "Nootropics and Brain Health",
+            "And More.",
+        ],
+        hide:"flex",
+        img:"/images/membership/sider3.png"
+      },
+      {
+        title: "Data-driven health and wellness, made simple.",
+        heading:
+          "Biannual At-Home Full Panels ",
+        subheading: "Americans may go several years without getting their bloodwork done. This can be the difference between life and death. Geviti makes bloodwork easy with our nationwide team of phlebotomists Every 6 months, we’ll come to you and perform a full panel.",
+        list:[
+            
+        ],
+        hide:"flex",
+        img:"/images/membership/slider4.png"
       },
     ],
-    list: [
-      {
-        id: "step-1",
-        title:
-          "Become a member by <br/> purchasing a “Deep Dive” <br/> diagnostic package",
-        icon: GevitiIcon,
-      },
-      {
-        id: "step-2",
-        title:
-          "Complete your at-home blood <br/> draw with our mobile <br/> phlebotomy team",
-        icon: HomeOutlineIcon,
-        iconMobile: HomeIcon,
-      },
-      {
-        id: "step-3",
-        title:
-          "Review results and tailored <br/> protocol with your designated <br/> care team",
-        icon: ChartIcon,
-      },
-      {
-        id: "step-4",
-        title:
-          "Receive your tailor-made <br/> protocols in the mail and <br/> track your progress",
-        icon: DocumentIcon,
-      },
-    ],
+  
   },
   pricing: {
     data: [

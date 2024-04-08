@@ -177,6 +177,20 @@ const Hero: React.FC = () => {
 								>
 									{ renderTitles(heroData.titlesMobile) }
 								</motion.h1>
+								<motion.p
+									initial='hidden'
+									animate='visible'
+									variants={ {
+										visible: {
+											transition: {
+												staggerChildren: .2,
+											}
+										}
+									} }
+									className=' text-grey-primary max-w-[496px] pt-5 flex flex-col'
+								>
+									{heroData.para}
+								</motion.p>
 
 								<div className='flex mt-[5vh] xs:mt-[42px] lg:mt-[5.435vh] xl:mt-50px'>
 									<div className='grid grid-cols-1 auto-rows-fr sm:grid-cols-2 gap-4 sm:gap-6 items-center max-sm:w-full'>
