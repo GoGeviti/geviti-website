@@ -102,7 +102,7 @@ const Benefits: React.FC = () => {
 													}
 													: {}
 											}
-											className='rounded-[calc(1rem-1px)] bg-[#042A4980] pt-6 sm:pt-[17px] pb-[21px] sm:pb-[15px] px-6 sm:px-18px text-white relative overflow-hidden'
+											className='rounded-[calc(1rem-1px)] bg-[#042A4980] pt-6 sm:pt-[17px] pb-[21px] sm:pb-[15px] px-6 sm:px-18px text-white relative overflow-hidden group'
 										>
 											<div className='absolute inset-0 w-full h-full'>
 												<div className='relative overflow-hidden w-full h-full'>
@@ -121,7 +121,7 @@ const Benefits: React.FC = () => {
 												{ item.title }
 											</h3>
 
-											<div className='absolute right-18px bottom-15px max-lg:hidden'>
+											<div className='absolute right-18px bottom-15px max-lg:hidden group-hover:translate-y-1 transform transition-transform ease-in-out duration-500'>
 												<div className='relative w-[62px] h-[62px] rounded-full bg-white/20 border-2 border-white/5'>
 													{ renderArrowNarrowRight() }
 												</div>
