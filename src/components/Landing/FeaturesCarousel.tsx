@@ -1,8 +1,9 @@
 'use client';
 
-import React, { useState } from 'react';
-import { Player } from '@lottiefiles/react-lottie-player';
+import React, { useEffect, useState } from 'react';
+import { useInView } from 'react-intersection-observer';
 import { AnimatePresence, motion } from 'framer-motion';
+import lottie from 'lottie-web';
 
 import { landingData } from '@/constant/data';
 
@@ -32,6 +33,8 @@ const featuresCarouselData = landingData.features;
 const cards = featuresCarouselData.cards;
 
 const FeaturesCarousel: React.FC = () => {
+	const { ref, inView } = useInView();
+
 	const [idx, setIdx] = useState<number>(0);
 
 	const [prevIdx, setPrevIdx] = useState(idx);
@@ -39,6 +42,25 @@ const FeaturesCarousel: React.FC = () => {
 	const trend = idx > prevIdx ? 1 : -1;
 
 	const activeIdx = Math.abs(idx % cards.length);
+
+	useEffect(() => {
+		const container = document.getElementById(`container-lottie-${ activeIdx }`);
+		const cardId = cards.find((_, cardIdx) => cardIdx === activeIdx)?.id;
+
+		if (container && cardId && inView) {
+			const animation = lottie.loadAnimation({
+				container,
+				renderer: 'svg',
+				autoplay: false,
+				loop: false,
+				animationData: getLottieSource(cardId)
+			});
+
+			setTimeout(() => {
+				animation.play();
+			}, 1000);
+		}
+	}, [inView, activeIdx]);
 
 	const handleNext = () => {
 		setPrevIdx(idx);
@@ -95,12 +117,8 @@ const FeaturesCarousel: React.FC = () => {
 
 		if (src) {
 			return (
-				<Player
-					src={ src }
-					keepLastFrame
-					autoplay
-					loop
-					speed={ 1 }
+				<div
+					id={ `container-lottie-${ activeIdx }` }
 					className='w-full h-full'
 				/>
 			);
@@ -111,7 +129,9 @@ const FeaturesCarousel: React.FC = () => {
 
 	return (
 		<div className='lg:px-3'>
-			<div className='bg-primary rounded-19px py-6 lg:pt-50px lg:pb-[126px]'>
+			<div
+				ref={ ref }
+				className='bg-primary rounded-19px py-6 lg:pt-50px lg:pb-[126px]'>
 				<div className='container-center w-full'>
 					<div className='flex items-center space-x-14 max-lg:hidden'>
 						<div className='overflow-hidden rounded-full bg-grey-950 relative w-full'>
