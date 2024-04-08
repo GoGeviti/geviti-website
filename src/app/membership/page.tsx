@@ -6,6 +6,8 @@ import { Mission, Products, RunningLogo } from '@/components/Landing'
 import StepsSection from '@/components/MemberShip/Steps'
 import { Footer } from '@/components' 
 import FrequentlyAskedQues from '@/components/MemberShip/FrequentlyAskedQues'
+import ChooseGeviti from '@/components/MemberShip/ChooseGeviti'
+import Pricing from '@/components/MemberShip/Pricing'
 
 const page = () => {
   return (
@@ -13,7 +15,9 @@ const page = () => {
 <Hero/>
 <RunningLogo/>
 <StepsSection/> 
+<Pricing/>
 <BioMakersSection/>
+<ChooseGeviti/>
 <Products/>
 <FrequentlyAskedQues/>
 <div className='flex flex-col gap-y-3.5'>
