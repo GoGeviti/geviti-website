@@ -8,6 +8,7 @@ import { Footer } from '@/components'
 import FrequentlyAskedQues from '@/components/MemberShip/FrequentlyAskedQues'
 import ChooseGeviti from '@/components/MemberShip/ChooseGeviti'
 import Pricing from '@/components/MemberShip/Pricing'
+import SliderCustom from '@/components/MemberShip/SliderCustom'
 
 const page = () => {
   return (
@@ -16,6 +17,7 @@ const page = () => {
 <RunningLogo/>
 <StepsSection/> 
 <Pricing/>
+<SliderCustom/>
 <BioMakersSection/>
 <ChooseGeviti/>
 <Products/>

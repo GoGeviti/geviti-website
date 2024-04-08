@@ -118,7 +118,6 @@ const membershipdata = {
       "sex hormone binding globulin (SHBG) ",
       "Very Low-Density Lipoprotein (VLDL) Cholesterol (calculated)",
       "Prostate-Specific Antigen (PSA)",
-  
     ],
   },
   choosegivity: {
@@ -166,60 +165,118 @@ const membershipdata = {
       },
     ],
   },
-  pricing:{
-    data:[
-        {
-            name:"Essentials Diagnostic",
-            price:"299",
-            biomakers:"45",
-            button:"primary",
-    bg:"bg-[#F5FBFF]",
-    text:"text-[#181A1C]",
-    hide:"hidden"
-    },
-        {
-            name:"Essentials Diagnostic",
-            price:"299",
-            biomakers:"45",
-            button:"secondary",
-    bg:"bg-[#181A1C]",
-    text:"text-white",
-    hide:""
-    },
-        {
-            name:"Essentials Diagnostic",
-            price:"299",
-            biomakers:"45",
-            button:"primary",
-    bg:"bg-[#F5FBFF]",
-    text:"text-[#181A1C]",
-    hide:"hidden"
-    }
+  slider: {
+    data: [
+      {
+        title: "Data-driven health and wellness, made simple.",
+        heading:
+          "The ultimate wellness membership for as low as $99 per month.",
+        subheading: "Data-driven health and wellness, made simple.",
+        list:[
+            "Geviti Platform Access",
+            "Mobile App Integration",
+            "Smart Wearables Integration",
+            "Biannual At-home Full Panels",
+            "Doctor-Monitored Therapeutics",
+            "Tailored Smart Supplements",
+            "Custom Longevity Protocols",
+            "Certified Personal Health Coach",
+            "Wholesale At-home Diagnostics",
+        ],
+        hide:"hidden",
+      },
+      {
+        title: "Data-driven health and wellness, made simple.",
+        heading:
+          "A complete wellness team in your pocket",
+        subheading: "Geviti offers a comprehensive care team for our clients. Instead of having to choose between a healthcare provider and a health coach, Geviti provides a solution where the two collaborate to create the ultimate longevity regimen.",
+        list:[
+            
+        ],
+        hide:"flex",
+      },
     ],
-    features:[
-        "At-home phlebotomy blood draw",
-        "Full biomarker results report",
-        "Smart supplement recommendation",
-        "Bloodwork results telehealth review",
-        "Month one membership included"
+    list: [
+      {
+        id: "step-1",
+        title:
+          "Become a member by <br/> purchasing a “Deep Dive” <br/> diagnostic package",
+        icon: GevitiIcon,
+      },
+      {
+        id: "step-2",
+        title:
+          "Complete your at-home blood <br/> draw with our mobile <br/> phlebotomy team",
+        icon: HomeOutlineIcon,
+        iconMobile: HomeIcon,
+      },
+      {
+        id: "step-3",
+        title:
+          "Review results and tailored <br/> protocol with your designated <br/> care team",
+        icon: ChartIcon,
+      },
+      {
+        id: "step-4",
+        title:
+          "Receive your tailor-made <br/> protocols in the mail and <br/> track your progress",
+        icon: DocumentIcon,
+      },
     ],
-    others:[
-        "Free telehealth consults",
-        "Designated certified health coach",
-        "At-home bloodwork",
-        "Free semi-annual bloodwork",
-        "Affordable treatments",
-        "Included medical supplies",
-        "Custom Smart Supplements",
-        "Everything direct to your door",
-        "Wholesale cost additional testing",
-        "Wholesale cost supplements",
-        "DNA and bloodwork options",
-        "Data-driven tech platform",
-        "Integrated mobile app" 
-    ]
-  }
-  
+  },
+  pricing: {
+    data: [
+      {
+        name: "Essentials Diagnostic",
+        price: "299",
+        biomakers: "45",
+        button: "primary",
+        bg: "bg-[#F5FBFF]",
+        text: "text-[#181A1C]",
+        hide: "hidden",
+      },
+      {
+        name: "Essentials Diagnostic",
+        price: "299",
+        biomakers: "45",
+        button: "secondary",
+        bg: "bg-[#181A1C]",
+        text: "text-white",
+        hide: "",
+      },
+      {
+        name: "Essentials Diagnostic",
+        price: "299",
+        biomakers: "45",
+        button: "primary",
+        bg: "bg-[#F5FBFF]",
+        text: "text-[#181A1C]",
+        hide: "hidden",
+      },
+    ],
+    features: [
+      "At-home phlebotomy blood draw",
+      "Full biomarker results report",
+      "Smart supplement recommendation",
+      "Bloodwork results telehealth review",
+      "Month one membership included",
+    ],
+    others: [
+      "Free telehealth consults",
+      "Designated certified health coach",
+      "At-home bloodwork",
+      "Free semi-annual bloodwork",
+      "Affordable treatments",
+      "Included medical supplies",
+      "Custom Smart Supplements",
+      "Everything direct to your door",
+      "Wholesale cost additional testing",
+      "Wholesale cost supplements",
+      "DNA and bloodwork options",
+      "Data-driven tech platform",
+      "Integrated mobile app",
+    ],
+  },
 };
 
 export default membershipdata;
