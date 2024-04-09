@@ -61,7 +61,7 @@ const SliderCustom = () => {
                   {obj.subheading}
                 </p>
                 <ul className=" flex flex-col list-disc my-10 pl-4 gap-2 max-lg:pb-24">
-                  {obj.list.map((data, index) => (
+                  {obj.list.map((data) => (
                     <li key={index} className="text-white font-Poppins text-lg">
                       {data}{" "}
                     </li>

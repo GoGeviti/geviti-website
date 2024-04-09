@@ -41,10 +41,10 @@ export const DocumentIcon = (props?: React.SVGProps<SVGSVGElement>) => {
 		</svg>
 	);
 };
-export const BlueArrow = (props?: React.SVGProps<SVGSVGElement>) => {
+export const BlueArrow = () => {
 	return (
 		<svg width="14" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M1 5L13 5M13 5L8.5 0.5M13 5L8.5 9.5" stroke="#99D4FF" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M1 5L13 5M13 5L8.5 0.5M13 5L8.5 9.5" stroke="#99D4FF" strokeLinecap="round" strokeLinejoin="round"/>
 </svg>
 
 	);
