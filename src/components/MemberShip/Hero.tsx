@@ -56,31 +56,31 @@ const Hero: React.FC = () => {
     return () => clearInterval(intervalRef.current);
   }, [startAutoRunProgress]);
 
-  const handleScrollCarousel = useCallback(
-    (e: React.UIEvent<HTMLDivElement>) => {
-      const element = e.currentTarget;
+//   const handleScrollCarousel = useCallback(
+//     (e: React.UIEvent<HTMLDivElement>) => {
+//       const element = e.currentTarget;
 
-      const windowScroll = element.scrollLeft;
-      const totalWidth = element.scrollWidth - element.clientWidth;
-      let scrollProgress = 0;
-      if (windowScroll === 0) scrollProgress = 0;
-      if (windowScroll > totalWidth) scrollProgress = 100;
-      else scrollProgress = (windowScroll / totalWidth) * 100;
+//       const windowScroll = element.scrollLeft;
+//       const totalWidth = element.scrollWidth - element.clientWidth;
+//       let scrollProgress = 0;
+//       if (windowScroll === 0) scrollProgress = 0;
+//       if (windowScroll > totalWidth) scrollProgress = 100;
+//       else scrollProgress = (windowScroll / totalWidth) * 100;
 
-      const activeItemIdx = Math.floor(
-        (scrollProgress * heroData.mainKeys.length) / 110
-      );
-      setActiveStepIdx(activeItemIdx);
-      stepControls.start({
-        width: (activeItemIdx + 1) * 20 + "%",
-        transition: {
-          duration: 1,
-          ease: "easeOut",
-        },
-      });
-    },
-    []
-  );
+//       const activeItemIdx = Math.floor(
+//         (scrollProgress * heroData.mainKeys.length) / 110
+//       );
+//       setActiveStepIdx(activeItemIdx);
+//       stepControls.start({
+//         width: (activeItemIdx + 1) * 20 + "%",
+//         transition: {
+//           duration: 1,
+//           ease: "easeOut",
+//         },
+//       });
+//     },
+//     []
+//   );
 
   const renderTitles = (titles: string[]) => {
     return titles.map((title: string, titleIdx: number) => (
