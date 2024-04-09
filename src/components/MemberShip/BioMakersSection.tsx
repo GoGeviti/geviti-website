@@ -27,7 +27,9 @@ const BioMakersSection = () => {
           className=" flex items-center font-Poppins text-sm sm:text-[28px] gap-3"
         >
           Compare Tested Biomarkers
-          <ChevronDown />
+          <span className={`${isOpen && "rotate-180 duration-300"}`}>
+            <ChevronDown />
+          </span>
         </button>
         {!isOpen && (
           <p className=" text-lg font-Poppins text-[#AEB1B2]">

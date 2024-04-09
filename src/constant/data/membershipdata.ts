@@ -14,6 +14,10 @@ import {
   MonitoringIcon,
   PillIcon,
   TeamIcon,
+  UserTag,
+  DropIcon,
+  FavFolder,
+  Graph
 } from "@/components/Icons/Landing";
 
 const membershipdata = {
@@ -143,26 +147,26 @@ const membershipdata = {
         id: "step-1",
         title:
           "Become a member by <br/> purchasing a “Deep Dive” <br/> diagnostic package",
-        icon: GevitiIcon,
+        icon: UserTag,
       },
       {
         id: "step-2",
         title:
           "Complete your at-home blood <br/> draw with our mobile <br/> phlebotomy team",
-        icon: HomeOutlineIcon,
-        iconMobile: HomeIcon,
+        icon: DropIcon,
+        iconMobile: DropIcon,
       },
       {
         id: "step-3",
         title:
           "Review results and tailored <br/> protocol with your designated <br/> care team",
-        icon: ChartIcon,
+        icon: FavFolder,
       },
       {
         id: "step-4",
         title:
           "Receive your tailor-made <br/> protocols in the mail and <br/> track your progress",
-        icon: DocumentIcon,
+        icon: Graph,
       },
     ],
   },

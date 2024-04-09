@@ -83,7 +83,11 @@ const Pricing = () => {
                   <p className=" text-xl font-Poppins">
                     Geviti vs. competitors
                   </p>
-                  <ChevronDown />
+                  <span className={`${
+                    isOpen ? " rotate-180" : ""
+                  }`}>
+                      <ChevronDown />
+                  </span>
                 </div>
               </div>
             </div>

@@ -102,7 +102,7 @@ const StepsSection: React.FC = () => {
 												onClick={ () => onSelectStep(stepIdx) }
 												onMouseEnter={ () => onMouseEnter(stepIdx) }
 												className={ clsxm(
-													'cursor-pointer rounded-full flex items-center justify-center flex-shrink-0 max-lg:shadow-[0px_27.2073px_35.1062px_rgba(0,0,0,0.05)]',
+													'cursor-pointer rounded-19px flex items-center justify-center flex-shrink-0 max-lg:shadow-[0px_27.2073px_35.1062px_rgba(0,0,0,0.05)]',
 													isSelected
 														? 'bg-white lg:bg-blue-1 w-10 h-10 lg:w-[62px] lg:h-[62px] lg:shadow-[0px_41.9842px_54.1731px_rgba(0,0,0,0.05))]'
 														: 'bg-white w-10 h-10 lg:w-[55px] lg:h-[55px] lg:shadow-[0px_37.6636px_48.5981px_rgba(0,0,0,0.05)]'
@@ -112,11 +112,11 @@ const StepsSection: React.FC = () => {
 												{ IconMobile
 													? (
 														<>
-															<span className='max-lg:hidden'>{ <Icon className={ clsxm(isSelected ? 'text-primary' : 'text-blue-1', 'flex-shrink-0 w-6 h-6') } /> }</span>
+															<span className='max-lg:hidden'>{ <Icon className={ clsxm(isSelected ? 'text-primary' : 'text-grey-primary', 'flex-shrink-0 w-6 h-6') } /> }</span>
 															<span className='lg:hidden'>{ <IconMobile className='text-blue-1 flex-shrink-0 w-18px h-18px' /> }</span>
 														</>
 													)
-													: <Icon className={ clsxm(isSelected ? 'text-blue-1 lg:text-primary' : 'text-blue-1', 'flex-shrink-0 w-18px h-18px lg:w-6 lg:h-6') } /> }
+													: <Icon className={ clsxm(isSelected ? 'text-blue-1 lg:text-primary' : ' text-grey-primary', 'flex-shrink-0 w-18px h-18px lg:w-6 lg:h-6') } /> }
 											</button>
 
 											<p
