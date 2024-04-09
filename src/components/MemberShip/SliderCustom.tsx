@@ -11,7 +11,7 @@ import { BlueArrow } from "../Icons/Landing";
 const sliderdata = membershipdata.slider;
 
 const SliderCustom = () => {
-  const sliderRef = useRef(null);
+    const sliderRef = useRef<Slider>(null);
   //   const [isCursorVisible, setIsCursorVisible] = useState(true);
 
   const settings = {
@@ -23,31 +23,25 @@ const SliderCustom = () => {
     fade: true,
   };
 
-  const nextSlide = () => {
+const nextSlide = () => {
+  if (sliderRef.current) {
     sliderRef.current.slickNext();
-  };
+  }
+};
 
-  const prevSlide = () => {
+const prevSlide = () => {
+  if (sliderRef.current) {
     sliderRef.current.slickPrev();
-  };
-
-  const handleMouseEnterSection = () => {
-    setIsCursorVisible(false);
-  };
-
-  const handleMouseLeaveSection = () => {
-    setIsCursorVisible(true);
-  };
-
+  }
+};
+ 
   return (
     <div className="relative w-full lg:px-3 pt-3 rounded-19px">
       <div className="overflow-hidden rounded-19px relative">
         <Slider ref={sliderRef} {...settings} className="bg-[#181A1C]">
           {sliderdata.data.map((obj, index) => (
             <div key={index} className="!flex lg:flex-row flex-col-reverse ">
-              <div
-                onMouseEnter={handleMouseEnterSection}
-                onMouseLeave={handleMouseLeaveSection}
+              <div 
                 className="lg:w-1/2 relative z-10 bg-[#181A1C] px-4 lg:pl-16 lg:pr-11 pt-20 h-full"
               >
                 <p className=" text-grey-primary uppercase font-Poppins text-sm font-semibold">

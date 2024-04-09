@@ -1,4 +1,4 @@
-"use client";
+'use client'
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { AccordionMinus, AccordionPlus } from "../Icons";
@@ -36,12 +36,13 @@ const FrequentlyAskedQues = () => {
   ];
 
   // State to track which accordion item is open
-  const [openIndex, setOpenIndex] = useState(0);
+  const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   // Function to toggle accordion item
-  const toggleAccordion = (index) => {
+  const toggleAccordion = (index: number) => {
     setOpenIndex(openIndex === index ? null : index);
   };
+
   return (
     <div className="bg-white mx-3 rounded-[19px] my-6 pb-14 pt-28">
       <div className=" container-center ">

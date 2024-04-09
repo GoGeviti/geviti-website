@@ -66,7 +66,7 @@ const Pricing = () => {
                 <ButtonCta
                   href=""
                   text="Get Started"
-                  theme={value.button}
+                  theme={value.button === 'primary' ? 'primary' : value.button === 'secondary' ? 'secondary' : undefined}
                   className="w-fit mx-auto"
                 />
               </div>
