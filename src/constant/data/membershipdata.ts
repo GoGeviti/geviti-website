@@ -1,19 +1,10 @@
 import { ShoppingBagIcon } from "@/components/Icons";
-import {
-  BarChartSquareIcon,
-  ChartIcon,
-  DNAIcon,
-  DocumentIcon,
-  EmergencyCallAddIcon,
-  FavoriteChartIcon,
-  GevitiIcon,
-  HeartbeatIcon,
-  HomeIcon,
-  HomeOutlineIcon,
+import { 
+  DNAIcon, 
+  HeartbeatIcon, 
   MedicalDocIcon,
   MonitoringIcon,
-  PillIcon,
-  TeamIcon,
+  PillIcon, 
   UserTag,
   DropIcon,
   FavFolder,

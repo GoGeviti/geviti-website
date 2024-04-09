@@ -6,15 +6,13 @@ import "slick-carousel/slick/slick-theme.css";
 import Image from "next/image";
 import membershipdata from "@/constant/data/membershipdata";
 import ButtonCta from "../Landing/ButtonCta";
-import { ArrowNarrowLeft, ChevronRight } from "../Icons";
-import { BlueArrow } from "../Icons/Landing";
-import CustomCursor from "./CustomCursor";
-import CustomCursor2 from "./CustomArrow2";
+import {ChevronRight } from "../Icons";
+import { BlueArrow } from "../Icons/Landing"; 
 const sliderdata = membershipdata.slider;
 
 const SliderCustom = () => {
   const sliderRef = useRef(null);
-  const [isCursorVisible, setIsCursorVisible] = useState(true);
+//   const [isCursorVisible, setIsCursorVisible] = useState(true);
 
   const settings = {
     dots: true,
