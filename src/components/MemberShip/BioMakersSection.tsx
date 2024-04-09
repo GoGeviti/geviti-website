@@ -18,7 +18,7 @@ const BioMakersSection = () => {
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
   };
- 
+
   return (
     <div className="bg-white mx-3 rounded-[19px] my-6 py-14">
       <div className=" container-center ">
@@ -55,10 +55,31 @@ const BioMakersSection = () => {
 
             {/* tabs */}
             <div className="max-sm:hidden sm:flex mb-11 gap=6 md:gap-20">
-              <p onClick={()=>setTab("tab1")} className={` ${tab === "tab1" && "!text-[#181A1C] after:!opacity-100"} after:absolute after:opacity-0  relative after:w-full after:h-[2px] after:bottom-0 after:bg-blue-1 after:left-0 font-Poppins text-lg text-grey-primary`}>Essential Health Check</p>
-              <p onClick={()=>setTab("tab2")} className={` ${tab === "tab2" && "!text-[#181A1C] after:!opacity-100"} after:absolute after:opacity-0  relative after:w-full after:h-[2px] after:bottom-0 after:bg-blue-1 after:left-0 font-Poppins text-lg text-grey-primary`}>Comprehensive Health Dive</p>
-              <p onClick={()=>setTab("tab3")} className={` ${tab === "tab3" && "!text-[#181A1C] after:!opacity-100"} after:absolute after:opacity-0  relative after:w-full after:h-[2px] after:bottom-0 after:bg-blue-1 after:left-0 font-Poppins text-lg text-grey-primary`}>Ultimate Health Assessment</p>
-            </div> 
+              <p
+                onClick={() => setTab("tab1")}
+                className={` ${
+                  tab === "tab1" && "!text-[#181A1C] after:!opacity-100"
+                } after:absolute after:opacity-0  relative after:w-full after:h-[2px] after:bottom-0 after:bg-blue-1 after:left-0 font-Poppins text-lg text-grey-primary`}
+              >
+                Essential Health Check
+              </p>
+              <p
+                onClick={() => setTab("tab2")}
+                className={` ${
+                  tab === "tab2" && "!text-[#181A1C] after:!opacity-100"
+                } after:absolute after:opacity-0  relative after:w-full after:h-[2px] after:bottom-0 after:bg-blue-1 after:left-0 font-Poppins text-lg text-grey-primary`}
+              >
+                Comprehensive Health Dive
+              </p>
+              <p
+                onClick={() => setTab("tab3")}
+                className={` ${
+                  tab === "tab3" && "!text-[#181A1C] after:!opacity-100"
+                } after:absolute after:opacity-0  relative after:w-full after:h-[2px] after:bottom-0 after:bg-blue-1 after:left-0 font-Poppins text-lg text-grey-primary`}
+              >
+                Ultimate Health Assessment
+              </p>
+            </div>
             <ul className="py-2 flex gap-6 flex-wrap">
               {biomakers.data.map((option, index) => (
                 <li

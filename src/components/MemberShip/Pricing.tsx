@@ -38,7 +38,7 @@ const Pricing = () => {
           </p>
         </div>
         <div className=" sm:flex gap-6 items-end w-full pt-10 ">
-          {pricing.data.map((value,index) => (
+          {pricing.data.map((value, index) => (
             <div key={index} className=" w-full relative">
               <div
                 className={`pt-[42px] pb-[34px] px-6   ${value.bg} ${value.text} rounded-2xl w-full`}
@@ -83,10 +83,8 @@ const Pricing = () => {
                   <p className=" text-xl font-Poppins">
                     Geviti vs. competitors
                   </p>
-                  <span className={`${
-                    isOpen ? " rotate-180" : ""
-                  }`}>
-                      <ChevronDown />
+                  <span className={`${isOpen ? " rotate-180" : ""}`}>
+                    <ChevronDown />
                   </span>
                 </div>
               </div>

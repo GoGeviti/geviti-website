@@ -6,13 +6,13 @@ import "slick-carousel/slick/slick-theme.css";
 import Image from "next/image";
 import membershipdata from "@/constant/data/membershipdata";
 import ButtonCta from "../Landing/ButtonCta";
-import {ChevronRight } from "../Icons";
-import { BlueArrow } from "../Icons/Landing"; 
+import { ChevronRight } from "../Icons";
+import { BlueArrow } from "../Icons/Landing";
 const sliderdata = membershipdata.slider;
 
 const SliderCustom = () => {
   const sliderRef = useRef(null);
-//   const [isCursorVisible, setIsCursorVisible] = useState(true);
+  //   const [isCursorVisible, setIsCursorVisible] = useState(true);
 
   const settings = {
     dots: true,
@@ -41,15 +41,15 @@ const SliderCustom = () => {
 
   return (
     <div className="relative w-full lg:px-3 pt-3 rounded-19px">
-      <div
-        className="overflow-hidden rounded-19px relative"
-      
-      >
+      <div className="overflow-hidden rounded-19px relative">
         <Slider ref={sliderRef} {...settings} className="bg-[#181A1C]">
-          {sliderdata.data.map((obj,index) => (
+          {sliderdata.data.map((obj, index) => (
             <div key={index} className="!flex lg:flex-row flex-col-reverse ">
-              <div   onMouseEnter={handleMouseEnterSection}
-        onMouseLeave={handleMouseLeaveSection} className="lg:w-1/2 relative z-10 bg-[#181A1C] px-4 lg:pl-16 lg:pr-11 pt-20 h-full">
+              <div
+                onMouseEnter={handleMouseEnterSection}
+                onMouseLeave={handleMouseLeaveSection}
+                className="lg:w-1/2 relative z-10 bg-[#181A1C] px-4 lg:pl-16 lg:pr-11 pt-20 h-full"
+              >
                 <p className=" text-grey-primary uppercase font-Poppins text-sm font-semibold">
                   {obj.title}
                 </p>
@@ -61,10 +61,12 @@ const SliderCustom = () => {
                   {obj.subheading}
                 </p>
                 <ul className=" flex flex-col list-disc my-10 pl-4 gap-2 max-lg:pb-24">
-                  {obj.list.map((data,index) => (
-                    <li key={index} className="text-white font-Poppins text-lg">{data} </li>
+                  {obj.list.map((data, index) => (
+                    <li key={index} className="text-white font-Poppins text-lg">
+                      {data}{" "}
+                    </li>
                   ))}
-                </ul> 
+                </ul>
                 <div className={`${obj.hide} `}>
                   <ButtonCta
                     href=""
@@ -74,11 +76,20 @@ const SliderCustom = () => {
                   />
                 </div>
               </div>
-              <div onClick={nextSlide} className="lg:w-1/2 max-lg:h-[500px] relative">
-              <div onClick={nextSlide} className=" absolute w-[156px] cursor-pointer h-[156px] rounded-full flex items-center justify-center gap-2 bg-primary">
-                  <p className=" text-sm text-blue-1 font-Poppins font-medium">Click to slide</p>  <BlueArrow/>
-              </div>
-              {/* {isCursorVisible && <CustomCursor/>} */}
+              <div
+                onClick={nextSlide}
+                className="lg:w-1/2 max-lg:h-[500px] relative"
+              >
+                <div
+                  onClick={nextSlide}
+                  className=" absolute w-[156px] cursor-pointer h-[156px] rounded-full flex items-center justify-center gap-2 bg-primary"
+                >
+                  <p className=" text-sm text-blue-1 font-Poppins font-medium">
+                    Click to slide
+                  </p>{" "}
+                  <BlueArrow />
+                </div>
+                {/* {isCursorVisible && <CustomCursor/>} */}
                 <Image
                   className=" w-full h-full object-cover"
                   src={obj.img}
