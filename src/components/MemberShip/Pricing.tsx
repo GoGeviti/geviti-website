@@ -38,8 +38,8 @@ const Pricing = () => {
           </p>
         </div>
         <div className=" sm:flex gap-6 items-end w-full pt-10 ">
-          {pricing.data.map((value) => (
-            <div className=" w-full relative">
+          {pricing.data.map((value,index) => (
+            <div key={index} className=" w-full relative">
               <div
                 className={`pt-[42px] pb-[34px] px-6   ${value.bg} ${value.text} rounded-2xl w-full`}
               >

@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useRef } from "react";
+import React, { useRef } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -46,8 +46,8 @@ const SliderCustom = () => {
       
       >
         <Slider ref={sliderRef} {...settings} className="bg-[#181A1C]">
-          {sliderdata.data.map((obj) => (
-            <div className="!flex lg:flex-row flex-col-reverse ">
+          {sliderdata.data.map((obj,index) => (
+            <div key={index} className="!flex lg:flex-row flex-col-reverse ">
               <div   onMouseEnter={handleMouseEnterSection}
         onMouseLeave={handleMouseLeaveSection} className="lg:w-1/2 relative z-10 bg-[#181A1C] px-4 lg:pl-16 lg:pr-11 pt-20 h-full">
                 <p className=" text-grey-primary uppercase font-Poppins text-sm font-semibold">
@@ -61,8 +61,8 @@ const SliderCustom = () => {
                   {obj.subheading}
                 </p>
                 <ul className=" flex flex-col list-disc my-10 pl-4 gap-2 max-lg:pb-24">
-                  {obj.list.map((data) => (
-                    <li className="text-white font-Poppins text-lg">{data} </li>
+                  {obj.list.map((data,index) => (
+                    <li key={index} className="text-white font-Poppins text-lg">{data} </li>
                   ))}
                 </ul> 
                 <div className={`${obj.hide} `}>

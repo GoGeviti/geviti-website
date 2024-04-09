@@ -1,6 +1,5 @@
 import React from 'react'
-import membershipdata from "@/constant/data/membershipdata";
-import ButtonCta from "../Landing/ButtonCta"; 
+import membershipdata from "@/constant/data/membershipdata"; 
 import { CrossRed, GreenCheck } from '../Icons';
 const pricing = membershipdata.pricing;
 
