@@ -9,7 +9,7 @@ import ChooseGeviti from "@/components/MemberShip/ChooseGeviti";
 import Pricing from "@/components/MemberShip/Pricing";
 import SliderCustom from "@/components/MemberShip/SliderCustom";
 
-const page = () => {
+const MemberShipPage = () => {
   return (
     <div className="bg-[#F2F2F2]">
       <Hero />
@@ -29,4 +29,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default MemberShipPage;
