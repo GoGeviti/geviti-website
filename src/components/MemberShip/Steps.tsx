@@ -78,7 +78,7 @@ const StepsSection: React.FC = () => {
               </div>
             </div>
             <div className="w-full">
-              <div className="lg:pt-[92px] flex lg:flex-row max-w-[307px]  mx-auto flex-col items-center w-full no-scrollbar overflow-y-hidden transition-all select-none transform flex-nowrap overflow-x-auto lg:overflow-hidden scrolling-touch scroll-smooth max-lg:space-y-[42px] gap-x-18px lg:gap-x-[108px]">
+              <div className="lg:pt-[92px] flex lg:flex-row lg:max-w-full justify-between max-w-[307px]  mx-auto flex-col items-center w-full no-scrollbar overflow-y-hidden transition-all select-none transform flex-nowrap overflow-x-auto lg:overflow-hidden scrolling-touch scroll-smooth max-lg:space-y-[42px] gap-x-18px">
                 {stepsData.list.map((step, stepIdx) => {
                   const isSelected = stepIdx === selectedIdx;
                   const Icon = step.icon;
@@ -86,10 +86,10 @@ const StepsSection: React.FC = () => {
 
                   return (
                     <>
-                      {/* <div
+                      <div
                         key={`step-${step.id}`}
                         className={clsxm(
-                          "w-full flex lg:flex-col max-lg:space-x-4 items-start lg:transform lg:transition-all lg:duration-100 lg:ease-in-out",
+                          "w-full hidden lg:flex lg:flex-col max-lg:space-x-4 items-start lg:transform lg:transition-all lg:duration-100 lg:ease-in-out",
                           isSelected
                             ? "lg:-translate-y-[17px]"
                             : "translate-y-0"
@@ -153,8 +153,8 @@ const StepsSection: React.FC = () => {
                             dangerouslySetInnerHTML={{ __html: step.title }}
                           />
                         </p>
-                      </div> */}
-                      <div className="flex w-full space-y-[18px] justify-center items-center flex-col">
+                      </div>
+                      <div className=" lg:hidden flex w-full space-y-[18px] justify-center items-center flex-col">
                         <button
                           className={clsxm(
                             "cursor-pointer rounded-19px flex items-center justify-center flex-shrink-0 bg-blue-primary w-[62px] h-[62px] shadow-c1"
