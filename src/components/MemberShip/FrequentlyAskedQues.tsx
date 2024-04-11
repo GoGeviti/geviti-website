@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { AccordionMinus, AccordionPlus } from "../Icons";
@@ -51,8 +51,8 @@ const FrequentlyAskedQues = () => {
             <p className=" uppercase text-sm text-[#919B9F] font-semibold">
               Have some questions?
             </p>
-            <h4 className=" text-4xl font-Poppins">
-              Frequently asked questions
+            <h4 className="tracking-[-1.44px] text-primary leading-[125%] text-4xl font-Poppins">
+              Frequently asked <br /> questions
             </h4>
           </div>
           <div className="md:w-[60%]">
@@ -64,7 +64,7 @@ const FrequentlyAskedQues = () => {
                   }`}
                   onClick={() => toggleAccordion(index)}
                 >
-                  <h2 className="text-lg font-medium font-Poppins text-[#101828]">
+                  <h2 className="text-lg leading-[155.556%] font-medium font-Poppins text-neutral-700">
                     {item.title}
                   </h2>
 
@@ -79,7 +79,7 @@ const FrequentlyAskedQues = () => {
                       exit={{ opacity: 0, height: 0 }}
                       transition={{ duration: 0.3 }}
                     >
-                      <p className="py-2 font-Poppins text-[#919B9F] leading-6 max-w-[700px]">
+                      <p className="py-2 text-base font-Poppins text-grey-primary leading-[150%] max-w-[700px]">
                         {item.content}
                       </p>
                     </motion.div>

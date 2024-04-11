@@ -56,31 +56,31 @@ const Hero: React.FC = () => {
     return () => clearInterval(intervalRef.current);
   }, [startAutoRunProgress]);
 
-//   const handleScrollCarousel = useCallback(
-//     (e: React.UIEvent<HTMLDivElement>) => {
-//       const element = e.currentTarget;
+  //   const handleScrollCarousel = useCallback(
+  //     (e: React.UIEvent<HTMLDivElement>) => {
+  //       const element = e.currentTarget;
 
-//       const windowScroll = element.scrollLeft;
-//       const totalWidth = element.scrollWidth - element.clientWidth;
-//       let scrollProgress = 0;
-//       if (windowScroll === 0) scrollProgress = 0;
-//       if (windowScroll > totalWidth) scrollProgress = 100;
-//       else scrollProgress = (windowScroll / totalWidth) * 100;
+  //       const windowScroll = element.scrollLeft;
+  //       const totalWidth = element.scrollWidth - element.clientWidth;
+  //       let scrollProgress = 0;
+  //       if (windowScroll === 0) scrollProgress = 0;
+  //       if (windowScroll > totalWidth) scrollProgress = 100;
+  //       else scrollProgress = (windowScroll / totalWidth) * 100;
 
-//       const activeItemIdx = Math.floor(
-//         (scrollProgress * heroData.mainKeys.length) / 110
-//       );
-//       setActiveStepIdx(activeItemIdx);
-//       stepControls.start({
-//         width: (activeItemIdx + 1) * 20 + "%",
-//         transition: {
-//           duration: 1,
-//           ease: "easeOut",
-//         },
-//       });
-//     },
-//     []
-//   );
+  //       const activeItemIdx = Math.floor(
+  //         (scrollProgress * heroData.mainKeys.length) / 110
+  //       );
+  //       setActiveStepIdx(activeItemIdx);
+  //       stepControls.start({
+  //         width: (activeItemIdx + 1) * 20 + "%",
+  //         transition: {
+  //           duration: 1,
+  //           ease: "easeOut",
+  //         },
+  //       });
+  //     },
+  //     []
+  //   );
 
   const renderTitles = (titles: string[]) => {
     return titles.map((title: string, titleIdx: number) => (
@@ -94,7 +94,7 @@ const Hero: React.FC = () => {
 
   const renderImage = (type: "desktop" | "mobile") => {
     const imageMobile = type === "mobile";
-
+    console.log(imageMobile);
     return (
       <Image
         src={imageMobile ? heroData.imageMobile : heroData.image}
@@ -114,7 +114,7 @@ const Hero: React.FC = () => {
   };
 
   return (
-    <div className="lg:px-3 lg:pt-3 pb-[27px] lg:pb-[83px] overflow-hidden font-Poppins">
+    <div className="lg:px-3 lg:pt-3 overflow-hidden font-Poppins">
       <Navbar
         animationProps={{
           onAnimationComplete: () => {
@@ -139,7 +139,7 @@ const Hero: React.FC = () => {
             {renderImage("mobile")}
           </div>
         </div>
-        <div className="absolute bottom-0 inset-x-0 w-full h-[60%] backdrop-hero-landing-bottom -z-0" />
+        <div className="absolute bottom-0 inset-x-0 w-full h-[78%] backdrop-hero-membership-bottom -z-0" />
         <div className="h-full">
           <div className="relative w-full h-full rounded-b-19px">
             <div className="container-center pb-18px lg:pb-[47px] h-full w-full flex flex-col justify-end">
@@ -176,7 +176,7 @@ const Hero: React.FC = () => {
                       },
                     },
                   }}
-                  className="sm:hidden flex flex-col"
+                  className="sm:hidden leading-normal flex flex-col"
                 >
                   {renderTitles(heroData.titlesMobile)}
                 </motion.h1>
@@ -190,7 +190,7 @@ const Hero: React.FC = () => {
                       },
                     },
                   }}
-                  className=" text-grey-primary max-w-[496px] pt-5 flex flex-col"
+                  className=" text-grey-50 text-[14px] font-normal leading-[20px] max-w-[496px] pt-5 flex flex-col"
                 >
                   {heroData.para}
                 </motion.p>
