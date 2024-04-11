@@ -171,6 +171,7 @@ const config: Config = {
       },
       boxShadow: {
         card: "0px 15px 30px 0px rgba(16, 24, 40, 0.10)",
+        c1: "0px 4px 21.1px 0px rgba(153, 212, 255, 0.75)",
       },
     },
     fontFamily: {

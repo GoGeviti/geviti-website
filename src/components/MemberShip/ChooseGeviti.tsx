@@ -59,6 +59,7 @@ const ChooseGeviti = () => {
               alt="oral"
               width={480}
               height={750}
+              unoptimized
             />
           </div>
         </div>
