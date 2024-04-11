@@ -96,6 +96,8 @@ const config: Config = {
       backgroundImage: {
         "hero-landing-top":
           "linear-gradient(180deg, #181A1C 40.05%, rgba(24, 26, 28, 0.00) 100%)",
+        "img-grediant":
+          "linear-gradient(360deg, #181A1C 0%, rgba(24, 26, 28, 0.00) 96.26%)",
         "hero-landing-bottom":
           "linear-gradient(0deg, #181A1C 20.06%, rgba(24, 26, 28, 0.00) 100%)",
         "mission-landing":
