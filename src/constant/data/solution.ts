@@ -2,17 +2,12 @@ import { ShoppingBagIcon } from "@/components/Icons";
 import {
   BarChartSquareIcon,
   ChartIcon,
-  DNAIcon,
   DocumentIcon,
   EmergencyCallAddIcon,
   FavoriteChartIcon,
   GevitiIcon,
-  HeartbeatIcon,
   HomeIcon,
   HomeOutlineIcon,
-  MedicalDocIcon,
-  MonitoringIcon,
-  PillIcon,
   TeamIcon,
 } from "@/components/Icons/Landing";
 
@@ -27,49 +22,20 @@ const landingData = {
     ],
   },
   hero: {
-    preTitle: "the ultimate longevity companion",
-    title:
-      'Longevity made <br class="sm:hidden"/>accessible. Data driven <br class="sm:hidden"/>anti-aging care.',
-    titles: ["Longevity made accessible. Data", "driven anti-aging care."],
-    titlesMobile: [
-      "Longevity made",
-      "accessible. Data driven",
-      "anti-aging care.",
+    preTitle: "mens health and wellness solutions",
+    title: "Live optimized with Geviti",
+    titles: ["Live optimized with Geviti"],
+    subtitles: [
+      "A Geviti membership makes longevity easy and accessible with our wide range of at-home diagnostics, innovative anti-aging therapies, and a dedicated qualified care team.",
     ],
-    image: "/images/landing/compressed/hero.webp",
-    imageMobile: "/images/landing/compressed/hero_mobile.webp",
+
+    image: "/images/solution_media/solution-bg.webp",
+    imageMobile: "/images/solution_media/solution-mobile-bg.webp",
     btnCta: {
-      text: "Get Started",
+      text: "Join Geviti",
       href: "/onboarding",
       externalLink: false,
     },
-    btnCta2: {
-      href: "/products",
-      externalLink: false,
-      text: "See Products",
-    },
-    mainKeys: [
-      {
-        icon: MonitoringIcon,
-        text: "Hormone optimization<br />Made simple",
-      },
-      {
-        icon: DNAIcon,
-        text: "At-home diagnostics<br />Blood and DNA",
-      },
-      {
-        icon: MedicalDocIcon,
-        text: "Data-driven protocols<br />No guesswork",
-      },
-      {
-        icon: PillIcon,
-        text: "Tailor-made supplements<br />Custom to you",
-      },
-      {
-        icon: HeartbeatIcon,
-        text: "Anti-aging peptides<br />Highly effective",
-      },
-    ],
   },
   products: {
     title: "Discover Geviti",
