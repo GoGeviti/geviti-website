@@ -30,15 +30,15 @@ const EasyOnlineCareCard = (props: CardProps) => {
 
   return (
     <>
-      <article className="w-full flex md:flex-row flex-col lg:pl-[68px] pr-4 md:gap-6">
-        <div className="md:w-1/2 w-full md:mt-[120px] mt-[57px] z-10">
+      <article className="w-full flex md:flex-row flex-col items-center lg:pl-[68px] gap-[65px] md:gap-6 md:pt-[70px]">
+        <div className="md:w-1/2 flex flex-col w-full md:mt-0 mt-[57px] z-10">
           <p className="text-[#919B9F] !text-[10px] md:text-sm font-semibold leading-[150%] md:leading-[171.429%] uppercase tracking-[1.1px] md:tracking-[1.54px] font-Poppins">
             {title}
           </p>
           <h2 className="text-primary text-2xl md:text-3xl lg:text-5xl font-normal font-Poppins mt-3 mb-4 sm:my-0">
             {subtitle}
           </h2>
-          <span className="text-gray-400 text-xs md:text-sm lg:text-lg font-normal leading-[142%] w-full font-Poppins inline-block mt-0  md:mt-[14px]">
+          <span className="text-gray-400 text-xs md:text-sm lg:text-lg font-normal leading-[142%] w-full font-Poppins inline-block mt-0 md:mt-[14px]">
             {description}
           </span>
           <div className="lg:max-w-[486px] w-full gap-x-[42px] gap-y-6 grid lg:grid-cols-3 grid-cols-2 h-fit mt-6 md:mt-10 lg:mt-[64px] place-content-between">
@@ -58,7 +58,7 @@ const EasyOnlineCareCard = (props: CardProps) => {
             className="max-w-[222px] w-full mt-[64px] md:flex hidden"
           />
         </div>
-        <div className="md:w-1/2 w-full  mt-[65px] md:mt-10 lg:mt-14 flex flex-col items-center justify-between relative">
+        <div className="md:w-1/2 w-full  flex flex-col items-center justify-between relative">
           <div
             style={{ backgroundSize: "100% 100%" }}
             className="w-full absolute z-10 h-full bg-[url(/images/solution_media/pill-bg.webp)] object-cover"
