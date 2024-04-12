@@ -1,8 +1,9 @@
 import { Footer } from "@/components";
-import { Mission, RunningLogo } from "@/components/Landing";
+import { RunningLogo } from "@/components/Landing";
 import FrequentlyAskedQues from "@/components/MemberShip/FrequentlyAskedQues";
 import BloodworkPanel from "@/components/Solutions/BloodworkPanel";
 import Hero from "@/components/Solutions/Hero";
+import Investment from "@/components/Solutions/Investment";
 import OptimizedYourSelf from "@/components/Solutions/OptimizedYourSelf";
 import WellnessPro from "@/components/Solutions/WellnessPro";
 import EasyOnlineCare from "@/components/Solutions/easy-online-care/EasyOnlineCare";
@@ -16,10 +17,13 @@ const Solutions = () => {
         <WellnessPro />
         <EasyOnlineCare />
         <BloodworkPanel />
-        <OptimizedYourSelf />
+        <OptimizedYourSelf bgimgyourself="/images/solution_media/running-man.webp" />
         <FrequentlyAskedQues />
         <div className="flex flex-col gap-y-3.5">
-          <Mission />
+          <Investment
+            bgimagemobile="/images/solution_media/investment-bg-mobile.webp"
+            bgimagedesktop="/images/solution_media/investment-bg.webp"
+          />
           <Footer landingPage />
         </div>
       </div>

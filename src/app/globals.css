@@ -117,7 +117,16 @@ input[type="number"]::placeholder {
   transform: matrix(1, 0, 0, -1, 0, 0);
 }
 
+.bg-investment {
+  background-size: cover;
+  background-position: center;
+}
+
 @media (max-width: 640px) {
+  .bg-investment {
+    background-size: 337% 64%;
+    background-position: 58%;
+  }
   .after-gradient-wellnesscard::after {
     position: absolute;
     content: "";

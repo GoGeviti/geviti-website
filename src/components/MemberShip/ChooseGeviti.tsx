@@ -12,7 +12,7 @@ const ChooseGeviti = () => {
       <div className=" container-center ">
         <div className=" md:flex items-center">
           <div className="md:w-1/2 ">
-            <div className=" md:px-14">
+            <div className="lg:px-4 xl:px-14">
               <p className="tracking-[1.1px] font-Poppins uppercase md:text-start text-center text-[10px] sm:text-sm text-grey-primary font-semibold">
                 Tailor-made longevity
               </p>
@@ -40,7 +40,7 @@ const ChooseGeviti = () => {
                   </>
                 ))}
               </div>
-              <div className="hidden sm:grid mt-12 grid-cols-1 auto-rows-fr sm:grid-cols-2 gap-4 sm:gap-6 items-center max-sm:w-full">
+              <div className="hidden  sm:grid mt-12 grid-cols-1 auto-rows-fr lg:grid-cols-2 gap-2 sm:gap-6 items-center max-sm:w-full">
                 <ButtonCta
                   href=""
                   text="Get Started"

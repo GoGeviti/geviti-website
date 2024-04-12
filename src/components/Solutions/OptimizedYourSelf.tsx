@@ -1,7 +1,13 @@
 import React from "react";
 import ButtonCta from "../Landing/ButtonCta";
 
-const OptimizedYourSelf = () => {
+interface IProps {
+  bgimgyourself: string;
+}
+
+const OptimizedYourSelf = (props: IProps) => {
+  const { bgimgyourself } = props;
+
   return (
     <>
       <section className="lg:px-4">
@@ -35,8 +41,8 @@ const OptimizedYourSelf = () => {
               </div>
             </div>
             <div
-              style={{ backgroundSize: "100% 100%" }}
-              className="relative lg:bg-[url('/images/solution_media/running-man.webp')] bg-[url('/images/solution_media/running-man-mobile.webp')] h-[326px] sm:h-[560px] bg-cover lg:h-auto rounded-2xl bg-no-repeat bg-center pointer-events-none lg:max-w-[672px] w-full  flex items-end justify-end overflow-hidden"
+              style={{ backgroundImage: `url(${bgimgyourself})` }}
+              className="relative h-[326px] sm:h-[560px] bg-cover lg:h-auto rounded-2xl bg-no-repeat bg-center pointer-events-none lg:max-w-[672px] w-full  flex items-end justify-end overflow-hidden"
             >
               <div className="relative z-10 gap-[14px] md:gap-6 pb-5 sm:pb-6 md:px-7 px-4 flex flex-col items-end justify-end bg-img-grediant w-full">
                 <p className="lg:text-[104.837px] sm:text-[100px] text-[74px] font-Poppins text-white font-normal -tracking-[4.193px] w-full text-start md:text-end leading-none">
