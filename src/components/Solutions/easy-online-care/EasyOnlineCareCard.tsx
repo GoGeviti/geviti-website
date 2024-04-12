@@ -68,13 +68,18 @@ const EasyOnlineCareCard = (props: CardProps) => {
               {prevbtn}
             </button>
 
-            <Image
-              src={imgurl}
-              alt={title}
-              width={234}
-              height={474}
-              className="w-full h-full max-w-[234px] max-h-[474px]"
-            />
+            <div className="relative">
+              <Image
+                src={imgurl}
+                alt={title}
+                width={234}
+                height={474}
+                className="w-full h-full max-w-[234px] max-h-[474px]"
+              />
+              <p className="absolute top-6 -left-[24%] sm:-left-[25%] z-10 px-6 py-3 bg-[#fbfbfb] rounded-[14px] shadow-[0px_4px_24px_0px_rgba_(0_0_0_0.15)] text-lg font-medium leading-[140.947%] text-[#181A1C] font-Poppins -tracking-[0.72px]">
+                As low as $95/m*
+              </p>
+            </div>
             <button className=" bg-[#181A1C] min-w-[46px] min-h-[46px] rounded-full flex items-center justify-center">
               {nextbtn}
             </button>
