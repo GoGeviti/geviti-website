@@ -1,14 +1,14 @@
 import { ShoppingBagIcon } from "@/components/Icons";
-import { 
-  DNAIcon, 
-  HeartbeatIcon, 
+import {
+  DNAIcon,
+  HeartbeatIcon,
   MedicalDocIcon,
   MonitoringIcon,
-  PillIcon, 
+  PillIcon,
   UserTag,
   DropIcon,
   FavFolder,
-  Graph
+  Graph,
 } from "@/components/Icons/Landing";
 
 const membershipdata = {
@@ -26,23 +26,23 @@ const membershipdata = {
     title:
       'Longevity made <br class="sm:hidden"/>accessible. Data driven <br class="sm:hidden"/>anti-aging care.',
     titles: ["Optimize your health, transform ", "your wellness."],
-    para:"A Geviti membership makes longevity easy and accessible with our wide range of at-home diagnostics, innovative anti-aging therapies, and a dedicated qualified care team.",
+    para: "A Geviti membership makes longevity easy and accessible with our wide range of at-home diagnostics, innovative anti-aging therapies, and a dedicated qualified care team.",
     titlesMobile: [
       "Longevity made",
       "accessible. Data driven",
       "anti-aging care.",
     ],
     image: "/images/membership/hero.png",
-    imageMobile: "/images/landing/compressed/hero_mobile.webp",
+    imageMobile: "/images/membership/compressed/hero_mobile.webp",
     btnCta: {
-      text: "Get Started",
+      text: "Join Geviti",
       href: "/onboarding",
       externalLink: false,
     },
     btnCta2: {
       href: "/products",
       externalLink: false,
-      text: "See Products",
+      text: "View Packages",
     },
     mainKeys: [
       {
@@ -127,7 +127,7 @@ const membershipdata = {
   steps: {
     preTitle: "become a member",
     title: "Start your health journey with a full blood panel",
-    para: "Membership journey starts with choosing a “Deep Dive” <br/> diagnostic. We’ll draw your blood from the comfort of your home.",
+    para: "Membership journey starts with choosing a “Deep Dive” diagnostic. We’ll draw your blood from the comfort of your home.",
     btnCta: {
       href: "/onboarding",
       externalLink: false,
@@ -167,61 +167,56 @@ const membershipdata = {
         title: "Data-driven health and wellness, made simple.",
         heading:
           "The ultimate wellness membership for as low as $99 per month.",
-        subheading: "Geviti transcends the usual health and wellness offerings, providing unparalleled value at a lower cost. Our mission is to make longevity-focused care exceptionally accessible.",
-        list:[
-            "Geviti Platform Access",
-            "Mobile App Integration",
-            "Smart Wearables Integration",
-            "Biannual At-home Full Panels",
-            "Doctor-Monitored Therapeutics",
-            "Tailored Smart Supplements",
-            "Custom Longevity Protocols",
-            "Certified Personal Health Coach",
-            "Wholesale At-home Diagnostics",
+        subheading:
+          "Geviti transcends the usual health and wellness offerings, providing unparalleled value at a lower cost. Our mission is to make longevity-focused care exceptionally accessible.",
+        list: [
+          "Geviti Platform Access",
+          "Mobile App Integration",
+          "Smart Wearables Integration",
+          "Biannual At-home Full Panels",
+          "Doctor-Monitored Therapeutics",
+          "Tailored Smart Supplements",
+          "Custom Longevity Protocols",
+          "Certified Personal Health Coach",
+          "Wholesale At-home Diagnostics",
         ],
-        hide:"hidden",
-        img:"/images/membership/slider1.png"
+        hide: "hidden",
+        img: "/images/membership/slider1.png",
       },
       {
         title: "Data-driven health and wellness, made simple.",
-        heading:
-          "Doctor  monitored cutting edge care",
-        subheading: "Geviti offers a comprehensive care team for our clients. Instead of having to choose between a healthcare provider and a health coach, Geviti provides a solution where the two collaborate to create the ultimate longevity regimen.",
-        list:[
-            
-        ],
-        hide:"flex",
-        img:"/images/membership/slider2.png"
+        heading: "Doctor  monitored cutting edge care",
+        subheading:
+          "Geviti offers a comprehensive care team for our clients. Instead of having to choose between a healthcare provider and a health coach, Geviti provides a solution where the two collaborate to create the ultimate longevity regimen.",
+        list: [],
+        hide: "flex",
+        img: "/images/membership/slider2.png",
       },
       {
         title: "Data-driven health and wellness, made simple.",
-        heading:
-          "A complete wellness team in your pocket",
+        heading: "A complete wellness team in your pocket",
         subheading: " ",
-        list:[
-            "Hormone Therapy",
-            "Anti-aging Peptides",
-            "Medical Weight Loss",
-            "Sexual Health Medication",
-            "Nootropics and Brain Health",
-            "And More.",
+        list: [
+          "Hormone Therapy",
+          "Anti-aging Peptides",
+          "Medical Weight Loss",
+          "Sexual Health Medication",
+          "Nootropics and Brain Health",
+          "And More.",
         ],
-        hide:"flex",
-        img:"/images/membership/sider3.png"
+        hide: "flex",
+        img: "/images/membership/sider3.png",
       },
       {
         title: "Data-driven health and wellness, made simple.",
-        heading:
-          "Biannual At-Home Full Panels ",
-        subheading: "Americans may go several years without getting their bloodwork done. This can be the difference between life and death. Geviti makes bloodwork easy with our nationwide team of phlebotomists Every 6 months, we’ll come to you and perform a full panel.",
-        list:[
-            
-        ],
-        hide:"flex",
-        img:"/images/membership/slider4.png"
+        heading: "Biannual At-Home Full Panels ",
+        subheading:
+          "Americans may go several years without getting their bloodwork done. This can be the difference between life and death. Geviti makes bloodwork easy with our nationwide team of phlebotomists Every 6 months, we’ll come to you and perform a full panel.",
+        list: [],
+        hide: "flex",
+        img: "/images/membership/slider4.png",
       },
     ],
-  
   },
   pricing: {
     data: [

@@ -120,6 +120,7 @@ const Hero: React.FC = () => {
         fill
         quality={100}
         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 100vw"
+        unoptimized
       />
     );
   };

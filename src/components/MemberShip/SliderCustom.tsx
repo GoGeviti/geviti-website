@@ -11,7 +11,7 @@ import { BlueArrow } from "../Icons/Landing";
 const sliderdata = membershipdata.slider;
 
 const SliderCustom = () => {
-    const sliderRef = useRef<Slider>(null);
+  const sliderRef = useRef<Slider>(null);
   //   const [isCursorVisible, setIsCursorVisible] = useState(true);
 
   const settings = {
@@ -23,40 +23,41 @@ const SliderCustom = () => {
     fade: true,
   };
 
-const nextSlide = () => {
-  if (sliderRef.current) {
-    sliderRef.current.slickNext();
-  }
-};
+  const nextSlide = () => {
+    if (sliderRef.current) {
+      sliderRef.current.slickNext();
+    }
+  };
 
-const prevSlide = () => {
-  if (sliderRef.current) {
-    sliderRef.current.slickPrev();
-  }
-};
- 
+  const prevSlide = () => {
+    if (sliderRef.current) {
+      sliderRef.current.slickPrev();
+    }
+  };
+
   return (
     <div className="relative w-full lg:px-3 pt-3 rounded-19px">
       <div className="overflow-hidden rounded-19px relative">
         <Slider ref={sliderRef} {...settings} className="bg-[#181A1C]">
           {sliderdata.data.map((obj, index) => (
             <div key={index} className="!flex lg:flex-row flex-col-reverse ">
-              <div 
-                className="lg:w-1/2 relative z-10 bg-[#181A1C] px-4 lg:pl-16 lg:pr-11 pt-20 h-full"
-              >
-                <p className=" text-grey-primary uppercase font-Poppins text-sm font-semibold">
+              <div className="lg:w-1/2 relative z-10 bg-[#181A1C] px-4 lg:pl-16 lg:pr-11 pt-20 h-full">
+                <p className=" text-grey-primary tracking-[1.1px] leading-[240%] uppercase font-Poppins text-[10px] sm:text-sm font-semibold">
                   {obj.title}
                 </p>
-                <h4 className=" text-white font-Poppins text-4xl font-medium pb-6 pt-2 max-w-[592px]">
+                <h4 className=" text-white max-w-[338px] tracking-[-0.96px] sm:tracking-[-1.44px] font-Poppins text-[24px] sm:text-4xl font-medium pb-6 pt-2 sm:max-w-[592px]">
                   {" "}
                   {obj.heading}
                 </h4>
-                <p className=" text-grey-primary  font-Poppins text-sm max-w-[446px]">
+                <p className=" text-grey-primary leading-[166%] sm:leading-[142%] font-Poppins text-[12px] sm:text-sm max-w-[446px]">
                   {obj.subheading}
                 </p>
-                <ul className=" flex flex-col list-disc my-10 pl-4 gap-2 max-lg:pb-24">
+                <ul className=" flex flex-col list-disc my-10 pl-4 max-lg:pb-24">
                   {obj.list.map((data) => (
-                    <li key={index} className="text-white font-Poppins text-lg">
+                    <li
+                      key={index}
+                      className="text-white leading-[228.571%] sm:leading-[177%] font-Poppins text-[14px] sm:text-lg"
+                    >
                       {data}{" "}
                     </li>
                   ))}
@@ -90,6 +91,7 @@ const prevSlide = () => {
                   alt="slider1"
                   width={300}
                   height={300}
+                  unoptimized
                 />
               </div>
             </div>

@@ -15,13 +15,13 @@ const Pricing = () => {
   return (
     <div className="bg-white mx-3 rounded-[19px] my-6 py-14">
       <div className=" container-center ">
-        <p className=" uppercase text-sm text-[#919B9F] text-center font-Poppins font-semibold">
+        <p className=" uppercase leading-[171.429%] tracking-[1.54px] text-sm text-grey-primary text-center font-Poppins font-semibold">
           Care based off of biomarkers
         </p>
-        <h4 className=" text-6xl text-center font-Poppins">
+        <h4 className=" text-[60px] text-primary  tracking-[-2.56px] text-center font-Poppins">
           Start by establishing baselines
         </h4>
-        <p className="  text-sm text-[#919B9F] text-center font-Poppins pt-3">
+        <p className="  text-sm leading-[142.857%] text-grey-primary text-center font-Poppins pt-3">
           Every user starts with one of these to establish baselines. This
           includes month free.{" "}
         </p>
@@ -66,7 +66,13 @@ const Pricing = () => {
                 <ButtonCta
                   href=""
                   text="Get Started"
-                  theme={value.button === 'primary' ? 'primary' : value.button === 'secondary' ? 'secondary' : undefined}
+                  theme={
+                    value.button === "primary"
+                      ? "primary"
+                      : value.button === "secondary"
+                      ? "secondary"
+                      : undefined
+                  }
                   className="w-fit mx-auto"
                 />
               </div>

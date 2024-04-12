@@ -39,17 +39,17 @@ const StepsSection: React.FC = () => {
       <div className="h-full  w-full relative overflow-hidden">
         <div className="container-center  pt-[52px] pb-[31px] lg:pt-[76px] lg:pb-[78.16px] flex flex-col gap-y-[52px] lg:gap-y-0 items-center justify-center text-center">
           <div className="text-center sm:mx-auto">
-            <p className="mb-5px lg:mb-3.5 uppercase text-grey-primary text-pretitle lg:text-base lg:leading-6">
+            <p className="mb-5px lg:mb-3.5 uppercase tracking-[1.54px] text-grey-primary text-Poppins text-[10px] font-semibold sm:text-[14px] leading-[171%]">
               {stepsData.preTitle}
             </p>
 
             {stepsData.title && (
-              <h2 className="font-Poppins text-primary leading-[116%] lg:leading-[107%] text-[6.1vw] xs2:text-[25px] sm:text-2xl md:text-[32px] lg:text-[42px] -tracking-0.04em">
+              <h2 className="font-Poppins text-primary leading-[116%] lg:leading-[107%] text-[6.1vw] xs2:text-[25px] sm:text-2xl md:text-[32px] lg:text-[42px] tracking-[-1.68px]">
                 <span dangerouslySetInnerHTML={{ __html: stepsData.title }} />
               </h2>
             )}
             {stepsData.para && (
-              <h2 className="font-Poppins text-grey-primary leading-[116%] lg:leading-[20px]  pt-4  sm:text-sm md:text-[32px] lg:text-sm -tracking-0.04em">
+              <h2 className="font-Poppins max-w-[283px] sm:max-w-[461px] mx-auto text-grey-400 leading-[142%] pt-4 sm:text-[14px] text-[12px]">
                 <span dangerouslySetInnerHTML={{ __html: stepsData.para }} />
               </h2>
             )}
@@ -77,80 +77,104 @@ const StepsSection: React.FC = () => {
                 ))}
               </div>
             </div>
-            <div>
-              <div className="lg:pt-[92px] flex lg:flex-row  mx-auto flex-col items-start w-full no-scrollbar overflow-y-hidden transition-all select-none transform flex-nowrap overflow-x-auto lg:overflow-hidden scrolling-touch scroll-smooth max-lg:space-y-[42px] gap-x-18px lg:gap-x-[108px]">
+            <div className="w-full">
+              <div className="lg:pt-[92px] flex lg:flex-row lg:max-w-full justify-between max-w-[307px]  mx-auto flex-col items-center w-full no-scrollbar overflow-y-hidden transition-all select-none transform flex-nowrap overflow-x-auto lg:overflow-hidden scrolling-touch scroll-smooth max-lg:space-y-[42px] gap-x-18px">
                 {stepsData.list.map((step, stepIdx) => {
                   const isSelected = stepIdx === selectedIdx;
                   const Icon = step.icon;
                   const IconMobile = step.iconMobile;
 
                   return (
-                    <div
-                      key={`step-${step.id}`}
-                      className={clsxm(
-                        "w-full flex lg:flex-col max-lg:space-x-4 items-start lg:transform lg:transition-all lg:duration-100 lg:ease-in-out",
-                        isSelected ? "lg:-translate-y-[17px]" : "translate-y-0"
-                      )}
-                    >
-                      <button
-                        onClick={() => onSelectStep(stepIdx)}
-                        onMouseEnter={() => onMouseEnter(stepIdx)}
+                    <>
+                      <div
+                        key={`step-${step.id}`}
                         className={clsxm(
-                          "cursor-pointer rounded-19px flex items-center justify-center flex-shrink-0 max-lg:shadow-[0px_27.2073px_35.1062px_rgba(0,0,0,0.05)]",
+                          "w-full hidden lg:flex lg:flex-col max-lg:space-x-4 items-start lg:transform lg:transition-all lg:duration-100 lg:ease-in-out",
                           isSelected
-                            ? "bg-white lg:bg-blue-1 w-10 h-10 lg:w-[62px] lg:h-[62px] lg:shadow-[0px_41.9842px_54.1731px_rgba(0,0,0,0.05))]"
-                            : "bg-white w-10 h-10 lg:w-[55px] lg:h-[55px] lg:shadow-[0px_37.6636px_48.5981px_rgba(0,0,0,0.05)]"
+                            ? "lg:-translate-y-[17px]"
+                            : "translate-y-0"
                         )}
-                        aria-label={`step-${step.id}`}
                       >
-                        {IconMobile ? (
-                          <>
-                            <span className="max-lg:hidden">
-                              {
-                                <Icon
-                                  className={clsxm(
-                                    isSelected
-                                      ? "text-primary"
-                                      : "text-grey-primary",
-                                    "flex-shrink-0 w-6 h-6"
-                                  )}
-                                />
-                              }
-                            </span>
-                            <span className="lg:hidden">
-                              {
-                                <IconMobile className="text-blue-1 flex-shrink-0 w-18px h-18px" />
-                              }
-                            </span>
-                          </>
-                        ) : (
-                          <Icon
-                            className={clsxm(
-                              isSelected
-                                ? "text-blue-1 lg:text-primary"
-                                : " text-grey-primary",
-                              "flex-shrink-0 w-18px h-18px lg:w-6 lg:h-6"
-                            )}
-                          />
-                        )}
-                      </button>
+                        <button
+                          onClick={() => onSelectStep(stepIdx)}
+                          onMouseEnter={() => onMouseEnter(stepIdx)}
+                          className={clsxm(
+                            "cursor-pointer rounded-19px flex items-center justify-center flex-shrink-0",
+                            isSelected
+                              ? "bg-blue-primary w-10 h-10 lg:w-[62px] lg:h-[62px] shadow-c1"
+                              : "bg-grey-50 w-10 h-10 lg:w-[55px] lg:h-[55px]"
+                          )}
+                          aria-label={`step-${step.id}`}
+                        >
+                          {IconMobile ? (
+                            <>
+                              <span className="max-lg:hidden">
+                                {
+                                  <Icon
+                                    className={clsxm(
+                                      isSelected
+                                        ? "text-primary"
+                                        : "text-grey-primary",
+                                      "flex-shrink-0 w-6 h-6"
+                                    )}
+                                  />
+                                }
+                              </span>
+                              <span className="lg:hidden">
+                                {
+                                  <IconMobile className="text-blue-1 flex-shrink-0 w-18px h-18px" />
+                                }
+                              </span>
+                            </>
+                          ) : (
+                            <Icon
+                              className={clsxm(
+                                isSelected
+                                  ? "text-blue-1 lg:text-primary"
+                                  : " text-grey-primary",
+                                "flex-shrink-0 w-18px h-18px lg:w-6 lg:h-6"
+                              )}
+                            />
+                          )}
+                        </button>
 
-                      <p
-                        onClick={() => onSelectStep(stepIdx)}
-                        onMouseEnter={() => onMouseEnter(stepIdx)}
-                        className={clsxm(
-                          "cursor-pointer  font-Poppins text-left text-primary text-sm leading-[134%]",
-                          isSelected
-                            ? "lg:pt-[24.84px] text-sm !leading-normal font-medium"
-                            : "font-medium lg:pt-[22.76px] text-sm !leading-normal"
-                        )}
-                      >
-                        <span
-                          className="max-lg:text-left whitespace-nowrap"
-                          dangerouslySetInnerHTML={{ __html: step.title }}
-                        />
-                      </p>
-                    </div>
+                        <p
+                          onClick={() => onSelectStep(stepIdx)}
+                          onMouseEnter={() => onMouseEnter(stepIdx)}
+                          className={clsxm(
+                            "cursor-pointer  font-Poppins text-left  text-sm leading-[134%]",
+                            isSelected
+                              ? "lg:pt-[24.84px] text-primary text-sm !leading-normal font-medium"
+                              : "font-medium text-grey-400 lg:pt-[22.76px] text-sm !leading-normal"
+                          )}
+                        >
+                          <span
+                            className="max-lg:text-left whitespace-nowrap"
+                            dangerouslySetInnerHTML={{ __html: step.title }}
+                          />
+                        </p>
+                      </div>
+                      <div className=" lg:hidden flex w-full space-y-[18px] justify-center items-center flex-col">
+                        <button
+                          className={clsxm(
+                            "cursor-pointer rounded-19px flex items-center justify-center flex-shrink-0 bg-blue-primary w-[62px] h-[62px] shadow-c1"
+                          )}
+                          aria-label={`step-${step.id}`}
+                        >
+                          <Icon className={clsxm("lg:text-primary")} />
+                        </button>
+                        <p
+                          className={clsxm(
+                            "cursor-pointer w-full mx-auto text-center font-Poppins  text-sm leading-[134%] lg:pt-[24.84px] text-primary font-medium"
+                          )}
+                        >
+                          <span
+                            className="max-lg:text-left whitespace-nowrap"
+                            dangerouslySetInnerHTML={{ __html: step.title }}
+                          />
+                        </p>
+                      </div>
+                    </>
                   );
                 })}
               </div>
