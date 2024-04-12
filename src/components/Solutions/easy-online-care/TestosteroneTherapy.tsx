@@ -12,6 +12,14 @@ const Testosteronelist = [
     prevbtn: <PrevIcon />,
     nextbtn: <NextIcon />,
     imgurl: "/images/solution_media/Testosterone-tablets.webp",
+    checkIconTexts: [
+      "FDA Approved",
+      "Bioidentical",
+      "96% Efficacy",
+      "Oral Capsule",
+      "Twice Daily",
+      "Flexible Dosing",
+    ],
   },
 ];
 
