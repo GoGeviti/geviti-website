@@ -51,11 +51,11 @@ const products = [
 
 const EasyCareProductCard = () => {
   return (
-    <section className="w-full md:bg-transparent bg-[#F2F2F2]">
+    <section className="w-full md:bg-transparent bg-[#F2F2F2] flex items-center justify-center">
       <div
         className={clsxm(
           "no-scrollbar overflow-y-hidden transition-all select-none transform flex flex-nowrap overflow-x-auto scrolling-touch scroll-smooth gap-x-6 md:pt-[118px] pt-6",
-          "snap-x snap-mandatory ml-4 lg:ml-10 "
+          "snap-x snap-mandatory ml-4 lg:ml-[68px] "
         )}
         id="discover-products-scroll"
       >
