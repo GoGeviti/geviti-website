@@ -37,17 +37,17 @@ const Pricing = () => {
             Monthly
           </p>
         </div>
-        <div className=" sm:flex gap-3 lg:gap-6 items-end w-full pt-10 ">
+        <div className="lg:max-w-full mx-auto max-w-[344px] lg:flex-row flex-col flex gap-8 lg:gap-6 items-end w-full pt-10 ">
           {pricing.data.map((value, index) => (
             <div key={index} className=" w-full relative">
               <div
                 style={{ background: value.bg }}
-                className={`pt-[42px] pb-[34px] px-3 lg:px-6 ${value.text} rounded-2xl w-full`}
+                className={`pt-[42px] pb-[34px] px-3 xl:px-6 ${value.text} rounded-2xl w-full`}
               >
                 <p className="leading-[140%] text-[16px] lg:text-xl font-Poppins ">
                   {value.name}
                 </p>
-                <h3 className=" text-[30px] lg:text-5xl font-Poppins py-1">
+                <h3 className=" text-[30px] xl:text-5xl font-Poppins py-1">
                   ${value.price}{" "}
                   <span className="text-[12px] lg:text-sm">
                     one time payment
@@ -62,7 +62,7 @@ const Pricing = () => {
                 </p>
                 {pricing.features.map((data) => (
                   <>
-                    <p className=" font-Poppins text-sm gap-[6px] flex items-center font-medium pb-3">
+                    <p className=" font-Poppins text-sm lg:text-[12px] xl:text-sm gap-[6px] flex items-center font-medium pb-3">
                       {" "}
                       <QuestionIcon /> {data}
                     </p>
@@ -89,7 +89,7 @@ const Pricing = () => {
                   onClick={toggleDropdown}
                   className={` ${
                     isOpen ? "bg-[#E6E7E7] border-[#E6E7E7]" : ""
-                  } cursor-pointer flex mt-3 items-center border border-[#91c9f2] gap-3 rounded-2xl justify-center p-6 w-full bg-[#99D4FF]`}
+                  } cursor-pointer hidden  lg:flex mt-3 items-center border border-[#91c9f2] gap-3 rounded-2xl justify-center p-6 w-full bg-[#99D4FF]`}
                 >
                   <p className=" text-xl font-Poppins">
                     Geviti vs. competitors
@@ -101,6 +101,17 @@ const Pricing = () => {
               </div>
             </div>
           ))}
+        </div>
+        <div
+          onClick={toggleDropdown}
+          className={` ${
+            isOpen ? "bg-[#E6E7E7] border-[#E6E7E7]" : ""
+          } cursor-pointer lg:hidden max-w-[344px] mx-auto flex mt-3 items-center border border-[#91c9f2] gap-3 rounded-2xl justify-center p-6 w-full bg-[#99D4FF]`}
+        >
+          <p className=" text-xl font-Poppins">Geviti vs. competitors</p>
+          <span className={`${isOpen ? " rotate-180" : ""}`}>
+            <ChevronDown />
+          </span>
         </div>
         {isOpen && (
           <>
