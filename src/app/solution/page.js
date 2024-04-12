@@ -4,6 +4,8 @@ import WellnessPro from "../../components/solution-content/WellnessPro.tsx";
 import EasyOnlineCare from "../../components/solution-content/EasyOnlineCare.tsx";
 import BloodworkPanel from "../../components/solution-content/BloodworkPanel.tsx";
 import OptimizedYourSelf from "../../components/solution-content/OptimizedYourSelf.tsx";
+import Faq from "../../components/solution-content/Faq.tsx";
+import Investment from "../../components/solution-content/Investment.tsx";
 const page = () => {
   return (
     <>
@@ -13,6 +15,8 @@ const page = () => {
         <EasyOnlineCare />
         <BloodworkPanel />
         <OptimizedYourSelf />
+        <Faq />
+        <Investment />
       </div>
     </>
   );

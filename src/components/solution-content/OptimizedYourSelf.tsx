@@ -38,8 +38,8 @@ const OptimizedYourSelf = () => {
               style={{ backgroundSize: "100% 100%" }}
               className="relative lg:bg-[url('/images/solution_media/running-man.webp')] bg-[url('/images/solution_media/running-man-mobile.webp')] h-[326px] md:h-auto rounded-2xl bg-no-repeat bg-center pointer-events-none lg:max-w-[672px] w-full  flex items-end justify-end overflow-hidden"
             >
-              <div className="relative z-10 gap-6 pb-6 md:px-7 px-5 flex flex-col items-end justify-end bg-img-grediant w-full h-[70%]">
-                <p className=" lg:text-[104.837px] text-[100px] font-Poppins text-white font-normal -tracking-[4.193px] md:text-end leading-none">
+              <div className="relative z-10 gap-[14px] md:gap-6 pb-6 md:px-7 px-5 flex flex-col items-end justify-end bg-img-grediant w-full ">
+                <p className=" lg:text-[104.837px] text-[100px] font-Poppins text-white font-normal -tracking-[4.193px] w-full text-start md:text-end leading-none">
                   1-2%
                 </p>
                 <h2 className="text-sm font-Poppins tracking-[1.54px] font-semibold text-white uppercase">
