@@ -1,14 +1,15 @@
 import React from "react";
-import Hero from "../../../components/solution-content/Hero";
-import BloodworkPanel from "../../../components/solution-content/BloodworkPanel";
-import OptimizedYourSelf from "../../../components/solution-content/OptimizedYourSelf";
-import Faq from "../../../components/solution-content/Faq";
-import Investment from "../../../components/solution-content/Investment";
-import WellnessPro from "@/components/solution-content/WellnessPro";
-import EasyOnlineCare from "@/components/solution-content/EasyOnlineCare";
+import Hero from "@/components/Solutions/Hero";
+import BloodworkPanel from "@/components/Solutions/BloodworkPanel";
+import OptimizedYourSelf from "@/components/Solutions/OptimizedYourSelf";
+import Investment from "../../../components/Solutions/Investment";
+import WellnessPro from "@/components/Solutions/WellnessPro";
+import EasyOnlineCare from "@/components/Solutions/easy-online-care/EasyOnlineCare";
 import FrequentlyAskedQues from "@/components/MemberShip/FrequentlyAskedQues";
 import { Mission, RunningLogo } from "@/components/Landing";
 import { Footer } from "@/components";
+import { FAQ } from "@/components/HowItWorks";
+
 const Solutions = () => {
   return (
     <>
@@ -19,7 +20,7 @@ const Solutions = () => {
         <EasyOnlineCare />
         <BloodworkPanel />
         <OptimizedYourSelf />
-        <Faq />
+        <FAQ />
         <Investment
           bgimagemobile="url(/images/solution_media/investment-bg-mobile.webp)"
           bgimagedesktop="url('/images/solution_media/investment-bg.webp')"
