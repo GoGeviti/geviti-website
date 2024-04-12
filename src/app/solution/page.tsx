@@ -6,17 +6,26 @@ import Faq from "../../components/solution-content/Faq";
 import Investment from "../../components/solution-content/Investment";
 import WellnessPro from "@/components/solution-content/WellnessPro";
 import EasyOnlineCare from "@/components/solution-content/EasyOnlineCare";
+import FrequentlyAskedQues from "@/components/MemberShip/FrequentlyAskedQues";
+import { Mission,RunningLogo } from "@/components/Landing"; 
+import { Footer } from "@/components";
 const Solutions = () => {
   return (
     <>
       <div className="bg-[#F2F2F2]">
         <Hero />
+        <RunningLogo />
         <WellnessPro />
         <EasyOnlineCare />
         <BloodworkPanel />
         <OptimizedYourSelf />
         <Faq />
         <Investment />
+        <FrequentlyAskedQues/>
+        <div className="flex flex-col gap-y-3.5">
+        <Mission />
+        <Footer landingPage />
+      </div>
       </div>
     </>
   );
