@@ -26,9 +26,11 @@ const EasyOnlineCare = () => {
               setActiveContent={setActiveContent}
               activeContent={activeContent}
             />
-            {activeContent === "Testosterone Therapy" && <Antiaging />}
-            {activeContent === "Anti-aging Peptides" && <MedicalWeightLoss />}
-            {activeContent === "Medical Weight Loss" && <TestosteroneTherapy />}
+            {activeContent === "Testosterone Therapy" && (
+              <TestosteroneTherapy />
+            )}
+            {activeContent === "Anti-aging Peptides" && <Antiaging />}
+            {activeContent === "Medical Weight Loss" && <MedicalWeightLoss />}
             {activeContent === "Sexual Health" && <SexualHealth />}
             {activeContent === "Thyroid" && <Thyroid />}
           </div>
