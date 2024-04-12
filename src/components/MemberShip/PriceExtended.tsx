@@ -6,13 +6,15 @@ const pricing = membershipdata.pricing;
 const PriceExtended = () => {
   return (
     <div className=" pt-20">
-      <p className=" uppercase text-sm text-[#919B9F] text-center font-Poppins font-semibold">
+      <p className=" uppercase text-[10px] md:text-sm text-[#919B9F] text-center font-Poppins font-semibold">
         Care based off of biomarkers
       </p>
-      <h4 className=" text-6xl text-center font-Poppins">More, for less.</h4>
+      <h4 className="text-[24px] md:text-6xl text-center font-Poppins">
+        More, for less.
+      </h4>
 
-      <div className=" md:flex  justify-center gap-6 mt-12 ">
-        <div className=" max-w-[411px] w-full">
+      <div className=" md:flex-row flex-col flex  justify-center gap-6 mt-12 ">
+        <div className="md:mx-0 mx-auto max-w-[411px] w-full">
           <div className=" bg-[#181A1C] px-6 py-10 rounded-2xl text-white">
             <h3 className=" text-5xl font-medium font-Poppins ">Geviti</h3>
             <p className=" text-grey-primary">Membership cost as low as</p>
@@ -30,7 +32,7 @@ const PriceExtended = () => {
             </ul>
           </div>
         </div>
-        <div className=" max-w-[411px] w-full">
+        <div className=" max-w-[411px] md:mx-0 mx-auto w-full">
           <div className=" text-[#181A1C] border border-[#e9e9ea] bg-[#F5F6F6] px-6 py-10 rounded-2xl ">
             <h3 className=" text-5xl font-medium font-Poppins ">Others</h3>
             <p className=" text-grey-primary">Membership cost </p>

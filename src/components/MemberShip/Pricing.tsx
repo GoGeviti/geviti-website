@@ -37,7 +37,7 @@ const Pricing = () => {
             Monthly
           </p>
         </div>
-        <div className=" sm:flex gap-3 lg:gap-6 items-end w-full pt-10 ">
+        <div className="lg:max-w-full mx-auto max-w-[344px] lg:flex-row flex-col flex gap-8 lg:gap-6 items-end w-full pt-10 ">
           {pricing.data.map((value, index) => (
             <div key={index} className=" w-full relative">
               <div
@@ -89,7 +89,7 @@ const Pricing = () => {
                   onClick={toggleDropdown}
                   className={` ${
                     isOpen ? "bg-[#E6E7E7] border-[#E6E7E7]" : ""
-                  } cursor-pointer flex mt-3 items-center border border-[#91c9f2] gap-3 rounded-2xl justify-center p-6 w-full bg-[#99D4FF]`}
+                  } cursor-pointer hidden  lg:flex mt-3 items-center border border-[#91c9f2] gap-3 rounded-2xl justify-center p-6 w-full bg-[#99D4FF]`}
                 >
                   <p className=" text-xl font-Poppins">
                     Geviti vs. competitors
@@ -101,6 +101,17 @@ const Pricing = () => {
               </div>
             </div>
           ))}
+        </div>
+        <div
+          onClick={toggleDropdown}
+          className={` ${
+            isOpen ? "bg-[#E6E7E7] border-[#E6E7E7]" : ""
+          } cursor-pointer lg:hidden max-w-[344px] mx-auto flex mt-3 items-center border border-[#91c9f2] gap-3 rounded-2xl justify-center p-6 w-full bg-[#99D4FF]`}
+        >
+          <p className=" text-xl font-Poppins">Geviti vs. competitors</p>
+          <span className={`${isOpen ? " rotate-180" : ""}`}>
+            <ChevronDown />
+          </span>
         </div>
         {isOpen && (
           <>
