@@ -4,9 +4,11 @@ import EasyCareTab from "./EasyCareTab";
 import Antiaging from "./Antiaging";
 import MedicalWeightLoss from "./MedicalWeightLoss";
 import TestosteroneTherapy from "./TestosteroneTherapy";
+import SexualHealth from "./SexualHealth";
+import Thyroid from "./Thyroid";
 
 const EasyOnlineCare = () => {
-  const [activeContent, setActiveContent] = useState("Profile");
+  const [activeContent, setActiveContent] = useState("Testosterone Therapy");
   return (
     <>
       <section className="!my-6 bg-white px-4 py-11">
@@ -19,14 +21,16 @@ const EasyOnlineCare = () => {
               Treatment options for male optimization
             </p>
           </div>
-          <div className="max-w-[991px] w-full mt-[56px] bg-gray-50 p-6 rounded-[100px]">
+          <div className=" w-full mt-[56px]  flex flex-col items-center">
             <EasyCareTab
               setActiveContent={setActiveContent}
               activeContent={activeContent}
             />
-            {activeContent === "Profile" && <Antiaging />}
-            {activeContent === "Security & Privacy" && <MedicalWeightLoss />}
-            {activeContent === "Social Media" && <TestosteroneTherapy />}
+            {activeContent === "Testosterone Therapy" && <Antiaging />}
+            {activeContent === "Anti-aging Peptides" && <MedicalWeightLoss />}
+            {activeContent === "Medical Weight Loss" && <TestosteroneTherapy />}
+            {activeContent === "Sexual Health" && <SexualHealth />}
+            {activeContent === "Thyroid" && <Thyroid />}
           </div>
         </div>
       </section>

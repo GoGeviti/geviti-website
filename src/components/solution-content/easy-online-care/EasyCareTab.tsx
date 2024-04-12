@@ -1,17 +1,23 @@
 import React from "react";
-const tabContent = ["Profile", "Social Media", "Subscription Tiers"];
+const tabContent = [
+  "Testosterone Therapy",
+  "Anti-aging Peptides",
+  "Medical Weight Loss",
+  "Sexual Health",
+  "Thyroid",
+];
 
 const EasyCareTab = ({ activeContent, setActiveContent }) => {
   return (
-    <div className="gap-x-3 overflow-auto btn-group md:mt-6 mt-4 md:px-6 px-4 scroll-bar-hide">
+    <div className="bg-gray-50 p-[6px] rounded-[100px] w-full gap-[14px]">
       {tabContent.map((content, index) => (
         <button
           key={index}
           onClick={() => setActiveContent(content)}
-          className={`rounded-customRadius shadow-customShadow border flex flex-row gap-2 ${
+          className={`  text-sm font-normal font-Poppins px-[14px] py-2 rounded-[100px] w-fit ${
             activeContent === content
-              ? "!border-[#00E8E8]"
-              : "!border-[#383B42]"
+              ? " text-white bg-[#181A1C]"
+              : "bg-transparent text-[#7B7F81]"
           }`}
         >
           {content}
