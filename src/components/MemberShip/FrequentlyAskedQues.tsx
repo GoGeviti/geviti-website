@@ -35,59 +35,55 @@ const FrequentlyAskedQues = () => {
     },
   ];
 
-  // State to track which accordion item is open
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
-  // Function to toggle accordion item
   const toggleAccordion = (index: number) => {
     setOpenIndex(openIndex === index ? null : index);
   };
 
   return (
-    <div className="bg-white mx-3 rounded-[19px] my-6 pb-14 pt-28">
-      <div className=" container-center ">
-        <div className=" md:flex flex-wrap">
-          <div className=" md:w-[40%]">
-            <p className=" uppercase text-sm text-[#919B9F] font-semibold">
-              Have some questions?
-            </p>
-            <h4 className="tracking-[-1.44px] text-primary leading-[125%] text-4xl font-Poppins">
-              Frequently asked <br /> questions
-            </h4>
-          </div>
-          <div className="md:w-[60%]">
-            {accordionData.map((item, index) => (
-              <div key={index} className="border-b border-gray-300">
-                <motion.div
-                  className={`flex justify-between items-center cursor-pointer duration-300 pt-6 pb-6 ${
-                    openIndex === index ? "!pt-6 !pb-0" : ""
-                  }`}
-                  onClick={() => toggleAccordion(index)}
-                >
-                  <h2 className="text-lg leading-[155.556%] font-medium font-Poppins text-neutral-700">
-                    {item.title}
-                  </h2>
+    <div className="bg-white md:mx-3 rounded-[19px] my-6 py-10 sm:pb-14 sm:pt-28 px-4 sm:px-10">
+      <div className="md:flex flex-wrap">
+        <div className="text-center md:text-left md:w-[40%]">
+          <p className="uppercase text-xs sm:text-sm text-[#919B9F] font-semibold tracking-[1.1px]">
+            Have some questions?
+          </p>
+          <h2 className="tracking-[-1.44px] text-primary leading-[125%] text-[27px] sm:text-4xl font-Poppins mt-3 mb-6 sm:mb-0 sm:mt-0">
+            Frequently asked <br /> questions
+          </h2>
+        </div>
+        <div className="md:w-[60%]">
+          {accordionData.map((item, index) => (
+            <div key={index} className="border-b border-gray-300">
+              <motion.div
+                className={`flex justify-between items-center cursor-pointer duration-300 py-5 sm:py-6 ${
+                  openIndex === index ? "!pt-6 !pb-0" : ""
+                }`}
+                onClick={() => toggleAccordion(index)}
+              >
+                <h2 className="text-base sm:text-lg leading-[130%] sm:leading-[155.556%] font-medium font-Poppins text-neutral-700">
+                  {item.title}
+                </h2>
 
-                  {openIndex === index ? <AccordionMinus /> : <AccordionPlus />}
-                </motion.div>
-                <AnimatePresence>
-                  {openIndex === index && (
-                    <motion.div
-                      key="content"
-                      initial={{ opacity: 0, height: 0 }}
-                      animate={{ opacity: 1, height: "auto" }}
-                      exit={{ opacity: 0, height: 0 }}
-                      transition={{ duration: 0.3 }}
-                    >
-                      <p className="py-2 text-base font-Poppins text-grey-primary leading-[150%] max-w-[700px]">
-                        {item.content}
-                      </p>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-            ))}
-          </div>
+                {openIndex === index ? <AccordionMinus /> : <AccordionPlus />}
+              </motion.div>
+              <AnimatePresence>
+                {openIndex === index && (
+                  <motion.div
+                    key="content"
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: "auto" }}
+                    exit={{ opacity: 0, height: 0 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <p className="py-2 text-sm sm:text-base font-Poppins text-grey-primary leading-[150%] max-w-[700px]">
+                      {item.content}
+                    </p>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+          ))}
         </div>
       </div>
     </div>
