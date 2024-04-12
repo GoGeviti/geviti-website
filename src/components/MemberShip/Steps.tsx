@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { Fragment, useState } from "react";
 
 import clsxm from "@/helpers/clsxm";
 import { screens } from "@/helpers/style";
@@ -85,7 +85,7 @@ const StepsSection: React.FC = () => {
                   const IconMobile = step.iconMobile;
 
                   return (
-                    <>
+                    <Fragment key={stepIdx}>
                       <div
                         key={`step-${step.id}`}
                         className={clsxm(
@@ -174,7 +174,7 @@ const StepsSection: React.FC = () => {
                           />
                         </p>
                       </div>
-                    </>
+                    </Fragment>
                   );
                 })}
               </div>

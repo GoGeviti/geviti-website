@@ -23,6 +23,7 @@ const EasyCareTab = ({ activeContent, setActiveContent }) => {
         <div className="p-[6px] rounded-[100px] w-full space-x-[14px] bg-gray-50 max-w-[991px] lg:flex hidden justify-between items-center">
           {tabContent.map(({ label, icon }, index) => (
             <button
+              key={index}
               onClick={() => setActiveContent(label)}
               className={`text-sm font-normal font-Poppins px-5 py-2 rounded-[100px] w-fit ${
                 activeContent === label
