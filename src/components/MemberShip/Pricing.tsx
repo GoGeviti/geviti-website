@@ -18,10 +18,10 @@ const Pricing = () => {
         <p className=" uppercase leading-[171.429%] tracking-[1.54px] text-[10px] lg:text-sm text-grey-primary text-center font-Poppins font-semibold">
           Care based off of biomarkers
         </p>
-        <h4 className=" text-[60px] text-primary  tracking-[-2.56px] text-center font-Poppins">
+        <h4 className="text-[24px] md:text-[40px] lg:text-[60px] leading-normal text-primary  md:tracking-[-2.56px] text-center font-Poppins">
           Start by establishing baselines
         </h4>
-        <p className="  text-sm leading-[142.857%] text-grey-primary text-center font-Poppins pt-3">
+        <p className=" text-[12px] md:text-sm leading-[142.857%] text-grey-primary text-center font-Poppins pt-3">
           Every user starts with one of these to establish baselines. This
           includes month free.{" "}
         </p>
@@ -41,7 +41,8 @@ const Pricing = () => {
           {pricing.data.map((value, index) => (
             <div key={index} className=" w-full relative">
               <div
-                className={`pt-[42px] pb-[34px] px-3 lg:px-6 ${value.bg} ${value.text} rounded-2xl w-full`}
+                style={{ background: value.bg }}
+                className={`pt-[42px] pb-[34px] px-3 lg:px-6 ${value.text} rounded-2xl w-full`}
               >
                 <p className="leading-[140%] text-[16px] lg:text-xl font-Poppins ">
                   {value.name}
