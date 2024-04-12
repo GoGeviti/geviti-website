@@ -11,7 +11,7 @@ const Testosteronelist = [
 
     prevbtn: <PrevIcon />,
     nextbtn: <NextIcon />,
-    imgurl: "/images/solution_media/Testosterone-tablets.webp",
+    imgurl: "/images/solution_media/Pill-Bottle-Mockup.webp",
     checkIconTexts: [
       "FDA Approved",
       "Bioidentical",
