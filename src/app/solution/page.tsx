@@ -5,9 +5,9 @@ import OptimizedYourSelf from "../../components/solution-content/OptimizedYourSe
 import Faq from "../../components/solution-content/Faq";
 import Investment from "../../components/solution-content/Investment";
 import WellnessPro from "@/components/solution-content/WellnessPro";
-import EasyOnlineCare from "@/components/solution-content/EasyOnlineCare";
+import EasyOnlineCare from "@/components/solution-content/easy-online-care/EasyOnlineCare";
 import FrequentlyAskedQues from "@/components/MemberShip/FrequentlyAskedQues";
-import { Mission,RunningLogo } from "@/components/Landing"; 
+import { Mission, RunningLogo } from "@/components/Landing";
 import { Footer } from "@/components";
 const Solutions = () => {
   return (
@@ -21,11 +21,11 @@ const Solutions = () => {
         <OptimizedYourSelf />
         <Faq />
         <Investment />
-        <FrequentlyAskedQues/>
+        <FrequentlyAskedQues />
         <div className="flex flex-col gap-y-3.5">
-        <Mission />
-        <Footer landingPage />
-      </div>
+          <Mission />
+          <Footer landingPage />
+        </div>
       </div>
     </>
   );
