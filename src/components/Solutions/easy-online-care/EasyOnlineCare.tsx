@@ -12,16 +12,16 @@ const EasyOnlineCare = () => {
   return (
     <>
       <section className="!my-6 bg-white px-4 py-11">
-        <div className="max-w-[1349px] w-full mx-auto">
+        <div className="w-full mx-auto">
           <div className="flex flex-col items-center justify-center">
-            <h2 className="text-base leading-[150%] tracking-[1.76px] font-Poppins text-grey-primary font-semibold">
+            <h2 className="lg:text-base md:text-sm sm:text-xs text-[10px] leading-[150%] tracking-[1.76px] font-Poppins text-grey-primary font-semibold">
               Easy online care
             </h2>
-            <p className="mt-[14px] text-[42px] text-primary -tracking-[1.68px] font-Poppins">
+            <p className="mt-[14px] text-center text-2xl md:text-4xl lg:text-[42px] text-primary -tracking-[1.68px] font-Poppins">
               Treatment options for male optimization
             </p>
           </div>
-          <div className=" w-full mt-[56px]  flex flex-col items-center">
+          <div className=" w-full md:mt-[56px] mt-6 flex flex-col items-center">
             <EasyCareTab
               setActiveContent={setActiveContent}
               activeContent={activeContent}
