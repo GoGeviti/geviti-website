@@ -58,7 +58,7 @@ const EasyOnlineCareCard = (props: CardProps) => {
             className="max-w-[222px] w-full mt-[64px] md:flex hidden"
           />
         </div>
-        <div className="md:w-1/2 w-full  flex flex-col items-center justify-between relative">
+        <div className="md:w-1/2 w-full  flex flex-col items-center justify-between relative ">
           <div
             style={{ backgroundSize: "100% 100%" }}
             className="w-full absolute z-10 h-full bg-[url(/images/solution_media/pill-bg.webp)] object-cover"
