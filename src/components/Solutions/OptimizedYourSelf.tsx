@@ -5,10 +5,10 @@ const OptimizedYourSelf = () => {
   return (
     <>
       <section className="lg:px-4">
-        <div className="bg-white max-w-[1430px] w-full mx-auto my-6 rounded-[19px] py-[15px] px-4">
-          <div className="max-w-[1336px] w-full mx-auto flex md:flex-row flex-col h-full gap-10 lg:gap-[58px]">
+        <div className="bg-white w-full my-6 rounded-[19px] px-4 sm:px-10 lg:pl-10 lg:pr-4 py-4">
+          <div className="flex justify-between lg:flex-row flex-col h-full gap-10 lg:gap-[58px]">
             <div className="lg:max-w-[606px] lg:py-[22px] w-full">
-              <h2 className="lg:text-sm md:text-xs text-[10px] font-semibold tracking-[1.54px] uppercase text-grey-primary leading-[171.429%] font-Poppins">
+              <h2 className="lg:text-sm md:text-xs text-[10px] font-semibold tracking-[1.1px] sm:tracking-[1.54px] uppercase text-grey-primary leading-[150%] sm:leading-[171.429%] font-Poppins">
                 You owe it to yourself, and others.
               </h2>
               <p className="xl:text-5xl lg:text-4xl text-2xl font-Poppins text-primary !leading-[150%]">
@@ -36,15 +36,15 @@ const OptimizedYourSelf = () => {
             </div>
             <div
               style={{ backgroundSize: "100% 100%" }}
-              className="relative lg:bg-[url('/images/solution_media/running-man.webp')] bg-[url('/images/solution_media/running-man-mobile.webp')] h-[326px] md:h-auto rounded-2xl bg-no-repeat bg-center pointer-events-none lg:max-w-[672px] w-full  flex items-end justify-end overflow-hidden"
+              className="relative lg:bg-[url('/images/solution_media/running-man.webp')] bg-[url('/images/solution_media/running-man-mobile.webp')] h-[326px] sm:h-[560px] bg-cover lg:h-auto rounded-2xl bg-no-repeat bg-center pointer-events-none lg:max-w-[672px] w-full  flex items-end justify-end overflow-hidden"
             >
-              <div className="relative z-10 gap-[14px] md:gap-6 pb-6 md:px-7 px-5 flex flex-col items-end justify-end bg-img-grediant w-full ">
-                <p className=" lg:text-[104.837px] text-[100px] font-Poppins text-white font-normal -tracking-[4.193px] w-full text-start md:text-end leading-none">
+              <div className="relative z-10 gap-[14px] md:gap-6 pb-5 sm:pb-6 md:px-7 px-4 flex flex-col items-end justify-end bg-img-grediant w-full">
+                <p className="lg:text-[104.837px] sm:text-[100px] text-[74px] font-Poppins text-white font-normal -tracking-[4.193px] w-full text-start md:text-end leading-none">
                   1-2%
                 </p>
-                <h2 className="text-sm font-Poppins tracking-[1.54px] font-semibold text-white uppercase">
+                <h6 className="text-sm font-Poppins tracking-[1.54px] font-semibold text-white uppercase">
                   annual decreases in testosterone after 40
-                </h2>
+                </h6>
               </div>
             </div>
             <div className="block md:hidden mb-5">

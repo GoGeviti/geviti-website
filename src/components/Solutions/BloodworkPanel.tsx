@@ -11,7 +11,7 @@ const bloodworkPanel = () => {
   return (
     <>
       <section className="md:px-4">
-        <div className="w-full rounded-[19px] bg-primary lg:pt-[120px] px-4 sm:px-10 md:py-20 py-12  lg:pb-[138px]">
+        <div className="w-full rounded-[19px] bg-primary px-4 sm:px-10 md:py-20 py-12 lg:py-32">
           <div className="flex flex-col items-center justify-center text-center">
             {/* SECTION HEADING  */}
             <h2 className="md:text-sm text-[10px] leading-[150%] md:leading-[171.429%] tracking-[1.1px] md:tracking-[2px] font-Poppins text-grey-primary font-semibold uppercase">
