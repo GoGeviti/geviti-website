@@ -17,7 +17,7 @@ const Solutions = () => {
         <WellnessPro />
         <EasyOnlineCare />
         <BloodworkPanel />
-        <OptimizedYourSelf />
+        <OptimizedYourSelf bgimgyourself="/images/solution_media/running-man.webp" />
         <FrequentlyAskedQues />
         <div className="flex flex-col gap-y-3.5">
           <Investment
