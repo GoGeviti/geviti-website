@@ -84,7 +84,7 @@ const EasyOnlineCareCard = (props: CardProps) => {
               {nextbtn}
             </button>
           </div>
-          <div className="flex justify-between md:hidden z-10">
+          <div className="flex justify-between md:hidden z-10 w-full">
             <ButtonCta
               text="Get Started"
               href="/your-link"
