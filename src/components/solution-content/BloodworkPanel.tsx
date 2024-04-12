@@ -5,7 +5,8 @@ import {
   CareTeamIcon,
   GraphIcon,
   MamberIcon,
-} from "../solution-content/SolutionIcons";
+} from "./SolutionIcons";
+
 const bloodworkPanel = () => {
   return (
     <>
