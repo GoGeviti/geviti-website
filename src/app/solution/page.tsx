@@ -7,13 +7,14 @@ import Investment from "../../components/solution-content/Investment";
 import WellnessPro from "@/components/solution-content/WellnessPro";
 import EasyOnlineCare from "@/components/solution-content/EasyOnlineCare";
 import FrequentlyAskedQues from "@/components/MemberShip/FrequentlyAskedQues";
-import { Mission } from "@/components/Landing"; 
+import { Mission,RunningLogo } from "@/components/Landing"; 
 import { Footer } from "@/components";
 const Solutions = () => {
   return (
     <>
       <div className="bg-[#F2F2F2]">
         <Hero />
+        <RunningLogo />
         <WellnessPro />
         <EasyOnlineCare />
         <BloodworkPanel />
