@@ -94,6 +94,8 @@ const config: Config = {
         "0.11em": "0.11em",
       },
       backgroundImage: {
+        "solution-gradient-left":
+          "linear-gradient(90deg, #181A1C -10.42%, rgba(24, 26, 28, 0.49) 46.3%, rgba(24, 26, 28, 0.00) 100%)",
         "hero-landing-top":
           "linear-gradient(180deg, #181A1C 40.05%, rgba(24, 26, 28, 0.00) 100%)",
         "img-grediant":

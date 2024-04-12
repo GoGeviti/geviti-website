@@ -40,10 +40,8 @@ const FrequentlyAskedQues = () => {
     },
   ];
 
-  // State to track which accordion item is open
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
-  // Function to toggle accordion item
   const toggleAccordion = (index: number) => {
     setOpenIndex(openIndex === index ? null : index);
   };

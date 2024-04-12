@@ -19,12 +19,11 @@ const sections = [
     mobileimage: "/images/solution_media/hormone-optimization-mobile.webp",
   },
 ];
-
 const WellnessPro = () => {
   return (
     <>
       <section className="bg-[#F2F2F2] md:px-4  pt-[63px]">
-        <div className="grid lg:grid-cols-2 grid-cols-1 md:gap-[23px] gap-11 max-w-[1415px] w-full mx-auto md:bg-transparent bg-white py-6 md:py-0 rounded-2xl">
+        <div className="grid lg:grid-cols-2 grid-cols-1 md:gap-[23px] gap-11 w-full mx-auto md:bg-transparent bg-white py-6 md:py-0 rounded-2xl">
           {sections.map((section, index) => (
             <div
               key={index}
