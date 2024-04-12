@@ -16,18 +16,17 @@ const tabContent = [
 
 const EasyCareTab = ({ activeContent, setActiveContent }) => {
   return (
-    <div className="p-[6px] rounded-[100px] w-full gap-[14px] bg-green-800 max-w-[991px]">
+    <div className="p-[6px] rounded-[100px] w-full space-x-[14px] bg-gray-50 max-w-[991px] flex justify-between items-center">
       {tabContent.map(({ label, icon }, index) => (
         <button
-          key={index}
           onClick={() => setActiveContent(label)}
-          className={`text-sm font-normal font-Poppins px-[14px] py-2 rounded-[100px] w-fit ${
+          className={`text-sm font-normal font-Poppins px-5 py-2 rounded-[100px] w-fit ${
             activeContent === label
               ? "text-white bg-[#181A1C]"
               : "bg-transparent text-[#7B7F81]"
           }`}
         >
-          <span className="  flex items-center gap-[6px] ">
+          <span className="flex items-center gap-[6px] ">
             {icon} {label}
           </span>
         </button>
