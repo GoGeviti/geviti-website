@@ -16,9 +16,11 @@ const PriceExtended = () => {
       <div className=" md:flex-row flex-col flex  justify-center gap-6 mt-12 ">
         <div className="md:mx-0 mx-auto max-w-[411px] w-full">
           <div className=" bg-[#181A1C] px-6 py-10 rounded-2xl text-white">
-            <h3 className=" text-5xl font-medium font-Poppins ">Geviti</h3>
+            <h3 className="text-3xl lg:text-5xl font-medium font-Poppins ">
+              Geviti
+            </h3>
             <p className=" text-grey-primary">Membership cost as low as</p>
-            <p className=" text-5xl font-medium font-Poppins ">
+            <p className=" text-4xl md:text-5xl font-medium font-Poppins ">
               $99 <span className=" text-sm">biomarkers</span>
             </p>
             <ul className=" pt-6">
@@ -34,9 +36,11 @@ const PriceExtended = () => {
         </div>
         <div className=" max-w-[411px] md:mx-0 mx-auto w-full">
           <div className=" text-[#181A1C] border border-[#e9e9ea] bg-[#F5F6F6] px-6 py-10 rounded-2xl ">
-            <h3 className=" text-5xl font-medium font-Poppins ">Others</h3>
+            <h3 className="text-3xl lg:text-5xl font-medium font-Poppins ">
+              Others
+            </h3>
             <p className=" text-grey-primary">Membership cost </p>
-            <p className=" text-5xl font-medium font-Poppins ">
+            <p className=" text-4xl md:text-5xl font-medium font-Poppins ">
               $130+ <span className=" text-sm">biomarkers</span>
             </p>
             <ul className=" pt-6">

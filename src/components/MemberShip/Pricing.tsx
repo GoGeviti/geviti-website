@@ -42,12 +42,12 @@ const Pricing = () => {
             <div key={index} className=" w-full relative">
               <div
                 style={{ background: value.bg }}
-                className={`pt-[42px] pb-[34px] px-3 lg:px-6 ${value.text} rounded-2xl w-full`}
+                className={`pt-[42px] pb-[34px] px-3 xl:px-6 ${value.text} rounded-2xl w-full`}
               >
                 <p className="leading-[140%] text-[16px] lg:text-xl font-Poppins ">
                   {value.name}
                 </p>
-                <h3 className=" text-[30px] lg:text-5xl font-Poppins py-1">
+                <h3 className=" text-[30px] xl:text-5xl font-Poppins py-1">
                   ${value.price}{" "}
                   <span className="text-[12px] lg:text-sm">
                     one time payment
@@ -62,7 +62,7 @@ const Pricing = () => {
                 </p>
                 {pricing.features.map((data) => (
                   <>
-                    <p className=" font-Poppins text-sm gap-[6px] flex items-center font-medium pb-3">
+                    <p className=" font-Poppins text-sm lg:text-[12px] xl:text-sm gap-[6px] flex items-center font-medium pb-3">
                       {" "}
                       <QuestionIcon /> {data}
                     </p>

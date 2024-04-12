@@ -44,7 +44,7 @@ const StepsSection: React.FC = () => {
             </p>
 
             {stepsData.title && (
-              <h2 className="font-Poppins text-primary leading-[116%] lg:leading-[107%] text-[6.1vw] xs2:text-[25px] sm:text-2xl md:text-[32px] lg:text-[42px] tracking-[-1.68px]">
+              <h2 className="font-Poppins text-primary leading-[116%] lg:leading-[107%] text-[6.1vw] xs2:text-[25px] sm:text-2xl md:text-[32px] lg:text-[42px] sm:tracking-[-1.68px]">
                 <span dangerouslySetInnerHTML={{ __html: stepsData.title }} />
               </h2>
             )}
