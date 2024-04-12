@@ -1,7 +1,12 @@
 "use client";
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { AccordionMinus, AccordionPlus } from "../Icons";
+import {
+  AccordionMinus,
+  AccordionMobileMinus,
+  AccordionMobilePlus,
+  AccordionPlus,
+} from "../Icons";
 
 const FrequentlyAskedQues = () => {
   const accordionData = [
@@ -44,31 +49,49 @@ const FrequentlyAskedQues = () => {
   };
 
   return (
-    <div className="bg-white mx-3 rounded-[19px] my-6 pb-14 pt-28">
+    <div className="bg-white mx-3 rounded-[19px] my-6 py-[42px] md:pb-14 md:pt-28">
       <div className=" container-center ">
         <div className=" md:flex flex-wrap">
           <div className=" md:w-[40%]">
-            <p className=" uppercase text-sm text-[#919B9F] font-semibold">
+            <p className=" uppercase text-[10px] md:text-start text-center md:text-sm font-Poppins tracking-[1.54px] text-[#919B9F] font-semibold">
               Have some questions?
             </p>
-            <h4 className="tracking-[-1.44px] text-primary leading-[125%] text-4xl font-Poppins">
+            <h4 className="tracking-[-1.44px] md:text-start text-center text-primary leading-[125%] text-[27.941px] md:text-4xl font-Poppins">
               Frequently asked <br /> questions
             </h4>
           </div>
-          <div className="md:w-[60%]">
+          <div className="md:w-[60%] mt-8 md:mt-0">
             {accordionData.map((item, index) => (
               <div key={index} className="border-b border-gray-300">
                 <motion.div
-                  className={`flex justify-between items-center cursor-pointer duration-300 pt-6 pb-6 ${
+                  className={`flex justify-between items-center cursor-pointer duration-300 py-4 md:pt-6  md:pb-6 ${
                     openIndex === index ? "!pt-6 !pb-0" : ""
                   }`}
                   onClick={() => toggleAccordion(index)}
                 >
-                  <h2 className="text-lg leading-[155.556%] font-medium font-Poppins text-neutral-700">
+                  <h2 className="text-[14px] md:text-lg leading-[155.556%] font-medium font-Poppins text-neutral-700">
                     {item.title}
                   </h2>
 
-                  {openIndex === index ? <AccordionMinus /> : <AccordionPlus />}
+                  {openIndex === index ? (
+                    <>
+                      <div className="md:block hidden">
+                        <AccordionMinus />
+                      </div>
+                      <div className="block md:hidden">
+                        <AccordionMobileMinus />
+                      </div>
+                    </>
+                  ) : (
+                    <>
+                      <div className="md:block hidden">
+                        <AccordionPlus />
+                      </div>
+                      <div className="block md:hidden">
+                        <AccordionMobilePlus />
+                      </div>
+                    </>
+                  )}
                 </motion.div>
                 <AnimatePresence>
                   {openIndex === index && (
@@ -79,7 +102,7 @@ const FrequentlyAskedQues = () => {
                       exit={{ opacity: 0, height: 0 }}
                       transition={{ duration: 0.3 }}
                     >
-                      <p className="py-2 text-base font-Poppins text-grey-primary leading-[150%] max-w-[700px]">
+                      <p className="py-2 text-[13px] md:text-base font-Poppins text-grey-primary leading-[150%] max-w-[700px]">
                         {item.content}
                       </p>
                     </motion.div>

@@ -15,7 +15,7 @@ const Pricing = () => {
   return (
     <div className="bg-white mx-3 rounded-[19px] my-6 py-14">
       <div className=" container-center ">
-        <p className=" uppercase leading-[171.429%] tracking-[1.54px] text-sm text-grey-primary text-center font-Poppins font-semibold">
+        <p className=" uppercase leading-[171.429%] tracking-[1.54px] text-[10px] lg:text-sm text-grey-primary text-center font-Poppins font-semibold">
           Care based off of biomarkers
         </p>
         <h4 className=" text-[60px] text-primary  tracking-[-2.56px] text-center font-Poppins">
@@ -37,21 +37,25 @@ const Pricing = () => {
             Monthly
           </p>
         </div>
-        <div className=" sm:flex gap-6 items-end w-full pt-10 ">
+        <div className=" sm:flex gap-3 lg:gap-6 items-end w-full pt-10 ">
           {pricing.data.map((value, index) => (
             <div key={index} className=" w-full relative">
               <div
-                className={`pt-[42px] pb-[34px] px-6   ${value.bg} ${value.text} rounded-2xl w-full`}
+                className={`pt-[42px] pb-[34px] px-3 lg:px-6 ${value.bg} ${value.text} rounded-2xl w-full`}
               >
-                <p className=" text-xl font-Poppins ">{value.name}</p>
-                <h3 className=" text-5xl font-Poppins py-1 ">
+                <p className="leading-[140%] text-[16px] lg:text-xl font-Poppins ">
+                  {value.name}
+                </p>
+                <h3 className=" text-[30px] lg:text-5xl font-Poppins py-1">
                   ${value.price}{" "}
-                  <span className=" text-sm">one time payment</span>
+                  <span className="text-[12px] lg:text-sm">
+                    one time payment
+                  </span>
                 </h3>
-                <p className=" font-medium text-sm font-Poppins ">
+                <p className=" font-medium text-[12px] lg:text-sm font-Poppins ">
                   +$99/m billed quarterly
                 </p>
-                <p className=" text-2xl font-medium font-Poppins pb-4 mt-10">
+                <p className=" text-2xl font-medium font-Poppins pb-4 mt-8 lg:mt-10">
                   {value.biomakers}+{" "}
                   <span className=" text-xs">biomarkers</span>
                 </p>

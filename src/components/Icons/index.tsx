@@ -32,6 +32,35 @@ export const AccordionPlus = () => (
     />
   </svg>
 );
+export const AccordionMobilePlus = () => (
+  <svg
+    width="21"
+    height="22"
+    viewBox="0 0 21 22"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <g clip-path="url(#clip0_9_121)">
+      <path
+        d="M10.5902 7.81908V14.7588M7.12035 11.289H14.0601M19.2649 11.289C19.2649 16.0799 15.3811 19.9637 10.5902 19.9637C5.79932 19.9637 1.91553 16.0799 1.91553 11.289C1.91553 6.49805 5.79932 2.61426 10.5902 2.61426C15.3811 2.61426 19.2649 6.49805 19.2649 11.289Z"
+        stroke="#919B9F"
+        stroke-width="1.73494"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+    </g>
+    <defs>
+      <clipPath id="clip0_9_121">
+        <rect
+          width="20.8193"
+          height="20.8193"
+          fill="white"
+          transform="translate(0.180664 0.879395)"
+        />
+      </clipPath>
+    </defs>
+  </svg>
+);
 export const AccordionMinus = () => (
   <svg
     width="24"
@@ -43,10 +72,39 @@ export const AccordionMinus = () => (
     <path
       d="M8 14H16M22 14C22 19.5228 17.5228 24 12 24C6.47715 24 2 19.5228 2 14C2 8.47715 6.47715 4 12 4C17.5228 4 22 8.47715 22 14Z"
       stroke="#919B9F"
-	  strokeWidth="2"
+      strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"
     />
+  </svg>
+);
+export const AccordionMobileMinus = () => (
+  <svg
+    width="21"
+    height="22"
+    viewBox="0 0 21 22"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <g clip-path="url(#clip0_9_1553)">
+      <path
+        d="M7.12035 11.1447H14.0601M19.2649 11.1447C19.2649 15.9356 15.3811 19.8194 10.5902 19.8194C5.79932 19.8194 1.91553 15.9356 1.91553 11.1447C1.91553 6.35377 5.79932 2.46997 10.5902 2.46997C15.3811 2.46997 19.2649 6.35377 19.2649 11.1447Z"
+        stroke="#919B9F"
+        stroke-width="1.73494"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+    </g>
+    <defs>
+      <clipPath id="clip0_9_1553">
+        <rect
+          width="20.8193"
+          height="20.8193"
+          fill="white"
+          transform="translate(0.180664 0.734863)"
+        />
+      </clipPath>
+    </defs>
   </svg>
 );
 export const QuestionIcon = () => (
@@ -60,7 +118,7 @@ export const QuestionIcon = () => (
     <path
       d="M6.05992 6.49992C6.21665 6.05436 6.52602 5.67866 6.93322 5.43934C7.34042 5.20002 7.81918 5.11254 8.2847 5.19239C8.75022 5.27224 9.17246 5.51427 9.47664 5.8756C9.78081 6.23694 9.94729 6.69427 9.94659 7.16659C9.94659 8.49992 7.94659 9.16659 7.94659 9.16659M7.99992 11.8333H8.00659M14.6666 8.49992C14.6666 12.1818 11.6818 15.1666 7.99992 15.1666C4.31802 15.1666 1.33325 12.1818 1.33325 8.49992C1.33325 4.81802 4.31802 1.83325 7.99992 1.83325C11.6818 1.83325 14.6666 4.81802 14.6666 8.49992Z"
       stroke="#919B9F"
-	  strokeWidth="1.33333"
+      strokeWidth="1.33333"
       strokeLinecap="round"
       strokeLinejoin="round"
     />

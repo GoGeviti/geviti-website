@@ -14,19 +14,19 @@ const BioMakersSection = () => {
   };
 
   return (
-    <div className="bg-white mx-3 rounded-[19px] my-6 py-14">
+    <div className="bg-white mx-3 rounded-[19px] my-6 py-8 sm:py-14">
       <div className=" container-center ">
         <button
           onClick={toggleDropdown}
-          className=" flex text-primary font-medium items-center font-Poppins text-sm sm:text-[28px] gap-3"
+          className=" flex w-full sm:w-auto text-primary justify-between sm:justify-start font-medium items-center font-Poppins text-[14px] sm:text-[28px] gap-3"
         >
-          Compare Tested Biomarkers
+          <span>Compare Tested Biomarkers</span>
           <span className={`${isOpen && "rotate-180 duration-300"}`}>
             <ChevronDown />
           </span>
         </button>
         {!isOpen && (
-          <p className=" text-lg font-Poppins text-[#AEB1B2]">
+          <p className="text-[12px] sm:text-lg font-Poppins text-[#AEB1B2]">
             Click to expand
           </p>
         )}
@@ -91,7 +91,7 @@ const BioMakersSection = () => {
                 Ultimate Health Assessment
               </p>
             </div>
-            <ul className="py-2 flex gap-6 flex-wrap">
+            <ul className="py-10 sm:py-2 flex gap-6 flex-wrap">
               {biomakers.data.map((option, index) => (
                 <li
                   key={index}

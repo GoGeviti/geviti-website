@@ -192,7 +192,7 @@ const DiscoverGeviti: React.FC<DiscoverGevitiProps> = ({
     >
       <div className="w-full relative">
         <div className="px-4 lg:px-10 xl:px-[calc((100vw-1240px)/2)]">
-          <div className="flex items-center justify-between">
+          <div className=" md:flex items-center justify-between">
             <div>
               <h2 className="text-primary text-2xl md:text-3xl lg:text-4xl leading-[179%] sm:leading-[128%] lg:leading-[119%] -tracking-0.04em">
                 {title}
@@ -202,7 +202,16 @@ const DiscoverGeviti: React.FC<DiscoverGevitiProps> = ({
                 {description}
               </p>
             </div>
-            <div className="max-lg:hidden">{renderButtonViewAll()}</div>
+            <div className="">
+              <div className="my-6 sm:my-0 flex justify-center items-center bg-[#F5F6F6] w-fit gap-[14px] p-[6px] rounded-[100px]">
+                <button className="text-[14px] md:text-[18px] cursor-pointer duration-300 flex bg-[#181A1C] text-white  items-center py-3 px-[18px] font-Poppins rounded-full gap-[6px]">
+                  Mens Products
+                </button>
+                <button className="text-[14px] md:text-[18px] cursor-pointer duration-300 flex hover:bg-[#181A1C] text-[#7B7F81] hover:text-white font-Poppins  items-center py-3 px-[18px] rounded-full">
+                  Womens Products
+                </button>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -215,7 +224,7 @@ const DiscoverGeviti: React.FC<DiscoverGevitiProps> = ({
           {renderProductList()}
         </div>
 
-        <div
+        {/* <div
           className={clsxm(
             "lg:hidden flex justify-center max-lg:px-4",
             viewAllMobileClassName
@@ -227,7 +236,7 @@ const DiscoverGeviti: React.FC<DiscoverGevitiProps> = ({
             text={viewAll.text}
             className="max-sm:w-full"
           />
-        </div>
+        </div> */}
       </div>
     </div>
   );
