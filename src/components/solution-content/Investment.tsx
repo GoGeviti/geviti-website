@@ -4,12 +4,14 @@ import ButtonCta from "../Landing/ButtonCta";
 const Investment = () => {
   return (
     <>
-      <section className="sm:px-4 mb-10 overflow-hidden bg-">
-        <div
-          style={{ backgroundSize: "100% 100%" }}
-          className="max-w-[1416px] h-[811px] flex items-end rounded-[19px] w-full mx-auto sm:bg-[url('/images/solution_media/investment-bg.webp')]  bg-[url('/images/solution_media/investment-bg-mobile.webp')] md:h-auto bg-no-repeat bg-center pointer-events-none  "
-        >
-          <div className="md:bg-none bg-hero-landing-bottom w-full  px-5 lg:pl-[68px] md:pt-[146px] pb-[68px] md:pb-[100px] h-[80%] object-cover flex flex-col justify-end">
+      <section className="sm:px-4 mb-10">
+        <div className="max-w-[1416px] w-full mx-auto rounded-[19px] md:h-full h-[811px] flex flex-col relative overflow-hidden">
+          <div
+            style={{ backgroundSize: "100% 100%" }}
+            className=" flex items-end w-full mx-auto sm:bg-[url('/images/solution_media/investment-bg.webp')] bg-[url('/images/solution_media/investment-bg-mobile.webp')] bg-no-repeat bg-center pointer-events-none !h-full z-20 border absolute rounded-[19px]"
+          ></div>
+          <div className="gradient-overlay"> </div>
+          <div className="w-full px-5 lg:pl-[68px] md:pt-[146px] pb-[68px] md:pb-[100px] object-cover flex flex-col h-full justify-end z-20">
             <h2 className="text-white font-Poppins font-semibold leading-[171.429%] tracking-[1.54px] uppercase sm:text-xs text-[10px] md:text-sm md:text-start text-center w-full">
               An INVESTMENT IN YOUR FUTURE
             </h2>
