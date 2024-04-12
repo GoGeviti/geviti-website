@@ -19,7 +19,7 @@ const sections = [
     mobileimage: "/images/solution_media/hormone-optimization-mobile.webp",
   },
 ];
-const WellnessPro: React.FC = () => {
+const WellnessPro = () => {
   return (
     <>
       <section className="bg-[#F2F2F2] md:px-4  pt-[63px]">
