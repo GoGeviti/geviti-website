@@ -9,8 +9,8 @@ export const BorderLine = () => (
     <path
       d="M2 2L1282 1.99989"
       stroke="#252627"
-      stroke-width="4"
-      stroke-linecap="round"
+      strokeWidth="4"
+      strokeLinecap="round"
     />
   </svg>
 );
@@ -161,9 +161,9 @@ export const NextIcon = () => (
     <path
       d="M6.92871 13.1411L11.0687 9.00111L6.92871 4.86111"
       stroke="#99D4FF"
-      stroke-width="1.38"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+      strokeWidth="1.38"
+      strokeLinecap="round"
+      strokeLinejoin="round"
     />
   </svg>
 );
@@ -178,9 +178,9 @@ export const PrevIcon = () => (
     <path
       d="M11.0713 13.1411L6.93129 9.00111L11.0713 4.86111"
       stroke="#181A1C"
-      stroke-width="1.38"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+      strokeWidth="1.38"
+      strokeLinecap="round"
+      strokeLinejoin="round"
     />
   </svg>
 );
@@ -210,13 +210,13 @@ export const TherapyIcon = () => (
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
   >
-    <g clip-path="url(#clip0_1_34288)">
+    <g clipPath="url(#clip0_1_34288)">
       <path
         d="M6.23314 10.4998C6.65606 8.96859 8.13481 7.87484 9.83814 8.05567C11.4598 8.22775 12.749 9.59567 12.8306 11.2232C12.8511 11.6519 12.7927 12.0632 12.6673 12.4453C12.5915 12.6786 12.364 12.8332 12.1161 12.8332H3.42964C1.95731 12.8332 0.853055 11.486 1.14181 10.0422L2.75612 1.97039C2.8496 1.50297 3.26001 1.1665 3.7367 1.1665H5.83657C6.19542 1.1665 6.52677 1.35879 6.70481 1.67037L7.1355 2.42408C7.39 2.86944 7.26624 3.43514 6.84903 3.73356L5.86601 4.43671C5.42923 4.74913 4.82366 4.66079 4.49434 4.2366L4.37522 4.08317M5.08689 4.99609L6.41689 9.9165"
         stroke="#181A1C"
-        stroke-miterlimit="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeMiterlimit="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
     </g>
     <defs>
