@@ -94,11 +94,7 @@ const Solutions = () => {
         />
         <RunningLogo />
         <WellnessPro />
-        <EasyOnlineCare
-          treatmentmens={treatmentmens}
-          heading="Easy online care"
-          subheading="Treatment options for male optimization"
-        />
+        <EasyOnlineCare treatmentmens={treatmentmens} />
         <BloodworkPanel />
         <OptimizedYourSelf bgimgyourself="/images/solution_media/running-man.webp" />
         <FrequentlyAskedQues />

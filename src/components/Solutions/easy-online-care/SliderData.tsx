@@ -5,7 +5,13 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import ButtonCta from "@/components/Landing/ButtonCta";
 
-const SliderData = ({ imgUrls }) => {
+interface IProps {
+  cardslist: any;
+}
+
+const SliderData = (props: IProps) => {
+  const { cardslist } = props;
+
   const sliderRef = useRef(null);
   const [activeSlide, setActiveSlide] = useState(0);
 
@@ -18,21 +24,21 @@ const SliderData = ({ imgUrls }) => {
     slidesToScroll: 1,
     fade: false,
     arrows: false,
-    afterChange: (current) => setActiveSlide(current),
+    afterChange: (current: React.SetStateAction<number>) =>
+      setActiveSlide(current),
   };
 
   const nextSlide = () => {
     if (sliderRef.current) {
-      sliderRef.current.slickNext();
+      sliderRef?.current?.slickNext();
     }
   };
 
   const prevSlide = () => {
     if (sliderRef.current) {
-      sliderRef.current.slickPrev();
+      sliderRef?.current?.slickPrev();
     }
   };
-  // Array of image URLs
 
   return (
     <section className="w-full">
@@ -66,7 +72,7 @@ const SliderData = ({ imgUrls }) => {
             {...settings}
             className=" relative z-10 h-auto custom-slider"
           >
-            {imgUrls.map((url, index) => (
+            {cardslist.map((obj: any, index: number) => (
               <div
                 key={index}
                 className="relative max-w-full !flex items-center justify-center"
@@ -76,7 +82,7 @@ const SliderData = ({ imgUrls }) => {
                   className="w-full absolute !-z-50 h-full bg-[url(/images/solution_media/pill-bg.webp)] object-cover appearance-none bg-no-repeat"
                 ></div>
                 <img
-                  src={url}
+                  src={obj.imageURL}
                   alt={`Slider Image ${index + 1}`}
                   className="max-w-[230px] w-full h-full z-20 object-contain"
                 />
@@ -90,7 +96,9 @@ const SliderData = ({ imgUrls }) => {
         <button
           onClick={nextSlide}
           className={`min-w-[46px] min-h-[46px] rounded-full flex items-center justify-center z-50 relative  ${
-            activeSlide === imgUrls.length - 1 ? "bg-[#F5F6F6]" : "bg-[#181A1C]"
+            activeSlide === cardslist.length - 1
+              ? "bg-[#F5F6F6]"
+              : "bg-[#181A1C]"
           }`}
         >
           <svg
@@ -103,7 +111,7 @@ const SliderData = ({ imgUrls }) => {
             <path
               d="M6.92871 13.1411L11.0687 9.00111L6.92871 4.86111"
               stroke={
-                activeSlide === imgUrls.length - 1 ? "#181A1C" : "#99D4FF"
+                activeSlide === cardslist.length - 1 ? "#181A1C" : "#99D4FF"
               }
               strokeWidth="1.38"
               strokeLinecap="round"
