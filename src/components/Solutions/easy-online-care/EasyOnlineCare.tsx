@@ -21,7 +21,7 @@ const EasyOnlineCare: React.FC<EasyOnlineCareProps> = ({ treatmentmens }) => {
         <div className=" md:bg-white rounded-[19px] py-11 my-6 ">
           <div className="w-full mx-auto  px-4 bg-white ">
             <div className="flex flex-col items-center justify-center">
-              <h2 className="lg:text-base md:text-sm sm:text-xs text-[10px] leading-[150%] tracking-[1.76px] font-Poppins text-grey-primary font-semibold">
+              <h2 className="lg:text-base md:text-sm sm:text-xs text-[10px] leading-[150%] tracking-[1.76px] font-Poppins text-grey-primary font-semibold uppercase">
                 {treatmentmens.sectionsubheading}
               </h2>
               <p className="mt-[14px] text-center text-2xl md:text-4xl lg:text-[42px] text-primary -tracking-[1.68px] font-Poppins">

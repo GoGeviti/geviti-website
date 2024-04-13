@@ -10,7 +10,7 @@ import solution from "@/constant/data/solution";
 
 const stepsData = solution.steps;
 
-const StepsSection: React.FC = () => {
+const BloodworkPanelWomen: React.FC = () => {
   const [selectedIdx, setSelectedIdx] = useState<number>(0);
 
   const windowDimensions = useWindowDimensions();
@@ -23,21 +23,21 @@ const StepsSection: React.FC = () => {
   };
 
   return (
-    <div className="overflow-hidden bg-[#181A1C] lg:mx-3 lg:mt-3   rounded-[19px]">
+    <div className="overflow-hidden bg-[#99D4FF] lg:mx-3 lg:mt-3   rounded-[19px]">
       <div className="h-full  w-full relative overflow-hidden">
         <div className="px-4 pt-[52px] pb-[31px] lg:pt-[120px] lg:pb-[138px] flex flex-col lg:gap-y-0 items-center justify-center text-center">
           <div className="text-center sm:mx-auto">
-            <p className="mb-5px lg:mb-3.5 uppercase tracking-[1.54px] text-grey-primary text-Poppins text-[10px] font-semibold sm:text-[14px] leading-[171%]">
+            <p className="mb-5px lg:mb-3.5 uppercase tracking-[1.54px] text-[#444646] text-Poppins text-[10px] font-semibold sm:text-[14px] leading-[171%]">
               {stepsData.preTitle}
             </p>
 
             {stepsData.title && (
-              <h2 className="font-Poppins text-white leading-[116%] lg:leading-[107%] text-[6.1vw] xs2:text-[25px] sm:text-2xl md:text-[32px] lg:text-[42px] sm:tracking-[-1.68px]">
+              <h2 className="font-Poppins text-[#181A1C] leading-[116%] lg:leading-[107%] text-[6.1vw] xs2:text-[25px] sm:text-2xl md:text-[32px] lg:text-[42px] sm:tracking-[-1.68px]">
                 <span dangerouslySetInnerHTML={{ __html: stepsData.title }} />
               </h2>
             )}
             {stepsData.subTittle && (
-              <h2 className="font-Poppins leading-[142.857%] font-normal mt-[14px] text-[#919B9F]  text-xs md:text-sm text-center">
+              <h2 className="font-Poppins leading-[142.857%] font-normal mt-[14px] text-[#444646]  text-xs md:text-sm text-center">
                 <span
                   dangerouslySetInnerHTML={{ __html: stepsData.subTittle }}
                 />
@@ -54,8 +54,8 @@ const StepsSection: React.FC = () => {
                     className={clsxm(
                       "h-1   cursor-pointer transform transition-all duration-300 ease-linear",
                       stepIdx === selectedIdx
-                        ? "w-full bg-blue-1 shadow-[0px_-8px_24px_0px_rgba(251,251,251,0.35)]"
-                        : "w-full bg-grey-shadow"
+                        ? "w-full bg-white shadow-[0px_-8px_24px_0px_rgba(251,251,251,0.35)]"
+                        : "w-full bg-[#ffffff33]"
                     )}
                     onClick={() => onSelectStep(stepIdx)}
                     onMouseEnter={() => onMouseEnter(stepIdx)}
@@ -87,8 +87,8 @@ const StepsSection: React.FC = () => {
                           className={clsxm(
                             "cursor-pointer rounded-19px flex items-center justify-center flex-shrink-0 ",
                             isSelected
-                              ? "bg-blue-primary w-10 h-10 lg:w-[62px] lg:h-[62px] shadow-c1"
-                              : "bg-grey-50 w-10 h-10 lg:w-[55px] lg:h-[55px]"
+                              ? "bg-white w-10 h-10 lg:w-[62px] lg:h-[62px] shadow-[0px_4px_21.1px_0px_rgba_(196_196_196_0.25)]"
+                              : "bg-[#ffffff33] w-10 h-10 lg:w-[55px] lg:h-[55px]"
                           )}
                           aria-label={`step-${step.id}`}
                         >
@@ -99,8 +99,8 @@ const StepsSection: React.FC = () => {
                                   <Icon
                                     className={clsxm(
                                       isSelected
-                                        ? "text-white"
-                                        : "text-grey-primary ",
+                                        ? "text-primary"
+                                        : "text-[#6A6E70] ",
                                       "flex-shrink-0 w-6 h-6"
                                     )}
                                   />
@@ -116,7 +116,7 @@ const StepsSection: React.FC = () => {
                             <Icon
                               className={clsxm(
                                 isSelected
-                                  ? "text-blue-1 lg:text-white"
+                                  ? "text-blue-1 lg:text-[#181A1C]"
                                   : " text-grey-primary",
                                 "flex-shrink-0 w-18px h-18px lg:w-6 lg:h-6"
                               )}
@@ -130,8 +130,8 @@ const StepsSection: React.FC = () => {
                           className={clsxm(
                             "cursor-pointer  font-Poppins text-left  text-sm leading-[134%]",
                             isSelected
-                              ? "lg:pt-[24.84px] text-white text-sm !leading-normal font-medium"
-                              : "font-medium text-grey-400 lg:pt-[22.76px] text-sm !leading-normal "
+                              ? "lg:pt-[24.84px] text-[#181A1C] text-sm !leading-normal font-medium"
+                              : "font-medium text-[#6A6E70] lg:pt-[22.76px] text-sm !leading-normal "
                           )}
                         >
                           <span
@@ -143,7 +143,7 @@ const StepsSection: React.FC = () => {
                       <div className=" lg:hidden flex w-full space-y-[18px] justify-center items-center flex-col">
                         <button
                           className={clsxm(
-                            "cursor-pointer rounded-19px flex items-center justify-center flex-shrink-0 bg-blue-primary w-[62px] h-[62px] shadow-c1"
+                            "cursor-pointer rounded-19px flex items-center justify-center flex-shrink-0 bg-white w-[62px] h-[62px] shadow-c1"
                           )}
                           aria-label={`step-${step.id}`}
                         >
@@ -155,7 +155,7 @@ const StepsSection: React.FC = () => {
                           )}
                         >
                           <span
-                            className="max-lg:text-left whitespace-nowrap text-white"
+                            className="max-lg:text-left whitespace-nowrap text-[#181A1C]"
                             dangerouslySetInnerHTML={{ __html: step.title }}
                           />
                         </p>
@@ -172,4 +172,4 @@ const StepsSection: React.FC = () => {
   );
 };
 
-export default StepsSection;
+export default BloodworkPanelWomen;

@@ -157,5 +157,5 @@ input[type="number"]::placeholder {
   z-index: 9999;
   /* Additional Tailwind CSS classes */
   transform: translate(-50%, -50%);
-mix-blend-mode:multiply;
+  mix-blend-mode: multiply;
 }

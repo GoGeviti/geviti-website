@@ -7,36 +7,37 @@ import Hero from "@/components/Solutions/Hero";
 import EasyOnlineCare from "@/components/Solutions/easy-online-care/EasyOnlineCare";
 import WellnessPro from "@/components/Solutions/women/WellnessPro";
 import Investment from "../../../components/Solutions/Investment";
+import BloodworkPanelWomen from "@/components/Solutions/women/BloodworkPanelWomen";
 
 const Solutions = () => {
   const treatmentmens = {
     sectionsubheading: "Doctor Led online Treatment",
     sectionmainheading: "Treatment options for females",
     cards: {
-      heading: "Compare Testosterone Optimization options",
-      subheading: "Oral Testosterone",
+      heading: "Analyze hormone Therapy options",
+      subheading: "Oral Estradiol",
       paragraph:
         "The FDA's approval of oral testosterone undecanoate offers a breakthrough in TRT, providing an easy-to-use, effective option for managing Low T. This addition enhances the therapy landscape, simplifying the path to hormonal balance for many. ",
       features: [
         "FDA Approved",
         "Bioidentical",
-        "96% Efficacy",
-        "Oral Capsule",
-        "Twice Daily",
+        "Convenient",
+        "Oral Tablet",
+        "Taken Daily",
         "Flexible Dosing",
       ],
       cardslist: [
         {
-          imageURL: "/images/solution_media/Pill-Bottle-Mockup.webp",
+          imageURL: "/images/solution_media/Pill-Bottle-Mockup-Women.webp",
         },
         {
-          imageURL: "/images/solution_media/Pill-Bottle-Mockup.webp",
+          imageURL: "/images/solution_media/Pill-Bottle-Mockup-Women.webp",
         },
         {
-          imageURL: "/images/solution_media/Pill-Bottle-Mockup.webp",
+          imageURL: "/images/solution_media/Pill-Bottle-Mockup-Women.webp",
         },
         {
-          imageURL: "/images/solution_media/Pill-Bottle-Mockup.webp",
+          imageURL: "/images/solution_media/Pill-Bottle-Mockup-Women.webp",
         },
       ],
     },
@@ -44,42 +45,42 @@ const Solutions = () => {
       {
         id: 1,
         name: "Oral Testosterone",
-        description: "Oral Gel Capsule",
+        description: "Product Info",
         price: "$94.99/m*",
         imageSrc: "/images/solution_media/Pill-Bottle-Mockup.webp",
       },
       {
         id: 2,
         name: "Enclomiphene Citrate",
-        description: "Oral Tablet",
+        description: "Product Info",
         price: "$94.99/m*",
         imageSrc: "/images/solution_media/Pill-Bottle-Mockup.webp",
       },
       {
         id: 3,
         name: "Testosterone Booster Complex",
-        description: "Oral Tablet",
+        description: "Product Info",
         price: "$94.99/m*",
         imageSrc: "/images/solution_media/Pill-Bottle-Mockup.webp",
       },
       {
         id: 4,
         name: "Testosterone Topical Cream",
-        description: "Oral Tablet",
+        description: "Product Info",
         price: "$94.99/m*",
         imageSrc: "/images/solution_media/Pill-Bottle-Mockup.webp",
       },
       {
         id: 5,
         name: "Enclomiphene Citrate",
-        description: "Oral Tablet",
+        description: "Product Info",
         price: "$94.99/m*",
         imageSrc: "/images/solution_media/Pill-Bottle-Mockup.webp",
       },
       {
         id: 6,
         name: "Enclomiphene Citrate",
-        description: "Oral Tablet",
+        description: "Product Info",
         price: "$94.99/m*",
         imageSrc: "/images/solution_media/Pill-Bottle-Mockup.webp",
       },
@@ -96,7 +97,7 @@ const Solutions = () => {
         <RunningLogo />
         <WellnessPro />
         <EasyOnlineCare treatmentmens={treatmentmens} />
-        <BloodworkPanel />
+        <BloodworkPanelWomen />
         <FrequentlyAskedQues />
         <div className="flex flex-col gap-y-3.5">
           <Investment

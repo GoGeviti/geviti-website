@@ -10,6 +10,12 @@ import {
   HomeOutlineIcon,
   TeamIcon,
 } from "@/components/Icons/Landing";
+import {
+  BloodDropIcon,
+  FIleIcon,
+  GraphWomenIcon,
+  MemeberIcon,
+} from "@/components/Solutions/SolutionIcons";
 
 const landingData = {
   navbar: {
@@ -94,26 +100,26 @@ const landingData = {
         id: "step-1",
         title:
           "Become a member by <br /> purchasing a full panel <br /> diagnostic package",
-        icon: GevitiIcon,
+        icon: MemeberIcon,
       },
       {
         id: "step-2",
         title:
           "Complete your at-home blood <br /> draw with our mobile <br /> phlebotomy team",
-        icon: HomeOutlineIcon,
+        icon: BloodDropIcon,
         iconMobile: HomeIcon,
       },
       {
         id: "step-3",
         title:
           "Review results and tailored <br /> protocol with your designated <br /> care team",
-        icon: ChartIcon,
+        icon: FIleIcon,
       },
       {
         id: "step-4",
         title:
           "Receive your tailor-made <br /> protocols in the mail and <br /> track your progress",
-        icon: DocumentIcon,
+        icon: GraphWomenIcon,
       },
     ],
   },
