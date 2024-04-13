@@ -16,7 +16,14 @@ const tabContent = [
   { id: 5, label: "Thyroid", icon: <ThyroidIcon /> },
 ];
 
-const EasyCareTab = ({ activeContent, setActiveContent }) => {
+interface IEasyCareTab {
+  activeContent: string;
+  setActiveContent: (content: string) => void;
+}
+
+const EasyCareTab = (props: IEasyCareTab) => {
+  const { activeContent, setActiveContent } = props;
+
   return (
     <>
       <section className="w-full flex items-center justify-center">
@@ -37,7 +44,7 @@ const EasyCareTab = ({ activeContent, setActiveContent }) => {
             </button>
           ))}
         </div>
-        <div className=" justify-between items-baseline bg-[#F5F6F6] rounded-[20px] p-[6px] flex lg:hidden w-full">
+        <div className="justify-between items-baseline bg-[#F5F6F6] rounded-[20px] p-[6px] flex lg:hidden w-full">
           <div className="flex items-center gap-[6px] text-xs text-[#181A1C] font-Poppins">
             <TherapyIcon />
             Testosterone Therapy
