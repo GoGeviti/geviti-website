@@ -145,3 +145,17 @@ input[type="number"]::placeholder {
     z-index: 0;
   }
 }
+
+.custom-cursor {
+  /* width: 8px;
+  height: 8px;
+  background-color: #FF5733;  */
+  background-color: black;
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  /* Additional Tailwind CSS classes */
+  transform: translate(-50%, -50%);
+mix-blend-mode:multiply;
+}

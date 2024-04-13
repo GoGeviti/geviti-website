@@ -12,11 +12,17 @@ const Solutions = () => {
   return (
     <>
       <div className="bg-[#F2F2F2]">
-        <Hero />
+        <Hero 
+         image="/images/solution_media/solution-bg.webp"
+         imageMobile="/images/solution_media/solution-mobile-bg.webp" 
+        />
         <RunningLogo />
-        <WellnessPro />
-        <EasyOnlineCare />
-        <BloodworkPanel />
+        <WellnessPro/>
+        <EasyOnlineCare 
+          heading="Easy online care"
+          subheading="Treatment options for male optimization"
+        />
+        <BloodworkPanel bgColor="bg-primary" progressbg="bg-[#252627]" barbg="bg-[#99D4FF]"/>
         <OptimizedYourSelf bgimgyourself="/images/solution_media/running-man.webp" />
         <FrequentlyAskedQues />
         <div className="flex flex-col gap-y-3.5">

@@ -14,8 +14,13 @@ import ButtonCta from "../Landing/ButtonCta";
 import { slideUpTransition } from "../Landing/transition";
 
 const heroData = landingData.hero;
+interface HeroProps {
+  image: string;
+  imageMobile: string;
+}
 
-const Hero: React.FC = () => {
+
+const Hero: React.FC<HeroProps> = ({ image, imageMobile }) => {
   const [activeStepIdx, setActiveStepIdx] = useState<number>(0);
   const [startAutoRunProgress, setStartAutoRunProgress] =
     useState<boolean>(false);
@@ -124,7 +129,7 @@ const Hero: React.FC = () => {
 
     return (
       <Image
-        src={imageMobile ? heroData.imageMobile : heroData.image}
+        src={imageMobile ? imageMobile : image}
         alt="hero"
         priority
         className={clsxm(

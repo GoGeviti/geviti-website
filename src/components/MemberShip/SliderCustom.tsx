@@ -1,5 +1,5 @@
 "use client";
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -8,11 +8,31 @@ import membershipdata from "@/constant/data/membershipdata";
 import ButtonCta from "../Landing/ButtonCta";
 import { ChevronRight } from "../Icons";
 import { BlueArrow } from "../Icons/Landing";
+import CustomCursor from "./CustomCursor";
 const sliderdata = membershipdata.slider;
 
+
 const SliderCustom = () => {
-  const sliderRef = useRef<Slider>(null);
-  //   const [isCursorVisible, setIsCursorVisible] = useState(true);
+
+  const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
+  const [isHovering, setIsHovering] = useState(false);
+
+  const handleMouseMove = (e) => {
+    const boundingRect = e.currentTarget.getBoundingClientRect();
+    const x = e.clientX - boundingRect.left;
+    const y = e.clientY - boundingRect.top;
+    setCursorPosition({ x, y });
+  };
+
+  const handleMouseEnter = () => {
+    setIsHovering(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovering(false);
+  };
+
+  const sliderRef = useRef<Slider>(null); 
 
   const settings = {
     dots: true,
@@ -37,6 +57,7 @@ const SliderCustom = () => {
 
   return (
     <div className="relative w-full lg:px-3 pt-3 rounded-19px">
+      {/* <CustomCursor/> */}
       <div className="overflow-hidden rounded-19px relative">
         <Slider ref={sliderRef} {...settings} className="bg-[#181A1C]">
           {sliderdata.data.map((obj, index) => (
@@ -72,19 +93,28 @@ const SliderCustom = () => {
                 </div>
               </div>
               <div
+               onMouseMove={handleMouseMove}
+               onMouseEnter={handleMouseEnter}
+               onMouseLeave={handleMouseLeave}
                 onClick={nextSlide}
                 className="lg:w-1/2 max-lg:h-[500px] relative"
               >
-                <div
-                  onClick={nextSlide}
-                  className=" absolute w-[156px] cursor-pointer h-[156px] rounded-full flex items-center justify-center gap-2 bg-primary"
+                <div 
+                  className=" absolute w-[156px] top-[75%] mix-blend-multiply left-[-10%] cursor-pointer h-[156px] rounded-full flex items-center justify-center gap-2 bg-primary"
                 >
                   <p className=" text-sm text-blue-1 font-Poppins font-medium">
                     Click to slide
                   </p>{" "}
                   <BlueArrow />
                 </div>
-                {/* {isCursorVisible && <CustomCursor/>} */}
+
+                {isHovering && (
+        <div
+          className="custom-cursor"
+          style={{ left: cursorPosition.x, top: cursorPosition.y }}
+        ></div>
+      )}
+            
                 <Image
                   className=" w-full h-full object-cover"
                   src={obj.img}
