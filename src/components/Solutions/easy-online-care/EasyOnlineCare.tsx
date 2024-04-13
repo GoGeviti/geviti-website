@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import React, { useState } from "react";
 import EasyCareTab from "./EasyCareTab";
 import Antiaging from "./Antiaging";
@@ -11,9 +11,14 @@ import EasyCareProductCard from "./EasyCareProductCard";
 interface EasyOnlineCareProps {
   heading: string;
   subheading: string;
+  treatmentmens: any;
 }
 
-const EasyOnlineCare: React.FC<EasyOnlineCareProps> = ({ heading, subheading }) => {
+const EasyOnlineCare: React.FC<EasyOnlineCareProps> = ({
+  heading,
+  subheading,
+  treatmentmens,
+}) => {
   const [activeContent, setActiveContent] = useState("Testosterone Therapy");
 
   return (
@@ -37,10 +42,18 @@ const EasyOnlineCare: React.FC<EasyOnlineCareProps> = ({ heading, subheading }) 
               {activeContent === "Testosterone Therapy" && (
                 <TestosteroneTherapy />
               )}
-              {activeContent === "Anti-aging Peptides" && <Antiaging />}
-              {activeContent === "Medical Weight Loss" && <MedicalWeightLoss />}
-              {activeContent === "Sexual Health" && <SexualHealth />}
-              {activeContent === "Thyroid" && <Thyroid />}
+              {activeContent === "Anti-aging Peptides" && (
+                <Antiaging treatmentmens={treatmentmens} />
+              )}
+              {activeContent === "Medical Weight Loss" && (
+                <MedicalWeightLoss treatmentmens={treatmentmens} />
+              )}
+              {activeContent === "Sexual Health" && (
+                <SexualHealth treatmentmens={treatmentmens} />
+              )}
+              {activeContent === "Thyroid" && (
+                <Thyroid treatmentmens={treatmentmens} />
+              )}
             </div>
           </div>
           <EasyCareProductCard />

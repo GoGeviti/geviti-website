@@ -2,18 +2,18 @@ import React from "react";
 import { CheckIcon } from "../SolutionIcons";
 import ButtonCta from "@/components/Landing/ButtonCta";
 
-interface CardProps {
+interface IEasyOnlineCareCardListProps {
   title: string;
   subtitle: string;
   description: string;
-  checkIconTexts: string[]; // Array of check icon texts
+  checkIconTexts: string[];
 }
 
-interface CardProps {
-  obj: CardProps;
+interface IEasyOnlineCareCardProps {
+  obj: IEasyOnlineCareCardListProps;
 }
 
-const EasyOnlineCareCard = (props: CardProps) => {
+const EasyOnlineCareCard = (props: IEasyOnlineCareCardProps) => {
   const { title, subtitle, description, checkIconTexts } = props.obj;
 
   return (
