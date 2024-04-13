@@ -50,7 +50,7 @@ const EasyOnlineCare: React.FC<EasyOnlineCareProps> = ({ treatmentmens }) => {
               )}
             </div>
           </div>
-          <EasyCareProductCard />
+          <EasyCareProductCard products={treatmentmens.products} />
         </div>
       </section>
     </>
