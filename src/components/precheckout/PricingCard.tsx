@@ -1,9 +1,9 @@
-import { useState } from 'react';
-import Image from 'next/image';
-import styled, { css, keyframes } from 'styled-components';
+import { useState } from "react";
+import Image from "next/image";
+import styled, { css, keyframes } from "styled-components";
 
-import blueCheckCircle from '@/assets/precheckout/blue-check-circle.svg';
-import QuestionTooltip from '@/components/Home/QuestionTooltip';
+import blueCheckCircle from "@/assets/precheckout/blue-check-circle.svg";
+import QuestionTooltip from "@/components/Home/QuestionTooltip";
 
 const SelectPlanButton = styled.span`
   display: flex;
@@ -74,15 +74,15 @@ const Card = styled.div<{
     border-radius: 30px 0 0 30px;
     border-right: 1px solid rgba(145, 155, 159, 0.2);
     transform-origin: left;
-    transform: ${props =>
-		props.isHovered ? 'scale(1.1) translateX(-9%)' : 'none'};
+    transform: ${(props) =>
+      props.isHovered ? "scale(1.1) translateX(-9%)" : "none"};
 
-    animation: ${props =>
-		props.isInView
-			? css`
+    animation: ${(props) =>
+      props.isInView
+        ? css`
             ${revealFromLeft} 1.7s ease-out
           `
-			: 'none'};
+        : "none"};
   }
 
   &:last-child {
@@ -90,30 +90,30 @@ const Card = styled.div<{
     transform-origin: right;
 
     //transform: scale(1.1) translateX(9%);
-    transform: ${props =>
-		props.isHovered ? 'scale(1.1) translateX(9%)' : 'none'};
+    transform: ${(props) =>
+      props.isHovered ? "scale(1.1) translateX(9%)" : "none"};
 
-    animation: ${props =>
-		props.isInView
-			? css`
+    animation: ${(props) =>
+      props.isInView
+        ? css`
             ${revealFromRight} 1.7s ease-out
           `
-			: 'none'};
+        : "none"};
   }
 
   &:nth-child(2) {
     border-right: 1px solid rgba(145, 155, 159, 0.2);
 
     &:first-child {
-      transform: ${props =>
-		props.isHovered ? 'scale(1.1) translateX(9%)' : 'none'};
+      transform: ${(props) =>
+        props.isHovered ? "scale(1.1) translateX(9%)" : "none"};
     }
-    transform: ${props => (props.isHovered ? 'scale(1.1)' : 'none')};
+    transform: ${(props) => (props.isHovered ? "scale(1.1)" : "none")};
   }
 
-  ${props =>
-		props.isHovered
-			? css`
+  ${(props) =>
+    props.isHovered
+      ? css`
           border-radius: 30px;
           border: 2px solid #a3e0ff !important;
           box-shadow: 0 15px 30px 0 rgba(16, 24, 40, 0.1);
@@ -125,7 +125,7 @@ const Card = styled.div<{
             background: #a3e0ff;
           }
         `
-			: ''}
+      : ""}
 
   transition:
     0.2s border-radius ease-in-out,
@@ -232,11 +232,9 @@ const CheckboxBox = styled.div<{ isChecked: boolean }>`
     width: 14px;
     border-radius: 2px;
     background: #181a1c;
-    transform: scale(${props => (props.isChecked ? 1 : 0.95)});
-    opacity: ${props => (props.isChecked ? 1 : 0)};
-    transition:
-      0.2s transform ease-out,
-      0.2s opacity ease-out;
+    transform: scale(${(props) => (props.isChecked ? 1 : 0.95)});
+    opacity: ${(props) => (props.isChecked ? 1 : 0)};
+    transition: 0.2s transform ease-out, 0.2s opacity ease-out;
   }
 `;
 
@@ -273,67 +271,65 @@ interface PricingCardProps {
 }
 
 const PricingCard = (props: PricingCardProps) => {
-	const [isAgreed, setIsAgreed] = useState(false);
+  const [isAgreed, setIsAgreed] = useState(false);
 
-	return (
-		<Card
-			className={ 'font-BRSonoma ' }
-			isHovered={ props.isHovered }
-			onMouseEnter={ props.onHover }
-			onMouseLeave={ props.onStopHover }
-			isInView={ props.isInView }
-			isSwitchCard={ props.isSwitchCard }
-			style={ { transform: props.isSwitchCard ? 'scale(1)' : undefined } }
-		>
-			{ !!props.pillText && <GreyPillText>{ props.pillText }</GreyPillText> }
-			<TopRow>
-				<div className='flex flex-col font-Poppins'>
-					<Name>{ props.name }</Name>
-					<PriceRow>
-						<PriceBig>{ props.priceUpfront }</PriceBig>
-						<PriceSmall>+{ props.priceMonthly } monthly</PriceSmall>
-					</PriceRow>
-				</div>
-				{ !!props.biomarkersTested && (
-					<div className='flex flex-col'>
-						<BiomarkersTested>{ props.biomarkersTested }</BiomarkersTested>
-						<BioTestedText>Biomarkers tested</BioTestedText>
-					</div>
-				) }
-			</TopRow>
-			{ props.features.map(feature => (
-				<FeatureRow
-					key={ feature.name }
-					className='font-Poppins'>
-					{ !!feature.description && (
-						<QuestionTooltip text={ feature.description } />
-					) }
-					<FeatureText>{ feature.name }</FeatureText>
-					<Image
-						src={ blueCheckCircle }
-						width={ 23 }
-						height={ 23 }
-						alt='Blue check circle'
-					/>
-				</FeatureRow>
-			)) }
-			{ props.isSwitchCard && (
-				<CheckboxRow onClick={ () => setIsAgreed(prev => !prev) }>
-					<CheckboxBox isChecked={ isAgreed }>
-						<div />
-					</CheckboxBox>
-					<CheckboxText className='font-BRSonoma'>
-						I acknowledge that buying the Clinical Consultation does not guarantee the option to change therapy to Geviti.
-					</CheckboxText>
-				</CheckboxRow>
-			) }
-			<SelectPlanButton
-				className='font-Poppins'
-				onClick={ props.onChoose }>
+  return (
+    <Card
+      className={"font-BRSonoma "}
+      isHovered={props.isHovered}
+      onMouseEnter={props.onHover}
+      onMouseLeave={props.onStopHover}
+      isInView={props.isInView}
+      isSwitchCard={props.isSwitchCard}
+      style={{ transform: props.isSwitchCard ? "scale(1)" : undefined }}
+    >
+      {!!props.pillText && <GreyPillText>{props.pillText}</GreyPillText>}
+      <TopRow>
+        <div className="flex flex-col font-Poppins">
+          <Name>{props.name}</Name>
+          <PriceRow>
+            <PriceBig>{props.priceUpfront}</PriceBig>
+            <PriceSmall>+{props.priceMonthly} monthly</PriceSmall>
+          </PriceRow>
+        </div>
+        {!!props.biomarkersTested && (
+          <div className="flex flex-col">
+            <BiomarkersTested>{props.biomarkersTested}</BiomarkersTested>
+            <BioTestedText>Biomarkers tested</BioTestedText>
+          </div>
+        )}
+      </TopRow>
+      {props.features.map((feature) => (
+        <FeatureRow key={feature.name} className="font-Poppins">
+          {!!feature.description && (
+            <QuestionTooltip text={feature.description} />
+          )}
+          <FeatureText>{feature.name}</FeatureText>
+          <Image
+            src={blueCheckCircle}
+            width={23}
+            height={23}
+            alt="Blue check circle"
+            unoptimized
+          />
+        </FeatureRow>
+      ))}
+      {props.isSwitchCard && (
+        <CheckboxRow onClick={() => setIsAgreed((prev) => !prev)}>
+          <CheckboxBox isChecked={isAgreed}>
+            <div />
+          </CheckboxBox>
+          <CheckboxText className="font-BRSonoma">
+            I acknowledge that buying the Clinical Consultation does not
+            guarantee the option to change therapy to Geviti.
+          </CheckboxText>
+        </CheckboxRow>
+      )}
+      <SelectPlanButton className="font-Poppins" onClick={props.onChoose}>
         Select plan
-			</SelectPlanButton>
-		</Card>
-	);
+      </SelectPlanButton>
+    </Card>
+  );
 };
 
 export default PricingCard;

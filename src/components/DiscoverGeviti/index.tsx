@@ -112,6 +112,7 @@ const DiscoverGeviti: React.FC<DiscoverGevitiProps> = ({
                 className="object-cover object-center"
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 fill
+                unoptimized
               />
             </div>
             <div className="flex flex-1 flex-col space-y-1 pt-[23px] px-[13px]">

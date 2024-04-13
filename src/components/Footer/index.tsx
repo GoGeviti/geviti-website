@@ -221,6 +221,7 @@ const Footer: React.FC<FooterProps> = ({ landingPage }) => {
                     loading="lazy"
                     className="object-contain"
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    unoptimized
                   />
                 </div>
               </CustomLink>
@@ -269,6 +270,7 @@ const Footer: React.FC<FooterProps> = ({ landingPage }) => {
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                         fill
                         loading="lazy"
+                        unoptimized
                       />
                     </div>
                   </CustomLink>
@@ -292,6 +294,7 @@ const Footer: React.FC<FooterProps> = ({ landingPage }) => {
               width={1327.38}
               height={335.04}
               className="w-full"
+              unoptimized
             />
           </div>
         </motion.div>

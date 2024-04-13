@@ -19,7 +19,6 @@ interface HeroProps {
   imageMobile: string;
 }
 
-
 const Hero: React.FC<HeroProps> = ({ image, imageMobile }) => {
   const [activeStepIdx, setActiveStepIdx] = useState<number>(0);
   const [startAutoRunProgress, setStartAutoRunProgress] =
@@ -141,6 +140,7 @@ const Hero: React.FC<HeroProps> = ({ image, imageMobile }) => {
         fill
         quality={100}
         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 100vw"
+        unoptimized
       />
     );
   };
