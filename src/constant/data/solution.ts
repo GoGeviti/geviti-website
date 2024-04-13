@@ -3,12 +3,15 @@ import {
   BarChartSquareIcon,
   ChartIcon,
   DocumentIcon,
+  DropIcon,
   EmergencyCallAddIcon,
+  FavFolder,
   FavoriteChartIcon,
   GevitiIcon,
   HomeIcon,
   HomeOutlineIcon,
   TeamIcon,
+  UserTag,
 } from "@/components/Icons/Landing";
 
 const landingData = {
@@ -46,6 +49,7 @@ const landingData = {
     },
     titleMobile: "Our Products",
   },
+
   investment: {
     preTitle: "An INVESTMENT IN YOUR FUTURE",
     title: "Prioritizing longevity is an investment in your future self.",
@@ -83,9 +87,10 @@ const landingData = {
     },
   },
   steps: {
-    preTitle: "Easy online care",
-    title:
-      'A healthier you in just <span class="sm:hidden"><br /></span>4 easy steps.',
+    preTitle: "Geviti offers data-driven wellness solutions",
+    title: "Begin with an at-home bloodwork panel",
+    subTittle:
+      "Membership journey starts with choosing a “Deep Dive” <br/> diagnostic. We’ll draw your blood from the comfort of your home.",
     btnCta: {
       href: "/onboarding",
       externalLink: false,
@@ -94,23 +99,27 @@ const landingData = {
     list: [
       {
         id: "step-1",
-        title: 'Become a <br class="max-lg-hidden" />Geviti Member',
+        title:
+          "Become a member by <br /> purchasing a full panel <br /> diagnostic package",
         icon: GevitiIcon,
       },
       {
         id: "step-2",
-        title: 'Complete at-<br class="max-lg-hidden" />home labs',
+        title:
+          "Complete your at-home blood <br /> draw with our mobile <br /> phlebotomy team",
         icon: HomeOutlineIcon,
         iconMobile: HomeIcon,
       },
       {
         id: "step-3",
-        title: 'Full lab results <br class="max-lg-hidden" />breakdown',
+        title:
+          "Review results and tailored <br /> protocol with your designated <br /> care team",
         icon: ChartIcon,
       },
       {
         id: "step-4",
-        title: 'Tailor made <br class="max-lg-hidden" />protocols.',
+        title:
+          "Receive your tailor-made <br /> protocols in the mail and <br /> track your progress",
         icon: DocumentIcon,
       },
     ],
