@@ -24,12 +24,7 @@ const Solutions = () => {
           heading="Doctor Led online Treatment"
           subheading="Treatment options for females"
         />
-        <BloodworkPanel
-          bgColor="bg-blue-primary"
-          progressbg="bg-[#ffffff25]"
-          barbg="bg-white"
-        />
-        {/* <OptimizedYourSelf /> */}
+        <BloodworkPanel />
         <FAQ />
 
         <FrequentlyAskedQues />

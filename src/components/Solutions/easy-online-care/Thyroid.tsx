@@ -28,7 +28,12 @@ const imgUrls = [
   "/images/solution_media/Pill-Bottle-Mockup.webp",
   "/images/solution_media/Pill-Bottle-Mockup.webp",
 ];
-const Thyroid = () => {
+
+interface IProps {
+  treatmentmens: any;
+}
+
+const Thyroid = (props: IProps) => {
   return (
     <>
       <section className="bg-[#F2F2F2]">

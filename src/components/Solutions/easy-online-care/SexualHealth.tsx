@@ -28,7 +28,11 @@ const imgUrls = [
   "/images/solution_media/Pill-Bottle-Mockup.webp",
   "/images/solution_media/Pill-Bottle-Mockup.webp",
 ];
-const SexualHealth = () => {
+
+interface IProps {
+  treatmentmens: any;
+}
+const SexualHealth = (props: IProps) => {
   return (
     <>
       <section className="bg-[#F2F2F2]">

@@ -2,11 +2,10 @@ import { NextIcon, PrevIcon } from "../SolutionIcons";
 import EasyOnlineCareCard from "./EasyOnlineCareCard";
 import SliderData from "./SliderData";
 
-const Testosteronelist = [
+const testosteronelist = [
   {
     title: "Compare Testosterone Optimization options",
     subtitle: "Oral Testosterone",
-
     description:
       "The FDA's approval of oral testosterone undecanoate offers a breakthrough in TRT, providing an easy-to-use, effective option for managing Low T. This addition enhances the therapy landscape, simplifying the path to hormonal balance for many.",
 
@@ -28,14 +27,19 @@ const imgUrls = [
   "/images/solution_media/Pill-Bottle-Mockup.webp",
   "/images/solution_media/Pill-Bottle-Mockup.webp",
 ];
-const Antiaging = () => {
+
+interface IProps {
+  treatmentmens: any;
+}
+
+const Antiaging = (props: IProps) => {
   return (
     <>
       <section className="bg-[#F2F2F2]">
         <div className="bg-white flex gap-[23px] justify-between max-w-[1416px] w-full overflow-hidden">
           <div className="w-full grid md:grid-cols-2 grid-cols-1 xl:pl-[68px] gap-[65px] md:gap-6 md:pt-[70px]">
             <div className="max-w-1/2 flex flex-col w-full md:mt-0 mt-[57px] z-10">
-              {Testosteronelist?.map((obj, index) => (
+              {testosteronelist?.map((obj, index) => (
                 <EasyOnlineCareCard obj={obj} key={index} />
               ))}
             </div>
