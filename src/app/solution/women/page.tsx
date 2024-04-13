@@ -97,8 +97,6 @@ const Solutions = () => {
         <WellnessPro />
         <EasyOnlineCare treatmentmens={treatmentmens} />
         <BloodworkPanel />
-        <FAQ />
-
         <FrequentlyAskedQues />
         <div className="flex flex-col gap-y-3.5">
           <Investment
