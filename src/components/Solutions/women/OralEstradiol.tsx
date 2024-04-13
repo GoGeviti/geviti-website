@@ -1,6 +1,6 @@
 import { NextIcon, PrevIcon } from "../SolutionIcons";
-import EasyOnlineCareCard from "./EasyOnlineCareCard";
-import SliderData from "./SliderData";
+import EasyOnlineCareCard from "../easy-online-care/EasyOnlineCareCard";
+import SliderData from "../easy-online-care/SliderData";
 
 const Testosteronelist = [
   {
@@ -28,7 +28,7 @@ const imgUrls = [
   "/images/solution_media/Pill-Bottle-Mockup.webp",
   "/images/solution_media/Pill-Bottle-Mockup.webp",
 ];
-const MedicalWeightLoss = () => {
+const OralEstradiol = () => {
   return (
     <>
       <section className="bg-[#F2F2F2]">
@@ -49,4 +49,4 @@ const MedicalWeightLoss = () => {
   );
 };
 
-export default MedicalWeightLoss;
+export default OralEstradiol;

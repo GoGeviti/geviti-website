@@ -3,15 +3,12 @@ import {
   BarChartSquareIcon,
   ChartIcon,
   DocumentIcon,
-  DropIcon,
   EmergencyCallAddIcon,
-  FavFolder,
   FavoriteChartIcon,
   GevitiIcon,
   HomeIcon,
   HomeOutlineIcon,
   TeamIcon,
-  UserTag,
 } from "@/components/Icons/Landing";
 
 const landingData = {
@@ -91,11 +88,7 @@ const landingData = {
     title: "Begin with an at-home bloodwork panel",
     subTittle:
       "Membership journey starts with choosing a “Deep Dive” <br/> diagnostic. We’ll draw your blood from the comfort of your home.",
-    btnCta: {
-      href: "/onboarding",
-      externalLink: false,
-      text: "Get Started",
-    },
+
     list: [
       {
         id: "step-1",

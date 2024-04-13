@@ -4,52 +4,51 @@ import Link from "next/link";
 import { ArrowNarrowRight } from "@/components/Icons";
 import clsxm from "@/helpers/clsxm";
 
-const products = [
-  {
-    id: 1,
-    name: "Oral Testosterone",
-    description: "Oral Gel Capsule",
-    price: "$94.99/m*",
-    imageSrc: "/images/solution_media/Pill-Bottle-Mockup.webp",
-  },
-  {
-    id: 2,
-    name: "Enclomiphene Citrate",
-    description: "Oral Tablet",
-    price: "$94.99/m*",
-    imageSrc: "/images/solution_media/Pill-Bottle-Mockup.webp",
-  },
-  {
-    id: 3,
-    name: "Testosterone Booster Complex",
-    description: "Oral Tablet",
-    price: "$94.99/m*",
-    imageSrc: "/images/solution_media/Pill-Bottle-Mockup.webp",
-  },
-  {
-    id: 4,
-    name: "Testosterone Topical Cream",
-    description: "Oral Tablet",
-    price: "$94.99/m*",
-    imageSrc: "/images/solution_media/Pill-Bottle-Mockup.webp",
-  },
-  {
-    id: 5,
-    name: "Enclomiphene Citrate",
-    description: "Oral Tablet",
-    price: "$94.99/m*",
-    imageSrc: "/images/solution_media/Pill-Bottle-Mockup.webp",
-  },
-  {
-    id: 6,
-    name: "Enclomiphene Citrate",
-    description: "Oral Tablet",
-    price: "$94.99/m*",
-    imageSrc: "/images/solution_media/Pill-Bottle-Mockup.webp",
-  },
-];
-
 const EasyCareProductCard = () => {
+  const products = [
+    {
+      id: 1,
+      name: "Oral Testosterone",
+      description: "Oral Gel Capsule",
+      price: "$94.99/m*",
+      imageSrc: "/images/solution_media/Pill-Bottle-Mockup.webp",
+    },
+    {
+      id: 2,
+      name: "Enclomiphene Citrate",
+      description: "Oral Tablet",
+      price: "$94.99/m*",
+      imageSrc: "/images/solution_media/Pill-Bottle-Mockup.webp",
+    },
+    {
+      id: 3,
+      name: "Testosterone Booster Complex",
+      description: "Oral Tablet",
+      price: "$94.99/m*",
+      imageSrc: "/images/solution_media/Pill-Bottle-Mockup.webp",
+    },
+    {
+      id: 4,
+      name: "Testosterone Topical Cream",
+      description: "Oral Tablet",
+      price: "$94.99/m*",
+      imageSrc: "/images/solution_media/Pill-Bottle-Mockup.webp",
+    },
+    {
+      id: 5,
+      name: "Enclomiphene Citrate",
+      description: "Oral Tablet",
+      price: "$94.99/m*",
+      imageSrc: "/images/solution_media/Pill-Bottle-Mockup.webp",
+    },
+    {
+      id: 6,
+      name: "Enclomiphene Citrate",
+      description: "Oral Tablet",
+      price: "$94.99/m*",
+      imageSrc: "/images/solution_media/Pill-Bottle-Mockup.webp",
+    },
+  ];
   return (
     <section className="w-full md:bg-transparent bg-[#F2F2F2] flex items-center justify-center">
       <div

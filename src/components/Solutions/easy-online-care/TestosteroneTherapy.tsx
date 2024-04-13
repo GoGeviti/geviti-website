@@ -25,7 +25,6 @@ const Testosteronelist = [
 ];
 const imgUrls = [
   "/images/solution_media/Pill-Bottle-Mockup.webp",
-  "/images/membership/slider1.png",
   "/images/solution_media/Pill-Bottle-Mockup.webp",
   "/images/solution_media/Pill-Bottle-Mockup.webp",
 ];
