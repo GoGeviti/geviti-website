@@ -155,7 +155,7 @@ const BloodworkPanelWomen: React.FC = () => {
                           )}
                         >
                           <span
-                            className="max-lg:text-left whitespace-nowrap text-[#181A1C]"
+                            className="max-lg:text-left  text-[#181A1C]"
                             dangerouslySetInnerHTML={{ __html: step.title }}
                           />
                         </p>

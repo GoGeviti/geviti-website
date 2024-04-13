@@ -98,27 +98,23 @@ const landingData = {
     list: [
       {
         id: "step-1",
-        title:
-          "Become a member by <br /> purchasing a full panel <br /> diagnostic package",
+        title: `Become a member by<br class="max-lg-hidden"/>purchasing a full panel<br class="max-lg-hidden"/>diagnostic package`,
         icon: MemeberIcon,
       },
       {
         id: "step-2",
-        title:
-          "Complete your at-home blood <br /> draw with our mobile <br /> phlebotomy team",
+        title: `Complete your at-home blood<br class="max-lg-hidden"/>draw with our mobile<br class="max-lg-hidden"/>phlebotomy team`,
         icon: BloodDropIcon,
         iconMobile: HomeIcon,
       },
       {
         id: "step-3",
-        title:
-          "Review results and tailored <br /> protocol with your designated <br /> care team",
+        title: `Review results and tailored<br class="max-lg-hidden"/>protocol with your designated<br class="max-lg-hidden"/>care team`,
         icon: FIleIcon,
       },
       {
         id: "step-4",
-        title:
-          "Receive your tailor-made <br /> protocols in the mail and <br /> track your progress",
+        title: `Receive your tailor-made<br class="max-lg-hidden"/>protocols in the mail and<br class="max-lg-hidden"/>track your progress`,
         icon: GraphWomenIcon,
       },
     ],
