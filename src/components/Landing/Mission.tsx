@@ -174,6 +174,7 @@ const Mission: React.FC = () => {
                 sizes="100vw"
                 quality={100}
                 fill
+                unoptimized
               />
             </div>
           )}

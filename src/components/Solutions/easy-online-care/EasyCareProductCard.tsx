@@ -71,6 +71,7 @@ const EasyCareProductCard = () => {
                 className="object-cover object-center mt-6"
                 width={120}
                 height={120}
+                unoptimized
               />
             </div>
             <div className="flex flex-1 flex-col space-y-1 pt-[23px] px-[13px]">

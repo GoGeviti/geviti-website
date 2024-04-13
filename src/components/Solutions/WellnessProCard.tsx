@@ -55,6 +55,7 @@ const WellnessProCard = (props: IWellnessProCardProps) => {
             alt={title}
             width={648}
             height={648}
+            unoptimized
           />
           <div className="relative z-20 md:p-6 p-[18px] flex flex-col justify-end items-start h-full after-gradient-wellnesscard">
             <h2 className="relative z-20 text-[100px] font-normal text-white font-Poppins tracking-[-4px] leading-[70%] mb-[14px]">
