@@ -178,9 +178,9 @@ export const PrevIcon = () => (
     <path
       d="M11.0713 13.1411L6.93129 9.00111L11.0713 4.86111"
       stroke="#181A1C"
-      strokeWidth="1.38"
-      strokeLinecap="round"
-      strokeLinejoin="round"
+      stroke-width="1.38"
+      stroke-linecap="round"
+      stroke-linejoin="round"
     />
   </svg>
 );

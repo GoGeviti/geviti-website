@@ -1,0 +1,127 @@
+import React, { useRef, useState } from "react";
+import Image from "next/image";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import { NextIcon, PrevIcon } from "../SolutionIcons"; // Ensure SolutionIcons import is correct
+import ButtonCta from "@/components/Landing/ButtonCta"; // Ensure ButtonCta import is correct
+
+const SliderData = ({ imgUrls }) => {
+  const sliderRef = useRef(null); // Ref for the slider component
+  const [activeSlide, setActiveSlide] = useState(0); // State to keep track of active slide index
+
+  const settings = {
+    dots: false,
+    infinite: false,
+    speed: 500,
+    slidesToShow: 1,
+    // autoplay: true,
+    slidesToScroll: 1,
+    fade: false,
+    arrows: false,
+    afterChange: (current) => setActiveSlide(current), // Update active slide index
+  };
+
+  const nextSlide = () => {
+    if (sliderRef.current) {
+      sliderRef.current.slickNext();
+    }
+  };
+
+  const prevSlide = () => {
+    if (sliderRef.current) {
+      sliderRef.current.slickPrev();
+    }
+  };
+  // Array of image URLs
+
+  return (
+    <section className="w-full">
+      <div className=" relative flex justify-between items-center w-full">
+        <button
+          onClick={prevSlide}
+          className={`min-w-[46px] min-h-[46px] rounded-full flex items-center justify-center z-50 relative ${
+            activeSlide === 0 ? "!bg-[#F5F6F6]" : " !bg-[#181A1C]"
+          }`}
+        >
+          <svg
+            width="18"
+            height="18"
+            viewBox="0 0 18 18"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M11.0713 13.1411L6.93129 9.00111L11.0713 4.86111"
+              stroke="#181A1C"
+              stroke-width="1.38"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </button>
+        <div className="flex w-[calc(100%-110px)] justify-center">
+          <Slider
+            ref={sliderRef}
+            {...settings}
+            className=" relative z-10 h-auto custom-slider"
+          >
+            {imgUrls.map((url, index) => (
+              <div
+                key={index}
+                className="relative max-w-full !flex items-center justify-center"
+              >
+                <div
+                  style={{ backgroundSize: "100% 100%" }}
+                  className="w-full absolute !-z-50 h-full bg-[url(/images/solution_media/pill-bg.webp)] object-cover appearance-none bg-no-repeat"
+                ></div>
+                <img
+                  src={url}
+                  alt={`Slider Image ${index + 1}`}
+                  className="max-w-[230px] w-full h-full z-20 object-contain"
+                />
+                <p className="absolute top-6  z-10 px-6 py-3 bg-[#fbfbfb] rounded-[14px] shadow-[0px_4px_24px_0px_rgba_(0_0_0_0.15)] text-lg font-medium leading-[140.947%] text-[#181A1C] font-Poppins -tracking-[0.72px]">
+                  As low as $95/m*
+                </p>
+              </div>
+            ))}
+          </Slider>
+        </div>
+        <button
+          onClick={nextSlide}
+          className={` min-w-[46px] min-h-[46px] rounded-full flex items-center justify-center z-50 relative  ${
+            activeSlide === imgUrls.length - 1
+              ? " bg-[#F5F6F6]"
+              : "!bg-[#181A1C]"
+          }`}
+        >
+          <svg
+            width="18"
+            height="18"
+            viewBox="0 0 18 18"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M6.92871 13.1411L11.0687 9.00111L6.92871 4.86111"
+              stroke="#99D4FF"
+              strokeWidth="1.38"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </button>
+      </div>
+      <div className="flex justify-between md:hidden z-10 w-full">
+        <ButtonCta
+          text="Get Started"
+          href="/your-link"
+          theme="primary"
+          className="w-full mt-[74px]"
+        />
+      </div>
+    </section>
+  );
+};
+
+export default SliderData;

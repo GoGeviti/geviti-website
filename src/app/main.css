@@ -33,3 +33,13 @@
     bottom: 0px;
   }
 }
+.custom-slider {
+  max-width: 474px !important;
+  /* width: 100% !important; */
+}
+.custom-slider .slick-slide {
+  height: auto !important;
+}
+.new:disabled {
+  background-color: red !important;
+}
