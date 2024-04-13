@@ -9,11 +9,11 @@ import {
 } from "../SolutionIcons";
 
 const tabContent = [
-  { label: "Testosterone Therapy", icon: <HeartIcon /> },
-  { label: "Anti-aging Peptides", icon: <PeptidesIcon /> },
-  { label: "Medical Weight Loss", icon: <WeightLossIcon /> },
-  { label: "Sexual Health", icon: <HeartIcon /> },
-  { label: "Thyroid", icon: <ThyroidIcon /> },
+  { id: 1, label: "Testosterone Therapy", icon: <HeartIcon /> },
+  { id: 2, label: "Anti-aging Peptides", icon: <PeptidesIcon /> },
+  { id: 3, label: "Medical Weight Loss", icon: <WeightLossIcon /> },
+  { id: 4, label: "Sexual Health", icon: <HeartIcon /> },
+  { id: 5, label: "Thyroid", icon: <ThyroidIcon /> },
 ];
 
 const EasyCareTab = ({ activeContent, setActiveContent }) => {
@@ -21,9 +21,9 @@ const EasyCareTab = ({ activeContent, setActiveContent }) => {
     <>
       <section className="w-full flex items-center justify-center">
         <div className="p-[6px] rounded-[100px] w-full space-x-[14px] bg-gray-50 max-w-[991px] lg:flex hidden justify-between items-center">
-          {tabContent.map(({ label, icon }, index) => (
+          {tabContent.map(({ id, label, icon }) => (
             <button
-              key={index}
+              key={id}
               onClick={() => setActiveContent(label)}
               className={`text-sm font-normal font-Poppins px-5 py-2 rounded-[100px] w-fit ${
                 activeContent === label
