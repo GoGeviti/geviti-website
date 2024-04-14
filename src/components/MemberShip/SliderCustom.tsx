@@ -8,31 +8,47 @@ import membershipdata from "@/constant/data/membershipdata";
 import ButtonCta from "../Landing/ButtonCta";
 import { ChevronRight } from "../Icons";
 import { BlueArrow } from "../Icons/Landing";
-import CustomCursor from "./CustomCursor";
+// import CustomCursor from "./CustomCursor";
+import { motion } from "framer-motion";
+import { gsap } from "gsap";
 const sliderdata = membershipdata.slider;
 
-
 const SliderCustom = () => {
-
+  const cursorRef = useRef(null);
   const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
   const [isHovering, setIsHovering] = useState(false);
-
-  const handleMouseMove = (e) => {
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const handleMouseMove = (e: any) => {
     const boundingRect = e.currentTarget.getBoundingClientRect();
     const x = e.clientX - boundingRect.left;
     const y = e.clientY - boundingRect.top;
     setCursorPosition({ x, y });
+    gsap.to(".custom-cursor-anim", {
+      x: x - 78 + "px",
+      y: y - 78 + "px",
+      duration: 0.1,
+      ease: "power1.inOut",
+    });
   };
 
   const handleMouseEnter = () => {
+    gsap.to(".custom-cursor-anim", {
+      scale: 1,
+      duration: 0.1,
+    });
     setIsHovering(true);
+    console.log("Mouse leave");
   };
 
   const handleMouseLeave = () => {
+    gsap.to(".custom-cursor-anim", {
+      scale: 0,
+      duration: 0.1,
+    });
     setIsHovering(false);
   };
 
-  const sliderRef = useRef<Slider>(null); 
+  const sliderRef = useRef<Slider>(null);
 
   const settings = {
     dots: true,
@@ -40,7 +56,8 @@ const SliderCustom = () => {
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
-    fade: true,
+    fade: false,
+    afterChange: (index: number) => setCurrentSlide(index),
   };
 
   const nextSlide = () => {
@@ -57,7 +74,8 @@ const SliderCustom = () => {
 
   return (
     <div className="relative w-full lg:px-3 pt-3 rounded-19px">
-      {/* <CustomCursor/> */}
+      {/* <CustomCursor /> */}
+      {currentSlide}
       <div className="overflow-hidden rounded-19px relative">
         <Slider ref={sliderRef} {...settings} className="bg-[#181A1C]">
           {sliderdata.data.map((obj, index) => (
@@ -74,9 +92,9 @@ const SliderCustom = () => {
                   {obj.subheading}
                 </p>
                 <ul className=" flex flex-col list-disc my-10 pl-4 max-lg:pb-24">
-                  {obj.list.map((data) => (
+                  {obj.list.map((data, i) => (
                     <li
-                      key={index}
+                      key={i}
                       className="text-white leading-[228.571%] sm:leading-[177%] font-Poppins text-[14px] sm:text-lg"
                     >
                       {data}{" "}
@@ -93,28 +111,21 @@ const SliderCustom = () => {
                 </div>
               </div>
               <div
-               onMouseMove={handleMouseMove}
-               onMouseEnter={handleMouseEnter}
-               onMouseLeave={handleMouseLeave}
+                onMouseMove={handleMouseMove}
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
                 onClick={nextSlide}
                 className="lg:w-1/2 max-lg:h-[500px] relative"
               >
-                <div 
-                  className=" absolute w-[156px] top-[75%] mix-blend-multiply left-[-10%] cursor-pointer h-[156px] rounded-full flex items-center justify-center gap-2 bg-primary"
-                >
-                  <p className=" text-sm text-blue-1 font-Poppins font-medium">
-                    Click to slide
-                  </p>{" "}
-                  <BlueArrow />
-                </div>
+                {currentSlide == index && (
+                  <div className="absolute w-[156px] custom-cursor-anim cursor-pointer h-[156px] rounded-full flex items-center justify-center gap-2 bg-primary">
+                    <p className=" text-sm text-blue-1 font-Poppins font-medium">
+                      Click to slide
+                    </p>
+                    <BlueArrow />
+                  </div>
+                )}
 
-                {isHovering && (
-        <div
-          className="custom-cursor"
-          style={{ left: cursorPosition.x, top: cursorPosition.y }}
-        ></div>
-      )}
-            
                 <Image
                   className=" w-full h-full object-cover"
                   src={obj.img}
