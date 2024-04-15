@@ -16,7 +16,7 @@ interface ProductCardProps {
 }
 
 const ProductCard = (props: ProductCardProps) => {
-  const { id, name, description, price, imageSrc } = props.product;
+  const { name, description, price, imageSrc } = props.product;
 
   return (
     <>

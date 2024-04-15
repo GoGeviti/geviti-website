@@ -16,7 +16,7 @@ const EasyCareProductCard = (props: IProps) => {
         )}
         id="discover-products-scroll"
       >
-        {products?.map((product, index) => (
+        {products?.map((product: any, index: number) => (
           <ProductCard product={product} key={index} />
         ))}
       </div>

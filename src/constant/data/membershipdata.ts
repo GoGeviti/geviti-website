@@ -181,7 +181,7 @@ const membershipdata = {
           "Wholesale At-home Diagnostics",
         ],
         hide: "hidden",
-        img: "/images/membership/slider1.png",
+        img: "/images/membership/men-with-boll.png",
       },
       {
         title: "Data-driven health and wellness, made simple.",
