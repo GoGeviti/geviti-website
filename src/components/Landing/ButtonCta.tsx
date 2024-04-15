@@ -4,9 +4,10 @@ import CustomLink, { CustomLinkProps } from "../CustomLink";
 import { ChevronRight } from "../Icons";
 
 type ButtonCtaProps = CustomLinkProps & {
-  text: string;
+  text?: string;
   arrowClassName?: string;
   theme?: "primary" | "secondary";
+  children?: React.ReactNode;
 };
 
 const ButtonCta: React.FC<ButtonCtaProps> = ({
@@ -14,18 +15,19 @@ const ButtonCta: React.FC<ButtonCtaProps> = ({
   className,
   arrowClassName = "w-[18px] h-[18px]",
   theme = "primary",
+  children,
   ...props
 }) => {
   return (
     <CustomLink
       className={clsxm(
-        "group relative grid place-items-center grid-cols-[auto_46px] overflow-hidden gap-6 rounded-full pl-[42px] py-1.5 pr-1.5 font-medium text-md lg:text-lg leading-6 font-Poppins",
+        "group relative grid place-items-center grid-cols-[auto_46px] overflow-hidden gap-6 rounded-full pl-[42px] py-1.5 pr-1.5 font-medium text-lg leading-6 font-Poppins",
         theme === "primary" ? "bg-primary text-white" : "bg-white text-primary",
         className
       )}
       {...props}
     >
-      <span className="inline-block z-[2]">{text}</span>
+      <span className="inline-block z-[2]">{text || children}</span>
 
       <span
         className={clsxm(

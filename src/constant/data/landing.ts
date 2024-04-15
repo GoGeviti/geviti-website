@@ -8,7 +8,6 @@ import {
   FavoriteChartIcon,
   GevitiIcon,
   HeartbeatIcon,
-  HomeIcon,
   HomeOutlineIcon,
   MedicalDocIcon,
   MonitoringIcon,
@@ -98,7 +97,7 @@ const landingData = {
     title: "Prioritizing longevity is an investment in your future self.",
     description:
       "Live longer without compromising your lifestyle—our longevity solutions are designed to fit seamlessly into your everyday life.",
-    image: "/images/landing/compressed/mission_2.webp",
+    image: "/images/landing/compressed/mission_1.webp",
     imageMobile: "/images/landing/compressed/mission_mobile.webp",
     images: [
       {
@@ -117,34 +116,34 @@ const landingData = {
     },
   },
   steps: {
-    preTitle: "Easy online care",
+    preTitle:
+      '<span class="lg:hidden">Easy online care</span><span class="max-lg:hidden">No more guessing where your health is</span>',
     title:
-      'A healthier you in just <span class="sm:hidden"><br /></span>4 easy steps.',
+      '<span class="lg:hidden">Start your journey with a full blood panel.</span><span class="max-lg:hidden">Your journey begins with a full blood panel.</span>',
     btnCta: {
       href: "/onboarding",
       externalLink: false,
-      text: "Get Started",
+      text: "Become A Member",
     },
     list: [
       {
         id: "step-1",
-        title: 'Become a <br class="max-lg-hidden" />Geviti Member',
+        title: "Sign up for a <br />membership",
         icon: GevitiIcon,
       },
       {
         id: "step-2",
-        title: 'Complete at-<br class="max-lg-hidden" />home labs',
+        title: "Complete at-<br />home labs",
         icon: HomeOutlineIcon,
-        iconMobile: HomeIcon,
       },
       {
         id: "step-3",
-        title: 'Full lab results <br class="max-lg-hidden" />breakdown',
+        title: "Telehealth visit <br />breakdown",
         icon: ChartIcon,
       },
       {
         id: "step-4",
-        title: 'Tailor made <br class="max-lg-hidden" />protocols.',
+        title: "Tailor made <br />protocols.",
         icon: DocumentIcon,
       },
     ],
@@ -272,9 +271,9 @@ const landingData = {
   },
   benefits: {
     preTitle: "Membership Benefits",
-    title: "Innovative clinical treatments",
+    title: "Therapeutics for optimization",
     description:
-      "Geviti has partnered with key compound pharmacies across the country to offer a range of anti-aging care at the lowest prices possible. All clinical protocols are created and overseen by board certified providers.",
+      '<span class="lg:hidden">Geviti has partnered with key compound pharmacies across the country to offer a range of anti-aging care at  the lowest prices possible. All clinical protocols are created and overseen by board certified providers.</span><span class="max-lg:hidden">Your Geviti membership will include the following: range of anti-aging care at the lowest prices possible. All clinical protocols are created and overseen by board certified providers.</span>',
     viewAll: {
       text: "View All Products",
       href: "/products",
@@ -357,22 +356,7 @@ const landingData = {
       "Geviti is reshaping the traditional health care system and the worlds relationship with their health by leveraging cutting edge technology and combining it with convenient diagnostics followed by cutting edge care.",
     list: [
       {
-        id: "1",
-        image: "/images/landing/compressed/dashboard-bloodwork.webp",
-      },
-      {
-        id: "2",
-        title:
-          'Easy to use Geviti <br class="sm:hidden"/>telehealth dashboard.',
-        description:
-          "Our technology driven platform compiles your full health context into a centralized hub that is easy to navigate. In doing so, Geviti works with you to promote longevity using your real health data.",
-        btnCta: {
-          text: "Join Now",
-          href: "/onboarding",
-        },
-      },
-      {
-        id: "3",
+        id: "test-results",
         title: "Up to date test results",
         description:
           "There should never be a reason to bounce around to track down  you lab reports. Geviti compiles your diagnostic results into our platform for users to analyze, track, and understand their markers.",
@@ -400,7 +384,7 @@ const landingData = {
         ],
       },
       {
-        id: "4",
+        id: "mobile-application",
         title: "Integrated health tracking mobile application.",
         description:
           "Geviti’s applications make managing longevity easy and convenient.",
@@ -423,18 +407,203 @@ const landingData = {
           },
         ],
       },
+      {
+        id: "bloodwork-dashboard",
+        image: "/images/landing/compressed/dashboard-bloodwork.webp",
+      },
+      {
+        id: "telehealth-dashboard",
+        title:
+          'Easy to use Geviti <br class="sm:hidden"/>telehealth dashboard.',
+        description:
+          "Our technology driven platform compiles your full health context into a centralized hub that is easy to navigate. In doing so, Geviti works with you to promote longevity using your real health data.",
+        btnCta: {
+          text: '<span class="lg:hidden">Join Now</span><span class="max-lg:hidden">Become A Member</span>',
+          href: "/onboarding",
+        },
+        image: "/images/landing/compressed/dashboard-bloodwork.webp",
+      },
     ],
   },
   homeKits: {
-    description:
-      'Geviti offers a wide range of convenient and <br class="max-lg:hidden" />advanced diagnostics, all from the comfort <br class="max-lg:hidden" />of your home. From mobile phlebotomy, to <br class="max-lg:hidden" />at-home testing kits, we make health <br class="max-lg:hidden" />screening ultra accessible.',
-    title: "Innovative at-home kits",
+    carousel: [
+      {
+        id: "homekits",
+        preTitle: "Members receive access to",
+        title: "Innovative at-home kits",
+        description:
+          'Geviti offers a wide range of convenient and advanced <br class="max-lg:hidden"/>diagnostics, all from the comfort of your home. From mobile <br class="max-lg:hidden"/>phlebotomy, to at-home testing kits, we make health <br class="max-lg:hidden"/>screening ultra accessible.',
+        image: "/images/landing/compressed/homekits.webp",
+        imageMobile: "/images/landing/compressed/homekits-mobile.webp",
+      },
+      {
+        id: "prescription",
+        preTitle: "Members receive access to",
+        title: "Prescription wellness done right",
+        description:
+          'No more over spending on supplements that aren\'t designed <br class="max-lg:hidden"/>exactly for you. Geviti will analyze your biomarkers and create <br class="max-lg:hidden"/>totally custom supplements with everything you need, and <br class="max-lg:hidden"/>nothing that you don’t.',
+        image: "/images/landing/compressed/supplements-pouch.webp",
+        imageMobile: "/images/landing/compressed/supplements-pouch-mobile.webp",
+      },
+      {
+        id: "therapy",
+        preTitle: "Members receive access to",
+        title: "Tailormade smart supplements",
+        description:
+          'We offer hormone therapy, peptide therapy, and other prescription <br class="max-lg:hidden"/>wellness services under the supervision of medical professionals. <br class="max-lg:hidden"/>Once you receive approval from a provider through the Geviti app, <br class="max-lg:hidden"/>we\'ll deliver your treatment directly to you.',
+        image: "/images/landing/compressed/supplements-bottle.webp",
+        imageMobile: "/images/landing/compressed/supplements-bottle.webp",
+      },
+    ],
+    btnCta: {
+      href: "/products",
+      text: "View All Products",
+    },
+    mouseCircleText: "Click To Slide",
   },
   supplements: {
     preTitle: "Driven by your bloodwork Results",
     title: 'Tailormade smart <br class="sm:hidden"/>supplements',
     description:
       "No more over spending on supplements that aren't designed exactly for you. Geviti will analyze your biomarkers and create totally custom supplements with everything you need, and nothing that you don’t.",
+  },
+  textReveal: {
+    paragraph:
+      "Geviti offers enhanced health at every stage of aging with personalized hormone optimization, custom supplements, and tailored wellness plans, aiming to extend your health span and lifespan for more cherished moments with loved ones.",
+  },
+  membership: {
+    priceSection: {
+      preTitle: "Personalized plans that are right for you",
+      title:
+        'Memberships as low as $99<span class="text-xs lg:text-2xl lg:!leading-9">/month</span>',
+      description: "Your Geviti membership will include the following:",
+      btnCta: {
+        text: "Learn More",
+        href: "/onboarding",
+      },
+      btnCtaMobile: {
+        text: "Join Geviti",
+        href: "/onboarding",
+      },
+      list: [
+        {
+          id: "top",
+          reverse: true,
+          list: [
+            {
+              title: "Automated Bloodwork",
+              description: "",
+            },
+            {
+              title: "Wholesale Products",
+              description: "",
+            },
+            {
+              title: "Platform Access",
+              description: "",
+            },
+          ],
+        },
+        {
+          id: "middle",
+          reverse: false,
+          list: [
+            {
+              title: "Prescription Wellness",
+              description:
+                "Your central hub for Your functional care needs. Health metric tracking, Health coach messaging, telehealth visits, and more, all in one place.",
+            },
+            {
+              title: "In-App Doctors",
+              description:
+                "Your central hub for Your functional care needs. Health metric tracking, Health coach messaging, telehealth visits, and more, all in one place.",
+            },
+            {
+              title: "Custom Protocols",
+              description:
+                "Your central hub for Your functional care needs. Health metric tracking, Health coach messaging, telehealth visits, and more, all in one place.",
+            },
+            {
+              title: "Automated Bloodwork",
+              description: "Automated Bloodwork",
+            },
+          ],
+        },
+        {
+          id: "bottom",
+          reverse: true,
+          list: [
+            {
+              title: "Personal Health Coach",
+              description: "",
+            },
+            {
+              title: "Hormone Optimization",
+              description: "",
+            },
+            {
+              title: "Advanced Diagnostics",
+              description: "",
+            },
+            {
+              title: "Wholesale Products",
+              description: "",
+            },
+          ],
+        },
+      ],
+    },
+    locationSection: {
+      preTitle: "MEMBERSHIP FEATURES",
+      title: "Care that goes where you go.",
+      description:
+        "Available in 11 states and expanding across all the country",
+      btnCta: {
+        text: "Become A Member",
+        href: "/onboarding",
+      },
+      btnCtaMobile: {
+        text: "Join Geviti",
+        href: "/onboarding",
+      },
+      image: "/images/landing/compressed/continent_dots.webp",
+    },
+  },
+  features: {
+    preTitle: "membership features",
+    title: "A wellness team in your<br />pocket",
+    description:
+      "Geviti provides our users with a comprehensive care team. Instead of being forced to choose between a healthcare provider and a health coach, we offer a solution where the two work in tandem to craft the ultimate longevity regimen.",
+    btnCta: {
+      href: "/onboarding",
+      text: "Join Geviti",
+    },
+    cards: [
+      {
+        id: "doctor",
+        title: "Doctor Led Care",
+        description:
+          'Cutting edge therapeutics including <br class="max-lg:hidden"/>hormone therapy, peptide therapy, medical weight loss, and more monitored by board <br class="max-lg:hidden"/>certified providers.',
+      },
+      {
+        id: "coaching",
+        title: "Health Coaching",
+        description:
+          'Bi-weekly check-ins from your designated <br class="max-lg:hidden"/>health coach to hold you accountable to <br class="max-lg:hidden"/>your goals and ensure you have the <br class="max-lg:hidden"/>necessary tools for success',
+      },
+      {
+        id: "protocols",
+        title: "Tailored Protocols",
+        description:
+          'The creation of an action plan based off of <br class="max-lg:hidden"/>the users bloodwork results, focusing on <br class="max-lg:hidden"/>lifestyle, nutrition, supplementation, and <br class="max-lg:hidden"/>overall health optimization.',
+      },
+      {
+        id: "education",
+        title: "Health Education",
+        description:
+          'Regular check-ins to educate and monitor <br class="max-lg:hidden"/>progress over time, observing changes in <br class="max-sm:hidden"/>bloodwork biomarkers, wearable device <br class="max-sm:hidden"/>health metrics, and more.',
+      },
+    ],
   },
 };
 

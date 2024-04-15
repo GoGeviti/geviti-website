@@ -72,7 +72,17 @@ const homeData = {
 		viewAll: {
 			text: 'View All Products',
 			href: '/products'
-		}
+		},
+		categories: [
+			{
+				title: 'Mens Products',
+				slug: 'male-hormone-optimization'
+			},
+			{
+				title: 'Womens Products',
+				slug: 'female-hormone-optimization'
+			}
+		]
 	},
 	bloodPanel: [
 		{
