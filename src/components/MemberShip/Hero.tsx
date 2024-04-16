@@ -1,60 +1,61 @@
-"use client";
-import React, { useEffect, useRef, useState } from "react";
-import { motion, useAnimationControls } from "framer-motion";
-import Image from "next/image";
+'use client'
+import React, { useEffect, useRef, useState } from 'react'
+import { motion, useAnimationControls } from 'framer-motion'
+import Image from 'next/image'
 
-import membershipdata from "@/constant/data/membershipdata";
-import clsxm from "@/helpers/clsxm";
-import { screens } from "@/helpers/style";
-import { useWindowDimensions } from "@/hooks";
+import membershipdata from '@/constant/data/membershipdata'
+import clsxm from '@/helpers/clsxm'
+import { screens } from '@/helpers/style'
+import { useWindowDimensions } from '@/hooks'
 
-import CustomLink from "../CustomLink";
-import { ChevronRight } from "../Icons";
-import Navbar from "../Navbar/Landing";
-import ButtonCta from "@/components/Landing/ButtonCta";
+import CustomLink from '../CustomLink'
+import { ChevronRight } from '../Icons'
+import Navbar from '../Navbar/Landing'
+import ButtonCta from '@/components/Landing/ButtonCta'
 
-const heroData = membershipdata.hero;
+const heroData = membershipdata.hero
 
 const Hero: React.FC = () => {
-  const [activeStepIdx, setActiveStepIdx] = useState<number>(0);
-  const [startAutoRunProgress, setStartAutoRunProgress] =
-    useState<boolean>(false);
-  const stepControls = useAnimationControls();
-  const intervalRef = useRef<NodeJS.Timeout | undefined>(undefined);
-  const windowDimensions = useWindowDimensions();
-  const isMobile = windowDimensions.width < screens.lg;
+  const [activeStepIdx, setActiveStepIdx] = useState<number>(0)
+  const [startAutoRunProgress, setStartAutoRunProgress] = useState<boolean>(
+    false,
+  )
+  const stepControls = useAnimationControls()
+  const intervalRef = useRef<NodeJS.Timeout | undefined>(undefined)
+  const windowDimensions = useWindowDimensions()
+  const isMobile = windowDimensions.width < screens.lg
 
   useEffect(() => {
     const timer = setTimeout(() => {
       stepControls.start({
-        width: "20%",
+        width: '20%',
         transition: {
           delay: 1,
           duration: 1,
-          ease: "easeOut",
+          ease: 'easeOut',
         },
-      });
-    }, 1000);
+      })
+    }, 1000)
 
-    return () => clearTimeout(timer);
-  }, []);
+    return () => clearTimeout(timer)
+  }, [])
 
   useEffect(() => {
     if (activeStepIdx >= 4) {
-      clearInterval(intervalRef.current);
-      setStartAutoRunProgress(false);
+      clearInterval(intervalRef.current)
+      setStartAutoRunProgress(false)
     }
-  }, [activeStepIdx]);
+  }, [activeStepIdx])
 
   useEffect(() => {
     if (startAutoRunProgress) {
       intervalRef.current = setInterval(() => {
-        setActiveStepIdx((prev) => prev + 1);
-      }, 750);
+        setActiveStepIdx((prev) => prev + 1)
+      }, 750)
     }
 
-    return () => clearInterval(intervalRef.current);
-  }, [startAutoRunProgress]);
+    return () => clearInterval(intervalRef.current)
+  }, [startAutoRunProgress])
 
   //   const handleScrollCarousel = useCallback(
   //     (e: React.UIEvent<HTMLDivElement>) => {
@@ -89,30 +90,30 @@ const Hero: React.FC = () => {
           {title}
         </span>
       </span>
-    ));
-  };
+    ))
+  }
 
-  const renderImage = (type: "desktop" | "mobile") => {
-    const imageMobile = type === "mobile";
-    console.log(imageMobile);
+  const renderImage = (type: 'desktop' | 'mobile') => {
+    const imageMobile = type === 'mobile'
+    console.log(imageMobile)
     return (
       <Image
         src={imageMobile ? heroData.imageMobile : heroData.image}
         alt="hero"
         priority
         className={clsxm(
-          "object-cover pointer-events-none",
+          'object-cover pointer-events-none',
           imageMobile
-            ? "md:hidden object-center"
-            : "md:block hidden object-right"
+            ? 'md:hidden object-center'
+            : 'md:block hidden object-right',
         )}
         fill
         quality={100}
         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 100vw"
         unoptimized
       />
-    );
-  };
+    )
+  }
 
   return (
     <div className="lg:px-3 lg:pt-3 overflow-hidden font-Poppins">
@@ -121,23 +122,23 @@ const Hero: React.FC = () => {
           onAnimationComplete: () => {
             if (!isMobile) {
               stepControls.start({
-                width: "100%",
+                width: '100%',
                 transition: {
                   duration: 3,
-                  ease: "easeOut",
+                  ease: 'easeOut',
                 },
-              });
-              setStartAutoRunProgress(true);
-              setActiveStepIdx((prev) => prev + 1);
+              })
+              setStartAutoRunProgress(true)
+              setActiveStepIdx((prev) => prev + 1)
             }
           },
         }}
       />
-      <div className="bg-primary h-[calc(100svh+14px)] lg:h-[calc(100vh-12px)] w-full overflow-hidden max-lg:rounded-t-none rounded-19px relative pt-11px lg:pt-5">
+      <div className="bg-primary h-[calc(100svh+14px)] lg:h-[calc(100vh-100px)] w-full overflow-hidden max-lg:rounded-t-none rounded-19px relative pt-11px lg:pt-5">
         <div className="absolute inset-0 w-full h-full">
           <div className="relative overflow-hidden w-full h-full">
-            {renderImage("desktop")}
-            {renderImage("mobile")}
+            {renderImage('desktop')}
+            {renderImage('mobile')}
           </div>
         </div>
         <div className="absolute bottom-0 inset-x-0 w-full h-[78%] backdrop-hero-membership-bottom -z-0" />
@@ -207,7 +208,7 @@ const Hero: React.FC = () => {
                             delay: 1,
                             opacity: {
                               duration: 2,
-                              ease: "easeInOut",
+                              ease: 'easeInOut',
                             },
                             y: {
                               duration: 1,
@@ -236,13 +237,13 @@ const Hero: React.FC = () => {
                         visible: {
                           opacity: 1,
                           y: 0,
-                          backdropFilter: "blur(25px)",
-                          borderRadius: "9999px",
+                          backdropFilter: 'blur(25px)',
+                          borderRadius: '9999px',
                           transition: {
                             delay: 1,
                             opacity: {
                               duration: 2,
-                              ease: "easeInOut",
+                              ease: 'easeInOut',
                             },
                             y: {
                               duration: 1,
@@ -278,7 +279,7 @@ const Hero: React.FC = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Hero;
+export default Hero

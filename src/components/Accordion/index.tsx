@@ -1,11 +1,11 @@
-"use client";
+'use client'
 
-import * as React from "react";
-import * as AccordionPrimitive from "@radix-ui/react-accordion";
+import * as React from 'react'
+import * as AccordionPrimitive from '@radix-ui/react-accordion'
 
-import clsxm from "@/helpers/clsxm";
+import clsxm from '@/helpers/clsxm'
 
-const Accordion = AccordionPrimitive.Root;
+const Accordion = AccordionPrimitive.Root
 
 const AccordionItem = React.forwardRef<
   React.ElementRef<typeof AccordionPrimitive.Item>,
@@ -13,11 +13,11 @@ const AccordionItem = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <AccordionPrimitive.Item
     ref={ref}
-    className={clsxm("border-b", className)}
+    className={clsxm('border-b', className)}
     {...props}
   />
-));
-AccordionItem.displayName = "AccordionItem";
+))
+AccordionItem.displayName = 'AccordionItem'
 
 const AccordionTrigger = React.forwardRef<
   React.ElementRef<typeof AccordionPrimitive.Trigger>,
@@ -27,16 +27,16 @@ const AccordionTrigger = React.forwardRef<
     <AccordionPrimitive.Trigger
       ref={ref}
       className={clsxm(
-        "group w-full transition-all focus:outline-0 focus:ring-0 focus:border-0",
-        className
+        'group w-full transition-all focus:outline-0 focus:ring-0 focus:border-0',
+        className,
       )}
       {...props}
     >
       {children}
     </AccordionPrimitive.Trigger>
   </AccordionPrimitive.Header>
-));
-AccordionTrigger.displayName = AccordionPrimitive.Trigger.displayName;
+))
+AccordionTrigger.displayName = AccordionPrimitive.Trigger.displayName
 
 const AccordionContent = React.forwardRef<
   React.ElementRef<typeof AccordionPrimitive.Content>,
@@ -45,14 +45,14 @@ const AccordionContent = React.forwardRef<
   <AccordionPrimitive.Content
     ref={ref}
     className={clsxm(
-      "overflow-hidden transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down",
-      className
+      'overflow-hidden transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down',
+      className,
     )}
     {...props}
   >
     {children}
   </AccordionPrimitive.Content>
-));
-AccordionContent.displayName = AccordionPrimitive.Content.displayName;
+))
+AccordionContent.displayName = AccordionPrimitive.Content.displayName
 
-export { Accordion, AccordionContent, AccordionItem, AccordionTrigger };
+export { Accordion, AccordionContent, AccordionItem, AccordionTrigger }
