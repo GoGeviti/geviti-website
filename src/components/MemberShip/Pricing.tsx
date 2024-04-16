@@ -89,18 +89,20 @@ const Pricing = () => {
 										<QuestionIcon /> { text }
 									</p>
 								)) }
+							
 								<ButtonCta
 									href=''
 									text='Get Started'
 									theme={
 										value.button === 'primary'
-											? 'primary'
-											: value.button === 'secondary'
-												? 'second ary'
-												: undefined
+										? 'primary'
+										: value.button === 'secondary'
+											? 'secondary'
+											: undefined
 									}
 									className='w-full sm:w-fit mx-auto mt-3'
-								/>
+									/>
+
 							</div>
 							<div className={ `${value.hide}` }>
 								<p className=' absolute top-0 right-8 -translate-y-1/2 text-sm font-Poppins font-medium bg-[#91c9f2] py-2 px-6 rounded-full'>

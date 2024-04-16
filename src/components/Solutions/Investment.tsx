@@ -13,7 +13,7 @@ const Investment = (props: IInvestmentProps) => {
 	return (
 		<>
 			<section className='sm:px-4 mb-10'>
-				<div className='rounded-[19px] md:h-full h-[811px] flex flex-col relative overflow-hidden'>
+				<div className='rounded-[19px] md:h-full h-[811px] flex flex-col relative overflow-hidden -mt-36 md:mt-0'>
 					<div
 						style={ {
 							backgroundImage: `url(${bgimagedesktop})`,

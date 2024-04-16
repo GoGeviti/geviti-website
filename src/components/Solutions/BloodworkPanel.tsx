@@ -22,9 +22,9 @@ const StepsSection: React.FC = () => {
   }
 
   return (
-    <div className="overflow-hidden bg-primary lg:mx-3 lg:mt-3   rounded-[19px]">
+    <div className="overflow-hidden bg-primary lg:mx-3 lg:mt-3 rounded-[19px]">
       <div className="h-full  w-full relative overflow-hidden">
-        <div className="px-4 pt-[52px] pb-[31px] lg:pt-[120px] lg:pb-[138px] flex flex-col lg:gap-y-0 items-center justify-center text-center">
+        <div className="pt-[52px] pb-8 lg:pt-[120px] lg:pb-[138px] flex flex-col lg:gap-y-0 items-center justify-center text-center">
           <div className="text-center sm:mx-auto">
             <p className="mb-5px lg:mb-3.5 uppercase tracking-[1.54px] text-grey-primary text-Poppins text-[10px] font-semibold sm:text-[14px] leading-[171%]">
               {stepsData.preTitle}
@@ -36,7 +36,7 @@ const StepsSection: React.FC = () => {
               </h2>
             )}
             {stepsData.subTittle && (
-              <h2 className="font-Poppins leading-[142.857%] font-normal mt-[14px] text-[#919B9F]  text-xs md:text-sm text-center">
+              <h2 className="font-Poppins leading-[142.857%] font-normal mt-[14px] text-grey-primary  text-xs md:text-sm text-center">
                 <span
                   dangerouslySetInnerHTML={{ __html: stepsData.subTittle }}
                 />
@@ -44,9 +44,9 @@ const StepsSection: React.FC = () => {
             )}
           </div>
 
-          <div className="lg:max-w-7xl lg:mx-auto w-full max-lg:flex max-lg:justify-center ">
+          <div className="container-center lg:mx-auto w-full max-lg:flex max-lg:justify-center ">
             <div className="lg:flex justify-center mt-20 hidden">
-              <div className="flex items-center w-full px-6">
+              <div className="flex items-center w-full">
                 {stepsData.list.map((step, stepIdx) => (
                   <div
                     key={`indicator-step-${step.id}`}
@@ -154,7 +154,7 @@ const StepsSection: React.FC = () => {
                           )}
                         >
                           <span
-                            className="max-lg:text-left whitespace-nowrap text-white"
+                            className="max-lg:text-left  text-white"
                             dangerouslySetInnerHTML={{ __html: step.title }}
                           />
                         </p>

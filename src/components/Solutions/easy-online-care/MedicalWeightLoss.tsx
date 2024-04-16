@@ -10,8 +10,8 @@ const MedicalWeightLoss = (props: IProps) => {
 	return (
 		<>
 			<section className='bg-[#F2F2F2]'>
-				<div className='bg-white flex gap-[23px] justify-between max-w-[1416px] w-full overflow-hidden'>
-					<div className='w-full grid md:grid-cols-2 grid-cols-1 xl:pl-[68px] gap-[65px] md:gap-6 md:pt-[70px]'>
+				<div className='bg-white flex gap-[23px] justify-between container-center w-full overflow-hidden'>
+					<div className='w-full grid md:grid-cols-2 grid-cols-1 gap-[65px] md:gap-6 md:pt-[70px]'>
 						<div className='max-w-1/2 flex flex-col w-full md:mt-0 mt-[57px] z-10'>
 							<EasyOnlineCareCard obj={ cards } />
 						</div>

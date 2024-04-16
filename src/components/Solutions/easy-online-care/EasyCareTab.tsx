@@ -27,7 +27,7 @@ const EasyCareTab = (props: IEasyCareTab) => {
 
   return (
     <>
-      <section className="w-full flex items-center justify-center">
+      <section className="w-full flex items-center justify-center px-4 md:px-0">
         <div className="p-[6px] rounded-[100px] w-full space-x-[14px] bg-gray-50 max-w-[991px] lg:flex hidden justify-between items-center">
           {tabContent.map(({ id, label, icon }) => (
             <button

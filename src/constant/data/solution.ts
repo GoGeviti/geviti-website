@@ -402,6 +402,108 @@ const landingData = {
 		description:
       'No more over spending on supplements that aren\'t designed exactly for you. Geviti will analyze your biomarkers and create totally custom supplements with everything you need, and nothing that you don’t.',
 	},
+	treatmentmens : {
+		sectionsubheading: 'Easy online care',
+		sectionmainheading: 'Treatment options for male optimization',
+		cards: {
+			heading: 'Compare Testosterone Optimization options',
+			subheading: 'Oral Testosterone',
+			paragraph:
+        'The FDA\'s approval of oral testosterone undecanoate offers a breakthrough in TRT, providing an easy-to-use, effective option for managing Low T. This addition enhances the therapy landscape, simplifying the path to hormonal balance for many. ',
+			features: [
+				'FDA Approved',
+				'Bioidentical',
+				'96% Efficacy',
+				'Oral Capsule',
+				'Twice Daily',
+				'Flexible Dosing',
+			],
+			cardslist: [
+				{
+					imageURL: '/images/solution_media/Pill-Bottle-Mockup.webp',
+				},
+				{
+					imageURL: '/images/solution_media/Pill-Bottle-Mockup.webp',
+				},
+				{
+					imageURL: '/images/solution_media/Pill-Bottle-Mockup.webp',
+				},
+				{
+					imageURL: '/images/solution_media/Pill-Bottle-Mockup.webp',
+				},
+			],
+		},
+		products: [
+			{
+				id: 1,
+				name: 'Oral Testosterone',
+				description: 'Oral Gel Capsule',
+				price: '$94.99/m*',
+				imageSrc: '/images/solution_media/Pill-Bottle-Mockup.webp',
+			},
+			{
+				id: 2,
+				name: 'Enclomiphene Citrate',
+				description: 'Oral Tablet',
+				price: '$94.99/m*',
+				imageSrc: '/images/solution_media/Pill-Bottle-Mockup.webp',
+			},
+			{
+				id: 3,
+				name: 'Testosterone Booster Complex',
+				description: 'Oral Tablet',
+				price: '$94.99/m*',
+				imageSrc: '/images/solution_media/Pill-Bottle-Mockup.webp',
+			},
+			{
+				id: 4,
+				name: 'Testosterone Topical Cream',
+				description: 'Oral Tablet',
+				price: '$94.99/m*',
+				imageSrc: '/images/solution_media/Pill-Bottle-Mockup.webp',
+			},
+			{
+				id: 5,
+				name: 'Enclomiphene Citrate',
+				description: 'Oral Tablet',
+				price: '$94.99/m*',
+				imageSrc: '/images/solution_media/Pill-Bottle-Mockup.webp',
+			},
+			{
+				id: 6,
+				name: 'Enclomiphene Citrate',
+				description: 'Oral Tablet',
+				price: '$94.99/m*',
+				imageSrc: '/images/solution_media/Pill-Bottle-Mockup.webp',
+			},
+		],
+	},
+	wellnessprolist : [
+		{
+			title: 'Hormone optimization can change your life',
+			subtitle: '1 in 4 men over age 30 have low T.',
+			description:
+		  '1 of every 4 men over the age of 30 have a testosterone deficiency. Further, 1 in every three adults are overweight. Geviti offers the ultimate solution for health and wellness.',
+			imageURL: '/images/solution_media/low-case.webp',
+			mobileimage: '/images/solution_media/low-case-mobile.webp',
+			counting: '20',
+			million: 'Million',
+			state: 'Men In the united states',
+			age: 'from ages 25-75 have low T',
+		},
+		{
+			title: 'Testosterone deficiencies are common',
+			subtitle: 'Low T can affect any age group.',
+			description:
+		  'It’s a misconception that your testosterone only drops in your older years. More young men struggle with testosterone deficiencies than ever before.',
+			imageURL: '/images/solution_media/hormone-optimization.webp',
+			mobileimage: '/images/solution_media/hormone-optimization-mobile.webp',
+			counting: '20%',
+			million: null,
+			state: 'YOUNG MEN under 39',
+			age: 'have a testosterone deficiency',
+		},
+	]
 };
 
 export default landingData;

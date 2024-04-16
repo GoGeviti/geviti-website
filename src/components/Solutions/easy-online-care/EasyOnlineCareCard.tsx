@@ -22,7 +22,7 @@ const EasyOnlineCareCard = (props: IEasyOnlineCareCardProps) => {
     <>
       <article className="w-full">
         <div className="w-full">
-          <p className="text-[#919B9F] !text-[10px] md:text-sm font-semibold leading-[150%] md:leading-[171.429%] uppercase tracking-[1.1px] md:tracking-[1.54px] font-Poppins">
+          <p className="text-grey-primary !text-[10px] md:text-sm font-semibold leading-[150%] md:leading-[171.429%] uppercase tracking-[1.1px] md:tracking-[1.54px] font-Poppins">
             {heading}
           </p>
           <h2 className="text-primary text-2xl md:text-3xl lg:text-5xl font-normal font-Poppins mt-3 mb-4 sm:my-0">

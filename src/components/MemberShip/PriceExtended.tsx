@@ -8,7 +8,7 @@ const pricing = membershipdata.pricing
 const PriceExtended = () => {
 	return (
 		<div className=' pt-20'>
-			<p className=' uppercase text-[10px] md:text-sm text-[#919B9F] text-center font-Poppins font-semibold'>
+			<p className=' uppercase text-[10px] md:text-sm text-grey-primary text-center font-Poppins font-semibold'>
         Care based off of biomarkers
 			</p>
 			<h4 className='text-[24px] md:text-6xl text-center font-Poppins'>
