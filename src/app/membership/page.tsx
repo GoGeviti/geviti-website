@@ -12,23 +12,23 @@ import BioMakersSection from '../../components/MemberShip/BioMakersSection'
 import Hero from '../../components/MemberShip/Hero'
 
 const MemberShipPage = () => {
-  return (
-    <div className="bg-[#F2F2F2]">
-      <Hero />
-      <RunningLogo />
-      <StepsSection />
-      <SliderCustom />
-      <Pricing />
-      <BioMakersSection />
-      <ChooseGeviti />
-      <Products />
-      <FrequentlyAskedQues />
-      <div className="flex flex-col gap-y-3.5">
-        <Mission />
-        <Footer landingPage />
-      </div>
-    </div>
-  )
+	return (
+		<div className='bg-[#F2F2F2]'>
+			<Hero />
+			<RunningLogo />
+			<StepsSection />
+			<SliderCustom />
+			<Pricing />
+			<BioMakersSection />
+			<ChooseGeviti />
+			<Products />
+			<FrequentlyAskedQues />
+			<div className='flex flex-col gap-y-3.5'>
+				<Mission />
+				<Footer landingPage />
+			</div>
+		</div>
+	)
 }
 
 export default MemberShipPage

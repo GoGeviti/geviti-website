@@ -1,19 +1,19 @@
-'use client';
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+'use client'
+import React, { useState } from 'react'
+import { motion } from 'framer-motion'
 
-import membershipdata from '@/constant/data/membershipdata';
+import membershipdata from '@/constant/data/membershipdata'
 
-import { ChevronDown, FeMaleIcon, InfoBlue, MaleIcon } from '../Icons';
-const biomakers = membershipdata.biomakers;
+import { ChevronDown, FeMaleIcon, InfoBlue, MaleIcon } from '../Icons'
+const biomakers = membershipdata.biomakers
 
 const BioMakersSection = () => {
-	const [isOpen, setIsOpen] = useState(false);
-	const [tab, setTab] = useState('tab1');
-	const [biomakerType, setBiomakerType] = useState('Male');
+	const [isOpen, setIsOpen] = useState(false)
+	const [tab, setTab] = useState('tab1')
+	const [biomakerType, setBiomakerType] = useState('Male')
 	const toggleDropdown = () => {
-		setIsOpen(!isOpen);
-	};
+		setIsOpen(!isOpen)
+	}
 
 	return (
 		<div className='bg-white mx-3 rounded-[19px] my-6 py-8 sm:py-14'>
@@ -108,7 +108,7 @@ const BioMakersSection = () => {
 				) }
 			</div>
 		</div>
-	);
-};
+	)
+}
 
-export default BioMakersSection;
+export default BioMakersSection
