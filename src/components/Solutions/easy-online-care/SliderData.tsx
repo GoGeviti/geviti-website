@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 'use client';
 import React, { useRef, useState } from 'react';
 import Slider from 'react-slick';
@@ -14,7 +15,7 @@ interface IProps {
 const SliderData = (props: IProps) => {
 	const { cardslist } = props;
 
-	const sliderRef = useRef(null);
+	const sliderRef = useRef<any>(null);
 	const [activeSlide, setActiveSlide] = useState(0);
 
 	const settings = {
