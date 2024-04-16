@@ -1,4 +1,4 @@
 export const slideUpTransition = {
-  ease: "easeInOut",
-  duration: 0.75,
+	ease: 'easeInOut',
+	duration: 0.75,
 };

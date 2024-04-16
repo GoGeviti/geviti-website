@@ -1,108 +1,108 @@
-import React from "react";
-import Image from "next/image";
+import React from 'react';
+import Image from 'next/image';
 
-import { landingData } from "@/constant/data";
-import clsxm from "@/helpers/clsxm";
+import { landingData } from '@/constant/data';
+import clsxm from '@/helpers/clsxm';
 
-import ButtonCta from "./ButtonCta";
+import ButtonCta from './ButtonCta';
 
 const innovativeData = landingData.innovative;
 
 {
-  /* eslint-disable @typescript-eslint/no-explicit-any */
+	/* eslint-disable @typescript-eslint/no-explicit-any */
 }
 
 const Innovative: React.FC = () => {
-  const renderTitleDescGridContent = (
-    title: string,
-    description: string,
-    theme = "light"
-  ) => {
-    return (
-      <>
-        <h3
-          className={clsxm(
-            "text-[6.266vw] max-xs:leading-[32px] xs:text-2xl max-md:!leading-9 md:text-3xl xl:text-4xl xl:!leading-[54px] -tracking-0.04em",
-            theme === "light" ? "text-white" : "text-primary"
-          )}
-        >
-          <span dangerouslySetInnerHTML={{ __html: title }} />
-        </h3>
-        <p
-          className={clsxm(
-            "text-grey-primary text-xs lg:text-sm !leading-5",
-            theme === "light" ? "text-grey-primary" : "text-grey-700"
-          )}
-        >
-          {description}
-        </p>
-      </>
-    );
-  };
+	const renderTitleDescGridContent = (
+		title: string,
+		description: string,
+		theme = 'light'
+	) => {
+		return (
+			<>
+				<h3
+					className={ clsxm(
+						'text-[6.266vw] max-xs:leading-[32px] xs:text-2xl max-md:!leading-9 md:text-3xl xl:text-4xl xl:!leading-[54px] -tracking-0.04em',
+						theme === 'light' ? 'text-white' : 'text-primary'
+					) }
+				>
+					<span dangerouslySetInnerHTML={ { __html: title } } />
+				</h3>
+				<p
+					className={ clsxm(
+						'text-grey-primary text-xs lg:text-sm !leading-5',
+						theme === 'light' ? 'text-grey-primary' : 'text-grey-700'
+					) }
+				>
+					{ description }
+				</p>
+			</>
+		);
+	};
 
-  const renderDashboardContent = (item: any) => {
-    return (
-      <div className="absolute pl-[39px] lg:pl-[42px] right-0 top-0 pt-[38px] lg:pt-[51px] flex-none">
-        <Image
-          alt="bloodwork"
-          src={item.image}
-          width={2591.06}
-          height={1727.38}
-          className="w-[80.971rem] h-full pointer-events-none"
-          unoptimized
-        />
-      </div>
-    );
-  };
+	const renderDashboardContent = (item: any) => {
+		return (
+			<div className='absolute pl-[39px] lg:pl-[42px] right-0 top-0 pt-[38px] lg:pt-[51px] flex-none'>
+				<Image
+					alt='bloodwork'
+					src={ item.image }
+					width={ 2591.06 }
+					height={ 1727.38 }
+					className='w-[80.971rem] h-full pointer-events-none'
+					unoptimized
+				/>
+			</div>
+		);
+	};
 
-  const renderUseTelehealthContent = (item: any) => {
-    return (
-      <div className="flex flex-col justify-between h-full">
-        <div className="flex flex-col gap-3.5 lg:gap-6">
-          {renderTitleDescGridContent(item.title, item.description)}
-        </div>
-        <div className="flex lg:mt-20 xl:mt-0">
-          <ButtonCta
-            theme="secondary"
-            href={item.btnCta.href}
-            text={item.btnCta.text}
-          />
-        </div>
-      </div>
-    );
-  };
+	const renderUseTelehealthContent = (item: any) => {
+		return (
+			<div className='flex flex-col justify-between h-full'>
+				<div className='flex flex-col gap-3.5 lg:gap-6'>
+					{ renderTitleDescGridContent(item.title, item.description) }
+				</div>
+				<div className='flex lg:mt-20 xl:mt-0'>
+					<ButtonCta
+						theme='secondary'
+						href={ item.btnCta.href }
+						text={ item.btnCta.text }
+					/>
+				</div>
+			</div>
+		);
+	};
 
-  const renderUpdateTestResultContent = (item: any) => {
-    return (
-      <div className="flex flex-col justify-between h-full">
-        <div className="flex flex-col h-full justify-center items-center relative lg:-mx-5">
-          {item.groupImages.map((image: any, itemIdx: number) => {
-            return (
-              <div
-                key={itemIdx}
-                className={clsxm(
-                  "relative overflow-hidden",
-                  itemIdx === 0 && "z-30",
-                  itemIdx === 1 && "z-20 -top-3 sm:-top-2",
-                  itemIdx === 2 && "z-10 -top-6 sm:-top-4"
-                )}
-              >
-                <div className="relative overflow-hidden w-full h-full">
-                  <Image
-                    src={image}
-                    alt=""
-                    width={2515}
-                    height={305}
-                    className={clsxm(
-                      "pointer-events-none",
-                      itemIdx === 0 && "w-[310px] sm:w-[503px] h-full",
-                      itemIdx === 1 && "w-[291.61px] sm:w-[473px] h-full",
-                      itemIdx === 2 && "w-[275.58px] sm:w-[447px] h-full"
-                    )}
-                    unoptimized
-                  />
-                </div>
-                {/* <div className={ clsxm(
+	const renderUpdateTestResultContent = (item: any) => {
+		return (
+			<div className='flex flex-col justify-between h-full'>
+				<div className='flex flex-col h-full justify-center items-center relative lg:-mx-5'>
+					{ item.groupImages.map((image: any, itemIdx: number) => {
+						return (
+							<div
+								key={ itemIdx }
+								className={ clsxm(
+									'relative overflow-hidden',
+									itemIdx === 0 && 'z-30',
+									itemIdx === 1 && 'z-20 -top-3 sm:-top-2',
+									itemIdx === 2 && 'z-10 -top-6 sm:-top-4'
+								) }
+							>
+								<div className='relative overflow-hidden w-full h-full'>
+									<Image
+										src={ image }
+										alt=''
+										width={ 2515 }
+										height={ 305 }
+										className={ clsxm(
+											'pointer-events-none',
+											itemIdx === 0 && 'w-[310px] sm:w-[503px] h-full',
+											itemIdx === 1 && 'w-[291.61px] sm:w-[473px] h-full',
+											itemIdx === 2 && 'w-[275.58px] sm:w-[447px] h-full'
+										) }
+										unoptimized
+									/>
+								</div>
+								{ /* <div className={ clsxm(
 									'rounded-xl bg-border-innovative-image',
 									itemIdx === 0 && 'p-[0.83px]',
 									itemIdx === 1 && 'p-[0.78px]',
@@ -157,123 +157,125 @@ const Innovative: React.FC = () => {
 											</span>
 										</span>
 									</div>
-								</div> */}
-              </div>
-            );
-          })}
-        </div>
-        <div className="flex flex-col gap-y-3.5 lg:gap-y-6">
-          {renderTitleDescGridContent(item.title, item.description)}
-        </div>
-      </div>
-    );
-  };
+								</div> */ }
+							</div>
+						);
+					}) }
+				</div>
+				<div className='flex flex-col gap-y-3.5 lg:gap-y-6'>
+					{ renderTitleDescGridContent(item.title, item.description) }
+				</div>
+			</div>
+		);
+	};
 
-  const renderApplicationContent = (item: any) => {
-    return (
-      <div className="h-full grid-cols-1 grid lg:grid-cols-2 max-lg:gap-y-5 lg:gap-x-8 relative overflow-hidden">
-        <div>
-          <div className="w-full flex flex-col gap-y-3">
-            {renderTitleDescGridContent(item.title, item.description, "dark")}
-          </div>
-          <div className="flex flex-col gap-y-18px mt-7 lg:mt-12">
-            {item.list.map((detailItem: any, detailIdx: number) => {
-              const Icon = detailItem.icon;
+	const renderApplicationContent = (item: any) => {
+		return (
+			<div className='h-full grid-cols-1 grid lg:grid-cols-2 max-lg:gap-y-5 lg:gap-x-8 relative overflow-hidden'>
+				<div>
+					<div className='w-full flex flex-col gap-y-3'>
+						{ renderTitleDescGridContent(item.title, item.description, 'dark') }
+					</div>
+					<div className='flex flex-col gap-y-18px mt-7 lg:mt-12'>
+						{ item.list.map((detailItem: any, detailIdx: number) => {
+							const Icon = detailItem.icon;
 
-              return (
-                <div
-                  key={detailIdx}
-                  className="flex items-center justify-start gap-3.5"
-                >
-                  <Icon className="flex-shrink-0" />
-                  <h4 className="text-xs !leading-6 uppercase font-normal tracking-0.11em">
-                    {detailItem.text}
-                  </h4>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-        <div className="relative lg:absolute max-lg:flex max-lg:justify-center max-lg:w-full lg:top-0 lg:right-0">
-          <div className="relative overflow-hidden w-[271.93px] h-[588.48px]">
-            <video
-              autoPlay
-              muted
-              playsInline
-              className="absolute w-full h-full inset-0 object-cover z-10 pointer-events-none"
-            >
-              <source
-                src="/videos/application_safari.mp4"
-                type="video/mp4;codecs=hvc1"
-              />
-              <source src="/videos/application.webm" type="video/webm" />
+							return (
+								<div
+									key={ detailIdx }
+									className='flex items-center justify-start gap-3.5'
+								>
+									<Icon className='flex-shrink-0' />
+									<h4 className='text-xs !leading-6 uppercase font-normal tracking-0.11em'>
+										{ detailItem.text }
+									</h4>
+								</div>
+							);
+						}) }
+					</div>
+				</div>
+				<div className='relative lg:absolute max-lg:flex max-lg:justify-center max-lg:w-full lg:top-0 lg:right-0'>
+					<div className='relative overflow-hidden w-[271.93px] h-[588.48px]'>
+						<video
+							autoPlay
+							muted
+							playsInline
+							className='absolute w-full h-full inset-0 object-cover z-10 pointer-events-none'
+						>
+							<source
+								src='/videos/application_safari.mp4'
+								type='video/mp4;codecs=hvc1'
+							/>
+							<source
+								src='/videos/application.webm'
+								type='video/webm' />
               Your browser does not support the video tag.
-            </video>
-          </div>
-        </div>
-      </div>
-    );
-  };
+						</video>
+					</div>
+				</div>
+			</div>
+		);
+	};
 
-  const renderGridItem = (item: any) => {
-    switch (item.id) {
-      case "1":
-        return renderDashboardContent(item);
-      case "2":
-        return renderUseTelehealthContent(item);
-      case "3":
-        return renderUpdateTestResultContent(item);
-      case "4":
-        return renderApplicationContent(item);
-      default:
-        return null;
-    }
-  };
+	const renderGridItem = (item: any) => {
+		switch (item.id) {
+			case '1':
+				return renderDashboardContent(item);
+			case '2':
+				return renderUseTelehealthContent(item);
+			case '3':
+				return renderUpdateTestResultContent(item);
+			case '4':
+				return renderApplicationContent(item);
+			default:
+				return null;
+		}
+	};
 
-  const resolveGridBoxClassName = (id: string) => {
-    switch (id) {
-      case "1":
-        return "lg:col-span-2 bg-blue-primary max-lg:h-[369px]";
-      case "2":
-        return "lg:col-span-1 bg-primary max-lg:order-3 max-lg:h-[369px]";
-      case "3":
-        return "lg:col-span-1 bg-primary max-lg:order-1 max-lg:h-[369px]";
-      case "4":
-        return "lg:col-span-2 bg-blue-primary max-lg:order-2 max-lg:h-[738px] !pb-0";
-      default:
-        return "";
-    }
-  };
+	const resolveGridBoxClassName = (id: string) => {
+		switch (id) {
+			case '1':
+				return 'lg:col-span-2 bg-blue-primary max-lg:h-[369px]';
+			case '2':
+				return 'lg:col-span-1 bg-primary max-lg:order-3 max-lg:h-[369px]';
+			case '3':
+				return 'lg:col-span-1 bg-primary max-lg:order-1 max-lg:h-[369px]';
+			case '4':
+				return 'lg:col-span-2 bg-blue-primary max-lg:order-2 max-lg:h-[738px] !pb-0';
+			default:
+				return '';
+		}
+	};
 
-  return (
-    <div className="lg:px-3 font-Poppins">
-      <div className="container-center text-center lg:text-left mb-[42px] lg:mb-[74px]">
-        <p className="text-grey-primary text-pretitle max-lg:mb-2.5">
-          {innovativeData.preTitle}
-        </p>
+	return (
+		<div className='lg:px-3 font-Poppins'>
+			<div className='container-center text-center lg:text-left mb-[42px] lg:mb-[74px]'>
+				<p className='text-grey-primary text-pretitle max-lg:mb-2.5'>
+					{ innovativeData.preTitle }
+				</p>
 
-        <h2 className="text-2xl md:text-4xl lg:text-[64px] lg:leading-normal -tracking-0.04em max-md:mx-auto max-md:max-w-[330px]">
-          <span dangerouslySetInnerHTML={{ __html: innovativeData.title }} />
-        </h2>
-        <p className="text-grey-400 text-xs lg:text-sm !leading-5 max-lg:mx-auto max-w-[300px] mt-2.5 lg:mt-4 lg:max-w-[561px]">
-          {innovativeData.description}
-        </p>
-      </div>
-      <div className="max-lg:px-4 grid grid-cols-1 lg:grid-cols-3 gap-y-6 lg:gap-y-[26px] lg:gap-x-6 lg:auto-rows-fr xl:auto-rows-[32.125rem]">
-        {innovativeData.list.map((item) => (
-          <div
-            key={item.id}
-            className={clsxm(
-              "relative overflow-hidden isolate w-full h-full py-6 lg:pt-[42px] lg:pb-[46px] px-4 lg:px-9 rounded-19px",
-              resolveGridBoxClassName(item.id)
-            )}
-          >
-            {renderGridItem(item)}
-          </div>
-        ))}
-      </div>
-    </div>
-  );
+				<h2 className='text-2xl md:text-4xl lg:text-[64px] lg:leading-normal -tracking-0.04em max-md:mx-auto max-md:max-w-[330px]'>
+					<span dangerouslySetInnerHTML={ { __html: innovativeData.title } } />
+				</h2>
+				<p className='text-grey-400 text-xs lg:text-sm !leading-5 max-lg:mx-auto max-w-[300px] mt-2.5 lg:mt-4 lg:max-w-[561px]'>
+					{ innovativeData.description }
+				</p>
+			</div>
+			<div className='max-lg:px-4 grid grid-cols-1 lg:grid-cols-3 gap-y-6 lg:gap-y-[26px] lg:gap-x-6 lg:auto-rows-fr xl:auto-rows-[32.125rem]'>
+				{ innovativeData.list.map(item => (
+					<div
+						key={ item.id }
+						className={ clsxm(
+							'relative overflow-hidden isolate w-full h-full py-6 lg:pt-[42px] lg:pb-[46px] px-4 lg:px-9 rounded-19px',
+							resolveGridBoxClassName(item.id)
+						) }
+					>
+						{ renderGridItem(item) }
+					</div>
+				)) }
+			</div>
+		</div>
+	);
 };
 
 export default Innovative;
