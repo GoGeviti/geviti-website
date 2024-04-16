@@ -3,6 +3,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import { motion, useAnimationControls } from 'framer-motion'
 import Image from 'next/image'
 
+import ButtonCta from '@/components/Landing/ButtonCta'
 import membershipdata from '@/constant/data/membershipdata'
 import clsxm from '@/helpers/clsxm'
 import { screens } from '@/helpers/style'
@@ -11,7 +12,6 @@ import { useWindowDimensions } from '@/hooks'
 import CustomLink from '../CustomLink'
 import { ChevronRight } from '../Icons'
 import Navbar from '../Navbar/Landing'
-import ButtonCta from '@/components/Landing/ButtonCta'
 
 const heroData = membershipdata.hero
 
@@ -95,7 +95,7 @@ const Hero: React.FC = () => {
 
   const renderImage = (type: 'desktop' | 'mobile') => {
     const imageMobile = type === 'mobile'
-    console.log(imageMobile)
+    // console.log(imageMobile);
     return (
       <Image
         src={imageMobile ? heroData.imageMobile : heroData.image}
@@ -134,7 +134,7 @@ const Hero: React.FC = () => {
           },
         }}
       />
-      <div className="bg-primary h-[calc(100svh+14px)] lg:h-[calc(100vh-100px)] w-full overflow-hidden max-lg:rounded-t-none rounded-19px relative pt-11px lg:pt-5">
+      <div className="bg-primary h-[calc(100svh+14px)] lg:h-[calc(100vh-12px)] w-full overflow-hidden max-lg:rounded-t-none rounded-19px relative pt-11px lg:pt-5">
         <div className="absolute inset-0 w-full h-full">
           <div className="relative overflow-hidden w-full h-full">
             {renderImage('desktop')}

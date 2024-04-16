@@ -1,126 +1,131 @@
-"use client";
-import React, { useState } from "react";
-import { ChevronDown, QuestionIcon } from "../Icons";
-import membershipdata from "@/constant/data/membershipdata";
-import ButtonCta from "../Landing/ButtonCta";
-import PriceExtended from "./PriceExtended";
+'use client';
+import React, { useState } from 'react';
+
+import membershipdata from '@/constant/data/membershipdata';
+
+import { ChevronDown, QuestionIcon } from '../Icons';
+import ButtonCta from '../Landing/ButtonCta';
+
+import PriceExtended from './PriceExtended';
 const pricing = membershipdata.pricing;
 
 const Pricing = () => {
-  const [isOpen, setIsOpen] = useState(false);
+	const [isOpen, setIsOpen] = useState(false);
 
-  const toggleDropdown = () => {
-    setIsOpen(!isOpen);
-  };
-  return (
-    <div className="bg-white mx-3 rounded-[19px] my-6 py-14">
-      <div className=" container-center ">
-        <p className=" uppercase leading-[171.429%] tracking-[1.54px] text-[10px] lg:text-sm text-grey-primary text-center font-Poppins font-semibold">
+	const toggleDropdown = () => {
+		setIsOpen(!isOpen);
+	};
+	return (
+		<div className='bg-white mx-3 rounded-[19px] my-6 py-14'>
+			<div className=' container-center '>
+				<p className=' uppercase leading-[171.429%] tracking-[1.54px] text-[10px] lg:text-sm text-grey-primary text-center font-Poppins font-semibold'>
           Care based off of biomarkers
-        </p>
-        <h4 className="text-[24px] md:text-[40px] lg:text-[60px] leading-normal text-primary  md:tracking-[-2.56px] text-center font-Poppins">
+				</p>
+				<h4 className='text-[24px] md:text-[40px] lg:text-[60px] leading-normal text-primary  md:tracking-[-2.56px] text-center font-Poppins'>
           Start by establishing baselines
-        </h4>
-        <p className=" text-[12px] md:text-sm leading-[142.857%] text-grey-primary text-center font-Poppins pt-3">
+				</h4>
+				<p className=' text-[12px] md:text-sm leading-[142.857%] text-grey-primary text-center font-Poppins pt-3'>
           Every user starts with one of these to establish baselines. This
-          includes month free.{" "}
-        </p>
+          includes month free.{ ' ' }
+				</p>
 
-        <div className=" my-11 flex justify-center items-center bg-[#F5F6F6] w-fit mx-auto gap-[14px] p-[6px] rounded-[100px]">
-          <p className=" cursor-pointer duration-300 flex bg-[#181A1C] text-white  items-center py-2 px-[14px] font-Poppins rounded-full gap-[6px]">
-            Quarterly{" "}
-            <span className=" text-xs text-[#99D4FF] font-medium bg-[#393C3E] border border-[#57595B] rounded-full px-2 py-px">
+				<div className=' my-11 flex justify-center items-center bg-[#F5F6F6] w-fit mx-auto gap-[14px] p-[6px] rounded-[100px]'>
+					<p className=' cursor-pointer duration-300 flex bg-[#181A1C] text-white  items-center py-2 px-[14px] font-Poppins rounded-full gap-[6px]'>
+            Quarterly{ ' ' }
+						<span className=' text-xs text-[#99D4FF] font-medium bg-[#393C3E] border border-[#57595B] rounded-full px-2 py-px'>
               17% off
-            </span>
-          </p>
-          <p className=" cursor-pointer duration-300 flex hover:bg-[#181A1C] text-[#7B7F81] hover:text-white font-Poppins  items-center py-2 px-[14px] rounded-full">
+						</span>
+					</p>
+					<p className=' cursor-pointer duration-300 flex hover:bg-[#181A1C] text-[#7B7F81] hover:text-white font-Poppins  items-center py-2 px-[14px] rounded-full'>
             Monthly
-          </p>
-        </div>
-        <div className="lg:max-w-full mx-auto max-w-[344px] lg:flex-row flex-col flex gap-8 lg:gap-6 items-end w-full pt-10 ">
-          {pricing.data.map((value, index) => (
-            <div key={index} className=" w-full relative">
-              <div
-                style={{ background: value.bg }}
-                className={`pt-[42px] pb-[34px] px-3 xl:px-6 ${value.text} rounded-2xl w-full`}
-              >
-                <p className="leading-[140%] text-[16px] lg:text-xl font-Poppins ">
-                  {value.name}
-                </p>
-                <h3 className=" text-[30px] xl:text-5xl font-Poppins py-1">
-                  ${value.price}{" "}
-                  <span className="text-[12px] lg:text-sm">
+					</p>
+				</div>
+				<div className='lg:max-w-full mx-auto max-w-[344px] lg:flex-row flex-col flex gap-8 lg:gap-6 items-end w-full pt-10 '>
+					{ pricing.data.map((value, index) => (
+						<div
+							key={ index }
+							className=' w-full relative'>
+							<div
+								style={ { background: value.bg } }
+								className={ `pt-[42px] pb-[34px] px-3 xl:px-6 ${value.text} rounded-2xl w-full` }
+							>
+								<p className='leading-[140%] text-[16px] lg:text-xl font-Poppins '>
+									{ value.name }
+								</p>
+								<h3 className=' text-[30px] xl:text-5xl font-Poppins py-1'>
+                  ${ value.price }{ ' ' }
+									<span className='text-[12px] lg:text-sm'>
                     one time payment
-                  </span>
-                </h3>
-                <p className=" font-medium text-[12px] lg:text-sm font-Poppins ">
+									</span>
+								</h3>
+								<p className=' font-medium text-[12px] lg:text-sm font-Poppins '>
                   +$99/m billed quarterly
-                </p>
-                <p className=" text-2xl font-medium font-Poppins pb-4 mt-8 lg:mt-10">
-                  {value.biomakers}+{" "}
-                  <span className=" text-xs">biomarkers</span>
-                </p>
-                {pricing.features.map((data) => (
-                  <>
-                    <p className=" font-Poppins text-sm lg:text-[12px] xl:text-sm gap-[6px] flex items-center font-medium pb-3">
-                      {" "}
-                      <QuestionIcon /> {data}
-                    </p>
-                  </>
-                ))}
-                <ButtonCta
-                  href=""
-                  text="Get Started"
-                  theme={
-                    value.button === "primary"
-                      ? "primary"
-                      : value.button === "secondary"
-                      ? "secondary"
-                      : undefined
-                  }
-                  className="w-fit mx-auto"
-                />
-              </div>
-              <div className={`${value.hide}`}>
-                <p className=" absolute top-0 right-8 -translate-y-1/2 text-sm font-Poppins font-medium bg-[#91c9f2] py-2 px-6 rounded-full">
+								</p>
+								<p className=' text-2xl font-medium font-Poppins pb-4 mt-8 lg:mt-10'>
+									{ value.biomakers }+{ ' ' }
+									<span className=' text-xs'>biomarkers</span>
+								</p>
+								{ pricing.features.map(data => (
+									<>
+										<p className=' font-Poppins text-sm lg:text-[12px] xl:text-sm gap-[6px] flex items-center font-medium pb-3'>
+											{ ' ' }
+											<QuestionIcon /> { data }
+										</p>
+									</>
+								)) }
+								<ButtonCta
+									href=''
+									text='Get Started'
+									theme={
+										value.button === 'primary'
+											? 'primary'
+											: value.button === 'secondary'
+												? 'secondary'
+												: undefined
+									}
+									className='w-fit mx-auto'
+								/>
+							</div>
+							<div className={ `${value.hide}` }>
+								<p className=' absolute top-0 right-8 -translate-y-1/2 text-sm font-Poppins font-medium bg-[#91c9f2] py-2 px-6 rounded-full'>
                   Most Popular
-                </p>
-                <div
-                  onClick={toggleDropdown}
-                  className={` ${
-                    isOpen ? "bg-[#E6E7E7] border-[#E6E7E7]" : ""
-                  } cursor-pointer hidden  lg:flex mt-3 items-center border border-[#91c9f2] gap-3 rounded-2xl justify-center p-6 w-full bg-[#99D4FF]`}
-                >
-                  <p className=" text-xl font-Poppins">
+								</p>
+								<div
+									onClick={ toggleDropdown }
+									className={ ` ${
+										isOpen ? 'bg-[#E6E7E7] border-[#E6E7E7]' : ''
+									} cursor-pointer hidden  lg:flex mt-3 items-center border border-[#91c9f2] gap-3 rounded-2xl justify-center p-6 w-full bg-[#99D4FF]` }
+								>
+									<p className=' text-xl font-Poppins'>
                     Geviti vs. competitors
-                  </p>
-                  <span className={`${isOpen ? " rotate-180" : ""}`}>
-                    <ChevronDown />
-                  </span>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-        <div
-          onClick={toggleDropdown}
-          className={` ${
-            isOpen ? "bg-[#E6E7E7] border-[#E6E7E7]" : ""
-          } cursor-pointer lg:hidden max-w-[344px] mx-auto flex mt-3 items-center border border-[#91c9f2] gap-3 rounded-2xl justify-center p-6 w-full bg-[#99D4FF]`}
-        >
-          <p className=" text-xl font-Poppins">Geviti vs. competitors</p>
-          <span className={`${isOpen ? " rotate-180" : ""}`}>
-            <ChevronDown />
-          </span>
-        </div>
-        {isOpen && (
-          <>
-            <PriceExtended />
-          </>
-        )}
-      </div>
-    </div>
-  );
+									</p>
+									<span className={ `${isOpen ? ' rotate-180' : ''}` }>
+										<ChevronDown />
+									</span>
+								</div>
+							</div>
+						</div>
+					)) }
+				</div>
+				<div
+					onClick={ toggleDropdown }
+					className={ ` ${
+						isOpen ? 'bg-[#E6E7E7] border-[#E6E7E7]' : ''
+					} cursor-pointer lg:hidden max-w-[344px] mx-auto flex mt-3 items-center border border-[#91c9f2] gap-3 rounded-2xl justify-center p-6 w-full bg-[#99D4FF]` }
+				>
+					<p className=' text-xl font-Poppins'>Geviti vs. competitors</p>
+					<span className={ `${isOpen ? ' rotate-180' : ''}` }>
+						<ChevronDown />
+					</span>
+				</div>
+				{ isOpen && (
+					<>
+						<PriceExtended />
+					</>
+				) }
+			</div>
+		</div>
+	);
 };
 
 export default Pricing;

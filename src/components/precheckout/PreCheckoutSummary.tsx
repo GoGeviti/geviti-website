@@ -1,12 +1,12 @@
-import React from "react";
-import Image from "next/image";
-import styled from "styled-components";
+import React from 'react';
+import Image from 'next/image';
+import styled from 'styled-components';
 
-import doctorVisitIcon from "@/assets/precheckout/doctor-visit.png";
-import gevitiBlueIcon from "@/assets/precheckout/geviti-blue.svg";
-import secureCheckoutIcon from "@/assets/precheckout/secure-checkout.svg";
-import summaryBackgroundImage from "@/assets/precheckout/summary-background-image.png";
-import { ViewState } from "@/components/precheckout/WelcomeTransition";
+import doctorVisitIcon from '@/assets/precheckout/doctor-visit.png';
+import gevitiBlueIcon from '@/assets/precheckout/geviti-blue.svg';
+import secureCheckoutIcon from '@/assets/precheckout/secure-checkout.svg';
+import summaryBackgroundImage from '@/assets/precheckout/summary-background-image.png';
+import { ViewState } from '@/components/precheckout/WelcomeTransition';
 
 const Column = styled.div<{ viewState: ViewState }>`
   position: absolute;
@@ -23,8 +23,8 @@ const Column = styled.div<{ viewState: ViewState }>`
   align-items: center;
   justify-content: center;
 
-  z-index: ${(props) => (props.viewState === ViewState.IN_PROGRESS ? 1 : 0)};
-  opacity: ${(props) => (props.viewState === ViewState.IN_PROGRESS ? 1 : 0)};
+  z-index: ${props => (props.viewState === ViewState.IN_PROGRESS ? 1 : 0)};
+  opacity: ${props => (props.viewState === ViewState.IN_PROGRESS ? 1 : 0)};
 
   transition: 0.3s opacity ease-out;
 `;
@@ -191,127 +191,129 @@ const BackgroundImage = styled(Image)`
 `;
 
 const steps = [
-  "Proceed to checkout, and begin then begin the onboarding process.",
-  "Once account is activated, we’ll send you a link to schedule your mobile blood draw.",
-  "Once the results are in, we’ll notify you to schedule your doctor telehealth visit.",
-  "Finally, we will mail your custom treatment plan every month!",
+	'Proceed to checkout, and begin then begin the onboarding process.',
+	'Once account is activated, we’ll send you a link to schedule your mobile blood draw.',
+	'Once the results are in, we’ll notify you to schedule your doctor telehealth visit.',
+	'Finally, we will mail your custom treatment plan every month!',
 ];
 
 interface PreCheckoutSummaryProps {
   viewState: ViewState;
   onContinue: (
-    planID: "essentials" | "ultimate" | "comprehensive" | "switch"
+    planID: 'essentials' | 'ultimate' | 'comprehensive' | 'switch'
   ) => void;
-  selectedPlanID: "essentials" | "ultimate" | "comprehensive" | "switch";
+  selectedPlanID: 'essentials' | 'ultimate' | 'comprehensive' | 'switch';
 }
 
 const PreCheckoutSummary = (props: PreCheckoutSummaryProps) => {
-  const panelPrice =
-    props.selectedPlanID === "switch"
-      ? "$139.99"
-      : props.selectedPlanID === "ultimate"
-      ? "$605.00"
-      : props.selectedPlanID === "comprehensive"
-      ? "$475.00"
-      : props.selectedPlanID === "essentials"
-      ? "$300.00"
-      : "Continue to see price";
+	const panelPrice =
+    props.selectedPlanID === 'switch'
+    	? '$139.99'
+    	: props.selectedPlanID === 'ultimate'
+    		? '$605.00'
+    		: props.selectedPlanID === 'comprehensive'
+    			? '$475.00'
+    			: props.selectedPlanID === 'essentials'
+    				? '$300.00'
+    				: 'Continue to see price';
 
-  return (
-    <>
-      <Column viewState={props.viewState}>
-        <Row>
-          <TextCol className="font-Poppins">
-            <Heading>Great choice!</Heading>
-            <Subheading className="font-BRSonoma">
+	return (
+		<>
+			<Column viewState={ props.viewState }>
+				<Row>
+					<TextCol className='font-Poppins'>
+						<Heading>Great choice!</Heading>
+						<Subheading className='font-BRSonoma'>
               You’re almost ready to begin your Geviti journey.
-              <br />
+							<br />
               Here’s how to get started:
-            </Subheading>
-            {steps.map((step, index) => (
-              <StepRow key={step}>
-                <StepNumber>{index + 1}</StepNumber>
-                <StepText>{step}</StepText>
-              </StepRow>
-            ))}
-          </TextCol>
-          <SummaryCard className="font-Poppins">
-            <CardHeading className="font-BRSonoma">Order Summary</CardHeading>
-            <CardRow>
-              <Image
-                src={gevitiBlueIcon}
-                height={44}
-                width={44}
-                alt=""
-                unoptimized
-              />
-              <div className="flex flex-col">
-                <ItemName>1st Month Subscription</ItemName>
-                <ItemPrice>
-                  <PriceCrossedOut>$99.99</PriceCrossedOut>
-                  <PriceFree>FREE!</PriceFree>
-                </ItemPrice>
-              </div>
-            </CardRow>
-            <CardRow>
-              <Image
-                src={doctorVisitIcon}
-                height={44}
-                width={44}
-                alt=""
-                unoptimized
-              />
-              <div className="flex flex-col">
-                <ItemName>Telehealth Doctor Visit</ItemName>
-                <ItemPrice>
-                  <PriceCrossedOut>$99.99</PriceCrossedOut>
-                  <PriceFree>FREE!</PriceFree>
-                </ItemPrice>
-              </div>
-            </CardRow>
-            <CardRow>
-              <Image
-                src={doctorVisitIcon}
-                height={44}
-                width={44}
-                alt=""
-                unoptimized
-              />
-              <div className="flex flex-col">
-                <ItemName>
-                  {props.selectedPlanID === "switch"
-                    ? "Clinical Consultation"
-                    : props.selectedPlanID === "ultimate"
-                    ? "Ultimate Panel"
-                    : props.selectedPlanID === "comprehensive"
-                    ? "Comprehensive Panel"
-                    : props.selectedPlanID === "essentials"
-                    ? "Essentials Panel"
-                    : "Blood Panel"}
-                </ItemName>
-                <ItemPrice>{panelPrice}</ItemPrice>
-              </div>
-            </CardRow>
-            <TotalRow>
-              <TotalText>Total</TotalText>
-              <TotalText>{panelPrice}</TotalText>
-            </TotalRow>
-            <ButtonRow onClick={() => props.onContinue(props.selectedPlanID)}>
-              <Image
-                src={secureCheckoutIcon}
-                width={14}
-                height={16}
-                alt=""
-                unoptimized
-              />
-              <span>Secure Checkout</span>
-            </ButtonRow>
-          </SummaryCard>
-        </Row>
-        <BackgroundImage alt="" src={summaryBackgroundImage} />
-      </Column>
-    </>
-  );
+						</Subheading>
+						{ steps.map((step, index) => (
+							<StepRow key={ step }>
+								<StepNumber>{ index + 1 }</StepNumber>
+								<StepText>{ step }</StepText>
+							</StepRow>
+						)) }
+					</TextCol>
+					<SummaryCard className='font-Poppins'>
+						<CardHeading className='font-BRSonoma'>Order Summary</CardHeading>
+						<CardRow>
+							<Image
+								src={ gevitiBlueIcon }
+								height={ 44 }
+								width={ 44 }
+								alt=''
+								unoptimized
+							/>
+							<div className='flex flex-col'>
+								<ItemName>1st Month Subscription</ItemName>
+								<ItemPrice>
+									<PriceCrossedOut>$99.99</PriceCrossedOut>
+									<PriceFree>FREE!</PriceFree>
+								</ItemPrice>
+							</div>
+						</CardRow>
+						<CardRow>
+							<Image
+								src={ doctorVisitIcon }
+								height={ 44 }
+								width={ 44 }
+								alt=''
+								unoptimized
+							/>
+							<div className='flex flex-col'>
+								<ItemName>Telehealth Doctor Visit</ItemName>
+								<ItemPrice>
+									<PriceCrossedOut>$99.99</PriceCrossedOut>
+									<PriceFree>FREE!</PriceFree>
+								</ItemPrice>
+							</div>
+						</CardRow>
+						<CardRow>
+							<Image
+								src={ doctorVisitIcon }
+								height={ 44 }
+								width={ 44 }
+								alt=''
+								unoptimized
+							/>
+							<div className='flex flex-col'>
+								<ItemName>
+									{ props.selectedPlanID === 'switch'
+										? 'Clinical Consultation'
+										: props.selectedPlanID === 'ultimate'
+											? 'Ultimate Panel'
+											: props.selectedPlanID === 'comprehensive'
+												? 'Comprehensive Panel'
+												: props.selectedPlanID === 'essentials'
+													? 'Essentials Panel'
+													: 'Blood Panel' }
+								</ItemName>
+								<ItemPrice>{ panelPrice }</ItemPrice>
+							</div>
+						</CardRow>
+						<TotalRow>
+							<TotalText>Total</TotalText>
+							<TotalText>{ panelPrice }</TotalText>
+						</TotalRow>
+						<ButtonRow onClick={ () => props.onContinue(props.selectedPlanID) }>
+							<Image
+								src={ secureCheckoutIcon }
+								width={ 14 }
+								height={ 16 }
+								alt=''
+								unoptimized
+							/>
+							<span>Secure Checkout</span>
+						</ButtonRow>
+					</SummaryCard>
+				</Row>
+				<BackgroundImage
+					alt=''
+					src={ summaryBackgroundImage } />
+			</Column>
+		</>
+	);
 };
 
 export default PreCheckoutSummary;
