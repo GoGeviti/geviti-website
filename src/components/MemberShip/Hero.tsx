@@ -1,7 +1,7 @@
 'use client'
-import React, { useEffect, useRef, useState } from 'react'
 import { motion, useAnimationControls } from 'framer-motion'
 import Image from 'next/image'
+import React, { useEffect, useRef, useState } from 'react'
 
 import ButtonCta from '@/components/Landing/ButtonCta'
 import membershipdata from '@/constant/data/membershipdata'
@@ -134,7 +134,7 @@ const Hero: React.FC = () => {
           },
         }}
       />
-      <div className="bg-primary h-[calc(100svh+14px)] lg:h-[calc(100vh-12px)] w-full overflow-hidden max-lg:rounded-t-none rounded-19px relative pt-11px lg:pt-5">
+      <div className="bg-primary h-[calc(100svh+14px)] lg:h-[calc(100vh-100px)] w-full overflow-hidden max-lg:rounded-t-none rounded-19px relative pt-11px lg:pt-5">
         <div className="absolute inset-0 w-full h-full">
           <div className="relative overflow-hidden w-full h-full">
             {renderImage('desktop')}

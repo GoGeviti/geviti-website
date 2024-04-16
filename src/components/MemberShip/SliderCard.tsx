@@ -1,11 +1,11 @@
 'use client'
+import { gsap } from 'gsap'
 import Image from 'next/image'
+import { useState } from 'react'
 import 'slick-carousel/slick/slick-theme.css'
 import 'slick-carousel/slick/slick.css'
 import { BlueArrow } from '../Icons/Landing'
 import ButtonCta from '../Landing/ButtonCta'
-import { useRef, useState } from 'react'
-import { gsap } from 'gsap'
 
 interface ISliderCardProps {
   title: string
@@ -59,6 +59,8 @@ const SliderCard = (props: IProps) => {
     })
     setIsHovering(false)
   }
+
+  console.log(cursorPosition, isHovering)
 
   return (
     <>

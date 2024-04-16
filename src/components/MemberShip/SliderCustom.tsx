@@ -1,55 +1,15 @@
 'use client'
-import React, { useRef, useState } from 'react'
-import Slider from 'react-slick'
-// import CustomCursor from "./CustomCursor";
-// import { motion } from 'framer-motion';
-import { gsap } from 'gsap'
-import Image from 'next/image'
-
 import membershipdata from '@/constant/data/membershipdata'
-
-import { ChevronRight } from '../Icons'
-import { BlueArrow } from '../Icons/Landing'
-import ButtonCta from '../Landing/ButtonCta'
-
-import 'slick-carousel/slick/slick.css'
+import { useRef, useState } from 'react'
+import Slider from 'react-slick'
 import 'slick-carousel/slick/slick-theme.css'
+import 'slick-carousel/slick/slick.css'
+import { ChevronRight } from '../Icons'
+import SliderCard from './SliderCard'
 const sliderdata = membershipdata.slider
 
 const SliderCustom = () => {
-  // const cursorRef = useRef(null);
-  // const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
-  // const [isHovering, setIsHovering] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0)
-  const handleMouseMove = (e: any) => {
-    const boundingRect = e.currentTarget.getBoundingClientRect()
-    const x = e.clientX - boundingRect.left
-    const y = e.clientY - boundingRect.top
-    // setCursorPosition({ x, y });
-    gsap.to('.custom-cursor-anim', {
-      x: x - 78 + 'px',
-      y: y - 78 + 'px',
-      duration: 0.1,
-      ease: 'power1.inOut',
-    })
-  }
-
-  const handleMouseEnter = () => {
-    gsap.to('.custom-cursor-anim', {
-      scale: 1,
-      duration: 0.1,
-    })
-    // setIsHovering(true);
-    // console.log('Mouse leave');
-  }
-
-  const handleMouseLeave = () => {
-    gsap.to('.custom-cursor-anim', {
-      scale: 0,
-      duration: 0.1,
-    })
-    // setIsHovering(false);
-  }
 
   const sliderRef = useRef<Slider>(null)
 
@@ -80,63 +40,13 @@ const SliderCustom = () => {
       <div className="overflow-hidden rounded-19px relative">
         <Slider ref={sliderRef} {...settings} className="bg-[#181A1C]">
           {sliderdata.data.map((obj, index) => (
-            <div key={index} className="!flex lg:flex-row flex-col-reverse ">
-              <div className="lg:w-1/2 relative z-10 bg-[#181A1C] px-4 lg:pl-16 lg:pr-11 pt-20 h-full">
-                <p className=" text-grey-primary tracking-[1.1px] leading-[240%] uppercase font-Poppins text-[10px] sm:text-sm font-semibold">
-                  {obj.title}
-                </p>
-                <h4 className=" text-white max-w-[338px] tracking-[-0.96px] sm:tracking-[-1.44px] font-Poppins text-[24px] sm:text-4xl font-medium pb-6 pt-2 sm:max-w-[592px]">
-                  {' '}
-                  {obj.heading}
-                </h4>
-                <p className=" text-grey-primary leading-[166%] sm:leading-[142%] font-Poppins text-[12px] sm:text-sm max-w-[446px]">
-                  {obj.subheading}
-                </p>
-                <ul className=" flex flex-col list-disc my-10 pl-4 max-lg:pb-24">
-                  {obj.list.map((data, i) => (
-                    <li
-                      key={i}
-                      className="text-white leading-[228.571%] sm:leading-[177%] font-Poppins text-[14px] sm:text-lg"
-                    >
-                      {data}{' '}
-                    </li>
-                  ))}
-                </ul>
-                <div className={`${obj.hide} `}>
-                  <ButtonCta
-                    href=""
-                    text="Join Geviti"
-                    theme="secondary"
-                    className="w-fit"
-                  />
-                </div>
-              </div>
-              <div
-                onMouseMove={handleMouseMove}
-                onMouseEnter={handleMouseEnter}
-                onMouseLeave={handleMouseLeave}
-                onClick={nextSlide}
-                className="lg:w-1/2 max-lg:h-[500px] relative"
-              >
-                {currentSlide === index && (
-                  <div className="absolute w-[156px] custom-cursor-anim cursor-pointer h-[156px] rounded-full flex items-center justify-center gap-2 bg-primary">
-                    <p className=" text-sm text-blue-1 font-Poppins font-medium">
-                      Click to slide
-                    </p>
-                    <BlueArrow />
-                  </div>
-                )}
-
-                <Image
-                  className=" w-full h-full object-cover"
-                  src={obj.img}
-                  alt="slider1"
-                  width={300}
-                  height={300}
-                  unoptimized
-                />
-              </div>
-            </div>
+            <SliderCard
+              obj={obj}
+              key={index}
+              index={index}
+              nextSlide={nextSlide}
+              currentSlide={currentSlide}
+            />
           ))}
         </Slider>
         <div className=" absolute max-lg:w-full justify-between bottom-9 px-7 lg:left-16 flex lg:gap-10">
