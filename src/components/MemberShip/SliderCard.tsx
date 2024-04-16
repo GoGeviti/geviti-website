@@ -65,7 +65,7 @@ const SliderCard = (props: IProps) => {
   return (
     <>
       <div className="!flex lg:flex-row flex-col-reverse ">
-        <div className="lg:w-1/2 relative z-10 bg-[#181A1C] px-4 lg:pl-16 lg:pr-11 pt-20 h-full">
+        <div className="lg:w-1/2 relative z-10 bg-primary px-4 lg:pl-16 lg:pr-11 pt-20 h-full">
           <p className=" text-grey-primary tracking-[1.1px] leading-[240%] uppercase font-Poppins text-[10px] sm:text-sm font-semibold">
             {title}
           </p>

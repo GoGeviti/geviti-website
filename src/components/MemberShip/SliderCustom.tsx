@@ -38,7 +38,7 @@ const SliderCustom = () => {
   return (
     <div className="relative w-full lg:px-3 pt-3 rounded-19px">
       <div className="overflow-hidden rounded-19px relative">
-        <Slider ref={sliderRef} {...settings} className="bg-[#181A1C]">
+        <Slider ref={sliderRef} {...settings} className="bg-primary">
           {sliderdata.data.map((obj, index) => (
             <SliderCard
               obj={obj}

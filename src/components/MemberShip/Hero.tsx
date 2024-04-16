@@ -144,7 +144,7 @@ const Hero: React.FC = () => {
         <div className="absolute bottom-0 inset-x-0 w-full h-[78%] backdrop-hero-membership-bottom -z-0" />
         <div className="h-full">
           <div className="relative w-full h-full rounded-b-19px">
-            <div className="container-center pb-18px lg:pb-[47px] h-full w-full flex flex-col justify-end">
+            <div className="container-center pb-10 lg:pb-[47px] h-full w-full flex flex-col justify-end">
               <div className="text-left flex flex-col">
                 <div>
                   <span className="overflow-hidden inline-block">
@@ -192,7 +192,7 @@ const Hero: React.FC = () => {
                       },
                     },
                   }}
-                  className=" text-grey-50 text-[14px] font-normal leading-[20px] max-w-[496px] pt-5 flex flex-col"
+                  className=" text-grey-50 text-[14px] font-normal leading-[20px] max-w-[496px] pt-5 hidden sm:flex flex-col"
                 >
                   {heroData.para}
                 </motion.p>

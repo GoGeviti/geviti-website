@@ -1,30 +1,12 @@
 'use client'
-
-import { motion } from 'framer-motion'
+import Marquee from 'react-fast-marquee'
 import React from 'react'
 import { ArrowUpRight, GevitiLogoIcon } from '../Icons'
 
 const RunningLogo: React.FC = () => {
-  // Duplicating the data for a seamless continuous effect
   const keywordsData = Array.from(Array(40).keys()).concat(
     Array.from(Array(40).keys()),
   )
-
-  // Correct variant structure for Framer Motion with TypeScript
-  const marqueeVariants = {
-    animate: {
-      translateX: ['0%', '-100%'], // Moving from 0% to -100% for the loop
-      transition: {
-        x: {
-          type: 'tween',
-          ease: 'linear',
-          duration: 20,
-          repeat: Infinity,
-          repeatType: 'loop',
-        },
-      },
-    },
-  }
 
   const renderKeyword = (keywordIdx: number, section: number) => (
     <span
@@ -43,13 +25,9 @@ const RunningLogo: React.FC = () => {
   return (
     <div className="py-7 lg:py-14">
       <div className="relative flex justify-center overflow-x-hidden select-none">
-        <motion.div
-          className="h-[42.01px] lg:h-[62.7px] whitespace-nowrap flex"
-          variants={marqueeVariants}
-          animate="animate"
-        >
+        <Marquee>
           {keywordsData.map((idx, index) => renderKeyword(idx, index))}
-        </motion.div>
+        </Marquee>
       </div>
     </div>
   )
