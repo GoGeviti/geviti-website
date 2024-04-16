@@ -10,7 +10,7 @@ const chooseGevitilist = membershipdata.choosegivity
 
 const ChooseGeviti = () => {
 	return (
-		<div className='mx-3 rounded-[19px] my-6 pt-8 sm:py-14'>
+		<div className='sm:mx-3 rounded-[19px] my-6 pt-8 sm:py-14'>
 			<div className=' container-center '>
 				<div className=' md:flex items-center'>
 					<div className='md:w-1/2 '>
@@ -33,10 +33,10 @@ const ChooseGeviti = () => {
 								{ chooseGevitilist?.data.map((text, index) => (
 									<div
 										key={ index }
-										className='  flex items-center gap-3 mb-3 bg-[rgba(255,255,255,0.05)] px-5 py-[14px] border border-[rgba(255,255,255,0.15)] rounded-lg cursor-pointer duration-300 shadow-[0px_4px_15.8px_0px_rgba(2,23,27,0.10)]'
+										className='  flex items-center gap-3 mb-3 bg-[rgba(255,255,255,0.05)] px-3.5 sm:px-5 py-[14px] border border-[rgba(255,255,255,0.15)] rounded-lg cursor-pointer duration-300 shadow-[0px_4px_15.8px_0px_rgba(2,23,27,0.10)]'
 									>
-										<CheckCircleIcon />
-										<p className=' font-Poppins font-medium text-sm'>{ text }</p>
+										<span><CheckCircleIcon /></span>
+										<p className=' font-Poppins font-medium text-xs sm:text-sm'>{ text }</p>
 									</div>
 								)) }
 							</div>

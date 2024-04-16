@@ -78,7 +78,7 @@ const StepsSection: React.FC = () => {
 							</div>
 						</div>
 						<div className='w-full'>
-							<div className='lg:pt-[92px] flex lg:flex-row lg:max-w-full justify-between max-w-[307px]  mx-auto flex-col items-center w-full no-scrollbar overflow-y-hidden transition-all select-none transform flex-nowrap overflow-x-auto lg:overflow-hidden scrolling-touch scroll-smooth max-lg:space-y-[42px] gap-x-18px'>
+							<div className='lg:pt-[92px] flex lg:flex-row lg:max-w-full justify-between sm:max-w-[307px]  mx-auto flex-col items-center w-full no-scrollbar overflow-y-hidden transition-all select-none transform flex-nowrap overflow-x-auto lg:overflow-hidden scrolling-touch scroll-smooth max-lg:space-y-[42px] gap-x-18px'>
 								{ stepsData.list.map((step, stepIdx) => {
 									const isSelected = stepIdx === selectedIdx
 									const Icon = step.icon
@@ -142,14 +142,14 @@ const StepsSection: React.FC = () => {
 													onClick={ () => onSelectStep(stepIdx) }
 													onMouseEnter={ () => onMouseEnter(stepIdx) }
 													className={ clsxm(
-														'cursor-pointer  font-Poppins text-left  text-sm leading-[134%]',
+														'cursor-pointer  font-Poppins text-left  text-sm leading-[134%] max-w-[220px]',
 														isSelected
 															? 'lg:pt-[24.84px] text-primary text-sm !leading-normal font-medium'
 															: 'font-medium text-grey-400 lg:pt-[22.76px] text-sm !leading-normal',
 													) }
 												>
 													<span
-														className='max-lg:text-left whitespace-nowrap'
+														className='max-lg:text-left'
 														dangerouslySetInnerHTML={ { __html: step.title } }
 													/>
 												</p>
@@ -165,11 +165,11 @@ const StepsSection: React.FC = () => {
 												</button>
 												<p
 													className={ clsxm(
-														'cursor-pointer w-full mx-auto text-center font-Poppins  text-sm leading-[134%] lg:pt-[24.84px] text-primary font-medium',
+														'cursor-pointer w-full mx-auto text-center max-w-[280px] font-Poppins  text-sm leading-[134%] lg:pt-[24.84px] text-primary font-medium',
 													) }
 												>
 													<span
-														className='max-lg:text-left whitespace-nowrap'
+														className='max-lg:text-left'
 														dangerouslySetInnerHTML={ { __html: step.title } }
 													/>
 												</p>

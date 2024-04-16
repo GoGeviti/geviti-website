@@ -18,7 +18,7 @@ const Pricing = () => {
 		setIsOpen(!isOpen)
 	}
 	return (
-		<div className='bg-white mx-3 rounded-[19px] my-6 py-14'>
+		<div className='bg-white sm:mx-3 rounded-[19px] my-6 py-14'>
 			<div className=' container-center '>
 				<p className=' uppercase leading-[171.429%] tracking-[1.54px] text-[10px] lg:text-sm text-grey-primary text-center font-Poppins font-semibold'>
           Care based off of biomarkers
@@ -31,7 +31,7 @@ const Pricing = () => {
           includes month free.{ ' ' }
 				</p>
 
-				<div className=' my-11 flex justify-center items-center bg-[#F5F6F6] w-fit mx-auto gap-[14px] p-[6px] rounded-[100px]'>
+				<div className='my-8 sm:my-11 flex justify-center items-center bg-[#F5F6F6] w-fit mx-auto gap-[14px] p-[6px] rounded-[100px]'>
 					<button
 						onClick={ () => setActiveTab('quarterly') }
 						className={ `${
@@ -41,7 +41,7 @@ const Pricing = () => {
 						} transition-all ease-in-out duration-300 flex font-Poppins  items-center py-2 px-[14px] rounded-full gap-1.5` }
 					>
             Quarterly{ ' ' }
-						<span className='text-xs text-grey-50  font-medium bg-[#393C3E] border border-[#57595B] rounded-full px-2 py-px'>
+						<span className='hidden sm:inline-block text-xs text-grey-50  font-medium bg-[#393C3E] border border-[#57595B] rounded-full px-2 py-px'>
               17% off
 						</span>
 					</button>
@@ -56,20 +56,20 @@ const Pricing = () => {
             Monthly
 					</button>
 				</div>
-				<div className='lg:max-w-full mx-auto max-w-[344px] lg:flex-row flex-col flex gap-8 lg:gap-6 items-end w-full pt-10 '>
+				<div className='lg:max-w-full mx-auto max-w-[344px] lg:flex-row flex-col flex gap-10 lg:gap-6 items-end w-full pt-10 '>
 					{ pricing.data.map((value, index) => (
 						<div
 							key={ index }
 							className=' w-full relative'>
 							<div
 								style={ { background: value.bg } }
-								className={ `pt-[42px] pb-[34px] px-3 xl:px-6 ${value.text} rounded-2xl w-full` }
+								className={ `pt-[42px] pb-[34px] px-4 xl:px-6 ${value.text} rounded-2xl w-full` }
 							>
 								<p className='leading-[140%] text-[16px] lg:text-xl font-Poppins '>
 									{ value.name }
 								</p>
 								<h3 className=' text-[30px] xl:text-5xl font-Poppins py-1'>
-                  ${ value.price }{ ' ' }
+                  <span className='font-medium'>${ value.price }</span>{ ' ' }
 									<span className='text-[12px] lg:text-sm'>
                     one time payment
 									</span>
@@ -96,10 +96,10 @@ const Pricing = () => {
 										value.button === 'primary'
 											? 'primary'
 											: value.button === 'secondary'
-												? 'secondary'
+												? 'second ary'
 												: undefined
 									}
-									className='w-fit mx-auto'
+									className='w-full sm:w-fit mx-auto mt-3'
 								/>
 							</div>
 							<div className={ `${value.hide}` }>
@@ -110,9 +110,9 @@ const Pricing = () => {
 									onClick={ toggleDropdown }
 									className={ ` ${
 										isOpen ? 'bg-[#E6E7E7] border-[#E6E7E7]' : ''
-									} cursor-pointer hidden  lg:flex mt-3 items-center border border-[#91c9f2] gap-3 rounded-2xl justify-center p-6 w-full bg-[#99D4FF]` }
+									} cursor-pointer hidden  lg:flex mt-3 items-center border border-[#91c9f2] gap-3 rounded-2xl justify-center px-5 py-[18px] sm:p-6 w-full bg-[#99D4FF]` }
 								>
-									<p className=' text-xl font-Poppins'>
+									<p className=' text-sm sm:text-xl font-Poppins'>
                     Geviti vs. competitors
 									</p>
 									<span className={ `${isOpen ? ' rotate-180' : ''}` }>
@@ -127,9 +127,9 @@ const Pricing = () => {
 					onClick={ toggleDropdown }
 					className={ ` ${
 						isOpen ? 'bg-[#E6E7E7] border-[#E6E7E7]' : ''
-					} cursor-pointer lg:hidden max-w-[344px] mx-auto flex mt-3 items-center border border-[#91c9f2] gap-3 rounded-2xl justify-center p-6 w-full bg-[#99D4FF]` }
+					} cursor-pointer lg:hidden max-w-[344px] mx-auto flex mt-3 items-center border border-[#91c9f2] gap-3 rounded-2xl justify-center px-5 py-[18px] sm:p-6 w-full bg-[#99D4FF]` }
 				>
-					<p className=' text-xl font-Poppins'>Geviti vs. competitors</p>
+					<p className=' text-sm sm:text-xl font-Poppins'>Geviti vs. competitors</p>
 					<span className={ `${isOpen ? ' rotate-180' : ''}` }>
 						<ChevronDown />
 					</span>

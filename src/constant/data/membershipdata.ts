@@ -137,26 +137,26 @@ const membershipdata = {
       {
         id: "step-1",
         title:
-          "Become a member by <br/> purchasing a “Deep Dive” <br/> diagnostic package",
+          "Become a member by purchasing a “Deep Dive” diagnostic package",
         icon: UserTag,
       },
       {
         id: "step-2",
         title:
-          "Complete your at-home blood <br/> draw with our mobile <br/> phlebotomy team",
+          "Complete your at-home blood draw with our mobile phlebotomy team",
         icon: DropIcon,
         iconMobile: DropIcon,
       },
       {
         id: "step-3",
         title:
-          "Review results and tailored <br/> protocol with your designated <br/> care team",
+          "Review results and tailored protocol with your designated care team",
         icon: FavFolder,
       },
       {
         id: "step-4",
         title:
-          "Receive your tailor-made <br/> protocols in the mail and <br/> track your progress",
+          "Receive your tailor-made protocols in the mail and track your progress",
         icon: Graph,
       },
     ],
