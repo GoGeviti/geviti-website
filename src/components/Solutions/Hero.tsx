@@ -98,9 +98,9 @@ const Hero: React.FC<HeroProps> = ({ image, imageMobile }) => {
 						},
 						hidden: { y: '100%' },
 					} }
-					className='inline-block font-medium text-[7.6vw] xs:text-3xl md:text-4xl lg:text-[5vh] xl:text-[46px] !leading-normal -tracking-0.04em text-grey-secondary'
+					className='hero-solutions inline-block font-medium text-[7.6vw] xs:text-3xl md:text-4xl lg:text-[5vh] xl:text-[46px] !leading-normal -tracking-0.04em text-grey-secondary'
 				>
-					{ title }
+					<span dangerouslySetInnerHTML={ { __html: title } } />
 				</motion.span>
 			</span>
 		));
@@ -118,7 +118,7 @@ const Hero: React.FC<HeroProps> = ({ image, imageMobile }) => {
 						},
 						hidden: { y: '100%' },
 					} }
-					className='inline-block font-normal text-xs md:text-sm !leading-[166%] max-w-[496px] -tracking-0.04em text-gray-50 md:mt-6 mt-[5px]'
+					className='inline-block font-normal text-xs md:text-base !leading-[166%] max-w-[496px] text-gray-50 md:mt-6 mt-[5px]'
 				>
 					{ title }
 				</motion.span>
@@ -167,7 +167,7 @@ const Hero: React.FC<HeroProps> = ({ image, imageMobile }) => {
 					},
 				} }
 			/>
-			<div className='bg-primary h-[calc(100vh-14px)] lg:h-[calc(100vh-100px)] w-full overflow-hidden max-lg:rounded-t-none rounded-19px relative pt-11px lg:pt-5'>
+			<div className='bg-primary h-[calc(100vh-14px)] lg:h-[calc(100vh-24px)] w-full overflow-hidden max-lg:rounded-t-none rounded-19px relative pt-11px lg:pt-5'>
 				<div className='absolute inset-0 w-full h-full'>
 					<div className='relative overflow-hidden w-full h-full'>
 						{ renderImage('desktop') }
@@ -194,7 +194,7 @@ const Hero: React.FC<HeroProps> = ({ image, imageMobile }) => {
 											} }
 											initial='hidden'
 											animate='visible'
-											className='text-grey-secondary font-Poppins inline-block font-semibold text-[10px] sm:text-xs lg:text-sm !leading-6 uppercase tracking-0.11em'
+											className='text-grey-secondary font-Poppins inline-block font-semibold text-[10px] sm:text-xs lg:text-sm !leading-6 uppercase tracking-[1.9px]'
 										>
 											{ heroData.preTitle }
 										</motion.h2>

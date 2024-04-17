@@ -25,8 +25,8 @@ const landingData = {
 	},
 	hero: {
 		preTitle: 'mens health and wellness solutions',
-		title: 'Live optimized with Geviti',
-		titles: ['Live optimized with Geviti'],
+		title: 'Live optimized with <b>Geviti</b>',
+		titles: ['Live optimized with <b>Geviti</b>'],
 		subtitles: [
 			'A Geviti membership makes longevity easy and accessible with our wide range of at-home diagnostics, innovative anti-aging therapies, and a dedicated qualified care team.',
 		],
