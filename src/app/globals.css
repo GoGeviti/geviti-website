@@ -2,6 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: grifterbold;
+  src: url("/fonts/grifterbold.otf");
+}
+
+.font-grifterbold {
+  font-family: grifterbold;
+}
+
+.hero-solutions b {
+  font-family: grifterbold;
+  letter-spacing: 2.4px;
+}
+
 @layer utilities {
   .animation-pause {
     animation-play-state: paused;
