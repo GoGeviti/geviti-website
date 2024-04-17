@@ -1,28 +1,29 @@
-'use client';
-import React, { useEffect, useRef, useState } from 'react';
-import { motion, useAnimationControls } from 'framer-motion';
-import Image from 'next/image';
+'use client'
+import React, { useEffect, useRef, useState } from 'react'
+import { motion, useAnimationControls } from 'framer-motion'
+import Image from 'next/image'
 
-import ButtonCta from '@/components/Landing/ButtonCta';
-import membershipdata from '@/constant/data/membershipdata';
-import clsxm from '@/helpers/clsxm';
-import { screens } from '@/helpers/style';
-import { useWindowDimensions } from '@/hooks';
+import ButtonCta from '@/components/Landing/ButtonCta'
+import membershipdata from '@/constant/data/membershipdata'
+import clsxm from '@/helpers/clsxm'
+import { screens } from '@/helpers/style'
+import { useWindowDimensions } from '@/hooks'
 
-import CustomLink from '../CustomLink';
-import { ChevronRight } from '../Icons';
-import Navbar from '../Navbar/Landing';
+import CustomLink from '../CustomLink'
+import { ChevronRight } from '../Icons'
+import Navbar from '../Navbar/Landing'
 
-const heroData = membershipdata.hero;
+const heroData = membershipdata.hero
 
 const Hero: React.FC = () => {
-	const [activeStepIdx, setActiveStepIdx] = useState<number>(0);
-	const [startAutoRunProgress, setStartAutoRunProgress] =
-    useState<boolean>(false);
-	const stepControls = useAnimationControls();
-	const intervalRef = useRef<NodeJS.Timeout | undefined>(undefined);
-	const windowDimensions = useWindowDimensions();
-	const isMobile = windowDimensions.width < screens.lg;
+	const [activeStepIdx, setActiveStepIdx] = useState<number>(0)
+	const [startAutoRunProgress, setStartAutoRunProgress] = useState<boolean>(
+		false,
+	)
+	const stepControls = useAnimationControls()
+	const intervalRef = useRef<NodeJS.Timeout | undefined>(undefined)
+	const windowDimensions = useWindowDimensions()
+	const isMobile = windowDimensions.width < screens.lg
 
 	useEffect(() => {
 		const timer = setTimeout(() => {
@@ -33,28 +34,28 @@ const Hero: React.FC = () => {
 					duration: 1,
 					ease: 'easeOut',
 				},
-			});
-		}, 1000);
+			})
+		}, 1000)
 
-		return () => clearTimeout(timer);
-	}, []);
+		return () => clearTimeout(timer)
+	}, [])
 
 	useEffect(() => {
 		if (activeStepIdx >= 4) {
-			clearInterval(intervalRef.current);
-			setStartAutoRunProgress(false);
+			clearInterval(intervalRef.current)
+			setStartAutoRunProgress(false)
 		}
-	}, [activeStepIdx]);
+	}, [activeStepIdx])
 
 	useEffect(() => {
 		if (startAutoRunProgress) {
 			intervalRef.current = setInterval(() => {
-				setActiveStepIdx(prev => prev + 1);
-			}, 750);
+				setActiveStepIdx(prev => prev + 1)
+			}, 750)
 		}
 
-		return () => clearInterval(intervalRef.current);
-	}, [startAutoRunProgress]);
+		return () => clearInterval(intervalRef.current)
+	}, [startAutoRunProgress])
 
 	//   const handleScrollCarousel = useCallback(
 	//     (e: React.UIEvent<HTMLDivElement>) => {
@@ -91,11 +92,11 @@ const Hero: React.FC = () => {
 					{ title }
 				</span>
 			</span>
-		));
-	};
+		))
+	}
 
 	const renderImage = (type: 'desktop' | 'mobile') => {
-		const imageMobile = type === 'mobile';
+		const imageMobile = type === 'mobile'
 		// console.log(imageMobile);
 		return (
 			<Image
@@ -106,15 +107,15 @@ const Hero: React.FC = () => {
 					'object-cover pointer-events-none',
 					imageMobile
 						? 'md:hidden object-center'
-						: 'md:block hidden object-right'
+						: 'md:block hidden object-right',
 				) }
 				fill
 				quality={ 100 }
 				sizes='(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 100vw'
 				unoptimized
 			/>
-		);
-	};
+		)
+	}
 
 	return (
 		<div className='lg:px-3 lg:pt-3 overflow-hidden font-Poppins'>
@@ -128,14 +129,14 @@ const Hero: React.FC = () => {
 									duration: 3,
 									ease: 'easeOut',
 								},
-							});
-							setStartAutoRunProgress(true);
-							setActiveStepIdx(prev => prev + 1);
+							})
+							setStartAutoRunProgress(true)
+							setActiveStepIdx(prev => prev + 1)
 						}
 					},
 				} }
 			/>
-			<div className='bg-primary h-[calc(100svh+14px)] lg:h-[calc(100vh-12px)] w-full overflow-hidden max-lg:rounded-t-none rounded-19px relative pt-11px lg:pt-5'>
+			<div className='bg-primary h-[calc(100svh+14px)] lg:h-[calc(100vh-100px)] w-full overflow-hidden max-lg:rounded-t-none rounded-19px relative pt-11px lg:pt-5'>
 				<div className='absolute inset-0 w-full h-full'>
 					<div className='relative overflow-hidden w-full h-full'>
 						{ renderImage('desktop') }
@@ -145,7 +146,7 @@ const Hero: React.FC = () => {
 				<div className='absolute bottom-0 inset-x-0 w-full h-[78%] backdrop-hero-membership-bottom -z-0' />
 				<div className='h-full'>
 					<div className='relative w-full h-full rounded-b-19px'>
-						<div className='container-center pb-18px lg:pb-[47px] h-full w-full flex flex-col justify-end'>
+						<div className='container-center pb-10 lg:pb-[47px] h-full w-full flex flex-col justify-end'>
 							<div className='text-left flex flex-col'>
 								<div>
 									<span className='overflow-hidden inline-block'>
@@ -193,7 +194,7 @@ const Hero: React.FC = () => {
 											},
 										},
 									} }
-									className=' text-grey-50 text-[14px] font-normal leading-[20px] max-w-[496px] pt-5 flex flex-col'
+									className=' text-grey-50 text-[14px] font-normal leading-[20px] max-w-[496px] pt-5 hidden sm:flex flex-col'
 								>
 									{ heroData.para }
 								</motion.p>
@@ -280,7 +281,7 @@ const Hero: React.FC = () => {
 				</div>
 			</div>
 		</div>
-	);
-};
+	)
+}
 
-export default Hero;
+export default Hero

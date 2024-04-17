@@ -136,7 +136,7 @@ const Hero: React.FC<HeroProps> = ({ image, imageMobile }) => {
 				priority
 				className={ clsxm(
 					'object-cover pointer-events-none',
-					imageMobile
+					isImageMobile
 						? 'md:hidden object-center'
 						: 'md:block hidden object-right'
 				) }
@@ -149,7 +149,7 @@ const Hero: React.FC<HeroProps> = ({ image, imageMobile }) => {
 	};
 
 	return (
-		<div className='lg:px-3 lg:pt-3 pb-[27px] lg:pb-[83px] overflow-hidden font-Poppins'>
+		<div className='lg:px-3 lg:pt-3 overflow-hidden font-Poppins'>
 			<Navbar
 				animationProps={ {
 					onAnimationComplete: () => {
@@ -167,7 +167,7 @@ const Hero: React.FC<HeroProps> = ({ image, imageMobile }) => {
 					},
 				} }
 			/>
-			<div className='bg-primary h-[calc(100svh+14px)] lg:h-[calc(100vh-12px)] w-full overflow-hidden max-lg:rounded-t-none rounded-19px relative pt-11px lg:pt-5'>
+			<div className='bg-primary h-[calc(100vh-14px)] lg:h-[calc(100vh-100px)] w-full overflow-hidden max-lg:rounded-t-none rounded-19px relative pt-11px lg:pt-5'>
 				<div className='absolute inset-0 w-full h-full'>
 					<div className='relative overflow-hidden w-full h-full'>
 						{ renderImage('desktop') }

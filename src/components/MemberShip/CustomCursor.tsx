@@ -1,22 +1,22 @@
-'use client';
-import React, { useEffect, useState } from 'react';
+'use client'
+import React, { useEffect, useState } from 'react'
 
-import { BlueArrow } from '../Icons/Landing';
+import { BlueArrow } from '../Icons/Landing'
 
 const CustomCursor = () => {
-	const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
+	const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 })
 
 	useEffect(() => {
-		const updateCursorPosition = (e:any) => {
-			setCursorPosition({ x: e.clientX, y: e.clientY });
-		};
+		const updateCursorPosition = (e: any) => {
+			setCursorPosition({ x: e.clientX, y: e.clientY })
+		}
 
-		document.addEventListener('mousemove', updateCursorPosition);
+		document.addEventListener('mousemove', updateCursorPosition)
 
 		return () => {
-			document.removeEventListener('mousemove', updateCursorPosition);
-		};
-	}, []);
+			document.removeEventListener('mousemove', updateCursorPosition)
+		}
+	}, [])
 
 	return (
 		<div
@@ -33,7 +33,7 @@ const CustomCursor = () => {
 				<BlueArrow />
 			</div>
 		</div>
-	);
-};
+	)
+}
 
-export default CustomCursor;
+export default CustomCursor

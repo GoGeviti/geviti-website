@@ -1,15 +1,15 @@
-import React from 'react';
+import React from 'react'
 
-import { landingData } from '@/constant/data';
-import { getProducts } from '@/services/products';
+import { landingData } from '@/constant/data'
+import { getProducts } from '@/services/products'
 
-import DiscoverGeviti from '../DiscoverGeviti';
+import DiscoverGeviti from '../DiscoverGeviti'
 
 const ProductsSection: React.FC = async() => {
-	const products = await getProducts();
+	const products = await getProducts()
 
 	return (
-		<div className=' pt-0 sm:pt-50px pb-0 lg:py-20'>
+		<div className='lg:pb-14'>
 			<DiscoverGeviti
 				title={ landingData.products.title }
 				description={ landingData.products.description }
@@ -18,7 +18,7 @@ const ProductsSection: React.FC = async() => {
 				products={ products.docs }
 			/>
 		</div>
-	);
-};
+	)
+}
 
-export default ProductsSection;
+export default ProductsSection

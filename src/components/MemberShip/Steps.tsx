@@ -1,27 +1,27 @@
-'use client';
+'use client'
 
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useState } from 'react'
 
-import membershipdata from '@/constant/data/membershipdata';
-import clsxm from '@/helpers/clsxm';
-import { screens } from '@/helpers/style';
-import { useWindowDimensions } from '@/hooks';
+import membershipdata from '@/constant/data/membershipdata'
+import clsxm from '@/helpers/clsxm'
+import { screens } from '@/helpers/style'
+import { useWindowDimensions } from '@/hooks'
 
-import ButtonCta from '../Landing/ButtonCta';
+import ButtonCta from '../Landing/ButtonCta'
 
-const stepsData = membershipdata.steps;
+const stepsData = membershipdata.steps
 
 const StepsSection: React.FC = () => {
-	const [selectedIdx, setSelectedIdx] = useState<number>(0);
+	const [selectedIdx, setSelectedIdx] = useState<number>(0)
 
-	const windowDimensions = useWindowDimensions();
-	const isMobile = windowDimensions.width < screens.lg;
+	const windowDimensions = useWindowDimensions()
+	const isMobile = windowDimensions.width < screens.lg
 
-	const onSelectStep = (stepIdx: number) => setSelectedIdx(stepIdx);
+	const onSelectStep = (stepIdx: number) => setSelectedIdx(stepIdx)
 
 	const onMouseEnter = (stepIdx: number) => {
-		if (!isMobile) onSelectStep(stepIdx);
-	};
+		if (!isMobile) onSelectStep(stepIdx)
+	}
 
 	const renderButtonCta = () => {
 		return (
@@ -31,8 +31,8 @@ const StepsSection: React.FC = () => {
 				aria-label={ stepsData.btnCta.text }
 				text={ stepsData.btnCta.text }
 			/>
-		);
-	};
+		)
+	}
 
 	return (
 		<div className='overflow-hidden bg-white lg:mx-3 lg:mt-3   rounded-[19px]'>
@@ -69,7 +69,7 @@ const StepsSection: React.FC = () => {
 											'h-1   cursor-pointer transform transition-all duration-300 ease-linear',
 											stepIdx === selectedIdx
 												? 'w-full bg-blue-1 shadow-[0px_-8px_24px_0px_rgba(251,251,251,0.35)]'
-												: 'w-full bg-grey-shadow'
+												: 'w-full bg-grey-shadow',
 										) }
 										onClick={ () => onSelectStep(stepIdx) }
 										onMouseEnter={ () => onMouseEnter(stepIdx) }
@@ -78,11 +78,11 @@ const StepsSection: React.FC = () => {
 							</div>
 						</div>
 						<div className='w-full'>
-							<div className='lg:pt-[92px] flex lg:flex-row lg:max-w-full justify-between max-w-[307px]  mx-auto flex-col items-center w-full no-scrollbar overflow-y-hidden transition-all select-none transform flex-nowrap overflow-x-auto lg:overflow-hidden scrolling-touch scroll-smooth max-lg:space-y-[42px] gap-x-18px'>
+							<div className='lg:pt-[92px] flex lg:flex-row lg:max-w-full justify-between sm:max-w-[307px]  mx-auto flex-col items-center w-full no-scrollbar overflow-y-hidden transition-all select-none transform flex-nowrap overflow-x-auto lg:overflow-hidden scrolling-touch scroll-smooth max-lg:space-y-[42px] gap-x-18px'>
 								{ stepsData.list.map((step, stepIdx) => {
-									const isSelected = stepIdx === selectedIdx;
-									const Icon = step.icon;
-									const IconMobile = step.iconMobile;
+									const isSelected = stepIdx === selectedIdx
+									const Icon = step.icon
+									const IconMobile = step.iconMobile
 
 									return (
 										<Fragment key={ stepIdx }>
@@ -92,7 +92,7 @@ const StepsSection: React.FC = () => {
 													'w-full hidden lg:flex lg:flex-col max-lg:space-x-4 items-start lg:transform lg:transition-all lg:duration-100 lg:ease-in-out',
 													isSelected
 														? 'lg:-translate-y-[17px]'
-														: 'translate-y-0'
+														: 'translate-y-0',
 												) }
 											>
 												<button
@@ -102,7 +102,7 @@ const StepsSection: React.FC = () => {
 														'cursor-pointer rounded-19px flex items-center justify-center flex-shrink-0',
 														isSelected
 															? 'bg-blue-primary w-10 h-10 lg:w-[62px] lg:h-[62px] shadow-c1'
-															: 'bg-grey-50 w-10 h-10 lg:w-[55px] lg:h-[55px]'
+															: 'bg-grey-50 w-10 h-10 lg:w-[55px] lg:h-[55px]',
 													) }
 													aria-label={ `step-${step.id}` }
 												>
@@ -115,7 +115,7 @@ const StepsSection: React.FC = () => {
 																			isSelected
 																				? 'text-primary'
 																				: 'text-grey-primary',
-																			'flex-shrink-0 w-6 h-6'
+																			'flex-shrink-0 w-6 h-6',
 																		) }
 																	/>
 																}
@@ -132,7 +132,7 @@ const StepsSection: React.FC = () => {
 																isSelected
 																	? 'text-blue-1 lg:text-primary'
 																	: ' text-grey-primary',
-																'flex-shrink-0 w-18px h-18px lg:w-6 lg:h-6'
+																'flex-shrink-0 w-18px h-18px lg:w-6 lg:h-6',
 															) }
 														/>
 													) }
@@ -142,14 +142,14 @@ const StepsSection: React.FC = () => {
 													onClick={ () => onSelectStep(stepIdx) }
 													onMouseEnter={ () => onMouseEnter(stepIdx) }
 													className={ clsxm(
-														'cursor-pointer  font-Poppins text-left  text-sm leading-[134%]',
+														'cursor-pointer  font-Poppins text-left  text-sm leading-[134%] max-w-[220px]',
 														isSelected
 															? 'lg:pt-[24.84px] text-primary text-sm !leading-normal font-medium'
-															: 'font-medium text-grey-400 lg:pt-[22.76px] text-sm !leading-normal'
+															: 'font-medium text-grey-400 lg:pt-[22.76px] text-sm !leading-normal',
 													) }
 												>
 													<span
-														className='max-lg:text-left whitespace-nowrap'
+														className='max-lg:text-left'
 														dangerouslySetInnerHTML={ { __html: step.title } }
 													/>
 												</p>
@@ -157,7 +157,7 @@ const StepsSection: React.FC = () => {
 											<div className=' lg:hidden flex w-full space-y-[18px] justify-center items-center flex-col'>
 												<button
 													className={ clsxm(
-														'cursor-pointer rounded-19px flex items-center justify-center flex-shrink-0 bg-blue-primary w-[62px] h-[62px] shadow-c1'
+														'cursor-pointer rounded-19px flex items-center justify-center flex-shrink-0 bg-blue-primary w-[62px] h-[62px] shadow-c1',
 													) }
 													aria-label={ `step-${step.id}` }
 												>
@@ -165,17 +165,17 @@ const StepsSection: React.FC = () => {
 												</button>
 												<p
 													className={ clsxm(
-														'cursor-pointer w-full mx-auto text-center font-Poppins  text-sm leading-[134%] lg:pt-[24.84px] text-primary font-medium'
+														'cursor-pointer w-full mx-auto text-center max-w-[280px] font-Poppins  text-sm leading-[134%] lg:pt-[24.84px] text-primary font-medium',
 													) }
 												>
 													<span
-														className='max-lg:text-left whitespace-nowrap'
+														className='max-lg:text-left'
 														dangerouslySetInnerHTML={ { __html: step.title } }
 													/>
 												</p>
 											</div>
 										</Fragment>
-									);
+									)
 								}) }
 							</div>
 						</div>
@@ -187,7 +187,7 @@ const StepsSection: React.FC = () => {
 				</div>
 			</div>
 		</div>
-	);
-};
+	)
+}
 
-export default StepsSection;
+export default StepsSection
