@@ -10,32 +10,14 @@ const navigationData = {
 			externalLink: false
 		},
 		{
-			name: 'Pricing',
-			href: '/products',
+			name: 'Men\'s Health',
+			href: '#',
 			externalLink: false
 		},
 		{
-			name: 'Solutions',
+			name: 'Women\'s Health',
 			href: '#',
-			externalLink: false,
-			items: [
-				{
-					name: 'Male Health',
-					href: '#'
-				},
-				{
-					name: 'Female Health',
-					href: '#'
-				},
-				{
-					name: 'Diagnostics',
-					href: '#'
-				},
-				{
-					name: 'Smart Supplements',
-					href: '#'
-				}
-			]
+			externalLink: false
 		},
 		{
 			name: 'Resources',

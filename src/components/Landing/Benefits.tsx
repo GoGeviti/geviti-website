@@ -66,7 +66,15 @@ const Benefits: React.FC = () => {
 							return (
 								<article
 									key={ item.title }
-									className='relative isolate flex flex-col justify-end overflow-hidden rounded-2xl px-3 pb-3 h-[542px]'>
+									className='relative isolate flex flex-col justify-end overflow-hidden rounded-2xl px-3 pb-3 h-[542px]'
+									{ ...!isMobile
+										? {
+											onMouseEnter: () => setHoveredIdx(itemIdx),
+											onMouseLeave: () => setHoveredIdx(-1),
+										}
+										: {}
+									}
+								>
 									{ renderImage(item) }
 									{ renderImage(item, true) }
 									<motion.div
@@ -96,8 +104,7 @@ const Benefits: React.FC = () => {
 														},
 														initial: 'initial',
 														animate: hovered ? 'visible' : 'initial',
-														onHoverStart: () => setHoveredIdx(itemIdx),
-														onHoverEnd: () => setHoveredIdx(-1),
+														style: { maxHeight: 91.4 },
 														transition: { duration: .6, ease: 'easeInOut' }
 													}
 													: {}

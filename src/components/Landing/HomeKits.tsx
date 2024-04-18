@@ -55,11 +55,13 @@ const ShiftSection: React.FC<ShiftSectionProps> = ({
 	const [contentHeight, setContentHeight] = useState<number | string>(0);
 
 	useEffect(() => {
-		const clientHeight = container?.current?.clientHeight;
-		if (clientHeight) {
-			setContentHeight(clientHeight);
+		if (!isMobile) {
+			const clientHeight = container?.current?.clientHeight;
+			if (clientHeight) {
+				setContentHeight(clientHeight);
+			}
 		}
-	}, [id]);
+	}, [id, isMobile]);
 
 	return (
 		<AnimatePresence
@@ -77,7 +79,7 @@ const ShiftSection: React.FC<ShiftSectionProps> = ({
 					key={ id }
 					variants={ isMobile ? shiftVariantsMobile : shiftVariants }
 					transition={ {
-						duration: .85,
+						duration: .9,
 						ease: 'easeIn'
 					} }
 				>
@@ -127,7 +129,7 @@ const HomeKits: React.FC = () => {
 
 	const [idx, setIdx] = useState<number>(0);
 
-	const [prevIdx, setPrevIdx] = useState(idx);
+	const [prevIdx, setPrevIdx] = useState<number>(idx);
 
 	const trend = idx > prevIdx ? 1 : -1;
 
@@ -200,7 +202,7 @@ const HomeKits: React.FC = () => {
 					initial={ { width: '0%' } }
 					animate={ { width: ((idx + 1) * (100 / list.length)) + '%' } }
 					transition={ {
-						duration: 1,
+						duration: .9,
 						ease: 'easeInOut'
 					} }
 				/>
@@ -223,7 +225,7 @@ const HomeKits: React.FC = () => {
 			);
 		}
 
-		if (currentData.id === 'prescription') {
+		if (currentData.id === 'therapy') {
 			return (
 				<Image
 					src={ currentData.image }
@@ -235,7 +237,7 @@ const HomeKits: React.FC = () => {
 			);
 		}
 
-		if (currentData.id === 'therapy') {
+		if (currentData.id === 'prescription') {
 			return (
 				<Image
 					src={ currentData.image }
@@ -296,26 +298,26 @@ const HomeKits: React.FC = () => {
 						onScroll={ handleScrollCarousel }
 						className='z-2 relative no-scrollbar w-full flex flex-nowrap overflow-y-hidden overflow-x-scroll snap-x snap-mandatory scroll-smooth'
 					>
-						{ list.map((item, itemIdx) => {
+						{ list.map(item => {
 							return (
 								<motion.div
 									key={ `scroll-image-${ item.id }` }
 									style={ { y: backgroundY } }
 									className={ clsxm(
 										'flex relative z-2 snap-start',
-										itemIdx === 0 && 'pt-20 sm:pt-5',
-										itemIdx === 1 && 'pt-[60px] sm:pt-2',
-										itemIdx === 2 && 'pt-[80px] sm:pt-[100px]',
+										item.id === 'homekits' && 'pt-20 sm:pt-5',
+										item.id === 'therapy' && 'pt-[60px] sm:pt-2',
+										item.id === 'prescription' && 'pt-[80px] sm:pt-[100px]',
 									) }>
 									<div className={ clsxm(
 										'relative w-screen h-[380.13px]',
-										itemIdx === 2 ? 'sm:h-[50vw]' : 'sm:h-[58.651vw]'
+										item.id === 'prescription' ? 'sm:h-[50vw]' : 'sm:h-[58.651vw]'
 									) }>
 										<Image
 											src={ item.imageMobile }
 											fill
 											alt=''
-											className={ clsxm(itemIdx < list.length - 1 ? 'object-cover sm:object-contain' : 'object-contain', 'w-full h-full') }
+											className={ clsxm(item.id !== 'prescription' ? 'object-cover sm:object-contain' : 'object-contain', 'w-full h-full') }
 										/>
 									</div>
 								</motion.div>
@@ -327,19 +329,9 @@ const HomeKits: React.FC = () => {
 		}
 
 		return (
-			<AnimatePresence
-				initial={ false }
-				custom={ trend }>
+			<>
 				<motion.div
-					variants={ imgVariants }
-					custom={ trend }
-					initial='initial'
-					animate='animate'
-					exit='exit'
-					key={ `image-${ currentData.id }` }
-					style={ { x: '-50%', y: '-50%' } }
-					transition={ { duration: 1, ease: 'easeInOut' } }
-					className='absolute-center w-full h-full'
+					className='max-lg:hidden absolute z-50 inset-0 w-full h-full'
 					onMouseMove={ ({ currentTarget, clientX, clientY }) => {
 						const parent = currentTarget.offsetParent;
 						if (!parent) return;
@@ -350,7 +342,7 @@ const HomeKits: React.FC = () => {
 					onClick={ handleNext }
 				>
 					<motion.div
-						className='pointer-events-none absolute z-10 opacity-0 transition-opacity duration-300 group-hover:opacity-100'
+						className='pointer-events-none absolute z-20 opacity-0 transition-opacity duration-300 group-hover:opacity-100'
 						style={ {
 							width: CURSOR_SIZE,
 							height: CURSOR_SIZE,
@@ -371,20 +363,37 @@ const HomeKits: React.FC = () => {
 							</motion.span>
 						</motion.div>
 					</motion.div>
-					<motion.div
-						style={ { y: backgroundY } }
-						className='relative flex z-2'>
-						{ renderDesktopImage() }
-					</motion.div>
 				</motion.div>
-			</AnimatePresence>
+
+				<AnimatePresence
+					initial={ false }
+					custom={ trend }>
+					<motion.div
+						variants={ imgVariants }
+						custom={ trend }
+						initial='initial'
+						animate='animate'
+						exit='exit'
+						key={ `image-${ currentData.id }` }
+						style={ { x: '-50%', y: '-50%' } }
+						transition={ { duration: .9, ease: 'easeInOut' } }
+						className='absolute-center w-full h-full'
+					>
+						<motion.div
+							style={ { y: backgroundY } }
+							className='relative flex z-2'>
+							{ renderDesktopImage() }
+						</motion.div>
+					</motion.div>
+				</AnimatePresence>
+			</>
 		);
 	};
 
 	return (
 		<div
 			ref={ containerRef }
-			className='pt-[65px] mb-[84px] lg:pt-[74px] lg:mb-[140px] h-full relative overflow-hidden font-Poppins'>
+			className='pt-[65px] pb-[84px] lg:pt-[74px] lg:pb-[140px] h-full relative overflow-hidden font-Poppins'>
 			<div className='container-center'>
 				<div className='flex items-center space-x-14 max-lg:hidden'>
 					{ renderProgressBar() }
@@ -423,8 +432,8 @@ const HomeKits: React.FC = () => {
 					</div>
 				</div>
 			</div>
-			<div className='lg:max-w-7xl lg:mx-auto'>
-				<div className='flex h-full justify-center relative pt-[294px] lg:pt-[451px] group'>
+			<div className='lg:max-w-7xl lg:mx-auto group'>
+				<div className='flex h-full justify-center lg:cursor-none relative pt-[294px] lg:pt-[451px]'>
 					<motion.div
 						style={ { y: 0 } }
 						className='px-4 lg:px-10 flex flex-col z-1'>

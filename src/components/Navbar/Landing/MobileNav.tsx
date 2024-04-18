@@ -7,7 +7,7 @@ import { usePathname } from 'next/navigation';
 
 import cartIcon from '@/assets/mobile-nav/cart.svg';
 import dashboardIcon from '@/assets/mobile-nav/dashboard.svg';
-import { navbarData } from '@/constant/data';
+import navbarData from '@/constant/data/navigation';
 import clsxm from '@/helpers/clsxm';
 
 import { Bars3Icon } from '../../Icons';

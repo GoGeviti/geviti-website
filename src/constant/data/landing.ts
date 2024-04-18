@@ -9,6 +9,7 @@ import {
 	GevitiIcon,
 	HeartbeatIcon,
 	HomeOutlineIcon,
+	InformationIcon,
 	MedicalDocIcon,
 	MonitoringIcon,
 	PillIcon,
@@ -38,6 +39,11 @@ const landingData = {
 			'accessible. Data driven',
 			'anti-aging care.'
 		],
+		banner: {
+			text: 'Geviti closes Early stage Seed round. To celebrate, those who join before June 1 will be grandfathered in at a discount!',
+			icon: InformationIcon,
+			show: true
+		},
 		image: '/images/landing/compressed/hero.webp',
 		imageMobile: '/images/landing/compressed/hero_mobile.webp',
 		btnCta: {
@@ -129,7 +135,7 @@ const landingData = {
 		list: [
 			{
 				id: 'step-1',
-				title: 'Sign up for a <br />membership',
+				title: '<span class="lg:hidden">Become a Geviti <br />Member</span><span class="max-lg:hidden">Sign up for a <br />membership</span>',
 				icon: GevitiIcon
 			},
 			{
@@ -139,12 +145,12 @@ const landingData = {
 			},
 			{
 				id: 'step-3',
-				title: 'Telehealth visit <br />breakdown',
+				title: '<span class="lg:hidden">Full lab results <br />breakdown</span><span class="max-lg:hidden">Telehealth visit <br />breakdown</span>',
 				icon: ChartIcon
 			},
 			{
 				id: 'step-4',
-				title: 'Tailor made <br />protocols.',
+				title: 'Receive tailor <br />made protocols.',
 				icon: DocumentIcon
 			},
 		],
@@ -424,7 +430,7 @@ const landingData = {
 			{
 				id: 'homekits',
 				preTitle: 'Members receive access to',
-				title: 'Innovative at-home kits',
+				title: 'Innovative at-home diagnostics',
 				description: 'Geviti offers a wide range of convenient and advanced <br class="max-lg:hidden"/>diagnostics, all from the comfort of your home. From mobile <br class="max-lg:hidden"/>phlebotomy, to at-home testing kits, we make health <br class="max-lg:hidden"/>screening ultra accessible.',
 				image: '/images/landing/compressed/homekits.webp',
 				imageMobile: '/images/landing/compressed/homekits-mobile.webp'
@@ -434,16 +440,16 @@ const landingData = {
 				preTitle: 'Members receive access to',
 				title: 'Prescription wellness done right',
 				description: 'No more over spending on supplements that aren\'t designed <br class="max-lg:hidden"/>exactly for you. Geviti will analyze your biomarkers and create <br class="max-lg:hidden"/>totally custom supplements with everything you need, and <br class="max-lg:hidden"/>nothing that you don’t.',
-				image: '/images/landing/compressed/supplements-pouch.webp',
-				imageMobile: '/images/landing/compressed/supplements-pouch-mobile.webp'
+				image: '/images/landing/compressed/supplements-bottle.webp',
+				imageMobile: '/images/landing/compressed/supplements-bottle.webp',
 			},
 			{
 				id: 'therapy',
 				preTitle: 'Members receive access to',
 				title: 'Tailormade smart supplements',
 				description: 'We offer hormone therapy, peptide therapy, and other prescription <br class="max-lg:hidden"/>wellness services under the supervision of medical professionals. <br class="max-lg:hidden"/>Once you receive approval from a provider through the Geviti app, <br class="max-lg:hidden"/>we\'ll deliver your treatment directly to you.',
-				image: '/images/landing/compressed/supplements-bottle.webp',
-				imageMobile: '/images/landing/compressed/supplements-bottle.webp',
+				image: '/images/landing/compressed/supplements-pouch.webp',
+				imageMobile: '/images/landing/compressed/supplements-pouch-mobile.webp'
 			}
 		],
 		btnCta: {
@@ -470,7 +476,7 @@ const landingData = {
 				href: '/onboarding'
 			},
 			btnCtaMobile: {
-				text: 'Join Geviti',
+				text: 'Learn More',
 				href: '/onboarding'
 			},
 			list: [
@@ -480,15 +486,15 @@ const landingData = {
 					list: [
 						{
 							title: 'Automated Bloodwork',
-							description: ''
-						},
-						{
-							title: 'Wholesale Products',
-							description: ''
+							description: 'Your membership comes with biannual full panels conducted comfortably at home, with no extra charge.'
 						},
 						{
 							title: 'Platform Access',
-							description: ''
+							description: 'Your all-in-one center for functional care needs: track health metrics, message your health coach, access telehealth visits, and more, all from one place.'
+						},
+						{
+							title: 'Advanced Diagnostics',
+							description: 'We exceed standard screenings by analyzing a broader range of biomarkers, DNA, and more, going beyond what your primary care physician may offer.'
 						},
 					]
 				},
@@ -497,21 +503,17 @@ const landingData = {
 					reverse: false,
 					list: [
 						{
+							title: 'Personal Health Coach',
+							description: 'Your personal health coach will guide you towards optimization with essential lifestyle changes, serving as your accountability partner.'
+						},
+						{
 							title: 'Prescription Wellness',
-							description: 'Your central hub for Your functional care needs. Health metric tracking, Health coach messaging, telehealth visits, and more, all in one place.'
+							description: 'Geviti partners with top US compound pharmacies. Our medical team will assess if our advanced therapeutics suit your needs.'
 						},
 						{
-							title: 'In-App Doctors',
-							description: 'Your central hub for Your functional care needs. Health metric tracking, Health coach messaging, telehealth visits, and more, all in one place.'
+							title: 'Hormone Optimization',
+							description: 'Hormone optimization is key to vitality and longevity. Geviti provides nationwide expert care and advanced therapeutics for men and women.'
 						},
-						{
-							title: 'Custom Protocols',
-							description: 'Your central hub for Your functional care needs. Health metric tracking, Health coach messaging, telehealth visits, and more, all in one place.'
-						},
-						{
-							title: 'Automated Bloodwork',
-							description: 'Automated Bloodwork'
-						}
 					],
 				},
 				{
@@ -519,21 +521,17 @@ const landingData = {
 					reverse: true,
 					list: [
 						{
-							title: 'Personal Health Coach',
-							description: ''
-						},
-						{
-							title: 'Hormone Optimization',
-							description: ''
-						},
-						{
-							title: 'Advanced Diagnostics',
-							description: ''
+							title: 'In-app Doctors',
+							description: 'Our mission is to eliminate barriers in healthcare. There should be no need to leave your home for this level of care.'
 						},
 						{
 							title: 'Wholesale Products',
-							description: ''
+							description: 'Unlike our competitors, Geviti prioritizes accessibility over maximum profit. We\'re committed to making our supplements and screenings widely available.'
 						},
+						{
+							title: 'Custom Protocols',
+							description: 'One Size Fits One! Forget "one size fits all." Our personalized protocols blend tailored supplements and lifestyle changes, going beyond conventional wellness.'
+						}
 					]
 				}
 			]
@@ -541,7 +539,7 @@ const landingData = {
 		locationSection: {
 			preTitle: 'MEMBERSHIP FEATURES',
 			title: 'Care that goes where you go.',
-			description: 'Available in 11 states and expanding across all the country',
+			description: 'Available in 11 states and expanding across all the country: <br/>AZ, CA, CO, UT, WA, TX, FL, GA, KS, OR, NM',
 			btnCta: {
 				text: 'Become A Member',
 				href: '/onboarding'

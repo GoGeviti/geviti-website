@@ -180,7 +180,7 @@ const Navbar: React.FC<NavbarProps> = ({ className, animationProps }) => {
 								backdropFilter: 'blur(25px)',
 								borderRadius: '100px',
 								transition: {
-									delay: 1,
+									delay: 3.1,
 									duration: 1,
 									ease: 'easeInOut'
 								}

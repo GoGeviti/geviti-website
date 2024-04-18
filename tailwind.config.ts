@@ -195,7 +195,7 @@ const config: Config = {
 				},
 				scroll: {
 					to: {
-						transform: "translate(calc(-50% - 0.5rem))",
+						transform: "translateX(calc(-50% - 23px))",
 					},
 				},
 			},

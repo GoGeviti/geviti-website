@@ -1,16 +1,11 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { AnimatePresence, motion } from 'framer-motion';
-import lottie from 'lottie-web';
 
 import { landingData } from '@/constant/data';
 
-import LottieCoaching from '../../../public/lottie/coaching.json';
-import LottieDoctor from '../../../public/lottie/doctor.json';
-import LottieEducation from '../../../public/lottie/education.json';
-import LottieProtocols from '../../../public/lottie/protocols.json';
 import { ArrowNarrowLeft, ArrowNarrowRight, ChevronRight } from '../Icons';
 
 import ButtonCta from './ButtonCta';
@@ -36,31 +31,22 @@ const FeaturesCarousel: React.FC = () => {
 	const { ref, inView } = useInView();
 
 	const [idx, setIdx] = useState<number>(0);
-
 	const [prevIdx, setPrevIdx] = useState(idx);
+	const vidRef = useRef<HTMLVideoElement | null>(null);
 
 	const trend = idx > prevIdx ? 1 : -1;
 
 	const activeIdx = Math.abs(idx % cards.length);
 
 	useEffect(() => {
-		const container = document.getElementById(`container-lottie-${ activeIdx }`);
-		const cardId = cards.find((_, cardIdx) => cardIdx === activeIdx)?.id;
-
-		if (container && cardId && inView) {
-			const animation = lottie.loadAnimation({
-				container,
-				renderer: 'svg',
-				autoplay: false,
-				loop: false,
-				animationData: getLottieSource(cardId)
-			});
-
+		if (inView) {
 			setTimeout(() => {
-				animation.play();
-			}, 1000);
+				if (vidRef.current) {
+					vidRef.current.play();
+				}
+			}, 750);
 		}
-	}, [inView, activeIdx]);
+	}, [inView, activeIdx, vidRef?.current]);
 
 	const handleNext = () => {
 		setPrevIdx(idx);
@@ -105,22 +91,34 @@ const FeaturesCarousel: React.FC = () => {
 		);
 	};
 
-	const getLottieSource = (id: string) => {
-		if (id === 'doctor') return LottieDoctor;
-		if (id === 'coaching') return LottieCoaching;
-		if (id === 'protocols') return LottieProtocols;
-		if (id === 'education') return LottieEducation;
+	const getVideoSource = (id: string) => {
+		if (id === 'doctor') return '/videos/doctor.mp4';
+		if (id === 'coaching') return '/videos/coaching.mp4';
+		if (id === 'protocols') return '/videos/protocols.mp4';
+		if (id === 'education') return '/videos/education.mp4';
 	};
 
 	const renderAnimatedContentCard = (id: string) => {
-		const src = getLottieSource(id);
+		const src = getVideoSource(id);
 
 		if (src) {
 			return (
-				<div
-					id={ `container-lottie-${ activeIdx }` }
-					className='w-full h-full'
-				/>
+				<video
+					id={ `video-${ activeIdx }` }
+					ref={ vidRef }
+					// autoPlay={ activeIdx === 0 }
+					muted
+					width={ 400 }
+					height={ 170 }
+					playsInline
+					className='w-full h-full object-cover'
+				>
+					<source
+						src={ src }
+						type='video/mp4'
+					/>
+					Your browser does not support the video tag.
+				</video>
 			);
 		}
 

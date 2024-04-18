@@ -56,6 +56,7 @@ body {
 .swiper-pagination {
   bottom: -6px;
 }
+
 .max-lg-hidden {
   @apply max-lg:hidden;
 }

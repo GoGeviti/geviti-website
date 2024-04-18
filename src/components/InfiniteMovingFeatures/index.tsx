@@ -133,7 +133,7 @@ export const InfiniteMovingCards: React.FC<InfiniteMovingCardsProps> = ({
 		<div
 			ref={ el => containerRefAll.current[listIndex] = el }
 			className={ clsxm(
-				'scroller relative z-20',
+				'scroller relative z-20 overflow-hidden',
 				className
 			) }
 			onMouseLeave={ () => {
@@ -143,12 +143,12 @@ export const InfiniteMovingCards: React.FC<InfiniteMovingCardsProps> = ({
 			<ul
 				ref={ el => scrollerRefAll.current[listIndex] = el }
 				className={ clsxm(
-					'flex gap-[46px]',
-					start && 'animate-scroll'
+					'flex gap-[46px] flex-nowrap w-max shrink-0 min-w-full',
+					start && 'animate-scroll',
 				) }
 			>
-				{ items.map((item, idx) => (
-					<li key={ idx }>
+				{ [...items, ...items].map((item, idx) => (
+					<li key={ `infinitemoving-${ idx }` }>
 						<PopoverPills
 							item={ item }
 							onToggleAnimation={ onToggleAnimation }
@@ -163,7 +163,7 @@ export const InfiniteMovingCards: React.FC<InfiniteMovingCardsProps> = ({
 
 const InfiniteMovingFeatures: React.FC<InfiniteMovingFeaturesProps> = ({
 	list,
-	duration = 20
+	duration = 40
 }) => {
 	const containerRefs = useRef<Array<HTMLDivElement | null>>([]);
 	const scrollerRefs = useRef<Array<HTMLUListElement | null>>([]);
@@ -181,14 +181,13 @@ const InfiniteMovingFeatures: React.FC<InfiniteMovingFeaturesProps> = ({
 
 	const addAnimation = (containerRef: HTMLDivElement | null, scrollerRef: HTMLUListElement | null, index: number) => {
 		if (containerRef && scrollerRef) {
-			const scrollerContent = Array.from(scrollerRef.children);
-
-			scrollerContent.forEach(item => {
-				const duplicatedItem = item.cloneNode(true);
-				if (scrollerRef) {
-					scrollerRef.appendChild(duplicatedItem);
-				}
-			});
+			// const scrollerContent = Array.from(scrollerRef.children);
+			// scrollerContent.forEach(item => {
+			// 	let duplicatedItem = item.cloneNode(true);
+			// 	if (scrollerRef) {
+			// 		scrollerRef.appendChild(duplicatedItem);
+			// 	}
+			// });
 
 			getDirection(containerRef, index);
 			getSpeed(containerRef);
