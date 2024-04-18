@@ -541,11 +541,11 @@ const landingData = {
 			title: 'Care that goes where you go.',
 			description: 'Available in 11 states and expanding across all the country: <br/>AZ, CA, CO, UT, WA, TX, FL, GA, KS, OR, NM',
 			btnCta: {
-				text: 'Become A Member',
+				text: 'Learn More',
 				href: '/onboarding'
 			},
 			btnCtaMobile: {
-				text: 'Join Geviti',
+				text: 'Learn More',
 				href: '/onboarding'
 			},
 			image: '/images/landing/compressed/continent_dots.webp'
