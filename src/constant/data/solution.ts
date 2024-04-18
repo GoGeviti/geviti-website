@@ -487,7 +487,7 @@ const landingData = {
 			imageURL: '/images/solution_media/low-case.webp',
 			mobileimage: '/images/solution_media/low-case-mobile.webp',
 			counting: '20',
-			million: 'Million',
+			million: 'million',
 			state: 'Men In the united states',
 			age: 'from ages 25-75 have low T',
 		},

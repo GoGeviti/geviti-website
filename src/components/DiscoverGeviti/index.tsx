@@ -205,7 +205,7 @@ const DiscoverGeviti: React.FC<DiscoverGevitiProps> = ({
                 {description}
               </p>
             </div>
-            <div className="my-6 sm:my-0 flex justify-center items-center bg-white  w-fit gap-[14px] p-1.5 rounded-full">
+            <div className="my-6 sm:my-0 flex justify-center items-center bg-white  sm:w-fit gap-[14px] p-1.5 rounded-full">
               <button
                 onClick={() => setActiveTab('mens-products')}
                 className={`${

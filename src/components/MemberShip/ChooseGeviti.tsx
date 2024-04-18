@@ -10,7 +10,7 @@ const chooseGevitilist = membershipdata.choosegivity
 
 const ChooseGeviti = () => {
 	return (
-		<div className='sm:mx-3 rounded-[19px] my-6 pt-8 sm:py-14'>
+		<div className='sm:mx-3 rounded-[19px] sm:my-6 pt-8 sm:py-14'>
 			<div className=' container-center '>
 				<div className=' md:flex items-center'>
 					<div className='md:w-1/2 '>

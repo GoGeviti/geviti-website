@@ -26,7 +26,7 @@ const StepsSection: React.FC = () => {
       <div className="h-full  w-full relative overflow-hidden">
         <div className="pt-[52px] pb-8 lg:pt-[120px] lg:pb-[138px] flex flex-col lg:gap-y-0 items-center justify-center text-center">
           <div className="text-center sm:mx-auto">
-            <p className="font-Poppins mb-5px lg:mb-3.5 uppercase tracking-[1.54px] text-grey-primary text-Poppins text-[10px] font-semibold sm:text-[14px] leading-[171%]">
+            <p className="font-Poppins mb-5px lg:mb-3.5 uppercase  tracking-[1.3px] sm:tracking-[1.54px] text-grey-primary text-Poppins text-[10px] font-semibold sm:text-[14px] leading-[171%]">
               {stepsData.preTitle}
             </p>
 
