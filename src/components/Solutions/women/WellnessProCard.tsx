@@ -67,7 +67,7 @@ const WellnessProCard = (props: IWellnessProCardProps) => {
             <p className="relative z-20 text-grey-50  !text-sm font-semibold leading-[150%] uppercase tracking-[1.54px] font-Poppins">
               {state}
             </p>
-            <p className="relative z-20 text-white !text-sm font-semibold leading-[150%] uppercase tracking-[1.54px] font-Poppins">
+            <p className="relative z-20 text-white !text-sm font-semibold leading-[150%] uppercase tracking-[1.2px] sm:tracking-[1.54px] font-Poppins whitespace-nowrap">
               {age}
             </p>
           </div>

@@ -18,7 +18,7 @@ const Pricing = () => {
 		setIsOpen(!isOpen)
 	}
 	return (
-		<div className='bg-white sm:mx-3 rounded-[19px] my-6 py-14'>
+		<div className='bg-white sm:mx-3 rounded-[19px] my-6 py-12 sm:py-14'>
 			<div className=' container-center '>
 				<p className=' uppercase leading-[171.429%] tracking-[1.54px] text-[10px] lg:text-sm text-grey-primary text-center font-Poppins font-semibold'>
           Care based off of biomarkers
@@ -26,7 +26,7 @@ const Pricing = () => {
 				<h4 className='text-[24px] md:text-[40px] lg:text-[60px] leading-normal text-primary  md:tracking-[-2.56px] text-center font-Poppins'>
           Start by establishing baselines
 				</h4>
-				<p className=' text-[12px] md:text-sm leading-[142.857%] text-grey-primary text-center font-Poppins pt-3'>
+				<p className=' text-[12px] md:text-sm leading-[152%] sm:leading-[142%] text-grey-primary text-center font-Poppins pt-3'>
           Every user starts with one of these to establish baselines. This
           includes month free.{ ' ' }
 				</p>
@@ -56,7 +56,7 @@ const Pricing = () => {
             Monthly
 					</button>
 				</div>
-				<div className='lg:max-w-full mx-auto max-w-[344px] lg:flex-row flex-col flex gap-10 lg:gap-6 items-end w-full pt-10 '>
+				<div className='lg:max-w-full mx-auto max-w-[344px] lg:flex-row flex-col flex gap-10 lg:gap-6 items-end w-full sm:pt-10'>
 					{ pricing.data.map((value, index) => (
 						<div
 							key={ index }

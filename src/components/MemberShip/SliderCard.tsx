@@ -67,17 +67,17 @@ const SliderCard = (props: IProps) => {
 	return (
 		<>
 			<div className='!flex lg:flex-row flex-col-reverse '>
-				<div className='lg:w-1/2 relative z-10 bg-primary px-4 lg:pl-16 lg:pr-11 pt-20 h-full'>
+				<div className='lg:w-1/2 relative z-10 bg-primary px-4 lg:pl-16 lg:pr-11 pt-6 sm:pt-20 h-full'>
 					<p className=' text-grey-primary tracking-[1.1px] leading-[240%] uppercase font-Poppins text-[10px] sm:text-sm font-semibold'>
 						{ title }
 					</p>
-					<h4 className=' text-white !leading-[140%] max-w-[338px] tracking-[-0.96px] sm:tracking-[-1.44px] font-Poppins text-[24px] sm:text-4xl font-medium pb-6 pt-2 sm:max-w-[592px]'>
+					<h4 className=' text-white !leading-[150%] sm:!leading-[140%] max-w-[338px] tracking-[-0.96px] sm:tracking-[-1.44px] font-Poppins text-[24px] sm:text-4xl font-medium pb-6 pt-2 sm:max-w-[592px]'>
 						{ heading }
 					</h4>
 					<p className=' text-grey-primary !leading-[166%] sm:!leading-[148%] font-Poppins text-[12px] sm:text-sm max-w-[446px]'>
 						{ subheading }
 					</p>
-					<ul className=' flex flex-col list-disc my-10 pl-4 max-lg:pb-24'>
+					<ul className=' flex flex-col list-disc mt-6 mb-10 sm:my-10 pl-4 max-lg:pb-24'>
 						{ list.map((data: string, i: number) => (
 							<li
 								key={ i }

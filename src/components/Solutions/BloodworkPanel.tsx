@@ -26,7 +26,7 @@ const StepsSection: React.FC = () => {
       <div className="h-full  w-full relative overflow-hidden">
         <div className="pt-[52px] pb-8 lg:pt-[120px] lg:pb-[138px] flex flex-col lg:gap-y-0 items-center justify-center text-center">
           <div className="text-center sm:mx-auto">
-            <p className="mb-5px lg:mb-3.5 uppercase tracking-[1.54px] text-grey-primary text-Poppins text-[10px] font-semibold sm:text-[14px] leading-[171%]">
+            <p className="font-Poppins mb-5px lg:mb-3.5 uppercase  tracking-[1.3px] sm:tracking-[1.54px] text-grey-primary text-Poppins text-[10px] font-semibold sm:text-[14px] leading-[171%]">
               {stepsData.preTitle}
             </p>
 
@@ -36,7 +36,7 @@ const StepsSection: React.FC = () => {
               </h2>
             )}
             {stepsData.subTittle && (
-              <h2 className="font-Poppins leading-[142.857%] font-normal mt-[14px] text-grey-primary  text-xs md:text-sm text-center">
+              <h2 className="font-Poppins leading-[142.857%] font-normal mt-[14px] text-grey-primary  text-xs md:text-sm text-center max-w-xs sm:max-w-[458px] mx-auto">
                 <span
                   dangerouslySetInnerHTML={{ __html: stepsData.subTittle }}
                 />
@@ -142,7 +142,7 @@ const StepsSection: React.FC = () => {
                       <div className=" lg:hidden flex w-full space-y-[18px] justify-center items-center flex-col">
                         <button
                           className={clsxm(
-                            'cursor-pointer rounded-19px flex items-center justify-center flex-shrink-0 bg-blue-primary w-[62px] h-[62px] shadow-c1',
+                            'cursor-pointer rounded-19px flex items-center justify-center flex-shrink-0 bg-blue-primary w-[62px] h-[62px] shadow-custom1',
                           )}
                           aria-label={`step-${step.id}`}
                         >

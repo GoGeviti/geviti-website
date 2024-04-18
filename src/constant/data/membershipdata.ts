@@ -231,7 +231,7 @@ const membershipdata = {
       },
       {
         name: "Essentials Diagnostic",
-        price: "299",
+        price: "469",
         biomakers: "45",
         button: "secondary",
 

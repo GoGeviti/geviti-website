@@ -19,13 +19,13 @@ const EasyOnlineCare: React.FC<EasyOnlineCareProps> = ({ treatmentmens }) => {
 	return (
 		<>
 			<section className='md:px-4'>
-				<div className=' md:bg-white rounded-[19px] py-11 my-6 '>
+				<div className=' md:bg-white rounded-[19px] pb-10 sm:py-11 my-6'>
 					<div className='w-full mx-auto  bg-white py-6 md:py-0'>
 						<div className='flex flex-col items-center justify-center'>
 							<h2 className='lg:text-base md:text-sm sm:text-xs text-[10px] leading-[150%] tracking-[1.76px] font-Poppins text-grey-primary font-semibold uppercase'>
 								{ treatmentmens.sectionsubheading }
 							</h2>
-							<p className='mt-[14px] text-center text-2xl md:text-4xl lg:text-[42px] text-primary -tracking-[1.68px] font-Poppins'>
+							<p className='mt-[14px] text-center text-2xl md:text-4xl lg:text-[42px] text-primary -tracking-[0.8px]  sm:-tracking-[1.68px] font-Poppins'>
 								{ treatmentmens.sectionmainheading }
 							</p>
 						</div>

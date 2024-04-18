@@ -48,7 +48,7 @@ const FrequentlyAskedQues = () => {
 	}
 
 	return (
-		<div className='bg-white sm:mx-3 rounded-[19px] my-6 py-[42px] md:pb-14 md:pt-28'>
+		<div className='bg-white sm:mx-3 rounded-[19px] mb-6 sm:my-6 py-[42px] md:pb-14 md:pt-28'>
 			<div className=' md:flex flex-wrap container-center'>
 				<div className='md:w-[40%] -mx-3'>
 					<p className=' uppercase text-[10px] md:text-start text-center md:text-sm font-Poppins tracking-[1.54px] text-grey-primary font-semibold'>

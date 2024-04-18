@@ -45,14 +45,14 @@ const EasyCareTab = (props: IEasyCareTab) => {
             </button>
           ))}
         </div>
-        <div className="justify-between items-baseline bg-[#F5F6F6] rounded-[20px] p-[6px] flex lg:hidden w-full">
+        <div className="justify-between items-center flex lg:hidden border border-grey-50 rounded-[20px] py-2 pl-4 pr-2 w-full">
           <div className="flex items-center gap-[6px] text-xs text-primary font-Poppins">
             <TherapyIcon />
             Testosterone Therapy
           </div>
           <button className="flex items-center gap-[6px] h-[34px] px-3 text-xs font-medium text-white font-Poppins bg-primary rounded-[100px] shadow-[0px_4px_8px_0px_rgba_(0_0_0_0.10)]">
             <FIlterIcon />
-            Filter
+            <span>Filter</span>
           </button>
         </div>
       </section>
