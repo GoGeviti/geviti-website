@@ -1,13 +1,12 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
-import { AnimationControls, motion, useAnimationControls } from 'framer-motion';
+import React, { useEffect, useRef, useState } from 'react';
 
 import clsxm from '@/helpers/clsxm';
 import { screens } from '@/helpers/style';
 import { useWindowDimensions } from '@/hooks';
 
-import { Popover, PopoverContent, PopoverTrigger } from '../Popover';
+import PopoverPills from './PopoverPills';
 
 type FeatureItem = {
 	title: string;
@@ -25,176 +24,151 @@ type InfiniteMovingFeaturesProps = {
 	duration?: number;
 };
 
-type PopoverPillsProps = {
-	item: FeatureItem;
+type InfiniteMovingCardsProps = {
+	items: {
+		description: string;
+		title: string;
+	}[];
+	className?: string;
+	containerRefAll: React.MutableRefObject<(HTMLDivElement | null)[]>;
+	scrollerRefAll: React.MutableRefObject<(HTMLUListElement | null)[]>;
+	listIndex: number;
+	onToggleAnimation?: (state: string) => void; // eslint-disable-line no-unused-vars
+	start: boolean;
 	isMobile?: boolean;
-	onOpenChange: (isOpen: boolean) => void; // eslint-disable-line no-unused-vars
 };
 
-const PopoverPills: React.FC<PopoverPillsProps> = ({
-	item,
-	isMobile,
-	onOpenChange
+export const InfiniteMovingCards: React.FC<InfiniteMovingCardsProps> = ({
+	items,
+	className,
+	listIndex,
+	containerRefAll,
+	scrollerRefAll,
+	onToggleAnimation,
+	start,
+	isMobile
 }) => {
-	const [open, setOpen] = useState<boolean>(false);
-
-	const handleClick = () => {
-		onOpenChange(!open);
-		setOpen(!open);
-	};
-
-	const handleMouseEnter = () => {
-		onOpenChange(true);
-		setOpen(true);
-	};
-
-	const handleMouseLeave = () => {
-		onOpenChange(false);
-		setOpen(false);
-	};
-
 	return (
-		<Popover
-			open={ open }
-			onOpenChange={ setOpen }>
-			<PopoverTrigger
-				onClick={ e => e.preventDefault() }
-				className='focus:ring-0 focus:outline-none focus:border-0'>
-				<span
-					{ ...isMobile
-						? {
-							onClick: handleClick
-						}
-						: {
-							onMouseEnter: handleMouseEnter,
-							onMouseLeave: handleMouseLeave
-						}
-					}
-					className={ clsxm(
-						'transition-all font-Poppins ease-in-out duration-200 cursor-pointer flex whitespace-nowrap items-center justify-center text-center overflow-hidden relative !rounded-19px text-[28px] leading-6 py-5 px-6',
-						open ? 'bg-primary text-white rounded-19px shadow-feature' : 'bg-[#F2FAFF] text-blue-primary'
-					) }>
-					{ item.title }
-				</span>
-			</PopoverTrigger>
-			<PopoverContent
-				{ ...isMobile
-					? {
-						side: 'top',
-						align: 'center',
-						sideOffset: 30,
-					}
-					: {
-						side: 'top',
-						align: 'start',
-						sideOffset: 12,
-						alignOffset: 17
-					} }
-				className='w-full max-w-[90vw] sm:max-w-[387px] py-3.5 px-3 lg:px-6 backdrop-blur-[22.2px] bg-white/40 border border-white/15 rounded-xl !shadow-[0px_4px_15.8px_0px_rgba(2,23,27,0.1)]'>
-				<span className='text-grey-800 text-lg font-Poppins text-center lg:text-left'>
-					{ item.description || item.title }
-				</span>
-			</PopoverContent>
-		</Popover>
+		<div
+			ref={ el => containerRefAll.current[listIndex] = el }
+			className={ clsxm(
+				'scroller relative z-20 overflow-hidden',
+				className
+			) }
+			onMouseLeave={ () => {
+				if (onToggleAnimation) onToggleAnimation('running');
+			} }
+		>
+			<ul
+				ref={ el => scrollerRefAll.current[listIndex] = el }
+				className={ clsxm(
+					'flex gap-[46px] flex-nowrap w-max shrink-0 min-w-full',
+					start && 'animate-scroll',
+				) }
+			>
+				{ [...items, ...items].map((item, idx) => (
+					<li key={ `infinitemoving-${ idx }` }>
+						<PopoverPills
+							item={ item }
+							onToggleAnimation={ onToggleAnimation }
+							isMobile={ isMobile }
+						/>
+					</li>
+				)) }
+			</ul>
+		</div>
 	);
 };
 
 const InfiniteMovingFeatures: React.FC<InfiniteMovingFeaturesProps> = ({
 	list,
-	duration = 50
+	duration = 40
 }) => {
+	const containerRefs = useRef<Array<HTMLDivElement | null>>([]);
+	const scrollerRefs = useRef<Array<HTMLUListElement | null>>([]);
+	const [start, setStart] = useState<boolean>(false);
 	const windowDimensions = useWindowDimensions();
 	const isMobile = windowDimensions.width < screens.lg;
-	const [activeIdx, setActiveIdx] = useState<number>(-1);
-
-	const controls1 = useAnimationControls();
-	const controls2 = useAnimationControls();
-	const controls3 = useAnimationControls();
-	const animationControls = [controls1, controls2, controls3];
 
 	useEffect(() => {
-		let timeoutId: NodeJS.Timeout;
+		list.forEach((_, idx) => {
+			const containerRef = containerRefs.current[idx];
+			const scrollerRef = scrollerRefs.current[idx];
+			addAnimation(containerRef, scrollerRef, idx);
+		});
+	}, [list]);
 
-		if (activeIdx > -1) {
-			animationControls[activeIdx].stop();
+	const addAnimation = (containerRef: HTMLDivElement | null, scrollerRef: HTMLUListElement | null, index: number) => {
+		if (containerRef && scrollerRef) {
+			// const scrollerContent = Array.from(scrollerRef.children);
+			// scrollerContent.forEach(item => {
+			// 	let duplicatedItem = item.cloneNode(true);
+			// 	if (scrollerRef) {
+			// 		scrollerRef.appendChild(duplicatedItem);
+			// 	}
+			// });
 
-			const restControls = animationControls.filter((_, idx) => idx !== activeIdx);
-			timeoutId = setTimeout(() => {
-				restControls.forEach((_, idx) => {
-					restControls[idx].stop();
-				});
-			}, 400);
-		} else {
-			animationControls.forEach(controls => {
-				controls.start('visible');
-			});
+			getDirection(containerRef, index);
+			getSpeed(containerRef);
+			if (index === list.length - 1) setStart(true);
 		}
+	};
+	const getDirection = (containerRef: HTMLDivElement | null, index: number) => {
+		const direction = index % 2 === 0 ? 'right' : 'left';
 
-		return () => {
-			clearTimeout(timeoutId);
-		};
-	}, [activeIdx]);
+		if (containerRef) {
+			if (direction === 'left') {
+				containerRef.style.setProperty(
+					'--animation-direction',
+					'forwards'
+				);
+			} else {
+				containerRef.style.setProperty(
+					'--animation-direction',
+					'reverse'
+				);
+			}
+		}
+	};
+	const getSpeed = (containerRef: HTMLDivElement | null) => {
+		if (containerRef) {
+			containerRef.style.setProperty('--animation-duration', duration + 's');
+		}
+	};
 
-	const renderMovingLine = (
-		parentIdx: number,
-		featureList: FeatureList,
-		controls: AnimationControls
-	) => {
-		const { list: features, reverse } = featureList;
+	const changePlayState = (ref: HTMLUListElement | null, state: string) => {
+		if (ref) {
+			ref.style.setProperty('animation-play-state', state);
+		}
+	};
 
-		return (
-			<motion.div
-				variants={ {
-					initial: { translateX: reverse ? '-100%' : '0%' },
-					visible: { translateX: reverse ? '0%' : '-100%' }
-				} }
-				initial='initial'
-				animate={ controls }
-				transition={ {
-					duration,
-					repeat: Infinity,
-					ease: 'linear'
-				} }
-				className='flex gap-[42px] px-[21px]'
-			>
-				{ features.map((item, idx) => {
+	const onToggleAnimation = (state: string) => {
+		list.forEach((_, idx) => {
+			const ref = scrollerRefs.current[idx];
+			changePlayState(ref, state);
+		});
+	};
+
+	return (
+		<div className='flex flex-col gap-[30px]'>
+			{
+				list.map((item, index) => {
 					return (
-						<PopoverPills
-							key={ idx }
-							item={ item }
+						<InfiniteMovingCards
+							key={ item.id }
+							items={ item.list }
+							listIndex={ index }
+							containerRefAll={ containerRefs }
+							scrollerRefAll={ scrollerRefs }
+							onToggleAnimation={ onToggleAnimation }
+							start={ start }
 							isMobile={ isMobile }
-							onOpenChange={ (open: boolean) => {
-								if (open && activeIdx !== parentIdx) setActiveIdx(parentIdx);
-								else if (!open) setActiveIdx(-1);
-							} }
 						/>
 					);
-				}) }
-			</motion.div>
-		);
-	};
-
-	const resetActiveIdx = () => setActiveIdx(-1);
-
-	const render = () => {
-		return (
-			<div className='flex flex-col gap-[30px]'>
-				{ list.map((features, featuresIdx) => {
-					return (
-						<div
-							key={ featuresIdx }
-							className='flex items-center'
-							onMouseLeave={ resetActiveIdx }>
-							{ renderMovingLine(featuresIdx, features, animationControls[featuresIdx]) }
-							{ renderMovingLine(featuresIdx, features, animationControls[featuresIdx]) }
-						</div>
-					);
-				}) }
-			</div>
-		);
-	};
-
-	return render();
+				})
+			}
+		</div>
+	);
 };
 
 export default InfiniteMovingFeatures;

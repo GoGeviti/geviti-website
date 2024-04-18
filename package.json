@@ -11,6 +11,7 @@
   "dependencies": {
     "@aws-sdk/client-s3": "^3.438.0",
     "@aws-sdk/lib-storage": "^3.438.0",
+    "@gsap/react": "^2.1.0",
     "@lexical/list": "^0.12.2",
     "@lexical/rich-text": "^0.12.2",
     "@lottiefiles/react-lottie-player": "^3.5.3",
@@ -39,6 +40,7 @@
     "eslint-config-next": "13.4.19",
     "formik": "^2.4.5",
     "framer-motion": "^10.16.4",
+    "gsap": "^3.12.5",
     "lexical": "^0.12.2",
     "mini-svg-data-uri": "^1.4.4",
     "next": "13.4.19",

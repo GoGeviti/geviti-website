@@ -286,6 +286,7 @@ const Hero: React.FC<HeroProps> = ({ showBanner }) => {
 										<div className='absolute top-0 lg:top-0.5 right-1.5 lg:right-2'>
 											<button
 												onClick={ onCloseBanner }
+												aria-label='btn-banner'
 												className='focus:ring-0 focus:outline-none border border-white/10 bg-white/20 hover:bg-white/30 w-18px h-18px lg:w-[22px] lg:h-[22px] rounded-full relative'>
 												<IoClose className='text-white w-3.5 h-3.5 absolute-center flex-shrink-0' />
 											</button>

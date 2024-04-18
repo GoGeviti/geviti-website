@@ -1,13 +1,15 @@
 'use client';
+{ /* eslint-disable prefer-const, @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars, @typescript-eslint/no-shadow */ }
+import { useRef } from 'react';
+import { useGSAP } from '@gsap/react';
+import gsap from 'gsap';
+import { Draggable } from 'gsap/Draggable';
 
-import React, { useEffect, useRef, useState } from 'react';
-
-import { landingData } from '@/constant/data';
 import clsxm from '@/helpers/clsxm';
 import { screens } from '@/helpers/style';
 import { useWindowDimensions } from '@/hooks';
 
-import { Popover, PopoverContent, PopoverTrigger } from '../Popover';
+import PopoverPills from './PopoverPills';
 
 type FeatureItem = {
 	title: string;
@@ -22,232 +24,305 @@ type FeatureList = {
 
 type InfiniteMovingFeaturesProps = {
 	list: FeatureList[];
-	duration?: number;
 };
 
-type PopoverPillsProps = {
-	item: FeatureItem;
-	isMobile?: boolean;
-	onToggleAnimation?: (state: string) => void; // eslint-disable-line no-unused-vars
-};
-
-type InfiniteMovingCardsProps = {
+type DraggableCarouselProps = {
 	items: {
 		description: string;
 		title: string;
 	}[];
-	className?: string;
-	containerRefAll: React.MutableRefObject<(HTMLDivElement | null)[]>;
-	scrollerRefAll: React.MutableRefObject<(HTMLUListElement | null)[]>;
+	// reversed?: boolean;
+	containerRefs: React.MutableRefObject<(HTMLDivElement | null)[]>;
 	listIndex: number;
-	onToggleAnimation?: (state: string) => void; // eslint-disable-line no-unused-vars
-	start: boolean;
 	isMobile?: boolean;
+	onToggleAnimation?: (state: string) => void; // eslint-disable-line no-unused-vars
 };
 
-const PopoverPills: React.FC<PopoverPillsProps> = ({
-	item,
+gsap.registerPlugin(useGSAP, Draggable);
+
+const DraggableCarousel: React.FC<DraggableCarouselProps> = ({
+	items,
+	// reversed = false,
+	containerRefs,
+	listIndex,
 	isMobile,
 	onToggleAnimation
 }) => {
-	const [open, setOpen] = useState<boolean>(false);
-
-	useEffect(() => {
-		if (onToggleAnimation) {
-			if (open) onToggleAnimation('paused');
-			else onToggleAnimation('running');
-		}
-	}, [open]);
-
-	const handleClick = () => {
-		setOpen(!open);
-	};
-
-	const handleMouseEnter = () => {
-		setOpen(true);
-	};
-
-	const handleMouseLeave = () => {
-		setOpen(false);
-	};
-
-	return (
-		<Popover
-			open={ open }
-			onOpenChange={ setOpen }>
-			<PopoverTrigger
-				onClick={ e => e.preventDefault() }
-				className='focus:ring-0 focus:outline-none focus:border-0'>
-				<span
-					{ ...isMobile
-						? {
-							onClick: handleClick
-						}
-						: {
-							onMouseEnter: handleMouseEnter,
-							onMouseLeave: handleMouseLeave
-						}
-					}
-					className={ clsxm(
-						'font-Poppins cursor-pointer flex whitespace-nowrap items-center justify-center text-center overflow-hidden relative !rounded-19px text-[28px] leading-6 py-5 px-6',
-						open ? 'bg-primary text-white rounded-19px shadow-feature' : 'bg-[#F2FAFF] text-blue-primary'
-					) }>
-					{ item.title }
-				</span>
-			</PopoverTrigger>
-			<PopoverContent
-				{ ...isMobile
-					? {
-						side: 'top',
-						align: 'center',
-						sideOffset: 30,
-					}
-					: {
-						side: 'top',
-						align: 'start',
-						sideOffset: 12,
-						alignOffset: 17
-					} }
-				className='w-full max-w-[90vw] sm:max-w-[387px] py-3.5 px-3 lg:px-6 backdrop-blur-[22.2px] bg-white/40 border border-white/15 rounded-xl !shadow-[0px_4px_15.8px_0px_rgba(2,23,27,0.1)]'>
-				<span className='text-grey-800 text-lg font-Poppins text-center lg:text-left'>
-					{ item.description || item.title }
-				</span>
-			</PopoverContent>
-		</Popover>
-	);
-};
-
-const cards = landingData.membership.priceSection.list;
-
-export const InfiniteMovingCards: React.FC<InfiniteMovingCardsProps> = ({
-	items,
-	className,
-	listIndex,
-	containerRefAll,
-	scrollerRefAll,
-	onToggleAnimation,
-	start,
-	isMobile
-}) => {
 	return (
 		<div
-			ref={ el => containerRefAll.current[listIndex] = el }
-			className={ clsxm(
-				'scroller relative z-20 overflow-hidden',
-				className
-			) }
-			onMouseLeave={ () => {
-				if (onToggleAnimation) onToggleAnimation('running');
-			} }
+			className='wrapper w-full h-full flex items-center overflow-hidden relative -my-4 py-4'
+			ref={ el => containerRefs.current[listIndex] = el }
 		>
-			<ul
-				ref={ el => scrollerRefAll.current[listIndex] = el }
-				className={ clsxm(
-					'flex gap-[46px] flex-nowrap w-max shrink-0 min-w-full',
-					start && 'animate-scroll',
-				) }
-			>
-				{ [...items, ...items].map((item, idx) => (
-					<li key={ `infinitemoving-${ idx }` }>
+			{ items.map((detail, detailIdx) => {
+				return (
+					<div
+						key={ `boxfeatures-${ detailIdx }` }
+						className={ clsxm(
+							`box-moving-features-${ listIndex }`,
+							'flex items-center justify-center box-border w-auto h-full m-0 px-[23px] py-0 relative flex-shrink-0 cursor-pointer'
+						) }>
 						<PopoverPills
-							item={ item }
-							onToggleAnimation={ onToggleAnimation }
+							item={ detail }
 							isMobile={ isMobile }
+							onToggleAnimation={ onToggleAnimation }
 						/>
-					</li>
-				)) }
-			</ul>
+					</div>
+				);
+			}) }
 		</div>
 	);
 };
 
 const InfiniteMovingFeatures: React.FC<InfiniteMovingFeaturesProps> = ({
-	list,
-	duration = 40
+	list
 }) => {
 	const containerRefs = useRef<Array<HTMLDivElement | null>>([]);
-	const scrollerRefs = useRef<Array<HTMLUListElement | null>>([]);
-	const [start, setStart] = useState<boolean>(false);
+	const loopRefs = useRef<Array<gsap.core.Timeline | undefined>>([]);
+
 	const windowDimensions = useWindowDimensions();
 	const isMobile = windowDimensions.width < screens.lg;
 
-	useEffect(() => {
-		list.forEach((_, idx) => {
-			const containerRef = containerRefs.current[idx];
-			const scrollerRef = scrollerRefs.current[idx];
-			addAnimation(containerRef, scrollerRef, idx);
-		});
-	}, [list]);
-
-	const addAnimation = (containerRef: HTMLDivElement | null, scrollerRef: HTMLUListElement | null, index: number) => {
-		if (containerRef && scrollerRef) {
-			// const scrollerContent = Array.from(scrollerRef.children);
-			// scrollerContent.forEach(item => {
-			// 	let duplicatedItem = item.cloneNode(true);
-			// 	if (scrollerRef) {
-			// 		scrollerRef.appendChild(duplicatedItem);
-			// 	}
-			// });
-
-			getDirection(containerRef, index);
-			getSpeed(containerRef);
-			if (index === cards.length - 1) setStart(true);
-		}
-	};
-	const getDirection = (containerRef: HTMLDivElement | null, index: number) => {
-		const direction = index % 2 === 0 ? 'right' : 'left';
-
-		if (containerRef) {
-			if (direction === 'left') {
-				containerRef.style.setProperty(
-					'--animation-direction',
-					'forwards'
-				);
-			} else {
-				containerRef.style.setProperty(
-					'--animation-direction',
-					'reverse'
-				);
+	function horizontalLoop(items: any, config: any) {
+		let timeline;
+		items = gsap.utils.toArray(items);
+		config = config || {};
+		gsap.context(() => { // use a context so that if this is called from within another context or a gsap.matchMedia(), we can perform proper cleanup like the "resize" event handler on the window
+			let onChange = config.onChange,
+				lastIndex = 0,
+				tl = gsap.timeline({
+					repeat: config.repeat, onUpdate: onChange && function() {
+						let i = tl.closestIndex();
+						if (lastIndex !== i) {
+							lastIndex = i;
+							onChange(items[i], i);
+						}
+					}, paused: config.paused, defaults: { ease: 'none' }, onReverseComplete: () => { tl.totalTime(tl.rawTime() + tl.duration() * 100); }
+				}),
+				length = items.length,
+				startX = items[0].offsetLeft,
+				times: number[] = [],
+				widths: number[] = [],
+				spaceBefore: number[] = [],
+				xPercents: number[] = [],
+				curIndex = 0,
+				indexIsDirty = false,
+				center = config.center,
+				pixelsPerSecond = (config.speed || 1) * 100,
+				snap = config.snap === false ? (v: any) => v : gsap.utils.snap(config.snap || 1), // some browsers shift by a pixel to accommodate flex layouts, so for example if width is 20% the first element's width might be 242px, and the next 243px, alternating back and forth. So we snap to 5 percentage points to make things look more natural
+				timeOffset = 0,
+				container = center === true ? items[0].parentNode : gsap.utils.toArray(center)[0] || items[0].parentNode,
+				totalWidth: number,
+				getTotalWidth = () => items[length - 1].offsetLeft + xPercents[length - 1] / 100 * widths[length - 1] - startX + spaceBefore[0] + items[length - 1].offsetWidth * Number(gsap.getProperty(items[length - 1], 'scaleX')) + (parseFloat(config.paddingRight) || 0),
+				populateWidths = () => {
+					let b1 = container.getBoundingClientRect(), b2;
+					items.forEach((el: any, i: number) => {
+						widths[i] = parseFloat(gsap.getProperty(el, 'width', 'px').toString());
+						xPercents[i] = snap(parseFloat(gsap.getProperty(el, 'x', 'px').toString()) / widths[i] * 100 + Number(gsap.getProperty(el, 'xPercent')));
+						b2 = el.getBoundingClientRect();
+						spaceBefore[i] = b2.left - (i ? b1.right : b1.left);
+						b1 = b2;
+					});
+					gsap.set(items, { // convert "x" to "xPercent" to make things responsive, and populate the widths/xPercents Arrays to make lookups faster.
+						xPercent: i => xPercents[i]
+					});
+					totalWidth = getTotalWidth();
+				},
+				timeWrap: any,
+				populateOffsets = () => {
+					timeOffset = center ? tl.duration() * (container.offsetWidth / 2) / totalWidth : 0;
+					center && times.forEach((t, i) => {
+						times[i] = timeWrap(tl.labels['label' + i] + tl.duration() * widths[i] / 2 / totalWidth - timeOffset);
+					});
+				},
+				getClosest = (values: any, value: number, wrap: number) => {
+					let i = values.length,
+						closest = 1e10,
+						index = 0, d;
+					while (i--) {
+						d = Math.abs(values[i] - value);
+						if (d > wrap / 2) {
+							d = wrap - d;
+						}
+						if (d < closest) {
+							closest = d;
+							index = i;
+						}
+					}
+					return index;
+				},
+				populateTimeline = () => {
+					let i, item, curX, distanceToStart, distanceToLoop;
+					tl.clear();
+					for (i = 0; i < length; i++) {
+						item = items[i];
+						curX = xPercents[i] / 100 * widths[i];
+						distanceToStart = item.offsetLeft + curX - startX + spaceBefore[0];
+						distanceToLoop = distanceToStart + widths[i] * Number(gsap.getProperty(item, 'scaleX'));
+						tl.to(item, { xPercent: snap((curX - distanceToLoop) / widths[i] * 100), duration: distanceToLoop / pixelsPerSecond }, 0)
+							.fromTo(item, { xPercent: snap((curX - distanceToLoop + totalWidth) / widths[i] * 100) }, { xPercent: xPercents[i], duration: (curX - distanceToLoop + totalWidth - curX) / pixelsPerSecond, immediateRender: false }, distanceToLoop / pixelsPerSecond)
+							.add('label' + i, distanceToStart / pixelsPerSecond);
+						times[i] = distanceToStart / pixelsPerSecond;
+					}
+					timeWrap = gsap.utils.wrap(0, tl.duration());
+				},
+				refresh = (deep?: boolean) => {
+					let progress = tl.progress();
+					tl.progress(0, true);
+					populateWidths();
+					deep && populateTimeline();
+					populateOffsets();
+					deep && tl.draggable ? tl.time(times[curIndex], true) : tl.progress(progress, true);
+				},
+				onResize = () => refresh(true),
+				proxy: any;
+			gsap.set(items, { x: 0 });
+			populateWidths();
+			populateTimeline();
+			populateOffsets();
+			window.addEventListener('resize', onResize);
+			function toIndex(index: number, vars: any) {
+				vars = vars || {};
+				(Math.abs(index - curIndex) > length / 2) && (index += index > curIndex ? -length : length); // always go in the shortest direction
+				let newIndex = gsap.utils.wrap(0, length, index),
+					time = times[newIndex];
+				if (time > tl.time() !== index > curIndex && index !== curIndex) { // if we're wrapping the timeline's playhead, make the proper adjustments
+					time += tl.duration() * (index > curIndex ? 1 : -1);
+				}
+				if (time < 0 || time > tl.duration()) {
+					vars.modifiers = { time: timeWrap };
+				}
+				curIndex = newIndex;
+				vars.overwrite = true;
+				gsap.killTweensOf(proxy);
+				return vars.duration === 0 ? tl.time(timeWrap(time)) : tl.tweenTo(time, vars);
 			}
-		}
-	};
-	const getSpeed = (containerRef: HTMLDivElement | null) => {
-		if (containerRef) {
-			containerRef.style.setProperty('--animation-duration', duration + 's');
-		}
-	};
-
-	const changePlayState = (ref: HTMLUListElement | null, state: string) => {
-		if (ref) {
-			ref.style.setProperty('animation-play-state', state);
-		}
-	};
-
-	const onToggleAnimation = (state: string) => {
-		list.forEach((_, idx) => {
-			const ref = scrollerRefs.current[idx];
-			changePlayState(ref, state);
+			tl.toIndex = (index: number, vars: any) => toIndex(index, vars);
+			tl.closestIndex = (setCurrent: any) => {
+				let index = getClosest(times, tl.time(), tl.duration());
+				if (setCurrent) {
+					curIndex = index;
+					indexIsDirty = false;
+				}
+				return index;
+			};
+			tl.current = () => indexIsDirty ? tl.closestIndex(true) : curIndex;
+			tl.next = (vars: any) => toIndex(tl.current() + 1, vars);
+			tl.previous = (vars: any) => toIndex(tl.current() - 1, vars);
+			tl.times = times;
+			tl.progress(1, true).progress(0, true); // pre-render for performance
+			if (config.reversed) {
+				if (tl.vars.onReverseComplete) {
+					tl.vars.onReverseComplete();
+				}
+				tl.reverse();
+			}
+			if (config.draggable && typeof (Draggable) === 'function') {
+				proxy = document.createElement('div');
+				let wrap = gsap.utils.wrap(0, 1),
+					ratio: number, startProgress: number, draggable: any, dragSnap: any, lastSnap: any, initChangeX: any, wasPlaying: any,
+					align = () => { tl.progress(wrap(startProgress + (draggable.startX - draggable.x) * ratio)); },
+					syncIndex = () => tl.closestIndex(true);
+				typeof (InertiaPlugin) === 'undefined' && console.log('InertiaPlugin required for momentum-based scrolling and snapping. https://greensock.com/club');
+				draggable = Draggable.create(proxy, {
+					trigger: items[0].parentNode,
+					type: 'x',
+					onPressInit() {
+						let x = this.x;
+						gsap.killTweensOf(tl);
+						wasPlaying = !tl.paused();
+						tl.pause();
+						startProgress = tl.progress();
+						refresh();
+						ratio = 1 / totalWidth;
+						initChangeX = (startProgress / -ratio) - x;
+						gsap.set(proxy, { x: startProgress / -ratio });
+					},
+					onDrag: align,
+					onThrowUpdate: align,
+					overshootTolerance: 0,
+					inertia: true,
+					snap(value) {
+						// note: if the user presses and releases in the middle of a throw, due to the sudden correction of proxy.x in the onPressInit(), the velocity could be very large, throwing off the snap. So sense that condition and adjust for it. We also need to set overshootTolerance to 0 to prevent the inertia from causing it to shoot past and come back
+						if (Math.abs(startProgress / -ratio - this.x) < 10) {
+							return lastSnap + initChangeX;
+						}
+						let time = -(value * ratio) * tl.duration(),
+							wrappedTime = timeWrap(time),
+							snapTime = times[getClosest(times, wrappedTime, tl.duration())],
+							dif = snapTime - wrappedTime;
+						Math.abs(dif) > tl.duration() / 2 && (dif += dif < 0 ? tl.duration() : -tl.duration());
+						lastSnap = (time + dif) / tl.duration() / -ratio;
+						return lastSnap;
+					},
+					onRelease() {
+						syncIndex();
+						wasPlaying && tl.resume();
+						draggable.isThrowing && (indexIsDirty = true);
+					},
+					onThrowComplete: () => {
+						syncIndex();
+						wasPlaying && tl.resume();
+					}
+				})[0];
+				tl.draggable = draggable;
+			}
+			tl.closestIndex(true);
+			lastIndex = curIndex;
+			onChange && onChange(items[curIndex], curIndex);
+			timeline = tl;
+			return () => window.removeEventListener('resize', onResize); // cleanup
 		});
-	};
+		return timeline;
+	}
+
+	const { contextSafe } = useGSAP(
+		() => {
+			list.forEach((data, idx) => {
+				const reversed = data.reverse;
+				const boxes = gsap.utils.toArray(`.box-moving-features-${ idx }`);
+				loopRefs.current[idx] = horizontalLoop(boxes, {
+					paused: false,
+					speed: 0.5,
+					repeat: -1,
+					reversed: reversed,
+					draggable: true, // make it draggable
+					center: true, // active element is the one in the center of the container rather than th left edge
+				});
+			});
+		}
+	);
+
+	const togglePlaying = contextSafe((state: string) => {
+		list.forEach((_, idx) => {
+			const tl = loopRefs.current[idx];
+			if (tl) {
+				const mustPaused = state === 'paused';
+				if (mustPaused) {
+					tl.pause();
+				} else {
+					tl.closestIndex(true);
+					tl.resume();
+				}
+			}
+		});
+	});
 
 	return (
 		<div className='flex flex-col gap-[30px]'>
-			{
-				list.map((item, index) => {
-					return (
-						<InfiniteMovingCards
-							key={ item.id }
-							items={ item.list }
-							listIndex={ index }
-							containerRefAll={ containerRefs }
-							scrollerRefAll={ scrollerRefs }
-							onToggleAnimation={ onToggleAnimation }
-							start={ start }
-							isMobile={ isMobile }
-						/>
-					);
-				})
-			}
+			{ list.map((item, itemIdx) => {
+				const duplicatedItems = [...item.list, ...item.list, ...item.list, ...item.list];
+
+				return (
+					<DraggableCarousel
+						key={ `featuresmoving-${ itemIdx }` }
+						items={ duplicatedItems }
+						containerRefs={ containerRefs }
+						isMobile={ isMobile }
+						listIndex={ itemIdx }
+						onToggleAnimation={ togglePlaying }
+					/>
+				);
+			}) }
 		</div>
 	);
 };
