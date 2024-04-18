@@ -55,7 +55,7 @@ export default function IntroScreen({ children }: { children: React.ReactNode; }
 						width={ 3432 }
 						height={ 2160 }
 						playsInline
-						className='w-full h-[540px] object-cover'
+						className='w-full h-full object-cover'
 					>
 						<source
 							src='/videos/intro.mp4'
