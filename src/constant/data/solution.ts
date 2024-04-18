@@ -89,7 +89,7 @@ const landingData = {
 		preTitle: 'Geviti offers data-driven wellness solutions',
 		title: 'Begin with an at-home bloodwork panel',
 		subTittle:
-      'Membership journey starts with choosing a “Deep Dive” <br/> diagnostic. We’ll draw your blood from the comfort of your home.',
+      'Membership journey starts with choosing a “Deep Dive” diagnostic. We’ll draw your blood from the comfort of your home.',
 
 		list: [
 			{

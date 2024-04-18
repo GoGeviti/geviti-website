@@ -12,7 +12,7 @@ const OptimizedYourSelf = (props: IProps) => {
 	return (
 		<>
 			<section className='lg:px-4'>
-				<div className='bg-white w-full my-6 rounded-[19px] px-4 sm:px-10 lg:pl-10 lg:pr-4 py-4'>
+				<div className='bg-white w-full my-6 rounded-[19px] px-4 sm:px-10 lg:pl-10 lg:pr-4 pt-10 pb-6 sm:py-4'>
 					<div className='flex justify-between lg:flex-row flex-col h-full gap-10 lg:gap-[58px] xl:pl-[88px]'>
 						<div className='lg:max-w-[606px] lg:py-[22px] w-full'>
 							<h2 className='lg:text-sm md:text-xs text-[10px] font-semibold tracking-[1.1px] sm:tracking-[1.54px] uppercase text-grey-primary leading-[150%] sm:leading-[171.429%] font-Poppins'>

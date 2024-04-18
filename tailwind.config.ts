@@ -149,6 +149,7 @@ const config: Config = {
           "scroll var(--animation-duration, 40s) var(--animation-direction, forwards) linear infinite",
       },
       boxShadow: {
+        custom1: "0px 4px 21.1px 0px rgba(0, 147, 255, 0.25)",
         custom: "0px 4px 21.1px 0px rgba(153, 212, 255, 0.75)",
         card: "0px 15px 30px 0px rgba(16, 24, 40, 0.10)",
         feature:

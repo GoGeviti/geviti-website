@@ -36,7 +36,7 @@ const StepsSection: React.FC = () => {
               </h2>
             )}
             {stepsData.subTittle && (
-              <h2 className="font-Poppins leading-[142.857%] font-normal mt-[14px] text-grey-primary  text-xs md:text-sm text-center">
+              <h2 className="font-Poppins leading-[142.857%] font-normal mt-[14px] text-grey-primary  text-xs md:text-sm text-center max-w-xs sm:max-w-[458px] mx-auto">
                 <span
                   dangerouslySetInnerHTML={{ __html: stepsData.subTittle }}
                 />
@@ -142,7 +142,7 @@ const StepsSection: React.FC = () => {
                       <div className=" lg:hidden flex w-full space-y-[18px] justify-center items-center flex-col">
                         <button
                           className={clsxm(
-                            'cursor-pointer rounded-19px flex items-center justify-center flex-shrink-0 bg-blue-primary w-[62px] h-[62px] shadow-c1',
+                            'cursor-pointer rounded-19px flex items-center justify-center flex-shrink-0 bg-blue-primary w-[62px] h-[62px] shadow-custom1',
                           )}
                           aria-label={`step-${step.id}`}
                         >
