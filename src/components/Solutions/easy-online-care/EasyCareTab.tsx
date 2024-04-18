@@ -45,7 +45,7 @@ const EasyCareTab = (props: IEasyCareTab) => {
             </button>
           ))}
         </div>
-        <div className="justify-between items-center flex lg:hidden border border-[#f5f6f6] rounded-[20px] py-2 pl-4 pr-2 w-full">
+        <div className="justify-between items-center flex lg:hidden border border-grey-50 rounded-[20px] py-2 pl-4 pr-2 w-full">
           <div className="flex items-center gap-[6px] text-xs text-primary font-Poppins">
             <TherapyIcon />
             Testosterone Therapy
