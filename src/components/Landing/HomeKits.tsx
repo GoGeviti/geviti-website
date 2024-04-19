@@ -330,41 +330,6 @@ const HomeKits: React.FC = () => {
 
 		return (
 			<>
-				<motion.div
-					className='max-lg:hidden absolute z-50 inset-0 w-full h-full'
-					onMouseMove={ ({ currentTarget, clientX, clientY }) => {
-						const parent = currentTarget.offsetParent;
-						if (!parent) return;
-						const { left, top } = parent.getBoundingClientRect();
-						mouseX.set(clientX - left - CURSOR_SIZE / 2);
-						mouseY.set(clientY - top - CURSOR_SIZE / 2);
-					} }
-					onClick={ handleNext }
-				>
-					<motion.div
-						className='pointer-events-none absolute z-20 opacity-0 transition-opacity duration-300 group-hover:opacity-100'
-						style={ {
-							width: CURSOR_SIZE,
-							height: CURSOR_SIZE,
-							x: animatedHoverX,
-							y: animatedHoverY,
-						} }
-					>
-						<motion.div
-							layout
-							className='grid justify-center items-center h-full place-items-center rounded-full bg-primary'
-						>
-							<motion.span
-								layout='position'
-								className='w-full inline-flex items-center gap-2 select-none text-center text-blue-primary text-sm !leading-6 font-medium'
-							>
-								Click To Slide
-								<ArrowNarrowRight className='text-blue-primary flex-shrink-0 w-18px h-18px' />
-							</motion.span>
-						</motion.div>
-					</motion.div>
-				</motion.div>
-
 				<AnimatePresence
 					initial={ false }
 					custom={ trend }>
@@ -432,8 +397,42 @@ const HomeKits: React.FC = () => {
 					</div>
 				</div>
 			</div>
-			<div className='lg:max-w-7xl lg:mx-auto group'>
-				<div className='flex h-full justify-center lg:cursor-none relative pt-[294px] lg:pt-[451px]'>
+			<div className='group relative'>
+				<motion.div
+					className='max-lg:hidden absolute z-50 inset-0 w-full h-full'
+					onMouseMove={ ({ currentTarget, clientX, clientY }) => {
+						const parent = currentTarget.offsetParent;
+						if (!parent) return;
+						const { left, top } = parent.getBoundingClientRect();
+						mouseX.set(clientX - left - CURSOR_SIZE / 2);
+						mouseY.set(clientY - top - CURSOR_SIZE / 2);
+					} }
+					onClick={ handleNext }
+				>
+					<motion.div
+						className='pointer-events-none absolute z-20 opacity-0 transition-opacity duration-300 group-hover:opacity-100'
+						style={ {
+							width: CURSOR_SIZE,
+							height: CURSOR_SIZE,
+							x: animatedHoverX,
+							y: animatedHoverY,
+						} }
+					>
+						<motion.div
+							layout
+							className='grid justify-center items-center h-full place-items-center rounded-full bg-primary'
+						>
+							<motion.span
+								layout='position'
+								className='w-full inline-flex items-center gap-2 select-none text-center text-blue-primary text-sm !leading-6 font-medium'
+							>
+								Click To Slide
+								<ArrowNarrowRight className='text-blue-primary flex-shrink-0 w-18px h-18px' />
+							</motion.span>
+						</motion.div>
+					</motion.div>
+				</motion.div>
+				<div className='flex h-full justify-center lg:cursor-none relative pt-[294px] lg:pt-[451px] lg:max-w-7xl lg:mx-auto'>
 					<motion.div
 						style={ { y: 0 } }
 						className='px-4 lg:px-10 flex flex-col z-1'>
@@ -449,7 +448,6 @@ const HomeKits: React.FC = () => {
 							<p className='text-xs !leading-5 text-center text-grey-400'>Slide for More</p>
 						</div>
 					</motion.div>
-
 					{ renderImages() }
 				</div>
 			</div>
