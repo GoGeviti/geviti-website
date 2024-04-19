@@ -1,6 +1,7 @@
 'use client';
 import React, { useEffect, useState } from 'react';
 import { motion, MotionProps } from 'framer-motion';
+import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
 import navbarData from '@/constant/data/navigation';
@@ -27,10 +28,10 @@ export const MenuItem = ({
 	item,
 	children,
 }: {
-  setActive: React.Dispatch<React.SetStateAction<string | null>>;
-  active: string | null;
-  item: string;
-  children?: React.ReactNode;
+	setActive: React.Dispatch<React.SetStateAction<string | null>>;
+	active: string | null;
+	item: string;
+	children?: React.ReactNode;
 }) => {
 	return (
 		<div
@@ -83,8 +84,8 @@ export const MenuItem = ({
 };
 
 type NavbarProps = {
-  className?: string;
-  animationProps?: MotionProps;
+	className?: string;
+	animationProps?: MotionProps;
 };
 
 const Navbar: React.FC<NavbarProps> = ({ className, animationProps }) => {
@@ -143,7 +144,7 @@ const Navbar: React.FC<NavbarProps> = ({ className, animationProps }) => {
 					) }
 					aria-label='Dashboard'
 				>
-          Dashboard
+					Dashboard
 				</CustomLink>
 				{ navbarData.actionsMenu?.map(menu => (
 					<CustomLink
@@ -197,7 +198,9 @@ const Navbar: React.FC<NavbarProps> = ({ className, animationProps }) => {
 							onMouseLeave={ () => setActive(null) }
 							className='relative overflow-visible visible h-[60px] lg:h-[69px] font-Poppins border border-white/5 backdrop-blur-[25px] p-18px lg:pl-[42px] lg:py-3 lg:pr-3 rounded-[100px] bg-white/10 flex items-center space-x-6 xl:space-x-[50px] w-full justify-between'>
 							<div className='flex items-center lg:space-x-6 xl:space-x-[50px]'>
-								<GevitiLogo />
+								<Link href='/'>
+									<GevitiLogo />
+								</Link>
 								<div className='hidden lg:flex items-center space-x-6 xl:space-x-[50px]'>
 									{ navbarData.menu.map((menu, menuIdx) => {
 										if (menu.items) {

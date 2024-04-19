@@ -1,9 +1,9 @@
 'use client';
 import React from 'react';
 import Marquee from 'react-fast-marquee';
+import Image from 'next/image';
 
 import { ArrowUpRight } from '../Icons';
-import Image from 'next/image';
 
 const RunningLogo: React.FC = () => {
 	const keywordsData = Array.from(Array(40).keys()).concat(

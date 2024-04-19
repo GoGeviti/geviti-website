@@ -85,8 +85,8 @@ const mobileLinkVarsOpacity = {
 };
 
 type MobileNavProps = {
-  open: boolean;
-  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+	open: boolean;
+	setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 const MobileNav: React.FC<MobileNavProps> = ({
@@ -130,7 +130,9 @@ const MobileNav: React.FC<MobileNavProps> = ({
 				>
 					<div className='flex h-full flex-col'>
 						<div className='flex justify-between mb-[34px]'>
-							<GevitiLogo />
+							<Link href='/'>
+								<GevitiLogo />
+							</Link>
 							<Bars3Icon
 								className='w-6 h-6 text-grey-50'
 								onClick={ toggleMenu } />
@@ -200,7 +202,7 @@ const MobileNav: React.FC<MobileNavProps> = ({
 												width={ 25 }
 												alt='' />
 											<span className='font-Poppins text-white text-[20px] tracking-tight'>
-                        Cart
+												Cart
 											</span>
 										</Link>
 									</motion.div>
@@ -214,7 +216,7 @@ const MobileNav: React.FC<MobileNavProps> = ({
 												width={ 25 }
 												alt='' />
 											<span className='font-Poppins text-white text-[20px] tracking-tight'>
-                        Dashboard
+												Dashboard
 											</span>
 										</Link>
 									</motion.div>
