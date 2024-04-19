@@ -4,10 +4,10 @@ import CustomLink, { CustomLinkProps } from '../CustomLink';
 import { ChevronRight } from '../Icons';
 
 type ButtonCtaProps = CustomLinkProps & {
-	text?: string;
-	arrowClassName?: string;
-	theme?: 'primary' | 'secondary';
-	children?: React.ReactNode;
+  text?: string;
+  arrowClassName?: string;
+  theme?: 'primary' | 'secondary';
+  children?: React.ReactNode;
 };
 
 const ButtonCta: React.FC<ButtonCtaProps> = ({

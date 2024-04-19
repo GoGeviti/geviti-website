@@ -2,9 +2,17 @@
 import React, { Fragment } from 'react';
 import type { SerializedListItemNode, SerializedListNode } from '@lexical/list';
 import type { SerializedHeadingNode } from '@lexical/rich-text';
-import type { LinkFields, SerializedLinkNode, SerializedUploadNode } from '@payloadcms/richtext-lexical';
+import type {
+	LinkFields,
+	SerializedLinkNode,
+	SerializedUploadNode,
+} from '@payloadcms/richtext-lexical';
 import escapeHTML from 'escape-html';
-import type { SerializedElementNode, SerializedLexicalNode, SerializedTextNode } from 'lexical';
+import type {
+	SerializedElementNode,
+	SerializedLexicalNode,
+	SerializedTextNode,
+} from 'lexical';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -21,7 +29,7 @@ import {
 } from './nodeFormat';
 
 interface Props {
-	nodes: SerializedLexicalNode[];
+  nodes: SerializedLexicalNode[];
 }
 
 export function serializeLexical({ nodes }: Props): JSX.Element {
@@ -33,12 +41,17 @@ export function serializeLexical({ nodes }: Props): JSX.Element {
 					let text = (
 						<span
 							dangerouslySetInnerHTML={ { __html: escapeHTML(node.text) } }
-							key={ index } />
+							key={ index }
+						/>
 					);
 					if (node.format & IS_BOLD) {
-						text = <strong
-							className='font-semibold'
-							key={ index }>{ text }</strong>;
+						text = (
+							<strong
+								className='font-semibold'
+								key={ index }>
+								{ text }
+							</strong>
+						);
 					}
 					if (node.format & IS_ITALIC) {
 						text = <em key={ index }>{ text }</em>;
@@ -81,11 +94,16 @@ export function serializeLexical({ nodes }: Props): JSX.Element {
 				// NOTE: Hacky fix for
 				// https://github.com/facebook/lexical/blob/d10c4e6e55261b2fdd7d1845aed46151d0f06a8c/packages/lexical-list/src/LexicalListItemNode.ts#L133
 				// which does not return checked: false (only true - i.e. there is no prop for false)
-				const serializedChildrenFn = (node: SerializedElementNode): JSX.Element | null => {
+				const serializedChildrenFn = (
+					node: SerializedElementNode
+				): JSX.Element | null => {
 					if (node.children === null) {
 						return null;
 					} else {
-						if (node?.type === 'list' && (node as SerializedListNode)?.listType === 'check') {
+						if (
+							node?.type === 'list' &&
+              (node as SerializedListNode)?.listType === 'check'
+						) {
 							for (const item of node.children) {
 								if ('checked' in item) {
 									if (!item?.checked) {
@@ -101,32 +119,46 @@ export function serializeLexical({ nodes }: Props): JSX.Element {
 				};
 
 				const serializedChildren =
-					'children' in _node ? serializedChildrenFn(_node as SerializedElementNode) : '';
+          'children' in _node
+          	? serializedChildrenFn(_node as SerializedElementNode)
+          	: '';
 
 				switch (_node.type) {
 					case 'linebreak': {
 						return <br key={ index } />;
 					}
 					case 'paragraph': {
-						return <p
-							className='lg:text-xl font-Poppins text-primary'
-							key={ index }>{ serializedChildren }</p>;
+						return (
+							<p
+								className='lg:text-xl font-Poppins text-primary'
+								key={ index }>
+								{ serializedChildren }
+							</p>
+						);
 					}
 					case 'heading': {
 						const node = _node as SerializedHeadingNode;
 
-						type Heading = Extract<keyof JSX.IntrinsicElements, 'h1' | 'h2' | 'h3' | 'h4' | 'h5'>;
-						const Tag = node?.tag as Heading;
-						return <Tag
-							className={
-								clsxm(
-									'font-Poppins text-primary text-lg md:text-[21px] leading-none font-semibold',
-									node?.tag === 'h1' && 'text-[30px] md:text-[32px] mb-[10px] md:mb-[31px]',
-									node?.tag === 'h2' && 'text-[24px] md:text-[26px] mb-[10px] md:mb-[31px]',
-									node?.tag === 'h3' && 'text-[20.5px] md:text-[22.5px]',
-								)
-							}
-							key={ index }>{ serializedChildren }</Tag>;
+            type Heading = Extract<
+              keyof JSX.IntrinsicElements,
+              'h1' | 'h2' | 'h3' | 'h4' | 'h5'
+            >;
+            const Tag = node?.tag as Heading;
+            return (
+            	<Tag
+            		className={ clsxm(
+            			'font-Poppins text-primary text-lg md:text-[21px] leading-none font-semibold',
+            			node?.tag === 'h1' &&
+                    'text-[30px] md:text-[32px] mb-[10px] md:mb-[31px]',
+            			node?.tag === 'h2' &&
+                    'text-[24px] md:text-[26px] mb-[10px] md:mb-[31px]',
+            			node?.tag === 'h3' && 'text-[20.5px] md:text-[22.5px]'
+            		) }
+            		key={ index }
+            	>
+            		{ serializedChildren }
+            	</Tag>
+            );
 					}
 
 					case 'upload': {
@@ -134,29 +166,30 @@ export function serializeLexical({ nodes }: Props): JSX.Element {
 
 						const value = node.value;
 						const caption = node?.fields?.caption as {
-							root: SerializedHeadingNode;
-						};
+              root: SerializedHeadingNode;
+            };
 						const alignment = node?.fields?.alignment as 'left' | 'right';
-						const serializedCaption = caption?.root ? serializedChildrenFn(caption?.root as SerializedElementNode) : '';
+						const serializedCaption = caption?.root
+							? serializedChildrenFn(caption?.root as SerializedElementNode)
+							: '';
 						if (serializedCaption) {
 							return (
-								<div className={
-									clsxm(
+								<div
+									className={ clsxm(
 										'flex flex-col md:flex-row gap-[30px] mt-[30px] items-center',
-										alignment === 'right' && 'md:flex-row-reverse',
-									)
-								}>
+										alignment === 'right' && 'md:flex-row-reverse'
+									) }
+								>
 									<div className='w-full md:w-[60%] h-[280px] relative'>
 										<Image
-											src={ value?.url as string ?? '' }
-											alt={ value?.alt as string ?? '' }
+											src={ (value?.url as string) ?? '' }
+											alt={ (value?.alt as string) ?? '' }
 											fill
 											className='object-cover rounded-[30px] object-center'
+											unoptimized
 										/>
 									</div>
-									<div
-										className='md:w-[40%] text-primary font-Poppins text-base md:text-xl leading-[30px] md:leading-10 -tracking-[0.64px] md:-tracking-[0.8px]'
-									>
+									<div className='md:w-[40%] text-primary font-Poppins text-base md:text-xl leading-[30px] md:leading-10 -tracking-[0.64px] md:-tracking-[0.8px]'>
 										<p>{ serializedCaption }</p>
 									</div>
 								</div>
@@ -165,10 +198,11 @@ export function serializeLexical({ nodes }: Props): JSX.Element {
 							return (
 								<div className='w-full h-[350px] md:h-[340px] relative lg:mt-5 lg:mb-[30px] mt-[10px] mb-5'>
 									<Image
-										src={ value?.url as string ?? '' }
-										alt={ value?.alt as string ?? '' }
+										src={ (value?.url as string) ?? '' }
+										alt={ (value?.alt as string) ?? '' }
 										fill
 										className='object-cover rounded-[30px] object-center'
+										unoptimized
 									/>
 								</div>
 							);
@@ -184,19 +218,20 @@ export function serializeLexical({ nodes }: Props): JSX.Element {
 					case 'list': {
 						const node = _node as SerializedListNode;
 
-						type List = Extract<keyof JSX.IntrinsicElements, 'ol' | 'ul'>;
-						const Tag = node?.tag as List;
-						return (
-							<Tag
-								className={ clsxm(
-									'lg:text-xl font-Poppins text-primary list-inside flex flex-col gap-2 mt-2',
-									node?.tag === 'ol' && 'list-decimal',
-									node?.tag === 'ul' && 'list-disc',
-								) }
-								key={ index }>
-								{ serializedChildren }
-							</Tag>
-						);
+            type List = Extract<keyof JSX.IntrinsicElements, 'ol' | 'ul'>;
+            const Tag = node?.tag as List;
+            return (
+            	<Tag
+            		className={ clsxm(
+            			'lg:text-xl font-Poppins text-primary list-inside flex flex-col gap-2 mt-2',
+            			node?.tag === 'ol' && 'list-decimal',
+            			node?.tag === 'ul' && 'list-disc'
+            		) }
+            		key={ index }
+            	>
+            		{ serializedChildren }
+            	</Tag>
+            );
 					}
 					case 'listitem': {
 						const node = _node as SerializedListItemNode;

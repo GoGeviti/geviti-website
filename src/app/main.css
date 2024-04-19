@@ -1,0 +1,45 @@
+.gradient-overlay {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.gradient-overlay {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    #181a1c -10.42%,
+    rgba(24, 26, 28, 0.49) 46.3%,
+    rgba(24, 26, 28, 0) 100%
+  );
+
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 20 !important;
+  background-size: 100% 100%;
+}
+@media (max-width: 640px) {
+  .gradient-overlay {
+    background: linear-gradient(
+      180deg,
+      #181a1c 52.48%,
+      rgba(24, 26, 28, 0) 95.41%
+    );
+    transform: rotate(180deg);
+    width: 100%;
+    height: 65%;
+    bottom: 0px;
+  }
+}
+.custom-slider {
+  max-width: 474px !important;
+  /* width: 100% !important; */
+}
+.custom-slider .slick-slide {
+  height: auto !important;
+}
+.new:disabled {
+  background-color: red !important;
+}

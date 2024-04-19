@@ -85,14 +85,11 @@ const mobileLinkVarsOpacity = {
 };
 
 type MobileNavProps = {
-	open: boolean;
-	setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  open: boolean;
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-const MobileNav: React.FC<MobileNavProps> = ({
-	open,
-	setOpen
-}) => {
+const MobileNav: React.FC<MobileNavProps> = ({ open, setOpen }) => {
 	const pathname = usePathname();
 	const [expandedIdx, setExpandedIdx] = useState<number | null>(null);
 
@@ -113,9 +110,9 @@ const MobileNav: React.FC<MobileNavProps> = ({
 		{
 			name: 'Home',
 			href: '/',
-			items: []
+			items: [],
 		},
-		...navbarData.menu
+		...navbarData.menu,
 	];
 
 	return (
@@ -133,7 +130,8 @@ const MobileNav: React.FC<MobileNavProps> = ({
 							<GevitiLogo />
 							<Bars3Icon
 								className='w-6 h-6 text-grey-50'
-								onClick={ toggleMenu } />
+								onClick={ toggleMenu }
+							/>
 						</div>
 						<motion.div
 							variants={ containerVars }
@@ -152,36 +150,44 @@ const MobileNav: React.FC<MobileNavProps> = ({
 												variants={ mobileLinkVars }
 												className={ clsxm(
 													'text-[20px]',
-													pathname === link.href ? 'text-grey-50' : 'text-grey-primary'
+													pathname === link.href
+														? 'text-grey-50'
+														: 'text-grey-primary'
 												) }
 											>
-												{ link.items?.length
-													? (
-														<>
-															<p onClick={ () => {
+												{ link.items?.length ? (
+													<>
+														<p
+															onClick={ () => {
 																if (expandedIdx === index) setExpandedIdx(null);
 																else setExpandedIdx(index);
-															} }>{ link.name }</p>
+															} }
+														>
+															{ link.name }
+														</p>
 
-															{ expandedIdx === index && (
-																<div className='flex flex-col gap-y-2 pl-4 pt-2 animate-fadeIn duration-200 transform transition-all'>
-																	{ link.items.map(item => (
-																		<Link
-																			href={ item.href }
-																			key={ item.name }
-																			className={ clsxm(
-																				'text-[20px]',
-																				pathname === item.href ? 'text-grey-50' : 'text-grey-primary'
-																			) }
-																		>{ item.name }</Link>
-																	)) }
-																</div>
-															) }
-														</>
-													)
-													: (
-														<Link href={ link.href }>{ link.name }</Link>
-													) }
+														{ expandedIdx === index && (
+															<div className='flex flex-col gap-y-2 pl-4 pt-2 animate-fadeIn duration-200 transform transition-all'>
+																{ link.items.map(item => (
+																	<Link
+																		href={ item.href }
+																		key={ item.name }
+																		className={ clsxm(
+																			'text-[20px]',
+																			pathname === item.href
+																				? 'text-grey-50'
+																				: 'text-grey-primary'
+																		) }
+																	>
+																		{ item.name }
+																	</Link>
+																)) }
+															</div>
+														) }
+													</>
+												) : (
+													<Link href={ link.href }>{ link.name }</Link>
+												) }
 											</motion.div>
 										</div>
 									);
@@ -193,14 +199,17 @@ const MobileNav: React.FC<MobileNavProps> = ({
 									<motion.div variants={ mobileLinkVarsOpacity }>
 										<Link
 											href='/cart'
-											className='flex items-center gap-2.5 mb-5'>
+											className='flex items-center gap-2.5 mb-5'
+										>
 											<Image
 												src={ cartIcon }
 												height={ 25 }
 												width={ 25 }
-												alt='' />
+												alt=''
+												unoptimized
+											/>
 											<span className='font-Poppins text-white text-[20px] tracking-tight'>
-												Cart
+                        Cart
 											</span>
 										</Link>
 									</motion.div>
@@ -212,9 +221,11 @@ const MobileNav: React.FC<MobileNavProps> = ({
 												src={ dashboardIcon }
 												height={ 25 }
 												width={ 25 }
-												alt='' />
+												alt=''
+												unoptimized
+											/>
 											<span className='font-Poppins text-white text-[20px] tracking-tight'>
-												Dashboard
+                        Dashboard
 											</span>
 										</Link>
 									</motion.div>

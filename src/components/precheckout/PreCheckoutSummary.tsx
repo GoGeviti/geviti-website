@@ -200,7 +200,7 @@ const steps = [
 interface PreCheckoutSummaryProps {
   viewState: ViewState;
   onContinue: (
-    planID: 'essentials' | 'ultimate' | 'comprehensive' | 'switch',
+    planID: 'essentials' | 'ultimate' | 'comprehensive' | 'switch'
   ) => void;
   selectedPlanID: 'essentials' | 'ultimate' | 'comprehensive' | 'switch';
 }
@@ -242,7 +242,9 @@ const PreCheckoutSummary = (props: PreCheckoutSummaryProps) => {
 								src={ gevitiBlueIcon }
 								height={ 44 }
 								width={ 44 }
-								alt='' />
+								alt=''
+								unoptimized
+							/>
 							<div className='flex flex-col'>
 								<ItemName>1st Month Subscription</ItemName>
 								<ItemPrice>
@@ -256,7 +258,9 @@ const PreCheckoutSummary = (props: PreCheckoutSummaryProps) => {
 								src={ doctorVisitIcon }
 								height={ 44 }
 								width={ 44 }
-								alt='' />
+								alt=''
+								unoptimized
+							/>
 							<div className='flex flex-col'>
 								<ItemName>Telehealth Doctor Visit</ItemName>
 								<ItemPrice>
@@ -270,7 +274,9 @@ const PreCheckoutSummary = (props: PreCheckoutSummaryProps) => {
 								src={ doctorVisitIcon }
 								height={ 44 }
 								width={ 44 }
-								alt='' />
+								alt=''
+								unoptimized
+							/>
 							<div className='flex flex-col'>
 								<ItemName>
 									{ props.selectedPlanID === 'switch'
@@ -295,7 +301,9 @@ const PreCheckoutSummary = (props: PreCheckoutSummaryProps) => {
 								src={ secureCheckoutIcon }
 								width={ 14 }
 								height={ 16 }
-								alt='' />
+								alt=''
+								unoptimized
+							/>
 							<span>Secure Checkout</span>
 						</ButtonRow>
 					</SummaryCard>

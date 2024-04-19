@@ -13,7 +13,7 @@ import 'swiper/css/thumbs';
 import 'swiper/css';
 
 type SliderProductsProps = {
-	images: string[];
+  images: string[];
 };
 
 const SliderProducts: React.FC<SliderProductsProps> = ({ images }) => {
@@ -47,6 +47,7 @@ const SliderProducts: React.FC<SliderProductsProps> = ({ images }) => {
 											priority={ true }
 											fill
 											className='object-cover'
+											unoptimized
 										/>
 									</div>
 								</SwiperSlide>
@@ -101,6 +102,7 @@ const SliderProducts: React.FC<SliderProductsProps> = ({ images }) => {
 									priority={ true }
 									fill
 									className='object-cover'
+									unoptimized
 								/>
 							</div>
 						</SwiperSlide>

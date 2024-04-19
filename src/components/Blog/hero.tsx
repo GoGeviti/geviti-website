@@ -9,8 +9,8 @@ import { ChevronRight } from '../Icons';
 import Navbar from '../Navbar';
 
 type HeroProps = {
-	hero: IHero.Hero;
-	classname: string;
+  hero: IHero.Hero;
+  classname: string;
 };
 
 const Hero: React.FC<HeroProps> = ({ hero, classname }) => {
@@ -19,7 +19,12 @@ const Hero: React.FC<HeroProps> = ({ hero, classname }) => {
 			<Navbar
 				withBgWhite
 				className='max-md:!pt-0' />
-			<div className={ clsxm('bg-primary max-md:mt-[60px] h-[372px] lg:h-[calc(100vh-30px)] max-h-[750px] w-full lg:rounded-[19px] relative pt-11px lg:pt-5 ', classname) }>
+			<div
+				className={ clsxm(
+					'bg-primary max-md:mt-[60px] h-[372px] lg:h-[calc(100vh-30px)] max-h-[750px] w-full lg:rounded-[19px] relative pt-11px lg:pt-5 ',
+					classname
+				) }
+			>
 				<div className='absolute inset-0 w-full h-full z-0'>
 					{ hero.image && (
 						<div className='relative overflow-hidden w-full h-full lg:rounded-[19px]'>
@@ -29,6 +34,7 @@ const Hero: React.FC<HeroProps> = ({ hero, classname }) => {
 								priority
 								className='object-cover object-center'
 								fill
+								unoptimized
 							/>
 						</div>
 					) }
@@ -37,13 +43,13 @@ const Hero: React.FC<HeroProps> = ({ hero, classname }) => {
 
 				<div className='relative w-full h-full lg:rounded-b-[19px]'>
 					<div className='container-center text-center sm:mx-auto flex flex-col items-center justify-center w-full h-full z-100'>
-						<p className='font-BRSonoma text-sm font-semibold text-white leading-[1.54px] uppercase'>{ hero.preTitle }</p>
+						<p className='font-BRSonoma text-sm font-semibold text-white leading-[1.54px] uppercase'>
+							{ hero.preTitle }
+						</p>
 						<div className='font-Poppins text-white text-[30px] md:text-[40px] md:mt-5 mt-[10px] md:mb-3 mb-[14px]'>
-							<span
-								dangerouslySetInnerHTML={ { __html: hero.title } } />
+							<span dangerouslySetInnerHTML={ { __html: hero.title } } />
 						</div>
-						{
-							hero.btn &&
+						{ hero.btn && (
 							<CustomLink
 								href={ hero.btnLink ?? '/blog' }
 								aria-label={ hero.btn }
@@ -55,12 +61,10 @@ const Hero: React.FC<HeroProps> = ({ hero, classname }) => {
 
 								<ChevronRight className='stroke-grey-secondary w-4 h-4 sm:w-18px sm:h-18px group-hover:translate-x-1 transform transition-all duration-100' />
 							</CustomLink>
-						}
-
+						) }
 					</div>
 				</div>
 			</div>
-
 		</div>
 	);
 };

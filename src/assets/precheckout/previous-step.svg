@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg width="50px" height="50px" viewBox="0 0 50 50" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <title>Oval 2</title>
-    <g id="Desktop" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+    <g id="Desktop" stroke="none" strokeWidth="1" fill="none" fill-rule="evenodd">
         <g id="Select-Blood-Panel" transform="translate(-20, -21)">
             <g id="Oval-2" transform="translate(20, 21)">
                 <circle id="Oval" fill-opacity="0.1" fill="#181A1C" cx="25" cy="25" r="25"></circle>
-                <path d="M23.0000429,19 L17,24.9999571 M17,24.9999571 L23.0000429,31 M17,24.9999571 L32.4286816,24.9999571" id="Shape" stroke="#181A1C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="M23.0000429,19 L17,24.9999571 M17,24.9999571 L23.0000429,31 M17,24.9999571 L32.4286816,24.9999571" id="Shape" stroke="#181A1C" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></path>
             </g>
         </g>
     </g>

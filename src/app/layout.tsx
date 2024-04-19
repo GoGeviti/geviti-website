@@ -14,6 +14,7 @@ import 'slick-carousel/slick/slick-theme.css';
 import 'react-date-picker/dist/DatePicker.css';
 import 'react-calendar/dist/Calendar.css';
 import './globals.css';
+import './main.css';
 
 export const metadata: Metadata = {
 	title: 'Geviti',
@@ -23,11 +24,11 @@ export const metadata: Metadata = {
 		width: 'device-width',
 		initialScale: 1,
 		maximumScale: 1,
-		viewportFit: 'cover'
-	}
+		viewportFit: 'cover',
+	},
 };
 
-const RootLayout: React.FC<{ children: React.ReactNode; }> = ({ children }) => {
+const RootLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
 	return (
 		<html lang='en'>
 			<AOSInit />
@@ -45,8 +46,9 @@ const RootLayout: React.FC<{ children: React.ReactNode; }> = ({ children }) => {
 			</Script>
 			<StyledComponentsRegistry>
 				<body
-					className={ `${ poppins.variable } ${ brSonoma.variable }` }
-					suppressHydrationWarning>
+					className={ `${poppins.variable} ${brSonoma.variable}` }
+					suppressHydrationWarning
+				>
 					<NextTopLoader
 						showSpinner={ false }
 						color='#A3E0FF' />
@@ -60,8 +62,9 @@ const RootLayout: React.FC<{ children: React.ReactNode; }> = ({ children }) => {
 							width='0'
 							style={ {
 								display: 'none',
-								visibility: 'hidden'
-							} } />
+								visibility: 'hidden',
+							} }
+						/>
 					</noscript>
 				</body>
 			</StyledComponentsRegistry>

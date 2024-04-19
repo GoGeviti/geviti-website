@@ -11,17 +11,17 @@ import { toSlug } from '@/lib/toSlug';
 import { Product } from '@/payload/payload-types';
 import { useProductStore } from '@/store/productStore';
 
-type GroupedProduct = { category: string; products: Product[]; };
+type GroupedProduct = { category: string; products: Product[] };
 
 type ProductType = {
-	products: Product[];
+  products: Product[];
 };
 
 const ProductList: React.FC<ProductType> = ({ products: productsData }) => {
 	const { filterValues, query } = useProductStore();
 
 	const groupByCategory = Object.entries(
-		productsData.reduce((acc: { [key: string]: Product[]; }, curr) => {
+		productsData.reduce((acc: { [key: string]: Product[] }, curr) => {
 			const category = curr?.category?.title;
 			// Group initialization
 			if (!acc[category]) {
@@ -59,7 +59,7 @@ const ProductList: React.FC<ProductType> = ({ products: productsData }) => {
 										const productVal = product[filter.id];
 										if (
 											Array.isArray(productVal) &&
-											typeof productVal[0] === 'object'
+                      typeof productVal[0] === 'object'
 										) {
 											return productVal.some((val: any) => val.title === opt);
 										}
@@ -108,7 +108,9 @@ const ProductList: React.FC<ProductType> = ({ products: productsData }) => {
 					<div className='mt-5px sm:mt-9px flex items-center max-lg:flex-col-reverse lg:items-end lg:justify-between gap-3'>
 						<div className='sm:max-w-xl lg:max-w-md'>
 							<p className='text-grey-primary font-BRSonoma text-xs leading-5 sm:leading-[18px]'>
-								{ item.products.find(product => product?.category?.title === item.category)?.category?.description ?? '' }
+								{ item.products.find(
+									product => product?.category?.title === item.category
+								)?.category?.description ?? '' }
 							</p>
 						</div>
 
@@ -116,7 +118,7 @@ const ProductList: React.FC<ProductType> = ({ products: productsData }) => {
 							<AlertSquareIcon className='w-15px h-15px sm:w-18px sm:h-18px flex-shrink-0' />
 
 							<p className='text-[10px] sm:text-xs font-BRSonoma leading-5 sm:leading-[18px] font-medium'>
-								Available based on blood test results
+                Available based on blood test results
 							</p>
 						</div>
 					</div>
@@ -124,7 +126,9 @@ const ProductList: React.FC<ProductType> = ({ products: productsData }) => {
 					<div className='mt-[35px] sm:mt-10 grid grid-cols-2 md:grid-cols-3 gap-5'>
 						{ item.products.map(product => (
 							<Link
-								href={ `/${ toSlug(product.category.title) }/${ toSlug(product.name) }` }
+								href={ `/${toSlug(product.category.title)}/${toSlug(
+									product.name
+								)}` }
 								key={ product.id }
 								className='group cursor-pointer relative flex flex-col overflow-hidden bg-grey-secondary w-full text-left'
 							>
@@ -145,6 +149,7 @@ const ProductList: React.FC<ProductType> = ({ products: productsData }) => {
 											className='object-cover object-center'
 											sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
 											fill
+											unoptimized
 										/>
 									) }
 
@@ -164,9 +169,11 @@ const ProductList: React.FC<ProductType> = ({ products: productsData }) => {
 									<div className='flex flex-1 flex-col justify-end font-BRSonoma text-primary pt-18px'>
 										{ product.price && (
 											<p className='text-xs lg:text-[15px] leading-[130%] lg:leading-[100%] font-BRSonoma'>
-												${ product.price }{ ' ' }
+                        ${ product.price }{ ' ' }
 												{ item.category?.toLowerCase() !== 'diagnostics' && (
-													<span className='text-grey-primary max-lg:text-[10px] lg:text-sm'>per month</span>
+													<span className='text-grey-primary max-lg:text-[10px] lg:text-sm'>
+                            per month
+													</span>
 												) }
 											</p>
 										) }

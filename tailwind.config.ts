@@ -1,4 +1,4 @@
-import type { Config } from 'tailwindcss';
+import type { Config } from "tailwindcss";
 
 const config: Config = {
 	content: [
@@ -105,8 +105,12 @@ const config: Config = {
 				'0.11em': '0.11em',
 			},
 			backgroundImage: {
+				'solution-gradient-left':
+					'linear-gradient(90deg, #181A1C -10.42%, rgba(24, 26, 28, 0.49) 46.3%, rgba(24, 26, 28, 0.00) 100%)',
 				'hero-landing-top':
 					'linear-gradient(180deg, #181A1C 40.05%, rgba(24, 26, 28, 0.00) 100%)',
+				'img-grediant':
+					'linear-gradient(360deg, #181A1C 0%, rgba(24, 26, 28, 0.00) 96.26%)',
 				'hero-landing-bottom':
 					'linear-gradient(0deg, #181A1C 20.06%, rgba(24, 26, 28, 0.00) 100%)',
 				'mission-landing':
@@ -200,8 +204,11 @@ const config: Config = {
 				},
 			},
 			boxShadow: {
+				custom1: '0px 4px 21.1px 0px rgba(0, 147, 255, 0.25)',
+				custom: '0px 4px 21.1px 0px rgba(153, 212, 255, 0.75)',
 				card: '0px 15px 30px 0px rgba(16, 24, 40, 0.10)',
-				feature: '0px 8px 16px rgba(0, 0, 0, 0.25), inset 0px 6px 18px rgba(255, 255, 255, 0.15)'
+				feature:
+					'0px 8px 16px rgba(0, 0, 0, 0.25), inset 0px 6px 18px rgba(255, 255, 255, 0.15)',
 			},
 		},
 		fontFamily: {

@@ -33,5 +33,5 @@ export {
 	productListData,
 	productsData,
 	recommendationPackages,
-	statesData
+	statesData,
 };

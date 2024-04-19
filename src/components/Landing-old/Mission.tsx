@@ -23,6 +23,7 @@ const Mission: React.FC = () => {
 								loading='lazy'
 								className='object-cover'
 								fill
+								unoptimized
 							/>
 						</div>
 					) }
@@ -36,6 +37,7 @@ const Mission: React.FC = () => {
 								loading='lazy'
 								className='object-cover'
 								fill
+								unoptimized
 							/>
 						</div>
 					) }
