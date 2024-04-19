@@ -81,7 +81,6 @@ const FeaturesCarousel: React.FC = () => {
 				<button
 					onClick={ handleNext }
 					className={ buttonClassName }
-					disabled={ idx === cards.length - 1 }
 					aria-label={ `next-slider-${ idx }` }
 				>
 					<ChevronRight className='w-[17px] h-[17px] flex-shrink-0 absolute-center lg:hidden' />

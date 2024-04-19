@@ -6,7 +6,6 @@ import {
 } from 'framer-motion';
 import Image from 'next/image';
 
-// import gsap from 'gsap';
 import { landingData } from '@/constant/data';
 import clsxm from '@/helpers/clsxm';
 import { screens } from '@/helpers/style';
@@ -37,7 +36,6 @@ const shiftVariantsMobile = {
 type ShiftSectionProps = {
 	children: React.ReactNode;
 	prevElement: React.ReactNode;
-	trend?: number;
 	id: string;
 	isMobile?: boolean;
 	wrapperClassName?: string;
@@ -46,7 +44,6 @@ type ShiftSectionProps = {
 const ShiftSection: React.FC<ShiftSectionProps> = ({
 	children,
 	prevElement,
-	trend,
 	id,
 	isMobile,
 	wrapperClassName
@@ -64,15 +61,12 @@ const ShiftSection: React.FC<ShiftSectionProps> = ({
 	}, [id, isMobile]);
 
 	return (
-		<AnimatePresence
-			initial={ false }
-			custom={ trend }>
+		<AnimatePresence initial={ false }>
 			<div
 				className={ clsxm('inline-block overflow-hidden', wrapperClassName) }
 				style={ !isMobile ? { height: contentHeight } : {} }>
 				<motion.span
 					className='flex flex-col'
-					custom={ trend }
 					initial='initial'
 					animate='animate'
 					exit='exit'
@@ -128,10 +122,9 @@ const HomeKits: React.FC = () => {
 	});
 
 	const [idx, setIdx] = useState<number>(0);
-
 	const [prevIdx, setPrevIdx] = useState<number>(idx);
-
-	const trend = idx > prevIdx ? 1 : -1;
+	const [trend, setTrend] = useState<number>(-1);
+	// const trend = idx > prevIdx ? 1 : -1;
 
 	const activeIdx = Math.abs(idx % list.length);
 	const currentData = list[activeIdx];
@@ -142,6 +135,7 @@ const HomeKits: React.FC = () => {
 		setIdx(prevIndex =>
 			prevIndex + 1 === list.length ? 0 : prevIndex + 1
 		);
+		setTrend(1);
 	};
 
 	const handlePrevious = () => {
@@ -149,6 +143,7 @@ const HomeKits: React.FC = () => {
 		setIdx(prevIndex =>
 			prevIndex - 1 < 0 ? list.length - 1 : prevIndex - 1
 		);
+		setTrend(-1);
 	};
 
 	const renderButtonArrowSlider = () => {
@@ -169,7 +164,6 @@ const HomeKits: React.FC = () => {
 				<button
 					onClick={ handleNext }
 					className={ buttonClassName }
-					disabled={ idx === list.length - 1 }
 					aria-label={ `next-slider-${ idx }` }
 				>
 					<ArrowNarrowRight className='w-6 h-6 flex-shrink-0' />
@@ -329,29 +323,27 @@ const HomeKits: React.FC = () => {
 		}
 
 		return (
-			<>
-				<AnimatePresence
-					initial={ false }
-					custom={ trend }>
+			<AnimatePresence
+				initial={ false }
+				custom={ trend }>
+				<motion.div
+					variants={ imgVariants }
+					custom={ trend }
+					initial='initial'
+					animate='animate'
+					exit='exit'
+					key={ `image-${ currentData.id }` }
+					style={ { x: '-50%', y: '-50%' } }
+					transition={ { duration: .9, ease: 'easeInOut' } }
+					className='absolute-center w-full h-full'
+				>
 					<motion.div
-						variants={ imgVariants }
-						custom={ trend }
-						initial='initial'
-						animate='animate'
-						exit='exit'
-						key={ `image-${ currentData.id }` }
-						style={ { x: '-50%', y: '-50%' } }
-						transition={ { duration: .9, ease: 'easeInOut' } }
-						className='absolute-center w-full h-full'
-					>
-						<motion.div
-							style={ { y: backgroundY } }
-							className='relative flex z-2'>
-							{ renderDesktopImage() }
-						</motion.div>
+						style={ { y: backgroundY } }
+						className='relative flex z-2'>
+						{ renderDesktopImage() }
 					</motion.div>
-				</AnimatePresence>
-			</>
+				</motion.div>
+			</AnimatePresence>
 		);
 	};
 
@@ -371,7 +363,6 @@ const HomeKits: React.FC = () => {
 							<ShiftSection
 								id={ `title-${ currentData.id }` }
 								prevElement={ renderTitle(list[prevIdx].title) }
-								trend={ trend }
 								isMobile={ isMobile }
 								wrapperClassName='lg:min-h-[72px]'
 							>
@@ -388,7 +379,6 @@ const HomeKits: React.FC = () => {
 						<ShiftSection
 							id={ `description-${ currentData.id }` }
 							prevElement={ renderDescription(list[prevIdx].description) }
-							trend={ trend }
 							isMobile={ isMobile }
 							wrapperClassName='lg:min-h-[108px]'
 						>
@@ -397,7 +387,7 @@ const HomeKits: React.FC = () => {
 					</div>
 				</div>
 			</div>
-			<div className='group relative'>
+			<div className='group relative lg:cursor-none'>
 				<motion.div
 					className='max-lg:hidden absolute z-50 inset-0 w-full h-full'
 					onMouseMove={ ({ currentTarget, clientX, clientY }) => {
