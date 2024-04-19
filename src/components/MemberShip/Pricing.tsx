@@ -69,7 +69,7 @@ const Pricing = () => {
 									{ value.name }
 								</p>
 								<h3 className=' text-[30px] xl:text-5xl font-Poppins py-1'>
-                  <span className='font-medium'>${ value.price }</span>{ ' ' }
+									<span className='font-medium'>${ value.price }</span>{ ' ' }
 									<span className='text-[12px] lg:text-sm'>
                     one time payment
 									</span>
@@ -95,13 +95,13 @@ const Pricing = () => {
 									text='Get Started'
 									theme={
 										value.button === 'primary'
-										? 'primary'
-										: value.button === 'secondary'
-											? 'secondary'
-											: undefined
+											? 'primary'
+											: value.button === 'secondary'
+												? 'secondary'
+												: undefined
 									}
 									className='w-full sm:w-fit mx-auto mt-3'
-									/>
+								/>
 
 							</div>
 							<div className={ `${value.hide}` }>

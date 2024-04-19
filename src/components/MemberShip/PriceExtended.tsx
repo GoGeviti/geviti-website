@@ -18,9 +18,9 @@ const PriceExtended = () => {
 			<div className=' md:flex-row flex-col flex  justify-center gap-6 mt-12 '>
 				<div className='md:mx-0 mx-auto max-w-[411px] w-full'>
 					<div className=' bg-primary px-6 py-10 rounded-2xl text-white relative'>
-					<p className=' absolute top-0 right-8 -translate-y-1/2 text-sm font-Poppins font-medium bg-[#91c9f2] py-2 px-6 rounded-full text-primary'>
+						<p className=' absolute top-0 right-8 -translate-y-1/2 text-sm font-Poppins font-medium bg-[#91c9f2] py-2 px-6 rounded-full text-primary'>
 					More value
-								</p>
+						</p>
 						<h3 className='text-3xl lg:text-5xl font-medium font-Poppins '>
               Geviti
 						</h3>

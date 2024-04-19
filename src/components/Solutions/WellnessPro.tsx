@@ -1,6 +1,6 @@
 import landingData from '@/constant/data/solution';
-import WellnessProCard from './WellnessProCard';
 
+import WellnessProCard from './WellnessProCard';
 
 const WellnessPro = () => {
 

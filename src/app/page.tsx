@@ -4,7 +4,7 @@ import { Footer, LandingComponent } from '@/components';
 import IntroScreen from '@/components/IntroScreen';
 import { getCookie } from '@/services/cookies';
 
-const HomePage: NextPage = async () => {
+const HomePage: NextPage = async() => {
 	const isCloseBanner = getCookie('close_hero_banner');
 
 	return (

@@ -402,7 +402,7 @@ const landingData = {
 		description:
       'No more over spending on supplements that aren\'t designed exactly for you. Geviti will analyze your biomarkers and create totally custom supplements with everything you need, and nothing that you don’t.',
 	},
-	treatmentmens : {
+	treatmentmens: {
 		sectionsubheading: 'Easy online care',
 		sectionmainheading: 'Treatment options for male optimization',
 		cards: {
@@ -478,7 +478,7 @@ const landingData = {
 			},
 		],
 	},
-	wellnessprolist : [
+	wellnessprolist: [
 		{
 			title: 'Hormone optimization can change your life',
 			subtitle: '1 in 4 men over age 30 have low T.',
