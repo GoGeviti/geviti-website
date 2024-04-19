@@ -47,19 +47,19 @@ const landingData = {
 		image: '/images/landing/compressed/hero.webp',
 		imageMobile: '/images/landing/compressed/hero_mobile.webp',
 		btnCta: {
-			text: 'Get Started',
+			text: 'Join Geviti',
 			href: '/onboarding',
 			externalLink: false,
 		},
 		btnCta2: {
 			href: '/products',
 			externalLink: false,
-			text: 'See Products',
+			text: 'Learn More',
 		},
 		mainKeys: [
 			{
 				icon: MonitoringIcon,
-				text: 'Hormone optimization<br />Made simple',
+				text: 'Hormone treatments<br />Made simple',
 			},
 			{
 				icon: DNAIcon,
