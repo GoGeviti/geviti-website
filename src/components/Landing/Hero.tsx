@@ -294,7 +294,9 @@ const Hero: React.FC<HeroProps> = ({ showBanner }) => {
 										<div className='w-[47px] h-[47px] lg:w-16 lg:h-16 flex-shrink-0 rounded-[14px] lg:rounded-19px bg-primary relative'>
 											<heroData.banner.icon className='w-5 h-5 lg:w-7 lg:h-7 flex-shrink-0 absolute-center' />
 										</div>
-										<p className='text-[10px] leading-4 lg:text-sm lg:leading-6 font-Poppins text-white'>{ heroData.banner.text }</p>
+										<p
+											dangerouslySetInnerHTML={ { __html: heroData.banner.text } }
+											className='text-[10px] leading-4 lg:text-sm lg:leading-6 font-Poppins text-white' />
 									</div>
 								</motion.div>
 							) : null }

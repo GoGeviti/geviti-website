@@ -32,15 +32,15 @@ const landingData = {
 			'Longevity made <br class="sm:hidden"/>accessible. Data driven <br class="sm:hidden"/>anti-aging care.',
 		titles: [
 			'Longevity made accessible. Data',
-			'driven anti-aging care.'
+			'driven care for better aging.'
 		],
 		titlesMobile: [
 			'Longevity made',
 			'accessible. Data driven',
-			'anti-aging care.'
+			'care for better aging.'
 		],
 		banner: {
-			text: 'Geviti closes Early stage Seed round. To celebrate, those who join before June 1 will be grandfathered in at a discount!',
+			text: 'Geviti closes Early stage Seed Financing 🎉 <br/>To celebrate, those who join before July 1st will be grandfathered in at $89 monthly!',
 			icon: InformationIcon,
 			show: true
 		},
@@ -150,7 +150,7 @@ const landingData = {
 			},
 			{
 				id: 'step-4',
-				title: 'Receive tailor <br />made protocols.',
+				title: 'Tailor made<br />protocols.',
 				icon: DocumentIcon
 			},
 		],
@@ -541,11 +541,11 @@ const landingData = {
 			title: 'Care that goes where you go.',
 			description: 'Available in 11 states and expanding across all the country: <br/>AZ, CA, CO, UT, WA, TX, FL, GA, KS, OR, NM',
 			btnCta: {
-				text: 'Learn More',
+				text: 'Become a member',
 				href: '/onboarding'
 			},
 			btnCtaMobile: {
-				text: 'Learn More',
+				text: 'Become a member',
 				href: '/onboarding'
 			},
 			image: '/images/landing/compressed/continent_dots.webp'
