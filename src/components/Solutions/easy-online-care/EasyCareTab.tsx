@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 import {
 	FIlterIcon,
@@ -7,7 +7,7 @@ import {
 	TherapyIcon,
 	ThyroidIcon,
 	WeightLossIcon,
-} from '../SolutionIcons'
+} from '../SolutionIcons';
 
 const tabContent = [
 	{ id: 1, label: 'Testosterone Therapy', icon: <HeartIcon /> },
@@ -15,15 +15,15 @@ const tabContent = [
 	{ id: 3, label: 'Medical Weight Loss', icon: <WeightLossIcon /> },
 	{ id: 4, label: 'Sexual Health', icon: <HeartIcon /> },
 	{ id: 5, label: 'Thyroid', icon: <ThyroidIcon /> },
-]
+];
 
 interface IEasyCareTab {
-  activeContent: string
-  setActiveContent: (content: string) => void
+  activeContent: string;
+  setActiveContent: (content: string) => void;
 }
 
 const EasyCareTab = (props: IEasyCareTab) => {
-	const { activeContent, setActiveContent } = props
+	const { activeContent, setActiveContent } = props;
 
 	return (
 		<>
@@ -33,10 +33,9 @@ const EasyCareTab = (props: IEasyCareTab) => {
 						<button
 							key={ id }
 							onClick={ () => setActiveContent(label) }
-							className={ `text-sm font-normal font-Poppins px-5 py-2 rounded-[100px] w-fit ${
-								activeContent === label
-									? 'text-white bg-primary'
-									: 'bg-transparent text-[#7B7F81]'
+							className={ `text-sm font-normal font-Poppins px-5 py-2 rounded-[100px] w-fit ${ activeContent === label
+								? 'text-white bg-primary'
+								: 'bg-transparent text-[#7B7F81]'
 							}` }
 						>
 							<span className='flex items-center gap-[6px] '>
@@ -57,7 +56,7 @@ const EasyCareTab = (props: IEasyCareTab) => {
 				</div>
 			</section>
 		</>
-	)
-}
+	);
+};
 
-export default EasyCareTab
+export default EasyCareTab;

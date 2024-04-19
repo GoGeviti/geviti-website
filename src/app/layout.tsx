@@ -28,7 +28,7 @@ export const metadata: Metadata = {
 	},
 };
 
-const RootLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+const RootLayout: React.FC<{ children: React.ReactNode; }> = ({ children }) => {
 	return (
 		<html lang='en'>
 			<AOSInit />
@@ -46,7 +46,7 @@ const RootLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
 			</Script>
 			<StyledComponentsRegistry>
 				<body
-					className={ `${poppins.variable} ${brSonoma.variable}` }
+					className={ `${ poppins.variable } ${ brSonoma.variable }` }
 					suppressHydrationWarning
 				>
 					<NextTopLoader

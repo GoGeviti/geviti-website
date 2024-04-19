@@ -5,7 +5,7 @@ import WellnessProCard from './WellnessProCard';
 const WellnessPro = () => {
 
 	const wellnessprolist = landingData.wellnessprolist;
-	
+
 	return (
 		<>
 			<section className='bg-[#F2F2F2] md:px-4'>

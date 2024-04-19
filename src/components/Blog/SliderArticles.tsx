@@ -10,7 +10,7 @@ import { Post } from '@/payload/payload-types';
 import { ArrowEmail } from '../Icons';
 
 type SliderArticlesProps = {
-  data: Post[];
+	data: Post[];
 };
 
 const SliderArticles: React.FC<SliderArticlesProps> = ({ data }) => {

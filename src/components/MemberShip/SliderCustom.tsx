@@ -1,21 +1,21 @@
-'use client'
-import { useRef, useState } from 'react'
-import Slider from 'react-slick'
+'use client';
+import { useRef, useState } from 'react';
+import Slider from 'react-slick';
 
-import membershipdata from '@/constant/data/membershipdata'
+import membershipdata from '@/constant/data/membershipdata';
 
-import { ChevronRight } from '../Icons'
+import { ChevronRight } from '../Icons';
 
-import SliderCard from './SliderCard'
+import SliderCard from './SliderCard';
 
-import 'slick-carousel/slick/slick-theme.css'
-import 'slick-carousel/slick/slick.css'
-const sliderdata = membershipdata.slider
+import 'slick-carousel/slick/slick-theme.css';
+import 'slick-carousel/slick/slick.css';
+const sliderdata = membershipdata.slider;
 
 const SliderCustom = () => {
-	const [currentSlide, setCurrentSlide] = useState(0)
+	const [currentSlide, setCurrentSlide] = useState(0);
 
-	const sliderRef = useRef<Slider>(null)
+	const sliderRef = useRef<Slider>(null);
 
 	const settings = {
 		dots: true,
@@ -25,19 +25,19 @@ const SliderCustom = () => {
 		slidesToScroll: 1,
 		fade: false,
 		afterChange: (index: number) => setCurrentSlide(index),
-	}
+	};
 
 	const nextSlide = () => {
 		if (sliderRef.current) {
-			sliderRef.current.slickNext()
+			sliderRef.current.slickNext();
 		}
-	}
+	};
 
 	const prevSlide = () => {
 		if (sliderRef.current) {
-			sliderRef.current.slickPrev()
+			sliderRef.current.slickPrev();
 		}
-	}
+	};
 
 	return (
 		<div className='relative w-full lg:px-3 pt-3 rounded-19px'>
@@ -76,7 +76,7 @@ const SliderCustom = () => {
 				</div>
 			</div>
 		</div>
-	)
-}
+	);
+};
 
-export default SliderCustom
+export default SliderCustom;

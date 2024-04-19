@@ -1,29 +1,29 @@
-'use client'
-import React, { useEffect, useRef, useState } from 'react'
-import { motion, useAnimationControls } from 'framer-motion'
-import Image from 'next/image'
+'use client';
+import React, { useEffect, useRef, useState } from 'react';
+import { motion, useAnimationControls } from 'framer-motion';
+import Image from 'next/image';
 
-import ButtonCta from '@/components/Landing/ButtonCta'
-import membershipdata from '@/constant/data/membershipdata'
-import clsxm from '@/helpers/clsxm'
-import { screens } from '@/helpers/style'
-import { useWindowDimensions } from '@/hooks'
+import ButtonCta from '@/components/Landing/ButtonCta';
+import membershipdata from '@/constant/data/membershipdata';
+import clsxm from '@/helpers/clsxm';
+import { screens } from '@/helpers/style';
+import { useWindowDimensions } from '@/hooks';
 
-import CustomLink from '../CustomLink'
-import { ChevronRight } from '../Icons'
-import Navbar from '../Navbar/Landing'
+import CustomLink from '../CustomLink';
+import { ChevronRight } from '../Icons';
+import Navbar from '../Navbar/Landing';
 
-const heroData = membershipdata.hero
+const heroData = membershipdata.hero;
 
 const Hero: React.FC = () => {
-	const [activeStepIdx, setActiveStepIdx] = useState<number>(0)
+	const [activeStepIdx, setActiveStepIdx] = useState<number>(0);
 	const [startAutoRunProgress, setStartAutoRunProgress] = useState<boolean>(
 		false,
-	)
-	const stepControls = useAnimationControls()
-	const intervalRef = useRef<NodeJS.Timeout | undefined>(undefined)
-	const windowDimensions = useWindowDimensions()
-	const isMobile = windowDimensions.width < screens.lg
+	);
+	const stepControls = useAnimationControls();
+	const intervalRef = useRef<NodeJS.Timeout | undefined>(undefined);
+	const windowDimensions = useWindowDimensions();
+	const isMobile = windowDimensions.width < screens.lg;
 
 	useEffect(() => {
 		const timer = setTimeout(() => {
@@ -34,28 +34,28 @@ const Hero: React.FC = () => {
 					duration: 1,
 					ease: 'easeOut',
 				},
-			})
-		}, 1000)
+			});
+		}, 1000);
 
-		return () => clearTimeout(timer)
-	}, [])
+		return () => clearTimeout(timer);
+	}, []);
 
 	useEffect(() => {
 		if (activeStepIdx >= 4) {
-			clearInterval(intervalRef.current)
-			setStartAutoRunProgress(false)
+			clearInterval(intervalRef.current);
+			setStartAutoRunProgress(false);
 		}
-	}, [activeStepIdx])
+	}, [activeStepIdx]);
 
 	useEffect(() => {
 		if (startAutoRunProgress) {
 			intervalRef.current = setInterval(() => {
-				setActiveStepIdx(prev => prev + 1)
-			}, 750)
+				setActiveStepIdx(prev => prev + 1);
+			}, 750);
 		}
 
-		return () => clearInterval(intervalRef.current)
-	}, [startAutoRunProgress])
+		return () => clearInterval(intervalRef.current);
+	}, [startAutoRunProgress]);
 
 	//   const handleScrollCarousel = useCallback(
 	//     (e: React.UIEvent<HTMLDivElement>) => {
@@ -86,17 +86,17 @@ const Hero: React.FC = () => {
 	const renderTitles = (titles: string[]) => {
 		return titles.map((title: string, titleIdx: number) => (
 			<span
-				key={ `title-${titleIdx}` }
+				key={ `title-${ titleIdx }` }
 				className='overflow-hidden inline-block'>
 				<span className='inline-block font-medium text-[7.6vw] xs:text-3xl md:text-4xl lg:text-[5vh] xl:text-[46px] !leading-normal -tracking-0.04em text-grey-secondary'>
 					{ title }
 				</span>
 			</span>
-		))
-	}
+		));
+	};
 
 	const renderImage = (type: 'desktop' | 'mobile') => {
-		const imageMobile = type === 'mobile'
+		const imageMobile = type === 'mobile';
 		// console.log(imageMobile);
 		return (
 			<Image
@@ -114,8 +114,8 @@ const Hero: React.FC = () => {
 				sizes='(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 100vw'
 				unoptimized
 			/>
-		)
-	}
+		);
+	};
 
 	return (
 		<div className='lg:px-3 lg:pt-3 overflow-hidden font-Poppins'>
@@ -129,9 +129,9 @@ const Hero: React.FC = () => {
 									duration: 3,
 									ease: 'easeOut',
 								},
-							})
-							setStartAutoRunProgress(true)
-							setActiveStepIdx(prev => prev + 1)
+							});
+							setStartAutoRunProgress(true);
+							setActiveStepIdx(prev => prev + 1);
 						}
 					},
 				} }
@@ -281,7 +281,7 @@ const Hero: React.FC = () => {
 				</div>
 			</div>
 		</div>
-	)
-}
+	);
+};
 
-export default Hero
+export default Hero;

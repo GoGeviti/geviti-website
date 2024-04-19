@@ -1,13 +1,13 @@
-'use client'
-import React, { useState } from 'react'
-import { AnimatePresence, motion } from 'framer-motion'
+'use client';
+import React, { useState } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
 
 import {
 	AccordionMinus,
 	AccordionMobileMinus,
 	AccordionMobilePlus,
 	AccordionPlus,
-} from '../Icons'
+} from '../Icons';
 
 const FrequentlyAskedQues = () => {
 	const accordionData = [
@@ -39,13 +39,13 @@ const FrequentlyAskedQues = () => {
 			title: 'Does a blood panel guarantee access to specific treatments?',
 			content: 'Content for Accordion Item 3',
 		},
-	]
+	];
 
-	const [openIndex, setOpenIndex] = useState<number | null>(0)
+	const [openIndex, setOpenIndex] = useState<number | null>(0);
 
 	const toggleAccordion = (index: number) => {
-		setOpenIndex(openIndex === index ? null : index)
-	}
+		setOpenIndex(openIndex === index ? null : index);
+	};
 
 	return (
 		<div className='bg-white sm:mx-3 rounded-[19px] mb-6 sm:my-6 py-[42px] md:pb-14 md:pt-28'>
@@ -64,8 +64,7 @@ const FrequentlyAskedQues = () => {
 							key={ index }
 							className='border-b border-gray-300'>
 							<motion.div
-								className={ `flex justify-between items-center cursor-pointer duration-300 py-4 md:pt-6  md:pb-6 ${
-									openIndex === index ? '!pt-6 !pb-0' : ''
+								className={ `flex justify-between items-center cursor-pointer duration-300 py-4 md:pt-6  md:pb-6 ${ openIndex === index ? '!pt-6 !pb-0' : ''
 								}` }
 								onClick={ () => toggleAccordion(index) }
 							>
@@ -113,7 +112,7 @@ const FrequentlyAskedQues = () => {
 				</div>
 			</div>
 		</div>
-	)
-}
+	);
+};
 
-export default FrequentlyAskedQues
+export default FrequentlyAskedQues;
