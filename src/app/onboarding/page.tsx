@@ -1,4 +1,4 @@
-import { Metadata, NextPage } from 'next';
+import { NextPage, Viewport } from 'next';
 import { redirect } from 'next/navigation';
 
 import { OnboardingComponent } from '@/components';
@@ -8,7 +8,7 @@ export type PageProps = {
 	searchParams: { [key: string]: string | string[] | undefined; };
 };
 
-export async function generateMetadata({ searchParams }: PageProps): Promise<Metadata> {
+export async function generateViewport({ searchParams }: PageProps): Promise<Viewport> {
 	const variantID = searchParams?.variant;
 
 	return {

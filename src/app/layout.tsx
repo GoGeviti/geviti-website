@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import Script from 'next/script';
 import NextTopLoader from 'nextjs-toploader';
 
@@ -18,14 +18,15 @@ import './main.css';
 
 export const metadata: Metadata = {
 	title: 'Geviti',
-	description: 'Leveraging the power of modern telehealth technology',
-	themeColor: '#181A1C',
-	viewport: {
-		width: 'device-width',
-		initialScale: 1,
-		maximumScale: 1,
-		viewportFit: 'cover',
-	},
+	description: 'Leveraging the power of modern telehealth technology'
+};
+
+export const viewport: Viewport = {
+	width: 'device-width',
+	initialScale: 1,
+	maximumScale: 1,
+	viewportFit: 'cover',
+	themeColor: '#181A1C'
 };
 
 const RootLayout: React.FC<{ children: React.ReactNode; }> = ({ children }) => {

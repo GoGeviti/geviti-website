@@ -1,4 +1,4 @@
-import { Metadata, NextPage } from 'next';
+import { NextPage, Viewport } from 'next';
 import Image from 'next/image';
 import { redirect } from 'next/navigation';
 
@@ -7,8 +7,8 @@ import type { Tier } from '@/components/Onboarding/PricingPlans';
 import { onboardingData } from '@/constant/data';
 import { getCartData } from '@/services/precheckout';
 
-export const metadata: Metadata = {
-	themeColor: '#181A1C',
+export const viewport: Viewport = {
+	themeColor: '#181A1C'
 };
 
 const data = onboardingData.pricingPlans;
