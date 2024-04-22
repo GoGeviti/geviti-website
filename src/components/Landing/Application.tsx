@@ -8,9 +8,8 @@ import Image from 'next/image';
 import { landingData } from '@/constant/data';
 import clsxm from '@/helpers/clsxm';
 
+import ButtonCta from '../ButtonCta';
 import { GevitiRotateIcon } from '../Icons/Landing';
-
-import ButtonCta from './ButtonCta';
 
 const applicationData = landingData.application;
 

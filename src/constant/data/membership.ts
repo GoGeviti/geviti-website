@@ -1,4 +1,3 @@
-import { ShoppingBagIcon } from '@/components/Icons';
 import {
 	DNAIcon,
 	DropIcon,
@@ -11,22 +10,13 @@ import {
 	UserTag,
 } from '@/components/Icons/Landing';
 
-const membershipdata = {
-	navbar: {
-		iconsMenu: [
-			{
-				id: 'shopping',
-				href: '/cart',
-				icon: ShoppingBagIcon,
-			},
-		],
-	},
+const membershipData = {
 	hero: {
 		preTitle: 'all you need membership',
 		title:
-      'Longevity made <br class="sm:hidden"/>accessible. Data driven <br class="sm:hidden"/>anti-aging care.',
+			'Longevity made <br class="sm:hidden"/>accessible. Data driven <br class="sm:hidden"/>anti-aging care.',
 		titles: ['Optimize your health, transform ', 'your wellness.'],
-		para: 'A Geviti membership makes longevity easy and accessible with our wide range of at-home diagnostics, innovative anti-aging therapies, and a dedicated qualified care team.',
+		description: 'A Geviti membership makes longevity easy and accessible with our wide range of at-home diagnostics, innovative anti-aging therapies, and a dedicated qualified care team.',
 		titlesMobile: [
 			'Longevity made',
 			'accessible. Data driven',
@@ -42,7 +32,7 @@ const membershipdata = {
 		btnCta2: {
 			href: '/products',
 			externalLink: false,
-			text: 'View Packages',
+			text: '<span class="lg:hidden">Learn More</span><span class="max-lg:hidden">View Packages</span>',
 		},
 		mainKeys: [
 			{
@@ -126,37 +116,32 @@ const membershipdata = {
 	},
 	steps: {
 		preTitle: 'become a member',
-		title: 'Start your health journey with a full blood panel',
-		para: 'Membership journey starts with choosing a “Deep Dive” diagnostic. We’ll draw your blood from the comfort of your home.',
-		btnCta: {
-			href: '/onboarding',
-			externalLink: false,
-			text: 'Get Started',
-		},
+		title: 'Start your health journey <br class="lg:hidden"/>with a full blood panel',
+		description: 'Membership journey starts with choosing a “Deep Dive” diagnostic. We’ll draw your blood from the comfort of your home.',
 		list: [
 			{
 				id: 'step-1',
 				title:
-          'Become a member by purchasing a “Deep Dive” diagnostic package',
+					'Become a member by <br class="max-lg:hidden" />purchasing a “Deep Dive” <br class="max-lg:hidden" />diagnostic package',
 				icon: UserTag,
 			},
 			{
 				id: 'step-2',
 				title:
-          'Complete your at-home blood draw with our mobile phlebotomy team',
+					'Complete your at-home blood <br class="max-lg:hidden" />draw with our mobile <br class="max-lg:hidden" />phlebotomy team',
 				icon: DropIcon,
 				iconMobile: DropIcon,
 			},
 			{
 				id: 'step-3',
 				title:
-          'Review results and tailored protocol with your designated care team',
+					'Review results and tailored <br class="max-lg:hidden" />protocol with your designated <br class="max-lg:hidden" />care team',
 				icon: FavFolder,
 			},
 			{
 				id: 'step-4',
 				title:
-          'Receive your tailor-made protocols in the mail and track your progress',
+					'Receive your tailor-made <br class="max-lg:hidden" />protocols in the mail and <br class="max-lg:hidden" />track your progress',
 				icon: Graph,
 			},
 		],
@@ -166,9 +151,9 @@ const membershipdata = {
 			{
 				title: 'Data-driven health and wellness, made simple.',
 				heading:
-          'The ultimate wellness membership for as low as $99 per month.',
+					'The ultimate wellness membership for as low as $99 per month.',
 				subheading:
-          'Geviti transcends the usual health and wellness offerings, providing unparalleled value at a lower cost. Our mission is to make longevity-focused care exceptionally accessible.',
+					'Geviti transcends the usual health and wellness offerings, providing unparalleled value at a lower cost. Our mission is to make longevity-focused care exceptionally accessible.',
 				list: [
 					'Geviti Platform Access',
 					'Mobile App Integration',
@@ -187,7 +172,7 @@ const membershipdata = {
 				title: 'Data-driven health and wellness, made simple.',
 				heading: 'Doctor  monitored cutting edge care',
 				subheading:
-          'Geviti offers a comprehensive care team for our clients. Instead of having to choose between a healthcare provider and a health coach, Geviti provides a solution where the two collaborate to create the ultimate longevity regimen.',
+					'Geviti offers a comprehensive care team for our clients. Instead of having to choose between a healthcare provider and a health coach, Geviti provides a solution where the two collaborate to create the ultimate longevity regimen.',
 				list: [],
 				hide: 'flex',
 				img: '/images/membership/slider2.png',
@@ -211,7 +196,7 @@ const membershipdata = {
 				title: 'Data-driven health and wellness, made simple.',
 				heading: 'Biannual At-Home Full Panels ',
 				subheading:
-          'Americans may go several years without getting their bloodwork done. This can be the difference between life and death. Geviti makes bloodwork easy with our nationwide team of phlebotomists Every 6 months, we’ll come to you and perform a full panel.',
+					'Americans may go several years without getting their bloodwork done. This can be the difference between life and death. Geviti makes bloodwork easy with our nationwide team of phlebotomists Every 6 months, we’ll come to you and perform a full panel.',
 				list: [],
 				hide: 'flex',
 				img: '/images/membership/slider4.png',
@@ -272,6 +257,55 @@ const membershipdata = {
 			'Integrated mobile app',
 		],
 	},
+	faq: {
+		data: [
+			{
+				title: 'What states is Geviti in?',
+				content:
+					'As of now, we are only in Arizona. We plan on being in each state by the end of 2024. Be sure to opt-in to our progress so we can notify you if we don’t currently support your state.',
+			},
+			{
+				title:
+					'What “Deep-dive Diagnostic” is included semi-annually with the membership?',
+				content: 'Content for Accordion Item 2',
+			},
+			{
+				title: 'What is the membership cancellation and refund policy?',
+				content: 'Content for Accordion Item 3',
+			},
+			{
+				title:
+					'Are the cost of supplements or prescription included in the membership fee?',
+				content: 'Content for Accordion Item 3',
+			},
+			{
+				title:
+					'What if I have recently done labs? Do I still need to purchase a diagnostic package?',
+				content: 'Content for Accordion Item 3',
+			},
+			{
+				title: 'Does a blood panel guarantee access to specific treatments?',
+				content: 'Content for Accordion Item 3',
+			},
+		]
+	},
+	products: {
+		title: 'Discover Geviti',
+		description: 'Browse our wide range of products!'
+	},
+	banner: {
+		preTitle: 'An INVESTMENT IN YOUR FUTURE',
+		title: 'Prioritizing longevity is an investment in your future self.',
+		description:
+			'Live longer without compromising your lifestyle—our longevity solutions are designed to fit seamlessly into your everyday life.',
+		image: '/images/membership/compressed/banner-member.webp',
+		imageMobile: '/images/membership/compressed/banner-member-mobile.webp',
+		btnCta: {
+			href: '/onboarding',
+			externalLink: false,
+			text: 'Start Now',
+		},
+	},
 };
 
-export default membershipdata;
+export default membershipData;

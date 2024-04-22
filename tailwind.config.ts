@@ -10,10 +10,13 @@ const config: Config = {
 		extend: {
 			screens: {
 				xxs: '300px',
+				xxs2: '375px',
 				xs2: '391px',
+				xs3: '400px',
 				xs: '450px',
 				xl2: '1380px',
 				xxl: '1920px',
+				'8xl': '1360px'
 			},
 			spacing: {
 				'5px': '5px',
@@ -25,7 +28,7 @@ const config: Config = {
 				'25px': '25px',
 				'30px': '30px',
 				'50px': '50px',
-				'60px': '60px',
+				'60px': '60px'
 			},
 			opacity: {
 				'15': '.15',
@@ -105,6 +108,9 @@ const config: Config = {
 				'0.11em': '0.11em',
 			},
 			backgroundImage: {
+				'backdrop-hero-landing-bottom': 'linear-gradient(0deg, #181a1c 20.46%, rgba(24, 26, 28, 0) 100%)',
+				'backdrop-hero-membership-bottom': 'linear-gradient(0deg, #181A1C 0%, rgba(24, 26, 28, 0.66) 55.04%, rgba(24, 26, 28, 0) 83.09%)',
+				'backdrop-hero-membership-bottom-mobile': 'linear-gradient(0deg, #181A1C 20.46%, rgba(24, 26, 28, 0.72) 61.5%, rgba(24, 26, 28, 0) 100%)',
 				'solution-gradient-left':
 					'linear-gradient(90deg, #181A1C -10.42%, rgba(24, 26, 28, 0.49) 46.3%, rgba(24, 26, 28, 0.00) 100%)',
 				'hero-landing-top':
@@ -113,10 +119,16 @@ const config: Config = {
 					'linear-gradient(360deg, #181A1C 0%, rgba(24, 26, 28, 0.00) 96.26%)',
 				'hero-landing-bottom':
 					'linear-gradient(0deg, #181A1C 20.06%, rgba(24, 26, 28, 0.00) 100%)',
-				'mission-landing':
+				'banner-landing':
 					'linear-gradient(90deg, #181A1C -10.42%, rgba(24, 26, 28, 0.486327) 46.3%, rgba(24, 26, 28, 0) 100%)',
-				'mission-mobile-landing':
+				'banner-mobile-landing':
 					'linear-gradient(0deg, #181A1C 36.98%, rgba(24, 26, 28, 0.15) 100%)',
+				'banner-mobile-member':
+					'linear-gradient(0deg, #181A1C 40.24%, rgba(24, 26, 28, 0) 94.74%)',
+				'banner-mobile-solution':
+					'linear-gradient(0deg, #181A1C 52.48%, rgba(24, 26, 28, 0) 95.41%)',
+				'banner-women':
+					'linear-gradient(90deg, #181A1C 0.85%, rgba(24, 26, 28, 0.486327) 47.32%, rgba(24, 26, 28, 0) 100%)',
 				'investment-landing':
 					'linear-gradient(109deg, #181A1C 17.5%, rgba(24, 26, 28, 0.71) 76.83%)',
 				'investment-landing-bottom':
@@ -220,7 +232,7 @@ const config: Config = {
 		require('@tailwindcss/forms'),
 		({ addComponents }: Config['PluginAPI']) => {
 			addComponents({
-				'.container-center': { '@apply max-w-7xl mx-auto px-4 lg:px-10': {} },
+				'.container-center': { '@apply max-w-[1360px] mx-auto px-4 lg:px-10': {} },
 				'.absolute-center': {
 					'@apply absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2':
 						{},

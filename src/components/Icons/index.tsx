@@ -15,94 +15,88 @@ export const Cross2Icon = (props?: React.SVGProps<SVGSVGElement>) => (
 		/>
 	</svg>
 );
-export const AccordionPlus = () => (
+export const AccordionPlus = (props?: React.SVGProps<SVGSVGElement>) => (
 	<svg
 		width='24'
 		height='26'
 		viewBox='0 0 24 26'
 		fill='none'
 		xmlns='http://www.w3.org/2000/svg'
-	>
+		{ ...props }>
 		<path
 			d='M12 10V18M8 14H16M22 14C22 19.5228 17.5228 24 12 24C6.47715 24 2 19.5228 2 14C2 8.47715 6.47715 4 12 4C17.5228 4 22 8.47715 22 14Z'
 			stroke='#919B9F'
 			strokeWidth='2'
 			strokeLinecap='round'
-			strokeLinejoin='round'
-		/>
+			strokeLinejoin='round' />
 	</svg>
 );
-export const AccordionMobilePlus = () => (
+export const AccordionMobilePlus = (props?: React.SVGProps<SVGSVGElement>) => (
 	<svg
 		width='21'
-		height='22'
-		viewBox='0 0 21 22'
+		height='23'
+		viewBox='0 0 21 23'
 		fill='none'
 		xmlns='http://www.w3.org/2000/svg'
-	>
-		<g clipPath='url(#clip0_9_121)'>
+		{ ...props }>
+		<g clipPath='url(#clip0_6162_1107)'>
 			<path
-				d='M10.5902 7.81908V14.7588M7.12035 11.289H14.0601M19.2649 11.289C19.2649 16.0799 15.3811 19.9637 10.5902 19.9637C5.79932 19.9637 1.91553 16.0799 1.91553 11.289C1.91553 6.49805 5.79932 2.61426 10.5902 2.61426C15.3811 2.61426 19.2649 6.49805 19.2649 11.289Z'
+				d='M10.5907 8.81932V15.7591M7.12084 12.2892H14.0606M19.2654 12.2892C19.2654 17.0801 15.3816 20.9639 10.5907 20.9639C5.79981 20.9639 1.91602 17.0801 1.91602 12.2892C1.91602 7.4983 5.79981 3.6145 10.5907 3.6145C15.3816 3.6145 19.2654 7.4983 19.2654 12.2892Z'
 				stroke='#919B9F'
 				strokeWidth='1.73494'
 				strokeLinecap='round'
-				strokeLinejoin='round'
-			/>
+				strokeLinejoin='round' />
 		</g>
 		<defs>
-			<clipPath id='clip0_9_121'>
+			<clipPath id='clip0_6162_1107'>
 				<rect
 					width='20.8193'
 					height='20.8193'
 					fill='white'
-					transform='translate(0.180664 0.879395)'
-				/>
+					transform='translate(0.180664 1.87952)' />
 			</clipPath>
 		</defs>
 	</svg>
 );
-export const AccordionMinus = () => (
+export const AccordionMinus = (props?: React.SVGProps<SVGSVGElement>) => (
 	<svg
 		width='24'
 		height='26'
 		viewBox='0 0 24 26'
 		fill='none'
 		xmlns='http://www.w3.org/2000/svg'
-	>
+		{ ...props }>
 		<path
 			d='M8 14H16M22 14C22 19.5228 17.5228 24 12 24C6.47715 24 2 19.5228 2 14C2 8.47715 6.47715 4 12 4C17.5228 4 22 8.47715 22 14Z'
 			stroke='#919B9F'
 			strokeWidth='2'
 			strokeLinecap='round'
-			strokeLinejoin='round'
-		/>
+			strokeLinejoin='round' />
 	</svg>
 );
-export const AccordionMobileMinus = () => (
+export const AccordionMobileMinus = (props?: React.SVGProps<SVGSVGElement>) => (
 	<svg
 		width='21'
-		height='22'
-		viewBox='0 0 21 22'
+		height='23'
+		viewBox='0 0 21 23'
 		fill='none'
 		xmlns='http://www.w3.org/2000/svg'
-	>
-		<g clipPath='url(#clip0_9_1553)'>
+		{ ...props }>
+		<g clipPath='url(#clip0_6162_1927)'>
 			<path
-				d='M7.12035 11.1447H14.0601M19.2649 11.1447C19.2649 15.9356 15.3811 19.8194 10.5902 19.8194C5.79932 19.8194 1.91553 15.9356 1.91553 11.1447C1.91553 6.35377 5.79932 2.46997 10.5902 2.46997C15.3811 2.46997 19.2649 6.35377 19.2649 11.1447Z'
+				d='M7.12084 12.1446H14.0606M19.2654 12.1446C19.2654 16.9355 15.3816 20.8193 10.5907 20.8193C5.79981 20.8193 1.91602 16.9355 1.91602 12.1446C1.91602 7.3537 5.79981 3.46991 10.5907 3.46991C15.3816 3.46991 19.2654 7.3537 19.2654 12.1446Z'
 				stroke='#919B9F'
 				strokeWidth='1.73494'
 				strokeLinecap='round'
-				strokeLinejoin='round'
-			/>
+				strokeLinejoin='round' />
 		</g>
 		<defs>
-			<clipPath id='clip0_9_1553'>
+			<clipPath id='clip0_6162_1927'>
 				<rect
 					width='20.8193'
 					height='20.8193'
 					fill='white'
-					transform='translate(0.180664 0.734863)'
-				/>
+					transform='translate(0.180664 1.73492)' />
 			</clipPath>
 		</defs>
 	</svg>

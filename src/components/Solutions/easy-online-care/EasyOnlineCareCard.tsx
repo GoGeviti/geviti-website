@@ -1,22 +1,21 @@
-import React from 'react'
+import React from 'react';
 
-import ButtonCta from '@/components/Landing/ButtonCta'
-
-import { CheckIcon } from '../SolutionIcons'
+import ButtonCta from '../../ButtonCta';
+import { CheckIcon } from '../SolutionIcons';
 
 interface IEasyOnlineCareCardListProps {
-  heading: string
-  subheading: string
-  paragraph: string
-  features: string[]
+	heading: string;
+	subheading: string;
+	paragraph: string;
+	features: string[];
 }
 
 interface IEasyOnlineCareCardProps {
-  obj: IEasyOnlineCareCardListProps
+	obj: IEasyOnlineCareCardListProps;
 }
 
 const EasyOnlineCareCard = (props: IEasyOnlineCareCardProps) => {
-	const { heading, subheading, paragraph, features } = props.obj
+	const { heading, subheading, paragraph, features } = props.obj;
 
 	return (
 		<>
@@ -52,7 +51,7 @@ const EasyOnlineCareCard = (props: IEasyOnlineCareCardProps) => {
 				</div>
 			</article>
 		</>
-	)
-}
+	);
+};
 
-export default EasyOnlineCareCard
+export default EasyOnlineCareCard;

@@ -75,7 +75,7 @@ const PopoverPills: React.FC<PopoverPillsProps> = ({
 					? {
 						side: 'top',
 						align: 'center',
-						sideOffset: 30,
+						sideOffset: 24,
 					}
 					: {
 						side: 'top',

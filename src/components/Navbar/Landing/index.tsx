@@ -22,6 +22,21 @@ const transition = {
 	restSpeed: 0.001,
 };
 
+export const navbarVariants = {
+	visible: {
+		y: 0,
+		opacity: 1,
+		backdropFilter: 'blur(25px)',
+		borderRadius: '100px',
+		transition: {
+			delay: 2.25,
+			duration: 1,
+			ease: 'easeInOut'
+		}
+	},
+	hidden: { y: '-100%', opacity: 0 },
+};
+
 export const MenuItem = ({
 	setActive,
 	active,
@@ -152,6 +167,7 @@ const Navbar: React.FC<NavbarProps> = ({ className, animationProps }) => {
 						externalLink={ menu.externalLink }
 						aria-label={ menu.name }
 						key={ menu.name }
+						className='flex-shrink-0'
 					>
 						<div className={ clsxm(
 							'font-Poppins text-sm !leading-6 font-medium',
@@ -174,20 +190,7 @@ const Navbar: React.FC<NavbarProps> = ({ className, animationProps }) => {
 					className='container-center w-full'
 					style={ { overflow } }>
 					<motion.nav
-						variants={ {
-							visible: {
-								y: 0,
-								opacity: 1,
-								backdropFilter: 'blur(25px)',
-								borderRadius: '100px',
-								transition: {
-									delay: 3.1,
-									duration: 1,
-									ease: 'easeInOut'
-								}
-							},
-							hidden: { y: '-100%', opacity: 0 },
-						} }
+						variants={ navbarVariants }
 						initial='hidden'
 						animate='visible'
 						className='inline-block w-full'
@@ -196,12 +199,14 @@ const Navbar: React.FC<NavbarProps> = ({ className, animationProps }) => {
 					>
 						<nav
 							onMouseLeave={ () => setActive(null) }
-							className='relative overflow-visible visible h-[60px] lg:h-[69px] font-Poppins border border-white/5 backdrop-blur-[25px] p-18px lg:pl-[42px] lg:py-3 lg:pr-3 rounded-[100px] bg-white/10 flex items-center space-x-6 xl:space-x-[50px] w-full justify-between'>
-							<div className='flex items-center lg:space-x-6 xl:space-x-[50px]'>
-								<Link href='/'>
+							className='relative overflow-visible visible h-[60px] lg:h-[69px] font-Poppins border border-white/5 backdrop-blur-[25px] p-18px lg:pl-[42px] lg:py-3 lg:pr-3 rounded-[100px] bg-white/10 flex items-center space-x-5 xl:space-x-[50px] w-full justify-between'>
+							<div className='flex items-center lg:space-x-5 xl:space-x-[50px]'>
+								<Link
+									href='/'
+									className='focus:ring-0 focus:outline-none'>
 									<GevitiLogo />
 								</Link>
-								<div className='hidden lg:flex items-center space-x-6 xl:space-x-[50px]'>
+								<div className='hidden lg:flex items-center space-x-5 xl:space-x-[50px]'>
 									{ navbarData.menu.map((menu, menuIdx) => {
 										if (menu.items) {
 											return (
@@ -240,7 +245,7 @@ const Navbar: React.FC<NavbarProps> = ({ className, animationProps }) => {
 									}) }
 								</div>
 							</div>
-							<div className='hidden lg:flex items-center space-x-6'>
+							<div className='hidden lg:flex items-center space-x-5'>
 								{ renderIconMenuList() }
 								{ renderActionMenuList() }
 							</div>

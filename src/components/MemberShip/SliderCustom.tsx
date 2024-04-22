@@ -2,7 +2,7 @@
 import { useRef, useState } from 'react';
 import Slider from 'react-slick';
 
-import membershipdata from '@/constant/data/membershipdata';
+import membershipdata from '@/constant/data/membership';
 
 import { ChevronRight } from '../Icons';
 
@@ -40,7 +40,7 @@ const SliderCustom = () => {
 	};
 
 	return (
-		<div className='relative w-full lg:px-3 pt-3 rounded-19px'>
+		<div className='relative w-full lg:px-3 pt-6 rounded-19px'>
 			<div className='overflow-hidden rounded-19px relative'>
 				<Slider
 					ref={ sliderRef }

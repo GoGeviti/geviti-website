@@ -1,23 +1,20 @@
-import landingData from '@/constant/data/solution';
+import solutionData from '@/constant/data/solution';
 
 import WellnessProCard from './WellnessProCard';
 
-const WellnessPro = () => {
-
-	const wellnessprolist = landingData.wellnessprolist;
+const WellnessPro: React.FC<{ type: 'men' | 'women'; }> = ({ type }) => {
+	const list = solutionData.wellnessProList[type];
 
 	return (
-		<>
-			<section className='bg-[#F2F2F2] md:px-4'>
-				<div className='grid lg:grid-cols-2 grid-cols-1 md:gap-[23px] gap-11 w-full mx-auto md:bg-transparent bg-white py-8 md:py-0 rounded-2xl'>
-					{ wellnessprolist?.map((obj, index) => (
-						<WellnessProCard
-							obj={ obj }
-							key={ index } />
-					)) }
-				</div>
-			</section>
-		</>
+		<section className='lg:px-3 overflow-hidden'>
+			<div className='grid lg:grid-cols-2 grid-cols-1 gap-[42px] lg:gap-[23px] w-full mx-auto lg:bg-transparent bg-white py-[42px] lg:py-0 max-lg:rounded-19px'>
+				{ list?.map((item, index) => (
+					<WellnessProCard
+						item={ item }
+						key={ index } />
+				)) }
+			</div>
+		</section>
 	);
 };
 

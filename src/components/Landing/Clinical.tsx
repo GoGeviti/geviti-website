@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 import { landingData } from '@/constant/data';
 
-import ButtonCta from './ButtonCta';
+import ButtonCta from '../ButtonCta';
 
 const clinicalData = landingData.clinical;
 

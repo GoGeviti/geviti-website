@@ -422,7 +422,7 @@ const HomeKits: React.FC = () => {
 						</motion.div>
 					</motion.div>
 				</motion.div>
-				<div className='flex h-full justify-center lg:cursor-none relative pt-[294px] lg:pt-[451px] lg:max-w-7xl lg:mx-auto'>
+				<div className='flex h-full justify-center lg:cursor-none relative pt-[294px] lg:pt-[451px] lg:max-w-[1360px] lg:mx-auto'>
 					<motion.div
 						style={ { y: 0 } }
 						className='px-4 lg:px-10 flex flex-col z-1'>

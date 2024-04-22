@@ -4,10 +4,10 @@ import CustomLink, { CustomLinkProps } from '../CustomLink';
 import { ChevronRight } from '../Icons';
 
 type ButtonCtaProps = CustomLinkProps & {
-  text?: string;
-  arrowClassName?: string;
-  theme?: 'primary' | 'secondary';
-  children?: React.ReactNode;
+	text?: string;
+	arrowClassName?: string;
+	theme?: 'primary' | 'secondary' | 'tertiary';
+	children?: React.ReactNode;
 };
 
 const ButtonCta: React.FC<ButtonCtaProps> = ({
@@ -18,11 +18,23 @@ const ButtonCta: React.FC<ButtonCtaProps> = ({
 	children,
 	...props
 }) => {
+	const resolveBtnWrapperClassName = () => {
+		if (theme === 'primary') return 'bg-primary text-white';
+		if (theme === 'secondary') return 'bg-white text-primary';
+		if (theme === 'tertiary') return 'bg-blue-primary text-primary';
+	};
+
+	const resolveArrowWrapperClassNem = () => {
+		if (theme === 'primary') return 'bg-white text-primary';
+		if (theme === 'secondary') return 'bg-primary text-blue-primary';
+		if (theme === 'tertiary') return 'bg-primary text-white';
+	};
+
 	return (
 		<CustomLink
 			className={ clsxm(
 				'group relative grid place-items-center grid-cols-[auto_46px] overflow-hidden gap-6 rounded-full pl-[42px] py-1.5 pr-1.5 font-medium text-lg leading-6 font-Poppins',
-				theme === 'primary' ? 'bg-primary text-white' : 'bg-white text-primary',
+				resolveBtnWrapperClassName(),
 				className
 			) }
 			{ ...props }
@@ -33,7 +45,7 @@ const ButtonCta: React.FC<ButtonCtaProps> = ({
 
 			<span className={ clsxm(
 				'rounded-full w-[46px] h-[46px] relative flex justify-center [&>*]:transform [&>*]:transition-all [&>*]:duration-[400ms] [&>*]:h-[46px] [&>*]:flex [&>*]:items-center',
-				theme === 'primary' ? 'bg-white text-primary' : 'bg-primary text-blue-primary'
+				resolveArrowWrapperClassNem()
 			) }>
 				<span className='opacity-0 group-hover:opacity-100 -translate-x-full group-hover:translate-x-0'>
 					<ChevronRight className={ clsxm(arrowClassName, 'flex-shrink-0') } />

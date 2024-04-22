@@ -1,22 +1,22 @@
 /* eslint-disable @next/next/no-img-element */
-'use client'
-import React, { useRef, useState } from 'react'
-import Slider from 'react-slick'
+'use client';
+import React, { useRef, useState } from 'react';
+import Slider from 'react-slick';
 
-import ButtonCta from '@/components/Landing/ButtonCta'
+import ButtonCta from '../../ButtonCta';
 
-import 'slick-carousel/slick/slick.css'
-import 'slick-carousel/slick/slick-theme.css'
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 
 interface IProps {
-  cardslist: any
+	cardslist: any;
 }
 
 const SliderData = (props: IProps) => {
-	const { cardslist } = props
+	const { cardslist } = props;
 
-	const sliderRef = useRef<any>(null)
-	const [activeSlide, setActiveSlide] = useState(0)
+	const sliderRef = useRef<any>(null);
+	const [activeSlide, setActiveSlide] = useState(0);
 
 	const settings = {
 		dots: false,
@@ -29,27 +29,26 @@ const SliderData = (props: IProps) => {
 		arrows: false,
 		afterChange: (current: React.SetStateAction<number>) =>
 			setActiveSlide(current),
-	}
+	};
 
 	const nextSlide = () => {
 		if (sliderRef.current) {
-			sliderRef?.current?.slickNext()
+			sliderRef?.current?.slickNext();
 		}
-	}
+	};
 
 	const prevSlide = () => {
 		if (sliderRef.current) {
-			sliderRef?.current?.slickPrev()
+			sliderRef?.current?.slickPrev();
 		}
-	}
+	};
 
 	return (
 		<section className='w-full'>
 			<div className=' relative flex justify-between items-center w-full'>
 				<button
 					onClick={ prevSlide }
-					className={ `min-w-[46px] min-h-[46px] rounded-full flex items-center justify-center z-50 relative ${
-						activeSlide === 0 ? 'bg-[#F5F6F6]' : 'bg-primary'
+					className={ `min-w-[46px] min-h-[46px] rounded-full flex items-center justify-center z-50 relative ${ activeSlide === 0 ? 'bg-[#F5F6F6]' : 'bg-primary'
 					}` }
 				>
 					<svg
@@ -86,11 +85,11 @@ const SliderData = (props: IProps) => {
 								/>
 								<img
 									src={ obj.imageURL }
-									alt={ `Slider Image ${index + 1}` }
+									alt={ `Slider Image ${ index + 1 }` }
 									className='max-w-[230px] w-full h-full z-20 object-contain'
 								/>
 								<p className='absolute top-6 !z-50 -left-[88%] px-6 py-3 bg-[#fbfbfb] rounded-[14px] shadow-[0px_4px_24px_0px_rgba_(0_0_0_0.15)] text-lg font-medium leading-[140.947%] text-primary font-Poppins -tracking-[0.72px]'>
-                  As low as $95/m*
+									As low as $95/m*
 								</p>
 							</div>
 						)) }
@@ -98,8 +97,7 @@ const SliderData = (props: IProps) => {
 				</div>
 				<button
 					onClick={ nextSlide }
-					className={ `min-w-[46px] min-h-[46px] rounded-full flex items-center justify-center z-50 relative  ${
-						activeSlide === cardslist.length - 1 ? 'bg-[#F5F6F6]' : 'bg-primary'
+					className={ `min-w-[46px] min-h-[46px] rounded-full flex items-center justify-center z-50 relative  ${ activeSlide === cardslist.length - 1 ? 'bg-[#F5F6F6]' : 'bg-primary'
 					}` }
 				>
 					<svg
@@ -130,7 +128,7 @@ const SliderData = (props: IProps) => {
 				/>
 			</div>
 		</section>
-	)
-}
+	);
+};
 
-export default SliderData
+export default SliderData;

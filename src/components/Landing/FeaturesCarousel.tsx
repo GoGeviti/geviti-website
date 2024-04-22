@@ -6,9 +6,8 @@ import { AnimatePresence, motion } from 'framer-motion';
 
 import { landingData } from '@/constant/data';
 
+import ButtonCta from '../ButtonCta';
 import { ArrowNarrowLeft, ArrowNarrowRight, ChevronRight } from '../Icons';
-
-import ButtonCta from './ButtonCta';
 
 const cardVariants = {
 	initial: (trend: number) => ({
@@ -107,10 +106,8 @@ const FeaturesCarousel: React.FC = () => {
 					ref={ vidRef }
 					// autoPlay={ activeIdx === 0 }
 					muted
-					width={ 400 }
-					height={ 170 }
 					playsInline
-					className='w-full h-full object-cover'
+					className='w-full h-full object-cover absolute inset-0'
 				>
 					<source
 						src={ src }
@@ -178,7 +175,7 @@ const FeaturesCarousel: React.FC = () => {
 											className='text-primary font-Poppins p-4 lg:p-6 rounded-19px bg-white absolute inset-0 w-full h-full'
 										>
 											<span className='flex flex-col gap-3'>
-												<span className='max-h-[174px] aspect-[400/174] h-full w-full bg-blue-alice rounded-2xl relative overflow-hidden'>
+												<span className='h-full aspect-[400/174] max-h-[174px] w-full bg-blue-alice rounded-2xl relative overflow-hidden'>
 													{ renderAnimatedContentCard(cards[activeIdx].id) }
 												</span>
 												<p className='text-2xl !leading-normal'>{ cards[activeIdx].title }</p>

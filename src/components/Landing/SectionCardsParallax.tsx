@@ -5,10 +5,11 @@ import { motion, MotionValue, useScroll, useTransform } from 'framer-motion';
 
 import clsxm from '@/helpers/clsxm';
 
+import RunningLogo from '../RunningLogo';
+
 import ApplicationCard from './Application';
 import ClinicalCard from './Clinical';
 import FlexibleCard from './Flexible';
-import RunningLogo from './RunningLogo';
 
 const listComponents = [
 	FlexibleCard,

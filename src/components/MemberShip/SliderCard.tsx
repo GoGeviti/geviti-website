@@ -1,68 +1,67 @@
-'use client'
-import { useState } from 'react'
-import { gsap } from 'gsap'
-import Image from 'next/image'
+'use client';
+import { useState } from 'react';
+import { gsap } from 'gsap';
+import Image from 'next/image';
 
-import { BlueArrow } from '../Icons/Landing'
-import ButtonCta from '../Landing/ButtonCta'
+import ButtonCta from '../ButtonCta';
+import { BlueArrow } from '../Icons/Landing';
 
-import 'slick-carousel/slick/slick-theme.css'
-import 'slick-carousel/slick/slick.css'
+import 'slick-carousel/slick/slick-theme.css';
+import 'slick-carousel/slick/slick.css';
 
 interface ISliderCardProps {
-  title: string
-  heading: string
-  subheading: string
-  list: any
-  img: string
-  hide: string
+	title: string;
+	heading: string;
+	subheading: string;
+	list: any;
+	img: string;
+	hide: string;
 }
 
 interface IProps {
-  obj: ISliderCardProps
-  index: number
-  nextSlide: any
-  currentSlide: number
+	obj: ISliderCardProps;
+	index: number;
+	nextSlide: any;
+	currentSlide: number;
 }
 
 const SliderCard = (props: IProps) => {
-	const { title, heading, subheading, list, hide, img } = props.obj
+	const { title, heading, subheading, list, hide, img } = props.obj;
 
-	const { index, nextSlide, currentSlide } = props
+	const { index, nextSlide, currentSlide } = props;
 
-	const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 })
-	const [isHovering, setIsHovering] = useState(false)
+	const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
+	const [isHovering, setIsHovering] = useState(false);
 	const handleMouseMove = (e: any) => {
-		const boundingRect = e.currentTarget.getBoundingClientRect()
-		const x = e.clientX - boundingRect.left
-		const y = e.clientY - boundingRect.top
-		setCursorPosition({ x, y })
+		const boundingRect = e.currentTarget.getBoundingClientRect();
+		const x = e.clientX - boundingRect.left;
+		const y = e.clientY - boundingRect.top;
+		setCursorPosition({ x, y });
 		gsap.to('.custom-cursor-anim', {
 			x: x - 78 + 'px',
 			y: y - 78 + 'px',
 			duration: 0.1,
 			ease: 'power1.inOut',
-		})
-	}
+		});
+	};
 
 	const handleMouseEnter = () => {
 		gsap.to('.custom-cursor-anim', {
 			scale: 1,
 			duration: 0.1,
-		})
-		setIsHovering(true)
-		console.log('Mouse leave')
-	}
+		});
+		setIsHovering(true);
+	};
 
 	const handleMouseLeave = () => {
 		gsap.to('.custom-cursor-anim', {
 			scale: 0,
 			duration: 0.1,
-		})
-		setIsHovering(false)
-	}
+		});
+		setIsHovering(false);
+	};
 
-	console.log(cursorPosition, isHovering)
+	console.log(cursorPosition, isHovering);
 
 	return (
 		<>
@@ -87,7 +86,7 @@ const SliderCard = (props: IProps) => {
 							</li>
 						)) }
 					</ul>
-					<div className={ `${hide} ` }>
+					<div className={ `${ hide } ` }>
 						<ButtonCta
 							href='/'
 							text='Join Geviti'
@@ -106,7 +105,7 @@ const SliderCard = (props: IProps) => {
 					{ currentSlide == index && (
 						<div className='absolute w-[156px] custom-cursor-anim cursor-pointer h-[156px] rounded-full flex items-center justify-center gap-2 bg-primary'>
 							<p className=' text-sm text-blue-1 font-Poppins font-medium'>
-                Click to slide
+								Click to slide
 							</p>
 							<BlueArrow />
 						</div>
@@ -123,7 +122,7 @@ const SliderCard = (props: IProps) => {
 				</div>
 			</div>
 		</>
-	)
-}
+	);
+};
 
-export default SliderCard
+export default SliderCard;
