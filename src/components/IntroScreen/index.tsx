@@ -65,20 +65,7 @@ export default function IntroScreen({ children }: { children: React.ReactNode; }
 					</video>
 				</div>
 			</motion.div>
-			<motion.div
-				key='content-children'
-				variants={ {
-					initial: {
-						visibility: 'hidden'
-					},
-					enter: {
-						visibility: 'visible'
-					}
-				} }
-				transition={ { delay: 2.1, ease: [0.76, 0, 0.24, 1] } }
-				initial='initial'
-				animate='enter'
-			>
+			<motion.div key='content-children'>
 				{ children }
 			</motion.div>
 		</AnimatePresence>
