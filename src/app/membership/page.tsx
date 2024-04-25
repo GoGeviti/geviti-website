@@ -12,8 +12,8 @@ const MemberShipPage = () => {
 			</div>
 			<MembershipComponent.StepsSection />
 			<MembershipComponent.SliderCustom />
-			<MembershipComponent.Pricing />
-			<MembershipComponent.BioMakersSection />
+			{ /* <MembershipComponent.Pricing /> */ }
+			<MembershipComponent.BiomarkersSection />
 			<MembershipComponent.ChooseGeviti />
 			<MembershipComponent.Products />
 			<FrequentlyAskedQuestions data={ membershipData.faq.data } />

@@ -30,10 +30,9 @@ const FeaturesCarousel: React.FC = () => {
 	const { ref, inView } = useInView();
 
 	const [idx, setIdx] = useState<number>(0);
-	const [prevIdx, setPrevIdx] = useState(idx);
-	const vidRef = useRef<HTMLVideoElement | null>(null);
+	const [trend, setTrend] = useState<number>(1);
 
-	const trend = idx > prevIdx ? 1 : -1;
+	const vidRef = useRef<HTMLVideoElement | null>(null);
 
 	const activeIdx = Math.abs(idx % cards.length);
 
@@ -48,17 +47,17 @@ const FeaturesCarousel: React.FC = () => {
 	}, [inView, activeIdx, vidRef?.current]);
 
 	const handleNext = () => {
-		setPrevIdx(idx);
 		setIdx(prevIndex =>
 			prevIndex + 1 === cards.length ? 0 : prevIndex + 1
 		);
+		setTrend(1);
 	};
 
 	const handlePrevious = () => {
-		setPrevIdx(idx);
 		setIdx(prevIndex =>
 			prevIndex - 1 < 0 ? cards.length - 1 : prevIndex - 1
 		);
+		setTrend(-1);
 	};
 
 	const renderButtonArrowSlider = () => {

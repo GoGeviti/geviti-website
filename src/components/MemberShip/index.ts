@@ -1,5 +1,5 @@
 import Banner from './Banner';
-import BioMakersSection from './BioMakersSection';
+import BiomarkersSection from './BiomarkersSection';
 import ChooseGeviti from './ChooseGeviti';
 import Hero from './Hero';
 import Pricing from './Pricing';
@@ -9,7 +9,7 @@ import StepsSection from './Steps';
 
 export {
 	Banner,
-	BioMakersSection,
+	BiomarkersSection,
 	ChooseGeviti,
 	Hero,
 	Pricing,

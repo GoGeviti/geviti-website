@@ -1,4 +1,7 @@
 import {
+	CrossRed, DollarCircle, DoubleDollarCircle, FemaleIcon, GreenCheck, MaleIcon
+} from '@/components/Icons';
+import {
 	DNAIcon,
 	DropIcon,
 	FavFolder,
@@ -22,7 +25,7 @@ const membershipData = {
 			'accessible. Data driven',
 			'anti-aging care.',
 		],
-		image: '/images/membership/hero.png',
+		image: '/images/membership/compressed/hero.webp',
 		imageMobile: '/images/membership/compressed/hero_mobile.webp',
 		btnCta: {
 			text: 'Join Geviti',
@@ -57,57 +60,435 @@ const membershipData = {
 			},
 		],
 	},
-	biomakers: {
+	biomarkers: {
+		title: 'Compare Tested Biomarkers',
+		expandText: 'Click to expand',
+		tabs: [
+			{
+				title: 'Essential Health Check',
+				key: {
+					male: 'essential',
+					female: 'essential'
+				}
+			},
+			{
+				title: 'Comprehensive Health Dive',
+				key: {
+					male: 'comprehensive',
+					female: 'comprehensive'
+				}
+			},
+			{
+				title: 'Ultimate Health Assessment',
+				key: {
+					male: 'ultimateMale',
+					female: 'ultimateFemale'
+				}
+			}
+		],
+		genderOptions: [
+			{
+				title: 'Male Biomarkers',
+				shortLabel: 'Male',
+				icon: MaleIcon,
+				value: 'male'
+			},
+			{
+				title: 'Female Biomarkers',
+				shortLabel: 'Female',
+				icon: FemaleIcon,
+				value: 'female'
+			}
+		],
 		data: [
-			'Thyroid Cascade',
-			'Luteinizing Hormone (LH)',
-			'Total Testosterone',
-			'Free Testosterone',
-			'Chloride',
-			'Globulin, Total',
-			'Calcium',
-			'Alkaline Phosphatase',
-			'A/G Ratio',
-			'Bilirubin',
-			'Blood Urea Nitrogen (BUN)',
-			'Sodium',
-			'Potassium',
-			'Glucose',
-			'Total Protein',
-			'Carbon Dioxide (CO2)',
-			'Alanine Aminotransferase (ALT)',
-			'Aspartate Aminotransferase (AST)',
-			'Creatinine',
-			'BUN/Creatinine Ratio',
-			'Estimated Glomerular Filtration Rate (eGFR)',
-			'HbA1C',
-			'Red Blood Cell Count (RBC)',
-			'White Blood Cell Count (WBC)',
-			'Hemoglobin (HGB)',
-			'Hematocrit (HCT)',
-			'Mean Corpuscular Volume (MCV)',
-			'Mean Corpuscular Hemoglobin (MCH)',
-			'Mean Corpuscular Hemoglobin Concentration (MCHC)',
-			'Red Cell Distribution Width (RDW)',
-			'Platelet Count',
-			'Neutrophils (Absolute and Percent)',
-			'Lymphocytes (Absolute and Percent)',
-			'Monocytes (Absolute and Percent)',
-			'Eosinophils (Absolute and Percent)',
-			'Basophils (Absolute and Percent)',
-			'Immature Granulocytes (Absolute and Percent)',
-			'Immature Cells (Absolute Count)',
-			'Total Cholesterol',
-			'High-Density Lipoprotein (HDL) Cholesterol',
-			'Low-Density Lipoprotein (LDL) Cholesterol (calculated)',
-			'Triglycerides',
-			'sex hormone binding globulin (SHBG) ',
-			'Very Low-Density Lipoprotein (VLDL) Cholesterol (calculated)',
-			'Prostate-Specific Antigen (PSA)',
+			{
+				key: 'essential',
+				list: [
+					{ title: 'Thyroid Cascade', description: 'Evaluates thyroid function and disorders with 3-4 biomarkers.' },
+					{ title: 'Luteinizing Hormone (LH)', description: 'Indicates reproductive health and function.' },
+					{ title: 'Total Testosterone', description: 'Measures overall level of male sex hormone.' },
+					{ title: 'Free Testosterone', description: 'Assesses biologically active testosterone fraction.' },
+					{ title: 'Chloride', description: '' },
+					{ title: 'Globulin, Total', description: '' },
+					{ title: 'Calcium', description: '' },
+					{ title: 'Alkaline Phosphatase', description: '' },
+					{ title: 'A/G Ratio', description: '' },
+					{ title: 'Bilirubin', description: '' },
+					{ title: 'Blood Urea Nitrogen (BUN)', description: '' },
+					{ title: 'Sodium', description: '' },
+					{ title: 'Potassium', description: '' },
+					{ title: 'Glucose', description: '' },
+					{ title: 'Total Protein', description: '' },
+					{ title: 'Carbon Dioxide (CO2)', description: '' },
+					{ title: 'Alanine Aminotransferase (ALT)', description: '' },
+					{ title: 'Aspartate Aminotransferase (AST)', description: '' },
+					{ title: 'Creatinine', description: '' },
+					{ title: 'BUN/Creatinine Ratio', description: '' },
+					{ title: 'Estimated Glomerular Filtration Rate (eGFR)', description: '' },
+					{ title: 'HbA1C', description: 'Reflects average blood sugar levels over three months.' },
+					{ title: 'Red Blood Cell Count (RBC)', description: '' },
+					{ title: 'White Blood Cell Count (WBC)', description: '' },
+					{ title: 'Hemoglobin (HGB)', description: '' },
+					{ title: 'Hematocrit (HCT)', description: '' },
+					{ title: 'Mean Corpuscular Volume (MCV)', description: '' },
+					{ title: 'Mean Corpuscular Hemoglobin (MCH)', description: '' },
+					{ title: 'Mean Corpuscular Hemoglobin Concentration (MCHC)', description: '' },
+					{ title: 'Red Cell Distribution Width (RDW)', description: '' },
+					{ title: 'Platelet Count', description: '' },
+					{ title: 'Neutrophils (Absolute and Percent)', description: '' },
+					{ title: 'Lymphocytes (Absolute and Percent)', description: '' },
+					{ title: 'Monocytes (Absolute and Percent)', description: '' },
+					{ title: 'Eosinophils (Absolute and Percent)', description: '' },
+					{ title: 'Basophils (Absolute and Percent)', description: '' },
+					{ title: 'Immature Granulocytes (Absolute and Percent)', description: '' },
+					{ title: 'Immature Cells (Absolute Count)', description: '' },
+					{ title: 'Total Cholesterol', description: '' },
+					{ title: 'High-Density Lipoprotein (HDL) Cholesterol', description: '' },
+					{ title: 'Low-Density Lipoprotein (LDL) Cholesterol (calculated)', description: '' },
+					{ title: 'Triglycerides', description: '' },
+					{ title: 'sex hormone binding globulin (SHBG)', description: '' },
+					{ title: 'Very Low-Density Lipoprotein (VLDL) Cholesterol (calculated)', description: '' },
+					{ title: 'Prostate-Specific Antigen (PSA)', description: '' },
+				]
+			},
+			{
+				key: 'comprehensive',
+				list: [
+					{
+						title: 'Thyroid Cascade',
+						description: 'Evaluates thyroid function and disorders with 3-4 biomarkers.'
+					},
+					{
+						title: 'LH (Lutheinizing Hormone)',
+						description: 'Indicates reproductive health and function.'
+					},
+					{
+						title: 'Total Testosterone',
+						description: 'Measures overall level of male sex hormone.'
+					},
+					{
+						title: 'Free Testosterone',
+						description: 'Assesses biologically active testosterone fraction.'
+					},
+					{
+						title: 'Comprehensive Metabolic Panel',
+						description: 'Provides a broad overview of metabolism and organ function with 14 biomarkers.'
+					},
+					{
+						title: 'HbA1C',
+						description: 'Reflects average blood sugar levels over three months.'
+					},
+					{
+						title: 'Complete Blood Count',
+						description: 'Measures different blood cell types for overall health status with 14 biomarkers.'
+					},
+					{
+						title: 'Lipid Panel',
+						description: 'Assesses risk for cardiovascular disease through cholesterol levels with 4 biomarkers.'
+					},
+					{
+						title: 'FSH (Follicle Stimulating Hormone)',
+						description: 'Integral for reproductive system functioning.'
+					},
+					{
+						title: 'Estradiol',
+						description: 'A form of estrogen important for reproductive and sexual health.'
+					},
+					{
+						title: 'DHEA (Dehydroepiandrosterone)',
+						description: 'A hormone that\'s a precursor to sex hormones.'
+					},
+					{
+						title: 'IGF-1 (Insulin-like Growth Factor 1)',
+						description: 'Reflects human growth hormone levels.'
+					},
+					{
+						title: 'Homocysteine',
+						description: 'Linked with cardiovascular disease risk.'
+					},
+					{
+						title: 'Magnesium',
+						description: 'Vital for muscle, nerve function, and bone health.'
+					},
+					{
+						title: 'Vitamin D, 25-Hydroxy',
+						description: 'Assesses vitamin D status related to bone health.'
+					},
+					{
+						title: 'PSA (Prostate-Specific Antigen)',
+						description: 'Screens for prostate health issues.'
+					},
+					{
+						title: 'C-Reactive Protein',
+						description: 'Indicates liver health.'
+					},
+					{
+						title: 'Apo B',
+						description: 'Assists in evaluating liver function.'
+					},
+					{
+						title: 'Lipoprotein A',
+						description: 'A marker for inflammation in the body.'
+					},
+				]
+			},
+			{
+				key: 'ultimateMale',
+				list: [
+					{
+						title: 'Thyroid Cascade',
+						description: 'Evaluates thyroid function and disorders with 3-4 biomarkers.'
+					},
+					{
+						title: 'LH (Lutheinizing Hormone)',
+						description: 'Indicates reproductive health and function.'
+					},
+					{
+						title: 'Total Testosterone',
+						description: 'Measures overall level of male sex hormone.'
+					},
+					{
+						title: 'Free Testosterone',
+						description: 'Assesses biologically active testosterone fraction.'
+					},
+					{
+						title: 'Comprehensive Metabolic Panel',
+						description: 'Provides a broad overview of metabolism and organ function with 14 biomarkers.'
+					},
+					{
+						title: 'HbA1C',
+						description: 'Reflects average blood sugar levels over three months.'
+					},
+					{
+						title: 'Complete Blood Count',
+						description: 'Measures different blood cell types for overall health status with 14 biomarkers.'
+					},
+					{
+						title: 'Lipid Panel',
+						description: 'Assesses risk for cardiovascular disease through cholesterol levels with 4 biomarkers.'
+					},
+					{
+						title: 'FSH (Follicle Stimulating Hormone)',
+						description: 'Integral for reproductive system functioning.'
+					},
+					{
+						title: 'Estradiol',
+						description: 'A form of estrogen important for reproductive and sexual health.'
+					},
+					{
+						title: 'DHEA (Dehydroepiandrosterone)',
+						description: 'A hormone that\'s a precursor to sex hormones.'
+					},
+					{
+						title: 'IGF-1 (Insulin-like Growth Factor 1)',
+						description: 'Reflects human growth hormone levels.'
+					},
+					{
+						title: 'Homocysteine',
+						description: 'Linked with cardiovascular disease risk.'
+					},
+					{
+						title: 'Magnesium',
+						description: 'Vital for muscle, nerve function, and bone health.'
+					},
+					{
+						title: 'Vitamin D, 25-Hydroxy',
+						description: 'Assesses vitamin D status related to bone health.'
+					},
+					{
+						title: 'PSA (Prostate-Specific Antigen)',
+						description: 'Screens for prostate health issues.'
+					},
+					{
+						title: 'C-Reactive Protein',
+						description: 'Indicates liver health.'
+					},
+					{
+						title: 'Apo B',
+						description: 'Assists in evaluating liver function.'
+					},
+					{
+						title: 'Lipoprotein A',
+						description: 'A marker for inflammation in the body.'
+					},
+					{
+						title: 'ALT (Alanine Aminotransferase)',
+						description: 'Involved in cholesterol metabolism; linked to heart disease'
+					},
+					{
+						title: 'AST (Aspartate Aminotransferase)',
+						description: 'Genetic marker associated with an increased risk of heart disease.'
+					},
+					{
+						title: 'Insulin',
+						description: 'Monitors insulin production and blood sugar regulation.'
+					},
+					{
+						title: 'SHBG',
+						description: 'Binds to sex hormones and regulates their effect.'
+					},
+					{
+						title: 'Cortisol',
+						description: 'Measures stress response and adrenal function.'
+					},
+					{
+						title: 'Growth Hormone',
+						description: 'Important for growth, metabolism, and muscle mass.'
+					},
+					{
+						title: 'Vitamin B12',
+						description: 'Essential for nerve function and blood cell production.'
+					},
+					{
+						title: 'Ferritin',
+						description: 'Indicates the amount of stored iron in the body.'
+					},
+					{
+						title: 'Iron and TIBC',
+						description: 'Assesses iron status and transport capacity.'
+					},
+					{
+						title: 'Free T4',
+						description: 'Directly measures active thyroid hormone levels.'
+					},
+				]
+			},
+			{
+				key: 'ultimateFemale',
+				list: [
+					{
+						title: 'Thyroid Cascade',
+						description: 'Evaluates thyroid function and disorders with 3-4 biomarkers.'
+					},
+					{
+						title: 'LH (Lutheinizing Hormone)',
+						description: 'Indicates reproductive health and function.'
+					},
+					{
+						title: 'Total Testosterone',
+						description: 'Measures overall level of male sex hormone.'
+					},
+					{
+						title: 'Free Testosterone',
+						description: 'Assesses biologically active testosterone fraction.'
+					},
+					{
+						title: 'Comprehensive Metabolic Panel',
+						description: 'Provides a broad overview of metabolism and organ function with 14 biomarkers.'
+					},
+					{
+						title: 'HbA1C',
+						description: 'Reflects average blood sugar levels over three months.'
+					},
+					{
+						title: 'Complete Blood Count',
+						description: 'Measures different blood cell types for overall health status with 14 biomarkers.'
+					},
+					{
+						title: 'Lipid Panel',
+						description: 'Assesses risk for cardiovascular disease through cholesterol levels with 4 biomarkers.'
+					},
+					{
+						title: 'FSH (Follicle Stimulating Hormone)',
+						description: 'Integral for reproductive system functioning.'
+					},
+					{
+						title: 'Estradiol',
+						description: 'A form of estrogen important for reproductive and sexual health.'
+					},
+					{
+						title: 'DHEA (Dehydroepiandrosterone)',
+						description: 'A hormone that\'s a precursor to sex hormones.'
+					},
+					{
+						title: 'IGF-1 (Insulin-like Growth Factor 1)',
+						description: 'Reflects human growth hormone levels.'
+					},
+					{
+						title: 'Homocysteine',
+						description: 'Linked with cardiovascular disease risk.'
+					},
+					{
+						title: 'Magnesium',
+						description: 'Vital for muscle, nerve function, and bone health.'
+					},
+					{
+						title: 'Vitamin D, 25-Hydroxy',
+						description: 'Assesses vitamin D status related to bone health.'
+					},
+					{
+						title: 'PSA (Prostate-Specific Antigen)',
+						description: 'Screens for prostate health issues.'
+					},
+					{
+						title: 'C-Reactive Protein',
+						description: 'Indicates liver health.'
+					},
+					{
+						title: 'Apo B',
+						description: 'Assists in evaluating liver function.'
+					},
+					{
+						title: 'Lipoprotein A',
+						description: 'A marker for inflammation in the body.'
+					},
+					{
+						title: 'ALT (Alanine Aminotransferase)',
+						description: 'Involved in cholesterol metabolism; linked to heart disease'
+					},
+					{
+						title: 'AST (Aspartate Aminotransferase)',
+						description: 'Genetic marker associated with an increased risk of heart disease.'
+					},
+					{
+						title: 'Insulin',
+						description: 'Monitors insulin production and blood sugar regulation.'
+					},
+					{
+						title: 'Cortisol',
+						description: 'Measures stress response and adrenal function.'
+					},
+					{
+						title: 'Vitamin B12',
+						description: 'Essential for nerve function and blood cell production.'
+					},
+					{
+						title: 'Ferritin',
+						description: 'Indicates the amount of stored iron in the body.'
+					},
+					{
+						title: 'Iron and TIBC',
+						description: 'Assesses iron status and transport capacity.'
+					},
+					{
+						title: 'Free T4',
+						description: 'Directly measures active thyroid hormone levels.'
+					},
+					{
+						title: 'Prolactin',
+						description: 'Essential for menstrual cycle regulation and pregnancy in females.'
+					},
+					{
+						title: 'Progesterone',
+						description: 'Affects menstrual cycles and milk production.'
+					},
+				]
+			}
 		],
 	},
-	choosegivity: {
-		data: [
+	chooseGevity: {
+		preTitle: 'Tailor-made longevity',
+		title: 'Why Choose Geviti?',
+		image: '/images/membership/compressed/oral.webp',
+		btnCta: {
+			href: '/onboarding',
+			text: 'Get Started'
+		},
+		btnCta2: {
+			href: '/products',
+			text: 'See Products'
+		},
+		list: [
 			'Because why leave home for better care?',
 			'Everything is streamlined and made easy.',
 			'Geviti makes cutting edge care available.',
@@ -147,12 +528,12 @@ const membershipData = {
 		],
 	},
 	slider: {
-		data: [
+		list: [
 			{
-				title: 'Data-driven health and wellness, made simple.',
-				heading:
-					'The ultimate wellness membership for as low as $99 per month.',
-				subheading:
+				preTitle: 'Data-driven health and wellness, made simple.',
+				title:
+					'The ultimate wellness <br class="sm:hidden"/>membership for as low as <br class="sm:hidden"/>$99 per month.',
+				description:
 					'Geviti transcends the usual health and wellness offerings, providing unparalleled value at a lower cost. Our mission is to make longevity-focused care exceptionally accessible.',
 				list: [
 					'Geviti Platform Access',
@@ -165,22 +546,24 @@ const membershipData = {
 					'Certified Personal Health Coach',
 					'Wholesale At-home Diagnostics',
 				],
-				hide: 'hidden',
-				img: '/images/membership/men-with-boll.png',
+				image: '/images/membership/compressed/slider-1.webp',
 			},
 			{
-				title: 'Data-driven health and wellness, made simple.',
-				heading: 'Doctor  monitored cutting edge care',
-				subheading:
+				preTitle: 'Data-driven health and wellness, made simple.',
+				title: 'Doctor  monitored cutting edge care',
+				description:
 					'Geviti offers a comprehensive care team for our clients. Instead of having to choose between a healthcare provider and a health coach, Geviti provides a solution where the two collaborate to create the ultimate longevity regimen.',
 				list: [],
-				hide: 'flex',
-				img: '/images/membership/slider2.png',
+				image: '/images/membership/compressed/slider-2.webp',
+				btnCta: {
+					href: '/onboarding',
+					text: 'Join Geviti'
+				}
 			},
 			{
-				title: 'Data-driven health and wellness, made simple.',
-				heading: 'A complete wellness team in your pocket',
-				subheading: ' ',
+				preTitle: 'Data-driven health and wellness, made simple.',
+				title: 'A complete wellness team in your pocket',
+				description: ' ',
 				list: [
 					'Hormone Therapy',
 					'Anti-aging Peptides',
@@ -189,49 +572,146 @@ const membershipData = {
 					'Nootropics and Brain Health',
 					'And More.',
 				],
-				hide: 'flex',
-				img: '/images/membership/sider3.png',
+				image: '/images/membership/compressed/slider-3.webp',
+				btnCta: {
+					href: '/onboarding',
+					text: 'Join Geviti'
+				}
 			},
 			{
-				title: 'Data-driven health and wellness, made simple.',
-				heading: 'Biannual At-Home Full Panels ',
-				subheading:
+				preTitle: 'Data-driven health and wellness, made simple.',
+				title: 'Biannual At-Home Full Panels ',
+				description:
 					'Americans may go several years without getting their bloodwork done. This can be the difference between life and death. Geviti makes bloodwork easy with our nationwide team of phlebotomists Every 6 months, we’ll come to you and perform a full panel.',
 				list: [],
-				hide: 'flex',
-				img: '/images/membership/slider4.png',
+				image: '/images/membership/compressed/slider-4.webp',
+				btnCta: {
+					href: '/onboarding',
+					text: 'Join Geviti'
+				}
 			},
-		],
+		]
 	},
 	pricing: {
-		data: [
+		preTitle: 'Care based off of biomarkers',
+		title: 'Start by establishing baselines',
+		description: 'Every user starts with one of these to establish baselines. This includes month free.',
+		pricingOptions: [
 			{
-				name: 'Essentials Diagnostic',
-				price: '299',
-				biomakers: '45',
-				button: 'primary',
-				bg: '#F5FBFF',
-				text: 'text-primary',
-				hide: 'hidden',
+				title: 'Quarterly',
+				value: 'quarterly',
+				highlight: '17% off'
 			},
 			{
-				name: 'Essentials Diagnostic',
-				price: '469',
-				biomakers: '45',
-				button: 'secondary',
-
-				bg: '#181A1C',
-				text: 'text-white',
-				hide: '',
-			},
+				title: 'Monthly',
+				value: 'monthly'
+			}
+		],
+		list: [
 			{
 				name: 'Essentials Diagnostic',
-				price: '299',
-				biomakers: '45',
-				button: 'primary',
-				bg: '#F5FBFF',
-				text: 'text-primary',
-				hide: 'hidden',
+				price: '$299',
+				priceNote: 'one time payment',
+				biomakers: '45+',
+				mostPopular: false,
+				monthly: '+ $119 monthly',
+				quarterly: '+$99/m billed quarterly',
+				btnCta: {
+					href: '/onboarding',
+					text: 'Get Started'
+				},
+				list: [
+					{
+						title: 'At-home phlebotomy blood draw',
+						description: 'Experience convenient, personalized healthcare from the comfort of your home or any location of your choice. Our mobile phlebotomy service ensures that a professional team comes to you for blood drawing, making the process as comfortable and stress-free as possible.'
+					},
+					{
+						title: 'Full biomarker results report',
+						description: ''
+					},
+					{
+						title: 'Smart supplement recommendation',
+						description: ''
+					},
+					{
+						title: 'Bloodwork results telehealth review',
+						description: ''
+					},
+					{
+						title: 'Month one membership included',
+						description: ''
+					},
+				]
+			},
+			{
+				name: 'Comprehensive Diagnostic',
+				price: '$469',
+				priceNote: 'one time payment',
+				biomakers: '57+',
+				mostPopular: true,
+				monthly: '+ $119 monthly',
+				quarterly: '+$99/m billed quarterly',
+				btnCta: {
+					href: '/onboarding',
+					text: 'Get Started'
+				},
+				list: [
+					{
+						title: 'At-home phlebotomy blood draw',
+						description: 'Experience convenient, personalized healthcare from the comfort of your home or any location of your choice. Our mobile phlebotomy service ensures that a professional team comes to you for blood drawing, making the process as comfortable and stress-free as possible.'
+					},
+					{
+						title: 'Full biomarker results report',
+						description: ''
+					},
+					{
+						title: 'Smart supplement recommendation',
+						description: ''
+					},
+					{
+						title: 'Bloodwork results telehealth review',
+						description: ''
+					},
+					{
+						title: 'Month one membership included',
+						description: ''
+					},
+				]
+			},
+			{
+				name: 'Ultimate Diagnostic',
+				price: '$299',
+				priceNote: 'one time payment',
+				biomakers: '68+',
+				mostPopular: false,
+				monthly: '+ $119 monthly',
+				quarterly: '+$99/m billed quarterly',
+				btnCta: {
+					href: '/onboarding',
+					text: 'Get Started'
+				},
+				list: [
+					{
+						title: 'At-home phlebotomy blood draw',
+						description: 'Experience convenient, personalized healthcare from the comfort of your home or any location of your choice. Our mobile phlebotomy service ensures that a professional team comes to you for blood drawing, making the process as comfortable and stress-free as possible.'
+					},
+					{
+						title: 'Full biomarker results report',
+						description: ''
+					},
+					{
+						title: 'Smart supplement recommendation',
+						description: ''
+					},
+					{
+						title: 'Bloodwork results telehealth review',
+						description: ''
+					},
+					{
+						title: 'Month one membership included',
+						description: ''
+					},
+				]
 			},
 		],
 		features: [
@@ -240,6 +720,130 @@ const membershipData = {
 			'Smart supplement recommendation',
 			'Bloodwork results telehealth review',
 			'Month one membership included',
+		],
+		comparisonList: [
+			{
+				name: 'Geviti',
+				priceTitle: 'Membership cost as low as',
+				price: '$99',
+				priceNote: 'per month',
+				geviti: true,
+				list: [
+					{
+						title: 'Free telehealth consults',
+						icon: GreenCheck
+					},
+					{
+						title: 'Designated certified health coach',
+						icon: GreenCheck
+					},
+					{
+						title: 'At-home bloodwork',
+						icon: GreenCheck
+					},
+					{
+						title: 'Free semi-annual bloodwork',
+						icon: GreenCheck
+					},
+					{
+						title: 'Affordable treatments',
+						icon: GreenCheck
+					},
+					{
+						title: 'Included medical supplies',
+						icon: GreenCheck
+					},
+					{
+						title: 'Custom Smart Supplements',
+						icon: GreenCheck
+					},
+					{
+						title: 'Everything direct to your door',
+						icon: GreenCheck
+					},
+					{
+						title: 'Wholesale cost additional testing',
+						icon: GreenCheck
+					},
+					{
+						title: 'Wholesale cost supplements',
+						icon: GreenCheck
+					},
+					{
+						title: 'DNA and bloodwork options',
+						icon: GreenCheck
+					},
+					{
+						title: 'Data-driven tech platform',
+						icon: GreenCheck
+					},
+					{
+						title: 'Integrated mobile app',
+						icon: GreenCheck
+					},
+				]
+			},
+			{
+				name: 'Others',
+				priceTitle: 'Membership cost',
+				price: '$130+',
+				priceNote: 'per month',
+				geviti: false,
+				list: [
+					{
+						title: 'Free telehealth consults',
+						icon: DollarCircle
+					},
+					{
+						title: 'Designated certified health coach',
+						icon: CrossRed
+					},
+					{
+						title: 'At-home bloodwork',
+						icon: CrossRed
+					},
+					{
+						title: 'Free semi-annual bloodwork',
+						icon: DollarCircle
+					},
+					{
+						title: 'Affordable treatments',
+						icon: DoubleDollarCircle
+					},
+					{
+						title: 'Included medical supplies',
+						icon: DollarCircle
+					},
+					{
+						title: 'Custom Smart Supplements',
+						icon: CrossRed
+					},
+					{
+						title: 'Everything direct to your door',
+						icon: CrossRed
+					},
+					{
+						title: 'Wholesale cost additional testing',
+						icon: DoubleDollarCircle
+					},
+					{
+						title: 'Wholesale cost supplements',
+						icon: DollarCircle
+					},
+					{
+						title: 'DNA and bloodwork options',
+						icon: CrossRed
+					},
+					{
+						title: 'Data-driven tech platform',
+						icon: CrossRed
+					},
+					{
+						title: 'Integrated mobile app',
+						icon: CrossRed
+					},
+				]
+			}
 		],
 		others: [
 			'Free telehealth consults',
