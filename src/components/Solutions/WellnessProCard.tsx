@@ -1,80 +1,85 @@
-import React from 'react'
-import Image from 'next/image'
+import React from 'react';
+import Image from 'next/image';
 
-interface IWellnessProProps {
-  title: string
-  subtitle: string
-  description: string
-  imageURL: string
-  mobileimage: string
-  counting: string
-  million: string | null
-  state: string
-  age: string
-}
+import Stat from './Stat';
 
-interface IWellnessProCardProps {
-  obj: IWellnessProProps
-}
+type IWellnessProCardProps = {
+	item: {
+		preTitle: string;
+		title: string;
+		description: string;
+		image: string;
+		imageMobile: string;
+		count: number;
+		suffix?: string | null;
+		imageHeading: string;
+		imageSubheading: string;
+	};
+};
 
-const WellnessProCard = (props: IWellnessProCardProps) => {
+const WellnessProCard: React.FC<IWellnessProCardProps> = ({ item }) => {
 	const {
+		preTitle,
 		title,
-		subtitle,
 		description,
-		imageURL,
-		mobileimage,
-		counting,
-		million,
-		state,
-		age,
-	} = props.obj
+		image,
+		imageMobile,
+		count,
+		suffix,
+		imageHeading,
+		imageSubheading,
+	} = item;
 
 	return (
-		<>
-			<article className='md:bg-white rounded-[19px] px-4 md:px-6 md:pt-10 md:pb-6 z-10 relative'>
-				<p className='text-grey-primary !text-[10px] md:text-sm font-semibold leading-[150%] md:leading-[171.429%] uppercase tracking-[1.1px] md:tracking-[1.54px] font-Poppins'>
-					{ title }
+		<article className='lg:bg-white rounded-19px px-4 lg:px-6 lg:pt-[42px] lg:pb-6 relative overflow-hidden font-Poppins'>
+			<div className='lg:pl-18px'>
+				<p className='text-grey-primary text-pretitle uppercase'>
+					{ preTitle }
 				</p>
-				<h2 className='text-primary text-2xl md:text-3xl lg:text-4xl font-normal font-Poppins my-2 sm:my-0'>
-					{ subtitle }
+				<h2 className='text-primary text-2xl md:text-3xl lg:text-4xl !leading-normal font-normal mt-3 mb-4 lg:mt-0 lg:mb-3'>
+					<span dangerouslySetInnerHTML={ { __html: title } } />
 				</h2>
-				<span className='text-gray-400 text-sm md:text-sm font-normal leading-[142%] lg:max-w-[446px] w-full font-Poppins inline-block mt-4 md:mt-3'>
-					{ description }
-				</span>
-				<div className='w-full mt-[18px] md:mt-10 lg:mt-14 relative h-[288px]'>
-					<img
-						className='w-full h-full rounded-[19px] absolute appearance-none sm:block hidden object-cover object-top'
-						src={ imageURL }
-						alt={ title }
+				<div className='lg:max-w-[446px]'>
+					<p className='text-grey-400 text-xs lg:text-sm !leading-5'>
+						{ description }
+					</p>
+				</div>
+			</div>
+			<div className='mt-[25px] lg:mt-[46px] w-full'>
+				<div className='w-full h-[288px] relative overflow-hidden rounded-2xl'>
+					<Image
+						alt=''
+						src={ image }
+						fill
+						sizes='(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 100vw'
+						className='w-full h-full object-cover object-right max-lg:hidden'
 					/>
 					<Image
-						style={ { backgroundSize: '100% 100%' } }
-						className='w-full h-full rounded-[19px] absolute appearance-none sm:hidden block '
-						src={ mobileimage }
-						alt={ title }
-						width={ 648 }
-						height={ 648 }
-						unoptimized
+						alt=''
+						src={ imageMobile }
+						fill
+						sizes='(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 100vw'
+						className='w-full h-full object-cover lg:hidden'
 					/>
-					<div className='relative z-20 md:p-6 p-[18px] flex flex-col justify-end items-start h-full after-gradient-wellnesscard'>
-						<h2 className='relative z-20 text-[100px] font-normal text-white font-Poppins tracking-[-4px] leading-[70%] mb-[14px]'>
-							{ counting }
-							<span className='text-4xl tracking-[-1.44px] font-Poppins'>
-								{ million }
-							</span>
-						</h2>
-						<p className='relative z-20 text-blue-primary !text-sm font-semibold leading-[150%] uppercase tracking-[1.54px] font-Poppins mb-1.5'>
-							{ state }
-						</p>
-						<p className='relative z-20 text-white !text-sm font-semibold leading-[150%] uppercase tracking-[1.2px] sm:tracking-[1.54px] font-Poppins whitespace-nowrap'>
-							{ age }
-						</p>
+
+					<div className='w-full h-full flex flex-col justify-end px-5 lg:px-6 py-18px text-white relative z-10'>
+						<Stat
+							num={ count }
+							suffix={ suffix }
+							suffixClassName={ suffix === 'million' ? 'text-4xl !leading-normal -tracking-0.04em' : '' } />
+						<div className='uppercase text-[3.581vw] xs2:text-sm !leading-[171%] tracking-0.11em font-semibold'>
+							<p
+								dangerouslySetInnerHTML={ { __html: imageHeading } }
+								className='text-blue-primary' />
+							<p
+								dangerouslySetInnerHTML={ { __html: imageSubheading } }
+								className='text-white' />
+						</div>
 					</div>
 				</div>
-			</article>
-		</>
-	)
-}
+			</div>
+		</article>
+	);
+};
 
-export default WellnessProCard
+export default WellnessProCard;

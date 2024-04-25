@@ -3,9 +3,8 @@ import Image from 'next/image';
 
 import { landingData } from '@/constant/data';
 
+import ButtonCta from '../ButtonCta';
 import InfiniteMovingFeatures from '../InfiniteMovingFeatures';
-
-import ButtonCta from './ButtonCta';
 
 const membershipData = landingData.membership;
 

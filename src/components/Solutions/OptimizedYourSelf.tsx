@@ -1,70 +1,111 @@
 import React from 'react';
+import Image from 'next/image';
 
-import ButtonCta from '../Landing/ButtonCta';
+import { solutionData } from '@/constant/data';
 
-interface IProps {
-  bgimgyourself: string;
-}
+import ButtonCta from '../ButtonCta';
 
-const OptimizedYourSelf = (props: IProps) => {
-	const { bgimgyourself } = props;
+import Stat from './Stat';
 
+const optimizedData = solutionData.optimizedYourSelf;
+
+const Flexible: React.FC = () => {
 	return (
-		<>
-			<section className='lg:px-4'>
-				<div className='bg-white w-full my-6 rounded-[19px] px-4 sm:px-10 lg:pl-10 lg:pr-4 pt-10 pb-6 sm:py-4'>
-					<div className='flex justify-between lg:flex-row flex-col h-full gap-10 lg:gap-[58px] xl:pl-[88px]'>
-						<div className='lg:max-w-[606px] lg:py-[22px] w-full'>
-							<h2 className='lg:text-sm md:text-xs text-[10px] font-semibold tracking-[1.1px] sm:tracking-[1.54px] uppercase text-grey-primary leading-[150%] sm:leading-[171.429%] font-Poppins'>
-                You owe it to yourself, and others.
-							</h2>
-							<p className='xl:text-5xl lg:text-4xl text-2xl font-Poppins text-primary !leading-[150%]'>
-                Become the optimized version of yourself.
-							</p>
-							<div className='mt-[14px]'>
-								<p className='lg:text-lg md:text-sm text-xs text-gray-400 font-Poppins !font-normal'>
-                  The Geviti platform gives men access to doctor supervised
-                  treatments covering testosterone therapy, anti-aging peptides,
-                  medical weight loss, sexual health, and more.
+		<div className='overflow-hidden lg:px-3 pt-6'>
+			<div className='bg-grey-secondary h-full w-full rounded-19px relative overflow-hidden font-Poppins'>
+				<div className='max-lg:py-[42px] container-center grid-cols-1 grid lg:grid-cols-2 max-lg:gap-y-[42px] lg:gap-x-8'>
+					<div className='lg:h-[685px]'>
+						<div className='h-full flex flex-col lg:justify-between lg:py-[42px] relative lg:z-10 max-lg:w-full lg:max-w-[631px] mx-auto lg:mx-0'>
+							<div>
+								<p className='mb-3 lg:mb-0 text-pretitle text-grey-primary'>
+									<span dangerouslySetInnerHTML={ { __html: optimizedData.preTitle } } />
 								</p>
-								<p className='lg:text-lg md:text-sm text-xs text-gray-400 font-Poppins !font-normal mt-12 md:mt-8 lg:mt-16'>
-                  All of this, and more with automated at-home bloodwork, custom
-                  smart supplements, and more
-								</p>
+
+								{ optimizedData.title && (
+									<h2 className='mb-4 lg:mb-3.5 !leading-normal text-primary text-[6.4vw] xxs2:text-2xl sm:text-3xl md:text-4xl lg:text-5xl'>
+										<span dangerouslySetInnerHTML={ { __html: optimizedData.title } } />
+									</h2>
+								) }
+
+								{ optimizedData.description && (
+									<p className='text-grey-400 max-lg:max-w-[340px] text-xs lg:text-lg !leading-5 lg:!leading-normal'>
+										<span dangerouslySetInnerHTML={ { __html: optimizedData.description } } />
+									</p>
+								) }
 							</div>
-							<div className='md:block hidden'>
+							<div className='hidden lg:flex'>
 								<ButtonCta
-									className='max-w-[296px] mt-[158px]'
-									text='Become a member'
-									href='#'
-									theme='primary'
-								/>
+									text={ optimizedData.btnCta.text }
+									href={ optimizedData.btnCta.href }
+									theme='primary' />
 							</div>
 						</div>
-						<div
-							style={ { backgroundImage: `url(${bgimgyourself})` } }
-							className='relative h-[326px] sm:h-[560px] bg-cover lg:h-auto rounded-2xl bg-no-repeat bg-center pointer-events-none lg:max-w-[672px] w-full  flex items-end justify-end overflow-hidden'
-						>
-							<div className='relative z-10 gap-[14px] md:gap-6 pb-5 sm:pb-6 md:px-7 px-4 flex flex-col items-end justify-end bg-img-grediant w-full'>
-								<p className='lg:text-[104.837px] sm:text-[100px] text-[74px] font-Poppins text-white font-normal -tracking-[4.193px] w-full text-start md:text-end leading-none'>
-                  1-2%
-								</p>
-								<h6 className='text-sm font-Poppins tracking-[1.54px] font-semibold text-white uppercase'>
-                  annual decreases in testosterone after 40
-								</h6>
+					</div>
+					<div className='max-lg:hidden lg:absolute lg:inset-y-6 lg:inset-x-3 lg:left-1/2'>
+						<div className='w-full lg:absolute lg:inset-0 lg:aspect-auto lg:h-full rounded-2xl overflow-hidden'>
+							<Image
+								src={ optimizedData.image }
+								alt='flexible'
+								sizes='(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 100vw'
+								quality={ 100 }
+								fill
+								className='object-cover pointer-events-none rounded-2xl w-full h-full'
+							/>
+
+							<div className='relative w-full h-full z-10'>
+								<div
+									className='absolute z-10 bg-black w-full h-[74%] bottom-0 inset-x-0'
+									style={ { background: 'linear-gradient(0deg, #181A1C 0%, rgba(24, 26, 28, 0) 96.26%)' } } />
+								<div className='absolute right-0 bottom-0 z-[11] pb-[17px] pr-[27px] text-white text-right flex flex-col justify-end'>
+									<span className='text-[209.67px] !leading-none -tracking-0.04em'>
+										{ optimizedData.imageCaption.desktop.count }<span className='text-[104.84px]'>{ optimizedData.imageCaption.desktop.suffix }</span>
+									</span>
+									<span className='text-sm !leading-6 tracking-0.11em uppercase font-semibold'>
+										{ optimizedData.imageCaption.desktop.subheading1 }
+									</span>
+								</div>
 							</div>
 						</div>
-						<div className='block md:hidden mb-5'>
+					</div>
+
+					<div className='lg:hidden'>
+						<div className='relative rounded-2xl overflow-hidden'>
+							<Image
+								src={ optimizedData.imageMobile }
+								alt='flexible mobile'
+								loading='lazy'
+								className='object-cover w-full max-sm:h-[343px] rounded-2xl pointer-events-none'
+								width={ 343 }
+								height={ 343 }
+							/>
+
+							<div
+								className='absolute inset-x-0 bottom-0 text-white pl-[21px] pb-[18px]'
+								style={ { background: 'linear-gradient(0deg, #181A1C 20.46%, rgba(24, 26, 28, 0.72) 61.5%, rgba(24, 26, 28, 0) 100%)' } }>
+								<Stat
+									num={ optimizedData.imageCaption.mobile.count }
+									suffix={ optimizedData.imageCaption.mobile.suffix }
+									suffixClassName='text-4xl !leading-normal -tracking-0.04em' />
+								<div className='uppercase text-[3.581vw] xs2:text-sm !leading-[171%] tracking-0.11em font-semibold'>
+									<p className='text-blue-primary'>{ optimizedData.imageCaption.mobile.subheading1 }</p>
+									<p className='text-white'>{ optimizedData.imageCaption.mobile.subheading2 }</p>
+								</div>
+							</div>
+						</div>
+
+						<div className='flex justify-center max-sm:w-full mt-[42px]'>
 							<ButtonCta
-								text='Become a member'
-								href='#'
-								theme='primary' />
+								text={ optimizedData.btnCta.text }
+								href={ optimizedData.btnCta.href }
+								theme='primary'
+								className='max-sm:w-full'
+							/>
 						</div>
 					</div>
 				</div>
-			</section>
-		</>
+			</div>
+		</div>
 	);
 };
 
-export default OptimizedYourSelf;
+export default Flexible;

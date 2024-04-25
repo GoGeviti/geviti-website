@@ -6,9 +6,8 @@ import { AnimatePresence, motion } from 'framer-motion';
 
 import { landingData } from '@/constant/data';
 
+import ButtonCta from '../ButtonCta';
 import { ArrowNarrowLeft, ArrowNarrowRight, ChevronRight } from '../Icons';
-
-import ButtonCta from './ButtonCta';
 
 const cardVariants = {
 	initial: (trend: number) => ({

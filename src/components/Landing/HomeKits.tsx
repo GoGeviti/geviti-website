@@ -1,9 +1,7 @@
 'use client';
 
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import {
-	AnimatePresence, motion, useMotionValue, useScroll, useSpring, useTransform
-} from 'framer-motion';
+import { AnimatePresence, motion, useScroll, useTransform } from 'framer-motion';
 import Image from 'next/image';
 
 import { landingData } from '@/constant/data';
@@ -12,6 +10,7 @@ import { screens } from '@/helpers/style';
 import { useWindowDimensions } from '@/hooks';
 
 import LogoBlueLayer from '../../../public/images/landing/compressed/blue-geviti.webp';
+import CursorSlider from '../CursorSlider';
 import CustomLink from '../CustomLink';
 import { ArrowNarrowLeft, ArrowNarrowRight, ChevronRight } from '../Icons';
 
@@ -97,7 +96,6 @@ const imgVariants = {
 
 const homeKitsData = landingData.homeKits;
 const list = homeKitsData.carousel;
-const CURSOR_SIZE = 156;
 
 const HomeKits: React.FC = () => {
 	const containerRef = useRef<HTMLDivElement>(null);
@@ -108,18 +106,6 @@ const HomeKits: React.FC = () => {
 
 	const backgroundY = useTransform(scrollYProgress, [0, 1], [0, -100]);
 	const windowDimensions = useWindowDimensions();
-	const mouseX = useMotionValue(0);
-	const mouseY = useMotionValue(0);
-	const animatedHoverX = useSpring(mouseX, {
-		damping: 20,
-		stiffness: 400,
-		mass: 0.1,
-	});
-	const animatedHoverY = useSpring(mouseY, {
-		damping: 20,
-		stiffness: 400,
-		mass: 0.1,
-	});
 
 	const [idx, setIdx] = useState<number>(0);
 	const [prevIdx, setPrevIdx] = useState<number>(idx);
@@ -388,41 +374,11 @@ const HomeKits: React.FC = () => {
 				</div>
 			</div>
 			<div className='group relative lg:cursor-none'>
-				<motion.div
-					className='max-lg:hidden absolute z-50 inset-0 w-full h-full'
-					onMouseMove={ ({ currentTarget, clientX, clientY }) => {
-						const parent = currentTarget.offsetParent;
-						if (!parent) return;
-						const { left, top } = parent.getBoundingClientRect();
-						mouseX.set(clientX - left - CURSOR_SIZE / 2);
-						mouseY.set(clientY - top - CURSOR_SIZE / 2);
-					} }
+				<CursorSlider
+					className='opacity-0 transition-opacity duration-300 group-hover:opacity-100'
 					onClick={ handleNext }
-				>
-					<motion.div
-						className='pointer-events-none absolute z-20 opacity-0 transition-opacity duration-300 group-hover:opacity-100'
-						style={ {
-							width: CURSOR_SIZE,
-							height: CURSOR_SIZE,
-							x: animatedHoverX,
-							y: animatedHoverY,
-						} }
-					>
-						<motion.div
-							layout
-							className='grid justify-center items-center h-full place-items-center rounded-full bg-primary'
-						>
-							<motion.span
-								layout='position'
-								className='w-full inline-flex items-center gap-2 select-none text-center text-blue-primary text-sm !leading-6 font-medium'
-							>
-								Click To Slide
-								<ArrowNarrowRight className='text-blue-primary flex-shrink-0 w-18px h-18px' />
-							</motion.span>
-						</motion.div>
-					</motion.div>
-				</motion.div>
-				<div className='flex h-full justify-center lg:cursor-none relative pt-[294px] lg:pt-[451px] lg:max-w-7xl lg:mx-auto'>
+				/>
+				<div className='flex h-full justify-center lg:cursor-none relative pt-[294px] lg:pt-[451px] lg:max-w-[1360px] lg:mx-auto'>
 					<motion.div
 						style={ { y: 0 } }
 						className='px-4 lg:px-10 flex flex-col z-1'>

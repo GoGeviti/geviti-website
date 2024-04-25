@@ -6,17 +6,17 @@ const navigationData = {
 	menu: [
 		{
 			name: 'Membership',
-			href: '#',
+			href: '/membership',
 			externalLink: false
 		},
 		{
 			name: 'Men\'s Health',
-			href: '#',
+			href: '/solution/men',
 			externalLink: false
 		},
 		{
 			name: 'Women\'s Health',
-			href: '#',
+			href: '/solution/women',
 			externalLink: false
 		},
 		{

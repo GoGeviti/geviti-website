@@ -17,14 +17,14 @@ import { ArrowEmail } from '../Icons';
 import { Popover, PopoverContent, PopoverTrigger } from '../Popover';
 
 type FooterProps = {
-  landingPage?: boolean;
+	landingPage?: boolean;
 };
 
 const WrapperFooter: React.FC<FooterProps & {
-  children: React.ReactNode;
-  isMobile?: boolean;
-  containerRef?: React.RefObject<HTMLDivElement>;
-  scrollYProgress: MotionValue<number>;
+	children: React.ReactNode;
+	isMobile?: boolean;
+	containerRef?: React.RefObject<HTMLDivElement>;
+	scrollYProgress: MotionValue<number>;
 }> = ({ isMobile, landingPage, children, containerRef, scrollYProgress }) => {
 	const wrapperClassName = 'pt-6 pb-[106px] lg:pt-12 lg:h-[569px] lg:pb-[310px] bg-white rounded-19px relative overflow-hidden w-full';
 	const y = useTransform(scrollYProgress, [0, 1], [-569, 0]);
@@ -202,7 +202,7 @@ const Footer: React.FC<FooterProps> = ({ landingPage }) => {
 	};
 
 	return (
-		<div className='pt-6 pb-[66px] lg:pb-6 px-4 lg:px-3 max-lg:pt-2.5 overflow-hidden font-Poppins'>
+		<div className='pt-6 lg:pt-3.5 pb-[66px] lg:pb-6 px-4 lg:px-3 overflow-hidden font-Poppins'>
 			<WrapperFooter
 				landingPage={ landingPage }
 				isMobile={ isMobile }

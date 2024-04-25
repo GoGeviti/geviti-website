@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { landingData } from '@/constant/data';
 import clsxm from '@/helpers/clsxm';
 
-import ButtonCta from './ButtonCta';
+import ButtonCta from '../ButtonCta';
 
 const innovativeData = landingData.innovative;
 

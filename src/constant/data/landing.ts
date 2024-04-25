@@ -101,23 +101,13 @@ const landingData = {
 			text: 'Get Started',
 		},
 	},
-	mission: {
+	banner: {
 		preTitle: 'An INVESTMENT IN YOUR FUTURE',
 		title: 'Prioritizing longevity is an investment in your future self.',
 		description:
 			'Live longer without compromising your lifestyle—our longevity solutions are designed to fit seamlessly into your everyday life.',
-		image: '/images/landing/compressed/mission_1.webp',
-		imageMobile: '/images/landing/compressed/mission_mobile.webp',
-		images: [
-			{
-				src: '/images/landing/compressed/mission_1.webp',
-				theme: 'dark'
-			},
-			{
-				src: '/images/landing/compressed/mission_2.webp',
-				theme: 'light'
-			},
-		],
+		image: '/images/landing/compressed/banner-landing.webp',
+		imageMobile: '/images/landing/compressed/banner-landing-mobile.webp',
 		btnCta: {
 			href: '/onboarding',
 			externalLink: false,

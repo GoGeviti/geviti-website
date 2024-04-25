@@ -7,6 +7,7 @@ import homeData from './home';
 import howItWorksData from './howItWorks';
 import landingData from './landing';
 import marketplaceData from './marketplace';
+import membershipData from './membership';
 import navbarData from './navbar';
 import onboardingData from './onboarding';
 import packagesData from './packages';
@@ -14,6 +15,7 @@ import privacyPolicyData from './privacyPolicy';
 import productListData from './productList';
 import productsData from './products';
 import recommendationPackages from './recommendationPackages';
+import solutionData from './solution';
 import statesData from './states';
 
 export {
@@ -26,6 +28,7 @@ export {
 	howItWorksData,
 	landingData,
 	marketplaceData,
+	membershipData,
 	navbarData,
 	onboardingData,
 	packagesData,
@@ -33,5 +36,6 @@ export {
 	productListData,
 	productsData,
 	recommendationPackages,
-	statesData,
+	solutionData,
+	statesData
 };

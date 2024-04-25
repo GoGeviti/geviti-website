@@ -400,7 +400,7 @@ const homeData = {
 			ultimateFemale: true,
 		},
 		{
-			title: 'Comprenhensive Metabolic Panel',
+			title: 'Comprehensive Metabolic Panel',
 			description: 'Provides a broad overview of metabolism and organ function with 14 biomarkers.',
 			essential: true,
 			comprehensive: true,

@@ -11,11 +11,11 @@ import { screens } from '@/helpers/style';
 import { useWindowDimensions } from '@/hooks';
 import { setCookie } from '@/services/cookies';
 
+import ButtonCta from '../ButtonCta';
 import CustomLink from '../CustomLink';
 import { ChevronRight } from '../Icons';
-import Navbar from '../Navbar/Landing';
+import Navbar, { navbarVariants } from '../Navbar/Landing';
 
-import ButtonCta from './ButtonCta';
 import { slideUpTransition } from './transition';
 
 const heroData = landingData.hero;
@@ -264,7 +264,18 @@ const Hero: React.FC<HeroProps> = ({ showBanner }) => {
 		<div
 			ref={ ref }
 			className='lg:px-3 lg:pt-3 overflow-hidden font-Poppins'>
-			<Navbar />
+			<Navbar animationProps={ {
+				variants: {
+					...navbarVariants,
+					visible: {
+						...navbarVariants.visible,
+						transition: {
+							...navbarVariants.visible.transition,
+							delay: 3.1
+						}
+					}
+				}
+			} } />
 			<div className='bg-primary h-[calc(100svh+14px)] lg:h-[calc(100vh-12px)] w-full overflow-hidden max-lg:rounded-t-none rounded-19px relative pt-11px lg:pt-5'>
 				<div className='absolute inset-0 w-full h-full'>
 					<div className='relative overflow-hidden w-full h-full'>
@@ -272,7 +283,7 @@ const Hero: React.FC<HeroProps> = ({ showBanner }) => {
 						{ renderImage('mobile') }
 					</div>
 				</div>
-				<div className='absolute bottom-0 inset-x-0 w-full h-[60%] backdrop-hero-landing-bottom -z-0' />
+				<div className='absolute bottom-0 inset-x-0 w-full h-[60%] bg-backdrop-hero-landing-bottom -z-0' />
 				<div className='h-full container-center'>
 					<div className='relative w-full h-full rounded-b-19px'>
 						{ heroData.banner.show
@@ -334,7 +345,7 @@ const Hero: React.FC<HeroProps> = ({ showBanner }) => {
 											}
 										}
 									} }
-									className='sm:max-w-[738px] flex flex-col mt-5px lg:mt-0 max-sm:hidden'
+									className='sm:max-w-[738px] flex flex-col max-sm:hidden'
 								>
 									{ renderTitles(heroData.titles) }
 								</motion.h1>
@@ -349,14 +360,14 @@ const Hero: React.FC<HeroProps> = ({ showBanner }) => {
 											}
 										}
 									} }
-									className='sm:hidden flex flex-col'
+									className='sm:hidden flex flex-col mt-5px'
 								>
 									{ renderTitles(heroData.titlesMobile) }
 								</motion.h1>
 
 								<div className='flex w-full mt-[5vh] xs:mt-[42px] lg:mt-[5.435vh] xl:mt-50px'>
-									<div className='grid grid-cols-1 auto-rows-fr sm:grid-cols-2 gap-4 sm:gap-6 items-center max-sm:w-full'>
-										<div className='overflow-hidden inline-block'>
+									<div className='grid grid-cols-1 auto-rows-fr sm:flex gap-4 xxs:gap-6 lg:gap-[42px] items-center w-full'>
+										<div className='overflow-hidden inline-block h-full'>
 											<motion.div
 												variants={ {
 													visible: {
@@ -385,7 +396,7 @@ const Hero: React.FC<HeroProps> = ({ showBanner }) => {
 												</div>
 											</motion.div>
 										</div>
-										<div className='overflow-hidden inline-block w-full h-full'>
+										<div className='overflow-hidden inline-block h-full'>
 											<motion.div
 												variants={ {
 													visible: {
