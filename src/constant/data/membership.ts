@@ -721,145 +721,138 @@ const membershipData = {
 			'Bloodwork results telehealth review',
 			'Month one membership included',
 		],
-		comparisonList: [
-			{
-				name: 'Geviti',
-				priceTitle: 'Membership cost as low as',
-				price: '$99',
-				priceNote: 'per month',
-				geviti: true,
-				list: [
-					{
-						title: 'Free telehealth consults',
-						icon: GreenCheck
-					},
-					{
-						title: 'Designated certified health coach',
-						icon: GreenCheck
-					},
-					{
-						title: 'At-home bloodwork',
-						icon: GreenCheck
-					},
-					{
-						title: 'Free semi-annual bloodwork',
-						icon: GreenCheck
-					},
-					{
-						title: 'Affordable treatments',
-						icon: GreenCheck
-					},
-					{
-						title: 'Included medical supplies',
-						icon: GreenCheck
-					},
-					{
-						title: 'Custom Smart Supplements',
-						icon: GreenCheck
-					},
-					{
-						title: 'Everything direct to your door',
-						icon: GreenCheck
-					},
-					{
-						title: 'Wholesale cost additional testing',
-						icon: GreenCheck
-					},
-					{
-						title: 'Wholesale cost supplements',
-						icon: GreenCheck
-					},
-					{
-						title: 'DNA and bloodwork options',
-						icon: GreenCheck
-					},
-					{
-						title: 'Data-driven tech platform',
-						icon: GreenCheck
-					},
-					{
-						title: 'Integrated mobile app',
-						icon: GreenCheck
-					},
-				]
+		comparison: {
+			btn: {
+				text: 'Compare Geviti to others',
+				textMobile: 'Geviti vs. our competitors'
 			},
-			{
-				name: 'Others',
-				priceTitle: 'Membership cost',
-				price: '$130+',
-				priceNote: 'per month',
-				geviti: false,
-				list: [
-					{
-						title: 'Free telehealth consults',
-						icon: DollarCircle
-					},
-					{
-						title: 'Designated certified health coach',
-						icon: CrossRed
-					},
-					{
-						title: 'At-home bloodwork',
-						icon: CrossRed
-					},
-					{
-						title: 'Free semi-annual bloodwork',
-						icon: DollarCircle
-					},
-					{
-						title: 'Affordable treatments',
-						icon: DoubleDollarCircle
-					},
-					{
-						title: 'Included medical supplies',
-						icon: DollarCircle
-					},
-					{
-						title: 'Custom Smart Supplements',
-						icon: CrossRed
-					},
-					{
-						title: 'Everything direct to your door',
-						icon: CrossRed
-					},
-					{
-						title: 'Wholesale cost additional testing',
-						icon: DoubleDollarCircle
-					},
-					{
-						title: 'Wholesale cost supplements',
-						icon: DollarCircle
-					},
-					{
-						title: 'DNA and bloodwork options',
-						icon: CrossRed
-					},
-					{
-						title: 'Data-driven tech platform',
-						icon: CrossRed
-					},
-					{
-						title: 'Integrated mobile app',
-						icon: CrossRed
-					},
-				]
-			}
-		],
-		others: [
-			'Free telehealth consults',
-			'Designated certified health coach',
-			'At-home bloodwork',
-			'Free semi-annual bloodwork',
-			'Affordable treatments',
-			'Included medical supplies',
-			'Custom Smart Supplements',
-			'Everything direct to your door',
-			'Wholesale cost additional testing',
-			'Wholesale cost supplements',
-			'DNA and bloodwork options',
-			'Data-driven tech platform',
-			'Integrated mobile app',
-		],
+			preTitle: 'Care based off of biomarkers',
+			title: 'More, for less.',
+			list: [
+				{
+					name: 'Geviti',
+					priceTitle: 'Membership cost as low as',
+					price: '$99',
+					priceNote: 'per month',
+					geviti: true,
+					list: [
+						{
+							title: 'Free telehealth consults',
+							icon: GreenCheck
+						},
+						{
+							title: 'Designated certified health coach',
+							icon: GreenCheck
+						},
+						{
+							title: 'At-home bloodwork',
+							icon: GreenCheck
+						},
+						{
+							title: 'Free semi-annual bloodwork',
+							icon: GreenCheck
+						},
+						{
+							title: 'Affordable treatments',
+							icon: GreenCheck
+						},
+						{
+							title: 'Included medical supplies',
+							icon: GreenCheck
+						},
+						{
+							title: 'Custom Smart Supplements',
+							icon: GreenCheck
+						},
+						{
+							title: 'Everything direct to your door',
+							icon: GreenCheck
+						},
+						{
+							title: 'Wholesale cost additional testing',
+							icon: GreenCheck
+						},
+						{
+							title: 'Wholesale cost supplements',
+							icon: GreenCheck
+						},
+						{
+							title: 'DNA and bloodwork options',
+							icon: GreenCheck
+						},
+						{
+							title: 'Data-driven tech platform',
+							icon: GreenCheck
+						},
+						{
+							title: 'Integrated mobile app',
+							icon: GreenCheck
+						},
+					]
+				},
+				{
+					name: 'Others',
+					priceTitle: 'Membership cost',
+					price: '$130+',
+					priceNote: 'per month',
+					geviti: false,
+					list: [
+						{
+							title: 'Free telehealth consults',
+							icon: DollarCircle
+						},
+						{
+							title: 'Designated certified health coach',
+							icon: CrossRed
+						},
+						{
+							title: 'At-home bloodwork',
+							icon: CrossRed
+						},
+						{
+							title: 'Free semi-annual bloodwork',
+							icon: DollarCircle
+						},
+						{
+							title: 'Affordable treatments',
+							icon: DoubleDollarCircle
+						},
+						{
+							title: 'Included medical supplies',
+							icon: DollarCircle
+						},
+						{
+							title: 'Custom Smart Supplements',
+							icon: CrossRed
+						},
+						{
+							title: 'Everything direct to your door',
+							icon: CrossRed
+						},
+						{
+							title: 'Wholesale cost additional testing',
+							icon: DoubleDollarCircle
+						},
+						{
+							title: 'Wholesale cost supplements',
+							icon: DollarCircle
+						},
+						{
+							title: 'DNA and bloodwork options',
+							icon: CrossRed
+						},
+						{
+							title: 'Data-driven tech platform',
+							icon: CrossRed
+						},
+						{
+							title: 'Integrated mobile app',
+							icon: CrossRed
+						},
+					]
+				}
+			]
+		},
 	},
 	faq: {
 		data: [

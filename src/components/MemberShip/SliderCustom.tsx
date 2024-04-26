@@ -2,7 +2,7 @@
 
 import React, { useRef, useState } from 'react';
 import SlickSlider from 'react-slick';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, motion, wrap } from 'framer-motion';
 import Image from 'next/image';
 
 import { membershipData } from '@/constant/data';
@@ -39,11 +39,6 @@ const scaleVariants = {
 const sliderTransition = {
 	duration: 1,
 	ease: 'easeInOut'
-};
-
-export const wrap = (min: number, max: number, v: number) => {
-	const rangeSize = max - min;
-	return ((((v - min) % rangeSize) + rangeSize) % rangeSize) + min;
 };
 
 const sliderData = membershipData.slider.list;

@@ -3,37 +3,45 @@ import {
 	BloodDropIcon,
 	FileIcon,
 	GraphWomenIcon,
+	HeartIcon,
+	HormoneTherapyIcon,
 	MemberIcon,
+	PeptidesIcon,
+	TherapyIcon,
+	ThyroidIcon,
+	WeightLossIcon,
 } from '@/components/Solutions/SolutionIcons';
 
 import landingData from './landing';
 
 const solutionData = {
-	heroMen: {
-		preTitle: 'mens health and wellness solutions',
-		titles: ['Live optimized with <b>Geviti</b>'],
-		titlesMobile: ['Live optimized with', '<b>Geviti</b>'],
-		description: 'A Geviti membership makes longevity easy and <br class="lg:hidden"/>accessible with our wide range of at-home diagnostics, <br class="lg:hidden"/>innovative anti-aging therapies, and a dedicated <br class="lg:hidden"/>qualified care team.',
-		image: '/images/solution_media/compressed/hero-men.webp',
-		imageMobile: '/images/solution_media/compressed/hero-men-mobile.webp',
-		btnCta: {
-			text: 'Join Geviti',
-			href: '/onboarding',
-			externalLink: false,
+	hero: {
+		men: {
+			preTitle: 'mens health and wellness solutions',
+			titles: ['Live optimized with <b>Geviti</b>'],
+			titlesMobile: ['Live optimized with', '<b>Geviti</b>'],
+			description: 'A Geviti membership makes longevity easy and <br class="lg:hidden"/>accessible with our wide range of at-home diagnostics, <br class="lg:hidden"/>innovative anti-aging therapies, and a dedicated <br class="lg:hidden"/>qualified care team.',
+			image: '/images/solution_media/compressed/hero-men.webp',
+			imageMobile: '/images/solution_media/compressed/hero-men-mobile.webp',
+			btnCta: {
+				text: 'Join Geviti',
+				href: '/onboarding',
+				externalLink: false,
+			},
 		},
-	},
-	heroWomen: {
-		preTitle: 'Womens health and wellness solutions',
-		titles: ['Live optimized with <b>Geviti</b>'],
-		titlesMobile: ['Live optimized with', '<b>Geviti</b>'],
-		description: 'A Geviti membership makes longevity easy and <br class="lg:hidden"/>accessible with our wide range of at-home diagnostics, <br class="lg:hidden"/>innovative anti-aging therapies, and a dedicated <br class="lg:hidden"/>qualified care team.',
-		image: '/images/solution_media/compressed/hero-women.webp',
-		imageMobile: '/images/solution_media/compressed/hero-women-mobile.webp',
-		btnCta: {
-			text: 'Join Geviti',
-			href: '/onboarding',
-			externalLink: false,
-		},
+		women: {
+			preTitle: 'Womens health and wellness solutions',
+			titles: ['Live optimized with <b>Geviti</b>'],
+			titlesMobile: ['Live optimized with', '<b>Geviti</b>'],
+			description: 'A Geviti membership makes longevity easy and <br class="lg:hidden"/>accessible with our wide range of at-home diagnostics, <br class="lg:hidden"/>innovative anti-aging therapies, and a dedicated <br class="lg:hidden"/>qualified care team.',
+			image: '/images/solution_media/compressed/hero-women.webp',
+			imageMobile: '/images/solution_media/compressed/hero-women-mobile.webp',
+			btnCta: {
+				text: 'Join Geviti',
+				href: '/onboarding',
+				externalLink: false,
+			},
+		}
 	},
 	products: {
 		title: 'Discover Geviti',
@@ -321,6 +329,923 @@ const solutionData = {
 				subheading1: 'annual decreases in testosterone after 40'
 			}
 		}
+	},
+	treatmentOptions: {
+		men: {
+			preTitle: 'Easy online care',
+			title: 'Treatment options for male optimization',
+			btnCta: {
+				href: '/onboarding',
+				text: 'Get Started'
+			},
+			tabs: [
+				{ id: 1, title: 'Testosterone Therapy', icon: TherapyIcon, preTitle: 'Compare Testosterone optimization options' },
+				{ id: 2, title: 'Anti-aging Peptides', icon: PeptidesIcon, preTitle: 'Compare Anti-aging optimization options' },
+				{ id: 3, title: 'Medical Weight Loss', icon: WeightLossIcon, preTitle: 'Compare Weight Loss optimization options' },
+				{ id: 4, title: 'Sexual Health', icon: HeartIcon, preTitle: 'Compare Sexual Health optimization options' },
+				{ id: 5, title: 'Thyroid', icon: ThyroidIcon, preTitle: 'Compare Thyroid optimization options' },
+			],
+			products: [
+				{
+					id: 1,
+					name: 'Oral Testosterone',
+					description: 'The FDA\'s approval of oral testosterone undecanoate offers a breakthrough in TRT, providing an easy-to-use, effective option for managing Low T. This addition enhances the therapy landscape, simplifying the path to hormonal balance for many.',
+					sort_description: 'Oral Gel Capsule',
+					price: 94.99,
+					category: { id: 1 },
+					image: '/images/solution_media/compressed/product-men-1.webp',
+					images: [
+						'/images/solution_media/compressed/pill-bottle-mockup-men.webp',
+						'/images/solution_media/compressed/pill-bottle-mockup-men.webp',
+						'/images/solution_media/compressed/pill-bottle-mockup-men.webp'
+					],
+					list: [
+						'FDA Approved',
+						'Bioidentical',
+						'96% Efficacy',
+						'Oral Capsule',
+						'Twice Daily',
+						'Flexible Dosing'
+					]
+				},
+				{
+					id: 2,
+					name: 'Enclomiphene Citrate',
+					description: 'The FDA\'s approval of Enclomiphene Citrate undecanoate offers a breakthrough in TRT, providing an easy-to-use, effective option for managing Low T. This addition enhances the therapy landscape, simplifying the path to hormonal balance for many.',
+					sort_description: 'Oral Tablet',
+					price: 94.99,
+					category: { id: 1 },
+					image: '/images/solution_media/compressed/product-men-1.webp',
+					images: [
+						'/images/solution_media/compressed/pill-bottle-mockup-men.webp',
+						'/images/solution_media/compressed/pill-bottle-mockup-men.webp',
+						'/images/solution_media/compressed/pill-bottle-mockup-men.webp'
+					],
+					list: [
+						'FDA Approved',
+						'Bioidentical',
+						'96% Efficacy',
+						'Oral Capsule',
+						'Twice Daily',
+						'Flexible Dosing'
+					]
+				},
+				{
+					id: 3,
+					name: 'Testosterone Booster Complex',
+					description: 'The FDA\'s approval of Testosterone Booster Complex undecanoate offers a breakthrough in TRT, providing an easy-to-use, effective option for managing Low T. This addition enhances the therapy landscape, simplifying the path to hormonal balance for many.',
+					sort_description: 'Oral Tablet',
+					price: 94.99,
+					category: { id: 1 },
+					image: '/images/solution_media/compressed/product-men-1.webp',
+					images: [
+						'/images/solution_media/compressed/pill-bottle-mockup-men.webp',
+						'/images/solution_media/compressed/pill-bottle-mockup-men.webp',
+						'/images/solution_media/compressed/pill-bottle-mockup-men.webp'
+					],
+					list: [
+						'FDA Approved',
+						'Bioidentical',
+						'96% Efficacy',
+						'Oral Capsule',
+						'Twice Daily',
+						'Flexible Dosing'
+					]
+				},
+				{
+					id: 4,
+					name: 'Testosterone Topical Cream',
+					description: 'The FDA\'s approval of Testosterone Topical Cream undecanoate offers a breakthrough in TRT, providing an easy-to-use, effective option for managing Low T. This addition enhances the therapy landscape, simplifying the path to hormonal balance for many.',
+					sort_description: 'Oral Tablet',
+					price: 94.99,
+					category: { id: 1 },
+					image: '/images/solution_media/compressed/product-men-1.webp',
+					images: [
+						'/images/solution_media/compressed/pill-bottle-mockup-men.webp',
+						'/images/solution_media/compressed/pill-bottle-mockup-men.webp',
+						'/images/solution_media/compressed/pill-bottle-mockup-men.webp'
+					],
+					list: [
+						'FDA Approved',
+						'Bioidentical',
+						'96% Efficacy',
+						'Oral Capsule',
+						'Twice Daily',
+						'Flexible Dosing'
+					]
+				},
+				{
+					id: 5,
+					name: 'Oral Testosterone',
+					description: 'The FDA\'s approval of oral testosterone undecanoate offers a breakthrough in TRT, providing an easy-to-use, effective option for managing Low T. This addition enhances the therapy landscape, simplifying the path to hormonal balance for many.',
+					sort_description: 'Oral Gel Capsule',
+					price: 94.99,
+					category: { id: 2 },
+					image: '/images/solution_media/compressed/product-men-1.webp',
+					images: [
+						'/images/solution_media/compressed/pill-bottle-mockup-men.webp',
+						'/images/solution_media/compressed/pill-bottle-mockup-men.webp',
+						'/images/solution_media/compressed/pill-bottle-mockup-men.webp'
+					],
+					list: [
+						'FDA Approved',
+						'Bioidentical',
+						'96% Efficacy',
+						'Oral Capsule',
+						'Twice Daily',
+						'Flexible Dosing'
+					]
+				},
+				{
+					id: 6,
+					name: 'Enclomiphene Citrate',
+					description: 'The FDA\'s approval of Enclomiphene Citrate undecanoate offers a breakthrough in TRT, providing an easy-to-use, effective option for managing Low T. This addition enhances the therapy landscape, simplifying the path to hormonal balance for many.',
+					sort_description: 'Oral Tablet',
+					price: 94.99,
+					category: { id: 2 },
+					image: '/images/solution_media/compressed/product-men-1.webp',
+					images: [
+						'/images/solution_media/compressed/pill-bottle-mockup-men.webp',
+						'/images/solution_media/compressed/pill-bottle-mockup-men.webp',
+						'/images/solution_media/compressed/pill-bottle-mockup-men.webp'
+					],
+					list: [
+						'FDA Approved',
+						'Bioidentical',
+						'96% Efficacy',
+						'Oral Capsule',
+						'Twice Daily',
+						'Flexible Dosing'
+					]
+				},
+				{
+					id: 7,
+					name: 'Testosterone Booster Complex',
+					description: 'The FDA\'s approval of Testosterone Booster Complex undecanoate offers a breakthrough in TRT, providing an easy-to-use, effective option for managing Low T. This addition enhances the therapy landscape, simplifying the path to hormonal balance for many.',
+					sort_description: 'Oral Tablet',
+					price: 94.99,
+					category: { id: 2 },
+					image: '/images/solution_media/compressed/product-men-1.webp',
+					images: [
+						'/images/solution_media/compressed/pill-bottle-mockup-men.webp',
+						'/images/solution_media/compressed/pill-bottle-mockup-men.webp',
+						'/images/solution_media/compressed/pill-bottle-mockup-men.webp'
+					],
+					list: [
+						'FDA Approved',
+						'Bioidentical',
+						'96% Efficacy',
+						'Oral Capsule',
+						'Twice Daily',
+						'Flexible Dosing'
+					]
+				},
+				{
+					id: 8,
+					name: 'Testosterone Topical Cream',
+					description: 'The FDA\'s approval of Testosterone Topical Cream undecanoate offers a breakthrough in TRT, providing an easy-to-use, effective option for managing Low T. This addition enhances the therapy landscape, simplifying the path to hormonal balance for many.',
+					sort_description: 'Oral Tablet',
+					price: 94.99,
+					category: { id: 2 },
+					image: '/images/solution_media/compressed/product-men-1.webp',
+					images: [
+						'/images/solution_media/compressed/pill-bottle-mockup-men.webp',
+						'/images/solution_media/compressed/pill-bottle-mockup-men.webp',
+						'/images/solution_media/compressed/pill-bottle-mockup-men.webp'
+					],
+					list: [
+						'FDA Approved',
+						'Bioidentical',
+						'96% Efficacy',
+						'Oral Capsule',
+						'Twice Daily',
+						'Flexible Dosing'
+					]
+				},
+				{
+					id: 9,
+					name: 'Oral Testosterone',
+					description: 'The FDA\'s approval of oral testosterone undecanoate offers a breakthrough in TRT, providing an easy-to-use, effective option for managing Low T. This addition enhances the therapy landscape, simplifying the path to hormonal balance for many.',
+					sort_description: 'Oral Gel Capsule',
+					price: 94.99,
+					category: { id: 3 },
+					image: '/images/solution_media/compressed/product-men-1.webp',
+					images: [
+						'/images/solution_media/compressed/pill-bottle-mockup-men.webp',
+						'/images/solution_media/compressed/pill-bottle-mockup-men.webp',
+						'/images/solution_media/compressed/pill-bottle-mockup-men.webp'
+					],
+					list: [
+						'FDA Approved',
+						'Bioidentical',
+						'96% Efficacy',
+						'Oral Capsule',
+						'Twice Daily',
+						'Flexible Dosing'
+					]
+				},
+				{
+					id: 10,
+					name: 'Enclomiphene Citrate',
+					description: 'The FDA\'s approval of Enclomiphene Citrate undecanoate offers a breakthrough in TRT, providing an easy-to-use, effective option for managing Low T. This addition enhances the therapy landscape, simplifying the path to hormonal balance for many.',
+					sort_description: 'Oral Tablet',
+					price: 94.99,
+					category: { id: 3 },
+					image: '/images/solution_media/compressed/product-men-1.webp',
+					images: [
+						'/images/solution_media/compressed/pill-bottle-mockup-men.webp',
+						'/images/solution_media/compressed/pill-bottle-mockup-men.webp',
+						'/images/solution_media/compressed/pill-bottle-mockup-men.webp'
+					],
+					list: [
+						'FDA Approved',
+						'Bioidentical',
+						'96% Efficacy',
+						'Oral Capsule',
+						'Twice Daily',
+						'Flexible Dosing'
+					]
+				},
+				{
+					id: 11,
+					name: 'Testosterone Booster Complex',
+					description: 'The FDA\'s approval of Testosterone Booster Complex undecanoate offers a breakthrough in TRT, providing an easy-to-use, effective option for managing Low T. This addition enhances the therapy landscape, simplifying the path to hormonal balance for many.',
+					sort_description: 'Oral Tablet',
+					price: 94.99,
+					category: { id: 3 },
+					image: '/images/solution_media/compressed/product-men-1.webp',
+					images: [
+						'/images/solution_media/compressed/pill-bottle-mockup-men.webp',
+						'/images/solution_media/compressed/pill-bottle-mockup-men.webp',
+						'/images/solution_media/compressed/pill-bottle-mockup-men.webp'
+					],
+					list: [
+						'FDA Approved',
+						'Bioidentical',
+						'96% Efficacy',
+						'Oral Capsule',
+						'Twice Daily',
+						'Flexible Dosing'
+					]
+				},
+				{
+					id: 12,
+					name: 'Testosterone Topical Cream',
+					description: 'The FDA\'s approval of Testosterone Topical Cream undecanoate offers a breakthrough in TRT, providing an easy-to-use, effective option for managing Low T. This addition enhances the therapy landscape, simplifying the path to hormonal balance for many.',
+					sort_description: 'Oral Tablet',
+					price: 94.99,
+					category: { id: 3 },
+					image: '/images/solution_media/compressed/product-men-1.webp',
+					images: [
+						'/images/solution_media/compressed/pill-bottle-mockup-men.webp',
+						'/images/solution_media/compressed/pill-bottle-mockup-men.webp',
+						'/images/solution_media/compressed/pill-bottle-mockup-men.webp'
+					],
+					list: [
+						'FDA Approved',
+						'Bioidentical',
+						'96% Efficacy',
+						'Oral Capsule',
+						'Twice Daily',
+						'Flexible Dosing'
+					]
+				},
+				{
+					id: 13,
+					name: 'Oral Testosterone',
+					description: 'The FDA\'s approval of oral testosterone undecanoate offers a breakthrough in TRT, providing an easy-to-use, effective option for managing Low T. This addition enhances the therapy landscape, simplifying the path to hormonal balance for many.',
+					sort_description: 'Oral Gel Capsule',
+					price: 94.99,
+					category: { id: 4 },
+					image: '/images/solution_media/compressed/product-men-1.webp',
+					images: [
+						'/images/solution_media/compressed/pill-bottle-mockup-men.webp',
+						'/images/solution_media/compressed/pill-bottle-mockup-men.webp',
+						'/images/solution_media/compressed/pill-bottle-mockup-men.webp'
+					],
+					list: [
+						'FDA Approved',
+						'Bioidentical',
+						'96% Efficacy',
+						'Oral Capsule',
+						'Twice Daily',
+						'Flexible Dosing'
+					]
+				},
+				{
+					id: 14,
+					name: 'Enclomiphene Citrate',
+					description: 'The FDA\'s approval of Enclomiphene Citrate undecanoate offers a breakthrough in TRT, providing an easy-to-use, effective option for managing Low T. This addition enhances the therapy landscape, simplifying the path to hormonal balance for many.',
+					sort_description: 'Oral Tablet',
+					price: 94.99,
+					category: { id: 4 },
+					image: '/images/solution_media/compressed/product-men-1.webp',
+					images: [
+						'/images/solution_media/compressed/pill-bottle-mockup-men.webp',
+						'/images/solution_media/compressed/pill-bottle-mockup-men.webp',
+						'/images/solution_media/compressed/pill-bottle-mockup-men.webp'
+					],
+					list: [
+						'FDA Approved',
+						'Bioidentical',
+						'96% Efficacy',
+						'Oral Capsule',
+						'Twice Daily',
+						'Flexible Dosing'
+					]
+				},
+				{
+					id: 15,
+					name: 'Testosterone Booster Complex',
+					description: 'The FDA\'s approval of Testosterone Booster Complex undecanoate offers a breakthrough in TRT, providing an easy-to-use, effective option for managing Low T. This addition enhances the therapy landscape, simplifying the path to hormonal balance for many.',
+					sort_description: 'Oral Tablet',
+					price: 94.99,
+					category: { id: 4 },
+					image: '/images/solution_media/compressed/product-men-1.webp',
+					images: [
+						'/images/solution_media/compressed/pill-bottle-mockup-men.webp',
+						'/images/solution_media/compressed/pill-bottle-mockup-men.webp',
+						'/images/solution_media/compressed/pill-bottle-mockup-men.webp'
+					],
+					list: [
+						'FDA Approved',
+						'Bioidentical',
+						'96% Efficacy',
+						'Oral Capsule',
+						'Twice Daily',
+						'Flexible Dosing'
+					]
+				},
+				{
+					id: 16,
+					name: 'Testosterone Topical Cream',
+					description: 'The FDA\'s approval of Testosterone Topical Cream undecanoate offers a breakthrough in TRT, providing an easy-to-use, effective option for managing Low T. This addition enhances the therapy landscape, simplifying the path to hormonal balance for many.',
+					sort_description: 'Oral Tablet',
+					price: 94.99,
+					category: { id: 4 },
+					image: '/images/solution_media/compressed/product-men-1.webp',
+					images: [
+						'/images/solution_media/compressed/pill-bottle-mockup-men.webp',
+						'/images/solution_media/compressed/pill-bottle-mockup-men.webp',
+						'/images/solution_media/compressed/pill-bottle-mockup-men.webp'
+					],
+					list: [
+						'FDA Approved',
+						'Bioidentical',
+						'96% Efficacy',
+						'Oral Capsule',
+						'Twice Daily',
+						'Flexible Dosing'
+					]
+				},
+				{
+					id: 17,
+					name: 'Oral Testosterone',
+					description: 'The FDA\'s approval of oral testosterone undecanoate offers a breakthrough in TRT, providing an easy-to-use, effective option for managing Low T. This addition enhances the therapy landscape, simplifying the path to hormonal balance for many.',
+					sort_description: 'Oral Gel Capsule',
+					price: 94.99,
+					category: { id: 5 },
+					image: '/images/solution_media/compressed/product-men-1.webp',
+					images: [
+						'/images/solution_media/compressed/pill-bottle-mockup-men.webp',
+						'/images/solution_media/compressed/pill-bottle-mockup-men.webp',
+						'/images/solution_media/compressed/pill-bottle-mockup-men.webp'
+					],
+					list: [
+						'FDA Approved',
+						'Bioidentical',
+						'96% Efficacy',
+						'Oral Capsule',
+						'Twice Daily',
+						'Flexible Dosing'
+					]
+				},
+				{
+					id: 18,
+					name: 'Enclomiphene Citrate',
+					description: 'The FDA\'s approval of Enclomiphene Citrate undecanoate offers a breakthrough in TRT, providing an easy-to-use, effective option for managing Low T. This addition enhances the therapy landscape, simplifying the path to hormonal balance for many.',
+					sort_description: 'Oral Tablet',
+					price: 94.99,
+					category: { id: 5 },
+					image: '/images/solution_media/compressed/product-men-1.webp',
+					images: [
+						'/images/solution_media/compressed/pill-bottle-mockup-men.webp',
+						'/images/solution_media/compressed/pill-bottle-mockup-men.webp',
+						'/images/solution_media/compressed/pill-bottle-mockup-men.webp'
+					],
+					list: [
+						'FDA Approved',
+						'Bioidentical',
+						'96% Efficacy',
+						'Oral Capsule',
+						'Twice Daily',
+						'Flexible Dosing'
+					]
+				},
+				{
+					id: 19,
+					name: 'Testosterone Booster Complex',
+					description: 'The FDA\'s approval of Testosterone Booster Complex undecanoate offers a breakthrough in TRT, providing an easy-to-use, effective option for managing Low T. This addition enhances the therapy landscape, simplifying the path to hormonal balance for many.',
+					sort_description: 'Oral Tablet',
+					price: 94.99,
+					category: { id: 5 },
+					image: '/images/solution_media/compressed/product-men-1.webp',
+					images: [
+						'/images/solution_media/compressed/pill-bottle-mockup-men.webp',
+						'/images/solution_media/compressed/pill-bottle-mockup-men.webp',
+						'/images/solution_media/compressed/pill-bottle-mockup-men.webp'
+					],
+					list: [
+						'FDA Approved',
+						'Bioidentical',
+						'96% Efficacy',
+						'Oral Capsule',
+						'Twice Daily',
+						'Flexible Dosing'
+					]
+				},
+				{
+					id: 20,
+					name: 'Testosterone Topical Cream',
+					description: 'The FDA\'s approval of Testosterone Topical Cream undecanoate offers a breakthrough in TRT, providing an easy-to-use, effective option for managing Low T. This addition enhances the therapy landscape, simplifying the path to hormonal balance for many.',
+					sort_description: 'Oral Tablet',
+					price: 94.99,
+					category: { id: 5 },
+					image: '/images/solution_media/compressed/product-men-1.webp',
+					images: [
+						'/images/solution_media/compressed/pill-bottle-mockup-men.webp',
+						'/images/solution_media/compressed/pill-bottle-mockup-men.webp',
+						'/images/solution_media/compressed/pill-bottle-mockup-men.webp'
+					],
+					list: [
+						'FDA Approved',
+						'Bioidentical',
+						'96% Efficacy',
+						'Oral Capsule',
+						'Twice Daily',
+						'Flexible Dosing'
+					]
+				},
+			],
+		},
+		women: {
+			preTitle: 'Doctor Led online Treatment',
+			title: 'Treatment options for females',
+			btnCta: {
+				href: '/onboarding',
+				text: 'Get Started'
+			},
+			tabs: [
+				{ id: 1, title: 'Horomone Therapy', icon: HormoneTherapyIcon, preTitle: 'Analyze hormone Therapy options' },
+				{ id: 2, title: 'Anti-aging Peptides', icon: PeptidesIcon, preTitle: 'Analyze anti-aging options' },
+				{ id: 3, title: 'Medical Weight Loss', icon: WeightLossIcon, preTitle: 'Analyze weight loss options' },
+				{ id: 4, title: 'Sexual Health', icon: HeartIcon, preTitle: 'Analyze sexual health options' },
+				{ id: 5, title: 'Thyroid', icon: ThyroidIcon, preTitle: 'Analyze thyroid options' },
+			],
+			products: [
+				{
+					id: 1,
+					name: 'Oral Estradiol',
+					description: 'The FDA\'s approval of oral testosterone undecanoate offers a breakthrough in TRT, providing an easy-to-use, effective option for managing Low T. This addition enhances the therapy landscape, simplifying the path to hormonal balance for many.',
+					sort_description: 'Product Info',
+					price: 94.99,
+					category: { id: 1 },
+					image: '/images/solution_media/compressed/product-women-1.webp',
+					images: [
+						'/images/solution_media/compressed/pill-bottle-mockup-women.webp',
+						'/images/solution_media/compressed/pill-bottle-mockup-women.webp',
+						'/images/solution_media/compressed/pill-bottle-mockup-women.webp'
+					],
+					list: [
+						'FDA Approved',
+						'Bioidentical',
+						'Convenient',
+						'Oral Tablet',
+						'Taken Daily',
+						'Flexible Dosing'
+					]
+				},
+				{
+					id: 2,
+					name: 'Oral Progesterone',
+					description: 'The FDA\'s approval of oral testosterone undecanoate offers a breakthrough in TRT, providing an easy-to-use, effective option for managing Low T. This addition enhances the therapy landscape, simplifying the path to hormonal balance for many.',
+					sort_description: 'Product Info',
+					price: 94.99,
+					category: { id: 1 },
+					image: '/images/solution_media/compressed/product-women-1.webp',
+					images: [
+						'/images/solution_media/compressed/pill-bottle-mockup-women.webp',
+						'/images/solution_media/compressed/pill-bottle-mockup-women.webp',
+						'/images/solution_media/compressed/pill-bottle-mockup-women.webp'
+					],
+					list: [
+						'FDA Approved',
+						'Bioidentical',
+						'Convenient',
+						'Oral Tablet',
+						'Taken Daily',
+						'Flexible Dosing'
+					]
+				},
+				{
+					id: 3,
+					name: 'Progesterone Topical Cream',
+					description: 'The FDA\'s approval of oral testosterone undecanoate offers a breakthrough in TRT, providing an easy-to-use, effective option for managing Low T. This addition enhances the therapy landscape, simplifying the path to hormonal balance for many.',
+					sort_description: 'Product Info',
+					price: 94.99,
+					category: { id: 1 },
+					image: '/images/solution_media/compressed/product-women-1.webp',
+					images: [
+						'/images/solution_media/compressed/pill-bottle-mockup-women.webp',
+						'/images/solution_media/compressed/pill-bottle-mockup-women.webp',
+						'/images/solution_media/compressed/pill-bottle-mockup-women.webp'
+					],
+					list: [
+						'FDA Approved',
+						'Bioidentical',
+						'Convenient',
+						'Oral Tablet',
+						'Taken Daily',
+						'Flexible Dosing'
+					]
+				},
+				{
+					id: 4,
+					name: 'Estradiol Topical Cream',
+					description: 'The FDA\'s approval of oral testosterone undecanoate offers a breakthrough in TRT, providing an easy-to-use, effective option for managing Low T. This addition enhances the therapy landscape, simplifying the path to hormonal balance for many.',
+					sort_description: 'Product Info',
+					price: 94.99,
+					category: { id: 1 },
+					image: '/images/solution_media/compressed/product-women-1.webp',
+					images: [
+						'/images/solution_media/compressed/pill-bottle-mockup-women.webp',
+						'/images/solution_media/compressed/pill-bottle-mockup-women.webp',
+						'/images/solution_media/compressed/pill-bottle-mockup-women.webp'
+					],
+					list: [
+						'FDA Approved',
+						'Bioidentical',
+						'Convenient',
+						'Oral Tablet',
+						'Taken Daily',
+						'Flexible Dosing'
+					]
+				},
+
+				{
+					id: 5,
+					name: 'Oral Estradiol',
+					description: 'The FDA\'s approval of oral testosterone undecanoate offers a breakthrough in TRT, providing an easy-to-use, effective option for managing Low T. This addition enhances the therapy landscape, simplifying the path to hormonal balance for many.',
+					sort_description: 'Product Info',
+					price: 94.99,
+					category: { id: 2 },
+					image: '/images/solution_media/compressed/product-women-1.webp',
+					images: [
+						'/images/solution_media/compressed/pill-bottle-mockup-women.webp',
+						'/images/solution_media/compressed/pill-bottle-mockup-women.webp',
+						'/images/solution_media/compressed/pill-bottle-mockup-women.webp'
+					],
+					list: [
+						'FDA Approved',
+						'Bioidentical',
+						'Convenient',
+						'Oral Tablet',
+						'Taken Daily',
+						'Flexible Dosing'
+					]
+				},
+				{
+					id: 6,
+					name: 'Oral Progesterone',
+					description: 'The FDA\'s approval of oral testosterone undecanoate offers a breakthrough in TRT, providing an easy-to-use, effective option for managing Low T. This addition enhances the therapy landscape, simplifying the path to hormonal balance for many.',
+					sort_description: 'Product Info',
+					price: 94.99,
+					category: { id: 2 },
+					image: '/images/solution_media/compressed/product-women-1.webp',
+					images: [
+						'/images/solution_media/compressed/pill-bottle-mockup-women.webp',
+						'/images/solution_media/compressed/pill-bottle-mockup-women.webp',
+						'/images/solution_media/compressed/pill-bottle-mockup-women.webp'
+					],
+					list: [
+						'FDA Approved',
+						'Bioidentical',
+						'Convenient',
+						'Oral Tablet',
+						'Taken Daily',
+						'Flexible Dosing'
+					]
+				},
+				{
+					id: 7,
+					name: 'Progesterone Topical Cream',
+					description: 'The FDA\'s approval of oral testosterone undecanoate offers a breakthrough in TRT, providing an easy-to-use, effective option for managing Low T. This addition enhances the therapy landscape, simplifying the path to hormonal balance for many.',
+					sort_description: 'Product Info',
+					price: 94.99,
+					category: { id: 2 },
+					image: '/images/solution_media/compressed/product-women-1.webp',
+					images: [
+						'/images/solution_media/compressed/pill-bottle-mockup-women.webp',
+						'/images/solution_media/compressed/pill-bottle-mockup-women.webp',
+						'/images/solution_media/compressed/pill-bottle-mockup-women.webp'
+					],
+					list: [
+						'FDA Approved',
+						'Bioidentical',
+						'Convenient',
+						'Oral Tablet',
+						'Taken Daily',
+						'Flexible Dosing'
+					]
+				},
+				{
+					id: 8,
+					name: 'Estradiol Topical Cream',
+					description: 'The FDA\'s approval of oral testosterone undecanoate offers a breakthrough in TRT, providing an easy-to-use, effective option for managing Low T. This addition enhances the therapy landscape, simplifying the path to hormonal balance for many.',
+					sort_description: 'Product Info',
+					price: 94.99,
+					category: { id: 2 },
+					image: '/images/solution_media/compressed/product-women-1.webp',
+					images: [
+						'/images/solution_media/compressed/pill-bottle-mockup-women.webp',
+						'/images/solution_media/compressed/pill-bottle-mockup-women.webp',
+						'/images/solution_media/compressed/pill-bottle-mockup-women.webp'
+					],
+					list: [
+						'FDA Approved',
+						'Bioidentical',
+						'Convenient',
+						'Oral Tablet',
+						'Taken Daily',
+						'Flexible Dosing'
+					]
+				},
+				{
+					id: 9,
+					name: 'Oral Estradiol',
+					description: 'The FDA\'s approval of oral testosterone undecanoate offers a breakthrough in TRT, providing an easy-to-use, effective option for managing Low T. This addition enhances the therapy landscape, simplifying the path to hormonal balance for many.',
+					sort_description: 'Product Info',
+					price: 94.99,
+					category: { id: 3 },
+					image: '/images/solution_media/compressed/product-women-1.webp',
+					images: [
+						'/images/solution_media/compressed/pill-bottle-mockup-women.webp',
+						'/images/solution_media/compressed/pill-bottle-mockup-women.webp',
+						'/images/solution_media/compressed/pill-bottle-mockup-women.webp'
+					],
+					list: [
+						'FDA Approved',
+						'Bioidentical',
+						'Convenient',
+						'Oral Tablet',
+						'Taken Daily',
+						'Flexible Dosing'
+					]
+				},
+				{
+					id: 10,
+					name: 'Oral Progesterone',
+					description: 'The FDA\'s approval of oral testosterone undecanoate offers a breakthrough in TRT, providing an easy-to-use, effective option for managing Low T. This addition enhances the therapy landscape, simplifying the path to hormonal balance for many.',
+					sort_description: 'Product Info',
+					price: 94.99,
+					category: { id: 3 },
+					image: '/images/solution_media/compressed/product-women-1.webp',
+					images: [
+						'/images/solution_media/compressed/pill-bottle-mockup-women.webp',
+						'/images/solution_media/compressed/pill-bottle-mockup-women.webp',
+						'/images/solution_media/compressed/pill-bottle-mockup-women.webp'
+					],
+					list: [
+						'FDA Approved',
+						'Bioidentical',
+						'Convenient',
+						'Oral Tablet',
+						'Taken Daily',
+						'Flexible Dosing'
+					]
+				},
+				{
+					id: 11,
+					name: 'Progesterone Topical Cream',
+					description: 'The FDA\'s approval of oral testosterone undecanoate offers a breakthrough in TRT, providing an easy-to-use, effective option for managing Low T. This addition enhances the therapy landscape, simplifying the path to hormonal balance for many.',
+					sort_description: 'Product Info',
+					price: 94.99,
+					category: { id: 3 },
+					image: '/images/solution_media/compressed/product-women-1.webp',
+					images: [
+						'/images/solution_media/compressed/pill-bottle-mockup-women.webp',
+						'/images/solution_media/compressed/pill-bottle-mockup-women.webp',
+						'/images/solution_media/compressed/pill-bottle-mockup-women.webp'
+					],
+					list: [
+						'FDA Approved',
+						'Bioidentical',
+						'Convenient',
+						'Oral Tablet',
+						'Taken Daily',
+						'Flexible Dosing'
+					]
+				},
+				{
+					id: 12,
+					name: 'Estradiol Topical Cream',
+					description: 'The FDA\'s approval of oral testosterone undecanoate offers a breakthrough in TRT, providing an easy-to-use, effective option for managing Low T. This addition enhances the therapy landscape, simplifying the path to hormonal balance for many.',
+					sort_description: 'Product Info',
+					price: 94.99,
+					category: { id: 3 },
+					image: '/images/solution_media/compressed/product-women-1.webp',
+					images: [
+						'/images/solution_media/compressed/pill-bottle-mockup-women.webp',
+						'/images/solution_media/compressed/pill-bottle-mockup-women.webp',
+						'/images/solution_media/compressed/pill-bottle-mockup-women.webp'
+					],
+					list: [
+						'FDA Approved',
+						'Bioidentical',
+						'Convenient',
+						'Oral Tablet',
+						'Taken Daily',
+						'Flexible Dosing'
+					]
+				},
+				{
+					id: 14,
+					name: 'Oral Estradiol',
+					description: 'The FDA\'s approval of oral testosterone undecanoate offers a breakthrough in TRT, providing an easy-to-use, effective option for managing Low T. This addition enhances the therapy landscape, simplifying the path to hormonal balance for many.',
+					sort_description: 'Product Info',
+					price: 94.99,
+					category: { id: 4 },
+					image: '/images/solution_media/compressed/product-women-1.webp',
+					images: [
+						'/images/solution_media/compressed/pill-bottle-mockup-women.webp',
+						'/images/solution_media/compressed/pill-bottle-mockup-women.webp',
+						'/images/solution_media/compressed/pill-bottle-mockup-women.webp'
+					],
+					list: [
+						'FDA Approved',
+						'Bioidentical',
+						'Convenient',
+						'Oral Tablet',
+						'Taken Daily',
+						'Flexible Dosing'
+					]
+				},
+				{
+					id: 15,
+					name: 'Oral Progesterone',
+					description: 'The FDA\'s approval of oral testosterone undecanoate offers a breakthrough in TRT, providing an easy-to-use, effective option for managing Low T. This addition enhances the therapy landscape, simplifying the path to hormonal balance for many.',
+					sort_description: 'Product Info',
+					price: 94.99,
+					category: { id: 4 },
+					image: '/images/solution_media/compressed/product-women-1.webp',
+					images: [
+						'/images/solution_media/compressed/pill-bottle-mockup-women.webp',
+						'/images/solution_media/compressed/pill-bottle-mockup-women.webp',
+						'/images/solution_media/compressed/pill-bottle-mockup-women.webp'
+					],
+					list: [
+						'FDA Approved',
+						'Bioidentical',
+						'Convenient',
+						'Oral Tablet',
+						'Taken Daily',
+						'Flexible Dosing'
+					]
+				},
+				{
+					id: 16,
+					name: 'Progesterone Topical Cream',
+					description: 'The FDA\'s approval of oral testosterone undecanoate offers a breakthrough in TRT, providing an easy-to-use, effective option for managing Low T. This addition enhances the therapy landscape, simplifying the path to hormonal balance for many.',
+					sort_description: 'Product Info',
+					price: 94.99,
+					category: { id: 4 },
+					image: '/images/solution_media/compressed/product-women-1.webp',
+					images: [
+						'/images/solution_media/compressed/pill-bottle-mockup-women.webp',
+						'/images/solution_media/compressed/pill-bottle-mockup-women.webp',
+						'/images/solution_media/compressed/pill-bottle-mockup-women.webp'
+					],
+					list: [
+						'FDA Approved',
+						'Bioidentical',
+						'Convenient',
+						'Oral Tablet',
+						'Taken Daily',
+						'Flexible Dosing'
+					]
+				},
+				{
+					id: 17,
+					name: 'Estradiol Topical Cream',
+					description: 'The FDA\'s approval of oral testosterone undecanoate offers a breakthrough in TRT, providing an easy-to-use, effective option for managing Low T. This addition enhances the therapy landscape, simplifying the path to hormonal balance for many.',
+					sort_description: 'Product Info',
+					price: 94.99,
+					category: { id: 4 },
+					image: '/images/solution_media/compressed/product-women-1.webp',
+					images: [
+						'/images/solution_media/compressed/pill-bottle-mockup-women.webp',
+						'/images/solution_media/compressed/pill-bottle-mockup-women.webp',
+						'/images/solution_media/compressed/pill-bottle-mockup-women.webp'
+					],
+					list: [
+						'FDA Approved',
+						'Bioidentical',
+						'Convenient',
+						'Oral Tablet',
+						'Taken Daily',
+						'Flexible Dosing'
+					]
+				},
+				{
+					id: 18,
+					name: 'Oral Estradiol',
+					description: 'The FDA\'s approval of oral testosterone undecanoate offers a breakthrough in TRT, providing an easy-to-use, effective option for managing Low T. This addition enhances the therapy landscape, simplifying the path to hormonal balance for many.',
+					sort_description: 'Product Info',
+					price: 94.99,
+					category: { id: 5 },
+					image: '/images/solution_media/compressed/product-women-1.webp',
+					images: [
+						'/images/solution_media/compressed/pill-bottle-mockup-women.webp',
+						'/images/solution_media/compressed/pill-bottle-mockup-women.webp',
+						'/images/solution_media/compressed/pill-bottle-mockup-women.webp'
+					],
+					list: [
+						'FDA Approved',
+						'Bioidentical',
+						'Convenient',
+						'Oral Tablet',
+						'Taken Daily',
+						'Flexible Dosing'
+					]
+				},
+				{
+					id: 19,
+					name: 'Oral Progesterone',
+					description: 'The FDA\'s approval of oral testosterone undecanoate offers a breakthrough in TRT, providing an easy-to-use, effective option for managing Low T. This addition enhances the therapy landscape, simplifying the path to hormonal balance for many.',
+					sort_description: 'Product Info',
+					price: 94.99,
+					category: { id: 5 },
+					image: '/images/solution_media/compressed/product-women-1.webp',
+					images: [
+						'/images/solution_media/compressed/pill-bottle-mockup-women.webp',
+						'/images/solution_media/compressed/pill-bottle-mockup-women.webp',
+						'/images/solution_media/compressed/pill-bottle-mockup-women.webp'
+					],
+					list: [
+						'FDA Approved',
+						'Bioidentical',
+						'Convenient',
+						'Oral Tablet',
+						'Taken Daily',
+						'Flexible Dosing'
+					]
+				},
+				{
+					id: 20,
+					name: 'Progesterone Topical Cream',
+					description: 'The FDA\'s approval of oral testosterone undecanoate offers a breakthrough in TRT, providing an easy-to-use, effective option for managing Low T. This addition enhances the therapy landscape, simplifying the path to hormonal balance for many.',
+					sort_description: 'Product Info',
+					price: 94.99,
+					category: { id: 5 },
+					image: '/images/solution_media/compressed/product-women-1.webp',
+					images: [
+						'/images/solution_media/compressed/pill-bottle-mockup-women.webp',
+						'/images/solution_media/compressed/pill-bottle-mockup-women.webp',
+						'/images/solution_media/compressed/pill-bottle-mockup-women.webp'
+					],
+					list: [
+						'FDA Approved',
+						'Bioidentical',
+						'Convenient',
+						'Oral Tablet',
+						'Taken Daily',
+						'Flexible Dosing'
+					]
+				},
+				{
+					id: 21,
+					name: 'Estradiol Topical Cream',
+					description: 'The FDA\'s approval of oral testosterone undecanoate offers a breakthrough in TRT, providing an easy-to-use, effective option for managing Low T. This addition enhances the therapy landscape, simplifying the path to hormonal balance for many.',
+					sort_description: 'Product Info',
+					price: 94.99,
+					category: { id: 5 },
+					image: '/images/solution_media/compressed/product-women-1.webp',
+					images: [
+						'/images/solution_media/compressed/pill-bottle-mockup-women.webp',
+						'/images/solution_media/compressed/pill-bottle-mockup-women.webp',
+						'/images/solution_media/compressed/pill-bottle-mockup-women.webp'
+					],
+					list: [
+						'FDA Approved',
+						'Bioidentical',
+						'Convenient',
+						'Oral Tablet',
+						'Taken Daily',
+						'Flexible Dosing'
+					]
+				}
+			]
+		},
 	}
 };
 

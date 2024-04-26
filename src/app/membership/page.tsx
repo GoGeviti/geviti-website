@@ -12,7 +12,7 @@ const MemberShipPage = () => {
 			</div>
 			<MembershipComponent.StepsSection />
 			<MembershipComponent.SliderCustom />
-			{ /* <MembershipComponent.Pricing /> */ }
+			<MembershipComponent.Pricing />
 			<MembershipComponent.BiomarkersSection />
 			<MembershipComponent.ChooseGeviti />
 			<MembershipComponent.Products />

@@ -2,35 +2,39 @@ import React from 'react';
 import Image from 'next/image';
 
 import { membershipData, navbarData } from '@/constant/data';
+import clsxm from '@/helpers/clsxm';
 
-const comparisonList = membershipData.pricing.comparisonList;
+const comparisonData = membershipData.pricing.comparison;
 
-const PriceExtended = () => {
+const PriceExtended: React.FC = () => {
 	return (
 		<div className='pt-[42px] lg:pt-[84px] font-Poppins flex flex-col w-full'>
 			<p className='text-pretitle text-grey-primary text-center lg:mb-1'>
-				Care based off of biomarkers
+				{ comparisonData.preTitle }
 			</p>
-			<h4 className='text-2xl !leading-normal lg:text-[64px] text-center'>
-				More, for less.
-			</h4>
+			<h3 className='text-2xl !leading-normal lg:text-[64px] text-center'>
+				{ comparisonData.title }
+			</h3>
 
-			<div className='max-lg:flex-col flex lg:grid lg:grid-cols-2 justify-center gap-[42px] lg:gap-6 mt-[43px] lg:mt-12 w-full'>
-				{ comparisonList.map(item => {
+			<div className='max-lg:flex-col items-center flex lg:grid lg:grid-cols-2 gap-[42px] lg:gap-6 mt-[43px] lg:mt-12 w-full sm:max-w-[392px] lg:max-w-[846px] mx-auto'>
+				{ comparisonData.list.map(item => {
 					return (
 						<div
 							key={ item.name }
-							className='bg-primary px-6 py-10 rounded-2xl text-white relative w-full sm:w-[392px] lg:w-[411px]'>
+							className={ clsxm(
+								'rounded-2xl relative w-full border',
+								item.geviti ? 'bg-primary text-white border-primary' : 'bg-[#F5FBFF] lg:bg-grey-50 text-primary border-black/5'
+							) }>
 							{ item.geviti && (
-								<p className='absolute top-0 right-8 -translate-y-1/2 text-sm font-Poppins font-medium bg-[#91c9f2] py-2 px-6 rounded-full text-primary'>
+								<span className='absolute top-0 right-6 -translate-y-1/2 text-sm !leading-normal font-medium bg-blue-primary py-2 px-6 rounded-full text-primary'>
 									More value
-								</p>
+								</span>
 							) }
-							<div>
+							<div className='px-6 pb-[42px] pt-6'>
 								{
 									item.geviti
 										? (
-											<div className='flex-shrink-0'>
+											<div className='flex-shrink-0 pt-18px'>
 												<Image
 													src={ navbarData.logoLight }
 													alt='logo'
@@ -41,20 +45,20 @@ const PriceExtended = () => {
 												/>
 											</div>
 										)
-										: <h4 className='text-5xl !leading-[60px]'>{ item.name }</h4>
+										: <h4 className='text-5xl !leading-[125%] font-medium'>{ item.name }</h4>
 								}
-								<p className='text-grey-primary my-4'>{ item.priceTitle }</p>
-								<p className='text-4xl md:text-5xl font-medium'>
+								<p className='text-grey-primary font-medium text-sm !leading-6 mt-[11px] mb-3'>{ item.priceTitle }</p>
+								<p className='text-5xl !leading-[125%] font-medium'>
 									{ item.price } <span className='text-sm'>{ item.priceNote }</span>
 								</p>
-								<ul className='pt-6 flex flex-col gap-y-3'>
+								<ul className={ clsxm('pt-6 flex flex-col gap-y-3', item.geviti ? 'text-white' : 'text-grey-500') }>
 									{ item.list.map((feature, featureIdx) => {
 										const Icon = feature.icon;
 
 										return (
 											<li
 												key={ `featurecompare-${ featureIdx }` }
-												className='text-white text-sm flex justify-between'>
+												className='text-sm !leading-normal -tracking-0.04em flex justify-between'>
 												{ feature.title } <Icon className='flex-shrink-0' />
 											</li>
 										);

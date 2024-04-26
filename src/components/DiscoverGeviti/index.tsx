@@ -25,7 +25,7 @@ type DiscoverGevitiProps = {
 	products: Product[];
 };
 
-const handleIsElementScrolledIntoHorizontalView = (elm: HTMLElement | null, container: HTMLDivElement | null) => {
+export const handleIsElementScrolledIntoHorizontalView = (elm: HTMLElement | null, container: HTMLDivElement | null) => {
 	if (elm && container && window.innerWidth >= screens.lg) {
 		const checkIsVisible = () => {
 			const visible = container.scrollLeft + container.clientWidth,
@@ -58,11 +58,7 @@ const DiscoverGeviti: React.FC<DiscoverGevitiProps> = ({
 	const wrapperItemsRef = React.useRef<HTMLDivElement>(null);
 	const [selectedCategory, setSelectedCategory] = useState<number>(0);
 
-	// React.useEffect(() => {
 	const productsByCategory = products.filter(product => product.category.slug === homeData.products.categories[selectedCategory].slug);
-
-	// 	setProductsByCategory(filterProductsByCategory());
-	// }, [selectedCategory]);
 
 	React.useEffect(() => {
 		itemsRef.current = itemsRef.current.slice(0, productsByCategory.length);

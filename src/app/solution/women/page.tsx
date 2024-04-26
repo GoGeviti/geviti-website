@@ -1,6 +1,4 @@
 import { Footer, FrequentlyAskedQuestions, RunningLogo, SolutionsComponent } from '@/components';
-// import EasyOnlineCare from '@/components/Solutions/easy-online-care/EasyOnlineCare';
-import Hero from '@/components/Solutions/Hero';
 import { solutionData } from '@/constant/data';
 
 const Solutions = () => {
@@ -83,12 +81,12 @@ const Solutions = () => {
 
 	return (
 		<div className='flex min-h-screen flex-col w-full bg-grey-background font-Poppins'>
-			<Hero type='women' />
+			<SolutionsComponent.Hero type='women' />
 			<div className='py-[42px] lg:py-16'>
 				<RunningLogo />
 			</div>
 			<SolutionsComponent.WellnessPro type='women' />
-			{ /* <EasyOnlineCare treatmentmens={ treatmentmens } /> */ }
+			<SolutionsComponent.TreatmentOptions type='women' />
 			<SolutionsComponent.Steps theme='blue' />
 			<SolutionsComponent.Membership />
 			<FrequentlyAskedQuestions data={ solutionData.faq.women } />

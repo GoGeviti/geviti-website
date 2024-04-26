@@ -1,9 +1,9 @@
 'use client';
-import React, { useState } from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
+import React, { useRef, useState } from 'react';
+import { AnimatePresence, motion, useInView, Variants } from 'framer-motion';
 import Image from 'next/image';
 
-import membershipdata from '@/constant/data/membership';
+import membershipData from '@/constant/data/membership';
 import clsxm from '@/helpers/clsxm';
 
 import ButtonCta from '../ButtonCta';
@@ -12,14 +12,84 @@ import { ChevronDown, QuestionIcon } from '../Icons';
 
 import PriceExtended from './PriceExtended';
 
-const pricingData = membershipdata.pricing;
+const getPricingCardVariants = (tierIdx: number): Variants => {
+	if (tierIdx === 0) {
+		return {
+			initial: {
+				x: '100%',
+				opacity: 0
+			},
+			inView: {
+				x: 0,
+				opacity: 1,
+				transition: {
+					duration: .75,
+					ease: 'easeInOut',
+					delay: 1.1
+				}
+			}
+		};
+	} else if (tierIdx === 1) {
+		return {
+			initial: { y: -50, opacity: 0 },
+			inView: {
+				y: 0,
+				opacity: 1,
+				transition: {
+					duration: .75,
+					ease: 'easeInOut'
+				}
+			}
+		};
+	} else {
+		return {
+			initial: { x: '-100%', opacity: 0 },
+			inView: {
+				x: 0,
+				opacity: 1,
+				transition: {
+					duration: .75,
+					ease: 'easeInOut',
+					delay: 1.1
+				}
+			}
+		};
+	}
+};
+
+const PricingCardWrapper: React.FC<{
+	index: number;
+	isInView: boolean;
+	children: React.ReactNode;
+}> = ({ index, isInView, children }) => {
+	return (
+		<>
+			<motion.div
+				variants={ getPricingCardVariants(index) }
+				initial='initial'
+				animate={ isInView ? 'inView' : 'initial' }
+				className='max-lg:hidden'
+			>
+				{ children }
+			</motion.div>
+
+			<div className='lg:hidden'>
+				{ children }
+			</div>
+		</>
+	);
+};
+
+const pricingData = membershipData.pricing;
 
 const Pricing = () => {
-	const [isOpen, setIsOpen] = useState<boolean>(false);
+	const ref = useRef<HTMLDivElement>(null);
+	const isInView = useInView(ref, { once: true });
 
+	const [isOpen, setIsOpen] = useState<boolean>(false);
 	const [activeTabIdx, setActiveTabIdx] = useState<number>(0);
 
-	const toggleDropdown = () => {
+	const togglePriceExtended = () => {
 		setIsOpen(!isOpen);
 	};
 
@@ -70,15 +140,15 @@ const Pricing = () => {
 	const renderButtonToggleCompetitor = () => {
 		return (
 			<button
-				onClick={ toggleDropdown }
+				onClick={ togglePriceExtended }
 				className={ clsxm(
 					'max-sm:w-full flex mt-3 items-center border border-black/5 gap-6 lg:gap-[15px] rounded-2xl justify-center px-4 py-[15px] lg:p-6 w-full bg-blue-primary',
 					isOpen && 'bg-[#E6E7E7] border-[#E6E7E7]'
 				) }
 			>
 				<p className='text-sm !leading-[28px] lg:text-xl'>
-					<span className='max-lg:hidden'>Compare Geviti to others</span>
-					<span className='lg:hidden'>Geviti vs. our competitors</span>
+					<span className='max-lg:hidden'>{ pricingData.comparison.btn.text }</span>
+					<span className='lg:hidden'>{ pricingData.comparison.btn.textMobile }</span>
 				</p>
 				<motion.span
 					variants={ {
@@ -98,13 +168,8 @@ const Pricing = () => {
 		);
 	};
 
-	const resolveWrapperPricingCard = (isMostPopular: boolean) => {
-		if (isMostPopular) return 'bg-primary text-white';
-		return 'bg-[#F5FBFF] text-primary';
-	};
-
 	return (
-		<div className='lg:px-3 font-Poppins overflow-hidden'>
+		<div className='lg:px-3 pb-6 font-Poppins overflow-hidden'>
 			<div className='bg-white rounded-19px py-[42px] lg:pt-[72px] lg:pb-[90px]'>
 				<div className='container-center flex flex-col items-center'>
 					<div className='text-center'>
@@ -123,100 +188,119 @@ const Pricing = () => {
 						{ renderButtonSwitchGender() }
 					</div>
 
-					<div className='lg:max-w-full mx-auto sm:max-w-[392px] lg:flex-row flex-col flex gap-[42px] lg:gap-6 items-end w-full pt-[43px] lg:pt-[90px]'>
+					<div
+						ref={ ref }
+						className='lg:max-w-full mx-auto sm:max-w-[392px] lg:flex-row flex-col flex gap-[42px] lg:gap-6 items-end w-full pt-[43px] lg:pt-[90px]'>
 						{ pricingData.list.map((item, index) => (
 							<div
 								key={ index }
 								className='w-full relative'
 							>
-								<div className={ clsxm('pt-[42px] pb-[34px] px-6 rounded-2xl w-full', resolveWrapperPricingCard(item.mostPopular)) }>
-									<p className='!leading-[28px] text-[5.128vw] xs2:text-xl'>
-										{ item.name }
-									</p>
+								<PricingCardWrapper
+									index={ index }
+									isInView={ isInView }>
+									<div className={ clsxm(
+										'pt-[42px] pb-[34px] px-6 rounded-2xl w-full relative',
+										item.mostPopular ? 'bg-primary text-white' : 'bg-[#F5FBFF] text-primary',
+										index === 1 && 'z-10'
+									) }>
+										<h3 className='!leading-[28px] text-[5.128vw] xs2:text-xl'>
+											{ item.name }
+										</h3>
 
-									<h3 className='font-medium text-5xl !leading-[125%] py-1'>
-										<span>{ item.price }</span>{ ' ' }
-										<span className='text-xs lg:text-sm'>
-											{ item.priceNote }
-										</span>
-									</h3>
-									<div className='overflow-hidden'>
-										<AnimatePresence mode='wait'>
-											{ pricingData.pricingOptions[activeTabIdx].value === 'monthly'
-												? (
-													<motion.p
-														key='monthly'
-														initial={ { y: -50, opacity: 0 } }
-														animate={ { y: 0, opacity: 1 } }
-														exit={ { y: 50, opacity: 0 } }
-														transition={ { ease: 'linear', duration: 0.25 } }
-														className='font-medium text-xs lg:text-sm !leading-6'
-													>
-														{ item.monthly }
-													</motion.p>
-												) : (
-													<motion.p
-														key='quarterly'
-														initial={ { y: -50, opacity: 0 } }
-														animate={ { y: 0, opacity: 1 } }
-														exit={ { y: 50, opacity: 0 } }
-														transition={ { ease: 'linear', duration: 0.25 } }
-														className='font-medium text-xs lg:text-sm !leading-6'
-													>
-														{ item.quarterly }
-													</motion.p>
-												) }
-										</AnimatePresence>
-									</div>
-									<p className='text-2xl !leading-normal font-medium mb-[11px] mt-8 lg:mt-[43px]'>
-										{ item.biomakers }{ ' ' }
-										<span className='text-xs !leading-normal'>biomarkers</span>
-									</p>
-
-									<ul className='flex flex-col gap-y-[11px] mb-6'>
-										{ item.list.map((feature, featureIdx) => (
-											<li
-												key={ `feature-${ featureIdx }` }
-												className='text-sm !leading-normal gap-1.5 flex items-center font-medium -tracking-[0.53px]'
-											>
-												<QuestionTooltip
-													icon={ <QuestionIcon /> }
-													text={ feature.description || feature.title } />
-												{ feature.title }
-											</li>
-										)) }
-									</ul>
-
-									<ButtonCta
-										href={ item.btnCta.href }
-										text={ item.btnCta.text }
-										theme={ item.mostPopular ? 'secondary' : 'primary' }
-										className='w-full sm:w-fit mx-auto'
-									/>
-
-								</div>
-								{ item.mostPopular
-									? (
-										<div>
-											<span className='absolute top-0 right-6 -translate-y-1/2 text-sm !leading-normal text-primary font-medium bg-blue-primary py-2 px-6 rounded-full'>
-												Most Popular
+										<span className='font-medium text-5xl !leading-[125%] py-1'>
+											<span>{ item.price }</span>{ ' ' }
+											<span className='text-xs lg:text-sm'>
+												{ item.priceNote }
 											</span>
-											<div className='max-lg:hidden'>
-												{ renderButtonToggleCompetitor() }
-											</div>
+										</span>
+										<div className='overflow-hidden'>
+											<AnimatePresence mode='wait'>
+												{ pricingData.pricingOptions[activeTabIdx].value === 'monthly'
+													? (
+														<motion.p
+															key='monthly'
+															initial={ { y: -50, opacity: 0 } }
+															animate={ { y: 0, opacity: 1 } }
+															exit={ { y: 50, opacity: 0 } }
+															transition={ { ease: 'linear', duration: 0.25 } }
+															className='font-medium text-xs lg:text-sm !leading-6'
+														>
+															{ item.monthly }
+														</motion.p>
+													) : (
+														<motion.p
+															key='quarterly'
+															initial={ { y: -50, opacity: 0 } }
+															animate={ { y: 0, opacity: 1 } }
+															exit={ { y: 50, opacity: 0 } }
+															transition={ { ease: 'linear', duration: 0.25 } }
+															className='font-medium text-xs lg:text-sm !leading-6'
+														>
+															{ item.quarterly }
+														</motion.p>
+													) }
+											</AnimatePresence>
 										</div>
-									)
-									: (
-										<div className='absolute top-0 right-0'>
-											<Image
-												src='/images/membership/squares-union.svg'
-												alt=''
-												width={ 257 }
-												height={ 312.52 }
-												className='w-[257px] h-full'
-											/>
-										</div>
-									) }
+										<p className='text-2xl !leading-normal font-medium mb-[11px] mt-8 lg:mt-[43px]'>
+											{ item.biomakers }{ ' ' }
+											<span className='text-xs !leading-normal'>biomarkers</span>
+										</p>
+
+										<ul className='flex flex-col gap-y-[11px] mb-6'>
+											{ item.list.map((feature, featureIdx) => (
+												<li
+													key={ `feature-${ featureIdx }` }
+													className='text-sm !leading-normal gap-1.5 flex items-center font-medium -tracking-[0.53px]'
+												>
+													<QuestionTooltip
+														icon={ <QuestionIcon /> }
+														text={ feature.description || feature.title } />
+													{ feature.title }
+												</li>
+											)) }
+										</ul>
+
+										<ButtonCta
+											href={ item.btnCta.href }
+											text={ item.btnCta.text }
+											theme={ item.mostPopular ? 'secondary' : 'primary' }
+											className='w-full sm:w-fit mx-auto'
+										/>
+
+										{ item.mostPopular
+											? (
+												<span className='absolute top-0 right-6 -translate-y-1/2 text-sm !leading-normal text-primary font-medium bg-blue-primary py-2 px-6 rounded-full'>
+													Most Popular
+												</span>
+											)
+											: (
+												<div className='absolute top-0 right-0'>
+													<Image
+														src='/images/membership/squares-union.svg'
+														alt=''
+														width={ 257 }
+														height={ 312.52 }
+														className='w-[257px] h-full'
+													/>
+												</div>
+											) }
+									</div>
+								</PricingCardWrapper>
+
+								{ index === 1 && (
+									<motion.div
+										variants={ {
+											initial: { y: -87, opacity: 0 },
+											inView: { y: 0, opacity: 1 }
+										} }
+										initial='initial'
+										animate={ isInView ? 'inView' : 'initial' }
+										transition={ { ease: 'easeInOut', duration: .75, delay: 1.75 } }
+										className='max-lg:hidden'>
+										{ renderButtonToggleCompetitor() }
+									</motion.div>
+								) }
 							</div>
 						)) }
 					</div>
@@ -224,9 +308,21 @@ const Pricing = () => {
 					<div className='lg:hidden w-full mx-auto sm:max-w-[392px]'>
 						{ renderButtonToggleCompetitor() }
 					</div>
-					{ isOpen && (
-						<PriceExtended />
-					) }
+					<AnimatePresence
+						initial={ false }
+						mode='wait'>
+						{ isOpen && (
+							<motion.div
+								initial={ { opacity: 0, y: -30, height: 0 } }
+								animate={ { opacity: 1, y: 0, height: 'fit-content' } }
+								exit={ { opacity: 0, y: -30, height: 0 } }
+								transition={ { duration: 0.5, ease: 'easeInOut' } }
+								className='w-full'
+							>
+								<PriceExtended />
+							</motion.div>
+						) }
+					</AnimatePresence>
 				</div>
 			</div>
 		</div>

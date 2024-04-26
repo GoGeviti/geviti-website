@@ -16,9 +16,7 @@ export const slideUpTransition = {
 };
 
 const Hero: React.FC<{ type: 'men' | 'women'; }> = ({ type }) => {
-	const heroData = type === 'men'
-		? solutionData.heroMen
-		: solutionData.heroWomen;
+	const heroData = solutionData.hero[type];
 
 	const renderTitles = (titles: string[]) => {
 		return titles.map((title: string, titleIdx: number) => (

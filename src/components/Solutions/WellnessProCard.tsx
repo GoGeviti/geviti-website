@@ -46,13 +46,13 @@ const WellnessProCard: React.FC<IWellnessProCardProps> = ({ item }) => {
 				</div>
 			</div>
 			<div className='mt-[25px] lg:mt-[46px] w-full'>
-				<div className='w-full h-[288px] relative overflow-hidden rounded-2xl'>
+				<div className='w-full h-[288px] relative overflow-hidden rounded-2xl group'>
 					<Image
 						alt=''
 						src={ image }
 						fill
 						sizes='(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 100vw'
-						className='w-full h-full object-cover object-right max-lg:hidden'
+						className='w-full h-full object-cover object-right max-lg:hidden group-hover:scale-105 transition-transform duration-300'
 					/>
 					<Image
 						alt=''
