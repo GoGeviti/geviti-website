@@ -219,10 +219,10 @@ const InfiniteMovingFeatures: React.FC<InfiniteMovingFeaturesProps> = ({
 			if (config.draggable && typeof (Draggable) === 'function') {
 				proxy = document.createElement('div');
 				let wrap = gsap.utils.wrap(0, 1),
-					ratio: number, startProgress: number, draggable: any, dragSnap: any, lastSnap: any, initChangeX: any, wasPlaying: any,
+					ratio: number, startProgress: number, draggable: any, dragSnap: any, lastSnap: any, initChangeX: any, wasPlaying: any, // eslint-disable-line no-unused-vars
 					align = () => { tl.progress(wrap(startProgress + (draggable.startX - draggable.x) * ratio)); },
 					syncIndex = () => tl.closestIndex(true);
-				typeof (InertiaPlugin) === 'undefined' && console.log('InertiaPlugin required for momentum-based scrolling and snapping. https://greensock.com/club');
+				typeof (InertiaPlugin) === 'undefined' && console.log('InertiaPlugin required for momentum-based scrolling and snapping. https://greensock.com/club'); // eslint-disable-line no-console
 				draggable = Draggable.create(proxy, {
 					trigger: items[0].parentNode,
 					type: 'x',

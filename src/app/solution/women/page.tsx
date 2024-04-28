@@ -89,7 +89,7 @@ const Solutions = () => {
 			<SolutionsComponent.TreatmentOptions type='women' />
 			<SolutionsComponent.Steps theme='blue' />
 			<SolutionsComponent.Membership />
-			<FrequentlyAskedQuestions data={ solutionData.faq.women } />
+			<FrequentlyAskedQuestions data={ solutionData.faq.data } />
 			<SolutionsComponent.Banner type='women' />
 			<Footer landingPage />
 		</div>

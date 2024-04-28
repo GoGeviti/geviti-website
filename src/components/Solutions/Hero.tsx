@@ -82,7 +82,7 @@ const Hero: React.FC<{ type: 'men' | 'women'; }> = ({ type }) => {
 					<div className='relative w-full h-full rounded-b-19px'>
 						<div className='h-full w-full flex flex-col justify-end'>
 							<div className={ clsxm(
-								'pb-[42px] lg:pb-[85px] text-left flex flex-col',
+								'pb-[42px] lg:pb-[73px] text-left flex flex-col',
 								type === 'men' && 'max-lg:pt-[39px] max-lg:bg-backdrop-hero-membership-bottom-mobile'
 							) }>
 								<div className='container-center w-full'>

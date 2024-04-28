@@ -28,7 +28,7 @@ const Flexible: React.FC = () => {
 								) }
 
 								{ optimizedData.description && (
-									<p className='text-grey-400 max-lg:max-w-[340px] text-xs lg:text-lg !leading-5 lg:!leading-normal'>
+									<p className='text-grey-400 max-w-[340px] lg:max-w-[606px] text-xs lg:text-lg !leading-5 lg:!leading-normal'>
 										<span dangerouslySetInnerHTML={ { __html: optimizedData.description } } />
 									</p>
 								) }

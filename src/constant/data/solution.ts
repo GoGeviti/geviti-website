@@ -20,7 +20,7 @@ const solutionData = {
 			preTitle: 'mens health and wellness solutions',
 			titles: ['Live optimized with <b>Geviti</b>'],
 			titlesMobile: ['Live optimized with', '<b>Geviti</b>'],
-			description: 'A Geviti membership makes longevity easy and <br class="lg:hidden"/>accessible with our wide range of at-home diagnostics, <br class="lg:hidden"/>innovative anti-aging therapies, and a dedicated <br class="lg:hidden"/>qualified care team.',
+			description: 'Our platform offers men at-home diagnostics and doctor-supervised treatments covering testosterone therapy, anti-aging peptides, medical weight loss, and more, fostering vitality and longevity.',
 			image: '/images/solution_media/compressed/hero-men.webp',
 			imageMobile: '/images/solution_media/compressed/hero-men-mobile.webp',
 			btnCta: {
@@ -161,9 +161,9 @@ const solutionData = {
 		men: [
 			{
 				preTitle: 'Hormone optimization can change your life',
-				title: '1 in 4 men over age 30 have low T.',
+				title: 'Be proactive instead of reactive.',
 				description:
-					'1 of every 4 men over the age of 30 have a testosterone deficiency. Further, 1 in every three adults are overweight. Geviti offers the ultimate solution for health and wellness.',
+					'With 1 in every 4 men over 30 experiencing testosterone deficiencies and 1 in 3 adults overweight, Geviti delivers the ultimate proactive solution for health and wellness.',
 				image: '/images/solution_media/compressed/wellnesspro-men-1.webp',
 				imageMobile: '/images/solution_media/compressed/wellnesspro-men-1-mobile.webp',
 				count: 20,
@@ -173,9 +173,9 @@ const solutionData = {
 			},
 			{
 				preTitle: 'Testosterone deficiencies are common',
-				title: 'Low T can affect any age group.',
+				title: 'Let’s optimize your testosterone.',
 				description:
-					'It’s a misconception that your testosterone only drops in your older years. More young men struggle with testosterone deficiencies than ever before.',
+					'Testosterone levels don’t only decline in later years. More young men are experiencing deficiencies than ever before, demonstrating that low T can affect men at all stages of aging.',
 				image: '/images/solution_media/compressed/wellnesspro-men-2.webp',
 				imageMobile: '/images/solution_media/compressed/wellnesspro-men-2-mobile.webp',
 				count: 20,
@@ -215,7 +215,7 @@ const solutionData = {
 		preTitle: 'An INVESTMENT IN YOUR FUTURE',
 		title: 'Prioritizing longevity is an investment in your future self.',
 		description:
-			'Live longer without compromising your lifestyle—our longevity solutions are designed to fit seamlessly into your everyday life.',
+			'Age better without compromising your lifestyle—our longevity and vitality solutions are designed to fit seamlessly into your everyday life.',
 		image: {
 			women: '/images/solution_media/compressed/banner-women.webp',
 			men: '/images/solution_media/compressed/banner-men.webp',
@@ -231,64 +231,34 @@ const solutionData = {
 		},
 	},
 	faq: {
-		men: [
+		data: [
 			{
-				title: 'What states is Geviti in?',
+				title: 'In which states is Geviti available?',
 				content:
-					'As of now, we are only in the states listed below. We plan on being in each state by the end of 2024. Be sure to opt-in to our progress so we can notify you if we don’t currently support your state. <span class="font-semibold">AZ, TX, CA, CO, UT, WA, FL, GA, KS, OR, NM</span>',
+					'Geviti currently offers services in eleven states: Arizona (AZ), California (CA), Colorado (CO), Utah (UT), Washington (WA), Texas (TX), Florida (FL), Georgia (GA), Kansas (KS), Oregon (OR), and New Mexico (NM). We are actively expanding to include more states across the country.',
 			},
 			{
 				title:
 					'What “Deep-dive Diagnostic” is included semi-annually with the membership?',
-				content: 'Content for Accordion Item 2',
+				content: 'As part of your membership, you receive the "Essentials Diagnostic" twice each year. This foundational evaluation provides key insights into your health metrics. For a more detailed analysis, you have the option to upgrade to our comprehensive or ultimate diagnostic tiers at any time.',
 			},
 			{
 				title: 'What is the membership cancellation and refund policy?',
-				content: 'Content for Accordion Item 3',
+				content: 'You can easily cancel your Geviti membership at any time through your personal dashboard. Given the personalized nature of our services, refunds are not automatically granted but are considered on a case-by-case basis. If you have specific circumstances or need further assistance, please contact our support team for detailed guidance.',
 			},
 			{
 				title:
-					'Are the cost of supplements or prescription included in the membership fee?',
-				content: 'Content for Accordion Item 3',
+					'Are the cost of supplements or prescriptions included in the membership fee?',
+				content: 'The membership fee provides access to our range of supplements and prescription services; however, the costs for these items are not included in the fee. Each supplement or prescription is priced separately, allowing you to choose exactly what fits your needs and budget.',
 			},
 			{
 				title:
 					'What if I have recently done labs? Do I still need to purchase a diagnostic package?',
-				content: 'Content for Accordion Item 3',
+				content: 'We require all new members to purchase a diagnostic package as part of our initial assessment process. This ensures that we have the most recent and relevant data to provide personalized care. However, if you have recent lab results, please reach out to our support team. We may be able to adjust your initial requirements based on the specifics of your situation.',
 			},
 			{
 				title: 'Does a blood panel guarantee access to specific treatments?',
-				content: 'Content for Accordion Item 3',
-			},
-		],
-		women: [
-			{
-				title: 'What states is Geviti in?',
-				content:
-					'As of now, we are only in Arizona. We plan on being in each state by the end of 2024. Be sure to opt-in to our progress so we can notify you if we don’t currently support your state.',
-			},
-			{
-				title:
-					'What “Deep-dive Diagnostic” is included semi-annually with the membership?',
-				content: 'Content for Accordion Item 2',
-			},
-			{
-				title: 'What is the membership cancellation and refund policy?',
-				content: 'Content for Accordion Item 3',
-			},
-			{
-				title:
-					'Are the cost of supplements or prescription included in the membership fee?',
-				content: 'Content for Accordion Item 3',
-			},
-			{
-				title:
-					'What if I have recently done labs? Do I still need to purchase a diagnostic package?',
-				content: 'Content for Accordion Item 3',
-			},
-			{
-				title: 'Does a blood panel guarantee access to specific treatments?',
-				content: 'Content for Accordion Item 3',
+				content: 'Purchasing a diagnostic package does not guarantee that you will receive any specific prescription treatment. The determination of appropriate treatments is solely at the discretion of your healthcare provider, based on a comprehensive evaluation of your test results and overall health profile.',
 			},
 		]
 	},
@@ -309,7 +279,7 @@ const solutionData = {
 	optimizedYourSelf: {
 		preTitle: 'You owe it to yourself, and others.',
 		title: 'Become the optimized <br />version of yourself.',
-		description: 'The Geviti platform gives men access to doctor supervised treatments covering testosterone therapy, anti-aging peptides, medical weight loss, sexual health, and more.<br /><br />All of this, and more with automated at-home bloodwork, custom smart supplements, and more',
+		description: 'A Geviti membership makes longevity easy and accessible with our wide range of at-home diagnostics, innovative anti-aging therapies, and a dedicated qualified care team.<br /><br />All of this, and more with in-house health coaching, automated at-home bloodwork, and custom smart supplements.',
 		image: '/images/solution_media/compressed/optimizedyourself.webp',
 		imageMobile: '/images/solution_media/compressed/optimizedyourself-mobile.webp',
 		btnCta: {

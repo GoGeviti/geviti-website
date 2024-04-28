@@ -13,7 +13,7 @@ const Solutions = () => {
 			<SolutionsComponent.Steps theme='black' />
 			<SolutionsComponent.OptimizedYourSelf />
 			<SolutionsComponent.Membership />
-			<FrequentlyAskedQuestions data={ solutionData.faq.men } />
+			<FrequentlyAskedQuestions data={ solutionData.faq.data } />
 			<SolutionsComponent.Banner type='men' />
 			<Footer landingPage />
 		</div>
