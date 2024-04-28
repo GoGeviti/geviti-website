@@ -33,7 +33,7 @@ const solutionData = {
 			preTitle: 'Womens health and wellness solutions',
 			titles: ['Live optimized with <b>Geviti</b>'],
 			titlesMobile: ['Live optimized with', '<b>Geviti</b>'],
-			description: 'A Geviti membership makes longevity easy and <br class="lg:hidden"/>accessible with our wide range of at-home diagnostics, <br class="lg:hidden"/>innovative anti-aging therapies, and a dedicated <br class="lg:hidden"/>qualified care team.',
+			description: 'Our platform offers women at-home diagnostics and doctor-supervised treatments covering testosterone therapy, anti-aging peptides, medical weight loss, and more, fostering vitality and longevity.',
 			image: '/images/solution_media/compressed/hero-women.webp',
 			imageMobile: '/images/solution_media/compressed/hero-women-mobile.webp',
 			btnCta: {
