@@ -271,11 +271,11 @@ const solutionData = {
 					sort_description: 'Oral Tablet',
 					price: 60,
 					category: { id: 1 },
-					image: '/images/solution_media/men/testosterone-therapy/testosterone-booster-complex.webp',
+					image: '/images/solution_media/men/testosterone-therapy/testosterone-booster.webp',
 					images: [
-						'/images/solution_media/men/testosterone-therapy/testosterone-booster-complex.webp',
-						'/images/solution_media/men/testosterone-therapy/testosterone-booster-complex.webp',
-						'/images/solution_media/men/testosterone-therapy/testosterone-booster-complex.webp'
+						'/images/solution_media/men/testosterone-therapy/testosterone-booster.webp',
+						'/images/solution_media/men/testosterone-therapy/testosterone-booster.webp',
+						'/images/solution_media/men/testosterone-therapy/testosterone-booster.webp'
 					],
 					list: [
 						'TRT Alternative',
@@ -293,11 +293,11 @@ const solutionData = {
 					sort_description: 'Oral Tablet',
 					price: 60,
 					category: { id: 1 },
-					image: '/images/solution_media/men/testosterone-therapy/enclomiphene-citrate.webp',
+					image: '/images/solution_media/men/testosterone-therapy/enclomiphene-citrat.webp',
 					images: [
-						'/images/solution_media/men/testosterone-therapy/enclomiphene-citrate.webp',
-						'/images/solution_media/men/testosterone-therapy/enclomiphene-citrate.webp',
-						'/images/solution_media/men/testosterone-therapy/enclomiphene-citrate.webp'
+						'/images/solution_media/men/testosterone-therapy/enclomiphene-citrat.webp',
+						'/images/solution_media/men/testosterone-therapy/enclomiphene-citrat.webp',
+						'/images/solution_media/men/testosterone-therapy/enclomiphene-citrat.webp'
 					],
 					list: [
 						'TRT Alternative',

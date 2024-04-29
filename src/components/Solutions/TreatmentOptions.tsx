@@ -29,15 +29,14 @@ const TreatmentOptions: React.FC<TreatmentOptionsProps> = ({ type = 'men' }) => 
 	const currentProduct = productsByCategory[activeSlide];
 
 	const settings: Settings = {
-		dots: true,
+		dots: false,
 		infinite: true,
 		speed: 750,
 		slidesToShow: 1,
 		slidesToScroll: 1,
-		fade: false,
 		beforeChange: (_, nextSlide: number) => {
 			setActiveSlide(nextSlide);
-		}
+		},
 	};
 
 	const handleNext = () => {
@@ -55,6 +54,9 @@ const TreatmentOptions: React.FC<TreatmentOptionsProps> = ({ type = 'men' }) => 
 	const handleSelectTab = (tabIdx: number) => {
 		setSelectedTabIdx(tabIdx);
 		setActiveSlide(0);
+		if (sliderRef.current) {
+			sliderRef.current.slickGoTo(0);
+		}
 	};
 
 	const renderButtonSwitchFilter = () => {
@@ -253,9 +255,10 @@ const TreatmentOptions: React.FC<TreatmentOptionsProps> = ({ type = 'men' }) => 
 											{ ...settings }
 											className='h-[474.79px] lg:h-[527px] relative overflow-hidden'
 										>
-											{ productsByCategory.map((product, index) => (
+											{ productsByCategory.map((product, productIdx) => (
 												<div
-													key={ `slidermobile-${ index }` }
+													data-index={ productIdx }
+													key={ product.id }
 													className='relative overflow-hidden w-full h-[474.79px] lg:h-[527px]'
 												>
 													<Image
@@ -277,7 +280,7 @@ const TreatmentOptions: React.FC<TreatmentOptionsProps> = ({ type = 'men' }) => 
 										</SlickSlider>
 									</div>
 								</div>
-								{ renderButtonSlider('next') }
+								{ renderButtonSlider('next', productsByCategory.length <= 1) }
 
 								<div className='absolute-center w-[471px] lg:w-full h-full'>
 									<Image
