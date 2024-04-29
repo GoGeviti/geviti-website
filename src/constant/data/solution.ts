@@ -18,6 +18,7 @@ const solutionData = {
 	hero: {
 		men: {
 			preTitle: 'mens health and wellness solutions',
+			title: 'Live optimized with <br class="lg:hidden"/><b>Geviti</b>',
 			titles: ['Live optimized with <b>Geviti</b>'],
 			titlesMobile: ['Live optimized with', '<b>Geviti</b>'],
 			description: 'Our platform offers men at-home diagnostics and doctor-supervised treatments covering testosterone therapy, anti-aging peptides, medical weight loss, and more, fostering vitality and longevity.',
@@ -31,6 +32,7 @@ const solutionData = {
 		},
 		women: {
 			preTitle: 'Womens health and wellness solutions',
+			title: 'Live optimized with <br class="lg:hidden"/><b>Geviti</b>',
 			titles: ['Live optimized with <b>Geviti</b>'],
 			titlesMobile: ['Live optimized with', '<b>Geviti</b>'],
 			description: 'Our platform offers women at-home diagnostics and doctor-supervised treatments covering testosterone therapy, anti-aging peptides, medical weight loss, and more, fostering vitality and longevity.',
@@ -78,82 +80,6 @@ const solutionData = {
 				id: 'step-4',
 				title: 'Receive your tailor-made <br class="max-lg:hidden"/>protocols in the mail and <br class="max-lg:hidden"/>track your progress',
 				icon: GraphWomenIcon,
-			},
-		],
-	},
-	treatmentmens: {
-		sectionsubheading: 'Easy online care',
-		sectionmainheading: 'Treatment options for male optimization',
-		cards: {
-			heading: 'Compare Testosterone Optimization options',
-			subheading: 'Oral Testosterone',
-			paragraph:
-				'The FDA\'s approval of oral testosterone undecanoate offers a breakthrough in TRT, providing an easy-to-use, effective option for managing Low T. This addition enhances the therapy landscape, simplifying the path to hormonal balance for many. ',
-			features: [
-				'FDA Approved',
-				'Bioidentical',
-				'96% Efficacy',
-				'Oral Capsule',
-				'Twice Daily',
-				'Flexible Dosing',
-			],
-			cardslist: [
-				{
-					imageURL: '/images/solution_media/Pill-Bottle-Mockup.webp',
-				},
-				{
-					imageURL: '/images/solution_media/Pill-Bottle-Mockup.webp',
-				},
-				{
-					imageURL: '/images/solution_media/Pill-Bottle-Mockup.webp',
-				},
-				{
-					imageURL: '/images/solution_media/Pill-Bottle-Mockup.webp',
-				},
-			],
-		},
-		products: [
-			{
-				id: 1,
-				name: 'Oral Testosterone',
-				description: 'Oral Gel Capsule',
-				price: '$94.99/m*',
-				imageSrc: '/images/solution_media/Pill-Bottle-Mockup.webp',
-			},
-			{
-				id: 2,
-				name: 'Enclomiphene Citrate',
-				description: 'Oral Tablet',
-				price: '$94.99/m*',
-				imageSrc: '/images/solution_media/Pill-Bottle-Mockup.webp',
-			},
-			{
-				id: 3,
-				name: 'Testosterone Booster Complex',
-				description: 'Oral Tablet',
-				price: '$94.99/m*',
-				imageSrc: '/images/solution_media/Pill-Bottle-Mockup.webp',
-			},
-			{
-				id: 4,
-				name: 'Testosterone Topical Cream',
-				description: 'Oral Tablet',
-				price: '$94.99/m*',
-				imageSrc: '/images/solution_media/Pill-Bottle-Mockup.webp',
-			},
-			{
-				id: 5,
-				name: 'Enclomiphene Citrate',
-				description: 'Oral Tablet',
-				price: '$94.99/m*',
-				imageSrc: '/images/solution_media/Pill-Bottle-Mockup.webp',
-			},
-			{
-				id: 6,
-				name: 'Enclomiphene Citrate',
-				description: 'Oral Tablet',
-				price: '$94.99/m*',
-				imageSrc: '/images/solution_media/Pill-Bottle-Mockup.webp',
 			},
 		],
 	},
@@ -310,10 +236,10 @@ const solutionData = {
 			},
 			tabs: [
 				{ id: 1, title: 'Testosterone Therapy', icon: TherapyIcon, preTitle: 'Compare Testosterone optimization options' },
-				{ id: 2, title: 'Anti-aging Peptides', icon: PeptidesIcon, preTitle: 'Compare Anti-aging optimization options' },
-				{ id: 3, title: 'Medical Weight Loss', icon: WeightLossIcon, preTitle: 'Compare Weight Loss optimization options' },
-				{ id: 4, title: 'Sexual Health', icon: HeartIcon, preTitle: 'Compare Sexual Health optimization options' },
-				{ id: 5, title: 'Thyroid', icon: ThyroidIcon, preTitle: 'Compare Thyroid optimization options' },
+				{ id: 2, title: 'Anti-aging Peptides', icon: PeptidesIcon, preTitle: 'Explore Anti-aging Peptides' },
+				{ id: 3, title: 'Medical Weight Loss', icon: WeightLossIcon, preTitle: 'See our medical weight loss options' },
+				{ id: 4, title: 'Sexual Health', icon: HeartIcon, preTitle: 'Explore our sexual health Solutions' },
+				{ id: 5, title: 'Thyroid', icon: ThyroidIcon, preTitle: 'Explore our Thyroid Solutions' },
 			],
 			products: [
 				{
@@ -321,13 +247,13 @@ const solutionData = {
 					name: 'Oral Testosterone',
 					description: 'The FDA\'s approval of oral testosterone undecanoate offers a breakthrough in TRT, providing an easy-to-use, effective option for managing Low T. This addition enhances the therapy landscape, simplifying the path to hormonal balance for many.',
 					sort_description: 'Oral Gel Capsule',
-					price: 94.99,
+					price: 99,
 					category: { id: 1 },
-					image: '/images/solution_media/compressed/product-men-1.webp',
+					image: '/images/solution_media/men/testosterone-therapy/oral-testosterone.webp',
 					images: [
-						'/images/solution_media/compressed/pill-bottle-mockup-men.webp',
-						'/images/solution_media/compressed/pill-bottle-mockup-men.webp',
-						'/images/solution_media/compressed/pill-bottle-mockup-men.webp'
+						'/images/solution_media/men/testosterone-therapy/oral-testosterone.webp',
+						'/images/solution_media/men/testosterone-therapy/oral-testosterone.webp',
+						'/images/solution_media/men/testosterone-therapy/oral-testosterone.webp'
 					],
 					list: [
 						'FDA Approved',
@@ -335,425 +261,271 @@ const solutionData = {
 						'96% Efficacy',
 						'Oral Capsule',
 						'Twice Daily',
-						'Flexible Dosing'
+						'Mimics Natural Production'
 					]
 				},
 				{
 					id: 2,
-					name: 'Enclomiphene Citrate',
-					description: 'The FDA\'s approval of Enclomiphene Citrate undecanoate offers a breakthrough in TRT, providing an easy-to-use, effective option for managing Low T. This addition enhances the therapy landscape, simplifying the path to hormonal balance for many.',
+					name: 'T Booster Complex',
+					description: 'The potent mix of Clomiphene, 7-keto-DHEA, Progesterone, and very low dose Anastrozole has been proven to significantly boost male testosterone levels without the need for exogenous testosterone replacement therapy. It\'s both safe and effective.',
 					sort_description: 'Oral Tablet',
-					price: 94.99,
+					price: 60,
 					category: { id: 1 },
-					image: '/images/solution_media/compressed/product-men-1.webp',
+					image: '/images/solution_media/men/testosterone-therapy/testosterone-booster-complex.webp',
 					images: [
-						'/images/solution_media/compressed/pill-bottle-mockup-men.webp',
-						'/images/solution_media/compressed/pill-bottle-mockup-men.webp',
-						'/images/solution_media/compressed/pill-bottle-mockup-men.webp'
+						'/images/solution_media/men/testosterone-therapy/testosterone-booster-complex.webp',
+						'/images/solution_media/men/testosterone-therapy/testosterone-booster-complex.webp',
+						'/images/solution_media/men/testosterone-therapy/testosterone-booster-complex.webp'
 					],
 					list: [
-						'FDA Approved',
-						'Bioidentical',
-						'96% Efficacy',
-						'Oral Capsule',
-						'Twice Daily',
-						'Flexible Dosing'
+						'TRT Alternative',
+						'Safe Profile',
+						'Non-Invasive',
+						'Oral Tablet',
+						'Daily Dosing',
+						'Stimulates Natural Production'
 					]
 				},
 				{
 					id: 3,
-					name: 'Testosterone Booster Complex',
-					description: 'The FDA\'s approval of Testosterone Booster Complex undecanoate offers a breakthrough in TRT, providing an easy-to-use, effective option for managing Low T. This addition enhances the therapy landscape, simplifying the path to hormonal balance for many.',
+					name: 'Enclomiphene Citrate',
+					description: 'Enclomiphene Citrate stimulates natural testosterone production, offering a standalone solution or a TRT complement. This strategy enhances hormonal health without directly adding external testosterone.',
 					sort_description: 'Oral Tablet',
-					price: 94.99,
+					price: 60,
 					category: { id: 1 },
-					image: '/images/solution_media/compressed/product-men-1.webp',
+					image: '/images/solution_media/men/testosterone-therapy/enclomiphene-citrate.webp',
 					images: [
-						'/images/solution_media/compressed/pill-bottle-mockup-men.webp',
-						'/images/solution_media/compressed/pill-bottle-mockup-men.webp',
-						'/images/solution_media/compressed/pill-bottle-mockup-men.webp'
+						'/images/solution_media/men/testosterone-therapy/enclomiphene-citrate.webp',
+						'/images/solution_media/men/testosterone-therapy/enclomiphene-citrate.webp',
+						'/images/solution_media/men/testosterone-therapy/enclomiphene-citrate.webp'
 					],
 					list: [
-						'FDA Approved',
-						'Bioidentical',
-						'96% Efficacy',
-						'Oral Capsule',
-						'Twice Daily',
-						'Flexible Dosing'
+						'TRT Alternative',
+						'Safe Profile',
+						'Non-Invasive',
+						'Oral Tablet',
+						'Daily Dosing',
+						'Can Boost Natural Production'
 					]
 				},
 				{
 					id: 4,
-					name: 'Testosterone Topical Cream',
-					description: 'The FDA\'s approval of Testosterone Topical Cream undecanoate offers a breakthrough in TRT, providing an easy-to-use, effective option for managing Low T. This addition enhances the therapy landscape, simplifying the path to hormonal balance for many.',
-					sort_description: 'Oral Tablet',
-					price: 94.99,
+					name: 'Testosterone Cream',
+					description: 'Testosterone Cream provides a topical testosterone boost, ensuring steady absorption through the skin for consistent hormonal support. Ideal for those preferring non-injectable options, it offers controlled dosing and ease of use, catering to various treatment needs.',
+					sort_description: 'Topical Cream',
+					price: 70,
 					category: { id: 1 },
-					image: '/images/solution_media/compressed/product-men-1.webp',
+					image: '/images/solution_media/men/testosterone-therapy/testosterone-cream.webp',
 					images: [
-						'/images/solution_media/compressed/pill-bottle-mockup-men.webp',
-						'/images/solution_media/compressed/pill-bottle-mockup-men.webp',
-						'/images/solution_media/compressed/pill-bottle-mockup-men.webp'
+						'/images/solution_media/men/testosterone-therapy/testosterone-cream.webp',
+						'/images/solution_media/men/testosterone-therapy/testosterone-cream.webp',
+						'/images/solution_media/men/testosterone-therapy/testosterone-cream.webp'
 					],
 					list: [
-						'FDA Approved',
-						'Bioidentical',
-						'96% Efficacy',
-						'Oral Capsule',
-						'Twice Daily',
-						'Flexible Dosing'
+						'Applied Topically',
+						'Controlled Dosing',
+						'Convenient Use',
+						'Steady Absorption',
+						'Non-Injectable',
+						'Versatile Treatment'
 					]
 				},
 				{
 					id: 5,
-					name: 'Oral Testosterone',
-					description: 'The FDA\'s approval of oral testosterone undecanoate offers a breakthrough in TRT, providing an easy-to-use, effective option for managing Low T. This addition enhances the therapy landscape, simplifying the path to hormonal balance for many.',
-					sort_description: 'Oral Gel Capsule',
-					price: 94.99,
-					category: { id: 2 },
-					image: '/images/solution_media/compressed/product-men-1.webp',
+					name: 'Testosterone Cypionate',
+					description: 'Testosterone Cypionate, a long-acting injectable testosterone, offers sustained hormone supplementation with fewer doses. Delivered via injection, it supports various treatment goals, from hormone replacement to enhancing muscle growth and vitality.',
+					sort_description: '',
+					price: 30,
+					category: { id: 1 },
+					image: '/images/solution_media/men/testosterone-therapy/testosterone-cypionate.webp',
 					images: [
-						'/images/solution_media/compressed/pill-bottle-mockup-men.webp',
-						'/images/solution_media/compressed/pill-bottle-mockup-men.webp',
-						'/images/solution_media/compressed/pill-bottle-mockup-men.webp'
+						'/images/solution_media/men/testosterone-therapy/testosterone-cypionate.webp',
+						'/images/solution_media/men/testosterone-therapy/testosterone-cypionate.webp',
+						'/images/solution_media/men/testosterone-therapy/testosterone-cypionate.webp'
 					],
 					list: [
-						'FDA Approved',
+						'Sustained Release',
 						'Bioidentical',
-						'96% Efficacy',
-						'Oral Capsule',
-						'Twice Daily',
+						'Versatile Use',
+						'Injectable',
+						'Highly Effective',
 						'Flexible Dosing'
 					]
 				},
 				{
 					id: 6,
-					name: 'Enclomiphene Citrate',
-					description: 'The FDA\'s approval of Enclomiphene Citrate undecanoate offers a breakthrough in TRT, providing an easy-to-use, effective option for managing Low T. This addition enhances the therapy landscape, simplifying the path to hormonal balance for many.',
-					sort_description: 'Oral Tablet',
-					price: 94.99,
+					name: 'Sermorelin Mini Troche',
+					description: 'Sermorelin Mini Troches dissolve under the tongue for rapid absorption and stimulate natural growth hormone production without the need for injections. They support anti-aging, muscle strength, and vitality.',
+					sort_description: 'Sublingual Mini Troche',
+					price: 70,
 					category: { id: 2 },
-					image: '/images/solution_media/compressed/product-men-1.webp',
+					image: '/images/solution_media/men/anti-aging/sermorelin-mini.webp',
 					images: [
-						'/images/solution_media/compressed/pill-bottle-mockup-men.webp',
-						'/images/solution_media/compressed/pill-bottle-mockup-men.webp',
-						'/images/solution_media/compressed/pill-bottle-mockup-men.webp'
+						'/images/solution_media/men/anti-aging/sermorelin-mini.webp',
+						'/images/solution_media/men/anti-aging/sermorelin-mini.webp',
+						'/images/solution_media/men/anti-aging/sermorelin-mini.webp'
 					],
 					list: [
-						'FDA Approved',
-						'Bioidentical',
-						'96% Efficacy',
-						'Oral Capsule',
-						'Twice Daily',
-						'Flexible Dosing'
+						'Quick Absorption',
+						'Enhances Vitality',
+						'Non-Invasive',
+						'Sublingual Troche',
+						'Daily Dosing',
+						'Stimulates Growth Hormone'
 					]
 				},
 				{
 					id: 7,
-					name: 'Testosterone Booster Complex',
-					description: 'The FDA\'s approval of Testosterone Booster Complex undecanoate offers a breakthrough in TRT, providing an easy-to-use, effective option for managing Low T. This addition enhances the therapy landscape, simplifying the path to hormonal balance for many.',
-					sort_description: 'Oral Tablet',
-					price: 94.99,
+					name: 'Sermorelin Injections',
+					description: 'Sermorelin Injections stimulate natural growth hormone production through subcutaneous administration, supporting anti-aging, muscle strength, and vitality. They offer targeted, effective hormone optimization for a comprehensive wellness regimen.',
+					sort_description: 'Sub-Q Injection',
+					price: 115,
 					category: { id: 2 },
-					image: '/images/solution_media/compressed/product-men-1.webp',
+					image: '/images/solution_media/men/anti-aging/sermorelin-injections.webp',
 					images: [
-						'/images/solution_media/compressed/pill-bottle-mockup-men.webp',
-						'/images/solution_media/compressed/pill-bottle-mockup-men.webp',
-						'/images/solution_media/compressed/pill-bottle-mockup-men.webp'
+						'/images/solution_media/men/anti-aging/sermorelin-injections.webp',
+						'/images/solution_media/men/anti-aging/sermorelin-injections.webp',
+						'/images/solution_media/men/anti-aging/sermorelin-injections.webp'
 					],
 					list: [
-						'FDA Approved',
-						'Bioidentical',
-						'96% Efficacy',
-						'Oral Capsule',
-						'Twice Daily',
-						'Flexible Dosing'
+						'Versatile Dosing',
+						'Enhanced Vitality',
+						'Anti-Aging',
+						'Subcutaneous Administration',
+						'Efficient Absorption',
+						'Stimulates Growth Hormone'
 					]
 				},
 				{
 					id: 8,
-					name: 'Testosterone Topical Cream',
-					description: 'The FDA\'s approval of Testosterone Topical Cream undecanoate offers a breakthrough in TRT, providing an easy-to-use, effective option for managing Low T. This addition enhances the therapy landscape, simplifying the path to hormonal balance for many.',
-					sort_description: 'Oral Tablet',
-					price: 94.99,
+					name: 'GHK-Cu Troche',
+					description: 'GHK-Cu Troches offer a convenient, sublingual route for the anti-aging benefits of GHK-Copper peptide, dissolving under the tongue for quick absorption. They promote skin health, wound healing, and collagen production, enhancing daily anti-aging routines with optimal bioavailability.',
+					sort_description: 'Sublingual Troche',
+					price: 110,
 					category: { id: 2 },
-					image: '/images/solution_media/compressed/product-men-1.webp',
+					image: '/images/solution_media/men/anti-aging/ghk-troche.webp',
 					images: [
-						'/images/solution_media/compressed/pill-bottle-mockup-men.webp',
-						'/images/solution_media/compressed/pill-bottle-mockup-men.webp',
-						'/images/solution_media/compressed/pill-bottle-mockup-men.webp'
+						'/images/solution_media/men/anti-aging/ghk-troche.webp',
+						'/images/solution_media/men/anti-aging/ghk-troche.webp',
+						'/images/solution_media/men/anti-aging/ghk-troche.webp'
 					],
 					list: [
-						'FDA Approved',
-						'Bioidentical',
-						'96% Efficacy',
-						'Oral Capsule',
-						'Twice Daily',
-						'Flexible Dosing'
+						'Convenient Use',
+						'Keeps Skin Young',
+						'Anti-Aging',
+						'Sublingual Delivery',
+						'Highly Bioavailable',
+						'Boosts Collagen Production'
 					]
 				},
 				{
 					id: 9,
-					name: 'Oral Testosterone',
-					description: 'The FDA\'s approval of oral testosterone undecanoate offers a breakthrough in TRT, providing an easy-to-use, effective option for managing Low T. This addition enhances the therapy landscape, simplifying the path to hormonal balance for many.',
+					name: 'Semaglutide',
+					description: 'Semaglutide Injections mimic the GLP-1 hormone to regulate appetite and aid in significant weight reduction. Administered subcutaneously, they offer an effective solution for enhancing metabolic health and managing weight.',
 					sort_description: 'Oral Gel Capsule',
-					price: 94.99,
+					price: 55,
 					category: { id: 3 },
-					image: '/images/solution_media/compressed/product-men-1.webp',
+					image: '/images/solution_media/men/weight-loss/semaglutide.webp',
 					images: [
-						'/images/solution_media/compressed/pill-bottle-mockup-men.webp',
-						'/images/solution_media/compressed/pill-bottle-mockup-men.webp',
-						'/images/solution_media/compressed/pill-bottle-mockup-men.webp'
+						'/images/solution_media/men/weight-loss/semaglutide.webp',
+						'/images/solution_media/men/weight-loss/semaglutide.webp',
+						'/images/solution_media/men/weight-loss/semaglutide.webp'
 					],
 					list: [
-						'FDA Approved',
-						'Bioidentical',
-						'96% Efficacy',
-						'Oral Capsule',
-						'Twice Daily',
-						'Flexible Dosing'
+						'Reduces Hunger',
+						'Flexible Dosing',
+						'Highly Effective',
+						'Subcutaneous Administration',
+						'Metabolic Enhancement',
+						'Mimics GLP-1',
 					]
 				},
 				{
 					id: 10,
-					name: 'Enclomiphene Citrate',
-					description: 'The FDA\'s approval of Enclomiphene Citrate undecanoate offers a breakthrough in TRT, providing an easy-to-use, effective option for managing Low T. This addition enhances the therapy landscape, simplifying the path to hormonal balance for many.',
+					name: 'Tirzepatide',
+					description: 'Tirzepatide Injections offer a dual-action approach to weight management, mimicking GLP-1 and GIP to suppress appetite and promote significant weight loss. Subcutaneous administration.',
 					sort_description: 'Oral Tablet',
-					price: 94.99,
+					price: 150,
 					category: { id: 3 },
-					image: '/images/solution_media/compressed/product-men-1.webp',
+					image: '/images/solution_media/men/weight-loss/tirzepatide.webp',
 					images: [
-						'/images/solution_media/compressed/pill-bottle-mockup-men.webp',
-						'/images/solution_media/compressed/pill-bottle-mockup-men.webp',
-						'/images/solution_media/compressed/pill-bottle-mockup-men.webp'
+						'/images/solution_media/men/weight-loss/tirzepatide.webp',
+						'/images/solution_media/men/weight-loss/tirzepatide.webp',
+						'/images/solution_media/men/weight-loss/tirzepatide.webp'
 					],
 					list: [
-						'FDA Approved',
-						'Bioidentical',
-						'96% Efficacy',
-						'Oral Capsule',
-						'Twice Daily',
-						'Flexible Dosing'
+						'Reduces Hunger',
+						'Flexible Dosing',
+						'Highly Effective',
+						'Subcutaneous Administration',
+						'Metabolic Enhancement',
+						'Mimics GLP-1 and GIP',
 					]
 				},
 				{
 					id: 11,
-					name: 'Testosterone Booster Complex',
-					description: 'The FDA\'s approval of Testosterone Booster Complex undecanoate offers a breakthrough in TRT, providing an easy-to-use, effective option for managing Low T. This addition enhances the therapy landscape, simplifying the path to hormonal balance for many.',
+					name: 'Tadalafil',
+					description: 'Tadalafil tablets improve sexual health by enhancing blood flow. They offer lasting effectiveness for erectile dysfunction, promoting reduced stress, better heart health, and higher self-esteem. Better for you, your partner, and your wellness. Tadalafil can be used daily, or on an as needed basis, depending on the individual.',
 					sort_description: 'Oral Tablet',
-					price: 94.99,
-					category: { id: 3 },
-					image: '/images/solution_media/compressed/product-men-1.webp',
+					price: 70,
+					category: { id: 4 },
+					image: '/images/solution_media/men/sexual-health/tadalafil.webp',
 					images: [
-						'/images/solution_media/compressed/pill-bottle-mockup-men.webp',
-						'/images/solution_media/compressed/pill-bottle-mockup-men.webp',
-						'/images/solution_media/compressed/pill-bottle-mockup-men.webp'
+						'/images/solution_media/men/sexual-health/tadalafil.webp',
+						'/images/solution_media/men/sexual-health/tadalafil.webp',
+						'/images/solution_media/men/sexual-health/tadalafil.webp'
 					],
 					list: [
-						'FDA Approved',
-						'Bioidentical',
-						'96% Efficacy',
-						'Oral Capsule',
-						'Twice Daily',
-						'Flexible Dosing'
+						'Longer Half Life',
+						'Treats ED',
+						'30 Tablets',
+						'Treats PAH',
+						'Improves Sexual Health',
+						'Treats BPH symptoms'
 					]
 				},
 				{
 					id: 12,
-					name: 'Testosterone Topical Cream',
-					description: 'The FDA\'s approval of Testosterone Topical Cream undecanoate offers a breakthrough in TRT, providing an easy-to-use, effective option for managing Low T. This addition enhances the therapy landscape, simplifying the path to hormonal balance for many.',
-					sort_description: 'Oral Tablet',
-					price: 94.99,
-					category: { id: 3 },
-					image: '/images/solution_media/compressed/product-men-1.webp',
+					name: 'Peak Male Mini Troche',
+					description: 'Peak Male Mini Troche combines Oxytocin, PT-141 and Tadalafil. These compounds work together to improve overall emotional, physical and intimate well being. Comes with 10 dissolvable Troches.',
+					sort_description: 'Sublingual Mini Troche',
+					price: 90,
+					category: { id: 4 },
+					image: '/images/solution_media/men/sexual-health/peak-male.webp',
 					images: [
-						'/images/solution_media/compressed/pill-bottle-mockup-men.webp',
-						'/images/solution_media/compressed/pill-bottle-mockup-men.webp',
-						'/images/solution_media/compressed/pill-bottle-mockup-men.webp'
+						'/images/solution_media/men/sexual-health/peak-male.webp',
+						'/images/solution_media/men/sexual-health/peak-male.webp',
+						'/images/solution_media/men/sexual-health/peak-male.webp'
 					],
 					list: [
-						'FDA Approved',
-						'Bioidentical',
-						'96% Efficacy',
-						'Oral Capsule',
-						'Twice Daily',
-						'Flexible Dosing'
+						'Sublingual Troche',
+						'Oxytocin',
+						'PT-141',
+						'Improves Intimacy',
+						'Tadalafil',
+						'Improves Sexual Health'
 					]
 				},
 				{
 					id: 13,
-					name: 'Oral Testosterone',
-					description: 'The FDA\'s approval of oral testosterone undecanoate offers a breakthrough in TRT, providing an easy-to-use, effective option for managing Low T. This addition enhances the therapy landscape, simplifying the path to hormonal balance for many.',
+					name: 'Desiccated Thyroid',
+					description: 'Desiccated Thyroid is used to treat hypothyroidism. It supplements the body’s natural thyroid hormones helping to restore the balance of T3 and T4 levels.',
 					sort_description: 'Oral Gel Capsule',
-					price: 94.99,
-					category: { id: 4 },
-					image: '/images/solution_media/compressed/product-men-1.webp',
-					images: [
-						'/images/solution_media/compressed/pill-bottle-mockup-men.webp',
-						'/images/solution_media/compressed/pill-bottle-mockup-men.webp',
-						'/images/solution_media/compressed/pill-bottle-mockup-men.webp'
-					],
-					list: [
-						'FDA Approved',
-						'Bioidentical',
-						'96% Efficacy',
-						'Oral Capsule',
-						'Twice Daily',
-						'Flexible Dosing'
-					]
-				},
-				{
-					id: 14,
-					name: 'Enclomiphene Citrate',
-					description: 'The FDA\'s approval of Enclomiphene Citrate undecanoate offers a breakthrough in TRT, providing an easy-to-use, effective option for managing Low T. This addition enhances the therapy landscape, simplifying the path to hormonal balance for many.',
-					sort_description: 'Oral Tablet',
-					price: 94.99,
-					category: { id: 4 },
-					image: '/images/solution_media/compressed/product-men-1.webp',
-					images: [
-						'/images/solution_media/compressed/pill-bottle-mockup-men.webp',
-						'/images/solution_media/compressed/pill-bottle-mockup-men.webp',
-						'/images/solution_media/compressed/pill-bottle-mockup-men.webp'
-					],
-					list: [
-						'FDA Approved',
-						'Bioidentical',
-						'96% Efficacy',
-						'Oral Capsule',
-						'Twice Daily',
-						'Flexible Dosing'
-					]
-				},
-				{
-					id: 15,
-					name: 'Testosterone Booster Complex',
-					description: 'The FDA\'s approval of Testosterone Booster Complex undecanoate offers a breakthrough in TRT, providing an easy-to-use, effective option for managing Low T. This addition enhances the therapy landscape, simplifying the path to hormonal balance for many.',
-					sort_description: 'Oral Tablet',
-					price: 94.99,
-					category: { id: 4 },
-					image: '/images/solution_media/compressed/product-men-1.webp',
-					images: [
-						'/images/solution_media/compressed/pill-bottle-mockup-men.webp',
-						'/images/solution_media/compressed/pill-bottle-mockup-men.webp',
-						'/images/solution_media/compressed/pill-bottle-mockup-men.webp'
-					],
-					list: [
-						'FDA Approved',
-						'Bioidentical',
-						'96% Efficacy',
-						'Oral Capsule',
-						'Twice Daily',
-						'Flexible Dosing'
-					]
-				},
-				{
-					id: 16,
-					name: 'Testosterone Topical Cream',
-					description: 'The FDA\'s approval of Testosterone Topical Cream undecanoate offers a breakthrough in TRT, providing an easy-to-use, effective option for managing Low T. This addition enhances the therapy landscape, simplifying the path to hormonal balance for many.',
-					sort_description: 'Oral Tablet',
-					price: 94.99,
-					category: { id: 4 },
-					image: '/images/solution_media/compressed/product-men-1.webp',
-					images: [
-						'/images/solution_media/compressed/pill-bottle-mockup-men.webp',
-						'/images/solution_media/compressed/pill-bottle-mockup-men.webp',
-						'/images/solution_media/compressed/pill-bottle-mockup-men.webp'
-					],
-					list: [
-						'FDA Approved',
-						'Bioidentical',
-						'96% Efficacy',
-						'Oral Capsule',
-						'Twice Daily',
-						'Flexible Dosing'
-					]
-				},
-				{
-					id: 17,
-					name: 'Oral Testosterone',
-					description: 'The FDA\'s approval of oral testosterone undecanoate offers a breakthrough in TRT, providing an easy-to-use, effective option for managing Low T. This addition enhances the therapy landscape, simplifying the path to hormonal balance for many.',
-					sort_description: 'Oral Gel Capsule',
-					price: 94.99,
+					price: 70,
 					category: { id: 5 },
-					image: '/images/solution_media/compressed/product-men-1.webp',
+					image: '/images/solution_media/men/thyroid/desiccated-thyroid.webp',
 					images: [
-						'/images/solution_media/compressed/pill-bottle-mockup-men.webp',
-						'/images/solution_media/compressed/pill-bottle-mockup-men.webp',
-						'/images/solution_media/compressed/pill-bottle-mockup-men.webp'
+						'/images/solution_media/men/thyroid/desiccated-thyroid.webp',
+						'/images/solution_media/men/thyroid/desiccated-thyroid.webp',
+						'/images/solution_media/men/thyroid/desiccated-thyroid.webp'
 					],
 					list: [
-						'FDA Approved',
-						'Bioidentical',
-						'96% Efficacy',
-						'Oral Capsule',
-						'Twice Daily',
-						'Flexible Dosing'
-					]
-				},
-				{
-					id: 18,
-					name: 'Enclomiphene Citrate',
-					description: 'The FDA\'s approval of Enclomiphene Citrate undecanoate offers a breakthrough in TRT, providing an easy-to-use, effective option for managing Low T. This addition enhances the therapy landscape, simplifying the path to hormonal balance for many.',
-					sort_description: 'Oral Tablet',
-					price: 94.99,
-					category: { id: 5 },
-					image: '/images/solution_media/compressed/product-men-1.webp',
-					images: [
-						'/images/solution_media/compressed/pill-bottle-mockup-men.webp',
-						'/images/solution_media/compressed/pill-bottle-mockup-men.webp',
-						'/images/solution_media/compressed/pill-bottle-mockup-men.webp'
-					],
-					list: [
-						'FDA Approved',
-						'Bioidentical',
-						'96% Efficacy',
-						'Oral Capsule',
-						'Twice Daily',
-						'Flexible Dosing'
-					]
-				},
-				{
-					id: 19,
-					name: 'Testosterone Booster Complex',
-					description: 'The FDA\'s approval of Testosterone Booster Complex undecanoate offers a breakthrough in TRT, providing an easy-to-use, effective option for managing Low T. This addition enhances the therapy landscape, simplifying the path to hormonal balance for many.',
-					sort_description: 'Oral Tablet',
-					price: 94.99,
-					category: { id: 5 },
-					image: '/images/solution_media/compressed/product-men-1.webp',
-					images: [
-						'/images/solution_media/compressed/pill-bottle-mockup-men.webp',
-						'/images/solution_media/compressed/pill-bottle-mockup-men.webp',
-						'/images/solution_media/compressed/pill-bottle-mockup-men.webp'
-					],
-					list: [
-						'FDA Approved',
-						'Bioidentical',
-						'96% Efficacy',
-						'Oral Capsule',
-						'Twice Daily',
-						'Flexible Dosing'
-					]
-				},
-				{
-					id: 20,
-					name: 'Testosterone Topical Cream',
-					description: 'The FDA\'s approval of Testosterone Topical Cream undecanoate offers a breakthrough in TRT, providing an easy-to-use, effective option for managing Low T. This addition enhances the therapy landscape, simplifying the path to hormonal balance for many.',
-					sort_description: 'Oral Tablet',
-					price: 94.99,
-					category: { id: 5 },
-					image: '/images/solution_media/compressed/product-men-1.webp',
-					images: [
-						'/images/solution_media/compressed/pill-bottle-mockup-men.webp',
-						'/images/solution_media/compressed/pill-bottle-mockup-men.webp',
-						'/images/solution_media/compressed/pill-bottle-mockup-men.webp'
-					],
-					list: [
-						'FDA Approved',
-						'Bioidentical',
-						'96% Efficacy',
-						'Oral Capsule',
-						'Twice Daily',
-						'Flexible Dosing'
+						'Enhances Energy',
+						'Balances Thyroid',
+						'Tablets',
+						'Weight Management',
+						'Mood Improvement',
+						'Improves Metabolism'
 					]
 				},
 			],
@@ -767,10 +539,10 @@ const solutionData = {
 			},
 			tabs: [
 				{ id: 1, title: 'Horomone Therapy', icon: HormoneTherapyIcon, preTitle: 'Analyze hormone Therapy options' },
-				{ id: 2, title: 'Anti-aging Peptides', icon: PeptidesIcon, preTitle: 'Analyze anti-aging options' },
-				{ id: 3, title: 'Medical Weight Loss', icon: WeightLossIcon, preTitle: 'Analyze weight loss options' },
-				{ id: 4, title: 'Sexual Health', icon: HeartIcon, preTitle: 'Analyze sexual health options' },
-				{ id: 5, title: 'Thyroid', icon: ThyroidIcon, preTitle: 'Analyze thyroid options' },
+				{ id: 2, title: 'Anti-aging Peptides', icon: PeptidesIcon, preTitle: 'Explore AntI-aging Peptides' },
+				{ id: 3, title: 'Medical Weight Loss', icon: WeightLossIcon, preTitle: 'See our medical weight loss options' },
+				{ id: 4, title: 'Sexual Health', icon: HeartIcon, preTitle: 'Explore our sexual health Solutions' },
+				{ id: 5, title: 'Thyroid', icon: ThyroidIcon, preTitle: 'Explore our Thyroid Solutions' },
 			],
 			products: [
 				{
@@ -780,11 +552,11 @@ const solutionData = {
 					sort_description: 'Product Info',
 					price: 94.99,
 					category: { id: 1 },
-					image: '/images/solution_media/compressed/product-women-1.webp',
+					image: '/images/solution_media/women/hormone-therapy/oral-estradiol.webp',
 					images: [
-						'/images/solution_media/compressed/pill-bottle-mockup-women.webp',
-						'/images/solution_media/compressed/pill-bottle-mockup-women.webp',
-						'/images/solution_media/compressed/pill-bottle-mockup-women.webp'
+						'/images/solution_media/women/hormone-therapy/oral-estradiol.webp',
+						'/images/solution_media/women/hormone-therapy/oral-estradiol.webp',
+						'/images/solution_media/women/hormone-therapy/oral-estradiol.webp'
 					],
 					list: [
 						'FDA Approved',
@@ -802,11 +574,11 @@ const solutionData = {
 					sort_description: 'Product Info',
 					price: 94.99,
 					category: { id: 1 },
-					image: '/images/solution_media/compressed/product-women-1.webp',
+					image: '/images/solution_media/women/hormone-therapy/oral-estradiol.webp',
 					images: [
-						'/images/solution_media/compressed/pill-bottle-mockup-women.webp',
-						'/images/solution_media/compressed/pill-bottle-mockup-women.webp',
-						'/images/solution_media/compressed/pill-bottle-mockup-women.webp'
+						'/images/solution_media/women/hormone-therapy/oral-estradiol.webp',
+						'/images/solution_media/women/hormone-therapy/oral-estradiol.webp',
+						'/images/solution_media/women/hormone-therapy/oral-estradiol.webp'
 					],
 					list: [
 						'FDA Approved',
@@ -824,11 +596,11 @@ const solutionData = {
 					sort_description: 'Product Info',
 					price: 94.99,
 					category: { id: 1 },
-					image: '/images/solution_media/compressed/product-women-1.webp',
+					image: '/images/solution_media/women/hormone-therapy/oral-estradiol.webp',
 					images: [
-						'/images/solution_media/compressed/pill-bottle-mockup-women.webp',
-						'/images/solution_media/compressed/pill-bottle-mockup-women.webp',
-						'/images/solution_media/compressed/pill-bottle-mockup-women.webp'
+						'/images/solution_media/women/hormone-therapy/oral-estradiol.webp',
+						'/images/solution_media/women/hormone-therapy/oral-estradiol.webp',
+						'/images/solution_media/women/hormone-therapy/oral-estradiol.webp'
 					],
 					list: [
 						'FDA Approved',
@@ -846,11 +618,11 @@ const solutionData = {
 					sort_description: 'Product Info',
 					price: 94.99,
 					category: { id: 1 },
-					image: '/images/solution_media/compressed/product-women-1.webp',
+					image: '/images/solution_media/women/hormone-therapy/oral-estradiol.webp',
 					images: [
-						'/images/solution_media/compressed/pill-bottle-mockup-women.webp',
-						'/images/solution_media/compressed/pill-bottle-mockup-women.webp',
-						'/images/solution_media/compressed/pill-bottle-mockup-women.webp'
+						'/images/solution_media/women/hormone-therapy/oral-estradiol.webp',
+						'/images/solution_media/women/hormone-therapy/oral-estradiol.webp',
+						'/images/solution_media/women/hormone-therapy/oral-estradiol.webp'
 					],
 					list: [
 						'FDA Approved',
@@ -869,11 +641,11 @@ const solutionData = {
 					sort_description: 'Product Info',
 					price: 94.99,
 					category: { id: 2 },
-					image: '/images/solution_media/compressed/product-women-1.webp',
+					image: '/images/solution_media/women/hormone-therapy/oral-estradiol.webp',
 					images: [
-						'/images/solution_media/compressed/pill-bottle-mockup-women.webp',
-						'/images/solution_media/compressed/pill-bottle-mockup-women.webp',
-						'/images/solution_media/compressed/pill-bottle-mockup-women.webp'
+						'/images/solution_media/women/hormone-therapy/oral-estradiol.webp',
+						'/images/solution_media/women/hormone-therapy/oral-estradiol.webp',
+						'/images/solution_media/women/hormone-therapy/oral-estradiol.webp'
 					],
 					list: [
 						'FDA Approved',
@@ -891,11 +663,11 @@ const solutionData = {
 					sort_description: 'Product Info',
 					price: 94.99,
 					category: { id: 2 },
-					image: '/images/solution_media/compressed/product-women-1.webp',
+					image: '/images/solution_media/women/hormone-therapy/oral-estradiol.webp',
 					images: [
-						'/images/solution_media/compressed/pill-bottle-mockup-women.webp',
-						'/images/solution_media/compressed/pill-bottle-mockup-women.webp',
-						'/images/solution_media/compressed/pill-bottle-mockup-women.webp'
+						'/images/solution_media/women/hormone-therapy/oral-estradiol.webp',
+						'/images/solution_media/women/hormone-therapy/oral-estradiol.webp',
+						'/images/solution_media/women/hormone-therapy/oral-estradiol.webp'
 					],
 					list: [
 						'FDA Approved',
@@ -913,11 +685,11 @@ const solutionData = {
 					sort_description: 'Product Info',
 					price: 94.99,
 					category: { id: 2 },
-					image: '/images/solution_media/compressed/product-women-1.webp',
+					image: '/images/solution_media/women/hormone-therapy/oral-estradiol.webp',
 					images: [
-						'/images/solution_media/compressed/pill-bottle-mockup-women.webp',
-						'/images/solution_media/compressed/pill-bottle-mockup-women.webp',
-						'/images/solution_media/compressed/pill-bottle-mockup-women.webp'
+						'/images/solution_media/women/hormone-therapy/oral-estradiol.webp',
+						'/images/solution_media/women/hormone-therapy/oral-estradiol.webp',
+						'/images/solution_media/women/hormone-therapy/oral-estradiol.webp'
 					],
 					list: [
 						'FDA Approved',
@@ -935,11 +707,11 @@ const solutionData = {
 					sort_description: 'Product Info',
 					price: 94.99,
 					category: { id: 2 },
-					image: '/images/solution_media/compressed/product-women-1.webp',
+					image: '/images/solution_media/women/hormone-therapy/oral-estradiol.webp',
 					images: [
-						'/images/solution_media/compressed/pill-bottle-mockup-women.webp',
-						'/images/solution_media/compressed/pill-bottle-mockup-women.webp',
-						'/images/solution_media/compressed/pill-bottle-mockup-women.webp'
+						'/images/solution_media/women/hormone-therapy/oral-estradiol.webp',
+						'/images/solution_media/women/hormone-therapy/oral-estradiol.webp',
+						'/images/solution_media/women/hormone-therapy/oral-estradiol.webp'
 					],
 					list: [
 						'FDA Approved',
@@ -957,11 +729,11 @@ const solutionData = {
 					sort_description: 'Product Info',
 					price: 94.99,
 					category: { id: 3 },
-					image: '/images/solution_media/compressed/product-women-1.webp',
+					image: '/images/solution_media/women/hormone-therapy/oral-estradiol.webp',
 					images: [
-						'/images/solution_media/compressed/pill-bottle-mockup-women.webp',
-						'/images/solution_media/compressed/pill-bottle-mockup-women.webp',
-						'/images/solution_media/compressed/pill-bottle-mockup-women.webp'
+						'/images/solution_media/women/hormone-therapy/oral-estradiol.webp',
+						'/images/solution_media/women/hormone-therapy/oral-estradiol.webp',
+						'/images/solution_media/women/hormone-therapy/oral-estradiol.webp'
 					],
 					list: [
 						'FDA Approved',
@@ -979,11 +751,11 @@ const solutionData = {
 					sort_description: 'Product Info',
 					price: 94.99,
 					category: { id: 3 },
-					image: '/images/solution_media/compressed/product-women-1.webp',
+					image: '/images/solution_media/women/hormone-therapy/oral-estradiol.webp',
 					images: [
-						'/images/solution_media/compressed/pill-bottle-mockup-women.webp',
-						'/images/solution_media/compressed/pill-bottle-mockup-women.webp',
-						'/images/solution_media/compressed/pill-bottle-mockup-women.webp'
+						'/images/solution_media/women/hormone-therapy/oral-estradiol.webp',
+						'/images/solution_media/women/hormone-therapy/oral-estradiol.webp',
+						'/images/solution_media/women/hormone-therapy/oral-estradiol.webp'
 					],
 					list: [
 						'FDA Approved',
@@ -1001,11 +773,11 @@ const solutionData = {
 					sort_description: 'Product Info',
 					price: 94.99,
 					category: { id: 3 },
-					image: '/images/solution_media/compressed/product-women-1.webp',
+					image: '/images/solution_media/women/hormone-therapy/oral-estradiol.webp',
 					images: [
-						'/images/solution_media/compressed/pill-bottle-mockup-women.webp',
-						'/images/solution_media/compressed/pill-bottle-mockup-women.webp',
-						'/images/solution_media/compressed/pill-bottle-mockup-women.webp'
+						'/images/solution_media/women/hormone-therapy/oral-estradiol.webp',
+						'/images/solution_media/women/hormone-therapy/oral-estradiol.webp',
+						'/images/solution_media/women/hormone-therapy/oral-estradiol.webp'
 					],
 					list: [
 						'FDA Approved',
@@ -1023,11 +795,11 @@ const solutionData = {
 					sort_description: 'Product Info',
 					price: 94.99,
 					category: { id: 3 },
-					image: '/images/solution_media/compressed/product-women-1.webp',
+					image: '/images/solution_media/women/hormone-therapy/oral-estradiol.webp',
 					images: [
-						'/images/solution_media/compressed/pill-bottle-mockup-women.webp',
-						'/images/solution_media/compressed/pill-bottle-mockup-women.webp',
-						'/images/solution_media/compressed/pill-bottle-mockup-women.webp'
+						'/images/solution_media/women/hormone-therapy/oral-estradiol.webp',
+						'/images/solution_media/women/hormone-therapy/oral-estradiol.webp',
+						'/images/solution_media/women/hormone-therapy/oral-estradiol.webp'
 					],
 					list: [
 						'FDA Approved',
@@ -1045,11 +817,11 @@ const solutionData = {
 					sort_description: 'Product Info',
 					price: 94.99,
 					category: { id: 4 },
-					image: '/images/solution_media/compressed/product-women-1.webp',
+					image: '/images/solution_media/women/hormone-therapy/oral-estradiol.webp',
 					images: [
-						'/images/solution_media/compressed/pill-bottle-mockup-women.webp',
-						'/images/solution_media/compressed/pill-bottle-mockup-women.webp',
-						'/images/solution_media/compressed/pill-bottle-mockup-women.webp'
+						'/images/solution_media/women/hormone-therapy/oral-estradiol.webp',
+						'/images/solution_media/women/hormone-therapy/oral-estradiol.webp',
+						'/images/solution_media/women/hormone-therapy/oral-estradiol.webp'
 					],
 					list: [
 						'FDA Approved',
@@ -1067,11 +839,11 @@ const solutionData = {
 					sort_description: 'Product Info',
 					price: 94.99,
 					category: { id: 4 },
-					image: '/images/solution_media/compressed/product-women-1.webp',
+					image: '/images/solution_media/women/hormone-therapy/oral-estradiol.webp',
 					images: [
-						'/images/solution_media/compressed/pill-bottle-mockup-women.webp',
-						'/images/solution_media/compressed/pill-bottle-mockup-women.webp',
-						'/images/solution_media/compressed/pill-bottle-mockup-women.webp'
+						'/images/solution_media/women/hormone-therapy/oral-estradiol.webp',
+						'/images/solution_media/women/hormone-therapy/oral-estradiol.webp',
+						'/images/solution_media/women/hormone-therapy/oral-estradiol.webp'
 					],
 					list: [
 						'FDA Approved',
@@ -1089,11 +861,11 @@ const solutionData = {
 					sort_description: 'Product Info',
 					price: 94.99,
 					category: { id: 4 },
-					image: '/images/solution_media/compressed/product-women-1.webp',
+					image: '/images/solution_media/women/hormone-therapy/oral-estradiol.webp',
 					images: [
-						'/images/solution_media/compressed/pill-bottle-mockup-women.webp',
-						'/images/solution_media/compressed/pill-bottle-mockup-women.webp',
-						'/images/solution_media/compressed/pill-bottle-mockup-women.webp'
+						'/images/solution_media/women/hormone-therapy/oral-estradiol.webp',
+						'/images/solution_media/women/hormone-therapy/oral-estradiol.webp',
+						'/images/solution_media/women/hormone-therapy/oral-estradiol.webp'
 					],
 					list: [
 						'FDA Approved',
@@ -1111,11 +883,11 @@ const solutionData = {
 					sort_description: 'Product Info',
 					price: 94.99,
 					category: { id: 4 },
-					image: '/images/solution_media/compressed/product-women-1.webp',
+					image: '/images/solution_media/women/hormone-therapy/oral-estradiol.webp',
 					images: [
-						'/images/solution_media/compressed/pill-bottle-mockup-women.webp',
-						'/images/solution_media/compressed/pill-bottle-mockup-women.webp',
-						'/images/solution_media/compressed/pill-bottle-mockup-women.webp'
+						'/images/solution_media/women/hormone-therapy/oral-estradiol.webp',
+						'/images/solution_media/women/hormone-therapy/oral-estradiol.webp',
+						'/images/solution_media/women/hormone-therapy/oral-estradiol.webp'
 					],
 					list: [
 						'FDA Approved',
@@ -1133,11 +905,11 @@ const solutionData = {
 					sort_description: 'Product Info',
 					price: 94.99,
 					category: { id: 5 },
-					image: '/images/solution_media/compressed/product-women-1.webp',
+					image: '/images/solution_media/women/hormone-therapy/oral-estradiol.webp',
 					images: [
-						'/images/solution_media/compressed/pill-bottle-mockup-women.webp',
-						'/images/solution_media/compressed/pill-bottle-mockup-women.webp',
-						'/images/solution_media/compressed/pill-bottle-mockup-women.webp'
+						'/images/solution_media/women/hormone-therapy/oral-estradiol.webp',
+						'/images/solution_media/women/hormone-therapy/oral-estradiol.webp',
+						'/images/solution_media/women/hormone-therapy/oral-estradiol.webp'
 					],
 					list: [
 						'FDA Approved',
@@ -1155,11 +927,11 @@ const solutionData = {
 					sort_description: 'Product Info',
 					price: 94.99,
 					category: { id: 5 },
-					image: '/images/solution_media/compressed/product-women-1.webp',
+					image: '/images/solution_media/women/hormone-therapy/oral-estradiol.webp',
 					images: [
-						'/images/solution_media/compressed/pill-bottle-mockup-women.webp',
-						'/images/solution_media/compressed/pill-bottle-mockup-women.webp',
-						'/images/solution_media/compressed/pill-bottle-mockup-women.webp'
+						'/images/solution_media/women/hormone-therapy/oral-estradiol.webp',
+						'/images/solution_media/women/hormone-therapy/oral-estradiol.webp',
+						'/images/solution_media/women/hormone-therapy/oral-estradiol.webp'
 					],
 					list: [
 						'FDA Approved',
@@ -1177,11 +949,11 @@ const solutionData = {
 					sort_description: 'Product Info',
 					price: 94.99,
 					category: { id: 5 },
-					image: '/images/solution_media/compressed/product-women-1.webp',
+					image: '/images/solution_media/women/hormone-therapy/oral-estradiol.webp',
 					images: [
-						'/images/solution_media/compressed/pill-bottle-mockup-women.webp',
-						'/images/solution_media/compressed/pill-bottle-mockup-women.webp',
-						'/images/solution_media/compressed/pill-bottle-mockup-women.webp'
+						'/images/solution_media/women/hormone-therapy/oral-estradiol.webp',
+						'/images/solution_media/women/hormone-therapy/oral-estradiol.webp',
+						'/images/solution_media/women/hormone-therapy/oral-estradiol.webp'
 					],
 					list: [
 						'FDA Approved',
@@ -1199,11 +971,11 @@ const solutionData = {
 					sort_description: 'Product Info',
 					price: 94.99,
 					category: { id: 5 },
-					image: '/images/solution_media/compressed/product-women-1.webp',
+					image: '/images/solution_media/women/hormone-therapy/oral-estradiol.webp',
 					images: [
-						'/images/solution_media/compressed/pill-bottle-mockup-women.webp',
-						'/images/solution_media/compressed/pill-bottle-mockup-women.webp',
-						'/images/solution_media/compressed/pill-bottle-mockup-women.webp'
+						'/images/solution_media/women/hormone-therapy/oral-estradiol.webp',
+						'/images/solution_media/women/hormone-therapy/oral-estradiol.webp',
+						'/images/solution_media/women/hormone-therapy/oral-estradiol.webp'
 					],
 					list: [
 						'FDA Approved',

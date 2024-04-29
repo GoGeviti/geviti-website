@@ -42,7 +42,7 @@ const Flexible: React.FC = () => {
 						</div>
 					</div>
 					<div className='max-lg:hidden lg:absolute lg:inset-y-6 lg:inset-x-3 lg:left-1/2'>
-						<div className='w-full lg:absolute lg:inset-0 lg:aspect-auto lg:h-full rounded-2xl overflow-hidden'>
+						<div className='w-full lg:absolute lg:inset-0 lg:aspect-auto lg:h-full rounded-2xl relative overflow-hidden'>
 							<Image
 								src={ optimizedData.image }
 								alt='flexible'
@@ -69,18 +69,20 @@ const Flexible: React.FC = () => {
 					</div>
 
 					<div className='lg:hidden'>
-						<div className='relative rounded-2xl overflow-hidden'>
-							<Image
-								src={ optimizedData.imageMobile }
-								alt='flexible mobile'
-								loading='lazy'
-								className='object-cover w-full max-sm:h-[343px] rounded-2xl pointer-events-none'
-								width={ 343 }
-								height={ 343 }
-							/>
+						<div className='relative rounded-2xl overflow-hidden h-[343px] sm:h-[450px]'>
+							<div className='absolute inset-x-0 bottom-[29px] overflow-hidden w-full h-full'>
+								<Image
+									src={ optimizedData.imageMobile }
+									alt='flexible mobile'
+									loading='lazy'
+									className='object-cover w-full h-full pointer-events-none'
+									sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
+									fill
+								/>
+							</div>
 
 							<div
-								className='absolute inset-x-0 bottom-0 text-white pl-[21px] pb-[18px]'
+								className='absolute inset-x-0 bottom-0 text-white pt-3.5 pl-[21px] pb-[18px]'
 								style={ { background: 'linear-gradient(0deg, #181A1C 20.46%, rgba(24, 26, 28, 0.72) 61.5%, rgba(24, 26, 28, 0) 100%)' } }>
 								<Stat
 									num={ optimizedData.imageCaption.mobile.count }

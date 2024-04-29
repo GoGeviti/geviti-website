@@ -189,7 +189,7 @@ const Navbar: React.FC<NavbarProps> = ({ className, animationProps }) => {
 				<div
 					className='container-center w-full'
 					style={ { overflow } }>
-					<motion.nav
+					<motion.div
 						variants={ navbarVariants }
 						initial='hidden'
 						animate='visible'
@@ -263,7 +263,7 @@ const Navbar: React.FC<NavbarProps> = ({ className, animationProps }) => {
 								</button>
 							</div>
 						</nav>
-					</motion.nav>
+					</motion.div>
 				</div>
 			</div>
 

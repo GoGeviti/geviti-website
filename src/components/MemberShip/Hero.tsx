@@ -73,7 +73,7 @@ const Hero: React.FC = () => {
 				<div className='h-full'>
 					<div className='relative w-full h-full rounded-b-19px'>
 						<div className='h-full w-full flex flex-col justify-end'>
-							<div className='pb-[39px] lg:pb-[73px] text-left flex flex-col max-lg:bg-backdrop-hero-membership-bottom-mobile'>
+							<div className='pb-[39px] lg:pb-[10.267vh] xl:pb-[73px] text-left flex flex-col max-lg:bg-backdrop-hero-membership-bottom-mobile'>
 								<div className='container-center w-full'>
 									<div>
 										<span className='overflow-hidden inline-block'>

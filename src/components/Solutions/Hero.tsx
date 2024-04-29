@@ -1,7 +1,6 @@
 'use client';
 
 import React from 'react';
-import { motion } from 'framer-motion';
 import Image from 'next/image';
 
 import solutionData from '@/constant/data/solution';
@@ -10,36 +9,8 @@ import clsxm from '@/helpers/clsxm';
 import ButtonCta from '../ButtonCta';
 import Navbar from '../Navbar/Landing';
 
-export const slideUpTransition = {
-	ease: 'easeInOut',
-	duration: 0.75,
-};
-
 const Hero: React.FC<{ type: 'men' | 'women'; }> = ({ type }) => {
 	const heroData = solutionData.hero[type];
-
-	const renderTitles = (titles: string[]) => {
-		return titles.map((title: string, titleIdx: number) => (
-			<span
-				key={ `title-${ titleIdx }` }
-				className='overflow-hidden inline-block'>
-				<motion.span
-					variants={ {
-						visible: {
-							y: 0,
-							transition: slideUpTransition
-						},
-						hidden: { y: '100%' }
-					} }
-					className='inline-block font-medium text-[7.6vw] xs:text-3xl md:text-4xl lg:text-[5vh] xl:text-[46px] !leading-normal -tracking-0.04em text-grey-secondary'
-				>
-					<span
-						dangerouslySetInnerHTML={ { __html: title } }
-						className='hero-solutions' />
-				</motion.span>
-			</span>
-		));
-	};
 
 	const renderImage = (imageType: 'desktop' | 'mobile') => {
 		const imageMobile = imageType === 'mobile';
@@ -62,7 +33,7 @@ const Hero: React.FC<{ type: 'men' | 'women'; }> = ({ type }) => {
 
 	return (
 		<div className='lg:px-3 lg:pt-3 overflow-hidden font-Poppins'>
-			<Navbar />
+			<Navbar animationProps={ { variants: { hidden: { y: 0, opacity: 1 }, visible: { y: 0, opacity: 1 } } } } />
 			<div className='bg-primary h-[calc(100svh+14px)] lg:h-[calc(100vh-12px)] w-full overflow-hidden max-lg:rounded-t-none rounded-19px relative pt-11px lg:pt-5'>
 				<div className='absolute inset-0 w-full h-full'>
 					<div className='relative overflow-hidden w-full h-full'>
@@ -82,101 +53,41 @@ const Hero: React.FC<{ type: 'men' | 'women'; }> = ({ type }) => {
 					<div className='relative w-full h-full rounded-b-19px'>
 						<div className='h-full w-full flex flex-col justify-end'>
 							<div className={ clsxm(
-								'pb-[42px] lg:pb-[73px] text-left flex flex-col',
+								'pb-[42px] lg:pb-[10.267vh] xl:pb-[73px] text-left flex flex-col',
 								type === 'men' && 'max-lg:pt-[39px] max-lg:bg-backdrop-hero-membership-bottom-mobile'
 							) }>
 								<div className='container-center w-full'>
 									<div>
 										<span className='overflow-hidden inline-block'>
-											<motion.h2
-												variants={ {
-													visible: {
-														y: 0,
-														transition: slideUpTransition
-													},
-													hidden: { y: '100%' },
-												} }
-												initial='hidden'
-												animate='visible'
-												className='text-grey-secondary font-Poppins inline-block font-semibold text-[10px] sm:text-xs lg:text-sm !leading-6 uppercase tracking-0.11em'>
+											<h2 className='text-grey-secondary font-Poppins inline-block font-semibold text-[10px] sm:text-xs lg:text-sm !leading-6 uppercase tracking-0.11em'>
 												{ heroData.preTitle }
-											</motion.h2>
+											</h2>
 										</span>
 									</div>
 
-									<motion.h1
-										initial='hidden'
-										animate='visible'
-										className='sm:max-w-[738px] flex flex-col max-sm:hidden'
-									>
-										{ renderTitles(heroData.titles) }
-									</motion.h1>
-
-									<motion.h1
-										initial='hidden'
-										animate='visible'
-										variants={ {
-											visible: {
-												transition: {
-													staggerChildren: .25
-												}
-											}
-										} }
-										className='flex flex-col sm:hidden max-lg:mt-5px'
-									>
-										{ renderTitles(heroData.titlesMobile) }
-									</motion.h1>
+									<h1 className='max-lg:mt-5px font-medium text-[7.6vw] xs:text-3xl md:text-4xl lg:text-[5vh] xl:text-[46px] !leading-normal -tracking-0.04em text-grey-secondary'>
+										<span
+											dangerouslySetInnerHTML={ { __html: heroData.title } }
+											className='hero-solutions' />
+									</h1>
 
 									<div className='mt-5px lg:mt-6 sm:max-w-[504px]'>
-										<span className='overflow-hidden inline-block'>
-											<motion.p
-												variants={ {
-													visible: {
-														y: 0,
-														transition: {
-															...slideUpTransition,
-															delay: .5,
-														}
-													},
-													hidden: { y: '100%' },
-												} }
-												initial='hidden'
-												animate='visible'
-												className='text-grey-50 font-Poppins inline-block text-[2.9vw] xs2:text-xs sm:text-sm !leading-5'>
-												<span dangerouslySetInnerHTML={ { __html: heroData.description } } />
-											</motion.p>
-										</span>
+										<p
+											className='text-grey-50 font-Poppins inline-block text-[2.9vw] xs2:text-xs sm:text-sm !leading-5'
+											dangerouslySetInnerHTML={ { __html: heroData.description } }
+										/>
 									</div>
 
 									<div className='flex w-full mt-[5vh] xs:mt-[42px] lg:mt-[5.435vh] xl:mt-[42px]'>
-										<div className='overflow-hidden inline-block w-full'>
-											<motion.div
-												variants={ {
-													visible: {
-														y: 0,
-														transition: {
-															...slideUpTransition,
-															delay: .75,
-															duration: 1
-														}
-													},
-													hidden: { y: '100%' }
-												} }
-												initial='hidden'
-												animate='visible'
-												className='inline-block w-full'
-											>
-												<div className='flex max-sm:w-full max-sm:justify-center'>
-													<ButtonCta
-														href={ heroData.btnCta.href }
-														externalLink={ heroData.btnCta.externalLink }
-														aria-label={ heroData.btnCta.text }
-														text={ heroData.btnCta.text }
-														theme={ type === 'women' ? 'tertiary' : 'secondary' }
-														className='max-sm:w-full'
-													/>
-												</div>
-											</motion.div>
+										<div className='flex max-sm:w-full max-sm:justify-center'>
+											<ButtonCta
+												href={ heroData.btnCta.href }
+												externalLink={ heroData.btnCta.externalLink }
+												aria-label={ heroData.btnCta.text }
+												text={ heroData.btnCta.text }
+												theme={ type === 'women' ? 'tertiary' : 'secondary' }
+												className='max-sm:w-full'
+											/>
 										</div>
 									</div>
 								</div>
