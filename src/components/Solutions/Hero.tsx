@@ -127,7 +127,7 @@ const Hero: React.FC<{ type: 'men' | 'women'; }> = ({ type }) => {
 										{ renderTitles(heroData.titlesMobile) }
 									</motion.h1>
 
-									<div className='mt-5px lg:mt-6 sm:max-w-[496px]'>
+									<div className='mt-5px lg:mt-6 sm:max-w-[504px]'>
 										<span className='overflow-hidden inline-block'>
 											<motion.p
 												variants={ {
