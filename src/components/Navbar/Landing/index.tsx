@@ -147,7 +147,10 @@ const Navbar: React.FC<NavbarProps> = ({ className, animationProps, theme }) => 
 							className='font-Poppins relative rounded-full focus:outline-0 focus:ring-0 focus:border-0 group'
 							href={ iconMenu.href }
 						>
-							<Icon className='w-[17px] h-[17px] text-grey-50 group-hover:text-blue-primary' />
+							<Icon className={ clsxm(
+								'w-[17px] h-[17px] text-grey-50 group-hover:text-blue-primary',
+								theme === 'light' && 'text-primary'
+							) } />
 						</CustomLink>
 					);
 				}) }
@@ -163,7 +166,8 @@ const Navbar: React.FC<NavbarProps> = ({ className, animationProps, theme }) => 
 					onClick={ () => handleSelectedItem(4) }
 					className={ clsxm(
 						'lg:w-[120px] rounded-md px-3 py-2 text-sm font-Poppins hover:font-semibold md:block hidden',
-						'text-grey-50 hover:text-blue-primary'
+						'text-grey-50 hover:text-blue-primary',
+						theme === 'light' && 'text-primary'
 					) }
 					aria-label='Dashboard'
 				>
@@ -277,7 +281,10 @@ const Navbar: React.FC<NavbarProps> = ({ className, animationProps, theme }) => 
 									aria-label='Toggle Menu'
 								>
 									<Bars3Icon
-										className='block h-6 w-6 text-grey-50'
+										className={ clsxm(
+											'block h-6 w-6 text-grey-50',
+											theme === 'light' && 'text-primary'
+										) }
 										aria-hidden='true' />
 								</button>
 							</div>
