@@ -214,3 +214,7 @@ input[type="number"]::placeholder {
   -webkit-transform: scale(1);
   transform: scale(1);
 }
+
+.react-datepicker__day--selected {
+  background-color: #181a1c !important;
+}

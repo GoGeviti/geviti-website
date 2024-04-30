@@ -1,5 +1,6 @@
 import articleData from './article';
 import blogData from './blog';
+import checkoutData from './checkout';
 import contactUsData from './contactUs';
 import faqData from './faq';
 import footerData from './footer';
@@ -21,6 +22,7 @@ import statesData from './states';
 export {
 	articleData,
 	blogData,
+	checkoutData,
 	contactUsData,
 	faqData,
 	footerData,

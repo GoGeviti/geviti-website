@@ -59,7 +59,7 @@ const ShiftSection: React.FC<ShiftSectionProps> = ({
 				style={ !isMobile ? { height: contentHeight } : {} }>
 				<motion.span
 					className='flex flex-col'
-					initial={ contentHeight === 0 ? { y: '-50%' } : 'initial' }
+					initial={ contentHeight === 0 && !isMobile ? { y: '-50%' } : 'initial' }
 					animate='animate'
 					exit='exit'
 					key={ id }

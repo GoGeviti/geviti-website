@@ -34,14 +34,12 @@ const TreatmentOptions: React.FC<TreatmentOptionsProps> = ({ type = 'men' }) => 
 		return product.category.id === filterOptions[selectedTabIdx].id;
 	});
 	const [[imageCount, direction], setImageCount] = useState<[number, number]>([0, 0]);
-	const [prevProductIdx, setPrevProductIdx] = useState<number>(0);
 	const activeIdx = wrap(0, productsByCategory.length, imageCount);
 
 	const currentProduct = productsByCategory[activeIdx];
-	const shiftSectionAnimationProps = { transition: { duration: .75, ease: 'easeIn' }, initial: prevProductIdx === 0 && activeIdx === 0 ? { y: 0 } : 'initial' };
+	const shiftSectionAnimationProps = { transition: { duration: .75, ease: 'easeIn' }, initial: 'initial' };
 
 	const swipeToImage = (swipeDirection: number) => {
-		setPrevProductIdx(activeIdx);
 		setImageCount([imageCount + swipeDirection, swipeDirection]);
 	};
 
@@ -52,7 +50,6 @@ const TreatmentOptions: React.FC<TreatmentOptionsProps> = ({ type = 'men' }) => 
 		} else if (imageIdx < activeIdx) {
 			changeDirection = -1;
 		}
-		setPrevProductIdx(activeIdx);
 		setImageCount([imageIdx, changeDirection]);
 	};
 
@@ -67,7 +64,6 @@ const TreatmentOptions: React.FC<TreatmentOptionsProps> = ({ type = 'men' }) => 
 	const handleSelectTab = (tabIdx: number) => {
 		setSelectedTabIdx(tabIdx);
 		setImageCount([0, 1]);
-		setPrevProductIdx(0);
 	};
 
 	const renderButtonSwitchFilter = () => {
@@ -190,17 +186,6 @@ const TreatmentOptions: React.FC<TreatmentOptionsProps> = ({ type = 'men' }) => 
 							<p className='text-pretitle text-grey-primary max-lg:mb-2 max-lg:text-center'>
 								{ filterOptions[selectedTabIdx].preTitle }
 							</p>
-							{ /* <div className='max-lg:hidden'>
-								<ShiftSection
-									id={ `title-${ currentProduct.id }` }
-									prevElement={ renderProductTitle(productsByCategory[prevProductIdx].name) }
-									wrapperClassName='min-h-[72px] whitespace-nowrap'
-									animationProps={ shiftSectionAnimationProps }
-								>
-									{ renderProductTitle(currentProduct.name) }
-								</ShiftSection>
-							</div>
-							<div className='lg:hidden'> */ }
 							<ShiftSection
 								id={ `title-${ currentProduct.id }` }
 								isMobile
@@ -209,7 +194,6 @@ const TreatmentOptions: React.FC<TreatmentOptionsProps> = ({ type = 'men' }) => 
 							>
 								{ renderProductTitle(currentProduct.name) }
 							</ShiftSection>
-							{ /* </div> */ }
 
 							<div className='py-6 lg:hidden w-full flex flex-col gap-18px'>
 								<div className='h-[223px] w-full bg-grey-50 border border-grey-100 relative overflow-hidden rounded-[20px] shadow-slider-solution-1'>
@@ -234,7 +218,10 @@ const TreatmentOptions: React.FC<TreatmentOptionsProps> = ({ type = 'men' }) => 
 											<div
 												key={ `slider-productmobile-${ productIdx }` }
 												onClick={ () => skipToImage(productIdx) }
-												className={ clsxm('flex-none relative overflow-hidden w-[100px] h-[100px] rounded-[8.97px] border-[0.64px] border-grey-100', productIdx === activeIdx && 'shadow-slider-solution-2 bg-grey-50') }
+												className={ clsxm(
+													'flex-none transition-opacity transform duration-200 ease-in-out relative overflow-hidden w-[100px] h-[100px] rounded-[8.97px] border-[0.64px] border-grey-100',
+													productIdx === activeIdx ? 'shadow-slider-solution-2 bg-grey-50 opacity-100' : 'opacity-50'
+												) }
 											>
 												<div className='relative overflow-hidden w-full h-[105.38px] top-[5.83px]'>
 													<Image
@@ -278,7 +265,7 @@ const TreatmentOptions: React.FC<TreatmentOptionsProps> = ({ type = 'men' }) => 
 								</div>
 							</ShiftSection>
 
-							<div className='absolute bottom-0 xl:bottom-[69px] max-lg:hidden'>
+							<div className='absolute bottom-0 xl:bottom-[50px] 2xl:bottom-[69px] max-lg:hidden'>
 								<ButtonCta
 									href={ treatmentData.btnCta.href }
 									text={ treatmentData.btnCta.text }

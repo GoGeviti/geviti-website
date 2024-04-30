@@ -34,7 +34,8 @@ const config: Config = {
 				'15': '.15',
 			},
 			borderRadius: {
-				'19px': '19px'
+				'19px': '19px',
+				'20px': '20px',
 			},
 			colors: {
 				transparent: 'transparent',
@@ -88,6 +89,7 @@ const config: Config = {
 				'black-secondary': '#242628',
 				'black-landing': '#353738',
 				'black-icons': '#2C2F34',
+				'black-card': '#1D1F22',
 				'table-light': '#F9FAFB',
 				green: {
 					success: '#60C57C',

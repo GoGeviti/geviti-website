@@ -208,7 +208,7 @@ const MobileNav: React.FC<MobileNavProps> = ({
 									</motion.div>
 									<motion.div variants={ mobileLinkVarsOpacity }>
 										<Link
-											href='/'
+											href='https://app.gogeviti.com/'
 											className='flex items-center gap-2.5'>
 											<Image
 												src={ dashboardIcon }
