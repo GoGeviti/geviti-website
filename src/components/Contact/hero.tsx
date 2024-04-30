@@ -4,7 +4,9 @@ import Image from 'next/image';
 import clsxm from '@/helpers/clsxm';
 import { IHero } from '@/interfaces';
 
-import Navbar from '../Navbar';
+import Navbar from '../Navbar/Landing';
+
+// import Navbar from '../Navbar';
 
 type HeroProps = {
   hero: IHero.Hero;
@@ -14,11 +16,13 @@ type HeroProps = {
 const Hero: React.FC<HeroProps> = ({ hero, isPartner = false }) => {
 	return (
 		<div className='lg:px-3 lg:pt-15px overflow-hidden'>
-			<Navbar
+			{ /* <Navbar
 				theme={ isPartner ? 'light' : 'dark' }
 				withBgWhite
 				className='max-lg:!pt-0'
-			/>
+			/> */ }
+			<Navbar animationProps={ { variants: { hidden: { y: 0, opacity: 1 }, visible: { y: 0, opacity: 1 } } } } />
+
 			<div className='w-full h-[250px] md:h-[400px] max-md:mt-[60px] relative overflow-hidden'>
 				<div className='absolute inset-0 w-full h-full z-0'>
 					{ hero.image && (

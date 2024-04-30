@@ -6,7 +6,8 @@ import { IHero } from '@/interfaces';
 
 import CustomLink from '../CustomLink';
 import { ChevronRight } from '../Icons';
-import Navbar from '../Navbar';
+import Navbar from '../Navbar/Landing';
+// import Navbar from '../Navbar';
 
 type HeroProps = {
   hero: IHero.Hero;
@@ -16,9 +17,11 @@ type HeroProps = {
 const Hero: React.FC<HeroProps> = ({ hero, classname }) => {
 	return (
 		<div className='lg:px-3 lg:py-15px overflow-hidden'>
-			<Navbar
+			{ /* <Navbar
 				withBgWhite
-				className='max-md:!pt-0' />
+				className='max-md:!pt-0' /> */ }
+			<Navbar animationProps={ { variants: { hidden: { y: 0, opacity: 1 }, visible: { y: 0, opacity: 1 } } } } />
+
 			<div
 				className={ clsxm(
 					'bg-primary max-md:mt-[60px] h-[372px] lg:h-[calc(100vh-30px)] max-h-[750px] w-full lg:rounded-[19px] relative pt-11px lg:pt-5 ',

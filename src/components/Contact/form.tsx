@@ -98,7 +98,7 @@ const Form: React.FC<FormProps> = ({
 		<form
 			onSubmit={ e => handleSubmit(e) }
 			className='lg:px-3 overflow-hidden'>
-			<div className='w-full h-full lg:rounded-[19px] pt-[30px] lg:pt-[70px] overflow-hidden'>
+			<div className='w-full h-full lg:rounded-[19px] py-[30px] lg:py-[70px] overflow-hidden'>
 				<div className='max-md:container-center text-center sm:mx-auto flex flex-col gap-2 !max-w-sm md:!max-w-[360px]'>
 					{ renderInput('First Name*', 'John Doe', firstName, setFirstName, 'text', true) }
 					{ renderInput('Email Address*', 'Enter Email Address', email, setEmail, 'email', true) }
