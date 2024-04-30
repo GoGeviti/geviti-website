@@ -42,11 +42,13 @@ export const MenuItem = ({
 	active,
 	item,
 	children,
+	theme
 }: {
 	setActive: React.Dispatch<React.SetStateAction<string | null>>;
 	active: string | null;
 	item: string;
 	children?: React.ReactNode;
+	theme?: 'light' | 'dark';
 }) => {
 	return (
 		<div
@@ -57,7 +59,8 @@ export const MenuItem = ({
 				transition={ { duration: 0.3 } }
 				className={ clsxm(
 					'cursor-pointer text-sm font-medium !leading-[21px] inline-flex gap-2 items-center',
-					active === item ? 'text-blue-primary' : 'text-grey-50 hover:text-blue-primary'
+					active === item ? 'text-blue-primary' : 'text-grey-50 hover:text-blue-primary',
+					theme === 'light' && 'text-primary'
 				) }
 			>
 				{ item }
@@ -65,7 +68,8 @@ export const MenuItem = ({
 					<ChevronDown className={
 						clsxm(
 							'w-4 h-4 ease-out transform duration-200',
-							active === item ? 'rotate-180 text-blue-primary' : 'text-grey-50'
+							active === item ? 'rotate-180 text-blue-primary' : 'text-grey-50',
+							theme === 'light' && 'text-primary'
 						)
 					} />
 				</span>
@@ -81,7 +85,10 @@ export const MenuItem = ({
 							<motion.div
 								transition={ transition }
 								layoutId='active' // layoutId ensures smooth animation
-								className='bg-white/10 backdrop-blur-[27px] rounded-[9px] overflow-hidden border border-white/5'
+								className={ clsxm(
+									'bg-white/10 backdrop-blur-[27px] rounded-[9px] overflow-hidden border border-white/5',
+									theme === 'light' && 'bg-white'
+								) }
 							>
 								<motion.div
 									layout // layout ensures smooth animation
@@ -101,9 +108,10 @@ export const MenuItem = ({
 type NavbarProps = {
 	className?: string;
 	animationProps?: MotionProps;
+	theme?: 'light' | 'dark';
 };
 
-const Navbar: React.FC<NavbarProps> = ({ className, animationProps }) => {
+const Navbar: React.FC<NavbarProps> = ({ className, animationProps, theme }) => {
 	const [active, setActive] = useState<string | null>(null);
 	const [openSheet, setOpenSheet] = useState<boolean>(false);
 	const [selectedItem, setSelectedItem] = useState<number>(5);
@@ -199,12 +207,17 @@ const Navbar: React.FC<NavbarProps> = ({ className, animationProps }) => {
 					>
 						<nav
 							onMouseLeave={ () => setActive(null) }
-							className='relative overflow-visible visible h-[60px] lg:h-[69px] font-Poppins border border-white/5 backdrop-blur-[25px] p-18px lg:pl-[42px] lg:py-3 lg:pr-3 rounded-[100px] bg-white/10 flex items-center space-x-5 xl:space-x-[50px] w-full justify-between'>
+							className={
+								clsxm(
+									'relative overflow-visible visible h-[60px] lg:h-[69px] font-Poppins border border-white/5 backdrop-blur-[25px] p-18px lg:pl-[42px] lg:py-3 lg:pr-3 rounded-[100px] bg-white/10 flex items-center space-x-5 xl:space-x-[50px] w-full justify-between',
+									theme === 'light' && 'bg-white'
+								)
+							}>
 							<div className='flex items-center lg:space-x-5 xl:space-x-[50px]'>
 								<Link
 									href='/'
 									className='focus:ring-0 focus:outline-none'>
-									<GevitiLogo />
+									<GevitiLogo theme={ theme } />
 								</Link>
 								<div className='hidden lg:flex items-center space-x-5 xl:space-x-[50px]'>
 									{ navbarData.menu.map((menu, menuIdx) => {
@@ -214,13 +227,18 @@ const Navbar: React.FC<NavbarProps> = ({ className, animationProps }) => {
 													key={ menu.name }
 													setActive={ setActive }
 													active={ active }
-													item={ menu.name }>
+													item={ menu.name }
+													theme={ theme }
+												>
 													<div className='flex flex-col space-y-2'>
 														{ menu.items.map(menuChild => (
 															<CustomLink
 																key={ menuChild.name }
 																href={ menuChild.href }
-																className='text-grey-50 hover:text-blue-primary text-sm !leading-[21px]'
+																className={ clsxm(
+																	'text-grey-50 hover:text-blue-primary text-sm !leading-[21px]',
+																	theme === 'light' && 'text-primary'
+																) }
 															>{ menuChild.name }</CustomLink>
 														)) }
 													</div>
@@ -237,7 +255,8 @@ const Navbar: React.FC<NavbarProps> = ({ className, animationProps }) => {
 												onMouseEnter={ () => setActive(null) }
 												className={ clsxm(
 													'text-sm font-medium !leading-[21px]',
-													selectedItem === menuIdx ? 'text-blue-primary' : 'text-grey-50 hover:text-blue-primary'
+													selectedItem === menuIdx ? 'text-blue-primary' : 'text-grey-50 hover:text-blue-primary',
+													theme === 'light' && 'text-primary'
 												) }>
 												{ menu.name }
 											</CustomLink>

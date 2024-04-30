@@ -2,11 +2,15 @@ import Image from 'next/image';
 
 import navbarData from '@/constant/data/navbar';
 
-const GevitiLogo = () => {
+type GevitiLogoProps = {
+	theme?: 'light' | 'dark';
+}
+
+const GevitiLogo:React.FC<GevitiLogoProps> = ({ theme }) => {
 	return (
 		<div className='flex-shrink-0 relative overflow-hidden w-[85px] h-5'>
 			<Image
-				src={ navbarData.logoLight }
+				src={ theme === 'light' ? navbarData.logoDark : navbarData.logoLight }
 				alt='logo'
 				fill
 				priority
