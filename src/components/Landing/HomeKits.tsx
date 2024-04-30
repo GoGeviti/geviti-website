@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useCallback, useRef, useState } from 'react';
 import { AnimatePresence, motion, useScroll, useTransform } from 'framer-motion';
 import Image from 'next/image';
 
@@ -13,76 +13,7 @@ import LogoBlueLayer from '../../../public/images/landing/compressed/blue-geviti
 import CursorSlider from '../CursorSlider';
 import CustomLink from '../CustomLink';
 import { ArrowNarrowLeft, ArrowNarrowRight, ChevronRight } from '../Icons';
-
-const shiftVariants = {
-	initial: { y: '0%' },
-	animate: { y: '-50%' },
-	exit: { y: '0%' }
-};
-
-const shiftVariantsMobile = {
-	initial: {
-		y: 20,
-		opacity: 0,
-	},
-	animate: { y: 0, opacity: 1 },
-	exit: {
-		y: 20,
-		opacity: 0,
-	},
-};
-
-type ShiftSectionProps = {
-	children: React.ReactNode;
-	prevElement: React.ReactNode;
-	id: string;
-	isMobile?: boolean;
-	wrapperClassName?: string;
-};
-
-const ShiftSection: React.FC<ShiftSectionProps> = ({
-	children,
-	prevElement,
-	id,
-	isMobile,
-	wrapperClassName
-}) => {
-	const container = useRef<HTMLSpanElement>(null);
-	const [contentHeight, setContentHeight] = useState<number | string>(0);
-
-	useEffect(() => {
-		if (!isMobile) {
-			const clientHeight = container?.current?.clientHeight;
-			if (clientHeight) {
-				setContentHeight(clientHeight);
-			}
-		}
-	}, [id, isMobile]);
-
-	return (
-		<AnimatePresence initial={ false }>
-			<div
-				className={ clsxm('inline-block overflow-hidden', wrapperClassName) }
-				style={ !isMobile ? { height: contentHeight } : {} }>
-				<motion.span
-					className='flex flex-col'
-					initial='initial'
-					animate='animate'
-					exit='exit'
-					key={ id }
-					variants={ isMobile ? shiftVariantsMobile : shiftVariants }
-					transition={ {
-						duration: .9,
-						ease: 'easeIn'
-					} }
-				>
-					<span className={ clsxm('max-lg:hidden', contentHeight === 0 ? 'hidden' : '') }>{ prevElement }</span>
-					<span ref={ container }>{ children }</span>
-				</motion.span>
-			</div>
-		</AnimatePresence>
-	);
-};
+import ShiftSection from '../ShiftSection';
 
 const imgVariants = {
 	initial: (trend: number) => ({

@@ -1,8 +1,7 @@
 'use client';
 
-import React, { useRef, useState } from 'react';
-import SlickSlider, { Settings } from 'react-slick';
-import { motion } from 'framer-motion';
+import React, { useState } from 'react';
+import { AnimatePresence, motion, wrap } from 'framer-motion';
 import Image from 'next/image';
 
 import { solutionData } from '@/constant/data';
@@ -10,6 +9,17 @@ import clsxm from '@/helpers/clsxm';
 
 import ButtonCta from '../ButtonCta';
 import { CheckBlue, ChevronRight } from '../Icons';
+import ShiftSection from '../ShiftSection';
+
+const imageVariants = {
+	incoming: (direction: number) => ({
+		x: direction > 0 ? '100%' : '-100%'
+	}),
+	active: { x: 0 },
+	exit: (direction: number) => ({
+		x: direction > 0 ? '-100%' : '100%'
+	})
+};
 
 type TreatmentOptionsProps = {
 	type: 'men' | 'women';
@@ -17,46 +27,47 @@ type TreatmentOptionsProps = {
 
 const TreatmentOptions: React.FC<TreatmentOptionsProps> = ({ type = 'men' }) => {
 	const treatmentData = solutionData.treatmentOptions[type];
-	const sliderRef = useRef<SlickSlider>(null);
 
 	const [selectedTabIdx, setSelectedTabIdx] = useState<number>(0);
-	const [activeSlide, setActiveSlide] = useState<number>(0);
-
 	const filterOptions = treatmentData.tabs;
 	const productsByCategory = treatmentData.products.filter(product => {
 		return product.category.id === filterOptions[selectedTabIdx].id;
 	});
-	const currentProduct = productsByCategory[activeSlide];
+	const [[imageCount, direction], setImageCount] = useState<[number, number]>([0, 0]);
+	const [prevProductIdx, setPrevProductIdx] = useState<number>(0);
+	const activeIdx = wrap(0, productsByCategory.length, imageCount);
 
-	const settings: Settings = {
-		dots: false,
-		infinite: true,
-		speed: 750,
-		slidesToShow: 1,
-		slidesToScroll: 1,
-		beforeChange: (_, nextSlide: number) => {
-			setActiveSlide(nextSlide);
-		},
+	const currentProduct = productsByCategory[activeIdx];
+	const shiftSectionAnimationProps = { transition: { duration: .75, ease: 'easeIn' }, initial: prevProductIdx === 0 && activeIdx === 0 ? { y: 0 } : 'initial' };
+
+	const swipeToImage = (swipeDirection: number) => {
+		setPrevProductIdx(activeIdx);
+		setImageCount([imageCount + swipeDirection, swipeDirection]);
+	};
+
+	const skipToImage = (imageIdx: number) => {
+		let changeDirection = 0;
+		if (imageIdx > activeIdx) {
+			changeDirection = 1;
+		} else if (imageIdx < activeIdx) {
+			changeDirection = -1;
+		}
+		setPrevProductIdx(activeIdx);
+		setImageCount([imageIdx, changeDirection]);
 	};
 
 	const handleNext = () => {
-		if (sliderRef.current) {
-			sliderRef.current.slickNext();
-		}
+		swipeToImage(1);
 	};
 
 	const handlePrevious = () => {
-		if (sliderRef.current) {
-			sliderRef.current.slickPrev();
-		}
+		swipeToImage(-1);
 	};
 
 	const handleSelectTab = (tabIdx: number) => {
 		setSelectedTabIdx(tabIdx);
-		setActiveSlide(0);
-		if (sliderRef.current) {
-			sliderRef.current.slickGoTo(0);
-		}
+		setImageCount([0, 1]);
+		setPrevProductIdx(0);
 	};
 
 	const renderButtonSwitchFilter = () => {
@@ -143,6 +154,14 @@ const TreatmentOptions: React.FC<TreatmentOptionsProps> = ({ type = 'men' }) => 
 		);
 	};
 
+	const renderProductTitle = (text: string) => {
+		return (
+			<h3 className='text-2xl md:text-3xl lg:text-5xl !leading-normal text-primary max-lg:text-center'>
+				{ text }
+			</h3>
+		);
+	};
+
 	return (
 		<div className='lg:px-3 py-6 overflow-hidden font-Poppins'>
 			<div className='bg-white rounded-19px py-6 lg:pt-[42px] lg:pb-[50px] w-full'>
@@ -167,13 +186,31 @@ const TreatmentOptions: React.FC<TreatmentOptionsProps> = ({ type = 'men' }) => 
 
 				<div className='w-full container-center'>
 					<div className='pt-[42px] lg:pt-[106px] grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-[22px]'>
-						<div className='w-full'>
+						<div className='w-full relative'>
 							<p className='text-pretitle text-grey-primary max-lg:mb-2 max-lg:text-center'>
 								{ filterOptions[selectedTabIdx].preTitle }
 							</p>
-							<h3 className='text-2xl md:text-3xl lg:text-5xl !leading-normal text-primary max-lg:text-center'>
-								{ currentProduct.name }
-							</h3>
+							{ /* <div className='max-lg:hidden'>
+								<ShiftSection
+									id={ `title-${ currentProduct.id }` }
+									prevElement={ renderProductTitle(productsByCategory[prevProductIdx].name) }
+									wrapperClassName='min-h-[72px] whitespace-nowrap'
+									animationProps={ shiftSectionAnimationProps }
+								>
+									{ renderProductTitle(currentProduct.name) }
+								</ShiftSection>
+							</div>
+							<div className='lg:hidden'> */ }
+							<ShiftSection
+								id={ `title-${ currentProduct.id }` }
+								isMobile
+								wrapperClassName='w-full'
+								animationProps={ shiftSectionAnimationProps }
+							>
+								{ renderProductTitle(currentProduct.name) }
+							</ShiftSection>
+							{ /* </div> */ }
+
 							<div className='py-6 lg:hidden w-full flex flex-col gap-18px'>
 								<div className='h-[223px] w-full bg-grey-50 border border-grey-100 relative overflow-hidden rounded-[20px] shadow-slider-solution-1'>
 									<span className='absolute z-10 left-[17%] top-[37px] rounded-[7.35px] bg-grey-secondary py-2 px-3 text-xs !leading-none font-medium text-primary -tracking-0.04em shadow-[0px_2.10101px_12.6061px_rgba(0,0,0,0.15)]'>
@@ -196,8 +233,8 @@ const TreatmentOptions: React.FC<TreatmentOptionsProps> = ({ type = 'men' }) => 
 										return (
 											<div
 												key={ `slider-productmobile-${ productIdx }` }
-												onClick={ () => setActiveSlide(productIdx) }
-												className={ clsxm('flex-none relative overflow-hidden w-[100px] h-[100px] rounded-[8.97px] border-[0.64px] border-grey-100', productIdx === activeSlide && 'shadow-slider-solution-2 bg-grey-50') }
+												onClick={ () => skipToImage(productIdx) }
+												className={ clsxm('flex-none relative overflow-hidden w-[100px] h-[100px] rounded-[8.97px] border-[0.64px] border-grey-100', productIdx === activeIdx && 'shadow-slider-solution-2 bg-grey-50') }
 											>
 												<div className='relative overflow-hidden w-full h-[105.38px] top-[5.83px]'>
 													<Image
@@ -215,28 +252,33 @@ const TreatmentOptions: React.FC<TreatmentOptionsProps> = ({ type = 'men' }) => 
 								</div>
 							</div>
 
-							<div className='flex flex-col'>
-								<p className='max-lg:order-1 mt-4 lg:mt-3.5 text-xs !leading-5 lg:text-lg lg:!leading-normal text-grey-400'>
-									{ currentProduct.description }
-								</p>
+							<ShiftSection
+								id={ `content-${ currentProduct.id }` }
+								animationProps={ shiftSectionAnimationProps }
+								isMobile>
+								<div className='grid'>
+									<p className='text-xs !leading-5 lg:text-lg lg:!leading-normal text-grey-400 max-lg:order-1 mt-4 lg:mt-3.5'>
+										{ currentProduct.description }
+									</p>
 
-								<div className='lg:mt-16 grid grid-cols-2 lg:grid-cols-3 gap-3.5 lg:gap-6'>
-									{ currentProduct.list.map((item, itemIdx) => {
-										return (
-											<div
-												key={ `item-${ itemIdx }` }
-												className='flex items-center gap-2'>
-												<CheckBlue className='flex-shrink-0 w-3.5 h-3.5' />
-												<span className='text-sm lg:text-xs !leading-normal text-primary lg:max-w-[112px]'>
-													{ item }
-												</span>
-											</div>
-										);
-									}) }
+									<div className='lg:mt-16 grid grid-cols-2 lg:grid-cols-3 gap-3.5 lg:gap-6'>
+										{ currentProduct.list.map((item, itemIdx) => {
+											return (
+												<div
+													key={ `item-${ itemIdx }` }
+													className='flex items-center gap-2'>
+													<CheckBlue className='flex-shrink-0 w-3.5 h-3.5' />
+													<span className='text-sm lg:text-xs !leading-normal text-primary lg:max-w-[112px]'>
+														{ item }
+													</span>
+												</div>
+											);
+										}) }
+									</div>
 								</div>
-							</div>
+							</ShiftSection>
 
-							<div className='flex mt-16 max-lg:hidden'>
+							<div className='absolute bottom-0 xl:bottom-[69px] max-lg:hidden'>
 								<ButtonCta
 									href={ treatmentData.btnCta.href }
 									text={ treatmentData.btnCta.text }
@@ -246,23 +288,26 @@ const TreatmentOptions: React.FC<TreatmentOptionsProps> = ({ type = 'men' }) => 
 						<div className='w-full h-full max-lg:hidden'>
 							<div className='w-full h-full lg:h-[575px] flex justify-center relative'>
 								<div>
-									{ renderButtonSlider('prev', activeSlide === 0) }
+									{ renderButtonSlider('prev', activeIdx === 0) }
 								</div>
 								<div className='lg:py-6 w-full h-full flex justify-center relative'>
-									<div className='relative max-w-[476.8px] w-full h-full z-10'>
-										<SlickSlider
-											ref={ sliderRef }
-											{ ...settings }
-											className='h-[474.79px] lg:h-[527px] relative overflow-hidden'
-										>
-											{ productsByCategory.map((product, productIdx) => (
-												<div
-													data-index={ productIdx }
-													key={ product.id }
-													className='relative overflow-hidden w-full h-[474.79px] lg:h-[527px]'
-												>
+									<div className='relative max-w-[476.8px] w-full h-full z-10 overflow-hidden'>
+										<AnimatePresence
+											initial={ false }
+											custom={ direction }>
+											<motion.div
+												key={ `imageslider-${ imageCount }` }
+												custom={ direction }
+												variants={ imageVariants }
+												initial='incoming'
+												animate='active'
+												exit='exit'
+												transition={ { ease: 'easeInOut', duration: .75 } }
+												className='absolute inset-0 w-full h-full'
+											>
+												<div className='relative overflow-hidden w-full h-[474.79px] lg:h-[527px]'>
 													<Image
-														src={ product.image }
+														src={ currentProduct.image }
 														alt=''
 														sizes='(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 100vw'
 														quality={ 100 }
@@ -272,12 +317,12 @@ const TreatmentOptions: React.FC<TreatmentOptionsProps> = ({ type = 'men' }) => 
 
 													<div className='absolute top-[27px] lg:top-4 left-0 lg:left-[27px] z-20 py-3 px-6 bg-grey-secondary rounded-[14px] shadow-[0px_4px_24px_0px_rgba(0,0,0,0.15)]'>
 														<span className='text-lg !leading-[26px] font-medium -tracking-0.04em'>
-															As low as ${ product.price }/m*
+															As low as ${ currentProduct.price }/m*
 														</span>
 													</div>
 												</div>
-											)) }
-										</SlickSlider>
+											</motion.div>
+										</AnimatePresence>
 									</div>
 								</div>
 								{ renderButtonSlider('next', productsByCategory.length <= 1) }
