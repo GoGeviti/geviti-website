@@ -230,6 +230,7 @@ const TreatmentOptions: React.FC<TreatmentOptionsProps> = ({ type = 'men' }) => 
 														sizes='(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 100vw'
 														quality={ 100 }
 														fill
+														priority
 														className='object-contain w-full h-full pointer-events-none'
 													/>
 												</div>

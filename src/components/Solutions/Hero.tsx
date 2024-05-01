@@ -19,7 +19,7 @@ const Hero: React.FC<{ type: 'men' | 'women'; }> = ({ type }) => {
 			<Image
 				src={ imageMobile ? heroData.imageMobile : heroData.image }
 				alt='hero'
-				priority={ imageType === 'desktop' }
+				priority={ true }
 				className={ clsxm(
 					'object-cover pointer-events-none',
 					imageMobile ? 'md:hidden object-center' : 'md:block hidden object-right'
@@ -34,7 +34,7 @@ const Hero: React.FC<{ type: 'men' | 'women'; }> = ({ type }) => {
 	return (
 		<div className='lg:px-3 lg:pt-3 overflow-hidden font-Poppins'>
 			<Navbar animationProps={ { variants: { hidden: { y: 0, opacity: 1 }, visible: { y: 0, opacity: 1 } } } } />
-			<div className='bg-primary h-[calc(100svh+14px)] lg:h-[calc(100vh-12px)] w-full overflow-hidden max-lg:rounded-t-none rounded-19px relative pt-11px lg:pt-5'>
+			<div className='bg-primary h-[calc(100svh+14px)] lg:h-[calc(100vh-202px)] w-full overflow-hidden max-lg:rounded-t-none rounded-19px relative pt-11px lg:pt-5'>
 				<div className='absolute inset-0 w-full h-full'>
 					<div className='relative overflow-hidden w-full h-full'>
 						{ renderImage('desktop') }
