@@ -51,7 +51,22 @@ export default function IntroScreen({ children, src, type = 'video' }: IntroScre
 
 		if (type === 'image') {
 			return (
-				<div className='w-[145px] h-[34.12px] relative overflow-hidden'>
+				<motion.div
+					initial={ {
+						y: '100%',
+						scale: 0.75,
+						opacity: 0
+					} }
+					animate={ {
+						y: 0,
+						opacity: 1,
+						scale: 1,
+						transition: {
+							duration: 1.3,
+							ease: [0.76, 0, 0.24, 1]
+						}
+					} }
+					className='w-[145px] h-[34.12px] relative overflow-hidden'>
 					<Image
 						src={ src ?? '/images/logo/logo_light.webp' }
 						alt='geviti'
@@ -59,7 +74,7 @@ export default function IntroScreen({ children, src, type = 'video' }: IntroScre
 						fill
 						className='w-full h-full object-contain'
 					/>
-				</div>
+				</motion.div>
 			);
 		}
 
@@ -76,7 +91,7 @@ export default function IntroScreen({ children, src, type = 'video' }: IntroScre
 					},
 					enter: {
 						top: '-110vh',
-						transition: { duration: .75, delay: 2.1, ease: [0.76, 0, 0.24, 1] },
+						transition: { duration: .75, delay: type === 'video' ? 2.1 : 1.5, ease: [0.76, 0, 0.24, 1] },
 						transitionEnd: {
 							top: '110vh'
 						}
