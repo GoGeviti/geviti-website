@@ -32,8 +32,8 @@ const sliderVariants = {
 };
 const scaleVariants = {
 	initial: { scale: 0, opacity: 0 },
-	enter: { scale: 1, opacity: 1, transition: { duration: 0.4, ease: [0.76, 0, 0.24, 1] } },
-	closed: { scale: 0, opacity: 0, transition: { duration: 0.4, ease: [0.32, 0, 0.67, 0] } }
+	enter: { scale: 1, opacity: 1, transition: { duration: 0.3, ease: [0.76, 0, 0.24, 1] } },
+	closed: { scale: 0, opacity: 0, transition: { duration: 0.3, ease: [0.32, 0, 0.67, 0] } }
 };
 
 const sliderTransition = {
@@ -47,7 +47,6 @@ const SliderCustom: React.FC = () => {
 	const sliderRef = useRef<SlickSlider>(null);
 
 	const [[imageCount, direction], setImageCount] = useState<[number, number]>([0, 0]);
-	const [cursorActive, setCursorActive] = useState<boolean>(false);
 
 	const windowDimensions = useWindowDimensions();
 	const isMobile = windowDimensions.width < screens.lg;
@@ -203,16 +202,10 @@ const SliderCustom: React.FC = () => {
 							</div>
 						</div>
 					</div>
-					<div
-						className='max-lg:hidden lg:absolute lg:inset-0 lg:right-0 lg:left-1/2 group lg:cursor-none'
-						onMouseEnter={ () => setCursorActive(true) }
-						onMouseLeave={ () => setCursorActive(false) }
-					>
+					<div className='max-lg:hidden lg:absolute lg:inset-0 lg:right-0 lg:left-1/2 group lg:cursor-none'>
 						<CursorSlider
 							animationProps={ {
-								variants: scaleVariants,
-								initial: 'initial',
-								animate: cursorActive ? 'enter' : 'closed'
+								variants: scaleVariants
 							} }
 							onClick={ () => swipeToImage(1) }
 						/>
