@@ -41,7 +41,6 @@ const HomeKits: React.FC = () => {
 	const [idx, setIdx] = useState<number>(0);
 	const [prevIdx, setPrevIdx] = useState<number>(idx);
 	const [trend, setTrend] = useState<number>(-1);
-	// const trend = idx > prevIdx ? 1 : -1;
 
 	const activeIdx = Math.abs(idx % list.length);
 	const currentData = list[activeIdx];
@@ -307,12 +306,10 @@ const HomeKits: React.FC = () => {
 					</div>
 				</div>
 			</div>
-			<div className='group relative lg:cursor-none'>
-				<CursorSlider
-					className='opacity-0 transition-opacity duration-300 group-hover:opacity-100'
-					onClick={ handleNext }
-				/>
-				<div className='flex h-full justify-center lg:cursor-none relative pt-[294px] lg:pt-[451px] lg:max-w-[1360px] lg:mx-auto'>
+			<div className='group relative'>
+				<CursorSlider onClick={ handleNext } />
+
+				<div className='flex h-full justify-center relative pt-[294px] lg:pt-[451px] lg:max-w-[1360px] lg:mx-auto'>
 					<motion.div
 						style={ { y: 0 } }
 						className='px-4 lg:px-10 flex flex-col z-1'>
