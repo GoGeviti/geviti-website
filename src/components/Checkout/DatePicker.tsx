@@ -31,6 +31,7 @@ const CustomDatePicker: React.FC<CustomDatePickerProps> = ({
 					isError ? 'ring-1 ring-red-primary focus:ring-1 focus:ring-red-primary' : '!ring-0 focus:!ring-1 !ring-grey-primary',
 				) }
 				calendarClassName='!font-Poppins'
+				open={ false }
 			/>
 			{ isError && errorMessage && (
 				<p className='text-red-primary text-[10px] mt-1 text-left'>{ errorMessage }</p>

@@ -8,7 +8,7 @@ const HomePage: NextPage = async() => {
 	const isCloseBanner = getCookie('close_hero_banner');
 
 	return (
-		<IntroScreen>
+		<IntroScreen type='video'>
 			<div className='flex min-h-screen flex-col w-full bg-grey-background font-Poppins'>
 				<LandingComponent.Hero showBanner={ !isCloseBanner } />
 				<LandingComponent.Steps />

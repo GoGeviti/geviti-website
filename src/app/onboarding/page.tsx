@@ -5,7 +5,7 @@ import IntroScreen from '@/components/IntroScreen';
 
 const OnboardingPage: NextPage = async() => {
 	return (
-		<IntroScreen>
+		<IntroScreen type='image'>
 			<CheckoutComponent.Main />
 		</IntroScreen>
 	);

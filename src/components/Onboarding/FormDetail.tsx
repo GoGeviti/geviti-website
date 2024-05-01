@@ -129,6 +129,7 @@ const FormDetail: React.FC<FormDetailProps> = ({ onSubmit, userData, isAlreadyOn
 							formik.errors.birthdate ? 'bg-red-primary-background ring-[1.5px] ring-red-primary' : 'bg-white'
 						) }
 						calendarClassName='!font-Poppins'
+						open={ false }
 					/>
 				</div>
 				{ formik.errors.birthdate && <ErrorMessage>{ formik.errors.birthdate }</ErrorMessage> }

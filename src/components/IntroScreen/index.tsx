@@ -2,12 +2,20 @@
 
 import { useEffect, useRef } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
+import Image from 'next/image';
 
-export default function IntroScreen({ children }: { children: React.ReactNode; }) {
+type IntroScreenProps = {
+	src?: string;
+	type?: 'video' | 'image';
+	screenId?: string;
+	children: React.ReactNode;
+};
+
+export default function IntroScreen({ children, src, type = 'video' }: IntroScreenProps) {
 	const vidRef = useRef<HTMLVideoElement | null>(null);
 
 	const handlePlayVideo = () => {
-		if (vidRef.current) {
+		if (vidRef.current && type === 'video') {
 			vidRef.current.play();
 		}
 	};
@@ -20,6 +28,43 @@ export default function IntroScreen({ children }: { children: React.ReactNode; }
 			document.body.style.overflowY = 'unset';
 		};
 	}, []);
+
+	const renderContent = () => {
+		if (type === 'video') {
+			return (
+				<video
+					ref={ vidRef }
+					muted
+					width={ 3432 }
+					height={ 2160 }
+					playsInline
+					className='w-full h-[540px] lg:h-full object-cover'
+				>
+					<source
+						src={ src ?? '/videos/intro.mp4' }
+						type='video/mp4'
+					/>
+					Your browser does not support the video tag.
+				</video>
+			);
+		}
+
+		if (type === 'image') {
+			return (
+				<div className='w-[145px] h-[34.12px] relative overflow-hidden'>
+					<Image
+						src={ src ?? '/images/logo/logo_light.webp' }
+						alt='geviti'
+						priority
+						fill
+						className='w-full h-full object-contain'
+					/>
+				</div>
+			);
+		}
+
+		return null;
+	};
 
 	return (
 		<AnimatePresence>
@@ -49,20 +94,7 @@ export default function IntroScreen({ children }: { children: React.ReactNode; }
 				className='w-screen fixed h-[110vh] overflow-hidden top-0 z-[9999] left-0 pointer-events-none bg-blue-primary'
 			>
 				<div className='flex justify-center items-center h-screen w-full bg-primary'>
-					<video
-						ref={ vidRef }
-						muted
-						width={ 3432 }
-						height={ 2160 }
-						playsInline
-						className='w-full h-[540px] lg:h-full object-cover'
-					>
-						<source
-							src='/videos/intro.mp4'
-							type='video/mp4'
-						/>
-						Your browser does not support the video tag.
-					</video>
+					{ renderContent() }
 				</div>
 			</motion.div>
 			<motion.div key='content-children'>

@@ -1,5 +1,5 @@
 'use client';
-
+{ /* eslint-disable no-unused-vars, no-console */ }
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import styled from 'styled-components';
@@ -32,22 +32,22 @@ const Column = styled.div`
 `;
 
 enum FormStep {
-  EMPTY,
-  TRANSITION_WELCOME,
-  QUESTION_ALREADY_ON_HRT, // If no, continue. If yes, FORM_NAME_EMAIL
-  QUESTION_HOW_OFTEN_LETHARGIC,
-  TRANSITION_NOT_ALONE,
-  QUESTION_DIFFICULTY_WEIGHT,
-  TRANSITION_HORMONES,
-  QUESTION_LIBIDO,
-  QUESTION_GOALS,
-  FORM_NAME_EMAIL,
-  FORM_MORE_INFO,
-  TRANSITION_ELIGIBLE,
-  PRICING_TABLE,
-  SWITCH_PRICING_TABLE,
-  CHECKOUT_SUMMARY,
-  CONFIRM_WAITLIST_EMAIL,
+	EMPTY,
+	TRANSITION_WELCOME,
+	QUESTION_ALREADY_ON_HRT, // If no, continue. If yes, FORM_NAME_EMAIL
+	QUESTION_HOW_OFTEN_LETHARGIC,
+	TRANSITION_NOT_ALONE,
+	QUESTION_DIFFICULTY_WEIGHT,
+	TRANSITION_HORMONES,
+	QUESTION_LIBIDO,
+	QUESTION_GOALS,
+	FORM_NAME_EMAIL,
+	FORM_MORE_INFO,
+	TRANSITION_ELIGIBLE,
+	PRICING_TABLE,
+	SWITCH_PRICING_TABLE,
+	CHECKOUT_SUMMARY,
+	CONFIRM_WAITLIST_EMAIL,
 }
 
 const currentViewState = (
@@ -114,8 +114,8 @@ const PreCheckoutFlowPage = () => {
 		FormStep.FORM_NAME_EMAIL,
 	);
 	const [selectedPlanID, setSelectedPlanID] = useState<
-    'essentials' | 'ultimate' | 'comprehensive'
-  >('essentials');
+		'essentials' | 'ultimate' | 'comprehensive'
+	>('essentials');
 	const [selectedSex, setSelectedSex] = useState<'male' | 'female' | ''>('');
 	const [isAlreadyOnHRT, setIsAlreadyOnHRT] = useState(false);
 	const [email, setEmail] = useState('');
@@ -125,7 +125,7 @@ const PreCheckoutFlowPage = () => {
 			className='font-Poppins'
 			style={ {
 				background:
-          formStep === FormStep.CHECKOUT_SUMMARY ? '#181A1C' : undefined,
+					formStep === FormStep.CHECKOUT_SUMMARY ? '#181A1C' : undefined,
 			} }
 		>
 			<PreCheckoutNav
@@ -137,8 +137,8 @@ const PreCheckoutFlowPage = () => {
 
 					if (
 						formStep - 1 === FormStep.TRANSITION_NOT_ALONE ||
-            formStep - 1 === FormStep.TRANSITION_HORMONES ||
-            formStep - 1 === FormStep.TRANSITION_ELIGIBLE
+						formStep - 1 === FormStep.TRANSITION_HORMONES ||
+						formStep - 1 === FormStep.TRANSITION_ELIGIBLE
 					) {
 						setFormStep(prev => prev - 2);
 					} else {
@@ -149,14 +149,14 @@ const PreCheckoutFlowPage = () => {
 			<PreCheckoutProgressBar percentage={ formStepToPercentage(formStep) } />
 			<StepContainer style={ { background: formStepToBackground(formStep) } }>
 				{ currentViewState(FormStep.TRANSITION_WELCOME, formStep) !==
-          ViewState.HIDDEN && (
+					ViewState.HIDDEN && (
 					<WelcomeTransition
 						viewState={ currentViewState(FormStep.TRANSITION_WELCOME, formStep) }
 						onContinue={ () => setFormStep(prev => prev + 1) }
 					/>
 				) }
 				{ currentViewState(FormStep.QUESTION_ALREADY_ON_HRT, formStep) !==
-          ViewState.HIDDEN && (
+					ViewState.HIDDEN && (
 					<QuestionOnHRT
 						viewState={ currentViewState(
 							FormStep.QUESTION_ALREADY_ON_HRT,
@@ -173,7 +173,7 @@ const PreCheckoutFlowPage = () => {
 					/>
 				) }
 				{ currentViewState(FormStep.QUESTION_HOW_OFTEN_LETHARGIC, formStep) !==
-          ViewState.HIDDEN && (
+					ViewState.HIDDEN && (
 					<QuestionLethargic
 						viewState={ currentViewState(
 							FormStep.QUESTION_HOW_OFTEN_LETHARGIC,
@@ -183,7 +183,7 @@ const PreCheckoutFlowPage = () => {
 					/>
 				) }
 				{ currentViewState(FormStep.TRANSITION_NOT_ALONE, formStep) !==
-          ViewState.HIDDEN && (
+					ViewState.HIDDEN && (
 					<NotAloneTransition
 						viewState={ currentViewState(
 							FormStep.TRANSITION_NOT_ALONE,
@@ -193,7 +193,7 @@ const PreCheckoutFlowPage = () => {
 					/>
 				) }
 				{ currentViewState(FormStep.QUESTION_DIFFICULTY_WEIGHT, formStep) !==
-          ViewState.HIDDEN && (
+					ViewState.HIDDEN && (
 					<QuestionWeight
 						viewState={ currentViewState(
 							FormStep.QUESTION_DIFFICULTY_WEIGHT,
@@ -203,28 +203,28 @@ const PreCheckoutFlowPage = () => {
 					/>
 				) }
 				{ currentViewState(FormStep.TRANSITION_HORMONES, formStep) !==
-          ViewState.HIDDEN && (
+					ViewState.HIDDEN && (
 					<HormonesTransition
 						viewState={ currentViewState(FormStep.TRANSITION_HORMONES, formStep) }
 						onContinue={ () => setFormStep(prev => prev + 1) }
 					/>
 				) }
 				{ currentViewState(FormStep.QUESTION_LIBIDO, formStep) !==
-          ViewState.HIDDEN && (
+					ViewState.HIDDEN && (
 					<QuestionLibido
 						viewState={ currentViewState(FormStep.QUESTION_LIBIDO, formStep) }
 						onSelectOption={ () => setFormStep(prev => prev + 1) }
 					/>
 				) }
 				{ currentViewState(FormStep.QUESTION_GOALS, formStep) !==
-          ViewState.HIDDEN && (
+					ViewState.HIDDEN && (
 					<QuestionGoals
 						viewState={ currentViewState(FormStep.QUESTION_GOALS, formStep) }
 						onSelectOption={ () => setFormStep(prev => prev + 1) }
 					/>
 				) }
 				{ currentViewState(FormStep.FORM_NAME_EMAIL, formStep) !==
-          ViewState.HIDDEN && (
+					ViewState.HIDDEN && (
 					<PreCheckoutNameCollection
 						viewState={ currentViewState(FormStep.FORM_NAME_EMAIL, formStep) }
 						onContinue={ (name, userEmail) => {
@@ -235,7 +235,7 @@ const PreCheckoutFlowPage = () => {
 					/>
 				) }
 				{ currentViewState(FormStep.FORM_MORE_INFO, formStep) !==
-          ViewState.HIDDEN && (
+					ViewState.HIDDEN && (
 					<PreCheckoutFullForm
 						viewState={ currentViewState(FormStep.FORM_MORE_INFO, formStep) }
 						onContinue={ (usState, sex) => {
@@ -249,7 +249,7 @@ const PreCheckoutFlowPage = () => {
 					/>
 				) }
 				{ currentViewState(FormStep.CONFIRM_WAITLIST_EMAIL, formStep) !==
-          ViewState.HIDDEN && (
+					ViewState.HIDDEN && (
 					<PreCheckoutWaitlist
 						viewState={ currentViewState(
 							FormStep.CONFIRM_WAITLIST_EMAIL,
@@ -259,7 +259,7 @@ const PreCheckoutFlowPage = () => {
 					/>
 				) }
 				{ currentViewState(FormStep.PRICING_TABLE, formStep) !==
-          ViewState.HIDDEN && (
+					ViewState.HIDDEN && (
 					<SuccessTransition
 						viewState={ currentViewState(FormStep.TRANSITION_ELIGIBLE, formStep) }
 						isAlreadyOnHRT={ isAlreadyOnHRT }
@@ -273,7 +273,7 @@ const PreCheckoutFlowPage = () => {
 					/>
 				) }
 				{ currentViewState(FormStep.PRICING_TABLE, formStep) !==
-          ViewState.HIDDEN && (
+					ViewState.HIDDEN && (
 					<PreCheckoutPricingTable
 						viewState={ currentViewState(FormStep.PRICING_TABLE, formStep) }
 						onContinue={ planID => {
@@ -283,7 +283,7 @@ const PreCheckoutFlowPage = () => {
 					/>
 				) }
 				{ currentViewState(FormStep.SWITCH_PRICING_TABLE, formStep) !==
-          ViewState.HIDDEN && (
+					ViewState.HIDDEN && (
 					<PreCheckoutSwitchPricingTable
 						viewState={ currentViewState(
 							FormStep.SWITCH_PRICING_TABLE,
@@ -295,16 +295,15 @@ const PreCheckoutFlowPage = () => {
 					/>
 				) }
 				{ currentViewState(FormStep.CHECKOUT_SUMMARY, formStep) !==
-          ViewState.HIDDEN && (
+					ViewState.HIDDEN && (
 					<PreCheckoutSummary
 						viewState={ currentViewState(FormStep.CHECKOUT_SUMMARY, formStep) }
 						selectedPlanID={ isAlreadyOnHRT ? 'switch' : selectedPlanID }
 						onContinue={ planID => {
 							router.push(
-								`https://geviti.myshopify.com/cart/${
-									selectedSex === 'male'
-										? mensVariantIDs[planID]
-										: womensVariantIDs[planID]
+								`https://geviti.myshopify.com/cart/${ selectedSex === 'male'
+									? mensVariantIDs[planID]
+									: womensVariantIDs[planID]
 								}:1`,
 							);
 							setFormStep(prev => prev + 1);
