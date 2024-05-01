@@ -48,7 +48,6 @@
     "postcss": "8.4.28",
     "qs": "^6.11.2",
     "react": "18.2.0",
-    "react-date-picker": "^10.5.2",
     "react-datepicker": "^6.9.0",
     "react-dom": "18.2.0",
     "react-fast-marquee": "^1.6.4",

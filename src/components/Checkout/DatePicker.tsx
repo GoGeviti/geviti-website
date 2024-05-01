@@ -5,8 +5,6 @@ import DatePicker from 'react-datepicker';
 
 import clsxm from '@/helpers/clsxm';
 
-import 'react-datepicker/dist/react-datepicker.css';
-
 type CustomDatePickerProps = {
 	value: Date | null;
 	onSelect: (date: Date) => void; // eslint-disable-line no-unused-vars

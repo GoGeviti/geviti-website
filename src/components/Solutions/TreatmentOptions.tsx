@@ -275,7 +275,7 @@ const TreatmentOptions: React.FC<TreatmentOptionsProps> = ({ type = 'men' }) => 
 						<div className='w-full h-full max-lg:hidden'>
 							<div className='w-full h-full lg:h-[575px] flex justify-center relative'>
 								<div>
-									{ renderButtonSlider('prev', activeIdx === 0) }
+									{ renderButtonSlider('prev') }
 								</div>
 								<div className='lg:py-6 w-full h-full flex justify-center relative'>
 									<div className='relative max-w-[476.8px] w-full h-full z-10 overflow-hidden'>
