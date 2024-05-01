@@ -123,7 +123,7 @@ const Form: React.FC<{
 								/>
 
 								<Select
-									placeholder='Gender'
+									placeholder='Sex'
 									options={ gender }
 									value={ formik.values.gender }
 									onChange={ val => formik.setFieldValue('gender', val) }

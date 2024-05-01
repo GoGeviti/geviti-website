@@ -131,6 +131,7 @@ const HomeKits: React.FC = () => {
 					alt=''
 					width={ 1246.87 }
 					height={ 831.91 }
+					priority
 					className={ clsxm('w-[1246.87px] mt-[60px] max-lg:hidden', defaultImageDesktopClassName) }
 				/>
 			);
@@ -143,6 +144,7 @@ const HomeKits: React.FC = () => {
 					alt=''
 					width={ 1325.33 }
 					height={ 994 }
+					priority
 					className={ clsxm('w-[1325.33px] -mt-[60px]', defaultImageDesktopClassName) }
 				/>
 			);
@@ -155,6 +157,7 @@ const HomeKits: React.FC = () => {
 					alt=''
 					width={ 651.26 }
 					height={ 585.62 }
+					priority
 					className={ clsxm('w-[651.26px] relative left-1/2 -translate-x-1/2 top-[207px]', defaultImageDesktopClassName) }
 				/>
 			);

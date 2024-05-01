@@ -24,7 +24,7 @@ export const FormCheckoutSchema = yup.object().shape({
 		.label('State'),
 	gender: yup.string()
 		.required()
-		.label('Gender'),
+		.label('Sex'),
 	birthdate: yup.date()
 		.required()
 		.label('Date of birth')

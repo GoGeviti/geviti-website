@@ -57,13 +57,11 @@ const Hero: React.FC<{ type: 'men' | 'women'; }> = ({ type }) => {
 								type === 'men' && 'max-lg:pt-[39px] max-lg:bg-backdrop-hero-membership-bottom-mobile'
 							) }>
 								<div className='container-center w-full'>
-									<div>
-										<span className='overflow-hidden inline-block'>
-											<h2 className='text-grey-secondary font-Poppins inline-block font-semibold text-[10px] sm:text-xs lg:text-sm !leading-6 uppercase tracking-0.11em'>
-												{ heroData.preTitle }
-											</h2>
-										</span>
-									</div>
+									<span className='overflow-hidden inline-block'>
+										<h2 className='text-grey-secondary font-Poppins inline-block font-semibold text-[10px] sm:text-xs lg:text-sm !leading-6 uppercase tracking-0.11em'>
+											{ heroData.preTitle }
+										</h2>
+									</span>
 
 									<h1 className='max-lg:mt-5px font-medium text-[7.6vw] xs:text-3xl md:text-4xl lg:text-[5vh] xl:text-[46px] !leading-normal -tracking-0.04em text-grey-secondary'>
 										<span

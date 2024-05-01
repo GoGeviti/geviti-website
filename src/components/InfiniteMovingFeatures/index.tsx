@@ -6,8 +6,6 @@ import gsap from 'gsap';
 import { Draggable } from 'gsap/Draggable';
 
 import clsxm from '@/helpers/clsxm';
-import { screens } from '@/helpers/style';
-import { useWindowDimensions } from '@/hooks';
 
 import PopoverPills from './PopoverPills';
 
@@ -78,9 +76,6 @@ const InfiniteMovingFeatures: React.FC<InfiniteMovingFeaturesProps> = ({
 }) => {
 	const containerRefs = useRef<Array<HTMLDivElement | null>>([]);
 	const loopRefs = useRef<Array<gsap.core.Timeline | undefined>>([]);
-
-	const windowDimensions = useWindowDimensions();
-	const isMobile = windowDimensions.width < screens.lg;
 
 	function horizontalLoop(items: any, config: any) {
 		let timeline;
@@ -317,7 +312,6 @@ const InfiniteMovingFeatures: React.FC<InfiniteMovingFeaturesProps> = ({
 						key={ `featuresmoving-${ itemIdx }` }
 						items={ duplicatedItems }
 						containerRefs={ containerRefs }
-						isMobile={ isMobile }
 						listIndex={ itemIdx }
 						onToggleAnimation={ togglePlaying }
 					/>

@@ -27,17 +27,17 @@ const landingData = {
 		]
 	},
 	hero: {
-		preTitle: 'the ultimate longevity companion',
+		preTitle: 'Live optimized and age better',
 		title:
 			'Longevity made <br class="sm:hidden"/>accessible. Data driven <br class="sm:hidden"/>anti-aging care.',
 		titles: [
-			'Longevity made accessible. Data',
-			'driven care for better aging.'
+			'Bridging healthspan and lifespan',
+			'with data-driven optimization.'
 		],
 		titlesMobile: [
-			'Longevity made',
-			'accessible. Data driven',
-			'care for better aging.'
+			'Bridging healthspan',
+			'and lifespan with data-',
+			'driven optimization.'
 		],
 		banner: {
 			text: 'Geviti closes Early stage Seed Financing 🎉 <br/>To celebrate, those who join before July 1st will be grandfathered in at $89 monthly!',
@@ -140,7 +140,7 @@ const landingData = {
 			},
 			{
 				id: 'step-4',
-				title: 'Tailor made<br />protocols.',
+				title: 'Receive tailor <br />made protocols.',
 				icon: DocumentIcon
 			},
 		],
@@ -460,7 +460,7 @@ const landingData = {
 		priceSection: {
 			preTitle: 'Personalized plans that are right for you',
 			title: 'Memberships as low as $99<span class="text-xs lg:text-2xl lg:!leading-9">/month</span>',
-			description: 'Your Geviti membership will include the following:',
+			description: 'At-home diagnostics and doctor-supervised treatments fostering vitality and longevity. Easily integrates into your life.',
 			btnCta: {
 				text: 'Learn More',
 				href: '/onboarding'
@@ -527,7 +527,7 @@ const landingData = {
 			]
 		},
 		locationSection: {
-			preTitle: 'MEMBERSHIP FEATURES',
+			preTitle: 'What states do we support?',
 			title: 'Care that goes where you go.',
 			description: 'Available in 11 states and expanding across all the country: <br/>AZ, CA, CO, UT, WA, TX, FL, GA, KS, OR, NM',
 			btnCta: {

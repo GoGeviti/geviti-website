@@ -44,7 +44,7 @@ const tabs: { title: string; key: { [key: string]: string; }; }[] = biomarkersDa
 const genderOptions = biomarkersData.genderOptions;
 
 const BioMakersSection: React.FC = () => {
-	const [isOpenSection, setIsOpenSection] = useState<boolean>(true);
+	const [isOpenSection, setIsOpenSection] = useState<boolean>(false);
 	const [selectedTabIdx, setSelectedTabIdx] = useState<number>(0);
 	const [selectedGenderIdx, setSelectedGenderIdx] = useState<number>(0);
 	const [limit, setLimit] = useState<number>(13);

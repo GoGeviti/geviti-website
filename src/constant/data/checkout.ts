@@ -1,7 +1,7 @@
 const checkoutData = {
 	form: {
 		title: 'First, lets make <br class="max-lg:hidden"/>sure you <br class="lg:hidden"/>are eligible.',
-		description: 'Lorem ipsum dolor sit amet consectetur. Feugiat quam nisl diam pulvinar rutrum elit placerat posuere neque.',
+		description: 'We need some personal information to ensure Geviti has the resources to serve you and to confirm your eligibility for our services.',
 		image: '/images/logo/logo_light.webp',
 		statesAvailable: [
 			'AZ', 'CA', 'CO', 'UT', 'WA', 'TX', 'FL', 'GA', 'KS', 'OR', 'NM'
@@ -13,10 +13,10 @@ const checkoutData = {
 	},
 	state: {
 		waitlistAvailable: {
-			title: 'We are full, but you’re on the waitlist!',
-			titleMobile: 'We are full, but you’re on#the waitlist!',
-			description: 'To ensure the greatest experience can be offered to our#members, we added you to the waitlist. We’ll reach out soon!',
-			descriptionMobile: 'To ensure the greatest experience can be offered#to our members, we added you to the waitlist. We’ll#reach out soon!',
+			title: 'Uh oh. We are at max capacity!',
+			titleMobile: 'Uh oh. We are at max#capacity!',
+			description: 'To ensure the best experience for our members, we\'ll add you#to our waitlist and reach out shortly!',
+			descriptionMobile: 'To ensure the best experience for our members,#we\'ll add you to our waitlist and reach out shortly!',
 			btnPrimary: {
 				type: 'join_waitlist',
 				text: 'Join Waitlist'
@@ -45,8 +45,8 @@ const checkoutData = {
 		successJoinWaitlist: {
 			title: 'You have joined waitlist successfully!',
 			titleMobile: 'You have joined waitlist#successfully!',
-			description: 'Lorem ipsum dolor sit amet consectetur. Velit lectus sem#eleifend sed nibh.',
-			descriptionMobile: 'Lorem ipsum dolor sit amet consectetur. Velit lectus sem#eleifend sed nibh.',
+			description: 'We are excited for you to join Geviti and will be reaching out#as soon as there is availability.',
+			descriptionMobile: 'We are excited for you to join Geviti and will be#reaching out as soon as there is availability.',
 			btnPrimary: {
 				type: 'link',
 				href: '/',

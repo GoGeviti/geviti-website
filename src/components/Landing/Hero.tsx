@@ -313,26 +313,24 @@ const Hero: React.FC<HeroProps> = ({ showBanner }) => {
 							) : null }
 						<div className='pb-18px lg:pb-[47px] h-full w-full flex flex-col justify-end'>
 							<div className='text-left flex flex-col'>
-								<div>
-									<span className='overflow-hidden inline-block'>
-										<motion.h2
-											variants={ {
-												visible: {
-													y: 0,
-													transition: {
-														...slideUpTransition,
-														delay: 2.1
-													}
-												},
-												hidden: { y: '100%' },
-											} }
-											initial='hidden'
-											animate='visible'
-											className='text-grey-secondary font-Poppins inline-block font-semibold text-[10px] sm:text-xs lg:text-sm !leading-6 uppercase tracking-0.11em'>
-											{ heroData.preTitle }
-										</motion.h2>
-									</span>
-								</div>
+								<span className='overflow-hidden inline-block'>
+									<motion.h2
+										variants={ {
+											visible: {
+												y: 0,
+												transition: {
+													...slideUpTransition,
+													delay: 2.1
+												}
+											},
+											hidden: { y: '100%' },
+										} }
+										initial='hidden'
+										animate='visible'
+										className='text-grey-secondary font-Poppins inline-block font-semibold text-[10px] sm:text-xs lg:text-sm !leading-6 uppercase tracking-0.11em'>
+										{ heroData.preTitle }
+									</motion.h2>
+								</span>
 
 								<motion.h1
 									initial='hidden'

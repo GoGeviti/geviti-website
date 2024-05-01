@@ -18,7 +18,7 @@ const Membership: React.FC = () => {
 						<span dangerouslySetInnerHTML={ { __html: item.title } } />
 					</h3>
 				</div>
-				<p className='text-[3vw] xs:text-xs sm:text-sm !leading-5 text-grey-400'>
+				<p className='text-[2.927vw] xs:text-xs sm:text-sm !leading-5 text-grey-400 lg:max-w-[446px] lg:mx-auto'>
 					<span dangerouslySetInnerHTML={ { __html: item.description } } />
 				</p>
 			</div>

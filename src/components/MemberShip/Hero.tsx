@@ -75,23 +75,21 @@ const Hero: React.FC = () => {
 						<div className='h-full w-full flex flex-col justify-end'>
 							<div className='pb-[39px] lg:pb-[10.267vh] xl:pb-[73px] text-left flex flex-col max-lg:bg-backdrop-hero-membership-bottom-mobile'>
 								<div className='container-center w-full'>
-									<div>
-										<span className='overflow-hidden inline-block'>
-											<motion.h2
-												variants={ {
-													visible: {
-														y: 0,
-														transition: slideUpTransition
-													},
-													hidden: { y: '100%' },
-												} }
-												initial='hidden'
-												animate='visible'
-												className='text-grey-secondary font-Poppins inline-block font-semibold text-[10px] sm:text-xs lg:text-sm !leading-6 uppercase tracking-0.11em'>
-												{ heroData.preTitle }
-											</motion.h2>
-										</span>
-									</div>
+									<span className='overflow-hidden inline-block'>
+										<motion.h2
+											variants={ {
+												visible: {
+													y: 0,
+													transition: slideUpTransition
+												},
+												hidden: { y: '100%' },
+											} }
+											initial='hidden'
+											animate='visible'
+											className='text-grey-secondary font-Poppins inline-block font-semibold text-[10px] sm:text-xs lg:text-sm !leading-6 uppercase tracking-0.11em'>
+											{ heroData.preTitle }
+										</motion.h2>
+									</span>
 
 									<motion.h1
 										initial='hidden'
