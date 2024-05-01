@@ -63,7 +63,7 @@ const Hero: React.FC<{ type: 'men' | 'women'; }> = ({ type }) => {
 										</h2>
 									</span>
 
-									<h1 className='max-lg:mt-5px font-medium text-[7.6vw] xs:text-3xl md:text-4xl lg:text-[5vh] xl:text-[46px] !leading-normal -tracking-0.04em text-grey-secondary'>
+									<h1 className='max-lg:mt-5px font-medium text-[7.5vw] xs:text-3xl md:text-4xl lg:text-[5vh] xl:text-[46px] !leading-normal -tracking-0.04em text-grey-secondary'>
 										<span
 											dangerouslySetInnerHTML={ { __html: heroData.title } }
 											className='hero-solutions' />

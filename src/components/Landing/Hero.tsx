@@ -104,7 +104,7 @@ const Hero: React.FC<HeroProps> = ({ showBanner }) => {
 						},
 						hidden: { y: '100%' }
 					} }
-					className='inline-block font-medium text-[7.6vw] xs:text-3xl md:text-4xl lg:text-[5vh] xl:text-[46px] !leading-normal -tracking-0.04em text-grey-secondary'
+					className='inline-block font-medium text-[7.5vw] xs:text-3xl md:text-4xl lg:text-[5vh] xl:text-[46px] !leading-normal -tracking-0.04em text-grey-secondary'
 				>{ title }</motion.span>
 			</span>
 		));
