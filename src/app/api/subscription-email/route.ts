@@ -12,7 +12,7 @@ interface RequestPayload {
 		email: string;
 		first_name: string;
 		last_name: string;
-		plan_id: string;
+		plan: string;
 	}
 }
 
@@ -43,14 +43,14 @@ export const POST = withAxiom(async (req: AxiomRequest) => {
 		return NextResponse.json({ error: 'Unauthorized Request: Signature Verification Failed.' }, { status: 403 });
 	}
 
-	const { customer: { email, first_name, last_name, plan_id } } = requestPayload;
+	const { customer: { email, first_name, last_name, plan } } = requestPayload;
 
 	if (!email || !first_name || !last_name) {
 		return NextResponse.json({ error: 'Invalid request payload' }, { status: 400 });
 	}
 
 	try {
-		const { subscriptionKey } = await getSubscriptionKey(plan_id);
+		const { subscriptionKey } = await getSubscriptionKey(plan);
 		const { data, error } = await sendSubscriptionEmail(
 			email,
 			first_name,
