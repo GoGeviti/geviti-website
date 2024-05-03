@@ -47,7 +47,7 @@ export const POST = withAxiom(async (req: AxiomRequest) => {
 	}
 
 	const { customer: { email, first_name, last_name } } = requestPayload;
-	let plan = ''
+	let plan = '';
 	if (requestPayload.line_items.length === 1) {
 		const product = requestPayload.line_items[0];
 		plan = extractKeyFromTitle(product.title);
