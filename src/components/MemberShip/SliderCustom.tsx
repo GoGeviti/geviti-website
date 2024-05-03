@@ -14,21 +14,23 @@ import ButtonCta from '../ButtonCta';
 import CursorSlider from '../CursorSlider';
 import { ChevronRight } from '../Icons';
 
-import 'slick-carousel/slick/slick-theme.css';
-import 'slick-carousel/slick/slick.css';
-
-const sliderVariants = {
+const contentVariants = {
 	incoming: (direction: number) => ({
 		x: direction > 0 ? '100%' : '-100%',
-		scale: 1.2,
 		opacity: 1
 	}),
-	active: { x: 0, scale: 1, opacity: 1 },
+	active: { x: 0, opacity: 1 },
 	exit: (direction: number) => ({
 		x: direction > 0 ? '-100%' : '100%',
-		scale: 1,
-		opacity: 1
+		opacity: 0
 	})
+};
+const imageVariants = {
+	incoming: (direction: number) => ({
+		x: direction > 0 ? '100%' : '-100%'
+	}),
+	active: { x: 0 },
+	exit: { x: 0 }
 };
 const scaleVariants = {
 	initial: { scale: 0, opacity: 0 },
@@ -58,14 +60,18 @@ const SliderCustom: React.FC = () => {
 	};
 
 	const settings = {
-		dots: true,
+		dots: false,
 		infinite: true,
-		speed: 1000,
+		speed: 1100,
 		slidesToShow: 1,
 		slidesToScroll: 1,
 		fade: false,
+		easing: 'ease-in-out',
 		beforeChange: (currentSlide: number, nextSlide: number) => {
-			setImageCount([nextSlide, nextSlide > currentSlide ? 1 : -1]);
+			if (nextSlide === sliderData.length - 1 && currentSlide === 0) swipeToImage(-1);
+			else if (nextSlide === 0 && currentSlide === sliderData.length - 1) swipeToImage(1);
+			else if (nextSlide > currentSlide) swipeToImage(1);
+			else swipeToImage(-1);
 		}
 	};
 
@@ -98,7 +104,7 @@ const SliderCustom: React.FC = () => {
 				<button
 					onClick={ handlePrevious }
 					className={ buttonClassName }
-					disabled={ activeIdx === 0 }
+					// disabled={ activeIdx === 0 }
 					aria-label='prev-slider-membership'
 				>
 					<ChevronRight className='w-[17px] h-[17px] flex-shrink-0 absolute-center rotate-180' />
@@ -133,71 +139,63 @@ const SliderCustom: React.FC = () => {
 	return (
 		<div className='overflow-hidden lg:px-3 py-6'>
 			<div className='bg-primary h-full w-full rounded-19px relative overflow-hidden font-Poppins'>
-				<div className='lg:container-center grid-cols-1 grid lg:grid-cols-2 lg:gap-x-8'>
-					<div className='max-lg:order-1 h-[740px] lg:h-[858px]'>
-						<div className='max-lg:px-4 pt-6 lg:pt-[84px] pb-[42px] h-full flex flex-col justify-between relative lg:z-10 max-lg:w-full lg:max-w-[592px] mx-auto lg:mx-0'>
-							<AnimatePresence initial={ false }>
-								<div className='inline-block overflow-hidden h-full'>
+				<div className='grid-cols-1 grid lg:grid-cols-2'>
+					<div className='max-lg:order-1 h-[740px] lg:h-[858px] w-full lg:px-10 xl:pl-[68px] xl:pr-[48px]'>
+						<div className='max-lg:px-4 pt-6 lg:pt-[84px] pb-[42px] h-full flex flex-col justify-between relative lg:z-10 w-full'>
+							<div className='inline-block overflow-hidden h-full relative'>
+								<AnimatePresence
+									initial={ false }
+									custom={ direction }>
 									<motion.div
-										className='flex flex-col max-sm:justify-between h-full'
-										initial='initial'
-										animate='animate'
+										initial='incoming'
+										animate='active'
 										exit='exit'
+										custom={ direction }
 										key={ `contentslider-${ activeIdx }` }
-										variants={ {
-											initial: {
-												y: 20,
-												opacity: 0,
-											},
-											animate: { y: 0, opacity: 1 },
-											exit: {
-												y: 20,
-												opacity: 0,
-											},
-										} }
-										transition={ {
-											duration: 1,
-											ease: 'easeInOut'
-										} }
+										variants={ contentVariants }
+										transition={ sliderTransition }
+										className='absolute inset-0 w-full h-full'
 									>
-										<div>
-											<p className='mb-2 text-pretitle text-grey-primary'>
-												{ currentData.preTitle }
-											</p>
+										<div className='flex flex-col max-sm:justify-between h-full lg:max-w-[592px] lg:mx-auto'>
+											<div>
+												<p className='mb-2 text-pretitle text-grey-primary'>
+													{ currentData.preTitle }
+												</p>
 
-											<h2 className='mb-6 -tracking-0.04em font-medium text-white text-[6.4vw] xxs2:text-2xl lg:text-4xl !leading-normal'>
-												<span dangerouslySetInnerHTML={ { __html: currentData.title } } />
-											</h2>
+												<h2 className='mb-6 -tracking-0.04em font-medium text-white text-[6.4vw] xxs2:text-2xl lg:text-4xl !leading-normal'>
+													<span dangerouslySetInnerHTML={ { __html: currentData.title } } />
+												</h2>
 
-											<p className='text-grey-primary max-sm:max-w-[343px] lg:max-w-[446px] text-xs lg:text-sm !leading-5'>
-												{ currentData.description }
-											</p>
+												<p className='text-grey-primary max-sm:max-w-[343px] lg:max-w-[446px] text-xs lg:text-sm !leading-5'>
+													{ currentData.description }
+												</p>
 
-											{ currentData.list.length
-												? (
-													<div className='mt-6 lg:mt-[42px]'>
-														<ul className='list-disc list-inside text-white text-sm lg:text-lg !leading-8 text-left'>
-															{ currentData.list.map(item => (
-																<li key={ item }>
-																	{ item }
-																</li>
-															)) }
-														</ul>
-													</div>
-												)
-												: null }
-										</div>
-
-										{ currentData.btnCta && (
-											<div className='py-[42px] sm:py-16 flex max-sm:justify-center max-sm:w-full'>
-												{ renderButtonCta() }
+												{ currentData.list.length
+													? (
+														<div className='mt-6 lg:mt-[42px]'>
+															<ul className='list-disc list-inside text-white text-sm lg:text-lg !leading-8 text-left'>
+																{ currentData.list.map(item => (
+																	<li key={ item }>
+																		{ item }
+																	</li>
+																)) }
+															</ul>
+														</div>
+													)
+													: null }
 											</div>
-										) }
-									</motion.div>
-								</div>
-							</AnimatePresence>
 
-							<div className='flex flex-col'>
+											{ currentData.btnCta && (
+												<div className='py-[42px] sm:py-16 flex max-sm:justify-center max-sm:w-full'>
+													{ renderButtonCta() }
+												</div>
+											) }
+										</div>
+									</motion.div>
+								</AnimatePresence>
+							</div>
+
+							<div className='flex flex-col lg:max-w-[592px] w-full lg:mx-auto'>
 								{ renderButtonArrowSlider() }
 							</div>
 						</div>
@@ -217,7 +215,7 @@ const SliderCustom: React.FC = () => {
 									<motion.div
 										key={ `imageslider-${ imageCount }` }
 										custom={ direction }
-										variants={ sliderVariants }
+										variants={ imageVariants }
 										initial='incoming'
 										animate='active'
 										exit='exit'

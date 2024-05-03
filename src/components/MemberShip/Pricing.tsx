@@ -276,13 +276,15 @@ const Pricing = () => {
 											)
 											: (
 												<div className='absolute top-0 right-0'>
-													<Image
-														src='/images/membership/squares-union.svg'
-														alt=''
-														width={ 257 }
-														height={ 312.52 }
-														className='w-[257px] h-full'
-													/>
+													<div className='w-[257px] h-[312.52px] relative overflow-hidden'>
+														<Image
+															src='/images/membership/squares-union.svg'
+															alt=''
+															fill
+															className='w-full h-full'
+															sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
+														/>
+													</div>
 												</div>
 											) }
 									</div>
