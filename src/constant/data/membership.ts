@@ -595,7 +595,7 @@ const membershipData = {
 	pricing: {
 		preTitle: 'Care based off of biomarkers',
 		title: 'Start by establishing baselines',
-		description: 'Every user starts with one of these to establish baselines. This includes month free.',
+		description: 'Every user starts with one of these to establish baselines. This includes first month free.',
 		pricingOptions: [
 			{
 				title: 'Quarterly',

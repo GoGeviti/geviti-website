@@ -124,7 +124,7 @@ const solutionData = {
 				imageSubheading: 'Struggle with obesity ',
 			},
 			{
-				preTitle: 'optimized hormonal states can be maintained',
+				preTitle: 'Optimal Hormonal Balance Can Be Achieved',
 				title: 'Lets optimize your hormones.',
 				description:
 					'It’s a misconception that your testosterone only drops in your older years. More young men struggle with testosterone deficiencies than ever before.',
