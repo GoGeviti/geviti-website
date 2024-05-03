@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { AxiomWebVitals } from 'next-axiom';
 import Script from 'next/script';
 import NextTopLoader from 'nextjs-toploader';
 
@@ -8,8 +9,8 @@ import { brSonoma, poppins } from '@/constant/fonts';
 import StyledComponentsRegistry from '@/lib/registry';
 
 import 'aos/dist/aos.css';
-import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import 'slick-carousel/slick/slick.css';
 import 'react-date-picker/dist/DatePicker.css';
 import 'react-calendar/dist/Calendar.css';
 import './globals.css';
@@ -30,6 +31,7 @@ const RootLayout: React.FC<{ children: React.ReactNode; }> = ({ children }) => {
 	return (
 		<html lang='en'>
 			<AOSInit />
+			<AxiomWebVitals />
 			{ /* <Script src='//embed.typeform.com/next/embed.js' /> */ }
 			<Script
 				id='google-tag-manager'
