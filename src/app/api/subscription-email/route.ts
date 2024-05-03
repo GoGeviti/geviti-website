@@ -16,7 +16,7 @@ interface RequestPayload {
 		first_name: string;
 		last_name: string;
 	},
-	line_items: LineItem[]
+	line_items: LineItem[];
 }
 
 export interface SubscriptionKeyResponse {
