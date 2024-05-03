@@ -7,13 +7,16 @@ import SubscriptionEmail from '../../../../transactional/emails/SubscriptionEmai
 
 export const dynamic = 'force-dynamic';
 
+interface LineItem {
+	title: string;
+}
 interface RequestPayload {
 	customer: {
 		email: string;
 		first_name: string;
 		last_name: string;
-		plan: string;
-	}
+	},
+	line_items: LineItem[]
 }
 
 export interface SubscriptionKeyResponse {
@@ -43,7 +46,12 @@ export const POST = withAxiom(async (req: AxiomRequest) => {
 		return NextResponse.json({ error: 'Unauthorized Request: Signature Verification Failed.' }, { status: 403 });
 	}
 
-	const { customer: { email, first_name, last_name, plan } } = requestPayload;
+	const { customer: { email, first_name, last_name } } = requestPayload;
+	let plan = ''
+	if (requestPayload.line_items.length === 1) {
+		const product = requestPayload.line_items[0];
+		plan = extractKeyFromTitle(product.title);
+	}
 
 	if (!email || !first_name || !last_name) {
 		return NextResponse.json({ error: 'Invalid request payload' }, { status: 400 });
@@ -134,4 +142,15 @@ async function calculateShopifyWebhookHmacUsingSubtle(secret: string, data: stri
 	const hmacResult = await crypto.subtle.verify('HMAC', key, signBytes, encodedData);
 
 	return hmacResult;
+}
+
+function extractKeyFromTitle(title: string) {
+	const keys = ['ultimate', 'comprehensive', 'essentials']; // Add other keys as needed
+	const lowercaseTitle = title.toLowerCase();
+	for (const key of keys) {
+		if (lowercaseTitle.includes(key)) {
+			return key;
+		}
+	}
+	throw new Error('Product not found');
 }
