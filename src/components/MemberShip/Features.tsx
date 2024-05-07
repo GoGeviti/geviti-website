@@ -39,25 +39,27 @@ const Features: React.FC = () => {
 						</h2>
 						<p className='text-xs lg:text-sm !leading-normal lg:!leading-5 text-grey-400 lg:text-grey-primary'>{ feature.description }</p>
 					</div>
-					<div className='flex max-lg:flex-col lg:justify-between max-lg:gap-y-6 w-full mt-[27px] lg:mt-[86px] text-left'>
-						{ splittedList.map((items: string[], itemsIdx: number) => {
-							return (
-								<div
-									key={ `items-${ itemsIdx }` }
-									className='flex flex-col gap-y-6'>
-									{ items.map((item: string, itemIdx: number) => {
-										return (
-											<div
-												key={ `item-${ itemIdx }` }
-												className='lg:py-18px lg:px-6 flex items-center gap-2.5 lg:gap-[11px]'>
-												{ Icon && <Icon className='flex-shrink-0' /> }
-												<span className='text-grey-500 text-lg lg:!leading-6'>{ item }</span>
-											</div>
-										);
-									}) }
-								</div>
-							);
-						}) }
+					<div className='lg:container-center w-full'>
+						<div className='flex max-lg:flex-col lg:justify-between max-lg:gap-y-6 w-full mt-[27px] lg:mt-[86px] text-left'>
+							{ splittedList.map((items: string[], itemsIdx: number) => {
+								return (
+									<div
+										key={ `items-${ itemsIdx }` }
+										className='flex flex-col gap-y-6'>
+										{ items.map((item: string, itemIdx: number) => {
+											return (
+												<div
+													key={ `item-${ itemIdx }` }
+													className='lg:py-18px lg:px-6 flex items-center gap-2.5 lg:gap-[11px]'>
+													{ Icon && <Icon className='flex-shrink-0' /> }
+													<span className='text-grey-500 text-lg lg:!leading-6'>{ item }</span>
+												</div>
+											);
+										}) }
+									</div>
+								);
+							}) }
+						</div>
 					</div>
 				</div>
 			);
