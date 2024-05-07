@@ -68,12 +68,12 @@ const Hero: React.FC = () => {
 						{ renderImage('mobile') }
 					</div>
 				</div>
-				<div className='max-lg:hidden absolute bottom-0 inset-x-0 w-full h-[80%] bg-backdrop-hero-membership-bottom -z-0' />
+				<div className='absolute bottom-0 inset-x-0 w-full h-[77%] lg:h-[80%] bg-backdrop-hero-membership-bottom-mobile lg:bg-backdrop-hero-membership-bottom -z-0' />
 
 				<div className='h-full'>
 					<div className='relative w-full h-full rounded-b-19px'>
 						<div className='h-full w-full flex flex-col justify-end'>
-							<div className='pb-[39px] lg:pb-[10.267vh] xl:pb-[73px] text-left flex flex-col max-lg:bg-backdrop-hero-membership-bottom-mobile'>
+							<div className='pb-[39px] lg:pb-[10.267vh] xl:pb-[73px] text-left flex flex-col'>
 								<div className='container-center w-full'>
 									<span className='overflow-hidden inline-block'>
 										<motion.h2
@@ -87,7 +87,7 @@ const Hero: React.FC = () => {
 											initial='hidden'
 											animate='visible'
 											className='text-grey-secondary font-Poppins inline-block font-semibold text-[10px] sm:text-xs lg:text-sm !leading-6 uppercase tracking-0.11em'>
-											{ heroData.preTitle }
+											<span dangerouslySetInnerHTML={ { __html: heroData.preTitle } } />
 										</motion.h2>
 									</span>
 
@@ -115,12 +115,12 @@ const Hero: React.FC = () => {
 												}
 											}
 										} }
-										className='sm:hidden flex flex-col mt-5px'
+										className='sm:hidden flex flex-col'
 									>
 										{ renderTitles(heroData.titlesMobile) }
 									</motion.h1>
 
-									<div className='mt-6 max-lg:hidden max-w-[496px]'>
+									<div className='mt-2 xxs:mt-3 lg:mt-6 max-w-[337px] sm:max-w-[496px]'>
 										<span className='overflow-hidden inline-block'>
 											<motion.p
 												variants={ {
@@ -141,7 +141,7 @@ const Hero: React.FC = () => {
 										</span>
 									</div>
 
-									<div className='flex w-full mt-[5vh] xs:mt-[42px] lg:mt-[5.435vh] xl:mt-[42px]'>
+									<div className='flex w-full mt-4 xxs:mt-6 lg:mt-[5.435vh] xl:mt-[42px]'>
 										<div className='grid grid-cols-1 auto-rows-fr sm:flex gap-4 xxs:gap-6 lg:gap-[42px] items-center w-full'>
 											<div className='overflow-hidden inline-block h-full'>
 												<motion.div

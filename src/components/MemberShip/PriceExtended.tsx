@@ -59,7 +59,7 @@ const PriceExtended: React.FC = () => {
 											<li
 												key={ `featurecompare-${ featureIdx }` }
 												className='text-sm !leading-normal -tracking-0.04em flex justify-between'>
-												{ feature.title } <Icon className='flex-shrink-0' />
+												{ feature.title } <Icon className={ clsxm('flex-shrink-0', item.geviti && 'text-[#32D583C9]') } />
 											</li>
 										);
 									}) }

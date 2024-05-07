@@ -8,7 +8,7 @@ import clsxm from '@/helpers/clsxm';
 
 import ButtonCta from '../ButtonCta';
 import QuestionTooltip from '../Home/QuestionTooltip';
-import { ChevronDown, QuestionIcon } from '../Icons';
+import { ChevronDown, GreenCheck } from '../Icons';
 
 import PriceExtended from './PriceExtended';
 
@@ -179,7 +179,7 @@ const Pricing = () => {
 						<h2 className='mb-3 max-sm:max-w-[331px] mx-auto text-2xl md:text-3xl lg:text-[64px] !leading-normal text-primary -tracking-0.04em'>
 							{ pricingData.title }
 						</h2>
-						<p className='text-xs lg:text-sm !leading-5 text-grey-400 max-sm:max-w-[283px] mx-auto'>
+						<p className='text-[3.077vw] xs2:text-xs lg:text-sm !leading-5 text-grey-400 max-w-[331px] sm:max-w-[627px] mx-auto'>
 							{ pricingData.description }
 						</p>
 					</div>
@@ -242,8 +242,8 @@ const Pricing = () => {
 													) }
 											</AnimatePresence>
 										</div>
-										<p className='text-2xl !leading-normal font-medium mb-[11px] mt-8 lg:mt-[43px]'>
-											{ item.biomakers }{ ' ' }
+										<p className='text-4xl !leading-normal font-medium mb-[11px] mt-[25px] lg:mt-3.5'>
+											<span className='-tracking-0.04em'>{ item.biomakers }{ ' ' }</span>
 											<span className='text-xs !leading-normal'>biomarkers</span>
 										</p>
 
@@ -254,7 +254,7 @@ const Pricing = () => {
 													className='text-sm !leading-normal gap-1.5 flex items-center font-medium -tracking-[0.53px]'
 												>
 													<QuestionTooltip
-														icon={ <QuestionIcon /> }
+														icon={ <GreenCheck className='w-4 h-4 text-green-alert' /> }
 														text={ feature.description || feature.title } />
 													{ feature.title }
 												</li>

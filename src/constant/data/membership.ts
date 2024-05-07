@@ -1,5 +1,11 @@
 import {
-	CrossRed, DollarCircle, DoubleDollarCircle, FemaleIcon, GreenCheck, MaleIcon
+	CrossRed,
+	DollarCircle,
+	DoubleDollarCircle,
+	FemaleIcon,
+	GreenCheck,
+	MaleIcon,
+	Verify
 } from '@/components/Icons';
 import {
 	DNAIcon,
@@ -15,15 +21,15 @@ import {
 
 const membershipData = {
 	hero: {
-		preTitle: 'all you need membership',
+		preTitle: 'all you need <span class="max-sm:hidden">in one </span>membership',
 		title:
-			'Longevity made <br class="sm:hidden"/>accessible. Data driven <br class="sm:hidden"/>anti-aging care.',
-		titles: ['Optimize your health, transform ', 'your wellness.'],
+			'Unlock premier health with exclusive membership benefits',
+		titles: ['Unlock premier health with', 'exclusive membership benefits'],
 		description: 'A Geviti membership makes longevity easy and accessible with our wide range of at-home diagnostics, innovative anti-aging therapies, and a dedicated qualified care team.',
 		titlesMobile: [
-			'Longevity made',
-			'accessible. Data driven',
-			'anti-aging care.',
+			'Unlock premier health',
+			'with exclusive',
+			'membership benefits',
 		],
 		image: '/images/membership/compressed/hero.webp',
 		imageMobile: '/images/membership/compressed/hero_mobile.webp',
@@ -497,13 +503,13 @@ const membershipData = {
 	},
 	steps: {
 		preTitle: 'become a member',
-		title: 'Start your health journey <br class="lg:hidden"/>with a full blood panel',
-		description: 'Membership journey starts with choosing a “Deep Dive” diagnostic. We’ll draw your blood from the comfort of your home.',
+		title: 'Start your health journey <span class="max-lg:hidden"/>with a full blood panel</span>',
+		description: '<span class="lg:hidden">Membership journey starts with choosing a Deep Dive Diagnostic which includes the following:</span><span class="max-lg:hidden">Membership journey starts with choosing a “Deep Dive” diagnostic. We’ll draw your blood from the comfort of your home.</span>',
 		list: [
 			{
 				id: 'step-1',
 				title:
-					'Become a member by <br class="max-lg:hidden" />purchasing a “Deep Dive” <br class="max-lg:hidden" />diagnostic package',
+					'Become a member by <br class="max-lg:hidden" />purchasing an intro bloodwork <br class="max-lg:hidden" />package',
 				icon: UserTag,
 			},
 			{
@@ -595,7 +601,7 @@ const membershipData = {
 	pricing: {
 		preTitle: 'Care based off of biomarkers',
 		title: 'Start by establishing baselines',
-		description: 'Every user starts with one of these to establish baselines. This includes first month free.',
+		description: 'Every user starts with an at-home full panel establish baselines. This package includes one month for free. Memberships can be billed monthly or quarterly.',
 		pricingOptions: [
 			{
 				title: 'Quarterly',
@@ -615,10 +621,10 @@ const membershipData = {
 				biomakers: '45+',
 				mostPopular: false,
 				monthly: '+ $119 monthly',
-				quarterly: '+$99/m billed quarterly',
+				quarterly: '+ ongoing membership fee',
 				btnCta: {
 					href: '/onboarding',
-					text: 'Get Started'
+					text: 'Select Option'
 				},
 				list: [
 					{
@@ -638,7 +644,7 @@ const membershipData = {
 						description: ''
 					},
 					{
-						title: 'Month one membership included',
+						title: 'First month of membership included',
 						description: ''
 					},
 				]
@@ -650,10 +656,10 @@ const membershipData = {
 				biomakers: '57+',
 				mostPopular: true,
 				monthly: '+ $119 monthly',
-				quarterly: '+$99/m billed quarterly',
+				quarterly: '+ ongoing membership fee',
 				btnCta: {
 					href: '/onboarding',
-					text: 'Get Started'
+					text: 'Select Option'
 				},
 				list: [
 					{
@@ -673,22 +679,22 @@ const membershipData = {
 						description: ''
 					},
 					{
-						title: 'Month one membership included',
+						title: 'First month of membership included',
 						description: ''
 					},
 				]
 			},
 			{
 				name: 'Ultimate Diagnostic',
-				price: '$299',
+				price: '$599',
 				priceNote: 'one time payment',
 				biomakers: '68+',
 				mostPopular: false,
 				monthly: '+ $119 monthly',
-				quarterly: '+$99/m billed quarterly',
+				quarterly: '+ ongoing membership fee',
 				btnCta: {
 					href: '/onboarding',
-					text: 'Get Started'
+					text: 'Select Option'
 				},
 				list: [
 					{
@@ -708,7 +714,7 @@ const membershipData = {
 						description: ''
 					},
 					{
-						title: 'Month one membership included',
+						title: 'First month of membership included',
 						description: ''
 					},
 				]
@@ -719,11 +725,11 @@ const membershipData = {
 			'Full biomarker results report',
 			'Smart supplement recommendation',
 			'Bloodwork results telehealth review',
-			'Month one membership included',
+			'First month of membership included',
 		],
 		comparison: {
 			btn: {
-				text: 'Compare Geviti to others',
+				text: 'Geviti vs. competitors',
 				textMobile: 'Geviti vs. our competitors'
 			},
 			preTitle: 'Care based off of biomarkers',
@@ -903,6 +909,69 @@ const membershipData = {
 			text: 'Start Now',
 		},
 	},
+	features: [
+		{
+			id: 1,
+			preTitle: 'Data-driven health and wellness, made simple.',
+			title: 'The ultimate wellness <br class="sm:hidden"/>membership for as low as <br class="sm:hidden"/>$99 per month.',
+			description: 'Geviti transcends the usual health and wellness offerings, providing unparalleled value at a lower cost. Our mission is to make longevity-focused care exceptionally accessible.',
+			image: null,
+			main: true,
+			list: {
+				listStyleType: 'none',
+				icon: Verify,
+				items: [
+					'Geviti Dashboard Access',
+					'Mobile Application Access',
+					'Custom Longevity Protocols',
+					'Wholesale At-home Diagnostics',
+					'Certified Personal Health Coach',
+					'Doctor Monitored Prescriptions',
+					'Biannual At-home Full Panels',
+					'Smart Wearables Integration',
+					'Custom Made Supplements'
+				]
+			}
+		},
+		{
+			id: 2,
+			preTitle: 'Data-driven health and wellness, made simple.',
+			title: 'A complete wellness team in <br class="sm:hidden"/>your pocket',
+			description: 'Geviti offers a comprehensive care team for our clients. Instead of having to choose between a healthcare provider and a health coach, Geviti provides a solution where the two collaborate to create the ultimate longevity regimen.',
+			image: '/images/membership/compressed/features-states.webp',
+			main: false,
+			list: null
+		},
+		{
+			id: 3,
+			preTitle: 'Data-driven health and wellness, made simple.',
+			title: 'Doctor  monitored cutting <br class="sm:hidden"/>edge care',
+			description: '',
+			image: '/images/membership/compressed/features-products.webp',
+			main: false,
+			list: {
+				listStyleType: 'disc',
+				icon: null,
+				items: [
+					'Hormone Therapy',
+					'Anti-aging Peptides',
+					'Medical Weight Loss',
+					'Sexual Health',
+					'Nootropics',
+					'And More.'
+				]
+			}
+		},
+		{
+			id: 4,
+			preTitle: 'Data-driven health and wellness, made simple.',
+			title: 'Biannual At-Home Full Panels',
+			description: 'Many Americans neglect essential bloodwork for years, putting their health and wellness at risk. Geviti simplifies this critical process with our nationwide team of phlebotomists, making it convenient for you to stay on top of your health.<br/><br/>Every 6 months, we’ll come to you and perform a full panel at no additional cost.',
+			image: '/images/membership/compressed/features-apps.webp',
+			main: false,
+			list: null
+		}
+	]
 };
 
 export default membershipData;

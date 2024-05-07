@@ -10,12 +10,14 @@ const MemberShipPage = () => {
 			<div className='py-[42px] lg:py-16'>
 				<RunningLogo />
 			</div>
-			<MembershipComponent.StepsSection />
-			<MembershipComponent.SliderCustom />
+			<MembershipComponent.Features />
+			<div className='py-6'>
+				<MembershipComponent.StepsSection />
+			</div>
 			<MembershipComponent.Pricing />
 			<MembershipComponent.BiomarkersSection />
 			<MembershipComponent.ChooseGeviti />
-			<MembershipComponent.Products />
+			{ /* <MembershipComponent.Products /> */ }
 			<FrequentlyAskedQuestions data={ membershipData.faq.data } />
 			<MembershipComponent.Banner />
 			<Footer landingPage />

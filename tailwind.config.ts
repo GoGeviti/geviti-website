@@ -112,7 +112,7 @@ const config: Config = {
 			backgroundImage: {
 				'backdrop-hero-landing-bottom': 'linear-gradient(0deg, #181a1c 20.46%, rgba(24, 26, 28, 0) 100%)',
 				'backdrop-hero-membership-bottom': 'linear-gradient(0deg, #181A1C 0%, rgba(24, 26, 28, 0.66) 55.04%, rgba(24, 26, 28, 0) 83.09%)',
-				'backdrop-hero-membership-bottom-mobile': 'linear-gradient(0deg, #181A1C 20.46%, rgba(24, 26, 28, 0.72) 61.5%, rgba(24, 26, 28, 0) 100%)',
+				'backdrop-hero-membership-bottom-mobile': 'linear-gradient(0deg, #181A1C 20.46%, rgba(24, 26, 28, 0.72) 70%, rgba(24, 26, 28, 0) 100%)',
 				'solution-gradient-left':
 					'linear-gradient(90deg, #181A1C -10.42%, rgba(24, 26, 28, 0.49) 46.3%, rgba(24, 26, 28, 0.00) 100%)',
 				'hero-landing-top':

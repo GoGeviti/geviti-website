@@ -47,7 +47,7 @@ const StepsSection: React.FC = () => {
 								) }
 
 								{ stepsData.description && (
-									<p className='max-w-[331px] lg:max-w-[461px] mx-auto text-grey-400 text-[3vw] xs3:text-xs lg:text-sm !leading-5 mt-4 lg:mt-3.5'>
+									<p className='max-w-[283px] lg:max-w-[461px] mx-auto text-grey-400 text-xs lg:text-sm !leading-5 lg:mt-3.5'>
 										<span dangerouslySetInnerHTML={ { __html: stepsData.description } } />
 									</p>
 								) }
