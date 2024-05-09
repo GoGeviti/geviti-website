@@ -14,7 +14,7 @@ import { setCookie } from '@/services/cookies';
 import ButtonCta from '../ButtonCta';
 import CustomLink from '../CustomLink';
 import { ChevronRight } from '../Icons';
-import Navbar, { navbarVariants } from '../Navbar/Landing';
+import Navbar, { navbarDefaultTransition } from '../Navbar/Landing';
 
 import { slideUpTransition } from './transition';
 
@@ -104,7 +104,7 @@ const Hero: React.FC<HeroProps> = ({ showBanner }) => {
 						},
 						hidden: { y: '100%' }
 					} }
-					className='inline-block font-medium text-[7.5vw] xs:text-3xl md:text-4xl lg:text-[5vh] xl:text-[46px] !leading-normal -tracking-0.04em text-grey-secondary'
+					className='inline-block font-medium text-[6.667vw] xs:text-3xl md:text-4xl lg:text-[5vh] xl:text-[46px] !leading-normal -tracking-0.04em text-grey-secondary'
 				>{ title }</motion.span>
 			</span>
 		));
@@ -265,18 +265,12 @@ const Hero: React.FC<HeroProps> = ({ showBanner }) => {
 			ref={ ref }
 			className='lg:px-3 lg:pt-3 overflow-hidden font-Poppins'>
 			<Navbar animationProps={ {
-				variants: {
-					...navbarVariants,
-					visible: {
-						...navbarVariants.visible,
-						transition: {
-							...navbarVariants.visible.transition,
-							delay: 3.1
-						}
-					}
+				transition: {
+					...navbarDefaultTransition,
+					delay: 3.1
 				}
 			} } />
-			<div className='bg-primary h-[calc(100svh+14px)] lg:h-[calc(100vh-12px)] w-full overflow-hidden max-lg:rounded-t-none rounded-19px relative pt-11px lg:pt-5'>
+			<div className='bg-primary h-[calc(100svh+14px)] lg:h-[calc(100vh-24px)] w-full overflow-hidden max-lg:rounded-t-none rounded-19px relative pt-11px lg:pt-5'>
 				<div className='absolute inset-0 w-full h-full'>
 					<div className='relative overflow-hidden w-full h-full'>
 						{ renderImage('desktop') }

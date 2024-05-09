@@ -224,12 +224,13 @@ const config: Config = {
 				feature:
 					'0px 8px 16px rgba(0, 0, 0, 0.25), inset 0px 6px 18px rgba(255, 255, 255, 0.15)',
 				'slider-solution-1': '0px 3px 6px rgba(0, 0, 0, 0.02), 0px 1px 1px rgba(0, 0, 0, 0.03)',
-				'slider-solution-2': '0px 2.29885px 6.89655px rgba(0, 0, 0, 0.1), 0px 1.14943px 1.14943px rgba(0, 0, 0, 0.03)',
+				'slider-solution-2': '0px 2px 6px rgba(0, 0, 0, 0.1), 0px 1px 1px rgba(0, 0, 0, 0.03)',
 			},
 		},
 		fontFamily: {
 			Poppins: ['var(--font-Poppins)', 'sans-serif'],
 			BRSonoma: ['var(--font-BRSonoma)', 'sans-serif'],
+			grifter: ['var(--font-grifter)', 'var(--font-Poppins)', 'sans-serif'],
 		},
 	},
 	plugins: [

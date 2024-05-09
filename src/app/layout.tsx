@@ -5,7 +5,7 @@ import NextTopLoader from 'nextjs-toploader';
 import { AOSInit } from '@/components';
 import LenisScroller from '@/components/LenisScroller';
 import Provider from '@/components/Provider';
-import { brSonoma, poppins } from '@/constant/fonts';
+import { brSonoma, grifter, poppins } from '@/constant/fonts';
 import StyledComponentsRegistry from '@/lib/registry';
 
 import 'aos/dist/aos.css';
@@ -46,7 +46,7 @@ const RootLayout: React.FC<{ children: React.ReactNode; }> = ({ children }) => {
 			</Script>
 			<StyledComponentsRegistry>
 				<body
-					className={ `${ poppins.variable } ${ brSonoma.variable }` }
+					className={ `${ poppins.variable } ${ brSonoma.variable } ${ grifter.variable }` }
 					suppressHydrationWarning
 				>
 					<NextTopLoader

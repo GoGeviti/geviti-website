@@ -29,15 +29,15 @@ const landingData = {
 	hero: {
 		preTitle: 'Live optimized and age better',
 		title:
-			'Longevity made <br class="sm:hidden"/>accessible. Data driven <br class="sm:hidden"/>anti-aging care.',
+			'A data-driven approach to longevity and health optimization.',
 		titles: [
-			'Bridging healthspan and lifespan',
-			'with data-driven optimization.'
+			'A data-driven approach to',
+			'longevity and health optimization.'
 		],
 		titlesMobile: [
-			'Bridging healthspan',
-			'and lifespan with data-',
-			'driven optimization.'
+			'A data-driven approach',
+			'to longevity and health',
+			'optimization.'
 		],
 		banner: {
 			text: 'Geviti closes Early stage Seed Financing 🎉 <br/>To celebrate, those who join before July 1st will be grandfathered in at $89 monthly!',
@@ -52,30 +52,30 @@ const landingData = {
 			externalLink: false,
 		},
 		btnCta2: {
-			href: '/products',
+			href: '/membership',
 			externalLink: false,
 			text: 'Learn More',
 		},
 		mainKeys: [
 			{
 				icon: MonitoringIcon,
-				text: 'Hormone treatments<br />Made simple',
+				text: 'Hormone Therapy<br />Made simple',
 			},
 			{
 				icon: DNAIcon,
-				text: 'At-home diagnostics<br />Blood and DNA'
+				text: 'At-home blood and<br />DNA Testing'
 			},
 			{
 				icon: MedicalDocIcon,
-				text: 'Data-driven protocols<br />No guesswork',
+				text: 'Data-driven Care<br />No Guesswork',
 			},
 			{
 				icon: PillIcon,
-				text: 'Tailor-made supplements<br />Custom to you',
+				text: 'Custom Supplements<br />Made For You',
 			},
 			{
 				icon: HeartbeatIcon,
-				text: 'Anti-aging peptides<br />Highly effective',
+				text: 'Anti-aging Peptides<br />Safe and Effective',
 			},
 		],
 	},
@@ -125,22 +125,22 @@ const landingData = {
 		list: [
 			{
 				id: 'step-1',
-				title: '<span class="lg:hidden">Become a Geviti <br />Member</span><span class="max-lg:hidden">Sign up for a <br />membership</span>',
+				title: 'Purchase labs<br/>and sign up for<br/>a membership',
 				icon: GevitiIcon
 			},
 			{
 				id: 'step-2',
-				title: 'Complete at-<br />home labs',
+				title: 'Complete<br />your at-home<br />blood draw',
 				icon: HomeOutlineIcon
 			},
 			{
 				id: 'step-3',
-				title: '<span class="lg:hidden">Full lab results <br />breakdown</span><span class="max-lg:hidden">Telehealth visit <br />breakdown</span>',
+				title: 'Review your<br />results in a<br />telehealth visit',
 				icon: ChartIcon
 			},
 			{
 				id: 'step-4',
-				title: 'Receive tailor <br />made protocols.',
+				title: 'Receive your<br />treatments on<br />your doorstep ',
 				icon: DocumentIcon
 			},
 		],
@@ -347,7 +347,7 @@ const landingData = {
 		preTitle: 'Innovative Technology',
 		title: 'Data-driven longevity. No <br class="lg:hidden"/>guesswork.',
 		description:
-			'Geviti is reshaping the traditional health care system and the worlds relationship with their health by leveraging cutting edge technology and combining it with convenient diagnostics followed by cutting edge care.',
+			'Geviti is reshaping the traditional health care system and individuals’ relationship with their health by leveraging cutting edge technology and combining it with convenient diagnostics followed by cutting edge care.',
 		list: [
 			{
 				id: 'test-results',
@@ -454,7 +454,7 @@ const landingData = {
 		description: 'No more over spending on supplements that aren\'t designed exactly for you. Geviti will analyze your biomarkers and create totally custom supplements with everything you need, and nothing that you don’t.'
 	},
 	textReveal: {
-		paragraph: 'Geviti offers enhanced health at every stage of aging with personalized hormone optimization, custom supplements, and tailored wellness plans, aiming to extend your health span and lifespan for more cherished moments with loved ones.'
+		paragraph: 'Geviti leverages your bloodwork and DNA to enhance your health and improve aging. We provide personalized hormone optimization, custom supplements, and tailored wellness plans aimed at extending your healthy years and lifespan. This approach helps you enjoy more time and create lasting memories with your loved ones.'
 	},
 	membership: {
 		priceSection: {
@@ -553,7 +553,7 @@ const landingData = {
 			{
 				id: 'doctor',
 				title: 'Doctor Led Care',
-				description: 'Cutting edge therapeutics including <br class="max-lg:hidden"/>hormone therapy, peptide therapy, medical weight loss, and more monitored by board <br class="max-lg:hidden"/>certified providers.'
+				description: 'Check-ins from your designated health coach to hold you accountable to your goals and ensure you have the necessary tools for success.'
 			},
 			{
 				id: 'coaching',

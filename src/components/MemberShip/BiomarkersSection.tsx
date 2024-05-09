@@ -232,7 +232,7 @@ const BioMakersSection: React.FC = () => {
 							<ChevronDown className='w-5 h-5 lg:w-6 lg:h-6 flex-shrink-0 text-primary' />
 						</motion.span>
 					</button>
-					<p className='mt-5px lg:mt-1 text-grey-300 text-xs lg:text-lg !leading-normal'>{ biomarkersData.expandText }</p>
+					<p className={ clsxm('transform transition-opacity ease-in-out mt-5px lg:mt-1 text-grey-300 text-xs lg:text-lg !leading-normal', isOpenSection ? 'opacity-0 duration-[50ms]' : 'opacity-100 delay-500 duration-500') }>{ biomarkersData.expandText }</p>
 
 					<AnimatePresence mode='wait'>
 						{ isOpenSection && (
@@ -242,7 +242,7 @@ const BioMakersSection: React.FC = () => {
 								exit={ { opacity: 0, y: -30, height: 0 } }
 								transition={ { duration: 0.5, ease: 'easeInOut' } }
 							>
-								<div className='flex flex-col mt-6 lg:mt-[30px]'>
+								<div className='flex flex-col'>
 									<div className='hidden lg:flex w-fit mb-[39px]'>
 										{ renderButtonSwitchGender() }
 									</div>

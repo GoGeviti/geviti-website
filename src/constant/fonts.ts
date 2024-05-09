@@ -66,4 +66,16 @@ const brSonoma = localFont({
 	variable: '--font-BRSonoma'
 });
 
-export { brSonoma, poppins };
+const grifter = localFont({
+	display: 'swap',
+	src: [
+		{
+			path: './fonts/grifterbold.otf',
+			weight: '700',
+			style: 'normal',
+		}
+	],
+	variable: '--font-grifter'
+});
+
+export { brSonoma, grifter, poppins };

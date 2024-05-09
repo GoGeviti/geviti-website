@@ -33,7 +33,7 @@ const Hero: React.FC = () => {
 						},
 						hidden: { y: '100%' }
 					} }
-					className='inline-block font-medium text-[7.5vw] xs:text-3xl md:text-4xl lg:text-[5vh] xl:text-[46px] !leading-normal -tracking-0.04em text-grey-secondary'
+					className='inline-block font-medium text-[6.667vw] xs:text-3xl md:text-4xl lg:text-[5vh] xl:text-[46px] !leading-normal -tracking-0.04em text-grey-secondary'
 				>{ title }</motion.span>
 			</span>
 		));
@@ -61,7 +61,7 @@ const Hero: React.FC = () => {
 	return (
 		<div className='lg:px-3 lg:pt-3 overflow-hidden font-Poppins'>
 			<Navbar />
-			<div className='bg-primary h-[calc(100svh+14px)] lg:h-[calc(100vh-12px)] w-full overflow-hidden max-lg:rounded-t-none rounded-19px relative pt-11px lg:pt-5'>
+			<div className='bg-primary h-[calc(100svh+14px)] lg:h-[calc(100vh-24px)] w-full overflow-hidden max-lg:rounded-t-none rounded-19px relative pt-11px lg:pt-5'>
 				<div className='absolute inset-0 w-full h-full'>
 					<div className='relative overflow-hidden w-full h-full'>
 						{ renderImage('desktop') }

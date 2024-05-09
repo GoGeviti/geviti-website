@@ -252,7 +252,7 @@ const Footer: React.FC<FooterProps> = ({ landingPage }) => {
 								</button>
 							</form>
 
-							<div className='mt-[34px] sm:mt-[65px] flex flex-wrap items-center max-sm:justify-between gap-2 sm:gap-[23px]'>
+							<div className='mt-[34px] sm:mt-[65px] flex flex-wrap items-center gap-[23px]'>
 								{ footerData.socialMedia.map(item => (
 									<CustomLink
 										key={ item.alt }

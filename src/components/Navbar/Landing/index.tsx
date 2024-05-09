@@ -27,13 +27,14 @@ export const navbarVariants = {
 		opacity: 1,
 		backdropFilter: 'blur(25px)',
 		borderRadius: '100px',
-		transition: {
-			delay: 2.25,
-			duration: 1,
-			ease: 'easeInOut'
-		}
 	},
 	hidden: { y: '-100%', opacity: 0 },
+};
+
+export const navbarDefaultTransition = {
+	delay: 2,
+	duration: 1,
+	ease: 'easeInOut'
 };
 
 export const MenuItem = ({
@@ -204,6 +205,7 @@ const Navbar: React.FC<NavbarProps> = ({ className, animationProps, theme }) => 
 						initial='hidden'
 						animate='visible'
 						className='inline-block w-full'
+						transition={ navbarDefaultTransition }
 						onAnimationComplete={ () => setOverflow('') }
 						{ ...animationProps }
 					>

@@ -495,16 +495,16 @@ const membershipData = {
 			text: 'See Products'
 		},
 		list: [
-			'Because why leave home for better care?',
-			'Everything is streamlined and made easy.',
-			'Geviti makes cutting edge care available.',
-			'Optimizing hormones doesn’t have to be hard!',
+			'Testing and diagnostics from the comfort of your own home.',
+			'Cutting edge health care available at your fingertips.',
+			'Streamlined processes that eliminate traditional paint points.',
+			'Comprehensive health/human optimization made simple.',
 		],
 	},
 	steps: {
 		preTitle: 'become a member',
 		title: 'Start your health journey <span class="max-lg:hidden"/>with a full blood panel</span>',
-		description: '<span class="lg:hidden">Membership journey starts with choosing a Deep Dive Diagnostic which includes the following:</span><span class="max-lg:hidden">Membership journey starts with choosing a “Deep Dive” diagnostic. We’ll draw your blood from the comfort of your home.</span>',
+		description: 'Membership journey starts with choosing a full bloodwork panel. We’ll draw your blood from the comfort of your home.',
 		list: [
 			{
 				id: 'step-1',

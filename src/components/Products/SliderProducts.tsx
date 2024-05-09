@@ -13,7 +13,7 @@ import 'swiper/css/thumbs';
 import 'swiper/css';
 
 type SliderProductsProps = {
-  images: string[];
+	images: string[];
 };
 
 const SliderProducts: React.FC<SliderProductsProps> = ({ images }) => {

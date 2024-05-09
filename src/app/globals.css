@@ -2,18 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-@font-face {
-  font-family: grifterbold;
-  src: url("/fonts/grifterbold.otf");
-}
-
-.font-grifterbold {
-  font-family: grifterbold;
-}
-
 .hero-solutions span {
-  font-family: grifterbold;
-  letter-spacing: 2.4px;
+  @apply max-lg:font-bold font-Poppins lg:font-grifter -tracking-[0.04em] lg:tracking-[2.4px];
 }
 
 @layer utilities {

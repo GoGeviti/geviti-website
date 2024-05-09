@@ -18,9 +18,9 @@ const solutionData = {
 	hero: {
 		men: {
 			preTitle: 'mens health and wellness solutions',
-			title: 'Live optimized with <br class="lg:hidden"/><span>Geviti</span>',
-			titles: ['Live optimized with <span>Geviti</span>'],
-			titlesMobile: ['Live optimized with', '<span>Geviti</span>'],
+			title: 'Live optimized with <br class="lg:hidden"/><span>Geviti</span><span class="lg:hidden">.</span>',
+			titles: ['Live optimized with <span>Geviti</span><span class="lg:hidden">.</span>'],
+			titlesMobile: ['Live optimized with', '<span>Geviti</span><span class="lg:hidden">.</span>'],
 			description: 'Our platform offers men at-home diagnostics and doctor-supervised treatments covering testosterone therapy, anti-aging peptides, medical weight loss, and more, fostering vitality and longevity.',
 			image: '/images/solution_media/compressed/hero-men.webp',
 			imageMobile: '/images/solution_media/compressed/hero-men-mobile.webp',
@@ -32,9 +32,9 @@ const solutionData = {
 		},
 		women: {
 			preTitle: 'Womens health and wellness solutions',
-			title: 'Live optimized with <br class="lg:hidden"/><span>Geviti</span>',
-			titles: ['Live optimized with <span>Geviti</span>'],
-			titlesMobile: ['Live optimized with', '<span>Geviti</span>'],
+			title: 'Live optimized with <br class="lg:hidden"/><span>Geviti</span><span class="lg:hidden">.</span>',
+			titles: ['Live optimized with <span>Geviti</span><span class="lg:hidden">.</span>'],
+			titlesMobile: ['Live optimized with', '<span>Geviti</span><span class="lg:hidden">.</span>'],
 			description: 'Our platform offers women at-home diagnostics and doctor-supervised treatments covering testosterone therapy, anti-aging peptides, medical weight loss, and more, fostering vitality and longevity.',
 			image: '/images/solution_media/compressed/hero-women.webp',
 			imageMobile: '/images/solution_media/compressed/hero-women-mobile.webp',
@@ -58,7 +58,7 @@ const solutionData = {
 		preTitle: 'Geviti offers data-driven wellness solutions',
 		title: 'Begin with an at-home <br class="lg:hidden"/>bloodwork panel',
 		description:
-			'Membership journey starts with choosing a “Deep Dive” diagnostic. We’ll draw your blood from the comfort of your home.',
+			'Membership journey starts with choosing a full bloodwork panel. We’ll draw your blood from the comfort of your home.',
 		list: [
 			{
 				id: 'step-1',
@@ -241,6 +241,11 @@ const solutionData = {
 				{ id: 4, title: 'Sexual Health', icon: HeartIcon, preTitle: 'Explore our sexual health Solutions' },
 				{ id: 5, title: 'Thyroid', icon: ThyroidIcon, preTitle: 'Explore our Thyroid Solutions' },
 			],
+			subCategories: [
+				{ id: 1, title: 'Prescriptions' },
+				{ id: 2, title: 'Testing Options' },
+				{ id: 3, title: 'Supplements' },
+			],
 			products: [
 				{
 					id: 1,
@@ -249,12 +254,8 @@ const solutionData = {
 					sort_description: 'Oral Gel Capsule',
 					price: 99,
 					category: { id: 1 },
+					subCategory: { id: [1, 2, 3] },
 					image: '/images/solution_media/men/testosterone-therapy/oral-testosterone.webp',
-					images: [
-						'/images/solution_media/men/testosterone-therapy/oral-testosterone.webp',
-						'/images/solution_media/men/testosterone-therapy/oral-testosterone.webp',
-						'/images/solution_media/men/testosterone-therapy/oral-testosterone.webp'
-					],
 					list: [
 						'FDA Approved',
 						'Bioidentical',
@@ -271,12 +272,8 @@ const solutionData = {
 					sort_description: 'Oral Tablet',
 					price: 60,
 					category: { id: 1 },
+					subCategory: { id: [1, 2, 3] },
 					image: '/images/solution_media/men/testosterone-therapy/testosterone-booster.webp',
-					images: [
-						'/images/solution_media/men/testosterone-therapy/testosterone-booster.webp',
-						'/images/solution_media/men/testosterone-therapy/testosterone-booster.webp',
-						'/images/solution_media/men/testosterone-therapy/testosterone-booster.webp'
-					],
 					list: [
 						'TRT Alternative',
 						'Safe Profile',
@@ -293,12 +290,8 @@ const solutionData = {
 					sort_description: 'Oral Tablet',
 					price: 60,
 					category: { id: 1 },
+					subCategory: { id: [1, 2, 3] },
 					image: '/images/solution_media/men/testosterone-therapy/enclomiphene-citrat.webp',
-					images: [
-						'/images/solution_media/men/testosterone-therapy/enclomiphene-citrat.webp',
-						'/images/solution_media/men/testosterone-therapy/enclomiphene-citrat.webp',
-						'/images/solution_media/men/testosterone-therapy/enclomiphene-citrat.webp'
-					],
 					list: [
 						'TRT Alternative',
 						'Safe Profile',
@@ -315,12 +308,8 @@ const solutionData = {
 					sort_description: 'Topical Cream',
 					price: 70,
 					category: { id: 1 },
+					subCategory: { id: [1, 2, 3] },
 					image: '/images/solution_media/men/testosterone-therapy/testosterone-cream.webp',
-					images: [
-						'/images/solution_media/men/testosterone-therapy/testosterone-cream.webp',
-						'/images/solution_media/men/testosterone-therapy/testosterone-cream.webp',
-						'/images/solution_media/men/testosterone-therapy/testosterone-cream.webp'
-					],
 					list: [
 						'Applied Topically',
 						'Controlled Dosing',
@@ -337,12 +326,8 @@ const solutionData = {
 					sort_description: '',
 					price: 30,
 					category: { id: 1 },
+					subCategory: { id: [1, 2, 3] },
 					image: '/images/solution_media/men/testosterone-therapy/testosterone-cypionate.webp',
-					images: [
-						'/images/solution_media/men/testosterone-therapy/testosterone-cypionate.webp',
-						'/images/solution_media/men/testosterone-therapy/testosterone-cypionate.webp',
-						'/images/solution_media/men/testosterone-therapy/testosterone-cypionate.webp'
-					],
 					list: [
 						'Sustained Release',
 						'Bioidentical',
@@ -359,12 +344,8 @@ const solutionData = {
 					sort_description: 'Sublingual Mini Troche',
 					price: 70,
 					category: { id: 2 },
+					subCategory: { id: [1, 2, 3] },
 					image: '/images/solution_media/men/anti-aging/sermorelin-mini.webp',
-					images: [
-						'/images/solution_media/men/anti-aging/sermorelin-mini.webp',
-						'/images/solution_media/men/anti-aging/sermorelin-mini.webp',
-						'/images/solution_media/men/anti-aging/sermorelin-mini.webp'
-					],
 					list: [
 						'Quick Absorption',
 						'Enhances Vitality',
@@ -381,12 +362,8 @@ const solutionData = {
 					sort_description: 'Sub-Q Injection',
 					price: 115,
 					category: { id: 2 },
+					subCategory: { id: [1, 2, 3] },
 					image: '/images/solution_media/men/anti-aging/sermorelin-injections.webp',
-					images: [
-						'/images/solution_media/men/anti-aging/sermorelin-injections.webp',
-						'/images/solution_media/men/anti-aging/sermorelin-injections.webp',
-						'/images/solution_media/men/anti-aging/sermorelin-injections.webp'
-					],
 					list: [
 						'Versatile Dosing',
 						'Enhanced Vitality',
@@ -403,12 +380,8 @@ const solutionData = {
 					sort_description: 'Sublingual Troche',
 					price: 110,
 					category: { id: 2 },
+					subCategory: { id: [1, 2, 3] },
 					image: '/images/solution_media/men/anti-aging/ghk-troche.webp',
-					images: [
-						'/images/solution_media/men/anti-aging/ghk-troche.webp',
-						'/images/solution_media/men/anti-aging/ghk-troche.webp',
-						'/images/solution_media/men/anti-aging/ghk-troche.webp'
-					],
 					list: [
 						'Convenient Use',
 						'Keeps Skin Young',
@@ -425,12 +398,8 @@ const solutionData = {
 					sort_description: 'Oral Gel Capsule',
 					price: 55,
 					category: { id: 3 },
+					subCategory: { id: [1, 2, 3] },
 					image: '/images/solution_media/men/weight-loss/semaglutide.webp',
-					images: [
-						'/images/solution_media/men/weight-loss/semaglutide.webp',
-						'/images/solution_media/men/weight-loss/semaglutide.webp',
-						'/images/solution_media/men/weight-loss/semaglutide.webp'
-					],
 					list: [
 						'Reduces Hunger',
 						'Flexible Dosing',
@@ -447,12 +416,8 @@ const solutionData = {
 					sort_description: 'Oral Tablet',
 					price: 150,
 					category: { id: 3 },
+					subCategory: { id: [1, 2, 3] },
 					image: '/images/solution_media/men/weight-loss/tirzepatide.webp',
-					images: [
-						'/images/solution_media/men/weight-loss/tirzepatide.webp',
-						'/images/solution_media/men/weight-loss/tirzepatide.webp',
-						'/images/solution_media/men/weight-loss/tirzepatide.webp'
-					],
 					list: [
 						'Reduces Hunger',
 						'Flexible Dosing',
@@ -469,12 +434,8 @@ const solutionData = {
 					sort_description: 'Oral Tablet',
 					price: 70,
 					category: { id: 4 },
+					subCategory: { id: [1, 2, 3] },
 					image: '/images/solution_media/men/sexual-health/tadalafil.webp',
-					images: [
-						'/images/solution_media/men/sexual-health/tadalafil.webp',
-						'/images/solution_media/men/sexual-health/tadalafil.webp',
-						'/images/solution_media/men/sexual-health/tadalafil.webp'
-					],
 					list: [
 						'Longer Half Life',
 						'Treats ED',
@@ -491,12 +452,8 @@ const solutionData = {
 					sort_description: 'Sublingual Mini Troche',
 					price: 90,
 					category: { id: 4 },
+					subCategory: { id: [1, 2, 3] },
 					image: '/images/solution_media/men/sexual-health/peak-male.webp',
-					images: [
-						'/images/solution_media/men/sexual-health/peak-male.webp',
-						'/images/solution_media/men/sexual-health/peak-male.webp',
-						'/images/solution_media/men/sexual-health/peak-male.webp'
-					],
 					list: [
 						'Sublingual Troche',
 						'Oxytocin',
@@ -513,12 +470,8 @@ const solutionData = {
 					sort_description: 'Oral Gel Capsule',
 					price: 70,
 					category: { id: 5 },
+					subCategory: { id: [1, 2, 3] },
 					image: '/images/solution_media/men/thyroid/desiccated-thyroid.webp',
-					images: [
-						'/images/solution_media/men/thyroid/desiccated-thyroid.webp',
-						'/images/solution_media/men/thyroid/desiccated-thyroid.webp',
-						'/images/solution_media/men/thyroid/desiccated-thyroid.webp'
-					],
 					list: [
 						'Enhances Energy',
 						'Balances Thyroid',
@@ -531,461 +484,241 @@ const solutionData = {
 			],
 		},
 		women: {
-			preTitle: 'Doctor Led online Treatment',
+			preTitle: 'Easy online care',
 			title: 'Treatment options for females',
 			btnCta: {
 				href: '/onboarding',
 				text: 'Get Started'
 			},
 			tabs: [
-				{ id: 1, title: 'Horomone Therapy', icon: HormoneTherapyIcon, preTitle: 'Analyze hormone Therapy options' },
-				{ id: 2, title: 'Anti-aging Peptides', icon: PeptidesIcon, preTitle: 'Explore AntI-aging Peptides' },
+				{ id: 1, title: 'Hormone Therapy', icon: HormoneTherapyIcon, preTitle: 'Compare Hormone Optimization options' },
+				{ id: 2, title: 'Anti-aging Peptides', icon: PeptidesIcon, preTitle: 'Explore Anti-aging Peptides' },
 				{ id: 3, title: 'Medical Weight Loss', icon: WeightLossIcon, preTitle: 'See our medical weight loss options' },
 				{ id: 4, title: 'Sexual Health', icon: HeartIcon, preTitle: 'Explore our sexual health Solutions' },
 				{ id: 5, title: 'Thyroid', icon: ThyroidIcon, preTitle: 'Explore our Thyroid Solutions' },
+			],
+			subCategories: [
+				{ id: 1, title: 'Prescriptions' },
+				{ id: 2, title: 'Testing Options' },
+				{ id: 3, title: 'Supplements' },
 			],
 			products: [
 				{
 					id: 1,
 					name: 'Oral Estradiol',
-					description: 'The FDA\'s approval of oral testosterone undecanoate offers a breakthrough in TRT, providing an easy-to-use, effective option for managing Low T. This addition enhances the therapy landscape, simplifying the path to hormonal balance for many.',
+					description: 'Oral Estradiol replenishes estrogen levels, providing a core treatment for hormonal balance. This approach supports overall hormonal health by naturally augmenting the body\'s estrogen, ideal for managing symptoms associated with estrogen deficiency.',
 					sort_description: 'Product Info',
-					price: 94.99,
+					price: 50,
 					category: { id: 1 },
+					subCategory: { id: [1, 2, 3] },
 					image: '/images/solution_media/women/hormone-therapy/oral-estradiol.webp',
-					images: [
-						'/images/solution_media/women/hormone-therapy/oral-estradiol.webp',
-						'/images/solution_media/women/hormone-therapy/oral-estradiol.webp',
-						'/images/solution_media/women/hormone-therapy/oral-estradiol.webp'
-					],
 					list: [
-						'FDA Approved',
+						'HRT',
 						'Bioidentical',
-						'Convenient',
+						'Safe Profile',
 						'Oral Tablet',
-						'Taken Daily',
-						'Flexible Dosing'
+						'Daily Dosing',
+						'Enhances Natural Estrogen levels'
 					]
 				},
 				{
 					id: 2,
 					name: 'Oral Progesterone',
-					description: 'The FDA\'s approval of oral testosterone undecanoate offers a breakthrough in TRT, providing an easy-to-use, effective option for managing Low T. This addition enhances the therapy landscape, simplifying the path to hormonal balance for many.',
+					description: 'Oral Progesterone enhances natural progesterone levels, offering a fundamental solution for hormonal stability. This method supports reproductive health and mood regulation by naturally boosting the body\'s progesterone supply.',
 					sort_description: 'Product Info',
-					price: 94.99,
+					price: 35,
 					category: { id: 1 },
-					image: '/images/solution_media/women/hormone-therapy/oral-estradiol.webp',
-					images: [
-						'/images/solution_media/women/hormone-therapy/oral-estradiol.webp',
-						'/images/solution_media/women/hormone-therapy/oral-estradiol.webp',
-						'/images/solution_media/women/hormone-therapy/oral-estradiol.webp'
-					],
+					subCategory: { id: [1, 2, 3] },
+					image: '/images/solution_media/women/hormone-therapy/oral-progresterone.webp',
 					list: [
-						'FDA Approved',
-						'Bioidentical',
-						'Convenient',
+						'Daily Dosing',
+						'Safe Profile',
+						'Non-Invasive',
 						'Oral Tablet',
-						'Taken Daily',
-						'Flexible Dosing'
+						'Regulates Mood and Sleep Cycles',
+						'Supports Natural Progesterone'
 					]
 				},
 				{
 					id: 3,
-					name: 'Progesterone Topical Cream',
-					description: 'The FDA\'s approval of oral testosterone undecanoate offers a breakthrough in TRT, providing an easy-to-use, effective option for managing Low T. This addition enhances the therapy landscape, simplifying the path to hormonal balance for many.',
+					name: 'Progesterone Cream',
+					description: 'Progesterone Cream directly delivers progesterone to the body, providing a targeted approach to hormonal balance. Ideal for skin application, this cream helps stabilize mood and supports overall reproductive health by supplementing natural progesterone levels.',
 					sort_description: 'Product Info',
-					price: 94.99,
+					price: 60,
 					category: { id: 1 },
-					image: '/images/solution_media/women/hormone-therapy/oral-estradiol.webp',
-					images: [
-						'/images/solution_media/women/hormone-therapy/oral-estradiol.webp',
-						'/images/solution_media/women/hormone-therapy/oral-estradiol.webp',
-						'/images/solution_media/women/hormone-therapy/oral-estradiol.webp'
-					],
+					subCategory: { id: [1, 2, 3] },
+					image: '/images/solution_media/women/hormone-therapy/progesterone-cream.webp',
 					list: [
-						'FDA Approved',
-						'Bioidentical',
-						'Convenient',
-						'Oral Tablet',
-						'Taken Daily',
-						'Flexible Dosing'
+						'Applied Topically',
+						'Non-injectable',
+						'Non-Invasive',
+						'Convenient Use',
+						'Controlled Dosing',
+						'Versatile Treatment'
 					]
 				},
 				{
 					id: 4,
-					name: 'Estradiol Topical Cream',
-					description: 'The FDA\'s approval of oral testosterone undecanoate offers a breakthrough in TRT, providing an easy-to-use, effective option for managing Low T. This addition enhances the therapy landscape, simplifying the path to hormonal balance for many.',
+					name: 'Estradiol Cream',
+					description: 'Estradiol Cream applies bio-identical estradiol directly to the skin. This localized treatment method enhances estrogen levels, providing relief from menopausal symptoms and supporting overall hormonal health.',
 					sort_description: 'Product Info',
-					price: 94.99,
+					price: 70,
 					category: { id: 1 },
-					image: '/images/solution_media/women/hormone-therapy/oral-estradiol.webp',
-					images: [
-						'/images/solution_media/women/hormone-therapy/oral-estradiol.webp',
-						'/images/solution_media/women/hormone-therapy/oral-estradiol.webp',
-						'/images/solution_media/women/hormone-therapy/oral-estradiol.webp'
-					],
+					subCategory: { id: [1, 2, 3] },
+					image: '/images/solution_media/women/hormone-therapy/estradiol-cream.webp',
 					list: [
-						'FDA Approved',
-						'Bioidentical',
-						'Convenient',
-						'Oral Tablet',
-						'Taken Daily',
-						'Flexible Dosing'
+						'Applied Topically',
+						'Controlled Dosing',
+						'Convenient Use',
+						'Steady Absorption',
+						'Non-injectable',
+						'Versatile Treatment'
 					]
 				},
-
 				{
 					id: 5,
-					name: 'Oral Estradiol',
-					description: 'The FDA\'s approval of oral testosterone undecanoate offers a breakthrough in TRT, providing an easy-to-use, effective option for managing Low T. This addition enhances the therapy landscape, simplifying the path to hormonal balance for many.',
+					name: 'Testosterone Cream',
+					description: 'Testosterone Cream enhances natural testosterone levels specifically tailored for female physiology, offering a targeted approach to hormonal balance. This topical solution boosts vitality, enhances libido, and supports overall well-being by gently increasing testosterone, crucial for optimal health in women.',
 					sort_description: 'Product Info',
-					price: 94.99,
-					category: { id: 2 },
-					image: '/images/solution_media/women/hormone-therapy/oral-estradiol.webp',
-					images: [
-						'/images/solution_media/women/hormone-therapy/oral-estradiol.webp',
-						'/images/solution_media/women/hormone-therapy/oral-estradiol.webp',
-						'/images/solution_media/women/hormone-therapy/oral-estradiol.webp'
-					],
+					price: 70,
+					category: { id: 1 },
+					subCategory: { id: [1, 2, 3] },
+					image: '/images/solution_media/women/hormone-therapy/testosterone-cream.webp',
 					list: [
-						'FDA Approved',
-						'Bioidentical',
-						'Convenient',
-						'Oral Tablet',
-						'Taken Daily',
-						'Flexible Dosing'
+						'Applied Topically',
+						'Controlled Dosing',
+						'Convenient Use',
+						'Steady Absorption',
+						'Non-injectable',
+						'Versatile Treatment'
 					]
 				},
 				{
 					id: 6,
-					name: 'Oral Progesterone',
-					description: 'The FDA\'s approval of oral testosterone undecanoate offers a breakthrough in TRT, providing an easy-to-use, effective option for managing Low T. This addition enhances the therapy landscape, simplifying the path to hormonal balance for many.',
-					sort_description: 'Product Info',
-					price: 94.99,
+					name: 'Sermorelin Mini Troche',
+					description: 'Sermorelin Mini Troches dissolve under the tongue for rapid absorption and stimulate natural growth hormone production without the need for injections. They support anti-aging, muscle strength, and vitality.',
+					sort_description: 'Sublingual Mini Troche',
+					price: 70,
 					category: { id: 2 },
-					image: '/images/solution_media/women/hormone-therapy/oral-estradiol.webp',
-					images: [
-						'/images/solution_media/women/hormone-therapy/oral-estradiol.webp',
-						'/images/solution_media/women/hormone-therapy/oral-estradiol.webp',
-						'/images/solution_media/women/hormone-therapy/oral-estradiol.webp'
-					],
+					subCategory: { id: [1, 2, 3] },
+					image: '/images/solution_media/women/anti-aging/sermorelin-mini.webp',
 					list: [
-						'FDA Approved',
-						'Bioidentical',
-						'Convenient',
-						'Oral Tablet',
-						'Taken Daily',
-						'Flexible Dosing'
+						'Quick Absorption',
+						'Enhances Vitality',
+						'Non-Invasive',
+						'Sublingual Troche',
+						'Daily Dosing',
+						'Stimulates Growth Hormone'
 					]
 				},
 				{
 					id: 7,
-					name: 'Progesterone Topical Cream',
-					description: 'The FDA\'s approval of oral testosterone undecanoate offers a breakthrough in TRT, providing an easy-to-use, effective option for managing Low T. This addition enhances the therapy landscape, simplifying the path to hormonal balance for many.',
-					sort_description: 'Product Info',
-					price: 94.99,
+					name: 'Sermorelin Injections',
+					description: 'Sermorelin Injections stimulate natural growth hormone production through subcutaneous administration, supporting anti-aging, muscle strength, and vitality. They offer targeted, effective hormone optimization for a comprehensive wellness regimen.',
+					sort_description: 'Sub-Q Injection',
+					price: 115,
 					category: { id: 2 },
-					image: '/images/solution_media/women/hormone-therapy/oral-estradiol.webp',
-					images: [
-						'/images/solution_media/women/hormone-therapy/oral-estradiol.webp',
-						'/images/solution_media/women/hormone-therapy/oral-estradiol.webp',
-						'/images/solution_media/women/hormone-therapy/oral-estradiol.webp'
-					],
+					subCategory: { id: [1, 2, 3] },
+					image: '/images/solution_media/women/anti-aging/sermorelin-injections.webp',
 					list: [
-						'FDA Approved',
-						'Bioidentical',
-						'Convenient',
-						'Oral Tablet',
-						'Taken Daily',
-						'Flexible Dosing'
+						'Versatile Dosing',
+						'Enhanced Vitality',
+						'Anti-Aging',
+						'Subcutaneous Administration',
+						'Efficient Absorption',
+						'Stimulates Growth Hormone'
 					]
 				},
 				{
 					id: 8,
-					name: 'Estradiol Topical Cream',
-					description: 'The FDA\'s approval of oral testosterone undecanoate offers a breakthrough in TRT, providing an easy-to-use, effective option for managing Low T. This addition enhances the therapy landscape, simplifying the path to hormonal balance for many.',
-					sort_description: 'Product Info',
-					price: 94.99,
+					name: 'GHK-Cu Troche',
+					description: 'GHK-Cu Troches offer a convenient, sublingual route for the anti-aging benefits of GHK-Copper peptide, dissolving under the tongue for quick absorption. They promote skin health, wound healing, and collagen production, enhancing daily anti-aging routines with optimal bioavailability.',
+					sort_description: 'Sublingual Troche',
+					price: 110,
 					category: { id: 2 },
-					image: '/images/solution_media/women/hormone-therapy/oral-estradiol.webp',
-					images: [
-						'/images/solution_media/women/hormone-therapy/oral-estradiol.webp',
-						'/images/solution_media/women/hormone-therapy/oral-estradiol.webp',
-						'/images/solution_media/women/hormone-therapy/oral-estradiol.webp'
-					],
+					subCategory: { id: [1, 2, 3] },
+					image: '/images/solution_media/women/anti-aging/ghk-troche.webp',
 					list: [
-						'FDA Approved',
-						'Bioidentical',
-						'Convenient',
-						'Oral Tablet',
-						'Taken Daily',
-						'Flexible Dosing'
+						'Convenient Use',
+						'Keeps Skin Young',
+						'Anti-Aging',
+						'Sublingual Delivery',
+						'Highly Bioavailable',
+						'Boosts Collagen Production'
 					]
 				},
 				{
 					id: 9,
-					name: 'Oral Estradiol',
-					description: 'The FDA\'s approval of oral testosterone undecanoate offers a breakthrough in TRT, providing an easy-to-use, effective option for managing Low T. This addition enhances the therapy landscape, simplifying the path to hormonal balance for many.',
-					sort_description: 'Product Info',
-					price: 94.99,
+					name: 'Semaglutide',
+					description: 'Semaglutide Injections mimic the GLP-1 hormone to regulate appetite and aid in significant weight reduction. Administered subcutaneously, they offer an effective solution for enhancing metabolic health and managing weight.',
+					sort_description: 'Oral Gel Capsule',
+					price: 55,
 					category: { id: 3 },
-					image: '/images/solution_media/women/hormone-therapy/oral-estradiol.webp',
-					images: [
-						'/images/solution_media/women/hormone-therapy/oral-estradiol.webp',
-						'/images/solution_media/women/hormone-therapy/oral-estradiol.webp',
-						'/images/solution_media/women/hormone-therapy/oral-estradiol.webp'
-					],
+					subCategory: { id: [1, 2, 3] },
+					image: '/images/solution_media/women/weight-loss/semaglutide.webp',
 					list: [
-						'FDA Approved',
-						'Bioidentical',
-						'Convenient',
-						'Oral Tablet',
-						'Taken Daily',
-						'Flexible Dosing'
+						'Reduces Hunger',
+						'Flexible Dosing',
+						'Highly Effective',
+						'Subcutaneous Administration',
+						'Metabolic Enhancement',
+						'Mimics GLP-1',
 					]
 				},
 				{
 					id: 10,
-					name: 'Oral Progesterone',
-					description: 'The FDA\'s approval of oral testosterone undecanoate offers a breakthrough in TRT, providing an easy-to-use, effective option for managing Low T. This addition enhances the therapy landscape, simplifying the path to hormonal balance for many.',
-					sort_description: 'Product Info',
-					price: 94.99,
+					name: 'Tirzepatide',
+					description: 'Tirzepatide Injections offer a dual-action approach to weight management, mimicking GLP-1 and GIP to suppress appetite and promote significant weight loss. Subcutaneous administration.',
+					sort_description: 'Oral Tablet',
+					price: 150,
 					category: { id: 3 },
-					image: '/images/solution_media/women/hormone-therapy/oral-estradiol.webp',
-					images: [
-						'/images/solution_media/women/hormone-therapy/oral-estradiol.webp',
-						'/images/solution_media/women/hormone-therapy/oral-estradiol.webp',
-						'/images/solution_media/women/hormone-therapy/oral-estradiol.webp'
-					],
+					subCategory: { id: [1, 2, 3] },
+					image: '/images/solution_media/women/weight-loss/tirzepatide.webp',
 					list: [
-						'FDA Approved',
-						'Bioidentical',
-						'Convenient',
-						'Oral Tablet',
-						'Taken Daily',
-						'Flexible Dosing'
-					]
-				},
-				{
-					id: 11,
-					name: 'Progesterone Topical Cream',
-					description: 'The FDA\'s approval of oral testosterone undecanoate offers a breakthrough in TRT, providing an easy-to-use, effective option for managing Low T. This addition enhances the therapy landscape, simplifying the path to hormonal balance for many.',
-					sort_description: 'Product Info',
-					price: 94.99,
-					category: { id: 3 },
-					image: '/images/solution_media/women/hormone-therapy/oral-estradiol.webp',
-					images: [
-						'/images/solution_media/women/hormone-therapy/oral-estradiol.webp',
-						'/images/solution_media/women/hormone-therapy/oral-estradiol.webp',
-						'/images/solution_media/women/hormone-therapy/oral-estradiol.webp'
-					],
-					list: [
-						'FDA Approved',
-						'Bioidentical',
-						'Convenient',
-						'Oral Tablet',
-						'Taken Daily',
-						'Flexible Dosing'
+						'Reduces Hunger',
+						'Flexible Dosing',
+						'Highly Effective',
+						'Subcutaneous Administration',
+						'Metabolic Enhancement',
+						'Mimics GLP-1 and GIP',
 					]
 				},
 				{
 					id: 12,
-					name: 'Estradiol Topical Cream',
-					description: 'The FDA\'s approval of oral testosterone undecanoate offers a breakthrough in TRT, providing an easy-to-use, effective option for managing Low T. This addition enhances the therapy landscape, simplifying the path to hormonal balance for many.',
-					sort_description: 'Product Info',
-					price: 94.99,
-					category: { id: 3 },
-					image: '/images/solution_media/women/hormone-therapy/oral-estradiol.webp',
-					images: [
-						'/images/solution_media/women/hormone-therapy/oral-estradiol.webp',
-						'/images/solution_media/women/hormone-therapy/oral-estradiol.webp',
-						'/images/solution_media/women/hormone-therapy/oral-estradiol.webp'
-					],
-					list: [
-						'FDA Approved',
-						'Bioidentical',
-						'Convenient',
-						'Oral Tablet',
-						'Taken Daily',
-						'Flexible Dosing'
-					]
-				},
-				{
-					id: 14,
-					name: 'Oral Estradiol',
-					description: 'The FDA\'s approval of oral testosterone undecanoate offers a breakthrough in TRT, providing an easy-to-use, effective option for managing Low T. This addition enhances the therapy landscape, simplifying the path to hormonal balance for many.',
-					sort_description: 'Product Info',
-					price: 94.99,
+					name: 'Peak Female Mini Troche',
+					description: 'Peak Female Mini Troche combines Oxytocin, PT-141 and Tadalafil. These compounds work together to improve overall emotional, physical and intimate well being. Comes with 10 dissolvable Troches.',
+					sort_description: 'Sublingual Mini Troche',
+					price: 90,
 					category: { id: 4 },
-					image: '/images/solution_media/women/hormone-therapy/oral-estradiol.webp',
-					images: [
-						'/images/solution_media/women/hormone-therapy/oral-estradiol.webp',
-						'/images/solution_media/women/hormone-therapy/oral-estradiol.webp',
-						'/images/solution_media/women/hormone-therapy/oral-estradiol.webp'
-					],
+					subCategory: { id: [1, 2, 3] },
+					image: '/images/solution_media/women/sexual-health/peak-female.webp',
 					list: [
-						'FDA Approved',
-						'Bioidentical',
-						'Convenient',
-						'Oral Tablet',
-						'Taken Daily',
-						'Flexible Dosing'
+						'Sublingual Troche',
+						'Oxytocin',
+						'PT-141',
+						'Improves Intimacy',
+						'Tadalafil',
+						'Improves Sexual Health'
 					]
 				},
 				{
-					id: 15,
-					name: 'Oral Progesterone',
-					description: 'The FDA\'s approval of oral testosterone undecanoate offers a breakthrough in TRT, providing an easy-to-use, effective option for managing Low T. This addition enhances the therapy landscape, simplifying the path to hormonal balance for many.',
-					sort_description: 'Product Info',
-					price: 94.99,
-					category: { id: 4 },
-					image: '/images/solution_media/women/hormone-therapy/oral-estradiol.webp',
-					images: [
-						'/images/solution_media/women/hormone-therapy/oral-estradiol.webp',
-						'/images/solution_media/women/hormone-therapy/oral-estradiol.webp',
-						'/images/solution_media/women/hormone-therapy/oral-estradiol.webp'
-					],
-					list: [
-						'FDA Approved',
-						'Bioidentical',
-						'Convenient',
-						'Oral Tablet',
-						'Taken Daily',
-						'Flexible Dosing'
-					]
-				},
-				{
-					id: 16,
-					name: 'Progesterone Topical Cream',
-					description: 'The FDA\'s approval of oral testosterone undecanoate offers a breakthrough in TRT, providing an easy-to-use, effective option for managing Low T. This addition enhances the therapy landscape, simplifying the path to hormonal balance for many.',
-					sort_description: 'Product Info',
-					price: 94.99,
-					category: { id: 4 },
-					image: '/images/solution_media/women/hormone-therapy/oral-estradiol.webp',
-					images: [
-						'/images/solution_media/women/hormone-therapy/oral-estradiol.webp',
-						'/images/solution_media/women/hormone-therapy/oral-estradiol.webp',
-						'/images/solution_media/women/hormone-therapy/oral-estradiol.webp'
-					],
-					list: [
-						'FDA Approved',
-						'Bioidentical',
-						'Convenient',
-						'Oral Tablet',
-						'Taken Daily',
-						'Flexible Dosing'
-					]
-				},
-				{
-					id: 17,
-					name: 'Estradiol Topical Cream',
-					description: 'The FDA\'s approval of oral testosterone undecanoate offers a breakthrough in TRT, providing an easy-to-use, effective option for managing Low T. This addition enhances the therapy landscape, simplifying the path to hormonal balance for many.',
-					sort_description: 'Product Info',
-					price: 94.99,
-					category: { id: 4 },
-					image: '/images/solution_media/women/hormone-therapy/oral-estradiol.webp',
-					images: [
-						'/images/solution_media/women/hormone-therapy/oral-estradiol.webp',
-						'/images/solution_media/women/hormone-therapy/oral-estradiol.webp',
-						'/images/solution_media/women/hormone-therapy/oral-estradiol.webp'
-					],
-					list: [
-						'FDA Approved',
-						'Bioidentical',
-						'Convenient',
-						'Oral Tablet',
-						'Taken Daily',
-						'Flexible Dosing'
-					]
-				},
-				{
-					id: 18,
-					name: 'Oral Estradiol',
-					description: 'The FDA\'s approval of oral testosterone undecanoate offers a breakthrough in TRT, providing an easy-to-use, effective option for managing Low T. This addition enhances the therapy landscape, simplifying the path to hormonal balance for many.',
-					sort_description: 'Product Info',
-					price: 94.99,
+					id: 13,
+					name: 'Desiccated Thyroid',
+					description: 'Desiccated Thyroid is used to treat hypothyroidism. It supplements the body’s natural thyroid hormones helping to restore the balance of T3 and T4 levels.',
+					sort_description: 'Oral Gel Capsule',
+					price: 70,
 					category: { id: 5 },
-					image: '/images/solution_media/women/hormone-therapy/oral-estradiol.webp',
-					images: [
-						'/images/solution_media/women/hormone-therapy/oral-estradiol.webp',
-						'/images/solution_media/women/hormone-therapy/oral-estradiol.webp',
-						'/images/solution_media/women/hormone-therapy/oral-estradiol.webp'
-					],
+					subCategory: { id: [1, 2, 3] },
+					image: '/images/solution_media/women/thyroid/desiccated-thyroid.webp',
 					list: [
-						'FDA Approved',
-						'Bioidentical',
-						'Convenient',
-						'Oral Tablet',
-						'Taken Daily',
-						'Flexible Dosing'
+						'Enhances Energy',
+						'Balances Thyroid',
+						'Tablets',
+						'Weight Management',
+						'Mood Improvement',
+						'Improves Metabolism'
 					]
 				},
-				{
-					id: 19,
-					name: 'Oral Progesterone',
-					description: 'The FDA\'s approval of oral testosterone undecanoate offers a breakthrough in TRT, providing an easy-to-use, effective option for managing Low T. This addition enhances the therapy landscape, simplifying the path to hormonal balance for many.',
-					sort_description: 'Product Info',
-					price: 94.99,
-					category: { id: 5 },
-					image: '/images/solution_media/women/hormone-therapy/oral-estradiol.webp',
-					images: [
-						'/images/solution_media/women/hormone-therapy/oral-estradiol.webp',
-						'/images/solution_media/women/hormone-therapy/oral-estradiol.webp',
-						'/images/solution_media/women/hormone-therapy/oral-estradiol.webp'
-					],
-					list: [
-						'FDA Approved',
-						'Bioidentical',
-						'Convenient',
-						'Oral Tablet',
-						'Taken Daily',
-						'Flexible Dosing'
-					]
-				},
-				{
-					id: 20,
-					name: 'Progesterone Topical Cream',
-					description: 'The FDA\'s approval of oral testosterone undecanoate offers a breakthrough in TRT, providing an easy-to-use, effective option for managing Low T. This addition enhances the therapy landscape, simplifying the path to hormonal balance for many.',
-					sort_description: 'Product Info',
-					price: 94.99,
-					category: { id: 5 },
-					image: '/images/solution_media/women/hormone-therapy/oral-estradiol.webp',
-					images: [
-						'/images/solution_media/women/hormone-therapy/oral-estradiol.webp',
-						'/images/solution_media/women/hormone-therapy/oral-estradiol.webp',
-						'/images/solution_media/women/hormone-therapy/oral-estradiol.webp'
-					],
-					list: [
-						'FDA Approved',
-						'Bioidentical',
-						'Convenient',
-						'Oral Tablet',
-						'Taken Daily',
-						'Flexible Dosing'
-					]
-				},
-				{
-					id: 21,
-					name: 'Estradiol Topical Cream',
-					description: 'The FDA\'s approval of oral testosterone undecanoate offers a breakthrough in TRT, providing an easy-to-use, effective option for managing Low T. This addition enhances the therapy landscape, simplifying the path to hormonal balance for many.',
-					sort_description: 'Product Info',
-					price: 94.99,
-					category: { id: 5 },
-					image: '/images/solution_media/women/hormone-therapy/oral-estradiol.webp',
-					images: [
-						'/images/solution_media/women/hormone-therapy/oral-estradiol.webp',
-						'/images/solution_media/women/hormone-therapy/oral-estradiol.webp',
-						'/images/solution_media/women/hormone-therapy/oral-estradiol.webp'
-					],
-					list: [
-						'FDA Approved',
-						'Bioidentical',
-						'Convenient',
-						'Oral Tablet',
-						'Taken Daily',
-						'Flexible Dosing'
-					]
-				}
 			]
 		},
 	}
