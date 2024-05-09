@@ -36,7 +36,7 @@ const ChooseGeviti = () => {
 	};
 
 	return (
-		<div className='lg:px-3 pb-16 lg:pb-[164px] pt-6 lg:pt-[122px] font-Poppins'>
+		<div className='lg:px-3 py-6 lg:py-[122px] font-Poppins'>
 			<div
 				ref={ containerRef }
 				className='rounded-19px max-lg:bg-grey-secondary max-lg:overflow-hidden relative'>
