@@ -1,7 +1,7 @@
 'use client';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { motion, MotionProps } from 'framer-motion';
-import { usePathname } from 'next/navigation';
+import Link from 'next/link';
 
 import navbarData from '@/constant/data/navigation';
 import clsxm from '@/helpers/clsxm';
@@ -21,16 +21,34 @@ const transition = {
 	restSpeed: 0.001,
 };
 
+export const navbarVariants = {
+	visible: {
+		y: 0,
+		opacity: 1,
+		backdropFilter: 'blur(25px)',
+		borderRadius: '100px',
+	},
+	hidden: { y: '-100%', opacity: 0 },
+};
+
+export const navbarDefaultTransition = {
+	delay: 2,
+	duration: 1,
+	ease: 'easeInOut'
+};
+
 export const MenuItem = ({
 	setActive,
 	active,
 	item,
 	children,
+	theme
 }: {
 	setActive: React.Dispatch<React.SetStateAction<string | null>>;
 	active: string | null;
 	item: string;
 	children?: React.ReactNode;
+	theme?: 'light' | 'dark';
 }) => {
 	return (
 		<div
@@ -40,8 +58,8 @@ export const MenuItem = ({
 			<motion.span
 				transition={ { duration: 0.3 } }
 				className={ clsxm(
-					'cursor-pointer text-sm font-medium !leading-[21px] inline-flex gap-2 items-center',
-					active === item ? 'text-blue-primary' : 'text-grey-50 hover:text-blue-primary'
+					'cursor-pointer text-sm font-medium !leading-[21px] inline-flex gap-2 items-center text-grey-50',
+					theme === 'light' && 'text-primary'
 				) }
 			>
 				{ item }
@@ -49,7 +67,8 @@ export const MenuItem = ({
 					<ChevronDown className={
 						clsxm(
 							'w-4 h-4 ease-out transform duration-200',
-							active === item ? 'rotate-180 text-blue-primary' : 'text-grey-50'
+							active === item && 'rotate-180',
+							theme === 'light' ? 'text-primary' : 'text-grey-50'
 						)
 					} />
 				</span>
@@ -65,7 +84,10 @@ export const MenuItem = ({
 							<motion.div
 								transition={ transition }
 								layoutId='active' // layoutId ensures smooth animation
-								className='bg-white/10 backdrop-blur-[27px] rounded-[9px] overflow-hidden border border-white/5'
+								className={ clsxm(
+									'bg-white/10 backdrop-blur-[27px] rounded-[9px] overflow-hidden border border-white/5',
+									theme === 'light' && 'bg-white'
+								) }
 							>
 								<motion.div
 									layout // layout ensures smooth animation
@@ -85,30 +107,31 @@ export const MenuItem = ({
 type NavbarProps = {
 	className?: string;
 	animationProps?: MotionProps;
+	theme?: 'light' | 'dark';
 };
 
-const Navbar: React.FC<NavbarProps> = ({ className, animationProps }) => {
+const Navbar: React.FC<NavbarProps> = ({ className, animationProps, theme }) => {
 	const [active, setActive] = useState<string | null>(null);
 	const [openSheet, setOpenSheet] = useState<boolean>(false);
-	const [selectedItem, setSelectedItem] = useState<number>(5);
+	// const [selectedItem, setSelectedItem] = useState<number>(5);
 	const [overflow, setOverflow] = useState<string>('hidden');
 
-	const pathname = usePathname();
+	// const pathname = usePathname();
 
-	useEffect(() => {
-		const currentIndex = navbarData.menu.findIndex(link => pathname.includes(link.href));
-		if (currentIndex !== -1) {
-			setSelectedItem(currentIndex);
-		} else if (pathname === '/') {
-			setSelectedItem(4);
-		} else {
-			setSelectedItem(5);
-		}
-	}, [pathname]);
+	// useEffect(() => {
+	// 	const currentIndex = navbarData.menu.findIndex(link => pathname.includes(link.href));
+	// 	if (currentIndex !== -1) {
+	// 		setSelectedItem(currentIndex);
+	// 	} else if (pathname === '/') {
+	// 		setSelectedItem(4);
+	// 	} else {
+	// 		setSelectedItem(5);
+	// 	}
+	// }, [pathname]);
 
-	const handleSelectedItem = (id: number) => {
-		setSelectedItem(id);
-	};
+	// const handleSelectedItem = (id: number) => {
+	// 	setSelectedItem(id);
+	// };
 
 	const renderIconMenuList = () => {
 		return (
@@ -123,7 +146,10 @@ const Navbar: React.FC<NavbarProps> = ({ className, animationProps }) => {
 							className='font-Poppins relative rounded-full focus:outline-0 focus:ring-0 focus:border-0 group'
 							href={ iconMenu.href }
 						>
-							<Icon className='w-[17px] h-[17px] text-grey-50 group-hover:text-blue-primary' />
+							<Icon className={ clsxm(
+								'w-[17px] h-[17px] text-grey-50',
+								theme === 'light' && 'text-primary'
+							) } />
 						</CustomLink>
 					);
 				}) }
@@ -136,10 +162,11 @@ const Navbar: React.FC<NavbarProps> = ({ className, animationProps }) => {
 			<>
 				<CustomLink
 					href='https://app.gogeviti.com/'
-					onClick={ () => handleSelectedItem(4) }
+					// onClick={ () => handleSelectedItem(4) }
 					className={ clsxm(
-						'lg:w-[120px] rounded-md px-3 py-2 text-sm font-Poppins hover:font-semibold md:block hidden',
-						'text-grey-50 hover:text-blue-primary'
+						'lg:w-[120px] rounded-md px-3 py-2 text-sm font-Poppins font-medium md:block hidden',
+						'text-grey-50',
+						theme === 'light' && 'text-primary'
 					) }
 					aria-label='Dashboard'
 				>
@@ -151,12 +178,13 @@ const Navbar: React.FC<NavbarProps> = ({ className, animationProps }) => {
 						externalLink={ menu.externalLink }
 						aria-label={ menu.name }
 						key={ menu.name }
+						className='flex-shrink-0'
 					>
 						<div className={ clsxm(
 							'font-Poppins text-sm !leading-6 font-medium',
 							menu.type === 'button'
 								? 'text-primary px-6 py-[10.5px] bg-blue-primary rounded-full hover:scale-[1.03] active:scale-100 !duration-200 ease-[cubic-bezier(.15,1.14,.88,.98)]'
-								: 'text-grey-50 hover:text-blue-primary'
+								: 'text-grey-50'
 						) }>
 							{ menu.name }
 						</div>
@@ -172,47 +200,49 @@ const Navbar: React.FC<NavbarProps> = ({ className, animationProps }) => {
 				<div
 					className='container-center w-full'
 					style={ { overflow } }>
-					<motion.nav
-						variants={ {
-							visible: {
-								y: 0,
-								opacity: 1,
-								backdropFilter: 'blur(25px)',
-								borderRadius: '100px',
-								transition: {
-									delay: 1,
-									duration: 1,
-									ease: 'easeInOut'
-								}
-							},
-							hidden: { y: '-100%', opacity: 0 },
-						} }
+					<motion.div
+						variants={ navbarVariants }
 						initial='hidden'
 						animate='visible'
 						className='inline-block w-full'
+						transition={ navbarDefaultTransition }
 						onAnimationComplete={ () => setOverflow('') }
 						{ ...animationProps }
 					>
 						<nav
 							onMouseLeave={ () => setActive(null) }
-							className='relative overflow-visible visible h-[60px] lg:h-[69px] font-Poppins border border-white/5 backdrop-blur-[25px] p-18px lg:pl-[42px] lg:py-3 lg:pr-3 rounded-[100px] bg-white/10 flex items-center space-x-6 xl:space-x-[50px] w-full justify-between'>
-							<div className='flex items-center lg:space-x-6 xl:space-x-[50px]'>
-								<GevitiLogo />
-								<div className='hidden lg:flex items-center space-x-6 xl:space-x-[50px]'>
-									{ navbarData.menu.map((menu, menuIdx) => {
+							className={
+								clsxm(
+									'relative overflow-visible visible h-[60px] lg:h-[69px] font-Poppins border border-white/5 backdrop-blur-[25px] p-18px lg:pl-[42px] lg:py-3 lg:pr-3 rounded-[100px] bg-white/10 flex items-center space-x-5 xl:space-x-[50px] w-full justify-between',
+									theme === 'light' && 'bg-white'
+								)
+							}>
+							<div className='flex items-center lg:space-x-5 xl:space-x-[50px]'>
+								<Link
+									href='/'
+									className='focus:ring-0 focus:outline-none'>
+									<GevitiLogo theme={ theme } />
+								</Link>
+								<div className='hidden lg:flex items-center space-x-5 xl:space-x-[50px]'>
+									{ navbarData.menu.map(menu => {
 										if (menu.items) {
 											return (
 												<MenuItem
 													key={ menu.name }
 													setActive={ setActive }
 													active={ active }
-													item={ menu.name }>
+													item={ menu.name }
+													theme={ theme }
+												>
 													<div className='flex flex-col space-y-2'>
 														{ menu.items.map(menuChild => (
 															<CustomLink
 																key={ menuChild.name }
 																href={ menuChild.href }
-																className='text-grey-50 hover:text-blue-primary text-sm !leading-[21px]'
+																className={ clsxm(
+																	'text-grey-50 text-sm !leading-[21px]',
+																	theme === 'light' && 'text-primary'
+																) }
 															>{ menuChild.name }</CustomLink>
 														)) }
 													</div>
@@ -222,14 +252,14 @@ const Navbar: React.FC<NavbarProps> = ({ className, animationProps }) => {
 
 										return (
 											<CustomLink
-												onClick={ () => handleSelectedItem(menuIdx) }
+												// onClick={ () => handleSelectedItem(menuIdx) }
 												key={ menu.name }
 												href={ menu.href }
 												externalLink={ menu.externalLink }
 												onMouseEnter={ () => setActive(null) }
 												className={ clsxm(
-													'text-sm font-medium !leading-[21px]',
-													selectedItem === menuIdx ? 'text-blue-primary' : 'text-grey-50 hover:text-blue-primary'
+													'text-sm font-medium !leading-[21px] text-grey-50',
+													theme === 'light' && 'text-primary'
 												) }>
 												{ menu.name }
 											</CustomLink>
@@ -237,7 +267,7 @@ const Navbar: React.FC<NavbarProps> = ({ className, animationProps }) => {
 									}) }
 								</div>
 							</div>
-							<div className='hidden lg:flex items-center space-x-6'>
+							<div className='hidden lg:flex items-center space-x-5'>
 								{ renderIconMenuList() }
 								{ renderActionMenuList() }
 							</div>
@@ -250,12 +280,15 @@ const Navbar: React.FC<NavbarProps> = ({ className, animationProps }) => {
 									aria-label='Toggle Menu'
 								>
 									<Bars3Icon
-										className='block h-6 w-6 text-grey-50'
+										className={ clsxm(
+											'block h-6 w-6 text-grey-50',
+											theme === 'light' && 'text-primary'
+										) }
 										aria-hidden='true' />
 								</button>
 							</div>
 						</nav>
-					</motion.nav>
+					</motion.div>
 				</div>
 			</div>
 

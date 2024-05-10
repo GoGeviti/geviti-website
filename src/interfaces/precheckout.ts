@@ -16,6 +16,13 @@ export interface AnswerListQuestionnaire {
 }
 
 export interface UserData extends FormNameEmailState, FormDetailState { }
+export interface UserDetailData extends FormNameEmailState, FormDetailState {
+	phone_number: string;
+	city: string;
+	zip_code: string;
+	address_1: string;
+	address_2: string;
+}
 
 export interface CheckoutData {
 	user: UserData;

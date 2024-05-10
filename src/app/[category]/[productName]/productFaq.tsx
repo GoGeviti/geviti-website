@@ -1,17 +1,17 @@
-import React from 'react';
+import React from 'react'
 
 import {
 	Accordion,
 	AccordionContent,
 	AccordionItem,
 	AccordionTrigger,
-} from '@/components/Accordion';
-import { ChevronDown } from '@/components/Icons';
-import { Product } from '@/payload/payload-types';
+} from '@/components/Accordion'
+import { ChevronDown } from '@/components/Icons'
+import { Product } from '@/payload/payload-types'
 
 type ProductFaqProps = {
-	product: Product;
-};
+  product: Product
+}
 
 const ProductFaq: React.FC<ProductFaqProps> = ({ product }) => {
 	return (
@@ -35,15 +35,16 @@ const ProductFaq: React.FC<ProductFaqProps> = ({ product }) => {
 						<span>
 							{ detail.description && (
 								<p
-									className='text-[14px] text-[#181A1C] opacity-60 leading-[20px]'
-									dangerouslySetInnerHTML={ { __html: detail.description } } />
+									className='text-[14px] text-primary opacity-60 leading-[20px]'
+									dangerouslySetInnerHTML={ { __html: detail.description } }
+								/>
 							) }
 						</span>
 					</AccordionContent>
 				</AccordionItem>
 			)) }
 		</Accordion>
-	);
-};
+	)
+}
 
-export default ProductFaq;
+export default ProductFaq

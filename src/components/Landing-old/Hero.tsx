@@ -12,9 +12,7 @@ const heroData = landingData.hero;
 const Hero = () => {
 	return (
 		<div className='lg:px-3 lg:py-15px overflow-hidden'>
-			<Navbar
-				iconsMenu={ landingData.navbar.iconsMenu }
-			/>
+			<Navbar />
 			<div className='bg-primary h-[calc(100svh)] lg:h-[calc(100vh-30px)] w-full lg:rounded-19px relative pt-11px lg:pt-5'>
 				<div className='absolute inset-0 w-full h-full'>
 					{ heroData.image && (
@@ -52,7 +50,8 @@ const Hero = () => {
 								{ heroData.title && (
 									<h1
 										className='mt-[2px] lg:mt-7px font-Poppins text-[6.1vw] xs2:text-[25px] md:text-[32px] lg:text-[40px] leading-[130%] sm:leading-[42.5px] tracking-[-1px] md:-tracking-0.04em text-grey-secondary'
-										dangerouslySetInnerHTML={ { __html: heroData.title } } />
+										dangerouslySetInnerHTML={ { __html: heroData.title } }
+									/>
 								) }
 
 								<div

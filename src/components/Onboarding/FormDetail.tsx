@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import DatePicker from 'react-date-picker';
+import DatePicker from 'react-datepicker';
 import { AiFillCloseCircle } from 'react-icons/ai';
 import { FormikProps, useFormik } from 'formik';
 import { motion, Variants } from 'framer-motion';
@@ -121,20 +121,15 @@ const FormDetail: React.FC<FormDetailProps> = ({ onSubmit, userData, isAlreadyOn
 				<div>
 					<DatePicker
 						onChange={ val => onChangeInput('birthdate', val as Date) }
-						value={ formik.values.birthdate }
-						calendarIcon={ null }
-						clearIcon={ null }
-						dayPlaceholder='DD'
-						monthPlaceholder='MM'
-						yearPlaceholder='YYYY'
+						selected={ formik.values.birthdate }
+						placeholderText='MM/DD/YYYY'
 						className={ clsxm(
 							'w-full justify-start text-left text-xs font-medium font-Poppins leading-normal rounded-[10px]',
 							!formik.values.birthdate ? 'text-grey-primary' : 'text-primary',
 							formik.errors.birthdate ? 'bg-red-primary-background ring-[1.5px] ring-red-primary' : 'bg-white'
 						) }
-						calendarClassName='font-Poppins !border-0 shadow-[0px_32px_105px_0px_rgba(16,24,40,0.13)] rounded-[10px] bg-grey-secondary text-primary !z-[99]'
-						format='M/d/y'
-						disableCalendar
+						calendarClassName='!font-Poppins'
+						open={ false }
 					/>
 				</div>
 				{ formik.errors.birthdate && <ErrorMessage>{ formik.errors.birthdate }</ErrorMessage> }

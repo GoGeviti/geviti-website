@@ -108,7 +108,9 @@ const ProductList: React.FC<ProductType> = ({ products: productsData }) => {
 					<div className='mt-5px sm:mt-9px flex items-center max-lg:flex-col-reverse lg:items-end lg:justify-between gap-3'>
 						<div className='sm:max-w-xl lg:max-w-md'>
 							<p className='text-grey-primary font-BRSonoma text-xs leading-5 sm:leading-[18px]'>
-								{ item.products.find(product => product?.category?.title === item.category)?.category?.description ?? '' }
+								{ item.products.find(
+									product => product?.category?.title === item.category
+								)?.category?.description ?? '' }
 							</p>
 						</div>
 
@@ -124,7 +126,9 @@ const ProductList: React.FC<ProductType> = ({ products: productsData }) => {
 					<div className='mt-[35px] sm:mt-10 grid grid-cols-2 md:grid-cols-3 gap-5'>
 						{ item.products.map(product => (
 							<Link
-								href={ `/${ toSlug(product.category.title) }/${ toSlug(product.name) }` }
+								href={ `/${ toSlug(product.category.title) }/${ toSlug(
+									product.name
+								) }` }
 								key={ product.id }
 								className='group cursor-pointer relative flex flex-col overflow-hidden bg-grey-secondary w-full text-left'
 							>
@@ -166,7 +170,9 @@ const ProductList: React.FC<ProductType> = ({ products: productsData }) => {
 											<p className='text-xs lg:text-[15px] leading-[130%] lg:leading-[100%] font-BRSonoma'>
 												${ product.price }{ ' ' }
 												{ item.category?.toLowerCase() !== 'diagnostics' && (
-													<span className='text-grey-primary max-lg:text-[10px] lg:text-sm'>per month</span>
+													<span className='text-grey-primary max-lg:text-[10px] lg:text-sm'>
+														per month
+													</span>
 												) }
 											</p>
 										) }

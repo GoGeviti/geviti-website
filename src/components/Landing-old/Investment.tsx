@@ -46,17 +46,25 @@ const Investment: React.FC = () => {
 
 				<div className='container-center max-lg:pb-[65px] h-full w-full flex flex-col items-center lg:items-start justify-end lg:justify-center relative z-10'>
 					<div className='text-center lg:text-left sm:max-w-xl'>
-						<p className='mb-11px sm:mb-7px text-pretitle text-grey-primary'>{ investmentData.preTitle }</p>
+						<p className='mb-11px sm:mb-7px text-pretitle text-grey-primary'>
+							{ investmentData.preTitle }
+						</p>
 
 						{ investmentData.title && (
 							<h2 className='max-md:my-11px sm:mb-30px font-Poppins text-[6.1vw] xs2:text-2xl md:text-[32px] lg:text-4xl leading-[27px] sm:leading-[125%] -tracking-[0.84px] md:-tracking-0.04em text-grey-secondary'>
-								<span dangerouslySetInnerHTML={ { __html: investmentData.title } } />
+								<span
+									dangerouslySetInnerHTML={ { __html: investmentData.title } }
+								/>
 							</h2>
 						) }
 
 						{ investmentData.description && (
 							<p className='text-grey-primary max-sm:max-w-[330px] max-sm:mx-auto text-xs sm:text-sm leading-5 font-BRSonoma'>
-								<span dangerouslySetInnerHTML={ { __html: investmentData.description } } />
+								<span
+									dangerouslySetInnerHTML={ {
+										__html: investmentData.description,
+									} }
+								/>
 							</p>
 						) }
 

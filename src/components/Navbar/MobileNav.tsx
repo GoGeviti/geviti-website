@@ -31,7 +31,7 @@ const MobileNav = (props: MobileNavProps) => {
 				props.onClose();
 				document.body.style.overflow = 'unset';
 			} }
-			className='max-h-[calc(100dvh)] h-screen fixed top-0 left-0 animate-fadeIn bg-[#181A1C] flex flex-col px-[16px] pt-[100px] pb-[23px] z-10 w-screen'
+			className='max-h-[calc(100dvh)] h-screen fixed top-0 left-0 animate-fadeIn bg-primary flex flex-col px-[16px] pt-[100px] pb-[23px] z-10 w-screen'
 		>
 			<Link
 				href='/'
@@ -46,7 +46,9 @@ const MobileNav = (props: MobileNavProps) => {
 					target={ item.externalLink ? '_blank' : '_self' }
 					rel='noopener noreferrer'
 					key={ item.name }
-					className={ 'text-white text-[25px] font-Poppins tracking-tight mb-25px' }
+					className={
+						'text-white text-[25px] font-Poppins tracking-tight mb-25px'
+					}
 					style={ { opacity: pathname === item.href ? 1 : 0.3 } }
 				>
 					{ item.name }
@@ -84,7 +86,8 @@ const MobileNav = (props: MobileNavProps) => {
 					src={ cartIcon }
 					height={ 25 }
 					width={ 25 }
-					alt='' />
+					alt=''
+				/>
 				<span className='font-Poppins text-white text-[20px] tracking-tight'>
 					Cart
 				</span>
@@ -96,7 +99,8 @@ const MobileNav = (props: MobileNavProps) => {
 					src={ dashboardIcon }
 					height={ 25 }
 					width={ 25 }
-					alt='' />
+					alt=''
+				/>
 				<span className='font-Poppins text-white text-[20px] tracking-tight'>
 					Dashboard
 				</span>

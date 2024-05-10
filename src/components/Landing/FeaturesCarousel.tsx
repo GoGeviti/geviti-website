@@ -1,19 +1,13 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { AnimatePresence, motion } from 'framer-motion';
-import lottie from 'lottie-web';
 
 import { landingData } from '@/constant/data';
 
-import LottieCoaching from '../../../public/lottie/coaching.json';
-import LottieDoctor from '../../../public/lottie/doctor.json';
-import LottieEducation from '../../../public/lottie/education.json';
-import LottieProtocols from '../../../public/lottie/protocols.json';
+import ButtonCta from '../ButtonCta';
 import { ArrowNarrowLeft, ArrowNarrowRight, ChevronRight } from '../Icons';
-
-import ButtonCta from './ButtonCta';
 
 const cardVariants = {
 	initial: (trend: number) => ({
@@ -36,44 +30,34 @@ const FeaturesCarousel: React.FC = () => {
 	const { ref, inView } = useInView();
 
 	const [idx, setIdx] = useState<number>(0);
+	const [trend, setTrend] = useState<number>(1);
 
-	const [prevIdx, setPrevIdx] = useState(idx);
-
-	const trend = idx > prevIdx ? 1 : -1;
+	const vidRef = useRef<HTMLVideoElement | null>(null);
 
 	const activeIdx = Math.abs(idx % cards.length);
 
 	useEffect(() => {
-		const container = document.getElementById(`container-lottie-${ activeIdx }`);
-		const cardId = cards.find((_, cardIdx) => cardIdx === activeIdx)?.id;
-
-		if (container && cardId && inView) {
-			const animation = lottie.loadAnimation({
-				container,
-				renderer: 'svg',
-				autoplay: false,
-				loop: false,
-				animationData: getLottieSource(cardId)
-			});
-
+		if (inView) {
 			setTimeout(() => {
-				animation.play();
-			}, 1000);
+				if (vidRef.current) {
+					vidRef.current.play();
+				}
+			}, 750);
 		}
-	}, [inView, activeIdx]);
+	}, [inView, activeIdx, vidRef?.current]);
 
 	const handleNext = () => {
-		setPrevIdx(idx);
 		setIdx(prevIndex =>
 			prevIndex + 1 === cards.length ? 0 : prevIndex + 1
 		);
+		setTrend(1);
 	};
 
 	const handlePrevious = () => {
-		setPrevIdx(idx);
 		setIdx(prevIndex =>
 			prevIndex - 1 < 0 ? cards.length - 1 : prevIndex - 1
 		);
+		setTrend(-1);
 	};
 
 	const renderButtonArrowSlider = () => {
@@ -95,7 +79,6 @@ const FeaturesCarousel: React.FC = () => {
 				<button
 					onClick={ handleNext }
 					className={ buttonClassName }
-					disabled={ idx === cards.length - 1 }
 					aria-label={ `next-slider-${ idx }` }
 				>
 					<ChevronRight className='w-[17px] h-[17px] flex-shrink-0 absolute-center lg:hidden' />
@@ -105,22 +88,32 @@ const FeaturesCarousel: React.FC = () => {
 		);
 	};
 
-	const getLottieSource = (id: string) => {
-		if (id === 'doctor') return LottieDoctor;
-		if (id === 'coaching') return LottieCoaching;
-		if (id === 'protocols') return LottieProtocols;
-		if (id === 'education') return LottieEducation;
+	const getVideoSource = (id: string) => {
+		if (id === 'doctor') return '/videos/doctor.mp4';
+		if (id === 'coaching') return '/videos/coaching.mp4';
+		if (id === 'protocols') return '/videos/protocols.mp4';
+		if (id === 'education') return '/videos/education.mp4';
 	};
 
 	const renderAnimatedContentCard = (id: string) => {
-		const src = getLottieSource(id);
+		const src = getVideoSource(id);
 
 		if (src) {
 			return (
-				<div
-					id={ `container-lottie-${ activeIdx }` }
-					className='w-full h-full'
-				/>
+				<video
+					id={ `video-${ activeIdx }` }
+					ref={ vidRef }
+					// autoPlay={ activeIdx === 0 }
+					muted
+					playsInline
+					className='w-full h-full object-cover absolute inset-0'
+				>
+					<source
+						src={ src }
+						type='video/mp4'
+					/>
+					Your browser does not support the video tag.
+				</video>
 			);
 		}
 
@@ -181,7 +174,7 @@ const FeaturesCarousel: React.FC = () => {
 											className='text-primary font-Poppins p-4 lg:p-6 rounded-19px bg-white absolute inset-0 w-full h-full'
 										>
 											<span className='flex flex-col gap-3'>
-												<span className='max-h-[174px] aspect-[400/174] h-full w-full bg-blue-alice rounded-2xl relative overflow-hidden'>
+												<span className='h-full aspect-[400/174] max-h-[174px] w-full bg-blue-alice rounded-2xl relative overflow-hidden'>
 													{ renderAnimatedContentCard(cards[activeIdx].id) }
 												</span>
 												<p className='text-2xl !leading-normal'>{ cards[activeIdx].title }</p>

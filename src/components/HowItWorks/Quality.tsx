@@ -52,9 +52,7 @@ const Quality: React.FC = () => {
 														externalLink={ btnCta.externalLink }
 														className={ clsxm(
 															'btn-cta-landing group px-5 py-[10px]',
-															btnCtaIdx === 0
-																? 'btn-primary'
-																: ''
+															btnCtaIdx === 0 ? 'btn-primary' : ''
 														) }
 														aria-label={ btnCta.text }
 													>
@@ -78,7 +76,6 @@ const Quality: React.FC = () => {
 								loading='lazy'
 								width={ 480 }
 								height={ 644 }
-								className=''
 							/>
 						</div>
 					</div>

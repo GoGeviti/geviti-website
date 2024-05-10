@@ -14,7 +14,9 @@ const Features: React.FC = () => {
 	const renderContentButtonAction = () => {
 		return (
 			<>
-				<span className='text-xs sm:text-sm leading-5 sm:leading-6 font-Poppins font-medium'>{ featuresData.action.name }</span>
+				<span className='text-xs sm:text-sm leading-5 sm:leading-6 font-Poppins font-medium'>
+					{ featuresData.action.name }
+				</span>
 				<span className='group-hover:translate-x-1 duration-100 tranform transition-all'>
 					<ChevronRight className='w-[19px] h-18px stroke-primary' />
 				</span>
@@ -24,7 +26,8 @@ const Features: React.FC = () => {
 
 	const renderButtonAction = () => {
 		const actionData = featuresData.action;
-		const wrapper = 'btn btn-secondary inline-flex items-center gap-2 group !translate-y-0';
+		const wrapper =
+			'btn btn-secondary inline-flex items-center gap-2 group !translate-y-0';
 
 		if (actionData.href) {
 			return (
@@ -32,7 +35,8 @@ const Features: React.FC = () => {
 					onClick={ () => handleScroll(actionData.href) }
 					data-aos='zoom-in'
 					aria-label='content btn action'
-					className={ wrapper }>
+					className={ wrapper }
+				>
 					{ renderContentButtonAction() }
 				</button>
 			);
@@ -64,13 +68,15 @@ const Features: React.FC = () => {
 								width='21'
 								height='22'
 								viewBox='0 0 21 22'
-								fill='none'>
+								fill='none'
+							>
 								<path
 									d='M6.5625 11L9.1875 13.625L14.4375 8.375M19.25 11C19.25 15.8325 15.3325 19.75 10.5 19.75C5.66751 19.75 1.75 15.8325 1.75 11C1.75 6.16751 5.66751 2.25 10.5 2.25C15.3325 2.25 19.25 6.16751 19.25 11Z'
 									stroke='#7EADC5'
 									strokeWidth='1.75'
 									strokeLinecap='round'
-									strokeLinejoin='round' />
+									strokeLinejoin='round'
+								/>
 							</svg>
 
 							{ item?.icons && (
@@ -93,8 +99,12 @@ const Features: React.FC = () => {
 							) }
 						</div>
 
-						<p className='mt-9px sm:mt-11px text-primary text-xs sm:text-[15px] font-medium font-Poppins leading-[124%] sm:leading-[116.67%]'>{ item.title }</p>
-						<p className='mt-1.5 lg:mt-1 text-[10px] sm:text-xs text-primary font-BRSonoma leading-[170%] sm:leading-5'>{ item.description }</p>
+						<p className='mt-9px sm:mt-11px text-primary text-xs sm:text-[15px] font-medium font-Poppins leading-[124%] sm:leading-[116.67%]'>
+							{ item.title }
+						</p>
+						<p className='mt-1.5 lg:mt-1 text-[10px] sm:text-xs text-primary font-BRSonoma leading-[170%] sm:leading-5'>
+							{ item.description }
+						</p>
 					</div>
 				)) }
 			</div>
@@ -113,7 +123,9 @@ const Features: React.FC = () => {
 							{ featuresData.title && (
 								<div className='mt-11px lg:mt-9px'>
 									<h2 className='text-primary text-[21px] md:text-3xl lg:text-4xl font-Poppins leading-[128%] lg:leading-[125%] -tracking-0.04em'>
-										<span dangerouslySetInnerHTML={ { __html: featuresData.title } } />
+										<span
+											dangerouslySetInnerHTML={ { __html: featuresData.title } }
+										/>
 									</h2>
 								</div>
 							) }
@@ -121,12 +133,8 @@ const Features: React.FC = () => {
 								{ featuresData.description }
 							</p>
 						</div>
-						<div className='max-lg:hidden'>
-							{ renderFeatureList() }
-						</div>
-						<div className='mt-30px lg:mt-50px'>
-							{ renderButtonAction() }
-						</div>
+						<div className='max-lg:hidden'>{ renderFeatureList() }</div>
+						<div className='mt-30px lg:mt-50px'>{ renderButtonAction() }</div>
 					</div>
 					{ featuresData.image && (
 						<div className='mx-auto mt-50px flex max-w-2xl max-sm:-mr-6 lg:mr-0 lg:mt-0 lg:ml-32 xl:ml-[173px] xl:py-36'>
@@ -145,9 +153,7 @@ const Features: React.FC = () => {
 							</div>
 						</div>
 					) }
-					<div className='lg:hidden'>
-						{ renderFeatureList() }
-					</div>
+					<div className='lg:hidden'>{ renderFeatureList() }</div>
 				</div>
 			</div>
 		</div>

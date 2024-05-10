@@ -1,4 +1,4 @@
-import type { Config } from 'tailwindcss';
+import type { Config } from "tailwindcss";
 
 const config: Config = {
 	content: [
@@ -10,10 +10,13 @@ const config: Config = {
 		extend: {
 			screens: {
 				xxs: '300px',
+				xxs2: '375px',
 				xs2: '391px',
+				xs3: '400px',
 				xs: '450px',
 				xl2: '1380px',
 				xxl: '1920px',
+				'8xl': '1360px'
 			},
 			spacing: {
 				'5px': '5px',
@@ -25,13 +28,14 @@ const config: Config = {
 				'25px': '25px',
 				'30px': '30px',
 				'50px': '50px',
-				'60px': '60px',
+				'60px': '60px'
 			},
 			opacity: {
 				'15': '.15',
 			},
 			borderRadius: {
-				'19px': '19px'
+				'19px': '19px',
+				'20px': '20px',
 			},
 			colors: {
 				transparent: 'transparent',
@@ -85,6 +89,7 @@ const config: Config = {
 				'black-secondary': '#242628',
 				'black-landing': '#353738',
 				'black-icons': '#2C2F34',
+				'black-card': '#1D1F22',
 				'table-light': '#F9FAFB',
 				green: {
 					success: '#60C57C',
@@ -105,14 +110,27 @@ const config: Config = {
 				'0.11em': '0.11em',
 			},
 			backgroundImage: {
+				'backdrop-hero-landing-bottom': 'linear-gradient(0deg, #181a1c 20.46%, rgba(24, 26, 28, 0) 100%)',
+				'backdrop-hero-membership-bottom': 'linear-gradient(0deg, #181A1C 0%, rgba(24, 26, 28, 0.66) 55.04%, rgba(24, 26, 28, 0) 83.09%)',
+				'backdrop-hero-membership-bottom-mobile': 'linear-gradient(0deg, #181A1C 20.46%, rgba(24, 26, 28, 0.72) 70%, rgba(24, 26, 28, 0) 100%)',
+				'solution-gradient-left':
+					'linear-gradient(90deg, #181A1C -10.42%, rgba(24, 26, 28, 0.49) 46.3%, rgba(24, 26, 28, 0.00) 100%)',
 				'hero-landing-top':
 					'linear-gradient(180deg, #181A1C 40.05%, rgba(24, 26, 28, 0.00) 100%)',
+				'img-grediant':
+					'linear-gradient(360deg, #181A1C 0%, rgba(24, 26, 28, 0.00) 96.26%)',
 				'hero-landing-bottom':
 					'linear-gradient(0deg, #181A1C 20.06%, rgba(24, 26, 28, 0.00) 100%)',
-				'mission-landing':
+				'banner-landing':
 					'linear-gradient(90deg, #181A1C -10.42%, rgba(24, 26, 28, 0.486327) 46.3%, rgba(24, 26, 28, 0) 100%)',
-				'mission-mobile-landing':
+				'banner-mobile-landing':
 					'linear-gradient(0deg, #181A1C 36.98%, rgba(24, 26, 28, 0.15) 100%)',
+				'banner-mobile-member':
+					'linear-gradient(0deg, #181A1C 40.24%, rgba(24, 26, 28, 0) 94.74%)',
+				'banner-mobile-solution':
+					'linear-gradient(0deg, #181A1C 52.48%, rgba(24, 26, 28, 0) 95.41%)',
+				'banner-women':
+					'linear-gradient(90deg, #181A1C 0.85%, rgba(24, 26, 28, 0.486327) 47.32%, rgba(24, 26, 28, 0) 100%)',
 				'investment-landing':
 					'linear-gradient(109deg, #181A1C 17.5%, rgba(24, 26, 28, 0.71) 76.83%)',
 				'investment-landing-bottom':
@@ -195,25 +213,31 @@ const config: Config = {
 				},
 				scroll: {
 					to: {
-						transform: "translate(calc(-50% - 0.5rem))",
+						transform: "translateX(calc(-50% - 23px))",
 					},
 				},
 			},
 			boxShadow: {
+				custom1: '0px 4px 21.1px 0px rgba(0, 147, 255, 0.25)',
+				custom: '0px 4px 21.1px 0px rgba(153, 212, 255, 0.75)',
 				card: '0px 15px 30px 0px rgba(16, 24, 40, 0.10)',
-				feature: '0px 8px 16px rgba(0, 0, 0, 0.25), inset 0px 6px 18px rgba(255, 255, 255, 0.15)'
+				feature:
+					'0px 8px 16px rgba(0, 0, 0, 0.25), inset 0px 6px 18px rgba(255, 255, 255, 0.15)',
+				'slider-solution-1': '0px 3px 6px rgba(0, 0, 0, 0.02), 0px 1px 1px rgba(0, 0, 0, 0.03)',
+				'slider-solution-2': '0px 2px 6px rgba(0, 0, 0, 0.1), 0px 1px 1px rgba(0, 0, 0, 0.03)',
 			},
 		},
 		fontFamily: {
 			Poppins: ['var(--font-Poppins)', 'sans-serif'],
 			BRSonoma: ['var(--font-BRSonoma)', 'sans-serif'],
+			grifter: ['var(--font-grifter)', 'var(--font-Poppins)', 'sans-serif'],
 		},
 	},
 	plugins: [
 		require('@tailwindcss/forms'),
 		({ addComponents }: Config['PluginAPI']) => {
 			addComponents({
-				'.container-center': { '@apply max-w-7xl mx-auto px-4 lg:px-10': {} },
+				'.container-center': { '@apply max-w-[1360px] mx-auto px-4 lg:px-10': {} },
 				'.absolute-center': {
 					'@apply absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2':
 						{},

@@ -5,18 +5,18 @@ import { Post } from '@/payload/payload-types';
 import { getAllPost } from '@/services/products';
 
 interface GroupedPost {
-  name: string;
-  list: Post[];
+	name: string;
+	list: Post[];
 }
 
 const BlogPage: NextPage = async() => {
 
 	const allPost = await getAllPost();
 
-	const groupFaqsByCategory = (posts: Post[]): GroupedPost[] =>  {
+	const groupFaqsByCategory = (posts: Post[]): GroupedPost[] => {
 		return posts.reduce((result: GroupedPost[], post: Post) => {
 			const existingCategory = result.find(group => group.name === post.hero.categories?.title);
-	
+
 			if (existingCategory) {
 				existingCategory.list.push(post);
 			} else {
@@ -25,7 +25,7 @@ const BlogPage: NextPage = async() => {
 					list: [post],
 				});
 			}
-	
+
 			return result;
 		}, [
 			{
@@ -36,7 +36,7 @@ const BlogPage: NextPage = async() => {
 	};
 
 	const topicsData = groupFaqsByCategory(allPost.docs);
-  
+
 	return (
 		<div className='flex min-h-screen flex-col w-full bg-grey-background'>
 			<BlogComponent.Hero
@@ -45,16 +45,16 @@ const BlogPage: NextPage = async() => {
 					image: allPost.docs[0].hero.media.url,
 					preTitle: allPost.docs[0].hero.categories?.title ?? '',
 					btn: 'Read Article',
-					btnLink: `/blog/${allPost.docs[0].slug}`,
+					btnLink: `/blog/${ allPost.docs[0].slug }`,
 				} }
 				classname=''
 			/>
 			<BlogComponent.Topics
 				title='Popular Topics'
 				btnRight='View All'
-				articleData={ topicsData }/>
-			<BlogComponent.Articles post={ allPost.docs.slice(0, 3) }/>
-			<BlogComponent.Updated/>
+				articleData={ topicsData } />
+			<BlogComponent.Articles post={ allPost.docs.slice(0, 3) } />
+			<BlogComponent.Updated />
 		</div>
 	);
 };

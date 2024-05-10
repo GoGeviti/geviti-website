@@ -5,7 +5,6 @@ import { AnimatePresence, motion } from 'framer-motion';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 
-import { PageProps } from '@/app/onboarding/page';
 import { onboardingData } from '@/constant/data';
 import clsxm from '@/helpers/clsxm';
 import { IPrecheckout } from '@/interfaces';
@@ -13,6 +12,7 @@ import { CheckoutData } from '@/interfaces/precheckout';
 import { setCartData } from '@/services/precheckout';
 
 import * as OnboardingComponent from './index';
+import { PageProps } from './page';
 import type { Tier } from './PricingPlans';
 import type { TipProps } from './Tip';
 

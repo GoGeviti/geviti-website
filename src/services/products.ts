@@ -9,18 +9,18 @@ import {
 	Post,
 	Privacy,
 	Product,
-} from '@/payload/payload-types'; ;
+} from '@/payload/payload-types';
 
 export const getProducts = async(): Promise<PaginatedDocs<Product>> => {
 	const stringifiedQuery = qs.stringify({
 		depth: 1,
 		limit: 100,
 		draft: false,
-		sort: 'order'
+		sort: 'order',
 	});
 	try {
 		const res = await fetch(
-			process.env.BASE_API_URL + `/api/products?${ stringifiedQuery }`,
+			process.env.BASE_API_URL + `/api/products?${stringifiedQuery}`,
 			{
 				cache: 'no-store',
 			}
@@ -36,7 +36,7 @@ export const getProducts = async(): Promise<PaginatedDocs<Product>> => {
 export const getProductById = async(id: string): Promise<Product> => {
 	try {
 		const res = await fetch(
-			process.env.BASE_API_URL + `/api/products/${ id }?depth=2`,
+			process.env.BASE_API_URL + `/api/products/${id}?depth=2`,
 			{
 				cache: 'no-store',
 			}
@@ -49,19 +49,25 @@ export const getProductById = async(id: string): Promise<Product> => {
 	}
 };
 
-export const getProductByName = async(productName: string, category: string): Promise<Product> => {
-	const stringifiedQuery = qs.stringify({
-		depth: 2,
-		draft: false,
-		where: {
-			slug: { equals: productName },
-			'category.slug': { equals: category }
+export const getProductByName = async(
+	productName: string,
+	category: string
+): Promise<Product> => {
+	const stringifiedQuery = qs.stringify(
+		{
+			depth: 2,
+			draft: false,
+			where: {
+				slug: { equals: productName },
+				'category.slug': { equals: category },
+			},
+			limit: 1,
 		},
-		limit: 1
-	}, { addQueryPrefix: true });
+		{ addQueryPrefix: true }
+	);
 	try {
 		const res = await fetch(
-			process.env.BASE_API_URL + `/api/products?${ stringifiedQuery }`,
+			process.env.BASE_API_URL + `/api/products?${stringifiedQuery}`,
 			{
 				cache: 'no-store',
 			}
@@ -109,19 +115,22 @@ export const getBenefits = async(): Promise<PaginatedDocs<Benefit>> => {
 };
 
 export const getPostById = async(slug: string): Promise<Post> => {
-	const stringifiedQuery = qs.stringify({
-		depth: 2,
-		draft: false,
-		where: {
-			slug: {
-				equals: slug
-			}
+	const stringifiedQuery = qs.stringify(
+		{
+			depth: 2,
+			draft: false,
+			where: {
+				slug: {
+					equals: slug,
+				},
+			},
+			limit: 1,
 		},
-		limit: 1
-	}, { addQueryPrefix: true },);
+		{ addQueryPrefix: true }
+	);
 	try {
 		const res = await fetch(
-			process.env.BASE_API_URL + `/api/posts?${ stringifiedQuery }`,
+			process.env.BASE_API_URL + `/api/posts?${stringifiedQuery}`,
 			{
 				cache: 'no-store',
 			}
@@ -137,7 +146,9 @@ export const getPostById = async(slug: string): Promise<Post> => {
 	}
 };
 
-export const getAllPost = async(limit?: number): Promise<PaginatedDocs<Post>> => {
+export const getAllPost = async(
+	limit?: number
+): Promise<PaginatedDocs<Post>> => {
 	const stringifiedQuery = qs.stringify({
 		depth: 1,
 		limit: limit ?? 100,
@@ -147,14 +158,14 @@ export const getAllPost = async(limit?: number): Promise<PaginatedDocs<Post>> =>
 			_status: {
 				equals: 'published',
 			},
-		}
+		},
 	});
 
 	// console.log('getAllPost ==> ', process.env.BASE_API_URL + `/api/posts?${stringifiedQuery}`);
 
 	try {
 		const res = await fetch(
-			process.env.BASE_API_URL + `/api/posts?${ stringifiedQuery }`,
+			process.env.BASE_API_URL + `/api/posts?${stringifiedQuery}`,
 			{
 				cache: 'no-store',
 			}
@@ -172,11 +183,11 @@ export const getPrivacyById = async(): Promise<Privacy> => {
 		depth: 1,
 		limit: 1,
 		draft: false,
-		sort: '-updatedAt'
+		sort: '-updatedAt',
 	});
 	try {
 		const res = await fetch(
-			process.env.BASE_API_URL + `/api/privacy?${ stringifiedQuery }`,
+			process.env.BASE_API_URL + `/api/privacy?${stringifiedQuery}`,
 			{
 				cache: 'no-store',
 			}
@@ -193,11 +204,11 @@ export const getTermsAndConditions = async(): Promise<Privacy> => {
 		depth: 1,
 		limit: 1,
 		draft: false,
-		sort: '-updatedAt'
+		sort: '-updatedAt',
 	});
 	try {
 		const res = await fetch(
-			process.env.BASE_API_URL + `/api/terms?${ stringifiedQuery }`,
+			process.env.BASE_API_URL + `/api/terms?${stringifiedQuery}`,
 			{
 				cache: 'no-store',
 			}
@@ -214,12 +225,12 @@ export const getAllFaq = async(): Promise<PaginatedDocs<Faq>> => {
 		depth: 1,
 		limit: 99,
 		draft: false,
-		sort: 'order'
+		sort: 'order',
 	});
 
 	try {
 		const res = await fetch(
-			process.env.BASE_API_URL + `/api/faq?${ stringifiedQuery }`,
+			process.env.BASE_API_URL + `/api/faq?${stringifiedQuery}`,
 			{
 				cache: 'no-store',
 			}
@@ -232,7 +243,9 @@ export const getAllFaq = async(): Promise<PaginatedDocs<Faq>> => {
 	}
 };
 
-export const getAllContactSubjects = async(): Promise<PaginatedDocs<ContactSubject>> => {
+export const getAllContactSubjects = async(): Promise<
+  PaginatedDocs<ContactSubject>
+> => {
 	const stringifiedQuery = qs.stringify({
 		depth: 1,
 		limit: 99,
@@ -241,7 +254,7 @@ export const getAllContactSubjects = async(): Promise<PaginatedDocs<ContactSubje
 
 	try {
 		const res = await fetch(
-			process.env.BASE_API_URL + `/api/contact-subject?${ stringifiedQuery }`,
+			process.env.BASE_API_URL + `/api/contact-subject?${stringifiedQuery}`,
 			{
 				cache: 'no-store',
 			}

@@ -6,36 +6,18 @@ const navigationData = {
 	menu: [
 		{
 			name: 'Membership',
-			href: '#',
+			href: '/membership',
 			externalLink: false
 		},
 		{
-			name: 'Pricing',
-			href: '/products',
+			name: 'Men\'s Health',
+			href: '/solution/men',
 			externalLink: false
 		},
 		{
-			name: 'Solutions',
-			href: '#',
-			externalLink: false,
-			items: [
-				{
-					name: 'Male Health',
-					href: '#'
-				},
-				{
-					name: 'Female Health',
-					href: '#'
-				},
-				{
-					name: 'Diagnostics',
-					href: '#'
-				},
-				{
-					name: 'Smart Supplements',
-					href: '#'
-				}
-			]
+			name: 'Women\'s Health',
+			href: '/solution/women',
+			externalLink: false
 		},
 		{
 			name: 'Resources',

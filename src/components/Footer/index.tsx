@@ -202,7 +202,7 @@ const Footer: React.FC<FooterProps> = ({ landingPage }) => {
 	};
 
 	return (
-		<div className='pt-6 pb-[66px] lg:pb-6 px-4 lg:px-3 max-lg:pt-2.5 overflow-hidden font-Poppins'>
+		<div className='pt-6 lg:pt-3.5 pb-[66px] lg:pb-6 px-4 lg:px-3 overflow-hidden font-Poppins'>
 			<WrapperFooter
 				landingPage={ landingPage }
 				isMobile={ isMobile }
@@ -252,7 +252,7 @@ const Footer: React.FC<FooterProps> = ({ landingPage }) => {
 								</button>
 							</form>
 
-							<div className='mt-[34px] sm:mt-[65px] flex flex-wrap items-center max-sm:justify-between gap-2 sm:gap-[23px]'>
+							<div className='mt-[34px] sm:mt-[65px] flex flex-wrap items-center gap-[23px]'>
 								{ footerData.socialMedia.map(item => (
 									<CustomLink
 										key={ item.alt }

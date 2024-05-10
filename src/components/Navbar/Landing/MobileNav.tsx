@@ -7,7 +7,7 @@ import { usePathname } from 'next/navigation';
 
 import cartIcon from '@/assets/mobile-nav/cart.svg';
 import dashboardIcon from '@/assets/mobile-nav/dashboard.svg';
-import { navbarData } from '@/constant/data';
+import navbarData from '@/constant/data/navigation';
 import clsxm from '@/helpers/clsxm';
 
 import { Bars3Icon } from '../../Icons';
@@ -130,7 +130,9 @@ const MobileNav: React.FC<MobileNavProps> = ({
 				>
 					<div className='flex h-full flex-col'>
 						<div className='flex justify-between mb-[34px]'>
-							<GevitiLogo />
+							<Link href='/'>
+								<GevitiLogo />
+							</Link>
 							<Bars3Icon
 								className='w-6 h-6 text-grey-50'
 								onClick={ toggleMenu } />
@@ -206,7 +208,7 @@ const MobileNav: React.FC<MobileNavProps> = ({
 									</motion.div>
 									<motion.div variants={ mobileLinkVarsOpacity }>
 										<Link
-											href='/'
+											href='https://app.gogeviti.com/'
 											className='flex items-center gap-2.5'>
 											<Image
 												src={ dashboardIcon }

@@ -1,30 +1,31 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import Script from 'next/script';
 import NextTopLoader from 'nextjs-toploader';
 
 import { AOSInit } from '@/components';
 import LenisScroller from '@/components/LenisScroller';
 import Provider from '@/components/Provider';
-import { brSonoma, poppins } from '@/constant/fonts';
+import { brSonoma, grifter, poppins } from '@/constant/fonts';
 import StyledComponentsRegistry from '@/lib/registry';
 
 import 'aos/dist/aos.css';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import 'react-date-picker/dist/DatePicker.css';
-import 'react-calendar/dist/Calendar.css';
+import 'react-datepicker/dist/react-datepicker.css';
 import './globals.css';
+import './main.css';
 
 export const metadata: Metadata = {
 	title: 'Geviti',
-	description: 'Leveraging the power of modern telehealth technology',
-	themeColor: '#181A1C',
-	viewport: {
-		width: 'device-width',
-		initialScale: 1,
-		maximumScale: 1,
-		viewportFit: 'cover'
-	}
+	description: 'Leveraging the power of modern telehealth technology'
+};
+
+export const viewport: Viewport = {
+	width: 'device-width',
+	initialScale: 1,
+	maximumScale: 1,
+	viewportFit: 'cover',
+	themeColor: '#181A1C'
 };
 
 const RootLayout: React.FC<{ children: React.ReactNode; }> = ({ children }) => {
@@ -45,8 +46,9 @@ const RootLayout: React.FC<{ children: React.ReactNode; }> = ({ children }) => {
 			</Script>
 			<StyledComponentsRegistry>
 				<body
-					className={ `${ poppins.variable } ${ brSonoma.variable }` }
-					suppressHydrationWarning>
+					className={ `${ poppins.variable } ${ brSonoma.variable } ${ grifter.variable }` }
+					suppressHydrationWarning
+				>
 					<NextTopLoader
 						showSpinner={ false }
 						color='#A3E0FF' />
@@ -60,8 +62,9 @@ const RootLayout: React.FC<{ children: React.ReactNode; }> = ({ children }) => {
 							width='0'
 							style={ {
 								display: 'none',
-								visibility: 'hidden'
-							} } />
+								visibility: 'hidden',
+							} }
+						/>
 					</noscript>
 				</body>
 			</StyledComponentsRegistry>

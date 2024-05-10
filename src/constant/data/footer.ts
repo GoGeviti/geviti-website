@@ -28,39 +28,19 @@ const footerData = {
 					externalLink: false
 				}
 			]
-		},
-		{
-			title: 'About Geviti',
-			menu: [
-				{
-					name: 'About Us',
-					href: '/',
-					externalLink: false
-				},
-				{
-					name: 'Invest',
-					href: '/',
-					externalLink: false
-				},
-				{
-					name: 'Careers',
-					href: '/',
-					externalLink: false
-				}
-			]
 		}
 	],
 	socialMedia: [
-		{
-			alt: 'facebook',
-			url: 'https://www.facebook.com/profile.php?id=61550625100704',
-			image: '/images/social_media/facebook.svg'
-		},
-		{
-			alt: 'twitter',
-			url: 'https://twitter.com/gogeviti',
-			image: '/images/social_media/twitter.svg'
-		},
+		// {
+		// 	alt: 'facebook',
+		// 	url: 'https://www.facebook.com/profile.php?id=61550625100704',
+		// 	image: '/images/social_media/facebook.svg'
+		// },
+		// {
+		// 	alt: 'twitter',
+		// 	url: 'https://twitter.com/gogeviti',
+		// 	image: '/images/social_media/twitter.svg'
+		// },
 		{
 			alt: 'instagram',
 			url: 'https://www.instagram.com/gogeviti/?hl=en',

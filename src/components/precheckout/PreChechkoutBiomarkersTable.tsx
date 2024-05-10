@@ -91,6 +91,7 @@ const PreCheckoutBiomarkersTable = () => {
 												width={ 23 }
 												height={ 23 }
 												alt='Blue check circle'
+												unoptimized
 											/>
 										) : items.essential === false ? (
 											<Minus />
@@ -110,6 +111,7 @@ const PreCheckoutBiomarkersTable = () => {
 												width={ 23 }
 												height={ 23 }
 												alt='Blue check circle'
+												unoptimized
 											/>
 										) : items.comprehensive === false ? (
 											<Minus />
@@ -129,6 +131,7 @@ const PreCheckoutBiomarkersTable = () => {
 												width={ 23 }
 												height={ 23 }
 												alt='Blue check circle'
+												unoptimized
 											/>
 										) : items.ultimateMale === false ? (
 											<Minus />
@@ -148,6 +151,7 @@ const PreCheckoutBiomarkersTable = () => {
 												width={ 23 }
 												height={ 23 }
 												alt='Blue check circle'
+												unoptimized
 											/>
 										) : items.ultimateFemale === false ? (
 											<Minus />

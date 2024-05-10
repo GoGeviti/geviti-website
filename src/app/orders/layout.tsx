@@ -1,10 +1,10 @@
 import React from 'react';
-import { Metadata } from 'next';
+import { Viewport } from 'next';
 
 import { Navbar } from '@/components';
 
-export const metadata: Metadata = {
-	themeColor: '#181A1C',
+export const viewport: Viewport = {
+	themeColor: '#181A1C'
 };
 
 const OrdersLayout: React.FC<{ children: React.ReactNode; }> = ({

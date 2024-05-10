@@ -10,9 +10,9 @@ const Row = styled.div`
   height: 90px;
   padding: 0 20px;
   position: relative;
-  
+
   @media (max-width: 1300px) {
-	height: 60px;
+    height: 60px;
   }
 `;
 
@@ -25,7 +25,7 @@ const PreviousStepButton = styled.div`
   }
 
   @media (max-width: 1300px) {
-   transform: scale(0.9);
+    transform: scale(0.9);
   }
 `;
 
@@ -51,14 +51,17 @@ const PreCheckoutNav = ({
 					src={ previousStepIcon }
 					height={ 50 }
 					width={ 50 }
-					alt='' />
+					alt=''
+					unoptimized
+				/>
 			</PreviousStepButton>
 			<Logo>
 				<Image
 					src={ gevitiLogo }
 					width={ 85 }
 					height={ 20 }
-					alt='' />
+					alt=''
+					unoptimized />
 			</Logo>
 		</Row>
 	);

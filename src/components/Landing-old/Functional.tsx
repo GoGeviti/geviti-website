@@ -25,7 +25,9 @@ const Functional: React.FC = () => {
 							</p>
 							{ functionalData.title && (
 								<h2 className='font-Poppins text-[6.1vw] xs2:text-[25px] md:text-[32px] lg:text-4xl leading-[27px] sm:leading-[125%] -tracking-[0.84px] md:-tracking-0.04em mt-11px sm:mt-7px text-grey-secondary'>
-									<span dangerouslySetInnerHTML={ { __html: functionalData.title } } />
+									<span
+										dangerouslySetInnerHTML={ { __html: functionalData.title } }
+									/>
 								</h2>
 							) }
 							<div className='mt-[35px] sm:mt-12 w-full grid md:grid-cols-4 gap-5px md:gap-15px lg:gap-30px'>

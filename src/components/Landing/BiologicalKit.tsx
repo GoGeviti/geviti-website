@@ -10,8 +10,8 @@ import { landingData } from '@/constant/data';
 import clsxm from '@/helpers/clsxm';
 
 import AnimatedWords from '../AnimatedWords';
+import ButtonCta from '../ButtonCta';
 
-import ButtonCta from './ButtonCta';
 import { slideUpTransition } from './transition';
 
 const AnimatedNumbers = dynamic(() => import('../AnimatedNumbers'), { ssr: false });
