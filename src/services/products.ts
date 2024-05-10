@@ -20,7 +20,7 @@ export const getProducts = async(): Promise<PaginatedDocs<Product>> => {
 	});
 	try {
 		const res = await fetch(
-			process.env.BASE_API_URL + `/api/products?${stringifiedQuery}`,
+			process.env.BASE_API_URL + `/api/products?${ stringifiedQuery }`,
 			{
 				cache: 'no-store',
 			}
@@ -36,7 +36,7 @@ export const getProducts = async(): Promise<PaginatedDocs<Product>> => {
 export const getProductById = async(id: string): Promise<Product> => {
 	try {
 		const res = await fetch(
-			process.env.BASE_API_URL + `/api/products/${id}?depth=2`,
+			process.env.BASE_API_URL + `/api/products/${ id }?depth=2`,
 			{
 				cache: 'no-store',
 			}
@@ -130,7 +130,7 @@ export const getPostById = async(slug: string): Promise<Post> => {
 	);
 	try {
 		const res = await fetch(
-			process.env.BASE_API_URL + `/api/posts?${stringifiedQuery}`,
+			process.env.BASE_API_URL + `/api/posts?${ stringifiedQuery }`,
 			{
 				cache: 'no-store',
 			}
@@ -165,7 +165,7 @@ export const getAllPost = async(
 
 	try {
 		const res = await fetch(
-			process.env.BASE_API_URL + `/api/posts?${stringifiedQuery}`,
+			process.env.BASE_API_URL + `/api/posts?${ stringifiedQuery }`,
 			{
 				cache: 'no-store',
 			}
@@ -187,7 +187,7 @@ export const getPrivacyById = async(): Promise<Privacy> => {
 	});
 	try {
 		const res = await fetch(
-			process.env.BASE_API_URL + `/api/privacy?${stringifiedQuery}`,
+			process.env.BASE_API_URL + `/api/privacy?${ stringifiedQuery }`,
 			{
 				cache: 'no-store',
 			}
@@ -208,7 +208,7 @@ export const getTermsAndConditions = async(): Promise<Privacy> => {
 	});
 	try {
 		const res = await fetch(
-			process.env.BASE_API_URL + `/api/terms?${stringifiedQuery}`,
+			process.env.BASE_API_URL + `/api/terms?${ stringifiedQuery }`,
 			{
 				cache: 'no-store',
 			}
@@ -230,7 +230,7 @@ export const getAllFaq = async(): Promise<PaginatedDocs<Faq>> => {
 
 	try {
 		const res = await fetch(
-			process.env.BASE_API_URL + `/api/faq?${stringifiedQuery}`,
+			process.env.BASE_API_URL + `/api/faq?${ stringifiedQuery }`,
 			{
 				cache: 'no-store',
 			}
@@ -254,7 +254,7 @@ export const getAllContactSubjects = async(): Promise<
 
 	try {
 		const res = await fetch(
-			process.env.BASE_API_URL + `/api/contact-subject?${stringifiedQuery}`,
+			process.env.BASE_API_URL + `/api/contact-subject?${ stringifiedQuery }`,
 			{
 				cache: 'no-store',
 			}
