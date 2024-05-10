@@ -12,8 +12,6 @@ const ProductsSection: React.FC = async() => {
 			<DiscoverGeviti
 				title={ landingData.products.title }
 				description={ landingData.products.description }
-				viewAll={ landingData.products.viewAll }
-				viewAllMobileClassName='mt-[49px] flex'
 				productsWrapperClassName='mt-[49px] lg:mt-[50px]'
 				products={ products.docs }
 			/>

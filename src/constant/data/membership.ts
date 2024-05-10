@@ -497,7 +497,7 @@ const membershipData = {
 		list: [
 			'Testing and diagnostics from the comfort of your own home.',
 			'Cutting edge health care available at your fingertips.',
-			'Streamlined processes that eliminate traditional paint points.',
+			'Streamlined processes that eliminate traditional pain points.',
 			'Comprehensive health/human optimization made simple.',
 		],
 	},

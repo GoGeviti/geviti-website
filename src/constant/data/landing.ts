@@ -84,9 +84,23 @@ const landingData = {
 		description: 'Browse our wide range of products!',
 		viewAll: {
 			text: 'View All Products',
-			href: '/products',
+			href: '/products'
 		},
-		titleMobile: 'Our Products',
+		categories: [
+			{
+				title: 'Mens Products',
+				slug: 'male-hormone-optimization'
+			},
+			{
+				title: 'Womens Products',
+				slug: 'female-hormone-optimization'
+			}
+		],
+		subCategories: [
+			{ id: 1, title: 'Prescriptions' },
+			{ id: 2, title: 'Testing Options' },
+			{ id: 3, title: 'Supplements' },
+		],
 	},
 	investment: {
 		preTitle: 'An INVESTMENT IN YOUR FUTURE',
@@ -429,7 +443,7 @@ const landingData = {
 				id: 'prescription',
 				preTitle: 'Members receive access to',
 				title: 'Prescription wellness done right',
-				description: 'No more over spending on supplements that aren\'t designed <br class="max-lg:hidden"/>exactly for you. Geviti will analyze your biomarkers and create <br class="max-lg:hidden"/>totally custom supplements with everything you need, and <br class="max-lg:hidden"/>nothing that you don’t.',
+				description: 'We offer hormone therapy, peptide therapy, and other prescription <br class="max-lg:hidden"/>wellness services under the supervision of medical professionals. <br class="max-lg:hidden"/>Once you receive approval from a provider through the Geviti app, <br class="max-lg:hidden"/>we\'ll deliver your treatment directly to you.',
 				image: '/images/landing/compressed/supplements-bottle.webp',
 				imageMobile: '/images/landing/compressed/supplements-bottle.webp',
 			},
@@ -437,7 +451,7 @@ const landingData = {
 				id: 'therapy',
 				preTitle: 'Members receive access to',
 				title: 'Tailormade smart supplements',
-				description: 'We offer hormone therapy, peptide therapy, and other prescription <br class="max-lg:hidden"/>wellness services under the supervision of medical professionals. <br class="max-lg:hidden"/>Once you receive approval from a provider through the Geviti app, <br class="max-lg:hidden"/>we\'ll deliver your treatment directly to you.',
+				description: 'No more over spending on supplements that aren\'t designed <br class="max-lg:hidden"/>exactly for you. Geviti will analyze your biomarkers and create <br class="max-lg:hidden"/>totally custom supplements with everything you need, and <br class="max-lg:hidden"/>nothing that you don’t.',
 				image: '/images/landing/compressed/supplements-pouch.webp',
 				imageMobile: '/images/landing/compressed/supplements-pouch-mobile.webp'
 			}

@@ -164,7 +164,7 @@ const TreatmentOptions: React.FC<TreatmentOptionsProps> = ({ type = 'men' }) => 
 						<span
 							key={ `subCategory-${ subCategory.id }` }
 							className={ clsxm(
-								'py-1 sm:py-2 px-2 sm:px-3.5 text-xs !leading-normal font-medium border rounded-[100px] cursor-pointer',
+								'py-1 sm:py-2 px-2 sm:px-3.5 transition-colors ease-in-out duration-200 text-xs !leading-normal font-medium border rounded-[100px] cursor-pointer',
 								subCategoryIdx === selectedSubCategoryIdx ? 'border-primary text-primary' : 'border-grey-300 text-grey-300'
 							) }
 							onClick={ () => setSelectedSubCategoryIdx(subCategoryIdx) }

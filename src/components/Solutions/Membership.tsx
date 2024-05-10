@@ -48,7 +48,7 @@ const Membership: React.FC = () => {
 						aria-label={ membershipData.btnCta.text }
 					/>
 				</div>
-				<div className='overflow-x-hidden relative pt-[123px] lg:pt-[92px] pb-[45px] lg:pb-16'>
+				<div className='overflow-x-hidden relative pt-[60px] lg:pt-[92px] pb-[45px] lg:pb-16'>
 					<InfiniteMovingFeatures
 						list={ membershipData.list }
 					/>
