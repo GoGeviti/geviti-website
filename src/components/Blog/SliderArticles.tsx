@@ -27,15 +27,15 @@ const SliderArticles: React.FC<SliderArticlesProps> = ({ data }) => {
 		centerMode: true,
 		centerPadding: '20px',
 		beforeChange: (current: number, next: number) => setActiveIndex(next),
-		responsive: [
-			{
-				breakpoint: 1024,
-				settings: {
-					vertical: false,
-					verticalSwiping: false,
-				},
-			},
-		],
+		// responsive: [
+		// 	{
+		// 		breakpoint: 1024,
+		// 		settings: {
+		// 			vertical: false,
+		// 			verticalSwiping: false,
+		// 		},
+		// 	},
+		// ],
 	};
 
 	const renderDots = () => {
@@ -75,7 +75,6 @@ const SliderArticles: React.FC<SliderArticlesProps> = ({ data }) => {
 									height={ 1000 }
 									className='object-cover !h-[500px] w-full rounded-[20px]'
 									alt={ items.title }
-									unoptimized
 								/>
 								<div className='absolute z-10 left-0 bottom-0 flex flex-col text-start px-[30px] py-[26px]'>
 									<p className='text-[#CDDCE2] font-BRSonoma text-sm'>

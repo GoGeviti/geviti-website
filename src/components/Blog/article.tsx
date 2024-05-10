@@ -13,7 +13,7 @@ import { SliderArticles } from '.';
 
 const articleData = blogData.article;
 
-const Articles = ({ post }: { post: Post[] }) => {
+const Articles = ({ post }: { post: Post[]; }) => {
 	const [hoveredItem, setHoveredItem] = useState(1);
 
 	const handleMouseEnter = (id: number) => {
@@ -34,35 +34,32 @@ const Articles = ({ post }: { post: Post[] }) => {
 						const isHovered = hoveredItem === id;
 						return (
 							<Link
-								href={ `/blog/${items.slug}` }
+								href={ `/blog/${ items.slug }` }
 								key={ id }
 								className='relative'
 								onMouseEnter={ () => handleMouseEnter(id) }
-								// onMouseLeave={ handleMouseLeave }
+							// onMouseLeave={ handleMouseLeave }
 							>
 								<Image
 									src={ items.hero.media.url ?? '' }
 									width={ 1000 }
 									height={ 1000 }
-									className={ `object-cover transition-all ease-in-out duration-300 !h-[500px] ${
-										isHovered ? 'w-[500px] ' : 'w-[320px]'
+									className={ `object-cover transition-all ease-in-out duration-300 !h-[500px] ${ isHovered ? 'w-[500px] ' : 'w-[320px]'
 									} rounded-[20px]` }
 									alt={ items.title }
 									unoptimized
 								/>
 								<div className='absolute z-10 left-0 bottom-0 flex flex-col text-start px-[30px] py-[26px]'>
 									<p
-										className={ `text-[#CDDCE2] font-BRSonoma ${
-											isHovered ? 'text-base' : 'text-sm'
+										className={ `text-[#CDDCE2] font-BRSonoma ${ isHovered ? 'text-base' : 'text-sm'
 										}` }
 									>
 										{ items.hero.categories?.title }
 									</p>
 									<p
-										className={ `text-white font-Poppins  ${
-											isHovered
-												? 'text-[22px] lg:text-[27px] -tracking-[1.08px]'
-												: 'text-lg lg:text-[22px] -tracking-[0.88px]'
+										className={ `text-white font-Poppins  ${ isHovered
+											? 'text-[22px] lg:text-[27px] -tracking-[1.08px]'
+											: 'text-lg lg:text-[22px] -tracking-[0.88px]'
 										}` }
 									>
 										{ items.title }
