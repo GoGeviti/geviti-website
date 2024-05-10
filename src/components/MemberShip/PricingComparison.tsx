@@ -37,7 +37,7 @@ const PricingAccordion: React.FC<{
 			animate={ open ? 'open' : 'closed' }
 			className={ clsxm(!isLastIdx && 'border-b border-grey-950', 'font-Poppins') }
 		>
-			<button
+			<div
 				onClick={ () => setOpen(pv => !pv) }
 				className='py-3 w-full flex justify-between gap-2'
 			>
@@ -59,7 +59,7 @@ const PricingAccordion: React.FC<{
 				>
 					<ChevronDown className='w-5 h-5 text-white' />
 				</motion.span>
-			</button>
+			</div>
 			<motion.div
 				initial={ false }
 				animate={ { height: open ? 'fit-content' : '0px' } }
