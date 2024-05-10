@@ -23,7 +23,6 @@ const Investment: React.FC = () => {
 								loading='lazy'
 								className='object-cover'
 								fill
-								unoptimized
 							/>
 						</div>
 					) }
@@ -37,7 +36,6 @@ const Investment: React.FC = () => {
 								loading='lazy'
 								className='object-cover'
 								fill
-								unoptimized
 							/>
 						</div>
 					) }

@@ -36,9 +36,9 @@ const Quality: React.FC = () => {
 										<div
 											key={ functionItemIdx }
 											className='rounded-lg bg-[#C3EBFF] px-[13px] sm:px-5 py-15px sm:py-4 flex items-center gap-[11px] hover:outline hover:outline-2 hover:outline-[#C3EBFF]'
-											// data-aos='fade-up'
-											// data-aos-delay={ `${functionItemIdx * 100}` }
-											// data-aos-anchor='#main-quality-list'
+										// data-aos='fade-up'
+										// data-aos-delay={ `${functionItemIdx * 100}` }
+										// data-aos-anchor='#main-quality-list'
 										>
 											<CheckCircleIcon className='text-primary w-3 h-3 flex-shrink-0 scale-125' />
 											<p
@@ -90,7 +90,6 @@ const Quality: React.FC = () => {
 							loading='lazy'
 							fill
 							className='object-cover object-center'
-							unoptimized
 						/>
 					</div>
 					<div className='pt-[22px] md:hidden relative'>
@@ -101,7 +100,6 @@ const Quality: React.FC = () => {
 							width={ 318.38 }
 							height={ 435.984 }
 							className='relative z-10'
-							unoptimized
 						/>
 
 						<div className='absolute -bottom-[233px] left-1/2 -translate-x-1/2 bg-radial-gradient-quality-landing w-[411.339px] h-[411.339px]' />

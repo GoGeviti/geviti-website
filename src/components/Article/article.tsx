@@ -17,13 +17,13 @@ import { CustomLink } from '..';
 // }
 
 interface ArticlesProps {
-  list?: Post[];
-  title: string;
-  preTitle?: string;
-  btn: string;
-  btnLink?: string;
-  className?: string;
-  wrapperClassName?: string;
+	list?: Post[];
+	title: string;
+	preTitle?: string;
+	btn: string;
+	btnLink?: string;
+	className?: string;
+	wrapperClassName?: string;
 }
 
 // TODO: You're probably aware but React.FC creates awkward types here - see https://github.com/facebook/create-react-app/pull/8177
@@ -130,7 +130,7 @@ const renderItem = (data?: Post[]) => {
 			{ data?.map((items, id) => {
 				return (
 					<Link
-						href={ `/blog/${items.slug}` }
+						href={ `/blog/${ items.slug }` }
 						key={ id }
 						className='relative bg-white max-md:rounded-lg overflow-hidden flex flex-row md:flex-col max-md:items-center max-md:p-5 max-md:space-x-[9px]'
 					>
@@ -141,7 +141,6 @@ const renderItem = (data?: Post[]) => {
 									fill
 									className='object-cover object-center'
 									alt={ items.hero.media.alt ?? '' }
-									unoptimized
 								/>
 							</div>
 						</div>

@@ -21,12 +21,12 @@ import { Post } from '@/payload/payload-types';
 // }
 
 const Topics: React.FC<{
-  title: string;
-  btnRight: string;
-  articleData: {
-    name: string;
-    list: Post[];
-  }[];
+	title: string;
+	btnRight: string;
+	articleData: {
+		name: string;
+		list: Post[];
+	}[];
 }> = ({ articleData, title, btnRight }) => {
 	const [showAllTabs, setShowAllTabs] = useState(false);
 	const [selectedItem, setSelectedItem] = useState(0);
@@ -61,11 +61,11 @@ const Topics: React.FC<{
 							.map((items, id) => (
 								<div
 									key={ id }
-									// className={ clsxm(id === 0 ? 'w-[18px]' : id === 1 ? 'w-[75px]' : id === 2 ? 'w-[46px]' : 'w-[59px]') }
+								// className={ clsxm(id === 0 ? 'w-[18px]' : id === 1 ? 'w-[75px]' : id === 2 ? 'w-[46px]' : 'w-[59px]') }
 								>
 									<TabsTrigger
 										className='text-[15px] cursor-pointer pb-[9px] pt-[25px] leading-none text-primary select-none data-[state=active]:font-bold relative outline-none'
-										value={ `tab-${id}` }
+										value={ `tab-${ id }` }
 										onClick={ () => setSelectedItem(id) }
 									>
 										<p>{ items.name }</p>
@@ -81,7 +81,7 @@ const Topics: React.FC<{
 							return (
 								<TabsContent
 									key={ id }
-									value={ `tab-${id}` }>
+									value={ `tab-${ id }` }>
 									{ isMobile
 										? showAllTabs
 											? renderItem(it.list)
@@ -118,7 +118,7 @@ const renderItem = (data: Post[]) => {
 			{ data.map((items, id) => {
 				return (
 					<Link
-						href={ `/blog/${items.slug}` }
+						href={ `/blog/${ items.slug }` }
 						key={ id }
 						className='relative bg-white rounded-lg md:rounded-2xl overflow-hidden flex flex-row md:flex-col max-md:items-center max-md:p-5 max-md:space-x-[9px]'
 					>
@@ -129,7 +129,6 @@ const renderItem = (data: Post[]) => {
 									fill
 									className='object-cover object-center hover:scale-105 transition-all duration-300 ease-in-out'
 									alt={ items.title }
-									unoptimized
 								/>
 							</div>
 						</div>

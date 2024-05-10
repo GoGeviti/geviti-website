@@ -27,7 +27,6 @@ const Hero: React.FC = () => {
 									fill
 									className='object-cover'
 									priority={ true }
-									unoptimized
 								/>
 							</div>
 						) }
@@ -63,7 +62,6 @@ const Hero: React.FC = () => {
 										alt='hero'
 										className='object-cover'
 										fill
-										unoptimized
 									/>
 								</div>
 							) }
@@ -82,7 +80,7 @@ const Hero: React.FC = () => {
 								<WrapperAnimation
 									key={ feature.text }
 									data-aos='zoom-in-up'
-									data-aos-delay={ `${featureIdx * 100}` }
+									data-aos-delay={ `${ featureIdx * 100 }` }
 									data-aos-anchor='#main-keys'
 									className='flex flex-col max-lg:text-center max-lg:items-center gap-y-1 md:gap-y-5px'
 								>
@@ -91,7 +89,7 @@ const Hero: React.FC = () => {
 											className={ clsxm(
 												'font-Poppins bg-black-icons rounded-full p-1 w-6 h-6 font-medium text-white text-[11px] flex justify-center items-center mb-5',
 												featureIdx + 1 !== heroData.mainKeys.length &&
-                          'lg:before:absolute lg:before:bg-black-icons lg:before:h-[1px] lg:before:w-full lg:before:top-3 lg:before:left-[25px] '
+												'lg:before:absolute lg:before:bg-black-icons lg:before:h-[1px] lg:before:w-full lg:before:top-3 lg:before:left-[25px] '
 											) }
 										>
 											{ featureIdx + 1 }
@@ -105,7 +103,6 @@ const Hero: React.FC = () => {
 												sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
 												fill
 												loading='lazy'
-												unoptimized
 											/>
 										</div>
 									) }

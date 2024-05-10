@@ -8,9 +8,7 @@ import clsxm from '@/helpers/clsxm';
 
 import ButtonCta from '../ButtonCta';
 import QuestionTooltip from '../Home/QuestionTooltip';
-import { ChevronDown, GreenCheck } from '../Icons';
-
-import PriceExtended from './PriceExtended';
+import { GreenCheck } from '../Icons';
 
 const getPricingCardVariants = (tierIdx: number): Variants => {
 	if (tierIdx === 0) {
@@ -86,12 +84,7 @@ const Pricing = () => {
 	const ref = useRef<HTMLDivElement>(null);
 	const isInView = useInView(ref, { once: true });
 
-	const [isOpen, setIsOpen] = useState<boolean>(false);
 	const [activeTabIdx, setActiveTabIdx] = useState<number>(0);
-
-	const togglePriceExtended = () => {
-		setIsOpen(!isOpen);
-	};
 
 	const renderButtonSwitchGender = () => {
 		const currentOpt = pricingData.pricingOptions[activeTabIdx];
@@ -134,37 +127,6 @@ const Pricing = () => {
 					) }
 				</motion.span>
 			</div>
-		);
-	};
-
-	const renderButtonToggleCompetitor = () => {
-		return (
-			<button
-				onClick={ togglePriceExtended }
-				className={ clsxm(
-					'max-sm:w-full flex mt-3 items-center border border-black/5 gap-6 lg:gap-[15px] rounded-2xl justify-center px-4 py-[15px] lg:p-6 w-full bg-blue-primary',
-					isOpen && 'bg-[#E6E7E7] border-[#E6E7E7]'
-				) }
-			>
-				<p className='text-sm !leading-[28px] lg:text-xl'>
-					<span className='max-lg:hidden'>{ pricingData.comparison.btn.text }</span>
-					<span className='lg:hidden'>{ pricingData.comparison.btn.textMobile }</span>
-				</p>
-				<motion.span
-					variants={ {
-						open: {
-							rotate: '180deg',
-						},
-						closed: {
-							rotate: '0deg',
-						},
-					} }
-					animate={ isOpen ? 'open' : 'closed' }
-					transition={ { ease: 'easeOut', duration: .2 } }
-				>
-					<ChevronDown className='w-5 h-5 flex-shrink-0 text-primary' />
-				</motion.span>
-			</button>
 		);
 	};
 
@@ -291,40 +253,11 @@ const Pricing = () => {
 								</PricingCardWrapper>
 
 								{ index === 1 && (
-									<motion.div
-										variants={ {
-											initial: { y: -87, opacity: 0 },
-											inView: { y: 0, opacity: 1 }
-										} }
-										initial='initial'
-										animate={ isInView ? 'inView' : 'initial' }
-										transition={ { ease: 'easeInOut', duration: .75, delay: 1.75 } }
-										className='max-lg:hidden'>
-										{ renderButtonToggleCompetitor() }
-									</motion.div>
+									<div className='w-full h-[51px] hidden lg:flex' />
 								) }
 							</div>
 						)) }
 					</div>
-
-					<div className='lg:hidden w-full mx-auto sm:max-w-[392px]'>
-						{ renderButtonToggleCompetitor() }
-					</div>
-					<AnimatePresence
-						initial={ false }
-						mode='wait'>
-						{ isOpen && (
-							<motion.div
-								initial={ { opacity: 0, y: -30, height: 0 } }
-								animate={ { opacity: 1, y: 0, height: 'fit-content' } }
-								exit={ { opacity: 0, y: -30, height: 0 } }
-								transition={ { duration: 0.5, ease: 'easeInOut' } }
-								className='w-full'
-							>
-								<PriceExtended />
-							</motion.div>
-						) }
-					</AnimatePresence>
 				</div>
 			</div>
 		</div>

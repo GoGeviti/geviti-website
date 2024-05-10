@@ -45,7 +45,6 @@ const Product: React.FC = () => {
 											) }
 											width={ 225 }
 											height={ 293 }
-											unoptimized
 										/>
 										<div>
 											<h4 className='text-base lg:text-xl font-Poppins text-primary leading-7 font-medium'>

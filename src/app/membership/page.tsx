@@ -16,6 +16,7 @@ const MemberShipPage = () => {
 			</div>
 			<MembershipComponent.Pricing />
 			<MembershipComponent.BiomarkersSection />
+			<MembershipComponent.PricingComparison />
 			<MembershipComponent.ChooseGeviti />
 			{ /* <MembershipComponent.Products /> */ }
 			<FrequentlyAskedQuestions data={ membershipData.faq.data } />

@@ -44,7 +44,6 @@ const CartPage: NextPage = async() => {
 								loading='lazy'
 								className='object-cover object-top'
 								fill
-								unoptimized
 							/>
 						</div>
 					</div>

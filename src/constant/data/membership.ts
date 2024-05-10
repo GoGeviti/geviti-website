@@ -727,7 +727,7 @@ const membershipData = {
 			'Bloodwork results telehealth review',
 			'First month of membership included',
 		],
-		comparison: {
+		extended: {
 			btn: {
 				text: 'Geviti vs. competitors',
 				textMobile: 'Geviti vs. our competitors'
@@ -859,6 +859,108 @@ const membershipData = {
 				}
 			]
 		},
+	},
+	pricingComparison: {
+		title: 'More, for less with Geviti',
+		description: 'Lorem ipsum dolor sit amet consectetur. Sed posuere aliquet malesuada gravida velit massa nunc. Nunc at nunc nibh pretium',
+		headers: [
+			{
+				id: 'geviti',
+				title: 'Geviti',
+				subtitle: '$99.99/mo',
+				geviti: true,
+			},
+			{
+				id: 'competitor_a',
+				title: 'Competitor A',
+				subtitle: '$129.00/mo',
+				geviti: false
+			},
+			{
+				id: 'competitor_b',
+				title: 'Competitor B',
+				subtitle: '$362.00/mo',
+				geviti: false
+			},
+			{
+				id: 'competitor_c',
+				title: 'Competitor C',
+				subtitle: 'Membership N/A',
+				geviti: false
+			}
+		],
+		list: [
+			{
+				name: 'Health Coaching',
+				geviti: true,
+				competitor_a: true,
+				competitor_b: true,
+				competitor_c: true,
+			},
+			{
+				name: 'Frequent Screening',
+				geviti: true,
+				competitor_a: true,
+				competitor_b: true,
+				competitor_c: false,
+			},
+			{
+				name: 'Hormones and Peptides',
+				geviti: true,
+				competitor_a: true,
+				competitor_b: false,
+				competitor_c: true,
+			},
+			{
+				name: 'Mobile Phlebotomy',
+				geviti: true,
+				competitor_a: true,
+				competitor_b: true,
+				competitor_c: false,
+			},
+			{
+				name: 'Member Dashboard',
+				geviti: true,
+				competitor_a: true,
+				competitor_b: false,
+				competitor_c: false,
+			},
+			{
+				name: 'Various Diagnostic Options',
+				geviti: true,
+				competitor_a: false,
+				competitor_b: true,
+				competitor_c: true,
+			},
+			{
+				name: 'Wholesale Diagnostics',
+				geviti: true,
+				competitor_a: false,
+				competitor_b: false,
+				competitor_c: false,
+			},
+			{
+				name: 'Custom Supplements ',
+				geviti: true,
+				competitor_a: false,
+				competitor_b: false,
+				competitor_c: true,
+			},
+			{
+				name: 'Epigenetic Testing',
+				geviti: true,
+				competitor_a: false,
+				competitor_b: true,
+				competitor_c: false,
+			},
+			{
+				name: 'Health Coaching',
+				geviti: true,
+				competitor_a: false,
+				competitor_b: false,
+				competitor_c: false,
+			},
+		]
 	},
 	faq: {
 		data: [

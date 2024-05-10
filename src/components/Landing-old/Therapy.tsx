@@ -67,7 +67,6 @@ const Therapy: React.FC = () => {
 						height={ 1800 }
 						quality={ 100 }
 						className='w-[618px]'
-						unoptimized
 					/>
 				</div>
 
@@ -86,7 +85,7 @@ const Therapy: React.FC = () => {
 							<source
 								src='/videos/graphic_weight.webm'
 								type='video/webm' />
-              Your browser does not support the video tag.
+							Your browser does not support the video tag.
 						</video>
 					</div>
 
@@ -104,7 +103,7 @@ const Therapy: React.FC = () => {
 							<source
 								src='/videos/graphic_bmr.webm'
 								type='video/webm' />
-              Your browser does not support the video tag.
+							Your browser does not support the video tag.
 						</video>
 					</div>
 

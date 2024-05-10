@@ -43,7 +43,6 @@ const News: React.FC = () => {
 										sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
 										fill
 										loading='lazy'
-										unoptimized
 									/>
 								</div>
 							</CustomLink>
@@ -73,7 +72,6 @@ const News: React.FC = () => {
 											alt={ item.title }
 											fill
 											className='object-cover rounded-[30px] object-center'
-											unoptimized
 										/>
 									</div>
 								) }
@@ -90,7 +88,6 @@ const News: React.FC = () => {
 													alt={ item.title }
 													fill
 													className='object-cover rounded-[30px] object-center'
-													unoptimized
 												/>
 											</div>
 										) }

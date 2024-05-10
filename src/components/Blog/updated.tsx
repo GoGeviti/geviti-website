@@ -48,7 +48,6 @@ const Updated: React.FC = () => {
 								width={ 1100 }
 								height={ 300 }
 								className='object-cover'
-								unoptimized
 							/>
 						</div>
 					) }

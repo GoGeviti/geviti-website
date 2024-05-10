@@ -16,15 +16,15 @@ const steps = onboardingData.orderSummary.steps;
 const defaultProducts = onboardingData.orderSummary.defaultProducts;
 
 type OrderSummaryProps = {
-  selectedPlan?: Tier | null;
-  isAlreadyOnHRT?: boolean;
-  withAnimation?: boolean;
+	selectedPlan?: Tier | null;
+	isAlreadyOnHRT?: boolean;
+	withAnimation?: boolean;
 };
 
 type ButtonCheckoutProps = {
-  className?: string;
-  disabled?: boolean;
-  onClick?: () => void;
+	className?: string;
+	disabled?: boolean;
+	onClick?: () => void;
 };
 
 const ButtonCheckout: React.FC<ButtonCheckoutProps> = ({
@@ -238,7 +238,6 @@ const OrderSummary: React.FC<OrderSummaryProps> = ({
 															className='flex-none object-cover object-center'
 															sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
 															fill
-															unoptimized
 														/>
 													) }
 												</div>
@@ -291,8 +290,7 @@ const OrderSummary: React.FC<OrderSummaryProps> = ({
 								) }
 
 								<Link
-									href={ `https://geviti.myshopify.com/cart/${
-										selectedPlan?.variantID ?? ''
+									href={ `https://geviti.myshopify.com/cart/${ selectedPlan?.variantID ?? ''
 									}:1` }
 								>
 									{ renderButtonCheckout() }

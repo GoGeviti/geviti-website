@@ -27,7 +27,7 @@ const Features: React.FC = () => {
 	const renderButtonAction = () => {
 		const actionData = featuresData.action;
 		const wrapper =
-      'btn btn-secondary inline-flex items-center gap-2 group !translate-y-0';
+			'btn btn-secondary inline-flex items-center gap-2 group !translate-y-0';
 
 		if (actionData.href) {
 			return (
@@ -92,7 +92,6 @@ const Features: React.FC = () => {
 												alt='icon'
 												fill
 												className='object-contain'
-												unoptimized
 											/>
 										</div>
 									)) }
@@ -150,7 +149,6 @@ const Features: React.FC = () => {
 									width={ 2432 }
 									height={ 1442 }
 									className='w-[76rem] rounded-[10px] shadow-[0px_-37.24116516113281px_221.67359924316406px_0px_rgba(0,0,0,0.15)] ring-1 ring-white/10'
-									unoptimized
 								/>
 							</div>
 						</div>

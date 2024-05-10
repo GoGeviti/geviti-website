@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { membershipData, navbarData } from '@/constant/data';
 import clsxm from '@/helpers/clsxm';
 
-const comparisonData = membershipData.pricing.comparison;
+const comparisonData = membershipData.pricing.extended;
 
 const PriceExtended: React.FC = () => {
 	return (

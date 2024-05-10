@@ -32,7 +32,7 @@ const Flexible: React.FC = () => {
 								<h2 className='mb-[10px] md:mb-[14px] md:leading-[120.833%] md:-tracking-[0.96px] leading-[133%] -tracking-[0.64px] font-medium font-Poppins text-primary md:text-4xl text-[5.8vw] xs:text-2xl'>
 									{ flexibleData.title }
 									<span className='text-[3.9vw] xs:text-base md:text-2xl'>
-                    /month
+										/month
 									</span>
 								</h2>
 							) }
@@ -74,7 +74,6 @@ const Flexible: React.FC = () => {
 							width={ 1440 }
 							height={ 801 }
 							className='object-cover'
-							unoptimized
 						/>
 					</DesktopImageWrapper>
 					<div className='lg:hidden order-0'>
@@ -85,7 +84,6 @@ const Flexible: React.FC = () => {
 							className='object-cover w-full h-[216px] rounded-[7px]'
 							width={ 337 }
 							height={ 216 }
-							unoptimized
 						/>
 					</div>
 				</div>

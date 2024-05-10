@@ -8,7 +8,7 @@ import { getAllPost } from '@/services/products';
 const learnMore = homeData.learnMore;
 
 type LearnMoreProps = {
-  withBg?: boolean;
+	withBg?: boolean;
 };
 
 const LearnMore: React.FC<LearnMoreProps> = async({ withBg = false }) => {
@@ -41,7 +41,7 @@ const LearnMore: React.FC<LearnMoreProps> = async({ withBg = false }) => {
 								{ allPost.docs.map(items => {
 									return (
 										<div
-											key={ `step-${items.id}` }
+											key={ `step-${ items.id }` }
 											className={ clsxm(
 												'w-full flex flex-col max-md:space-x-5 items-center md:transform md:transition-all md:duration-100 md:ease-in'
 											) }
@@ -53,12 +53,11 @@ const LearnMore: React.FC<LearnMoreProps> = async({ withBg = false }) => {
 													className='object-cover object-center w-full md:w-[382px] h-[189px] md:h-[233px] rounded-[13px]'
 													width={ 100 }
 													height={ 100 }
-													unoptimized
 												/>
 												<p className='mt-[15px] md:mt-[32px] text-pretitle text-grey-primary tracking-[1.54px] leading-6'>
 													{ ' ' }
 													{ new Date(
-                            items.publishedOn as string
+														items.publishedOn as string
 													).toLocaleDateString('en-US', {
 														month: 'long',
 														day: 'numeric',

@@ -16,20 +16,20 @@ import { Bars3Icon } from '../Icons';
 import MobileNav from './MobileNav';
 
 type NavbarProps = {
-  className?: string;
-  theme?: 'light' | 'dark';
-  iconsMenu?: {
-    id: string;
-    href: string;
-    icon: (props?: React.SVGProps<SVGSVGElement>) => React.JSX.Element; // eslint-disable-line no-unused-vars
-  }[];
-  actionsMenu?: {
-    name: string;
-    href: string;
-    externalLink?: boolean;
-  }[];
-  withBgWhite?: boolean;
-  isWithnavbarData?: boolean;
+	className?: string;
+	theme?: 'light' | 'dark';
+	iconsMenu?: {
+		id: string;
+		href: string;
+		icon: (props?: React.SVGProps<SVGSVGElement>) => React.JSX.Element; // eslint-disable-line no-unused-vars
+	}[];
+	actionsMenu?: {
+		name: string;
+		href: string;
+		externalLink?: boolean;
+	}[];
+	withBgWhite?: boolean;
+	isWithnavbarData?: boolean;
 };
 
 const Navbar: React.FC<NavbarProps> = ({
@@ -165,11 +165,11 @@ const Navbar: React.FC<NavbarProps> = ({
 
 	const renderLogo = () => {
 		const src =
-      isMobile && withBgWhite
-      	? navbarData.logoDark
-      	: theme === 'dark'
-      		? navbarData.logoLight
-      		: navbarData.logoDark;
+			isMobile && withBgWhite
+				? navbarData.logoDark
+				: theme === 'dark'
+					? navbarData.logoLight
+					: navbarData.logoDark;
 
 		return (
 			<CustomLink
@@ -185,7 +185,6 @@ const Navbar: React.FC<NavbarProps> = ({
 						priority={ true }
 						className='object-contain'
 						sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
-						unoptimized
 					/>
 				</div>
 			</CustomLink>
@@ -229,7 +228,7 @@ const Navbar: React.FC<NavbarProps> = ({
 									) }
 									aria-label='Dashboard'
 								>
-                  Dashboard
+									Dashboard
 								</CustomLink>
 								<div className='relative'>
 									<div>{ renderActionMenuList() }</div>

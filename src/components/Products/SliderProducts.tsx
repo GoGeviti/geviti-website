@@ -47,7 +47,6 @@ const SliderProducts: React.FC<SliderProductsProps> = ({ images }) => {
 											priority={ true }
 											fill
 											className='object-cover'
-											unoptimized
 										/>
 									</div>
 								</SwiperSlide>
@@ -102,7 +101,6 @@ const SliderProducts: React.FC<SliderProductsProps> = ({ images }) => {
 									priority={ true }
 									fill
 									className='object-cover'
-									unoptimized
 								/>
 							</div>
 						</SwiperSlide>

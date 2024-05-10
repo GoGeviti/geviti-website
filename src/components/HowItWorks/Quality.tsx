@@ -76,8 +76,6 @@ const Quality: React.FC = () => {
 								loading='lazy'
 								width={ 480 }
 								height={ 644 }
-								className=''
-								unoptimized
 							/>
 						</div>
 					</div>

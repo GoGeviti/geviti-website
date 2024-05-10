@@ -10,8 +10,8 @@ import Navbar from '../Navbar/Landing';
 // import Navbar from '../Navbar';
 
 type HeroProps = {
-  hero: IHero.Hero;
-  classname: string;
+	hero: IHero.Hero;
+	classname: string;
 };
 
 const Hero: React.FC<HeroProps> = ({ hero, classname }) => {
@@ -37,7 +37,6 @@ const Hero: React.FC<HeroProps> = ({ hero, classname }) => {
 								priority
 								className='object-cover object-center'
 								fill
-								unoptimized
 							/>
 						</div>
 					) }

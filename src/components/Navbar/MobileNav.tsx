@@ -1,35 +1,35 @@
-import { useEffect } from 'react'
-import Image from 'next/image'
-import Link from 'next/link'
-import { usePathname } from 'next/navigation'
+import { useEffect } from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
-import cartIcon from '@/assets/mobile-nav/cart.svg'
-import dashboardIcon from '@/assets/mobile-nav/dashboard.svg'
-import navigationData from '@/constant/data/navbar'
+import cartIcon from '@/assets/mobile-nav/cart.svg';
+import dashboardIcon from '@/assets/mobile-nav/dashboard.svg';
+import navigationData from '@/constant/data/navbar';
 
 interface MobileNavProps {
-  isOpen: boolean
-  onClose: () => void
+	isOpen: boolean;
+	onClose: () => void;
 }
 
 const MobileNav = (props: MobileNavProps) => {
-	if (!props.isOpen) return null
+	if (!props.isOpen) return null;
 
-	const pathname = usePathname()
+	const pathname = usePathname();
 
 	useEffect(() => {
-		document.body.style.overflow = props.isOpen ? 'hidden' : 'unset'
+		document.body.style.overflow = props.isOpen ? 'hidden' : 'unset';
 
 		return () => {
-			document.body.style.overflow = 'unset'
-		}
-	}, [props.isOpen])
+			document.body.style.overflow = 'unset';
+		};
+	}, [props.isOpen]);
 
 	return (
 		<div
 			onClick={ () => {
-				props.onClose()
-				document.body.style.overflow = 'unset'
+				props.onClose();
+				document.body.style.overflow = 'unset';
 			} }
 			className='max-h-[calc(100dvh)] h-screen fixed top-0 left-0 animate-fadeIn bg-primary flex flex-col px-[16px] pt-[100px] pb-[23px] z-10 w-screen'
 		>
@@ -38,7 +38,7 @@ const MobileNav = (props: MobileNavProps) => {
 				className={ 'text-white text-[25px] font-Poppins tracking-tight mb-25px' }
 				style={ { opacity: pathname === '/' ? 1 : 0.3 } }
 			>
-        Home
+				Home
 			</Link>
 			{ navigationData.menu.map(item => (
 				<Link
@@ -60,7 +60,7 @@ const MobileNav = (props: MobileNavProps) => {
 				className={ 'text-white text-[25px] font-Poppins tracking-tight mb-25px' }
 				style={ { opacity: pathname === '/blog' ? 1 : 0.3, marginTop: '20%' } }
 			>
-        Blog
+				Blog
 			</Link>
 			<Link
 				href='/faq'
@@ -68,7 +68,7 @@ const MobileNav = (props: MobileNavProps) => {
 				className={ 'text-white text-[25px] font-Poppins tracking-tight mb-25px' }
 				style={ { opacity: pathname === '/faq' ? 1 : 0.3 } }
 			>
-        FAQ
+				FAQ
 			</Link>
 			<Link
 				href='/contact-us'
@@ -76,7 +76,7 @@ const MobileNav = (props: MobileNavProps) => {
 				className={ 'text-white text-[25px] font-Poppins tracking-tight mb-25px' }
 				style={ { opacity: pathname === '/contact-us' ? 1 : 0.3 } }
 			>
-        Contact Us
+				Contact Us
 			</Link>
 			<div className='bg-[#2D2F31] h-[1px] -mx-[16px] mb-[30px] mt-auto' />
 			<a
@@ -87,9 +87,9 @@ const MobileNav = (props: MobileNavProps) => {
 					height={ 25 }
 					width={ 25 }
 					alt=''
-					unoptimized />
+				/>
 				<span className='font-Poppins text-white text-[20px] tracking-tight'>
-          Cart
+					Cart
 				</span>
 			</a>
 			<a
@@ -100,13 +100,13 @@ const MobileNav = (props: MobileNavProps) => {
 					height={ 25 }
 					width={ 25 }
 					alt=''
-					unoptimized />
+				/>
 				<span className='font-Poppins text-white text-[20px] tracking-tight'>
-          Dashboard
+					Dashboard
 				</span>
 			</a>
 		</div>
-	)
-}
+	);
+};
 
-export default MobileNav
+export default MobileNav;

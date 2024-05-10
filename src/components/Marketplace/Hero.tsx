@@ -33,7 +33,7 @@ const Hero: React.FC = () => {
 						<div className='mx-auto sm:max-w-[446px] lg:mx-0 lg:flex-auto text-center lg:text-left pt-[33px] lg:pt-[53px] space-y-[14px]'>
 							<h2 className='text-grey-secondary font-Poppins font-medium text-[10px] sm:text-sm leading-[150%] sm:leading-6 uppercase tracking-[0.092em] sm:tracking-[1.54px]'>
 								<span className='font-Poppins text-[15px] font-bold tracking-[1.65px]'>
-                  Nate!{ ' ' }
+									Nate!{ ' ' }
 								</span>
 								{ marketplace.preTitle }
 							</h2>
@@ -94,7 +94,6 @@ const Hero: React.FC = () => {
 														alt={ product.name ?? '' }
 														className='object-cover object-center'
 														fill
-														unoptimized
 													/>
 												) }
 											</div>
@@ -124,7 +123,7 @@ const Hero: React.FC = () => {
 											</div>
 										</div>
 										<div
-											key={ `indicator-step-${id}` }
+											key={ `indicator-step-${ id }` }
 											className={ clsxm(
 												'h-1 rounded-full cursor-pointer transform transition-all duration-300 ease-linear mt-7',
 												id === selectedIdx

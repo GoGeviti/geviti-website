@@ -9,8 +9,8 @@ import Navbar from '../Navbar/Landing';
 // import Navbar from '../Navbar';
 
 type HeroProps = {
-  hero: IHero.Hero;
-  isPartner?: boolean | null;
+	hero: IHero.Hero;
+	isPartner?: boolean | null;
 };
 
 const Hero: React.FC<HeroProps> = ({ hero, isPartner = false }) => {
@@ -33,7 +33,6 @@ const Hero: React.FC<HeroProps> = ({ hero, isPartner = false }) => {
 								priority
 								className='object-cover object-center'
 								fill
-								unoptimized
 							/>
 						</div>
 					) }

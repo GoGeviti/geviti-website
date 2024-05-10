@@ -70,7 +70,6 @@ const Functional: React.FC = () => {
 							fill
 							quality={ 100 }
 							className='w-full object-center object-cover'
-							unoptimized
 						/>
 					</div>
 				</div>

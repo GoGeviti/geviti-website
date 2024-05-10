@@ -23,7 +23,6 @@ const Hero = () => {
 								priority
 								className='object-cover md:block hidden object-right'
 								fill
-								unoptimized
 							/>
 							<Image
 								src={ heroData.imageMobile }
@@ -32,7 +31,6 @@ const Hero = () => {
 								className='object-cover md:hidden object-center'
 								fill
 								quality={ 90 }
-								unoptimized
 							/>
 						</div>
 					) }
