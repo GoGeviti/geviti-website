@@ -16,7 +16,6 @@ const ProductsSection: React.FC<ProductsSectionProps> = async({
 		<DiscoverGeviti
 			title={ homeData.products.title }
 			description={ homeData.products.description }
-			viewAll={ homeData.products.viewAll }
 			withBg={ withBg }
 			products={ products.docs }
 		/>

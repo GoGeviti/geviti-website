@@ -234,9 +234,7 @@ const CheckboxBox = styled.div<{ isChecked: boolean }>`
     background: #181a1c;
     transform: scale(${props => (props.isChecked ? 1 : 0.95)});
     opacity: ${props => (props.isChecked ? 1 : 0)};
-    transition:
-      0.2s transform ease-out,
-      0.2s opacity ease-out;
+    transition: 0.2s transform ease-out, 0.2s opacity ease-out;
   }
 `;
 
@@ -314,6 +312,7 @@ const PricingCard = (props: PricingCardProps) => {
 						width={ 23 }
 						height={ 23 }
 						alt='Blue check circle'
+						unoptimized
 					/>
 				</FeatureRow>
 			)) }
@@ -323,7 +322,8 @@ const PricingCard = (props: PricingCardProps) => {
 						<div />
 					</CheckboxBox>
 					<CheckboxText className='font-BRSonoma'>
-						I acknowledge that buying the Clinical Consultation does not guarantee the option to change therapy to Geviti.
+            I acknowledge that buying the Clinical Consultation does not
+            guarantee the option to change therapy to Geviti.
 					</CheckboxText>
 				</CheckboxRow>
 			) }

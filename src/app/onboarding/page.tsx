@@ -1,33 +1,13 @@
-import { Metadata, NextPage } from 'next';
-import { redirect } from 'next/navigation';
+import { NextPage } from 'next';
 
-import { OnboardingComponent } from '@/components';
-import { getCartData } from '@/services/precheckout';
+import { CheckoutComponent } from '@/components';
+import IntroScreen from '@/components/IntroScreen';
 
-export type PageProps = {
-	searchParams: { [key: string]: string | string[] | undefined; };
-};
-
-export async function generateMetadata({ searchParams }: PageProps): Promise<Metadata> {
-	const variantID = searchParams?.variant;
-
-	return {
-		themeColor: variantID ? '#181A1C' : '#FFFFFF'
-	};
-}
-
-const OnboardingPage: NextPage<PageProps> = ({ searchParams }) => {
-	const variantID = searchParams?.variant;
-	const cartData = getCartData();
-
-	if (variantID && !cartData?.variantID) {
-		redirect('/onboarding');
-	}
-
+const OnboardingPage: NextPage = async() => {
 	return (
-		<OnboardingComponent.Main
-			searchParams={ searchParams }
-			state={ cartData } />
+		<IntroScreen type='image'>
+			<CheckoutComponent.Main />
+		</IntroScreen>
 	);
 };
 

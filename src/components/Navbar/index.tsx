@@ -38,7 +38,7 @@ const Navbar: React.FC<NavbarProps> = ({
 	iconsMenu = navbarData.iconsMenu,
 	actionsMenu = navbarData.actionsMenu,
 	isWithnavbarData = true,
-	withBgWhite = false
+	withBgWhite = false,
 }) => {
 	const pathname = usePathname();
 	const router = useRouter();
@@ -48,7 +48,9 @@ const Navbar: React.FC<NavbarProps> = ({
 	const [selectedItem, setSelectedItem] = useState<number>(5);
 
 	useEffect(() => {
-		const currentIndex = navbarData.menu.findIndex(link => pathname.includes(link.href));
+		const currentIndex = navbarData.menu.findIndex(link =>
+			pathname.includes(link.href)
+		);
 		if (currentIndex !== -1) {
 			setSelectedItem(currentIndex);
 		} else if (pathname === '/') {
@@ -56,7 +58,6 @@ const Navbar: React.FC<NavbarProps> = ({
 		} else {
 			setSelectedItem(5);
 		}
-
 	}, [pathname]);
 
 	const handleSelectedItem = (id: number) => {
@@ -67,6 +68,16 @@ const Navbar: React.FC<NavbarProps> = ({
 		return (
 			<>
 				{ navbarData.menu.map((link, id) => {
+					if (link.items) {
+						return (
+							<ResourcesDropdown
+								key={ link.name }
+								menuName={ link.name }
+								items={ link.items }
+								theme={ theme }
+							/>
+						);
+					}
 
 					return (
 						<CustomLink
@@ -76,9 +87,13 @@ const Navbar: React.FC<NavbarProps> = ({
 							externalLink={ link.externalLink }
 							className={ clsxm(
 								'rounded-md px-3 py-2 text-sm font-Poppins',
-								theme === 'dark' ? 'text-grey-secondary hover:text-white' : 'text-primary',
+								theme === 'dark'
+									? 'text-grey-secondary hover:text-white'
+									: 'text-primary',
 								isWithnavbarData ? 'block' : 'hidden',
-								selectedItem === id ? 'font-semibold' : '!font-medium hover:font-semibold',
+								selectedItem === id
+									? 'font-semibold'
+									: '!font-medium hover:font-semibold'
 							) }
 							aria-label={ link.name }
 						>
@@ -108,7 +123,12 @@ const Navbar: React.FC<NavbarProps> = ({
 								}
 							} }
 						>
-							<Icon className={ clsxm('w-[17px] h-[17px]', theme === 'dark' ? 'text-grey-secondary' : 'text-primary') } />
+							<Icon
+								className={ clsxm(
+									'w-[17px] h-[17px]',
+									theme === 'dark' ? 'text-grey-secondary' : 'text-primary'
+								) }
+							/>
 						</button>
 					);
 				}) }
@@ -126,10 +146,14 @@ const Navbar: React.FC<NavbarProps> = ({
 						aria-label={ menu.name }
 						key={ menu.name }
 					>
-						<div className={ clsxm(
-							'btn font-Poppins text-sm font-medium hover:scale-[1.03] active:scale-100 !duration-200 ease-[cubic-bezier(.15,1.14,.88,.98)] hover:!translate-y-0',
-							theme === 'dark' ? 'btn-secondary' : 'btn-primary !text-grey-background',
-						) }>
+						<div
+							className={ clsxm(
+								'btn font-Poppins text-sm font-medium hover:scale-[1.03] active:scale-100 !duration-200 ease-[cubic-bezier(.15,1.14,.88,.98)] hover:!translate-y-0',
+								theme === 'dark'
+									? 'btn-secondary'
+									: 'btn-primary !text-grey-background'
+							) }
+						>
 							{ menu.name }
 						</div>
 					</CustomLink>
@@ -140,8 +164,12 @@ const Navbar: React.FC<NavbarProps> = ({
 	const isMobile = windowDimensions.width < screens.lg;
 
 	const renderLogo = () => {
-
-		const src = isMobile && withBgWhite ? navbarData.logoDark : theme === 'dark' ? navbarData.logoLight : navbarData.logoDark;
+		const src =
+			isMobile && withBgWhite
+				? navbarData.logoDark
+				: theme === 'dark'
+					? navbarData.logoLight
+					: navbarData.logoDark;
 
 		return (
 			<CustomLink
@@ -168,7 +196,7 @@ const Navbar: React.FC<NavbarProps> = ({
 			<header
 				className={ clsxm(
 					'inset-x-0 top-0 z-50 absolute pt-11px lg:pt-6',
-					(withBgWhite && !isMobile) && 'max-lg:bg-white',
+					withBgWhite && !isMobile && 'max-lg:bg-white',
 					className
 				) }
 			>
@@ -179,7 +207,6 @@ const Navbar: React.FC<NavbarProps> = ({
 							<div className='hidden lg:ml-10 lg:block'>
 								<div className='flex items-center gap-x-5'>
 									{ renderMenuList() }
-									<ResourcesDropdown theme={ theme } />
 								</div>
 							</div>
 						</div>
@@ -193,7 +220,9 @@ const Navbar: React.FC<NavbarProps> = ({
 									onClick={ () => handleSelectedItem(4) }
 									className={ clsxm(
 										'lg:w-[120px] rounded-md px-3 py-2 text-sm font-Poppins hover:font-semibold md:block hidden',
-										theme === 'dark' ? 'text-grey-secondary hover:text-white' : 'text-primary',
+										theme === 'dark'
+											? 'text-grey-secondary hover:text-white'
+											: 'text-primary',
 										isWithnavbarData ? 'block' : 'hidden',
 										selectedItem === 4 ? 'font-medium' : 'font-medium'
 									) }

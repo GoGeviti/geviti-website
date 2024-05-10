@@ -19,7 +19,9 @@ const Updated: React.FC = () => {
 	const onSubmitSubscription = async(e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 		setLoading(true);
-		const { status, message: messageResponse } = await createEmailSubscription(email);
+		const { status, message: messageResponse } = await createEmailSubscription(
+			email
+		);
 		if (status === 'OK') {
 			setLoading(false);
 			toast.success(messageResponse, {
@@ -54,20 +56,25 @@ const Updated: React.FC = () => {
 				<div className='relative w-full h-full lg:rounded-b-[19px]'>
 					<div className='flex flex-col items-center justify-center w-full h-full z-10'>
 						<div className='font-Poppins text-center text-white text-[32px] md:!text-[36px] mb-[9px] -leading-[1.44px]'>
-							<span
-								dangerouslySetInnerHTML={ { __html: updatednData.title } } />
+							<span dangerouslySetInnerHTML={ { __html: updatednData.title } } />
 						</div>
-						<p className='font-Poppins text-sm md:text-base font-medium text-grey-primary -tracking-[0.56px] md:-tracking-[0.64px] md:hidden'>{ updatednData.descMobile }</p>
-						<p className='font-Poppins text-sm md:text-base font-medium text-grey-primary -tracking-[0.56px] md:-tracking-[0.64px] hidden md:block'>{ updatednData.desc }</p>
+						<p className='font-Poppins text-sm md:text-base font-medium text-grey-primary -tracking-[0.56px] md:-tracking-[0.64px] md:hidden'>
+							{ updatednData.descMobile }
+						</p>
+						<p className='font-Poppins text-sm md:text-base font-medium text-grey-primary -tracking-[0.56px] md:-tracking-[0.64px] hidden md:block'>
+							{ updatednData.desc }
+						</p>
 						<form
 							onSubmit={ onSubmitSubscription }
-							className='flex items-center justify-between w-[319px] h-[46px] bg-white rounded-full px-[10px] md:px-3 mt-[29px]'>
+							className='flex items-center justify-between w-[319px] h-[46px] bg-white rounded-full px-[10px] md:px-3 mt-[29px]'
+						>
 							<input
 								type='email'
 								name='email'
 								id='email'
 								value={ email }
-								onChange={ (e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value) }
+								onChange={ (e: React.ChangeEvent<HTMLInputElement>) =>
+									setEmail(e.target.value) }
 								autoComplete='off'
 								className='block rounded-full text-primary placeholder:text-grey-primary font-Poppins text-xs md:text-sm border-none outline-none'
 								placeholder='Enter Email Address'
@@ -76,7 +83,8 @@ const Updated: React.FC = () => {
 							<button
 								disabled={ loading }
 								type='submit'
-								className='focus:outline-none focus:ring-0'>
+								className='focus:outline-none focus:ring-0'
+							>
 								<ArrowEmail />
 							</button>
 						</form>

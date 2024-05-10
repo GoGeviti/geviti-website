@@ -72,7 +72,17 @@ const homeData = {
 		viewAll: {
 			text: 'View All Products',
 			href: '/products'
-		}
+		},
+		categories: [
+			{
+				title: 'Mens Products',
+				slug: 'male-hormone-optimization'
+			},
+			{
+				title: 'Womens Products',
+				slug: 'female-hormone-optimization'
+			}
+		]
 	},
 	bloodPanel: [
 		{
@@ -390,7 +400,7 @@ const homeData = {
 			ultimateFemale: true,
 		},
 		{
-			title: 'Comprenhensive Metabolic Panel',
+			title: 'Comprehensive Metabolic Panel',
 			description: 'Provides a broad overview of metabolism and organ function with 14 biomarkers.',
 			essential: true,
 			comprehensive: true,

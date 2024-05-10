@@ -14,19 +14,39 @@ const navigationData = {
 			href: '/products',
 			externalLink: false
 		},
+		{
+			name: 'Resources',
+			href: '#',
+			externalLink: false,
+			items: [
+				{
+					name: 'Blog',
+					href: '/blog'
+				},
+				{
+					name: 'FAQ',
+					href: '/faq'
+				},
+				{
+					name: 'Contact Us',
+					href: '/contact-us'
+				}
+			]
+		},
 	],
 	iconsMenu: [
 		{
 			id: 'shopping',
-			href: '/orders',
-			icon: ShoppingBagIcon
+			href: '/cart',
+			icon: ShoppingBagIcon,
 		},
 	],
 	actionsMenu: [
 		{
 			name: 'Get Started',
 			href: '/onboarding',
-			externalLink: false
+			externalLink: false,
+			type: 'button'
 		}
 	]
 };

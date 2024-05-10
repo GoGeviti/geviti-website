@@ -26,12 +26,8 @@ const Topics: React.FC<{
 	articleData: {
 		name: string;
 		list: Post[];
-	}[]
-}> = ({
-	articleData,
-	title,
-	btnRight
-}) => {
+	}[];
+}> = ({ articleData, title, btnRight }) => {
 	const [showAllTabs, setShowAllTabs] = useState(false);
 	const [selectedItem, setSelectedItem] = useState(0);
 	const windowDimensions = useWindowDimensions();
@@ -41,7 +37,9 @@ const Topics: React.FC<{
 		<div className='container-center mx-auto w-full relative mt-20'>
 			<div className='w-full '>
 				<div className='flex justify-center md:justify-between items-center'>
-					<p className='text-primary font-Poppins text-4xl -tracking-[1.44px] text-center'>{ title }</p>
+					<p className='text-primary font-Poppins text-4xl -tracking-[1.44px] text-center'>
+						{ title }
+					</p>
 					<button
 						className='btn-cta-landing group btn-primary px-9 md:block hidden'
 						onClick={ () => setShowAllTabs(!showAllTabs) }
@@ -53,56 +51,57 @@ const Topics: React.FC<{
 				</div>
 				<Tabs
 					className='flex flex-col'
-					defaultValue='tab-0'
-				>
+					defaultValue='tab-0'>
 					<TabsList
 						className='shrink-0 flex border-b border-primary/10 md:space-x-[56px] max-md:justify-between'
-						aria-label={ title }>
-						{ articleData.sort((a, b) => a.name.localeCompare(b.name)).map((items, id) => (
-							<div
-								key={ id }
+						aria-label={ title }
+					>
+						{ articleData
+							.sort((a, b) => a.name.localeCompare(b.name))
+							.map((items, id) => (
+								<div
+									key={ id }
 								// className={ clsxm(id === 0 ? 'w-[18px]' : id === 1 ? 'w-[75px]' : id === 2 ? 'w-[46px]' : 'w-[59px]') }
-							>
-								<TabsTrigger
-									className='text-[15px] cursor-pointer pb-[9px] pt-[25px] leading-none text-primary select-none data-[state=active]:font-bold relative outline-none'
-									value={ `tab-${id}` }
-									onClick={ () => setSelectedItem(id) }
 								>
-									<p>{ items.name }</p>
-									{
-										selectedItem === id &&
-									<div className='absolute h-[1px] rounded w-full bg-primary -bottom-0'/>
-									}
-								</TabsTrigger>
-							</div>
-						)) }
+									<TabsTrigger
+										className='text-[15px] cursor-pointer pb-[9px] pt-[25px] leading-none text-primary select-none data-[state=active]:font-bold relative outline-none'
+										value={ `tab-${ id }` }
+										onClick={ () => setSelectedItem(id) }
+									>
+										<p>{ items.name }</p>
+										{ selectedItem === id && (
+											<div className='absolute h-[1px] rounded w-full bg-primary -bottom-0' />
+										) }
+									</TabsTrigger>
+								</div>
+							)) }
 					</TabsList>
 					<div className=''>
 						{ articleData.map((it, id) => {
 							return (
 								<TabsContent
 									key={ id }
-									value={ `tab-${id}` }
-								>
-									{
-										isMobile ?
-											showAllTabs ? renderItem(it.list) : renderItem(it.list.slice(0, 3)) :
-											showAllTabs ? renderItem(it.list) : renderItem(it.list.slice(0, 4))
-									}
-									{
-										it.list.length > 3 &&
+									value={ `tab-${ id }` }>
+									{ isMobile
+										? showAllTabs
+											? renderItem(it.list)
+											: renderItem(it.list.slice(0, 3))
+										: showAllTabs
+											? renderItem(it.list)
+											: renderItem(it.list.slice(0, 4)) }
+									{ it.list.length > 3 && (
 										<button
 											className='btn-cta-landing group btn-primary px-9 md:hidden w-fit absolute -bottom-5 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20'
-											onClick={ () => setShowAllTabs(!showAllTabs) }>
+											onClick={ () => setShowAllTabs(!showAllTabs) }
+										>
 											<span className='text-btn-cta-landing'>
 												{ showAllTabs ? 'View Less' : btnRight }
 											</span>
 										</button>
-									}
-									{
-										it.list.length > 3 && isMobile && !showAllTabs &&
+									) }
+									{ it.list.length > 3 && isMobile && !showAllTabs && (
 										<div className='bg-gradient-to-t from-grey-background/90 to-grey-background/0 absolute -bottom-5 z-10 w-[calc(100vw-24px)] h-[131px]' />
-									}
+									) }
 								</TabsContent>
 							);
 						}) }
@@ -113,7 +112,7 @@ const Topics: React.FC<{
 	);
 };
 
-const renderItem = (data : Post[]) => {
+const renderItem = (data: Post[]) => {
 	return (
 		<div className='w-full grid grid-cols-1 md:grid-cols-4 gap-[10px] md:gap-[18px] pt-[30px]'>
 			{ data.map((items, id) => {
@@ -134,8 +133,12 @@ const renderItem = (data : Post[]) => {
 							</div>
 						</div>
 						<div className='flex flex-col text-start md:p-5'>
-							<p className='text-grey-primary font-BRSonoma text-xs'>{ items.hero.categories?.title }</p>
-							<p className='text-primary font-Poppins text-base font-medium -tracking-[0.64px] leading-5 md:leading-6'>{ items.title }</p>
+							<p className='text-grey-primary font-BRSonoma text-xs'>
+								{ items.hero.categories?.title }
+							</p>
+							<p className='text-primary font-Poppins text-base font-medium -tracking-[0.64px] leading-5 md:leading-6'>
+								{ items.title }
+							</p>
 						</div>
 					</Link>
 				);

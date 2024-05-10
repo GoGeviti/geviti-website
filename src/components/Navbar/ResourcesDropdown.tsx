@@ -10,10 +10,9 @@ const Container = styled.div`
   flex-direction: column;
   cursor: pointer;
   gap: 9px;
-  padding: 11px 14px;
+  padding: 11px;
   border-radius: 9px;
   height: 43px;
-  align-self: flex-start;
   overflow: hidden;
 
   svg {
@@ -60,12 +59,19 @@ const OtherLink = styled(Link)`
   }
 `;
 
-type ResourcesDropdownProps = {
-  theme?: 'dark' | 'light';
-}
+type DropdownProps = {
+	theme?: 'dark' | 'light';
+	menuName: string;
+	items: {
+		name: string;
+		href: string;
+	}[];
+};
 
-const ResourcesDropdown:React.FC<ResourcesDropdownProps> = ({
-	theme
+const Dropdown: React.FC<DropdownProps> = ({
+	theme,
+	menuName,
+	items
 }) => {
 	return (
 		<Container>
@@ -74,13 +80,13 @@ const ResourcesDropdown:React.FC<ResourcesDropdownProps> = ({
 					clsxm(
 						theme === 'dark' ? '!text-grey-secondary' : '!text-primary'
 					)
-				}>Resources</PrimaryText>
+				}>{ menuName }</PrimaryText>
 				<ChevronDown className={
 					clsxm(
 						'w-4 h-4',
 						theme === 'dark' ? '!text-grey-secondary' : '!text-primary'
 					)
-				}/>
+				} />
 				{ /* <Image
           className={
             clsxm(
@@ -93,29 +99,18 @@ const ResourcesDropdown:React.FC<ResourcesDropdownProps> = ({
 					alt='Dropdown caret'
 				/> */ }
 			</div>
-			<OtherLink
-				className={
-					clsxm(
-						'!font-Poppins'
-					)
-				}
-				href='/blog'>Blog</OtherLink>
-			<OtherLink
-				className={
-					clsxm(
-						'!font-Poppins'
-					)
-				}
-				href='/faq'>FAQ</OtherLink>
-			<OtherLink
-				className={
-					clsxm(
-						'!font-Poppins'
-					)
-				}
-				href='/contact-us'>Contact Us</OtherLink>
+			{ items.map(item => (
+				<OtherLink
+					key={ item.name }
+					className={
+						clsxm(
+							'!font-Poppins'
+						)
+					}
+					href={ item.href }>{ item.name }</OtherLink>
+			)) }
 		</Container>
 	);
 };
 
-export default ResourcesDropdown;
+export default Dropdown;

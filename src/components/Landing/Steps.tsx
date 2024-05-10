@@ -1,120 +1,123 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
+import { motion, useMotionValueEvent, useScroll } from 'framer-motion';
 
 import { landingData } from '@/constant/data';
 import clsxm from '@/helpers/clsxm';
-import { screens } from '@/helpers/style';
-import { useWindowDimensions } from '@/hooks';
 
-import CustomLink from '../CustomLink';
-import { ChevronRight } from '../Icons';
+import ButtonCta from '../ButtonCta';
 
 const stepsData = landingData.steps;
 
 const StepsSection: React.FC = () => {
-	const [selectedIdx, setSelectedIdx] = useState<number>(0);
+	const [selectedIdx, setSelectedIdx] = useState<number>(-1);
 
-	const windowDimensions = useWindowDimensions();
-	const isMobile = windowDimensions.width < screens.lg;
+	const container = useRef<HTMLDivElement>(null);
+	const { scrollYProgress } = useScroll({
+		target: container,
+		offset: ['start 0.25', 'end 1']
+	});
 
 	const onSelectStep = (stepIdx: number) => setSelectedIdx(stepIdx);
 
-	const onMouseEnter = (stepIdx: number) => {
-		if (!isMobile) onSelectStep(stepIdx);
+	useMotionValueEvent(scrollYProgress, 'change', (latest: number) => {
+		if (latest === 0) setSelectedIdx(-1);
+		else if (latest <= 0.25) setSelectedIdx(0);
+		else if (latest <= 0.5) setSelectedIdx(1);
+		else if (latest <= 0.75) setSelectedIdx(2);
+		else if (latest <= 1) setSelectedIdx(3);
+	});
+
+	const renderButtonCta = () => {
+		return (
+			<ButtonCta
+				href={ stepsData.btnCta.href }
+				externalLink={ stepsData.btnCta.externalLink }
+				aria-label={ stepsData.btnCta.text }
+				text={ stepsData.btnCta.text }
+			/>
+		);
 	};
 
 	return (
-		<div className='overflow-hidden'>
-			<div className='h-full w-full lg:rounded-[19px] relative overflow-hidden'>
-				<div className='container-center py-[70px] lg:py-[95px] flex flex-col gap-y-[62px] items-center justify-center text-center'>
-					<div className='text-center sm:mx-auto'>
-						<p className='mb-[15px] md:mb-7px text-pretitle text-grey-primary leading-[15px] md:leading-[24px]'>{ stepsData.preTitle }</p>
+		<div className='font-Poppins mb-9 mt-[27px] lg:my-[66px]'>
+			<div className='h-full w-full relative'>
+				<div
+					ref={ container }
+					className='container-center w-full py-[52px] lg:py-16 flex flex-col items-center justify-center text-center'>
+					<div className='relative lg:h-[200vh] w-full'>
+						<div className='lg:sticky top-0 left-0 w-full flex flex-col lg:h-1/2 items-center justify-center'>
+							<div className='text-center sm:mx-auto'>
+								{ stepsData.preTitle && (
+									<p className='mb-5px lg:mb-3.5 uppercase text-grey-primary text-pretitle lg:text-base lg:leading-6'>
+										<span dangerouslySetInnerHTML={ { __html: stepsData.preTitle } } />
+									</p>
+								) }
 
-						{ stepsData.title && (
-							<h2 className='font-Poppins leading-[103%] md:leading-[125%] text-[6.1vw] xs2:text-[25px] sm:text-2xl md:text-[32px] lg:text-[36px] -tracking-0.04em max-sm:px-1.5'>
-								<span dangerouslySetInnerHTML={ { __html: stepsData.title } } />
-							</h2>
-						) }
+								{ stepsData.title && (
+									<h2 className='font-Poppins text-primary !leading-[120.5%] lg:!leading-[107%] text-[7.251vw] xxs:text-2xl md:text-[32px] lg:text-[42px] -tracking-0.04em max-lg:max-w-[331px] max-lg:mx-auto'>
+										<span dangerouslySetInnerHTML={ { __html: stepsData.title } } />
+									</h2>
+								) }
+							</div>
 
-						<div className='flex justify-center mt-6 md:mt-30px'>
-							<CustomLink
-								href={ stepsData.btnCta.href }
-								externalLink={ stepsData.btnCta.externalLink }
-								className='btn-cta-landing btn-primary group'
-								aria-label={ stepsData.btnCta.text }
-							>
-								<span className='text-btn-cta-landing'>
-									{ stepsData.btnCta.text }
-								</span>
+							<div className='w-full max-lg:flex max-lg:justify-center'>
+								<div className='lg:max-w-[1084px] lg:mx-auto px-6 max-lg:hidden'>
+									<div className='overflow-hidden rounded-full bg-grey-100 relative mt-16'>
+										<motion.div
+											className='h-1 rounded-full bg-blue-primary transform origin-[0%]'
+											style={ { scaleX: scrollYProgress } }
+										/>
+									</div>
+								</div>
+								<div className='lg:max-w-[1084px] lg:mx-auto px-6 pb-[62px] lg:pb-[115px] pt-[46px] lg:pt-16 flex lg:flex-row flex-col items-start w-full no-scrollbar overflow-y-hidden transition-all select-none transform flex-nowrap overflow-x-auto lg:overflow-hidden scrolling-touch scroll-smooth max-lg:space-y-[42px] gap-x-18px lg:gap-x-[108px]'>
+									{ stepsData.list.map((step, stepIdx) => {
+										const isSelected = stepIdx <= selectedIdx;
 
-								<ChevronRight className='arrow-btn-cta-landing' />
-							</CustomLink>
-						</div>
-					</div>
+										const Icon = step.icon;
 
-					<div className='md:max-w-6xl md:mx-auto w-full max-md:flex max-md:justify-center'>
-						<div className=''>
-							<div className='md:pt-[54px] flex md:flex-row max-w-[1015px] mx-auto flex-col items-start w-full no-scrollbar overflow-y-hidden transition-all select-none transform flex-nowrap overflow-x-auto lg:overflow-hidden scrolling-touch scroll-smooth max-md:space-y-10  gap-x-18px lg:gap-x-[108px] py-1'>
-								{ stepsData.list.map((step, stepIdx) => {
-									const isSelected = stepIdx === selectedIdx;
-
-									return (
-										(
-											<div
+										return (
+											<button
 												key={ `step-${ step.id }` }
-												className={ clsxm('w-full flex md:flex-col max-md:space-x-5 items-center md:transform md:transition-all md:duration-100 md:ease-in', isSelected ? 'md:-translate-y-5' : 'translate-y-0') }
+												className='w-full flex flex-col max-lg:items-center gap-6'
+												onClick={ () => onSelectStep(stepIdx) }
+												aria-label={ `step-${ step.id }` }
 											>
 												<div
-													onClick={ () => onSelectStep(stepIdx) }
-													onMouseEnter={ () => onMouseEnter(stepIdx) }
 													className={ clsxm(
-														'cursor-pointer rounded-full flex items-center justify-center flex-shrink-0',
-														'font-Poppins text-center text-primary',
+														'cursor-pointer rounded-19px flex items-center justify-center flex-shrink-0 w-16 h-16',
 														isSelected
-															? 'text-[13px] md:text-base md:font-bold font-medium leading-6 sm:leading-[29px] bg-white md:bg-blue-1 w-[40px] h-[40px] lg:w-[55px] lg:h-[55px] md:shadow-[0px_-8px_24px_0px_rgba(251,251,251,0.35)]'
-															: 'text-[13px] md:text-sm font-medium leading-[18px] sm:leading-6 bg-white w-[40px] h-[40px] lg:w-[46px] lg:h-[46px]'
+															? 'bg-blue-1 shadow-[0px_4px_21.1px_0px_rgba(153,212,255,0.75)]'
+															: 'bg-white'
 													) }
 												>
-													{ stepIdx + 1 }
+													<Icon className={ clsxm(isSelected ? 'text-primary' : 'text-grey-400', 'flex-shrink-0 w-18px h-18px lg:w-6 lg:h-6') } />
 												</div>
 
 												<p
-													onClick={ () => onSelectStep(stepIdx) }
-													onMouseEnter={ () => onMouseEnter(stepIdx) }
 													className={ clsxm(
-														'cursor-pointer text-center font-Poppins max-md:text-left text-primary leading-[134%]',
+														'cursor-pointer font-Poppins text-center lg:text-left text-lg !leading-normal font-medium',
 														isSelected
-															? 'md:pt-[22px] text-[15.033px] md:text-[19px] font-medium'
-															: 'font-medium md:pt-18px text-[15.042px] md:text-base'
+															? 'text-primary'
+															: 'text-grey-400'
 													) }
 												>
 													<span
-														className='max-md:text-left whitespace-nowrap'
+														className='whitespace-nowrap'
 														dangerouslySetInnerHTML={ { __html: step.title } } />
 												</p>
-											</div>
-										)
-									);
-								}) }
+											</button>
+										);
+									}) }
+								</div>
 							</div>
-						</div>
 
-						<div className='md:flex justify-center mt-[46px] sm:mt-20 hidden'>
-							<div className='flex items-center gap-x-2.5 xxs:gap-x-18px'>
-								{ stepsData.list.map((step, stepIdx) => (
-									<div
-										key={ `indicator-step-${ step.id }` }
-										className={ clsxm(
-											'h-1 rounded-full cursor-pointer transform transition-all duration-300 ease-linear',
-											stepIdx === selectedIdx ? 'w-[110px] xxs:w-[122px] bg-blue-1 shadow-[0px_-8px_24px_0px_rgba(251,251,251,0.35)]' : 'w-8 xxs:w-[38px] bg-grey-shadow'
-										) }
-										onClick={ () => onSelectStep(stepIdx) }
-										onMouseEnter={ () => onMouseEnter(stepIdx) }
-									/>
-								)) }
+							<div className='flex justify-center'>
+								{ renderButtonCta() }
 							</div>
 						</div>
+						<div className='max-lg:hidden lg:absolute top-1/4 left-0 h-3/4 w-full' />
 					</div>
 				</div>
 			</div>

@@ -1,10 +1,20 @@
+import { ShoppingBagIcon } from '@/components/Icons';
 import {
 	BarChartSquareIcon,
-	DiamondIcon,
+	ChartIcon,
+	DNAIcon,
+	DocumentIcon,
 	EmergencyCallAddIcon,
-	RocketIcon,
-	ShoppingBagIcon,
-} from '@/components/Icons';
+	FavoriteChartIcon,
+	GevitiIcon,
+	HeartbeatIcon,
+	HomeOutlineIcon,
+	InformationIcon,
+	MedicalDocIcon,
+	MonitoringIcon,
+	PillIcon,
+	TeamIcon
+} from '@/components/Icons/Landing';
 
 const landingData = {
 	navbar: {
@@ -17,36 +27,55 @@ const landingData = {
 		]
 	},
 	hero: {
-		preTitle: 'the ultimate longevity companion',
+		preTitle: 'Live optimized and age better',
 		title:
-			'Longevity made accessible. <br class="sm:hidden"/>Data <br class="max-sm:hidden"/>driven anti-aging care.',
-		image: '/images/landing/hero.png',
-		imageMobile: '/images/landing/hero_mobile.png',
+			'A data-driven approach to longevity and health optimization.',
+		titles: [
+			'A data-driven approach to',
+			'longevity and health optimization.'
+		],
+		titlesMobile: [
+			'A data-driven approach',
+			'to longevity and health',
+			'optimization.'
+		],
+		banner: {
+			text: 'Geviti closes Early stage Seed Financing 🎉 <br/>To celebrate, those who join before July 1st will be grandfathered in at $89 monthly!',
+			icon: InformationIcon,
+			show: true
+		},
+		image: '/images/landing/compressed/hero.webp',
+		imageMobile: '/images/landing/compressed/hero_mobile.webp',
 		btnCta: {
-			text: 'Get Started',
+			text: 'Join Geviti',
 			href: '/onboarding',
 			externalLink: false,
 		},
 		btnCta2: {
-			href: '/how-it-works',
+			href: '/membership',
 			externalLink: false,
-			text: 'How It Works',
+			text: 'Learn More',
 		},
 		mainKeys: [
 			{
-				image: '/images/landing/hero-icons/injection.svg',
-				text: 'Hormone therapy',
-				subtext: 'if applicable',
+				icon: MonitoringIcon,
+				text: 'Hormone Therapy<br />Made Simple',
 			},
 			{
-				image: '/images/landing/hero-icons/blood-drop.svg',
-				text: 'Bloodwork screening',
-				subtext: 'at-home',
+				icon: DNAIcon,
+				text: 'At-home Blood and<br />DNA Testing'
 			},
 			{
-				image: '/images/landing/hero-icons/rx.svg',
-				text: 'Prescription care',
-				subtext: 'cash pay',
+				icon: MedicalDocIcon,
+				text: 'Data-driven Care<br />No Guesswork',
+			},
+			{
+				icon: PillIcon,
+				text: 'Custom Supplements<br />Made For You',
+			},
+			{
+				icon: HeartbeatIcon,
+				text: 'Anti-aging Peptides<br />Safe and Effective',
 			},
 		],
 	},
@@ -55,9 +84,23 @@ const landingData = {
 		description: 'Browse our wide range of products!',
 		viewAll: {
 			text: 'View All Products',
-			href: '/products',
+			href: '/products'
 		},
-		titleMobile: 'Our Products',
+		categories: [
+			{
+				title: 'Mens Products',
+				slug: 'male-hormone-optimization'
+			},
+			{
+				title: 'Womens Products',
+				slug: 'female-hormone-optimization'
+			}
+		],
+		subCategories: [
+			{ id: 1, title: 'Prescriptions' },
+			{ id: 2, title: 'Testing Options' },
+			{ id: 3, title: 'Supplements' },
+		],
 	},
 	investment: {
 		preTitle: 'An INVESTMENT IN YOUR FUTURE',
@@ -72,50 +115,47 @@ const landingData = {
 			text: 'Get Started',
 		},
 	},
-	mission: {
-		title: 'Our Mission',
+	banner: {
+		preTitle: 'An INVESTMENT IN YOUR FUTURE',
+		title: 'Prioritizing longevity is an investment in your future self.',
 		description:
-			'Geviti is built on the premise that our bodies are merely vessels of consciousness. Our mission is to extend time spent in our conscious experience so we may share it with our loved ones.<br /><br />We strive to slow down, maintain, or even reverse one’s biological age by promoting actionable plans.',
-		image: '/images/landing/mission.png',
-		imageMobile: '/images/landing/mission_mobile.png',
-		btnCta: {
-			href: '/blog/the-mission-of-geviti-the-birth-of-a-better-telehealth',
-			externalLink: false,
-			text: 'Read More',
-		},
-	},
-	steps: {
-		preTitle: 'Easy online care',
-		title: 'Access to better care <span class="sm:hidden"><br /></span>in just 4 easy steps.',
+			'Live longer without compromising your lifestyle—our longevity solutions are designed to fit seamlessly into your everyday life.',
+		image: '/images/landing/compressed/banner-landing.webp',
+		imageMobile: '/images/landing/compressed/banner-landing-mobile.webp',
 		btnCta: {
 			href: '/onboarding',
 			externalLink: false,
-			text: 'Get Started',
+			text: 'Start Now',
+		},
+	},
+	steps: {
+		preTitle: '<span class="lg:hidden">Easy online care</span><span class="max-lg:hidden">No more guessing where your health is</span>',
+		title: '<span class="lg:hidden">Start your journey with a full blood panel.</span><span class="max-lg:hidden">Your journey begins with a full blood panel.</span>',
+		btnCta: {
+			href: '/onboarding',
+			externalLink: false,
+			text: 'Become A Member',
 		},
 		list: [
 			{
-				id: 'package',
-				title: 'Select your <br class="max-lg-hidden" />blood test',
-				image: '/images/landing/compressed/step_1.webp',
-				imageMobile: '/images/landing/compressed/step_1_mobile.webp',
+				id: 'step-1',
+				title: 'Purchase labs<br/>and sign up for<br/>a membership',
+				icon: GevitiIcon
 			},
 			{
-				id: 'testing',
-				title: 'Complete in-<br class="max-lg-hidden" />home testing',
-				image: '/images/landing/compressed/step_2.webp',
-				imageMobile: '/images/landing/compressed/step_2_mobile.webp',
+				id: 'step-2',
+				title: 'Complete<br />your at-home<br />blood draw',
+				icon: HomeOutlineIcon
 			},
 			{
-				id: 'treatment',
-				title: 'Telehealth <br class="max-lg-hidden" />doctor visit',
-				image: '/images/landing/compressed/step_3.webp',
-				imageMobile: '/images/landing/compressed/step_3.webp',
+				id: 'step-3',
+				title: 'Review your<br />results in a<br />telehealth visit',
+				icon: ChartIcon
 			},
 			{
-				id: 'best',
-				title: 'Receive treatment <br class="max-lg-hidden" />in mail',
-				image: '/images/landing/compressed/step_4.webp',
-				imageMobile: '/images/landing/compressed/step_4.webp',
+				id: 'step-4',
+				title: 'Receive your<br />treatments on<br />your doorstep ',
+				icon: DocumentIcon
 			},
 		],
 	},
@@ -130,35 +170,21 @@ const landingData = {
 		image: '/images/landing/compressed/dashboard_geviti.webp',
 	},
 	application: {
-		preTitle: 'On-the-fly access',
-		title: 'Integrated health tracking mobile application.',
-		titleMobile: 'Integrated health monitoring mobile application.',
-		description:
-			'Geviti’s applications make managing longevity easy and convenient.',
+		preTitle: 'membership features',
+		title: 'A health coach in your pocket',
 		list: [
-			{
-				icon: BarChartSquareIcon,
-				text: 'track Key metrics',
-			},
-			{
-				icon: DiamondIcon,
-				text: 'Medical team access',
-			},
-			{
-				icon: RocketIcon,
-				text: 'manage your goals',
-			},
-			{
-				icon: EmergencyCallAddIcon,
-				text: 'field telehealth calls ',
-			},
+			'The creation of an action plan based off of the users bloodwork results, focusing on lifestyle, nutrition, supplementation, and overall health optimization.',
+			'The creation of an action plan based off of the users bloodwork results, focusing on lifestyle, nutrition, supplementation, and overall health optimization.',
+			'The creation of an action plan based off of the users bloodwork results, focusing on lifestyle, nutrition, supplementation, and overall health optimization.',
+			'The creation of an action plan based off of the users bloodwork results, focusing on lifestyle, nutrition, supplementation, and overall health optimization.',
 		],
 		btnCta: {
 			href: '/onboarding',
 			externalLink: false,
-			text: 'Start Now',
+			text: 'Join Now',
 		},
-		image: '/images/landing/compressedapplication.webp',
+		image: '/images/landing/compressed/athlete-female.webp',
+		imageMobile: '/images/landing/compressed/athlete-female-mobile.webp',
 	},
 	functional: {
 		preTitle: 'Tailored Functional Medicine',
@@ -226,12 +252,340 @@ const landingData = {
 		descriptionMobile: 'From hormone optimization to peptide therapies and advanced diagnostics—all at your fingertips with the Geviti platform.',
 		image: '/images/landing/compressed/flexible.webp',
 		imageMobile: '/images/landing/compressed/flexible-mobile.webp',
+		list: [
+			'Telehealth provider access',
+			'Personal health and wellness coach',
+			'Prescriptions delivered to your door',
+			'Cutting edge anti-aging medications',
+			'Wholesale supplements and diagnostics',
+			'Mobile application and web dashboard',
+			'Autonomous health screening',
+			'And so much more'
+		]
+	},
+	clinical: {
+		preTitle: 'Membership Features',
+		preTitleMobile: 'Membership Features',
+		title: 'Nationwide clinical network',
+		description:
+			'Each user is given access to licensed providers who are qualified to go over their bloodwork results and write prescriptions accordingly within our platform.<br/><br/>The network of providers using the Geviti platforms spans across the country with the ability to provide care in most states.',
+		descriptionMobile: 'Each user is assigned a licensed provider who is qualified to go over their bloodwork results and write prescriptions accordingly within our platform.<br/><br/>The network of providers using the Geviti platforms spans  across the country with the ability to provide care in most states.',
+		image: '/images/landing/compressed/clinical-network.webp',
+		imageMobile: '/images/landing/compressed/clinical-network.webp',
 		btnCta: {
 			href: '/onboarding',
 			externalLink: false,
-			text: 'Join Now',
-		},
+			text: 'Get Access',
+		}
 	},
+	benefits: {
+		preTitle: 'Membership Benefits',
+		title: 'Therapeutics for optimization',
+		description:
+			'<span class="lg:hidden">Geviti has partnered with key compound pharmacies across the country to offer a range of anti-aging care at  the lowest prices possible. All clinical protocols are created and overseen by board certified providers.</span><span class="max-lg:hidden">Your Geviti membership will include the following: range of anti-aging care at the lowest prices possible. All clinical protocols are created and overseen by board certified providers.</span>',
+		viewAll: {
+			text: 'View All Products',
+			href: '/products',
+		},
+		list: [
+			{
+				id: 'men',
+				image: '/images/landing/compressed/benefits-men.webp',
+				imageMobile: '/images/landing/compressed/benefits-men-mobile.webp',
+				title: 'Mens Health',
+				details: [
+					'Testosterone Replacement',
+					'Hormone Optimization',
+					'Peptide Therapy',
+					'Medical Weight-loss',
+					'Sexual Function',
+					'Other Anti-aging Solutions',
+				]
+			},
+			{
+				id: 'women',
+				image: '/images/landing/compressed/benefits-women.webp',
+				imageMobile: '/images/landing/compressed/benefits-women-mobile.webp',
+				title: 'Women\'s Health',
+				details: [
+					'Menopause Hormone Replacement',
+					'PCOS Treatment',
+					'Peptide Therapy',
+					'Medical Weight-loss',
+					'Sexual Function',
+					'Other Anti-aging Solutions',
+				]
+			}
+		]
+	},
+	biologicalKit: {
+		title: 'At-home<br />biological age kit',
+		description:
+			'Our biological age tests use the DNA methylation analysis method to accurately depict your biological age. This is known to be the most advanced way to retrieve ones biological age currently.',
+		btnCta: {
+			text: 'See all Kits',
+			href: '/products',
+		},
+		counter: {
+			digit: 32.7,
+			description: 'BIOLOGICAL <span class="text-white">AGE is 4.3 Years Lower</span> THAN chronological age '
+		},
+		step: {
+			title: 'How to use your biological test kit',
+			list: [
+				{
+					title: 'Receive your package',
+					text: 'directly in your mail. Included in this test is a cheek swap collection kit for quick and convenient testing.',
+					image: '/images/landing/hero-icons/package.png',
+					stepColor: '#EF8E5F',
+					shadowColor: '#DF865A80'
+				},
+				{
+					title: 'Complete the test',
+					text: 'by collecting your sample via a quick and easy cheek swap. The process takes all of 10 minutes max.',
+					image: '/images/landing/hero-icons/complete-test.png',
+					stepColor: '#D07EE5',
+					shadowColor: '#C941CE80'
+				},
+				{
+					title: 'Receive the test results',
+					text: 'once they are processed by our labs. You’ll be notified when the results are ready for review in roughly 7-14 days.',
+					image: '/images/landing/hero-icons/test-result.png',
+					stepColor: '#00D1FF',
+					shadowColor: '#96D4FD80'
+				}
+			]
+		}
+	},
+	innovative: {
+		preTitle: 'Innovative Technology',
+		title: 'Data-driven longevity. No <br class="lg:hidden"/>guesswork.',
+		description:
+			'Geviti is reshaping the traditional health care system and individuals’ relationship with their health by leveraging cutting edge technology and combining it with convenient diagnostics followed by cutting edge care.',
+		list: [
+			{
+				id: 'test-results',
+				title: 'Up to date test results',
+				description: 'There should never be a reason to bounce around to track down  you lab reports. Geviti compiles your diagnostic results into our platform for users to analyze, track, and understand their markers.',
+				groupImages: [
+					'/images/landing/compressed/group-test-result-1.webp',
+					'/images/landing/compressed/group-test-result-2.webp',
+					'/images/landing/compressed/group-test-result-3.webp',
+				],
+				list: [
+					{
+						title: 'Endocrine Health',
+						date: 'Feb. 22 2024',
+						badge: 'Normal'
+					},
+					{
+						title: 'Metabolic Health',
+						date: 'Mar. 04 2024',
+						badge: 'Warning'
+					},
+					{
+						title: 'Cardiovascular Risk',
+						date: 'Mar. 12 2024',
+						badge: 'Review'
+					}
+				]
+			},
+			{
+				id: 'mobile-application',
+				title: 'Integrated health tracking mobile application.',
+				description: 'Geviti’s applications make managing longevity easy and convenient.',
+				list: [
+					{
+						icon: BarChartSquareIcon,
+						text: 'track Key metrics',
+					},
+					{
+						icon: FavoriteChartIcon,
+						text: 'manage your goals',
+					},
+					{
+						icon: TeamIcon,
+						text: 'Medical team access',
+					},
+					{
+						icon: EmergencyCallAddIcon,
+						text: 'field telehealth calls',
+					},
+				]
+			},
+			{
+				id: 'bloodwork-dashboard',
+				image: '/images/landing/compressed/dashboard-bloodwork.webp'
+			},
+			{
+				id: 'telehealth-dashboard',
+				title: 'Easy to use Geviti <br class="sm:hidden"/>telehealth dashboard.',
+				description: 'Our technology driven platform compiles your full health context into a centralized hub that is easy to navigate. In doing so, Geviti works with you to promote longevity using your real health data.',
+				btnCta: {
+					text: '<span class="lg:hidden">Join Now</span><span class="max-lg:hidden">Become A Member</span>',
+					href: '/onboarding'
+				},
+				image: '/images/landing/compressed/dashboard-bloodwork.webp'
+			}
+		]
+	},
+	homeKits: {
+		carousel: [
+			{
+				id: 'homekits',
+				preTitle: 'Members receive access to',
+				title: 'Innovative at-home diagnostics',
+				description: 'Geviti offers a wide range of convenient and advanced <br class="max-lg:hidden"/>diagnostics, all from the comfort of your home. From mobile <br class="max-lg:hidden"/>phlebotomy, to at-home testing kits, we make health <br class="max-lg:hidden"/>screening ultra accessible.',
+				image: '/images/landing/compressed/homekits.webp',
+				imageMobile: '/images/landing/compressed/homekits-mobile.webp'
+			},
+			{
+				id: 'prescription',
+				preTitle: 'Members receive access to',
+				title: 'Prescription wellness done right',
+				description: 'We offer hormone therapy, peptide therapy, and other prescription <br class="max-lg:hidden"/>wellness services under the supervision of medical professionals. <br class="max-lg:hidden"/>Once you receive approval from a provider through the Geviti app, <br class="max-lg:hidden"/>we\'ll deliver your treatment directly to you.',
+				image: '/images/landing/compressed/supplements-bottle.webp',
+				imageMobile: '/images/landing/compressed/supplements-bottle.webp',
+			},
+			{
+				id: 'therapy',
+				preTitle: 'Members receive access to',
+				title: 'Tailormade smart supplements',
+				description: 'No more over spending on supplements that aren\'t designed <br class="max-lg:hidden"/>exactly for you. Geviti will analyze your biomarkers and create <br class="max-lg:hidden"/>totally custom supplements with everything you need, and <br class="max-lg:hidden"/>nothing that you don’t.',
+				image: '/images/landing/compressed/supplements-pouch.webp',
+				imageMobile: '/images/landing/compressed/supplements-pouch-mobile.webp'
+			}
+		],
+		btnCta: {
+			href: '/products',
+			text: 'View All Products'
+		},
+		mouseCircleText: 'Click To Slide'
+	},
+	supplements: {
+		preTitle: 'Driven by your bloodwork Results',
+		title: 'Tailormade smart <br class="sm:hidden"/>supplements',
+		description: 'No more over spending on supplements that aren\'t designed exactly for you. Geviti will analyze your biomarkers and create totally custom supplements with everything you need, and nothing that you don’t.'
+	},
+	textReveal: {
+		paragraph: 'Geviti leverages your bloodwork and DNA to enhance your health and improve aging. We provide personalized hormone optimization, custom supplements, and tailored wellness plans aimed at extending your healthy years and lifespan. This approach helps you enjoy more time and create lasting memories with your loved ones.'
+	},
+	membership: {
+		priceSection: {
+			preTitle: 'Personalized plans that are right for you',
+			title: 'Memberships as low as $99<span class="text-xs lg:text-2xl lg:!leading-9">/month</span>',
+			description: 'At-home diagnostics and doctor-supervised treatments fostering vitality and longevity. Easily integrates into your life.',
+			btnCta: {
+				text: 'Learn More',
+				href: '/onboarding'
+			},
+			btnCtaMobile: {
+				text: 'Learn More',
+				href: '/onboarding'
+			},
+			list: [
+				{
+					id: 'top',
+					reverse: true,
+					list: [
+						{
+							title: 'Automated Bloodwork',
+							description: 'Your membership comes with biannual full panels conducted comfortably at home, with no extra charge.'
+						},
+						{
+							title: 'Platform Access',
+							description: 'Your all-in-one center for functional care needs: track health metrics, message your health coach, access telehealth visits, and more, all from one place.'
+						},
+						{
+							title: 'Advanced Diagnostics',
+							description: 'We exceed standard screenings by analyzing a broader range of biomarkers, DNA, and more, going beyond what your primary care physician may offer.'
+						},
+					]
+				},
+				{
+					id: 'middle',
+					reverse: false,
+					list: [
+						{
+							title: 'Personal Health Coach',
+							description: 'Your personal health coach will guide you towards optimization with essential lifestyle changes, serving as your accountability partner.'
+						},
+						{
+							title: 'Prescription Wellness',
+							description: 'Geviti partners with top US compound pharmacies. Our medical team will assess if our advanced therapeutics suit your needs.'
+						},
+						{
+							title: 'Hormone Optimization',
+							description: 'Hormone optimization is key to vitality and longevity. Geviti provides nationwide expert care and advanced therapeutics for men and women.'
+						},
+					],
+				},
+				{
+					id: 'bottom',
+					reverse: true,
+					list: [
+						{
+							title: 'In-app Doctors',
+							description: 'Our mission is to eliminate barriers in healthcare. There should be no need to leave your home for this level of care.'
+						},
+						{
+							title: 'Wholesale Products',
+							description: 'Unlike our competitors, Geviti prioritizes accessibility over maximum profit. We\'re committed to making our supplements and screenings widely available.'
+						},
+						{
+							title: 'Custom Protocols',
+							description: 'One Size Fits One! Forget "one size fits all." Our personalized protocols blend tailored supplements and lifestyle changes, going beyond conventional wellness.'
+						}
+					]
+				}
+			]
+		},
+		locationSection: {
+			preTitle: 'What states do we support?',
+			title: 'Care that goes where you go.',
+			description: 'Available in 11 states and expanding across all the country: <br/>AZ, CA, CO, UT, WA, TX, FL, GA, KS, OR, NM',
+			btnCta: {
+				text: 'Become a member',
+				href: '/onboarding'
+			},
+			btnCtaMobile: {
+				text: 'Become a member',
+				href: '/onboarding'
+			},
+			image: '/images/landing/compressed/continent_dots.webp'
+		}
+	},
+	features: {
+		preTitle: 'membership features',
+		title: 'A wellness team in your<br />pocket',
+		description: 'Geviti provides our users with a comprehensive care team. Instead of being forced to choose between a healthcare provider and a health coach, we offer a solution where the two work in tandem to craft the ultimate longevity regimen.',
+		btnCta: {
+			href: '/onboarding',
+			text: 'Join Geviti'
+		},
+		cards: [
+			{
+				id: 'doctor',
+				title: 'Doctor Led Care',
+				description: 'Check-ins from your designated health coach to hold you accountable to your goals and ensure you have the necessary tools for success.'
+			},
+			{
+				id: 'coaching',
+				title: 'Health Coaching',
+				description: 'Bi-weekly check-ins from your designated <br class="max-lg:hidden"/>health coach to hold you accountable to <br class="max-lg:hidden"/>your goals and ensure you have the <br class="max-lg:hidden"/>necessary tools for success'
+			},
+			{
+				id: 'protocols',
+				title: 'Tailored Protocols',
+				description: 'The creation of an action plan based off of <br class="max-lg:hidden"/>the users bloodwork results, focusing on <br class="max-lg:hidden"/>lifestyle, nutrition, supplementation, and <br class="max-lg:hidden"/>overall health optimization.'
+			},
+			{
+				id: 'education',
+				title: 'Health Education',
+				description: 'Regular check-ins to educate and monitor <br class="max-lg:hidden"/>progress over time, observing changes in <br class="max-sm:hidden"/>bloodwork biomarkers, wearable device <br class="max-sm:hidden"/>health metrics, and more.'
+			}
+		]
+	}
 };
 
 export default landingData;

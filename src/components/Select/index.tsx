@@ -28,7 +28,7 @@ const SelectTrigger = React.forwardRef<
 	>
 		{ children }
 		<SelectPrimitive.Icon asChild>
-			<ChevronDown className='h-15px w-15px' />
+			<ChevronDown className='h-15px w-15px flex-shrink-0' />
 		</SelectPrimitive.Icon>
 	</SelectPrimitive.Trigger>
 ));
@@ -55,6 +55,7 @@ const SelectContent = React.forwardRef<
 					position === 'popper' &&
 					'h-[var(--radix-select-trigger-height)] w-full min-w-[var(--radix-select-trigger-width)]'
 				) }
+				data-lenis-prevent
 			>
 				{ children }
 			</SelectPrimitive.Viewport>

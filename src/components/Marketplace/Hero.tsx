@@ -26,25 +26,31 @@ const Hero: React.FC = () => {
 	};
 	return (
 		<div className='lg:px-3 lg:py-15px overflow-hidden'>
-			<Navbar isWithnavbarData={ false }/>
+			<Navbar isWithnavbarData={ false } />
 			<div className='bg-primary w-full h-full lg:rounded-[19px] relative pt-11px lg:pt-5 overflow-hidden'>
-
 				<div className='pt-[52px] md:pt-[91px] lg:min-h-[605px] relative overflow-hidden isolate'>
 					<div className='container-center w-full flex max-lg:flex-col lg:space-x-5 relative items-end'>
-
 						<div className='mx-auto sm:max-w-[446px] lg:mx-0 lg:flex-auto text-center lg:text-left pt-[33px] lg:pt-[53px] space-y-[14px]'>
 							<h2 className='text-grey-secondary font-Poppins font-medium text-[10px] sm:text-sm leading-[150%] sm:leading-6 uppercase tracking-[0.092em] sm:tracking-[1.54px]'>
-								<span className='font-Poppins text-[15px] font-bold tracking-[1.65px]'>Nate! </span>{ marketplace.preTitle }
+								<span className='font-Poppins text-[15px] font-bold tracking-[1.65px]'>
+									Nate!{ ' ' }
+								</span>
+								{ marketplace.preTitle }
 							</h2>
 							{ marketplace.title && (
 								<h1 className='font-Poppins text-5xl font-semibold leading-[39.5px] sm:-tracking-[1.92px] text-grey-secondary'>
-									<span dangerouslySetInnerHTML={ { __html: marketplace.title } } />
+									<span
+										dangerouslySetInnerHTML={ { __html: marketplace.title } }
+									/>
 								</h1>
 							) }
 							{ marketplace.description && (
 								<p className='font-Poppins text-xs sm:text-sm leading-5 text-grey-primary pb-[108px]'>
 									<span
-										dangerouslySetInnerHTML={ { __html: marketplace.description } } />
+										dangerouslySetInnerHTML={ {
+											__html: marketplace.description,
+										} }
+									/>
 								</p>
 							) }
 							<div className='bg-grey-search px-[22px] py-[14px] rounded-full sm:max-w-[420px]'>
@@ -64,54 +70,68 @@ const Hero: React.FC = () => {
 								const isSelected = id === selectedIdx;
 
 								return (
-									(
+									<div
+										onClick={ () => onSelectStep(id) }
+										onMouseEnter={ () => onMouseEnter(id) }
+										key={ id }
+										className={ clsxm(
+											'flex flex-col items-center md:transform md:transition-all md:duration-100 md:ease-in ',
+											isSelected
+												? 'w-[250px] h-[320px] '
+												: 'w-[200px] h-[256px] '
+										) }
+									>
 										<div
-											onClick={ () => onSelectStep(id) }
-											onMouseEnter={ () => onMouseEnter(id) }
-											key={ id }
-											className={ clsxm('flex flex-col items-center md:transform md:transition-all md:duration-100 md:ease-in ', isSelected ? 'w-[250px] h-[320px] ' : 'w-[200px] h-[256px] ') }
+											className={ clsxm(
+												'justify-center group cursor-pointer w-full h-full relative flex flex-col overflow-hidden bg-grey-secondary'
+											) }
 										>
-											<div
-												className={ clsxm(
-													'justify-center group cursor-pointer w-full h-full relative flex flex-col overflow-hidden bg-grey-secondary'
+											<div className='relative overflow-hidden bg-[#E7E7E7] group-hover:opacity-75 h-[117px] sm:h-[202px]'>
+												{ product.image && (
+													<Image
+														priority={ true }
+														src={ product.image }
+														alt={ product.name ?? '' }
+														className='object-cover object-center'
+														fill
+													/>
 												) }
-											>
-												<div className='relative overflow-hidden bg-[#E7E7E7] group-hover:opacity-75 h-[117px] sm:h-[202px]'>
-													{ product.image && (
-														<Image
-															priority={ true }
-															src={ product.image }
-															alt={ product.name ?? '' }
-															className='object-cover object-center'
-															fill
-														/>
+											</div>
+											<div className='flex flex-1 flex-col space-y-1 py-[13px] sm:py-18px px-[13px] sm:px-[21px]'>
+												<h4 className='font-Poppins text-base font-medium text-primary leading-[25.37px] -tracking-[0.64px]'>
+													{ product.name }
+												</h4>
+												<p className='font-Poppins text-sm text-grey-primary leading-5 pb-[19px]'>
+													{ product.kind }
+												</p>
+												<div className='flex justify-start items-center space-x-1 text-primary py-[2px] px-[6px] bg-blue-1 rounded-full w-fit'>
+													<Circle />
+													{ product.price && (
+														<p className='text-xs leading-[152.116%] font-BRSonoma'>
+															{ product.price }
+														</p>
 													) }
 												</div>
-												<div className='flex flex-1 flex-col space-y-1 py-[13px] sm:py-18px px-[13px] sm:px-[21px]'>
-													<h4 className='font-Poppins text-base font-medium text-primary leading-[25.37px] -tracking-[0.64px]'>
-														{ product.name }
-													</h4>
-													<p className='font-Poppins text-sm text-grey-primary leading-5 pb-[19px]'>
-														{ product.kind }
-													</p>
-													<div className='flex justify-start items-center space-x-1 text-primary py-[2px] px-[6px] bg-blue-1 rounded-full w-fit'>
-														<Circle />
-														{ product.price && (
-															<p className='text-xs leading-[152.116%] font-BRSonoma'>{ product.price }</p>
-														) }
-													</div>
-													<p className={ clsxm('text-[10px] pt-2 font-BRSonoma leading-[155%] text-grey-primary md:transform md:transition-all md:duration-100 md:ease-in', isSelected ? 'block' : 'hidden') }>{ product.desc }</p>
-												</div>
+												<p
+													className={ clsxm(
+														'text-[10px] pt-2 font-BRSonoma leading-[155%] text-grey-primary md:transform md:transition-all md:duration-100 md:ease-in',
+														isSelected ? 'block' : 'hidden'
+													) }
+												>
+													{ product.desc }
+												</p>
 											</div>
-											<div
-												key={ `indicator-step-${ id }` }
-												className={ clsxm(
-													'h-1 rounded-full cursor-pointer transform transition-all duration-300 ease-linear mt-7',
-													id === selectedIdx ? 'w-[110px] xxs:w-[122px] bg-blue-1 shadow-[0px_-8px_24px_0px_rgba(251,251,251,0.35)]' : 'w-8 xxs:w-[38px] bg-grey-shadow'
-												) }
-											/>
 										</div>
-									)
+										<div
+											key={ `indicator-step-${ id }` }
+											className={ clsxm(
+												'h-1 rounded-full cursor-pointer transform transition-all duration-300 ease-linear mt-7',
+												id === selectedIdx
+													? 'w-[110px] xxs:w-[122px] bg-blue-1 shadow-[0px_-8px_24px_0px_rgba(251,251,251,0.35)]'
+													: 'w-8 xxs:w-[38px] bg-grey-shadow'
+											) }
+										/>
+									</div>
 								);
 							}) }
 						</div>

@@ -35,7 +35,6 @@ const Hero: React.FC = () => {
 
 				<div className='pt-60px lg:pt-20 lg:min-h-[646.8px] relative overflow-hidden isolate lg:pl-5'>
 					<div className='container-center w-full flex max-lg:flex-col items-center lg:gap-x-5 relative'>
-
 						<div className='mx-auto sm:max-w-2xl lg:mx-0 lg:flex-auto text-center lg:text-left pt-[33px] lg:pt-[53px]'>
 							<h2 className='text-grey-secondary font-BRSonoma font-semibold text-[10px] sm:text-sm leading-[150%] sm:leading-6 uppercase tracking-[0.092em] sm:tracking-0.11em'>
 								{ heroData.preTitle }
@@ -48,7 +47,8 @@ const Hero: React.FC = () => {
 							{ heroData.description && (
 								<p className='mt-3.5 lg:pr-11 font-BRSonoma font-normal text-xs sm:text-sm leading-[142.857%] text-grey-primary'>
 									<span
-										dangerouslySetInnerHTML={ { __html: heroData.description } } />
+										dangerouslySetInnerHTML={ { __html: heroData.description } }
+									/>
 								</p>
 							) }
 						</div>
@@ -85,11 +85,15 @@ const Hero: React.FC = () => {
 									className='flex flex-col max-lg:text-center max-lg:items-center gap-y-1 md:gap-y-5px'
 								>
 									<div className=''>
-										<div className={ clsxm(
-											'font-Poppins bg-black-icons rounded-full p-1 w-6 h-6 font-medium text-white text-[11px] flex justify-center items-center mb-5',
-											featureIdx + 1 !== heroData.mainKeys.length && 'lg:before:absolute lg:before:bg-black-icons lg:before:h-[1px] lg:before:w-full lg:before:top-3 lg:before:left-[25px] '
-										) }
-										>{ featureIdx + 1 }</div>
+										<div
+											className={ clsxm(
+												'font-Poppins bg-black-icons rounded-full p-1 w-6 h-6 font-medium text-white text-[11px] flex justify-center items-center mb-5',
+												featureIdx + 1 !== heroData.mainKeys.length &&
+												'lg:before:absolute lg:before:bg-black-icons lg:before:h-[1px] lg:before:w-full lg:before:top-3 lg:before:left-[25px] '
+											) }
+										>
+											{ featureIdx + 1 }
+										</div>
 									</div>
 									{ feature.image && (
 										<div className='relative overflow-hidden w-5 h-5 sm:w-[26px] sm:h-[26px]'>
@@ -102,7 +106,9 @@ const Hero: React.FC = () => {
 											/>
 										</div>
 									) }
-									<div className='font-Poppins font-medium leading-[129.403%] text-grey-secondary text-base'><span dangerouslySetInnerHTML={ { __html: feature.text } } /></div>
+									<div className='font-Poppins font-medium leading-[129.403%] text-grey-secondary text-base'>
+										<span dangerouslySetInnerHTML={ { __html: feature.text } } />
+									</div>
 								</WrapperAnimation>
 							)) }
 						</div>
