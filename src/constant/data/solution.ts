@@ -19,8 +19,8 @@ const solutionData = {
 		men: {
 			preTitle: 'mens health and wellness solutions',
 			title: 'Live optimized with <br class="lg:hidden"/><span>Geviti</span><span class="lg:hidden">.</span>',
-			titles: ['Live optimized with <span>Geviti</span><span class="lg:hidden">.</span>'],
-			titlesMobile: ['Live optimized with', '<span>Geviti</span><span class="lg:hidden">.</span>'],
+			titles: ['Live optimized with'],
+			titlesMobile: ['Live optimized with'],
 			description: 'Our platform offers men at-home diagnostics and doctor-supervised treatments covering testosterone therapy, anti-aging peptides, medical weight loss, and more, fostering vitality and longevity.',
 			image: '/images/solution_media/compressed/hero-men.webp',
 			imageMobile: '/images/solution_media/compressed/hero-men-mobile.webp',
@@ -33,8 +33,8 @@ const solutionData = {
 		women: {
 			preTitle: 'Womens health and wellness solutions',
 			title: 'Live optimized with <br class="lg:hidden"/><span>Geviti</span><span class="lg:hidden">.</span>',
-			titles: ['Live optimized with <span>Geviti</span><span class="lg:hidden">.</span>'],
-			titlesMobile: ['Live optimized with', '<span>Geviti</span><span class="lg:hidden">.</span>'],
+			titles: ['Live optimized with'],
+			titlesMobile: ['Live optimized with'],
 			description: 'Our platform offers women at-home diagnostics and doctor-supervised treatments covering testosterone therapy, anti-aging peptides, medical weight loss, and more, fostering vitality and longevity.',
 			image: '/images/solution_media/compressed/hero-women.webp',
 			imageMobile: '/images/solution_media/compressed/hero-women-mobile.webp',

@@ -18,11 +18,26 @@ const slideUpTransition = {
 const Hero: React.FC<{ type: 'men' | 'women'; }> = ({ type }) => {
 	const heroData = solutionData.hero[type];
 
+	const renderTextGevitiLogo = () => {
+		return (
+			<Image
+				src='/images/logo/geviti-text-light.webp'
+				alt='logo'
+				sizes='(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 100vw'
+				quality={ 100 }
+				width={ 792.5 }
+				height={ 400 }
+				className='h-5 lg:h-[34px] w-full'
+				priority
+			/>
+		);
+	};
+
 	const renderTitles = (titles: string[]) => {
 		return titles.map((title: string, titleIdx: number) => (
 			<span
 				key={ `title-${ titleIdx }` }
-				className='overflow-hidden inline-block'>
+				className='overflow-hidden inline-flex'>
 				<motion.span
 					variants={ {
 						visible: {
@@ -31,11 +46,14 @@ const Hero: React.FC<{ type: 'men' | 'women'; }> = ({ type }) => {
 						},
 						hidden: { y: '100%' }
 					} }
-					className='inline-block font-medium text-[6.667vw] xs:text-3xl md:text-4xl lg:text-[5vh] xl:text-[46px] !leading-normal -tracking-0.04em text-grey-secondary'
+					className='inline-flex lg:items-center font-medium text-[6.667vw] xs:text-3xl lg:text-[46px] !leading-normal -tracking-0.04em text-grey-secondary'
 				>
 					<span
 						dangerouslySetInnerHTML={ { __html: title } }
-						className='hero-solutions' />
+						className='hero-solutions' /><span className='max-lg:hidden'>&nbsp;</span>
+					<span className='relative overflow-hidden max-lg:hidden'>
+						{ renderTextGevitiLogo() }
+					</span>
 				</motion.span>
 			</span>
 		));
@@ -68,7 +86,7 @@ const Hero: React.FC<{ type: 'men' | 'women'; }> = ({ type }) => {
 					delay: 1.75
 				}
 			} } />
-			<div className='bg-primary h-[calc(100svh+14px)] lg:h-[calc(100vh-202px)] w-full overflow-hidden max-lg:rounded-t-none rounded-19px relative pt-11px lg:pt-5'>
+			<div className='bg-primary h-[calc(100svh+14px)] lg:h-[calc(100vh-202px)] xxl:max-h-[699px] w-full overflow-hidden max-lg:rounded-t-none rounded-19px relative pt-11px lg:pt-5'>
 				<div className='absolute inset-0 w-full h-full'>
 					<div className='relative overflow-hidden w-full h-full'>
 						{ renderImage('desktop') }
@@ -91,7 +109,7 @@ const Hero: React.FC<{ type: 'men' | 'women'; }> = ({ type }) => {
 								type === 'men' && 'max-lg:pt-[39px] max-lg:bg-backdrop-hero-membership-bottom-mobile'
 							) }>
 								<div className='container-center w-full'>
-									<span className='overflow-hidden inline-block'>
+									<span className='overflow-hidden inline-flex'>
 										<motion.h2
 											variants={ {
 												visible: {
@@ -102,7 +120,7 @@ const Hero: React.FC<{ type: 'men' | 'women'; }> = ({ type }) => {
 											} }
 											initial='hidden'
 											animate='visible'
-											className='text-grey-secondary font-Poppins inline-block font-semibold text-[10px] sm:text-xs lg:text-sm !leading-6 uppercase tracking-0.11em'>
+											className='text-grey-secondary font-Poppins inline-flex font-semibold text-[10px] sm:text-xs lg:text-sm !leading-6 uppercase tracking-0.11em'>
 											{ heroData.preTitle }
 										</motion.h2>
 									</span>
@@ -110,7 +128,7 @@ const Hero: React.FC<{ type: 'men' | 'women'; }> = ({ type }) => {
 									<motion.h1
 										initial='hidden'
 										animate='visible'
-										className='flex flex-col max-sm:hidden'
+										className='flex flex-col max-lg:hidden'
 									>
 										{ renderTitles(heroData.titles) }
 									</motion.h1>
@@ -125,62 +143,68 @@ const Hero: React.FC<{ type: 'men' | 'women'; }> = ({ type }) => {
 												}
 											}
 										} }
-										className='flex flex-col sm:hidden max-lg:mt-5px'
+										className='flex flex-col items-start lg:hidden max-lg:mt-5px'
 									>
 										{ renderTitles(heroData.titlesMobile) }
-									</motion.h1>
-
-									<div className='mt-5px lg:mt-6 sm:max-w-[504px]'>
-										<span className='overflow-hidden inline-block'>
-											<motion.p
+										<span className='overflow-hidden inline-flex mt-1.5'>
+											<motion.span
 												variants={ {
 													visible: {
 														y: 0,
-														transition: {
-															...slideUpTransition,
-															delay: .5,
-														}
-													},
-													hidden: { y: '100%' },
-												} }
-												initial='hidden'
-												animate='visible'
-												className='text-grey-50 font-Poppins inline-block text-[2.9vw] xs2:text-xs sm:text-sm !leading-5'>
-												<span dangerouslySetInnerHTML={ { __html: heroData.description } } />
-											</motion.p>
-										</span>
-									</div>
-
-									<div className='flex w-full mt-[5vh] xs:mt-[42px] lg:mt-[5.435vh] xl:mt-[42px]'>
-										<div className='overflow-hidden inline-block w-full'>
-											<motion.div
-												variants={ {
-													visible: {
-														y: 0,
-														transition: {
-															...slideUpTransition,
-															delay: .75,
-															duration: 1
-														}
+														transition: slideUpTransition
 													},
 													hidden: { y: '100%' }
 												} }
-												initial='hidden'
-												animate='visible'
-												className='inline-block w-full'
-											>
-												<div className='flex max-sm:w-full max-sm:justify-center'>
-													<ButtonCta
-														href={ heroData.btnCta.href }
-														externalLink={ heroData.btnCta.externalLink }
-														aria-label={ heroData.btnCta.text }
-														text={ heroData.btnCta.text }
-														theme={ type === 'women' ? 'tertiary' : 'secondary' }
-														className='max-sm:w-full'
-													/>
-												</div>
-											</motion.div>
-										</div>
+												className='inline-flex'>
+												{ renderTextGevitiLogo() }
+											</motion.span>
+										</span>
+									</motion.h1>
+
+									<div className='mt-[15px] lg:mt-6 sm:max-w-[504px] overflow-hidden'>
+										<motion.p
+											variants={ {
+												visible: {
+													y: 0,
+													transition: {
+														...slideUpTransition,
+														delay: .5,
+													}
+												},
+												hidden: { y: '100%' },
+											} }
+											initial='hidden'
+											animate='visible'
+											className='text-grey-50 font-Poppins text-[2.9vw] xs2:text-xs sm:text-sm !leading-5'>
+											<span dangerouslySetInnerHTML={ { __html: heroData.description } } />
+										</motion.p>
+									</div>
+
+									<div className='flex w-full mt-[5vh] xs:mt-[42px] lg:mt-[5.435vh] xl:mt-[42px] overflow-hidden'>
+										<motion.div
+											variants={ {
+												visible: {
+													y: 0,
+													transition: {
+														...slideUpTransition,
+														delay: .75,
+														duration: 1
+													}
+												},
+												hidden: { y: '100%' }
+											} }
+											initial='hidden'
+											animate='visible'
+											className='flex max-sm:w-full max-sm:justify-center'>
+											<ButtonCta
+												href={ heroData.btnCta.href }
+												externalLink={ heroData.btnCta.externalLink }
+												aria-label={ heroData.btnCta.text }
+												text={ heroData.btnCta.text }
+												theme={ type === 'women' ? 'tertiary' : 'secondary' }
+												className='max-sm:w-full'
+											/>
+										</motion.div>
 									</div>
 								</div>
 							</div>

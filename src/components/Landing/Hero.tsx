@@ -95,7 +95,7 @@ const Hero: React.FC<HeroProps> = ({ showBanner }) => {
 		return titles.map((title: string, titleIdx: number) => (
 			<span
 				key={ `title-${ titleIdx }` }
-				className='overflow-hidden inline-block'>
+				className='overflow-hidden inline-flex'>
 				<motion.span
 					variants={ {
 						visible: {
@@ -104,7 +104,7 @@ const Hero: React.FC<HeroProps> = ({ showBanner }) => {
 						},
 						hidden: { y: '100%' }
 					} }
-					className='inline-block font-medium text-[6.667vw] xs:text-3xl md:text-4xl lg:text-[5vh] xl:text-[46px] !leading-normal -tracking-0.04em text-grey-secondary'
+					className='inline-flex font-medium text-[6.667vw] xs:text-3xl md:text-4xl lg:text-[5vh] xl:text-[46px] !leading-normal -tracking-0.04em text-grey-secondary'
 				>{ title }</motion.span>
 			</span>
 		));
@@ -190,7 +190,6 @@ const Hero: React.FC<HeroProps> = ({ showBanner }) => {
 								ease: 'linear'
 							} }
 						>
-							{ }
 							<span className='flex justify-center w-full pt-18px'>
 								{ renderMainKeysItem(prevItem, false) }
 							</span>
@@ -307,7 +306,7 @@ const Hero: React.FC<HeroProps> = ({ showBanner }) => {
 							) : null }
 						<div className='pb-18px lg:pb-[47px] h-full w-full flex flex-col justify-end'>
 							<div className='text-left flex flex-col'>
-								<span className='overflow-hidden inline-block'>
+								<span className='overflow-hidden inline-flex'>
 									<motion.h2
 										variants={ {
 											visible: {
@@ -321,7 +320,7 @@ const Hero: React.FC<HeroProps> = ({ showBanner }) => {
 										} }
 										initial='hidden'
 										animate='visible'
-										className='text-grey-secondary font-Poppins inline-block font-semibold text-[10px] sm:text-xs lg:text-sm !leading-6 uppercase tracking-0.11em'>
+										className='text-grey-secondary font-Poppins inline-flex font-semibold text-[10px] sm:text-xs lg:text-sm !leading-6 uppercase tracking-0.11em'>
 										{ heroData.preTitle }
 									</motion.h2>
 								</span>

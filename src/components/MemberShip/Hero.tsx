@@ -24,7 +24,7 @@ const Hero: React.FC = () => {
 		return titles.map((title: string, titleIdx: number) => (
 			<span
 				key={ `title-${ titleIdx }` }
-				className='overflow-hidden inline-block'>
+				className='overflow-hidden inline-flex'>
 				<motion.span
 					variants={ {
 						visible: {
@@ -33,7 +33,7 @@ const Hero: React.FC = () => {
 						},
 						hidden: { y: '100%' }
 					} }
-					className='inline-block font-medium text-[6.667vw] xs:text-3xl md:text-4xl lg:text-[5vh] xl:text-[46px] !leading-normal -tracking-0.04em text-grey-secondary'
+					className='inline-flex font-medium text-[6.667vw] xs:text-3xl md:text-4xl lg:text-[5vh] xl:text-[46px] !leading-normal -tracking-0.04em text-grey-secondary'
 				>{ title }</motion.span>
 			</span>
 		));
@@ -75,7 +75,7 @@ const Hero: React.FC = () => {
 						<div className='h-full w-full flex flex-col justify-end'>
 							<div className='pb-[39px] lg:pb-[10.267vh] xl:pb-[73px] text-left flex flex-col'>
 								<div className='container-center w-full'>
-									<span className='overflow-hidden inline-block'>
+									<span className='overflow-hidden inline-flex'>
 										<motion.h2
 											variants={ {
 												visible: {
@@ -86,7 +86,7 @@ const Hero: React.FC = () => {
 											} }
 											initial='hidden'
 											animate='visible'
-											className='text-grey-secondary font-Poppins inline-block font-semibold text-[10px] sm:text-xs lg:text-sm !leading-6 uppercase tracking-0.11em'>
+											className='text-grey-secondary font-Poppins inline-flex font-semibold text-[10px] sm:text-xs lg:text-sm !leading-6 uppercase tracking-0.11em'>
 											<span dangerouslySetInnerHTML={ { __html: heroData.preTitle } } />
 										</motion.h2>
 									</span>
@@ -121,7 +121,7 @@ const Hero: React.FC = () => {
 									</motion.h1>
 
 									<div className='mt-2 xxs:mt-3 lg:mt-6 max-w-[337px] sm:max-w-[496px]'>
-										<span className='overflow-hidden inline-block'>
+										<span className='overflow-hidden inline-flex'>
 											<motion.p
 												variants={ {
 													visible: {
@@ -135,7 +135,7 @@ const Hero: React.FC = () => {
 												} }
 												initial='hidden'
 												animate='visible'
-												className='text-grey-50 font-Poppins inline-block text-sm !leading-[143%]'>
+												className='text-grey-50 font-Poppins inline-flex text-sm !leading-[143%]'>
 												{ heroData.description }
 											</motion.p>
 										</span>

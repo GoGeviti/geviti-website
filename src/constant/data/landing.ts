@@ -59,11 +59,11 @@ const landingData = {
 		mainKeys: [
 			{
 				icon: MonitoringIcon,
-				text: 'Hormone Therapy<br />Made simple',
+				text: 'Hormone Therapy<br />Made Simple',
 			},
 			{
 				icon: DNAIcon,
-				text: 'At-home blood and<br />DNA Testing'
+				text: 'At-home Blood and<br />DNA Testing'
 			},
 			{
 				icon: MedicalDocIcon,
