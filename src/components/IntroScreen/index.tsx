@@ -4,18 +4,21 @@ import { useEffect, useRef } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import Image from 'next/image';
 
+import { setCookieIntro } from '@/services/cookies';
+
 type IntroScreenProps = {
 	src?: string;
 	type?: 'video' | 'image';
 	screenId?: string;
 	children: React.ReactNode;
+	showIntro?: string;
 };
 
-export default function IntroScreen({ children, src, type = 'video' }: IntroScreenProps) {
+export default function IntroScreen({ children, src, type = 'video', showIntro = 'true' }: IntroScreenProps) {
 	const vidRef = useRef<HTMLVideoElement | null>(null);
 
 	const handlePlayVideo = () => {
-		if (vidRef.current && type === 'video') {
+		if (vidRef.current && type === 'video' && showIntro === 'true') {
 			vidRef.current.play();
 		}
 	};
@@ -83,35 +86,40 @@ export default function IntroScreen({ children, src, type = 'video' }: IntroScre
 
 	return (
 		<AnimatePresence>
-			<motion.div
-				key='loader'
-				variants={ {
-					initial: {
-						top: '0',
-					},
-					enter: {
-						top: '-110vh',
-						transition: { duration: .75, delay: type === 'video' ? 2.1 : 1.5, ease: [0.76, 0, 0.24, 1] },
-						transitionEnd: {
-							top: '110vh'
-						}
-					}
-				} }
-				initial='initial'
-				animate='enter'
-				onAnimationComplete={ () => {
-					if (window) {
-						setTimeout(() => {
-							document.body.style.overflowY = 'unset';
-						}, 500);
-					}
-				} }
-				className='w-screen fixed h-[110vh] overflow-hidden top-0 z-[9999] left-0 pointer-events-none bg-blue-primary'
-			>
-				<div className='flex justify-center items-center h-screen w-full bg-primary'>
-					{ renderContent() }
-				</div>
-			</motion.div>
+			{
+				showIntro === 'true' && (
+					<motion.div
+						key='loader'
+						variants={ {
+							initial: {
+								top: '0',
+							},
+							enter: {
+								top: '-110vh',
+								transition: { duration: .75, delay: type === 'video' ? 2.1 : 1.5, ease: [0.76, 0, 0.24, 1] },
+								transitionEnd: {
+									top: '110vh'
+								}
+							}
+						} }
+						initial = 'initial'
+						animate = 'enter'
+						onAnimationComplete={ () => {
+							if (window) {
+								setTimeout(() => {
+									document.body.style.overflowY = 'unset';
+									setCookieIntro({ key: 'show_intro', value: 'false' });
+								}, 500);
+							}
+						} }
+						className='w-screen fixed h-[110vh] overflow-hidden top-0 z-[9999] left-0 pointer-events-none bg-blue-primary'
+					>
+						<div className='flex justify-center items-center h-screen w-full bg-primary'>
+							{ renderContent() }
+						</div>
+					</motion.div>
+				)
+			}
 			<motion.div key='content-children'>
 				{ children }
 			</motion.div>

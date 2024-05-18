@@ -106,7 +106,7 @@ const BoxArrow = styled(Player)`
 
 interface QuestionOnHRTProps {
 	viewState: ViewState;
-	onSelectOption: (optionText: string) => void;
+	onSelectOption: () => void;
 }
 
 const ResponseBox = ({
@@ -118,7 +118,7 @@ const ResponseBox = ({
 	children: ReactNode;
 	index: number;
 	viewState: ViewState;
-	onSelectOption: (optionText: string) => void;
+	onSelectOption: () => void;
 }) => {
 	const [lottieRef, setLottieRef] = useState<AnimationItem | null>(null);
 
@@ -128,7 +128,7 @@ const ResponseBox = ({
 			delayMultiplier={ index }
 			onMouseEnter={ () => lottieRef?.play() }
 			// onMouseLeave={ () => lottieRef?.stop() }>
-			onClick={ () => onSelectOption(children?.toString() || '') }
+			onClick={ () => onSelectOption() }
 		>
 			<BoxText>{ children }</BoxText>
 			<BoxArrow

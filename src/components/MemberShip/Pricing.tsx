@@ -10,6 +10,8 @@ import ButtonCta from '../ButtonCta';
 import QuestionTooltip from '../Home/QuestionTooltip';
 import { GreenCheck } from '../Icons';
 
+import ButtonSwitchMemberFreq from './ButtonSwitchMemberFreq';
+
 const getPricingCardVariants = (tierIdx: number): Variants => {
 	if (tierIdx === 0) {
 		return {
@@ -86,52 +88,18 @@ const Pricing = () => {
 
 	const [activeTabIdx, setActiveTabIdx] = useState<number>(0);
 
-	const renderButtonSwitchGender = () => {
-		const currentOpt = pricingData.pricingOptions[activeTabIdx];
-
+	const renderButtonSwitchFrequency = () => {
 		return (
-			<div className='relative w-full rounded-[100px] h-[49px] px-1.5 bg-grey-50'>
-				<div className='relative flex items-center h-full'>
-					{ pricingData.pricingOptions.map((opt, optIdx) => {
-						return (
-							<button
-								key={ opt.title }
-								aria-label={ opt.title }
-								onClick={ () => setActiveTabIdx(optIdx) }
-								className={ clsxm(
-									'text-sm !leading-normal h-full flex items-center justify-center text-grey-400 cursor-pointer whitespace-nowrap',
-									optIdx === 0 ? 'px-3.5 w-[95px] sm:w-[156px]' : 'px-6 w-[104px] sm:w-[156px]'
-								) }>
-								{ opt.title }
-							</button>
-						);
-					}) }
-				</div>
-
-				<motion.span
-					layoutId='pill-tab-pricingplans'
-					transition={ { type: 'spring', duration: 0.75 } }
-					className={ clsxm(
-						'bg-primary cursor-pointer rounded-[100px] font-medium text-white whitespace-nowrap shadow-[0px_4px_8px_0px_rgba(0,0,0,0.1)] text-sm !leading-normal flex items-center h-[37px] top-1.5 absolute',
-						activeTabIdx === 0
-							? 'left-1.5 w-[95px] sm:w-[156px] px-3.5'
-							: 'left-[95px] sm:left-[162px] w-[104px] sm:w-[156px] px-6',
-						currentOpt.highlight ? 'justify-between' : 'justify-center'
-					) }
-				>
-					{ currentOpt.title }
-					{ currentOpt.highlight && (
-						<span className='text-blue-primary max-sm:hidden text-xs !leading-normal w-[55px] h-[21px] flex-shrink-0 bg-[#F2FAFF]/15 border-[0.55px] border-white/15 rounded-[100px] flex items-center justify-center'>
-							{ currentOpt.highlight }
-						</span>
-					) }
-				</motion.span>
-			</div>
+			<ButtonSwitchMemberFreq
+				options={ pricingData.pricingOptions }
+				onChange={ (currentIdx: number) => setActiveTabIdx(currentIdx) } />
 		);
 	};
 
 	return (
-		<div className='lg:px-3 pb-6 font-Poppins overflow-hidden'>
+		<div
+			id='packages'
+			className='lg:px-3 pb-6 font-Poppins overflow-hidden'>
 			<div className='bg-white rounded-19px py-[42px] lg:pt-[72px] lg:pb-[90px]'>
 				<div className='container-center flex flex-col items-center'>
 					<div className='text-center'>
@@ -147,7 +115,7 @@ const Pricing = () => {
 					</div>
 
 					<div className='mt-[42px] w-fit'>
-						{ renderButtonSwitchGender() }
+						{ renderButtonSwitchFrequency() }
 					</div>
 
 					<div

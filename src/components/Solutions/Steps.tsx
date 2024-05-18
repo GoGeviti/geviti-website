@@ -56,8 +56,8 @@ const StepsSection: React.FC<{ theme?: 'black' | 'blue'; }> = ({ theme = 'black'
 					theme === 'black' && 'bg-primary text-grey-primary',
 					theme === 'blue' && 'bg-blue-primary text-grey-800'
 				) }>
-				<div className='container-center py-[42px] lg:py-0'>
-					<div className='relative lg:h-[188vh] w-full'>
+				<div className='container-center py-[42px] lg:py-0 lg:my-auto'>
+					<div className='relative lg:h-[200vh] w-full'>
 						<div className='lg:sticky top-0 left-0 w-full flex flex-col lg:h-1/2 items-center justify-center'>
 							<div className='text-center'>
 								<p className='mb-3 lg:mb-0 uppercase text-pretitle'>

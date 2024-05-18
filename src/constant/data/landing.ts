@@ -45,7 +45,7 @@ const landingData = {
 			show: true
 		},
 		image: '/images/landing/compressed/hero.webp',
-		imageMobile: '/images/landing/compressed/hero_mobile.webp',
+		imageMobile: '/images/landing/compressed/hero-mobile.webp',
 		btnCta: {
 			text: 'Join Geviti',
 			href: '/onboarding',
@@ -58,16 +58,16 @@ const landingData = {
 		},
 		mainKeys: [
 			{
-				icon: MonitoringIcon,
-				text: 'Hormone Therapy<br />Made Simple',
-			},
-			{
 				icon: DNAIcon,
 				text: 'At-home Blood and<br />DNA Testing'
 			},
 			{
 				icon: MedicalDocIcon,
 				text: 'Data-driven Care<br />No Guesswork',
+			},
+			{
+				icon: MonitoringIcon,
+				text: 'Hormone Therapy<br />Made Simple',
 			},
 			{
 				icon: PillIcon,
@@ -290,6 +290,7 @@ const landingData = {
 		list: [
 			{
 				id: 'men',
+				href: '/solution/men',
 				image: '/images/landing/compressed/benefits-men.webp',
 				imageMobile: '/images/landing/compressed/benefits-men-mobile.webp',
 				title: 'Mens Health',
@@ -304,6 +305,7 @@ const landingData = {
 			},
 			{
 				id: 'women',
+				href: '/solution/women',
 				image: '/images/landing/compressed/benefits-women.webp',
 				imageMobile: '/images/landing/compressed/benefits-women-mobile.webp',
 				title: 'Women\'s Health',
@@ -477,11 +479,11 @@ const landingData = {
 			description: 'At-home diagnostics and doctor-supervised treatments fostering vitality and longevity. Easily integrates into your life.',
 			btnCta: {
 				text: 'Learn More',
-				href: '/onboarding'
+				href: '/membership'
 			},
 			btnCtaMobile: {
 				text: 'Learn More',
-				href: '/onboarding'
+				href: '/membership'
 			},
 			list: [
 				{

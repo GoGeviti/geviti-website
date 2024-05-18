@@ -12,6 +12,15 @@ export const setCookie = ({ key, value, cookie }: { key: string, value: string, 
 	);
 };
 
+export const setCookieIntro = ({ key, value, cookie }: { key: string, value: string, cookie?: any; }) => { // eslint-disable-line @typescript-eslint/no-explicit-any
+
+	cookies().set(
+		key,
+		JSON.stringify(value),
+		{ ...cookie }
+	);
+};
+
 export const getCookie = (key: string) => {
 	const cookieStored = cookies().get(key);
 	const cookieVal = cookieStored?.value;

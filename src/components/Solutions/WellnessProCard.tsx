@@ -1,6 +1,8 @@
 import React from 'react';
 import Image from 'next/image';
 
+import clsxm from '@/helpers/clsxm';
+
 import Stat from './Stat';
 
 type IWellnessProCardProps = {
@@ -15,9 +17,10 @@ type IWellnessProCardProps = {
 		imageHeading: string;
 		imageSubheading: string;
 	};
+	backdropClassName?: string;
 };
 
-const WellnessProCard: React.FC<IWellnessProCardProps> = ({ item }) => {
+const WellnessProCard: React.FC<IWellnessProCardProps> = ({ item, backdropClassName = 'h-[58%] lg:h-[67%]' }) => {
 	const {
 		preTitle,
 		title,
@@ -31,8 +34,8 @@ const WellnessProCard: React.FC<IWellnessProCardProps> = ({ item }) => {
 	} = item;
 
 	return (
-		<article className='lg:bg-white rounded-19px px-4 lg:px-6 lg:pt-[42px] lg:pb-6 relative overflow-hidden font-Poppins'>
-			<div className='lg:pl-18px'>
+		<article className='lg:bg-white rounded-19px px-4 lg:px-6 lg:pt-[42px] lg:pb-6 relative overflow-hidden font-Poppins flex flex-col flex-grow justify-between w-full h-full'>
+			<div className='lg:pl-18px flex flex-col flex-1 h-full w-full'>
 				<p className='text-grey-primary text-pretitle uppercase'>
 					{ preTitle }
 				</p>
@@ -52,16 +55,17 @@ const WellnessProCard: React.FC<IWellnessProCardProps> = ({ item }) => {
 						src={ image }
 						fill
 						sizes='(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 100vw'
-						className='w-full h-full object-cover object-right max-lg:hidden group-hover:scale-105 transition-transform duration-300'
+						className='w-full h-full object-cover object-right-top max-lg:hidden group-hover:scale-105 transition-transform duration-300'
 					/>
 					<Image
 						alt=''
 						src={ imageMobile }
 						fill
 						sizes='(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 100vw'
-						className='w-full h-full object-cover lg:hidden'
+						className='w-full h-full object-cover object-top lg:hidden'
 					/>
 
+					<div className={ clsxm('absolute inset-x-0 bottom-0 bg-backdrop-wellnesspro-solution-mobile lg:bg-backdrop-wellnesspro-solution', backdropClassName) } />
 					<div className='w-full h-full flex flex-col justify-end px-5 lg:px-6 py-18px text-white relative z-10'>
 						<Stat
 							num={ count }

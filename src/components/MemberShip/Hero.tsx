@@ -61,7 +61,7 @@ const Hero: React.FC = () => {
 	return (
 		<div className='lg:px-3 lg:pt-3 overflow-hidden font-Poppins'>
 			<Navbar />
-			<div className='bg-primary h-[calc(100svh+14px)] lg:h-[calc(100vh-24px)] w-full overflow-hidden max-lg:rounded-t-none rounded-19px relative pt-11px lg:pt-5'>
+			<div className='bg-primary h-[calc(100svh+14px)] lg:h-[calc(100vh-202px)] xxl:max-h-[699px] w-full overflow-hidden max-lg:rounded-t-none rounded-19px relative pt-11px lg:pt-5'>
 				<div className='absolute inset-0 w-full h-full'>
 					<div className='relative overflow-hidden w-full h-full'>
 						{ renderImage('desktop') }
@@ -194,7 +194,7 @@ const Hero: React.FC = () => {
 														href={ heroData.btnCta2.href }
 														externalLink={ heroData.btnCta2.externalLink }
 														className='bg-white/10 hover:bg-white/20 group max-md:w-full border border-white/5 backdrop-blur-[25px] rounded-full py-1.5 pl-[42px] pr-1.5 h-full relative grid place-items-center grid-cols-[auto_46px] overflow-hidden gap-6'
-														aria-label='view products'
+														aria-label='view packages'
 													>
 														<span
 															className='text-lg leading-[133%] font-medium text-grey-secondary inline-block z-[2]'

@@ -32,8 +32,8 @@ const StepsSection: React.FC = () => {
 			<div
 				ref={ container }
 				className='bg-white rounded-19px w-full h-full'>
-				<div className='container-center py-[42px] lg:py-0'>
-					<div className='relative lg:h-[188vh] w-full'>
+				<div className='container-center py-[42px] lg:py-0 lg:my-auto'>
+					<div className='relative lg:h-[200vh] w-full'>
 						<div className='lg:sticky top-0 left-0 w-full flex flex-col lg:h-1/2 items-center justify-center'>
 							<div className='text-center'>
 								<p className='mb-3 lg:mb-0 uppercase text-pretitle text-grey-primary'>

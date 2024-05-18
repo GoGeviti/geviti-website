@@ -1,653 +1,879 @@
-const productsData = [
+// TODO: this is still a dummy data
+const biomarkersList = [
+	{ title: 'Thyroid Cascade', description: 'Evaluates thyroid function and disorders with 3-4 biomarkers.' },
+	{ title: 'Luteinizing Hormone (LH)', description: 'Indicates reproductive health and function.' },
+	{ title: 'Total Testosterone', description: 'Measures overall level of male sex hormone.' },
+	{ title: 'Free Testosterone', description: 'Assesses biologically active testosterone fraction.' },
+	{ title: 'Chloride', description: '' },
+	{ title: 'Globulin, Total', description: '' },
+	{ title: 'Calcium', description: '' },
+	{ title: 'Alkaline Phosphatase', description: '' },
+	{ title: 'A/G Ratio', description: '' },
+	{ title: 'Bilirubin', description: '' },
+	{ title: 'Blood Urea Nitrogen (BUN)', description: '' },
+	{ title: 'Sodium', description: '' },
+	{ title: 'Potassium', description: '' },
+	{ title: 'Glucose', description: '' },
+	{ title: 'Total Protein', description: '' },
+	{ title: 'Albumin', description: '' },
+	{ title: 'Carbon Dioxide (CO2)', description: '' },
+	{ title: 'Alanine Aminotransferase (ALT)', description: '' },
+	{ title: 'Aspartate Aminotransferase (AST)', description: '' },
+	{ title: 'Creatinine', description: '' },
+	{ title: 'BUN/Creatinine Ratio', description: '' },
+	{ title: 'Estimated Glomerular Filtration Rate (EGFR)', description: '' },
+	{ title: 'HbA1C', description: 'Reflects average blood sugar levels over three months.' },
+	{ title: 'Red Blood Cell Count (RBC)', description: '' },
+	{ title: 'White Blood Cell Count (WBC)', description: '' },
+	{ title: 'Hemoglobin (HGB)', description: '' },
+	{ title: 'Hematocrit (HCT)', description: '' },
+	{ title: 'Mean Corpuscular Volume (MCV)', description: '' },
+	{ title: 'Mean Corpuscular Hemoglobin (MCH)', description: '' },
+	{ title: 'Mean Corpuscular Hemoglobin Concentration (MCHC)', description: '' },
+	{ title: 'Red Cell Distribution Width (RDW)', description: '' },
+	{ title: 'Platelet Count', description: '' },
+	{ title: 'Neutrophils (Absolute and Percent)', description: '' },
+	{ title: 'Lymphocytes (Absolute and Percent)', description: '' },
+	{ title: 'Monocytes (Absolute and Percent)', description: '' },
+	{ title: 'Eosinophils (Absolute and Percent)', description: '' },
+	{ title: 'Basophils (Absolute and Percent)', description: '' },
+	{ title: 'Immature Granulocytes (Absolute and Percent)', description: '' },
+	{ title: 'Immature Cells (Absolute Count)', description: '' },
+	{ title: 'Total Cholesterol', description: '' },
+	{ title: 'High-Density Lipoprotein (HDL) Cholesterol', description: '' },
+	{ title: 'Low-Density Lipoprotein (LDL) Cholesterol (calculated)', description: '' },
+	{ title: 'Triglycerides', description: '' },
+	{ title: 'Sex Hormone Binding Globulin (SHBG)', description: '' },
+	{ title: 'Very Low-Density Lipoprotein (VLDL) Cholesterol (calculated)', description: '' },
+	{ title: 'Prostate-Specific Antigen (PSA)', description: '' },
+];
+const biomarkersData = [
 	{
-		id: 1,
-		name: 'Daily Oral Testosterone',
-		price: 15.99,
-		description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-		category: 'Hormone Therapy',
-		value: '$39.99',
-		imageSrc: '/images/home/compressed/product_1.webp',
-		bloodTest: 'yes',
-		images: [
-			'/images/products/compressed/synergi_1.webp',
-			'/images/products/compressed/synergi_1.webp',
-			'/images/products/compressed/synergi_1.webp',
-			'/images/products/compressed/synergi_1.webp'
-		],
-		details: [
-			{
-				question: 'What’s Included?',
-				answer: 'With your oral testosterone order, you\'ll receive precision-dosed oral testosterone tablets (Kyzatrex™), representing the latest innovation in testosterone therapy. Each package is accompanied by comprehensive guidelines, ensuring you take the medication safely and experience its groundbreaking benefits.'
-			},
-			{
-				question: 'What’s the process?',
-				answer: [
-					'Step 1. Choose your package.',
-					'Step 2. Complete your testing.',
-					'Step 3. Receive your treatment in the mail.',
-					'Step 4. Become the best you.'
-				]
-			},
-			{
-				question: 'Why Oral Testosterone (Kyzatrex™)?',
-				answer: 'Kyzatrex™ is the new frontier in testosterone therapy. Historically, oral testosterone treatments raised concerns about potential liver damage. Kyzatrex™, however, represents a paradigm shift. By utilizing the lymphatic system for absorption, this FDA-approved oral testosterone bypasses the liver entirely, eliminating the risk of liver toxicity. Available in three strengths (100mg, 150mg, and 200mg), it allows healthcare professionals to tailor the dosage to individual patient needs. Clinical studies have showcased its efficacy, with an impressive 96% of patients achieving normal testosterone levels. Unlike other testosterone therapies that require injections or patches, Kyzatrex™ offers unmatched convenience with oral administration.'
-			}
-		],
-		benefits: [
-			'Hormonal Balance & Enhancement',
-			'Muscle & Physical Performance'
-		]
+		key: 'finger_prick',
+		list: biomarkersList
 	},
 	{
-		id: 2,
-		name: 'Testosterone Cypianate',
-		price: 15.99,
-		description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-		category: 'Hormone Therapy',
-		value: '$39.99',
-		imageSrc: '/images/home/compressed/product_1.webp',
-		bloodTest: 'yes',
-		images: [
-			'/images/products/compressed/synergi_1.webp',
-			'/images/products/compressed/synergi_1.webp',
-			'/images/products/compressed/synergi_1.webp',
-			'/images/products/compressed/synergi_1.webp'
-		],
-		details: [
-			{
-				question: 'What’s Included?',
-				answer: 'With your testosterone replacement therapy order, receive essential syringes, needles, and alcohol pads for secure, sanitary injections. Plus, get step-by-step guidance on painless and straightforward administration.'
-			},
-			{
-				question: 'What’s the process?',
-				answer: [
-					'Step 1. Choose your package.',
-					'Step 2.  Complete your testing.',
-					'Step 3. Get treatment in mail.',
-					'Step 4. Become the best possible you.'
-				]
-			},
-			{
-				question: 'Why Testosterone Cypianate?',
-				answer: 'Testosterone Cypionate stands out in the world of hormone replacement therapies. Renowned for its consistent release and longer duration in the body, it offers a balanced approach to testosterone supplementation. Whether you\'re addressing low testosterone levels or seeking enhanced athletic performance, Testosterone Cypionate provides a reliable and effective solution.Dive into the benefits and discover why it\'s a top choice for many.'
-			}
-		],
-		benefits: [
-			'Hormonal Balance & Enhancement',
-			'Muscle & Physical Performance'
-		]
-	},
-	{
-		id: 3,
-		name: 'Testosterone Topical Cream',
-		price: 15.99,
-		description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-		category: 'Hormone Therapy',
-		value: '$39.99',
-		imageSrc: '/images/home/compressed/product_1.webp',
-		bloodTest: 'yes',
-		images: [
-			'/images/products/compressed/synergi_1.webp',
-			'/images/products/compressed/synergi_1.webp',
-			'/images/products/compressed/synergi_1.webp',
-			'/images/products/compressed/synergi_1.webp'
-		],
-		details: [
-			{
-				question: 'What’s Included?',
-				answer: 'With your topical testosterone cream order, receive everything you need for easy application. No syringes or needles required. Each package comes with clear instructions to ensure you apply the cream effectively and safely.'
-			},
-			{
-				question: 'What’s the process?',
-				answer: [
-					'Step 1. Choose your package.',
-					'Step 2. Complete your testing.',
-					'Step 3. Receive your treatment in the mail.',
-					'Step 4. Embrace a revitalized you.'
-				]
-			},
-			{
-				question: 'Why Testosterone Topical Cream??',
-				answer: 'Topical Testosterone Cream is a game-changer in the realm of hormone replacement therapies. Designed for direct skin application, it ensures consistent absorption and steady testosterone levels. Whether you\'re combating low testosterone or aiming for peak wellness, this cream offers a non-invasive, reliable, and potent solution. Explore the advantages and see why it\'s becoming the preferred choice for many.'
-			}
-		],
-		benefits: [
-			'Hormonal Balance & Enhancement',
-			'Muscle & Physical Performance'
-		]
-	},
-	{
-		id: 4,
-		name: 'Clomiphene',
-		price: 15.99,
-		description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-		category: 'Hormone Therapy',
-		value: '$39.99',
-		imageSrc: '/images/home/compressed/product_1.webp',
-		bloodTest: 'yes',
-		images: [
-			'/images/products/compressed/synergi_1.webp',
-			'/images/products/compressed/synergi_1.webp',
-			'/images/products/compressed/synergi_1.webp',
-			'/images/products/compressed/synergi_1.webp'
-		],
-		details: [
-			{
-				question: 'What’s Included?',
-				answer: 'With your Clomiphene order, you\'ll receive a carefully measured dosage suitable for your needs. Each package is accompanied by comprehensive guidelines to ensure you take the medication safely and effectively.'
-			},
-			{
-				question: 'What’s the process?',
-				answer: [
-					'Step 1. Choose your package.',
-					'Step 2. Complete your testing.',
-					'Step 3. Receive your treatment in the mail.',
-					'Step 4. Begin your journey to hormonal balance.'
-				]
-			},
-			{
-				question: 'Why Clomiphene?',
-				answer: 'For men, Clomiphene is a beacon in the world of testosterone-boosting treatments. It\'s not just about increasing testosterone; it\'s about enhancing the body\'s natural ability to produce it. Ideal for those experiencing low testosterone levels or fertility issues, Clomiphene offers a non-steroidal, effective approach. Dive into its benefits and understand why many men trust it for hormonal balance.<br /><br />For women, Clomiphene is a trusted ally in the journey of fertility. It has been a cornerstone in ovulation induction, helping countless women overcome ovulatory disorders. By stimulating the ovaries, it increases the chances of pregnancy. Discover the reasons behind its longstanding reputation in women\'s reproductive health.'
-			}
-		],
-		benefits: [
-			'Hormonal Balance & Enhancement'
-		]
-	},
-	{
-		id: 5,
-		name: 'Anastrozole',
-		price: 15.99,
-		description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-		category: 'Hormone Therapy',
-		value: '$39.99',
-		imageSrc: '/images/home/compressed/product_1.webp',
-		bloodTest: 'yes',
-		images: [
-			'/images/products/compressed/synergi_1.webp',
-			'/images/products/compressed/synergi_1.webp',
-			'/images/products/compressed/synergi_1.webp',
-			'/images/products/compressed/synergi_1.webp'
-		],
-		details: [
-			{
-				question: 'What’s Included?',
-				answer: 'With your Anastrozole order, you\'ll receive precision-dosed tablets, ensuring you get the right amount for your therapeutic needs. Each package comes with detailed instructions to guide you through safe and effective usage.'
-			},
-			{
-				question: 'What’s the process?',
-				answer: [
-					'Step 1. Choose your package.',
-					'Step 2. Complete your testing.',
-					'Step 3. Receive your treatment in the mail.',
-					'Step 4. Embark on your path to hormonal harmony.'
-				]
-			},
-			{
-				question: 'Why Anastrozole?',
-				answer: 'For men, Anastrozole is a trusted solution in the management of excess estrogen, often a side effect of testosterone replacement therapy. By inhibiting the aromatase enzyme, it prevents the conversion of testosterone to estrogen, ensuring balanced hormone levels. Whether you\'re on testosterone therapy or looking to manage naturally high estrogen levels, Anastrozole offers a targeted and effective approach.<br /><br />For women, Anastrozole is primarily known for its role in breast cancer treatment. As an aromatase inhibitor, it reduces estrogen levels, a key factor in certain types of breast cancers. Beyond its therapeutic role, it\'s also explored for its potential in managing conditions related to high estrogen. Dive into its multifaceted benefits and see why it\'s a preferred choice for many women.'
-			}
-		],
-		benefits: [
-			'Hormonal Balance & Enhancement'
-		]
-	},
-	{
-		id: 6,
-		name: 'Desiccated Thyroid',
-		price: 15.99,
-		description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-		category: 'Hormone Therapy',
-		value: '$39.99',
-		imageSrc: '/images/home/compressed/product_1.webp',
-		bloodTest: 'yes',
-		images: [
-			'/images/products/compressed/synergi_1.webp',
-			'/images/products/compressed/synergi_1.webp',
-			'/images/products/compressed/synergi_1.webp',
-			'/images/products/compressed/synergi_1.webp'
-		],
-		details: [
-			{
-				question: 'What’s Included?',
-				answer: 'With your Desiccated Thyroid order, you\'ll receive natural thyroid hormone tablets sourced from porcine thyroid glands. Each package is equipped with comprehensive guidelines to ensure you administer the medication safely and effectively.'
-			},
-			{
-				question: 'What’s the process?',
-				answer: [
-					'Step 1. Choose your package.',
-					'Step 2. Complete your testing.',
-					'Step 3. Receive your treatment in the mail.',
-					'Step 4. Step into a world of improved thyroid function and overall well-being.'
-				]
-			},
-			{
-				question: 'Why Desiccated Thyroid?',
-				answer: 'Desiccated Thyroid is a natural alternative to synthetic thyroid medications. It contains both T3 and T4 hormones, closely mimicking the body\'s own thyroid hormone production. Ideal for those with hypothyroidism or those seeking a more holistic approach to thyroid management, Desiccated Thyroid offers a balanced and comprehensive solution. Explore its benefits and understand why many prefer this natural route to thyroid health.'
-			}
-		],
-		benefits: [
-			'Hormonal Balance & Enhancement'
-		]
-	},
-	{
-		id: 7,
-		name: 'Micronized Progesterone',
-		price: 15.99,
-		description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-		category: 'Hormone Therapy',
-		value: '$39.99',
-		imageSrc: '/images/home/compressed/product_1.webp',
-		bloodTest: 'yes',
-		images: [
-			'/images/products/compressed/synergi_1.webp',
-			'/images/products/compressed/synergi_1.webp',
-			'/images/products/compressed/synergi_1.webp',
-			'/images/products/compressed/synergi_1.webp'
-		],
-		details: [
-			{
-				question: 'What’s Included?',
-				answer: 'With your Micronized Progesterone order, you\'ll receive precision-dosed capsules designed for optimal absorption and efficacy. Each package is accompanied by detailed instructions, ensuring you take the medication safely and to its fullest potential.'
-			},
-			{
-				question: 'What’s the process?',
-				answer: [
-					'Step 1. Choose your package.',
-					'Step 2. Complete your testing.',
-					'Step 3. Receive your treatment in the mail.',
-					'Step 4. Embrace a balanced hormonal journey.'
-				]
-			},
-			{
-				question: 'Why Micronized Progesterone?',
-				answer: 'Micronized Progesterone stands out as a bio-identical hormone therapy, closely resembling the body\'s naturally produced progesterone. It\'s a preferred choice for many women, especially during menopause or for those with progesterone deficiencies. Its micronized form ensures better absorption, providing effective relief from symptoms and promoting overall hormonal balance. Dive into its benefits and discover why it\'s a trusted choice for holistic hormonal health.'
-			}
-		],
-		benefits: [
-			'Hormonal Balance & Enhancement'
-		]
-	},
-	{
-		id: 8,
-		name: 'Estradiol',
-		price: 15.99,
-		description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-		category: 'Hormone Therapy',
-		value: '$39.99',
-		imageSrc: '/images/home/compressed/product_1.webp',
-		bloodTest: 'yes',
-		images: [
-			'/images/products/compressed/synergi_1.webp',
-			'/images/products/compressed/synergi_1.webp',
-			'/images/products/compressed/synergi_1.webp',
-			'/images/products/compressed/synergi_1.webp'
-		],
-		details: [
-			{
-				question: 'What’s Included?',
-				answer: 'With your Estradiol order, you\'ll receive precision-dosed tablets or patches, designed for consistent and effective hormone replacement. Each package comes with comprehensive guidelines, ensuring you administer the medication safely and effectively.'
-			},
-			{
-				question: 'What’s the process?',
-				answer: [
-					'Step 1. Choose your package.',
-					'Step 2. Complete your testing.',
-					'Step 3. Receive your treatment in the mail.',
-					'Step 4. Begin your journey to hormonal equilibrium.',
-				]
-			},
-			{
-				question: 'Why Estradiol?',
-				answer: 'Estradiol is a form of estrogen, a vital hormone for many processes in the body. It\'s commonly prescribed for women undergoing menopause, addressing symptoms like hot flashes, night sweats, and mood swings. Additionally, it plays a crucial role in hormone replacement therapy for transgender women. With its ability to restore hormonal balance and improve overall well-being, Estradiol is a cornerstone in modern endocrinology. Explore its multifaceted benefits and understand why it\'s a preferred choice for many seeking hormonal harmony.'
-			}
-		],
-		benefits: [
-			'Hormonal Balance & Enhancement'
-		]
-	},
-	{
-		id: 9,
-		name: 'Sermorelin',
-		price: 15.99,
-		description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-		category: 'Longevity',
-		value: '$39.99',
-		imageSrc: '/images/home/compressed/product_1.webp',
-		bloodTest: 'yes',
-		images: [
-			'/images/products/compressed/synergi_1.webp',
-			'/images/products/compressed/synergi_1.webp',
-			'/images/products/compressed/synergi_1.webp',
-			'/images/products/compressed/synergi_1.webp'
-		],
-		details: [
-			{
-				question: 'What’s Included?',
-				answer: 'With your Sermorelin order, you\'ll receive precision-dosed vials for subcutaneous injection. Each package is equipped with comprehensive guidelines, ensuring you administer the peptide safely and maximize its benefits. You’ll also receive the essential syringes, needles, and alcohol pads for secure, sanitary injections.'
-			},
-			{
-				question: 'What’s the process?',
-				answer: [
-					'Step 1. Choose your package.',
-					'Step 2. Complete your testing.',
-					'Step 3. Receive your treatment in the mail.',
-					'Step 4. Embark on a rejuvenated path to vitality.',
-				]
-			},
-			{
-				question: 'Why Sermorelin?',
-				answer: 'Sermorelin, a growth hormone-releasing hormone (GHRH) analog, is a powerful tool in the realm of anti-aging and wellness. Instead of directly supplementing with growth hormones, Sermorelin stimulates the body to produce and release its own natural growth hormone. This approach offers benefits like improved energy, enhanced muscle growth, and better sleep quality. Dive into its advantages and discover why many choose Sermorelin as a natural route to youthful vigor and vitality.'
-			}
-		],
-		benefits: [
-			'Muscle & Physical Performance'
-		]
-	},
-	{
-		id: 10,
-		name: 'Ipamorelin',
-		price: 15.99,
-		description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-		category: 'Longevity',
-		value: '$39.99',
-		imageSrc: '/images/home/compressed/product_1.webp',
-		bloodTest: 'yes',
-		images: [
-			'/images/products/compressed/synergi_1.webp',
-			'/images/products/compressed/synergi_1.webp',
-			'/images/products/compressed/synergi_1.webp',
-			'/images/products/compressed/synergi_1.webp'
-		],
-		details: [
-			{
-				question: 'What’s Included?',
-				answer: 'With your Ipamorelin order, you\'ll receive precision-dosed vials ready for subcutaneous injection. Each package comes with detailed instructions, ensuring you administer the peptide safely and harness its full potential. You’ll also receive the essential syringes, needles, and alcohol pads for secure, sanitary injections.'
-			},
-			{
-				question: 'What’s the process?',
-				answer: [
-					'Step 1. Choose your package.',
-					'Step 2. Complete your testing.',
-					'Step 3. Receive your treatment in the mail.',
-					'Step 4. Step into a world of enhanced vitality and wellness.'
-				]
-			},
-			{
-				question: 'Why Ipamorelin?',
-				answer: 'Ipamorelin stands out as a selective growth hormone-releasing peptide (GHRP). Unlike other GHRPs, it triggers a more targeted release of growth hormone, offering benefits without the potential side effects of increased cortisol or acetylcholine production. Ideal for those seeking improved muscle tone, fat metabolism, and anti-aging effects, Ipamorelin provides a balanced and effective approach. Dive into its benefits and understand why it\'s a top choice for those pursuing optimal health and rejuvenation.'
-			}
-		],
-		benefits: [
-			'Muscle & Physical Performance'
-		]
-	},
-	{
-		id: 11,
-		name: 'Metformin',
-		price: 15.99,
-		description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-		category: 'Longevity',
-		value: '$39.99',
-		imageSrc: '/images/home/compressed/product_1.webp',
-		bloodTest: 'yes',
-		images: [
-			'/images/products/compressed/synergi_1.webp',
-			'/images/products/compressed/synergi_1.webp',
-			'/images/products/compressed/synergi_1.webp',
-			'/images/products/compressed/synergi_1.webp'
-		],
-		details: [
-			{
-				question: 'What’s Included?',
-				answer: 'With your Metformin order, you\'ll receive precision-dosed tablets, backed by decades of research. Each package is accompanied by comprehensive guidelines, ensuring you take the medication safely and effectively.'
-			},
-			{
-				question: 'What’s the process?',
-				answer: [
-					'Step 1. Choose your package.',
-					'Step 2. Complete your testing.',
-					'Step 3. Receive your treatment in the mail.',
-					'Step 4. Begin your journey to enhanced longevity.',
-				]
-			},
-			{
-				question: 'Why Metformin for Longevity?',
-				answer: 'Metformin, traditionally used to treat type 2 diabetes, has emerged as a promising agent in the field of longevity and anti-aging. Research suggests that it can mimic some of the benefits of calorie restriction, a known longevity-enhancing strategy. By improving insulin sensitivity, reducing inflammation, and promoting cellular health, Metformin offers a multifaceted approach to extending healthspan. Dive into its benefits and discover why it\'s becoming a popular choice for those pursuing a longer, healthier life.'
-			}
-		],
-		benefits: [
-			'Metabolic & Blood Sugar Management'
-		]
-	},
-	{
-		id: 12,
-		name: 'Semaglutide',
-		price: 15.99,
-		description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-		category: 'Longevity',
-		value: '$39.99',
-		imageSrc: '/images/home/compressed/product_1.webp',
-		bloodTest: 'no',
-		images: [
-			'/images/products/compressed/synergi_1.webp',
-			'/images/products/compressed/synergi_1.webp',
-			'/images/products/compressed/synergi_1.webp',
-			'/images/products/compressed/synergi_1.webp'
-		],
-		details: [
-			{
-				question: 'What’s Included?',
-				answer: 'With your Semaglutide order, you\'ll receive precision-dosed injectable pens or vials, designed for optimal therapeutic effect. Each package is accompanied by comprehensive guidelines, ensuring you administer the medication safely and effectively. You’ll also receive the essential syringes, needles, and alcohol pads for secure, sanitary injections.'
-			},
-			{
-				question: 'What’s the process?',
-				answer: [
-					'Step 1. Choose your package.',
-					'Step 2. Complete your testing.',
-					'Step 3. Receive your treatment in the mail.',
-					'Step 4. Embark on a path to improved metabolic health.',
-				]
-			},
-			{
-				question: 'Why Semaglutide?',
-				answer: 'Semaglutide, a GLP-1 receptor agonist, has been making waves in the realm of metabolic health. Originally developed for the treatment of type 2 diabetes, it aids in regulating blood sugar levels and has shown promise in weight management. Its mechanism of action not only enhances insulin secretion but also suppresses appetite, leading to potential weight loss benefits. Dive into its multifaceted advantages and discover why Semaglutide is becoming a sought-after choice for those aiming for better metabolic control and overall health.'
-			}
-		],
-		benefits: [
-			'Metabolic & Blood Sugar Management'
-		]
-	},
-	{
-		id: 13,
-		name: 'Glutathione',
-		price: 15.99,
-		description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-		category: 'Longevity',
-		value: '$39.99',
-		imageSrc: '/images/home/compressed/product_1.webp',
-		bloodTest: 'no',
-		images: [
-			'/images/products/compressed/synergi_1.webp',
-			'/images/products/compressed/synergi_1.webp',
-			'/images/products/compressed/synergi_1.webp',
-			'/images/products/compressed/synergi_1.webp'
-		],
-		details: [
-			{
-				question: 'What’s Included?',
-				answer: 'With your Glutathione order, you\'ll receive precision-dosed supplements, whether in capsule, liquid, or injectable form. Each package comes with detailed instructions, ensuring you harness the full antioxidant potential of this powerful molecule.'
-			},
-			{
-				question: 'What’s the process?',
-				answer: [
-					'Step 1. Choose your package.',
-					'Step 2. Complete your testing.',
-					'Step 3. Receive your treatment in the mail.',
-					'Step 4. Embark on a journey to enhanced cellular health and vitality.',
-				]
-			},
-			{
-				question: 'Why Glutathione?',
-				answer: 'Glutathione, often dubbed the "master antioxidant," plays a pivotal role in maintaining cellular health and combating oxidative stress. It aids in detoxification, supports the immune system, and promotes overall health at the cellular level. With its ability to neutralize harmful free radicals and rejuvenate other antioxidants in the body, Glutathione stands as a cornerstone in the realm of health and wellness. Dive into its myriad benefits and understand why it\'s a top choice for those pursuing optimal health and longevity.<br /><br />This version emphasizes the benefits and applications of Glutathione, highlighting its antioxidant properties, role in detoxification, and overall importance in health and wellness.'
-			}
-		],
-		benefits: [
-			'Cellular Health & Detoxification'
-		]
-	},
-	{
-		id: 14,
-		name: 'NAD+',
-		price: 15.99,
-		description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-		category: 'Longevity',
-		value: '$39.99',
-		imageSrc: '/images/home/compressed/product_1.webp',
-		bloodTest: 'no',
-		images: [
-			'/images/products/compressed/synergi_1.webp',
-			'/images/products/compressed/synergi_1.webp',
-			'/images/products/compressed/synergi_1.webp',
-			'/images/products/compressed/synergi_1.webp'
-		],
-		details: [
-			{
-				question: 'What’s Included?',
-				answer: 'With your NAD+ order, you\'ll receive precision-dosed supplements or infusions, designed to elevate your cellular energy and health. Each package is equipped with comprehensive guidelines, ensuring you utilize this potent coenzyme to its fullest potential.'
-			},
-			{
-				question: 'What’s the process?',
-				answer: [
-					'Step 1. Choose your package.',
-					'Step 2. Complete your testing.',
-					'Step 3. Receive your treatment in the mail.',
-					'Step 4. Embark on a path to revitalized cellular function and vitality.',
-				]
-			},
-			{
-				question: 'Why NAD+?',
-				answer: 'NAD+ (Nicotinamide Adenine Dinucleotide) is a crucial coenzyme that plays a vital role in cellular metabolism and energy production. As we age, NAD+ levels naturally decline, which can impact cellular health and function. Supplementing with NAD+ has been linked to improved energy, enhanced DNA repair, and potential anti-aging benefits. By supporting cellular processes and mitochondrial function, NAD+ stands as a beacon in the realm of longevity and health optimization. Dive into its transformative benefits and discover why it\'s gaining traction among health enthusiasts and experts alike.'
-			}
-		],
-		benefits: [
-			'Cellular Health & Detoxification'
-		]
-	},
-	{
-		id: 15,
-		name: 'PT-141',
-		price: 15.99,
-		description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-		category: 'Sexual Function',
-		value: '$39.99',
-		imageSrc: '/images/home/compressed/product_1.webp',
-		bloodTest: 'no',
-		images: [
-			'/images/products/compressed/synergi_1.webp',
-			'/images/products/compressed/synergi_1.webp',
-			'/images/products/compressed/synergi_1.webp',
-			'/images/products/compressed/synergi_1.webp'
-		],
-		details: [
-			{
-				question: 'What’s Included?',
-				answer: 'With your PT-141 order, you\'ll receive precision-dosed vials for subcutaneous injection. Each package is accompanied by comprehensive guidelines, ensuring you administer this peptide safely and experience its unique benefits.'
-			},
-			{
-				question: 'What’s the process?',
-				answer: [
-					'Step 1. Choose your package.',
-					'Step 2. Complete your testing.',
-					'Step 3. Receive your treatment in the mail.',
-					'Step 4. Embark on a journey to enhanced intimacy and well-being.',
-				]
-			},
-			{
-				question: 'Why PT-141?',
-				answer: 'PT-141, also known as Bremelanotide, is a novel peptide that stands out in the realm of sexual health. Unlike traditional treatments that work on the vascular system, PT-141 targets the nervous system, potentially enhancing libido and sexual arousal in both men and women. Whether you\'re addressing sexual dysfunction or seeking a boost in your intimate experiences, PT-141 offers a unique and effective approach. Dive into its benefits and understand why it\'s becoming a popular choice for those looking to rekindle passion and intimacy.'
-			}
-		],
-		benefits: [
-			'Sexual Health & Performance'
-		]
-	},
-	{
-		id: 16,
-		name: 'Tadafil',
-		price: 15.99,
-		description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-		category: 'Sexual Function',
-		value: '$39.99',
-		imageSrc: '/images/home/compressed/product_1.webp',
-		bloodTest: 'no',
-		images: [
-			'/images/products/compressed/synergi_1.webp',
-			'/images/products/compressed/synergi_1.webp',
-			'/images/products/compressed/synergi_1.webp',
-			'/images/products/compressed/synergi_1.webp'
-		],
-		details: [
-			{
-				question: 'What’s Included?',
-				answer: 'With your Tadalafil order, you\'ll receive precision-dosed tablets, crafted to enhance your vascular health and intimate moments. Each package comes with detailed instructions, ensuring you take the medication safely and harness its full potential.'
-			},
-			{
-				question: 'What’s the process?',
-				answer: [
-					'Step 1. Choose your package.',
-					'Step 2. Complete your testing.',
-					'Step 3. Receive your treatment in the mail.',
-					'Step 4. Step into a world of improved vascular function and intimacy.',
-				]
-			},
-			{
-				question: 'Why Tadalafil?',
-				answer: 'Tadalafil, commonly known under the brand name Cialis, is a standout in the world of phosphodiesterase type 5 (PDE5) inhibitors. Designed to treat erectile dysfunction in men, it also offers benefits for pulmonary arterial hypertension and benign prostatic hyperplasia. Its longer duration of action sets it apart from other ED medications, providing flexibility and spontaneity. Dive into its multifaceted benefits and discover why Tadalafil is a trusted choice for many seeking enhanced vascular health and intimate experiences.'
-			}
-		],
-		benefits: [
-			'Sexual Health & Performance'
-		]
-	},
-	{
-		id: 17,
-		name: 'Sildenafil',
-		price: 15.99,
-		description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-		category: 'Sexual Function',
-		value: '$39.99',
-		imageSrc: '/images/home/compressed/product_1.webp',
-		bloodTest: 'no',
-		images: [
-			'/images/products/compressed/synergi_1.webp',
-			'/images/products/compressed/synergi_1.webp',
-			'/images/products/compressed/synergi_1.webp',
-			'/images/products/compressed/synergi_1.webp'
-		],
-		details: [
-			{
-				question: 'What’s Included?',
-				answer: 'With your Sildenafil order, you\'ll receive precision-dosed tablets, designed to invigorate your intimate experiences and vascular health. Each package is accompanied by comprehensive guidelines, ensuring you take the medication safely and maximize its benefits.'
-			},
-			{
-				question: 'What’s the process?',
-				answer: [
-					'Step 1. Choose your package.',
-					'Step 2. Complete your testing.',
-					'Step 3. Receive your treatment in the mail.',
-					'Step 4. Embrace a world of enhanced intimacy and confidence.',
-				]
-			},
-			{
-				question: 'Why Sildenafil?',
-				answer: 'Sildenafil, widely recognized by the brand name Viagra, is a pioneering force in the realm of phosphodiesterase type 5 (PDE5) inhibitors. Primarily formulated to treat erectile dysfunction in men, it has also shown promise in treating pulmonary arterial hypertension. Its rapid onset of action and proven efficacy have made it a household name. Dive into its transformative benefits and understand why Sildenafil remains a top choice for those seeking to rekindle passion and improve vascular function'
-			}
-		],
-		benefits: [
-			'Sexual Health & Performance'
-		]
+		key: 'phlebotomy',
+		list: biomarkersList
 	},
 ];
+
+const productsData = {
+	categories: [
+		{
+			id: 'men',
+			title: 'Mens Products',
+			slug: 'male-hormone-optimization'
+		},
+		{
+			id: 'women',
+			title: 'Womens Products',
+			slug: 'female-hormone-optimization'
+		}
+	],
+	men: {
+		tabs: [
+			{
+				id: 1,
+				title: 'Prescriptions',
+				preTitle: 'Compare Testosterone optimization options',
+				subCategories: [
+					{ id: 1, title: 'Testosterone Therapy', preTitle: 'Compare Testosterone optimization options', biomarkers: null },
+					{ id: 2, title: 'Anti-aging Peptides', preTitle: 'Explore Anti-aging Peptides', biomarkers: null },
+					{ id: 3, title: 'Medical Weight Loss', preTitle: 'See our medical weight loss options', biomarkers: null },
+					{ id: 4, title: 'Sexual Health', preTitle: 'Explore our sexual health Solutions', biomarkers: null },
+					{ id: 5, title: 'Thyroid', preTitle: 'Explore our Thyroid Solutions', biomarkers: null },
+				],
+			},
+			{
+				id: 2,
+				title: 'Testing Options',
+				preTitle: 'Lets see how you are actually aging',
+				subCategories: [
+					{ id: 1, title: 'Full Bloodwork Panels', preTitle: 'Compare member Bloodwork options', biomarkers: biomarkersData },
+					{ id: 2, title: 'Epigenetic Testing', preTitle: 'Lets see how you are actually aging', biomarkers: null },
+					{ id: 3, title: 'Finger Prick Blood Test', preTitle: 'At-home finger prick tests', biomarkers: biomarkersData },
+				],
+			},
+			{
+				id: 3,
+				title: 'Supplements',
+				preTitle: 'longeviti blends for long-term wellness',
+				subCategories: [],
+			},
+		],
+		products: [
+			{
+				id: 1,
+				name: 'Oral Testosterone',
+				description: 'The FDA\'s approval of oral testosterone undecanoate offers a breakthrough in TRT, providing an easy-to-use, effective option for managing Low T. This addition enhances the therapy landscape, simplifying the path to hormonal balance for many.',
+				sort_description: 'Oral Gel Capsule',
+				price: 99,
+				category: { id: 1 },
+				subCategory: { id: [1] },
+				image: '/images/solution_media/products/testosterone-therapy/oral-testosterone.webp',
+				list: [
+					'FDA Approved',
+					'Bioidentical',
+					'96% Efficacy',
+					'Oral Capsule',
+					'Twice Daily',
+					'Mimics Natural Production'
+				]
+			},
+			{
+				id: 2,
+				name: 'T Booster Complex',
+				description: 'The potent mix of Clomiphene, 7-keto-DHEA, Progesterone, and very low dose Anastrozole has been proven to significantly boost male testosterone levels without the need for exogenous testosterone replacement therapy. It\'s both safe and effective.',
+				sort_description: 'Oral Tablet',
+				price: 60,
+				category: { id: 1 },
+				subCategory: { id: [1] },
+				image: '/images/solution_media/products/testosterone-therapy/testosterone-booster.webp',
+				list: [
+					'TRT Alternative',
+					'Safe Profile',
+					'Non-Invasive',
+					'Oral Tablet',
+					'Daily Dosing',
+					'Stimulates Natural Production'
+				]
+			},
+			{
+				id: 3,
+				name: 'Enclomiphene Citrate',
+				description: 'Enclomiphene Citrate stimulates natural testosterone production, offering a standalone solution or a TRT complement. This strategy enhances hormonal health without directly adding external testosterone.',
+				sort_description: 'Oral Tablet',
+				price: 60,
+				category: { id: 1 },
+				subCategory: { id: [1] },
+				image: '/images/solution_media/products/testosterone-therapy/enclomiphene-citrat.webp',
+				list: [
+					'TRT Alternative',
+					'Safe Profile',
+					'Non-Invasive',
+					'Oral Tablet',
+					'Daily Dosing',
+					'Can Boost Natural Production'
+				]
+			},
+			{
+				id: 4,
+				name: 'Testosterone Cream',
+				description: 'Testosterone Cream provides a topical testosterone boost, ensuring steady absorption through the skin for consistent hormonal support. Ideal for those preferring non-injectable options, it offers controlled dosing and ease of use, catering to various treatment needs.',
+				sort_description: 'Topical Cream',
+				price: 70,
+				category: { id: 1 },
+				subCategory: { id: [1] },
+				image: '/images/solution_media/products/testosterone-therapy/testosterone-cream.webp',
+				list: [
+					'Applied Topically',
+					'Controlled Dosing',
+					'Convenient Use',
+					'Steady Absorption',
+					'Non-Injectable',
+					'Versatile Treatment'
+				]
+			},
+			{
+				id: 5,
+				name: 'Testosterone Cypionate',
+				description: 'Testosterone Cypionate, a long-acting injectable testosterone, offers sustained hormone supplementation with fewer doses. Delivered via injection, it supports various treatment goals, from hormone replacement to enhancing muscle growth and vitality.',
+				sort_description: '',
+				price: 30,
+				category: { id: 1 },
+				subCategory: { id: [1] },
+				image: '/images/solution_media/products/testosterone-therapy/testosterone-cypionate.webp',
+				list: [
+					'Sustained Release',
+					'Bioidentical',
+					'Versatile Use',
+					'Injectable',
+					'Highly Effective',
+					'Flexible Dosing'
+				]
+			},
+			{
+				id: 6,
+				name: 'Sermorelin Mini Troche',
+				description: 'Sermorelin Mini Troches dissolve under the tongue for rapid absorption and stimulate natural growth hormone production without the need for injections. They support anti-aging, muscle strength, and vitality.',
+				sort_description: 'Sublingual Mini Troche',
+				price: 70,
+				category: { id: 1 },
+				subCategory: { id: [2] },
+				image: '/images/solution_media/products/anti-aging/sermorelin-mini.webp',
+				list: [
+					'Quick Absorption',
+					'Enhances Vitality',
+					'Non-Invasive',
+					'Sublingual Troche',
+					'Daily Dosing',
+					'Stimulates Growth Hormone'
+				]
+			},
+			{
+				id: 7,
+				name: 'Sermorelin Injections',
+				description: 'Sermorelin Injections stimulate natural growth hormone production through subcutaneous administration, supporting anti-aging, muscle strength, and vitality. They offer targeted, effective hormone optimization for a comprehensive wellness regimen.',
+				sort_description: 'Sub-Q Injection',
+				price: 115,
+				category: { id: 1 },
+				subCategory: { id: [2] },
+				image: '/images/solution_media/products/anti-aging/sermorelin-injections.webp',
+				list: [
+					'Versatile Dosing',
+					'Enhanced Vitality',
+					'Anti-Aging',
+					'Subcutaneous Administration',
+					'Efficient Absorption',
+					'Stimulates Growth Hormone'
+				]
+			},
+			{
+				id: 8,
+				name: 'GHK-Cu Troche',
+				description: 'GHK-Cu Troches offer a convenient, sublingual route for the anti-aging benefits of GHK-Copper peptide, dissolving under the tongue for quick absorption. They promote skin health, wound healing, and collagen production, enhancing daily anti-aging routines with optimal bioavailability.',
+				sort_description: 'Sublingual Troche',
+				price: 110,
+				category: { id: 1 },
+				subCategory: { id: [2] },
+				image: '/images/solution_media/products/anti-aging/ghk-troche.webp',
+				list: [
+					'Convenient Use',
+					'Keeps Skin Young',
+					'Anti-Aging',
+					'Sublingual Delivery',
+					'Highly Bioavailable',
+					'Boosts Collagen Production'
+				]
+			},
+			{
+				id: 9,
+				name: 'Semaglutide',
+				description: 'Semaglutide Injections mimic the GLP-1 hormone to regulate appetite and aid in significant weight reduction. Administered subcutaneously, they offer an effective solution for enhancing metabolic health and managing weight.',
+				sort_description: 'Oral Gel Capsule',
+				price: 55,
+				category: { id: 1 },
+				subCategory: { id: [3] },
+				image: '/images/solution_media/products/weight-loss/semaglutide.webp',
+				list: [
+					'Reduces Hunger',
+					'Flexible Dosing',
+					'Highly Effective',
+					'Subcutaneous Administration',
+					'Metabolic Enhancement',
+					'Mimics GLP-1',
+				]
+			},
+			{
+				id: 10,
+				name: 'Tirzepatide',
+				description: 'Tirzepatide Injections offer a dual-action approach to weight management, mimicking GLP-1 and GIP to suppress appetite and promote significant weight loss. Subcutaneous administration.',
+				sort_description: 'Oral Tablet',
+				price: 150,
+				category: { id: 1 },
+				subCategory: { id: [3] },
+				image: '/images/solution_media/products/weight-loss/tirzepatide.webp',
+				list: [
+					'Reduces Hunger',
+					'Flexible Dosing',
+					'Highly Effective',
+					'Subcutaneous Administration',
+					'Metabolic Enhancement',
+					'Mimics GLP-1 and GIP',
+				]
+			},
+			{
+				id: 11,
+				name: 'Tadalafil',
+				description: 'Tadalafil tablets improve sexual health by enhancing blood flow. They offer lasting effectiveness for erectile dysfunction, promoting reduced stress, better heart health, and higher self-esteem. Better for you, your partner, and your wellness. Tadalafil can be used daily, or on an as needed basis, depending on the individual.',
+				sort_description: 'Oral Tablet',
+				price: 70,
+				category: { id: 1 },
+				subCategory: { id: [4] },
+				image: '/images/solution_media/products/sexual-health/tadalafil.webp',
+				list: [
+					'Longer Half Life',
+					'Treats ED',
+					'30 Tablets',
+					'Treats PAH',
+					'Improves Sexual Health',
+					'Treats BPH symptoms'
+				]
+			},
+			{
+				id: 12,
+				name: 'Peak Male Mini Troche',
+				description: 'Peak Male Mini Troche combines Oxytocin, PT-141 and Tadalafil. These compounds work together to improve overall emotional, physical and intimate well being. Comes with 10 dissolvable Troches.',
+				sort_description: 'Sublingual Mini Troche',
+				price: 90,
+				category: { id: 1 },
+				subCategory: { id: [4] },
+				image: '/images/solution_media/products/sexual-health/peak-male.webp',
+				list: [
+					'Sublingual Troche',
+					'Oxytocin',
+					'PT-141',
+					'Improves Intimacy',
+					'Tadalafil',
+					'Improves Sexual Health'
+				]
+			},
+			{
+				id: 13,
+				name: 'Desiccated Thyroid',
+				description: 'Desiccated Thyroid is used to treat hypothyroidism. It supplements the body’s natural thyroid hormones helping to restore the balance of T3 and T4 levels.',
+				sort_description: 'Oral Gel Capsule',
+				price: 70,
+				category: { id: 1 },
+				subCategory: { id: [5] },
+				image: '/images/solution_media/products/thyroid/desiccated-thyroid.webp',
+				list: [
+					'Enhances Energy',
+					'Balances Thyroid',
+					'Tablets',
+					'Weight Management',
+					'Mood Improvement',
+					'Improves Metabolism'
+				]
+			},
+			{
+				id: 14,
+				name: 'Biological Age Test',
+				description: 'A cutting-edge tool to help predict future healthspan and lifespan by comparing your epigenetic age to your chronological age. It also assesses key markers of aging across multiple physiological systems, providing valuable insights into overall health.',
+				sort_description: '',
+				price: 'As low as $275 per kit',
+				category: { id: 2 },
+				subCategory: { id: [2] },
+				image: '/images/solution_media/products/epigenetic-testing/biological-age-test.webp',
+				list: [
+					'DNA Methylation',
+					'Skin Aging',
+					'Vascular Aging',
+					'Cognitive Aging',
+					'Tailored Interventions',
+					'Easy Cheek Swab'
+				]
+			},
+			{
+				id: 15,
+				name: 'Custom Supplements',
+				description: 'All the ingredients you need, none you don’t. Our LonGeviti Blends feature 100% personalized mix of supplements based on your test results & health coach recommendations. Welcome to the future of wellness.',
+				sort_description: '',
+				price: 'On average $275 per 90 day supply',
+				category: { id: 3 },
+				subCategory: { id: [] },
+				image: '/images/solution_media/products/supplements/custom-supplements.webp',
+				list: [
+					'Single package',
+					'Personalized',
+					'Highly Bioavailable',
+					'No Fillers',
+					'No Additives',
+					'Data-driven Blends'
+				]
+			},
+			{
+				id: 16,
+				name: 'Essentials Panel',
+				description: 'The Essentials Panel tests key health indicators, providing a clear picture of your current status. A phlebotomist will come to your home to draw your blood. This panel looks at 45 unique biomarkers. Members receive this service free every 6 months.',
+				sort_description: '',
+				price: 'Member price: $225 per test',
+				category: { id: 2 },
+				subCategory: { id: [1] },
+				image: '/images/solution_media/products/bloodwork-panels/essentials-panel.webp',
+				list: [
+					'At-home blood work',
+					'Done by licensed phlebotomist',
+					'Testing for 45+ biomarkers',
+					'Key health indicators',
+					'In-app results breakdown',
+					'Custom supplement recommendations'
+				]
+			},
+			{
+				id: 17,
+				name: 'Comprehensive Panel',
+				description: 'The Comprehensive Panel from Geviti tests 57+ health markers, providing an in-depth view of your health. A phlebotomist will visit your home for blood collection. This panel can be upgraded from the free Essentials 6-month bloodwork for just $140.',
+				sort_description: '',
+				price: 'Member price: $365 per test',
+				category: { id: 2 },
+				subCategory: { id: [1] },
+				image: '/images/solution_media/products/bloodwork-panels/comprehensive-panel.webp',
+				list: [
+					'At-home blood work',
+					'Done by licensed phlebotomist',
+					'Testing for 57+ biomarkers',
+					'Key health indicators',
+					'In-app results breakdown',
+					'Custom supplement recommendations'
+				]
+			},
+			{
+				id: 18,
+				name: 'Ultimate Panel',
+				description: 'The Ultimate Panel tests 68+ health markers, offering the most comprehensive analysis. A phlebotomist will visit your home for blood collection. Our most in depth blood panel. Upgrade from the free 6-month bloodwork for just $220.',
+				sort_description: '',
+				price: 'Member price: $445 per test',
+				category: { id: 2 },
+				subCategory: { id: [1] },
+				image: '/images/solution_media/products/bloodwork-panels/ultimate-panel.webp',
+				list: [
+					'At-home blood work',
+					'Done by licensed phlebotomist',
+					'Testing for 68+ biomarkers',
+					'Key health indicators',
+					'In-app results breakdown',
+					'Custom supplement recommendations'
+				]
+			},
+			{
+				id: 19,
+				name: 'Hormone Check',
+				description: 'Features 14 key biomarkers essential for male reproductive and overall health. This test provides insights into hormone balance and vital health indicators, enabling proactive management of well-being. This test offers a holistic view of male hormonal status. ',
+				sort_description: '',
+				price: 'As low as $105 per kit',
+				category: { id: 2 },
+				subCategory: { id: [3] },
+				image: '/images/solution_media/products/finger-prick/hormone-check-men.webp',
+				list: [
+					'Fingerprick Test',
+					'Clinically Accurate',
+					'14 biomarkers',
+					'Oral Capsule',
+					'Twice Daily',
+					'Flexible Dosing'
+				]
+			},
+			{
+				id: 20,
+				name: 'Cardiovascular Check',
+				description: 'Features 12 essential biomarkers crucial for the early detection and management of potential cardiovascular issues, helping you maintain a healthy heart and prevent heart disease.',
+				sort_description: '',
+				price: 'As low as $90 per kit',
+				category: { id: 2 },
+				subCategory: { id: [3] },
+				image: '/images/solution_media/products/finger-prick/cardiovascular-health-panel.webp',
+				list: [
+					'FDA Approved',
+					'Bioidentical',
+					'96% Efficacy',
+					'Oral Capsule',
+					'Twice Daily',
+					'Flexible Dosing'
+				]
+			},
+			{
+				id: 21,
+				name: 'Metabolic Check',
+				description: 'Gain insight into your metabolic health. Regular monitoring of these biomarkers is crucial for early detection and management of potential health issues such as cardiovascular disease, diabetes, liver dysfunction, and vitamin deficiencies.',
+				sort_description: '',
+				price: 'As low as $75 per kit',
+				category: { id: 2 },
+				subCategory: { id: [3] },
+				image: '/images/solution_media/products/finger-prick/metabolic-health-panel.webp',
+				list: [
+					'Finger Prick Test',
+					'At-home',
+					'Easy & Accessible',
+					'Oral Capsule',
+					'Twice Daily',
+					'Flexible Dosing'
+				]
+			},
+		],
+	},
+	women: {
+		tabs: [
+			{
+				id: 1,
+				title: 'Prescriptions',
+				preTitle: 'Compare Testosterone optimization options',
+				subCategories: [
+					{ id: 1, title: 'Hormone Therapy', preTitle: 'Compare Hormone optimization options', biomarkers: null },
+					{ id: 2, title: 'Anti-aging Peptides', preTitle: 'Explore Anti-aging Peptides', biomarkers: null },
+					{ id: 3, title: 'Medical Weight Loss', preTitle: 'See our medical weight loss options', biomarkers: null },
+					{ id: 4, title: 'Sexual Health', preTitle: 'Explore our sexual health Solutions', biomarkers: null },
+					{ id: 5, title: 'Thyroid', preTitle: 'Explore our Thyroid Solutions', biomarkers: null },
+				],
+			},
+			{
+				id: 2,
+				title: 'Testing Options',
+				preTitle: 'Lets see how you are actually aging',
+				subCategories: [
+					{ id: 1, title: 'Full Bloodwork Panels', preTitle: 'Compare member Bloodwork options', biomarkers: biomarkersData },
+					{ id: 2, title: 'Epigenetic Testing', preTitle: 'Lets see how you are actually aging', biomarkers: null },
+					{ id: 3, title: 'Finger Prick Blood Test', preTitle: 'At-home finger prick tests', biomarkers: biomarkersData },
+				],
+			},
+			{
+				id: 3,
+				title: 'Supplements',
+				preTitle: 'longeviti blends for long-term wellness',
+				subCategories: [],
+			},
+		],
+		products: [
+			{
+				id: 1,
+				name: 'Oral Estradiol',
+				description: 'Oral Estradiol replenishes estrogen levels, providing a core treatment for hormonal balance. This approach supports overall hormonal health by naturally augmenting the body\'s estrogen, ideal for managing symptoms associated with estrogen deficiency.',
+				sort_description: 'Product Info',
+				price: 50,
+				category: { id: 1 },
+				subCategory: { id: [1] },
+				image: '/images/solution_media/products/hormone-therapy/oral-estradiol.webp',
+				list: [
+					'HRT',
+					'Bioidentical',
+					'Safe Profile',
+					'Oral Tablet',
+					'Daily Dosing',
+					'Enhances Natural Estrogen levels'
+				]
+			},
+			{
+				id: 2,
+				name: 'Oral Progesterone',
+				description: 'Oral Progesterone enhances natural progesterone levels, offering a fundamental solution for hormonal stability. This method supports reproductive health and mood regulation by naturally boosting the body\'s progesterone supply.',
+				sort_description: 'Product Info',
+				price: 35,
+				category: { id: 1 },
+				subCategory: { id: [1] },
+				image: '/images/solution_media/products/hormone-therapy/oral-progresterone.webp',
+				list: [
+					'Daily Dosing',
+					'Safe Profile',
+					'Non-Invasive',
+					'Oral Tablet',
+					'Regulates Mood and Sleep Cycles',
+					'Supports Natural Progesterone'
+				]
+			},
+			{
+				id: 3,
+				name: 'Progesterone Cream',
+				description: 'Progesterone Cream directly delivers progesterone to the body, providing a targeted approach to hormonal balance. Ideal for skin application, this cream helps stabilize mood and supports overall reproductive health by supplementing natural progesterone levels.',
+				sort_description: 'Product Info',
+				price: 60,
+				category: { id: 1 },
+				subCategory: { id: [1] },
+				image: '/images/solution_media/products/hormone-therapy/progesterone-cream.webp',
+				list: [
+					'Applied Topically',
+					'Non-injectable',
+					'Non-Invasive',
+					'Convenient Use',
+					'Controlled Dosing',
+					'Versatile Treatment'
+				]
+			},
+			{
+				id: 4,
+				name: 'Estradiol Cream',
+				description: 'Estradiol Cream applies bio-identical estradiol directly to the skin. This localized treatment method enhances estrogen levels, providing relief from menopausal symptoms and supporting overall hormonal health.',
+				sort_description: 'Product Info',
+				price: 70,
+				category: { id: 1 },
+				subCategory: { id: [1] },
+				image: '/images/solution_media/products/hormone-therapy/estradiol-cream.webp',
+				list: [
+					'Applied Topically',
+					'Controlled Dosing',
+					'Convenient Use',
+					'Steady Absorption',
+					'Non-injectable',
+					'Versatile Treatment'
+				]
+			},
+			{
+				id: 5,
+				name: 'Testosterone Cream',
+				description: 'Testosterone Cream enhances natural testosterone levels specifically tailored for female physiology, offering a targeted approach to hormonal balance. This topical solution boosts vitality, enhances libido, and supports overall well-being by gently increasing testosterone, crucial for optimal health in women.',
+				sort_description: 'Product Info',
+				price: 70,
+				category: { id: 1 },
+				subCategory: { id: [1] },
+				image: '/images/solution_media/products/hormone-therapy/testosterone-cream.webp',
+				list: [
+					'Applied Topically',
+					'Controlled Dosing',
+					'Convenient Use',
+					'Steady Absorption',
+					'Non-injectable',
+					'Versatile Treatment'
+				]
+			},
+			{
+				id: 6,
+				name: 'Sermorelin Mini Troche',
+				description: 'Sermorelin Mini Troches dissolve under the tongue for rapid absorption and stimulate natural growth hormone production without the need for injections. They support anti-aging, muscle strength, and vitality.',
+				sort_description: 'Sublingual Mini Troche',
+				price: 70,
+				category: { id: 1 },
+				subCategory: { id: [2] },
+				image: '/images/solution_media/products/anti-aging/sermorelin-mini.webp',
+				list: [
+					'Quick Absorption',
+					'Enhances Vitality',
+					'Non-Invasive',
+					'Sublingual Troche',
+					'Daily Dosing',
+					'Stimulates Growth Hormone'
+				]
+			},
+			{
+				id: 7,
+				name: 'Sermorelin Injections',
+				description: 'Sermorelin Injections stimulate natural growth hormone production through subcutaneous administration, supporting anti-aging, muscle strength, and vitality. They offer targeted, effective hormone optimization for a comprehensive wellness regimen.',
+				sort_description: 'Sub-Q Injection',
+				price: 115,
+				category: { id: 1 },
+				subCategory: { id: [2] },
+				image: '/images/solution_media/products/anti-aging/sermorelin-injections.webp',
+				list: [
+					'Versatile Dosing',
+					'Enhanced Vitality',
+					'Anti-Aging',
+					'Subcutaneous Administration',
+					'Efficient Absorption',
+					'Stimulates Growth Hormone'
+				]
+			},
+			{
+				id: 8,
+				name: 'GHK-Cu Troche',
+				description: 'GHK-Cu Troches offer a convenient, sublingual route for the anti-aging benefits of GHK-Copper peptide, dissolving under the tongue for quick absorption. They promote skin health, wound healing, and collagen production, enhancing daily anti-aging routines with optimal bioavailability.',
+				sort_description: 'Sublingual Troche',
+				price: 110,
+				category: { id: 1 },
+				subCategory: { id: [2] },
+				image: '/images/solution_media/products/anti-aging/ghk-troche.webp',
+				list: [
+					'Convenient Use',
+					'Keeps Skin Young',
+					'Anti-Aging',
+					'Sublingual Delivery',
+					'Highly Bioavailable',
+					'Boosts Collagen Production'
+				]
+			},
+			{
+				id: 9,
+				name: 'Semaglutide',
+				description: 'Semaglutide Injections mimic the GLP-1 hormone to regulate appetite and aid in significant weight reduction. Administered subcutaneously, they offer an effective solution for enhancing metabolic health and managing weight.',
+				sort_description: 'Oral Gel Capsule',
+				price: 55,
+				category: { id: 1 },
+				subCategory: { id: [3] },
+				image: '/images/solution_media/products/weight-loss/semaglutide.webp',
+				list: [
+					'Reduces Hunger',
+					'Flexible Dosing',
+					'Highly Effective',
+					'Subcutaneous Administration',
+					'Metabolic Enhancement',
+					'Mimics GLP-1',
+				]
+			},
+			{
+				id: 10,
+				name: 'Tirzepatide',
+				description: 'Tirzepatide Injections offer a dual-action approach to weight management, mimicking GLP-1 and GIP to suppress appetite and promote significant weight loss. Subcutaneous administration.',
+				sort_description: 'Oral Tablet',
+				price: 150,
+				category: { id: 1 },
+				subCategory: { id: [3] },
+				image: '/images/solution_media/products/weight-loss/tirzepatide.webp',
+				list: [
+					'Reduces Hunger',
+					'Flexible Dosing',
+					'Highly Effective',
+					'Subcutaneous Administration',
+					'Metabolic Enhancement',
+					'Mimics GLP-1 and GIP',
+				]
+			},
+			{
+				id: 12,
+				name: 'Peak Female Mini Troche',
+				description: 'Peak Female Mini Troche combines Oxytocin, PT-141 and Tadalafil. These compounds work together to improve overall emotional, physical and intimate well being. Comes with 10 dissolvable Troches.',
+				sort_description: 'Sublingual Mini Troche',
+				price: 90,
+				category: { id: 1 },
+				subCategory: { id: [4] },
+				image: '/images/solution_media/products/sexual-health/peak-female.webp',
+				list: [
+					'Sublingual Troche',
+					'Oxytocin',
+					'PT-141',
+					'Improves Intimacy',
+					'Tadalafil',
+					'Improves Sexual Health'
+				]
+			},
+			{
+				id: 13,
+				name: 'Desiccated Thyroid',
+				description: 'Desiccated Thyroid is used to treat hypothyroidism. It supplements the body’s natural thyroid hormones helping to restore the balance of T3 and T4 levels.',
+				sort_description: 'Oral Gel Capsule',
+				price: 70,
+				category: { id: 1 },
+				subCategory: { id: [5] },
+				image: '/images/solution_media/products/thyroid/desiccated-thyroid.webp',
+				list: [
+					'Enhances Energy',
+					'Balances Thyroid',
+					'Tablets',
+					'Weight Management',
+					'Mood Improvement',
+					'Improves Metabolism'
+				]
+			},
+			{
+				id: 14,
+				name: 'Biological Age Test',
+				description: 'A cutting-edge tool to help predict future healthspan and lifespan by comparing your epigenetic age to your chronological age. It also assesses key markers of aging across multiple physiological systems, providing valuable insights into overall health.',
+				sort_description: '',
+				price: 'As low as $275 per kit',
+				category: { id: 2 },
+				subCategory: { id: [2] },
+				image: '/images/solution_media/products/epigenetic-testing/biological-age-test.webp',
+				list: [
+					'Cognitive Aging',
+					'Tailored Interventions',
+					'Easy Cheek Swab'
+				]
+			},
+			{
+				id: 15,
+				name: 'Custom Supplements',
+				description: 'All the ingredients you need, none you don’t. Our LonGeviti Blends feature 100% personalized mix of supplements based on your test results & health coach recommendations. Welcome to the future of wellness.',
+				sort_description: '',
+				price: 'On average $275 per 90 day supply',
+				category: { id: 3 },
+				subCategory: { id: [] },
+				image: '/images/solution_media/products/supplements/custom-supplements.webp',
+				list: [
+					'Single package',
+					'Personalized',
+					'Highly Bioavailable',
+					'No Fillers',
+					'No Additives',
+					'Data-driven Blends'
+				]
+			},
+			{
+				id: 16,
+				name: 'Essentials Panel',
+				description: 'The Essentials Panel tests key health indicators, providing a clear picture of your current status. A phlebotomist will come to your home to draw your blood. This panel looks at 45 unique biomarkers. Members receive this service free every 6 months.',
+				sort_description: '',
+				price: 'Member price: $245 per test',
+				category: { id: 2 },
+				subCategory: { id: [1] },
+				image: '/images/solution_media/products/bloodwork-panels/essentials-panel.webp',
+				list: [
+					'At-home blood work',
+					'Done by licensed phlebotomist',
+					'Testing for 45+ biomarkers',
+					'Key health indicators',
+					'In-app results breakdown',
+					'Custom supplement recommendations'
+				]
+			},
+			{
+				id: 17,
+				name: 'Comprehensive Panel',
+				description: 'The Comprehensive Panel from Geviti tests 57+ health markers, providing an in-depth view of your health. A phlebotomist will visit your home for blood collection. This panel can be upgraded from the free Essentials 6-month bloodwork for just $140.',
+				sort_description: '',
+				price: 'Member price: $330 per test',
+				category: { id: 2 },
+				subCategory: { id: [1] },
+				image: '/images/solution_media/products/bloodwork-panels/comprehensive-panel.webp',
+				list: [
+					'At-home blood work',
+					'Done by licensed phlebotomist',
+					'Testing for 57+ biomarkers',
+					'Key health indicators',
+					'In-app results breakdown',
+					'Custom supplement recommendations'
+				]
+			},
+			{
+				id: 18,
+				name: 'Ultimate Panel',
+				description: 'The Ultimate Panel tests 68+ health markers, offering the most comprehensive analysis. A phlebotomist will visit your home for blood collection. Our most in depth blood panel. Upgrade from the free 6-month bloodwork for just $220.',
+				sort_description: '',
+				price: 'Member price: $420 per test',
+				category: { id: 2 },
+				subCategory: { id: [1] },
+				image: '/images/solution_media/products/bloodwork-panels/ultimate-panel.webp',
+				list: [
+					'At-home blood work',
+					'Done by licensed phlebotomist',
+					'Testing for 68+ biomarkers',
+					'Key health indicators',
+					'In-app results breakdown',
+					'Custom supplement recommendations'
+				]
+			},
+			{
+				id: 19,
+				name: 'Hormone Check',
+				description: 'Features 8 essential biomarkers crucial for female reproductive and overall health. This test offers insights into hormonal balance and other key health indicators like thyroid function and immune health. Provides a holistic view of hormonal status.',
+				sort_description: '',
+				price: 'As low as $115 per kit',
+				category: { id: 2 },
+				subCategory: { id: [3] },
+				image: '/images/solution_media/products/finger-prick/hormone-check-women.webp',
+				list: [
+					'FDA Approved',
+					'Bioidentical',
+					'96% Efficacy',
+					'Oral Capsule',
+					'Twice Daily',
+					'Flexible Dosing'
+				]
+			},
+			{
+				id: 20,
+				name: 'Cardiovascular Check',
+				description: 'Features 12 essential biomarkers crucial for the early detection and management of potential cardiovascular issues, helping you maintain a healthy heart and prevent heart disease.',
+				sort_description: '',
+				price: 'As low as $90 per kit',
+				category: { id: 2 },
+				subCategory: { id: [3] },
+				image: '/images/solution_media/products/finger-prick/cardiovascular-health-panel.webp',
+				list: [
+					'FDA Approved',
+					'Bioidentical',
+					'96% Efficacy',
+					'Oral Capsule',
+					'Twice Daily',
+					'Flexible Dosing'
+				]
+			},
+			{
+				id: 21,
+				name: 'Metabolic Check',
+				description: 'Gain insight into your metabolic health. Regular monitoring of these biomarkers is crucial for early detection and management of potential health issues such as cardiovascular disease, diabetes, liver dysfunction, and vitamin deficiencies.',
+				sort_description: '',
+				price: 'As low as $75 per kit',
+				category: { id: 2 },
+				subCategory: { id: [3] },
+				image: '/images/solution_media/products/finger-prick/metabolic-health-panel.webp',
+				list: [
+					'Finger Prick Test',
+					'At-home',
+					'Easy & Accessible',
+					'Oral Capsule',
+					'Twice Daily',
+					'Flexible Dosing'
+				]
+			},
+		]
+	},
+};
 
 export default productsData;

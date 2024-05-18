@@ -5,11 +5,32 @@ import { solutionData } from '@/constant/data';
 
 import ButtonCta from '../ButtonCta';
 
-import Stat from './Stat';
-
 const optimizedData = solutionData.optimizedYourSelf;
 
 const Flexible: React.FC = () => {
+	const renderCaption = () => {
+		return (
+			<div className='relative w-full h-full z-10'>
+				<div
+					className='absolute z-10 w-full h-[74%] max-lg:hidden bottom-0 inset-x-0'
+					style={ { background: 'linear-gradient(0deg, #181A1C 0%, rgba(24, 26, 28, 0) 96.26%)' } }
+				/>
+				<div
+					className='absolute z-10 w-full h-[48%] lg:hidden bottom-0 inset-x-0'
+					style={ { background: 'linear-gradient(0deg, #181A1C 0%, rgba(24, 26, 28, 0) 96.26%)' } }
+				/>
+				<div className='absolute left-0 lg:right-0 bottom-0 z-[11] pb-[17px] px-5 lg:px-[27px] text-white text-left lg:text-right flex flex-col lg:justify-end'>
+					<span className='text-[100px] lg:text-[209.67px] !leading-none -tracking-0.04em'>
+						{ optimizedData.imageCaption.desktop.count }<span className='text-4xl lg:text-[104.84px]'>{ optimizedData.imageCaption.desktop.suffix }</span>
+					</span>
+					<span className='text-sm !leading-6 tracking-0.11em uppercase font-semibold max-lg:max-w-[301px]'>
+						{ optimizedData.imageCaption.desktop.subheading1 }
+					</span>
+				</div>
+			</div>
+		);
+	};
+
 	return (
 		<div className='overflow-hidden lg:px-3 pt-6'>
 			<div className='bg-grey-secondary h-full w-full rounded-19px relative overflow-hidden font-Poppins'>
@@ -52,19 +73,7 @@ const Flexible: React.FC = () => {
 								className='object-cover pointer-events-none rounded-2xl w-full h-full'
 							/>
 
-							<div className='relative w-full h-full z-10'>
-								<div
-									className='absolute z-10 bg-black w-full h-[74%] bottom-0 inset-x-0'
-									style={ { background: 'linear-gradient(0deg, #181A1C 0%, rgba(24, 26, 28, 0) 96.26%)' } } />
-								<div className='absolute right-0 bottom-0 z-[11] pb-[17px] pr-[27px] text-white text-right flex flex-col justify-end'>
-									<span className='text-[209.67px] !leading-none -tracking-0.04em'>
-										{ optimizedData.imageCaption.desktop.count }<span className='text-[104.84px]'>{ optimizedData.imageCaption.desktop.suffix }</span>
-									</span>
-									<span className='text-sm !leading-6 tracking-0.11em uppercase font-semibold'>
-										{ optimizedData.imageCaption.desktop.subheading1 }
-									</span>
-								</div>
-							</div>
+							{ renderCaption() }
 						</div>
 					</div>
 
@@ -81,18 +90,7 @@ const Flexible: React.FC = () => {
 								/>
 							</div>
 
-							<div
-								className='absolute inset-x-0 bottom-0 text-white pt-3.5 pl-[21px] pb-[18px]'
-								style={ { background: 'linear-gradient(0deg, #181A1C 20.46%, rgba(24, 26, 28, 0.72) 61.5%, rgba(24, 26, 28, 0) 100%)' } }>
-								<Stat
-									num={ optimizedData.imageCaption.mobile.count }
-									suffix={ optimizedData.imageCaption.mobile.suffix }
-									suffixClassName='text-4xl !leading-normal -tracking-0.04em' />
-								<div className='uppercase text-[3.581vw] xs2:text-sm !leading-[171%] tracking-0.11em font-semibold'>
-									<p className='text-blue-primary'>{ optimizedData.imageCaption.mobile.subheading1 }</p>
-									<p className='text-white'>{ optimizedData.imageCaption.mobile.subheading2 }</p>
-								</div>
-							</div>
+							{ renderCaption() }
 						</div>
 
 						<div className='flex justify-center max-sm:w-full mt-[42px]'>

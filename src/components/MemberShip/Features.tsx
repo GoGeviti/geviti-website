@@ -3,6 +3,7 @@ import Image from 'next/image';
 
 import { membershipData } from '@/constant/data';
 import clsxm from '@/helpers/clsxm';
+import { splitList } from '@/helpers/misc';
 
 const featuresData = membershipData.features;
 type FeatureProps = {
@@ -17,10 +18,6 @@ type FeatureProps = {
 		icon: ((props?: React.SVGProps<SVGSVGElement> | undefined) => React.JSX.Element) | null; // eslint-disable-line no-unused-vars
 		items: string[];
 	} | null;
-};
-
-const splitList = (list: string[], size = 3) => {
-	return [...Array(Math.ceil(list.length / size))].map((_, i) => list.slice(i * size, i * size + size));
 };
 
 const Features: React.FC = () => {

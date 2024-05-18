@@ -1,5 +1,4 @@
 import { homeData } from '@/constant/data';
-import { getProducts } from '@/services/products';
 
 import DiscoverGeviti from '../DiscoverGeviti';
 
@@ -10,14 +9,11 @@ type ProductsSectionProps = {
 const ProductsSection: React.FC<ProductsSectionProps> = async({
 	withBg = false,
 }) => {
-	const products = await getProducts();
-
 	return (
 		<DiscoverGeviti
 			title={ homeData.products.title }
 			description={ homeData.products.description }
 			withBg={ withBg }
-			products={ products.docs }
 		/>
 	);
 };

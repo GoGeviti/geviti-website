@@ -18,10 +18,10 @@ const BannerSolution: React.FC<{ type: 'men' | 'women'; }> = ({ type }) => {
 				imageMobile={ bannerData.imageMobile[type] }
 				btnCta={ bannerData.btnCta }
 				overlayClassName={ clsxm(
-					'bg-banner-mobile-solution max-lg:h-[555px]',
+					'bg-banner-mobile-solution max-lg:h-[58%] lg:rounded-r-none',
 					type === 'men'
-						? 'lg:bg-banner-landing'
-						: 'lg:bg-banner-women'
+						? 'lg:bg-banner-member lg:w-[52%]'
+						: 'lg:bg-banner-women lg:w-[40%]'
 				) }
 			/>
 		</div>

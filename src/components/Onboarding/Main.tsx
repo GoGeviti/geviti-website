@@ -81,7 +81,8 @@ const OrderJourney: React.FC<OrderJourneyProps> = ({ searchParams, state }) => {
 	const [isAlreadyOnHRT, setIsAlreadyOnHRT] = useState<boolean>(false);
 	const [selectedPlan, setSelectedPlan] = useState<Tier | null>(null);
 	const [userData, setUserData] = useState<IPrecheckout.UserData>({
-		name: '',
+		first_name: '',
+		last_name: '',
 		email: '',
 		gender: '',
 		birthdate: null,
@@ -397,7 +398,7 @@ const OrderJourney: React.FC<OrderJourneyProps> = ({ searchParams, state }) => {
 						onSubmit={ (data: IPrecheckout.FormNameEmailState) => {
 							setUserData(prevData => ({
 								...prevData,
-								name: data.name,
+								first_name: data.first_name,
 								email: data.email
 							}));
 							onStepNext(onboardingData.formNameEmail.nextStep);

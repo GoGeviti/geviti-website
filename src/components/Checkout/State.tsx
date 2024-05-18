@@ -4,17 +4,19 @@ import React, { useState } from 'react';
 import { AiFillCloseCircle } from 'react-icons/ai';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-import Link from 'next/link';
 import { toast } from 'sonner';
 
 import { checkoutData } from '@/constant/data';
-import clsxm from '@/helpers/clsxm';
 import { screens } from '@/helpers/style';
 import { useWindowDimensions } from '@/hooks';
 import { IPrecheckout } from '@/interfaces';
 import { createNotionDatabase } from '@/services/checkout';
 
+import CustomLink from '../CustomLink';
+
+import Band, { BAND_DURATION as DURATION } from './Band';
 import { CheckoutStep } from './Main';
+import Navbar from './Navbar';
 
 type StateProps = {
 	iconType?: 'success' | 'exclamation' | 'clock';
@@ -26,29 +28,6 @@ type StateProps = {
 const slideUpVariants = {
 	visible: { y: 0 },
 	initial: { y: '100%' },
-};
-
-const DURATION = 1;
-
-const Band: React.FC<{ delay?: number; className?: string; children?: React.ReactNode; }> = ({ delay, className, children }) => {
-	return (
-		<motion.div
-			variants={ {
-				initial: { scale: 0.25, opacity: 0 },
-				visible: { scale: 1, opacity: 1 }
-			} }
-			initial='initial'
-			animate='visible'
-			transition={ { ease: 'easeInOut', duration: DURATION, delay } }
-			style={ {
-				translateX: '-50%',
-				translateY: '-50%',
-			} }
-			className={ clsxm(
-				'absolute top-1/2 left-1/2 rounded-full', className) }>
-			{ children }
-		</motion.div>
-	);
 };
 
 const ExclamationIcon = () => {
@@ -240,24 +219,33 @@ type ButtonWrapperProps = {
 	href?: string;
 	className?: string;
 	children?: React.ReactNode;
+	externalLink?: boolean;
+	onClick?: () => void;
 };
 
-const ButtonWrapper: React.FC<ButtonWrapperProps> = ({
+export const ButtonWrapper: React.FC<ButtonWrapperProps> = ({
 	type,
 	href,
 	className,
-	children
+	children,
+	externalLink,
+	onClick
 }) => {
 	if (type === 'link' && href) {
 		return (
-			<Link
+			<CustomLink
 				href={ href }
-				className={ className }>{ children }</Link>
+				className={ className }
+				externalLink={ externalLink }
+				onClick={ onClick }
+			>{ children }</CustomLink>
 		);
 	}
 
 	return (
-		<div className={ className }>{ children }</div>
+		<div
+			className={ className }
+			onClick={ onClick }>{ children }</div>
 	);
 };
 
@@ -313,141 +301,146 @@ const State: React.FC<StateProps> = ({
 	};
 
 	return (
-		<div className='bg-primary lg:bg-black-card h-full w-full lg:rounded-20px overflow-hidden flex items-center justify-center lg:py-10 xl:py-[4.63vh] xl:min-h-[calc(100svh-80px)]'>
-			<motion.div
-				variants={ {
-					initial: { y: 0, opacity: 1 },
-					visible: { y: 0, opacity: 1 },
-					exit: { y: '-50%', opacity: 0 },
-				} }
-				initial='initial'
-				animate='visible'
-				exit='exit'
-				transition={ { ease: 'easeInOut', duration: 1 } }
-				className='max-w-[651px] mx-auto w-full text-center max-lg:px-4 py-[8.855vh] xs:py-[75px] lg:py-0 h-full flex flex-col justify-center items-center'>
-				<div className='mb-[4.959vh] xs:mb-[42px] flex flex-col items-center'>
-					{ renderIcon() }
-					<div className='overflow-hidden inline-block max-lg:hidden'>
-						<motion.div
-							variants={ slideUpVariants }
-							initial='initial'
-							animate='visible'
-							transition={ { ease: 'easeInOut', duration: .75, delay: .6 } }
-							className='inline-block'
-						>
-							<div className='relative overflow-hidden w-[145px] h-[34.12px] mb-6 lg:mt-16'>
-								<Image
-									src='/images/logo/logo_light.webp'
-									alt='geviti'
-									fill
-									className='w-full h-full'
-								/>
+		<div className='flex min-h-screen flex-col items-center h-full w-full font-Poppins lg:px-3 xl:px-10 2xl:px-20 pt-[87px] bg-primary lg:justify-center lg:py-3 xl:py-10'>
+			<Navbar
+				className='lg:hidden'
+				theme='dark' />
+			<div className='bg-primary lg:bg-black-card h-full w-full lg:rounded-20px overflow-hidden flex items-center justify-center lg:py-10 xl:py-[4.63vh] xl:min-h-[calc(100svh-80px)]'>
+				<motion.div
+					variants={ {
+						initial: { y: 0, opacity: 1 },
+						visible: { y: 0, opacity: 1 },
+						exit: { y: '-50%', opacity: 0 },
+					} }
+					initial='initial'
+					animate='visible'
+					exit='exit'
+					transition={ { ease: 'easeInOut', duration: 1 } }
+					className='max-w-[651px] mx-auto w-full text-center max-lg:px-4 py-[8.855vh] xs:py-[75px] lg:py-0 h-full flex flex-col justify-center items-center'>
+					<div className='mb-[4.959vh] xs:mb-[42px] flex flex-col items-center'>
+						{ renderIcon() }
+						<div className='overflow-hidden inline-block max-lg:hidden'>
+							<motion.div
+								variants={ slideUpVariants }
+								initial='initial'
+								animate='visible'
+								transition={ { ease: 'easeInOut', duration: .75, delay: .6 } }
+								className='inline-block'
+							>
+								<div className='relative overflow-hidden w-[145px] h-[34.12px] mb-6 lg:mt-16'>
+									<Image
+										src='/images/logo/logo_light.webp'
+										alt='geviti'
+										fill
+										className='w-full h-full'
+									/>
+								</div>
+							</motion.div>
+						</div>
+						{ stateData.title && (
+							<div className='max-lg:max-w-[331px] mx-auto w-full mt-[8.973vh] xs:mt-[76px] lg:mt-0'>
+								<h1 className='flex flex-col'>
+									{ titleRows.map((text, textIdx) => {
+										return (
+											<span
+												key={ `title-${ textIdx }` }
+												className='overflow-hidden inline-block'>
+												<motion.span
+													variants={ {
+														visible: {
+															y: 0,
+															transition: {
+																ease: 'easeInOut',
+																duration: .75,
+																delay: (textIdx * 0.25) + 0.85
+															}
+														},
+														initial: { y: '100%' }
+													} }
+													initial='initial'
+													animate='visible'
+													className='inline-block text-white lg:-tracking-0.04em text-[6.4vw] xxs2:text-2xl lg:text-4xl !leading-normal lg:font-medium'
+												>
+													{ text }
+												</motion.span>
+											</span>
+										);
+									}) }
+								</h1>
 							</div>
-						</motion.div>
+						) }
+						{ stateData.description && (
+							<div className='overflow-hidden inline-block mt-4 lg:mt-3.5'>
+								<div className='flex flex-col'>
+									{ descriptionRows.map((text, textIdx) => {
+										return (
+											<span
+												key={ `description-${ textIdx }` }
+												className='overflow-hidden inline-block'>
+												<motion.span
+													variants={ {
+														visible: {
+															y: 0,
+															transition: {
+																ease: 'easeInOut',
+																duration: .75,
+																delay: (titleRows.length * 0.25) + 0.85 + (textIdx * 0.25)
+															}
+														},
+														initial: { y: '100%' }
+													} }
+													initial='initial'
+													animate='visible'
+													className='inline-block text-grey-primary text-[3.2vw] xxs2:text-xs !leading-5 lg:text-sm lg:!leading-normal'
+												>
+													{ text }
+												</motion.span>
+											</span>
+										);
+									}) }
+								</div>
+							</div>
+						) }
 					</div>
-					{ stateData.title && (
-						<div className='max-lg:max-w-[331px] mx-auto w-full mt-[8.973vh] xs:mt-[76px] lg:mt-0'>
-							<h1 className='flex flex-col'>
-								{ titleRows.map((text, textIdx) => {
-									return (
-										<span
-											key={ `title-${ textIdx }` }
-											className='overflow-hidden inline-block'>
-											<motion.span
-												variants={ {
-													visible: {
-														y: 0,
-														transition: {
-															ease: 'easeInOut',
-															duration: .75,
-															delay: (textIdx * 0.25) + 0.85
-														}
-													},
-													initial: { y: '100%' }
-												} }
-												initial='initial'
-												animate='visible'
-												className='inline-block text-white lg:-tracking-0.04em text-[6.4vw] xxs2:text-2xl lg:text-4xl !leading-normal lg:font-medium'
-											>
-												{ text }
-											</motion.span>
-										</span>
-									);
-								}) }
-							</h1>
-						</div>
+					{ btnPrimaryData && (
+						<ButtonWrapper
+							type={ btnPrimaryData.type }
+							href={ btnPrimaryData.href }
+							className='overflow-hidden inline-block w-full'>
+							<motion.span
+								variants={ slideUpVariants }
+								initial='initial'
+								animate='visible'
+								transition={ { ease: 'easeInOut', duration: .75, delay: (titleRows.length * 0.25) + 0.85 + (descriptionRows.length * 0.25) } }
+								className='inline-block w-full'>
+								<button
+									onClick={ onClickBtnPrimary }
+									disabled={ loading }
+									className='focus:ring-0 focus:outline-none bg-blue-primary w-full rounded-full font-medium text-lg !leading-6 p-[17px] text-primary hover:brightness-105 transform transition duration-200'>
+									{ loading ? 'Loading...' : btnPrimaryData.text }
+								</button>
+							</motion.span>
+						</ButtonWrapper>
 					) }
-					{ stateData.description && (
-						<div className='overflow-hidden inline-block mt-4 lg:mt-3.5'>
-							<div className='flex flex-col'>
-								{ descriptionRows.map((text, textIdx) => {
-									return (
-										<span
-											key={ `description-${ textIdx }` }
-											className='overflow-hidden inline-block'>
-											<motion.span
-												variants={ {
-													visible: {
-														y: 0,
-														transition: {
-															ease: 'easeInOut',
-															duration: .75,
-															delay: (titleRows.length * 0.25) + 0.85 + (textIdx * 0.25)
-														}
-													},
-													initial: { y: '100%' }
-												} }
-												initial='initial'
-												animate='visible'
-												className='inline-block text-grey-primary text-[3.2vw] xxs2:text-xs !leading-5 lg:text-sm lg:!leading-normal'
-											>
-												{ text }
-											</motion.span>
-										</span>
-									);
-								}) }
-							</div>
-						</div>
+					{ btnSecondaryData && (
+						<ButtonWrapper
+							href={ btnSecondaryData.href }
+							type={ btnSecondaryData.type }
+							className='overflow-hidden inline-block w-full mt-6'>
+							<motion.span
+								variants={ slideUpVariants }
+								initial='initial'
+								animate='visible'
+								transition={ { ease: 'easeInOut', duration: .75, delay: (titleRows.length * 0.25) + 1.1 + (descriptionRows.length * 0.25) } }
+								className='inline-block w-full'>
+								<span className='cursor-pointer focus:ring-0 focus:outline-none bg-transparent w-full font-medium text-lg !leading-6 p-[17px] text-grey-primary hover:text-white transform transition duration-200'>
+									{ btnSecondaryData.text }
+								</span>
+							</motion.span>
+						</ButtonWrapper>
 					) }
-				</div>
-				{ btnPrimaryData && (
-					<ButtonWrapper
-						type={ btnPrimaryData.type }
-						href={ btnPrimaryData.href }
-						className='overflow-hidden inline-block w-full'>
-						<motion.span
-							variants={ slideUpVariants }
-							initial='initial'
-							animate='visible'
-							transition={ { ease: 'easeInOut', duration: .75, delay: (titleRows.length * 0.25) + 0.85 + (descriptionRows.length * 0.25) } }
-							className='inline-block w-full'>
-							<button
-								onClick={ onClickBtnPrimary }
-								disabled={ loading }
-								className='focus:ring-0 focus:outline-none bg-blue-primary w-full rounded-full font-medium text-lg !leading-6 p-[17px] text-primary hover:brightness-105 transform transition duration-200'>
-								{ loading ? 'Loading...' : btnPrimaryData.text }
-							</button>
-						</motion.span>
-					</ButtonWrapper>
-				) }
-				{ btnSecondaryData && (
-					<ButtonWrapper
-						href={ btnSecondaryData.href }
-						type={ btnSecondaryData.type }
-						className='overflow-hidden inline-block w-full mt-6'>
-						<motion.span
-							variants={ slideUpVariants }
-							initial='initial'
-							animate='visible'
-							transition={ { ease: 'easeInOut', duration: .75, delay: (titleRows.length * 0.25) + 1.1 + (descriptionRows.length * 0.25) } }
-							className='inline-block w-full'>
-							<span className='cursor-pointer focus:ring-0 focus:outline-none bg-transparent w-full font-medium text-lg !leading-6 p-[17px] text-grey-primary hover:text-white transform transition duration-200'>
-								{ btnSecondaryData.text }
-							</span>
-						</motion.span>
-					</ButtonWrapper>
-				) }
-			</motion.div>
+				</motion.div>
+			</div>
 		</div>
 	);
 };

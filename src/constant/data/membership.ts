@@ -39,7 +39,7 @@ const membershipData = {
 			externalLink: false,
 		},
 		btnCta2: {
-			href: '/products',
+			href: '#packages',
 			externalLink: false,
 			text: '<span class="lg:hidden">Learn More</span><span class="max-lg:hidden">View Packages</span>',
 		},
@@ -125,6 +125,7 @@ const membershipData = {
 					{ title: 'Potassium', description: '' },
 					{ title: 'Glucose', description: '' },
 					{ title: 'Total Protein', description: '' },
+					{ title: 'Albumin', description: '' },
 					{ title: 'Carbon Dioxide (CO2)', description: '' },
 					{ title: 'Alanine Aminotransferase (ALT)', description: '' },
 					{ title: 'Aspartate Aminotransferase (AST)', description: '' },
@@ -618,6 +619,7 @@ const membershipData = {
 				name: 'Essentials Diagnostic',
 				price: '$299',
 				priceNote: 'one time payment',
+				priceDescGeneral: '<span class="lg:hidden">+$99/m billed quarterly</span><span class="max-lg:hidden">+ ongoing membership fee</span>',
 				biomakers: '45+',
 				mostPopular: false,
 				monthly: '+ $119 monthly',
@@ -653,6 +655,7 @@ const membershipData = {
 				name: 'Comprehensive Diagnostic',
 				price: '$469',
 				priceNote: 'one time payment',
+				priceDescGeneral: '<span class="lg:hidden">+ $297 quarterly</span><span class="max-lg:hidden">+ ongoing membership fee</span>',
 				biomakers: '57+',
 				mostPopular: true,
 				monthly: '+ $119 monthly',
@@ -688,6 +691,7 @@ const membershipData = {
 				name: 'Ultimate Diagnostic',
 				price: '$599',
 				priceNote: 'one time payment',
+				priceDescGeneral: '<span class="lg:hidden">+ $297 quarterly</span><span class="max-lg:hidden">+ ongoing membership fee</span>',
 				biomakers: '68+',
 				mostPopular: false,
 				monthly: '+ $119 monthly',
@@ -862,7 +866,7 @@ const membershipData = {
 	},
 	pricingComparison: {
 		title: 'More, for less with Geviti',
-		description: 'Lorem ipsum dolor sit amet consectetur. Sed posuere aliquet malesuada gravida velit massa nunc. Nunc at nunc nibh pretium',
+		description: 'As a Geviti member, you have access to all the best tools for longevity, at an industry-leading price.',
 		headers: [
 			{
 				id: 'geviti',

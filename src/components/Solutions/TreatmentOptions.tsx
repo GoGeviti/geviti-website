@@ -1,9 +1,11 @@
 'use client';
 
-import React, { useEffect, useRef, useState } from 'react';
-import SlickSlider, { Settings } from 'react-slick';
+import React, { useMemo, useRef, useState } from 'react';
+import SlickSlider from 'react-slick';
 import { AnimatePresence, motion, wrap } from 'framer-motion';
+import dynamic from 'next/dynamic';
 import Image from 'next/image';
+import Link from 'next/link';
 
 import { solutionData } from '@/constant/data';
 import clsxm from '@/helpers/clsxm';
@@ -11,6 +13,10 @@ import clsxm from '@/helpers/clsxm';
 import ButtonCta from '../ButtonCta';
 import { CheckBlue, ChevronRight } from '../Icons';
 import ShiftSection from '../ShiftSection';
+
+import VerticalThumbs from './VerticalThumbs';
+
+const BiomarkersSection = dynamic(() => import('./BiomarkersSection'), { ssr: false });
 
 const horizontalSliderVariants = {
 	incoming: (direction: number) => ({
@@ -32,93 +38,14 @@ const verticalSliderVariants = {
 	})
 };
 const shiftSectionAnimationProps = { transition: { duration: .75, ease: 'easeIn' }, initial: 'initial' };
+const opacityVariants = {
+	initial: { opacity: 0 },
+	animate: { opacity: 1 },
+	exit: { opacity: 0 },
+};
 
 type TreatmentOptionsProps = {
 	type: 'men' | 'women';
-};
-
-type VerticalThumbsProps = {
-	sliderRef: React.RefObject<SlickSlider>;
-	list: any[]; // eslint-disable-line @typescript-eslint/no-explicit-any
-	activeIdx: number;
-	onClick: (idx: number) => void; // eslint-disable-line no-unused-vars
-};
-
-const VerticalThumbs: React.FC<VerticalThumbsProps> = ({ sliderRef, list, onClick, activeIdx }) => {
-	const [isMounted, setIsMounted] = useState<boolean>(false);
-
-	useEffect(() => {
-		setIsMounted(true);
-	}, []);
-
-	const settings: Settings = {
-		dots: false,
-		infinite: true,
-		slidesToShow: list.length < 3 ? list.length : 3,
-		slidesToScroll: 1,
-		vertical: true,
-		verticalSwiping: true,
-		swipeToSlide: true
-	};
-
-	const handleNextSlickSlider = () => {
-		if (sliderRef.current) {
-			sliderRef.current.slickNext();
-		}
-	};
-
-	return (
-		<div className='lg:pt-[100px] flex flex-col max-lg:hidden'>
-			<p className='text-sm !leading-5 text-grey-primary mb-3.5'>
-				More Products
-			</p>
-			<div
-				className='w-[127px]'
-				style={ { height: 141 * (list.length >= 3 ? 3 : list.length) } }>
-				{ list.length > 0 && isMounted && (
-					<SlickSlider
-						ref={ sliderRef }
-						{ ...settings }
-						className='relative overflow-hidden'>
-						{ list.map((product, productIdx) => {
-							return (
-								<div
-									key={ `slider-${ productIdx }` }
-									className='w-full h-[143px] py-px'>
-									<div
-										className={ clsxm(
-											'transition-opacity transform duration-200 ease-in-out relative overflow-hidden rounded-[20px] w-full h-[127px] cursor-pointer',
-											productIdx === activeIdx ? 'border-[0.39px] border-grey-primary shadow-slider-solution-2' : 'border border-grey-50 opacity-50'
-										) }
-										onClick={ () => onClick(productIdx) }
-									>
-										<div className='absolute-center w-full h-[100px]'>
-											<Image
-												src={ product.image }
-												alt={ product.name }
-												fill
-												sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
-												className='w-full h-full object-contain'
-											/>
-										</div>
-									</div>
-								</div>
-							);
-						}) }
-					</SlickSlider>
-				) }
-			</div>
-			{ list.length >= 3 && (
-				<div className='mt-3 flex justify-center'>
-					<button
-						onClick={ handleNextSlickSlider }
-						className='focus:ring-0 focus:outline-none group w-[30.22px] h-[30.22px] relative rounded-[10.42px] border-[1.56px] border-[#F6F6F6] shadow-[0px_2.08403px_10.4202px_rgba(0,0,0,0.1)]'>
-						<ChevronRight className='rotate-90 text-grey-200 group-hover:text-grey-primary absolute-center flex-shrink-0' />
-					</button>
-				</div>
-			) }
-		</div>
-	);
 };
 
 const TreatmentOptions: React.FC<TreatmentOptionsProps> = ({ type = 'men' }) => {
@@ -128,10 +55,18 @@ const TreatmentOptions: React.FC<TreatmentOptionsProps> = ({ type = 'men' }) => 
 	const [selectedTabIdx, setSelectedTabIdx] = useState<number>(0);
 	const [selectedSubCategoryIdx, setSelectedSubCategoryIdx] = useState<number>(0);
 	const filterCategoryOptions = treatmentData.tabs;
-	const filterSubCategoryOptions = treatmentData.subCategories;
-	const productsByCategory = treatmentData.products.filter(product => {
-		return product.category.id === filterCategoryOptions[selectedTabIdx].id && product.subCategory.id.includes(filterSubCategoryOptions[selectedSubCategoryIdx].id);
-	});
+	const filterSubCategoryOptions = filterCategoryOptions[selectedTabIdx].subCategories ?? [];
+	const selectedSubCategory = filterSubCategoryOptions[selectedSubCategoryIdx];
+	const productsByCategory = useMemo(() => {
+		return treatmentData.products.filter(product => {
+			const filteredByCategory = product.category.id === filterCategoryOptions[selectedTabIdx]?.id;
+
+			return filterSubCategoryOptions?.length
+				? filteredByCategory && product.subCategory.id.includes(selectedSubCategory?.id)
+				: filteredByCategory;
+		});
+	}, [selectedTabIdx, selectedSubCategoryIdx]);
+
 	const [[imageCount, direction], setImageCount] = useState<[number, number]>([0, 0]);
 	const activeIdx = wrap(0, productsByCategory.length, imageCount);
 
@@ -151,26 +86,40 @@ const TreatmentOptions: React.FC<TreatmentOptionsProps> = ({ type = 'men' }) => 
 		setImageCount([imageIdx, changeDirection]);
 	};
 
+	const swipeToNextImage = () => {
+		setImageCount([imageCount + 1, 1]);
+		if (sliderRef?.current) {
+			sliderRef?.current?.slickNext();
+		}
+	};
+
 	const handleSelectTab = (tabIdx: number) => {
 		setSelectedTabIdx(tabIdx);
+		setSelectedSubCategoryIdx(0);
+		setImageCount([0, 1]);
+	};
+
+	const handleSelectSubCategory = (subCategoryIdx: number) => {
+		setSelectedSubCategoryIdx(subCategoryIdx);
 		setImageCount([0, 1]);
 	};
 
 	const renderSubCategoryFilter = () => {
 		return (
-			<div className='w-full flex max-sm:justify-between max-lg:justify-center max-lg:mt-6 lg:flex-nowrap lg:whitespace-nowrap gap-x-1 sm:gap-x-6 relative'>
+			<div className='max-md:-mr-4 max-md:last:pr-4 no-scrollbar select-none transform flex md:justify-center h-10 flex-nowrap overflow-x-auto overflow-y-hidden scrolling-touch scroll-smooth gap-x-3 lg:gap-x-6 relative'>
 				{ filterSubCategoryOptions.map((subCategory, subCategoryIdx) => {
 					return (
-						<span
+						<button
 							key={ `subCategory-${ subCategory.id }` }
+							aria-label='subcategory-product'
 							className={ clsxm(
-								'py-1 sm:py-2 px-2 sm:px-3.5 transition-colors ease-in-out duration-200 text-xs !leading-normal font-medium border rounded-[100px] cursor-pointer',
+								'py-2 px-2 sm:px-3.5 transition-colors whitespace-nowrap ease-in-out duration-200 text-[3.1vw] xxs2:text-xs !leading-normal font-medium border rounded-[100px] cursor-pointer',
 								subCategoryIdx === selectedSubCategoryIdx ? 'border-primary text-primary' : 'border-grey-300 text-grey-300'
 							) }
-							onClick={ () => setSelectedSubCategoryIdx(subCategoryIdx) }
+							onClick={ () => handleSelectSubCategory(subCategoryIdx) }
 						>
 							{ subCategory.title }
-						</span>
+						</button>
 					);
 				}) }
 			</div>
@@ -179,10 +128,9 @@ const TreatmentOptions: React.FC<TreatmentOptionsProps> = ({ type = 'men' }) => 
 
 	const renderButtonSwitchCategoryFilter = () => {
 		return (
-			<div className='relative w-full rounded-[100px] h-[49px] px-1.5 bg-grey-50'>
-				<div className='relative flex items-center w-full h-full gap-3.5'>
+			<div className='relative w-full rounded-[100px] h-[46px] sm:h-[49px] px-1.5 bg-grey-50'>
+				<div className='relative grid grid-cols-3 items-center justify-center w-full h-full sm:gap-3.5'>
 					{ filterCategoryOptions.map((opt, optIdx) => {
-						const Icon = opt.icon;
 						const selected = selectedTabIdx === optIdx;
 
 						return (
@@ -193,69 +141,22 @@ const TreatmentOptions: React.FC<TreatmentOptionsProps> = ({ type = 'men' }) => 
 									selected
 										? 'text-white font-medium'
 										: 'text-grey-400 font-normal',
-									'transition-colors px-3.5 h-[37px] rounded-[100px] relative inline-flex items-center gap-1.5'
+									'transition-colors px-2 sm:px-3.5 h-[34px] sm:h-[37px] rounded-[100px] relative inline-flex items-center justify-center'
 								) }
 							>
-								<Icon className='relative z-10 flex-shrink-0' />
-								<span className='relative z-10 text-sm !leading-normal'>{ opt.title }</span>
+								<span className='relative z-10 text-[3.1vw] xxs2:text-xs sm:text-sm !leading-normal'>{ opt.title }</span>
 
 								{ selected && (
 									<motion.span
-										layoutId='pill-treatmentOptions'
+										layoutId='pill-tab-treatmentOptions'
 										transition={ { type: 'spring', duration: 0.75 } }
 										className='absolute inset-0 z-0 bg-primary rounded-[100px]'
 									/>
-								) }
-
-								{ selected && (
-									<motion.span
-										layoutId='subCategory-tab-treatmentOptions'
-										transition={ { type: 'spring', duration: 0.75 } }
-										className={ clsxm(
-											'absolute top-[73px]',
-											selectedTabIdx >= filterCategoryOptions.length - 2 ? 'right-0' : 'left-0'
-										) }
-									>
-										{ renderSubCategoryFilter() }
-									</motion.span>
 								) }
 							</button>
 						);
 					}) }
 				</div>
-			</div>
-		);
-	};
-
-	const renderCategoryFilterMobile = () => {
-		return (
-			<div className='-mr-4 last:pr-4 no-scrollbar select-none transform flex flex-nowrap overflow-x-auto overflow-y-hidden scrolling-touch scroll-smooth gap-x-6'>
-				{ filterCategoryOptions.map((opt, optIdx) => {
-					const Icon = opt.icon;
-					const selected = selectedTabIdx === optIdx;
-
-					return (
-						<div
-							key={ `filtermobile-${ optIdx }` }
-							className='relative w-full'>
-							<button
-								onClick={ () => handleSelectTab(optIdx) }
-								className={ clsxm('relative z-0 flex w-full flex-row items-center justify-center gap-1.5 pb-1 transition-colors', selected ? 'text-primary font-medium' : 'text-grey-300 font-normal') }
-							>
-								<Icon className='flex-shrink-0' />
-								<span className='whitespace-nowrap text-start text-xs !leading-normal'>
-									{ opt.title }
-								</span>
-							</button>
-							{ selected && (
-								<motion.span
-									layoutId='tabs-filtermobile-treatmentOptions'
-									className='absolute bottom-0 left-0 right-0 z-10 h-px bg-primary rounded-[10px]'
-								/>
-							) }
-						</div>
-					);
-				}) }
 			</div>
 		);
 	};
@@ -292,8 +193,8 @@ const TreatmentOptions: React.FC<TreatmentOptionsProps> = ({ type = 'men' }) => 
 	return (
 		<div className='lg:px-3 py-6 overflow-hidden font-Poppins'>
 			<div className='bg-white rounded-19px py-6 lg:pt-[42px] lg:pb-[103px] w-full'>
-				<div className='container-center'>
-					<div className='flex flex-col items-center text-center'>
+				<div className='container-center w-full'>
+					<div className='flex flex-col text-center w-full'>
 						<p className='mb-3 lg:mb-3.5 text-pretitle lg:text-base lg:!leading-6 text-grey-primary'>
 							{ treatmentData.preTitle }
 						</p>
@@ -301,155 +202,212 @@ const TreatmentOptions: React.FC<TreatmentOptionsProps> = ({ type = 'men' }) => 
 							{ treatmentData.title }
 						</h2>
 
-						<div className='hidden lg:flex flex-col w-fit mx-auto mt-14 relative'>
+						<div className='w-full sm:w-fit mx-auto mb-6 mt-6 sm:mt-[42px] relative'>
 							{ renderButtonSwitchCategoryFilter() }
 						</div>
-
-						<div className='lg:hidden w-full mt-[42px]'>
-							{ renderCategoryFilterMobile() }
-
-							{ renderSubCategoryFilter() }
-						</div>
 					</div>
+					<AnimatePresence mode='wait'>
+						<motion.div
+							key={ `subcategory-treatmentOptions-${ selectedTabIdx }` }
+							initial={ { y: -10, opacity: 0 } }
+							animate={ { y: 0, opacity: 1 } }
+							exit={ { y: -10, opacity: 0 } }
+							transition={ { duration: 0.375, ease: 'easeInOut' } }
+							className='w-full'
+						>
+							{ renderSubCategoryFilter() }
+						</motion.div>
+					</AnimatePresence>
 				</div>
 
 				<div className='w-full flex container-center'>
-					<VerticalThumbs
-						sliderRef={ sliderRef }
-						list={ productsByCategory }
-						activeIdx={ activeIdx }
-						onClick={ (idx: number) => skipToImage(idx) } />
-					<div className='pt-10 lg:pt-[103px] grid grid-cols-1 lg:grid-cols-11 max-lg:gap-[42px]'>
-						<div className='w-full h-full lg:h-[507px] mx-auto max-lg:hidden relative lg:col-span-5'>
-							<div className='lg:pt-6 w-full h-full flex justify-center relative'>
-								<div className='relative max-w-[476.8px] w-full h-full z-10 overflow-hidden'>
-									<AnimatePresence
-										initial={ false }
-										custom={ direction }>
-										<motion.div
-											key={ `imageslider-desktop-${ imageCount }` }
-											custom={ direction }
-											variants={ verticalSliderVariants }
-											initial='incoming'
-											animate='active'
-											exit='exit'
-											transition={ { ease: 'easeInOut', duration: .75 } }
-											className='absolute inset-0 w-full h-full'
-										// drag="y"
-										// dragConstraints={ { left: 0, right: 0 } }
-										// dragElastic={ 1 }
-										// onDragEnd={ (_, dragInfo) => dragEndHandler(dragInfo, 'y') }
-										>
-											<div className='relative overflow-hidden w-full h-[474.79px] lg:h-[459px] lg:pb-6'>
-												<Image
-													src={ currentProduct.image }
-													alt=''
-													sizes='(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 100vw'
-													quality={ 100 }
-													fill
-													priority
-													className='object-contain w-full h-full pointer-events-none'
-												/>
-											</div>
-										</motion.div>
-									</AnimatePresence>
-								</div>
+					<div className='lg:pt-14 flex flex-col max-lg:hidden'>
+						<AnimatePresence initial={ false }>
+							<div className='overflow-hidden inline-flex w-full h-full'>
+								<motion.div
+									key={ `VerticalThumbs-desktop-${ selectedSubCategoryIdx }-${ selectedTabIdx }` }
+									variants={ opacityVariants }
+									initial='initial'
+									animate='animate'
+									exit='exit'
+									transition={ { duration: .75, ease: 'easeIn' } }>
+									<VerticalThumbs
+										sliderRef={ sliderRef }
+										list={ productsByCategory }
+										activeIdx={ activeIdx }
+										onClick={ (idx: number) => skipToImage(idx) } />
+								</motion.div>
 							</div>
+						</AnimatePresence>
+					</div>
+					<div className='pt-[25px] lg:pt-[59px] grid grid-cols-1 lg:grid-cols-11 max-lg:gap-[42px]'>
+						<div className='w-full h-full lg:h-[507px] mx-auto max-lg:hidden relative lg:col-span-5'>
+							<AnimatePresence initial={ false }>
+								<div className='inline-flex overflow-hidden w-full h-full'>
+									<motion.div
+										key={ `image-desktop-${ selectedSubCategoryIdx }-${ selectedTabIdx }` }
+										variants={ opacityVariants }
+										initial='initial'
+										animate='animate'
+										exit='exit'
+										transition={ { duration: .75, ease: 'easeIn' } }
+										className='w-full h-full'>
+										<div className='lg:pt-6 w-full h-full flex justify-center relative'>
+											<div className='relative max-w-[476.8px] w-full h-full z-10 overflow-hidden'>
+												<AnimatePresence
+													initial={ false }
+													custom={ direction }>
+													<motion.div
+														key={ `imageslider-desktop-${ imageCount }` }
+														custom={ direction }
+														variants={ verticalSliderVariants }
+														initial='incoming'
+														animate='active'
+														exit='exit'
+														transition={ { ease: 'easeInOut', duration: .75 } }
+														className='absolute inset-0 w-full h-full'
+													// drag="y"
+													// dragConstraints={ { left: 0, right: 0 } }
+													// dragElastic={ 1 }
+													// onDragEnd={ (_, dragInfo) => dragEndHandler(dragInfo, 'y') }
+													>
+														<div className='relative overflow-hidden w-full h-[474.79px] lg:h-[459px] lg:pb-6'>
+															{ currentProduct?.image && (
+																<Image
+																	src={ currentProduct?.image }
+																	alt=''
+																	sizes='(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 100vw'
+																	quality={ 100 }
+																	fill
+																	priority
+																	className='object-contain w-full h-full pointer-events-none'
+																/>
+															) }
+														</div>
+													</motion.div>
+												</AnimatePresence>
+											</div>
+										</div>
+									</motion.div>
+								</div>
+							</AnimatePresence>
 						</div>
 						<div className='w-full h-full flex flex-col justify-between relative lg:col-span-6'>
 							<div>
-								<p className='text-pretitle text-grey-primary max-lg:mb-2 max-lg:text-center'>
-									{ filterCategoryOptions[selectedTabIdx].preTitle }
-								</p>
 								<ShiftSection
-									id={ `title-${ currentProduct.id }` }
+									id={ `title-${ currentProduct?.id }` }
 									isMobile
 									wrapperClassName='w-full'
 									animationProps={ shiftSectionAnimationProps }
 								>
-									{ renderProductTitle(currentProduct.name) }
+									<p className='text-pretitle text-grey-primary max-lg:mb-2 max-lg:text-center'>
+										{ filterSubCategoryOptions[selectedSubCategoryIdx]?.preTitle || filterCategoryOptions[selectedTabIdx].preTitle }
+									</p>
+									{ renderProductTitle(currentProduct?.name) }
 								</ShiftSection>
 
 								<div className='py-6 lg:hidden w-full flex flex-col gap-3.5'>
-									<div className='h-[223px] w-full border border-grey-100 relative overflow-hidden rounded-[20px] shadow-slider-solution-1'>
-										<div className='relative overflow-hidden w-full h-[235px] top-[13px]'>
-											<AnimatePresence
-												initial={ false }
-												custom={ direction }>
-												<motion.div
-													key={ `imageslider-${ imageCount }` }
-													custom={ direction }
-													variants={ horizontalSliderVariants }
-													initial='incoming'
-													animate='active'
-													exit='exit'
-													transition={ { ease: 'easeInOut', duration: .75 } }
-													className='absolute inset-0 w-full h-full'
-												// drag="x"
-												// dragConstraints={ { left: 0, right: 0 } }
-												// dragElastic={ 1 }
-												// onDragEnd={ (_, dragInfo) => dragEndHandler(dragInfo, 'x') }
-												>
-													<Image
-														src={ currentProduct.image }
-														alt=''
-														sizes='(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 100vw'
-														quality={ 100 }
-														fill
-														className='object-contain w-full h-full pointer-events-none'
-													/>
-												</motion.div>
-											</AnimatePresence>
-										</div>
-									</div>
-									<p className='text-left text-sm !leading-5 text-grey-primary'>More products</p>
-									<div
-										id='thumbs-products-slider'
-										className='-mr-4 last:pr-4 no-scrollbar select-none transform flex flex-nowrap overflow-x-auto overflow-y-hidden scrolling-touch scroll-smooth gap-x-3.5'>
-										{ productsByCategory.map((product, productIdx) => {
-											return (
-												<div
-													id='thumbs-product-item'
-													key={ `slider-productmobile-${ productIdx }` }
-													onClick={ () => skipToImage(productIdx) }
-													className={ clsxm(
-														'flex-none transition-opacity transform duration-200 ease-in-out relative overflow-hidden w-[100px] h-[100px] rounded-xl',
-														productIdx === activeIdx ? 'shadow-slider-solution-2 border-[0.39px] border-grey-primary opacity-100' : 'border-[0.64px] border-grey-100 opacity-50'
-													) }
-												>
-													<div className='relative overflow-hidden w-full h-[105.38px] top-[5.83px]'>
-														<Image
-															src={ product.image }
-															alt=''
-															sizes='(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 100vw'
-															quality={ 100 }
-															fill
-															priority
-															className='object-contain w-full h-full pointer-events-none'
-														/>
+									<AnimatePresence initial={ false }>
+										<div className='inline-flex w-full h-full'>
+											<motion.div
+												key={ `image-mobile-${ selectedSubCategoryIdx }-${ selectedTabIdx }` }
+												variants={ opacityVariants }
+												initial='initial'
+												animate='animate'
+												exit='exit'
+												transition={ { duration: .75, ease: 'easeIn' } }
+												className='w-full h-full flex flex-col gap-3.5'>
+												<div className='h-[223px] w-full border border-grey-100 relative overflow-hidden rounded-[20px] shadow-slider-solution-1'>
+													<div className='relative overflow-hidden w-full h-[235px] top-[13px]'>
+														<AnimatePresence
+															initial={ false }
+															custom={ direction }>
+															<motion.div
+																key={ `imageslider-${ imageCount }` }
+																custom={ direction }
+																variants={ horizontalSliderVariants }
+																initial='incoming'
+																animate='active'
+																exit='exit'
+																transition={ { ease: 'easeInOut', duration: .75 } }
+																className='absolute inset-0 w-full h-full'
+															// drag="x"
+															// dragConstraints={ { left: 0, right: 0 } }
+															// dragElastic={ 1 }
+															// onDragEnd={ (_, dragInfo) => dragEndHandler(dragInfo, 'x') }
+															>
+																{ currentProduct?.image && (
+																	<Image
+																		src={ currentProduct?.image }
+																		alt=''
+																		sizes='(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 100vw'
+																		quality={ 100 }
+																		fill
+																		className='object-contain w-full h-full pointer-events-none'
+																	/>
+																) }
+															</motion.div>
+														</AnimatePresence>
 													</div>
 												</div>
-											);
-										}) }
-									</div>
+												{ productsByCategory.length > 1 && (
+													<>
+														<p className='text-left text-sm !leading-5 text-grey-primary'>More products</p>
+														<div
+															id='thumbs-products-slider'
+															className='-mr-4 last:pr-4 no-scrollbar select-none transform flex flex-nowrap overflow-x-auto overflow-y-hidden scrolling-touch scroll-smooth gap-x-3.5'>
+															{ productsByCategory.map((product, productIdx) => {
+																return (
+																	<div
+																		id='thumbs-product-item'
+																		key={ `slider-productmobile-${ productIdx }` }
+																		onClick={ () => skipToImage(productIdx) }
+																		className={ clsxm(
+																			'flex-none transition-shadow transform duration-200 ease-in-out relative overflow-hidden w-[100px] h-[100px] rounded-xl',
+																			productIdx === activeIdx ? 'shadow-slider-solution-2 border-[0.39px] border-grey-primary' : 'border-[0.64px] border-grey-100'
+																		) }
+																	>
+																		<div className={ clsxm(
+																			'relative overflow-hidden transition-opacity transform duration-200 ease-in-out w-full h-[105.38px] top-[5.83px] opacity-50',
+																			productIdx === activeIdx ? 'opacity-100' : 'opacity-50'
+																		) }>
+																			<Image
+																				src={ product.image }
+																				alt=''
+																				sizes='(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 100vw'
+																				quality={ 100 }
+																				fill
+																				priority
+																				className='object-contain w-full h-full pointer-events-none'
+																			/>
+																		</div>
+																	</div>
+																);
+															}) }
+														</div>
+													</>
+												) }
+											</motion.div>
+										</div>
+									</AnimatePresence>
 								</div>
 
 								<ShiftSection
-									id={ `content-${ currentProduct.id }` }
+									id={ `content-${ currentProduct?.id }` }
 									animationProps={ shiftSectionAnimationProps }
 									isMobile>
 									<div className='grid'>
 										<div className='flex flex-col gap-y-4 lg:gap-y-3.5 lg:mt-3.5'>
 											<p className='text-lg !leading-[25px] font-medium text-primary -tracking-0.04em'>
-												As low as ${ currentProduct.price }/m*
+												{ typeof currentProduct?.price === 'string' ? currentProduct?.price : `As low as $${ currentProduct?.price }/m*` }
 											</p>
 											<p className='text-xs lg:text-sm !leading-5 text-grey-400'>
-												{ currentProduct.description }
+												{ currentProduct?.description }
 											</p>
 										</div>
 
 										<div className='mt-4 lg:mt-[42px] grid grid-cols-2 lg:grid-cols-3 gap-3.5 lg:gap-x-[42px] lg:gap-y-6'>
-											{ currentProduct.list.map((item, itemIdx) => {
+											{ currentProduct?.list.map((item, itemIdx) => {
 												return (
 													<div
 														key={ `item-${ itemIdx }` }
@@ -466,11 +424,29 @@ const TreatmentOptions: React.FC<TreatmentOptionsProps> = ({ type = 'men' }) => 
 								</ShiftSection>
 							</div>
 
-							<div className='flex max-lg:hidden pb-10'>
-								<ButtonCta
-									href={ treatmentData.btnCta.href }
-									text={ treatmentData.btnCta.text }
-								/>
+							<div className='flex max-lg:hidden pb-[70px]'>
+								<div className='flex items-center gap-6'>
+									<Link
+										href={ treatmentData.btnCta.href }
+										className='bg-primary text-white rounded-full h-[58px] flex items-center justify-center py-3 px-[42px] text-lg font-medium !leading-6'>
+										{ treatmentData.btnCta.text }
+									</Link>
+
+									{ productsByCategory.length > 1 && (
+										<button
+											className='group max-md:w-full border border-primary hover:opacity-70 rounded-full h-[58px] py-1.5 pl-[42px] pr-1.5 relative grid place-items-center grid-cols-[auto_46px] overflow-hidden'
+											aria-label='next product'
+											onClick={ swipeToNextImage }
+										>
+											<span className='text-lg leading-[133%] font-medium text-primary inline-block z-[2]'>
+												Next Product
+											</span>
+											<span className='w-[46px] relative flex items-center justify-center'>
+												<ChevronRight className='w-18px h-18px text-primary flex-shrink-0' />
+											</span>
+										</button>
+									) }
+								</div>
 							</div>
 						</div>
 
@@ -484,7 +460,14 @@ const TreatmentOptions: React.FC<TreatmentOptionsProps> = ({ type = 'men' }) => 
 					</div>
 				</div>
 			</div>
-		</div >
+
+			{ selectedSubCategory?.biomarkers && (
+				<BiomarkersSection
+					key={ `${ selectedTabIdx }-${ selectedSubCategoryIdx }` }
+					list={ selectedSubCategory?.biomarkers }
+					type={ type } />
+			) }
+		</div>
 	);
 };
 

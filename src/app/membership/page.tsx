@@ -15,7 +15,9 @@ const MemberShipPage = () => {
 				<MembershipComponent.StepsSection />
 			</div>
 			<MembershipComponent.Pricing />
-			<MembershipComponent.BiomarkersSection />
+			<div className='lg:px-3'>
+				<MembershipComponent.BiomarkersSection wrapperClassName='bg-white pt-6 pb-[42px] lg:py-[62px]' />
+			</div>
 			<MembershipComponent.PricingComparison />
 			<MembershipComponent.ChooseGeviti />
 			{ /* <MembershipComponent.Products /> */ }

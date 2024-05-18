@@ -159,12 +159,12 @@ const FreeVisitSubtitle = styled.span`
 
 interface PreCheckoutWaitlistProps {
 	viewState: ViewState;
-	onContinue: (usState: string, sex: string, birthday: string) => void;
+	onContinue: () => void;
 }
 
 const PreCheckoutWaitlist = (props: PreCheckoutWaitlistProps) => {
-	const [usState] = useState('AZ');
-	const [sex] = useState('male');
+	// const [usState] = useState('AZ');
+	// const [sex] = useState('male');
 	const [birthday, setBirthday] = useState('email@example.com');
 
 	const lottieRef = useRef<Player>(null);
@@ -212,7 +212,7 @@ const PreCheckoutWaitlist = (props: PreCheckoutWaitlistProps) => {
 			/>
 			<Button
 				viewState={ props.viewState }
-				onClick={ () => props.onContinue(usState, sex, birthday) }
+				onClick={ () => props.onContinue() }
 			>
 				Join Waitlist
 			</Button>

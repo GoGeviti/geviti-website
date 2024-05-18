@@ -1,13 +1,11 @@
 import { NextPage } from 'next';
 
 import { ArrowNarrowDown } from '@/components/Icons';
-// import { productsData } from '@/constant/data';
 import { getBenefits, getCategory, getProducts } from '@/services/products';
 
 import CategorySheet from './categorySheet';
 import ProductFilter from './filter';
 import ProductList from './list';
-// import ProductList from './list';
 import PageTitle from './PageTitle';
 import ProductSearchInput from './search';
 

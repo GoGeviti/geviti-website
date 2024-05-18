@@ -23,7 +23,8 @@ export const createNotionDatabase = async(
 		.create({
 			associations: [],
 			properties: {
-				firstname: formData.name,
+				firstname: formData.first_name,
+				lastname: formData.last_name,
 				email: formData.email,
 				phone: formData.phone_number,
 				address_1: formData.address_1,
