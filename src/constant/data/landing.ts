@@ -40,7 +40,7 @@ const landingData = {
 			'optimization.'
 		],
 		banner: {
-			text: 'Geviti closes Early stage Seed Financing 🎉 <br/>To celebrate, those who join before July 1st will be grandfathered in at $89 monthly!',
+			text: 'Geviti Closes Early Stage Seed Financing 🎉 <br/>To Celebrate, Those Who Join Before August 1st Will Be Grandfathered In At $89 Monthly!',
 			icon: InformationIcon,
 			show: true
 		},
