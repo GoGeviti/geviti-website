@@ -2,6 +2,7 @@
 
 import * as React from 'react';
 import DatePicker from 'react-datepicker';
+import InputMask from '@mona-health/react-input-mask';
 
 import clsxm from '@/helpers/clsxm';
 
@@ -31,7 +32,14 @@ const CustomDatePicker: React.FC<CustomDatePickerProps> = ({
 					isError ? 'ring-1 ring-red-primary focus:ring-1 focus:ring-red-primary' : '!ring-0 focus:!ring-1 !ring-grey-primary',
 				) }
 				calendarClassName='!font-Poppins'
+				dateFormat='MM/dd/yyyy'
 				open={ false }
+				customInput={
+					<InputMask
+						mask='99/99/9999'
+						maskPlaceholder={ null }
+						placeholder={ placeholder } />
+				}
 			/>
 			{ isError && errorMessage && (
 				<p className='text-red-primary text-[10px] mt-1 text-left'>{ errorMessage }</p>

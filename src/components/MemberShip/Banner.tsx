@@ -16,7 +16,7 @@ const BannerMember: React.FC = () => {
 				image={ bannerData.image }
 				imageMobile={ bannerData.imageMobile }
 				btnCta={ bannerData.btnCta }
-				overlayClassName='bg-banner-mobile-member lg:bg-banner-landing max-lg:h-[523px]'
+				overlayClassName='bg-banner-mobile-member lg:bg-banner-member max-lg:h-[64%] lg:rounded-19px'
 			/>
 		</div>
 	);

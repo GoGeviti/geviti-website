@@ -1,3 +1,5 @@
+import membershipData from './membership';
+
 const checkoutData = {
 	form: {
 		title: 'First, lets make <br class="max-lg:hidden"/>sure you <br class="lg:hidden"/>are eligible.',
@@ -54,6 +56,65 @@ const checkoutData = {
 			},
 			btnSecondary: null,
 		}
+	},
+	pricingProductPlan: {
+		title: 'Lets start with a full blood panel.',
+		description: 'An at-home blood draw must be done in order to get access to the Geviti platform.',
+		list: membershipData.pricing.list
+	},
+	membershipFrequency: {
+		title: 'Select your membership frequency.',
+		description: 'Geviti transcends the usual health and wellness offerings, providing unparalleled value at a lower cost. Our mission is to make longevity-focused care exceptionally accessible.',
+		list: [
+			'Geviti Platform Access',
+			'Mobile App Integration',
+			'Smart Device & Wearable Integration',
+			'Biannual At-Home Full Panels',
+			'Quarterly Doctor Telehealth Visits',
+			'Doctor - Monitored Therapeutics',
+			'Tailored Smart Supplements',
+			'Custom Longevity Protocols',
+			'Certified Personal Health Coaching',
+			'Wholesale Supplements & Diagnostics'
+		],
+		frequencyOptions: membershipData.pricing.pricingOptions,
+		price: {
+			text: '$ 99 per month',
+			quarterly: 'billed quarterly',
+			monthly: 'billed monthly',
+		},
+		btnSubmitLabel: 'Proceed to Payment',
+		btnCancelLabel: 'Cancel'
+	},
+	paymentState: {
+		success: {
+			title: 'Your order was placed successfully.',
+			titleMobile: 'Your order was placed#successfully.',
+			description: 'Thank you! Shortly you will receive a confirmation email with the order details. To get#started please proceed to the onboarding process.',
+			descriptionMobile: 'Thank you! Shortly you will receive a confirmation#email with the order details. To get started please#proceed to the onboarding process.',
+			btnPrimary: {
+				type: 'link',
+				externalLink: true,
+				href: 'https://app.gogeviti.com/',
+				text: '<span class="lg:hidden">Create Geviti Account</span><span class="max-lg:hidden">Lets Begin Onboarding</span>'
+			},
+			btnSecondary: null
+		},
+		error: {
+			title: 'Oops, we ran into an issue.',
+			titleMobile: 'Oops, we ran into an issue.',
+			description: 'Please try again in 5 minutes. If that doesn’t do the trick, please reach out to#support@gogeviti.com and we will get back to you as quickly as we can.',
+			descriptionMobile: 'Please try again in 5 minutes. If that doesn’t do#the trick, please reach out to support@gogeviti.com#and we will get back to you as quickly as we can.',
+			btnPrimary: {
+				type: 'router_back',
+				text: 'Go Back to Payment'
+			},
+			btnSecondary: {
+				type: 'link',
+				href: '/',
+				text: 'Cancel Purchase'
+			}
+		},
 	}
 };
 

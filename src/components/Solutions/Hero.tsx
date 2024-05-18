@@ -94,12 +94,21 @@ const Hero: React.FC<{ type: 'men' | 'women'; }> = ({ type }) => {
 					</div>
 				</div>
 				{ type === 'men'
-					? <div className='max-lg:hidden absolute bottom-0 inset-x-0 w-full h-[80%] bg-backdrop-hero-membership-bottom -z-0' />
-					: <div
-						className='lg:hidden absolute bottom-0 inset-x-0 w-full h-[62%] -z-0'
-						style={ {
-							background: 'linear-gradient(0deg, #181A1C 20.46%, rgba(24, 26, 28, 0.72) 61.5%, rgba(24, 26, 28, 0) 100%)'
-						} } /> }
+					? <div className='max-lg:hidden absolute bottom-0 inset-x-0 w-full h-[60%] lg:h-[55%] bg-backdrop-hero-solution-men-mobile lg:bg-backdrop-hero-solution-men -z-0' />
+					: (
+						<>
+							<div
+								className='lg:hidden absolute bottom-0 inset-x-0 w-full h-[50%] -z-0'
+								style={ {
+									background: 'linear-gradient(0deg, rgba(24, 26, 28, 0.00) 20.46%, rgba(24, 26, 28, 0.72) 61.5%, rgba(24, 26, 28, 0.00) 100%)'
+								} } />
+							<div
+								className='lg:hidden absolute bottom-0 inset-x-0 w-full h-[52%] -z-0'
+								style={ {
+									background: 'linear-gradient(0deg, #181A1C 20.46%, rgba(24, 26, 28, 0.72) 61.5%, rgba(24, 26, 28, 0.00) 100%)'
+								} } />
+						</>
+					) }
 
 				<div className='h-full'>
 					<div className='relative w-full h-full rounded-b-19px'>

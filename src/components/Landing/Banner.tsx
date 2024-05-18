@@ -15,6 +15,7 @@ const BannerLanding: React.FC = () => {
 			image={ bannerData.image }
 			imageMobile={ bannerData.imageMobile }
 			btnCta={ bannerData.btnCta }
+			overlayClassName='max-lg:h-[57%] lg:w-[40%] bg-banner-mobile-landing lg:bg-banner-landing lg:rounded-r-none'
 		/>
 	);
 };

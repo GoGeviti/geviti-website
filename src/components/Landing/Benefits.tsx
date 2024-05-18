@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
+import Link from 'next/link';
 
 import { landingData } from '@/constant/data';
 import clsxm from '@/helpers/clsxm';
@@ -92,7 +93,7 @@ const Benefits: React.FC = () => {
 										initial='hidden'
 										whileInView='visible'
 										viewport={ { once: true } }
-										className='rounded-2xl p-px bg-border-gradient-white backdrop-blur-[50px] group'
+										className='rounded-2xl p-px border border-white/50 backdrop-blur-[50px] group'
 									>
 										<motion.div
 											{
@@ -111,7 +112,8 @@ const Benefits: React.FC = () => {
 											}
 											className='rounded-[calc(1rem-1px)] bg-[#042A4980] pt-6 sm:pt-[17px] pb-[21px] sm:pb-[15px] px-6 sm:px-18px text-white relative overflow-hidden group'
 										>
-											<div className='absolute inset-0 w-full h-full'>
+										
+											{ /* <div className='absolute inset-0 w-full h-full'>
 												<div className='relative overflow-hidden w-full h-full'>
 													<Image
 														src='/images/landing/compressed/noise.png'
@@ -122,41 +124,44 @@ const Benefits: React.FC = () => {
 														className='object-cover pointer-events-none'
 													/>
 												</div>
-											</div>
+											</div> */ }
+											<Link href={ item.href }>
+												<h3 className='text-2xl !leading-9 sm:text-3xl lg:text-4xl lg:!leading-[54px] -tracking-0.04em'>
+													{ item.title }
+												</h3>
 
-											<h3 className='text-2xl !leading-9 sm:text-3xl lg:text-4xl lg:!leading-[54px] -tracking-0.04em'>
-												{ item.title }
-											</h3>
-
-											<div className='absolute right-18px bottom-15px max-lg:hidden group-hover:translate-y-1 transform transition-transform ease-in-out duration-500'>
-												<div className='relative w-[62px] h-[62px] rounded-full bg-white/20 border-2 border-white/5'>
-													{ renderArrowNarrowRight() }
+												<div className='absolute z-10 right-18px bottom-15px max-lg:hidden group-hover:translate-y-1 transform transition-transform ease-in-out duration-500'>
+													<Link
+														href={ item.href }
+														className='flex relative w-[62px] h-[62px] rounded-full bg-white/20 border-2 border-white/5 hover:bg-white/40'>
+														{ renderArrowNarrowRight() }
+													</Link>
 												</div>
-											</div>
 
-											<motion.div
-												{ ...!isMobile
-													? {
-														variants: {
-															initial: { height: 0, y: 20 },
-															visible: { height: 'fit-content', y: 0 },
-														},
-														initial: 'initial',
-														animate: hovered ? 'visible' : 'initial',
-														transition: { duration: .6, ease: 'easeInOut' }
+												<motion.div
+													{ ...!isMobile
+														? {
+															variants: {
+																initial: { height: 0, y: 20 },
+																visible: { height: 'fit-content', y: 0 },
+															},
+															initial: 'initial',
+															animate: hovered ? 'visible' : 'initial',
+															transition: { duration: .6, ease: 'easeInOut' }
+														}
+														: {}
 													}
-													: {}
-												}
-												className='max-lg:flex block'
-											>
-												<ul className='list-inside list-disc mt-2.5 sm:mt-5px text-xs sm:text-sm !leading-7'>
-													{ item.details.map(detail => (
-														<li key={ detail }>
-															{ detail }
-														</li>
-													)) }
-												</ul>
-											</motion.div>
+													className='max-lg:flex block'
+												>
+													<ul className='list-inside list-disc mt-2.5 sm:mt-5px text-xs sm:text-sm !leading-7 text-grey-50'>
+														{ item.details.map(detail => (
+															<li key={ detail }>
+																{ detail }
+															</li>
+														)) }
+													</ul>
+												</motion.div>
+											</Link>
 										</motion.div>
 									</motion.div>
 								</article>

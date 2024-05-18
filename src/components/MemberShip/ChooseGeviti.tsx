@@ -8,8 +8,8 @@ import Image from 'next/image';
 import membershipdata from '@/constant/data/membership';
 
 import ButtonCta from '../ButtonCta';
-import CustomLink from '../CustomLink';
-import { CheckCircleIcon, ChevronRight } from '../Icons';
+// import CustomLink from '../CustomLink';
+import { CheckCircleIcon } from '../Icons';
 
 const chooseGevitiData = membershipdata.chooseGevity;
 
@@ -107,7 +107,7 @@ const ChooseGeviti = () => {
 										theme='primary'
 										aria-label={ chooseGevitiData.btnCta.text }
 									/>
-									<CustomLink
+									{ /* <CustomLink
 										href='/products'
 										className='bg-white hover:shadow-[0px_4px_15.8px_0px_rgba(2,23,27,0.10)] ease-in-out transition-shadow duration-150 group border border-white/5 backdrop-blur-[25px] rounded-full py-1.5 pl-[42px] pr-1.5 h-[58px] relative grid place-items-center grid-cols-[auto_46px] overflow-hidden gap-1'
 										aria-label={ chooseGevitiData.btnCta2.text }
@@ -118,7 +118,7 @@ const ChooseGeviti = () => {
 										<span className='w-[46px] relative flex items-center justify-center group-hover:translate-x-1 ease-in-out duration-150'>
 											<ChevronRight className='w-18px h-18px text-primary flex-shrink-0' />
 										</span>
-									</CustomLink>
+									</CustomLink> */ }
 								</div>
 							</div>
 						</div>

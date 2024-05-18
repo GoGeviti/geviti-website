@@ -5,12 +5,21 @@ import IntroScreen from '@/components/IntroScreen';
 import { getCookie } from '@/services/cookies';
 
 const HomePage: NextPage = async() => {
-	const isCloseBanner = getCookie('close_hero_banner');
+	const isCloseBanner = await getCookie('close_hero_banner');
+	const showIntro = await getCookie('show_intro');
+
+	// console.log('isCloseBanner ==> ', !isCloseBanner);
+	// console.log('isCloseBanner ==> ', isCloseBanner);
+	// console.log('showIntro ==> ', showIntro);
 
 	return (
-		<IntroScreen type='video'>
+		<IntroScreen
+			type='video'
+			showIntro={ showIntro }>
 			<div className='flex min-h-screen flex-col w-full bg-grey-background font-Poppins'>
-				<LandingComponent.Hero showBanner={ !isCloseBanner } />
+				<LandingComponent.Hero
+					showIntro={ showIntro }
+					showBanner={ !isCloseBanner } />
 				<LandingComponent.Steps />
 				<RunningLogo />
 				<LandingComponent.TextReveal />

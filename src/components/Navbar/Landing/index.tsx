@@ -85,13 +85,14 @@ export const MenuItem = ({
 								transition={ transition }
 								layoutId='active' // layoutId ensures smooth animation
 								className={ clsxm(
-									'bg-white/10 backdrop-blur-[27px] rounded-[9px] overflow-hidden border border-white/5',
+									'bg-white/10 backdrop-blur-[27px] border border-white/5 rounded-[9px] overflow-hidden relative',
 									theme === 'light' && 'bg-white'
 								) }
 							>
+								<div className='absolute inset-0 w-full h-full bg-white/10 border border-white/5 backdrop-blur-[27px]' />
 								<motion.div
 									layout // layout ensures smooth animation
-									className='w-max h-full p-4'
+									className='w-max h-full p-4 relative z-50'
 								>
 									{ children }
 								</motion.div>

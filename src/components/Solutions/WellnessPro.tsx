@@ -11,7 +11,13 @@ const WellnessPro: React.FC<{ type: 'men' | 'women'; }> = ({ type }) => {
 				{ list?.map((item, index) => (
 					<WellnessProCard
 						item={ item }
-						key={ index } />
+						key={ index }
+						backdropClassName={ type === 'women'
+							? index === 0
+								? 'h-[40%] lg:h-[67%]'
+								: 'h-[58%] lg:h-[49%]'
+							: undefined }
+					/>
 				)) }
 			</div>
 		</section>

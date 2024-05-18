@@ -4,19 +4,18 @@ import { AnimatePresence, motion } from 'framer-motion';
 
 import membershipdata from '@/constant/data/membership';
 import clsxm from '@/helpers/clsxm';
-import { screens } from '@/helpers/style';
-import { useWindowDimensions } from '@/hooks';
 
-import QuestionTooltip from '../Home/QuestionTooltip';
-import { ChevronDown, Filter, InfoBlue } from '../Icons';
+import BiomarkersList from '../BiomarkersList';
+import { ChevronDown, Filter } from '../Icons';
 
 type TabProps = {
 	selected: boolean;
 	title: string;
 	onClick?: () => void;
+	layoutId?: string;
 };
 
-const Tab: React.FC<TabProps> = ({ selected, title, onClick }) => {
+const Tab: React.FC<TabProps> = ({ selected, title, onClick, layoutId }) => {
 	return (
 		<div className='relative'>
 			<button
@@ -31,7 +30,7 @@ const Tab: React.FC<TabProps> = ({ selected, title, onClick }) => {
 			</button>
 			{ selected && (
 				<motion.span
-					layoutId='tabs-biomakers-underline'
+					layoutId={ layoutId }
 					className='absolute bottom-0 left-0 right-0 z-10 h-0.5 bg-blue-primary'
 				/>
 			) }
@@ -43,19 +42,24 @@ const biomarkersData = membershipdata.biomarkers;
 const tabs: { title: string; key: { [key: string]: string; }; }[] = biomarkersData.tabs;
 const genderOptions = biomarkersData.genderOptions;
 
-const BioMakersSection: React.FC = () => {
+type BiomarkersSectionProps = {
+	wrapperClassName?: string;
+	tabLayoutId?: string;
+	btnSwithLayoutId?: string;
+};
+
+const BiomarkersSection: React.FC<BiomarkersSectionProps> = ({
+	wrapperClassName,
+	tabLayoutId = 'tabs-biomakers-underline',
+	btnSwithLayoutId = 'pill-tab-biomakers'
+}) => {
 	const [isOpenSection, setIsOpenSection] = useState<boolean>(false);
 	const [selectedTabIdx, setSelectedTabIdx] = useState<number>(0);
 	const [selectedGenderIdx, setSelectedGenderIdx] = useState<number>(0);
-	const [limit, setLimit] = useState<number>(13);
 	const [isOpenFilter, setIsOpenFilter] = useState<boolean>(false);
-
-	const windowDimensions = useWindowDimensions();
-	const isMobile = windowDimensions.width < screens.lg;
 
 	const toggleDropdown = () => {
 		setIsOpenSection(!isOpenSection);
-		setLimit(13);
 	};
 
 	const renderButtonSwitchGender = () => {
@@ -84,7 +88,7 @@ const BioMakersSection: React.FC = () => {
 				</div>
 
 				<motion.span
-					layoutId='pill-tab-biomakers'
+					layoutId={ btnSwithLayoutId }
 					transition={ { type: 'spring', duration: 0.75 } }
 					className={ clsxm(
 						'bg-primary cursor-pointer rounded-[100px] font-medium text-white whitespace-nowrap shadow-[0px_4px_8px_0px_rgba(0,0,0,0.1)] text-sm !leading-normal flex items-center justify-center gap-[9px] h-[37px] top-1.5 absolute',
@@ -110,6 +114,7 @@ const BioMakersSection: React.FC = () => {
 							onClick={ () => setSelectedTabIdx(index) }
 							selected={ selectedTabIdx === index }
 							title={ tab.title }
+							layoutId={ tabLayoutId }
 						/>
 					);
 				}) }
@@ -207,120 +212,59 @@ const BioMakersSection: React.FC = () => {
 		);
 	};
 
+	const renderBiomarkersList = () => {
+		const genderVal = genderOptions[selectedGenderIdx].value;
+		const selectedGenderKey = tabs[selectedTabIdx].key[genderVal];
+		const filteredBiomarkersData = biomarkersData.data.find(el => el.key === selectedGenderKey)?.list ?? [];
+
+		return (
+			<BiomarkersList
+				list={ filteredBiomarkersData }
+				dataKey={ `${ selectedGenderIdx }-${ selectedTabIdx }` }
+			/>
+		);
+	};
+
 	return (
-		<div className='lg:px-3 font-Poppins'>
-			<div className='bg-white rounded-19px'>
-				<div className='container-center pt-6 pb-[42px] lg:py-[62px] flex flex-col'>
-					<button
-						onClick={ toggleDropdown }
-						className='focus:ring-0 focus:outline-none flex w-full lg:w-auto text-primary justify-between lg:justify-start font-medium items-center text-sm lg:text-[28px] !leading-normal gap-3'
-					>
-						<span>{ biomarkersData.title }</span>
+		<div className={ clsxm('rounded-19px', wrapperClassName) }>
+			<div className='container-center flex flex-col'>
+				<button
+					onClick={ toggleDropdown }
+					className='focus:ring-0 focus:outline-none flex w-full lg:w-auto text-primary justify-between lg:justify-start font-medium items-center text-sm lg:text-[28px] font-medium !leading-normal gap-3'
+				>
+					<span>{ biomarkersData.title }</span>
 
-						<motion.span
-							variants={ {
-								open: {
-									rotate: '180deg',
-								},
-								closed: {
-									rotate: '0deg',
-								},
-							} }
-							animate={ isOpenSection ? 'open' : 'closed' }
-							transition={ { ease: 'easeOut', duration: .2 } }
+					<ChevronDown className={ clsxm(
+						'w-5 h-5 lg:w-6 lg:h-6 flex-shrink-0 text-primary ease-out transform duration-200',
+						isOpenSection && 'rotate-180'
+					) } />
+				</button>
+				<p className={ clsxm('transform transition-opacity ease-in-out mt-5px lg:mt-1 text-grey-300 text-xs lg:text-lg !leading-normal', isOpenSection ? 'opacity-0 duration-[50ms]' : 'opacity-100 delay-500 duration-500') }>{ biomarkersData.expandText }</p>
+
+				<AnimatePresence mode='wait'>
+					{ isOpenSection && (
+						<motion.div
+							initial={ { opacity: 0, y: -30, height: 0 } }
+							animate={ { opacity: 1, y: 0, height: 'fit-content' } }
+							exit={ { opacity: 0, y: -30, height: 0 } }
+							transition={ { duration: 0.5, ease: 'easeInOut' } }
 						>
-							<ChevronDown className='w-5 h-5 lg:w-6 lg:h-6 flex-shrink-0 text-primary' />
-						</motion.span>
-					</button>
-					<p className={ clsxm('transform transition-opacity ease-in-out mt-5px lg:mt-1 text-grey-300 text-xs lg:text-lg !leading-normal', isOpenSection ? 'opacity-0 duration-[50ms]' : 'opacity-100 delay-500 duration-500') }>{ biomarkersData.expandText }</p>
-
-					<AnimatePresence mode='wait'>
-						{ isOpenSection && (
-							<motion.div
-								initial={ { opacity: 0, y: -30, height: 0 } }
-								animate={ { opacity: 1, y: 0, height: 'fit-content' } }
-								exit={ { opacity: 0, y: -30, height: 0 } }
-								transition={ { duration: 0.5, ease: 'easeInOut' } }
-							>
-								<div className='flex flex-col'>
-									<div className='hidden lg:flex w-fit mb-[39px]'>
-										{ renderButtonSwitchGender() }
-									</div>
-									{ renderTabs() }
-									{ renderFilter() }
-
-									<AnimatePresence mode='wait'>
-										{ biomarkersData.data.map((option, index) => {
-											const genderVal = genderOptions[selectedGenderIdx].value;
-											const selected = tabs[selectedTabIdx].key[genderVal];
-
-											if (selected === option.key) {
-												const list = isMobile
-													? option.list.slice(0, limit)
-													: option.list;
-
-												return (
-													<motion.div
-														initial={ { opacity: 0, y: 10 } }
-														animate={ { opacity: 1, y: 0 } }
-														exit={ { opacity: 0, y: 10 } }
-														transition={ { ease: 'easeInOut', duration: .25 } }
-														key={ index }
-													>
-														<ul className='pt-[42px] lg:pt-[63px] flex flex-wrap gap-y-[27px] gap-x-[27px] lg:gap-x-6 lg:gap-y-[29px]'>
-															{ list.map((item, itemIdx) => {
-																return (
-																	<li
-																		key={ itemIdx }
-																		className='text-primary flex gap-2 text-sm !leading-6 border bg-[#F2FAFF] py-2 px-3.5 rounded-full border-[#C8EAFF] items-center cursor-pointer'
-																	>
-																		{ item.title }
-
-																		<QuestionTooltip
-																			icon={ <InfoBlue /> }
-																			text={ item.description || item.title }
-																		/>
-																	</li>
-																);
-															}) }
-														</ul>
-
-														{ list.length < option.list.length && (
-															<button
-																className='lg:hidden mt-[42px] focus:ring-0 focus:outline-none relative w-full p-1.5 border border-grey-50 flex items-center justify-center gap-2 hover:bg-grey-50 rounded-[20px]'
-																onClick={ () => setLimit(prevLimit => prevLimit + 10) }
-															>
-																<svg
-																	width='24'
-																	height='24'
-																	viewBox='0 0 24 24'
-																	fill='none'
-																	xmlns='http://www.w3.org/2000/svg'
-																	className='flex-shrink-0'>
-																	<path
-																		d='M12 6V3M16.25 7.75L18.4 5.6M18 12H21M16.25 16.25L18.4 18.4M12 18V21M7.75 16.25L5.6 18.4M6 12H3M7.75 7.75L5.6 5.6'
-																		stroke='#99D4FF'
-																		strokeWidth='2'
-																		strokeLinecap='round'
-																		strokeLinejoin='round' />
-																</svg>
-																<span className='text-grey-400 text-sm !leading-normal -tracking-0.04em'>Loading More</span>
-															</button>
-														) }
-													</motion.div>
-												);
-											}
-											return undefined;
-										}) }
-									</AnimatePresence>
+							<div className='flex flex-col'>
+								<div className='hidden lg:flex w-fit mb-[39px]'>
+									{ renderButtonSwitchGender() }
 								</div>
-							</motion.div>
-						) }
-					</AnimatePresence>
-				</div>
+								{ renderTabs() }
+								{ renderFilter() }
+								<div className='w-full pt-[42px] lg:pt-[63px]'>
+									{ renderBiomarkersList() }
+								</div>
+							</div>
+						</motion.div>
+					) }
+				</AnimatePresence>
 			</div>
 		</div>
 	);
 };
 
-export default BioMakersSection;
+export default BiomarkersSection;
