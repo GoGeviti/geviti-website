@@ -4,9 +4,11 @@ import * as yup from 'yup';
 { /* eslint-disable @typescript-eslint/no-explicit-any */ }
 
 export const FormCheckoutSchema = yup.object().shape({
-	name: yup.string()
+	first_name: yup.string()
 		.required()
-		.label('Full name'),
+		.label('First name'),
+	last_name: yup.string()
+		.label('Last name'),
 	email: yup.string().email()
 		.required()
 		.label('Email'),
