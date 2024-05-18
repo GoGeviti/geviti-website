@@ -53,7 +53,7 @@ export const createNotionDatabase = async(
 						{
 							type: 'text',
 							text: {
-								content: formData.name
+								content: formData.first_name
 							}
 						}
 					]

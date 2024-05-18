@@ -77,7 +77,8 @@ const FormDetail: React.FC<FormDetailProps> = ({ onSubmit, userData, isAlreadyOn
 				const { status, message: messageResponse } = await createNotionDatabase({
 					birthdate: form.birthdate,
 					email: userData.email,
-					name: userData.name,
+					first_name: userData.first_name,
+					last_name: userData.last_name,
 					gender: form.gender,
 					state: form.state,
 					isAlreadyOnHRT: isAlreadyOnHRT

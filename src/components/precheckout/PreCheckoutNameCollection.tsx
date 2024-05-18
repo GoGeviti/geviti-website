@@ -136,7 +136,7 @@ const Button = styled.button<{ viewState: ViewState }>`
 
 interface PreCheckoutNameCollectionProps {
   viewState: ViewState;
-  onContinue: (name: string, email: string) => void;
+  onContinue: () => void;
 }
 
 const PreCheckoutNameCollection = (props: PreCheckoutNameCollectionProps) => {
@@ -169,7 +169,7 @@ const PreCheckoutNameCollection = (props: PreCheckoutNameCollectionProps) => {
 			/>
 			<Button
 				viewState={ props.viewState }
-				onClick={ () => props.onContinue(name, email) }
+				onClick={ () => props.onContinue() }
 			>
         Next
 			</Button>

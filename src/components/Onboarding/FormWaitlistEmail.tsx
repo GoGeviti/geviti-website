@@ -34,7 +34,8 @@ const FormWaitlistEmail: React.FC<FormWaitlistEmailProps> = ({ onSubmit, userDat
 		const { status, message: messageResponse } = await createNotionDatabase({
 			birthdate: userData.birthdate,
 			email: email,
-			name: userData.name,
+			first_name: userData.first_name,
+			last_name: userData.last_name,
 			gender: userData.gender,
 			state: userData.state,
 			isAlreadyOnHRT: isAlreadyOnHRT,

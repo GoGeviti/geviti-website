@@ -24,7 +24,8 @@ const FormNameEmail: React.FC<FormNameEmailProps> = ({ onSubmit, userData }) => 
 		validateOnChange: enableValidation,
 		validationSchema: FormNameEmailSchema,
 		initialValues: {
-			name: userData.name,
+			first_name: userData.first_name,
+			last_name: userData.last_name,
 			email: userData.email
 		},
 		onSubmit: (form: IPrecheckout.FormNameEmailState) => {
@@ -71,14 +72,14 @@ const FormNameEmail: React.FC<FormNameEmailProps> = ({ onSubmit, userData }) => 
 							animate='visible'
 						>
 							<TextField
-								label='Full Name'
-								id='name'
-								name='name'
-								placeholder='Full Name'
-								value={ formik.values.name }
+								label='First Name'
+								id='first_name'
+								name='first_name'
+								placeholder='First Name'
+								value={ formik.values.first_name }
 								onChange={ formik.handleChange }
-								isError={ !!formik.errors.name }
-								errorMessage={ formik.errors.name }
+								isError={ !!formik.errors.first_name }
+								errorMessage={ formik.errors.first_name }
 							/>
 						</motion.div>
 						<motion.div

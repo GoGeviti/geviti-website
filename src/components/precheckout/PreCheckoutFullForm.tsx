@@ -267,7 +267,7 @@ const CheckboxText = styled.span`
 
 interface PreCheckoutFullFormProps {
   viewState: ViewState;
-  onContinue: (usState: string, sex: string, birthday: string) => void;
+  onContinue: () => void;
 }
 
 const PreCheckoutFullForm = (props: PreCheckoutFullFormProps) => {
@@ -414,7 +414,7 @@ const PreCheckoutFullForm = (props: PreCheckoutFullFormProps) => {
 			</CheckboxRow>
 			<Button
 				viewState={ props.viewState }
-				onClick={ () => props.onContinue(usState, sex, birthday) }
+				onClick={ () => props.onContinue() }
 			>
         Next
 			</Button>

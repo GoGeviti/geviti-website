@@ -37,7 +37,8 @@ const FormWaitlistDetail: React.FC<FormWaitlistDetailProps> = ({ onSubmit, userD
 		validateOnChange: enableValidation,
 		validationSchema: MergedFormSchema,
 		initialValues: {
-			name: userData.name,
+			first_name: userData.first_name,
+			last_name: userData.last_name,
 			email: userData.email,
 			state: userData.state,
 			gender: userData.gender,
@@ -131,14 +132,14 @@ const FormWaitlistDetail: React.FC<FormWaitlistDetailProps> = ({ onSubmit, userD
 								animate='visible'
 							>
 								<TextField
-									label='Full Name'
-									id='name'
-									name='name'
-									placeholder='Full Name'
-									value={ formik.values.name }
+									label='First Name'
+									id='first_name'
+									name='first_name'
+									placeholder='First Name'
+									value={ formik.values.first_name }
 									onChange={ formik.handleChange }
-									isError={ !!formik.errors.name }
-									errorMessage={ formik.errors.name }
+									isError={ !!formik.errors.first_name }
+									errorMessage={ formik.errors.first_name }
 								/>
 							</motion.div>
 							<motion.div
