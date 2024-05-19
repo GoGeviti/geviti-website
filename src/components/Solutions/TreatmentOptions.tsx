@@ -3,10 +3,11 @@
 import React, { useMemo, useRef, useState } from 'react';
 import SlickSlider from 'react-slick';
 import { AnimatePresence, motion, wrap } from 'framer-motion';
-import dynamic from 'next/dynamic';
+// import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import Link from 'next/link';
 
+import { MembershipComponent } from '@/components';
 import { solutionData } from '@/constant/data';
 import clsxm from '@/helpers/clsxm';
 
@@ -16,7 +17,7 @@ import ShiftSection from '../ShiftSection';
 
 import VerticalThumbs from './VerticalThumbs';
 
-const BiomarkersSection = dynamic(() => import('./BiomarkersSection'), { ssr: false });
+// const BiomarkersSection = dynamic(() => import('./BiomarkersSection'), { ssr: false });
 
 const horizontalSliderVariants = {
 	incoming: (direction: number) => ({
@@ -462,10 +463,14 @@ const TreatmentOptions: React.FC<TreatmentOptionsProps> = ({ type = 'men' }) => 
 			</div>
 
 			{ selectedSubCategory?.biomarkers && (
-				<BiomarkersSection
+				// <BiomarkersSection
+				// 	key={ `${ selectedTabIdx }-${ selectedSubCategoryIdx }` }
+				// 	list={ selectedSubCategory?.biomarkers }
+				// 	type={ type } />
+				<MembershipComponent.BiomarkersSection
 					key={ `${ selectedTabIdx }-${ selectedSubCategoryIdx }` }
-					list={ selectedSubCategory?.biomarkers }
-					type={ type } />
+					biomarkersData={ selectedSubCategory?.biomarkers }
+					wrapperClassName='bg-white mt-6 pt-6 pb-[42px] lg:py-[62px]' />
 			) }
 		</div>
 	);

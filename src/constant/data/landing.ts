@@ -98,8 +98,8 @@ const landingData = {
 		],
 		subCategories: [
 			{ id: 1, title: 'Prescriptions' },
-			{ id: 2, title: 'Testing Options' },
 			{ id: 3, title: 'Supplements' },
+			{ id: 2, title: 'Testing Options' },
 		],
 	},
 	investment: {
@@ -452,7 +452,7 @@ const landingData = {
 			{
 				id: 'therapy',
 				preTitle: 'Members receive access to',
-				title: 'Tailormade smart supplements',
+				title: 'Customized supplements',
 				description: 'No more over spending on supplements that aren\'t designed <br class="max-lg:hidden"/>exactly for you. Geviti will analyze your biomarkers and create <br class="max-lg:hidden"/>totally custom supplements with everything you need, and <br class="max-lg:hidden"/>nothing that you don’t.',
 				image: '/images/landing/compressed/supplements-pouch.webp',
 				imageMobile: '/images/landing/compressed/supplements-pouch-mobile.webp'

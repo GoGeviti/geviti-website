@@ -82,7 +82,7 @@ const BiomarkersSection: React.FC<BiomarkersSectionProps> = ({ list, type = 'men
 			<div className='container-center flex flex-col'>
 				<button
 					onClick={ toggleDropdown }
-					className='focus:ring-0 focus:outline-none flex w-full lg:w-auto text-primary justify-between lg:justify-start font-medium items-center text-sm lg:text-[28px] font-medium !leading-normal gap-3'
+					className='focus:ring-0 focus:outline-none flex w-full lg:w-auto text-primary justify-between lg:justify-start font-medium items-center text-sm lg:text-[28px] !leading-normal gap-3'
 				>
 					<span>{ biomarkersData.title }</span>
 
