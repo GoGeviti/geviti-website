@@ -63,7 +63,7 @@ const biomakersData = [
 		key: 'metabolic_check',
 		list: [
 			{ title: 'Total Cholesterol', description: '' },
-			{ title: 'High-Density Lipoprotein (HDL) Cholesterol'', description: '' },
+			{ title: 'High-Density Lipoprotein (HDL) Cholesterol', description: '' },
 			{ title: 'Low-Density Lipoprotein (LDL) Cholesterol', description: '' },
 			{ title: 'Triglycerides', description: '' },
 			{ title: 'HbA1C (Haemoglobin A1c) ', description: '' },
