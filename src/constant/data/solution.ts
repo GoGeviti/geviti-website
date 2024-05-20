@@ -53,7 +53,7 @@ const biomakersData = [
 			{ title: 'HbA1C (Haemoglobin A1c) ', description: '' },
 			{ title: 'Apo-A1 (Apolipoprotein A1) ', description: '' },
 			{ title: 'ApoB (Apolipoprotein B) ', description: '' },
-			{ title: 'hsCRP (High-sensitivity C-reactive Protein) , description: '' },
+			{ title: 'hsCRP (High-sensitivity C-reactive Protein) ', description: '' },
 			{ title: 'HCY (Homocysteine) ', description: '' },
 			{ title: 'LP(a) (Lipoprotein(a)) ', description: '' },
 			{ title: 'APOB/APOA ratio', description: '' },
