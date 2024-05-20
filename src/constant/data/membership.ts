@@ -110,254 +110,190 @@ const membershipData = {
 			{
 				key: 'essential',
 				list: [
-					{ title: 'Thyroid Cascade', description: 'Evaluates thyroid function and disorders with 3-4 biomarkers.' },
-					{ title: 'Luteinizing Hormone (LH)', description: 'Indicates reproductive health and function.' },
-					{ title: 'Total Testosterone', description: 'Measures overall level of male sex hormone.' },
-					{ title: 'Free Testosterone', description: 'Assesses biologically active testosterone fraction.' },
-					{ title: 'Chloride', description: '' },
-					{ title: 'Globulin, Total', description: '' },
-					{ title: 'Calcium', description: '' },
-					{ title: 'Alkaline Phosphatase', description: '' },
-					{ title: 'A/G Ratio', description: '' },
-					{ title: 'Bilirubin', description: '' },
-					{ title: 'Blood Urea Nitrogen (BUN)', description: '' },
-					{ title: 'Sodium', description: '' },
-					{ title: 'Potassium', description: '' },
-					{ title: 'Glucose', description: '' },
-					{ title: 'Total Protein', description: '' },
-					{ title: 'Albumin', description: '' },
-					{ title: 'Carbon Dioxide (CO2)', description: '' },
-					{ title: 'Alanine Aminotransferase (ALT)', description: '' },
-					{ title: 'Aspartate Aminotransferase (AST)', description: '' },
-					{ title: 'Creatinine', description: '' },
-					{ title: 'BUN/Creatinine Ratio', description: '' },
-					{ title: 'Estimated Glomerular Filtration Rate (eGFR)', description: '' },
-					{ title: 'HbA1C', description: 'Reflects average blood sugar levels over three months.' },
-					{ title: 'Red Blood Cell Count (RBC)', description: '' },
-					{ title: 'White Blood Cell Count (WBC)', description: '' },
-					{ title: 'Hemoglobin (HGB)', description: '' },
-					{ title: 'Hematocrit (HCT)', description: '' },
-					{ title: 'Mean Corpuscular Volume (MCV)', description: '' },
-					{ title: 'Mean Corpuscular Hemoglobin (MCH)', description: '' },
-					{ title: 'Mean Corpuscular Hemoglobin Concentration (MCHC)', description: '' },
-					{ title: 'Red Cell Distribution Width (RDW)', description: '' },
-					{ title: 'Platelet Count', description: '' },
-					{ title: 'Neutrophils (Absolute and Percent)', description: '' },
-					{ title: 'Lymphocytes (Absolute and Percent)', description: '' },
-					{ title: 'Monocytes (Absolute and Percent)', description: '' },
-					{ title: 'Eosinophils (Absolute and Percent)', description: '' },
-					{ title: 'Basophils (Absolute and Percent)', description: '' },
-					{ title: 'Immature Granulocytes (Absolute and Percent)', description: '' },
-					{ title: 'Immature Cells (Absolute Count)', description: '' },
-					{ title: 'Total Cholesterol', description: '' },
-					{ title: 'High-Density Lipoprotein (HDL) Cholesterol', description: '' },
-					{ title: 'Low-Density Lipoprotein (LDL) Cholesterol (calculated)', description: '' },
-					{ title: 'Triglycerides', description: '' },
-					{ title: 'sex hormone binding globulin (SHBG)', description: '' },
-					{ title: 'Very Low-Density Lipoprotein (VLDL) Cholesterol (calculated)', description: '' },
-					{ title: 'Prostate-Specific Antigen (PSA)', description: '' },
+					{ "title": "Thyroid Cascade", "description": "TSH first then T4 and T3 only when TSH is abnormal. This cascade detects most abnormalities affecting the thyroid or the secretion of TSH by the pituitary gland." },
+					{ "title": "LH (Luteinizing Hormone)", "description": "In men, LH causes the Leydig cells of the testes to produce testosterone. In women, LH triggers the creation of steroid hormones from the ovaries." },
+					{ "title": "Total Test (Total Testosterone)", "description": "Measures free testosterone and testosterone that's attached to proteins. This helps in assessing overall hormonal balance and detecting hormonal disorders." },
+					{ "title": "Free Test (Free Testosterone)", "description": "Measures only the 'active' form of testosterone. This is important for evaluating conditions like hypogonadism and other hormonal imbalances." },
+					{ "title": "Chloride", "description": "Stimulates stomach acid for digestion, nerve and muscle activation, and oxygen flow within cells." },
+					{ "title": "Globulin, Total", "description": "Protein in blood that helps detect inflammation or infection." },
+					{ "title": "Calcium", "description": "Important for muscle and nerve function, bone health, and neuromuscular function." },
+					{ "title": "Alkaline Phosphatase (ALP)", "description": "Enzyme in blood that detects liver damage." },
+					{ "title": "A/G Ratio (Albumin/Globulin Ratio)", "description": "A measure of the relative amounts of albumin and globulin, which can indicate various health conditions." },
+					{ "title": "Bilirubin", "description": "Waste product from red blood cells; helps detect liver damage." },
+					{ "title": "Blood Urea Nitrogen (BUN)", "description": "Waste filtered by kidneys; helps assess kidney function." },
+					{ "title": "Sodium", "description": "Regulates blood pressure and fluid balance; vital for cardiovascular health." },
+					{ "title": "Potassium", "description": "Maintains fluid levels inside cells; important for heart and muscle function." },
+					{ "title": "Glucose", "description": "A type of sugar used by the body for energy. Monitoring glucose levels is essential for managing diabetes and energy metabolism." },
+					{ "title": "Total Protein", "description": "The sum of albumin and globulin; important for diagnosing liver and kidney conditions." },
+					{ "title": "Albumin", "description": "Protein in blood that helps detect inflammation or infection." },
+					{ "title": "Carbon Dioxide (CO2)", "description": "Regulates blood pH and provides information about kidney health." },
+					{ "title": "Alanine Aminotransferase (ALT)", "description": "Enzyme in blood that detects liver damage." },
+					{ "title": "Aspartate Aminotransferase (AST)", "description": "Enzyme in blood that detects liver damage." },
+					{ "title": "Creatinine", "description": "Waste filtered by kidneys; used to evaluate kidney health." },
+					{ "title": "BUN/Creatinine Ratio", "description": "A measure that helps determine the cause of kidney dysfunction." },
+					{ "title": "Estimated Glomerular Filtration Rate (eGFR)", "description": "Estimates how well the kidneys are filtering; used to assess kidney function." },
+					{ "title": "HbA1C (Haemoglobin A1c)", "description": "Measures the amount of blood sugar attached to hemoglobin, indicating diabetes control over the past 2-3 months." },
+					{ "title": "Red Blood Cell Count (RBC)", "description": "Carry oxygen; crucial for diagnosing anemia." },
+					{ "title": "White Blood Cell Count (WBC)", "description": "Fight infection; important for detecting infections and immune disorders." },
+					{ "title": "Hemoglobin (HGB)", "description": "Oxygen-carrying protein in red blood cells; used to diagnose anemia." },
+					{ "title": "Hematocrit (HCT)", "description": "Amount of red blood cells in blood; indicates blood volume." },
+					{ "title": "Mean Corpuscular Volume (MCV)", "description": "Average size of red blood cells; helps classify types of anemia." },
+					{ "title": "Mean Corpuscular Hemoglobin (MCH)", "description": "Average amount of hemoglobin inside a red blood cell; aids in diagnosing anemia." },
+					{ "title": "Mean Corpuscular Hemoglobin Concentration (MCHC)", "description": "Concentration of hemoglobin in a given volume of packed red blood cells." },
+					{ "title": "Red Cell Distribution Width (RDW)", "description": "A measure of the variation in size of red blood cells; used to diagnose different types of anemia." },
+					{ "title": "Platelet Count", "description": "Help clot blood; essential for assessing bleeding disorders." },
+					{ "title": "Neutrophils (Absolute and Percent)", "description": "A type of white blood cell important for fighting bacterial infections." },
+					{ "title": "Lymphocytes (Absolute and Percent)", "description": "A type of white blood cell that is part of the immune system, helping fight infections." },
+					{ "title": "Monocytes (Absolute and Percent)", "description": "A type of white blood cell that helps break down bacteria." },
+					{ "title": "Eosinophils (Absolute and Percent)", "description": "A type of white blood cell involved in combating multicellular parasites and certain infections." },
+					{ "title": "Basophils (Absolute and Percent)", "description": "A type of white blood cell that participates in allergic reactions and asthma." },
+					{ "title": "Immature Granulocytes (Absolute and Percent)", "description": "Immature white blood cells that can indicate infection or inflammation when present in high numbers." },
+					{ "title": "Immature Cells (Absolute Count)", "description": "Measures the number of immature white blood cells in the blood, which can indicate bone marrow activity." },
+					{ "title": "Total Cholesterol", "description": "Overall cholesterol level indicating risk for cardiovascular disease." },
+					{ "title": "High-Density Lipoprotein (HDL) Cholesterol", "description": "Good cholesterol that helps remove other forms of cholesterol from the bloodstream." },
+					{ "title": "Low-Density Lipoprotein (LDL) Cholesterol (calculated)", "description": "Bad cholesterol that can build up in arteries, increasing heart disease risk." },
+					{ "title": "Triglycerides", "description": "Type of fat in the blood; high levels increase heart disease risk." },
+					{ "title": "Very Low-Density Lipoprotein (VLDL) Cholesterol (calculated)", "description": "A type of lipoprotein that carries triglycerides in the blood; high levels can indicate heart disease risk." },
+					{ "title": "PSA (Prostate-Specific Antigen)", "description": "Protein produced by the prostate gland; elevated levels can indicate prostate cancer." },
+					{ "title": "SHBG (Sex Hormone Binding Globulin)", "description": "Protein that binds to sex hormones, regulating their availability." },
 				]
 			},
 			{
 				key: 'comprehensive',
 				list: [
-					{
-						title: 'Thyroid Cascade',
-						description: 'Evaluates thyroid function and disorders with 3-4 biomarkers.'
-					},
-					{
-						title: 'LH (Lutheinizing Hormone)',
-						description: 'Indicates reproductive health and function.'
-					},
-					{
-						title: 'Total Testosterone',
-						description: 'Measures overall level of male sex hormone.'
-					},
-					{
-						title: 'Free Testosterone',
-						description: 'Assesses biologically active testosterone fraction.'
-					},
-					{
-						title: 'Comprehensive Metabolic Panel',
-						description: 'Provides a broad overview of metabolism and organ function with 14 biomarkers.'
-					},
-					{
-						title: 'HbA1C',
-						description: 'Reflects average blood sugar levels over three months.'
-					},
-					{
-						title: 'Complete Blood Count',
-						description: 'Measures different blood cell types for overall health status with 14 biomarkers.'
-					},
-					{
-						title: 'Lipid Panel',
-						description: 'Assesses risk for cardiovascular disease through cholesterol levels with 4 biomarkers.'
-					},
-					{
-						title: 'FSH (Follicle Stimulating Hormone)',
-						description: 'Integral for reproductive system functioning.'
-					},
-					{
-						title: 'Estradiol',
-						description: 'A form of estrogen important for reproductive and sexual health.'
-					},
-					{
-						title: 'DHEA (Dehydroepiandrosterone)',
-						description: 'A hormone that\'s a precursor to sex hormones.'
-					},
-					{
-						title: 'IGF-1 (Insulin-like Growth Factor 1)',
-						description: 'Reflects human growth hormone levels.'
-					},
-					{
-						title: 'Homocysteine',
-						description: 'Linked with cardiovascular disease risk.'
-					},
-					{
-						title: 'Magnesium',
-						description: 'Vital for muscle, nerve function, and bone health.'
-					},
-					{
-						title: 'Vitamin D, 25-Hydroxy',
-						description: 'Assesses vitamin D status related to bone health.'
-					},
-					{
-						title: 'PSA (Prostate-Specific Antigen)',
-						description: 'Screens for prostate health issues.'
-					},
-					{
-						title: 'C-Reactive Protein',
-						description: 'Indicates liver health.'
-					},
-					{
-						title: 'Apo B',
-						description: 'Assists in evaluating liver function.'
-					},
-					{
-						title: 'Lipoprotein A',
-						description: 'A marker for inflammation in the body.'
-					},
+					{ "title": "Thyroid Cascade", "description": "TSH first then T4 and T3 only when TSH is abnormal. This cascade detects most abnormalities affecting the thyroid or the secretion of TSH by the pituitary gland." },
+					{ "title": "LH (Luteinizing Hormone)", "description": "In men, LH causes the Leydig cells of the testes to produce testosterone. In women, LH triggers the creation of steroid hormones from the ovaries." },
+					{ "title": "FSH (Follicle Stimulating Hormone)", "description": "Regulates reproductive processes by stimulating ovarian follicles in women and sperm production in men." },
+					{ "title": "Total Test (Total Testosterone)", "description": "Measures free testosterone and testosterone that's attached to proteins. This helps in assessing overall hormonal balance and detecting hormonal disorders." },
+					{ "title": "Free Test (Free Testosterone)", "description": "Measures only the 'active' form of testosterone. This is important for evaluating conditions like hypogonadism and other hormonal imbalances." },
+					{ "title": "Chloride", "description": "Stimulates stomach acid for digestion, nerve and muscle activation, and oxygen flow within cells." },
+					{ "title": "Globulin, Total", "description": "Protein in blood that helps detect inflammation or infection." },
+					{ "title": "Calcium", "description": "Important for muscle and nerve function, bone health, and neuromuscular function." },
+					{ "title": "Alkaline Phosphatase (ALP)", "description": "Enzyme in blood that detects liver damage." },
+					{ "title": "A/G Ratio (Albumin/Globulin Ratio)", "description": "A measure of the relative amounts of albumin and globulin, which can indicate various health conditions." },
+					{ "title": "Bilirubin", "description": "Waste product from red blood cells; helps detect liver damage." },
+					{ "title": "Blood Urea Nitrogen (BUN)", "description": "Waste filtered by kidneys; helps assess kidney function." },
+					{ "title": "Sodium", "description": "Regulates blood pressure and fluid balance; vital for cardiovascular health." },
+					{ "title": "Potassium", "description": "Maintains fluid levels inside cells; important for heart and muscle function." },
+					{ "title": "Glucose", "description": "A type of sugar used by the body for energy. Monitoring glucose levels is essential for managing diabetes and energy metabolism." },
+					{ "title": "Total Protein", "description": "The sum of albumin and globulin; important for diagnosing liver and kidney conditions." },
+					{ "title": "Albumin", "description": "Protein in blood that helps detect inflammation or infection." },
+					{ "title": "Carbon Dioxide (CO2)", "description": "Regulates blood pH and provides information about kidney health." },
+					{ "title": "Alanine Aminotransferase (ALT)", "description": "Enzyme in blood that detects liver damage." },
+					{ "title": "Aspartate Aminotransferase (AST)", "description": "Enzyme in blood that detects liver damage." },
+					{ "title": "Creatinine", "description": "Waste filtered by kidneys; used to evaluate kidney health." },
+					{ "title": "BUN/Creatinine Ratio", "description": "A measure that helps determine the cause of kidney dysfunction." },
+					{ "title": "Estimated Glomerular Filtration Rate (eGFR)", "description": "Estimates how well the kidneys are filtering; used to assess kidney function." },
+					{ "title": "HbA1C (Haemoglobin A1c)", "description": "Measures the amount of blood sugar attached to hemoglobin, indicating diabetes control over the past 2-3 months." },
+					{ "title": "Red Blood Cell Count (RBC)", "description": "Carry oxygen; crucial for diagnosing anemia." },
+					{ "title": "White Blood Cell Count (WBC)", "description": "Fight infection; important for detecting infections and immune disorders." },
+					{ "title": "Hemoglobin (HGB)", "description": "Oxygen-carrying protein in red blood cells; used to diagnose anemia." },
+					{ "title": "Hematocrit (HCT)", "description": "Amount of red blood cells in blood; indicates blood volume." },
+					{ "title": "Mean Corpuscular Volume (MCV)", "description": "Average size of red blood cells; helps classify types of anemia." },
+					{ "title": "Mean Corpuscular Hemoglobin (MCH)", "description": "Average amount of hemoglobin inside a red blood cell; aids in diagnosing anemia." },
+					{ "title": "Mean Corpuscular Hemoglobin Concentration (MCHC)", "description": "Concentration of hemoglobin in a given volume of packed red blood cells." },
+					{ "title": "Red Cell Distribution Width (RDW)", "description": "A measure of the variation in size of red blood cells; used to diagnose different types of anemia." },
+					{ "title": "Platelet Count", "description": "Help clot blood; essential for assessing bleeding disorders." },
+					{ "title": "Neutrophils (Absolute and Percent)", "description": "A type of white blood cell important for fighting bacterial infections." },
+					{ "title": "Lymphocytes (Absolute and Percent)", "description": "A type of white blood cell that is part of the immune system, helping fight infections." },
+					{ "title": "Monocytes (Absolute and Percent)", "description": "A type of white blood cell that helps break down bacteria." },
+					{ "title": "Eosinophils (Absolute and Percent)", "description": "A type of white blood cell involved in combating multicellular parasites and certain infections." },
+					{ "title": "Basophils (Absolute and Percent)", "description": "A type of white blood cell that participates in allergic reactions and asthma." },
+					{ "title": "Immature Granulocytes (Absolute and Percent)", "description": "Immature white blood cells that can indicate infection or inflammation when present in high numbers." },
+					{ "title": "Immature Cells (Absolute Count)", "description": "Measures the number of immature white blood cells in the blood, which can indicate bone marrow activity." },
+					{ "title": "Total Cholesterol", "description": "Overall cholesterol level indicating risk for cardiovascular disease." },
+					{ "title": "High-Density Lipoprotein (HDL) Cholesterol", "description": "Good cholesterol that helps remove other forms of cholesterol from the bloodstream." },
+					{ "title": "Low-Density Lipoprotein (LDL) Cholesterol (calculated)", "description": "Bad cholesterol that can build up in arteries, increasing heart disease risk." },
+					{ "title": "Triglycerides", "description": "Type of fat in the blood; high levels increase heart disease risk." },
+					{ "title": "Very Low-Density Lipoprotein (VLDL) Cholesterol (calculated)", "description": "A type of lipoprotein that carries triglycerides in the blood; high levels can indicate heart disease risk." },
+					{ "title": "Estradiol", "description": "A form of estrogen, a female sex hormone produced by the ovaries." },
+					{ "title": "DHEA-S (Dehydroepiandrosterone Sulfate)", "description": "A hormone produced by the adrenal glands; it serves as a precursor to male and female sex hormones." },
+					{ "title": "IGF-1 (Insulin-like Growth Factor 1)", "description": "A hormone that plays a role in growth and development; indicator of growth hormone activity." },
+					{ "title": "Homocysteine", "description": "Amino acid in blood indicating heart disease risk when elevated." },
+					{ "title": "Magnesium", "description": "Essential mineral involved in muscle and nerve function, blood glucose control, and blood pressure regulation." },
+					{ "title": "Vitamin D, 25-Hydroxy", "description": "Measures the level of vitamin D in the blood, important for bone health and immune function." },
+					{ "title": "PSA (Prostate-Specific Antigen)", "description": "Protein produced by the prostate gland; elevated levels can indicate prostate cancer." },
+					{ "title": "C-Reactive Protein (CRP)", "description": "Marker of inflammation in the body; high levels indicate infection or chronic inflammatory diseases." },
+					{ "title": "Apo B (Apolipoprotein B)", "description": "Protein involved in lipid metabolism; high levels are associated with cardiovascular disease risk." },
+					{ "title": "Lipoprotein A", "description": "Lipoprotein associated with increased cardiovascular disease risk." },
+					{ "title": "DHT (Dihydrotestosterone)", "description": "Androgen hormone derived from testosterone; associated with male pattern baldness and prostate health." },
+					{ "title": "SHBG (Sex Hormone Binding Globulin)", "description": "Protein that binds to sex hormones, regulating their availability." },
+					{ "title": "B12 (Vitamin B12)", "description": "Essential for red blood cell formation, neurological function, and DNA synthesis."},
 				]
 			},
 			{
 				key: 'ultimateMale',
 				list: [
-					{
-						title: 'Thyroid Cascade',
-						description: 'Evaluates thyroid function and disorders with 3-4 biomarkers.'
-					},
-					{
-						title: 'LH (Lutheinizing Hormone)',
-						description: 'Indicates reproductive health and function.'
-					},
-					{
-						title: 'Total Testosterone',
-						description: 'Measures overall level of male sex hormone.'
-					},
-					{
-						title: 'Free Testosterone',
-						description: 'Assesses biologically active testosterone fraction.'
-					},
-					{
-						title: 'Comprehensive Metabolic Panel',
-						description: 'Provides a broad overview of metabolism and organ function with 14 biomarkers.'
-					},
-					{
-						title: 'HbA1C',
-						description: 'Reflects average blood sugar levels over three months.'
-					},
-					{
-						title: 'Complete Blood Count',
-						description: 'Measures different blood cell types for overall health status with 14 biomarkers.'
-					},
-					{
-						title: 'Lipid Panel',
-						description: 'Assesses risk for cardiovascular disease through cholesterol levels with 4 biomarkers.'
-					},
-					{
-						title: 'FSH (Follicle Stimulating Hormone)',
-						description: 'Integral for reproductive system functioning.'
-					},
-					{
-						title: 'Estradiol',
-						description: 'A form of estrogen important for reproductive and sexual health.'
-					},
-					{
-						title: 'DHEA (Dehydroepiandrosterone)',
-						description: 'A hormone that\'s a precursor to sex hormones.'
-					},
-					{
-						title: 'IGF-1 (Insulin-like Growth Factor 1)',
-						description: 'Reflects human growth hormone levels.'
-					},
-					{
-						title: 'Homocysteine',
-						description: 'Linked with cardiovascular disease risk.'
-					},
-					{
-						title: 'Magnesium',
-						description: 'Vital for muscle, nerve function, and bone health.'
-					},
-					{
-						title: 'Vitamin D, 25-Hydroxy',
-						description: 'Assesses vitamin D status related to bone health.'
-					},
-					{
-						title: 'PSA (Prostate-Specific Antigen)',
-						description: 'Screens for prostate health issues.'
-					},
-					{
-						title: 'C-Reactive Protein',
-						description: 'Indicates liver health.'
-					},
-					{
-						title: 'Apo B',
-						description: 'Assists in evaluating liver function.'
-					},
-					{
-						title: 'Lipoprotein A',
-						description: 'A marker for inflammation in the body.'
-					},
-					{
-						title: 'ALT (Alanine Aminotransferase)',
-						description: 'Involved in cholesterol metabolism; linked to heart disease'
-					},
-					{
-						title: 'AST (Aspartate Aminotransferase)',
-						description: 'Genetic marker associated with an increased risk of heart disease.'
-					},
-					{
-						title: 'Insulin',
-						description: 'Monitors insulin production and blood sugar regulation.'
-					},
-					{
-						title: 'SHBG',
-						description: 'Binds to sex hormones and regulates their effect.'
-					},
-					{
-						title: 'Cortisol',
-						description: 'Measures stress response and adrenal function.'
-					},
-					{
-						title: 'Growth Hormone',
-						description: 'Important for growth, metabolism, and muscle mass.'
-					},
-					{
-						title: 'Vitamin B12',
-						description: 'Essential for nerve function and blood cell production.'
-					},
-					{
-						title: 'Ferritin',
-						description: 'Indicates the amount of stored iron in the body.'
-					},
-					{
-						title: 'Iron and TIBC',
-						description: 'Assesses iron status and transport capacity.'
-					},
-					{
-						title: 'Free T4',
-						description: 'Directly measures active thyroid hormone levels.'
-					},
+					{ "title": "Thyroid Cascade", "description": "TSH first then T4 and T3 only when TSH is abnormal. This cascade detects most abnormalities affecting the thyroid or the secretion of TSH by the pituitary gland." },
+					{ "title": "LH (Luteinizing Hormone)", "description": "In men, LH causes the Leydig cells of the testes to produce testosterone. In women, LH triggers the creation of steroid hormones from the ovaries." },
+					{ "title": "FSH (Follicle Stimulating Hormone)", "description": "Regulates reproductive processes by stimulating ovarian follicles in women and sperm production in men." },
+					{ "title": "Total Test (Total Testosterone)", "description": "Measures free testosterone and testosterone that's attached to proteins. This helps in assessing overall hormonal balance and detecting hormonal disorders." },
+					{ "title": "Free Test (Free Testosterone)", "description": "Measures only the 'active' form of testosterone. This is important for evaluating conditions like hypogonadism and other hormonal imbalances." },
+					{ "title": "Chloride", "description": "Stimulates stomach acid for digestion, nerve and muscle activation, and oxygen flow within cells." },
+					{ "title": "Globulin, Total", "description": "Protein in blood that helps detect inflammation or infection." },
+					{ "title": "Calcium", "description": "Important for muscle and nerve function, bone health, and neuromuscular function." },
+					{ "title": "Alkaline Phosphatase (ALP)", "description": "Enzyme in blood that detects liver damage." },
+					{ "title": "A/G Ratio (Albumin/Globulin Ratio)", "description": "A measure of the relative amounts of albumin and globulin, which can indicate various health conditions." },
+					{ "title": "Bilirubin", "description": "Waste product from red blood cells; helps detect liver damage." },
+					{ "title": "Blood Urea Nitrogen (BUN)", "description": "Waste filtered by kidneys; helps assess kidney function." },
+					{ "title": "Sodium", "description": "Regulates blood pressure and fluid balance; vital for cardiovascular health." },
+					{ "title": "Potassium", "description": "Maintains fluid levels inside cells; important for heart and muscle function." },
+					{ "title": "Glucose", "description": "A type of sugar used by the body for energy. Monitoring glucose levels is essential for managing diabetes and energy metabolism." },
+					{ "title": "Total Protein", "description": "The sum of albumin and globulin; important for diagnosing liver and kidney conditions." },
+					{ "title": "Albumin", "description": "Protein in blood that helps detect inflammation or infection." },
+					{ "title": "Carbon Dioxide (CO2)", "description": "Regulates blood pH and provides information about kidney health." },
+					{ "title": "Alanine Aminotransferase (ALT)", "description": "Enzyme in blood that detects liver damage." },
+					{ "title": "Aspartate Aminotransferase (AST)", "description": "Enzyme in blood that detects liver damage." },
+					{ "title": "Insulin", "description": "Hormone that regulates blood glucose levels; helps diagnose and manage diabetes." },
+					{ "title": "Creatinine", "description": "Waste filtered by kidneys; used to evaluate kidney health." },
+					{ "title": "BUN/Creatinine Ratio", "description": "A measure that helps determine the cause of kidney dysfunction." },
+					{ "title": "Estimated Glomerular Filtration Rate (eGFR)", "description": "Estimates how well the kidneys are filtering; used to assess kidney function." },
+					{ "title": "HbA1C (Haemoglobin A1c)", "description": "Measures the amount of blood sugar attached to hemoglobin, indicating diabetes control over the past 2-3 months." },
+					{ "title": "Red Blood Cell Count (RBC)", "description": "Carry oxygen; crucial for diagnosing anemia." },
+					{ "title": "White Blood Cell Count (WBC)", "description": "Fight infection; important for detecting infections and immune disorders." },
+					{ "title": "Hemoglobin (HGB)", "description": "Oxygen-carrying protein in red blood cells; used to diagnose anemia." },
+					{ "title": "Hematocrit (HCT)", "description": "Amount of red blood cells in blood; indicates blood volume." },
+					{ "title": "Mean Corpuscular Volume (MCV)", "description": "Average size of red blood cells; helps classify types of anemia." },
+					{ "title": "Mean Corpuscular Hemoglobin (MCH)", "description": "Average amount of hemoglobin inside a red blood cell; aids in diagnosing anemia." },
+					{ "title": "Mean Corpuscular Hemoglobin Concentration (MCHC)", "description": "Concentration of hemoglobin in a given volume of packed red blood cells." },
+					{ "title": "Red Cell Distribution Width (RDW)", "description": "A measure of the variation in size of red blood cells; used to diagnose different types of anemia." },
+					{ "title": "Platelet Count", "description": "Help clot blood; essential for assessing bleeding disorders." },
+					{ "title": "Neutrophils (Absolute and Percent)", "description": "A type of white blood cell important for fighting bacterial infections." },
+					{ "title": "Lymphocytes (Absolute and Percent)", "description": "A type of white blood cell that is part of the immune system, helping fight infections." },
+					{ "title": "Monocytes (Absolute and Percent)", "description": "A type of white blood cell that helps break down bacteria." },
+					{ "title": "Eosinophils (Absolute and Percent)", "description": "A type of white blood cell involved in combating multicellular parasites and certain infections." },
+					{ "title": "Basophils (Absolute and Percent)", "description": "A type of white blood cell that participates in allergic reactions and asthma." },
+					{ "title": "Immature Granulocytes (Absolute and Percent)", "description": "Immature white blood cells that can indicate infection or inflammation when present in high numbers." },
+					{ "title": "Immature Cells (Absolute Count)", "description": "Measures the number of immature white blood cells in the blood, which can indicate bone marrow activity." },
+					{ "title": "Total Cholesterol", "description": "Overall cholesterol level indicating risk for cardiovascular disease." },
+					{ "title": "High-Density Lipoprotein (HDL) Cholesterol", "description": "Good cholesterol that helps remove other forms of cholesterol from the bloodstream." },
+					{ "title": "Low-Density Lipoprotein (LDL) Cholesterol (calculated)", "description": "Bad cholesterol that can build up in arteries, increasing heart disease risk." },
+					{ "title": "Triglycerides", "description": "Type of fat in the blood; high levels increase heart disease risk." },
+					{ "title": "Very Low-Density Lipoprotein (VLDL) Cholesterol (calculated)", "description": "A type of lipoprotein that carries triglycerides in the blood; high levels can indicate heart disease risk." },
+					{ "title": "Estradiol", "description": "A form of estrogen, a female sex hormone produced by the ovaries." },
+					{ "title": "DHEA-S (Dehydroepiandrosterone Sulfate)", "description": "A hormone produced by the adrenal glands; it serves as a precursor to male and female sex hormones." },
+					{ "title": "IGF-1 (Insulin-like Growth Factor 1)", "description": "A hormone that plays a role in growth and development; indicator of growth hormone activity." },
+					{ "title": "Homocysteine", "description": "Amino acid in blood indicating heart disease risk when elevated." },
+					{ "title": "Magnesium", "description": "Essential mineral involved in muscle and nerve function, blood glucose control, and blood pressure regulation." },
+					{ "title": "Vitamin D, 25-Hydroxy", "description": "Measures the level of vitamin D in the blood, important for bone health and immune function." },
+					{ "title": "PSA (Prostate-Specific Antigen)", "description": "Protein produced by the prostate gland; elevated levels can indicate prostate cancer." },
+					{ "title": "C-Reactive Protein (CRP)", "description": "Marker of inflammation in the body; high levels indicate infection or chronic inflammatory diseases." },
+					{ "title": "Apo B (Apolipoprotein B)", "description": "Protein involved in lipid metabolism; high levels are associated with cardiovascular disease risk." },
+					{ "title": "Lipoprotein A", "description": "Lipoprotein associated with increased cardiovascular disease risk." },
+					{ "title": "Insulin", "description": "Hormone that regulates blood glucose levels; helps diagnose and manage diabetes." },
+					{ "title": "SHBG (Sex Hormone Binding Globulin)", "description": "Protein that binds to sex hormones, regulating their availability." },
+					{ "title": "Cortisol", "description": "Steroid hormone released in response to stress; abnormal levels indicate adrenal gland problems." },
+					{ "title": "Growth Hormone", "description": "Important for growth, metabolism, and muscle mass; abnormal levels indicate pituitary gland issues." },
+					{ "title": "Vitamin B12", "description": "Essential for red blood cell formation, neurological function, and DNA synthesis." },
+					{ "title": "Ferritin", "description": "Protein that stores iron; low levels indicate iron deficiency anemia, high levels indicate inflammation or liver disease." },
+					{ "title": "Iron", "description": "Mineral essential for hemoglobin production and oxygen transport." },
+					{ "title": "Total Iron Binding Capacity (TIBC)", "description": "Measures the blood’s capacity to bind iron with transferrin." },
+					{ "title": "Percentage Saturation (calculated using Iron and TIBC)", "description": "The percentage of transferrin that is saturated with iron; used to assess iron status." },
+					{ "title": "Unsaturated Iron Binding Capacity (UIBC)", "description": "The reserve capacity of transferrin to bind iron; used to evaluate iron status." },
+					{ "title": "Free T4 (Thyroxine)", "description": "Thyroid hormone that regulates metabolism; used to assess thyroid function." },
+					{ "title": "DHT (Dihydrotestosterone)", "description": "Androgen hormone derived from testosterone; associated with male pattern baldness and prostate health." },
+					{ "title": "Progesterone", "description": "Hormone regulating the menstrual cycle and maintaining pregnancy; measured in men to assess adrenal function." },
+					{ "title": "hs-CRP (High-sensitivity C-Reactive Protein)", "description": "Sensitive measure of CRP used to evaluate cardiovascular disease risk." },
 				]
 			},
 			{

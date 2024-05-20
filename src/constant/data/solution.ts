@@ -33,45 +33,45 @@ const biomakersData = [
 	{
 		key: 'hormone_check_female',
 		list: [
-			{ title: 'Thyroid Stimulating Hormone (TSH) ', description: '' },
-			{ title: 'Follicle Stimulating Hormone (FSH) ', description: '' },
-			{ title: 'Estradiol (E2) ', description: '' },
-			{ title: 'LH (Lutheinizing Hormone) ', description: '' },
-			{ title: 'Vitamin D', description: '' },
-			{ title: 'SHBG (Sex Hormone Binding Globulin) ', description: '' },
-			{ title: 'Progesterone', description: '' },
-			{ title: 'Testosterone', description: '' },
+			{ "title": "Thyroid Stimulating Hormone (TSH)", "description": "TSH first then T4 and T3 only when TSH is abnormal. This cascade detects most abnormalities affecting the thyroid or the secretion of TSH by the pituitary gland." },
+			{ "title": "Follicle Stimulating Hormone (FSH)", "description": "Regulates reproductive processes by stimulating ovarian follicles in women and sperm production in men." },
+			{ "title": "Estradiol (E2)", "description": "" },
+			{ "title": "LH (Lutheinizing Hormone)", "description": "In men, LH causes the Leydig cells of the testes to produce testosterone. In women, LH triggers the creation of steroid hormones from the ovaries." },
+			{ "title": "Vitamin D", "description": "Measures the level of vitamin D in the blood, important for bone health and immune function." },
+			{ "title": "SHBG (Sex Hormone Binding Globulin)", "description": "Protein that binds to sex hormones, regulating their availability." },
+			{ "title": "Progesterone", "description": "Regulates the menstrual cycle and supports pregnancy by preparing the uterus lining and maintaining early pregnancy." },
+			{ "title": "Testosterone", "description": "Measures free testosterone and testosterone that's attached to proteins. This helps in assessing overall hormonal balance and detecting hormonal disorders." }
 		]
 	},
 	{
 		key: 'cardiovascular_check',
 		list: [
-			{ title: 'Total Cholesterol', description: '' },
-			{ title: 'High-Density Lipoprotein (HDL) Cholesterol', description: '' },
-			{ title: 'Low-Density Lipoprotein (LDL) Cholesterol', description: '' },
-			{ title: 'Triglycerides', description: '' },
-			{ title: 'HbA1C (Haemoglobin A1c) ', description: '' },
-			{ title: 'Apo-A1 (Apolipoprotein A1) ', description: '' },
-			{ title: 'ApoB (Apolipoprotein B) ', description: '' },
-			{ title: 'hsCRP (High-sensitivity C-reactive Protein) ', description: '' },
-			{ title: 'HCY (Homocysteine) ', description: '' },
-			{ title: 'LP(a) (Lipoprotein(a)) ', description: '' },
-			{ title: 'APOB/APOA ratio', description: '' },
+			{ "title": "Total Cholesterol", "description": "Overall cholesterol level indicating risk for cardiovascular disease." },
+			{ "title": "High-Density Lipoprotein (HDL) Cholesterol", "description": "Good cholesterol that helps remove other forms of cholesterol from the bloodstream." },
+			{ "title": "Low-Density Lipoprotein (LDL) Cholesterol", "description": "Bad cholesterol that can build up in arteries, increasing heart disease risk." },
+			{ "title": "Triglycerides", "description": "Type of fat in the blood; high levels increase heart disease risk." },
+			{ "title": "HbA1C (Haemoglobin A1c)", "description": "Measures the amount of blood sugar attached to hemoglobin, indicating diabetes control over the past 2-3 months." },
+			{ "title": "Apo-A1 (Apolipoprotein A1)", "description": "" },
+			{ "title": "ApoB (Apolipoprotein B)", "description": "Protein involved in lipid metabolism; high levels are associated with cardiovascular disease risk." },
+			{ "title": "hsCRP (High-sensitivity C-reactive Protein)", "description": "Sensitive measure of CRP used to evaluate cardiovascular disease risk." },
+			{ "title": "HCY (Homocysteine)", "description": "Amino acid in blood indicating heart disease risk when elevated." },
+			{ "title": "LP(a) (Lipoprotein(a))", "description": "Lipoprotein associated with increased cardiovascular disease risk." },
+			{ "title": "APOB/APOA ratio", "description": "" }
 		]
 	},
 	{
 		key: 'metabolic_check',
 		list: [
-			{ title: 'Total Cholesterol', description: '' },
-			{ title: 'High-Density Lipoprotein (HDL) Cholesterol', description: '' },
-			{ title: 'Low-Density Lipoprotein (LDL) Cholesterol', description: '' },
-			{ title: 'Triglycerides', description: '' },
-			{ title: 'HbA1C (Haemoglobin A1c) ', description: '' },
-			{ title: 'AST (Aspartate Aminotransferase) ', description: '' },
-			{ title: 'ALT (Alanine Aminotransferase) ', description: '' },
-			{ title: 'Insulin', description: '' },
-			{ title: 'B12', description: '' },
-			{ title: 'Glucose', description: '' },
+			{ "title": "Total Cholesterol", "description": "Overall cholesterol level indicating risk for cardiovascular disease." },
+			{ "title": "High-Density Lipoprotein (HDL) Cholesterol", "description": "Good cholesterol that helps remove other forms of cholesterol from the bloodstream." },
+			{ "title": "Low-Density Lipoprotein (LDL) Cholesterol", "description": "Bad cholesterol that can build up in arteries, increasing heart disease risk." },
+			{ "title": "Triglycerides", "description": "Type of fat in the blood; high levels increase heart disease risk." },
+			{ "title": "HbA1C (Haemoglobin A1c)", "description": "Measures the amount of blood sugar attached to hemoglobin, indicating diabetes control over the past 2-3 months." },
+			{ "title": "AST (Aspartate Aminotransferase)", "description": "Enzyme in blood that detects liver damage." },
+			{ "title": "ALT (Alanine Aminotransferase)", "description": "Enzyme in blood that detects liver damage." },
+			{ "title": "Insulin", "description": "Hormone that regulates blood glucose levels; helps diagnose and manage diabetes." },
+			{ "title": "B12", "description": "Essential for red blood cell formation, neurological function, and DNA synthesis." },
+			{ "title": "Glucose", "description": "A type of sugar used by the body for energy. Monitoring glucose levels is essential for managing diabetes and energy metabolism." }
 		]
 	}
 ]
