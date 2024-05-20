@@ -15,7 +15,7 @@ type TabProps = {
 	layoutId?: string;
 };
 
-const Tab: React.FC<TabProps> = ({ selected, title, onClick, layoutId }) => {
+export const Tab: React.FC<TabProps> = ({ selected, title, onClick, layoutId }) => {
 	return (
 		<div className='relative'>
 			<button
@@ -38,39 +38,39 @@ const Tab: React.FC<TabProps> = ({ selected, title, onClick, layoutId }) => {
 	);
 };
 
-// const biomarkersData = membershipdata.biomarkers;
-// const tabs: { title: string; key: { [key: string]: string; }; }[] = biomarkersData.tabs;
-// const genderOptions = biomarkersData.genderOptions;
+const biomarkersData = membershipdata.biomarkers;
+const tabs: { title: string; key: { [key: string]: string; }; }[] = biomarkersData.tabs;
+const genderOptions = biomarkersData.genderOptions;
 
-type GenderOptions = {
-	genderOptions : {
-		title: string;
-		shortLabel: string;
-		// eslint-disable-next-line no-unused-vars
-		icon?: (props?: React.SVGProps<SVGSVGElement> | undefined) => React.JSX.Element;
-		value: string;
-		}[];
-	}
+// type GenderOptions = {
+// 	genderOptions : {
+// 		title: string;
+// 		shortLabel: string;
+// 		// eslint-disable-next-line no-unused-vars
+// 		icon?: (props?: React.SVGProps<SVGSVGElement> | undefined) => React.JSX.Element;
+// 		value: string;
+// 		}[];
+// 	}
 
 type BiomarkersSectionProps = {
 	wrapperClassName?: string;
 	tabLayoutId?: string;
 	btnSwithLayoutId?: string;
-	biomarkersData?: Omit<typeof membershipdata.biomarkers, 'genderOptions'> & GenderOptions;
+	// biomarkersData?: Omit<typeof membershipdata.biomarkers, 'genderOptions'> & GenderOptions;
 };
 
 const BiomarkersSection: React.FC<BiomarkersSectionProps> = ({
 	wrapperClassName,
 	tabLayoutId = 'tabs-biomakers-underline',
 	btnSwithLayoutId = 'pill-tab-biomakers',
-	biomarkersData = membershipdata.biomarkers,
+	// biomarkersData = membershipdata.biomarkers,
 }) => {
 	const [isOpenSection, setIsOpenSection] = useState<boolean>(false);
 	const [selectedTabIdx, setSelectedTabIdx] = useState<number>(0);
 	const [selectedGenderIdx, setSelectedGenderIdx] = useState<number>(0);
 	const [isOpenFilter, setIsOpenFilter] = useState<boolean>(false);
-	const tabs: { title: string; key: { [key: string]: string; }; }[] = biomarkersData.tabs;
-	const genderOptions = biomarkersData.genderOptions;
+	// const tabs: { title: string; key: { [key: string]: string; }; }[] = biomarkersData.tabs;
+	// const genderOptions = biomarkersData.genderOptions;
 
 	const toggleDropdown = () => {
 		setIsOpenSection(!isOpenSection);

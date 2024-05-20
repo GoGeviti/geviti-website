@@ -7,7 +7,74 @@ import {
 } from '@/components/Solutions/SolutionIcons';
 
 import landingData from './landing';
+import membershipData from './membership';
 import productsData from './products';
+
+const biomakersData = [
+	{
+		key: 'hormone_check_male',
+		list: [
+			{ title: 'TSH', description: '' },
+			{ title: 'FSH', description: '' },
+			{ title: 'E2', description: '' },
+			{ title: 'LH', description: '' },
+			{ title: 'PRL', description: '' },
+			{ title: 'A1C', description: '' },
+			{ title: 'PSA', description: '' },
+			{ title: 'Vit D', description: '' },
+			{ title: 'Testo', description: '' },
+			{ title: 'DHEA-S', description: '' },
+			{ title: 'SHBG', description: '' },
+			{ title: 'ALB', description: '' },
+			{ title: 'Free T', description: '' },
+			{ title: 'HCT', description: '' },
+		]
+	},
+	{
+		key: 'hormone_check_female',
+		list: [
+			{ title: 'TSH', description: '' },
+			{ title: 'FSH', description: '' },
+			{ title: 'E2', description: '' },
+			{ title: 'LH', description: '' },
+			{ title: 'Vit D', description: '' },
+			{ title: 'SHBG', description: '' },
+			{ title: 'Progesterone', description: '' },
+			{ title: 'Female T', description: '' },
+		]
+	},
+	{
+		key: 'cardiovascular_check',
+		list: [
+			{ title: 'Cholesterol', description: '' },
+			{ title: 'HDL', description: '' },
+			{ title: 'LDL', description: '' },
+			{ title: 'Trig', description: '' },
+			{ title: 'A1C', description: '' },
+			{ title: 'APOA1', description: '' },
+			{ title: 'APOB', description: '' },
+			{ title: 'hsCRP', description: '' },
+			{ title: 'HCY', description: '' },
+			{ title: 'LP(a)', description: '' },
+			{ title: 'APOB/APOA ratio', description: '' },
+		]
+	},
+	{
+		key: 'metabolic_check',
+		list: [
+			{ title: 'Cholesterol', description: '' },
+			{ title: 'HDL', description: '' },
+			{ title: 'LDL', description: '' },
+			{ title: 'Trig', description: '' },
+			{ title: 'A1C', description: '' },
+			{ title: 'AST', description: '' },
+			{ title: 'ALT', description: '' },
+			{ title: 'Insulin', description: '' },
+			{ title: 'B12', description: '' },
+			{ title: 'Glucose', description: '' },
+		]
+	}
+]
 
 const solutionData = {
 	hero: {
@@ -227,11 +294,87 @@ const solutionData = {
 		options: [
 			{
 				title: 'Finger Prick',
-				value: 'finger_prick'
+				value: 'finger_prick',
+				tabs: [
+					{
+						label: 'Hormone Check',
+						value: 'hormone_check',
+						gender: 'men',
+						list: biomakersData.find(el => el.key === 'hormone_check_male')?.list ?? []
+					},
+					{
+						label: 'Cardiovascular Check',
+						value: 'cardiovascular_check',
+						gender: 'men',
+						list: biomakersData.find(el => el.key === 'cardiovascular_check')?.list ?? []
+					},
+					{
+						label: 'Metabolic Check',
+						value: 'metabolic_check',
+						gender: 'men',
+						list: biomakersData.find(el => el.key === 'metabolic_check')?.list ?? []
+					},
+					{
+						label: 'Hormone Check',
+						value: 'hormone_check',
+						gender: 'women',
+						list: biomakersData.find(el => el.key === 'hormone_check_female')?.list ?? []
+					},
+					{
+						label: 'Cardiovascular Check',
+						value: 'cardiovascular_check',
+						gender: 'women',
+						list: biomakersData.find(el => el.key === 'cardiovascular_check')?.list ?? []
+					},
+					{
+						label: 'Metabolic Check',
+						value: 'metabolic_check',
+						gender: 'women',
+						list: biomakersData.find(el => el.key === 'metabolic_check')?.list ?? []
+					},
+				]
 			},
 			{
 				title: 'Phlebotomy',
-				value: 'phlebotomy'
+				value: 'phlebotomy',
+				tabs: [
+					{
+						label: 'Essential Health Check',
+						value: 'essential_health_check',
+						gender: 'men',
+						list: membershipData.biomarkers.data.find(el => el.key === 'essential')?.list ?? []
+					},
+					{
+						label: 'Comprehensive Health Dive',
+						value: 'comprehensive_health_dive',
+						gender: 'men',
+						list: membershipData.biomarkers.data.find(el => el.key === 'comprehensive')?.list ?? []
+					},
+					{
+						label: 'Ultimate Health Assessment',
+						value: 'ultimate_health_assessment',
+						gender: 'men',
+						list: membershipData.biomarkers.data.find(el => el.key === 'ultimateMale')?.list ?? []
+					},
+					{
+						label: 'Ultimate Health Assessment',
+						value: 'ultimate_health_assessment',
+						gender: 'women',
+						list: membershipData.biomarkers.data.find(el => el.key === 'ultimateFemale')?.list ?? []
+					},
+					{
+						label: 'Essential Health Check',
+						value: 'essential_health_check',
+						gender: 'women',
+						list: membershipData.biomarkers.data.find(el => el.key === 'essential')?.list ?? []
+					},
+					{
+						label: 'Comprehensive Health Dive',
+						value: 'comprehensive_health_dive',
+						gender: 'women',
+						list: membershipData.biomarkers.data.find(el => el.key === 'comprehensive')?.list ?? []
+					},
+				]
 			}
 		],
 	},
