@@ -7,10 +7,11 @@ import { solutionData } from '@/constant/data';
 import clsxm from '@/helpers/clsxm';
 
 import BiomarkersList from '../BiomarkersList';
-import { ChevronDown } from '../Icons';
+import { ChevronDown, Filter } from '../Icons';
+import { Tab } from '../MemberShip/BiomarkersSection';
 
 type BiomarkersSectionProps = {
-	list: {
+	list?: {
 		key: string;
 		list: {
 			title: string;
@@ -22,9 +23,11 @@ type BiomarkersSectionProps = {
 
 const biomarkersData = solutionData.biomarkers;
 
-const BiomarkersSection: React.FC<BiomarkersSectionProps> = ({ list, type = 'men' }) => {
+const BiomarkersSection: React.FC<BiomarkersSectionProps> = ({ type = 'men' }) => {
 	const [isOpenSection, setIsOpenSection] = useState<boolean>(false);
 	const [selectedOptIdx, setSelectedOptIdx] = useState<number>(0);
+	const [selectedTabIdx, setSelectedTabIdx] = useState<number>(0);
+	const [isOpenFilter, setIsOpenFilter] = useState<boolean>(false);
 
 	const toggleDropdown = () => {
 		setIsOpenSection(!isOpenSection);
@@ -66,14 +69,121 @@ const BiomarkersSection: React.FC<BiomarkersSectionProps> = ({ list, type = 'men
 	};
 
 	const renderBiomarkersList = () => {
-		const selectedKey = biomarkersData.options[selectedOptIdx].value;
-		const filteredBiomarkersData = list.find(el => el.key === selectedKey)?.list ?? [];
+		const filteredBiomarkersData = biomarkersData.options[selectedOptIdx].tabs.filter(e => e.gender === type)[selectedTabIdx].list
 
 		return (
 			<BiomarkersList
 				list={ filteredBiomarkersData }
-				dataKey={ `treatmentOptions-${ selectedOptIdx }` }
+				dataKey={ `${selectedOptIdx}-${ selectedTabIdx }` }
 			/>
+		);
+	};
+
+	const renderTabs = () => {
+		return (
+			<div className='flex gap-[67px] max-lg:hidden'>
+				{ biomarkersData.options[selectedOptIdx].tabs.filter(e => e.gender === type).map((tab, index) => {
+					return (
+						<Tab
+							key={ index }
+							onClick={ () => setSelectedTabIdx(index) }
+							selected={ selectedTabIdx === index }
+							title={ tab.label }
+							layoutId={ 'tabs-biomakers-underline' }
+						/>
+					);
+				}) }
+			</div>
+		);
+	};
+
+	const renderFilter = () => {
+		const selectedOpt = biomarkersData.options[selectedOptIdx].title;
+		const selectedTabs = biomarkersData.options[selectedOptIdx].tabs[selectedTabIdx].label;
+
+		return (
+			<motion.div
+				initial={ false }
+				animate={ {
+					height: isOpenFilter ? '273px' : '46px',
+				} }
+				transition={ { ease: 'easeInOut', duration: .5 } }
+				className='lg:hidden w-full rounded-[20px] p-1.5 border border-grey-50'
+			>
+				<div className='flex items-center justify-between gap-2 w-full relative z-10'>
+					<span className='text-xs !leading-normal text-primary w-full px-3'>{ selectedOpt }/{ selectedTabs }</span>
+
+					<button
+						onClick={ () => setIsOpenFilter(prev => !prev) }
+						className='focus:ring-0 focus:outline-none bg-primary py-2 px-3 rounded-full text-white flex items-center justify-center gap-1.5 text-xs !leading-normal'>
+						<Filter className='flex-shrink-0' />
+						Filter
+					</button>
+				</div>
+
+				<motion.div
+					initial={ false }
+					animate={ {
+						opacity: isOpenFilter ? 1 : 0,
+						height: isOpenFilter ? 'fit-content' : 0,
+						y: isOpenFilter ? 0 : -20
+					} }
+					transition={ { ease: 'easeInOut', duration: .3 } }
+					className='pt-[31px] pb-1 px-3 divide-y divide-grey-50'>
+					<div className='pb-3.5 flex flex-col gap-y-3.5'>
+						{ biomarkersData.options.map((option, optionIdx) => {
+							return (
+								<div key={ `gender-${ optionIdx }` }>
+									<input
+										id={ option.value }
+										name='gender'
+										type='radio'
+										onChange={ (e: React.ChangeEvent<HTMLInputElement>) => {
+											setSelectedOptIdx(+ e.target.value);
+										} }
+										value={ optionIdx }
+										checked={ optionIdx === selectedOptIdx }
+									/>
+									<label
+										htmlFor={ option.value }
+										className={ clsxm(
+											'text-sm !leading-normal',
+											selectedOptIdx === optionIdx ? 'text-primary' : 'text-grey-400'
+										) }>
+										{ option.title }
+									</label>
+								</div>
+							);
+						}) }
+					</div>
+					<div className='pt-3.5 flex flex-col gap-y-3.5'>
+						{ biomarkersData.options[selectedOptIdx].tabs.filter(e => e.gender === type).map((option, optionIdx) => {
+							return (
+								<div key={ `cat-${ optionIdx }` }>
+									<input
+										id={ `cat-${ optionIdx }` }
+										name='category'
+										type='radio'
+										onChange={ (e: React.ChangeEvent<HTMLInputElement>) => {
+											setSelectedTabIdx(+ e.target.value);
+										} }
+										value={ optionIdx }
+										checked={ optionIdx === selectedTabIdx }
+									/>
+									<label
+										htmlFor={ `cat-${ optionIdx }` }
+										className={ clsxm(
+											'text-sm !leading-normal',
+											selectedTabIdx === optionIdx ? 'text-primary' : 'text-grey-400'
+										) }>
+										{ option.label }
+									</label>
+								</div>
+							);
+						}) }
+					</div>
+				</motion.div>
+			</motion.div>
 		);
 	};
 
@@ -82,7 +192,7 @@ const BiomarkersSection: React.FC<BiomarkersSectionProps> = ({ list, type = 'men
 			<div className='container-center flex flex-col'>
 				<button
 					onClick={ toggleDropdown }
-					className='focus:ring-0 focus:outline-none flex w-full lg:w-auto text-primary justify-between lg:justify-start font-medium items-center text-sm lg:text-[28px] font-medium !leading-normal gap-3'
+					className='focus:ring-0 focus:outline-none flex w-full lg:w-auto text-primary justify-between lg:justify-start font-medium items-center text-sm lg:text-[28px] !leading-normal gap-3'
 				>
 					<span>{ biomarkersData.title }</span>
 
@@ -103,11 +213,21 @@ const BiomarkersSection: React.FC<BiomarkersSectionProps> = ({ list, type = 'men
 							exit={ { opacity: 0, y: -30, height: 0 } }
 							transition={ { duration: 0.5, ease: 'easeInOut' } }
 						>
-							<div className='flex flex-col'>
+							{ /* <div className='flex flex-col'>
 								<div className='w-fit flex max-sm:justify-center mb-[42px]'>
 									{ renderButtonSwitch() }
 								</div>
 								{ renderBiomarkersList() }
+							</div> */ }
+							<div className='flex flex-col'>
+								<div className='hidden lg:flex w-fit mb-[39px]'>
+									{ renderButtonSwitch() }
+								</div>
+								{ renderTabs() }
+								{ renderFilter() }
+								<div className='w-full pt-[42px] lg:pt-[63px]'>
+									{ renderBiomarkersList() }
+								</div>
 							</div>
 						</motion.div>
 					) }

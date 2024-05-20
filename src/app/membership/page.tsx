@@ -1,6 +1,11 @@
 import React from 'react';
 
-import { Footer, FrequentlyAskedQuestions, MembershipComponent, RunningLogo } from '@/components';
+import {
+	Footer,
+	FrequentlyAskedQuestions,
+	MembershipComponent,
+	RunningLogo,
+} from '@/components';
 import { membershipData } from '@/constant/data';
 
 const MemberShipPage = () => {
@@ -16,7 +21,8 @@ const MemberShipPage = () => {
 			</div>
 			<MembershipComponent.Pricing />
 			<div className='lg:px-3'>
-				<MembershipComponent.BiomarkersSection wrapperClassName='bg-white pt-6 pb-[42px] lg:py-[62px]' />
+				<MembershipComponent.BiomarkersSection
+					wrapperClassName='bg-white pt-6 pb-[42px] lg:py-[62px]' />
 			</div>
 			<MembershipComponent.PricingComparison />
 			<MembershipComponent.ChooseGeviti />

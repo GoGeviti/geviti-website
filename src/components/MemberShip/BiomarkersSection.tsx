@@ -15,7 +15,7 @@ type TabProps = {
 	layoutId?: string;
 };
 
-const Tab: React.FC<TabProps> = ({ selected, title, onClick, layoutId }) => {
+export const Tab: React.FC<TabProps> = ({ selected, title, onClick, layoutId }) => {
 	return (
 		<div className='relative'>
 			<button
@@ -42,21 +42,35 @@ const biomarkersData = membershipdata.biomarkers;
 const tabs: { title: string; key: { [key: string]: string; }; }[] = biomarkersData.tabs;
 const genderOptions = biomarkersData.genderOptions;
 
+// type GenderOptions = {
+// 	genderOptions : {
+// 		title: string;
+// 		shortLabel: string;
+// 		// eslint-disable-next-line no-unused-vars
+// 		icon?: (props?: React.SVGProps<SVGSVGElement> | undefined) => React.JSX.Element;
+// 		value: string;
+// 		}[];
+// 	}
+
 type BiomarkersSectionProps = {
 	wrapperClassName?: string;
 	tabLayoutId?: string;
 	btnSwithLayoutId?: string;
+	// biomarkersData?: Omit<typeof membershipdata.biomarkers, 'genderOptions'> & GenderOptions;
 };
 
 const BiomarkersSection: React.FC<BiomarkersSectionProps> = ({
 	wrapperClassName,
 	tabLayoutId = 'tabs-biomakers-underline',
-	btnSwithLayoutId = 'pill-tab-biomakers'
+	btnSwithLayoutId = 'pill-tab-biomakers',
+	// biomarkersData = membershipdata.biomarkers,
 }) => {
 	const [isOpenSection, setIsOpenSection] = useState<boolean>(false);
 	const [selectedTabIdx, setSelectedTabIdx] = useState<number>(0);
 	const [selectedGenderIdx, setSelectedGenderIdx] = useState<number>(0);
 	const [isOpenFilter, setIsOpenFilter] = useState<boolean>(false);
+	// const tabs: { title: string; key: { [key: string]: string; }; }[] = biomarkersData.tabs;
+	// const genderOptions = biomarkersData.genderOptions;
 
 	const toggleDropdown = () => {
 		setIsOpenSection(!isOpenSection);
@@ -80,7 +94,7 @@ const BiomarkersSection: React.FC<BiomarkersSectionProps> = ({
 									'text-sm !leading-normal h-full flex items-center justify-center gap-[9px] text-grey-400 cursor-pointer whitespace-nowrap',
 									categoryIdx === 0 ? 'pl-7 pr-6 w-[190px]' : 'pl-7 pr-6 w-[206px]'
 								) }>
-								<Icon className='flex-shrink-0' />
+								{ Icon ? <Icon className='text-blue-primary flex-shrink-0' /> : null }
 								{ category.title }
 							</button>
 						);
@@ -97,7 +111,7 @@ const BiomarkersSection: React.FC<BiomarkersSectionProps> = ({
 							: 'left-[198px] w-[206px] pl-7 pr-6'
 					) }
 				>
-					<SelectedIcon className='text-blue-primary flex-shrink-0' />
+					{ SelectedIcon ? <SelectedIcon className='text-white flex-shrink-0' /> : null }
 					{ genderOptions[selectedGenderIdx].title }
 				</motion.span>
 			</div>
@@ -230,7 +244,7 @@ const BiomarkersSection: React.FC<BiomarkersSectionProps> = ({
 			<div className='container-center flex flex-col'>
 				<button
 					onClick={ toggleDropdown }
-					className='focus:ring-0 focus:outline-none flex w-full lg:w-auto text-primary justify-between lg:justify-start font-medium items-center text-sm lg:text-[28px] font-medium !leading-normal gap-3'
+					className='focus:ring-0 focus:outline-none flex w-full lg:w-auto text-primary justify-between lg:justify-start items-center text-sm lg:text-[28px] font-medium !leading-normal gap-3'
 				>
 					<span>{ biomarkersData.title }</span>
 

@@ -47,6 +47,7 @@ const biomarkersList = [
 	{ title: 'Very Low-Density Lipoprotein (VLDL) Cholesterol (calculated)', description: '' },
 	{ title: 'Prostate-Specific Antigen (PSA)', description: '' },
 ];
+
 const biomarkersData = [
 	{
 		key: 'finger_prick',
@@ -86,20 +87,20 @@ const productsData = {
 				],
 			},
 			{
+				id: 3,
+				title: 'Supplements',
+				preTitle: 'longeviti blends for long-term wellness',
+				subCategories: [],
+			},
+			{
 				id: 2,
 				title: 'Testing Options',
 				preTitle: 'Lets see how you are actually aging',
 				subCategories: [
 					{ id: 1, title: 'Full Bloodwork Panels', preTitle: 'Compare member Bloodwork options', biomarkers: biomarkersData },
-					{ id: 2, title: 'Epigenetic Testing', preTitle: 'Lets see how you are actually aging', biomarkers: null },
 					{ id: 3, title: 'Finger Prick Blood Test', preTitle: 'At-home finger prick tests', biomarkers: biomarkersData },
+					{ id: 2, title: 'Biological Age', preTitle: 'Lets see how you are actually aging', biomarkers: null },
 				],
-			},
-			{
-				id: 3,
-				title: 'Supplements',
-				preTitle: 'longeviti blends for long-term wellness',
-				subCategories: [],
 			},
 		],
 		products: [
@@ -498,20 +499,20 @@ const productsData = {
 				],
 			},
 			{
+				id: 3,
+				title: 'Supplements',
+				preTitle: 'longeviti blends for long-term wellness',
+				subCategories: [],
+			},
+			{
 				id: 2,
 				title: 'Testing Options',
 				preTitle: 'Lets see how you are actually aging',
 				subCategories: [
 					{ id: 1, title: 'Full Bloodwork Panels', preTitle: 'Compare member Bloodwork options', biomarkers: biomarkersData },
-					{ id: 2, title: 'Epigenetic Testing', preTitle: 'Lets see how you are actually aging', biomarkers: null },
 					{ id: 3, title: 'Finger Prick Blood Test', preTitle: 'At-home finger prick tests', biomarkers: biomarkersData },
+					{ id: 2, title: 'Biological Age', preTitle: 'Lets see how you are actually aging', biomarkers: null },
 				],
-			},
-			{
-				id: 3,
-				title: 'Supplements',
-				preTitle: 'longeviti blends for long-term wellness',
-				subCategories: [],
 			},
 		],
 		products: [

@@ -7,7 +7,74 @@ import {
 } from '@/components/Solutions/SolutionIcons';
 
 import landingData from './landing';
+import membershipData from './membership';
 import productsData from './products';
+
+const biomakersData = [
+	{
+		key: 'hormone_check_male',
+		list: [
+			{ title: 'Thyroid Stimulating Hormone (TSH) ', description: '' },
+			{ title: 'Follicle Stimulating Hormone (FSH) ', description: '' },
+			{ title: 'Estradiol (E2) ', description: '' },
+			{ title: 'LH (Lutheinizing Hormone) ', description: '' },
+			{ title: 'PRL (Prolactin) ', description: '' },
+			{ title: 'A1C', description: '' },
+			{ title: 'PSA (Prostate-specific Antigen) ', description: '' },
+			{ title: 'Vitamin D', description: '' },
+			{ title: 'Total Testosterone', description: '' },
+			{ title: 'DHEA-S', description: '' },
+			{ title: 'SHBG (Sex Hormone Binding Globulin) ', description: '' },
+			{ title: 'Albumin', description: '' },
+			{ title: 'Free Testosterone', description: '' },
+			{ title: 'HCT (Hematocrit) ', description: '' },
+		]
+	},
+	{
+		key: 'hormone_check_female',
+		list: [
+			{ title: 'Thyroid Stimulating Hormone (TSH) ', description: '' },
+			{ title: 'Follicle Stimulating Hormone (FSH) ', description: '' },
+			{ title: 'Estradiol (E2) ', description: '' },
+			{ title: 'LH (Lutheinizing Hormone) ', description: '' },
+			{ title: 'Vitamin D', description: '' },
+			{ title: 'SHBG (Sex Hormone Binding Globulin) ', description: '' },
+			{ title: 'Progesterone', description: '' },
+			{ title: 'Testosterone', description: '' },
+		]
+	},
+	{
+		key: 'cardiovascular_check',
+		list: [
+			{ title: 'Total Cholesterol', description: '' },
+			{ title: 'High-Density Lipoprotein (HDL) Cholesterol', description: '' },
+			{ title: 'Low-Density Lipoprotein (LDL) Cholesterol', description: '' },
+			{ title: 'Triglycerides', description: '' },
+			{ title: 'HbA1C (Haemoglobin A1c) ', description: '' },
+			{ title: 'Apo-A1 (Apolipoprotein A1) ', description: '' },
+			{ title: 'ApoB (Apolipoprotein B) ', description: '' },
+			{ title: 'hsCRP (High-sensitivity C-reactive Protein) ', description: '' },
+			{ title: 'HCY (Homocysteine) ', description: '' },
+			{ title: 'LP(a) (Lipoprotein(a)) ', description: '' },
+			{ title: 'APOB/APOA ratio', description: '' },
+		]
+	},
+	{
+		key: 'metabolic_check',
+		list: [
+			{ title: 'Total Cholesterol', description: '' },
+			{ title: 'High-Density Lipoprotein (HDL) Cholesterol', description: '' },
+			{ title: 'Low-Density Lipoprotein (LDL) Cholesterol', description: '' },
+			{ title: 'Triglycerides', description: '' },
+			{ title: 'HbA1C (Haemoglobin A1c) ', description: '' },
+			{ title: 'AST (Aspartate Aminotransferase) ', description: '' },
+			{ title: 'ALT (Alanine Aminotransferase) ', description: '' },
+			{ title: 'Insulin', description: '' },
+			{ title: 'B12', description: '' },
+			{ title: 'Glucose', description: '' },
+		]
+	}
+]
 
 const solutionData = {
 	hero: {
@@ -227,11 +294,87 @@ const solutionData = {
 		options: [
 			{
 				title: 'Finger Prick',
-				value: 'finger_prick'
+				value: 'finger_prick',
+				tabs: [
+					{
+						label: 'Hormone Check',
+						value: 'hormone_check',
+						gender: 'men',
+						list: biomakersData.find(el => el.key === 'hormone_check_male')?.list ?? []
+					},
+					{
+						label: 'Cardiovascular Check',
+						value: 'cardiovascular_check',
+						gender: 'men',
+						list: biomakersData.find(el => el.key === 'cardiovascular_check')?.list ?? []
+					},
+					{
+						label: 'Metabolic Check',
+						value: 'metabolic_check',
+						gender: 'men',
+						list: biomakersData.find(el => el.key === 'metabolic_check')?.list ?? []
+					},
+					{
+						label: 'Hormone Check',
+						value: 'hormone_check',
+						gender: 'women',
+						list: biomakersData.find(el => el.key === 'hormone_check_female')?.list ?? []
+					},
+					{
+						label: 'Cardiovascular Check',
+						value: 'cardiovascular_check',
+						gender: 'women',
+						list: biomakersData.find(el => el.key === 'cardiovascular_check')?.list ?? []
+					},
+					{
+						label: 'Metabolic Check',
+						value: 'metabolic_check',
+						gender: 'women',
+						list: biomakersData.find(el => el.key === 'metabolic_check')?.list ?? []
+					},
+				]
 			},
 			{
 				title: 'Phlebotomy',
-				value: 'phlebotomy'
+				value: 'phlebotomy',
+				tabs: [
+					{
+						label: 'Essential Health Check',
+						value: 'essential_health_check',
+						gender: 'men',
+						list: membershipData.biomarkers.data.find(el => el.key === 'essential')?.list ?? []
+					},
+					{
+						label: 'Comprehensive Health Dive',
+						value: 'comprehensive_health_dive',
+						gender: 'men',
+						list: membershipData.biomarkers.data.find(el => el.key === 'comprehensive')?.list ?? []
+					},
+					{
+						label: 'Ultimate Health Assessment',
+						value: 'ultimate_health_assessment',
+						gender: 'men',
+						list: membershipData.biomarkers.data.find(el => el.key === 'ultimateMale')?.list ?? []
+					},
+					{
+						label: 'Ultimate Health Assessment',
+						value: 'ultimate_health_assessment',
+						gender: 'women',
+						list: membershipData.biomarkers.data.find(el => el.key === 'ultimateFemale')?.list ?? []
+					},
+					{
+						label: 'Essential Health Check',
+						value: 'essential_health_check',
+						gender: 'women',
+						list: membershipData.biomarkers.data.find(el => el.key === 'essential')?.list ?? []
+					},
+					{
+						label: 'Comprehensive Health Dive',
+						value: 'comprehensive_health_dive',
+						gender: 'women',
+						list: membershipData.biomarkers.data.find(el => el.key === 'comprehensive')?.list ?? []
+					},
+				]
 			}
 		],
 	},
