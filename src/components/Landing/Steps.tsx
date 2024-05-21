@@ -117,7 +117,7 @@ const StepsSection: React.FC = () => {
 								{ renderButtonCta() }
 							</div>
 						</div>
-						<div className='max-lg:hidden lg:absolute top-1/4 left-0 h-3/4 w-full' />
+						{ /* <div className='max-lg:hidden lg:absolute top-1/4 left-0 h-3/4 w-full' /> */ }
 					</div>
 				</div>
 			</div>

@@ -11,8 +11,7 @@ import { useWindowDimensions } from '@/hooks';
 
 import LogoBlueLayer from '../../../public/images/landing/compressed/blue-geviti.webp';
 import CursorSlider from '../CursorSlider';
-import CustomLink from '../CustomLink';
-import { ArrowNarrowLeft, ArrowNarrowRight, ChevronRight } from '../Icons';
+import { ArrowNarrowLeft, ArrowNarrowRight } from '../Icons';
 import ShiftSection from '../ShiftSection';
 
 const imgVariants = {
@@ -88,21 +87,21 @@ const HomeKits: React.FC = () => {
 		);
 	};
 
-	const renderButtonViewAll = () => {
-		return (
-			<CustomLink
-				href={ homeKitsData.btnCta.href }
-				aria-label={ homeKitsData.btnCta.text }
-				className='btn btn-primary flex items-center gap-7px sm:gap-2 !translate-y-0 group flex-shrink-0'
-			>
-				<span className='text-xs sm:text-sm font-medium leading-5 sm:leading-6 font-Poppins'>
-					{ homeKitsData.btnCta.text }
-				</span>
+	// const renderButtonViewAll = () => {
+	// 	return (
+	// 		<CustomLink
+	// 			href={ homeKitsData.btnCta.href }
+	// 			aria-label={ homeKitsData.btnCta.text }
+	// 			className='btn btn-primary flex items-center gap-7px sm:gap-2 !translate-y-0 group flex-shrink-0'
+	// 		>
+	// 			<span className='text-xs sm:text-sm font-medium leading-5 sm:leading-6 font-Poppins'>
+	// 				{ homeKitsData.btnCta.text }
+	// 			</span>
 
-				<ChevronRight className='stroke-grey-secondary w-4 h-4 sm:w-18px sm:h-18px group-hover:translate-x-1 transform transition-all duration-100' />
-			</CustomLink>
-		);
-	};
+	// 			<ChevronRight className='stroke-grey-secondary w-4 h-4 sm:w-18px sm:h-18px group-hover:translate-x-1 transform transition-all duration-100' />
+	// 		</CustomLink>
+	// 	);
+	// };
 
 	const renderProgressBar = () => {
 		return (
@@ -288,11 +287,11 @@ const HomeKits: React.FC = () => {
 								{ renderTitle(currentData.title) }
 							</ShiftSection>
 						</div>
-						<div className='flex mt-12 max-lg:hidden'>
+						{ /* <div className='flex mt-12 max-lg:hidden'>
 							<div className='flex items-center'>
 								{ renderButtonViewAll() }
 							</div>
-						</div>
+						</div> */ }
 					</div>
 					<div className='mt-2.5 lg:mt-3.5 w-full sm:max-w-[600px] lg:max-w-none max-lg:mx-auto min-h-[120px]'>
 						<ShiftSection

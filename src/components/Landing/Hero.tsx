@@ -12,8 +12,8 @@ import { useWindowDimensions } from '@/hooks';
 import { setCookie } from '@/services/cookies';
 
 import ButtonCta from '../ButtonCta';
-import CustomLink from '../CustomLink';
-import { ChevronRight } from '../Icons';
+// import CustomLink from '../CustomLink';
+// import { ChevronRight } from '../Icons';
 import Navbar, { navbarDefaultTransition } from '../Navbar/Landing';
 
 import { slideUpTransition } from './transition';
@@ -405,19 +405,13 @@ const Hero: React.FC<HeroProps> = ({ showBanner = true, showIntro = 'true' }) =>
 												animate='visible'
 												className='flex w-full h-full'
 											>
-												<CustomLink
+												<ButtonCta
 													href={ heroData.btnCta2.href }
 													externalLink={ heroData.btnCta2.externalLink }
-													className='bg-white/10 hover:bg-white/20 group max-md:w-full border border-white/5 backdrop-blur-[25px] rounded-full py-1.5 pl-[42px] pr-1.5 h-full relative grid place-items-center grid-cols-[auto_46px] overflow-hidden gap-6'
 													aria-label={ heroData.btnCta2.text }
-												>
-													<span className='text-lg leading-[133%] font-medium text-grey-secondary inline-block z-[2]'>
-														{ heroData.btnCta2.text }
-													</span>
-													<span className='w-[46px] relative flex items-center justify-center'>
-														<ChevronRight className='w-18px h-18px text-grey-secondary flex-shrink-0' />
-													</span>
-												</CustomLink>
+													text={ heroData.btnCta2.text }
+													theme='blur'
+												/>
 											</motion.div>
 										</div>
 									</div>
