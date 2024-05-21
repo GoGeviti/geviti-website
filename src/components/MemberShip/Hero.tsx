@@ -8,8 +8,6 @@ import membershipData from '@/constant/data/membership';
 import clsxm from '@/helpers/clsxm';
 
 import ButtonCta from '../ButtonCta';
-import CustomLink from '../CustomLink';
-import { ChevronRight } from '../Icons';
 import Navbar from '../Navbar/Landing';
 
 export const slideUpTransition = {
@@ -172,7 +170,7 @@ const Hero: React.FC = () => {
 													</div>
 												</motion.div>
 											</div>
-											<div className='overflow-hidden inline-block h-full'>
+											{ /* <div className='overflow-hidden inline-block h-full'>
 												<motion.div
 													variants={ {
 														visible: {
@@ -204,7 +202,7 @@ const Hero: React.FC = () => {
 														</span>
 													</CustomLink>
 												</motion.div>
-											</div>
+											</div> */ }
 										</div>
 									</div>
 								</div>

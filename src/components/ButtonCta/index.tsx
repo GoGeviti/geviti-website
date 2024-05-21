@@ -6,7 +6,7 @@ import { ChevronRight } from '../Icons';
 type ButtonCtaProps = Omit<CustomLinkProps, 'href' | 'onClick'> & {
 	text?: string;
 	arrowClassName?: string;
-	theme?: 'primary' | 'secondary' | 'tertiary';
+	theme?: 'primary' | 'secondary' | 'tertiary' | 'blur';
 	children?: React.ReactNode;
 	href?: string;
 	onClick?: () => void;
@@ -28,12 +28,14 @@ const ButtonCta: React.FC<ButtonCtaProps> = ({
 		if (theme === 'primary') return 'bg-primary text-white';
 		if (theme === 'secondary') return 'bg-white text-primary';
 		if (theme === 'tertiary') return 'bg-blue-primary text-primary';
+		if (theme === 'blur') return 'bg-white/10 hover:bg-white/20 text-white border border-white/5 backdrop-blur-[25px]';
 	};
 
 	const resolveArrowWrapperClassNem = () => {
 		if (theme === 'primary') return 'bg-white text-primary';
 		if (theme === 'secondary') return 'bg-primary text-blue-primary';
 		if (theme === 'tertiary') return 'bg-blue-alice text-primary';
+		if (theme === 'blur') return 'bg-transparent text-white';
 	};
 
 	const btnClassName = clsxm(
