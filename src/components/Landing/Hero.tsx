@@ -370,7 +370,7 @@ const Hero: React.FC<HeroProps> = ({ showBanner = true, showIntro = 'true' }) =>
 															duration: 1
 														}
 													},
-													hidden: { y: '100%' }
+													hidden: { y: '104%' }
 												} }
 												initial='hidden'
 												animate='visible'
@@ -411,6 +411,7 @@ const Hero: React.FC<HeroProps> = ({ showBanner = true, showIntro = 'true' }) =>
 													aria-label={ heroData.btnCta2.text }
 													text={ heroData.btnCta2.text }
 													theme='blur'
+													className='max-sm:w-full'
 												/>
 											</motion.div>
 										</div>
