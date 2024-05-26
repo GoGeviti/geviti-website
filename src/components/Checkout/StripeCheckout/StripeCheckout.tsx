@@ -1,13 +1,14 @@
-import React, { FC } from "react";
+import React, { FC, useRef } from "react";
 import { ArrowNarrowLeft } from "@/components/Icons";
 import Image from "next/image";
+import TextField from "../TextField";
 
 // TODO: Separate components into their own folders
 const StripeCheckout: FC = () => {
   return (
-    <div className='flex flex-col lg:flex-row'>
-      <div className='h-screen w-full bg-primary'>
-        <div className='px-4 lg:pl-20'>
+    <div className='flex flex-col lg:flex-row min-h-screen h-full w-full'>
+      <div className='min-h-screen h-auto w-full bg-primary'>
+        <div className='flex flex-col w-full px-4 lg:px-20'>
           <PageHeader />
           <div className='my-6'>
             <CheckoutItem />
@@ -15,9 +16,12 @@ const StripeCheckout: FC = () => {
           <div className='my-6'>
             <CheckoutItem />
           </div>
+          <div className='mt-11 lg:pl-[71px] lg:ml-6'>
+            <DiscountForm />
+          </div>
         </div>
       </div>
-      <div className='h-screen w-full bg-white'>
+      <div className='h-full w-full bg-white'>
         <h1>Stripe Form</h1>
       </div>
     </div>
@@ -26,7 +30,7 @@ const StripeCheckout: FC = () => {
 
 function PageHeader() {
   return (
-    <div className='flex w-full py-8 lg:pt-11 lg:flex-col bg-primary border-b-[0.6px] border-grey-950 lg:border-none'>
+    <div className='flex w-full py-8 lg:pt-11 lg:flex-col border-b-[0.6px] border-grey-950 lg:border-none'>
       <BackArrow />
       <div className='w-1/3 m-auto lg:mt-14 lg:w-full'>
         <GevitiLogo />
@@ -55,7 +59,7 @@ function GevitiLogo() {
 
 function CheckoutItem() {
   return (
-    <div className='flex w-[90%] border-b-2 border-grey-950 lg:border-none'>
+    <div className='flex border-b-2 border-grey-950 lg:border-none'>
       <ItemThumbnail />
       <div className='flex flex-col lg:flex-row'>
         <div className='ml-6 flex flex-col justify-around'>
@@ -71,7 +75,34 @@ function CheckoutItem() {
   );
 }
 
-function DiscountForm() {}
+function DiscountForm() {
+  const couponInputRef = useRef<HTMLInputElement | null>(null);
+  return (
+    <form
+      className='relative'
+      onSubmit={(e) => {
+        e.preventDefault();
+        console.log(couponInputRef.current?.value);
+      }}
+    >
+      <label htmlFor='coupon_discount' className='text-grey-50 text-lg !leading-normal max-lg:font-medium'>
+        Coupon Discount
+      </label>
+
+      <TextField
+        className='mt-6'
+        id='coupon_discount'
+        type='text'
+        name='coupon_discount'
+        placeholder='Coupon Discount'
+        ref={couponInputRef}
+      />
+      <div className='absolute w-4 h-4 lg:w-6 lg:h-6 right-[22px] bottom-[22px] lg:bottom-[18px]'>
+        <GreenCircleTick />
+      </div>
+    </form>
+  );
+}
 
 function ItemThumbnail() {
   return (
@@ -103,6 +134,17 @@ function TagUserIcon() {
           />
         </g>
       </g>
+    </svg>
+  );
+}
+
+function GreenCircleTick() {
+  return (
+    <svg xmlns='http://www.w3.org/2000/svg' width='24' height='25' viewBox='0 0 24 25' fill='none'>
+      <path
+        d='M12 2.5C6.49 2.5 2 6.99 2 12.5C2 18.01 6.49 22.5 12 22.5C17.51 22.5 22 18.01 22 12.5C22 6.99 17.51 2.5 12 2.5ZM16.78 10.2L11.11 15.87C10.97 16.01 10.78 16.09 10.58 16.09C10.38 16.09 10.19 16.01 10.05 15.87L7.22 13.04C6.93 12.75 6.93 12.27 7.22 11.98C7.51 11.69 7.99 11.69 8.28 11.98L10.58 14.28L15.72 9.14C16.01 8.85 16.49 8.85 16.78 9.14C17.07 9.43 17.07 9.9 16.78 10.2Z'
+        fill='#1AAE64'
+      />
     </svg>
   );
 }
