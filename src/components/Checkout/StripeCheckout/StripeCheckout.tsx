@@ -18,6 +18,7 @@ const StripeCheckout: FC = () => {
           </div>
           <div className='mt-11 lg:pl-[71px] lg:ml-6'>
             <DiscountForm />
+            <TotalCalc />
           </div>
         </div>
       </div>
@@ -146,6 +147,23 @@ function GreenCircleTick() {
         fill='#1AAE64'
       />
     </svg>
+  );
+}
+
+function TotalCalc() {
+  return (
+    <div className='flex justify-between py-12'>
+      <div className='flex flex-col'>
+        <p className='text-grey-primary text-sm'>Total</p>
+        <p className='text-grey-primary py-6 text-sm'>Coupon - GEVITI20</p>
+        <p className='text-white text-lg'>Total due</p>
+      </div>
+      <div className='flex flex-col text-right'>
+        <p className='text-grey-primary text-sm'>$668.98</p>
+        <p className='text-grey-primary py-6 text-sm'>-$200</p>
+        <p className='text-white text-lg'>$668.98</p>
+      </div>
+    </div>
   );
 }
 export default StripeCheckout;
