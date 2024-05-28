@@ -1,17 +1,23 @@
 import { FC } from "react";
 
-const CheckoutItem: FC = () => {
+interface ICheckoutItem {
+  name: string;
+  price: string;
+  plan: string;
+  metadata?: string;
+}
+const CheckoutItem: FC<ICheckoutItem> = ({ name = "", price = "", plan = "", metadata = "" }) => {
   return (
     <div className='flex border-b-2 border-grey-950 lg:border-none'>
       <ItemThumbnail />
-      <div className='flex flex-col lg:flex-row'>
+      <div className='flex flex-col w-full lg:flex-row'>
         <div className='ml-6 flex flex-col justify-around'>
-          <h3 className='text-white text-lg lg:text-2xl'>Comprehensive Diagnostic</h3>
-          <span className='text-grey-primary text-sm'>One time payment</span>
+          <h3 className='text-white text-lg lg:text-2xl'>{name}</h3>
+          <span className='text-grey-primary text-sm'>{plan}</span>
         </div>
         <div className='ml-6 my-6 lg:my-0 lg:ml-auto flex flex-col justify-around text-grey-primary lg:text-right'>
-          <p className='text-lg'>$469.99</p>
-          <span className='text-xs whitespace-nowrap leading-7'>then $297.99 quarterly</span>
+          <p className='text-lg'>${price}</p>
+          {metadata && <span className='text-xs whitespace-nowrap leading-7'>{metadata}</span>}
         </div>
       </div>
     </div>

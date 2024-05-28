@@ -1,1133 +1,1877 @@
 import {
-	CrossRed,
-	DollarCircle,
-	DoubleDollarCircle,
-	FemaleIcon,
-	GreenCheck,
-	MaleIcon,
-	Verify
-} from '@/components/Icons';
+  CrossRed,
+  DollarCircle,
+  DoubleDollarCircle,
+  FemaleIcon,
+  GreenCheck,
+  MaleIcon,
+  Verify,
+} from "@/components/Icons";
 import {
-	DNAIcon,
-	DropIcon,
-	FavFolder,
-	Graph,
-	HeartbeatIcon,
-	MedicalDocIcon,
-	MonitoringIcon,
-	PillIcon,
-	UserTag,
-} from '@/components/Icons/Landing';
+  DNAIcon,
+  DropIcon,
+  FavFolder,
+  Graph,
+  HeartbeatIcon,
+  MedicalDocIcon,
+  MonitoringIcon,
+  PillIcon,
+  UserTag,
+} from "@/components/Icons/Landing";
 
 const membershipData = {
-	hero: {
-		preTitle: 'all you need <span class="max-sm:hidden">in one </span>membership',
-		title:
-			'Unlock premier health with exclusive membership benefits',
-		titles: ['Unlock premier health with', 'exclusive membership benefits'],
-		description: 'A Geviti membership makes longevity easy and accessible with our wide range of at-home diagnostics, innovative anti-aging therapies, and a dedicated qualified care team.',
-		titlesMobile: [
-			'Unlock premier health',
-			'with exclusive',
-			'membership benefits',
-		],
-		image: '/images/membership/compressed/hero.webp',
-		imageMobile: '/images/membership/compressed/hero_mobile.webp',
-		btnCta: {
-			text: 'Join Geviti',
-			href: '/onboarding',
-			externalLink: false,
-		},
-		btnCta2: {
-			href: '#packages',
-			externalLink: false,
-			text: '<span class="lg:hidden">Learn More</span><span class="max-lg:hidden">View Packages</span>',
-		},
-		mainKeys: [
-			{
-				icon: MonitoringIcon,
-				text: 'Hormone optimization<br />Made simple',
-			},
-			{
-				icon: DNAIcon,
-				text: 'At-home diagnostics<br />Blood and DNA',
-			},
-			{
-				icon: MedicalDocIcon,
-				text: 'Data-driven protocols<br />No guesswork',
-			},
-			{
-				icon: PillIcon,
-				text: 'Tailor-made supplements<br />Custom to you',
-			},
-			{
-				icon: HeartbeatIcon,
-				text: 'Anti-aging peptides<br />Highly effective',
-			},
-		],
-	},
-	biomarkers: {
-		title: 'Compare Tested Biomarkers',
-		expandText: 'Click to expand',
-		tabs: [
-			{
-				title: 'Essential Health Check',
-				key: {
-					male: 'essentialMale',
-					female: 'essentialFemale'
-				}
-			},
-			{
-				title: 'Comprehensive Health Dive',
-				key: {
-					male: 'comprehensiveMale',
-					female: 'comprehensiveFemale'
-				}
-			},
-			{
-				title: 'Ultimate Health Assessment',
-				key: {
-					male: 'ultimateMale',
-					female: 'ultimateFemale'
-				}
-			}
-		],
-		genderOptions: [
-			{
-				title: 'Male Biomarkers',
-				shortLabel: 'Male',
-				icon: MaleIcon,
-				value: 'male'
-			},
-			{
-				title: 'Female Biomarkers',
-				shortLabel: 'Female',
-				icon: FemaleIcon,
-				value: 'female'
-			}
-		],
-		data: [
-			{
-				key: 'essentialMale',
-				list: [
-					{ 'title': 'Thyroid Cascade', 'description': 'TSH first then T4 and T3 only when TSH is abnormal. This cascade detects most abnormalities affecting the thyroid or the secretion of TSH by the pituitary gland.' },
-					{ 'title': 'LH (Luteinizing Hormone)', 'description': 'In men, LH causes the Leydig cells of the testes to produce testosterone. In women, LH triggers the creation of steroid hormones from the ovaries.' },
-					{ 'title': 'Total Test (Total Testosterone)', 'description': 'Measures free testosterone and testosterone that\'s attached to proteins. This helps in assessing overall hormonal balance and detecting hormonal disorders.' },
-					{ 'title': 'Free Test (Free Testosterone)', 'description': 'Measures only the \'active\' form of testosterone. This is important for evaluating conditions like hypogonadism and other hormonal imbalances.' },
-					{ 'title': 'Chloride', 'description': 'Stimulates stomach acid for digestion, nerve and muscle activation, and oxygen flow within cells.' },
-					{ 'title': 'Globulin, Total', 'description': 'Protein in blood that helps detect inflammation or infection.' },
-					{ 'title': 'Calcium', 'description': 'Important for muscle and nerve function, bone health, and neuromuscular function.' },
-					{ 'title': 'Alkaline Phosphatase (ALP)', 'description': 'Enzyme in blood that detects liver damage.' },
-					{ 'title': 'A/G Ratio (Albumin/Globulin Ratio)', 'description': 'A measure of the relative amounts of albumin and globulin, which can indicate various health conditions.' },
-					{ 'title': 'Bilirubin', 'description': 'Waste product from red blood cells; helps detect liver damage.' },
-					{ 'title': 'Blood Urea Nitrogen (BUN)', 'description': 'Waste filtered by kidneys; helps assess kidney function.' },
-					{ 'title': 'Sodium', 'description': 'Regulates blood pressure and fluid balance; vital for cardiovascular health.' },
-					{ 'title': 'Potassium', 'description': 'Maintains fluid levels inside cells; important for heart and muscle function.' },
-					{ 'title': 'Glucose', 'description': 'A type of sugar used by the body for energy. Monitoring glucose levels is essential for managing diabetes and energy metabolism.' },
-					{ 'title': 'Total Protein', 'description': 'The sum of albumin and globulin; important for diagnosing liver and kidney conditions.' },
-					{ 'title': 'Albumin', 'description': 'Protein in blood that helps detect inflammation or infection.' },
-					{ 'title': 'Carbon Dioxide (CO2)', 'description': 'Regulates blood pH and provides information about kidney health.' },
-					{ 'title': 'Alanine Aminotransferase (ALT)', 'description': 'Enzyme in blood that detects liver damage.' },
-					{ 'title': 'Aspartate Aminotransferase (AST)', 'description': 'Enzyme in blood that detects liver damage.' },
-					{ 'title': 'Creatinine', 'description': 'Waste filtered by kidneys; used to evaluate kidney health.' },
-					{ 'title': 'BUN/Creatinine Ratio', 'description': 'A measure that helps determine the cause of kidney dysfunction.' },
-					{ 'title': 'Estimated Glomerular Filtration Rate (eGFR)', 'description': 'Estimates how well the kidneys are filtering; used to assess kidney function.' },
-					{ 'title': 'HbA1C (Haemoglobin A1c)', 'description': 'Measures the amount of blood sugar attached to hemoglobin, indicating diabetes control over the past 2-3 months.' },
-					{ 'title': 'Red Blood Cell Count (RBC)', 'description': 'Carry oxygen; crucial for diagnosing anemia.' },
-					{ 'title': 'White Blood Cell Count (WBC)', 'description': 'Fight infection; important for detecting infections and immune disorders.' },
-					{ 'title': 'Hemoglobin (HGB)', 'description': 'Oxygen-carrying protein in red blood cells; used to diagnose anemia.' },
-					{ 'title': 'Hematocrit (HCT)', 'description': 'Amount of red blood cells in blood; indicates blood volume.' },
-					{ 'title': 'Mean Corpuscular Volume (MCV)', 'description': 'Average size of red blood cells; helps classify types of anemia.' },
-					{ 'title': 'Mean Corpuscular Hemoglobin (MCH)', 'description': 'Average amount of hemoglobin inside a red blood cell; aids in diagnosing anemia.' },
-					{ 'title': 'Mean Corpuscular Hemoglobin Concentration (MCHC)', 'description': 'Concentration of hemoglobin in a given volume of packed red blood cells.' },
-					{ 'title': 'Red Cell Distribution Width (RDW)', 'description': 'A measure of the variation in size of red blood cells; used to diagnose different types of anemia.' },
-					{ 'title': 'Platelet Count', 'description': 'Help clot blood; essential for assessing bleeding disorders.' },
-					{ 'title': 'Neutrophils (Absolute and Percent)', 'description': 'A type of white blood cell important for fighting bacterial infections.' },
-					{ 'title': 'Lymphocytes (Absolute and Percent)', 'description': 'A type of white blood cell that is part of the immune system, helping fight infections.' },
-					{ 'title': 'Monocytes (Absolute and Percent)', 'description': 'A type of white blood cell that helps break down bacteria.' },
-					{ 'title': 'Eosinophils (Absolute and Percent)', 'description': 'A type of white blood cell involved in combating multicellular parasites and certain infections.' },
-					{ 'title': 'Basophils (Absolute and Percent)', 'description': 'A type of white blood cell that participates in allergic reactions and asthma.' },
-					{ 'title': 'Immature Granulocytes (Absolute and Percent)', 'description': 'Immature white blood cells that can indicate infection or inflammation when present in high numbers.' },
-					{ 'title': 'Immature Cells (Absolute Count)', 'description': 'Measures the number of immature white blood cells in the blood, which can indicate bone marrow activity.' },
-					{ 'title': 'Total Cholesterol', 'description': 'Overall cholesterol level indicating risk for cardiovascular disease.' },
-					{ 'title': 'High-Density Lipoprotein (HDL) Cholesterol', 'description': 'Good cholesterol that helps remove other forms of cholesterol from the bloodstream.' },
-					{ 'title': 'Low-Density Lipoprotein (LDL) Cholesterol (calculated)', 'description': 'Bad cholesterol that can build up in arteries, increasing heart disease risk.' },
-					{ 'title': 'Triglycerides', 'description': 'Type of fat in the blood; high levels increase heart disease risk.' },
-					{ 'title': 'Very Low-Density Lipoprotein (VLDL) Cholesterol (calculated)', 'description': 'A type of lipoprotein that carries triglycerides in the blood; high levels can indicate heart disease risk.' },
-					{ 'title': 'PSA (Prostate-Specific Antigen)', 'description': 'Protein produced by the prostate gland; elevated levels can indicate prostate cancer.' },
-					{ 'title': 'SHBG (Sex Hormone Binding Globulin)', 'description': 'Protein that binds to sex hormones, regulating their availability.' },
-				]
-			},
-			{
-				key: 'comprehensiveMale',
-				list: [
-					{ 'title': 'Thyroid Cascade', 'description': 'TSH first then T4 and T3 only when TSH is abnormal. This cascade detects most abnormalities affecting the thyroid or the secretion of TSH by the pituitary gland.' },
-					{ 'title': 'LH (Luteinizing Hormone)', 'description': 'In men, LH causes the Leydig cells of the testes to produce testosterone. In women, LH triggers the creation of steroid hormones from the ovaries.' },
-					{ 'title': 'FSH (Follicle Stimulating Hormone)', 'description': 'Regulates reproductive processes by stimulating ovarian follicles in women and sperm production in men.' },
-					{ 'title': 'Total Test (Total Testosterone)', 'description': 'Measures free testosterone and testosterone that\'s attached to proteins. This helps in assessing overall hormonal balance and detecting hormonal disorders.' },
-					{ 'title': 'Free Test (Free Testosterone)', 'description': 'Measures only the \'active\' form of testosterone. This is important for evaluating conditions like hypogonadism and other hormonal imbalances.' },
-					{ 'title': 'Chloride', 'description': 'Stimulates stomach acid for digestion, nerve and muscle activation, and oxygen flow within cells.' },
-					{ 'title': 'Globulin, Total', 'description': 'Protein in blood that helps detect inflammation or infection.' },
-					{ 'title': 'Calcium', 'description': 'Important for muscle and nerve function, bone health, and neuromuscular function.' },
-					{ 'title': 'Alkaline Phosphatase (ALP)', 'description': 'Enzyme in blood that detects liver damage.' },
-					{ 'title': 'A/G Ratio (Albumin/Globulin Ratio)', 'description': 'A measure of the relative amounts of albumin and globulin, which can indicate various health conditions.' },
-					{ 'title': 'Bilirubin', 'description': 'Waste product from red blood cells; helps detect liver damage.' },
-					{ 'title': 'Blood Urea Nitrogen (BUN)', 'description': 'Waste filtered by kidneys; helps assess kidney function.' },
-					{ 'title': 'Sodium', 'description': 'Regulates blood pressure and fluid balance; vital for cardiovascular health.' },
-					{ 'title': 'Potassium', 'description': 'Maintains fluid levels inside cells; important for heart and muscle function.' },
-					{ 'title': 'Glucose', 'description': 'A type of sugar used by the body for energy. Monitoring glucose levels is essential for managing diabetes and energy metabolism.' },
-					{ 'title': 'Total Protein', 'description': 'The sum of albumin and globulin; important for diagnosing liver and kidney conditions.' },
-					{ 'title': 'Albumin', 'description': 'Protein in blood that helps detect inflammation or infection.' },
-					{ 'title': 'Carbon Dioxide (CO2)', 'description': 'Regulates blood pH and provides information about kidney health.' },
-					{ 'title': 'Alanine Aminotransferase (ALT)', 'description': 'Enzyme in blood that detects liver damage.' },
-					{ 'title': 'Aspartate Aminotransferase (AST)', 'description': 'Enzyme in blood that detects liver damage.' },
-					{ 'title': 'Creatinine', 'description': 'Waste filtered by kidneys; used to evaluate kidney health.' },
-					{ 'title': 'BUN/Creatinine Ratio', 'description': 'A measure that helps determine the cause of kidney dysfunction.' },
-					{ 'title': 'Estimated Glomerular Filtration Rate (eGFR)', 'description': 'Estimates how well the kidneys are filtering; used to assess kidney function.' },
-					{ 'title': 'HbA1C (Haemoglobin A1c)', 'description': 'Measures the amount of blood sugar attached to hemoglobin, indicating diabetes control over the past 2-3 months.' },
-					{ 'title': 'Red Blood Cell Count (RBC)', 'description': 'Carry oxygen; crucial for diagnosing anemia.' },
-					{ 'title': 'White Blood Cell Count (WBC)', 'description': 'Fight infection; important for detecting infections and immune disorders.' },
-					{ 'title': 'Hemoglobin (HGB)', 'description': 'Oxygen-carrying protein in red blood cells; used to diagnose anemia.' },
-					{ 'title': 'Hematocrit (HCT)', 'description': 'Amount of red blood cells in blood; indicates blood volume.' },
-					{ 'title': 'Mean Corpuscular Volume (MCV)', 'description': 'Average size of red blood cells; helps classify types of anemia.' },
-					{ 'title': 'Mean Corpuscular Hemoglobin (MCH)', 'description': 'Average amount of hemoglobin inside a red blood cell; aids in diagnosing anemia.' },
-					{ 'title': 'Mean Corpuscular Hemoglobin Concentration (MCHC)', 'description': 'Concentration of hemoglobin in a given volume of packed red blood cells.' },
-					{ 'title': 'Red Cell Distribution Width (RDW)', 'description': 'A measure of the variation in size of red blood cells; used to diagnose different types of anemia.' },
-					{ 'title': 'Platelet Count', 'description': 'Help clot blood; essential for assessing bleeding disorders.' },
-					{ 'title': 'Neutrophils (Absolute and Percent)', 'description': 'A type of white blood cell important for fighting bacterial infections.' },
-					{ 'title': 'Lymphocytes (Absolute and Percent)', 'description': 'A type of white blood cell that is part of the immune system, helping fight infections.' },
-					{ 'title': 'Monocytes (Absolute and Percent)', 'description': 'A type of white blood cell that helps break down bacteria.' },
-					{ 'title': 'Eosinophils (Absolute and Percent)', 'description': 'A type of white blood cell involved in combating multicellular parasites and certain infections.' },
-					{ 'title': 'Basophils (Absolute and Percent)', 'description': 'A type of white blood cell that participates in allergic reactions and asthma.' },
-					{ 'title': 'Immature Granulocytes (Absolute and Percent)', 'description': 'Immature white blood cells that can indicate infection or inflammation when present in high numbers.' },
-					{ 'title': 'Immature Cells (Absolute Count)', 'description': 'Measures the number of immature white blood cells in the blood, which can indicate bone marrow activity.' },
-					{ 'title': 'Total Cholesterol', 'description': 'Overall cholesterol level indicating risk for cardiovascular disease.' },
-					{ 'title': 'High-Density Lipoprotein (HDL) Cholesterol', 'description': 'Good cholesterol that helps remove other forms of cholesterol from the bloodstream.' },
-					{ 'title': 'Low-Density Lipoprotein (LDL) Cholesterol (calculated)', 'description': 'Bad cholesterol that can build up in arteries, increasing heart disease risk.' },
-					{ 'title': 'Triglycerides', 'description': 'Type of fat in the blood; high levels increase heart disease risk.' },
-					{ 'title': 'Very Low-Density Lipoprotein (VLDL) Cholesterol (calculated)', 'description': 'A type of lipoprotein that carries triglycerides in the blood; high levels can indicate heart disease risk.' },
-					{ 'title': 'Estradiol', 'description': 'A form of estrogen, a female sex hormone produced by the ovaries.' },
-					{ 'title': 'DHEA-S (Dehydroepiandrosterone Sulfate)', 'description': 'A hormone produced by the adrenal glands; it serves as a precursor to male and female sex hormones.' },
-					{ 'title': 'IGF-1 (Insulin-like Growth Factor 1)', 'description': 'A hormone that plays a role in growth and development; indicator of growth hormone activity.' },
-					{ 'title': 'Homocysteine', 'description': 'Amino acid in blood indicating heart disease risk when elevated.' },
-					{ 'title': 'Magnesium', 'description': 'Essential mineral involved in muscle and nerve function, blood glucose control, and blood pressure regulation.' },
-					{ 'title': 'Vitamin D, 25-Hydroxy', 'description': 'Measures the level of vitamin D in the blood, important for bone health and immune function.' },
-					{ 'title': 'PSA (Prostate-Specific Antigen)', 'description': 'Protein produced by the prostate gland; elevated levels can indicate prostate cancer.' },
-					{ 'title': 'C-Reactive Protein (CRP)', 'description': 'Marker of inflammation in the body; high levels indicate infection or chronic inflammatory diseases.' },
-					{ 'title': 'Apo B (Apolipoprotein B)', 'description': 'Protein involved in lipid metabolism; high levels are associated with cardiovascular disease risk.' },
-					{ 'title': 'Lipoprotein A', 'description': 'Lipoprotein associated with increased cardiovascular disease risk.' },
-					{ 'title': 'DHT (Dihydrotestosterone)', 'description': 'Androgen hormone derived from testosterone; associated with male pattern baldness and prostate health.' },
-					{ 'title': 'SHBG (Sex Hormone Binding Globulin)', 'description': 'Protein that binds to sex hormones, regulating their availability.' },
-					{ 'title': 'B12 (Vitamin B12)', 'description': 'Essential for red blood cell formation, neurological function, and DNA synthesis.' },
-				]
-			},
-			{
-				key: 'essentialFemale',
-				list: [
-					{ 'title': 'Thyroid Cascade', 'description': 'TSH first then T4 and T3 only when TSH is abnormal. This cascade detects most abnormalities affecting the thyroid or the secretion of TSH by the pituitary gland.' },
-					{ 'title': 'LH (Luteinizing Hormone)', 'description': 'In men, LH causes the Leydig cells of the testes to produce testosterone. In women, LH triggers the creation of steroid hormones from the ovaries.' },
-					{ 'title': 'Total Test (Total Testosterone)', 'description': 'Measures free testosterone and testosterone that\'s attached to proteins. This helps in assessing overall hormonal balance and detecting hormonal disorders.' },
-					{ 'title': 'Free Test (Free Testosterone)', 'description': 'Measures only the \'active\' form of testosterone. This is important for evaluating conditions like hypogonadism and other hormonal imbalances.' },
-					{ 'title': 'Chloride', 'description': 'Stimulates stomach acid for digestion, nerve and muscle activation, and oxygen flow within cells.' },
-					{ 'title': 'Globulin, Total', 'description': 'Protein in blood that helps detect inflammation or infection.' },
-					{ 'title': 'Calcium', 'description': 'Important for muscle and nerve function, bone health, and neuromuscular function.' },
-					{ 'title': 'Alkaline Phosphatase (ALP)', 'description': 'Enzyme in blood that detects liver damage.' },
-					{ 'title': 'A/G Ratio (Albumin/Globulin Ratio)', 'description': 'A measure of the relative amounts of albumin and globulin, which can indicate various health conditions.' },
-					{ 'title': 'Bilirubin', 'description': 'Waste product from red blood cells; helps detect liver damage.' },
-					{ 'title': 'Blood Urea Nitrogen (BUN)', 'description': 'Waste filtered by kidneys; helps assess kidney function.' },
-					{ 'title': 'Sodium', 'description': 'Regulates blood pressure and fluid balance; vital for cardiovascular health.' },
-					{ 'title': 'Potassium', 'description': 'Maintains fluid levels inside cells; important for heart and muscle function.' },
-					{ 'title': 'Glucose', 'description': 'A type of sugar used by the body for energy. Monitoring glucose levels is essential for managing diabetes and energy metabolism.' },
-					{ 'title': 'Total Protein', 'description': 'The sum of albumin and globulin; important for diagnosing liver and kidney conditions.' },
-					{ 'title': 'Albumin', 'description': 'Protein in blood that helps detect inflammation or infection.' },
-					{ 'title': 'Carbon Dioxide (CO2)', 'description': 'Regulates blood pH and provides information about kidney health.' },
-					{ 'title': 'Alanine Aminotransferase (ALT)', 'description': 'Enzyme in blood that detects liver damage.' },
-					{ 'title': 'Aspartate Aminotransferase (AST)', 'description': 'Enzyme in blood that detects liver damage.' },
-					{ 'title': 'Creatinine', 'description': 'Waste filtered by kidneys; used to evaluate kidney health.' },
-					{ 'title': 'BUN/Creatinine Ratio', 'description': 'A measure that helps determine the cause of kidney dysfunction.' },
-					{ 'title': 'Estimated Glomerular Filtration Rate (eGFR)', 'description': 'Estimates how well the kidneys are filtering; used to assess kidney function.' },
-					{ 'title': 'HbA1C (Haemoglobin A1c)', 'description': 'Measures the amount of blood sugar attached to hemoglobin, indicating diabetes control over the past 2-3 months.' },
-					{ 'title': 'Red Blood Cell Count (RBC)', 'description': 'Carry oxygen; crucial for diagnosing anemia.' },
-					{ 'title': 'White Blood Cell Count (WBC)', 'description': 'Fight infection; important for detecting infections and immune disorders.' },
-					{ 'title': 'Hemoglobin (HGB)', 'description': 'Oxygen-carrying protein in red blood cells; used to diagnose anemia.' },
-					{ 'title': 'Hematocrit (HCT)', 'description': 'Amount of red blood cells in blood; indicates blood volume.' },
-					{ 'title': 'Mean Corpuscular Volume (MCV)', 'description': 'Average size of red blood cells; helps classify types of anemia.' },
-					{ 'title': 'Mean Corpuscular Hemoglobin (MCH)', 'description': 'Average amount of hemoglobin inside a red blood cell; aids in diagnosing anemia.' },
-					{ 'title': 'Mean Corpuscular Hemoglobin Concentration (MCHC)', 'description': 'Concentration of hemoglobin in a given volume of packed red blood cells.' },
-					{ 'title': 'Red Cell Distribution Width (RDW)', 'description': 'A measure of the variation in size of red blood cells; used to diagnose different types of anemia.' },
-					{ 'title': 'Platelet Count', 'description': 'Help clot blood; essential for assessing bleeding disorders.' },
-					{ 'title': 'Neutrophils (Absolute and Percent)', 'description': 'A type of white blood cell important for fighting bacterial infections.' },
-					{ 'title': 'Lymphocytes (Absolute and Percent)', 'description': 'A type of white blood cell that is part of the immune system, helping fight infections.' },
-					{ 'title': 'Monocytes (Absolute and Percent)', 'description': 'A type of white blood cell that helps break down bacteria.' },
-					{ 'title': 'Eosinophils (Absolute and Percent)', 'description': 'A type of white blood cell involved in combating multicellular parasites and certain infections.' },
-					{ 'title': 'Basophils (Absolute and Percent)', 'description': 'A type of white blood cell that participates in allergic reactions and asthma.' },
-					{ 'title': 'Immature Granulocytes (Absolute and Percent)', 'description': 'Immature white blood cells that can indicate infection or inflammation when present in high numbers.' },
-					{ 'title': 'Immature Cells (Absolute Count)', 'description': 'Measures the number of immature white blood cells in the blood, which can indicate bone marrow activity.' },
-					{ 'title': 'Total Cholesterol', 'description': 'Overall cholesterol level indicating risk for cardiovascular disease.' },
-					{ 'title': 'High-Density Lipoprotein (HDL) Cholesterol', 'description': 'Good cholesterol that helps remove other forms of cholesterol from the bloodstream.' },
-					{ 'title': 'Low-Density Lipoprotein (LDL) Cholesterol (calculated)', 'description': 'Bad cholesterol that can build up in arteries, increasing heart disease risk.' },
-					{ 'title': 'Triglycerides', 'description': 'Type of fat in the blood; high levels increase heart disease risk.' },
-					{ 'title': 'Very Low-Density Lipoprotein (VLDL) Cholesterol (calculated)', 'description': 'A type of lipoprotein that carries triglycerides in the blood; high levels can indicate heart disease risk.' },
-					{ 'title': 'PSA (Prostate-Specific Antigen)', 'description': 'Protein produced by the prostate gland; elevated levels can indicate prostate cancer.' },
-					{ 'title': 'SHBG (Sex Hormone Binding Globulin)', 'description': 'Protein that binds to sex hormones, regulating their availability.' },
-				]
-			},
-			{
-				key: 'comprehensiveFemale',
-				list: [
-					{ 'title': 'Thyroid Cascade', 'description': 'TSH first then T4 and T3 only when TSH is abnormal. This cascade detects most abnormalities affecting the thyroid or the secretion of TSH by the pituitary gland.' },
-					{ 'title': 'LH (Luteinizing Hormone)', 'description': 'In men, LH causes the Leydig cells of the testes to produce testosterone. In women, LH triggers the creation of steroid hormones from the ovaries.' },
-					{ 'title': 'FSH (Follicle Stimulating Hormone)', 'description': 'Regulates reproductive processes by stimulating ovarian follicles in women and sperm production in men.' },
-					{ 'title': 'Total Test (Total Testosterone)', 'description': 'Measures free testosterone and testosterone that\'s attached to proteins. This helps in assessing overall hormonal balance and detecting hormonal disorders.' },
-					{ 'title': 'Free Test (Free Testosterone)', 'description': 'Measures only the \'active\' form of testosterone. This is important for evaluating conditions like hypogonadism and other hormonal imbalances.' },
-					{ 'title': 'Chloride', 'description': 'Stimulates stomach acid for digestion, nerve and muscle activation, and oxygen flow within cells.' },
-					{ 'title': 'Globulin, Total', 'description': 'Protein in blood that helps detect inflammation or infection.' },
-					{ 'title': 'Calcium', 'description': 'Important for muscle and nerve function, bone health, and neuromuscular function.' },
-					{ 'title': 'Alkaline Phosphatase (ALP)', 'description': 'Enzyme in blood that detects liver damage.' },
-					{ 'title': 'A/G Ratio (Albumin/Globulin Ratio)', 'description': 'A measure of the relative amounts of albumin and globulin, which can indicate various health conditions.' },
-					{ 'title': 'Bilirubin', 'description': 'Waste product from red blood cells; helps detect liver damage.' },
-					{ 'title': 'Blood Urea Nitrogen (BUN)', 'description': 'Waste filtered by kidneys; helps assess kidney function.' },
-					{ 'title': 'Sodium', 'description': 'Regulates blood pressure and fluid balance; vital for cardiovascular health.' },
-					{ 'title': 'Potassium', 'description': 'Maintains fluid levels inside cells; important for heart and muscle function.' },
-					{ 'title': 'Glucose', 'description': 'A type of sugar used by the body for energy. Monitoring glucose levels is essential for managing diabetes and energy metabolism.' },
-					{ 'title': 'Total Protein', 'description': 'The sum of albumin and globulin; important for diagnosing liver and kidney conditions.' },
-					{ 'title': 'Albumin', 'description': 'Protein in blood that helps detect inflammation or infection.' },
-					{ 'title': 'Carbon Dioxide (CO2)', 'description': 'Regulates blood pH and provides information about kidney health.' },
-					{ 'title': 'Alanine Aminotransferase (ALT)', 'description': 'Enzyme in blood that detects liver damage.' },
-					{ 'title': 'Aspartate Aminotransferase (AST)', 'description': 'Enzyme in blood that detects liver damage.' },
-					{ 'title': 'Creatinine', 'description': 'Waste filtered by kidneys; used to evaluate kidney health.' },
-					{ 'title': 'BUN/Creatinine Ratio', 'description': 'A measure that helps determine the cause of kidney dysfunction.' },
-					{ 'title': 'Estimated Glomerular Filtration Rate (eGFR)', 'description': 'Estimates how well the kidneys are filtering; used to assess kidney function.' },
-					{ 'title': 'HbA1C (Haemoglobin A1c)', 'description': 'Measures the amount of blood sugar attached to hemoglobin, indicating diabetes control over the past 2-3 months.' },
-					{ 'title': 'Red Blood Cell Count (RBC)', 'description': 'Carry oxygen; crucial for diagnosing anemia.' },
-					{ 'title': 'White Blood Cell Count (WBC)', 'description': 'Fight infection; important for detecting infections and immune disorders.' },
-					{ 'title': 'Hemoglobin (HGB)', 'description': 'Oxygen-carrying protein in red blood cells; used to diagnose anemia.' },
-					{ 'title': 'Hematocrit (HCT)', 'description': 'Amount of red blood cells in blood; indicates blood volume.' },
-					{ 'title': 'Mean Corpuscular Volume (MCV)', 'description': 'Average size of red blood cells; helps classify types of anemia.' },
-					{ 'title': 'Mean Corpuscular Hemoglobin (MCH)', 'description': 'Average amount of hemoglobin inside a red blood cell; aids in diagnosing anemia.' },
-					{ 'title': 'Mean Corpuscular Hemoglobin Concentration (MCHC)', 'description': 'Concentration of hemoglobin in a given volume of packed red blood cells.' },
-					{ 'title': 'Red Cell Distribution Width (RDW)', 'description': 'A measure of the variation in size of red blood cells; used to diagnose different types of anemia.' },
-					{ 'title': 'Platelet Count', 'description': 'Help clot blood; essential for assessing bleeding disorders.' },
-					{ 'title': 'Neutrophils (Absolute and Percent)', 'description': 'A type of white blood cell important for fighting bacterial infections.' },
-					{ 'title': 'Lymphocytes (Absolute and Percent)', 'description': 'A type of white blood cell that is part of the immune system, helping fight infections.' },
-					{ 'title': 'Monocytes (Absolute and Percent)', 'description': 'A type of white blood cell that helps break down bacteria.' },
-					{ 'title': 'Eosinophils (Absolute and Percent)', 'description': 'A type of white blood cell involved in combating multicellular parasites and certain infections.' },
-					{ 'title': 'Basophils (Absolute and Percent)', 'description': 'A type of white blood cell that participates in allergic reactions and asthma.' },
-					{ 'title': 'Immature Granulocytes (Absolute and Percent)', 'description': 'Immature white blood cells that can indicate infection or inflammation when present in high numbers.' },
-					{ 'title': 'Immature Cells (Absolute Count)', 'description': 'Measures the number of immature white blood cells in the blood, which can indicate bone marrow activity.' },
-					{ 'title': 'Total Cholesterol', 'description': 'Overall cholesterol level indicating risk for cardiovascular disease.' },
-					{ 'title': 'High-Density Lipoprotein (HDL) Cholesterol', 'description': 'Good cholesterol that helps remove other forms of cholesterol from the bloodstream.' },
-					{ 'title': 'Low-Density Lipoprotein (LDL) Cholesterol (calculated)', 'description': 'Bad cholesterol that can build up in arteries, increasing heart disease risk.' },
-					{ 'title': 'Triglycerides', 'description': 'Type of fat in the blood; high levels increase heart disease risk.' },
-					{ 'title': 'Very Low-Density Lipoprotein (VLDL) Cholesterol (calculated)', 'description': 'A type of lipoprotein that carries triglycerides in the blood; high levels can indicate heart disease risk.' },
-					{ 'title': 'Estradiol', 'description': 'A form of estrogen, a female sex hormone produced by the ovaries.' },
-					{ 'title': 'DHEA-S (Dehydroepiandrosterone Sulfate)', 'description': 'A hormone produced by the adrenal glands; it serves as a precursor to male and female sex hormones.' },
-					{ 'title': 'IGF-1 (Insulin-like Growth Factor 1)', 'description': 'A hormone that plays a role in growth and development; indicator of growth hormone activity.' },
-					{ 'title': 'Homocysteine', 'description': 'Amino acid in blood indicating heart disease risk when elevated.' },
-					{ 'title': 'Magnesium', 'description': 'Essential mineral involved in muscle and nerve function, blood glucose control, and blood pressure regulation.' },
-					{ 'title': 'Vitamin D, 25-Hydroxy', 'description': 'Measures the level of vitamin D in the blood, important for bone health and immune function.' },
-					{ 'title': 'PSA (Prostate-Specific Antigen)', 'description': 'Protein produced by the prostate gland; elevated levels can indicate prostate cancer.' },
-					{ 'title': 'C-Reactive Protein (CRP)', 'description': 'Marker of inflammation in the body; high levels indicate infection or chronic inflammatory diseases.' },
-					{ 'title': 'Apo B (Apolipoprotein B)', 'description': 'Protein involved in lipid metabolism; high levels are associated with cardiovascular disease risk.' },
-					{ 'title': 'Lipoprotein A', 'description': 'Lipoprotein associated with increased cardiovascular disease risk.' },
-					{ 'title': 'DHT (Dihydrotestosterone)', 'description': 'Androgen hormone derived from testosterone; associated with male pattern baldness and prostate health.' },
-					{ 'title': 'SHBG (Sex Hormone Binding Globulin)', 'description': 'Protein that binds to sex hormones, regulating their availability.' },
-					{ 'title': 'B12 (Vitamin B12)', 'description': 'Essential for red blood cell formation, neurological function, and DNA synthesis.' },
-				]
-			},
-			{
-				key: 'ultimateMale',
-				list: [
-					{ 'title': 'Thyroid Cascade', 'description': 'TSH first then T4 and T3 only when TSH is abnormal. This cascade detects most abnormalities affecting the thyroid or the secretion of TSH by the pituitary gland.' },
-					{ 'title': 'LH (Luteinizing Hormone)', 'description': 'In men, LH causes the Leydig cells of the testes to produce testosterone. In women, LH triggers the creation of steroid hormones from the ovaries.' },
-					{ 'title': 'FSH (Follicle Stimulating Hormone)', 'description': 'Regulates reproductive processes by stimulating ovarian follicles in women and sperm production in men.' },
-					{ 'title': 'Total Test (Total Testosterone)', 'description': 'Measures free testosterone and testosterone that\'s attached to proteins. This helps in assessing overall hormonal balance and detecting hormonal disorders.' },
-					{ 'title': 'Free Test (Free Testosterone)', 'description': 'Measures only the \'active\' form of testosterone. This is important for evaluating conditions like hypogonadism and other hormonal imbalances.' },
-					{ 'title': 'Chloride', 'description': 'Stimulates stomach acid for digestion, nerve and muscle activation, and oxygen flow within cells.' },
-					{ 'title': 'Globulin, Total', 'description': 'Protein in blood that helps detect inflammation or infection.' },
-					{ 'title': 'Calcium', 'description': 'Important for muscle and nerve function, bone health, and neuromuscular function.' },
-					{ 'title': 'Alkaline Phosphatase (ALP)', 'description': 'Enzyme in blood that detects liver damage.' },
-					{ 'title': 'A/G Ratio (Albumin/Globulin Ratio)', 'description': 'A measure of the relative amounts of albumin and globulin, which can indicate various health conditions.' },
-					{ 'title': 'Bilirubin', 'description': 'Waste product from red blood cells; helps detect liver damage.' },
-					{ 'title': 'Blood Urea Nitrogen (BUN)', 'description': 'Waste filtered by kidneys; helps assess kidney function.' },
-					{ 'title': 'Sodium', 'description': 'Regulates blood pressure and fluid balance; vital for cardiovascular health.' },
-					{ 'title': 'Potassium', 'description': 'Maintains fluid levels inside cells; important for heart and muscle function.' },
-					{ 'title': 'Glucose', 'description': 'A type of sugar used by the body for energy. Monitoring glucose levels is essential for managing diabetes and energy metabolism.' },
-					{ 'title': 'Total Protein', 'description': 'The sum of albumin and globulin; important for diagnosing liver and kidney conditions.' },
-					{ 'title': 'Albumin', 'description': 'Protein in blood that helps detect inflammation or infection.' },
-					{ 'title': 'Carbon Dioxide (CO2)', 'description': 'Regulates blood pH and provides information about kidney health.' },
-					{ 'title': 'Alanine Aminotransferase (ALT)', 'description': 'Enzyme in blood that detects liver damage.' },
-					{ 'title': 'Aspartate Aminotransferase (AST)', 'description': 'Enzyme in blood that detects liver damage.' },
-					{ 'title': 'Insulin', 'description': 'Hormone that regulates blood glucose levels; helps diagnose and manage diabetes.' },
-					{ 'title': 'Creatinine', 'description': 'Waste filtered by kidneys; used to evaluate kidney health.' },
-					{ 'title': 'BUN/Creatinine Ratio', 'description': 'A measure that helps determine the cause of kidney dysfunction.' },
-					{ 'title': 'Estimated Glomerular Filtration Rate (eGFR)', 'description': 'Estimates how well the kidneys are filtering; used to assess kidney function.' },
-					{ 'title': 'HbA1C (Haemoglobin A1c)', 'description': 'Measures the amount of blood sugar attached to hemoglobin, indicating diabetes control over the past 2-3 months.' },
-					{ 'title': 'Red Blood Cell Count (RBC)', 'description': 'Carry oxygen; crucial for diagnosing anemia.' },
-					{ 'title': 'White Blood Cell Count (WBC)', 'description': 'Fight infection; important for detecting infections and immune disorders.' },
-					{ 'title': 'Hemoglobin (HGB)', 'description': 'Oxygen-carrying protein in red blood cells; used to diagnose anemia.' },
-					{ 'title': 'Hematocrit (HCT)', 'description': 'Amount of red blood cells in blood; indicates blood volume.' },
-					{ 'title': 'Mean Corpuscular Volume (MCV)', 'description': 'Average size of red blood cells; helps classify types of anemia.' },
-					{ 'title': 'Mean Corpuscular Hemoglobin (MCH)', 'description': 'Average amount of hemoglobin inside a red blood cell; aids in diagnosing anemia.' },
-					{ 'title': 'Mean Corpuscular Hemoglobin Concentration (MCHC)', 'description': 'Concentration of hemoglobin in a given volume of packed red blood cells.' },
-					{ 'title': 'Red Cell Distribution Width (RDW)', 'description': 'A measure of the variation in size of red blood cells; used to diagnose different types of anemia.' },
-					{ 'title': 'Platelet Count', 'description': 'Help clot blood; essential for assessing bleeding disorders.' },
-					{ 'title': 'Neutrophils (Absolute and Percent)', 'description': 'A type of white blood cell important for fighting bacterial infections.' },
-					{ 'title': 'Lymphocytes (Absolute and Percent)', 'description': 'A type of white blood cell that is part of the immune system, helping fight infections.' },
-					{ 'title': 'Monocytes (Absolute and Percent)', 'description': 'A type of white blood cell that helps break down bacteria.' },
-					{ 'title': 'Eosinophils (Absolute and Percent)', 'description': 'A type of white blood cell involved in combating multicellular parasites and certain infections.' },
-					{ 'title': 'Basophils (Absolute and Percent)', 'description': 'A type of white blood cell that participates in allergic reactions and asthma.' },
-					{ 'title': 'Immature Granulocytes (Absolute and Percent)', 'description': 'Immature white blood cells that can indicate infection or inflammation when present in high numbers.' },
-					{ 'title': 'Immature Cells (Absolute Count)', 'description': 'Measures the number of immature white blood cells in the blood, which can indicate bone marrow activity.' },
-					{ 'title': 'Total Cholesterol', 'description': 'Overall cholesterol level indicating risk for cardiovascular disease.' },
-					{ 'title': 'High-Density Lipoprotein (HDL) Cholesterol', 'description': 'Good cholesterol that helps remove other forms of cholesterol from the bloodstream.' },
-					{ 'title': 'Low-Density Lipoprotein (LDL) Cholesterol (calculated)', 'description': 'Bad cholesterol that can build up in arteries, increasing heart disease risk.' },
-					{ 'title': 'Triglycerides', 'description': 'Type of fat in the blood; high levels increase heart disease risk.' },
-					{ 'title': 'Very Low-Density Lipoprotein (VLDL) Cholesterol (calculated)', 'description': 'A type of lipoprotein that carries triglycerides in the blood; high levels can indicate heart disease risk.' },
-					{ 'title': 'Estradiol', 'description': 'A form of estrogen, a female sex hormone produced by the ovaries.' },
-					{ 'title': 'DHEA-S (Dehydroepiandrosterone Sulfate)', 'description': 'A hormone produced by the adrenal glands; it serves as a precursor to male and female sex hormones.' },
-					{ 'title': 'IGF-1 (Insulin-like Growth Factor 1)', 'description': 'A hormone that plays a role in growth and development; indicator of growth hormone activity.' },
-					{ 'title': 'Homocysteine', 'description': 'Amino acid in blood indicating heart disease risk when elevated.' },
-					{ 'title': 'Magnesium', 'description': 'Essential mineral involved in muscle and nerve function, blood glucose control, and blood pressure regulation.' },
-					{ 'title': 'Vitamin D, 25-Hydroxy', 'description': 'Measures the level of vitamin D in the blood, important for bone health and immune function.' },
-					{ 'title': 'PSA (Prostate-Specific Antigen)', 'description': 'Protein produced by the prostate gland; elevated levels can indicate prostate cancer.' },
-					{ 'title': 'C-Reactive Protein (CRP)', 'description': 'Marker of inflammation in the body; high levels indicate infection or chronic inflammatory diseases.' },
-					{ 'title': 'Apo B (Apolipoprotein B)', 'description': 'Protein involved in lipid metabolism; high levels are associated with cardiovascular disease risk.' },
-					{ 'title': 'Lipoprotein A', 'description': 'Lipoprotein associated with increased cardiovascular disease risk.' },
-					{ 'title': 'Insulin', 'description': 'Hormone that regulates blood glucose levels; helps diagnose and manage diabetes.' },
-					{ 'title': 'SHBG (Sex Hormone Binding Globulin)', 'description': 'Protein that binds to sex hormones, regulating their availability.' },
-					{ 'title': 'Cortisol', 'description': 'Steroid hormone released in response to stress; abnormal levels indicate adrenal gland problems.' },
-					{ 'title': 'Growth Hormone', 'description': 'Important for growth, metabolism, and muscle mass; abnormal levels indicate pituitary gland issues.' },
-					{ 'title': 'Vitamin B12', 'description': 'Essential for red blood cell formation, neurological function, and DNA synthesis.' },
-					{ 'title': 'Ferritin', 'description': 'Protein that stores iron; low levels indicate iron deficiency anemia, high levels indicate inflammation or liver disease.' },
-					{ 'title': 'Iron', 'description': 'Mineral essential for hemoglobin production and oxygen transport.' },
-					{ 'title': 'Total Iron Binding Capacity (TIBC)', 'description': 'Measures the blood’s capacity to bind iron with transferrin.' },
-					{ 'title': 'Percentage Saturation (calculated using Iron and TIBC)', 'description': 'The percentage of transferrin that is saturated with iron; used to assess iron status.' },
-					{ 'title': 'Unsaturated Iron Binding Capacity (UIBC)', 'description': 'The reserve capacity of transferrin to bind iron; used to evaluate iron status.' },
-					{ 'title': 'Free T4 (Thyroxine)', 'description': 'Thyroid hormone that regulates metabolism; used to assess thyroid function.' },
-					{ 'title': 'DHT (Dihydrotestosterone)', 'description': 'Androgen hormone derived from testosterone; associated with male pattern baldness and prostate health.' },
-					{ 'title': 'Progesterone', 'description': 'Hormone regulating the menstrual cycle and maintaining pregnancy; measured in men to assess adrenal function.' },
-					{ 'title': 'hs-CRP (High-sensitivity C-Reactive Protein)', 'description': 'Sensitive measure of CRP used to evaluate cardiovascular disease risk.' },
-				]
-			},
-			{
-				key: 'ultimateFemale',
-				list: [
-					{
-						title: 'Thyroid Cascade',
-						description: 'Evaluates thyroid function and disorders with 3-4 biomarkers.'
-					},
-					{
-						title: 'LH (Lutheinizing Hormone)',
-						description: 'Indicates reproductive health and function.'
-					},
-					{
-						title: 'Total Testosterone',
-						description: 'Measures overall level of male sex hormone.'
-					},
-					{
-						title: 'Free Testosterone',
-						description: 'Assesses biologically active testosterone fraction.'
-					},
-					{
-						title: 'Comprehensive Metabolic Panel',
-						description: 'Provides a broad overview of metabolism and organ function with 14 biomarkers.'
-					},
-					{
-						title: 'HbA1C',
-						description: 'Reflects average blood sugar levels over three months.'
-					},
-					{
-						title: 'Complete Blood Count',
-						description: 'Measures different blood cell types for overall health status with 14 biomarkers.'
-					},
-					{
-						title: 'Lipid Panel',
-						description: 'Assesses risk for cardiovascular disease through cholesterol levels with 4 biomarkers.'
-					},
-					{
-						title: 'FSH (Follicle Stimulating Hormone)',
-						description: 'Integral for reproductive system functioning.'
-					},
-					{
-						title: 'Estradiol',
-						description: 'A form of estrogen important for reproductive and sexual health.'
-					},
-					{
-						title: 'DHEA (Dehydroepiandrosterone)',
-						description: 'A hormone that\'s a precursor to sex hormones.'
-					},
-					{
-						title: 'IGF-1 (Insulin-like Growth Factor 1)',
-						description: 'Reflects human growth hormone levels.'
-					},
-					{
-						title: 'Homocysteine',
-						description: 'Linked with cardiovascular disease risk.'
-					},
-					{
-						title: 'Magnesium',
-						description: 'Vital for muscle, nerve function, and bone health.'
-					},
-					{
-						title: 'Vitamin D, 25-Hydroxy',
-						description: 'Assesses vitamin D status related to bone health.'
-					},
-					{
-						title: 'PSA (Prostate-Specific Antigen)',
-						description: 'Screens for prostate health issues.'
-					},
-					{
-						title: 'C-Reactive Protein',
-						description: 'Indicates liver health.'
-					},
-					{
-						title: 'Apo B',
-						description: 'Assists in evaluating liver function.'
-					},
-					{
-						title: 'Lipoprotein A',
-						description: 'A marker for inflammation in the body.'
-					},
-					{
-						title: 'ALT (Alanine Aminotransferase)',
-						description: 'Involved in cholesterol metabolism; linked to heart disease'
-					},
-					{
-						title: 'AST (Aspartate Aminotransferase)',
-						description: 'Genetic marker associated with an increased risk of heart disease.'
-					},
-					{
-						title: 'Insulin',
-						description: 'Monitors insulin production and blood sugar regulation.'
-					},
-					{
-						title: 'Cortisol',
-						description: 'Measures stress response and adrenal function.'
-					},
-					{
-						title: 'Vitamin B12',
-						description: 'Essential for nerve function and blood cell production.'
-					},
-					{
-						title: 'Ferritin',
-						description: 'Indicates the amount of stored iron in the body.'
-					},
-					{
-						title: 'Iron and TIBC',
-						description: 'Assesses iron status and transport capacity.'
-					},
-					{
-						title: 'Free T4',
-						description: 'Directly measures active thyroid hormone levels.'
-					},
-					{
-						title: 'Prolactin',
-						description: 'Essential for menstrual cycle regulation and pregnancy in females.'
-					},
-					{
-						title: 'Progesterone',
-						description: 'Affects menstrual cycles and milk production.'
-					},
-				]
-			}
-		],
-	},
-	chooseGevity: {
-		preTitle: 'Tailor-made longevity',
-		title: 'Why Choose Geviti?',
-		image: '/images/membership/compressed/oral.webp',
-		btnCta: {
-			href: '/onboarding',
-			text: 'Get Started'
-		},
-		btnCta2: {
-			href: '/products',
-			text: 'See Products'
-		},
-		list: [
-			'Testing and diagnostics from the comfort of your own home.',
-			'Cutting edge health care available at your fingertips.',
-			'Streamlined processes that eliminate traditional pain points.',
-			'Comprehensive health/human optimization made simple.',
-		],
-	},
-	steps: {
-		preTitle: 'become a member',
-		title: 'Start your health journey <span class="max-lg:hidden"/>with a full blood panel</span>',
-		description: 'Membership journey starts with choosing a full bloodwork panel. We’ll draw your blood from the comfort of your home.',
-		list: [
-			{
-				id: 'step-1',
-				title:
-					'Become a member by <br class="max-lg:hidden" />purchasing an intro bloodwork <br class="max-lg:hidden" />package',
-				icon: UserTag,
-			},
-			{
-				id: 'step-2',
-				title:
-					'Complete your at-home blood <br class="max-lg:hidden" />draw with our mobile <br class="max-lg:hidden" />phlebotomy team',
-				icon: DropIcon,
-				iconMobile: DropIcon,
-			},
-			{
-				id: 'step-3',
-				title:
-					'Review results and tailored <br class="max-lg:hidden" />protocol with your designated <br class="max-lg:hidden" />care team',
-				icon: FavFolder,
-			},
-			{
-				id: 'step-4',
-				title:
-					'Receive your tailor-made <br class="max-lg:hidden" />protocols in the mail and <br class="max-lg:hidden" />track your progress',
-				icon: Graph,
-			},
-		],
-	},
-	slider: {
-		list: [
-			{
-				preTitle: 'Data-driven health and wellness, made simple.',
-				title:
-					'The ultimate wellness <br class="sm:hidden"/>membership for as low as <br class="sm:hidden"/>$99 per month.',
-				description:
-					'Geviti transcends the usual health and wellness offerings, providing unparalleled value at a lower cost. Our mission is to make longevity-focused care exceptionally accessible.',
-				list: [
-					'Geviti Platform Access',
-					'Mobile App Integration',
-					'Smart Wearables Integration',
-					'Biannual At-home Full Panels',
-					'Doctor-Monitored Therapeutics',
-					'Tailored Smart Supplements',
-					'Custom Longevity Protocols',
-					'Certified Personal Health Coach',
-					'Wholesale At-home Diagnostics',
-				],
-				image: '/images/membership/compressed/slider-1.webp',
-			},
-			{
-				preTitle: 'Data-driven health and wellness, made simple.',
-				title: 'Doctor  monitored cutting edge care',
-				description:
-					'Geviti offers a comprehensive care team for our clients. Instead of having to choose between a healthcare provider and a health coach, Geviti provides a solution where the two collaborate to create the ultimate longevity regimen.',
-				list: [],
-				image: '/images/membership/compressed/slider-2.webp',
-				btnCta: {
-					href: '/onboarding',
-					text: 'Join Geviti'
-				}
-			},
-			{
-				preTitle: 'Data-driven health and wellness, made simple.',
-				title: 'A complete wellness team in your pocket',
-				description: ' ',
-				list: [
-					'Hormone Therapy',
-					'Anti-aging Peptides',
-					'Medical Weight Loss',
-					'Sexual Health Medication',
-					'Nootropics and Brain Health',
-					'And More.',
-				],
-				image: '/images/membership/compressed/slider-3.webp',
-				btnCta: {
-					href: '/onboarding',
-					text: 'Join Geviti'
-				}
-			},
-			{
-				preTitle: 'Data-driven health and wellness, made simple.',
-				title: 'Biannual At-Home Full Panels ',
-				description:
-					'Americans may go several years without getting their bloodwork done. This can be the difference between life and death. Geviti makes bloodwork easy with our nationwide team of phlebotomists Every 6 months, we’ll come to you and perform a full panel.',
-				list: [],
-				image: '/images/membership/compressed/slider-4.webp',
-				btnCta: {
-					href: '/onboarding',
-					text: 'Join Geviti'
-				}
-			},
-		]
-	},
-	pricing: {
-		preTitle: 'Care based off of biomarkers',
-		title: 'Start by establishing baselines',
-		description: 'Every user starts with an at-home full panel establish baselines. This package includes one month for free. Memberships can be billed monthly or quarterly.',
-		pricingOptions: [
-			{
-				title: 'Quarterly',
-				value: 'quarterly',
-				highlight: '17% off'
-			},
-			{
-				title: 'Monthly',
-				value: 'monthly'
-			}
-		],
-		list: [
-			{
-				name: 'Essentials Diagnostic',
-				price: '$299',
-				priceNote: 'one time payment',
-				priceDescGeneral: '<span class="lg:hidden">+$99/m billed quarterly</span><span class="max-lg:hidden">+$198 initially, then $297 quarterly</span>',
-				biomakers: '45+',
-				mostPopular: false,
-				monthly: '+ $119 monthly',
-				quarterly: '+$198 initially, then $297 quarterly',
-				btnCta: {
-					href: '/onboarding',
-					text: 'Select Option'
-				},
-				list: [
-					{
-						title: 'At-home phlebotomy blood draw',
-						description: 'Experience convenient, personalized healthcare from the comfort of your home or any location of your choice. Our mobile phlebotomy service ensures that a professional team comes to you for blood drawing, making the process as comfortable and stress-free as possible.'
-					},
-					{
-						title: 'Full biomarker results report',
-						description: ''
-					},
-					{
-						title: 'Smart supplement recommendation',
-						description: ''
-					},
-					{
-						title: 'Bloodwork results telehealth review',
-						description: ''
-					},
-					{
-						title: 'First month of membership included',
-						description: ''
-					},
-				]
-			},
-			{
-				name: 'Comprehensive Diagnostic',
-				price: '$469',
-				priceNote: 'one time payment',
-				priceDescGeneral: '<span class="lg:hidden">+ $297 quarterly</span><span class="max-lg:hidden">+$198 initially, then $297 quarterly</span>',
-				biomakers: '57+',
-				mostPopular: true,
-				monthly: '+ $119 monthly',
-				quarterly: '+$198 initially, then $297 quarterly',
-				btnCta: {
-					href: '/onboarding',
-					text: 'Select Option'
-				},
-				list: [
-					{
-						title: 'At-home phlebotomy blood draw',
-						description: 'Experience convenient, personalized healthcare from the comfort of your home or any location of your choice. Our mobile phlebotomy service ensures that a professional team comes to you for blood drawing, making the process as comfortable and stress-free as possible.'
-					},
-					{
-						title: 'Full biomarker results report',
-						description: ''
-					},
-					{
-						title: 'Smart supplement recommendation',
-						description: ''
-					},
-					{
-						title: 'Bloodwork results telehealth review',
-						description: ''
-					},
-					{
-						title: 'First month of membership included',
-						description: ''
-					},
-				]
-			},
-			{
-				name: 'Ultimate Diagnostic',
-				price: '$599',
-				priceNote: 'one time payment',
-				priceDescGeneral: '<span class="lg:hidden">+ $297 quarterly</span><span class="max-lg:hidden">+$198 initially, then $297 quarterly</span>',
-				biomakers: '68+',
-				mostPopular: false,
-				monthly: '+ $119 monthly',
-				quarterly: '+$198 initially, then $297 quarterly',
-				btnCta: {
-					href: '/onboarding',
-					text: 'Select Option'
-				},
-				list: [
-					{
-						title: 'At-home phlebotomy blood draw',
-						description: 'Experience convenient, personalized healthcare from the comfort of your home or any location of your choice. Our mobile phlebotomy service ensures that a professional team comes to you for blood drawing, making the process as comfortable and stress-free as possible.'
-					},
-					{
-						title: 'Full biomarker results report',
-						description: ''
-					},
-					{
-						title: 'Smart supplement recommendation',
-						description: ''
-					},
-					{
-						title: 'Bloodwork results telehealth review',
-						description: ''
-					},
-					{
-						title: 'First month of membership included',
-						description: ''
-					},
-				]
-			},
-		],
-		features: [
-			'At-home phlebotomy blood draw',
-			'Full biomarker results report',
-			'Smart supplement recommendation',
-			'Bloodwork results telehealth review',
-			'First month of membership included',
-		],
-		extended: {
-			btn: {
-				text: 'Geviti vs. competitors',
-				textMobile: 'Geviti vs. our competitors'
-			},
-			preTitle: 'Care based off of biomarkers',
-			title: 'More, for less.',
-			list: [
-				{
-					name: 'Geviti',
-					priceTitle: 'Membership cost as low as',
-					price: '$99',
-					priceNote: 'per month',
-					geviti: true,
-					list: [
-						{
-							title: 'Free telehealth consults',
-							icon: GreenCheck
-						},
-						{
-							title: 'Designated certified health coach',
-							icon: GreenCheck
-						},
-						{
-							title: 'At-home bloodwork',
-							icon: GreenCheck
-						},
-						{
-							title: 'Free semi-annual bloodwork',
-							icon: GreenCheck
-						},
-						{
-							title: 'Affordable treatments',
-							icon: GreenCheck
-						},
-						{
-							title: 'Included medical supplies',
-							icon: GreenCheck
-						},
-						{
-							title: 'Custom Smart Supplements',
-							icon: GreenCheck
-						},
-						{
-							title: 'Everything direct to your door',
-							icon: GreenCheck
-						},
-						{
-							title: 'Wholesale cost additional testing',
-							icon: GreenCheck
-						},
-						{
-							title: 'Wholesale cost supplements',
-							icon: GreenCheck
-						},
-						{
-							title: 'DNA and bloodwork options',
-							icon: GreenCheck
-						},
-						{
-							title: 'Data-driven tech platform',
-							icon: GreenCheck
-						},
-						{
-							title: 'Integrated mobile app',
-							icon: GreenCheck
-						},
-					]
-				},
-				{
-					name: 'Others',
-					priceTitle: 'Membership cost',
-					price: '$130+',
-					priceNote: 'per month',
-					geviti: false,
-					list: [
-						{
-							title: 'Free telehealth consults',
-							icon: DollarCircle
-						},
-						{
-							title: 'Designated certified health coach',
-							icon: CrossRed
-						},
-						{
-							title: 'At-home bloodwork',
-							icon: CrossRed
-						},
-						{
-							title: 'Free semi-annual bloodwork',
-							icon: DollarCircle
-						},
-						{
-							title: 'Affordable treatments',
-							icon: DoubleDollarCircle
-						},
-						{
-							title: 'Included medical supplies',
-							icon: DollarCircle
-						},
-						{
-							title: 'Custom Smart Supplements',
-							icon: CrossRed
-						},
-						{
-							title: 'Everything direct to your door',
-							icon: CrossRed
-						},
-						{
-							title: 'Wholesale cost additional testing',
-							icon: DoubleDollarCircle
-						},
-						{
-							title: 'Wholesale cost supplements',
-							icon: DollarCircle
-						},
-						{
-							title: 'DNA and bloodwork options',
-							icon: CrossRed
-						},
-						{
-							title: 'Data-driven tech platform',
-							icon: CrossRed
-						},
-						{
-							title: 'Integrated mobile app',
-							icon: CrossRed
-						},
-					]
-				}
-			]
-		},
-	},
-	pricingComparison: {
-		title: 'More, for less with Geviti',
-		description: 'As a Geviti member, you have access to all the best tools for longevity, at an industry-leading price.',
-		headers: [
-			{
-				id: 'geviti',
-				title: 'Geviti',
-				subtitle: '$99.99/mo',
-				geviti: true,
-			},
-			{
-				id: 'competitor_a',
-				title: 'Competitor A',
-				subtitle: '$129.00/mo',
-				geviti: false
-			},
-			{
-				id: 'competitor_b',
-				title: 'Competitor B',
-				subtitle: '$362.00/mo',
-				geviti: false
-			},
-			{
-				id: 'competitor_c',
-				title: 'Competitor C',
-				subtitle: 'Membership N/A',
-				geviti: false
-			}
-		],
-		list: [
-			{
-				name: 'Health Coaching',
-				geviti: true,
-				competitor_a: true,
-				competitor_b: true,
-				competitor_c: true,
-			},
-			{
-				name: 'Frequent Screening',
-				geviti: true,
-				competitor_a: true,
-				competitor_b: true,
-				competitor_c: false,
-			},
-			{
-				name: 'Hormones and Peptides',
-				geviti: true,
-				competitor_a: true,
-				competitor_b: false,
-				competitor_c: true,
-			},
-			{
-				name: 'Mobile Phlebotomy',
-				geviti: true,
-				competitor_a: true,
-				competitor_b: true,
-				competitor_c: false,
-			},
-			{
-				name: 'Member Dashboard',
-				geviti: true,
-				competitor_a: true,
-				competitor_b: false,
-				competitor_c: false,
-			},
-			{
-				name: 'Various Diagnostic Options',
-				geviti: true,
-				competitor_a: false,
-				competitor_b: true,
-				competitor_c: true,
-			},
-			{
-				name: 'Wholesale Diagnostics',
-				geviti: true,
-				competitor_a: false,
-				competitor_b: false,
-				competitor_c: false,
-			},
-			{
-				name: 'Custom Supplements ',
-				geviti: true,
-				competitor_a: false,
-				competitor_b: false,
-				competitor_c: true,
-			},
-			{
-				name: 'Epigenetic Testing',
-				geviti: true,
-				competitor_a: false,
-				competitor_b: true,
-				competitor_c: false,
-			},
-			{
-				name: 'Health Coaching',
-				geviti: true,
-				competitor_a: false,
-				competitor_b: false,
-				competitor_c: false,
-			},
-		]
-	},
-	faq: {
-		data: [
-			{
-				title: 'In which states is Geviti available?',
-				content:
-					'Geviti currently offers services in eleven states: Arizona (AZ), California (CA), Colorado (CO), Utah (UT), Washington (WA), Texas (TX), Florida (FL), Georgia (GA), Kansas (KS), Oregon (OR), and New Mexico (NM). We are actively expanding to include more states across the country.',
-			},
-			{
-				title:
-					'What “Deep-dive Diagnostic” is included semi-annually with the membership?',
-				content: 'As part of your membership, you receive the "Essentials Diagnostic" twice each year. This foundational evaluation provides key insights into your health metrics. For a more detailed analysis, you have the option to upgrade to our comprehensive or ultimate diagnostic tiers at any time.',
-			},
-			{
-				title: 'What is the membership cancellation and refund policy?',
-				content: 'You can easily cancel your Geviti membership at any time through your personal dashboard. Given the personalized nature of our services, refunds are not automatically granted but are considered on a case-by-case basis. If you have specific circumstances or need further assistance, please contact our support team for detailed guidance.',
-			},
-			{
-				title:
-					'Are the cost of supplements or prescriptions included in the membership fee?',
-				content: 'The membership fee provides access to our range of supplements and prescription services; however, the costs for these items are not included in the fee. Each supplement or prescription is priced separately, allowing you to choose exactly what fits your needs and budget.',
-			},
-			{
-				title:
-					'What if I have recently done labs? Do I still need to purchase a diagnostic package?',
-				content: 'We require all new members to purchase a diagnostic package as part of our initial assessment process. This ensures that we have the most recent and relevant data to provide personalized care. However, if you have recent lab results, please reach out to our support team. We may be able to adjust your initial requirements based on the specifics of your situation.',
-			},
-			{
-				title: 'Does a blood panel guarantee access to specific treatments?',
-				content: 'Purchasing a diagnostic package does not guarantee that you will receive any specific prescription treatment. The determination of appropriate treatments is solely at the discretion of your healthcare provider, based on a comprehensive evaluation of your test results and overall health profile.',
-			},
-		]
-	},
-	products: {
-		title: 'Discover Geviti',
-		description: 'Browse our wide range of products!'
-	},
-	banner: {
-		preTitle: 'An INVESTMENT IN YOUR FUTURE',
-		title: 'Prioritizing longevity is an investment in your future self.',
-		description:
-			'Live longer without compromising your lifestyle—our longevity solutions are designed to fit seamlessly into your everyday life.',
-		image: '/images/membership/compressed/banner-member.webp',
-		imageMobile: '/images/membership/compressed/banner-member-mobile.webp',
-		btnCta: {
-			href: '/onboarding',
-			externalLink: false,
-			text: 'Start Now',
-		},
-	},
-	features: [
-		{
-			id: 1,
-			preTitle: 'Data-driven health and wellness, made simple.',
-			title: 'The ultimate wellness <br class="sm:hidden"/>membership for as low as <br class="sm:hidden"/>$99 per month.',
-			description: 'Geviti transcends the usual health and wellness offerings, providing unparalleled value at a lower cost. Our mission is to make longevity-focused care exceptionally accessible.',
-			image: null,
-			main: true,
-			list: {
-				listStyleType: 'none',
-				icon: Verify,
-				items: [
-					'Geviti Dashboard Access',
-					'Mobile Application Access',
-					'Custom Longevity Protocols',
-					'Wholesale At-home Diagnostics',
-					'Certified Personal Health Coach',
-					'Doctor Monitored Prescriptions',
-					'Biannual At-home Full Panels',
-					'Smart Wearables Integration',
-					'Custom Made Supplements'
-				]
-			}
-		},
-		{
-			id: 2,
-			preTitle: 'Data-driven health and wellness, made simple.',
-			title: 'A complete wellness team in <br class="sm:hidden"/>your pocket',
-			description: 'Geviti offers a comprehensive care team for our clients. Instead of having to choose between a healthcare provider and a health coach, Geviti provides a solution where the two collaborate to create the ultimate longevity regimen.',
-			image: '/images/membership/compressed/features-states.webp',
-			main: false,
-			list: null
-		},
-		{
-			id: 3,
-			preTitle: 'Data-driven health and wellness, made simple.',
-			title: 'Doctor  monitored cutting <br class="sm:hidden"/>edge care',
-			description: '',
-			image: '/images/membership/compressed/features-products.webp',
-			main: false,
-			list: {
-				listStyleType: 'disc',
-				icon: null,
-				items: [
-					'Hormone Therapy',
-					'Anti-aging Peptides',
-					'Medical Weight Loss',
-					'Sexual Health',
-					'Nootropics',
-					'And More.'
-				]
-			}
-		},
-		{
-			id: 4,
-			preTitle: 'Data-driven health and wellness, made simple.',
-			title: 'Biannual At-Home Full Panels',
-			description: 'Many Americans neglect essential bloodwork for years, putting their health and wellness at risk. Geviti simplifies this critical process with our nationwide team of phlebotomists, making it convenient for you to stay on top of your health.<br/><br/>Every 6 months, we’ll come to you and perform a full panel at no additional cost.',
-			image: '/images/membership/compressed/features-apps.webp',
-			main: false,
-			list: null
-		}
-	]
+  hero: {
+    preTitle: 'all you need <span class="max-sm:hidden">in one </span>membership',
+    title: "Unlock premier health with exclusive membership benefits",
+    titles: ["Unlock premier health with", "exclusive membership benefits"],
+    description:
+      "A Geviti membership makes longevity easy and accessible with our wide range of at-home diagnostics, innovative anti-aging therapies, and a dedicated qualified care team.",
+    titlesMobile: ["Unlock premier health", "with exclusive", "membership benefits"],
+    image: "/images/membership/compressed/hero.webp",
+    imageMobile: "/images/membership/compressed/hero_mobile.webp",
+    btnCta: {
+      text: "Join Geviti",
+      href: "/onboarding",
+      externalLink: false,
+    },
+    btnCta2: {
+      href: "#packages",
+      externalLink: false,
+      text: '<span class="lg:hidden">Learn More</span><span class="max-lg:hidden">View Packages</span>',
+    },
+    mainKeys: [
+      {
+        icon: MonitoringIcon,
+        text: "Hormone optimization<br />Made simple",
+      },
+      {
+        icon: DNAIcon,
+        text: "At-home diagnostics<br />Blood and DNA",
+      },
+      {
+        icon: MedicalDocIcon,
+        text: "Data-driven protocols<br />No guesswork",
+      },
+      {
+        icon: PillIcon,
+        text: "Tailor-made supplements<br />Custom to you",
+      },
+      {
+        icon: HeartbeatIcon,
+        text: "Anti-aging peptides<br />Highly effective",
+      },
+    ],
+  },
+  biomarkers: {
+    title: "Compare Tested Biomarkers",
+    expandText: "Click to expand",
+    tabs: [
+      {
+        title: "Essential Health Check",
+        key: {
+          male: "essentialMale",
+          female: "essentialFemale",
+        },
+      },
+      {
+        title: "Comprehensive Health Dive",
+        key: {
+          male: "comprehensiveMale",
+          female: "comprehensiveFemale",
+        },
+      },
+      {
+        title: "Ultimate Health Assessment",
+        key: {
+          male: "ultimateMale",
+          female: "ultimateFemale",
+        },
+      },
+    ],
+    genderOptions: [
+      {
+        title: "Male Biomarkers",
+        shortLabel: "Male",
+        icon: MaleIcon,
+        value: "male",
+      },
+      {
+        title: "Female Biomarkers",
+        shortLabel: "Female",
+        icon: FemaleIcon,
+        value: "female",
+      },
+    ],
+    data: [
+      {
+        key: "essentialMale",
+        list: [
+          {
+            title: "Thyroid Cascade",
+            description:
+              "TSH first then T4 and T3 only when TSH is abnormal. This cascade detects most abnormalities affecting the thyroid or the secretion of TSH by the pituitary gland.",
+          },
+          {
+            title: "LH (Luteinizing Hormone)",
+            description:
+              "In men, LH causes the Leydig cells of the testes to produce testosterone. In women, LH triggers the creation of steroid hormones from the ovaries.",
+          },
+          {
+            title: "Total Test (Total Testosterone)",
+            description:
+              "Measures free testosterone and testosterone that's attached to proteins. This helps in assessing overall hormonal balance and detecting hormonal disorders.",
+          },
+          {
+            title: "Free Test (Free Testosterone)",
+            description:
+              "Measures only the 'active' form of testosterone. This is important for evaluating conditions like hypogonadism and other hormonal imbalances.",
+          },
+          {
+            title: "Chloride",
+            description:
+              "Stimulates stomach acid for digestion, nerve and muscle activation, and oxygen flow within cells.",
+          },
+          { title: "Globulin, Total", description: "Protein in blood that helps detect inflammation or infection." },
+          {
+            title: "Calcium",
+            description: "Important for muscle and nerve function, bone health, and neuromuscular function.",
+          },
+          { title: "Alkaline Phosphatase (ALP)", description: "Enzyme in blood that detects liver damage." },
+          {
+            title: "A/G Ratio (Albumin/Globulin Ratio)",
+            description:
+              "A measure of the relative amounts of albumin and globulin, which can indicate various health conditions.",
+          },
+          { title: "Bilirubin", description: "Waste product from red blood cells; helps detect liver damage." },
+          {
+            title: "Blood Urea Nitrogen (BUN)",
+            description: "Waste filtered by kidneys; helps assess kidney function.",
+          },
+          {
+            title: "Sodium",
+            description: "Regulates blood pressure and fluid balance; vital for cardiovascular health.",
+          },
+          {
+            title: "Potassium",
+            description: "Maintains fluid levels inside cells; important for heart and muscle function.",
+          },
+          {
+            title: "Glucose",
+            description:
+              "A type of sugar used by the body for energy. Monitoring glucose levels is essential for managing diabetes and energy metabolism.",
+          },
+          {
+            title: "Total Protein",
+            description: "The sum of albumin and globulin; important for diagnosing liver and kidney conditions.",
+          },
+          { title: "Albumin", description: "Protein in blood that helps detect inflammation or infection." },
+          {
+            title: "Carbon Dioxide (CO2)",
+            description: "Regulates blood pH and provides information about kidney health.",
+          },
+          { title: "Alanine Aminotransferase (ALT)", description: "Enzyme in blood that detects liver damage." },
+          { title: "Aspartate Aminotransferase (AST)", description: "Enzyme in blood that detects liver damage." },
+          { title: "Creatinine", description: "Waste filtered by kidneys; used to evaluate kidney health." },
+          {
+            title: "BUN/Creatinine Ratio",
+            description: "A measure that helps determine the cause of kidney dysfunction.",
+          },
+          {
+            title: "Estimated Glomerular Filtration Rate (eGFR)",
+            description: "Estimates how well the kidneys are filtering; used to assess kidney function.",
+          },
+          {
+            title: "HbA1C (Haemoglobin A1c)",
+            description:
+              "Measures the amount of blood sugar attached to hemoglobin, indicating diabetes control over the past 2-3 months.",
+          },
+          { title: "Red Blood Cell Count (RBC)", description: "Carry oxygen; crucial for diagnosing anemia." },
+          {
+            title: "White Blood Cell Count (WBC)",
+            description: "Fight infection; important for detecting infections and immune disorders.",
+          },
+          {
+            title: "Hemoglobin (HGB)",
+            description: "Oxygen-carrying protein in red blood cells; used to diagnose anemia.",
+          },
+          { title: "Hematocrit (HCT)", description: "Amount of red blood cells in blood; indicates blood volume." },
+          {
+            title: "Mean Corpuscular Volume (MCV)",
+            description: "Average size of red blood cells; helps classify types of anemia.",
+          },
+          {
+            title: "Mean Corpuscular Hemoglobin (MCH)",
+            description: "Average amount of hemoglobin inside a red blood cell; aids in diagnosing anemia.",
+          },
+          {
+            title: "Mean Corpuscular Hemoglobin Concentration (MCHC)",
+            description: "Concentration of hemoglobin in a given volume of packed red blood cells.",
+          },
+          {
+            title: "Red Cell Distribution Width (RDW)",
+            description:
+              "A measure of the variation in size of red blood cells; used to diagnose different types of anemia.",
+          },
+          { title: "Platelet Count", description: "Help clot blood; essential for assessing bleeding disorders." },
+          {
+            title: "Neutrophils (Absolute and Percent)",
+            description: "A type of white blood cell important for fighting bacterial infections.",
+          },
+          {
+            title: "Lymphocytes (Absolute and Percent)",
+            description: "A type of white blood cell that is part of the immune system, helping fight infections.",
+          },
+          {
+            title: "Monocytes (Absolute and Percent)",
+            description: "A type of white blood cell that helps break down bacteria.",
+          },
+          {
+            title: "Eosinophils (Absolute and Percent)",
+            description:
+              "A type of white blood cell involved in combating multicellular parasites and certain infections.",
+          },
+          {
+            title: "Basophils (Absolute and Percent)",
+            description: "A type of white blood cell that participates in allergic reactions and asthma.",
+          },
+          {
+            title: "Immature Granulocytes (Absolute and Percent)",
+            description:
+              "Immature white blood cells that can indicate infection or inflammation when present in high numbers.",
+          },
+          {
+            title: "Immature Cells (Absolute Count)",
+            description:
+              "Measures the number of immature white blood cells in the blood, which can indicate bone marrow activity.",
+          },
+          {
+            title: "Total Cholesterol",
+            description: "Overall cholesterol level indicating risk for cardiovascular disease.",
+          },
+          {
+            title: "High-Density Lipoprotein (HDL) Cholesterol",
+            description: "Good cholesterol that helps remove other forms of cholesterol from the bloodstream.",
+          },
+          {
+            title: "Low-Density Lipoprotein (LDL) Cholesterol (calculated)",
+            description: "Bad cholesterol that can build up in arteries, increasing heart disease risk.",
+          },
+          { title: "Triglycerides", description: "Type of fat in the blood; high levels increase heart disease risk." },
+          {
+            title: "Very Low-Density Lipoprotein (VLDL) Cholesterol (calculated)",
+            description:
+              "A type of lipoprotein that carries triglycerides in the blood; high levels can indicate heart disease risk.",
+          },
+          {
+            title: "PSA (Prostate-Specific Antigen)",
+            description: "Protein produced by the prostate gland; elevated levels can indicate prostate cancer.",
+          },
+          {
+            title: "SHBG (Sex Hormone Binding Globulin)",
+            description: "Protein that binds to sex hormones, regulating their availability.",
+          },
+        ],
+      },
+      {
+        key: "comprehensiveMale",
+        list: [
+          {
+            title: "Thyroid Cascade",
+            description:
+              "TSH first then T4 and T3 only when TSH is abnormal. This cascade detects most abnormalities affecting the thyroid or the secretion of TSH by the pituitary gland.",
+          },
+          {
+            title: "LH (Luteinizing Hormone)",
+            description:
+              "In men, LH causes the Leydig cells of the testes to produce testosterone. In women, LH triggers the creation of steroid hormones from the ovaries.",
+          },
+          {
+            title: "FSH (Follicle Stimulating Hormone)",
+            description:
+              "Regulates reproductive processes by stimulating ovarian follicles in women and sperm production in men.",
+          },
+          {
+            title: "Total Test (Total Testosterone)",
+            description:
+              "Measures free testosterone and testosterone that's attached to proteins. This helps in assessing overall hormonal balance and detecting hormonal disorders.",
+          },
+          {
+            title: "Free Test (Free Testosterone)",
+            description:
+              "Measures only the 'active' form of testosterone. This is important for evaluating conditions like hypogonadism and other hormonal imbalances.",
+          },
+          {
+            title: "Chloride",
+            description:
+              "Stimulates stomach acid for digestion, nerve and muscle activation, and oxygen flow within cells.",
+          },
+          { title: "Globulin, Total", description: "Protein in blood that helps detect inflammation or infection." },
+          {
+            title: "Calcium",
+            description: "Important for muscle and nerve function, bone health, and neuromuscular function.",
+          },
+          { title: "Alkaline Phosphatase (ALP)", description: "Enzyme in blood that detects liver damage." },
+          {
+            title: "A/G Ratio (Albumin/Globulin Ratio)",
+            description:
+              "A measure of the relative amounts of albumin and globulin, which can indicate various health conditions.",
+          },
+          { title: "Bilirubin", description: "Waste product from red blood cells; helps detect liver damage." },
+          {
+            title: "Blood Urea Nitrogen (BUN)",
+            description: "Waste filtered by kidneys; helps assess kidney function.",
+          },
+          {
+            title: "Sodium",
+            description: "Regulates blood pressure and fluid balance; vital for cardiovascular health.",
+          },
+          {
+            title: "Potassium",
+            description: "Maintains fluid levels inside cells; important for heart and muscle function.",
+          },
+          {
+            title: "Glucose",
+            description:
+              "A type of sugar used by the body for energy. Monitoring glucose levels is essential for managing diabetes and energy metabolism.",
+          },
+          {
+            title: "Total Protein",
+            description: "The sum of albumin and globulin; important for diagnosing liver and kidney conditions.",
+          },
+          { title: "Albumin", description: "Protein in blood that helps detect inflammation or infection." },
+          {
+            title: "Carbon Dioxide (CO2)",
+            description: "Regulates blood pH and provides information about kidney health.",
+          },
+          { title: "Alanine Aminotransferase (ALT)", description: "Enzyme in blood that detects liver damage." },
+          { title: "Aspartate Aminotransferase (AST)", description: "Enzyme in blood that detects liver damage." },
+          { title: "Creatinine", description: "Waste filtered by kidneys; used to evaluate kidney health." },
+          {
+            title: "BUN/Creatinine Ratio",
+            description: "A measure that helps determine the cause of kidney dysfunction.",
+          },
+          {
+            title: "Estimated Glomerular Filtration Rate (eGFR)",
+            description: "Estimates how well the kidneys are filtering; used to assess kidney function.",
+          },
+          {
+            title: "HbA1C (Haemoglobin A1c)",
+            description:
+              "Measures the amount of blood sugar attached to hemoglobin, indicating diabetes control over the past 2-3 months.",
+          },
+          { title: "Red Blood Cell Count (RBC)", description: "Carry oxygen; crucial for diagnosing anemia." },
+          {
+            title: "White Blood Cell Count (WBC)",
+            description: "Fight infection; important for detecting infections and immune disorders.",
+          },
+          {
+            title: "Hemoglobin (HGB)",
+            description: "Oxygen-carrying protein in red blood cells; used to diagnose anemia.",
+          },
+          { title: "Hematocrit (HCT)", description: "Amount of red blood cells in blood; indicates blood volume." },
+          {
+            title: "Mean Corpuscular Volume (MCV)",
+            description: "Average size of red blood cells; helps classify types of anemia.",
+          },
+          {
+            title: "Mean Corpuscular Hemoglobin (MCH)",
+            description: "Average amount of hemoglobin inside a red blood cell; aids in diagnosing anemia.",
+          },
+          {
+            title: "Mean Corpuscular Hemoglobin Concentration (MCHC)",
+            description: "Concentration of hemoglobin in a given volume of packed red blood cells.",
+          },
+          {
+            title: "Red Cell Distribution Width (RDW)",
+            description:
+              "A measure of the variation in size of red blood cells; used to diagnose different types of anemia.",
+          },
+          { title: "Platelet Count", description: "Help clot blood; essential for assessing bleeding disorders." },
+          {
+            title: "Neutrophils (Absolute and Percent)",
+            description: "A type of white blood cell important for fighting bacterial infections.",
+          },
+          {
+            title: "Lymphocytes (Absolute and Percent)",
+            description: "A type of white blood cell that is part of the immune system, helping fight infections.",
+          },
+          {
+            title: "Monocytes (Absolute and Percent)",
+            description: "A type of white blood cell that helps break down bacteria.",
+          },
+          {
+            title: "Eosinophils (Absolute and Percent)",
+            description:
+              "A type of white blood cell involved in combating multicellular parasites and certain infections.",
+          },
+          {
+            title: "Basophils (Absolute and Percent)",
+            description: "A type of white blood cell that participates in allergic reactions and asthma.",
+          },
+          {
+            title: "Immature Granulocytes (Absolute and Percent)",
+            description:
+              "Immature white blood cells that can indicate infection or inflammation when present in high numbers.",
+          },
+          {
+            title: "Immature Cells (Absolute Count)",
+            description:
+              "Measures the number of immature white blood cells in the blood, which can indicate bone marrow activity.",
+          },
+          {
+            title: "Total Cholesterol",
+            description: "Overall cholesterol level indicating risk for cardiovascular disease.",
+          },
+          {
+            title: "High-Density Lipoprotein (HDL) Cholesterol",
+            description: "Good cholesterol that helps remove other forms of cholesterol from the bloodstream.",
+          },
+          {
+            title: "Low-Density Lipoprotein (LDL) Cholesterol (calculated)",
+            description: "Bad cholesterol that can build up in arteries, increasing heart disease risk.",
+          },
+          { title: "Triglycerides", description: "Type of fat in the blood; high levels increase heart disease risk." },
+          {
+            title: "Very Low-Density Lipoprotein (VLDL) Cholesterol (calculated)",
+            description:
+              "A type of lipoprotein that carries triglycerides in the blood; high levels can indicate heart disease risk.",
+          },
+          { title: "Estradiol", description: "A form of estrogen, a female sex hormone produced by the ovaries." },
+          {
+            title: "DHEA-S (Dehydroepiandrosterone Sulfate)",
+            description:
+              "A hormone produced by the adrenal glands; it serves as a precursor to male and female sex hormones.",
+          },
+          {
+            title: "IGF-1 (Insulin-like Growth Factor 1)",
+            description: "A hormone that plays a role in growth and development; indicator of growth hormone activity.",
+          },
+          { title: "Homocysteine", description: "Amino acid in blood indicating heart disease risk when elevated." },
+          {
+            title: "Magnesium",
+            description:
+              "Essential mineral involved in muscle and nerve function, blood glucose control, and blood pressure regulation.",
+          },
+          {
+            title: "Vitamin D, 25-Hydroxy",
+            description: "Measures the level of vitamin D in the blood, important for bone health and immune function.",
+          },
+          {
+            title: "PSA (Prostate-Specific Antigen)",
+            description: "Protein produced by the prostate gland; elevated levels can indicate prostate cancer.",
+          },
+          {
+            title: "C-Reactive Protein (CRP)",
+            description:
+              "Marker of inflammation in the body; high levels indicate infection or chronic inflammatory diseases.",
+          },
+          {
+            title: "Apo B (Apolipoprotein B)",
+            description:
+              "Protein involved in lipid metabolism; high levels are associated with cardiovascular disease risk.",
+          },
+          { title: "Lipoprotein A", description: "Lipoprotein associated with increased cardiovascular disease risk." },
+          {
+            title: "DHT (Dihydrotestosterone)",
+            description:
+              "Androgen hormone derived from testosterone; associated with male pattern baldness and prostate health.",
+          },
+          {
+            title: "SHBG (Sex Hormone Binding Globulin)",
+            description: "Protein that binds to sex hormones, regulating their availability.",
+          },
+          {
+            title: "B12 (Vitamin B12)",
+            description: "Essential for red blood cell formation, neurological function, and DNA synthesis.",
+          },
+        ],
+      },
+      {
+        key: "essentialFemale",
+        list: [
+          {
+            title: "Thyroid Cascade",
+            description:
+              "TSH first then T4 and T3 only when TSH is abnormal. This cascade detects most abnormalities affecting the thyroid or the secretion of TSH by the pituitary gland.",
+          },
+          {
+            title: "LH (Luteinizing Hormone)",
+            description:
+              "In men, LH causes the Leydig cells of the testes to produce testosterone. In women, LH triggers the creation of steroid hormones from the ovaries.",
+          },
+          {
+            title: "Total Test (Total Testosterone)",
+            description:
+              "Measures free testosterone and testosterone that's attached to proteins. This helps in assessing overall hormonal balance and detecting hormonal disorders.",
+          },
+          {
+            title: "Free Test (Free Testosterone)",
+            description:
+              "Measures only the 'active' form of testosterone. This is important for evaluating conditions like hypogonadism and other hormonal imbalances.",
+          },
+          {
+            title: "Chloride",
+            description:
+              "Stimulates stomach acid for digestion, nerve and muscle activation, and oxygen flow within cells.",
+          },
+          { title: "Globulin, Total", description: "Protein in blood that helps detect inflammation or infection." },
+          {
+            title: "Calcium",
+            description: "Important for muscle and nerve function, bone health, and neuromuscular function.",
+          },
+          { title: "Alkaline Phosphatase (ALP)", description: "Enzyme in blood that detects liver damage." },
+          {
+            title: "A/G Ratio (Albumin/Globulin Ratio)",
+            description:
+              "A measure of the relative amounts of albumin and globulin, which can indicate various health conditions.",
+          },
+          { title: "Bilirubin", description: "Waste product from red blood cells; helps detect liver damage." },
+          {
+            title: "Blood Urea Nitrogen (BUN)",
+            description: "Waste filtered by kidneys; helps assess kidney function.",
+          },
+          {
+            title: "Sodium",
+            description: "Regulates blood pressure and fluid balance; vital for cardiovascular health.",
+          },
+          {
+            title: "Potassium",
+            description: "Maintains fluid levels inside cells; important for heart and muscle function.",
+          },
+          {
+            title: "Glucose",
+            description:
+              "A type of sugar used by the body for energy. Monitoring glucose levels is essential for managing diabetes and energy metabolism.",
+          },
+          {
+            title: "Total Protein",
+            description: "The sum of albumin and globulin; important for diagnosing liver and kidney conditions.",
+          },
+          { title: "Albumin", description: "Protein in blood that helps detect inflammation or infection." },
+          {
+            title: "Carbon Dioxide (CO2)",
+            description: "Regulates blood pH and provides information about kidney health.",
+          },
+          { title: "Alanine Aminotransferase (ALT)", description: "Enzyme in blood that detects liver damage." },
+          { title: "Aspartate Aminotransferase (AST)", description: "Enzyme in blood that detects liver damage." },
+          { title: "Creatinine", description: "Waste filtered by kidneys; used to evaluate kidney health." },
+          {
+            title: "BUN/Creatinine Ratio",
+            description: "A measure that helps determine the cause of kidney dysfunction.",
+          },
+          {
+            title: "Estimated Glomerular Filtration Rate (eGFR)",
+            description: "Estimates how well the kidneys are filtering; used to assess kidney function.",
+          },
+          {
+            title: "HbA1C (Haemoglobin A1c)",
+            description:
+              "Measures the amount of blood sugar attached to hemoglobin, indicating diabetes control over the past 2-3 months.",
+          },
+          { title: "Red Blood Cell Count (RBC)", description: "Carry oxygen; crucial for diagnosing anemia." },
+          {
+            title: "White Blood Cell Count (WBC)",
+            description: "Fight infection; important for detecting infections and immune disorders.",
+          },
+          {
+            title: "Hemoglobin (HGB)",
+            description: "Oxygen-carrying protein in red blood cells; used to diagnose anemia.",
+          },
+          { title: "Hematocrit (HCT)", description: "Amount of red blood cells in blood; indicates blood volume." },
+          {
+            title: "Mean Corpuscular Volume (MCV)",
+            description: "Average size of red blood cells; helps classify types of anemia.",
+          },
+          {
+            title: "Mean Corpuscular Hemoglobin (MCH)",
+            description: "Average amount of hemoglobin inside a red blood cell; aids in diagnosing anemia.",
+          },
+          {
+            title: "Mean Corpuscular Hemoglobin Concentration (MCHC)",
+            description: "Concentration of hemoglobin in a given volume of packed red blood cells.",
+          },
+          {
+            title: "Red Cell Distribution Width (RDW)",
+            description:
+              "A measure of the variation in size of red blood cells; used to diagnose different types of anemia.",
+          },
+          { title: "Platelet Count", description: "Help clot blood; essential for assessing bleeding disorders." },
+          {
+            title: "Neutrophils (Absolute and Percent)",
+            description: "A type of white blood cell important for fighting bacterial infections.",
+          },
+          {
+            title: "Lymphocytes (Absolute and Percent)",
+            description: "A type of white blood cell that is part of the immune system, helping fight infections.",
+          },
+          {
+            title: "Monocytes (Absolute and Percent)",
+            description: "A type of white blood cell that helps break down bacteria.",
+          },
+          {
+            title: "Eosinophils (Absolute and Percent)",
+            description:
+              "A type of white blood cell involved in combating multicellular parasites and certain infections.",
+          },
+          {
+            title: "Basophils (Absolute and Percent)",
+            description: "A type of white blood cell that participates in allergic reactions and asthma.",
+          },
+          {
+            title: "Immature Granulocytes (Absolute and Percent)",
+            description:
+              "Immature white blood cells that can indicate infection or inflammation when present in high numbers.",
+          },
+          {
+            title: "Immature Cells (Absolute Count)",
+            description:
+              "Measures the number of immature white blood cells in the blood, which can indicate bone marrow activity.",
+          },
+          {
+            title: "Total Cholesterol",
+            description: "Overall cholesterol level indicating risk for cardiovascular disease.",
+          },
+          {
+            title: "High-Density Lipoprotein (HDL) Cholesterol",
+            description: "Good cholesterol that helps remove other forms of cholesterol from the bloodstream.",
+          },
+          {
+            title: "Low-Density Lipoprotein (LDL) Cholesterol (calculated)",
+            description: "Bad cholesterol that can build up in arteries, increasing heart disease risk.",
+          },
+          { title: "Triglycerides", description: "Type of fat in the blood; high levels increase heart disease risk." },
+          {
+            title: "Very Low-Density Lipoprotein (VLDL) Cholesterol (calculated)",
+            description:
+              "A type of lipoprotein that carries triglycerides in the blood; high levels can indicate heart disease risk.",
+          },
+          {
+            title: "PSA (Prostate-Specific Antigen)",
+            description: "Protein produced by the prostate gland; elevated levels can indicate prostate cancer.",
+          },
+          {
+            title: "SHBG (Sex Hormone Binding Globulin)",
+            description: "Protein that binds to sex hormones, regulating their availability.",
+          },
+        ],
+      },
+      {
+        key: "comprehensiveFemale",
+        list: [
+          {
+            title: "Thyroid Cascade",
+            description:
+              "TSH first then T4 and T3 only when TSH is abnormal. This cascade detects most abnormalities affecting the thyroid or the secretion of TSH by the pituitary gland.",
+          },
+          {
+            title: "LH (Luteinizing Hormone)",
+            description:
+              "In men, LH causes the Leydig cells of the testes to produce testosterone. In women, LH triggers the creation of steroid hormones from the ovaries.",
+          },
+          {
+            title: "FSH (Follicle Stimulating Hormone)",
+            description:
+              "Regulates reproductive processes by stimulating ovarian follicles in women and sperm production in men.",
+          },
+          {
+            title: "Total Test (Total Testosterone)",
+            description:
+              "Measures free testosterone and testosterone that's attached to proteins. This helps in assessing overall hormonal balance and detecting hormonal disorders.",
+          },
+          {
+            title: "Free Test (Free Testosterone)",
+            description:
+              "Measures only the 'active' form of testosterone. This is important for evaluating conditions like hypogonadism and other hormonal imbalances.",
+          },
+          {
+            title: "Chloride",
+            description:
+              "Stimulates stomach acid for digestion, nerve and muscle activation, and oxygen flow within cells.",
+          },
+          { title: "Globulin, Total", description: "Protein in blood that helps detect inflammation or infection." },
+          {
+            title: "Calcium",
+            description: "Important for muscle and nerve function, bone health, and neuromuscular function.",
+          },
+          { title: "Alkaline Phosphatase (ALP)", description: "Enzyme in blood that detects liver damage." },
+          {
+            title: "A/G Ratio (Albumin/Globulin Ratio)",
+            description:
+              "A measure of the relative amounts of albumin and globulin, which can indicate various health conditions.",
+          },
+          { title: "Bilirubin", description: "Waste product from red blood cells; helps detect liver damage." },
+          {
+            title: "Blood Urea Nitrogen (BUN)",
+            description: "Waste filtered by kidneys; helps assess kidney function.",
+          },
+          {
+            title: "Sodium",
+            description: "Regulates blood pressure and fluid balance; vital for cardiovascular health.",
+          },
+          {
+            title: "Potassium",
+            description: "Maintains fluid levels inside cells; important for heart and muscle function.",
+          },
+          {
+            title: "Glucose",
+            description:
+              "A type of sugar used by the body for energy. Monitoring glucose levels is essential for managing diabetes and energy metabolism.",
+          },
+          {
+            title: "Total Protein",
+            description: "The sum of albumin and globulin; important for diagnosing liver and kidney conditions.",
+          },
+          { title: "Albumin", description: "Protein in blood that helps detect inflammation or infection." },
+          {
+            title: "Carbon Dioxide (CO2)",
+            description: "Regulates blood pH and provides information about kidney health.",
+          },
+          { title: "Alanine Aminotransferase (ALT)", description: "Enzyme in blood that detects liver damage." },
+          { title: "Aspartate Aminotransferase (AST)", description: "Enzyme in blood that detects liver damage." },
+          { title: "Creatinine", description: "Waste filtered by kidneys; used to evaluate kidney health." },
+          {
+            title: "BUN/Creatinine Ratio",
+            description: "A measure that helps determine the cause of kidney dysfunction.",
+          },
+          {
+            title: "Estimated Glomerular Filtration Rate (eGFR)",
+            description: "Estimates how well the kidneys are filtering; used to assess kidney function.",
+          },
+          {
+            title: "HbA1C (Haemoglobin A1c)",
+            description:
+              "Measures the amount of blood sugar attached to hemoglobin, indicating diabetes control over the past 2-3 months.",
+          },
+          { title: "Red Blood Cell Count (RBC)", description: "Carry oxygen; crucial for diagnosing anemia." },
+          {
+            title: "White Blood Cell Count (WBC)",
+            description: "Fight infection; important for detecting infections and immune disorders.",
+          },
+          {
+            title: "Hemoglobin (HGB)",
+            description: "Oxygen-carrying protein in red blood cells; used to diagnose anemia.",
+          },
+          { title: "Hematocrit (HCT)", description: "Amount of red blood cells in blood; indicates blood volume." },
+          {
+            title: "Mean Corpuscular Volume (MCV)",
+            description: "Average size of red blood cells; helps classify types of anemia.",
+          },
+          {
+            title: "Mean Corpuscular Hemoglobin (MCH)",
+            description: "Average amount of hemoglobin inside a red blood cell; aids in diagnosing anemia.",
+          },
+          {
+            title: "Mean Corpuscular Hemoglobin Concentration (MCHC)",
+            description: "Concentration of hemoglobin in a given volume of packed red blood cells.",
+          },
+          {
+            title: "Red Cell Distribution Width (RDW)",
+            description:
+              "A measure of the variation in size of red blood cells; used to diagnose different types of anemia.",
+          },
+          { title: "Platelet Count", description: "Help clot blood; essential for assessing bleeding disorders." },
+          {
+            title: "Neutrophils (Absolute and Percent)",
+            description: "A type of white blood cell important for fighting bacterial infections.",
+          },
+          {
+            title: "Lymphocytes (Absolute and Percent)",
+            description: "A type of white blood cell that is part of the immune system, helping fight infections.",
+          },
+          {
+            title: "Monocytes (Absolute and Percent)",
+            description: "A type of white blood cell that helps break down bacteria.",
+          },
+          {
+            title: "Eosinophils (Absolute and Percent)",
+            description:
+              "A type of white blood cell involved in combating multicellular parasites and certain infections.",
+          },
+          {
+            title: "Basophils (Absolute and Percent)",
+            description: "A type of white blood cell that participates in allergic reactions and asthma.",
+          },
+          {
+            title: "Immature Granulocytes (Absolute and Percent)",
+            description:
+              "Immature white blood cells that can indicate infection or inflammation when present in high numbers.",
+          },
+          {
+            title: "Immature Cells (Absolute Count)",
+            description:
+              "Measures the number of immature white blood cells in the blood, which can indicate bone marrow activity.",
+          },
+          {
+            title: "Total Cholesterol",
+            description: "Overall cholesterol level indicating risk for cardiovascular disease.",
+          },
+          {
+            title: "High-Density Lipoprotein (HDL) Cholesterol",
+            description: "Good cholesterol that helps remove other forms of cholesterol from the bloodstream.",
+          },
+          {
+            title: "Low-Density Lipoprotein (LDL) Cholesterol (calculated)",
+            description: "Bad cholesterol that can build up in arteries, increasing heart disease risk.",
+          },
+          { title: "Triglycerides", description: "Type of fat in the blood; high levels increase heart disease risk." },
+          {
+            title: "Very Low-Density Lipoprotein (VLDL) Cholesterol (calculated)",
+            description:
+              "A type of lipoprotein that carries triglycerides in the blood; high levels can indicate heart disease risk.",
+          },
+          { title: "Estradiol", description: "A form of estrogen, a female sex hormone produced by the ovaries." },
+          {
+            title: "DHEA-S (Dehydroepiandrosterone Sulfate)",
+            description:
+              "A hormone produced by the adrenal glands; it serves as a precursor to male and female sex hormones.",
+          },
+          {
+            title: "IGF-1 (Insulin-like Growth Factor 1)",
+            description: "A hormone that plays a role in growth and development; indicator of growth hormone activity.",
+          },
+          { title: "Homocysteine", description: "Amino acid in blood indicating heart disease risk when elevated." },
+          {
+            title: "Magnesium",
+            description:
+              "Essential mineral involved in muscle and nerve function, blood glucose control, and blood pressure regulation.",
+          },
+          {
+            title: "Vitamin D, 25-Hydroxy",
+            description: "Measures the level of vitamin D in the blood, important for bone health and immune function.",
+          },
+          {
+            title: "PSA (Prostate-Specific Antigen)",
+            description: "Protein produced by the prostate gland; elevated levels can indicate prostate cancer.",
+          },
+          {
+            title: "C-Reactive Protein (CRP)",
+            description:
+              "Marker of inflammation in the body; high levels indicate infection or chronic inflammatory diseases.",
+          },
+          {
+            title: "Apo B (Apolipoprotein B)",
+            description:
+              "Protein involved in lipid metabolism; high levels are associated with cardiovascular disease risk.",
+          },
+          { title: "Lipoprotein A", description: "Lipoprotein associated with increased cardiovascular disease risk." },
+          {
+            title: "DHT (Dihydrotestosterone)",
+            description:
+              "Androgen hormone derived from testosterone; associated with male pattern baldness and prostate health.",
+          },
+          {
+            title: "SHBG (Sex Hormone Binding Globulin)",
+            description: "Protein that binds to sex hormones, regulating their availability.",
+          },
+          {
+            title: "B12 (Vitamin B12)",
+            description: "Essential for red blood cell formation, neurological function, and DNA synthesis.",
+          },
+        ],
+      },
+      {
+        key: "ultimateMale",
+        list: [
+          {
+            title: "Thyroid Cascade",
+            description:
+              "TSH first then T4 and T3 only when TSH is abnormal. This cascade detects most abnormalities affecting the thyroid or the secretion of TSH by the pituitary gland.",
+          },
+          {
+            title: "LH (Luteinizing Hormone)",
+            description:
+              "In men, LH causes the Leydig cells of the testes to produce testosterone. In women, LH triggers the creation of steroid hormones from the ovaries.",
+          },
+          {
+            title: "FSH (Follicle Stimulating Hormone)",
+            description:
+              "Regulates reproductive processes by stimulating ovarian follicles in women and sperm production in men.",
+          },
+          {
+            title: "Total Test (Total Testosterone)",
+            description:
+              "Measures free testosterone and testosterone that's attached to proteins. This helps in assessing overall hormonal balance and detecting hormonal disorders.",
+          },
+          {
+            title: "Free Test (Free Testosterone)",
+            description:
+              "Measures only the 'active' form of testosterone. This is important for evaluating conditions like hypogonadism and other hormonal imbalances.",
+          },
+          {
+            title: "Chloride",
+            description:
+              "Stimulates stomach acid for digestion, nerve and muscle activation, and oxygen flow within cells.",
+          },
+          { title: "Globulin, Total", description: "Protein in blood that helps detect inflammation or infection." },
+          {
+            title: "Calcium",
+            description: "Important for muscle and nerve function, bone health, and neuromuscular function.",
+          },
+          { title: "Alkaline Phosphatase (ALP)", description: "Enzyme in blood that detects liver damage." },
+          {
+            title: "A/G Ratio (Albumin/Globulin Ratio)",
+            description:
+              "A measure of the relative amounts of albumin and globulin, which can indicate various health conditions.",
+          },
+          { title: "Bilirubin", description: "Waste product from red blood cells; helps detect liver damage." },
+          {
+            title: "Blood Urea Nitrogen (BUN)",
+            description: "Waste filtered by kidneys; helps assess kidney function.",
+          },
+          {
+            title: "Sodium",
+            description: "Regulates blood pressure and fluid balance; vital for cardiovascular health.",
+          },
+          {
+            title: "Potassium",
+            description: "Maintains fluid levels inside cells; important for heart and muscle function.",
+          },
+          {
+            title: "Glucose",
+            description:
+              "A type of sugar used by the body for energy. Monitoring glucose levels is essential for managing diabetes and energy metabolism.",
+          },
+          {
+            title: "Total Protein",
+            description: "The sum of albumin and globulin; important for diagnosing liver and kidney conditions.",
+          },
+          { title: "Albumin", description: "Protein in blood that helps detect inflammation or infection." },
+          {
+            title: "Carbon Dioxide (CO2)",
+            description: "Regulates blood pH and provides information about kidney health.",
+          },
+          { title: "Alanine Aminotransferase (ALT)", description: "Enzyme in blood that detects liver damage." },
+          { title: "Aspartate Aminotransferase (AST)", description: "Enzyme in blood that detects liver damage." },
+          {
+            title: "Insulin",
+            description: "Hormone that regulates blood glucose levels; helps diagnose and manage diabetes.",
+          },
+          { title: "Creatinine", description: "Waste filtered by kidneys; used to evaluate kidney health." },
+          {
+            title: "BUN/Creatinine Ratio",
+            description: "A measure that helps determine the cause of kidney dysfunction.",
+          },
+          {
+            title: "Estimated Glomerular Filtration Rate (eGFR)",
+            description: "Estimates how well the kidneys are filtering; used to assess kidney function.",
+          },
+          {
+            title: "HbA1C (Haemoglobin A1c)",
+            description:
+              "Measures the amount of blood sugar attached to hemoglobin, indicating diabetes control over the past 2-3 months.",
+          },
+          { title: "Red Blood Cell Count (RBC)", description: "Carry oxygen; crucial for diagnosing anemia." },
+          {
+            title: "White Blood Cell Count (WBC)",
+            description: "Fight infection; important for detecting infections and immune disorders.",
+          },
+          {
+            title: "Hemoglobin (HGB)",
+            description: "Oxygen-carrying protein in red blood cells; used to diagnose anemia.",
+          },
+          { title: "Hematocrit (HCT)", description: "Amount of red blood cells in blood; indicates blood volume." },
+          {
+            title: "Mean Corpuscular Volume (MCV)",
+            description: "Average size of red blood cells; helps classify types of anemia.",
+          },
+          {
+            title: "Mean Corpuscular Hemoglobin (MCH)",
+            description: "Average amount of hemoglobin inside a red blood cell; aids in diagnosing anemia.",
+          },
+          {
+            title: "Mean Corpuscular Hemoglobin Concentration (MCHC)",
+            description: "Concentration of hemoglobin in a given volume of packed red blood cells.",
+          },
+          {
+            title: "Red Cell Distribution Width (RDW)",
+            description:
+              "A measure of the variation in size of red blood cells; used to diagnose different types of anemia.",
+          },
+          { title: "Platelet Count", description: "Help clot blood; essential for assessing bleeding disorders." },
+          {
+            title: "Neutrophils (Absolute and Percent)",
+            description: "A type of white blood cell important for fighting bacterial infections.",
+          },
+          {
+            title: "Lymphocytes (Absolute and Percent)",
+            description: "A type of white blood cell that is part of the immune system, helping fight infections.",
+          },
+          {
+            title: "Monocytes (Absolute and Percent)",
+            description: "A type of white blood cell that helps break down bacteria.",
+          },
+          {
+            title: "Eosinophils (Absolute and Percent)",
+            description:
+              "A type of white blood cell involved in combating multicellular parasites and certain infections.",
+          },
+          {
+            title: "Basophils (Absolute and Percent)",
+            description: "A type of white blood cell that participates in allergic reactions and asthma.",
+          },
+          {
+            title: "Immature Granulocytes (Absolute and Percent)",
+            description:
+              "Immature white blood cells that can indicate infection or inflammation when present in high numbers.",
+          },
+          {
+            title: "Immature Cells (Absolute Count)",
+            description:
+              "Measures the number of immature white blood cells in the blood, which can indicate bone marrow activity.",
+          },
+          {
+            title: "Total Cholesterol",
+            description: "Overall cholesterol level indicating risk for cardiovascular disease.",
+          },
+          {
+            title: "High-Density Lipoprotein (HDL) Cholesterol",
+            description: "Good cholesterol that helps remove other forms of cholesterol from the bloodstream.",
+          },
+          {
+            title: "Low-Density Lipoprotein (LDL) Cholesterol (calculated)",
+            description: "Bad cholesterol that can build up in arteries, increasing heart disease risk.",
+          },
+          { title: "Triglycerides", description: "Type of fat in the blood; high levels increase heart disease risk." },
+          {
+            title: "Very Low-Density Lipoprotein (VLDL) Cholesterol (calculated)",
+            description:
+              "A type of lipoprotein that carries triglycerides in the blood; high levels can indicate heart disease risk.",
+          },
+          { title: "Estradiol", description: "A form of estrogen, a female sex hormone produced by the ovaries." },
+          {
+            title: "DHEA-S (Dehydroepiandrosterone Sulfate)",
+            description:
+              "A hormone produced by the adrenal glands; it serves as a precursor to male and female sex hormones.",
+          },
+          {
+            title: "IGF-1 (Insulin-like Growth Factor 1)",
+            description: "A hormone that plays a role in growth and development; indicator of growth hormone activity.",
+          },
+          { title: "Homocysteine", description: "Amino acid in blood indicating heart disease risk when elevated." },
+          {
+            title: "Magnesium",
+            description:
+              "Essential mineral involved in muscle and nerve function, blood glucose control, and blood pressure regulation.",
+          },
+          {
+            title: "Vitamin D, 25-Hydroxy",
+            description: "Measures the level of vitamin D in the blood, important for bone health and immune function.",
+          },
+          {
+            title: "PSA (Prostate-Specific Antigen)",
+            description: "Protein produced by the prostate gland; elevated levels can indicate prostate cancer.",
+          },
+          {
+            title: "C-Reactive Protein (CRP)",
+            description:
+              "Marker of inflammation in the body; high levels indicate infection or chronic inflammatory diseases.",
+          },
+          {
+            title: "Apo B (Apolipoprotein B)",
+            description:
+              "Protein involved in lipid metabolism; high levels are associated with cardiovascular disease risk.",
+          },
+          { title: "Lipoprotein A", description: "Lipoprotein associated with increased cardiovascular disease risk." },
+          {
+            title: "Insulin",
+            description: "Hormone that regulates blood glucose levels; helps diagnose and manage diabetes.",
+          },
+          {
+            title: "SHBG (Sex Hormone Binding Globulin)",
+            description: "Protein that binds to sex hormones, regulating their availability.",
+          },
+          {
+            title: "Cortisol",
+            description:
+              "Steroid hormone released in response to stress; abnormal levels indicate adrenal gland problems.",
+          },
+          {
+            title: "Growth Hormone",
+            description:
+              "Important for growth, metabolism, and muscle mass; abnormal levels indicate pituitary gland issues.",
+          },
+          {
+            title: "Vitamin B12",
+            description: "Essential for red blood cell formation, neurological function, and DNA synthesis.",
+          },
+          {
+            title: "Ferritin",
+            description:
+              "Protein that stores iron; low levels indicate iron deficiency anemia, high levels indicate inflammation or liver disease.",
+          },
+          { title: "Iron", description: "Mineral essential for hemoglobin production and oxygen transport." },
+          {
+            title: "Total Iron Binding Capacity (TIBC)",
+            description: "Measures the blood’s capacity to bind iron with transferrin.",
+          },
+          {
+            title: "Percentage Saturation (calculated using Iron and TIBC)",
+            description: "The percentage of transferrin that is saturated with iron; used to assess iron status.",
+          },
+          {
+            title: "Unsaturated Iron Binding Capacity (UIBC)",
+            description: "The reserve capacity of transferrin to bind iron; used to evaluate iron status.",
+          },
+          {
+            title: "Free T4 (Thyroxine)",
+            description: "Thyroid hormone that regulates metabolism; used to assess thyroid function.",
+          },
+          {
+            title: "DHT (Dihydrotestosterone)",
+            description:
+              "Androgen hormone derived from testosterone; associated with male pattern baldness and prostate health.",
+          },
+          {
+            title: "Progesterone",
+            description:
+              "Hormone regulating the menstrual cycle and maintaining pregnancy; measured in men to assess adrenal function.",
+          },
+          {
+            title: "hs-CRP (High-sensitivity C-Reactive Protein)",
+            description: "Sensitive measure of CRP used to evaluate cardiovascular disease risk.",
+          },
+        ],
+      },
+      {
+        key: "ultimateFemale",
+        list: [
+          {
+            title: "Thyroid Cascade",
+            description: "Evaluates thyroid function and disorders with 3-4 biomarkers.",
+          },
+          {
+            title: "LH (Lutheinizing Hormone)",
+            description: "Indicates reproductive health and function.",
+          },
+          {
+            title: "Total Testosterone",
+            description: "Measures overall level of male sex hormone.",
+          },
+          {
+            title: "Free Testosterone",
+            description: "Assesses biologically active testosterone fraction.",
+          },
+          {
+            title: "Comprehensive Metabolic Panel",
+            description: "Provides a broad overview of metabolism and organ function with 14 biomarkers.",
+          },
+          {
+            title: "HbA1C",
+            description: "Reflects average blood sugar levels over three months.",
+          },
+          {
+            title: "Complete Blood Count",
+            description: "Measures different blood cell types for overall health status with 14 biomarkers.",
+          },
+          {
+            title: "Lipid Panel",
+            description: "Assesses risk for cardiovascular disease through cholesterol levels with 4 biomarkers.",
+          },
+          {
+            title: "FSH (Follicle Stimulating Hormone)",
+            description: "Integral for reproductive system functioning.",
+          },
+          {
+            title: "Estradiol",
+            description: "A form of estrogen important for reproductive and sexual health.",
+          },
+          {
+            title: "DHEA (Dehydroepiandrosterone)",
+            description: "A hormone that's a precursor to sex hormones.",
+          },
+          {
+            title: "IGF-1 (Insulin-like Growth Factor 1)",
+            description: "Reflects human growth hormone levels.",
+          },
+          {
+            title: "Homocysteine",
+            description: "Linked with cardiovascular disease risk.",
+          },
+          {
+            title: "Magnesium",
+            description: "Vital for muscle, nerve function, and bone health.",
+          },
+          {
+            title: "Vitamin D, 25-Hydroxy",
+            description: "Assesses vitamin D status related to bone health.",
+          },
+          {
+            title: "PSA (Prostate-Specific Antigen)",
+            description: "Screens for prostate health issues.",
+          },
+          {
+            title: "C-Reactive Protein",
+            description: "Indicates liver health.",
+          },
+          {
+            title: "Apo B",
+            description: "Assists in evaluating liver function.",
+          },
+          {
+            title: "Lipoprotein A",
+            description: "A marker for inflammation in the body.",
+          },
+          {
+            title: "ALT (Alanine Aminotransferase)",
+            description: "Involved in cholesterol metabolism; linked to heart disease",
+          },
+          {
+            title: "AST (Aspartate Aminotransferase)",
+            description: "Genetic marker associated with an increased risk of heart disease.",
+          },
+          {
+            title: "Insulin",
+            description: "Monitors insulin production and blood sugar regulation.",
+          },
+          {
+            title: "Cortisol",
+            description: "Measures stress response and adrenal function.",
+          },
+          {
+            title: "Vitamin B12",
+            description: "Essential for nerve function and blood cell production.",
+          },
+          {
+            title: "Ferritin",
+            description: "Indicates the amount of stored iron in the body.",
+          },
+          {
+            title: "Iron and TIBC",
+            description: "Assesses iron status and transport capacity.",
+          },
+          {
+            title: "Free T4",
+            description: "Directly measures active thyroid hormone levels.",
+          },
+          {
+            title: "Prolactin",
+            description: "Essential for menstrual cycle regulation and pregnancy in females.",
+          },
+          {
+            title: "Progesterone",
+            description: "Affects menstrual cycles and milk production.",
+          },
+        ],
+      },
+    ],
+  },
+  chooseGevity: {
+    preTitle: "Tailor-made longevity",
+    title: "Why Choose Geviti?",
+    image: "/images/membership/compressed/oral.webp",
+    btnCta: {
+      href: "/onboarding",
+      text: "Get Started",
+    },
+    btnCta2: {
+      href: "/products",
+      text: "See Products",
+    },
+    list: [
+      "Testing and diagnostics from the comfort of your own home.",
+      "Cutting edge health care available at your fingertips.",
+      "Streamlined processes that eliminate traditional pain points.",
+      "Comprehensive health/human optimization made simple.",
+    ],
+  },
+  steps: {
+    preTitle: "become a member",
+    title: 'Start your health journey <span class="max-lg:hidden"/>with a full blood panel</span>',
+    description:
+      "Membership journey starts with choosing a full bloodwork panel. We’ll draw your blood from the comfort of your home.",
+    list: [
+      {
+        id: "step-1",
+        title:
+          'Become a member by <br class="max-lg:hidden" />purchasing an intro bloodwork <br class="max-lg:hidden" />package',
+        icon: UserTag,
+      },
+      {
+        id: "step-2",
+        title:
+          'Complete your at-home blood <br class="max-lg:hidden" />draw with our mobile <br class="max-lg:hidden" />phlebotomy team',
+        icon: DropIcon,
+        iconMobile: DropIcon,
+      },
+      {
+        id: "step-3",
+        title:
+          'Review results and tailored <br class="max-lg:hidden" />protocol with your designated <br class="max-lg:hidden" />care team',
+        icon: FavFolder,
+      },
+      {
+        id: "step-4",
+        title:
+          'Receive your tailor-made <br class="max-lg:hidden" />protocols in the mail and <br class="max-lg:hidden" />track your progress',
+        icon: Graph,
+      },
+    ],
+  },
+  slider: {
+    list: [
+      {
+        preTitle: "Data-driven health and wellness, made simple.",
+        title:
+          'The ultimate wellness <br class="sm:hidden"/>membership for as low as <br class="sm:hidden"/>$99 per month.',
+        description:
+          "Geviti transcends the usual health and wellness offerings, providing unparalleled value at a lower cost. Our mission is to make longevity-focused care exceptionally accessible.",
+        list: [
+          "Geviti Platform Access",
+          "Mobile App Integration",
+          "Smart Wearables Integration",
+          "Biannual At-home Full Panels",
+          "Doctor-Monitored Therapeutics",
+          "Tailored Smart Supplements",
+          "Custom Longevity Protocols",
+          "Certified Personal Health Coach",
+          "Wholesale At-home Diagnostics",
+        ],
+        image: "/images/membership/compressed/slider-1.webp",
+      },
+      {
+        preTitle: "Data-driven health and wellness, made simple.",
+        title: "Doctor  monitored cutting edge care",
+        description:
+          "Geviti offers a comprehensive care team for our clients. Instead of having to choose between a healthcare provider and a health coach, Geviti provides a solution where the two collaborate to create the ultimate longevity regimen.",
+        list: [],
+        image: "/images/membership/compressed/slider-2.webp",
+        btnCta: {
+          href: "/onboarding",
+          text: "Join Geviti",
+        },
+      },
+      {
+        preTitle: "Data-driven health and wellness, made simple.",
+        title: "A complete wellness team in your pocket",
+        description: " ",
+        list: [
+          "Hormone Therapy",
+          "Anti-aging Peptides",
+          "Medical Weight Loss",
+          "Sexual Health Medication",
+          "Nootropics and Brain Health",
+          "And More.",
+        ],
+        image: "/images/membership/compressed/slider-3.webp",
+        btnCta: {
+          href: "/onboarding",
+          text: "Join Geviti",
+        },
+      },
+      {
+        preTitle: "Data-driven health and wellness, made simple.",
+        title: "Biannual At-Home Full Panels ",
+        description:
+          "Americans may go several years without getting their bloodwork done. This can be the difference between life and death. Geviti makes bloodwork easy with our nationwide team of phlebotomists Every 6 months, we’ll come to you and perform a full panel.",
+        list: [],
+        image: "/images/membership/compressed/slider-4.webp",
+        btnCta: {
+          href: "/onboarding",
+          text: "Join Geviti",
+        },
+      },
+    ],
+  },
+  pricing: {
+    preTitle: "Care based off of biomarkers",
+    title: "Start by establishing baselines",
+    description:
+      "Every user starts with an at-home full panel establish baselines. This package includes one month for free. Memberships can be billed monthly or quarterly.",
+    pricingOptions: [
+      {
+        id: "39144",
+        title: "Quarterly",
+        value: "quarterly",
+        highlight: "17% off",
+        price: "99.95",
+      },
+      {
+        id: "37888",
+        title: "Monthly",
+        value: "monthly",
+        price: "297.99",
+      },
+    ],
+    list: [
+      {
+        id: "39777",
+        name: "Essentials Diagnostic",
+        price: "$299",
+        priceNote: "one time payment",
+        priceDescGeneral:
+          '<span class="lg:hidden">+$99/m billed quarterly</span><span class="max-lg:hidden">+$198 initially, then $297 quarterly</span>',
+        biomakers: "45+",
+        mostPopular: false,
+        monthly: "+ $119 monthly",
+        quarterly: "+$198 initially, then $297 quarterly",
+        btnCta: {
+          href: "/onboarding",
+          text: "Select Option",
+        },
+        list: [
+          {
+            title: "At-home phlebotomy blood draw",
+            description:
+              "Experience convenient, personalized healthcare from the comfort of your home or any location of your choice. Our mobile phlebotomy service ensures that a professional team comes to you for blood drawing, making the process as comfortable and stress-free as possible.",
+          },
+          {
+            title: "Full biomarker results report",
+            description: "",
+          },
+          {
+            title: "Smart supplement recommendation",
+            description: "",
+          },
+          {
+            title: "Bloodwork results telehealth review",
+            description: "",
+          },
+          {
+            title: "First month of membership included",
+            description: "",
+          },
+        ],
+      },
+      {
+        id: "39778",
+        name: "Comprehensive Diagnostic",
+        price: "$469",
+        priceNote: "one time payment",
+        priceDescGeneral:
+          '<span class="lg:hidden">+ $297 quarterly</span><span class="max-lg:hidden">+$198 initially, then $297 quarterly</span>',
+        biomakers: "57+",
+        mostPopular: true,
+        monthly: "+ $119 monthly",
+        quarterly: "+$198 initially, then $297 quarterly",
+        btnCta: {
+          href: "/onboarding",
+          text: "Select Option",
+        },
+        list: [
+          {
+            title: "At-home phlebotomy blood draw",
+            description:
+              "Experience convenient, personalized healthcare from the comfort of your home or any location of your choice. Our mobile phlebotomy service ensures that a professional team comes to you for blood drawing, making the process as comfortable and stress-free as possible.",
+          },
+          {
+            title: "Full biomarker results report",
+            description: "",
+          },
+          {
+            title: "Smart supplement recommendation",
+            description: "",
+          },
+          {
+            title: "Bloodwork results telehealth review",
+            description: "",
+          },
+          {
+            title: "First month of membership included",
+            description: "",
+          },
+        ],
+      },
+      {
+        id: "39779",
+        name: "Ultimate Diagnostic",
+        price: "$599",
+        priceNote: "one time payment",
+        priceDescGeneral:
+          '<span class="lg:hidden">+ $297 quarterly</span><span class="max-lg:hidden">+$198 initially, then $297 quarterly</span>',
+        biomakers: "68+",
+        mostPopular: false,
+        monthly: "+ $119 monthly",
+        quarterly: "+$198 initially, then $297 quarterly",
+        btnCta: {
+          href: "/onboarding",
+          text: "Select Option",
+        },
+        list: [
+          {
+            title: "At-home phlebotomy blood draw",
+            description:
+              "Experience convenient, personalized healthcare from the comfort of your home or any location of your choice. Our mobile phlebotomy service ensures that a professional team comes to you for blood drawing, making the process as comfortable and stress-free as possible.",
+          },
+          {
+            title: "Full biomarker results report",
+            description: "",
+          },
+          {
+            title: "Smart supplement recommendation",
+            description: "",
+          },
+          {
+            title: "Bloodwork results telehealth review",
+            description: "",
+          },
+          {
+            title: "First month of membership included",
+            description: "",
+          },
+        ],
+      },
+    ],
+    features: [
+      "At-home phlebotomy blood draw",
+      "Full biomarker results report",
+      "Smart supplement recommendation",
+      "Bloodwork results telehealth review",
+      "First month of membership included",
+    ],
+    extended: {
+      btn: {
+        text: "Geviti vs. competitors",
+        textMobile: "Geviti vs. our competitors",
+      },
+      preTitle: "Care based off of biomarkers",
+      title: "More, for less.",
+      list: [
+        {
+          name: "Geviti",
+          priceTitle: "Membership cost as low as",
+          price: "$99",
+          priceNote: "per month",
+          geviti: true,
+          list: [
+            {
+              title: "Free telehealth consults",
+              icon: GreenCheck,
+            },
+            {
+              title: "Designated certified health coach",
+              icon: GreenCheck,
+            },
+            {
+              title: "At-home bloodwork",
+              icon: GreenCheck,
+            },
+            {
+              title: "Free semi-annual bloodwork",
+              icon: GreenCheck,
+            },
+            {
+              title: "Affordable treatments",
+              icon: GreenCheck,
+            },
+            {
+              title: "Included medical supplies",
+              icon: GreenCheck,
+            },
+            {
+              title: "Custom Smart Supplements",
+              icon: GreenCheck,
+            },
+            {
+              title: "Everything direct to your door",
+              icon: GreenCheck,
+            },
+            {
+              title: "Wholesale cost additional testing",
+              icon: GreenCheck,
+            },
+            {
+              title: "Wholesale cost supplements",
+              icon: GreenCheck,
+            },
+            {
+              title: "DNA and bloodwork options",
+              icon: GreenCheck,
+            },
+            {
+              title: "Data-driven tech platform",
+              icon: GreenCheck,
+            },
+            {
+              title: "Integrated mobile app",
+              icon: GreenCheck,
+            },
+          ],
+        },
+        {
+          name: "Others",
+          priceTitle: "Membership cost",
+          price: "$130+",
+          priceNote: "per month",
+          geviti: false,
+          list: [
+            {
+              title: "Free telehealth consults",
+              icon: DollarCircle,
+            },
+            {
+              title: "Designated certified health coach",
+              icon: CrossRed,
+            },
+            {
+              title: "At-home bloodwork",
+              icon: CrossRed,
+            },
+            {
+              title: "Free semi-annual bloodwork",
+              icon: DollarCircle,
+            },
+            {
+              title: "Affordable treatments",
+              icon: DoubleDollarCircle,
+            },
+            {
+              title: "Included medical supplies",
+              icon: DollarCircle,
+            },
+            {
+              title: "Custom Smart Supplements",
+              icon: CrossRed,
+            },
+            {
+              title: "Everything direct to your door",
+              icon: CrossRed,
+            },
+            {
+              title: "Wholesale cost additional testing",
+              icon: DoubleDollarCircle,
+            },
+            {
+              title: "Wholesale cost supplements",
+              icon: DollarCircle,
+            },
+            {
+              title: "DNA and bloodwork options",
+              icon: CrossRed,
+            },
+            {
+              title: "Data-driven tech platform",
+              icon: CrossRed,
+            },
+            {
+              title: "Integrated mobile app",
+              icon: CrossRed,
+            },
+          ],
+        },
+      ],
+    },
+  },
+  pricingComparison: {
+    title: "More, for less with Geviti",
+    description:
+      "As a Geviti member, you have access to all the best tools for longevity, at an industry-leading price.",
+    headers: [
+      {
+        id: "geviti",
+        title: "Geviti",
+        subtitle: "$99.99/mo",
+        geviti: true,
+      },
+      {
+        id: "competitor_a",
+        title: "Competitor A",
+        subtitle: "$129.00/mo",
+        geviti: false,
+      },
+      {
+        id: "competitor_b",
+        title: "Competitor B",
+        subtitle: "$362.00/mo",
+        geviti: false,
+      },
+      {
+        id: "competitor_c",
+        title: "Competitor C",
+        subtitle: "Membership N/A",
+        geviti: false,
+      },
+    ],
+    list: [
+      {
+        name: "Health Coaching",
+        geviti: true,
+        competitor_a: true,
+        competitor_b: true,
+        competitor_c: true,
+      },
+      {
+        name: "Frequent Screening",
+        geviti: true,
+        competitor_a: true,
+        competitor_b: true,
+        competitor_c: false,
+      },
+      {
+        name: "Hormones and Peptides",
+        geviti: true,
+        competitor_a: true,
+        competitor_b: false,
+        competitor_c: true,
+      },
+      {
+        name: "Mobile Phlebotomy",
+        geviti: true,
+        competitor_a: true,
+        competitor_b: true,
+        competitor_c: false,
+      },
+      {
+        name: "Member Dashboard",
+        geviti: true,
+        competitor_a: true,
+        competitor_b: false,
+        competitor_c: false,
+      },
+      {
+        name: "Various Diagnostic Options",
+        geviti: true,
+        competitor_a: false,
+        competitor_b: true,
+        competitor_c: true,
+      },
+      {
+        name: "Wholesale Diagnostics",
+        geviti: true,
+        competitor_a: false,
+        competitor_b: false,
+        competitor_c: false,
+      },
+      {
+        name: "Custom Supplements ",
+        geviti: true,
+        competitor_a: false,
+        competitor_b: false,
+        competitor_c: true,
+      },
+      {
+        name: "Epigenetic Testing",
+        geviti: true,
+        competitor_a: false,
+        competitor_b: true,
+        competitor_c: false,
+      },
+      {
+        name: "Health Coaching",
+        geviti: true,
+        competitor_a: false,
+        competitor_b: false,
+        competitor_c: false,
+      },
+    ],
+  },
+  faq: {
+    data: [
+      {
+        title: "In which states is Geviti available?",
+        content:
+          "Geviti currently offers services in eleven states: Arizona (AZ), California (CA), Colorado (CO), Utah (UT), Washington (WA), Texas (TX), Florida (FL), Georgia (GA), Kansas (KS), Oregon (OR), and New Mexico (NM). We are actively expanding to include more states across the country.",
+      },
+      {
+        title: "What “Deep-dive Diagnostic” is included semi-annually with the membership?",
+        content:
+          'As part of your membership, you receive the "Essentials Diagnostic" twice each year. This foundational evaluation provides key insights into your health metrics. For a more detailed analysis, you have the option to upgrade to our comprehensive or ultimate diagnostic tiers at any time.',
+      },
+      {
+        title: "What is the membership cancellation and refund policy?",
+        content:
+          "You can easily cancel your Geviti membership at any time through your personal dashboard. Given the personalized nature of our services, refunds are not automatically granted but are considered on a case-by-case basis. If you have specific circumstances or need further assistance, please contact our support team for detailed guidance.",
+      },
+      {
+        title: "Are the cost of supplements or prescriptions included in the membership fee?",
+        content:
+          "The membership fee provides access to our range of supplements and prescription services; however, the costs for these items are not included in the fee. Each supplement or prescription is priced separately, allowing you to choose exactly what fits your needs and budget.",
+      },
+      {
+        title: "What if I have recently done labs? Do I still need to purchase a diagnostic package?",
+        content:
+          "We require all new members to purchase a diagnostic package as part of our initial assessment process. This ensures that we have the most recent and relevant data to provide personalized care. However, if you have recent lab results, please reach out to our support team. We may be able to adjust your initial requirements based on the specifics of your situation.",
+      },
+      {
+        title: "Does a blood panel guarantee access to specific treatments?",
+        content:
+          "Purchasing a diagnostic package does not guarantee that you will receive any specific prescription treatment. The determination of appropriate treatments is solely at the discretion of your healthcare provider, based on a comprehensive evaluation of your test results and overall health profile.",
+      },
+    ],
+  },
+  products: {
+    title: "Discover Geviti",
+    description: "Browse our wide range of products!",
+  },
+  banner: {
+    preTitle: "An INVESTMENT IN YOUR FUTURE",
+    title: "Prioritizing longevity is an investment in your future self.",
+    description:
+      "Live longer without compromising your lifestyle—our longevity solutions are designed to fit seamlessly into your everyday life.",
+    image: "/images/membership/compressed/banner-member.webp",
+    imageMobile: "/images/membership/compressed/banner-member-mobile.webp",
+    btnCta: {
+      href: "/onboarding",
+      externalLink: false,
+      text: "Start Now",
+    },
+  },
+  features: [
+    {
+      id: 1,
+      preTitle: "Data-driven health and wellness, made simple.",
+      title:
+        'The ultimate wellness <br class="sm:hidden"/>membership for as low as <br class="sm:hidden"/>$99 per month.',
+      description:
+        "Geviti transcends the usual health and wellness offerings, providing unparalleled value at a lower cost. Our mission is to make longevity-focused care exceptionally accessible.",
+      image: null,
+      main: true,
+      list: {
+        listStyleType: "none",
+        icon: Verify,
+        items: [
+          "Geviti Dashboard Access",
+          "Mobile Application Access",
+          "Custom Longevity Protocols",
+          "Wholesale At-home Diagnostics",
+          "Certified Personal Health Coach",
+          "Doctor Monitored Prescriptions",
+          "Biannual At-home Full Panels",
+          "Smart Wearables Integration",
+          "Custom Made Supplements",
+        ],
+      },
+    },
+    {
+      id: 2,
+      preTitle: "Data-driven health and wellness, made simple.",
+      title: 'A complete wellness team in <br class="sm:hidden"/>your pocket',
+      description:
+        "Geviti offers a comprehensive care team for our clients. Instead of having to choose between a healthcare provider and a health coach, Geviti provides a solution where the two collaborate to create the ultimate longevity regimen.",
+      image: "/images/membership/compressed/features-states.webp",
+      main: false,
+      list: null,
+    },
+    {
+      id: 3,
+      preTitle: "Data-driven health and wellness, made simple.",
+      title: 'Doctor  monitored cutting <br class="sm:hidden"/>edge care',
+      description: "",
+      image: "/images/membership/compressed/features-products.webp",
+      main: false,
+      list: {
+        listStyleType: "disc",
+        icon: null,
+        items: [
+          "Hormone Therapy",
+          "Anti-aging Peptides",
+          "Medical Weight Loss",
+          "Sexual Health",
+          "Nootropics",
+          "And More.",
+        ],
+      },
+    },
+    {
+      id: 4,
+      preTitle: "Data-driven health and wellness, made simple.",
+      title: "Biannual At-Home Full Panels",
+      description:
+        "Many Americans neglect essential bloodwork for years, putting their health and wellness at risk. Geviti simplifies this critical process with our nationwide team of phlebotomists, making it convenient for you to stay on top of your health.<br/><br/>Every 6 months, we’ll come to you and perform a full panel at no additional cost.",
+      image: "/images/membership/compressed/features-apps.webp",
+      main: false,
+      list: null,
+    },
+  ],
 };
 
 export default membershipData;

@@ -31,7 +31,7 @@ const Main: React.FC<PageProps> = ({ searchParams }) => {
   const setInitialStep = () => {
     if (searchParams?.product) return CheckoutStep.MEMBER_FREQUENCY_PLAN;
     if (searchParams?.email) return CheckoutStep.PRICING_PRODUCT_PLAN;
-    return CheckoutStep.STRIPE_PAYMENT;
+    return CheckoutStep.PRICING_PRODUCT_PLAN;
   };
 
   const [step, setStep] = useState<CheckoutStep>(setInitialStep());
@@ -81,10 +81,6 @@ const Main: React.FC<PageProps> = ({ searchParams }) => {
       );
     }
 
-    if (step === CheckoutStep.STRIPE_PAYMENT) {
-      return <StripeCheckout />;
-    }
-
     if (step === CheckoutStep.WAITLIST_STATE_AVAILABLE) {
       return (
         <State
@@ -121,6 +117,10 @@ const Main: React.FC<PageProps> = ({ searchParams }) => {
 
     if (step === CheckoutStep.MEMBER_FREQUENCY_PLAN) {
       return <MemberFrequencyPlan key={CheckoutStep.MEMBER_FREQUENCY_PLAN} setStep={setStep} />;
+    }
+
+    if (step === CheckoutStep.STRIPE_PAYMENT) {
+      return <StripeCheckout setStep={setStep} />;
     }
 
     return null;

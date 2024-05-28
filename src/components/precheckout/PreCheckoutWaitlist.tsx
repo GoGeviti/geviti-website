@@ -1,9 +1,9 @@
-import { useEffect, useRef, useState } from 'react';
-import { Player } from '@lottiefiles/react-lottie-player';
-import styled, { keyframes } from 'styled-components';
+import { useEffect, useRef, useState } from "react";
+import { Player } from "@lottiefiles/react-lottie-player";
+import styled, { keyframes } from "styled-components";
 
-import InputField from '@/components/precheckout/InputField';
-import { ViewState } from '@/components/precheckout/WelcomeTransition';
+import InputField from "@/components/precheckout/InputField";
+import { ViewState } from "@/components/precheckout/WelcomeTransition";
 
 const Column = styled.div<{ viewState: ViewState }>`
   position: absolute;
@@ -17,7 +17,7 @@ const Column = styled.div<{ viewState: ViewState }>`
   flex-direction: column;
   align-items: center;
 
-  z-index: ${props => (props.viewState === ViewState.IN_PROGRESS ? 1 : 0)};
+  z-index: ${(props) => (props.viewState === ViewState.IN_PROGRESS ? 1 : 0)};
 `;
 
 const Title = styled.h1<{ viewState: ViewState }>`
@@ -27,9 +27,8 @@ const Title = styled.h1<{ viewState: ViewState }>`
   margin-bottom: 8px;
   width: 430px;
 
-  animation: ${props =>
-		props.viewState === ViewState.IN_PROGRESS && moveFromRight}
-    0.5s cubic-bezier(0.21, 1.04, 0.58, 1.15);
+  animation: ${(props) => props.viewState === ViewState.IN_PROGRESS && moveFromRight} 0.5s
+    cubic-bezier(0.21, 1.04, 0.58, 1.15);
   animation-fill-mode: forwards;
 
   transform: translateX(100vw);
@@ -41,9 +40,8 @@ const Subtitle = styled.p<{ viewState: ViewState }>`
   width: 430px;
   margin-bottom: 24px;
 
-  animation: ${props =>
-		props.viewState === ViewState.IN_PROGRESS && moveFromRight}
-    0.5s cubic-bezier(0.21, 1.04, 0.58, 1.15);
+  animation: ${(props) => props.viewState === ViewState.IN_PROGRESS && moveFromRight} 0.5s
+    cubic-bezier(0.21, 1.04, 0.58, 1.15);
   animation-fill-mode: forwards;
   animation-delay: 0.08s;
 
@@ -69,9 +67,8 @@ const moveFromRight = keyframes`
 `;
 
 const SecondInputField = styled(InputField)<{ viewState: ViewState }>`
-  animation: ${props =>
-		props.viewState === ViewState.IN_PROGRESS && moveFromRight}
-    0.5s cubic-bezier(0.21, 1.04, 0.58, 1.15);
+  animation: ${(props) => props.viewState === ViewState.IN_PROGRESS && moveFromRight} 0.5s
+    cubic-bezier(0.21, 1.04, 0.58, 1.15);
   animation-fill-mode: forwards;
   animation-delay: 0.24s;
   width: 430px;
@@ -97,9 +94,8 @@ const Button = styled.button<{ viewState: ViewState }>`
   text-align: center;
 
   transform: translateX(100vw);
-  animation: ${props =>
-		props.viewState === ViewState.IN_PROGRESS && moveFromRight}
-    0.5s cubic-bezier(0.21, 1.04, 0.58, 1.15);
+  animation: ${(props) => props.viewState === ViewState.IN_PROGRESS && moveFromRight} 0.5s
+    cubic-bezier(0.21, 1.04, 0.58, 1.15);
   animation-fill-mode: forwards;
   animation-delay: 0.4s;
 `;
@@ -117,16 +113,12 @@ const FreeVisitRow = styled.div<{ viewState: ViewState }>`
   position: relative;
   margin-bottom: 22px;
 
-  opacity: ${props => (props.viewState === ViewState.IN_PROGRESS ? 1 : 0)};
-  transform: scale(
-    ${props => (props.viewState === ViewState.IN_PROGRESS ? 1 : 0.8)}
-  );
+  opacity: ${(props) => (props.viewState === ViewState.IN_PROGRESS ? 1 : 0)};
+  transform: scale(${(props) => (props.viewState === ViewState.IN_PROGRESS ? 1 : 0.8)});
 
-  transition:
-    opacity 0.5s cubic-bezier(0.15, 1.14, 0.88, 0.98),
-    transform 0.75s cubic-bezier(0.21, 1.04, 0.58, 1.15);
+  transition: opacity 0.5s cubic-bezier(0.15, 1.14, 0.88, 0.98), transform 0.75s cubic-bezier(0.21, 1.04, 0.58, 1.15);
 
-  transition-delay: ${props => (props.viewState === ViewState.IN_PROGRESS ? 1.33 : 0)}s;
+  transition-delay: ${(props) => (props.viewState === ViewState.IN_PROGRESS ? 1.33 : 0)}s;
 `;
 
 const CheckmarkLottie = styled(Player)`
@@ -158,66 +150,59 @@ const FreeVisitSubtitle = styled.span`
 `;
 
 interface PreCheckoutWaitlistProps {
-	viewState: ViewState;
-	onContinue: () => void;
+  viewState: ViewState;
+  onContinue: () => void;
 }
 
 const PreCheckoutWaitlist = (props: PreCheckoutWaitlistProps) => {
-	// const [usState] = useState('AZ');
-	// const [sex] = useState('male');
-	const [birthday, setBirthday] = useState('email@example.com');
+  // const [usState] = useState('AZ');
+  // const [sex] = useState('male');
+  const [birthday, setBirthday] = useState("email@example.com");
 
-	const lottieRef = useRef<Player>(null);
+  const lottieRef = useRef<Player>(null);
 
-	useEffect(() => {
-		if (props.viewState === ViewState.IN_PROGRESS) {
-			setTimeout(() => {
-				lottieRef.current?.play();
-			}, 1_333);
-		}
-	}, [props.viewState]);
+  useEffect(() => {
+    if (props.viewState === ViewState.IN_PROGRESS) {
+      setTimeout(() => {
+        lottieRef.current?.play();
+      }, 1_333);
+    }
+  }, [props.viewState]);
 
-	return (
-		<Column viewState={ props.viewState }>
-			<FreeVisitRow viewState={ props.viewState }>
-				<CheckmarkLottie
-					src='https://lottie.host/f3372ff0-3570-431d-a529-7cc4fbd5481a/huZVbKVygH.json'
-					keepLastFrame
-					ref={ lottieRef }
-				/>
-				<FreeVisitCol>
-					<FreeVisitTitle className='font-BRSonoma'>
-						You qualify for Geviti, but we&apos;re currently at capacity.
-					</FreeVisitTitle>
-					<FreeVisitSubtitle className='font-BRSonoma'>
-						This is so we can offer the best service for our current members.
-					</FreeVisitSubtitle>
-				</FreeVisitCol>
-			</FreeVisitRow>
-			<Title viewState={ props.viewState }>
-				Should we add you to the waitlist?
-			</Title>
-			<Subtitle
-				viewState={ props.viewState }
-				className='font-BRSonoma'>
-				We&apos;ll notify you as soon as we have more availability.
-			</Subtitle>
-			<SecondInputField
-				label='Email Address'
-				placeholder='email@example.com'
-				type='email'
-				value={ birthday }
-				onChange={ newEmail => setBirthday(newEmail) }
-				viewState={ props.viewState }
-			/>
-			<Button
-				viewState={ props.viewState }
-				onClick={ () => props.onContinue() }
-			>
-				Join Waitlist
-			</Button>
-		</Column>
-	);
+  return (
+    <Column viewState={props.viewState}>
+      <FreeVisitRow viewState={props.viewState}>
+        <CheckmarkLottie
+          src='https://lottie.host/f3372ff0-3570-431d-a529-7cc4fbd5481a/huZVbKVygH.json'
+          keepLastFrame
+          ref={lottieRef}
+        />
+        <FreeVisitCol>
+          <FreeVisitTitle className='font-BRSonoma'>
+            You qualify for Geviti, but we&apos;re currently at capacity.
+          </FreeVisitTitle>
+          <FreeVisitSubtitle className='font-BRSonoma'>
+            This is so we can offer the best service for our current members.
+          </FreeVisitSubtitle>
+        </FreeVisitCol>
+      </FreeVisitRow>
+      <Title viewState={props.viewState}>Should we add you to the waitlist?</Title>
+      <Subtitle viewState={props.viewState} className='font-BRSonoma'>
+        We&apos;ll notify you as soon as we have more availability.
+      </Subtitle>
+      <SecondInputField
+        label='Email Address'
+        placeholder='email@example.com'
+        type='email'
+        value={birthday}
+        onChange={(newEmail) => setBirthday(newEmail)}
+        viewState={props.viewState}
+      />
+      <Button viewState={props.viewState} onClick={() => props.onContinue()}>
+        Join Waitlist OR
+      </Button>
+    </Column>
+  );
 };
 
 export default PreCheckoutWaitlist;

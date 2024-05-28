@@ -8,7 +8,6 @@ const DiscountForm: FC = () => {
       className='relative'
       onSubmit={(e) => {
         e.preventDefault();
-        console.log(couponInputRef.current?.value);
       }}
     >
       <label htmlFor='coupon_discount' className='text-grey-50 text-lg !leading-normal max-lg:font-medium'>
@@ -24,7 +23,7 @@ const DiscountForm: FC = () => {
         ref={couponInputRef}
       />
       <div className='absolute w-4 h-4 lg:w-6 lg:h-6 right-[22px] bottom-[22px] lg:bottom-[18px]'>
-        <GreenCircleTick />
+        {/* <GreenCircleTick /> */}
       </div>
     </form>
   );
