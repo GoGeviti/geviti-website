@@ -21,12 +21,11 @@ import { getInitialOfferings } from "./api/onboarding";
 
 type PricingProductPlanProps = {
   setStep: React.Dispatch<React.SetStateAction<CheckoutStep>>;
-  setProduct: React.Dispatch<React.SetStateAction<InitialOfferingsReturnType>>;
 };
 //TODO: Local and DB data are not properly synced. Need to define proper typings in API contract
 const pricingProductPlanData = checkoutData.pricingProductPlan;
 
-const PricingProductPlan: React.FC<PricingProductPlanProps> = ({ setStep, setProduct }) => {
+const PricingProductPlan: React.FC<PricingProductPlanProps> = ({ setStep }) => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [initialOfferings, SetInitialOfferings] = useState<InitialOfferingsReturnType[]>([]);
@@ -47,12 +46,11 @@ const PricingProductPlan: React.FC<PricingProductPlanProps> = ({ setStep, setPro
   const onClickSelectOption = (product: InitialOfferingsReturnType) => {
     if (setStep) {
       const params = new URLSearchParams(searchParams.toString());
-      params.set("product", product.id);
+      params.set("product", product.name);
       if (window) {
         window.history.pushState(null, "", `?${params.toString()}`);
         window.scrollTo({ top: 0 });
       }
-      setProduct(product);
       setStep(CheckoutStep.MEMBER_FREQUENCY_PLAN);
     }
   };

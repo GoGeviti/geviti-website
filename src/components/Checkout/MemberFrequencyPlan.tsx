@@ -21,7 +21,7 @@ const defaultButtonClassName =
   "rounded-full font-medium text-lg !leading-6 max-sm:w-full py-[17px] px-[42px] flex items-center justify-center shadow-[0px_1px_2px_rgba(16,24,40,0.05)]";
 
 type MemberFrequencyPlanProps = {
-  setStep?: React.Dispatch<React.SetStateAction<CheckoutStep>>;
+  setStep: React.Dispatch<React.SetStateAction<CheckoutStep>>;
 };
 
 const MemberFrequencyPlan: React.FC<MemberFrequencyPlanProps> = ({ setStep }) => {
@@ -57,7 +57,7 @@ const MemberFrequencyPlan: React.FC<MemberFrequencyPlanProps> = ({ setStep }) =>
   const onClickSubmit = () => {
     if (!offerings) return;
 
-    const selectedPayment = offerings[activeTabIdx].id;
+    const selectedPayment = offerings[activeTabIdx].billing_frequency;
 
     const product = searchParams?.get("product");
     const params = new URLSearchParams(searchParams.toString());
