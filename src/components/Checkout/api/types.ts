@@ -1,3 +1,9 @@
+export interface ErrorResponse {
+  error: string;
+  statusCode: number;
+  message: string[];
+}
+
 export interface TempUserDataParams {
   firstName: string;
   lastName: string;
@@ -10,7 +16,6 @@ export interface TempUserDataParams {
   city: string;
   state: string;
   zipCode: string;
-  timezone: string;
 }
 
 export interface TemUserReturnType extends TempUserDataParams {
