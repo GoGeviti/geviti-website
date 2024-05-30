@@ -17,7 +17,7 @@ const CheckoutItem: FC<ICheckoutItem> = ({ name = "", price = "", plan = "", met
         </div>
         <div className='ml-6 my-6 lg:my-0 lg:ml-auto flex flex-col justify-around text-grey-primary lg:text-right'>
           <p className='text-lg'>${price}</p>
-          {metadata && <span className='text-xs whitespace-nowrap leading-7'>{metadata}</span>}
+          <span className='text-xs whitespace-nowrap leading-7'>{metadata}</span>
         </div>
       </div>
     </div>

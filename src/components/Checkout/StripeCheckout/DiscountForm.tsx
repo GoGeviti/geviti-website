@@ -1,13 +1,15 @@
 import { FC, useRef } from "react";
 import TextField from "../TextField";
+import { getDiscount } from "../api/onboarding";
 
 const DiscountForm: FC = () => {
   const couponInputRef = useRef<HTMLInputElement | null>(null);
   return (
     <form
       className='relative'
-      onSubmit={(e) => {
+      onSubmit={async (e) => {
         e.preventDefault();
+        await getDiscount(couponInputRef.current?.value || "GEVITI20");
       }}
     >
       <label htmlFor='coupon_discount' className='text-grey-50 text-lg !leading-normal max-lg:font-medium'>
