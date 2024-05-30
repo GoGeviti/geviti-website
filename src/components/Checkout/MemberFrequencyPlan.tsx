@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { motion } from "framer-motion";
 import { useRouter, useSearchParams } from "next/navigation";
 
@@ -30,6 +30,16 @@ const MemberFrequencyPlan: React.FC<MemberFrequencyPlanProps> = ({ setStep }) =>
 
   const [activeTabIdx, setActiveTabIdx] = useState<number>(0);
   const [membershipOfferings, SetMembershipOfferings] = useState<MembershipOfferingsReturnType[]>();
+  const offerings = useMemo(
+    () =>
+      membershipOfferings
+        ?.map((it) => ({
+          ...it,
+          title: it.billing_frequency,
+        }))
+        .reverse(),
+    [membershipOfferings]
+  );
 
   useEffect(() => {
     const getOfferings = async () => {
@@ -45,7 +55,9 @@ const MemberFrequencyPlan: React.FC<MemberFrequencyPlanProps> = ({ setStep }) =>
   };
 
   const onClickSubmit = () => {
-    const selectedPayment = membershipFrequencyData.frequencyOptions[activeTabIdx].id;
+    if (!offerings) return;
+
+    const selectedPayment = offerings[activeTabIdx].id;
 
     const product = searchParams?.get("product");
     const params = new URLSearchParams(searchParams.toString());
@@ -104,12 +116,14 @@ const MemberFrequencyPlan: React.FC<MemberFrequencyPlanProps> = ({ setStep }) =>
               <div className='w-full flex flex-col text-left'>
                 <ProgressStep currentIdx={2} theme='light' />
                 <div className='w-fit max-lg:my-[42px] lg:mb-[2.222vh] 2xl:mb-6'>
-                  <ButtonSwitchMemberFreq
-                    options={membershipFrequencyData.frequencyOptions}
-                    onChange={(currentIdx: number) => setActiveTabIdx(currentIdx)}
-                    layoutId='switch-membership-frequency-checkout'
-                    showHightlightTextOnMobile
-                  />
+                  {offerings && (
+                    <ButtonSwitchMemberFreq
+                      options={offerings}
+                      onChange={(currentIdx: number) => setActiveTabIdx(currentIdx)}
+                      layoutId='switch-membership-frequency-checkout'
+                      showHightlightTextOnMobile
+                    />
+                  )}
                 </div>
 
                 <h1 className='text-2xl lg:text-4xl !leading-normal lg:-tracking-0.04em text-primary'>
@@ -121,7 +135,7 @@ const MemberFrequencyPlan: React.FC<MemberFrequencyPlanProps> = ({ setStep }) =>
                 {renderList()}
                 <div className='mt-6 mb-[42px] lg:my-[3.889vh] 2xl:my-[42px] inline-flex max-lg:flex-col lg:items-baseline'>
                   <span className='max-lg:font-medium text-4xl !leading-normal -tracking-0.04em text-primary'>
-                    {membershipFrequencyData.price.text}
+                    ${offerings?.[activeTabIdx].price}
                     <span className='max-lg:hidden'>&nbsp;</span>
                   </span>
                   <span className='text-grey-500 text-lg lg:text-sm !leading-normal'>
