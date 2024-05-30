@@ -16,6 +16,9 @@ import ProgressStep from "./ProgressStep";
 import Select from "./Select";
 import TextField from "./TextField";
 import { addTempUser } from "./api/onboarding";
+import { toast } from "sonner";
+import { AiFillCloseCircle } from "react-icons/ai";
+import { CheckoutStep } from "./Main";
 
 const formSectionData = checkoutData.form;
 const states = statesData.states.options;
@@ -36,11 +39,11 @@ const initialValues = {
 };
 
 const Form: React.FC<{
-  onNextStep?: (data: IPrecheckout.UserDetailData) => void; // eslint-disable-line no-unused-vars
+  onNextStep: (data: IPrecheckout.UserDetailData, step: CheckoutStep) => void; // eslint-disable-line no-unused-vars
   initialState?: IPrecheckout.UserDetailData;
 }> = ({ onNextStep, initialState = initialValues }) => {
   const router = useRouter();
-
+  //TODO: join_waitlist cannot be implemented because of flow in the BE flow. Need to fix the join_waitlist flow
   const [enableValidation, setEnableValidation] = useState<boolean>(false);
   const formik: FormikProps<IPrecheckout.UserDetailData> = useFormik<IPrecheckout.UserDetailData>({
     validateOnBlur: enableValidation,
@@ -69,18 +72,19 @@ const Form: React.FC<{
           email: email,
           state: state,
           gender: gender.toLowerCase(),
-          // phoneNumber: phone_number,
-          phoneNumber: "2144567890",
+          phoneNumber: phone_number,
+          // phoneNumber: "2144567890",
           city: city,
           addressLine1: address_1,
           addressLine2: address_2,
           zipCode: zip_code,
           dob: `${birthdate?.getFullYear()}-${birthdate?.getMonth()}-0${birthdate?.getDay()}`,
-          timezone: "Asia",
         });
-        if (onNextStep) onNextStep({ ...form, id: tempUser.id });
+        return onNextStep({ ...form, id: tempUser.id }, CheckoutStep.PRICING_PRODUCT_PLAN);
       } catch (error) {
-        console.error("something went wrong");
+        toast.success(error as string, {
+          icon: <AiFillCloseCircle className='h-5 w-5 text-danger' />,
+        });
       }
     },
   });

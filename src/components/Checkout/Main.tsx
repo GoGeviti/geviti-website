@@ -31,7 +31,7 @@ const Main: React.FC<PageProps> = ({ searchParams }) => {
   const setInitialStep = () => {
     if (searchParams?.product) return CheckoutStep.MEMBER_FREQUENCY_PLAN;
     if (searchParams?.email) return CheckoutStep.PRICING_PRODUCT_PLAN;
-    return CheckoutStep.PRICING_PRODUCT_PLAN;
+    return CheckoutStep.FORM_PERSONAL_INFO;
   };
 
   const [step, setStep] = useState<CheckoutStep>(setInitialStep());
@@ -55,27 +55,9 @@ const Main: React.FC<PageProps> = ({ searchParams }) => {
         <Form
           key={CheckoutStep.FORM_PERSONAL_INFO}
           initialState={userData}
-          onNextStep={(user: IPrecheckout.UserDetailData) => {
+          onNextStep={(user, step) => {
             setUserData(user);
-
-            if (checkoutData.form.statesAvailable.includes(user.state)) {
-              setStep(CheckoutStep.WAITLIST_STATE_AVAILABLE);
-            } else {
-              setStep(CheckoutStep.WAITLIST_STATE_NOT_AVAILABLE);
-            }
-            // setUserData(user);
-
-            // if (checkoutData.form.statesAvailable.includes(user.state)) {
-            // 	const params = new URLSearchParams();
-            // 	params.set('email', user.email);
-            // 	if (window) {
-            // 		window.history.pushState(null, '', `?${ params.toString() }`);
-            // 		window.scrollTo({ top: 0 });
-            // 	}
-            // 	setStep(CheckoutStep.PRICING_PRODUCT_PLAN);
-            // } else {
-            // 	setStep(CheckoutStep.WAITLIST_STATE_NOT_AVAILABLE);
-            // }
+            return setStep(step);
           }}
         />
       );
