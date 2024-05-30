@@ -1379,14 +1379,12 @@ const membershipData = {
       "Every user starts with an at-home full panel establish baselines. This package includes one month for free. Memberships can be billed monthly or quarterly.",
     pricingOptions: [
       {
-        id: "39144",
         title: "Quarterly",
         value: "quarterly",
-        highlight: "17% off",
+        s: "17% off",
         price: "99.95",
       },
       {
-        id: "37888",
         title: "Monthly",
         value: "monthly",
         price: "297.99",
@@ -1394,9 +1392,8 @@ const membershipData = {
     ],
     list: [
       {
-        id: "39777",
         name: "Essentials Diagnostic",
-        price: "$299",
+        price: "299",
         priceNote: "one time payment",
         priceDescGeneral:
           '<span class="lg:hidden">+$99/m billed quarterly</span><span class="max-lg:hidden">+$198 initially, then $297 quarterly</span>',
@@ -1433,9 +1430,8 @@ const membershipData = {
         ],
       },
       {
-        id: "39778",
         name: "Comprehensive Diagnostic",
-        price: "$469",
+        price: "469",
         priceNote: "one time payment",
         priceDescGeneral:
           '<span class="lg:hidden">+ $297 quarterly</span><span class="max-lg:hidden">+$198 initially, then $297 quarterly</span>',
@@ -1472,9 +1468,8 @@ const membershipData = {
         ],
       },
       {
-        id: "39779",
         name: "Ultimate Diagnostic",
-        price: "$599",
+        price: "599",
         priceNote: "one time payment",
         priceDescGeneral:
           '<span class="lg:hidden">+ $297 quarterly</span><span class="max-lg:hidden">+$198 initially, then $297 quarterly</span>',
