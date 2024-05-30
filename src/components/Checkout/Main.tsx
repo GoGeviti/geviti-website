@@ -12,6 +12,7 @@ import MemberFrequencyPlan from "./MemberFrequencyPlan";
 import PricingProductPlan from "./PricingProductPlan";
 import State from "./State";
 import StripeCheckout from "./StripeCheckout";
+import { InitialOfferingsReturnType, MembershipOfferingsReturnType } from "./api/types";
 
 {
   /* eslint-disable no-unused-vars */
@@ -35,6 +36,16 @@ const Main: React.FC<PageProps> = ({ searchParams }) => {
   };
 
   const [step, setStep] = useState<CheckoutStep>(setInitialStep());
+  const [product, setProduct] = useState<InitialOfferingsReturnType>({
+    id: "",
+    name: "Comprehensive Diagnostic",
+    billing_frequency: "One-Time",
+    currency: "",
+    price: "",
+    first_time_payment: null,
+    visibility_status: "",
+  });
+  const [offering, setOffering] = useState<MembershipOfferingsReturnType>();
   const [userData, setUserData] = useState<IPrecheckout.UserDetailData>({
     first_name: "",
     last_name: "",
@@ -94,7 +105,7 @@ const Main: React.FC<PageProps> = ({ searchParams }) => {
     }
 
     if (step === CheckoutStep.PRICING_PRODUCT_PLAN) {
-      return <PricingProductPlan key={CheckoutStep.PRICING_PRODUCT_PLAN} setStep={setStep} />;
+      return <PricingProductPlan key={CheckoutStep.PRICING_PRODUCT_PLAN} setStep={setStep} setProduct={setProduct} />;
     }
 
     if (step === CheckoutStep.MEMBER_FREQUENCY_PLAN) {

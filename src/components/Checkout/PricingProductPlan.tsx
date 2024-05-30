@@ -20,12 +20,13 @@ import { InitialOfferingsReturnType } from "./api/types";
 import { getInitialOfferings } from "./api/onboarding";
 
 type PricingProductPlanProps = {
-  setStep?: React.Dispatch<React.SetStateAction<CheckoutStep>>;
+  setStep: React.Dispatch<React.SetStateAction<CheckoutStep>>;
+  setProduct: React.Dispatch<React.SetStateAction<InitialOfferingsReturnType>>;
 };
 //TODO: Local and DB data are not properly synced. Need to define proper typings in API contract
 const pricingProductPlanData = checkoutData.pricingProductPlan;
 
-const PricingProductPlan: React.FC<PricingProductPlanProps> = ({ setStep }) => {
+const PricingProductPlan: React.FC<PricingProductPlanProps> = ({ setStep, setProduct }) => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [initialOfferings, SetInitialOfferings] = useState<InitialOfferingsReturnType[]>([]);
@@ -43,14 +44,15 @@ const PricingProductPlan: React.FC<PricingProductPlanProps> = ({ setStep }) => {
     if (setStep) setStep(CheckoutStep.FORM_PERSONAL_INFO);
   };
 
-  const onClickSelectOption = (productId: string) => {
+  const onClickSelectOption = (product: InitialOfferingsReturnType) => {
     if (setStep) {
       const params = new URLSearchParams(searchParams.toString());
-      params.set("product", productId);
+      params.set("product", product.id);
       if (window) {
         window.history.pushState(null, "", `?${params.toString()}`);
         window.scrollTo({ top: 0 });
       }
+      setProduct(product);
       setStep(CheckoutStep.MEMBER_FREQUENCY_PLAN);
     }
   };
@@ -80,75 +82,90 @@ const PricingProductPlan: React.FC<PricingProductPlanProps> = ({ setStep }) => {
             </p>
 
             <div className='lg:max-w-full mx-auto sm:max-w-[392px] lg:flex-row flex-col flex gap-[42px] lg:gap-6 items-end w-full pt-[42px] lg:pt-[3.889vh] 2xl:pt-[42px]'>
-              {pricingProductPlanData.list.map((item, index) => (
-                <div key={index} className='w-full relative'>
-                  <div
-                    className={clsxm(
-                      "pt-[42px] pb-[34px] px-6 rounded-2xl w-full relative",
-                      item.mostPopular ? "bg-primary text-white" : "bg-[#F5FBFF] text-primary",
-                      index === 1 && "z-10"
-                    )}
-                  >
-                    <h3 className='!leading-[28px] text-[5.128vw] xs2:text-xl'>{item.name}</h3>
-
-                    <span className='font-medium text-5xl !leading-[125%] py-1'>
-                      {/* <span>${item.price}</span> <span className='text-xs lg:text-sm'>{item.priceNote}</span> */}
-                      <span>${initialOfferings.find(({ name }) => name === item.name)?.price || 0}</span>{" "}
-                      <span className='text-xs lg:text-sm'>{item.priceNote}</span>
-                    </span>
-                    <p
-                      className='font-medium text-xs lg:text-sm !leading-6'
-                      dangerouslySetInnerHTML={{ __html: item.priceDescGeneral }}
-                    />
-                    <p className='text-4xl !leading-normal font-medium mb-[11px] mt-[25px] lg:mt-3.5'>
-                      <span className='-tracking-0.04em'>{item.biomakers} </span>
-                      <span className='text-xs !leading-normal'>biomarkers</span>
-                    </p>
-
-                    <ul className='flex flex-col gap-y-[11px] mb-6'>
-                      {item.list.map((feature, featureIdx) => (
-                        <li
-                          key={`feature-${featureIdx}`}
-                          className='text-sm !leading-normal gap-1.5 flex items-center font-medium -tracking-[0.53px]'
+              {initialOfferings &&
+                initialOfferings.map((item, index) => {
+                  const productLocalData = pricingProductPlanData.list.find((it) => it.name === item.name);
+                  return (
+                    <motion.div
+                      variants={{
+                        initial: { y: 0, opacity: 0 },
+                        visible: { y: 0, opacity: 1 },
+                        exit: { y: "-50%", opacity: 0 },
+                      }}
+                      initial='initial'
+                      animate='visible'
+                      exit='exit'
+                      transition={{ ease: "easeInOut", duration: 1 }}
+                      className='w-full'
+                    >
+                      <div key={index} className='w-full relative'>
+                        <div
+                          className={clsxm(
+                            "pt-[42px] pb-[34px] px-6 rounded-2xl w-full relative",
+                            productLocalData?.mostPopular ? "bg-primary text-white" : "bg-[#F5FBFF] text-primary",
+                            index === 1 && "z-10"
+                          )}
                         >
-                          <QuestionTooltip
-                            icon={<GreenCheck className='w-4 h-4 text-green-alert' />}
-                            text={feature.description || feature.title}
-                          />
-                          {feature.title}
-                        </li>
-                      ))}
-                    </ul>
+                          <h3 className='!leading-[28px] text-[5.128vw] xs2:text-xl'>{item.name}</h3>
 
-                    <ButtonCta
-                      text={item.btnCta.text}
-                      theme={item.mostPopular ? "secondary" : "primary"}
-                      className='w-full sm:w-fit mx-auto'
-                      onClick={() =>
-                        onClickSelectOption(initialOfferings.find(({ name }) => name === item.name)?.id || "0")
-                      }
-                    />
-
-                    {item.mostPopular ? (
-                      <span className='absolute top-0 right-6 -translate-y-1/2 text-sm !leading-normal text-primary font-medium bg-blue-primary py-2 px-6 rounded-full'>
-                        Most Popular
-                      </span>
-                    ) : (
-                      <div className='absolute top-0 right-0'>
-                        <div className='w-[257px] h-[312.52px] relative overflow-hidden'>
-                          <Image
-                            src='/images/membership/squares-union.svg'
-                            alt=''
-                            fill
-                            className='w-full h-full'
-                            sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
+                          <span className='font-medium text-5xl !leading-[125%] py-1'>
+                            {/* <span>${item.price}</span> <span className='text-xs lg:text-sm'>{item.priceNote}</span> */}
+                            <span>${item.price}</span>{" "}
+                            <span className='text-xs lg:text-sm'>{productLocalData?.priceNote}</span>
+                          </span>
+                          <p
+                            className='font-medium text-xs lg:text-sm !leading-6'
+                            dangerouslySetInnerHTML={{ __html: productLocalData?.priceDescGeneral || "" }}
                           />
+                          <p className='text-4xl !leading-normal font-medium mb-[11px] mt-[25px] lg:mt-3.5'>
+                            <span className='-tracking-0.04em'>{productLocalData?.biomakers} </span>
+                            <span className='text-xs !leading-normal'>biomarkers</span>
+                          </p>
+
+                          <ul className='flex flex-col gap-y-[11px] mb-6'>
+                            {productLocalData?.list.map((feature, featureIdx) => (
+                              <li
+                                key={`feature-${featureIdx}`}
+                                className='text-sm !leading-normal gap-1.5 flex items-center font-medium -tracking-[0.53px]'
+                              >
+                                <QuestionTooltip
+                                  icon={<GreenCheck className='w-4 h-4 text-green-alert' />}
+                                  text={feature.description || feature.title}
+                                />
+                                {feature.title}
+                              </li>
+                            ))}
+                          </ul>
+
+                          <ButtonCta
+                            text={productLocalData?.btnCta.text}
+                            theme={productLocalData?.mostPopular ? "secondary" : "primary"}
+                            className='w-full sm:w-fit mx-auto'
+                            onClick={() => onClickSelectOption(item)}
+                          />
+
+                          {productLocalData?.mostPopular ? (
+                            <span className='absolute top-0 right-6 -translate-y-1/2 text-sm !leading-normal text-primary font-medium bg-blue-primary py-2 px-6 rounded-full'>
+                              Most Popular
+                            </span>
+                          ) : (
+                            <div className='absolute top-0 right-0'>
+                              <div className='w-[257px] h-[312.52px] relative overflow-hidden'>
+                                <Image
+                                  src='/images/membership/squares-union.svg'
+                                  alt=''
+                                  fill
+                                  className='w-full h-full'
+                                  sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
+                                />
+                              </div>
+                            </div>
+                          )}
                         </div>
                       </div>
-                    )}
-                  </div>
-                </div>
-              ))}
+                    </motion.div>
+                  );
+                })}
             </div>
           </div>
           <div className='mt-[66px] lg:mt-[3.889vh] 2xl:mt-[42px] pb-16 lg:pb-5 w-full lg:container-center'>
