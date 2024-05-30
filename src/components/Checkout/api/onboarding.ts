@@ -1,4 +1,5 @@
 import {
+  ErrorResponse,
   InitialOfferingsReturnType,
   MembershipOfferingsReturnType,
   TemUserReturnType,
@@ -23,10 +24,14 @@ export const addTempUser = async (params: TempUserDataParams): Promise<TemUserRe
         body: JSON.stringify(params),
       }
     );
-    const data = await res.json();
-    return data;
+    if (res.ok) {
+      const data = await res.json();
+      return data;
+    }
+    throw await res.json();
   } catch (error) {
-    return Promise.reject(error);
+    const err = error as ErrorResponse;
+    return Promise.reject(err.message.toString());
   }
 };
 
@@ -63,6 +68,24 @@ export const getMembershipOfferings = async (): Promise<MembershipOfferingsRetur
   try {
     const res = await fetch(
       `${onboardingApiUrl}/billing/offerings-info?billingType=membership
+    `,
+      {
+        method: "GET",
+        headers,
+        cache: "no-store",
+      }
+    );
+    const data = await res.json();
+    return data;
+  } catch (error) {
+    return Promise.reject(error);
+  }
+};
+
+export const getDiscount = async (discountCode: string) => {
+  try {
+    const res = await fetch(
+      `${onboardingApiUrl}/billing/offerings-coupon?keyword=${discountCode}
     `,
       {
         method: "GET",

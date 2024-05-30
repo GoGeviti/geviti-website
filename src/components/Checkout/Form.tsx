@@ -73,7 +73,6 @@ const Form: React.FC<{
           state: state,
           gender: gender.toLowerCase(),
           phoneNumber: phone_number,
-          // phoneNumber: "2144567890",
           city: city,
           addressLine1: address_1,
           addressLine2: address_2,

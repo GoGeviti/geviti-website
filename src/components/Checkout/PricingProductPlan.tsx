@@ -22,7 +22,7 @@ import { getInitialOfferings } from "./api/onboarding";
 type PricingProductPlanProps = {
   setStep?: React.Dispatch<React.SetStateAction<CheckoutStep>>;
 };
-
+//TODO: Local and DB data are not properly synced. Need to define proper typings in API contract
 const pricingProductPlanData = checkoutData.pricingProductPlan;
 
 const PricingProductPlan: React.FC<PricingProductPlanProps> = ({ setStep }) => {
@@ -92,7 +92,9 @@ const PricingProductPlan: React.FC<PricingProductPlanProps> = ({ setStep }) => {
                     <h3 className='!leading-[28px] text-[5.128vw] xs2:text-xl'>{item.name}</h3>
 
                     <span className='font-medium text-5xl !leading-[125%] py-1'>
-                      <span>{item.price}</span> <span className='text-xs lg:text-sm'>{item.priceNote}</span>
+                      {/* <span>${item.price}</span> <span className='text-xs lg:text-sm'>{item.priceNote}</span> */}
+                      <span>${initialOfferings.find(({ name }) => name === item.name)?.price || 0}</span>{" "}
+                      <span className='text-xs lg:text-sm'>{item.priceNote}</span>
                     </span>
                     <p
                       className='font-medium text-xs lg:text-sm !leading-6'
@@ -122,7 +124,9 @@ const PricingProductPlan: React.FC<PricingProductPlanProps> = ({ setStep }) => {
                       text={item.btnCta.text}
                       theme={item.mostPopular ? "secondary" : "primary"}
                       className='w-full sm:w-fit mx-auto'
-                      onClick={() => onClickSelectOption(item.id)}
+                      onClick={() =>
+                        onClickSelectOption(initialOfferings.find(({ name }) => name === item.name)?.id || "0")
+                      }
                     />
 
                     {item.mostPopular ? (
