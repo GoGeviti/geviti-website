@@ -1,4 +1,6 @@
 import {
+  CheckoutParams,
+  CheckoutResponseType,
   DiscountReturnType,
   ErrorResponse,
   InitialOfferingsReturnType,
@@ -92,6 +94,29 @@ export const getDiscount = async (discountCode: string = ""): Promise<DiscountRe
         method: "GET",
         headers,
         cache: "no-store",
+      }
+    );
+    if (res.ok) {
+      const data = await res.json();
+      return data;
+    }
+    throw await res.json();
+  } catch (error) {
+    const err = error as ErrorResponse;
+    return Promise.reject(err.message);
+  }
+};
+
+export const checkout = async (params: CheckoutParams): Promise<CheckoutResponseType> => {
+  try {
+    const res = await fetch(
+      `${onboardingApiUrl}/billing/checkout
+    `,
+      {
+        method: "POST",
+        headers,
+        cache: "no-store",
+        body: JSON.stringify(params),
       }
     );
     if (res.ok) {

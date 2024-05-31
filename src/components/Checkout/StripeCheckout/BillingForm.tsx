@@ -3,15 +3,20 @@ import Checkbox from "@/components/Onboarding/Checkbox";
 import clsxm from "@/helpers/clsxm";
 import {
   CardCvcElement,
-  CardElement,
   CardExpiryElement,
   CardNumberElement,
   Elements,
   ElementsConsumer,
 } from "@stripe/react-stripe-js";
 import { StripeElementsOptions, loadStripe } from "@stripe/stripe-js";
+import { FC } from "react";
+import { checkout } from "../api/onboarding";
 
-const BillingForm = () => {
+type BillingFormProps = {
+  totalPrice?: number;
+  handleCheckout: (token: string) => void;
+};
+const BillingForm: FC<BillingFormProps> = ({ totalPrice, handleCheckout }) => {
   const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_TOKEN_STAGING || "pk_test_fAj7WlTrG0uc5Z9WHKQDdoTq");
 
   const appearance: StripeElementsOptions = {
@@ -49,7 +54,9 @@ const BillingForm = () => {
             const cardNumberElement = elements?.getElement(CardNumberElement);
             console.log("cardNumberElement", cardNumberElement);
             const { token } = await stripe?.createToken(cardNumberElement!);
-            console.log("token", token);
+            if (token) {
+              handleCheckout(token?.id);
+            }
           };
           const fontStyle = {
             base: {
@@ -121,7 +128,7 @@ const BillingForm = () => {
                   type='submit'
                   className='w-[80%] h-[58px] mt-6 py-3 px-[42px] bg-black text-white rounded-[1000px]'
                 >
-                  Pay Securely
+                  Pay Securely ${totalPrice}
                 </button>
               </div>
             </form>

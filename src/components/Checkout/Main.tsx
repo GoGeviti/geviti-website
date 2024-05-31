@@ -11,6 +11,7 @@ import MemberFrequencyPlan from "./MemberFrequencyPlan";
 import PricingProductPlan from "./PricingProductPlan";
 import State from "./State";
 import StripeCheckout from "./StripeCheckout";
+import { InitialOfferingsReturnType, MembershipOfferingsReturnType } from "./api/types";
 
 {
   /* eslint-disable no-unused-vars */
@@ -47,6 +48,8 @@ const Main: React.FC<PageProps> = ({ searchParams }) => {
     birthdate: null,
     gender: "",
   });
+  const [selectedOffering, setSelectedOffering] = useState<InitialOfferingsReturnType>();
+  const [selectedMembership, setSelectedMembership] = useState<MembershipOfferingsReturnType>();
 
   const renderContent = () => {
     if (step === CheckoutStep.FORM_PERSONAL_INFO) {
@@ -93,15 +96,34 @@ const Main: React.FC<PageProps> = ({ searchParams }) => {
     }
 
     if (step === CheckoutStep.PRICING_PRODUCT_PLAN) {
-      return <PricingProductPlan key={CheckoutStep.PRICING_PRODUCT_PLAN} setStep={setStep} />;
+      return (
+        <PricingProductPlan
+          key={CheckoutStep.PRICING_PRODUCT_PLAN}
+          setStep={setStep}
+          setSelectedOffering={setSelectedOffering}
+        />
+      );
     }
 
     if (step === CheckoutStep.MEMBER_FREQUENCY_PLAN) {
-      return <MemberFrequencyPlan key={CheckoutStep.MEMBER_FREQUENCY_PLAN} setStep={setStep} />;
+      return (
+        <MemberFrequencyPlan
+          key={CheckoutStep.MEMBER_FREQUENCY_PLAN}
+          setStep={setStep}
+          setSelectedMembership={setSelectedMembership}
+        />
+      );
     }
 
     if (step === CheckoutStep.STRIPE_PAYMENT) {
-      return <StripeCheckout setStep={setStep} />;
+      return (
+        <StripeCheckout
+          setStep={setStep}
+          user={userData}
+          productOffering={selectedOffering}
+          membershipOffering={selectedMembership}
+        />
+      );
     }
 
     return null;

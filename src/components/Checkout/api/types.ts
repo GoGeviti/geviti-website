@@ -43,6 +43,7 @@ export interface MembershipOfferingsReturnType {
   id: string;
   name: "Monthly Subscription" | "Quarterly Subscription";
   billing_frequency: "Monthly" | "Quarterly";
+  title: "Monthly" | "Quarterly";
   currency: string;
   price: string;
   first_time_payment: string;
@@ -57,4 +58,20 @@ export interface DiscountReturnType {
   expires_at: any;
   usage_limit: any;
   number_of_times_used: string;
+}
+
+export interface CheckoutParams {
+  email: string;
+  token: string;
+  packages: {
+    price: string;
+    offering_id: string;
+    coupon_code?: string;
+  }[];
+}
+
+export interface CheckoutResponseType {
+  status: string;
+  transaction_id: string;
+  message: string;
 }

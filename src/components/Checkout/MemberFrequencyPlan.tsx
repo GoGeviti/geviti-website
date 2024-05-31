@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { Dispatch, SetStateAction, useEffect, useMemo, useState } from "react";
 import { motion } from "framer-motion";
 import { useRouter, useSearchParams } from "next/navigation";
 
@@ -21,30 +21,29 @@ const defaultButtonClassName =
   "rounded-full font-medium text-lg !leading-6 max-sm:w-full py-[17px] px-[42px] flex items-center justify-center shadow-[0px_1px_2px_rgba(16,24,40,0.05)]";
 
 type MemberFrequencyPlanProps = {
-  setStep: React.Dispatch<React.SetStateAction<CheckoutStep>>;
+  setStep: Dispatch<SetStateAction<CheckoutStep>>;
+  setSelectedMembership: Dispatch<SetStateAction<MembershipOfferingsReturnType | undefined>>;
 };
 
-const MemberFrequencyPlan: React.FC<MemberFrequencyPlanProps> = ({ setStep }) => {
+const MemberFrequencyPlan: React.FC<MemberFrequencyPlanProps> = ({ setStep, setSelectedMembership }) => {
   const searchParams = useSearchParams();
   const router = useRouter();
 
   const [activeTabIdx, setActiveTabIdx] = useState<number>(0);
-  const [membershipOfferings, SetMembershipOfferings] = useState<MembershipOfferingsReturnType[]>();
-  const offerings = useMemo(
-    () =>
-      membershipOfferings
-        ?.map((it) => ({
-          ...it,
-          title: it.billing_frequency,
-        }))
-        .reverse(),
-    [membershipOfferings]
-  );
+  const [offerings, setOfferings] = useState<MembershipOfferingsReturnType[]>();
 
   useEffect(() => {
     const getOfferings = async () => {
-      const offerings = await getMembershipOfferings();
-      SetMembershipOfferings(offerings);
+      const memberShipOfferings = await getMembershipOfferings();
+
+      setOfferings(
+        memberShipOfferings
+          ?.map((it) => ({
+            ...it,
+            title: it.billing_frequency,
+          }))
+          .reverse()
+      );
     };
     getOfferings();
   }, []);
@@ -69,6 +68,7 @@ const MemberFrequencyPlan: React.FC<MemberFrequencyPlanProps> = ({ setStep }) =>
     // TODO: remove console and go to payment link
     if (setStep) {
       setStep(CheckoutStep.STRIPE_PAYMENT);
+      setSelectedMembership(offerings[activeTabIdx]);
     }
   };
 

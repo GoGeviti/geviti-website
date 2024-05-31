@@ -6,20 +6,25 @@ import { CheckoutStep } from "../Main";
 import { useSearchParams } from "next/navigation";
 import { checkoutData } from "@/constant/data";
 import BillingForm from "./BillingForm";
-import { getDiscount } from "../api/onboarding";
-import { DiscountReturnType } from "../api/types";
+import { checkout, getDiscount } from "../api/onboarding";
+import { DiscountReturnType, InitialOfferingsReturnType, MembershipOfferingsReturnType } from "../api/types";
 import { toast } from "sonner";
 import { AiFillCloseCircle } from "react-icons/ai";
+import { UserDetailData } from "@/interfaces/precheckout";
 
 type StripeCheckoutProps = {
   setStep: React.Dispatch<React.SetStateAction<CheckoutStep>>;
+  user: UserDetailData;
+  productOffering?: InitialOfferingsReturnType;
+  membershipOffering?: MembershipOfferingsReturnType;
 };
 // TODO: make membership plans completely dynamic
-const StripeCheckout: FC<StripeCheckoutProps> = ({ setStep }) => {
+const StripeCheckout: FC<StripeCheckoutProps> = ({ user, productOffering, membershipOffering, setStep }) => {
   const searchParams = useSearchParams();
   const productName = searchParams.get("product");
   const membershipBillingFreq = searchParams.get("membership");
   const [discount, setDiscount] = useState<DiscountReturnType | null>(null);
+  const [totalPrice, setTotalPrice] = useState<number>();
   const [discountApplied, setDiscountApplied] = useState(false);
   const product = useMemo(
     () => checkoutData.pricingProductPlan.list.find((it) => it.name === productName)!,
@@ -48,6 +53,33 @@ const StripeCheckout: FC<StripeCheckoutProps> = ({ setStep }) => {
     [getDiscount]
   );
 
+  const handleCheckout = useCallback(
+    async (token: string) => {
+      try {
+        if (!membershipOffering || !productOffering) return;
+        await checkout({
+          token: token as string,
+          email: user.email,
+          packages: [
+            {
+              price: membershipOffering.price,
+              offering_id: membershipOffering.id,
+            },
+            {
+              price: productOffering.price,
+              offering_id: productOffering.id,
+            },
+          ],
+        });
+      } catch (error) {
+        toast.error(error as string, {
+          icon: <AiFillCloseCircle className='h-5 w-5 text-danger' />,
+        });
+      }
+    },
+    [membershipOffering, productOffering]
+  );
+
   return (
     <div className='flex flex-col lg:flex-row min-h-screen h-full w-full'>
       <div className='min-h-screen h-auto w-full bg-primary'>
@@ -74,12 +106,13 @@ const StripeCheckout: FC<StripeCheckoutProps> = ({ setStep }) => {
               productPrice={Number(product.price)}
               membershipPrice={Number(membership.price)}
               discount={discount}
+              setTotalPrice={setTotalPrice}
             />
           </div>
         </div>
       </div>
       <div className='h-full w-full bg-white'>
-        <BillingForm />
+        <BillingForm totalPrice={totalPrice} handleCheckout={handleCheckout} />
       </div>
     </div>
   );
@@ -89,15 +122,20 @@ interface ITotalCalc {
   productPrice: number;
   membershipPrice: number;
   discount: DiscountReturnType | null;
+  setTotalPrice: React.Dispatch<React.SetStateAction<number | undefined>>;
 }
-const TotalCalc: FC<ITotalCalc> = ({ productPrice, membershipPrice, discount }) => {
+const TotalCalc: FC<ITotalCalc> = ({ productPrice, membershipPrice, discount, setTotalPrice }) => {
   const total = useMemo(() => productPrice + membershipPrice, [productPrice, membershipPrice]);
   const totalDue = useMemo(() => {
     if (discount) {
-      return total - (total * Number(discount.amount_off)) / 100;
+      const discountedAmounted = total - (total * Number(discount.amount_off)) / 100;
+      setTotalPrice(discountedAmounted);
+      return discountedAmounted;
     }
+    setTotalPrice(total);
     return total;
   }, [total, discount]);
+
   return (
     <div className='flex justify-between py-12'>
       <div className='flex flex-col'>
