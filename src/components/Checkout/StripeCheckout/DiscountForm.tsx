@@ -1,31 +1,44 @@
-import { FC, useRef } from "react";
+import { FC } from "react";
 import TextField from "../TextField";
-import { getDiscount } from "../api/onboarding";
+import { FormikProps, useFormik } from "formik";
 
-const DiscountForm: FC = () => {
-  const couponInputRef = useRef<HTMLInputElement | null>(null);
+type DiscountFormProps = {
+  submitCoupon: (code?: string) => void;
+  discountApplied: boolean;
+};
+const DiscountForm: FC<DiscountFormProps> = ({ submitCoupon, discountApplied = false }) => {
+  const formik: FormikProps<{ coupon_code: string }> = useFormik({
+    initialValues: {
+      coupon_code: "",
+    },
+    onSubmit: (form) => {
+      submitCoupon(form.coupon_code);
+    },
+  });
+
   return (
     <form
       className='relative'
-      onSubmit={async (e) => {
+      onSubmit={(e) => {
         e.preventDefault();
-        await getDiscount(couponInputRef.current?.value || "GEVITI20");
+        formik.handleSubmit();
       }}
     >
-      <label htmlFor='coupon_discount' className='text-grey-50 text-lg !leading-normal max-lg:font-medium'>
+      <label htmlFor='coupon_code' className='text-grey-50 text-lg !leading-normal max-lg:font-medium'>
         Coupon Discount
       </label>
 
       <TextField
         className='mt-6'
-        id='coupon_discount'
+        id='coupon_code'
         type='text'
-        name='coupon_discount'
+        name='coupon_code'
         placeholder='Coupon Discount'
-        ref={couponInputRef}
+        value={formik.values.coupon_code}
+        onChange={formik.handleChange}
       />
       <div className='absolute w-4 h-4 lg:w-6 lg:h-6 right-[22px] bottom-[22px] lg:bottom-[18px]'>
-        {/* <GreenCircleTick /> */}
+        {discountApplied && <GreenCircleTick />}
       </div>
     </form>
   );

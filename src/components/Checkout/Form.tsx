@@ -81,7 +81,7 @@ const Form: React.FC<{
         });
         return onNextStep({ ...form, id: tempUser.id }, CheckoutStep.PRICING_PRODUCT_PLAN);
       } catch (error) {
-        toast.success(error as string, {
+        toast.error(error as string, {
           icon: <AiFillCloseCircle className='h-5 w-5 text-danger' />,
         });
       }

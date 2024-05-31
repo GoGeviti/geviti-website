@@ -1,4 +1,5 @@
 import {
+  DiscountReturnType,
   ErrorResponse,
   InitialOfferingsReturnType,
   MembershipOfferingsReturnType,
@@ -82,7 +83,7 @@ export const getMembershipOfferings = async (): Promise<MembershipOfferingsRetur
   }
 };
 
-export const getDiscount = async (discountCode: string) => {
+export const getDiscount = async (discountCode: string = ""): Promise<DiscountReturnType> => {
   try {
     const res = await fetch(
       `${onboardingApiUrl}/billing/offerings-coupon?keyword=${discountCode}
@@ -93,9 +94,13 @@ export const getDiscount = async (discountCode: string) => {
         cache: "no-store",
       }
     );
-    const data = await res.json();
-    return data;
+    if (res.ok) {
+      const data = await res.json();
+      return data;
+    }
+    throw await res.json();
   } catch (error) {
-    return Promise.reject(error);
+    const err = error as ErrorResponse;
+    return Promise.reject(err.message);
   }
 };

@@ -48,3 +48,13 @@ export interface MembershipOfferingsReturnType {
   first_time_payment: string;
   visibility_status: "visible_to_all" | "hidden";
 }
+
+export interface DiscountReturnType {
+  id: string;
+  promo_type: string;
+  amount_off: string;
+  code: string;
+  expires_at: any;
+  usage_limit: any;
+  number_of_times_used: string;
+}
