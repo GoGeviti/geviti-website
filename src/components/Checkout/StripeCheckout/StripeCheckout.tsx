@@ -5,12 +5,13 @@ import CheckoutItem from "./CheckoutItem";
 import { CheckoutStep } from "../Main";
 import { useSearchParams } from "next/navigation";
 import { checkoutData } from "@/constant/data";
-import BillingForm from "./BillingForm";
+import BillingForm from "./StripeElementsProvider";
 import { checkout, getDiscount } from "../api/onboarding";
 import { DiscountReturnType, InitialOfferingsReturnType, MembershipOfferingsReturnType } from "../api/types";
 import { toast } from "sonner";
 import { AiFillCloseCircle } from "react-icons/ai";
 import { UserDetailData } from "@/interfaces/precheckout";
+import StripeElementsProvider from "./StripeElementsProvider";
 
 type StripeCheckoutProps = {
   setStep: React.Dispatch<React.SetStateAction<CheckoutStep>>;
@@ -112,7 +113,7 @@ const StripeCheckout: FC<StripeCheckoutProps> = ({ user, productOffering, member
         </div>
       </div>
       <div className='h-full w-full bg-white'>
-        <BillingForm totalPrice={totalPrice} handleCheckout={handleCheckout} />
+        <StripeElementsProvider totalPrice={totalPrice} handleCheckout={handleCheckout} user={user} />
       </div>
     </div>
   );
