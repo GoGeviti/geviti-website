@@ -26,9 +26,12 @@ const StripeCheckout: FC<StripeCheckoutProps> = ({ user, productOffering, member
   const searchParams = useSearchParams();
   const productName = searchParams.get("product");
   const membershipBillingFreq = searchParams.get("membership");
+
+  const [loading, setLoading] = useState(false);
   const [discount, setDiscount] = useState<DiscountReturnType | null>(null);
   const [totalPrice, setTotalPrice] = useState<number>();
   const [discountApplied, setDiscountApplied] = useState(false);
+
   const product = useMemo(
     () => checkoutData.pricingProductPlan.list.find((it) => it.name === productName)!,
     [productName]
@@ -37,17 +40,21 @@ const StripeCheckout: FC<StripeCheckoutProps> = ({ user, productOffering, member
     () => checkoutData.membershipFrequency.frequencyOptions.find((it) => it.title === membershipBillingFreq)!,
     [membershipBillingFreq]
   );
+
   const handleCouponSubmit = useCallback(
     async (code?: string) => {
       try {
+        setLoading(true);
         const coupon = await getDiscount(code);
         if (coupon) {
           setDiscount(coupon);
           setDiscountApplied(true);
+          setLoading(false);
         }
       } catch (error) {
         setDiscount(null);
         setDiscountApplied(false);
+        setLoading(false);
         toast.error(error as string, {
           icon: <AiFillCloseCircle className='h-5 w-5 text-danger' />,
         });
@@ -59,6 +66,7 @@ const StripeCheckout: FC<StripeCheckoutProps> = ({ user, productOffering, member
   const handleCheckout = useCallback(
     async (token: string) => {
       try {
+        setLoading(true);
         if (!membershipOffering || !productOffering) return;
         await checkout({
           token: token as string,
@@ -74,7 +82,9 @@ const StripeCheckout: FC<StripeCheckoutProps> = ({ user, productOffering, member
             },
           ],
         });
+        setLoading(false);
       } catch (error) {
+        setLoading(false);
         toast.error(error as string, {
           icon: <AiFillCloseCircle className='h-5 w-5 text-danger' />,
         });
@@ -110,7 +120,7 @@ const StripeCheckout: FC<StripeCheckoutProps> = ({ user, productOffering, member
             />
           </div>
           <div className='mt-11 lg:pl-[71px] lg:ml-6'>
-            <DiscountForm submitCoupon={handleCouponSubmit} discountApplied={discountApplied} />
+            <DiscountForm loading={loading} submitCoupon={handleCouponSubmit} discountApplied={discountApplied} />
             <TotalCalc
               productPrice={Number(product.price)}
               membershipPrice={Number(membership.price)}
@@ -121,7 +131,7 @@ const StripeCheckout: FC<StripeCheckoutProps> = ({ user, productOffering, member
         </div>
       </div>
       <div className='h-full w-full bg-white'>
-        <StripeElementsProvider totalPrice={totalPrice} handleCheckout={handleCheckout} user={user} />
+        <StripeElementsProvider loading={loading} totalPrice={totalPrice} handleCheckout={handleCheckout} user={user} />
       </div>
     </div>
   );

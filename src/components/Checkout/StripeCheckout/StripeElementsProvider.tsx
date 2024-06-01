@@ -1,7 +1,7 @@
 "use client";
 
 import { Elements, ElementsConsumer } from "@stripe/react-stripe-js";
-import { StripeElementsOptions, loadStripe } from "@stripe/stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
 import { FC } from "react";
 
 import StripeForm from "./StripeForm";
@@ -11,8 +11,9 @@ type BillingFormProps = {
   totalPrice?: number;
   handleCheckout: (token: string) => void;
   user: UserDetailData;
+  loading: boolean;
 };
-const StripeElementsProvider: FC<BillingFormProps> = ({ totalPrice, handleCheckout, user }) => {
+const StripeElementsProvider: FC<BillingFormProps> = ({ totalPrice, handleCheckout, user, loading }) => {
   const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_TOKEN_STAGING || "pk_test_fAj7WlTrG0uc5Z9WHKQDdoTq");
 
   return (
@@ -25,6 +26,7 @@ const StripeElementsProvider: FC<BillingFormProps> = ({ totalPrice, handleChecko
             totalPrice={totalPrice}
             handleCheckout={handleCheckout}
             user={user}
+            loading={loading}
           />
         )}
       </ElementsConsumer>

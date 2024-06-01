@@ -5,8 +5,9 @@ import { FormikProps, useFormik } from "formik";
 type DiscountFormProps = {
   submitCoupon: (code?: string) => void;
   discountApplied: boolean;
+  loading: boolean;
 };
-const DiscountForm: FC<DiscountFormProps> = ({ submitCoupon, discountApplied = false }) => {
+const DiscountForm: FC<DiscountFormProps> = ({ submitCoupon, discountApplied = false, loading }) => {
   const formik: FormikProps<{ coupon_code: string }> = useFormik({
     initialValues: {
       coupon_code: "",
@@ -36,6 +37,7 @@ const DiscountForm: FC<DiscountFormProps> = ({ submitCoupon, discountApplied = f
         placeholder='Coupon Discount'
         value={formik.values.coupon_code}
         onChange={formik.handleChange}
+        disabled={loading}
       />
       <div className='absolute w-4 h-4 lg:w-6 lg:h-6 right-[22px] bottom-[22px] lg:bottom-[18px]'>
         {discountApplied && <GreenCircleTick />}
