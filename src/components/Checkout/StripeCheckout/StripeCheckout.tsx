@@ -5,13 +5,15 @@ import CheckoutItem from "./CheckoutItem";
 import { CheckoutStep } from "../Main";
 import { useSearchParams } from "next/navigation";
 import { checkoutData } from "@/constant/data";
-import BillingForm from "./StripeElementsProvider";
+
 import { checkout, getDiscount } from "../api/onboarding";
 import { DiscountReturnType, InitialOfferingsReturnType, MembershipOfferingsReturnType } from "../api/types";
 import { toast } from "sonner";
 import { AiFillCloseCircle } from "react-icons/ai";
 import { UserDetailData } from "@/interfaces/precheckout";
 import StripeElementsProvider from "./StripeElementsProvider";
+import TagUserIcon from "@/components/Icons/TagUserIcon";
+import MicroscopeIcon from "@/components/Icons/MicroscopeIcon";
 
 type StripeCheckoutProps = {
   setStep: React.Dispatch<React.SetStateAction<CheckoutStep>>;
@@ -96,10 +98,16 @@ const StripeCheckout: FC<StripeCheckoutProps> = ({ user, productOffering, member
               plan={membership.value}
               price={membership.price}
               metadata={`then ${membership.price} ${membership.value}`}
+              icon={TagUserIcon}
             />
           </div>
           <div className='my-6'>
-            <CheckoutItem name={product.name || ""} plan={product.priceNote || "12"} price={product.price || "12"} />
+            <CheckoutItem
+              name={product.name || ""}
+              plan={product.priceNote || "12"}
+              price={product.price || "12"}
+              icon={MicroscopeIcon}
+            />
           </div>
           <div className='mt-11 lg:pl-[71px] lg:ml-6'>
             <DiscountForm submitCoupon={handleCouponSubmit} discountApplied={discountApplied} />
