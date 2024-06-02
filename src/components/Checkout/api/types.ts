@@ -18,11 +18,16 @@ export interface TempUserDataParams {
   zipCode: string;
 }
 
-export interface TemUserReturnType extends TempUserDataParams {
+export interface TemUser extends TempUserDataParams {
   id: number;
   joinedWaitList: boolean;
   createdAt: string;
   updatedAt: string;
+}
+
+export interface TempUserReturnType {
+  user: TemUser;
+  stateExists: boolean;
 }
 
 export interface WaitListParams {

@@ -101,7 +101,7 @@ const checkoutData = {
         type: "link",
         externalLink: true,
         href: "https://app.gogeviti.com/",
-        text: '<span class="lg:hidden">Create Geviti Account</span><span class="max-lg:hidden">Lets Begin Onboarding</span>',
+        text: "Lets Begin Onboarding",
       },
       btnSecondary: null,
     },

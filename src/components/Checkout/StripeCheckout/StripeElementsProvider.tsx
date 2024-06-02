@@ -5,15 +5,14 @@ import { loadStripe } from "@stripe/stripe-js";
 import { FC } from "react";
 
 import StripeForm from "./StripeForm";
-import { UserDetailData } from "@/interfaces/precheckout";
 
 type BillingFormProps = {
   totalPrice?: number;
   handleCheckout: (token: string) => void;
-  user: UserDetailData;
+  userEmail: string;
   loading: boolean;
 };
-const StripeElementsProvider: FC<BillingFormProps> = ({ totalPrice, handleCheckout, user, loading }) => {
+const StripeElementsProvider: FC<BillingFormProps> = ({ totalPrice, handleCheckout, userEmail, loading }) => {
   const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_TOKEN_STAGING || "pk_test_fAj7WlTrG0uc5Z9WHKQDdoTq");
 
   return (
@@ -25,7 +24,7 @@ const StripeElementsProvider: FC<BillingFormProps> = ({ totalPrice, handleChecko
             elements={elements}
             totalPrice={totalPrice}
             handleCheckout={handleCheckout}
-            user={user}
+            userEmail={userEmail}
             loading={loading}
           />
         )}

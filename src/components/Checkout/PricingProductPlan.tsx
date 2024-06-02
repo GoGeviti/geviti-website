@@ -47,7 +47,7 @@ const PricingProductPlan: React.FC<PricingProductPlanProps> = ({ setStep, setSel
   const onClickSelectOption = (product: InitialOfferingsReturnType) => {
     if (setStep) {
       const params = new URLSearchParams(searchParams.toString());
-      params.set("product", product.name);
+      params.set("product", product.id);
       if (window) {
         window.history.pushState(null, "", `?${params.toString()}`);
         window.scrollTo({ top: 0 });

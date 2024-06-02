@@ -58,9 +58,9 @@ const MemberFrequencyPlan: React.FC<MemberFrequencyPlanProps> = ({ setStep, setS
 
     const selectedPayment = offerings[activeTabIdx].billing_frequency;
 
-    const product = searchParams?.get("product");
+    const product = searchParams.get("product");
     const params = new URLSearchParams(searchParams.toString());
-    params.set("membership", selectedPayment);
+    params.set("membership", offerings[activeTabIdx].id);
     if (window) {
       window.history.pushState(null, "", `?${params.toString()}`);
       window.scrollTo({ top: 0 });
@@ -69,6 +69,7 @@ const MemberFrequencyPlan: React.FC<MemberFrequencyPlanProps> = ({ setStep, setS
     if (setStep) {
       setStep(CheckoutStep.STRIPE_PAYMENT);
       setSelectedMembership(offerings[activeTabIdx]);
+      router.replace(`/payment?product=${product}&&membership=${offerings[activeTabIdx].id}`);
     }
   };
 

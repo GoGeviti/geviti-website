@@ -194,6 +194,8 @@ const ClockIcon = () => {
 const getData = (step?: CheckoutStep) => {
   if (step === CheckoutStep.WAITLIST_STATE_AVAILABLE) return checkoutData.state.waitlistAvailable;
   if (step === CheckoutStep.WAITLIST_STATE_NOT_AVAILABLE) return checkoutData.state.waitlistNotAvailable;
+  if (step === CheckoutStep.STRIPE_PAYMENT_SUCCESSFUL) return checkoutData.paymentState.success;
+  if (step === CheckoutStep.STRIPE_PAYMENT_FAIL) return checkoutData.paymentState.error;
   return checkoutData.state.successJoinWaitlist;
 };
 

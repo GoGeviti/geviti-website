@@ -5,7 +5,7 @@ import {
   ErrorResponse,
   InitialOfferingsReturnType,
   MembershipOfferingsReturnType,
-  TemUserReturnType,
+  TempUserReturnType,
   TempUserDataParams,
   WaitListParams,
 } from "./types";
@@ -15,7 +15,7 @@ const token = process.env.NEXT_PUBLIC_ONBOARDING_TOKEN;
 
 const headers = { Authorization: `Bearer ${token}`, "Content-Type": "application/json" };
 
-export const addTempUser = async (params: TempUserDataParams): Promise<TemUserReturnType> => {
+export const addTempUser = async (params: TempUserDataParams): Promise<TempUserReturnType> => {
   try {
     const res = await fetch(
       `${onboardingApiUrl}/v2/users/add-temporary-user

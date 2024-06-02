@@ -1,7 +1,6 @@
 import React, { FC, useCallback, useMemo, useState } from "react";
 import Checkbox from "@/components/Onboarding/Checkbox";
 import clsxm from "@/helpers/clsxm";
-import { UserDetailData } from "@/interfaces/precheckout";
 import { CardCvcElement, CardExpiryElement, CardNumberElement } from "@stripe/react-stripe-js";
 import { Stripe, StripeElements, StripeError } from "@stripe/stripe-js";
 import { toast } from "sonner";
@@ -10,7 +9,7 @@ type StripeFormProps = {
   stripe: Stripe | null;
   elements: StripeElements | null;
   totalPrice?: number;
-  user: UserDetailData;
+  userEmail: string;
   handleCheckout: (token: string) => void;
   loading: boolean;
 };
@@ -19,7 +18,7 @@ const inputStyles = clsxm(
   "text-black bg-whitetext-xs lg:text-lg font-normal !leading-normal font-Poppins placeholder:text-grey-500 px-6 py-18px",
   "placeholder-grey-300"
 );
-const StripeForm: FC<StripeFormProps> = ({ stripe, elements, totalPrice, user, loading, handleCheckout }) => {
+const StripeForm: FC<StripeFormProps> = ({ stripe, elements, totalPrice, userEmail, loading, handleCheckout }) => {
   const [stripeResponseLoading, setStripeResponseLoading] = useState(false);
 
   const formLoading = useMemo(() => stripeResponseLoading || loading, [stripeResponseLoading, loading]);
@@ -64,8 +63,8 @@ const StripeForm: FC<StripeFormProps> = ({ stripe, elements, totalPrice, user, l
             <input
               type='text'
               name='name_on_card'
-              placeholder={user.email}
-              value={user.email}
+              placeholder={userEmail}
+              value={userEmail}
               className={inputStyles}
               autoComplete='off'
               disabled

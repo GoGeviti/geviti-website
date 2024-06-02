@@ -79,7 +79,8 @@ const Form: React.FC<{
           zipCode: zip_code,
           dob: `${birthdate?.getFullYear()}-${birthdate?.getMonth()}-0${birthdate?.getDay()}`,
         });
-        return onNextStep({ ...form, id: tempUser.id }, CheckoutStep.PRICING_PRODUCT_PLAN);
+        localStorage.setItem("temp_user", JSON.stringify(tempUser.user));
+        return onNextStep({ ...form, id: tempUser.user.id }, CheckoutStep.PRICING_PRODUCT_PLAN);
       } catch (error) {
         toast.error(error as string, {
           icon: <AiFillCloseCircle className='h-5 w-5 text-danger' />,
@@ -283,7 +284,7 @@ const Form: React.FC<{
                 </button>
                 <button
                   type='button'
-                  onClick={() => router.back()}
+                  onClick={() => router.replace("payment/success")}
                   className='max-sm:w-full text-grey-primary border border-grey-primary transition duration-200 hover:brightness-105 py-[17px] px-[42px] rounded-full focus:ring-0 focus:outline-none'
                 >
                   {formSectionData.cancelLabel}

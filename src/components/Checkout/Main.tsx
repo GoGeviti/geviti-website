@@ -25,6 +25,8 @@ export enum CheckoutStep {
   PRICING_PRODUCT_PLAN = "PRICING_PRODUCT_PLAN",
   MEMBER_FREQUENCY_PLAN = "MEMBER_FREQUENCY_PLAN",
   STRIPE_PAYMENT = "STRIPE_PAYMENT",
+  STRIPE_PAYMENT_SUCCESSFUL = "STRIPE_PAYMENT_SUCCESSFUL",
+  STRIPE_PAYMENT_FAIL = "STRIPE_PAYMENT_FAIL",
 }
 
 const Main: React.FC<PageProps> = ({ searchParams }) => {
@@ -115,13 +117,35 @@ const Main: React.FC<PageProps> = ({ searchParams }) => {
       );
     }
 
-    if (step === CheckoutStep.STRIPE_PAYMENT) {
+    /* if (step === CheckoutStep.STRIPE_PAYMENT) {
       return (
         <StripeCheckout
           setStep={setStep}
           user={userData}
           productOffering={selectedOffering}
           membershipOffering={selectedMembership}
+        />
+      );
+    } */
+
+    if (step === CheckoutStep.STRIPE_PAYMENT_SUCCESSFUL) {
+      return (
+        <State
+          key={CheckoutStep.STRIPE_PAYMENT_SUCCESSFUL}
+          iconType='success'
+          step={CheckoutStep.STRIPE_PAYMENT_SUCCESSFUL}
+          userData={userData}
+        />
+      );
+    }
+
+    if (step === CheckoutStep.STRIPE_PAYMENT_FAIL) {
+      return (
+        <State
+          key={CheckoutStep.STRIPE_PAYMENT_FAIL}
+          iconType='exclamation'
+          step={CheckoutStep.STRIPE_PAYMENT_FAIL}
+          userData={userData}
         />
       );
     }
