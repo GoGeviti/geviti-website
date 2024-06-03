@@ -4,7 +4,7 @@ import React, {
 	FC, useCallback, useEffect, useMemo, useState
 } from 'react';
 import { AiFillCloseCircle } from 'react-icons/ai';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
 
 import MicroscopeIcon from '@/components/Icons/MicroscopeIcon';
@@ -28,12 +28,15 @@ import DiscountForm from './DiscountForm';
 import PageHeader from './PageHeader';
 import StripeElementsProvider from './StripeElementsProvider';
 
+type PageProps = {
+	searchParams: { [key: string]: string | string[] | undefined; };
+};
 // TODO: make membership plans completely dynamic
-const StripeCheckout: FC = () => {
-	const searchParams = useSearchParams();
+const StripeCheckout: FC<PageProps> = ({searchParams}) => {
+	// const searchParams = useSearchParams();
 	const router = useRouter();
-	const productId = searchParams.get('product');
-	const membershipId = searchParams.get('membership');
+	const productId = searchParams?.product;
+	const membershipId = searchParams?.membership;
 
 	const [loading, setLoading] = useState(false);
 	const [tempUser, setTempUser] = useState<TemUser>();
