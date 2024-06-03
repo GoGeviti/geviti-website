@@ -63,16 +63,26 @@ const Hero: React.FC<{ type: 'men' | 'women'; }> = ({ type }) => {
 		const imageMobile = imageType === 'mobile';
 
 		return (
-			<Image
+			// <Image
+			// 	src={ imageMobile ? heroData.imageMobile : heroData.image }
+			// 	alt='hero'
+			// 	priority
+			// 	className={ clsxm(
+			// 		'object-cover pointer-events-none',
+			// 		imageMobile ? 'md:hidden object-center' : 'md:block hidden object-right'
+			// 	) }
+			// 	fill
+			// 	// quality={ 100 }
+			// 	sizes='(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 100vw'
+			// />
+			// eslint-disable-next-line @next/next/no-img-element
+			<img
 				src={ imageMobile ? heroData.imageMobile : heroData.image }
 				alt='hero'
-				priority
 				className={ clsxm(
 					'object-cover pointer-events-none',
 					imageMobile ? 'md:hidden object-center' : 'md:block hidden object-right'
 				) }
-				fill
-				// quality={ 100 }
 				sizes='(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 100vw'
 			/>
 		);
