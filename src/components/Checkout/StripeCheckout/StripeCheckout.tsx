@@ -1,3 +1,5 @@
+"use client";
+
 import React, { FC, useCallback, useEffect, useMemo, useState } from "react";
 import PageHeader from "./PageHeader";
 import DiscountForm from "./DiscountForm";
@@ -18,21 +20,22 @@ const StripeCheckout: FC = () => {
   const router = useRouter();
   const productId = searchParams.get("product");
   const membershipId = searchParams.get("membership");
-  const user = localStorage.getItem("temp_user");
 
   const [loading, setLoading] = useState(false);
+  const [tempUser, setTempUser] = useState<TemUser>();
   const [product, setProduct] = useState<InitialOfferingsReturnType>();
   const [membership, setMembership] = useState<MembershipOfferingsReturnType>();
   const [discount, setDiscount] = useState<DiscountReturnType | null>(null);
   const [totalPrice, setTotalPrice] = useState<number>();
   const [discountApplied, setDiscountApplied] = useState(false);
-  if (!user) {
-    router.replace("onboarding");
-    return;
-  }
-  const tempUser = JSON.parse(user) as TemUser;
 
   useEffect(() => {
+    const user = localStorage.getItem("temp_user");
+    if (!user) {
+      router.back();
+      return;
+    }
+    setTempUser(JSON.parse(user));
     const getOfferings = async () => {
       setLoading(true);
       const offerings = await getInitialOfferings();
@@ -48,7 +51,6 @@ const StripeCheckout: FC = () => {
   const handleCouponSubmit = useCallback(
     async (code?: string) => {
       try {
-        setLoading(true);
         const coupon = await getDiscount(code);
         if (coupon) {
           setDiscount(coupon);
@@ -58,7 +60,6 @@ const StripeCheckout: FC = () => {
       } catch (error) {
         setDiscount(null);
         setDiscountApplied(false);
-        setLoading(false);
         toast.error(error as string, {
           icon: <AiFillCloseCircle className='h-5 w-5 text-danger' />,
         });
@@ -71,7 +72,7 @@ const StripeCheckout: FC = () => {
     async (token: string) => {
       try {
         setLoading(true);
-        if (!product || !membership) return;
+        if (!product || !membership || !tempUser) return;
         await checkout({
           token: token as string,
           email: tempUser.email,
@@ -87,7 +88,7 @@ const StripeCheckout: FC = () => {
           ],
         });
         setLoading(false);
-        router.replace("payment/success");
+        router.push("payment/success");
       } catch (error) {
         setLoading(false);
         toast.error(error as string, {
@@ -97,43 +98,38 @@ const StripeCheckout: FC = () => {
     },
     [product, membership]
   );
-
   return (
     <div className='flex flex-col lg:flex-row min-h-screen h-full w-full'>
       <div className='min-h-screen h-auto w-full bg-primary'>
         <div className='flex flex-col w-full px-4 lg:px-20'>
-          <PageHeader onBackClick={() => router.replace("/onboarding")} />
+          <PageHeader onBackClick={() => router.back()} />
           <div className='my-6'>
-            {membership && (
-              <CheckoutItem
-                name={`billed ${membership.name}`}
-                plan={membership.name}
-                price={membership.price}
-                metadata={`then ${membership.price} ${membership.name}`}
-                icon={TagUserIcon}
-              />
-            )}
+            <CheckoutItem
+              name={`${membership?.name}`}
+              plan={`Billed ${membership?.billing_frequency}`}
+              price={membership?.first_time_payment}
+              metadata={`then $${membership?.price} ${membership?.billing_frequency.toLowerCase()}`}
+              icon={TagUserIcon}
+              loading={loading}
+            />
           </div>
           <div className='my-6'>
-            {product && (
-              <CheckoutItem
-                name={product.name || ""}
-                plan={product.first_time_payment || "12"}
-                price={product.price || "12"}
-                icon={MicroscopeIcon}
-              />
-            )}
+            <CheckoutItem
+              name={product?.name || ""}
+              plan='One Time Payment'
+              price={product?.price || "12"}
+              icon={MicroscopeIcon}
+              loading={loading}
+            />
           </div>
           <div className='mt-11 lg:pl-[71px] lg:ml-6'>
             <DiscountForm loading={loading} submitCoupon={handleCouponSubmit} discountApplied={discountApplied} />
-            {product && membership && (
-              <TotalCalc
-                productPrice={Number(product.price)}
-                membershipPrice={Number(membership.price)}
-                discount={discount}
-                setTotalPrice={setTotalPrice}
-              />
-            )}
+            <TotalCalc
+              productPrice={Number(product?.price)}
+              membershipPrice={Number(membership?.price)}
+              discount={discount}
+              setTotalPrice={setTotalPrice}
+            />
           </div>
         </div>
       </div>
@@ -142,7 +138,7 @@ const StripeCheckout: FC = () => {
           loading={loading}
           totalPrice={totalPrice}
           handleCheckout={handleCheckout}
-          userEmail={tempUser.email}
+          userEmail={tempUser?.email || ""}
         />
       </div>
     </div>

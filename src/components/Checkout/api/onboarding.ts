@@ -58,7 +58,6 @@ export const getInitialOfferings = async (): Promise<InitialOfferingsReturnType[
     const res = await fetch(`${onboardingApiUrl}/billing/offerings-info?billingType=initial-package`, {
       method: "GET",
       headers,
-      cache: "no-store",
     });
     const data = await res.json();
     return data;
@@ -75,7 +74,6 @@ export const getMembershipOfferings = async (): Promise<MembershipOfferingsRetur
       {
         method: "GET",
         headers,
-        cache: "no-store",
       }
     );
     const data = await res.json();

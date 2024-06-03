@@ -56,8 +56,6 @@ const MemberFrequencyPlan: React.FC<MemberFrequencyPlanProps> = ({ setStep, setS
   const onClickSubmit = () => {
     if (!offerings) return;
 
-    const selectedPayment = offerings[activeTabIdx].billing_frequency;
-
     const product = searchParams.get("product");
     const params = new URLSearchParams(searchParams.toString());
     params.set("membership", offerings[activeTabIdx].id);
@@ -69,7 +67,7 @@ const MemberFrequencyPlan: React.FC<MemberFrequencyPlanProps> = ({ setStep, setS
     if (setStep) {
       setStep(CheckoutStep.STRIPE_PAYMENT);
       setSelectedMembership(offerings[activeTabIdx]);
-      router.replace(`/payment?product=${product}&&membership=${offerings[activeTabIdx].id}`);
+      router.push(`/onboarding/payment?product=${product}&&membership=${offerings[activeTabIdx].id}`);
     }
   };
 

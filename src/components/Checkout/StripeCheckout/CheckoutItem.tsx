@@ -1,13 +1,14 @@
 import React, { FC } from "react";
 
 interface ICheckoutItem {
-  name: string;
-  price: string;
-  plan: string;
+  name?: string;
+  price?: string;
+  plan?: string;
   metadata?: string;
   icon?: React.JSX.Element;
+  loading: boolean;
 }
-const CheckoutItem: FC<ICheckoutItem> = ({ name = "", price = "", plan = "", metadata = "", icon }) => {
+const CheckoutItem: FC<ICheckoutItem> = ({ name, price, plan, metadata, icon, loading }) => {
   return (
     <div className='flex border-b-2 border-grey-950 lg:border-none'>
       <div className='flex items-center justify-center w-[53px] h-[53px] lg:w-[71px] lg:h-[71px] bg-blue-primary rounded-[10px]'>
