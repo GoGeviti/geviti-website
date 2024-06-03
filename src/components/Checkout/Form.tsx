@@ -76,7 +76,7 @@ const Form: React.FC<{
 					addressLine1: address_1,
 					addressLine2: address_2,
 					zipCode: zip_code,
-					dob: `${birthdate?.getFullYear()}-${birthdate?.getMonth()}-0${birthdate?.getDay()}`,
+					dob: `${birthdate?.toISOString()}`,
 				});
 				localStorage.setItem('temp_user', JSON.stringify(tempUser.user));
 				if (!tempUser.stateExists) {
