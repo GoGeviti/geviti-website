@@ -76,7 +76,7 @@ const Form: React.FC<{
 			<Navbar
 				className='lg:hidden'
 				theme='dark' />
-			<div className='bg-primary lg:bg-black-card h-full w-full lg:rounded-20px relative overflow-hidden pt-6 pb-[220px] lg:py-10 xl:py-[4.63vh] px-4 lg:px-10 2xl:px-[123px] xl:min-h-[calc(100svh-80px)]'>
+			<div className='bg-primary lg:bg-black-card h-full w-full lg:rounded-20px relative overflow-hidden pt-6 pb-6 lg:py-10 xl:py-[4.63vh] px-4 lg:px-10 2xl:px-[123px] xl:min-h-[calc(100svh-80px)]'>
 				<motion.div
 					variants={ {
 						initial: { y: 0, opacity: 1 },

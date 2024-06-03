@@ -25,6 +25,9 @@ export default function IntroScreen({ children, src, type = 'video', showIntro =
 			// setVideoLoaded(true);
 			await controls.start('enter');
 		}
+		if (type === 'image') {
+			await controls.start('enter');
+		}
 	};
 
 	useEffect(() => {
