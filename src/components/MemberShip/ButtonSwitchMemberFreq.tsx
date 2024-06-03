@@ -8,7 +8,7 @@ import clsxm from "@/helpers/clsxm";
 type ButtonSwitchMemberFreqProps = {
   layoutId?: string;
   options: {
-    title: "Monthly" | "Quarterly";
+    title: string;
   }[];
   onChange?: (currentActiveIdx: number) => void; // eslint-disable-line no-unused-vars
   showHightlightTextOnMobile?: boolean;
