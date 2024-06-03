@@ -51,8 +51,9 @@ const StripeCheckout: FC = () => {
   const handleCouponSubmit = useCallback(
     async (code?: string) => {
       try {
-        const coupon = await getDiscount(code);
-        if (coupon) {
+        if (!code || !product) return;
+        const coupon = await getDiscount({ keyword: code, offering_id: "39144", price: product.price });
+        if (coupon.coupon_exist) {
           setDiscount(coupon);
           setDiscountApplied(true);
           setLoading(false);
@@ -65,27 +66,30 @@ const StripeCheckout: FC = () => {
         });
       }
     },
-    [getDiscount]
+    [product, getDiscount]
   );
 
   const handleCheckout = useCallback(
-    async (token: string) => {
+    async (token: string, product?: InitialOfferingsReturnType, membership?: MembershipOfferingsReturnType) => {
       try {
         setLoading(true);
         if (!product || !membership || !tempUser) return;
         await checkout({
-          token: token as string,
-          email: tempUser.email,
-          packages: [
-            {
-              price: product.price,
-              offering_id: product.id,
-            },
-            {
-              price: membership.price,
-              offering_id: membership.id,
-            },
-          ],
+          user_token: tempUser.token,
+          stripe_token: token,
+          product: {
+            price: product.price,
+            offering_id: product.id,
+          },
+          membership: {
+            price: membership.price,
+            offering_id: membership.id,
+          },
+          addons: {
+            price: "",
+            offering_id: "",
+          },
+          coupon: "",
         });
         setLoading(false);
         router.push("payment/success");
@@ -96,7 +100,7 @@ const StripeCheckout: FC = () => {
         });
       }
     },
-    [product, membership]
+    [product, membership, tempUser]
   );
   return (
     <div className='flex flex-col lg:flex-row min-h-screen h-full w-full'>
@@ -139,6 +143,8 @@ const StripeCheckout: FC = () => {
           totalPrice={totalPrice}
           handleCheckout={handleCheckout}
           userEmail={tempUser?.email || ""}
+          product={product}
+          membership={membership}
         />
       </div>
     </div>
@@ -155,7 +161,7 @@ const TotalCalc: FC<ITotalCalc> = ({ productPrice, membershipPrice, discount, se
   const total = useMemo(() => productPrice + membershipPrice, [productPrice, membershipPrice]);
   const totalDue = useMemo(() => {
     if (discount) {
-      const discountedAmounted = total - (total * Number(discount.amount_off)) / 100;
+      const discountedAmounted = total - Number(discount.coupon_details.discounted_price);
       setTotalPrice(discountedAmounted);
       return discountedAmounted;
     }
@@ -167,12 +173,16 @@ const TotalCalc: FC<ITotalCalc> = ({ productPrice, membershipPrice, discount, se
     <div className='flex justify-between py-12'>
       <div className='flex flex-col'>
         <p className='text-grey-primary text-sm'>Total</p>
-        {discount?.code && <p className='text-grey-primary py-6 text-sm'>Coupon - {discount.code}</p>}
+        {discount?.coupon_details.keyword && (
+          <p className='text-grey-primary py-6 text-sm'>Coupon - {discount.coupon_details.keyword}</p>
+        )}
         <p className='text-white text-lg py-6'>Total due</p>
       </div>
       <div className='flex flex-col text-right'>
         <p className='text-grey-primary text-sm'>${total}</p>
-        {discount?.code && <p className='text-grey-primary py-6 text-sm'>-${discount.amount_off}</p>}
+        {discount?.coupon_details.keyword && (
+          <p className='text-grey-primary py-6 text-sm'>-${discount.coupon_details.discounted_price}</p>
+        )}
         <p className='text-white text-lg py-6'>${totalDue}</p>
       </div>
     </div>

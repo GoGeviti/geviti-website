@@ -8,6 +8,7 @@ import {
   TempUserReturnType,
   TempUserDataParams,
   WaitListParams,
+  DiscountParams,
 } from "./types";
 
 const onboardingApiUrl = process.env.NEXT_PUBLIC_ONBOARDING_API_URL || "";
@@ -83,10 +84,10 @@ export const getMembershipOfferings = async (): Promise<MembershipOfferingsRetur
   }
 };
 
-export const getDiscount = async (discountCode: string = ""): Promise<DiscountReturnType> => {
+export const getDiscount = async (params: DiscountParams): Promise<DiscountReturnType> => {
   try {
     const res = await fetch(
-      `${onboardingApiUrl}/billing/offerings-coupon?keyword=${discountCode}
+      `${onboardingApiUrl}/billing/offerings-coupon?keyword=${params.keyword}&offering_id=${params.offering_id}&price=${params.price}
     `,
       {
         method: "GET",

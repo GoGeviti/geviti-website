@@ -23,6 +23,7 @@ export interface TemUser extends TempUserDataParams {
   joinedWaitList: boolean;
   createdAt: string;
   updatedAt: string;
+  token: string;
 }
 
 export interface TempUserReturnType {
@@ -55,24 +56,38 @@ export interface MembershipOfferingsReturnType {
   visibility_status: "visible_to_all" | "hidden";
 }
 
+export interface DiscountParams {
+  keyword: string;
+  offering_id: string;
+  price: string;
+}
 export interface DiscountReturnType {
-  id: string;
-  promo_type: string;
-  amount_off: string;
-  code: string;
-  expires_at: any;
-  usage_limit: any;
-  number_of_times_used: string;
+  coupon_exist: boolean;
+  coupon_details: {
+    keyword: string;
+    offering_id: string;
+    original_price: string;
+    discounted_price: string;
+    promo_type: string;
+  };
 }
 
 export interface CheckoutParams {
-  email: string;
-  token: string;
-  packages: {
+  user_token: string;
+  stripe_token: string;
+  product: {
     price: string;
     offering_id: string;
-    coupon_code?: string;
-  }[];
+  };
+  membership: {
+    price: string;
+    offering_id: string;
+  };
+  addons: {
+    price: string;
+    offering_id: string;
+  };
+  coupon: string;
 }
 
 export interface CheckoutResponseType {
