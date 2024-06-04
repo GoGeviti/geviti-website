@@ -32,7 +32,7 @@ type PageProps = {
 	searchParams: { [key: string]: string | string[] | undefined; };
 };
 // TODO: make membership plans completely dynamic
-const StripeCheckout: FC<PageProps> = ({searchParams}) => {
+const StripeCheckout: FC<PageProps> = ({ searchParams }) => {
 	// const searchParams = useSearchParams();
 	const router = useRouter();
 	const productId = searchParams?.product;
@@ -71,13 +71,17 @@ const StripeCheckout: FC<PageProps> = ({searchParams}) => {
 				if (!code || !product) return;
 				const coupon = await getDiscount({
 					keyword: code,
-					offering_id: '39144',
+					offering_id: product.id,
 					price: product.price,
 				});
 				if (coupon.coupon_exist) {
 					setDiscount(coupon);
 					setDiscountApplied(true);
 					setLoading(false);
+				} else {
+					toast.error('Coupon does\'nt exist', {
+						icon: <AiFillCloseCircle className='h-5 w-5 text-danger' />,
+					});
 				}
 			} catch (error) {
 				setDiscount(null);
