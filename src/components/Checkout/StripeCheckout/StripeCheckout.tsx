@@ -93,22 +93,26 @@ const StripeCheckout: FC<PageProps> = ({searchParams}) => {
 	const handleCheckout = useCallback(
 		async(
 			token: string,
-			checkoutProduct?: InitialOfferingsReturnType,
-			checkoutMembership?: MembershipOfferingsReturnType
 		) => {
 			try {
+
+				if (!product || !membership || !tempUser) {
+					toast.error('', {
+						icon: <AiFillCloseCircle className='h-5 w-5 text-danger' />,
+					});
+					return;
+				}
 				setLoading(true);
-				if (!checkoutProduct || !checkoutMembership || !tempUser) return;
 				await checkout({
 					user_token: tempUser.token,
 					stripe_token: token,
 					product: {
-						price: checkoutProduct.price,
-						offering_id: checkoutProduct.id,
+						price: product.price,
+						offering_id: product.id,
 					},
 					membership: {
-						price: checkoutMembership.price,
-						offering_id: checkoutMembership.id,
+						price: membership.price,
+						offering_id: membership.id,
 					},
 					addons: {
 						price: '',
@@ -172,8 +176,6 @@ const StripeCheckout: FC<PageProps> = ({searchParams}) => {
 					totalPrice={ totalPrice }
 					handleCheckout={ handleCheckout }
 					userEmail={ tempUser?.email || '' }
-					product={ product }
-					membership={ membership }
 				/>
 			</div>
 		</div>
