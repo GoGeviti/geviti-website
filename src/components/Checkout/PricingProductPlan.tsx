@@ -115,7 +115,6 @@ const PricingProductPlan: React.FC<PricingProductPlanProps> = ({ setStep }) => {
                 					<h3 className='!leading-[28px] text-[5.128vw] xs2:text-xl'>{ item.name }</h3>
 
                 					<span className='font-medium text-5xl !leading-[125%] py-1'>
-                						{ /* <span>${item.price}</span> <span className='text-xs lg:text-sm'>{item.priceNote}</span> */ }
                 						<span>${ item.price }</span>{ ' ' }
                 						<span className='text-xs lg:text-sm'>{ productLocalData?.priceNote }</span>
                 					</span>

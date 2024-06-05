@@ -294,7 +294,7 @@ const Form: React.FC<{
 								</button>
 								<button
 									type='button'
-									onClick={ () => router.replace('payment/success') }
+									onClick={ () => router.replace('/') }
 									className='max-sm:w-full text-grey-primary border border-grey-primary transition duration-200 hover:brightness-105 py-[17px] px-[42px] rounded-full focus:ring-0 focus:outline-none'
 								>
 									{ formSectionData.cancelLabel }

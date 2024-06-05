@@ -35,7 +35,7 @@ export const addTempUser = async(params: TempUserDataParams): Promise<TempUserRe
 		throw await res.json();
 	} catch (error) {
 		const err = error as ErrorResponse;
-		return Promise.reject(err.message.toString());
+		return Promise.reject(err?.message?.toString() || 'Something went wrong');
 	}
 };
 
@@ -54,14 +54,22 @@ export const joinWaitList = async(params: WaitListParams) => {
 	}
 };
 
+const processResponse = async <T>(res: Response): Promise<T> => {
+	if (res.ok) {
+		const data = await res.json() as T;
+		return data;
+	}
+	throw await res.json();
+}
+
 export const getInitialOfferings = async(): Promise<InitialOfferingsReturnType[]> => {
 	try {
 		const res = await fetch(`${onboardingApiUrl}/billing/offerings-info?billingType=initial-package`, {
 			method: 'GET',
 			headers,
 		});
-		const data = await res.json();
-		return data;
+		const data = await processResponse<InitialOfferingsReturnType[]>(res);
+		return data.map(it => ({ ...it, price: Number(it.price), first_time_payment: Number(it.first_time_payment) }))
 	} catch (error) {
 		return Promise.reject(error);
 	}
@@ -77,8 +85,8 @@ export const getMembershipOfferings = async(): Promise<MembershipOfferingsReturn
 				headers,
 			}
 		);
-		const data = await res.json();
-		return data;
+		const data = await processResponse<MembershipOfferingsReturnType[]>(res);
+		return data.map(it => ({ ...it, price: Number(it.price), first_time_payment: Number(it.first_time_payment) }))
 	} catch (error) {
 		return Promise.reject(error);
 	}

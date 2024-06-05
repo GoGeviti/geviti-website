@@ -1,7 +1,7 @@
 export interface ErrorResponse {
-  error: string;
-  statusCode: number;
-  message: string[];
+  error?: string;
+  statusCode?: number;
+  message?: string[];
 }
 
 export interface TempUserDataParams {
@@ -40,8 +40,8 @@ export interface InitialOfferingsReturnType {
   name: "Essentials Diagnostic" | "Comprehensive Diagnostic" | "Ultimate Diagnostic";
   billing_frequency: "One-Time";
   currency: string;
-  price: string;
-  first_time_payment: null;
+  price: string | number;
+  first_time_payment:  string | number | null;
   visibility_status: string;
 }
 
@@ -51,8 +51,8 @@ export interface MembershipOfferingsReturnType {
   billing_frequency: "Monthly" | "Quarterly";
   title: "Monthly" | "Quarterly";
   currency: string;
-  price: string;
-  first_time_payment: string;
+  price: string | number;
+  first_time_payment:  string | number | null;
   visibility_status: "visible_to_all" | "hidden";
 }
 
