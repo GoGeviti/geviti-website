@@ -118,10 +118,7 @@ const PricingProductPlan: React.FC<PricingProductPlanProps> = ({ setStep }) => {
                 						<span>${ item.price }</span>{ ' ' }
                 						<span className='text-xs lg:text-sm'>{ productLocalData?.priceNote }</span>
                 					</span>
-                					<p
-                						className='font-medium text-xs lg:text-sm !leading-6'
-                						dangerouslySetInnerHTML={ { __html: productLocalData?.priceDescGeneral || '' } }
-                					/>
+                					<p className='font-medium text-xs lg:text-sm !leading-6'>+ ongoing membership fee</p>
                 					<p className='text-4xl !leading-normal font-medium mb-[11px] mt-[25px] lg:mt-3.5'>
                 						<span className='-tracking-0.04em'>{ productLocalData?.biomakers } </span>
                 						<span className='text-xs !leading-normal'>biomarkers</span>
