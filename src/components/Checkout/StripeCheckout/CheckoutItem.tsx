@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 
 interface ICheckoutItem {
   name?: string;
-  price?: string;
+  price?: number;
   plan?: string;
   metadata?: string;
   icon?: React.JSX.Element;

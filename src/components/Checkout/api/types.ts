@@ -37,23 +37,23 @@ export interface WaitListParams {
 
 export interface InitialOfferingsReturnType {
   id: string;
-  name: "Essentials Diagnostic" | "Comprehensive Diagnostic" | "Ultimate Diagnostic";
-  billing_frequency: "One-Time";
+  name: 'Essentials Diagnostic' | 'Comprehensive Diagnostic' | 'Ultimate Diagnostic';
+  billing_frequency: 'One-Time';
   currency: string;
-  price: string | number;
-  first_time_payment:  string | number | null;
+  price: number;
+  first_time_payment: number;
   visibility_status: string;
 }
 
 export interface MembershipOfferingsReturnType {
   id: string;
-  name: "Monthly Subscription" | "Quarterly Subscription";
-  billing_frequency: "Monthly" | "Quarterly";
-  title: "Monthly" | "Quarterly";
+  name: 'Monthly Subscription' | 'Quarterly Subscription';
+  billing_frequency: 'Monthly' | 'Quarterly';
+  title: 'Monthly' | 'Quarterly';
   currency: string;
-  price: string | number;
-  first_time_payment:  string | number | null;
-  visibility_status: "visible_to_all" | "hidden";
+  price: number;
+  first_time_payment: number;
+  visibility_status: 'visible_to_all' | 'hidden';
 }
 
 export interface DiscountParams {
@@ -68,6 +68,7 @@ export interface DiscountReturnType {
     offering_id: string;
     original_price: string;
     discounted_price: string;
+    amount_off: string;
     promo_type: string;
   };
 }

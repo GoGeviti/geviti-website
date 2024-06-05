@@ -14,7 +14,6 @@ type StripeFormProps = {
   stripe: Stripe | null;
   elements: StripeElements | null;
   totalPrice?: number;
-  userEmail: string;
   handleCheckout: (token: string) => void;
   loading: boolean;
 };
@@ -27,7 +26,6 @@ const StripeForm: FC<StripeFormProps> = ({
 	stripe,
 	elements,
 	totalPrice,
-	userEmail,
 	loading,
 	handleCheckout,
 }) => {
@@ -38,8 +36,7 @@ const StripeForm: FC<StripeFormProps> = ({
 		() => stripeResponseLoading || loading,
 		[stripeResponseLoading, loading]
 	);
-	console.log('stripeResponseLoading', stripeResponseLoading);
-	console.log('laoding', loading);
+
 	const handleSubmit = async(e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 
@@ -73,19 +70,7 @@ const StripeForm: FC<StripeFormProps> = ({
 			<div className='flex flex-col justify-center items-center gap-2 w-full lg:mt-14 lg:pt-9'>
 				<div className={ clsxm('relative flex flex-col w-[90%] lg:w-[70%]') }>
 					<h1 className='text-2xl pt-12'>Payment Details</h1>
-					<h4 className='text-sm mt-6'>Email</h4>
-					<div className='pt-3 mb-10'>
-						<input
-							type='text'
-							name='name_on_card'
-							placeholder={ userEmail }
-							value={ userEmail }
-							className={ inputStyles }
-							autoComplete='off'
-							disabled
-						/>
-					</div>
-					<h4 className='text-sm'>Card Information</h4>
+					<h4 className='text-sm mt-6'>Card Information</h4>
 					<div className='pt-4'>
 						<input
 							type='text'

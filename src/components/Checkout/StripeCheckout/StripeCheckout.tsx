@@ -49,7 +49,7 @@ const StripeCheckout: FC<PageProps> = ({ searchParams }) => {
 	useEffect(() => {
 		const user = localStorage.getItem('temp_user');
 		if (!user) {
-			router.back();
+			router.replace('/onboarding');
 			return;
 		}
 		setTempUser(JSON.parse(user));
@@ -72,7 +72,7 @@ const StripeCheckout: FC<PageProps> = ({ searchParams }) => {
 				const coupon = await getDiscount({
 					keyword: code,
 					offering_id: product.id,
-					price: product.price,
+					price: product.price.toString(),
 				});
 				if (coupon.coupon_exist) {
 					setDiscount(coupon);
@@ -111,11 +111,11 @@ const StripeCheckout: FC<PageProps> = ({ searchParams }) => {
 					user_token: tempUser.token,
 					stripe_token: token,
 					product: {
-						price: product.price,
+						price: product.price.toString(),
 						offering_id: product.id,
 					},
 					membership: {
-						price: membership.price,
+						price: membership.price.toString(),
 						offering_id: membership.id,
 					},
 					addons: {
@@ -155,7 +155,7 @@ const StripeCheckout: FC<PageProps> = ({ searchParams }) => {
 						<CheckoutItem
 							name={ product?.name || '' }
 							plan='One Time Payment'
-							price={ product?.price || '12' }
+							price={ product?.price }
 							icon={ MicroscopeIcon }
 						/>
 					</div>
@@ -166,8 +166,8 @@ const StripeCheckout: FC<PageProps> = ({ searchParams }) => {
 							discountApplied={ discountApplied }
 						/>
 						<TotalCalc
-							productPrice={ Number(product?.price) }
-							membershipPrice={ Number(membership?.price) }
+							productPrice={ product?.price || 0 }
+							membershipPrice={ membership?.first_time_payment  || 0 }
 							discount={ discount }
 							setTotalPrice={ setTotalPrice }
 						/>
@@ -179,7 +179,6 @@ const StripeCheckout: FC<PageProps> = ({ searchParams }) => {
 					loading={ loading }
 					totalPrice={ totalPrice }
 					handleCheckout={ handleCheckout }
-					userEmail={ tempUser?.email || '' }
 				/>
 			</div>
 		</div>
@@ -204,10 +203,8 @@ const TotalCalc: FC<ITotalCalc> = ({
 	);
 	const totalDue = useMemo(() => {
 		if (discount) {
-			const discountedAmounted =
-        total - Number(discount.coupon_details.discounted_price);
-			setTotalPrice(discountedAmounted);
-			return discountedAmounted;
+			setTotalPrice(Number(discount.coupon_details.discounted_price));
+			return Number(discount.coupon_details.discounted_price);
 		}
 		setTotalPrice(total);
 		return total;
@@ -228,7 +225,7 @@ const TotalCalc: FC<ITotalCalc> = ({
 				<p className='text-grey-primary text-sm'>${ total }</p>
 				{ discount?.coupon_details.keyword && (
 					<p className='text-grey-primary py-6 text-sm'>
-            -${ discount.coupon_details.discounted_price }
+            -${ discount.coupon_details.amount_off }
 					</p>
 				) }
 				<p className='text-white text-lg py-6'>${ totalDue }</p>

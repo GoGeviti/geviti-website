@@ -103,11 +103,7 @@ export const getDiscount = async(params: DiscountParams): Promise<DiscountReturn
 				cache: 'no-store',
 			}
 		);
-		if (res.ok) {
-			const data = await res.json();
-			return data;
-		}
-		throw await res.json();
+		return processResponse(res);
 	} catch (error) {
 		const err = error as ErrorResponse;
 		return Promise.reject(err.message);
@@ -126,11 +122,7 @@ export const checkout = async(params: CheckoutParams): Promise<CheckoutResponseT
 				body: JSON.stringify(params),
 			}
 		);
-		if (res.ok) {
-			const data = await res.json();
-			return data;
-		}
-		throw await res.json();
+		return processResponse(res);
 	} catch (error) {
 		const err = error as ErrorResponse;
 		return Promise.reject(err.message);

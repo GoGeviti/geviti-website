@@ -9,13 +9,11 @@ import StripeForm from './StripeForm';
 type BillingFormProps = {
   totalPrice?: number;
   handleCheckout: (token: string) => void;
-  userEmail: string;
   loading: boolean;
 };
 const StripeElementsProvider: FC<BillingFormProps> = ({
 	totalPrice,
 	handleCheckout,
-	userEmail,
 	loading,
 }) => {
 	const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_TOKEN_STAGING || 'pk_test_fAj7WlTrG0uc5Z9WHKQDdoTq');
@@ -29,7 +27,6 @@ const StripeElementsProvider: FC<BillingFormProps> = ({
 						elements={ elements }
 						totalPrice={ totalPrice }
 						handleCheckout={ handleCheckout }
-						userEmail={ userEmail }
 						loading={ loading }
 					/>
 				) }
