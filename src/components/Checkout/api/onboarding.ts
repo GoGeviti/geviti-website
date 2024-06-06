@@ -16,6 +16,19 @@ const token = process.env.NEXT_PUBLIC_ONBOARDING_TOKEN;
 
 const headers = { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' };
 
+const processResponse = async <T>(res: Response): Promise<T> => {
+	if (res.ok) {
+		const data = await res.json() as T;
+		return data;
+	}
+	throw await res.json();
+}
+
+const processError = (error: unknown) => {
+	const err = error as ErrorResponse;
+	return Promise.reject(err?.message?.toString() || 'Something went wrong');
+}
+
 export const addTempUser = async(params: TempUserDataParams): Promise<TempUserReturnType> => {
 	try {
 		const res = await fetch(
@@ -28,14 +41,9 @@ export const addTempUser = async(params: TempUserDataParams): Promise<TempUserRe
 				body: JSON.stringify(params),
 			}
 		);
-		if (res.ok) {
-			const data = await res.json();
-			return data;
-		}
-		throw await res.json();
+		return await processResponse(res);
 	} catch (error) {
-		const err = error as ErrorResponse;
-		return Promise.reject(err?.message?.toString() || 'Something went wrong');
+		return await processError(error);
 	}
 };
 
@@ -47,20 +55,11 @@ export const joinWaitList = async(params: WaitListParams) => {
 			cache: 'no-store',
 			body: JSON.stringify(params),
 		});
-		const data = await res.json();
-		return data;
+		return await processResponse(res);
 	} catch (error) {
-		return Promise.reject(error);
+		return await processError(error);
 	}
 };
-
-const processResponse = async <T>(res: Response): Promise<T> => {
-	if (res.ok) {
-		const data = await res.json() as T;
-		return data;
-	}
-	throw await res.json();
-}
 
 export const getInitialOfferings = async(): Promise<InitialOfferingsReturnType[]> => {
 	try {
@@ -71,7 +70,7 @@ export const getInitialOfferings = async(): Promise<InitialOfferingsReturnType[]
 		const data = await processResponse<InitialOfferingsReturnType[]>(res);
 		return data.map(it => ({ ...it, price: Number(it.price), first_time_payment: Number(it.first_time_payment) }))
 	} catch (error) {
-		return Promise.reject(error);
+		return await processError(error);
 	}
 };
 
@@ -88,7 +87,7 @@ export const getMembershipOfferings = async(): Promise<MembershipOfferingsReturn
 		const data = await processResponse<MembershipOfferingsReturnType[]>(res);
 		return data.map(it => ({ ...it, price: Number(it.price), first_time_payment: Number(it.first_time_payment) }))
 	} catch (error) {
-		return Promise.reject(error);
+		return await processError(error);
 	}
 };
 
@@ -114,8 +113,7 @@ export const getDiscount = async(params: DiscountParams): Promise<DiscountReturn
 			}
 		}
 	} catch (error) {
-		const err = error as ErrorResponse;
-		return Promise.reject(err.message);
+		return await processError(error);
 	}
 };
 
@@ -131,9 +129,8 @@ export const checkout = async(params: CheckoutParams): Promise<CheckoutResponseT
 				body: JSON.stringify(params),
 			}
 		);
-		return processResponse(res);
+		return await processResponse(res);
 	} catch (error) {
-		const err = error as ErrorResponse;
-		return Promise.reject(err.message);
+		return await processError(error);
 	}
 };

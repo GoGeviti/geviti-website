@@ -52,19 +52,19 @@ const Form: React.FC<{
 		initialValues: initialState,
 		enableReinitialize: true,
 		onSubmit: async(form: IPrecheckout.UserDetailData) => {
+			const {
+				first_name,
+				last_name,
+				email,
+				state,
+				phone_number,
+				city,
+				address_1,
+				address_2,
+				zip_code,
+				birthdate,
+			} = form;
 			try {
-				const {
-					first_name,
-					last_name,
-					email,
-					state,
-					phone_number,
-					city,
-					address_1,
-					address_2,
-					zip_code,
-					birthdate,
-				} = form;
 				const tempUser = await addTempUser({
 					firstName: first_name,
 					lastName: last_name,
@@ -78,7 +78,7 @@ const Form: React.FC<{
 					zipCode: zip_code,
 					dob: `${birthdate?.toISOString()}`,
 				});
-				localStorage.setItem('temp_user', JSON.stringify(tempUser.user));
+				sessionStorage.setItem('temp_user', JSON.stringify(tempUser.user));
 				if (!tempUser.stateExists) {
 					return onNextStep({ ...form, id: tempUser.user.id }, CheckoutStep.WAITLIST_STATE_NOT_AVAILABLE);
 				}

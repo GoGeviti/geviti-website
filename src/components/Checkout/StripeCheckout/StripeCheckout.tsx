@@ -21,7 +21,7 @@ import {
 	InitialOfferingsReturnType,
 	MembershipOfferingsReturnType,
 	PROMO_TYPE,
-	TemUser,
+	TempUser,
 } from '../api/types';
 
 import CheckoutItem from './CheckoutItem';
@@ -40,7 +40,7 @@ const StripeCheckout: FC<PageProps> = ({ searchParams }) => {
 	const membershipId = searchParams?.membership;
 
 	const [loading, setLoading] = useState(false);
-	const [tempUser, setTempUser] = useState<TemUser>();
+	const [tempUser, setTempUser] = useState<TempUser>();
 	const [product, setProduct] = useState<InitialOfferingsReturnType>();
 	const [membership, setMembership] = useState<MembershipOfferingsReturnType>();
 	const [discount, setDiscount] = useState<DiscountReturnType | null>(null);
@@ -48,7 +48,7 @@ const StripeCheckout: FC<PageProps> = ({ searchParams }) => {
 	const [discountApplied, setDiscountApplied] = useState(false);
 
 	useEffect(() => {
-		const user = localStorage.getItem('temp_user');
+		const user = sessionStorage.getItem('temp_user');
 		if (!user) {
 			router.replace('/onboarding');
 			return;
@@ -111,7 +111,7 @@ const StripeCheckout: FC<PageProps> = ({ searchParams }) => {
 					return;
 				}
 				setLoading(true);
-				await checkout({
+				const checkoutResp = await checkout({
 					user_token: tempUser.token,
 					stripe_token: token,
 					product: {
@@ -126,8 +126,9 @@ const StripeCheckout: FC<PageProps> = ({ searchParams }) => {
 						price: '',
 						offering_id: '',
 					},
-					coupon: '',
+					coupon: discount?.coupon_details.keyword || '',
 				});
+				sessionStorage.setItem('checkout_token', checkoutResp.token);
 				setLoading(false);
 				router.push('payment/success');
 			} catch (error) {

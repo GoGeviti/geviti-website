@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import React, { Dispatch, Fragment, SetStateAction, useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { useRouter, useSearchParams } from 'next/navigation';
 
@@ -141,7 +141,14 @@ const MemberFrequencyPlan: React.FC<MemberFrequencyPlanProps> = ({ setStep }) =>
 								{ renderList() }
 								<div className='mt-6 mb-[42px] lg:my-[3.889vh] 2xl:my-[42px] inline-flex max-lg:flex-col lg:items-baseline'>
 									<span className='max-lg:font-medium text-4xl !leading-normal -tracking-0.04em text-primary'>
-                    ${ offerings?.[activeTabIdx].price }
+										<Fragment>
+											{ activeTabIdx === 0 && offerings ? (
+												<Fragment>${ (offerings?.[activeTabIdx].price / 3).toFixed(2) }</Fragment>
+											) : (
+												<Fragment>${ offerings?.[activeTabIdx].price }</Fragment>
+											) }
+										</Fragment>
+                    
 										<span className='max-lg:hidden'>&nbsp;</span>
 									</span>
 									<span className='max-lg:font-medium text-4xl !leading-normal -tracking-0.04em text-primary'>

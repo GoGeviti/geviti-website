@@ -18,7 +18,7 @@ export interface TempUserDataParams {
   zipCode: string;
 }
 
-export interface TemUser extends TempUserDataParams {
+export interface TempUser extends TempUserDataParams {
   id: number;
   joinedWaitList: boolean;
   createdAt: string;
@@ -27,7 +27,7 @@ export interface TemUser extends TempUserDataParams {
 }
 
 export interface TempUserReturnType {
-  user: TemUser;
+  user: TempUser;
   stateExists: boolean;
 }
 
@@ -90,7 +90,7 @@ export interface CheckoutParams {
     price: string;
     offering_id: string;
   };
-  addons: {
+  addons?: {
     price: string;
     offering_id: string;
   };
@@ -98,7 +98,7 @@ export interface CheckoutParams {
 }
 
 export interface CheckoutResponseType {
-  status: string;
-  transaction_id: string;
+  billingId: string;
   message: string;
+  token: string;
 }
