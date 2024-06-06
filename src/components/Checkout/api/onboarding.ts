@@ -103,7 +103,16 @@ export const getDiscount = async(params: DiscountParams): Promise<DiscountReturn
 				cache: 'no-store',
 			}
 		);
-		return processResponse(res);
+		const data = await processResponse<DiscountReturnType>(res);
+		return {
+			...data,
+			coupon_details: {
+				...data.coupon_details,
+				discounted_price: Number(data.coupon_details.discounted_price),
+				amount_off: Number(data.coupon_details.amount_off),
+				original_price: Number(data.coupon_details.original_price),
+			}
+		}
 	} catch (error) {
 		const err = error as ErrorResponse;
 		return Promise.reject(err.message);

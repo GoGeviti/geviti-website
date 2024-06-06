@@ -61,15 +61,21 @@ export interface DiscountParams {
   offering_id: string;
   price: string;
 }
+
+export enum PROMO_TYPE {
+  PERCENT_OFF = 'Percent Off',
+  AMOUNT_OFF = 'Amount Off',
+}
+
 export interface DiscountReturnType {
   coupon_exist: boolean;
   coupon_details: {
     keyword: string;
     offering_id: string;
-    original_price: string;
-    discounted_price: string;
-    amount_off: string;
-    promo_type: string;
+    original_price: number;
+    discounted_price: number;
+    amount_off: number;
+    promo_type: PROMO_TYPE ;
   };
 }
 

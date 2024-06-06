@@ -1,7 +1,7 @@
 'use client';
 
 import React, {
-	FC, useCallback, useEffect, useMemo, useState
+	FC, Fragment, useCallback, useEffect, useMemo, useState
 } from 'react';
 import { AiFillCloseCircle } from 'react-icons/ai';
 import { useRouter } from 'next/navigation';
@@ -20,6 +20,7 @@ import {
 	DiscountReturnType,
 	InitialOfferingsReturnType,
 	MembershipOfferingsReturnType,
+	PROMO_TYPE,
 	TemUser,
 } from '../api/types';
 
@@ -68,24 +69,27 @@ const StripeCheckout: FC<PageProps> = ({ searchParams }) => {
 	const handleCouponSubmit = useCallback(
 		async(code?: string) => {
 			try {
-				if (!code || !product) return;
-				const coupon = await getDiscount({
+				setLoading(true);
+				if (!code || !product) throw 'No coupon applied'
+				const couponDiscount = await getDiscount({
 					keyword: code,
 					offering_id: product.id,
 					price: product.price.toString(),
 				});
-				if (coupon.coupon_exist) {
-					setDiscount(coupon);
+				setDiscount(couponDiscount);
+				if (couponDiscount.coupon_exist) {
 					setDiscountApplied(true);
-					setLoading(false);
 				} else {
+					setDiscountApplied(false);
 					toast.error('Coupon does\'nt exist', {
 						icon: <AiFillCloseCircle className='h-5 w-5 text-danger' />,
 					});
 				}
+				setLoading(false);
 			} catch (error) {
 				setDiscount(null);
 				setDiscountApplied(false);
+				setLoading(false);
 				toast.error(error as string, {
 					icon: <AiFillCloseCircle className='h-5 w-5 text-danger' />,
 				});
@@ -197,16 +201,19 @@ const TotalCalc: FC<ITotalCalc> = ({
 	discount,
 	setTotalPrice,
 }) => {
+
 	const total = useMemo(
-		() => productPrice + membershipPrice,
+		() => (productPrice + membershipPrice).toFixed(2),
 		[productPrice, membershipPrice]
 	);
+
 	const totalDue = useMemo(() => {
-		if (discount) {
-			setTotalPrice(Number(discount.coupon_details.discounted_price));
-			return Number(discount.coupon_details.discounted_price);
+		if (discount?.coupon_exist) {
+			const due = (membershipPrice + discount.coupon_details.discounted_price).toFixed(2);
+			setTotalPrice(Number(due));
+			return due;
 		}
-		setTotalPrice(total);
+		setTotalPrice(Number(total));
 		return total;
 	}, [total, discount]);
 
@@ -214,7 +221,7 @@ const TotalCalc: FC<ITotalCalc> = ({
 		<div className='flex justify-between py-12'>
 			<div className='flex flex-col'>
 				<p className='text-grey-primary text-sm'>Total</p>
-				{ discount?.coupon_details.keyword && (
+				{ discount?.coupon_exist && (
 					<p className='text-grey-primary py-6 text-sm'>
             Coupon - { discount.coupon_details.keyword }
 					</p>
@@ -223,9 +230,17 @@ const TotalCalc: FC<ITotalCalc> = ({
 			</div>
 			<div className='flex flex-col text-right'>
 				<p className='text-grey-primary text-sm'>${ total }</p>
-				{ discount?.coupon_details.keyword && (
+				{ discount?.coupon_exist && (
 					<p className='text-grey-primary py-6 text-sm'>
-            -${ discount.coupon_details.amount_off }
+						{ discount?.coupon_details.promo_type === PROMO_TYPE.AMOUNT_OFF ? (
+							<Fragment>
+								-${ discount.coupon_details.amount_off }
+							</Fragment>
+						) : (
+							<Fragment>
+								-{ discount.coupon_details.amount_off }%
+							</Fragment>
+						) }
 					</p>
 				) }
 				<p className='text-white text-lg py-6'>${ totalDue }</p>
