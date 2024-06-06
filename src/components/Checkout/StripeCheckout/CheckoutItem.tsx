@@ -10,7 +10,7 @@ interface ICheckoutItem {
 const CheckoutItem: FC<ICheckoutItem> = ({ name, price, plan, metadata, icon }) => {
 	return (
 		<div className='flex border-b-2 border-grey-950 lg:border-none'>
-			<div className='flex items-center justify-center w-[53px] h-[53px] lg:w-[71px] lg:h-[71px] bg-blue-primary rounded-[10px]'>
+			<div className='flex items-center justify-center min-w-[53px] h-[53px] lg:min-w-[71px] lg:h-[71px] bg-blue-primary rounded-[10px]'>
 				{ icon }
 			</div>
 			<div className='flex flex-col w-full lg:flex-row'>
