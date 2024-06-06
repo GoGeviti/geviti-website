@@ -302,6 +302,8 @@ const State: React.FC<StateProps> = ({ type }) => {
 											arrowPosition={ type === 'error' ? 'left' : 'right' }
 											onClick={ () => {
 												router.replace('/');
+												sessionStorage.removeItem('checkout_token');
+												sessionStorage.removeItem('temp_user');
 											} }
 											className='max-sm:w-full'>
 											<span dangerouslySetInnerHTML={ { __html: btnPrimaryData.text } } />
