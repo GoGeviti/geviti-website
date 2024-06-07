@@ -81,7 +81,7 @@ const StripeCheckout: FC<PageProps> = ({ searchParams }) => {
 					setDiscountApplied(true);
 				} else {
 					setDiscountApplied(false);
-					toast.error('Coupon does\'nt exist', {
+					toast.error('Coupon doesn\'t exist', {
 						icon: <AiFillCloseCircle className='h-5 w-5 text-danger' />,
 					});
 				}
