@@ -46,6 +46,7 @@
     "framer-motion": "^10.16.4",
     "gsap": "^3.12.5",
     "lexical": "^0.12.2",
+    "lodash": "^4.17.21",
     "mini-svg-data-uri": "^1.4.4",
     "next": "^14.2.3",
     "nextjs-toploader": "^1.4.2",
