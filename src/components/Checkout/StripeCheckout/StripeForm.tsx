@@ -7,7 +7,6 @@ import {
 import { Stripe, StripeElements, StripeError } from '@stripe/stripe-js';
 import { toast } from 'sonner';
 
-import Checkbox from '@/components/Onboarding/Checkbox';
 import clsxm from '@/helpers/clsxm';
 
 type StripeFormProps = {
@@ -60,7 +59,11 @@ const StripeForm: FC<StripeFormProps> = ({
 		}
 	};
 
-	const fontStyle = {
+	const elementStyles = {
+		invalid: {
+			color: '#EA3F62',
+			iconColor: '#EA3F62'
+		},
 		base: {
 			fontSize: '18px',
 		},
@@ -85,7 +88,8 @@ const StripeForm: FC<StripeFormProps> = ({
 						<CardNumberElement
 							options={ {
 								showIcon: true,
-								style: fontStyle,
+								style: elementStyles,
+								iconStyle: 'solid',
 								disabled: formLoading,
 							} }
 							className={ inputStyles }
@@ -94,29 +98,35 @@ const StripeForm: FC<StripeFormProps> = ({
 					<div className='flex pt-4'>
 						<CardExpiryElement
 							options={ {
-								style: fontStyle,
+								style: elementStyles,
 								disabled: formLoading,
 							} }
 							className={ clsxm(inputStyles, 'mr-[14px]') }
 						/>
 						<CardCvcElement
 							options={ {
-								style: fontStyle,
+								style: elementStyles,
 								disabled: formLoading,
 							} }
 							className={ inputStyles }
 						/>
+						
 					</div>
-					<div className='mt-10'>
-						<Checkbox
-							className='w-[14px] h-[14px] lg:w-2.5 lg:h-2.5 2xl:w-[14px] 2xl:h-[14px] text-blue-primary outline-primary'
-							labelClassName='text-sm text-grey-500 ml-2'
-							label={
-								'By checking the box, you confirm that you have read, understood, and agree to abide by our Privacy Policy and Terms of Service.'
-							}
+					<div className='mt-10 flex items-center gap-x-[10px]'>
+						<input
+							id='checkout_terms'
+							type='checkbox'
+							title=''
+							className='h-5 w-5 rounded-[1px] text-grey-100 checked:text-blue-primary outline outline-offset-2 outline-2 focus:outline-1 focus:text-blue-primary focus:ring-grey-100 ring-black-secondary border-none ml-1'
 							onChange={ (e: React.ChangeEvent<HTMLInputElement>) => setTermsChecked(e.target.checked) }
 							disabled={ formLoading }
 						/>
+						<label
+							htmlFor='checkout_terms'
+							className='text-xs text-grey-500 font-BRSonoma leading-normal select-none text-left'
+						>
+							By checking the box, you confirm that you have read, understood, and agree to abide by our Privacy Policy and Terms of Service.
+						</label>
 					</div>
 					<button
 						type='submit'
