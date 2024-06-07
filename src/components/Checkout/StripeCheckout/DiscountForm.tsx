@@ -1,4 +1,4 @@
-import { ChangeEvent, FC, useCallback } from 'react';
+import { ChangeEvent, FC } from 'react';
 import { debounce } from 'lodash';
 
 import { GreenCircleTick } from '@/components/Icons/GreenCircleTick';
@@ -10,19 +10,21 @@ type DiscountFormProps = {
   submitCoupon: (code?: string) => void;
   discountApplied: boolean;
   loading: boolean;
+	disabled: boolean;
 };
 const DiscountForm: FC<DiscountFormProps> = ({
 	submitCoupon,
 	discountApplied = false,
 	loading,
+	disabled,
 }) => {
 	const debounceSubmitCoupon = debounce(enteredCoupon => {
 		submitCoupon(enteredCoupon);
 	}, 800);
 
-	const handleInputChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
+	const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
 		if (e.target.value) debounceSubmitCoupon(e.target.value);
-	}, []);
+	};
 
 	return (
 		<div className='relative'>
@@ -40,7 +42,7 @@ const DiscountForm: FC<DiscountFormProps> = ({
 				name='coupon_code'
 				placeholder='Coupon Discount'
 				onChange={ handleInputChange }
-				disabled={ loading }
+				disabled={ disabled }
 			/>
 			{ loading && <Spinner className='absolute w-4 h-4 lg:w-6 lg:h-6 right-[22px] bottom-[20px] lg:bottom-[18px]' /> }
 			{ !loading && discountApplied && <GreenCircleTick className='absolute w-4 h-4 lg:w-6 lg:h-6 right-[22px] bottom-[20px] lg:bottom-[18px]' /> }

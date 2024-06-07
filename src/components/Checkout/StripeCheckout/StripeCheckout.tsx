@@ -40,6 +40,7 @@ const StripeCheckout: FC<PageProps> = ({ searchParams }) => {
 	const membershipId = searchParams?.membership;
 
 	const [loading, setLoading] = useState(false);
+	const [couponLoading, setCouponLoading] = useState(false);
 	const [tempUser, setTempUser] = useState<TempUser>();
 	const [product, setProduct] = useState<InitialOfferingsReturnType>();
 	const [membership, setMembership] = useState<MembershipOfferingsReturnType>();
@@ -70,6 +71,7 @@ const StripeCheckout: FC<PageProps> = ({ searchParams }) => {
 		async(code?: string) => {
 			try {
 				setLoading(true);
+				setCouponLoading(true);
 				if (!code || !product) throw 'No coupon applied'
 				const couponDiscount = await getDiscount({
 					keyword: code,
@@ -86,10 +88,12 @@ const StripeCheckout: FC<PageProps> = ({ searchParams }) => {
 					});
 				}
 				setLoading(false);
+				setCouponLoading(false);
 			} catch (error) {
 				setDiscount(null);
 				setDiscountApplied(false);
 				setLoading(false);
+				setCouponLoading(false);
 				toast.error(error as string, {
 					icon: <AiFillCloseCircle className='h-5 w-5 text-danger' />,
 				});
@@ -166,7 +170,8 @@ const StripeCheckout: FC<PageProps> = ({ searchParams }) => {
 					</div>
 					<div className='mt-11 lg:pl-[71px] lg:ml-6'>
 						<DiscountForm
-							loading={ loading }
+							loading={ couponLoading }
+							disabled= { loading || couponLoading }
 							submitCoupon={ handleCouponSubmit }
 							discountApplied={ discountApplied }
 						/>

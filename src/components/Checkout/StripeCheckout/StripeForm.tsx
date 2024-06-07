@@ -135,7 +135,7 @@ const StripeForm: FC<StripeFormProps> = ({
 						className={ `h-[58px] my-10 py-3 px-[42px] text-white rounded-[1000px] ${termsChecked ? 'bg-black' : 'bg-grey-700'}` }
 					>
 						<div className='flex items-center justify-center'>
-							{ formLoading ? (
+							{ stripeResponseLoading ? (
 								<Spinner />
 							) : (
 								<span>
