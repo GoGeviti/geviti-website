@@ -1,4 +1,4 @@
-import React, { FC, useMemo, useState } from 'react';
+import React, { FC, useMemo, useRef, useState } from 'react';
 import {
 	CardCvcElement,
 	CardExpiryElement,
@@ -22,6 +22,18 @@ const inputStyles = clsxm(
 	'text-black bg-whitetext-xs lg:text-lg font-normal !leading-normal font-Poppins placeholder:text-grey-500 px-6 py-18px',
 	'placeholder-grey-300'
 );
+
+const elementStyles = {
+	invalid: {
+		color: '#EA3F62',
+		iconColor: '#EA3F62'
+	},
+	base: {
+		fontSize: '18px',
+	},
+};
+const errorTextStyles = 'text-red-primary text-[10px] mt-1 text-left';
+
 const StripeForm: FC<StripeFormProps> = ({
 	stripe,
 	elements,
@@ -31,6 +43,12 @@ const StripeForm: FC<StripeFormProps> = ({
 }) => {
 	const [stripeResponseLoading, setStripeResponseLoading] = useState(false);
 	const [termsChecked, setTermsChecked] = useState(false);
+	const [nameInput, setNameInput] = useState('');
+	const [isCardNumberInputComplete, setIsCardNumberInputComplete] = useState(false);
+	const [isCardExpiryInputComplete, setIsCardExpiryInputComplete] = useState(false);
+	const [isCardCvcInputComplete, setIsCardCvcInputComplete] = useState(false);
+	const [formSubmitted, setFormSubmitted] = useState(false);
+	const inputRef = useRef<HTMLInputElement>(null);
 
 	const formLoading = useMemo(
 		() => stripeResponseLoading || loading,
@@ -39,13 +57,16 @@ const StripeForm: FC<StripeFormProps> = ({
 
 	const handleSubmit = async(e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
-
-		if (!stripe || !elements) {
-			return;
+		setFormSubmitted(true);
+		if (inputRef.current) {
+			console.log('inputRef', inputRef.current.value);
 		}
 
+		if (!stripe || !elements || !isCardExpiryInputComplete || !isCardCvcInputComplete) {
+			return;
+		}
 		const cardNumberElement = elements.getElement(CardNumberElement);
-
+		
 		try {
 			setStripeResponseLoading(true);
 			const { token } = await stripe.createToken(cardNumberElement!);
@@ -60,15 +81,6 @@ const StripeForm: FC<StripeFormProps> = ({
 		}
 	};
 
-	const elementStyles = {
-		invalid: {
-			color: '#EA3F62',
-			iconColor: '#EA3F62'
-		},
-		base: {
-			fontSize: '18px',
-		},
-	};
 	return (
 		<form onSubmit={ handleSubmit }>
 			<div className='flex flex-col justify-center items-center gap-2 w-full lg:mt-14 lg:pt-9'>
@@ -83,9 +95,13 @@ const StripeForm: FC<StripeFormProps> = ({
 							className={ inputStyles }
 							autoComplete='off'
 							disabled={ formLoading }
+							onChange={ e => setNameInput(e.target.value) }
 						/>
+						{ formSubmitted && !nameInput && (
+							<p className={ errorTextStyles }>Please enter name on card</p>
+						) }
 					</div>
-					<div className='pt-4'>
+					<div className='flex flex-col pt-4'>
 						<CardNumberElement
 							options={ {
 								showIcon: true,
@@ -94,23 +110,45 @@ const StripeForm: FC<StripeFormProps> = ({
 								disabled: formLoading,
 							} }
 							className={ inputStyles }
+							onChange={ (({ empty }) => {
+								setIsCardNumberInputComplete(!empty);
+							}) }
 						/>
+						{ formSubmitted && !isCardNumberInputComplete && (
+							<p className={ errorTextStyles }>Please enter card number</p>
+						) }
 					</div>
 					<div className='flex pt-4'>
-						<CardExpiryElement
-							options={ {
-								style: elementStyles,
-								disabled: formLoading,
-							} }
-							className={ clsxm(inputStyles, 'mr-[14px]') }
-						/>
-						<CardCvcElement
-							options={ {
-								style: elementStyles,
-								disabled: formLoading,
-							} }
-							className={ inputStyles }
-						/>
+						<div className='flex flex-col w-full mr-4'>
+							<CardExpiryElement
+								options={ {
+									style: elementStyles,
+									disabled: formLoading,
+								} }
+								className={ clsxm(inputStyles, 'mr-[14px]') }
+								onChange={ ({ empty }) => {
+									setIsCardExpiryInputComplete(!empty);
+								} }
+							/>
+							{ formSubmitted && !isCardExpiryInputComplete && (
+								<p className={ errorTextStyles }>Please enter card expiry date</p>
+							) }
+						</div>
+						<div className='flex flex-col w-full'>
+							<CardCvcElement
+								options={ {
+									style: elementStyles,
+									disabled: formLoading,
+								} }
+								className={ inputStyles }
+								onChange={ ({ empty }) => {
+									setIsCardCvcInputComplete(!empty);
+								} }
+							/>
+							{ formSubmitted && !isCardCvcInputComplete && (
+								<p className={ errorTextStyles }>Please enter card cvc</p>
+							) }
+						</div>
 						
 					</div>
 					<div className='mt-10 flex items-center gap-x-[10px]'>
