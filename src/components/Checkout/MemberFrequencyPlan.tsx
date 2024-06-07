@@ -65,7 +65,7 @@ const MemberFrequencyPlan: React.FC<MemberFrequencyPlanProps> = ({ setStep }) =>
 		// TODO: remove console and go to payment link
 		if (setStep) {
 			setStep(CheckoutStep.STRIPE_PAYMENT);
-			router.push(`/onboarding/payment?product=${product}&&membership=${offerings[activeTabIdx].id}`);
+			router.push(`/onboarding/payment?product=${product}&membership=${offerings[activeTabIdx].id}`);
 		}
 	};
 
