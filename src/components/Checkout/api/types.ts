@@ -106,3 +106,28 @@ export interface CheckoutResponseType {
   message: string;
   token: string;
 }
+
+export interface AddressValitationParams {
+  address: {
+    regionCode: string;
+    postalCode: string;
+    locality: string;
+    administrativeArea: string;
+    addressLines: string[];
+  };
+}
+
+export interface AddressValidationResponseType {
+  result: {
+    address: {
+        addressComponents: {
+            componentName: {
+                text: string;
+            };
+            componentType: string;
+            confirmationLevel: string;
+        }[];
+        unconfirmedComponentTypes: string[];
+    };
+  };
+}

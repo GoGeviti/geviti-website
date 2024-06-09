@@ -18,7 +18,7 @@ const PrivacyPolicyStatement: React.FC<PrivacyPolicyStatementProps> = ({ highlig
 
 	return (
 		<span className={ clsxm(
-			'text-lg lg:text-sm !leading-normal',
+			'text-sm !leading-normal',
 			theme === 'light' && 'text-grey-500',
 			theme === 'dark' && 'text-grey-primary'
 		) }>

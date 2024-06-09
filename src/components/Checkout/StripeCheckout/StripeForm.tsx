@@ -82,8 +82,8 @@ const StripeForm: FC<StripeFormProps> = ({
 	return (
 		<form onSubmit={ handleSubmit }>
 			<div className='flex flex-col justify-center items-center gap-2 w-full lg:mt-14 lg:pt-9'>
-				<div className={ clsxm('relative flex flex-col w-[90%] lg:w-[70%]') }>
-					<h1 className='text-2xl pt-12'>Payment Details</h1>
+				<div className={ clsxm('relative flex flex-col lg:w-[70%]') }>
+					<h1 className='text-2xl lg:pt-12'>Payment Details</h1>
 					<h4 className='text-sm mt-6'>Card Information</h4>
 					<div className='pt-4'>
 						<input
@@ -149,12 +149,12 @@ const StripeForm: FC<StripeFormProps> = ({
 						</div>
 						
 					</div>
-					<div className='mt-10 flex items-center gap-x-[10px]'>
+					<div className='mt-10 flex items-start lg:items-center gap-x-[10px]'>
 						<input
 							id='checkout_terms'
 							type='checkbox'
 							title=''
-							className='h-5 w-5 rounded-[1px] text-grey-100 checked:text-blue-primary outline outline-offset-2 outline-2 focus:outline-1 focus:text-blue-primary focus:ring-grey-100 ring-black-secondary border-none ml-1'
+							className='h-5 w-5 max-lg:mt-2.5 rounded-[1px] text-grey-100 checked:text-primary outline outline-offset-2 outline-2 focus:outline-1 focus:text-primary focus:ring-grey-100 ring-black-secondary border-none ml-1'
 							onChange={ (e: React.ChangeEvent<HTMLInputElement>) => setTermsChecked(e.target.checked) }
 							disabled={ formLoading }
 						/>

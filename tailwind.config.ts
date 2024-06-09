@@ -250,6 +250,7 @@ const config: Config = {
 	},
 	plugins: [
 		require('@tailwindcss/forms'),
+		require('tailwindcss-animate'),
 		({ addComponents }: Config['PluginAPI']) => {
 			addComponents({
 				'.container-center': { '@apply max-w-[1360px] mx-auto px-4 lg:px-10': {} },

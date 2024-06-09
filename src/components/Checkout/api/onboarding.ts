@@ -1,4 +1,6 @@
 import {
+	AddressValidationResponseType,
+	AddressValitationParams,
 	CheckoutParams,
 	CheckoutResponseType,
 	DiscountParams,
@@ -134,3 +136,19 @@ export const checkout = async(params: CheckoutParams): Promise<CheckoutResponseT
 		return await processError(error);
 	}
 };
+
+export const validateAddress = async(params: AddressValitationParams): Promise<AddressValidationResponseType> => {
+	try {
+		const res = await fetch(
+			`https://addressvalidation.googleapis.com/v1:validateAddress?key=${process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}`,
+			{
+				method: 'POST',
+				cache: 'no-store',
+				body: JSON.stringify(params),
+			}
+		);
+		return await processResponse(res);
+	} catch (error) {
+		return await processError(error);
+	}
+}

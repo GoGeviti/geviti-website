@@ -7,6 +7,8 @@ import { toast } from 'sonner';
 
 import MicroscopeIcon from '@/components/Icons/MicroscopeIcon';
 import TagUserIcon from '@/components/Icons/TagUserIcon';
+import Button from '@/components/Onboarding/Button';
+import { Sheet, SheetContent, SheetTrigger } from '@/components/Sheet';
 
 import {
 	checkout,
@@ -154,7 +156,7 @@ const StripeCheckout: FC<PageProps> = ({ searchParams }) => {
 	);
 	return (
 		<div className='flex flex-col lg:flex-row min-h-screen h-full w-full'>
-			<div className='min-h-screen h-auto w-full bg-primary'>
+			<div className='min-h-screen h-auto w-full bg-primary max-lg:pb-20'>
 				<div className='flex flex-col w-full px-4 lg:px-20'>
 					<PageHeader onBackClick={ () => router.back() } />
 					<div className='my-6'>
@@ -192,9 +194,26 @@ const StripeCheckout: FC<PageProps> = ({ searchParams }) => {
 							setTotalPrice={ setTotalPrice }
 						/>
 					</div>
+					<Sheet>
+						<SheetTrigger asChild>
+							<Button className='bg-white text-primary h-[58px] text-lg'>
+							Pay Now
+							</Button>
+						</SheetTrigger>
+						<SheetContent
+							className='rounded-t-[20px]'
+							side='bottom'>
+							<StripeElementsProvider
+								loading={ checkoutLoading }
+								totalPrice={ totalPrice }
+								handleCheckout={ handleCheckout }
+							/>
+						</SheetContent>
+					</Sheet>
+					
 				</div>
 			</div>
-			<div className='h-full w-full bg-white'>
+			<div className='h-full w-full bg-white max-lg:hidden'>
 				<StripeElementsProvider
 					loading={ checkoutLoading }
 					totalPrice={ totalPrice }
