@@ -1,8 +1,6 @@
 'use client';
 
-import React, {
-	Dispatch, SetStateAction, useEffect, useState
-} from 'react';
+import React, { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { useRouter, useSearchParams } from 'next/navigation';
@@ -48,10 +46,10 @@ const PricingProductPlan: React.FC<PricingProductPlanProps> = ({ setStep }) => {
 		if (setStep) setStep(CheckoutStep.FORM_PERSONAL_INFO);
 	};
 
-	const onClickSelectOption = (product: InitialOfferingsReturnType) => {
+	const onClickSelectOption = (product?: InitialOfferingsReturnType) => {
 		if (setStep) {
 			const params = new URLSearchParams(searchParams.toString());
-			params.set('product', product.id);
+			params.set('product', product?.id || '');
 			if (window) {
 				window.history.pushState(null, '', `?${params.toString()}`);
 				window.scrollTo({ top: 0 });
@@ -90,8 +88,8 @@ const PricingProductPlan: React.FC<PricingProductPlanProps> = ({ setStep }) => {
 						</p>
 
 						<div className='lg:max-w-full mx-auto sm:max-w-[392px] lg:flex-row flex-col flex gap-[42px] lg:gap-6 items-end w-full pt-[42px] lg:pt-[3.889vh] 2xl:pt-[42px]'>
-							{ [...Array(3)].map((_, index) => {
-                	const productLocalData = pricingProductPlanData.list.find(it => it.name === initialOfferings[index]?.name);
+							{ pricingProductPlanData.list.map((productLocalData, index) => {
+								const offering = initialOfferings?.find(it => it.name === productLocalData.name);
                 	return (
                 		<motion.div
                 			key={ index }
@@ -112,28 +110,29 @@ const PricingProductPlan: React.FC<PricingProductPlanProps> = ({ setStep }) => {
                 				<div
                 					className={ clsxm(
                 						'pt-[42px] pb-[34px] px-6 rounded-2xl w-full relative',
-                						productLocalData?.mostPopular ? 'bg-primary text-white' : 'bg-[#F5FBFF] text-primary',
+                						productLocalData.mostPopular ? 'bg-primary text-white' : 'bg-[#F5FBFF] text-primary',
                 						index === 1 && 'z-10'
                 					) }
                 				>
-                					<h3 className='!leading-[28px] text-[5.128vw] xs2:text-xl'>{ initialOfferings[index]?.name }</h3>
+												
+												<h3 className='!leading-[28px] text-[5.128vw] xs2:text-xl'>{ productLocalData.name }</h3>
 
-                					<span className='font-medium text-5xl !leading-[125%] py-1'>
+												<span className='font-medium text-5xl !leading-[125%] py-1'>
 													{ loading ? (
 														<span className='inline-block h-12 w-[122px] bg-grey-700 rounded animate-skeletonLoading' />
 													) : (
-														<span className='inline-block'>${ initialOfferings[index]?.price }</span>
+														<span className='inline-block'>${ offering?.price }</span>
 													) }
-                						<span className='text-xs lg:text-sm'> { productLocalData?.priceNote }</span>
-                					</span>
+													<span className='text-xs lg:text-sm'> { productLocalData.priceNote }</span>
+												</span>
                 					<p className='font-medium text-xs lg:text-sm !leading-6'>+ ongoing membership fee</p>
                 					<p className='text-4xl !leading-normal font-medium mb-[11px] mt-[25px] lg:mt-3.5'>
-                						<span className='-tracking-0.04em'>{ productLocalData?.biomakers } </span>
+                						<span className='-tracking-0.04em'>{ productLocalData.biomakers } </span>
                 						<span className='text-xs !leading-normal'>biomarkers</span>
                 					</p>
 
                 					<ul className='flex flex-col gap-y-[11px] mb-6'>
-                						{ productLocalData?.list.map((feature, featureIdx) => (
+                						{ productLocalData.list.map((feature, featureIdx) => (
                 							<li
                 								key={ `feature-${featureIdx}` }
                 								className='text-sm !leading-normal gap-1.5 flex items-center font-medium -tracking-[0.53px]'
@@ -148,13 +147,13 @@ const PricingProductPlan: React.FC<PricingProductPlanProps> = ({ setStep }) => {
                 					</ul>
 
                 					<ButtonCta
-                						text={ productLocalData?.btnCta.text }
-                						theme={ productLocalData?.mostPopular ? 'secondary' : 'primary' }
+                						text={ productLocalData.btnCta.text }
+                						theme={ productLocalData.mostPopular ? 'secondary' : 'primary' }
                 						className='w-full sm:w-fit mx-auto'
-                						onClick={ () => onClickSelectOption(initialOfferings[index]) }
+                						onClick={ () => onClickSelectOption(offering) }
                 					/>
 
-                					{ productLocalData?.mostPopular ? (
+                					{ productLocalData.mostPopular ? (
                 						<span className='absolute top-0 right-6 -translate-y-1/2 text-sm !leading-normal text-primary font-medium bg-blue-primary py-2 px-6 rounded-full'>
                               Most Popular
                 						</span>
