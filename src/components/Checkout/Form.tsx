@@ -311,7 +311,7 @@ const Form: React.FC<{
 											'text-white bg-grey-950 text-xs lg:text-lg font-normal !leading-normal font-Poppins placeholder:text-grey-500 px-6 py-18px',
 											!!formik.errors.address_1 ? 'ring-1 ring-red-primary focus:ring-1 focus:ring-red-primary' : '!ring-0 focus:!ring-1 !ring-grey-primary',
 										) }
-										onChange={ e => formik.setFieldValue('address_1', (e.target as HTMLInputElement).value) }
+										onChange={ (e:any) => formik.setFieldValue('address_1', (e.target as HTMLInputElement)?.value) }
 										value={ formik.values.address_1 }
 									/>
 									{ !!formik.errors.address_1 && formik.errors.address_1 && (

@@ -1,3 +1,3 @@
-import StripeCheckout from "./StripeCheckout";
+import StripeCheckout from './StripeCheckout';
 
 export default StripeCheckout;
