@@ -44,11 +44,15 @@ const StripeCheckout: FC<PageProps> = ({ searchParams }) => {
 	const [tempUser, setTempUser] = useState<TempUser>();
 	const [product, setProduct] = useState<InitialOfferingsReturnType>();
 	const [membership, setMembership] = useState<MembershipOfferingsReturnType>();
+	const [productLoading, setProductLoading] = useState(false);
+	const [membershipLoading, setMembershipLoading] = useState(false);
 	const [discount, setDiscount] = useState<DiscountReturnType | null>(null);
 	const [totalPrice, setTotalPrice] = useState<number>();
 	const [discountApplied, setDiscountApplied] = useState(false);
 
 	useEffect(() => {
+		setProductLoading(true);
+		setMembershipLoading(true);
 		const user = sessionStorage.getItem('temp_user');
 		if (!user) {
 			router.replace('/onboarding');
@@ -59,10 +63,12 @@ const StripeCheckout: FC<PageProps> = ({ searchParams }) => {
 			setLoading(true);
 			const offerings = await getInitialOfferings();
 			const memberShipOfferings = await getMembershipOfferings();
-
+			
 			setProduct(offerings.find(it => it.id === productId));
 			setMembership(memberShipOfferings.find(it => it.id === membershipId));
 			setLoading(false);
+			setProductLoading(false);
+			setMembershipLoading(false);
 		};
 		getOfferings();
 	}, []);
@@ -158,6 +164,7 @@ const StripeCheckout: FC<PageProps> = ({ searchParams }) => {
 								membership?.price
 							} ${membership?.billing_frequency.toLowerCase()}` }
 							icon={ TagUserIcon }
+							loading={ membershipLoading }
 						/>
 					</div>
 					<div className='my-6'>
@@ -166,6 +173,7 @@ const StripeCheckout: FC<PageProps> = ({ searchParams }) => {
 							plan='One Time Payment'
 							price={ product?.price }
 							icon={ MicroscopeIcon }
+							loading={ productLoading }
 						/>
 					</div>
 					<div className='mt-11 lg:pl-[71px] lg:ml-6'>
