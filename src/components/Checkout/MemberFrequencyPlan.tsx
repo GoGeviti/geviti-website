@@ -1,4 +1,6 @@
-import React, { Dispatch, Fragment, SetStateAction, useEffect, useState } from 'react';
+import React, {
+	Dispatch, Fragment, SetStateAction, useEffect, useState
+} from 'react';
 import { motion } from 'framer-motion';
 import { useRouter, useSearchParams } from 'next/navigation';
 
@@ -10,7 +12,7 @@ import { GreenCheck } from '../Icons';
 import ButtonSwitchMemberFreq from '../MemberShip/ButtonSwitchMemberFreq';
 
 import { getMembershipOfferings } from './api/onboarding';
-import { MembershipOfferingsReturnType } from './api/types';
+import { BILLING_FREQ, MembershipOfferingsReturnType } from './api/types';
 import { CheckoutStep } from './Main';
 import Navbar from './Navbar';
 import PrivacyPolicyStatement from './PrivacyPolicyStatement';
@@ -30,11 +32,14 @@ const MemberFrequencyPlan: React.FC<MemberFrequencyPlanProps> = ({ setStep }) =>
 
 	const [activeTabIdx, setActiveTabIdx] = useState<number>(0);
 	const [offerings, setOfferings] = useState<MembershipOfferingsReturnType[]>();
+	const [monthlyPrice, setMonthlyPrice] = useState(0);
+	const [quarterlyPrice, setQuarterlyPrice] = useState(0);
 
 	useEffect(() => {
 		const getOfferings = async() => {
 			const memberShipOfferings = await getMembershipOfferings();
-
+			setQuarterlyPrice(((memberShipOfferings?.find(it => it?.billing_frequency === BILLING_FREQ.QUARTERLY)?.price || 0) / 3))
+			setMonthlyPrice(memberShipOfferings?.find(it => it?.billing_frequency === BILLING_FREQ.MONTHLY)?.price || 0)
 			setOfferings(
 				memberShipOfferings
 					?.map(it => ({
@@ -122,14 +127,12 @@ const MemberFrequencyPlan: React.FC<MemberFrequencyPlanProps> = ({ setStep }) =>
 									currentIdx={ 2 }
 									theme='light' />
 								<div className='w-fit max-lg:my-[42px] lg:mb-[2.222vh] 2xl:mb-6'>
-									{ offerings && (
-										<ButtonSwitchMemberFreq
-											options={ offerings }
-											onChange={ (currentIdx: number) => setActiveTabIdx(currentIdx) }
-											layoutId='switch-membership-frequency-checkout'
-											showHightlightTextOnMobile
-										/>
-									) }
+									<ButtonSwitchMemberFreq
+										options={ membershipFrequencyData.frequencyOptions }
+										onChange={ (currentIdx: number) => setActiveTabIdx(currentIdx) }
+										layoutId='switch-membership-frequency-checkout'
+										showHightlightTextOnMobile
+									/>
 								</div>
 
 								<h1 className='text-2xl lg:text-4xl !leading-normal lg:-tracking-0.04em text-primary'>
@@ -142,10 +145,22 @@ const MemberFrequencyPlan: React.FC<MemberFrequencyPlanProps> = ({ setStep }) =>
 								<div className='mt-6 mb-[42px] lg:my-[3.889vh] 2xl:my-[42px] inline-flex max-lg:flex-col lg:items-baseline'>
 									<span className='max-lg:font-medium text-4xl !leading-normal -tracking-0.04em text-primary'>
 										<Fragment>
-											{ activeTabIdx === 0 && offerings ? (
-												<Fragment>${ (offerings?.[activeTabIdx].price / 3).toFixed(2) }</Fragment>
+											{ activeTabIdx === 0 ? (
+												<span>
+													{ !Boolean(quarterlyPrice) ? (
+														<span className='inline-block h-10 w-28 bg-grey-700 rounded animate-skeletonLoading' />
+													) : (
+														<span className='inline-block'>${ (quarterlyPrice).toFixed(2) }</span>
+													) }
+												</span>
 											) : (
-												<Fragment>${ offerings?.[activeTabIdx].price }</Fragment>
+												<span>
+													{ !Boolean(monthlyPrice) ? (
+														<span className='inline-block h-10 w-28 bg-grey-700 rounded animate-skeletonLoading' />
+													) : (
+														<span>${ (monthlyPrice).toFixed(2) }</span>
+													) }
+												</span>
 											) }
 										</Fragment>
                     

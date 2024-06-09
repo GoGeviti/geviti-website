@@ -45,10 +45,14 @@ export interface InitialOfferingsReturnType {
   visibility_status: string;
 }
 
+export enum BILLING_FREQ {
+  MONTHLY = 'Monthly',
+  QUARTERLY = 'Quarterly'
+}
 export interface MembershipOfferingsReturnType {
   id: string;
   name: 'Monthly Subscription' | 'Quarterly Subscription';
-  billing_frequency: 'Monthly' | 'Quarterly';
+  billing_frequency: BILLING_FREQ;
   title: 'Monthly' | 'Quarterly';
   currency: string;
   price: number;
