@@ -1,4 +1,4 @@
-import React, { FC, useMemo, useRef, useState } from 'react';
+import React, { FC, useMemo, useState } from 'react';
 import {
 	CardCvcElement,
 	CardExpiryElement,
@@ -9,6 +9,8 @@ import { toast } from 'sonner';
 
 import { Spinner } from '@/components/Icons/Spinner';
 import clsxm from '@/helpers/clsxm';
+
+import PrivacyPolicyStatement from '../PrivacyPolicyStatement';
 
 type StripeFormProps = {
   stripe: Stripe | null;
@@ -48,7 +50,6 @@ const StripeForm: FC<StripeFormProps> = ({
 	const [isCardExpiryInputComplete, setIsCardExpiryInputComplete] = useState(false);
 	const [isCardCvcInputComplete, setIsCardCvcInputComplete] = useState(false);
 	const [formSubmitted, setFormSubmitted] = useState(false);
-	const inputRef = useRef<HTMLInputElement>(null);
 
 	const formLoading = useMemo(
 		() => stripeResponseLoading || loading,
@@ -58,9 +59,6 @@ const StripeForm: FC<StripeFormProps> = ({
 	const handleSubmit = async(e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 		setFormSubmitted(true);
-		if (inputRef.current) {
-			console.log('inputRef', inputRef.current.value);
-		}
 
 		if (!stripe || !elements || !isCardExpiryInputComplete || !isCardCvcInputComplete) {
 			return;
@@ -162,9 +160,8 @@ const StripeForm: FC<StripeFormProps> = ({
 						/>
 						<label
 							htmlFor='checkout_terms'
-							className='text-xs text-grey-500 font-BRSonoma leading-normal select-none text-left'
 						>
-							By checking the box, you confirm that you have read, understood, and agree to abide by our Privacy Policy and Terms of Service.
+							<PrivacyPolicyStatement checkout /> { ' ' }
 						</label>
 					</div>
 					<button
@@ -180,7 +177,6 @@ const StripeForm: FC<StripeFormProps> = ({
 									Pay Securely ${ totalPrice }
 								</span>
 							) }
-
 						</div>
 					</button>
 				</div>

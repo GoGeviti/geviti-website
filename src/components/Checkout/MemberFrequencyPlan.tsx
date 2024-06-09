@@ -35,8 +35,10 @@ const MemberFrequencyPlan: React.FC<MemberFrequencyPlanProps> = ({ setStep }) =>
 	const [offerings, setOfferings] = useState<MembershipOfferingsReturnType[]>();
 	const [monthlyPrice, setMonthlyPrice] = useState(0);
 	const [quarterlyPrice, setQuarterlyPrice] = useState(0);
+	const [loading, setLoading] = useState(false);
 
 	useEffect(() => {
+		setLoading(true);
 		const getOfferings = async() => {
 			const memberShipOfferings = await getMembershipOfferings();
 			setQuarterlyPrice(((memberShipOfferings?.find(it => it?.billing_frequency === BILLING_FREQ.QUARTERLY)?.price || 0) / 3))
@@ -49,6 +51,7 @@ const MemberFrequencyPlan: React.FC<MemberFrequencyPlanProps> = ({ setStep }) =>
 					}))
 					.reverse()
 			);
+			setLoading(false);
 		};
 		getOfferings();
 	}, []);
@@ -148,16 +151,15 @@ const MemberFrequencyPlan: React.FC<MemberFrequencyPlanProps> = ({ setStep }) =>
 										<Fragment>
 											{ activeTabIdx === 0 ? (
 												<Skeleton
-													loading={ !Boolean(quarterlyPrice) }
+													loading={ loading }
 													className='h-10 w-28'>
 													<span className='inline-block'>${ (quarterlyPrice).toFixed(2) }</span>
 												</Skeleton>
-												
 											) : (
 												<Skeleton
-													loading={ !Boolean(monthlyPrice) }
+													loading={ loading }
 													className='h-10 w-28'>
-													<span className='inline-block h-10 w-28 bg-grey-700 rounded animate-skeletonLoading' />
+													<span className='inline-block'>${ (monthlyPrice).toFixed(2) }</span>
 												</Skeleton>
 											) }
 										</Fragment>
