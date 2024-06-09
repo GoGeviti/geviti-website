@@ -1,6 +1,8 @@
 'use client';
 
-import React, { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import React, {
+	Dispatch, SetStateAction, useEffect, useState
+} from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { useRouter, useSearchParams } from 'next/navigation';
@@ -28,12 +30,15 @@ const pricingProductPlanData = checkoutData.pricingProductPlan;
 const PricingProductPlan: React.FC<PricingProductPlanProps> = ({ setStep }) => {
 	const router = useRouter();
 	const searchParams = useSearchParams();
-	const [initialOfferings, SetInitialOfferings] = useState<InitialOfferingsReturnType[]>([]);
+	const [loading, setLoading] = useState(false);
+	const [initialOfferings, setInitialOfferings] = useState<InitialOfferingsReturnType[]>([]);
 
 	useEffect(() => {
+		setLoading(true);
 		const getOfferings = async() => {
 			const offerings = await getInitialOfferings();
-			SetInitialOfferings(offerings);
+			setInitialOfferings(offerings);
+			setLoading(false);
 		};
 		getOfferings();
 	}, []);
@@ -85,9 +90,8 @@ const PricingProductPlan: React.FC<PricingProductPlanProps> = ({ setStep }) => {
 						</p>
 
 						<div className='lg:max-w-full mx-auto sm:max-w-[392px] lg:flex-row flex-col flex gap-[42px] lg:gap-6 items-end w-full pt-[42px] lg:pt-[3.889vh] 2xl:pt-[42px]'>
-							{ initialOfferings &&
-                initialOfferings.map((item, index) => {
-                	const productLocalData = pricingProductPlanData.list.find(it => it.name === item.name);
+							{ [...Array(3)].map((_, index) => {
+                	const productLocalData = pricingProductPlanData.list.find(it => it.name === initialOfferings[index]?.name);
                 	return (
                 		<motion.div
                 			key={ index }
@@ -112,11 +116,15 @@ const PricingProductPlan: React.FC<PricingProductPlanProps> = ({ setStep }) => {
                 						index === 1 && 'z-10'
                 					) }
                 				>
-                					<h3 className='!leading-[28px] text-[5.128vw] xs2:text-xl'>{ item.name }</h3>
+                					<h3 className='!leading-[28px] text-[5.128vw] xs2:text-xl'>{ initialOfferings[index]?.name }</h3>
 
                 					<span className='font-medium text-5xl !leading-[125%] py-1'>
-                						<span>${ item.price }</span>{ ' ' }
-                						<span className='text-xs lg:text-sm'>{ productLocalData?.priceNote }</span>
+													{ loading ? (
+														<span className='inline-block h-12 w-[122px] bg-grey-700 rounded animate-skeletonLoading' />
+													) : (
+														<span className='inline-block'>${ initialOfferings[index]?.price }</span>
+													) }
+                						<span className='text-xs lg:text-sm'> { productLocalData?.priceNote }</span>
                 					</span>
                 					<p className='font-medium text-xs lg:text-sm !leading-6'>+ ongoing membership fee</p>
                 					<p className='text-4xl !leading-normal font-medium mb-[11px] mt-[25px] lg:mt-3.5'>
@@ -143,7 +151,7 @@ const PricingProductPlan: React.FC<PricingProductPlanProps> = ({ setStep }) => {
                 						text={ productLocalData?.btnCta.text }
                 						theme={ productLocalData?.mostPopular ? 'secondary' : 'primary' }
                 						className='w-full sm:w-fit mx-auto'
-                						onClick={ () => onClickSelectOption(item) }
+                						onClick={ () => onClickSelectOption(initialOfferings[index]) }
                 					/>
 
                 					{ productLocalData?.mostPopular ? (
@@ -166,8 +174,8 @@ const PricingProductPlan: React.FC<PricingProductPlanProps> = ({ setStep }) => {
                 				</div>
                 			</div>
                 		</motion.div>
-                	);
-                }) }
+                	)
+							}) }
 						</div>
 					</div>
 					<div className='mt-[66px] lg:mt-[3.889vh] 2xl:mt-[42px] pb-16 lg:pb-5 w-full lg:container-center'>
