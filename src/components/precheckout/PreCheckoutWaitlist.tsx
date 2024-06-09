@@ -27,9 +27,8 @@ const Title = styled.h1<{ viewState: ViewState }>`
   margin-bottom: 8px;
   width: 430px;
 
-  animation: ${props =>
-		props.viewState === ViewState.IN_PROGRESS && moveFromRight}
-    0.5s cubic-bezier(0.21, 1.04, 0.58, 1.15);
+  animation: ${props => props.viewState === ViewState.IN_PROGRESS && moveFromRight} 0.5s
+    cubic-bezier(0.21, 1.04, 0.58, 1.15);
   animation-fill-mode: forwards;
 
   transform: translateX(100vw);
@@ -41,9 +40,8 @@ const Subtitle = styled.p<{ viewState: ViewState }>`
   width: 430px;
   margin-bottom: 24px;
 
-  animation: ${props =>
-		props.viewState === ViewState.IN_PROGRESS && moveFromRight}
-    0.5s cubic-bezier(0.21, 1.04, 0.58, 1.15);
+  animation: ${props => props.viewState === ViewState.IN_PROGRESS && moveFromRight} 0.5s
+    cubic-bezier(0.21, 1.04, 0.58, 1.15);
   animation-fill-mode: forwards;
   animation-delay: 0.08s;
 
@@ -69,9 +67,8 @@ const moveFromRight = keyframes`
 `;
 
 const SecondInputField = styled(InputField)<{ viewState: ViewState }>`
-  animation: ${props =>
-		props.viewState === ViewState.IN_PROGRESS && moveFromRight}
-    0.5s cubic-bezier(0.21, 1.04, 0.58, 1.15);
+  animation: ${props => props.viewState === ViewState.IN_PROGRESS && moveFromRight} 0.5s
+    cubic-bezier(0.21, 1.04, 0.58, 1.15);
   animation-fill-mode: forwards;
   animation-delay: 0.24s;
   width: 430px;
@@ -97,9 +94,8 @@ const Button = styled.button<{ viewState: ViewState }>`
   text-align: center;
 
   transform: translateX(100vw);
-  animation: ${props =>
-		props.viewState === ViewState.IN_PROGRESS && moveFromRight}
-    0.5s cubic-bezier(0.21, 1.04, 0.58, 1.15);
+  animation: ${props => props.viewState === ViewState.IN_PROGRESS && moveFromRight} 0.5s
+    cubic-bezier(0.21, 1.04, 0.58, 1.15);
   animation-fill-mode: forwards;
   animation-delay: 0.4s;
 `;
@@ -118,13 +114,9 @@ const FreeVisitRow = styled.div<{ viewState: ViewState }>`
   margin-bottom: 22px;
 
   opacity: ${props => (props.viewState === ViewState.IN_PROGRESS ? 1 : 0)};
-  transform: scale(
-    ${props => (props.viewState === ViewState.IN_PROGRESS ? 1 : 0.8)}
-  );
+  transform: scale(${props => (props.viewState === ViewState.IN_PROGRESS ? 1 : 0.8)});
 
-  transition:
-    opacity 0.5s cubic-bezier(0.15, 1.14, 0.88, 0.98),
-    transform 0.75s cubic-bezier(0.21, 1.04, 0.58, 1.15);
+  transition: opacity 0.5s cubic-bezier(0.15, 1.14, 0.88, 0.98), transform 0.75s cubic-bezier(0.21, 1.04, 0.58, 1.15);
 
   transition-delay: ${props => (props.viewState === ViewState.IN_PROGRESS ? 1.33 : 0)}s;
 `;
@@ -158,8 +150,8 @@ const FreeVisitSubtitle = styled.span`
 `;
 
 interface PreCheckoutWaitlistProps {
-	viewState: ViewState;
-	onContinue: () => void;
+  viewState: ViewState;
+  onContinue: () => void;
 }
 
 const PreCheckoutWaitlist = (props: PreCheckoutWaitlistProps) => {
@@ -187,20 +179,18 @@ const PreCheckoutWaitlist = (props: PreCheckoutWaitlistProps) => {
 				/>
 				<FreeVisitCol>
 					<FreeVisitTitle className='font-BRSonoma'>
-						You qualify for Geviti, but we&apos;re currently at capacity.
+            You qualify for Geviti, but we&apos;re currently at capacity.
 					</FreeVisitTitle>
 					<FreeVisitSubtitle className='font-BRSonoma'>
-						This is so we can offer the best service for our current members.
+            This is so we can offer the best service for our current members.
 					</FreeVisitSubtitle>
 				</FreeVisitCol>
 			</FreeVisitRow>
-			<Title viewState={ props.viewState }>
-				Should we add you to the waitlist?
-			</Title>
+			<Title viewState={ props.viewState }>Should we add you to the waitlist?</Title>
 			<Subtitle
 				viewState={ props.viewState }
 				className='font-BRSonoma'>
-				We&apos;ll notify you as soon as we have more availability.
+        We&apos;ll notify you as soon as we have more availability.
 			</Subtitle>
 			<SecondInputField
 				label='Email Address'
@@ -212,9 +202,8 @@ const PreCheckoutWaitlist = (props: PreCheckoutWaitlistProps) => {
 			/>
 			<Button
 				viewState={ props.viewState }
-				onClick={ () => props.onContinue() }
-			>
-				Join Waitlist
+				onClick={ () => props.onContinue() }>
+        Join Waitlist OR
 			</Button>
 		</Column>
 	);

@@ -6,21 +6,19 @@ import { motion } from 'framer-motion';
 import clsxm from '@/helpers/clsxm';
 
 type ButtonSwitchMemberFreqProps = {
-	layoutId?: string;
-	options: {
-		title: string;
-		value: string;
-		highlight?: string;
-	}[];
-	onChange?: (currentActiveIdx: number) => void; // eslint-disable-line no-unused-vars
-	showHightlightTextOnMobile?: boolean;
+  layoutId?: string;
+  options: {
+    title: string;
+  }[];
+  onChange?: (currentActiveIdx: number) => void; // eslint-disable-line no-unused-vars
+  showHightlightTextOnMobile?: boolean;
 };
 
 const ButtonSwitchMemberFreq: React.FC<ButtonSwitchMemberFreqProps> = ({
 	layoutId = 'pill-tab-switch-pricingplans',
 	options,
 	onChange,
-	showHightlightTextOnMobile
+	showHightlightTextOnMobile,
 }) => {
 	const [activeTabIdx, setActiveTabIdx] = useState<number>(0);
 
@@ -52,7 +50,8 @@ const ButtonSwitchMemberFreq: React.FC<ButtonSwitchMemberFreqProps> = ({
 								className={ clsxm(
 									'text-sm !leading-normal h-full flex items-center justify-center text-grey-400 cursor-pointer whitespace-nowrap',
 									setItemClassName(optIdx)
-								) }>
+								) }
+							>
 								{ opt.title }
 							</button>
 						);
@@ -64,21 +63,21 @@ const ButtonSwitchMemberFreq: React.FC<ButtonSwitchMemberFreqProps> = ({
 					transition={ { type: 'spring', duration: 0.75 } }
 					className={ clsxm(
 						'bg-primary cursor-pointer rounded-[100px] font-medium text-white whitespace-nowrap shadow-[0px_4px_8px_0px_rgba(0,0,0,0.1)] text-sm !leading-normal flex items-center h-[37px] top-1.5 absolute',
-						activeTabIdx === 0
-							? 'left-1.5'
-							: 'left-[95px] sm:left-[162px]',
+						activeTabIdx === 0 ? 'left-1.5' : 'left-[95px] sm:left-[162px]',
 						showHightlightTextOnMobile && activeTabIdx > 0 && 'max-sm:left-[162px]',
 						setItemClassName(activeTabIdx),
-						currentOpt.highlight ? 'justify-between' : 'justify-center'
+						currentOpt.title === 'Quarterly' ? 'justify-between' : 'justify-center'
 					) }
 				>
 					{ currentOpt.title }
-					{ currentOpt.highlight && (
-						<span className={ clsxm(
-							'text-blue-primary text-xs !leading-normal w-[55px] h-[21px] flex-shrink-0 bg-[#F2FAFF]/15 border-[0.55px] border-white/15 rounded-[100px] flex items-center justify-center',
-							!showHightlightTextOnMobile && 'max-sm:hidden'
-						) }>
-							{ currentOpt.highlight }
+					{ currentOpt.title === 'Quarterly' && (
+						<span
+							className={ clsxm(
+								'text-blue-primary text-xs !leading-normal w-[55px] h-[21px] flex-shrink-0 bg-[#F2FAFF]/15 border-[0.55px] border-white/15 rounded-[100px] flex items-center justify-center',
+								!showHightlightTextOnMobile && 'max-sm:hidden'
+							) }
+						>
+              17% off
 						</span>
 					) }
 				</motion.span>

@@ -164,7 +164,7 @@ input[type="number"]::placeholder {
 }
 [type="radio"]:checked + label:before,
 [type="radio"]:not(:checked) + label:before {
-  content: '';
+  content: "";
   position: absolute;
   left: 0;
   top: 50%;
@@ -175,17 +175,17 @@ input[type="number"]::placeholder {
   background: #fff;
 }
 [type="radio"]:checked + label:before {
-  border: 1px solid #99D4FF;
+  border: 1px solid #99d4ff;
 }
 [type="radio"]:not(:checked) + label:before {
-  border: 1px solid #7B7F81;
+  border: 1px solid #7b7f81;
 }
 [type="radio"]:checked + label:after,
 [type="radio"]:not(:checked) + label:after {
-  content: '';
+  content: "";
   width: 8px;
   height: 8px;
-  background: #99D4FF;
+  background: #99d4ff;
   position: absolute;
   top: 6px;
   left: 3px;
@@ -207,4 +207,33 @@ input[type="number"]::placeholder {
 
 .react-datepicker__day--selected {
   background-color: #181a1c !important;
+}
+
+.pac-container {
+  background-color: #252627 !important;
+  border-radius: 12px !important;
+  border: none !important;
+  margin-top: 8px !important;
+}
+
+.pac-item-query {
+  color: #fff !important;
+}
+
+.pac-item {
+  padding: 8px 16px !important;
+  border-top: 1px solid #757c80 !important;
+  font-family: "Poppins", sans-serif !important;
+}
+
+.pac-item:first-child {
+  border-top: none !important;
+}
+
+.pac-item:hover {
+  background-color: #181a1c !important;
+}
+
+.pac-container:after {
+  content: none !important;
 }
