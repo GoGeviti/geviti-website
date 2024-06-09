@@ -10,6 +10,7 @@ import { splitList } from '@/helpers/misc';
 
 import { GreenCheck } from '../Icons';
 import ButtonSwitchMemberFreq from '../MemberShip/ButtonSwitchMemberFreq';
+import Skeleton from '../Skeleton/Skeleton';
 
 import { getMembershipOfferings } from './api/onboarding';
 import { BILLING_FREQ, MembershipOfferingsReturnType } from './api/types';
@@ -146,21 +147,18 @@ const MemberFrequencyPlan: React.FC<MemberFrequencyPlanProps> = ({ setStep }) =>
 									<span className='max-lg:font-medium text-4xl !leading-normal -tracking-0.04em text-primary'>
 										<Fragment>
 											{ activeTabIdx === 0 ? (
-												<span>
-													{ !Boolean(quarterlyPrice) ? (
-														<span className='inline-block h-10 w-28 bg-grey-700 rounded animate-skeletonLoading' />
-													) : (
-														<span className='inline-block'>${ (quarterlyPrice).toFixed(2) }</span>
-													) }
-												</span>
+												<Skeleton
+													loading={ !Boolean(quarterlyPrice) }
+													className='h-10 w-28'>
+													<span className='inline-block'>${ (quarterlyPrice).toFixed(2) }</span>
+												</Skeleton>
+												
 											) : (
-												<span>
-													{ !Boolean(monthlyPrice) ? (
-														<span className='inline-block h-10 w-28 bg-grey-700 rounded animate-skeletonLoading' />
-													) : (
-														<span>${ (monthlyPrice).toFixed(2) }</span>
-													) }
-												</span>
+												<Skeleton
+													loading={ !Boolean(monthlyPrice) }
+													className='h-10 w-28'>
+													<span className='inline-block h-10 w-28 bg-grey-700 rounded animate-skeletonLoading' />
+												</Skeleton>
 											) }
 										</Fragment>
                     

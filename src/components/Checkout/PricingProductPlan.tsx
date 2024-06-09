@@ -12,6 +12,7 @@ import ButtonCta from '../ButtonCta';
 import QuestionTooltip from '../Home/QuestionTooltip';
 import { GreenCheck } from '../Icons';
 import BiomarkersSection from '../MemberShip/BiomarkersSection';
+import Skeleton from '../Skeleton/Skeleton';
 
 import { getInitialOfferings } from './api/onboarding';
 import { InitialOfferingsReturnType } from './api/types';
@@ -118,11 +119,11 @@ const PricingProductPlan: React.FC<PricingProductPlanProps> = ({ setStep }) => {
 												<h3 className='!leading-[28px] text-[5.128vw] xs2:text-xl'>{ productLocalData.name }</h3>
 
 												<span className='font-medium text-5xl !leading-[125%] py-1'>
-													{ loading ? (
-														<span className='inline-block h-12 w-[122px] bg-grey-700 rounded animate-skeletonLoading' />
-													) : (
+													<Skeleton
+														loading={ loading }
+														className=' h-12 w-[122px]'>
 														<span className='inline-block'>${ offering?.price }</span>
-													) }
+													</Skeleton>
 													<span className='text-xs lg:text-sm'> { productLocalData.priceNote }</span>
 												</span>
                 					<p className='font-medium text-xs lg:text-sm !leading-6'>+ ongoing membership fee</p>
