@@ -41,11 +41,12 @@ const StripeCheckout: FC<PageProps> = ({ searchParams }) => {
 
 	const [loading, setLoading] = useState(false);
 	const [couponLoading, setCouponLoading] = useState(false);
+	const [productLoading, setProductLoading] = useState(false);
+	const [membershipLoading, setMembershipLoading] = useState(false);
+	const [checkoutLoading, setCheckoutLoading] = useState(false);
 	const [tempUser, setTempUser] = useState<TempUser>();
 	const [product, setProduct] = useState<InitialOfferingsReturnType>();
 	const [membership, setMembership] = useState<MembershipOfferingsReturnType>();
-	const [productLoading, setProductLoading] = useState(false);
-	const [membershipLoading, setMembershipLoading] = useState(false);
 	const [discount, setDiscount] = useState<DiscountReturnType | null>(null);
 	const [totalPrice, setTotalPrice] = useState<number>();
 	const [discountApplied, setDiscountApplied] = useState(false);
@@ -113,7 +114,6 @@ const StripeCheckout: FC<PageProps> = ({ searchParams }) => {
 			token: string,
 		) => {
 			try {
-
 				if (!product || !membership || !tempUser) {
 					toast.error('', {
 						icon: <AiFillCloseCircle className='h-5 w-5 text-danger' />,
@@ -121,6 +121,7 @@ const StripeCheckout: FC<PageProps> = ({ searchParams }) => {
 					return;
 				}
 				setLoading(true);
+				setCheckoutLoading(true);
 				const checkoutResp = await checkout({
 					user_token: tempUser.token,
 					stripe_token: token,
@@ -140,15 +141,18 @@ const StripeCheckout: FC<PageProps> = ({ searchParams }) => {
 				});
 				sessionStorage.setItem('checkout_token', checkoutResp.token);
 				setLoading(false);
+				setCheckoutLoading(false);
 				router.push('payment/success');
+				sessionStorage.removeItem('temp_user');
 			} catch (error) {
 				setLoading(false);
+				setCheckoutLoading(false);
 				toast.error(error as string, {
 					icon: <AiFillCloseCircle className='h-5 w-5 text-danger' />,
 				});
 			}
 		},
-		[product, membership, tempUser]
+		[product, membership, tempUser, discount]
 	);
 	return (
 		<div className='flex flex-col lg:flex-row min-h-screen h-full w-full'>
@@ -194,7 +198,7 @@ const StripeCheckout: FC<PageProps> = ({ searchParams }) => {
 			</div>
 			<div className='h-full w-full bg-white'>
 				<StripeElementsProvider
-					loading={ loading }
+					loading={ checkoutLoading }
 					totalPrice={ totalPrice }
 					handleCheckout={ handleCheckout }
 				/>
