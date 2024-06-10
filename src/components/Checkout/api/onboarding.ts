@@ -102,12 +102,17 @@ export const getInitialOfferings = async(): Promise<InitialOfferingsReturnType[]
 
 export const getMembershipOfferings = async(): Promise<MembershipOfferingsReturnType[]> => {
 	try {
+		const userToken = fetchUserToken();
+		if (!userToken) throw { message: 'No user found' };
 		const res = await fetch(
 			`${onboardingApiUrl}/billing/offerings-info?billingType=membership
     `,
 			{
 				method: 'GET',
-				headers,
+				headers: {
+					Authorization: `Token ${userToken}`,
+					...headers,
+				},
 			}
 		);
 		const data = await processResponse<MembershipOfferingsReturnType[]>(res);
