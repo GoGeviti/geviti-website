@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import Autocomplete from 'react-google-autocomplete';
 import { AiFillCloseCircle } from 'react-icons/ai';
+import InputMask from '@mona-health/react-input-mask';
 import { FormikProps, useFormik } from 'formik';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
@@ -82,7 +83,7 @@ const Form: React.FC<{
 					email: email,
 					state: state,
 					gender: form.gender.toLowerCase(),
-					phoneNumber: phone_number,
+					phoneNumber: phone_number.replace(/\s/g, ''),
 					city: city,
 					addressLine1: address_1,
 					addressLine2: address_2,
@@ -125,18 +126,18 @@ const Form: React.FC<{
 	};
 
 	const onPlaceSelected = (place: any) => {
-		const address = place.formatted_address;
+		// const address = place.formatted_address;
 		const addressComponents = place.address_components;
 		const city = addressComponents.find((item:any) => item.types.includes('locality'))?.long_name;
 		const state = addressComponents.find((item:any) => item.types.includes('administrative_area_level_1'))?.short_name;
 		const zipCode = addressComponents.find((item:any) => item.types.includes('postal_code'))?.long_name;
-		// const address1 = addressComponents.find((item:any) => item.types.includes('street_number'))?.long_name;
+		const address1 = addressComponents.find((item:any) => item.types.includes('street_number'))?.long_name;
 		const address2 = addressComponents.find((item:any) => item.types.includes('route'))?.long_name;
 
 		formik.setFieldValue('city', city ?? '');
 		formik.setFieldValue('state', state ?? '');
 		formik.setFieldValue('zip_code', zipCode ?? '');
-		formik.setFieldValue('address_1', address ?? '');
+		formik.setFieldValue('address_1', address1 ?? '');
 		formik.setFieldValue('address_2', address2 ?? '');
 	}
 
@@ -267,18 +268,24 @@ const Form: React.FC<{
 									isError={ !!formik.errors.email }
 									errorMessage={ formik.errors.email }
 								/>
-
-								<TextField
-									id='phone_number'
-									name='phone_number'
-									type='text'
-									inputMode='numeric'
-									placeholder='Phone Number'
-									value={ formik.values.phone_number }
-									onChange={ e => onChangeInputRestrictNumber('phone_number', e.target.value) }
-									isError={ !!formik.errors.phone_number }
-									errorMessage={ formik.errors.phone_number }
-								/>
+								<div className='flex flex-col'>
+									<InputMask
+										mask='+1\ 999 999 9999'
+										maskPlaceholder={ null }
+										placeholder='Phone Number'
+										name='phone_number'
+										onChange={ formik.handleChange }
+										value={ formik.values.phone_number }
+										className={ clsxm(
+											'block w-full h-[54px] lg:h-[63px] border-0 outline-red-600 transform focus:outline-none transition-colors duration-300 rounded-[10px]',
+											'text-white bg-grey-950 text-xs lg:text-lg font-normal !leading-normal font-Poppins placeholder:text-grey-500 px-6 py-18px',
+											!!formik.errors.phone_number ? 'ring-1 ring-red-primary focus:ring-1 focus:ring-red-primary' : '!ring-0 focus:!ring-1 !ring-grey-primary',
+										) }
+									/>
+									{ !!formik.errors.phone_number && formik.errors.phone_number && (
+										<p className='text-red-primary text-[10px] mt-1 text-left'>{ formik.errors.phone_number }</p>
+									) }
+								</div>
 							</div>
 
 							<h2 className='text-grey-50 text-lg !leading-normal max-lg:font-medium'>
@@ -286,17 +293,6 @@ const Form: React.FC<{
 							</h2>
 
 							<div className='flex flex-col gap-3 lg:gap-6 xl:gap-[2.222vh] mt-6 lg:mt-[21px] xl:mt-[1.944vh]'>
-								
-								{ /* <TextField
-									id='address_1'
-									name='address_1'
-									type='text'
-									placeholder='Address 1'
-									value={ formik.values.address_1 }
-									onChange={ formik.handleChange }
-									isError={ !!formik.errors.address_1 }
-									errorMessage={ formik.errors.address_1 }
-								/> */ }
 								<div className='flex flex-col'>
 									<Autocomplete
 										apiKey={ process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY }

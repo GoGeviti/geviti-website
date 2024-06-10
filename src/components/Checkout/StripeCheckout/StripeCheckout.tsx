@@ -194,8 +194,10 @@ const StripeCheckout: FC<PageProps> = ({ searchParams }) => {
 							setTotalPrice={ setTotalPrice }
 						/>
 					</div>
-					<Sheet>
-						<SheetTrigger asChild>
+					<Sheet >
+						<SheetTrigger
+							asChild
+							className='lg:hidden'>
 							<Button className='bg-white text-primary h-[58px] text-lg'>
 							Pay Now
 							</Button>
@@ -210,7 +212,6 @@ const StripeCheckout: FC<PageProps> = ({ searchParams }) => {
 							/>
 						</SheetContent>
 					</Sheet>
-					
 				</div>
 			</div>
 			<div className='h-full w-full bg-white max-lg:hidden'>
