@@ -1,3 +1,4 @@
+import { InitialOfferingType } from '@/components/Checkout/api/types';
 import {
 	CrossRed,
 	DollarCircle,
@@ -1393,6 +1394,7 @@ const membershipData = {
 		list: [
 			{
 				name: 'Essentials Diagnostic',
+				keyword: InitialOfferingType.ESSENTIALS,
 				price: '299',
 				priceNote: 'one time payment',
 				priceDescGeneral:
@@ -1431,6 +1433,7 @@ const membershipData = {
 			},
 			{
 				name: 'Comprehensive Diagnostic',
+				keyword: InitialOfferingType.COMPREHENSIVE,
 				price: '469',
 				priceNote: 'one time payment',
 				priceDescGeneral:
@@ -1469,6 +1472,7 @@ const membershipData = {
 			},
 			{
 				name: 'Ultimate Diagnostic',
+				keyword: InitialOfferingType.ULTIMATE,
 				price: '599',
 				priceNote: 'one time payment',
 				priceDescGeneral:

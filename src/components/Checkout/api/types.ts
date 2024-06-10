@@ -35,9 +35,14 @@ export interface WaitListParams {
   id: string;
 }
 
+export enum InitialOfferingType {
+  ESSENTIALS = 'essentials',
+  COMPREHENSIVE = 'comprehensive',
+  ULTIMATE = 'ultimate',
+}
 export interface InitialOfferingsReturnType {
   id: string;
-  name: 'Essentials Diagnostic' | 'Comprehensive Diagnostic' | 'Ultimate Diagnostic';
+  name: string;
   billing_frequency: 'One-Time';
   currency: string;
   price: number;
