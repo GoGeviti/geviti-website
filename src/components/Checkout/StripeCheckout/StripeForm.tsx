@@ -67,11 +67,12 @@ const StripeForm: FC<StripeFormProps> = ({
 		
 		try {
 			setStripeResponseLoading(true);
-			const { token } = await stripe.createToken(cardNumberElement!);
+			const tokenResult = await stripe.createToken(cardNumberElement!);
 			setStripeResponseLoading(false);
-			if (token) {
-				handleCheckout(token.id);
+			if (tokenResult?.error) {
+				throw tokenResult.error;
 			}
+			handleCheckout(tokenResult.token.id);
 		} catch (error) {
 			const err = error as StripeError;
 			setStripeResponseLoading(false);
