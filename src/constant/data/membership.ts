@@ -620,6 +620,7 @@ const membershipData = {
 				name: 'Essentials Diagnostic',
 				keyword: InitialOfferingType.ESSENTIALS,
 				price: '$497',
+				priceMonthly: '$299',
 				priceNote: 'one time payment',
 				priceDescGeneral:
           '<span class="lg:hidden">+$99/m billed quarterly</span><span class="max-lg:hidden">+$198 initially, then $297 quarterly</span>',
@@ -659,6 +660,7 @@ const membershipData = {
 				name: 'Comprehensive Diagnostic',
 				keyword: InitialOfferingType.COMPREHENSIVE,
 				price: '$667',
+				priceMonthly: '$469',
 				priceNote: 'one time payment',
 				priceDescGeneral:
           '<span class="lg:hidden">+ $297 quarterly</span><span class="max-lg:hidden">+$198 initially, then $297 quarterly</span>',
@@ -698,6 +700,7 @@ const membershipData = {
 				name: 'Ultimate Diagnostic',
 				keyword: InitialOfferingType.ULTIMATE,
 				price: '$797',
+				priceMonthly: '$599',
 				priceNote: 'one time payment',
 				priceDescGeneral:
           '<span class="lg:hidden">+ $297 quarterly</span><span class="max-lg:hidden">+$198 initially, then $297 quarterly</span>',

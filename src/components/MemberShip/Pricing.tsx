@@ -139,7 +139,33 @@ const Pricing = () => {
 										</h3>
 
 										<span className='font-medium text-5xl !leading-[125%] py-1'>
-											<span>{ item.price }</span>{ ' ' }
+											<AnimatePresence mode='wait'>
+												{ pricingData.pricingOptions[activeTabIdx].value === 'monthly'
+													? (
+														<motion.span
+															key='price_monthly'
+															initial={ { y: -50, opacity: 0 } }
+															animate={ { y: 0, opacity: 1 } }
+															exit={ { y: 50, opacity: 0 } }
+															transition={ { ease: 'linear', duration: 0.25 } }
+															className='font-medium text-5xl !leading-[125%] py-1'
+														>
+															{ item.priceMonthly } { ' ' }
+														</motion.span>
+													) : (
+														<motion.span
+															key='price_quarterly'
+															initial={ { y: -50, opacity: 0 } }
+															animate={ { y: 0, opacity: 1 } }
+															exit={ { y: 50, opacity: 0 } }
+															transition={ { ease: 'linear', duration: 0.25 } }
+															className='font-medium text-5xl !leading-[125%] py-1'
+														>
+															{ item.price } { ' ' }
+														</motion.span>
+													) }
+											</AnimatePresence>
+											{ /* <span>{ item.price }</span>{ ' ' } */ }
 											<span className='text-xs lg:text-sm'>
 												{ item.priceNote }
 											</span>
