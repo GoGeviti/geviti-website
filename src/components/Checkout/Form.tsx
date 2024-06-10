@@ -212,7 +212,9 @@ const Form: React.FC<{
 					<div className='flex flex-col'>
 						<form
 							onSubmit={ onSubmitForm }
-							className='flex flex-col'>
+							className='flex flex-col'
+							autoComplete='off'
+						>
 							<h2 className='text-grey-50 text-lg !leading-normal max-lg:font-medium'>
 								{ formSectionData.personalInfoSectionLabel }
 							</h2>
