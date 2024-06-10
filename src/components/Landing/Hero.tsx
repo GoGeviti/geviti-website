@@ -118,13 +118,12 @@ const Hero: React.FC<HeroProps> = ({ showBanner = true, showIntro = 'true' }) =>
 			<Image
 				src={ imageMobile ? heroData.imageMobile : heroData.image }
 				alt='hero'
-				priority={ type === 'desktop' }
+				priority={ true }
 				className={ clsxm(
 					'object-cover pointer-events-none',
 					imageMobile ? 'md:hidden object-center' : 'md:block hidden object-right'
 				) }
 				fill
-				quality={ 100 }
 				sizes='(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 100vw'
 			/>
 		);
@@ -164,7 +163,7 @@ const Hero: React.FC<HeroProps> = ({ showBanner = true, showIntro = 'true' }) =>
 						transition: {
 							ease: slideUpTransition.ease,
 							duration: 1,
-							delay: 5.1
+							delay: 2.1
 						},
 					},
 				} }
@@ -348,7 +347,6 @@ const Hero: React.FC<HeroProps> = ({ showBanner = true, showIntro = 'true' }) =>
 										visible: {
 											transition: {
 												staggerChildren: .25,
-												delayChildren: showIntro === 'true' ? 2.1 : 1.1
 											}
 										}
 									} }
@@ -395,7 +393,7 @@ const Hero: React.FC<HeroProps> = ({ showBanner = true, showIntro = 'true' }) =>
 														y: 0,
 														transition: {
 															...slideUpTransition,
-															delay: showIntro === 'true' ? 2.35 : 1.35,
+															delay: showIntro === 'true' ? 2.35 : 1.80,
 															duration: 1
 														}
 													},
