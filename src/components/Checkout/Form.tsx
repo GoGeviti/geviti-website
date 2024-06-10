@@ -137,8 +137,8 @@ const Form: React.FC<{
 		formik.setFieldValue('city', city ?? '');
 		formik.setFieldValue('state', state ?? '');
 		formik.setFieldValue('zip_code', zipCode ?? '');
-		formik.setFieldValue('address_1', address1 ?? '');
-		formik.setFieldValue('address_2', address2 ?? '');
+		formik.setFieldValue('address_1', address1 + ' ' + address2 ?? '');
+		formik.setFieldValue('address_2', '');
 	}
 
 	const handleValidateAddress = async() => {
@@ -301,7 +301,9 @@ const Form: React.FC<{
 											types: ['address'],
 											componentRestrictions: { country: 'us' }
 										} }
+										autofi
 										placeholder='Address 1'
+										autoComplete='off'
 										className={ clsxm(
 											'block w-full h-[54px] lg:h-[63px] border-0 outline-red-600 transform focus:outline-none transition-colors duration-300 rounded-[10px]',
 											'text-white bg-grey-950 text-xs lg:text-lg font-normal !leading-normal font-Poppins placeholder:text-grey-500 px-6 py-18px',
