@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
-import React, { useState } from 'react';
-import Autocomplete from 'react-google-autocomplete';
+import React, { useEffect, useRef, useState } from 'react';
+import  Autocomplete from 'react-google-autocomplete';
 import { AiFillCloseCircle } from 'react-icons/ai';
 import InputMask from '@mona-health/react-input-mask';
 import { FormikProps, useFormik } from 'formik';
@@ -165,6 +165,27 @@ const Form: React.FC<{
 		})
 		return !unconfirmedComponents?.some(type => ['postal_code', 'locality', 'administrative_area'].includes(type));
 	}
+
+	const addressRef = useRef<HTMLInputElement>(null);
+
+	useEffect(() => {
+		if (addressRef.current) {
+			const observer = new MutationObserver(mutationsList => {
+				for (const mutation of mutationsList) {
+					if (mutation.type === 'attributes' && mutation.attributeName === 'autocomplete') {
+						if (addressRef?.current?.getAttribute('autocomplete') !== 'cc-csv') {
+							addressRef?.current?.setAttribute('autocomplete', 'cc-csv');
+						}
+					}
+				}
+			});
+	
+			observer.observe(addressRef.current, { attributes: true });
+	
+			// Clean up the observer on component unmount
+			return () => observer.disconnect();
+		}
+	}, [addressRef])
 	
 	return (
 		<motion.div
@@ -213,7 +234,6 @@ const Form: React.FC<{
 						<form
 							onSubmit={ onSubmitForm }
 							className='flex flex-col'
-							autoComplete='off'
 						>
 							<h2 className='text-grey-50 text-lg !leading-normal max-lg:font-medium'>
 								{ formSectionData.personalInfoSectionLabel }
@@ -303,9 +323,9 @@ const Form: React.FC<{
 											types: ['address'],
 											componentRestrictions: { country: 'us' }
 										} }
-										autofi
+										ref={ addressRef }
+										id='address_1'
 										placeholder='Address 1'
-										autoComplete='off'
 										className={ clsxm(
 											'block w-full h-[54px] lg:h-[63px] border-0 outline-red-600 transform focus:outline-none transition-colors duration-300 rounded-[10px]',
 											'text-white bg-grey-950 text-xs lg:text-lg font-normal !leading-normal font-Poppins placeholder:text-grey-500 px-6 py-18px',
