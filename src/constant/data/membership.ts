@@ -277,7 +277,7 @@ const membershipData = {
 			},
 			{
 				key: 'comprehensiveFemale',
-				{list: [
+				list: [
 					{ "title": "Thyroid Cascade", "description": "TSH first then T4 and T3 only when TSH is abnormal. This cascade detects most abnormalities affecting the thyroid or the secretion of TSH by the pituitary gland." },
 					{ "title": "LH (Luteinizing Hormone)", "description": "In men, LH causes the Leydig cells of the testes to produce testosterone. In women, LH triggers the creation of steroid hormones from the ovaries." },
 					{ "title": "FSH (Follicle Stimulating Hormone)", "description": "Regulates reproductive processes by stimulating ovarian follicles in women and sperm production in men." },
@@ -414,7 +414,7 @@ const membershipData = {
 			},
 			{
 				key: 'ultimateFemale',
-				{list: [
+				list: [
 					{ "title": "Thyroid Cascade", "description": "TSH first then T4 and T3 only when TSH is abnormal. This cascade detects most abnormalities affecting the thyroid or the secretion of TSH by the pituitary gland." },
 					{ "title": "LH (Luteinizing Hormone)", "description": "In men, LH causes the Leydig cells of the testes to produce testosterone. In women, LH triggers the creation of steroid hormones from the ovaries." },
 					{ "title": "FSH (Follicle Stimulating Hormone)", "description": "Regulates reproductive processes by stimulating ovarian follicles in women and sperm production in men." },
