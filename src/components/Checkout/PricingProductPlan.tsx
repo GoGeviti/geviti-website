@@ -90,7 +90,7 @@ const PricingProductPlan: React.FC<PricingProductPlanProps> = ({ setStep }) => {
 
 						<div className='lg:max-w-full mx-auto sm:max-w-[392px] lg:flex-row flex-col flex gap-[42px] lg:gap-6 items-end w-full pt-[42px] lg:pt-[3.889vh] 2xl:pt-[42px]'>
 							{ pricingProductPlanData.list.map((productLocalData, index) => {
-								const offering = initialOfferings?.find(it => it.name === productLocalData.name);
+								const offering = initialOfferings?.find(it => it?.name?.toLocaleLowerCase()?.includes(productLocalData.keyword));
                 	return (
                 		<motion.div
                 			key={ index }
@@ -115,13 +115,16 @@ const PricingProductPlan: React.FC<PricingProductPlanProps> = ({ setStep }) => {
                 						index === 1 && 'z-10'
                 					) }
                 				>
-												
-												<h3 className='!leading-[28px] text-[5.128vw] xs2:text-xl'>{ productLocalData.name }</h3>
+												<Skeleton
+													loading={ loading }
+													className='h-6 w-full'>
+													<h3 className='!leading-[28px] text-[5.128vw] xs2:text-xl'>{ offering?.name }</h3>
+												</Skeleton>
 
 												<span className='font-medium text-5xl !leading-[125%] py-1'>
 													<Skeleton
 														loading={ loading }
-														className=' h-12 w-[122px]'>
+														className='h-12 w-[122px]'>
 														<span className='inline-block'>${ offering?.price }</span>
 													</Skeleton>
 													<span className='text-xs lg:text-sm'> { productLocalData.priceNote }</span>
