@@ -627,7 +627,7 @@ const membershipData = {
 				biomakers: '45+',
 				mostPopular: false,
 				monthly: '+ $119 monthly',
-				quarterly: '+$198 initially, then $297 quarterly',
+				quarterly: '+ $99 per month billed quarterly',
 				btnCta: {
 					href: '/onboarding',
 					text: 'Select Option',
@@ -667,7 +667,7 @@ const membershipData = {
 				biomakers: '57+',
 				mostPopular: true,
 				monthly: '+ $119 monthly',
-				quarterly: '+$198 initially, then $297 quarterly',
+				quarterly: '+ $99 per month billed quarterly',
 				btnCta: {
 					href: '/onboarding',
 					text: 'Select Option',
@@ -707,7 +707,7 @@ const membershipData = {
 				biomakers: '68+',
 				mostPopular: false,
 				monthly: '+ $119 monthly',
-				quarterly: '+$198 initially, then $297 quarterly',
+				quarterly: '+ $99 per month billed quarterly',
 				btnCta: {
 					href: '/onboarding',
 					text: 'Select Option',
