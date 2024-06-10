@@ -360,6 +360,7 @@ const Form: React.FC<{
 											onChange={ formik.handleChange }
 											isError={ !!formik.errors.city }
 											errorMessage={ formik.errors.city }
+											autoComplete='cc-csv'
 										/>
 									</div>
 									<div className='lg:col-span-1'>
@@ -379,6 +380,7 @@ const Form: React.FC<{
 											type='text'
 											inputMode='numeric'
 											placeholder='Zip'
+											autoComplete='cc-csv'
 											value={ formik.values.zip_code }
 											onChange={ e => onChangeInputRestrictNumber('zip_code', e.target.value) }
 											isError={ !!formik.errors.zip_code }
