@@ -1,7 +1,6 @@
 import { NextPage } from 'next';
 
 import { BlogComponent } from '@/components';
-import SEO from '@/components/Seo';
 import { Post } from '@/payload/payload-types';
 import { getAllPost } from '@/services/products';
 
@@ -40,12 +39,6 @@ const BlogPage: NextPage = async() => {
 
 	return (
 		<div className='flex min-h-screen flex-col w-full bg-grey-background'>
-			<SEO
-				title={ allPost.docs[0].title }
-				description={ allPost.docs[0].hero.categories?.title ?? '' }
-				og_images={ allPost.docs[0].hero.media.url }
-				canonical='/blog'
-			/>
 			<BlogComponent.Hero
 				hero={ {
 					title: allPost.docs[0].title,

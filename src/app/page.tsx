@@ -3,7 +3,6 @@ import { NextPage } from 'next';
 
 import { Footer, LandingComponent, RunningLogo } from '@/components';
 import IntroScreen from '@/components/IntroScreen';
-import SEO from '@/components/Seo';
 import { getCookie } from '@/services/cookies';
 
 const HomePage: NextPage = async() => {
@@ -12,7 +11,6 @@ const HomePage: NextPage = async() => {
 
 	return (
 		<React.Fragment>
-			<SEO/>
 			<IntroScreen
 				type='video'
 				showIntro={ showIntro }>

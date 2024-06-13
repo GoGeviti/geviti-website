@@ -1,10 +1,12 @@
+import { Metadata } from 'next';
+
 import {
 	ArticleComponent,
 	ContactUsComponent,
 	FAQComponent,
 } from '@/components';
-import SEO from '@/components/Seo';
 import { faqData } from '@/constant/data';
+import { mergeOpenGraph } from '@/lib/mergeOpenGraph';
 import { Faq } from '@/payload/payload-types';
 import { getAllFaq, getAllPost } from '@/services/products';
 
@@ -12,6 +14,17 @@ interface GroupedFaq {
   name: string;
   listQna: Faq[];
 }
+
+export const metadata: Metadata = {
+	title: 'Faqs',
+	description: 'Our team is here to help.',
+	openGraph: mergeOpenGraph({
+		title: 'Faqs',
+		description: 'Our team is here to help.',
+		image: '/meta/faq.jpg',
+	}),
+};
+
 const FAQPage = async() => {
 	const allPost = await getAllPost(4);
 	const faqList = await getAllFaq();
@@ -37,12 +50,6 @@ const FAQPage = async() => {
 
 	return (
 		<div className='flex min-h-screen flex-col w-full bg-grey-background'>
-			<SEO
-				title='Faqs'
-				description='Our team is here to help.'
-				og_images='/meta/faq.jpg'
-				canonical='/faq'
-			/>
 			<ContactUsComponent.Hero hero={ faqData.hero } />
 			<FAQComponent.QnA
 				title='Topics'

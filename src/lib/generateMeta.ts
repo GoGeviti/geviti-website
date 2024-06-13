@@ -15,19 +15,13 @@ export const generateMeta = async(args: { doc: Post }): Promise<Metadata> => {
     `${process.env.NEXT_PUBLIC_SERVER_URL}${doc.meta.image.url}`;
 
 	return {
+		title: doc?.meta?.title || 'Geviti',
 		description: doc?.meta?.description,
 		openGraph: mergeOpenGraph({
 			description: doc?.meta?.description,
-			images: ogImage
-				? [
-					{
-						url: ogImage,
-					},
-				]
-				: undefined,
+			image: ogImage ? ogImage : undefined,
 			title: doc?.meta?.title || 'Geviti',
 			url: Array.isArray(doc?.slug) ? doc?.slug.join('/') : '/',
 		}),
-		title: doc?.meta?.title || 'Geviti',
 	};
 };

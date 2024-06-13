@@ -1,16 +1,22 @@
+import { Metadata } from 'next';
+
 import { Footer, FrequentlyAskedQuestions, RunningLogo, SolutionsComponent } from '@/components';
-import SEO from '@/components/Seo';
 import { solutionData } from '@/constant/data';
+import { mergeOpenGraph } from '@/lib/mergeOpenGraph';
+
+export const metadata: Metadata = {
+	title: 'Women’s Health',
+	description: 'Science-backed treatment options for female optimization.',
+	openGraph: mergeOpenGraph({
+		title: 'Women’s Health',
+		description: 'Science-backed treatment options for female optimization.',
+		image: '/meta/hero-women.jpg',
+	}),
+};
 
 const Solutions = () => {
 	return (
 		<div className='flex min-h-screen flex-col w-full bg-grey-background font-Poppins'>
-			<SEO
-				title='Women’s Health'
-				description='Science-backed treatment options for female optimization. '
-				og_images='/meta/hero-women.jpg'
-				canonical='/solution/women'
-			/>
 			<SolutionsComponent.Hero type='women' />
 			<div className='py-[42px] lg:py-16'>
 				<RunningLogo />
