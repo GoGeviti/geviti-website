@@ -6,8 +6,8 @@ import { AOSInit } from '@/components';
 import LenisScroller from '@/components/LenisScroller';
 import Provider from '@/components/Provider';
 import { brSonoma, grifter, poppins } from '@/constant/fonts';
+import { mergeOpenGraph } from '@/lib/mergeOpenGraph';
 import StyledComponentsRegistry from '@/lib/registry';
-import { shareOpenGraph } from '@/lib/shareMetaData'
 
 import 'aos/dist/aos.css';
 import 'slick-carousel/slick/slick.css';
@@ -19,9 +19,7 @@ import './main.css';
 export const metadata: Metadata = {
 	title: 'Geviti',
 	description: 'A data-driven approach to longevity and health optimization. Invest in your future self with our tailored solutions. Join waitlist today.',
-	openGraph: {
-		...shareOpenGraph
-	},
+	openGraph: mergeOpenGraph({}),
 };
 
 export const viewport: Viewport = {
