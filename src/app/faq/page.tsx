@@ -3,6 +3,7 @@ import {
 	ContactUsComponent,
 	FAQComponent,
 } from '@/components';
+import SEO from '@/components/Seo';
 import { faqData } from '@/constant/data';
 import { Faq } from '@/payload/payload-types';
 import { getAllFaq, getAllPost } from '@/services/products';
@@ -36,6 +37,12 @@ const FAQPage = async() => {
 
 	return (
 		<div className='flex min-h-screen flex-col w-full bg-grey-background'>
+			<SEO
+				title='Faqs'
+				description='Our team is here to help.'
+				og_images='/meta/faq.jpg'
+				canonical='/faq'
+			/>
 			<ContactUsComponent.Hero hero={ faqData.hero } />
 			<FAQComponent.QnA
 				title='Topics'

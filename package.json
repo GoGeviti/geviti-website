@@ -49,6 +49,7 @@
     "lodash": "^4.17.21",
     "mini-svg-data-uri": "^1.4.4",
     "next": "^14.2.3",
+    "next-seo": "^6.5.0",
     "nextjs-toploader": "^1.4.2",
     "postcss": "8.4.28",
     "qs": "^6.11.2",

@@ -1,9 +1,16 @@
 import { Footer, FrequentlyAskedQuestions, RunningLogo, SolutionsComponent } from '@/components';
+import SEO from '@/components/Seo';
 import { solutionData } from '@/constant/data';
 
 const Solutions = () => {
 	return (
 		<div className='flex min-h-screen flex-col w-full bg-grey-background font-Poppins'>
+			<SEO
+				title='Men’s Health'
+				description='Science-backed treatment options for male optimization.'
+				og_images='/meta/hero-men.jpg'
+				canonical='/solution/men'
+			/>
 			<SolutionsComponent.Hero type='men' />
 			<div className='py-[42px] lg:py-16'>
 				<RunningLogo />
