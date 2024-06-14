@@ -393,7 +393,7 @@ const membershipData = {
 					{ 'title': 'C-Reactive Protein (CRP)', 'description': 'Marker of inflammation in the body; high levels indicate infection or chronic inflammatory diseases.' },
 					{ 'title': 'Apo B (Apolipoprotein B)', 'description': 'Protein involved in lipid metabolism; high levels are associated with cardiovascular disease risk.' },
 					{ 'title': 'Lipoprotein A', 'description': 'Lipoprotein associated with increased cardiovascular disease risk.' },
-					{ 'title': 'Insulin', 'description': 'Hormone that regulates blood glucose levels; helps diagnose and manage diabetes.' },
+					// { 'title': 'Insulin', 'description': 'Hormone that regulates blood glucose levels; helps diagnose and manage diabetes.' },
 					{ 'title': 'SHBG (Sex Hormone Binding Globulin)', 'description': 'Protein that binds to sex hormones, regulating their availability.' },
 					{ 'title': 'Cortisol', 'description': 'Steroid hormone released in response to stress; abnormal levels indicate adrenal gland problems.' },
 					{ 'title': 'Growth Hormone', 'description': 'Important for growth, metabolism, and muscle mass; abnormal levels indicate pituitary gland issues.' },
@@ -619,7 +619,7 @@ const membershipData = {
 			{
 				name: 'Essentials Diagnostic',
 				keyword: InitialOfferingType.ESSENTIALS,
-				price: '$497',
+				price: '$299',
 				priceMonthly: '$299',
 				priceNote: 'one time payment',
 				priceDescGeneral:
@@ -659,7 +659,7 @@ const membershipData = {
 			{
 				name: 'Comprehensive Diagnostic',
 				keyword: InitialOfferingType.COMPREHENSIVE,
-				price: '$667',
+				price: '$469',
 				priceMonthly: '$469',
 				priceNote: 'one time payment',
 				priceDescGeneral:
@@ -699,7 +699,7 @@ const membershipData = {
 			{
 				name: 'Ultimate Diagnostic',
 				keyword: InitialOfferingType.ULTIMATE,
-				price: '$797',
+				price: '$599',
 				priceMonthly: '$599',
 				priceNote: 'one time payment',
 				priceDescGeneral:
