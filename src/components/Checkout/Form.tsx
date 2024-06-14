@@ -83,7 +83,7 @@ const Form: React.FC<{
 					email: email,
 					state: state,
 					gender: form.gender.toLowerCase(),
-					phoneNumber: phone_number.replace(/\s/g, ''),
+					phoneNumber: phone_number.replace(/\s/g, '').replace('+1', ''),
 					city: city,
 					addressLine1: address_1,
 					addressLine2: address_2,
