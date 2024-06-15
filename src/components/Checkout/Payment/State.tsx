@@ -206,7 +206,7 @@ const State: React.FC<StateProps> = ({ type }) => {
 		<div className='flex flex-col w-full h-full min-h-screen bg-white'>
 			<NavbarCheckout theme='light' />
 
-			<div className='h-full w-full flex items-center justify-center pt-[87px] lg:pt-[9.537vh] 2xl:pt-[103px] lg:min-h-screen'>
+			<div className='h-full w-full flex items-center justify-center pt-[87px] lg:pt-[9.537vh] 2xl:pt-[103px] lg:min-h-screen font-Poppins'>
 				<motion.div
 					variants={ {
 						initial: { y: 0, opacity: 1 },
