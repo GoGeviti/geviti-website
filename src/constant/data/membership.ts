@@ -22,7 +22,7 @@ import {
 
 const membershipData = {
 	hero: {
-		preTitle: 'all you need <span class="max-sm:hidden">in one </span>membership',
+		preTitle: 'all you need <span class="max-sm:hidden ">in one </span>membership',
 		title: 'Unlock premier health with exclusive membership benefits',
 		titles: ['Unlock premier health with', 'exclusive membership benefits'],
 		description:
