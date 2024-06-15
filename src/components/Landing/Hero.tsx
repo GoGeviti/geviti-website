@@ -118,13 +118,12 @@ const Hero: React.FC<HeroProps> = ({ showBanner = true, showIntro = 'true' }) =>
 			<Image
 				src={ imageMobile ? heroData.imageMobile : heroData.image }
 				alt='hero'
-				priority={ type === 'desktop' }
+				priority={ true }
 				className={ clsxm(
 					'object-cover pointer-events-none',
 					imageMobile ? 'md:hidden object-center' : 'md:block hidden object-right'
 				) }
 				fill
-				quality={ 100 }
 				sizes='(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 100vw'
 			/>
 		);
@@ -164,7 +163,7 @@ const Hero: React.FC<HeroProps> = ({ showBanner = true, showIntro = 'true' }) =>
 						transition: {
 							ease: slideUpTransition.ease,
 							duration: 1,
-							delay: 5.1
+							delay: 2.1
 						},
 					},
 				} }
@@ -214,7 +213,7 @@ const Hero: React.FC<HeroProps> = ({ showBanner = true, showIntro = 'true' }) =>
 						visible: {
 							transition: {
 								staggerChildren: .3,
-								delayChildren: 2.7
+								delayChildren: showIntro === 'true' ? 2.7 : 1.7
 							}
 						}
 					} }
@@ -267,7 +266,7 @@ const Hero: React.FC<HeroProps> = ({ showBanner = true, showIntro = 'true' }) =>
 			<Navbar animationProps={ {
 				transition: {
 					...navbarDefaultTransition,
-					delay: showIntro === 'true' ? 3.1 : 2.1
+					delay: showIntro === 'true' ? 3.1 : 1.1
 				}
 			} } />
 			<div className='bg-primary h-[calc(100svh+14px)] lg:h-[calc(100vh-24px)] w-full overflow-hidden max-lg:rounded-t-none rounded-19px relative pt-11px lg:pt-5'>
@@ -314,7 +313,7 @@ const Hero: React.FC<HeroProps> = ({ showBanner = true, showIntro = 'true' }) =>
 												y: 0,
 												transition: {
 													...slideUpTransition,
-													delay: showIntro === 'true' ? 2.1 : 1.1
+													delay: showIntro === 'true' ? 2.1 : 0.1
 												}
 											},
 											hidden: { y: '100%' },
@@ -333,7 +332,7 @@ const Hero: React.FC<HeroProps> = ({ showBanner = true, showIntro = 'true' }) =>
 										visible: {
 											transition: {
 												staggerChildren: .5,
-												delayChildren: showIntro === 'true' ? 2.1 : 1.1
+												delayChildren: showIntro === 'true' ? 2.1 : 0.1
 											}
 										}
 									} }
@@ -348,7 +347,6 @@ const Hero: React.FC<HeroProps> = ({ showBanner = true, showIntro = 'true' }) =>
 										visible: {
 											transition: {
 												staggerChildren: .25,
-												delayChildren: showIntro === 'true' ? 2.1 : 1.1
 											}
 										}
 									} }
@@ -395,7 +393,7 @@ const Hero: React.FC<HeroProps> = ({ showBanner = true, showIntro = 'true' }) =>
 														y: 0,
 														transition: {
 															...slideUpTransition,
-															delay: showIntro === 'true' ? 2.35 : 1.35,
+															delay: showIntro === 'true' ? 2.35 : 1.80,
 															duration: 1
 														}
 													},
@@ -426,7 +424,7 @@ const Hero: React.FC<HeroProps> = ({ showBanner = true, showIntro = 'true' }) =>
 											opacity: 1,
 											y: 0,
 											transition: {
-												delay: showIntro === 'true' ? 3.1 : 2.1,
+												delay: showIntro === 'true' ? 3.1 : 0.1,
 												duration: 1,
 												ease: 'easeInOut'
 											}

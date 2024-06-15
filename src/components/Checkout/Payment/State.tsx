@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/navigation';
 
@@ -175,6 +175,7 @@ const SuccessIcon = () => {
 };
 
 const State: React.FC<StateProps> = ({ type }) => {
+	const [externalHref, setExternalHref] = useState('');
 	const router = useRouter();
 	const windowDimensions = useWindowDimensions();
 	const isMobile = windowDimensions.width < screens.lg;
@@ -194,12 +195,12 @@ const State: React.FC<StateProps> = ({ type }) => {
 		if (type === 'success') return <SuccessIcon />;
 		return <ExclamationIcon />;
 	};
-
-	const handleClickBtn = (btnType: string) => {
-		if (btnType === 'router_back') {
-			router.back();
-		}
-	};
+		
+	useEffect(() => {
+		const checkoutToken = sessionStorage.getItem('checkout_token') as string;
+		const dashboardHref = `${process.env.NEXT_PUBLIC_CREATE_PASS_LINK}${checkoutToken}`
+		setExternalHref(dashboardHref);
+	}, [])
 
 	return (
 		<div className='flex flex-col w-full h-full min-h-screen bg-white'>
@@ -296,10 +297,14 @@ const State: React.FC<StateProps> = ({ type }) => {
 										className='inline-block w-full'
 									>
 										<ButtonCta
-											href={ btnPrimaryData.href }
+											href={ externalHref }
 											externalLink={ btnPrimaryData?.externalLink }
-											onClick={ () => handleClickBtn(btnPrimaryData.type) }
 											arrowPosition={ type === 'error' ? 'left' : 'right' }
+											onClick={ () => {
+												router.replace('/');
+												sessionStorage.removeItem('checkout_token');
+												sessionStorage.removeItem('temp_user');
+											} }
 											className='max-sm:w-full'>
 											<span dangerouslySetInnerHTML={ { __html: btnPrimaryData.text } } />
 										</ButtonCta>
@@ -319,7 +324,6 @@ const State: React.FC<StateProps> = ({ type }) => {
 											type={ btnSecondaryData.type }
 											href={ btnSecondaryData.href }
 											externalLink={ btnSecondaryData?.externalLink }
-											onClick={ () => handleClickBtn(btnSecondaryData.type) }
 											className='h-full flex items-center justify-center lg:min-h-[58px] focus:ring-0 focus:outline-none border border-grey-primary rounded-full w-full font-medium text-lg !leading-6 py-3 px-[42px] text-grey-primary hover:opacity-75 transform transition duration-200'>
 											{ btnSecondaryData.text }
 										</ButtonWrapper>

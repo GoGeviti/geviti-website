@@ -1,4 +1,5 @@
 import React from 'react';
+import { Metadata } from 'next';
 
 import {
 	Footer,
@@ -7,6 +8,17 @@ import {
 	RunningLogo,
 } from '@/components';
 import { membershipData } from '@/constant/data';
+import { mergeOpenGraph } from '@/lib/mergeOpenGraph';
+
+export const metadata: Metadata = {
+	title: 'Membership',
+	description: 'Unlock premier health insights & solutions with exclusive Geviti membership benefits.',
+	openGraph: mergeOpenGraph({
+		title: 'Membership',
+		description: 'Unlock premier health insights & solutions with exclusive Geviti membership benefits.',
+		image: '/meta/membership.jpg',
+	}),
+};
 
 const MemberShipPage = () => {
 	return (

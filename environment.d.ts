@@ -5,6 +5,7 @@ declare global {
 			BASE_API_URL: string;
 			NOTION_WAITING_LIST_DATABASE_ID: string;
 			NOTION_SUBSCRIPTION_DATABASE_ID: string;
+			NEXT_PUBLIC_GOOGLE_MAPS_API_KEY: string;
 			NOTION_DATABASE_ID: string;
 			NEXT_PUBLIC_STAGE: 'development' | 'production';
 			NEXT_PUBLIC_PRECHECKOUT_WAITLIST: 'true' | 'false';

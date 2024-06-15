@@ -4,7 +4,6 @@ import { useState } from 'react';
 import { AnimatePresence } from 'framer-motion';
 
 import { PageProps } from '@/app/onboarding/page';
-import { checkoutData } from '@/constant/data';
 import { IPrecheckout } from '@/interfaces';
 
 import Form from './Form';
@@ -12,15 +11,20 @@ import MemberFrequencyPlan from './MemberFrequencyPlan';
 import PricingProductPlan from './PricingProductPlan';
 import State from './State';
 
-{ /* eslint-disable no-unused-vars */ }
+{
+	/* eslint-disable no-unused-vars */
+}
 
 export enum CheckoutStep {
-	FORM_PERSONAL_INFO = 'FORM_PERSONAL_INFO',
-	WAITLIST_STATE_AVAILABLE = 'WAITLIST_STATE_AVAILABLE',
-	WAITLIST_STATE_NOT_AVAILABLE = 'WAITLIST_STATE_NOT_AVAILABLE',
-	SUCCESS_JOIN_WAITLIST = 'SUCCESS_JOIN_WAITLIST',
-	PRICING_PRODUCT_PLAN = 'PRICING_PRODUCT_PLAN',
-	MEMBER_FREQUENCY_PLAN = 'MEMBER_FREQUENCY_PLAN'
+  FORM_PERSONAL_INFO = 'FORM_PERSONAL_INFO',
+  WAITLIST_STATE_AVAILABLE = 'WAITLIST_STATE_AVAILABLE',
+  WAITLIST_STATE_NOT_AVAILABLE = 'WAITLIST_STATE_NOT_AVAILABLE',
+  SUCCESS_JOIN_WAITLIST = 'SUCCESS_JOIN_WAITLIST',
+  PRICING_PRODUCT_PLAN = 'PRICING_PRODUCT_PLAN',
+  MEMBER_FREQUENCY_PLAN = 'MEMBER_FREQUENCY_PLAN',
+  STRIPE_PAYMENT = 'STRIPE_PAYMENT',
+  STRIPE_PAYMENT_SUCCESSFUL = 'STRIPE_PAYMENT_SUCCESSFUL',
+  STRIPE_PAYMENT_FAIL = 'STRIPE_PAYMENT_FAIL',
 }
 
 const Main: React.FC<PageProps> = ({ searchParams }) => {
@@ -42,7 +46,7 @@ const Main: React.FC<PageProps> = ({ searchParams }) => {
 		zip_code: '',
 		state: '',
 		birthdate: null,
-		gender: ''
+		gender: '',
 	});
 
 	const renderContent = () => {
@@ -51,28 +55,11 @@ const Main: React.FC<PageProps> = ({ searchParams }) => {
 				<Form
 					key={ CheckoutStep.FORM_PERSONAL_INFO }
 					initialState={ userData }
-					onNextStep={ (user: IPrecheckout.UserDetailData) => {
+					onNextStep={ (user, nextStep) => {
 						setUserData(user);
-
-						if (checkoutData.form.statesAvailable.includes(user.state)) {
-							setStep(CheckoutStep.WAITLIST_STATE_AVAILABLE);
-						} else {
-							setStep(CheckoutStep.WAITLIST_STATE_NOT_AVAILABLE);
-						}
-						// setUserData(user);
-
-						// if (checkoutData.form.statesAvailable.includes(user.state)) {
-						// 	const params = new URLSearchParams();
-						// 	params.set('email', user.email);
-						// 	if (window) {
-						// 		window.history.pushState(null, '', `?${ params.toString() }`);
-						// 		window.scrollTo({ top: 0 });
-						// 	}
-						// 	setStep(CheckoutStep.PRICING_PRODUCT_PLAN);
-						// } else {
-						// 	setStep(CheckoutStep.WAITLIST_STATE_NOT_AVAILABLE);
-						// }
-					} } />
+						return setStep(nextStep);
+					} }
+				/>
 			);
 		}
 
@@ -105,8 +92,7 @@ const Main: React.FC<PageProps> = ({ searchParams }) => {
 				<State
 					key={ CheckoutStep.SUCCESS_JOIN_WAITLIST }
 					iconType='success'
-					step={ CheckoutStep.SUCCESS_JOIN_WAITLIST }
-				/>
+					step={ CheckoutStep.SUCCESS_JOIN_WAITLIST } />
 			);
 		}
 
@@ -114,7 +100,8 @@ const Main: React.FC<PageProps> = ({ searchParams }) => {
 			return (
 				<PricingProductPlan
 					key={ CheckoutStep.PRICING_PRODUCT_PLAN }
-					setStep={ setStep } />
+					setStep={ setStep }
+				/>
 			);
 		}
 
@@ -122,7 +109,30 @@ const Main: React.FC<PageProps> = ({ searchParams }) => {
 			return (
 				<MemberFrequencyPlan
 					key={ CheckoutStep.MEMBER_FREQUENCY_PLAN }
-					setStep={ setStep } />
+					setStep={ setStep }
+				/>
+			);
+		}
+
+		if (step === CheckoutStep.STRIPE_PAYMENT_SUCCESSFUL) {
+			return (
+				<State
+					key={ CheckoutStep.STRIPE_PAYMENT_SUCCESSFUL }
+					iconType='success'
+					step={ CheckoutStep.STRIPE_PAYMENT_SUCCESSFUL }
+					userData={ userData }
+				/>
+			);
+		}
+
+		if (step === CheckoutStep.STRIPE_PAYMENT_FAIL) {
+			return (
+				<State
+					key={ CheckoutStep.STRIPE_PAYMENT_FAIL }
+					iconType='exclamation'
+					step={ CheckoutStep.STRIPE_PAYMENT_FAIL }
+					userData={ userData }
+				/>
 			);
 		}
 
@@ -131,9 +141,7 @@ const Main: React.FC<PageProps> = ({ searchParams }) => {
 
 	return (
 		<div className='w-full h-full font-Poppins'>
-			<AnimatePresence mode='wait'>
-				{ renderContent() }
-			</AnimatePresence>
+			<AnimatePresence mode='wait'>{ renderContent() }</AnimatePresence>
 		</div>
 	);
 };

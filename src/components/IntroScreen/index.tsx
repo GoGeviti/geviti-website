@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, motion, useAnimation } from 'framer-motion';
 import Image from 'next/image';
 
 import { setCookieIntro } from '@/services/cookies';
@@ -16,10 +16,17 @@ type IntroScreenProps = {
 
 export default function IntroScreen({ children, src, type = 'video', showIntro = 'true' }: IntroScreenProps) {
 	const vidRef = useRef<HTMLVideoElement | null>(null);
+	// const [videoLoaded, setVideoLoaded] = useState(false);
+	const controls = useAnimation();
 
-	const handlePlayVideo = () => {
+	const handlePlayVideo = async() => {
 		if (vidRef.current && type === 'video' && showIntro === 'true') {
 			vidRef.current.play();
+			// setVideoLoaded(true);
+			await controls.start('enter');
+		}
+		if (type === 'image') {
+			await controls.start('enter');
 		}
 	};
 
@@ -103,7 +110,7 @@ export default function IntroScreen({ children, src, type = 'video', showIntro =
 							}
 						} }
 						initial = 'initial'
-						animate = 'enter'
+						animate = { controls }
 						onAnimationComplete={ () => {
 							if (window) {
 								setTimeout(() => {

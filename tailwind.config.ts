@@ -1,4 +1,4 @@
-import type { Config } from "tailwindcss";
+import type { Config } from 'tailwindcss';
 
 const config: Config = {
 	content: [
@@ -158,7 +158,8 @@ const config: Config = {
 				slideLeftAndFade: 'slideLeftAndFade 300ms cubic-bezier(0.16, 0, 0.13, 1)',
 				zoomInAndFade: 'zoomInAndFade 300ms cubic-bezier(0.16, 0, 0.13, 1)',
 				zoomOutAndFade: 'zoomOutAndFade 300ms cubic-bezier(0.16, 0, 0.13, 1)',
-				scroll: "scroll var(--animation-duration, 40s) var(--animation-direction, forwards) linear infinite",
+				scroll: 'scroll var(--animation-duration, 40s) var(--animation-direction, forwards) linear infinite',
+				skeletonLoading: 'skeletonLoading 1.5s linear infinite alternate'
 			},
 			keyframes: {
 				marquee: {
@@ -219,7 +220,15 @@ const config: Config = {
 				},
 				scroll: {
 					to: {
-						transform: "translateX(calc(-50% - 23px))",
+						transform: 'translateX(calc(-50% - 23px))',
+					},
+				},
+				skeletonLoading: {
+					'0%, 100%': {
+						opacity: '1'
+					},
+					'100%': {
+						opacity: '.5'
 					},
 				},
 			},
@@ -241,6 +250,7 @@ const config: Config = {
 	},
 	plugins: [
 		require('@tailwindcss/forms'),
+		require('tailwindcss-animate'),
 		({ addComponents }: Config['PluginAPI']) => {
 			addComponents({
 				'.container-center': { '@apply max-w-[1360px] mx-auto px-4 lg:px-10': {} },

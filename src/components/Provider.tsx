@@ -5,7 +5,9 @@ import { Toaster } from 'sonner';
 const Provider = () => {
 	return (
 		<React.Fragment>
-			<Toaster position='top-right' />
+			<Toaster
+				richColors
+				position='top-right' />
 		</React.Fragment>
 	);
 };

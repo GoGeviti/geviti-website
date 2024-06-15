@@ -20,6 +20,7 @@ type SelectProps = {
 	placeholder?: string;
 	isError?: boolean;
 	errorMessage?: string;
+	disabled?: boolean;
 };
 
 const CustomSelect: React.FC<SelectProps> = ({
@@ -28,7 +29,8 @@ const CustomSelect: React.FC<SelectProps> = ({
 	onChange,
 	placeholder = 'Select',
 	isError,
-	errorMessage
+	errorMessage,
+	disabled
 }) => {
 	const renderSelect = () => {
 		return (
@@ -37,6 +39,7 @@ const CustomSelect: React.FC<SelectProps> = ({
 					value={ value }
 					onValueChange={ onChange }
 					required
+					disabled={ disabled }
 				>
 					<SelectTrigger
 						aria-label={ value }

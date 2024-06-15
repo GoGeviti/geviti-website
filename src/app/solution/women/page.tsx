@@ -1,5 +1,18 @@
+import { Metadata } from 'next';
+
 import { Footer, FrequentlyAskedQuestions, RunningLogo, SolutionsComponent } from '@/components';
 import { solutionData } from '@/constant/data';
+import { mergeOpenGraph } from '@/lib/mergeOpenGraph';
+
+export const metadata: Metadata = {
+	title: 'Women’s Health',
+	description: 'Science-backed treatment options for female optimization.',
+	openGraph: mergeOpenGraph({
+		title: 'Women’s Health',
+		description: 'Science-backed treatment options for female optimization.',
+		image: '/meta/hero-women.jpg',
+	}),
+};
 
 const Solutions = () => {
 	return (

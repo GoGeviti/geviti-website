@@ -4,6 +4,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 
+// import Image from 'next/image';
 import membershipData from '@/constant/data/membership';
 import clsxm from '@/helpers/clsxm';
 
@@ -44,15 +45,24 @@ const Hero: React.FC = () => {
 			<Image
 				src={ imageMobile ? heroData.imageMobile : heroData.image }
 				alt='hero'
-				priority={ type === 'desktop' }
+				priority={ true }
 				className={ clsxm(
 					'object-cover pointer-events-none',
 					imageMobile ? 'md:hidden object-center' : 'md:block hidden object-right'
 				) }
 				fill
-				quality={ 100 }
 				sizes='(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 100vw'
 			/>
+			// eslint-disable-next-line @next/next/no-img-element
+			// <img
+			// 	src={ imageMobile ? heroData.imageMobile : heroData.image }
+			// 	alt='hero'
+			// 	className={ clsxm(
+			// 		'object-cover pointer-events-none',
+			// 		imageMobile ? 'md:hidden object-center' : 'md:block hidden object-right'
+			// 	) }
+			// 	sizes='(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 100vw'
+			// />
 		);
 	};
 

@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React, {
+	Dispatch, Fragment, SetStateAction, useEffect, useState
+} from 'react';
 import { motion } from 'framer-motion';
 import { useRouter, useSearchParams } from 'next/navigation';
 
@@ -8,17 +10,21 @@ import { splitList } from '@/helpers/misc';
 
 import { GreenCheck } from '../Icons';
 import ButtonSwitchMemberFreq from '../MemberShip/ButtonSwitchMemberFreq';
+import Skeleton from '../Skeleton/Skeleton';
 
+import { getMembershipOfferings } from './api/onboarding';
+import { BILLING_FREQ, MembershipOfferingsReturnType } from './api/types';
 import { CheckoutStep } from './Main';
 import Navbar from './Navbar';
 import PrivacyPolicyStatement from './PrivacyPolicyStatement';
 import ProgressStep from './ProgressStep';
 
 const membershipFrequencyData = checkoutData.membershipFrequency;
-const defaultButtonClassName = 'rounded-full font-medium text-lg !leading-6 max-sm:w-full py-[17px] px-[42px] flex items-center justify-center shadow-[0px_1px_2px_rgba(16,24,40,0.05)]';
+const defaultButtonClassName =
+  'rounded-full font-medium text-lg !leading-6 max-sm:w-full py-[17px] px-[42px] flex items-center justify-center shadow-[0px_1px_2px_rgba(16,24,40,0.05)]';
 
 type MemberFrequencyPlanProps = {
-	setStep?: React.Dispatch<React.SetStateAction<CheckoutStep>>;
+  setStep: Dispatch<SetStateAction<CheckoutStep>>;
 };
 
 const MemberFrequencyPlan: React.FC<MemberFrequencyPlanProps> = ({ setStep }) => {
@@ -26,6 +32,29 @@ const MemberFrequencyPlan: React.FC<MemberFrequencyPlanProps> = ({ setStep }) =>
 	const router = useRouter();
 
 	const [activeTabIdx, setActiveTabIdx] = useState<number>(0);
+	const [offerings, setOfferings] = useState<MembershipOfferingsReturnType[]>();
+	const [monthlyPrice, setMonthlyPrice] = useState(0);
+	const [quarterlyPrice, setQuarterlyPrice] = useState(0);
+	const [loading, setLoading] = useState(false);
+
+	useEffect(() => {
+		setLoading(true);
+		const getOfferings = async() => {
+			const memberShipOfferings = await getMembershipOfferings();
+			setQuarterlyPrice(((memberShipOfferings?.find(it => it?.billing_frequency === BILLING_FREQ.QUARTERLY)?.price || 0) / 3))
+			setMonthlyPrice(memberShipOfferings?.find(it => it?.billing_frequency === BILLING_FREQ.MONTHLY)?.price || 0)
+			setOfferings(
+				memberShipOfferings
+					?.map(it => ({
+						...it,
+						title: it.billing_frequency,
+					}))
+					.reverse()
+			);
+			setLoading(false);
+		};
+		getOfferings();
+	}, []);
 
 	const onClickBack = () => {
 		router.back();
@@ -33,11 +62,20 @@ const MemberFrequencyPlan: React.FC<MemberFrequencyPlanProps> = ({ setStep }) =>
 	};
 
 	const onClickSubmit = () => {
-		const selectedPayment = membershipFrequencyData.frequencyOptions[activeTabIdx].value;
-		const emailUser = searchParams?.get('email');
-		const product = searchParams?.get('product');
+		if (!offerings) return;
+
+		const product = searchParams.get('product');
+		const params = new URLSearchParams(searchParams.toString());
+		params.set('membership', offerings[activeTabIdx].id);
+		if (window) {
+			window.history.pushState(null, '', `?${params.toString()}`);
+			window.scrollTo({ top: 0 });
+		}
 		// TODO: remove console and go to payment link
-		console.log(selectedPayment, emailUser, product); // eslint-disable-line no-console
+		if (setStep) {
+			setStep(CheckoutStep.STRIPE_PAYMENT);
+			router.push(`/onboarding/payment?product=${product}&membership=${offerings[activeTabIdx].id}`);
+		}
 	};
 
 	const renderList = () => {
@@ -48,12 +86,12 @@ const MemberFrequencyPlan: React.FC<MemberFrequencyPlanProps> = ({ setStep }) =>
 				{ splittedList.map((items: string[], itemsIdx: number) => {
 					return (
 						<div
-							key={ `items-${ itemsIdx }` }
+							key={ `items-${itemsIdx}` }
 							className='flex flex-col'>
 							{ items.map((item: string, itemIdx: number) => {
 								return (
 									<div
-										key={ `item-${ itemIdx }` }
+										key={ `item-${itemIdx}` }
 										className='flex items-center gap-2.5 lg:gap-[18px]'>
 										<GreenCheck className='flex-shrink-0 text-green-alert' />
 										<span className='text-primary text-sm !leading-8'>{ item }</span>
@@ -101,12 +139,36 @@ const MemberFrequencyPlan: React.FC<MemberFrequencyPlanProps> = ({ setStep }) =>
 									/>
 								</div>
 
-								<h1 className='text-2xl lg:text-4xl !leading-normal lg:-tracking-0.04em text-primary'>{ membershipFrequencyData.title }</h1>
-								<p className='mt-4 lg:mt-3.5 text-grey-400 lg:text-grey-500 text-xs !leading-5 lg:text-sm lg:!leading-normal'>{ membershipFrequencyData.description }</p>
+								<h1 className='text-2xl lg:text-4xl !leading-normal lg:-tracking-0.04em text-primary'>
+									{ membershipFrequencyData.title }
+								</h1>
+								<p className='mt-4 lg:mt-3.5 text-grey-400 lg:text-grey-500 text-xs !leading-5 lg:text-sm lg:!leading-normal'>
+									{ membershipFrequencyData.description }
+								</p>
 								{ renderList() }
 								<div className='mt-6 mb-[42px] lg:my-[3.889vh] 2xl:my-[42px] inline-flex max-lg:flex-col lg:items-baseline'>
 									<span className='max-lg:font-medium text-4xl !leading-normal -tracking-0.04em text-primary'>
-										{ membershipFrequencyData.price.text }<span className='max-lg:hidden'>&nbsp;</span>
+										<Fragment>
+											{ activeTabIdx === 0 ? (
+												<Skeleton
+													loading={ loading }
+													className='h-10 w-28'>
+													<span className='inline-block'>${ (quarterlyPrice).toFixed(2) }</span>
+												</Skeleton>
+											) : (
+												<Skeleton
+													loading={ loading }
+													className='h-10 w-28'>
+													<span className='inline-block'>${ (monthlyPrice).toFixed(2) }</span>
+												</Skeleton>
+											) }
+										</Fragment>
+                    
+										<span className='max-lg:hidden'>&nbsp;</span>
+									</span>
+									<span className='max-lg:font-medium text-4xl !leading-normal -tracking-0.04em text-primary'>
+										{ membershipFrequencyData.price.text }
+										<span className='max-lg:hidden'>&nbsp;</span>
 									</span>
 									<span className='text-grey-500 text-lg lg:text-sm !leading-normal'>
 										{ activeTabIdx === 0
@@ -128,10 +190,7 @@ const MemberFrequencyPlan: React.FC<MemberFrequencyPlanProps> = ({ setStep }) =>
 									<button
 										aria-label={ membershipFrequencyData.btnCancelLabel }
 										onClick={ onClickBack }
-										className={ clsxm(
-											'border border-grey-primary text-grey-primary',
-											defaultButtonClassName
-										) }
+										className={ clsxm('border border-grey-primary text-grey-primary', defaultButtonClassName) }
 									>
 										{ membershipFrequencyData.btnCancelLabel }
 									</button>
