@@ -386,7 +386,7 @@ const productsData = {
 				list: [
 					'At-home blood work',
 					'Done by licensed phlebotomist',
-					'Testing for 45+ biomarkers',
+					'Testing for 67+ biomarkers',
 					'Key health indicators',
 					'In-app results breakdown',
 					'Custom supplement recommendations'
@@ -395,7 +395,7 @@ const productsData = {
 			{
 				id: 17,
 				name: 'Comprehensive Panel',
-				description: 'The Comprehensive Panel from Geviti tests 57+ health markers, providing an in-depth view of your health. A phlebotomist will visit your home for blood collection. This panel can be upgraded from the free Essentials 6-month bloodwork for just $140.',
+				description: 'The Comprehensive Panel from Geviti tests 78+ health markers, providing an in-depth view of your health. A phlebotomist will visit your home for blood collection. This panel can be upgraded from the free Essentials 6-month bloodwork for just $140.',
 				sort_description: '',
 				price: 'Member price: $365 per test',
 				category: { id: 2 },
@@ -404,7 +404,7 @@ const productsData = {
 				list: [
 					'At-home blood work',
 					'Done by licensed phlebotomist',
-					'Testing for 57+ biomarkers',
+					'Testing for 78+ biomarkers',
 					'Key health indicators',
 					'In-app results breakdown',
 					'Custom supplement recommendations'
@@ -413,7 +413,7 @@ const productsData = {
 			{
 				id: 18,
 				name: 'Ultimate Panel',
-				description: 'The Ultimate Panel tests 68+ health markers, offering the most comprehensive analysis. A phlebotomist will visit your home for blood collection. Our most in depth blood panel. Upgrade from the free 6-month bloodwork for just $220.',
+				description: 'The Ultimate Panel tests 85+ health markers, offering the most comprehensive analysis. A phlebotomist will visit your home for blood collection. Our most in depth blood panel. Upgrade from the free 6-month bloodwork for just $220.',
 				sort_description: '',
 				price: 'Member price: $445 per test',
 				category: { id: 2 },
@@ -422,7 +422,7 @@ const productsData = {
 				list: [
 					'At-home blood work',
 					'Done by licensed phlebotomist',
-					'Testing for 68+ biomarkers',
+					'Testing for 85+ biomarkers',
 					'Key health indicators',
 					'In-app results breakdown',
 					'Custom supplement recommendations'
