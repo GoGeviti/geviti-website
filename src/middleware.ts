@@ -6,7 +6,7 @@ export function middleware(request: NextRequest) {
 	const userAgent = request.headers.get('user-agent')?.toLowerCase();
 
 	if (userAgent) {
-		if (userAgent.includes('iphone') || userAgent.includes('ipad')) {
+		if (userAgent.includes('iphone')) {
 			return NextResponse.redirect(process.env.NEXT_PUBLIC_APPLE_STORE_URL);
 		} else if (userAgent.includes('android')) {
 			return NextResponse.redirect(process.env.NEXT_PUBLIC_PLAY_STORE_URL);
