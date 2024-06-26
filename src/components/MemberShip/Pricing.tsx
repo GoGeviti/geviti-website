@@ -132,7 +132,7 @@ const Pricing = () => {
 									<div className={ clsxm(
 										'pt-[42px] pb-[34px] px-6 rounded-2xl w-full relative',
 										item.mostPopular ? 'bg-primary text-white' : 'bg-[#F5FBFF] text-primary',
-										index === 1 && 'z-10'
+										// index === 1 && 'z-10'
 									) }>
 										<h3 className='!leading-[28px] text-[5.128vw] xs2:text-xl'>
 											{ item.name }
