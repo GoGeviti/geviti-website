@@ -31,11 +31,11 @@ const landingData = {
 		title:
 			'Telehealth for longevity Data-driven personalized care.',
 		titles: [
-			'Telehealth for longevity',
+			'Telehealth for longevit<span class="ml-0.5">y<span>.',
 			'Data-driven personalized care.'
 		],
 		titlesMobile: [
-			'Telehealth for longevity',
+			'Telehealth for longevity.',
 			'Data-driven personalized care.',
 		],
 		banner: {
