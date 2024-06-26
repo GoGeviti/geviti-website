@@ -97,7 +97,7 @@ const solutionData = {
 			title: 'Live optimized with <br class="lg:hidden"/><span>Geviti</span><span class="lg:hidden">.</span>',
 			titles: ['Live optimized with'],
 			titlesMobile: ['Live optimized with'],
-			description: 'Our platform offers women at-home diagnostics and doctor-supervised treatments covering testosterone therapy, anti-aging peptides, medical weight loss, and more, fostering vitality and longevity.',
+			description: 'Our platform offers women at-home diagnostics and doctor-supervised treatments covering hormone therapy, anti-aging peptides, medical weight loss, and more, fostering vitality and longevity.',
 			image: '/images/solution_media/compressed/hero-women.webp',
 			imageMobile: '/images/solution_media/compressed/hero-women-mobile.webp',
 			btnCta: {
@@ -177,7 +177,7 @@ const solutionData = {
 				preTitle: 'Maintaining A healthy weight is vital',
 				title: 'We have a weight problem.',
 				description:
-					'4 in every 10 women have a Body Mass Index greater than 30, classifying theme as obese. Obesity comes with an increased risk for diabetes, heart disease, and some cancers.',
+					'4 in every 10 women have a Body Mass Index greater than 30, classifying them as obese. Obesity comes with an increased risk for diabetes, heart disease, and some cancers.',
 				image: '/images/solution_media/compressed/wellnesspro-women-1.webp',
 				imageMobile: '/images/solution_media/compressed/wellnesspro-women-1-mobile.webp',
 				count: 40,
@@ -189,7 +189,7 @@ const solutionData = {
 				preTitle: 'optimized hormonal states can be maintained',
 				title: 'Lets optimize your hormones.',
 				description:
-					'It’s a misconception that your testosterone only drops in your older years. More young men struggle with testosterone deficiencies than ever before.',
+					'80% of women in America struggle with hormone imbalances. These imbalances can lead to symptoms such as fatigue, weight gain, mood swings, and irregular menstrual cycles.',
 				image: '/images/solution_media/compressed/wellnesspro-women-2.webp',
 				imageMobile: '/images/solution_media/compressed/wellnesspro-women-2-mobile.webp',
 				count: 80,
@@ -265,8 +265,8 @@ const solutionData = {
 		list: landingData.membership.priceSection.list
 	},
 	optimizedYourSelf: {
-		preTitle: 'You owe it to yourself, and others.',
-		title: 'Become the optimized <br />version of yourself.',
+		preTitle: 'You owe it to yourself.',
+		title: 'Become the healthiest <br />version of yourself.',
 		description: 'A Geviti membership makes longevity easy and accessible with our wide range of at-home diagnostics, innovative anti-aging therapies, and a dedicated qualified care team.<br /><br />All of this, and more with in-house health coaching, automated at-home bloodwork, and custom smart supplements.',
 		image: '/images/solution_media/compressed/optimizedyourself.webp',
 		imageMobile: '/images/solution_media/compressed/optimizedyourself-mobile.webp',

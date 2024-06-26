@@ -704,7 +704,7 @@ const membershipData = {
 				priceNote: 'one time payment',
 				priceDescGeneral:
           '<span class="lg:hidden">+ $297 quarterly</span><span class="max-lg:hidden">+$198 initially, then $297 quarterly</span>',
-				biomakers: '68+',
+				biomakers: '85+',
 				mostPopular: false,
 				monthly: '+ $119 monthly',
 				quarterly: '+ $99 per month billed quarterly',

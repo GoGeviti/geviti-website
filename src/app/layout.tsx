@@ -33,6 +33,9 @@ export const viewport: Viewport = {
 const RootLayout: React.FC<{ children: React.ReactNode; }> = ({ children }) => {
 	return (
 		<html lang='en'>
+			<meta
+				name='cometly-domain-verification'
+				content='007df841-addd-4846-93c2-f94f19c48097'/>
 			<AOSInit />
 			{ /* <Script src='//embed.typeform.com/next/embed.js' /> */ }
 			<Script

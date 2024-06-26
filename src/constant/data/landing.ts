@@ -29,18 +29,17 @@ const landingData = {
 	hero: {
 		preTitle: 'Live optimized and age better',
 		title:
-			'A data-driven approach to longevity and health optimization.',
+			'Telehealth for longevity Data-driven personalized care.',
 		titles: [
-			'A data-driven approach to',
-			'longevity and health optimization.'
+			'Telehealth for longevity',
+			'Data-driven personalized care.'
 		],
 		titlesMobile: [
-			'A data-driven approach',
-			'to longevity and health',
-			'optimization.'
+			'Telehealth for longevity',
+			'Data-driven personalized care.',
 		],
 		banner: {
-			text: 'Geviti Closes Early Stage Seed Financing 🎉 <br/>To Celebrate, Those Who Join Before August 1st Will Be Grandfathered In At $89 Monthly!',
+			text: '<b>Geviti closes Early stage Seed Financing</b> 🎉 <br/>To celebrate, those who join Our Beta Before<br/>August 1st will be grandfathered in at $89/m!',
 			icon: InformationIcon,
 			show: true
 		},
@@ -368,7 +367,7 @@ const landingData = {
 			{
 				id: 'test-results',
 				title: 'Up to date test results',
-				description: 'There should never be a reason to bounce around to track down  you lab reports. Geviti compiles your diagnostic results into our platform for users to analyze, track, and understand their markers.',
+				description: 'There should never be a reason to bounce around to track down your lab reports. Geviti compiles your diagnostic results into our platform for users to analyze, track, and understand their markers.',
 				groupImages: [
 					'/images/landing/compressed/group-test-result-1.webp',
 					'/images/landing/compressed/group-test-result-2.webp',
@@ -579,7 +578,7 @@ const landingData = {
 			{
 				id: 'protocols',
 				title: 'Tailored Protocols',
-				description: 'The creation of an action plan based off of <br class="max-lg:hidden"/>the users bloodwork results, focusing on <br class="max-lg:hidden"/>lifestyle, nutrition, supplementation, and <br class="max-lg:hidden"/>overall health optimization.'
+				description: 'The creation of an action plan based off of <br class="max-lg:hidden"/>your bloodwork results, focusing on <br class="max-lg:hidden"/>lifestyle, nutrition, supplementation, and <br class="max-lg:hidden"/>overall health optimization.'
 			},
 			{
 				id: 'education',
