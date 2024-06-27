@@ -147,7 +147,7 @@ const StripeCheckout: FC<PageProps> = ({ searchParams }) => {
 						event: 'purchase',
 						ecommerce: {
 							transaction_id: checkoutResp.billingId,
-							affiliation: 'Silver Fleece',
+							affiliation: 'GoGeveti',
 							value: totalPrice,
 							tax: 0,
 							shipping: 0,
