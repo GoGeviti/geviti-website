@@ -39,7 +39,7 @@ const landingData = {
 			'Data-driven personalized care.',
 		],
 		banner: {
-			text: '<b>Geviti closes Early stage Seed Financing</b> 🎉 <br/>To celebrate, those who join Our Beta Before<br/>August 1st will be grandfathered in at $89/m!',
+			text: '<span class="font-medium">Geviti Closes Early Stage Seed Financing</span> 🎉 <br/>To Celebrate, Those Who Join Our Beta Before<br/>August 1st Will Be Grandfathered In At $89/M!',
 			icon: InformationIcon,
 			show: true
 		},
