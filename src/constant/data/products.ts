@@ -377,7 +377,7 @@ const productsData = {
 			{
 				id: 16,
 				name: 'Essentials Panel',
-				description: 'The Essentials Panel tests key health indicators, providing a clear picture of your current status. A phlebotomist will come to your home to draw your blood. This panel looks at 45 unique biomarkers. Members receive this service free every 6 months.',
+				description: 'The Essentials Panel tests key health indicators, providing a clear picture of your current status. A phlebotomist will come to your home to draw your blood. This panel looks at 67+ unique biomarkers. Members receive this service free every 6 months.',
 				sort_description: '',
 				price: 'Member price: $225 per test',
 				category: { id: 2 },
@@ -431,7 +431,7 @@ const productsData = {
 			{
 				id: 19,
 				name: 'Hormone Check',
-				description: 'Features 14 key biomarkers essential for male reproductive and overall health. This test provides insights into hormone balance and vital health indicators, enabling proactive management of well-being. This test offers a holistic view of male hormonal status. ',
+				description: 'Features 11 key biomarkers essential for male reproductive and overall health. This test provides insights into hormone balance and vital health indicators, enabling proactive management of well-being. This test offers a holistic view of male hormonal status. ',
 				sort_description: '',
 				price: 'As low as $105 per kit',
 				category: { id: 2 },
@@ -440,28 +440,28 @@ const productsData = {
 				list: [
 					'Fingerprick Test',
 					'Clinically Accurate',
-					'14 biomarkers',
-					'Oral Capsule',
-					'Twice Daily',
-					'Flexible Dosing'
+					'11 biomarkers',
+					'At-home blood work',
+					'Easy and Accessible',
+					'Less Invasive'
 				]
 			},
 			{
 				id: 20,
 				name: 'Cardiovascular Check',
-				description: 'Features 12 essential biomarkers crucial for the early detection and management of potential cardiovascular issues, helping you maintain a healthy heart and prevent heart disease.',
+				description: 'Features 8 essential biomarkers crucial for the early detection and management of potential cardiovascular issues, helping you maintain a healthy heart and prevent heart disease.',
 				sort_description: '',
 				price: 'As low as $90 per kit',
 				category: { id: 2 },
 				subCategory: { id: [3] },
 				image: '/images/solution_media/products/finger-prick/cardiovascular-health-panel.webp',
 				list: [
-					'FDA Approved',
-					'Bioidentical',
-					'96% Efficacy',
-					'Oral Capsule',
-					'Twice Daily',
-					'Flexible Dosing'
+					'Fingerprick',
+					'Clinically Accurate',
+					'8 Biomarkers',
+					'At-home blood work',
+					'Easy and Accessible',
+					'Less Invasive'
 				]
 			},
 			{
@@ -475,11 +475,11 @@ const productsData = {
 				image: '/images/solution_media/products/finger-prick/metabolic-health-panel.webp',
 				list: [
 					'Finger Prick Test',
-					'At-home',
-					'Easy & Accessible',
-					'Oral Capsule',
-					'Twice Daily',
-					'Flexible Dosing'
+					'Clinically Accurate',
+					'8 Biomarkers',
+					'At-home blood work',
+					'Easy and Accessible',
+					'Less Invasive'
 				]
 			},
 		],
@@ -742,6 +742,9 @@ const productsData = {
 				subCategory: { id: [2] },
 				image: '/images/solution_media/products/epigenetic-testing/biological-age-test.webp',
 				list: [
+					'DNA Methylation',
+					'Skin Aging',
+					'Vascular Aging',
 					'Cognitive Aging',
 					'Tailored Interventions',
 					'Easy Cheek Swab'
@@ -768,7 +771,7 @@ const productsData = {
 			{
 				id: 16,
 				name: 'Essentials Panel',
-				description: 'The Essentials Panel tests key health indicators, providing a clear picture of your current status. A phlebotomist will come to your home to draw your blood. This panel looks at 45 unique biomarkers. Members receive this service free every 6 months.',
+				description: 'The Essentials Panel tests key health indicators, providing a clear picture of your current status. A phlebotomist will come to your home to draw your blood. This panel looks at 67+ unique biomarkers. Members receive this service free every 6 months.',
 				sort_description: '',
 				price: 'Member price: $245 per test',
 				category: { id: 2 },
@@ -777,7 +780,7 @@ const productsData = {
 				list: [
 					'At-home blood work',
 					'Done by licensed phlebotomist',
-					'Testing for 45+ biomarkers',
+					'Testing for 67+ biomarkers',
 					'Key health indicators',
 					'In-app results breakdown',
 					'Custom supplement recommendations'
@@ -786,7 +789,7 @@ const productsData = {
 			{
 				id: 17,
 				name: 'Comprehensive Panel',
-				description: 'The Comprehensive Panel from Geviti tests 57+ health markers, providing an in-depth view of your health. A phlebotomist will visit your home for blood collection. This panel can be upgraded from the free Essentials 6-month bloodwork for just $140.',
+				description: 'The Comprehensive Panel from Geviti tests 78+ health markers, providing an in-depth view of your health. A phlebotomist will visit your home for blood collection. This panel can be upgraded from the free Essentials 6-month bloodwork for just $140.',
 				sort_description: '',
 				price: 'Member price: $330 per test',
 				category: { id: 2 },
@@ -795,7 +798,7 @@ const productsData = {
 				list: [
 					'At-home blood work',
 					'Done by licensed phlebotomist',
-					'Testing for 57+ biomarkers',
+					'Testing for 78+ biomarkers',
 					'Key health indicators',
 					'In-app results breakdown',
 					'Custom supplement recommendations'
@@ -804,7 +807,7 @@ const productsData = {
 			{
 				id: 18,
 				name: 'Ultimate Panel',
-				description: 'The Ultimate Panel tests 68+ health markers, offering the most comprehensive analysis. A phlebotomist will visit your home for blood collection. Our most in depth blood panel. Upgrade from the free 6-month bloodwork for just $220.',
+				description: 'The Ultimate Panel tests 85+ health markers, offering the most comprehensive analysis. A phlebotomist will visit your home for blood collection. Our most in depth blood panel. Upgrade from the free 6-month bloodwork for just $220.',
 				sort_description: '',
 				price: 'Member price: $420 per test',
 				category: { id: 2 },
@@ -813,7 +816,7 @@ const productsData = {
 				list: [
 					'At-home blood work',
 					'Done by licensed phlebotomist',
-					'Testing for 68+ biomarkers',
+					'Testing for 85+ biomarkers',
 					'Key health indicators',
 					'In-app results breakdown',
 					'Custom supplement recommendations'
@@ -822,37 +825,37 @@ const productsData = {
 			{
 				id: 19,
 				name: 'Hormone Check',
-				description: 'Features 8 essential biomarkers crucial for female reproductive and overall health. This test offers insights into hormonal balance and other key health indicators like thyroid function and immune health. Provides a holistic view of hormonal status.',
+				description: 'Features 11 essential biomarkers crucial for female reproductive and overall health. This test offers insights into hormonal balance and other key health indicators like thyroid function and immune health. Provides a holistic view of hormonal status.',
 				sort_description: '',
 				price: 'As low as $115 per kit',
 				category: { id: 2 },
 				subCategory: { id: [3] },
 				image: '/images/solution_media/products/finger-prick/hormone-check-women.webp',
 				list: [
-					'FDA Approved',
-					'Bioidentical',
-					'96% Efficacy',
-					'Oral Capsule',
-					'Twice Daily',
-					'Flexible Dosing'
+					'Finger Prick Test',
+					'Clinically Accurate',
+					'11 biomarkers',
+					'At-home blood work',
+					'Easy and Accessible',
+					'Less Invasive'
 				]
 			},
 			{
 				id: 20,
 				name: 'Cardiovascular Check',
-				description: 'Features 12 essential biomarkers crucial for the early detection and management of potential cardiovascular issues, helping you maintain a healthy heart and prevent heart disease.',
+				description: 'Features 8 essential biomarkers crucial for the early detection and management of potential cardiovascular issues, helping you maintain a healthy heart and prevent heart disease.',
 				sort_description: '',
 				price: 'As low as $90 per kit',
 				category: { id: 2 },
 				subCategory: { id: [3] },
 				image: '/images/solution_media/products/finger-prick/cardiovascular-health-panel.webp',
 				list: [
-					'FDA Approved',
-					'Bioidentical',
-					'96% Efficacy',
-					'Oral Capsule',
-					'Twice Daily',
-					'Flexible Dosing'
+					'Finger Prick Test',
+					'Clinically Accurate',
+					'8 biomarkers',
+					'At-home blood work',
+					'Easy and Accessible',
+					'Less Invasive'
 				]
 			},
 			{
@@ -866,11 +869,11 @@ const productsData = {
 				image: '/images/solution_media/products/finger-prick/metabolic-health-panel.webp',
 				list: [
 					'Finger Prick Test',
-					'At-home',
-					'Easy & Accessible',
-					'Oral Capsule',
-					'Twice Daily',
-					'Flexible Dosing'
+					'Clinically Accurate',
+					'8 Biomarkers',
+					'At-home blood work',
+					'Easy and Accessible',
+					'Less Invasive'
 				]
 			},
 		]
