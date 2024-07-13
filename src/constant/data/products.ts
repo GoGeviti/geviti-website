@@ -125,7 +125,7 @@ const productsData = {
 			{
 				id: 2,
 				name: 'T Booster Complex',
-				description: 'The potent mix of Clomiphene, 7-keto-DHEA, Progesterone, and very low dose Anastrozole has been proven to significantly boost male testosterone levels without the need for exogenous testosterone replacement therapy. It\'s both safe and effective.',
+				description: 'The potent mix of Clomiphene, DHEA, 7-Keto-DHEA and Progesterone has been proven to significantly boost male testosterone levels without the need for exogenous testosterone replacement therapy. It\'s both safe and effective.',
 				sort_description: 'Oral Tablet',
 				price: 60,
 				category: { id: 1 },
