@@ -568,7 +568,7 @@ const landingData = {
 			{
 				id: 'doctor',
 				title: 'Doctor Led Care',
-				description: 'Check-ins from your designated health coach to hold you accountable to your goals and ensure you have the necessary tools for success.'
+				description: 'Cutting edge therapeutics including hormone therapy, peptide therapy, medical weight loss, and more monitored by board certified providers.'
 			},
 			{
 				id: 'coaching',

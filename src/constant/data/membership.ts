@@ -913,7 +913,7 @@ const membershipData = {
 				geviti: true,
 				competitor_a: true,
 				competitor_b: true,
-				competitor_c: true,
+				competitor_c: false,
 			},
 			{
 				name: 'Frequent Screening',
@@ -971,13 +971,13 @@ const membershipData = {
 				competitor_b: true,
 				competitor_c: false,
 			},
-			{
-				name: 'Health Coaching',
-				geviti: true,
-				competitor_a: false,
-				competitor_b: false,
-				competitor_c: false,
-			},
+			// {
+			// 	name: 'Health Coaching',
+			// 	geviti: true,
+			// 	competitor_a: false,
+			// 	competitor_b: false,
+			// 	competitor_c: false,
+			// },
 		],
 	},
 	faq: {

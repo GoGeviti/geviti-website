@@ -140,6 +140,39 @@ const StripeCheckout: FC<PageProps> = ({ searchParams }) => {
 					coupon: discount?.coupon_details.keyword || '',
 				});
 				sessionStorage.setItem('checkout_token', checkoutResp.token);
+				if (checkoutResp.token) {
+					window.dataLayer = window.dataLayer || [];
+					window.dataLayer.push({ ecommerce: null });
+					window.dataLayer.push({
+						event: 'purchase',
+						ecommerce: {
+							transaction_id: checkoutResp.billingId,
+							affiliation: 'GoGeveti',
+							value: totalPrice,
+							tax: 0,
+							shipping: 0,
+							currency: 'USD',
+							coupon: '',
+							items: [
+								{
+									item_id: product.id,
+									item_name: product.name,
+									affiliation: 'GoGeveti',
+									coupon: discount?.coupon_details.keyword || '',
+									currency: 'USD',
+									index: '0',
+									discount: discount?.coupon_details?.discounted_price ?? 0,
+									item_brand: '',
+									item_category: '',
+									item_category2: '',
+									item_variant: membership?.billing_frequency?.toLowerCase(),
+									price: product.price,
+									quantity: 1
+								}
+							]
+						}
+					});
+				}
 				setLoading(false);
 				setCheckoutLoading(false);
 				router.push('payment/success');

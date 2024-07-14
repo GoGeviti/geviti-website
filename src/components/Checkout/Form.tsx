@@ -13,6 +13,7 @@ import { toast } from 'sonner';
 import { checkoutData, statesData } from '@/constant/data';
 import clsxm from '@/helpers/clsxm';
 import { IPrecheckout } from '@/interfaces';
+import { createNotionDatabase } from '@/services/checkout';
 import { FormCheckoutSchema } from '@/validator/checkout';
 
 import { addTempUser, validateAddress } from './api/onboarding';
@@ -90,11 +91,17 @@ const Form: React.FC<{
 					zipCode: zip_code,
 					dob: `${birthdate?.toISOString()}`,
 				});
-				setIsLoading(false);
 				sessionStorage.setItem('temp_user', JSON.stringify(tempUser.user));
 				if (!tempUser.stateExists) {
+					setIsLoading(false);
 					return onNextStep({ ...form, id: tempUser.user.id }, CheckoutStep.WAITLIST_STATE_NOT_AVAILABLE);
 				}
+				await createNotionDatabase({
+					...form,
+					id: tempUser.user.id,
+					isWaitingList: false,
+				});
+				setIsLoading(false);
 				return onNextStep({ ...form, id: tempUser.user.id }, CheckoutStep.PRICING_PRODUCT_PLAN);
 			// eslint-disable-next-line @typescript-eslint/no-explicit-any
 			} catch (error:any) {

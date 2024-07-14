@@ -13,6 +13,9 @@ declare global {
 			NEXT_PUBLIC_PRECHECKOUT_WAITLIST: 'true' | 'false';
 		}
 	}
+	interface Window {
+    dataLayer: any[];
+  }
 }
 
 // If this file has no import/export statements (i.e. is a script)

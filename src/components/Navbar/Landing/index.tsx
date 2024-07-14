@@ -134,29 +134,29 @@ const Navbar: React.FC<NavbarProps> = ({ className, animationProps, theme }) => 
 	// 	setSelectedItem(id);
 	// };
 
-	const renderIconMenuList = () => {
-		return (
-			<>
-				{ navbarData.iconsMenu?.map(iconMenu => {
-					const Icon = iconMenu.icon;
+	// const renderIconMenuList = () => {
+	// 	return (
+	// 		<>
+	// 			{ navbarData.iconsMenu?.map(iconMenu => {
+	// 				const Icon = iconMenu.icon;
 
-					return (
-						<CustomLink
-							aria-label='icon menu list'
-							key={ iconMenu.id }
-							className='font-Poppins relative rounded-full focus:outline-0 focus:ring-0 focus:border-0 group'
-							href={ iconMenu.href }
-						>
-							<Icon className={ clsxm(
-								'w-[17px] h-[17px] text-grey-50',
-								theme === 'light' && 'text-primary'
-							) } />
-						</CustomLink>
-					);
-				}) }
-			</>
-		);
-	};
+	// 				return (
+	// 					<CustomLink
+	// 						aria-label='icon menu list'
+	// 						key={ iconMenu.id }
+	// 						className='font-Poppins relative rounded-full focus:outline-0 focus:ring-0 focus:border-0 group'
+	// 						href={ iconMenu.href }
+	// 					>
+	// 						<Icon className={ clsxm(
+	// 							'w-[17px] h-[17px] text-grey-50',
+	// 							theme === 'light' && 'text-primary'
+	// 						) } />
+	// 					</CustomLink>
+	// 				);
+	// 			}) }
+	// 		</>
+	// 	);
+	// };
 
 	const renderActionMenuList = () => {
 		return (
@@ -269,7 +269,7 @@ const Navbar: React.FC<NavbarProps> = ({ className, animationProps, theme }) => 
 								</div>
 							</div>
 							<div className='hidden lg:flex items-center space-x-5'>
-								{ renderIconMenuList() }
+								{ /* { renderIconMenuList() } */ }
 								{ renderActionMenuList() }
 							</div>
 							<div className='flex lg:hidden'>
