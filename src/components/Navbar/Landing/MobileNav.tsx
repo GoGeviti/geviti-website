@@ -5,7 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
-import cartIcon from '@/assets/mobile-nav/cart.svg';
+// import cartIcon from '@/assets/mobile-nav/cart.svg';
 import dashboardIcon from '@/assets/mobile-nav/dashboard.svg';
 import navbarData from '@/constant/data/navigation';
 import clsxm from '@/helpers/clsxm';
@@ -192,7 +192,7 @@ const MobileNav: React.FC<MobileNavProps> = ({
 
 							<div className='border-t border-[#2D2F31] pt-5 mt-5 -mx-4'>
 								<div className='px-4'>
-									<motion.div variants={ mobileLinkVarsOpacity }>
+									{ /* <motion.div variants={ mobileLinkVarsOpacity }>
 										<Link
 											href='/cart'
 											className='flex items-center gap-2.5 mb-5'>
@@ -205,7 +205,7 @@ const MobileNav: React.FC<MobileNavProps> = ({
 												Cart
 											</span>
 										</Link>
-									</motion.div>
+									</motion.div> */ }
 									<motion.div variants={ mobileLinkVarsOpacity }>
 										<Link
 											href='https://app.gogeviti.com/'
