@@ -36,7 +36,12 @@ export const createNotionDatabase = async(
 				state: formData.state,
 			},
 		})
-		.then(() => {
+		.then(async responseCreate => {
+			if (!formData.isWaitingList) {
+				await hubspotClient.crm.lists.membershipsApi.add(7, [Number(responseCreate.id)]);
+			} else {
+				await hubspotClient.crm.lists.membershipsApi.add(6, [Number(responseCreate.id)]);
+			}
 			return { status: 'OK', message: 'Contact created successfully' };
 		})
 		.catch((e:any) => {
