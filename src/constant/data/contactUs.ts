@@ -2,7 +2,7 @@ const contactUsData = {
 	hero: {
 		preTitle: 'contact us',
 		title: 'We’re here to help.',
-		desc: '<p>Any questions or remarks? Just write us a message.</p>',
+		desc: '<p>Any questions or remarks? Just write us a message or give us a call at: +1 602-456-2339</p>',
 		image: '/images/contact/contact.webp'
 	},
 	form: {

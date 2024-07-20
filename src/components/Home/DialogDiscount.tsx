@@ -50,7 +50,7 @@ const DialogDiscount: React.FC<DialogDiscountProps> = ({ open, onOpenChange }) =
 					...form,
 				});
 				setIsLoading(false);
-				toast.success('Discount created successfully');
+				toast.success('Thank you! You should receive the discount code in your inbox shortly.');
 				onOpenChange && onOpenChange(false);
 				// setCookie({ key: 'discount_submited', value: 'true' });
 			} catch (error:any) {
