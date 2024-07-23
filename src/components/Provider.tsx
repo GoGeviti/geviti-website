@@ -13,25 +13,28 @@ const Provider = () => {
 	useEffect(() => {
 		const checkCookies = async() => {
 			const cookies = await getCookie('close_discount');
+			// const cookies = 'true';
 			if (cookies === 'true') {
-				setOpen(false);
+				setTimeout(() => {
+					setOpen(true);
+				}, 5000);
 			} else {
-				setOpen(true);
+				setOpen(false);
 			}
 		}
 		checkCookies();
 	}, [])
 
-	useEffect(() => {
-		if (open) {
-			document.body.classList.add('!overflow-hidden');
-		} else {
-			document.body.classList.remove('!overflow-hidden');
-		}
-		return () => {
-			document.body.classList.remove('!overflow-hidden');
-		};
-	}, [open]);
+	// useEffect(() => {
+	// 	if (open) {
+	// 		document.body.classList.add('!overflow-hidden');
+	// 	} else {
+	// 		document.body.classList.remove('!overflow-hidden');
+	// 	}
+	// 	return () => {
+	// 		document.body.classList.remove('!overflow-hidden');
+	// 	};
+	// }, [open]);
 
 	return (
 		<React.Fragment>

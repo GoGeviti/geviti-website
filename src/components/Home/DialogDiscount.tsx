@@ -70,14 +70,14 @@ const DialogDiscount: React.FC<DialogDiscountProps> = ({ open, onOpenChange }) =
 
 	const renderContent = () => {
 		return (
-			<>
+			<div className='font-Poppins'>
 				<div className='flex flex-col gap-2'>
 					<h4 className='text-center text-[28px] capitalize text-primary'>Get 10% off Bloodwork Discount</h4>
 					<p className='text-center text-xs text-[#6A6E70]'>Sign up for our Email and SMS updates and get 10% off your bloodwork! By building a comprehensive picture of your health, we can tailor wellness plans & products specifically to you.</p>
 				</div>
 				<form
 					onSubmit={ onSubmitForm }
-					className='flex flex-col gap-6'
+					className='flex flex-col gap-6 mt-6'
 				>
 					<div className='flex flex-col lg:flex-row items-center gap-3'>
 						<TextField
@@ -143,7 +143,7 @@ const DialogDiscount: React.FC<DialogDiscountProps> = ({ open, onOpenChange }) =
 					/>
 
 				</form>
-			</>
+			</div>
 		);
 	};
 
@@ -180,7 +180,7 @@ const DialogDiscount: React.FC<DialogDiscountProps> = ({ open, onOpenChange }) =
 							<Image
 								fill
 								alt='discount'
-								className='w-full h-full object-cover'
+								className='w-full h-full object-cover max-md:hidden'
 								src='/images/home/discount.jpg' />
 						</div>
 						<div className='p-6 flex flex-col gap-6'>
