@@ -156,9 +156,9 @@ const DialogDiscount: React.FC<DialogDiscountProps> = ({ open, onOpenChange }) =
 			>
 				<DialogContent
 					position='bottom-left'
-					className='max-w-[518px] rounded-[20px] max-lg:max-h-[calc(100vh-50px)] overflow-y-auto shadow-[3px_6px_24px_0px_rgba(0,0,0,0.25)]'>
+					className='max-w-[518px] rounded-[20px] overflow-y-auto shadow-[3px_6px_24px_0px_rgba(0,0,0,0.25)]'>
 					<div className='flex flex-col'>
-						<div className='relative w-full h-[199px]'>
+						<div className='relative w-full md:h-[199px]'>
 							<button
 								onClick={ () => onOpenChange && onOpenChange(false) }
 								className='absolute top-6 right-6 z-10'>
