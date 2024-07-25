@@ -34,3 +34,10 @@ export interface CheckoutData {
   eligibleID?: string;
   answerQuestionnaires?: AnswerListQuestionnaire[];
 }
+
+export interface DiscountData {
+  name  : string;
+  state: string;
+  email: string;
+  phone_number: string;
+}

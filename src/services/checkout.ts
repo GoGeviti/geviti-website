@@ -49,3 +49,27 @@ export const createNotionDatabase = async(
 		});
 	return res as ResponseType;
 };
+
+export const createDiscount = async(
+	formData: IPrecheckout.DiscountData
+): Promise<ResponseType> => {
+	// return console.log(JSON.stringify(formData));
+	const res = await hubspotClient.crm.contacts.basicApi
+		.create({
+			associations: [],
+			properties: {
+				firstname: formData.name,
+				email: formData.email,
+				phone: formData.phone_number,
+				state: formData.state,
+			},
+		})
+		.then(async responseCreate => {
+			await hubspotClient.crm.lists.membershipsApi.add(8, [Number(responseCreate.id)]);
+			return { status: 'OK', message: 'Data Created' };
+		})
+		.catch((e:any) => {
+			return { status: 'ERROR', message: e.body.message };
+		});
+	return res as ResponseType;
+};
