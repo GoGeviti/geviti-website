@@ -14,7 +14,7 @@ const Provider = () => {
 		const checkCookies = async() => {
 			const cookies = await getCookie('close_discount');
 			// const cookies = 'true';
-			if (cookies === 'true') {
+			if (cookies !== 'true') {
 				setTimeout(() => {
 					setOpen(true);
 				}, 5000);
