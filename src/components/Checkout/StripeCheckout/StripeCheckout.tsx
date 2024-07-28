@@ -56,7 +56,7 @@ const StripeCheckout: FC<PageProps> = ({ searchParams }) => {
 		setMembershipLoading(true);
 		const user = sessionStorage.getItem('temp_user');
 		if (!user) {
-			router.replace('/onboarding');
+			router.replace('/pricing');
 			return;
 		}
 		setTempUser(JSON.parse(user));

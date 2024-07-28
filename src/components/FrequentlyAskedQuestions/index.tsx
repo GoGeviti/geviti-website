@@ -4,6 +4,8 @@ import React from 'react';
 import { useInView } from 'react-intersection-observer';
 import { motion } from 'framer-motion';
 
+import clsxm from '@/helpers/clsxm';
+
 import Question from './Question';
 
 type FrequentlyAskedQuestionsProps = {
@@ -11,6 +13,7 @@ type FrequentlyAskedQuestionsProps = {
 		title: string;
 		content: string;
 	}[];
+	className?: string;
 };
 
 const primaryVariants = {
@@ -27,14 +30,14 @@ const primaryVariants = {
 	},
 };
 
-const FrequentlyAskedQuestions: React.FC<FrequentlyAskedQuestionsProps> = ({ data }) => {
+const FrequentlyAskedQuestions: React.FC<FrequentlyAskedQuestionsProps> = ({ data, className }) => {
 	const { ref, inView } = useInView({ threshold: 0.3, triggerOnce: true });
 
 	return (
 		<div className='lg:px-3 relative font-Poppins overflow-hidden'>
 			<div
 				ref={ ref }
-				className='bg-white rounded-19px py-[42px] lg:pt-[120px] lg:pb-[63px]'>
+				className={ clsxm('bg-white rounded-19px py-[42px] lg:pt-[120px] lg:pb-[63px]', className) }>
 				<motion.div
 					initial='initial'
 					animate={ inView ? 'animate' : 'initial' }

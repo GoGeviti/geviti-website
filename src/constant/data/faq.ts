@@ -143,7 +143,7 @@ const faqData = {
 		title: '<p>Start your customized longevity plan today.</p>',
 		btnCta: {
 			title: 'Get Started',
-			href: '/onboarding'
+			href: '/pricing'
 		},
 		list: [
 			{

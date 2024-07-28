@@ -205,7 +205,7 @@ const Navbar: React.FC<NavbarProps> = ({ className, animationProps, theme }) => 
 						variants={ navbarVariants }
 						initial='hidden'
 						animate='visible'
-						className='inline-block w-full'
+						className='inline-block w-full border border-grey-50 rounded-full'
 						transition={ navbarDefaultTransition }
 						onAnimationComplete={ () => setOverflow('') }
 						{ ...animationProps }

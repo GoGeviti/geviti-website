@@ -88,7 +88,7 @@ const solutionData = {
 			imageMobile: '/images/solution_media/compressed/hero-men-mobile.webp',
 			btnCta: {
 				text: 'Join Geviti',
-				href: '/onboarding',
+				href: '/pricing',
 				externalLink: false,
 			},
 		},
@@ -102,7 +102,7 @@ const solutionData = {
 			imageMobile: '/images/solution_media/compressed/hero-women-mobile.webp',
 			btnCta: {
 				text: 'Join Geviti',
-				href: '/onboarding',
+				href: '/pricing',
 				externalLink: false,
 			},
 		}
@@ -213,7 +213,7 @@ const solutionData = {
 			men: '/images/solution_media/compressed/banner-men-mobile.webp',
 		},
 		btnCta: {
-			href: '/onboarding',
+			href: '/pricing',
 			externalLink: false,
 			text: 'Start Now',
 		},
@@ -256,11 +256,11 @@ const solutionData = {
 		description: 'Your Geviti membership will include the following:',
 		btnCta: {
 			text: 'Become A Member',
-			href: '/onboarding'
+			href: '/pricing'
 		},
 		btnCtaMobile: {
 			text: 'Join Geviti',
-			href: '/onboarding'
+			href: '/pricing'
 		},
 		list: landingData.membership.priceSection.list
 	},
@@ -272,7 +272,7 @@ const solutionData = {
 		imageMobile: '/images/solution_media/compressed/optimizedyourself-mobile.webp',
 		btnCta: {
 			text: 'Become A Member',
-			href: '/onboarding'
+			href: '/pricing'
 		},
 		imageCaption: {
 			mobile: {
@@ -384,7 +384,7 @@ const solutionData = {
 			preTitle: 'Easy online care',
 			title: 'Treatment options for male optimization',
 			btnCta: {
-				href: '/onboarding',
+				href: '/pricing',
 				text: 'Get Started'
 			},
 			...productsData.men
@@ -393,7 +393,7 @@ const solutionData = {
 			preTitle: 'Easy online care',
 			title: 'Treatment options for female optimization',
 			btnCta: {
-				href: '/onboarding',
+				href: '/pricing',
 				text: 'Get Started'
 			},
 			...productsData.women

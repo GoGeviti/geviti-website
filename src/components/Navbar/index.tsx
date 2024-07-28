@@ -200,7 +200,7 @@ const Navbar: React.FC<NavbarProps> = ({
 					className
 				) }
 			>
-				<nav className='w-full container-center'>
+				<nav className='w-full container-center border rounded-full border-[#F5F6F6]'>
 					<div className='flex h-60px lg:h-20 items-center justify-between'>
 						<div className='flex items-center'>
 							{ renderLogo() }

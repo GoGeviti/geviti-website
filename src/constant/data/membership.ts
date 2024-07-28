@@ -32,7 +32,7 @@ const membershipData = {
 		imageMobile: '/images/membership/compressed/hero_mobile.webp',
 		btnCta: {
 			text: 'Join Geviti',
-			href: '/onboarding',
+			href: '/pricing',
 			externalLink: false,
 		},
 		btnCta2: {
@@ -485,7 +485,7 @@ const membershipData = {
 		title: 'Why Choose Geviti?',
 		image: '/images/membership/compressed/oral.webp',
 		btnCta: {
-			href: '/onboarding',
+			href: '/pricing',
 			text: 'Get Started',
 		},
 		btnCta2: {
@@ -561,7 +561,7 @@ const membershipData = {
 				list: [],
 				image: '/images/membership/compressed/slider-2.webp',
 				btnCta: {
-					href: '/onboarding',
+					href: '/pricing',
 					text: 'Join Geviti',
 				},
 			},
@@ -579,7 +579,7 @@ const membershipData = {
 				],
 				image: '/images/membership/compressed/slider-3.webp',
 				btnCta: {
-					href: '/onboarding',
+					href: '/pricing',
 					text: 'Join Geviti',
 				},
 			},
@@ -591,7 +591,7 @@ const membershipData = {
 				list: [],
 				image: '/images/membership/compressed/slider-4.webp',
 				btnCta: {
-					href: '/onboarding',
+					href: '/pricing',
 					text: 'Join Geviti',
 				},
 			},
@@ -629,7 +629,7 @@ const membershipData = {
 				monthly: '+ $119 monthly',
 				quarterly: '+ $99 per month billed quarterly',
 				btnCta: {
-					href: '/onboarding',
+					href: '/pricing',
 					text: 'Select Option',
 				},
 				list: [
@@ -669,7 +669,7 @@ const membershipData = {
 				monthly: '+ $119 monthly',
 				quarterly: '+ $99 per month billed quarterly',
 				btnCta: {
-					href: '/onboarding',
+					href: '/pricing',
 					text: 'Select Option',
 				},
 				list: [
@@ -709,7 +709,7 @@ const membershipData = {
 				monthly: '+ $119 monthly',
 				quarterly: '+ $99 per month billed quarterly',
 				btnCta: {
-					href: '/onboarding',
+					href: '/pricing',
 					text: 'Select Option',
 				},
 				list: [
@@ -1026,7 +1026,7 @@ const membershipData = {
 		image: '/images/membership/compressed/banner-member.webp',
 		imageMobile: '/images/membership/compressed/banner-member-mobile.webp',
 		btnCta: {
-			href: '/onboarding',
+			href: '/pricing',
 			externalLink: false,
 			text: 'Start Now',
 		},

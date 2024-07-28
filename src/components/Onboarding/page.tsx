@@ -21,7 +21,7 @@ const OnboardingPage: NextPage<PageProps> = ({ searchParams }) => {
 	const cartData = getCartData();
 
 	if (variantID && !cartData?.variantID) {
-		redirect('/onboarding');
+		redirect('/pricing');
 	}
 
 	return (

@@ -87,6 +87,7 @@ const Banner: React.FC<BannerProps> = ({
 							src={ imageMobile ?? image }
 							alt='mission'
 							loading='lazy'
+							quality={ 100 }
 							className='object-cover pointer-events-none'
 							fill
 						/>

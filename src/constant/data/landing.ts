@@ -47,7 +47,7 @@ const landingData = {
 		imageMobile: '/images/landing/compressed/hero-mobile.webp',
 		btnCta: {
 			text: 'Join Geviti',
-			href: '/onboarding',
+			href: '/pricing',
 			externalLink: false,
 		},
 		btnCta2: {
@@ -109,7 +109,7 @@ const landingData = {
 		image: '/images/landing/investment.png',
 		imageMobile: '/images/landing/investment_mobile.png',
 		btnCta: {
-			href: '/onboarding',
+			href: '/pricing',
 			externalLink: false,
 			text: 'Get Started',
 		},
@@ -122,7 +122,7 @@ const landingData = {
 		image: '/images/landing/compressed/banner-landing.webp',
 		imageMobile: '/images/landing/compressed/banner-landing-mobile.webp',
 		btnCta: {
-			href: '/onboarding',
+			href: '/pricing',
 			externalLink: false,
 			text: 'Start Now',
 		},
@@ -131,7 +131,7 @@ const landingData = {
 		preTitle: '<span class="lg:hidden">Easy online care</span><span class="max-lg:hidden">No more guessing where your health is</span>',
 		title: '<span class="lg:hidden">Start your journey with a full blood panel.</span><span class="max-lg:hidden">Your journey begins with a full blood panel.</span>',
 		btnCta: {
-			href: '/onboarding',
+			href: '/pricing',
 			externalLink: false,
 			text: 'Become A Member',
 		},
@@ -162,7 +162,7 @@ const landingData = {
 		preTitle: 'Quality Care made accessible',
 		title: 'Easy to use Geviti telehealth dashboard.',
 		btnCta: {
-			href: '/onboarding',
+			href: '/pricing',
 			externalLink: false,
 			text: 'Start Now',
 		},
@@ -178,7 +178,7 @@ const landingData = {
 			'The creation of an action plan based off of the users bloodwork results, focusing on lifestyle, nutrition, supplementation, and overall health optimization.',
 		],
 		btnCta: {
-			href: '/onboarding',
+			href: '/pricing',
 			externalLink: false,
 			text: 'Join Now',
 		},
@@ -216,7 +216,7 @@ const landingData = {
 		],
 		btnCtaList: [
 			{
-				href: '/onboarding',
+				href: '/pricing',
 				externalLink: false,
 				text: 'Start Now',
 			},
@@ -237,7 +237,7 @@ const landingData = {
 		descriptionMobile:
 			'Geviti aims to increase both healthspan and lifespan by making longevity accessible.',
 		btnCta: {
-			href: '/onboarding',
+			href: '/pricing',
 			externalLink: false,
 			text: 'Start Now',
 		},
@@ -272,7 +272,7 @@ const landingData = {
 		image: '/images/landing/compressed/clinical-network.webp',
 		imageMobile: '/images/landing/compressed/clinical-network.webp',
 		btnCta: {
-			href: '/onboarding',
+			href: '/pricing',
 			externalLink: false,
 			text: 'Get Access',
 		}
@@ -424,7 +424,7 @@ const landingData = {
 				description: 'Our technology driven platform compiles your full health context into a centralized hub that is easy to navigate. In doing so, Geviti works with you to promote longevity using your real health data.',
 				btnCta: {
 					text: '<span class="lg:hidden">Join Now</span><span class="max-lg:hidden">Become A Member</span>',
-					href: '/onboarding'
+					href: '/pricing'
 				},
 				image: '/images/landing/compressed/dashboard-bloodwork.webp'
 			}
@@ -547,11 +547,11 @@ const landingData = {
 			description: 'Available in 12 states and expanding across all the country: <br/>AZ, CA, CO, UT, WA, TX, FL, GA, KS, OR, NM, MO',
 			btnCta: {
 				text: 'Become a member',
-				href: '/onboarding'
+				href: '/pricing'
 			},
 			btnCtaMobile: {
 				text: 'Become a member',
-				href: '/onboarding'
+				href: '/pricing'
 			},
 			image: '/images/landing/compressed/continent_dots.webp'
 		}
@@ -561,7 +561,7 @@ const landingData = {
 		title: 'A wellness team in your<br />pocket',
 		description: 'Geviti provides our users with a comprehensive care team. Instead of being forced to choose between a healthcare provider and a health coach, we offer a solution where the two work in tandem to craft the ultimate longevity regimen.',
 		btnCta: {
-			href: '/onboarding',
+			href: '/pricing',
 			text: 'Join Geviti'
 		},
 		cards: [

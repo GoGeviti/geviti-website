@@ -24,7 +24,7 @@ const Product: React.FC = () => {
 						{ product.map((items, id) => {
 							return (
 								<Link
-									href='/onboarding'
+									href='/pricing'
 									key={ id }
 									onMouseEnter={ () => handleMouseEnter(id) }
 									className={ clsxm(

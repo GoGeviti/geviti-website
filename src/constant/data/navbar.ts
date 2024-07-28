@@ -44,7 +44,7 @@ const navigationData = {
 	actionsMenu: [
 		{
 			name: 'Get Started',
-			href: '/onboarding',
+			href: '/pricing',
 			externalLink: false,
 			type: 'button'
 		}

@@ -223,7 +223,7 @@ const OrderJourney: React.FC<OrderJourneyProps> = ({ searchParams, state }) => {
 				setUserData(state?.user);
 				setShowPageTransitionOrderSummary(true);
 			} else {
-				router.replace('/onboarding');
+				router.replace('/pricing');
 				setFormStep(FormStep.TRANSITION_WELCOME);
 			}
 		}
@@ -512,7 +512,7 @@ const OrderJourney: React.FC<OrderJourneyProps> = ({ searchParams, state }) => {
 				router.back();
 			} else {
 				if (formStep === FormStep.ORDER_SUMMARY) {
-					router.replace('/onboarding');
+					router.replace('/pricing');
 					setShowPageTransitionOrderSummary(false);
 				}
 

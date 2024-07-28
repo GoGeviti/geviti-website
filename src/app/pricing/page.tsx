@@ -1,0 +1,36 @@
+import { Metadata } from 'next';
+
+import { Footer, FrequentlyAskedQuestions } from '@/components';
+import BannerMember from '@/components/Pricing/Banner';
+import BiomarkersSection from '@/components/Pricing/BiomarkersSection';
+import Download from '@/components/Pricing/Download';
+import Hero from '@/components/Pricing/Hero';
+import PricingComparison from '@/components/Pricing/PricingComparison';
+import pricingData from '@/constant/data/pricing';
+
+export const metadata: Metadata = {
+	title: 'Pricing',
+};
+
+const PricingPage = () => {
+	return (
+		<div className='flex min-h-screen flex-col w-full bg-white font-Poppins'>
+			<Hero/>
+			<PricingComparison />
+			<div className='lg:px-3'>
+				<BiomarkersSection
+					wrapperClassName='bg-white pt-[42px]' />
+			</div>
+			<div className='overflow-hidden'>
+				<Download/>
+			</div>
+			<FrequentlyAskedQuestions
+				className='lg:pt-[64px] lg:pb-[64px]'
+				data={ pricingData.faq.data } />
+			<BannerMember/>
+			<Footer landingPage />
+		</div>
+	)
+}
+
+export default PricingPage
