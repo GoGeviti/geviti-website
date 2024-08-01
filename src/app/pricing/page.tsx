@@ -21,7 +21,7 @@ const PricingPage = () => {
 				<BiomarkersSection
 					wrapperClassName='bg-white pt-[42px]' />
 			</div>
-			<div className='overflow-hidden'>
+			<div className='max-lg:overflow-hidden max-lg:pb-10'>
 				<Download/>
 			</div>
 			<FrequentlyAskedQuestions

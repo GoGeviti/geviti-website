@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 
 import pricingData from '@/constant/data/pricing';
 import clsxm from '@/helpers/clsxm';
@@ -73,7 +73,7 @@ const PricingComparison: React.FC = () => {
 
 	const renderHeading = (text: string) => {
 		return (
-			<h5 className='text-xl !leading-normal -tracking-0.04em !font-normal whitespace-nowrap'>{ text }</h5>
+			<h5 className='text-[21.505px] !leading-normal text-[#272833] -tracking-0.04em !font-semibold whitespace-nowrap'>{ text }</h5>
 		);
 	};
 
@@ -127,99 +127,103 @@ const PricingComparison: React.FC = () => {
 	return (
 		<div className='lg:px-3'>
 			<div className='container-center'>
-				<motion.div
-					animate={ isOpen ? 'open' : 'closed' }
-					className='border mt-[42px] border-grey-100 rounded-[19px] w-full px-4 py-[18px] lg:p-[42px]'>
-					<div className='flex items-center justify-between'>
-						<h2 className='text-primary text-2xl lg:text-[28px] !leading-normal lg:!leading-[43px] lg:-tracking-0.04em'>
-							{ pricingComparisonData.title }
-						</h2>
-						<motion.button
-							variants={ {
-								open: {
-									rotate: '180deg',
-								},
-								closed: {
-									rotate: '0deg',
-								},
-							} }
-							transition={ { ease: 'easeInOut', duration: .3 } }
-							className='w-5 max-lg:hidden'
-							onClick={ () => setIsOpen(pv => !pv) }
-						>
-							<ChevronDown className='w-5 h-5 text-primary' />
-						</motion.button>
-					</div>
-					<div className='max-lg:hidden'>
-						<motion.div
-							initial={ false }
-							animate={ { height: isOpen ? 'fit-content' : '0px' } }
-							className='w-full overflow-hidden flow-root max-lg:hidden'>
-							<div className='inline-block min-w-full align-middle mt-4'>
-								<table className='min-w-full'>
-									<thead>
-										<tr>
-											<th
-												scope='col'
-												className='pt-[38px] pb-[33px] pr-4 text-left text-primary sm:pl-0 w-2/6'>
-												{ renderHeading('Included') }
-												<span className='text-lg !leading-[25px] -tracking-0.04em font-medium'>
-														&nbsp;
-												</span>
-											</th>
-											{ pricingComparisonData.headers.map(header => {
+				<AnimatePresence mode='wait' >
+					<motion.div
+						animate={ isOpen ? 'open' : 'closed' }
+						className='border mt-[42px] border-grey-100 rounded-[19px] w-full px-4 py-[18px] lg:p-[42px]'>
+						<div className='flex items-center justify-between'>
+							<h2 className='text-primary text-2xl lg:text-[28px] !leading-normal lg:!leading-[43px] lg:-tracking-0.04em'>
+								{ /* { pricingComparisonData.title } */ }
+								<span className='max-lg:hidden'>Member product price comparisons</span>
+								<span className='lg:hidden'>Price comparisons</span>
+							</h2>
+							<motion.button
+								variants={ {
+									open: {
+										rotate: '180deg',
+									},
+									closed: {
+										rotate: '0deg',
+									},
+								} }
+								transition={ { ease: 'easeInOut', duration: .3 } }
+								className='w-5 max-lg:hidden'
+								onClick={ () => setIsOpen(pv => !pv) }
+							>
+								<ChevronDown className='w-5 h-5 text-primary' />
+							</motion.button>
+						</div>
+						<div className='max-lg:hidden'>
+							<motion.div
+								initial={ false }
+								animate={ { height: isOpen ? 'fit-content' : '0px' } }
+								className='w-full overflow-hidden flow-root max-lg:hidden'>
+								<div className='inline-block min-w-full align-middle mt-4'>
+									<table className='min-w-full'>
+										<thead>
+											<tr>
+												<th
+													scope='col'
+													className='pt-[38px] pb-[33px] pr-4 text-left text-primary sm:pl-0 w-2/6'>
+													{ renderHeading('Products') }
+													<span className='text-lg !leading-[25px] -tracking-0.04em font-medium'>
+															&nbsp;
+													</span>
+												</th>
+												{ pricingComparisonData.headers.map(header => {
+													return (
+														<th
+															key={ header.id }
+															scope='col'
+															className={ clsxm(
+																'py-[26px] px-[23px] text-center',
+																header.geviti ? ' bg-blue-alice rounded-t-20px' : ''
+															) }>
+															<span className='w-full flex flex-col items-center gap-y-2.5'>
+																{ renderHeading(header.title) }
+															</span>
+														</th>
+													);
+												}) }
+											</tr>
+										</thead>
+										<tbody>
+											{ pricingComparisonData.list.map((el, elIdx) => {
+												const paddingVertical = elIdx === pricingComparisonData.list.length - 1 ? 'pb-9 pt-18px' : 'py-18px';
+
 												return (
-													<th
-														key={ header.id }
-														scope='col'
-														className={ clsxm(
-															'py-[26px] px-[23px] text-center',
-															header.geviti ? ' bg-blue-alice rounded-t-20px' : ''
-														) }>
-														<span className='w-full flex flex-col items-center gap-y-2.5'>
-															{ renderHeading(header.title) }
-														</span>
-													</th>
+													<tr key={ `table-${ elIdx }` }>
+														<td className={ clsxm('pr-4 text-left text-sm !leading-6 font-medium text-primary w-2/6', paddingVertical) }>
+															{ el.name }
+														</td>
+														
+														<td className={ clsxm('px-4 w-1/6', paddingVertical) }>
+															<span className='w-full flex justify-center whitespace-nowrap'>
+																{ el.free }
+															</span>
+														</td>
+														<td className={ clsxm('px-4 w-1/6', paddingVertical) }>
+															<span className='w-full flex justify-center whitespace-nowrap'>
+																{ el.basic }
+															</span>
+														</td>
+														<td className={ clsxm('px-4 w-1/6 bg-blue-alice', elIdx === pricingComparisonData.list.length - 1 && 'rounded-b-20px', paddingVertical) }>
+															<span className='w-full flex justify-center whitespace-nowrap'>
+																{ el.premium }
+															</span>
+														</td>
+													</tr>
 												);
 											}) }
-										</tr>
-									</thead>
-									<tbody>
-										{ pricingComparisonData.list.map((el, elIdx) => {
-											const paddingVertical = elIdx === pricingComparisonData.list.length - 1 ? 'pb-9 pt-18px' : 'py-18px';
+										</tbody>
+									</table>
+								</div>
+							</motion.div>
+						</div>
 
-											return (
-												<tr key={ `table-${ elIdx }` }>
-													<td className={ clsxm('pr-4 text-left text-sm !leading-6 font-medium text-primary w-2/6', paddingVertical) }>
-														{ el.name }
-													</td>
-													
-													<td className={ clsxm('px-4 w-1/6', paddingVertical) }>
-														<span className='w-full flex justify-center whitespace-nowrap'>
-															{ el.free }
-														</span>
-													</td>
-													<td className={ clsxm('px-4 w-1/6', paddingVertical) }>
-														<span className='w-full flex justify-center whitespace-nowrap'>
-															{ el.basic }
-														</span>
-													</td>
-													<td className={ clsxm('px-4 w-1/6 bg-blue-alice', elIdx === pricingComparisonData.list.length - 1 && 'rounded-b-20px', paddingVertical) }>
-														<span className='w-full flex justify-center whitespace-nowrap'>
-															{ el.premium }
-														</span>
-													</td>
-												</tr>
-											);
-										}) }
-									</tbody>
-								</table>
-							</div>
-						</motion.div>
-					</div>
-
-					{ renderContentMobile() }
-				</motion.div>
+						{ renderContentMobile() }
+					</motion.div>
+				</AnimatePresence>
 			</div>
 		</div>
 	);

@@ -112,7 +112,8 @@ const Hero = () => {
 					</p>
 				</div>
 
-				<div className='w-fit'>
+				<div className='w-fit flex flex-col items-center justify-center gap-[14px]'>
+					<span className='text-center text-[10px] text-[#919B9F] uppercase font-semibold tracking-[1.1px] leading-[15px]'>Select Membership Frequency</span>
 					{ renderButtonSwitchFrequency() }
 				</div>
 
@@ -168,29 +169,24 @@ const Hero = () => {
 										<span className='text-xs lg:text-sm'>
 											{ item.priceNote }
 										</span>
-										<AnimatePresence mode='wait'>
-											{
-												(item.priceDiscount && pricingData.hero.pricingOptions[activeTabIdx].value === 'quarterly') && (
-													<motion.span
-														key='discount'
-														initial={ { y: -50, opacity: 0 } }
-														animate={ { y: 0, opacity: 1 } }
-														exit={ { y: 50, opacity: 0 } }
-														transition={ { ease: 'linear', duration: 0.25 } }
-														className='text-grey-primary pl-3 text-[28px] font-medium line-through'
-													>
-														{ item.priceDiscount }
-													</motion.span>
-												)
-											}
-										</AnimatePresence>
-										{ /* {
-											(item.priceDiscount && pricingData.hero.pricingOptions[activeTabIdx].value === 'quarterly') && (
-												<span className='text-grey-primary pl-3 text-[28px] font-medium line-through'>
-													{ item.priceDiscount }
-												</span>
-											)
-										} */ }
+										<span className='overflow-hidden'>
+											<AnimatePresence mode='wait'>
+												{
+													(item.priceDiscount && pricingData.hero.pricingOptions[activeTabIdx].value === 'quarterly') && (
+														<motion.span
+															key='discount'
+															initial={ { opacity: 0 } }
+															animate={ { opacity: 1 } }
+															exit={ { opacity: 0 } }
+															transition={ { ease: 'linear', duration: 0.25 } }
+															className='text-grey-primary pl-3 text-[28px] leading-none font-medium line-through'
+														>
+															{ item.priceDiscount }
+														</motion.span>
+													)
+												}
+											</AnimatePresence>
+										</span>
 									</span>
 									<div className='overflow-hidden'>
 										<AnimatePresence mode='wait'>

@@ -111,89 +111,47 @@ type NavbarProps = {
 	theme?: 'light' | 'dark';
 };
 
+const ActionMenuList = ({ theme } : NavbarProps) => {
+	return (
+		<>
+			<CustomLink
+				href='https://app.gogeviti.com/'
+				// onClick={ () => handleSelectedItem(4) }
+				className={ clsxm(
+					'lg:w-[120px] rounded-md px-3 py-2 text-sm font-Poppins font-medium md:block hidden',
+					'text-grey-50',
+					theme === 'light' && 'text-primary'
+				) }
+				aria-label='Dashboard'
+			>
+				Dashboard
+			</CustomLink>
+			{ navbarData.actionsMenu?.map(menu => (
+				<CustomLink
+					href={ menu.href }
+					externalLink={ menu.externalLink }
+					aria-label={ menu.name }
+					key={ menu.name }
+					className='flex-shrink-0'
+				>
+					<div className={ clsxm(
+						'font-Poppins text-sm !leading-6 font-medium',
+						menu.type === 'button'
+							? 'text-primary px-6 py-[10.5px] bg-blue-primary rounded-full hover:scale-[1.03] active:scale-100 !duration-200 ease-[cubic-bezier(.15,1.14,.88,.98)]'
+							: 'text-grey-50'
+					) }>
+						{ menu.name }
+					</div>
+				</CustomLink>
+			)) }
+		</>
+	);
+};
+
 const Navbar: React.FC<NavbarProps> = ({ className, animationProps, theme }) => {
 	const [active, setActive] = useState<string | null>(null);
 	const [openSheet, setOpenSheet] = useState<boolean>(false);
-	// const [selectedItem, setSelectedItem] = useState<number>(5);
 	const [overflow, setOverflow] = useState<string>('hidden');
-
-	// const pathname = usePathname();
-
-	// useEffect(() => {
-	// 	const currentIndex = navbarData.menu.findIndex(link => pathname.includes(link.href));
-	// 	if (currentIndex !== -1) {
-	// 		setSelectedItem(currentIndex);
-	// 	} else if (pathname === '/') {
-	// 		setSelectedItem(4);
-	// 	} else {
-	// 		setSelectedItem(5);
-	// 	}
-	// }, [pathname]);
-
-	// const handleSelectedItem = (id: number) => {
-	// 	setSelectedItem(id);
-	// };
-
-	// const renderIconMenuList = () => {
-	// 	return (
-	// 		<>
-	// 			{ navbarData.iconsMenu?.map(iconMenu => {
-	// 				const Icon = iconMenu.icon;
-
-	// 				return (
-	// 					<CustomLink
-	// 						aria-label='icon menu list'
-	// 						key={ iconMenu.id }
-	// 						className='font-Poppins relative rounded-full focus:outline-0 focus:ring-0 focus:border-0 group'
-	// 						href={ iconMenu.href }
-	// 					>
-	// 						<Icon className={ clsxm(
-	// 							'w-[17px] h-[17px] text-grey-50',
-	// 							theme === 'light' && 'text-primary'
-	// 						) } />
-	// 					</CustomLink>
-	// 				);
-	// 			}) }
-	// 		</>
-	// 	);
-	// };
-
-	const renderActionMenuList = () => {
-		return (
-			<>
-				<CustomLink
-					href='https://app.gogeviti.com/'
-					// onClick={ () => handleSelectedItem(4) }
-					className={ clsxm(
-						'lg:w-[120px] rounded-md px-3 py-2 text-sm font-Poppins font-medium md:block hidden',
-						'text-grey-50',
-						theme === 'light' && 'text-primary'
-					) }
-					aria-label='Dashboard'
-				>
-					Dashboard
-				</CustomLink>
-				{ navbarData.actionsMenu?.map(menu => (
-					<CustomLink
-						href={ menu.href }
-						externalLink={ menu.externalLink }
-						aria-label={ menu.name }
-						key={ menu.name }
-						className='flex-shrink-0'
-					>
-						<div className={ clsxm(
-							'font-Poppins text-sm !leading-6 font-medium',
-							menu.type === 'button'
-								? 'text-primary px-6 py-[10.5px] bg-blue-primary rounded-full hover:scale-[1.03] active:scale-100 !duration-200 ease-[cubic-bezier(.15,1.14,.88,.98)]'
-								: 'text-grey-50'
-						) }>
-							{ menu.name }
-						</div>
-					</CustomLink>
-				)) }
-			</>
-		);
-	};
 
 	return (
 		<header>
@@ -215,7 +173,7 @@ const Navbar: React.FC<NavbarProps> = ({ className, animationProps, theme }) => 
 							className={
 								clsxm(
 									'relative overflow-visible visible h-[60px] lg:h-[69px] font-Poppins border border-white/5 backdrop-blur-[25px] p-18px lg:pl-[42px] lg:py-3 lg:pr-3 rounded-[100px] bg-white/10 flex items-center space-x-5 xl:space-x-[50px] w-full justify-between',
-									theme === 'light' && 'bg-white'
+									theme === 'light' && 'bg-white border-[#F5F6F6]'
 								)
 							}>
 							<div className='flex items-center lg:space-x-5 xl:space-x-[50px]'>
@@ -270,7 +228,7 @@ const Navbar: React.FC<NavbarProps> = ({ className, animationProps, theme }) => 
 							</div>
 							<div className='hidden lg:flex items-center space-x-5'>
 								{ /* { renderIconMenuList() } */ }
-								{ renderActionMenuList() }
+								<ActionMenuList theme={ theme } />
 							</div>
 							<div className='flex lg:hidden'>
 								<button
