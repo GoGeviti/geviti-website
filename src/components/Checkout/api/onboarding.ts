@@ -84,12 +84,12 @@ export const joinWaitList = async(params: WaitListParams) => {
 
 export const getInitialOfferings = async(): Promise<InitialOfferingsReturnType[]> => {
 	try {
-		const userToken = fetchUserToken();
-		if (!userToken) throw { message: 'No user found' };
+		// const userToken = fetchUserToken();
+		// if (!userToken) throw { message: 'No user found' };
 		const res = await fetch(`${onboardingApiUrl}/billing/offerings-info?billingType=initial-package`, {
 			method: 'GET',
 			headers: {
-				Authorization: `Token ${userToken}`,
+				// Authorization: `Token ${userToken}`,
 				...headers,
 			},
 		});
@@ -102,15 +102,15 @@ export const getInitialOfferings = async(): Promise<InitialOfferingsReturnType[]
 
 export const getMembershipOfferings = async(): Promise<MembershipOfferingsReturnType[]> => {
 	try {
-		const userToken = fetchUserToken();
-		if (!userToken) throw { message: 'No user found' };
+		// const userToken = fetchUserToken();
+		// if (!userToken) throw { message: 'No user found' };
 		const res = await fetch(
 			`${onboardingApiUrl}/billing/offerings-info?billingType=membership
     `,
 			{
 				method: 'GET',
 				headers: {
-					Authorization: `Token ${userToken}`,
+					// Authorization: `Token ${userToken}`,
 					...headers,
 				},
 			}

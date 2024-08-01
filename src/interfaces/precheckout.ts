@@ -25,6 +25,14 @@ export interface UserDetailData extends FormNameEmailState, FormDetailState {
   address_2: string;
   id?: number;
 }
+export interface BillingInfo {
+  full_name: string;
+  city: string;
+  zip_code: string;
+  address: string;
+  email: string;
+  state: string;
+}
 
 export interface CheckoutData {
   user: UserData;

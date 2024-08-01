@@ -44,7 +44,7 @@ const StripeCheckout: FC<PageProps> = ({ searchParams }) => {
 	const [productLoading, setProductLoading] = useState(false);
 	const [membershipLoading, setMembershipLoading] = useState(false);
 	const [checkoutLoading, setCheckoutLoading] = useState(false);
-	const [tempUser, setTempUser] = useState<TempUser>();
+	const [tempUser] = useState<TempUser>();
 	const [product, setProduct] = useState<InitialOfferingsReturnType>();
 	const [membership, setMembership] = useState<MembershipOfferingsReturnType>();
 	const [discount, setDiscount] = useState<DiscountReturnType | null>(null);
@@ -54,19 +54,23 @@ const StripeCheckout: FC<PageProps> = ({ searchParams }) => {
 	useEffect(() => {
 		setProductLoading(true);
 		setMembershipLoading(true);
-		const user = sessionStorage.getItem('temp_user');
-		if (!user) {
-			router.replace('/pricing');
-			return;
-		}
-		setTempUser(JSON.parse(user));
+		// const user = sessionStorage.getItem('temp_user');
+		// if (!user) {
+		// 	router.replace('/pricing');
+		// 	return;
+		// }
+		// setTempUser(JSON.parse(user));
 		const getOfferings = async() => {
 			setLoading(true);
-			const offerings = await getInitialOfferings();
-			const memberShipOfferings = await getMembershipOfferings();
-			
-			setProduct(offerings.find(it => it.id === productId));
-			setMembership(memberShipOfferings.find(it => it.id === membershipId));
+			try {
+				const offerings = await getInitialOfferings();
+				const memberShipOfferings = await getMembershipOfferings();
+				
+				setProduct(offerings.find(it => it.id === productId));
+				setMembership(memberShipOfferings.find(it => it.id === membershipId));
+			} catch (error) {
+				console.error(error);
+			}
 			setLoading(false);
 			setProductLoading(false);
 			setMembershipLoading(false);
@@ -227,7 +231,7 @@ const StripeCheckout: FC<PageProps> = ({ searchParams }) => {
 							setTotalPrice={ setTotalPrice }
 						/>
 					</div>
-					<Sheet >
+					<Sheet>
 						<SheetTrigger
 							asChild
 							className='lg:hidden'>
@@ -236,7 +240,7 @@ const StripeCheckout: FC<PageProps> = ({ searchParams }) => {
 							</Button>
 						</SheetTrigger>
 						<SheetContent
-							className='rounded-t-[20px]'
+							className='rounded-t-[20px]  overflow-auto h-[calc(100vh-68px)]'
 							side='bottom'>
 							<StripeElementsProvider
 								loading={ checkoutLoading }

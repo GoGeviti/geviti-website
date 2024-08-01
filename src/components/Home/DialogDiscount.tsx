@@ -94,6 +94,7 @@ const DialogDiscount: React.FC<DialogDiscountProps> = ({ open, onOpenChange }) =
 						<div className='w-full'>
 							<CustomSelect
 								size='small'
+								isLight
 								placeholder='State'
 								options={ states }
 								value={ formik.values.state }

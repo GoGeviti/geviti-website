@@ -194,7 +194,7 @@ const Navbar: React.FC<NavbarProps> = ({ className, animationProps, theme }) => 
 			</>
 		);
 	};
-
+	
 	return (
 		<header>
 			<div className={ clsxm('inset-x-0 top-0 z-50 absolute pt-4 lg:pt-[30px]', className) }>
@@ -205,7 +205,10 @@ const Navbar: React.FC<NavbarProps> = ({ className, animationProps, theme }) => 
 						variants={ navbarVariants }
 						initial='hidden'
 						animate='visible'
-						className='inline-block w-full border border-grey-50 rounded-full'
+						className={ clsxm(
+							'inline-block w-full rounded-full',
+							theme === 'light' && 'border border-grey-50'
+						) }
 						transition={ navbarDefaultTransition }
 						onAnimationComplete={ () => setOverflow('') }
 						{ ...animationProps }
