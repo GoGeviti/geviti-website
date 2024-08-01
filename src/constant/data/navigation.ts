@@ -5,11 +5,6 @@ const navigationData = {
 	logoDark: '/images/logo/logo_dark.webp',
 	menu: [
 		{
-			name: 'Membership',
-			href: '/membership',
-			externalLink: false
-		},
-		{
 			name: 'Men\'s Health',
 			href: '/solution/men',
 			externalLink: false
@@ -17,6 +12,16 @@ const navigationData = {
 		{
 			name: 'Women\'s Health',
 			href: '/solution/women',
+			externalLink: false
+		},
+		{
+			name: 'Learn More',
+			href: '/membership',
+			externalLink: false
+		},
+		{
+			name: 'Pricing',
+			href: '/pricing',
 			externalLink: false
 		},
 		{

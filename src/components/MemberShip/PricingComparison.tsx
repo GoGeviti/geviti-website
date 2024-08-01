@@ -155,7 +155,7 @@ const PricingComparison: React.FC = () => {
 
 	return (
 		<div className='lg:px-3 pt-6'>
-			<div className='bg-primary rounded-19px overflow-hidden'>
+			<div className='bg-most-value rounded-19px overflow-hidden'>
 				<div className='container-center w-full pt-6 lg:pt-16 pb-[22px] lg:pb-[46px]'>
 					<div>
 						<h2 className='text-white text-2xl lg:text-4xl !leading-normal lg:!leading-[43px] lg:-tracking-0.04em'>
@@ -206,7 +206,7 @@ const PricingComparison: React.FC = () => {
 								</thead>
 								<tbody>
 									{ pricingComparisonData.list.map((el, elIdx) => {
-										const paddingVertical = elIdx === pricingComparisonData.list.length - 1 ? 'pb-9 pt-18px' : 'py-18px';
+										const paddingVertical = elIdx === pricingComparisonData.list.length - 1 ? 'pb-9 pt-18px' : 'py-[15px]';
 
 										return (
 											<tr key={ `table-${ elIdx }` }>

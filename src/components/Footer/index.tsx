@@ -4,6 +4,7 @@ import React, { useRef, useState } from 'react';
 import { AiFillCheckCircle, AiFillCloseCircle } from 'react-icons/ai';
 import { motion, MotionValue, useScroll, useTransform } from 'framer-motion';
 import Image from 'next/image';
+// import Script from 'next/script';
 import { toast } from 'sonner';
 
 import { footerData } from '@/constant/data';
@@ -14,6 +15,7 @@ import { createEmailSubscription } from '@/services/subscription';
 
 import CustomLink from '../CustomLink';
 import { ArrowEmail } from '../Icons';
+import LegitScriptSeal from '../LegitScriptSeal';
 import { Popover, PopoverContent, PopoverTrigger } from '../Popover';
 
 type FooterProps = {
@@ -137,65 +139,68 @@ const Footer: React.FC<FooterProps> = ({ landingPage }) => {
 		const gridColList = getNumofCols(menuList?.length);
 
 		return (
-			<div>
-				<div className={ clsxm('grid gap-y-7 gap-x-[53px] max-lg:hidden', gridColList) }>
-					{ renderMenuList() }
-				</div>
-
-				{ landingPage && (
-					<div className='flex flex-col lg:hidden gap-y-[41px]'>
+			<div className='flex items-end gap-14'>
+				<LegitScriptSeal />
+				<div>
+					<div className={ clsxm('grid gap-y-7 gap-x-[53px] max-lg:hidden', gridColList) }>
 						{ renderMenuList() }
 					</div>
-				) }
 
-				<div className='mt-12 lg:mt-[15px] relative z-10 flex w-full'>
-					<Popover
-						open={ openDisclaimer }
-						onOpenChange={ setOpenDisclaimer }>
-						<PopoverTrigger
-							onClick={ e => e.preventDefault() }
-							className='flex max-sm:w-full focus:ring-0 focus:outline-none focus:border-none'
-						>
-							<span
-								className={ clsxm(
-									'text-sm !leading-[21px] font-Poppins underline',
-									openDisclaimer ? 'text-grey-400 sm:text-primary' : 'text-primary'
-								) }
+					{ landingPage && (
+						<div className='flex flex-col lg:hidden gap-y-[41px]'>
+							{ renderMenuList() }
+						</div>
+					) }
+
+					<div className='mt-12 lg:mt-[15px] relative z-10 flex w-full'>
+						<Popover
+							open={ openDisclaimer }
+							onOpenChange={ setOpenDisclaimer }>
+							<PopoverTrigger
+								onClick={ e => e.preventDefault() }
+								className='flex max-sm:w-full focus:ring-0 focus:outline-none focus:border-none'
+							>
+								<span
+									className={ clsxm(
+										'text-sm !leading-[21px] font-Poppins underline',
+										openDisclaimer ? 'text-grey-400 sm:text-primary' : 'text-primary'
+									) }
+									{ ...isMobile
+										? {
+											onClick: () => setOpenDisclaimer(!openDisclaimer)
+										}
+										: {
+											onMouseEnter: handleMouseEnterDisclaimer,
+											onMouseLeave: handleMouseLeaveDisclaimer
+										}
+									}
+								>
+									{ footerData.disclaimer.label }
+								</span>
+							</PopoverTrigger>
+							<PopoverContent
 								{ ...isMobile
 									? {
-										onClick: () => setOpenDisclaimer(!openDisclaimer)
+										side: 'top',
+										align: 'start',
+										sideOffset: 20,
 									}
 									: {
+										sideOffset: 15,
+										alignOffset: 17,
+										side: 'bottom',
+										align: 'end',
 										onMouseEnter: handleMouseEnterDisclaimer,
 										onMouseLeave: handleMouseLeaveDisclaimer
-									}
-								}
+									} }
+								className='border border-grey-100 shadow-[0px_4px_18px_rgba(0,0,0,0.15)] backdrop-blur-[40px] rounded-2xl bg-white/30 px-[15px] py-6 sm:px-6 w-[var(--radix-popover-trigger-width)] md:w-full md:max-w-2xl'
 							>
-								{ footerData.disclaimer.label }
-							</span>
-						</PopoverTrigger>
-						<PopoverContent
-							{ ...isMobile
-								? {
-									side: 'top',
-									align: 'start',
-									sideOffset: 20,
-								}
-								: {
-									sideOffset: 15,
-									alignOffset: 17,
-									side: 'bottom',
-									align: 'end',
-									onMouseEnter: handleMouseEnterDisclaimer,
-									onMouseLeave: handleMouseLeaveDisclaimer
-								} }
-							className='border border-grey-100 shadow-[0px_4px_18px_rgba(0,0,0,0.15)] backdrop-blur-[40px] rounded-2xl bg-white/30 px-[15px] py-6 sm:px-6 w-[var(--radix-popover-trigger-width)] md:w-full md:max-w-2xl'
-						>
-							<span
-								dangerouslySetInnerHTML={ { __html: footerData.disclaimer.content } }
-								className='text-[10px] sm:text-xs !leading-5 text-grey-600 font-medium font-Poppins flex flex-col gap-y-2.5' />
-						</PopoverContent>
-					</Popover>
+								<span
+									dangerouslySetInnerHTML={ { __html: footerData.disclaimer.content } }
+									className='text-[10px] sm:text-xs !leading-5 text-grey-600 font-medium font-Poppins flex flex-col gap-y-2.5' />
+							</PopoverContent>
+						</Popover>
+					</div>
 				</div>
 			</div>
 		);

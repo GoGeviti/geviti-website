@@ -424,7 +424,7 @@ const TreatmentOptions: React.FC<TreatmentOptionsProps> = ({ type = 'men' }) => 
 								</ShiftSection>
 							</div>
 
-							<div className='flex max-lg:hidden pb-[70px]'>
+							<div className='flex max-lg:hidden pb-[70px] mt-5'>
 								<div className='flex items-center gap-6'>
 									<Link
 										href={ treatmentData.btnCta.href }

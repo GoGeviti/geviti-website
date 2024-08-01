@@ -49,7 +49,7 @@ const Features: React.FC = () => {
 													key={ `item-${ itemIdx }` }
 													className='lg:py-18px lg:px-6 flex items-center gap-2.5 lg:gap-[11px]'>
 													{ Icon && <Icon className='flex-shrink-0' /> }
-													<span className='text-grey-500 text-lg lg:!leading-6'>{ item }</span>
+													<span className='text-grey-500 text-lg lg:!leading-6 capitalize'>{ item }</span>
 												</div>
 											);
 										}) }
