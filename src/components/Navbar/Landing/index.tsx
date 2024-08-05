@@ -59,7 +59,7 @@ export const MenuItem = ({
 				transition={ { duration: 0.3 } }
 				className={ clsxm(
 					'cursor-pointer text-sm font-medium !leading-[21px] inline-flex gap-2 items-center text-grey-50',
-					theme === 'light' && 'text-primary'
+					theme === 'light' && 'text-white'
 				) }
 			>
 				{ item }
@@ -68,7 +68,7 @@ export const MenuItem = ({
 						clsxm(
 							'w-4 h-4 ease-out transform duration-200',
 							active === item && 'rotate-180',
-							theme === 'light' ? 'text-primary' : 'text-grey-50'
+							theme === 'light' ? 'text-white' : 'text-grey-50'
 						)
 					} />
 				</span>
@@ -86,7 +86,7 @@ export const MenuItem = ({
 								layoutId='active' // layoutId ensures smooth animation
 								className={ clsxm(
 									'bg-white/10 backdrop-blur-[27px] border border-white/5 rounded-[9px] overflow-hidden relative',
-									theme === 'light' && 'bg-white'
+									theme === 'light' && 'bg-most-value'
 								) }
 							>
 								<div className='absolute inset-0 w-full h-full bg-white/10 border border-white/5 backdrop-blur-[27px]' />
@@ -120,7 +120,7 @@ const ActionMenuList = ({ theme } : NavbarProps) => {
 				className={ clsxm(
 					'lg:w-[120px] rounded-md px-3 py-2 text-sm font-Poppins font-medium md:block hidden',
 					'text-grey-50',
-					theme === 'light' && 'text-primary'
+					theme === 'light' && 'text-white'
 				) }
 				aria-label='Dashboard'
 			>
@@ -163,7 +163,7 @@ const Navbar: React.FC<NavbarProps> = ({ className, animationProps, theme }) => 
 						variants={ navbarVariants }
 						initial='hidden'
 						animate='visible'
-						className='inline-block w-full border border-grey-50 rounded-full'
+						className='inline-block w-full border border-white/5 rounded-full'
 						transition={ navbarDefaultTransition }
 						onAnimationComplete={ () => setOverflow('') }
 						{ ...animationProps }
@@ -172,8 +172,8 @@ const Navbar: React.FC<NavbarProps> = ({ className, animationProps, theme }) => 
 							onMouseLeave={ () => setActive(null) }
 							className={
 								clsxm(
-									'relative overflow-visible visible h-[60px] lg:h-[69px] font-Poppins border border-white/5 backdrop-blur-[25px] p-18px lg:pl-[42px] lg:py-3 lg:pr-3 rounded-[100px] bg-white/10 flex items-center space-x-5 xl:space-x-[50px] w-full justify-between',
-									theme === 'light' && 'bg-white border-[#F5F6F6]'
+									'relative overflow-visible visible h-[60px] lg:h-[69px] font-Poppins backdrop-blur-[25px] p-18px lg:pl-[42px] lg:py-3 lg:pr-3 rounded-[100px] bg-white/10 flex items-center space-x-5 xl:space-x-[50px] w-full justify-between',
+									theme === 'light' && 'bg-most-value'
 								)
 							}>
 							<div className='flex items-center lg:space-x-5 xl:space-x-[50px]'>
@@ -200,7 +200,7 @@ const Navbar: React.FC<NavbarProps> = ({ className, animationProps, theme }) => 
 																href={ menuChild.href }
 																className={ clsxm(
 																	'text-grey-50 text-sm !leading-[21px]',
-																	theme === 'light' && 'text-primary'
+																	theme === 'light' && 'text-white'
 																) }
 															>{ menuChild.name }</CustomLink>
 														)) }
@@ -218,7 +218,7 @@ const Navbar: React.FC<NavbarProps> = ({ className, animationProps, theme }) => 
 												onMouseEnter={ () => setActive(null) }
 												className={ clsxm(
 													'text-sm font-medium !leading-[21px] text-grey-50',
-													theme === 'light' && 'text-primary'
+													theme === 'light' && 'text-white'
 												) }>
 												{ menu.name }
 											</CustomLink>
@@ -241,7 +241,7 @@ const Navbar: React.FC<NavbarProps> = ({ className, animationProps, theme }) => 
 									<Bars3Icon
 										className={ clsxm(
 											'block h-6 w-6 text-grey-50',
-											theme === 'light' && 'text-primary'
+											theme === 'light' && 'text-white'
 										) }
 										aria-hidden='true' />
 								</button>

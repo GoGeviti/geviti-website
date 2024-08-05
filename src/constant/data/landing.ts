@@ -474,7 +474,7 @@ const landingData = {
 	membership: {
 		priceSection: {
 			preTitle: 'Personalized plans that are right for you',
-			title: 'Memberships as low as $99<span class="text-xs lg:text-2xl lg:!leading-9">/month</span>',
+			title: 'Memberships for a healthier you',
 			description: 'At-home diagnostics and doctor-supervised treatments fostering vitality and longevity. Easily integrates into your life.',
 			btnCta: {
 				text: 'Learn More',

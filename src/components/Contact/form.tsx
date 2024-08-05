@@ -10,7 +10,7 @@ import { toast } from 'sonner';
 
 import clsxm from '@/helpers/clsxm';
 import { ContactSubject } from '@/payload/payload-types';
-import { createContact } from '@/services/submit';
+import { createContact, sendSlackNotification } from '@/services/submit';
 
 import {
 	Select, SelectContent, SelectGroup, SelectItem, SelectSeparator, SelectTrigger, SelectValue
@@ -83,6 +83,7 @@ const Form: React.FC<FormProps> = ({
 		setLoading(true);
 		const { status, message: messageResponse } = await createContact(data);
 		if (status === 'OK') {
+			await sendSlackNotification({ ...data, subject: subject.find(sub => sub.id.toString() === state.toString())?.title });
 			toast.success(messageResponse, {
 				icon: <AiFillCheckCircle className='h-5 w-5 text-primary' />,
 			});
