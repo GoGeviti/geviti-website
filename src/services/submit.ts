@@ -44,7 +44,7 @@ export const createContact = async(
 
 export const sendSlackNotification = async(contactData: any) => {
 	// const slackWebhookUrl = 'https://hooks.slack.com/services/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';
-	const slackWebhookUrl = 'https://hooks.slack.com/services/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';
+	const slackWebhookUrl = 'https://hooks.slack.com/services/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';
 	
 	const slackPayload = {
 		text: 'New Contact Form Submission',
@@ -104,7 +104,10 @@ export const sendSlackNotification = async(contactData: any) => {
 			body: JSON.stringify(slackPayload),
 		});
 
+		console.log('response => ', response);
 		if (!response.ok) {
+			const errorText = await response.text();
+			console.error('Failed to send Slack notification errorText =>', errorText);
 			throw new Error('Failed to send Slack notification');
 			
 		} else {
@@ -112,7 +115,7 @@ export const sendSlackNotification = async(contactData: any) => {
 		}
 	} catch (error) {
 		// eslint-disable-next-line no-console
-		console.error('Error sending Slack notification:', error);
+		// console.error('Error sending Slack notification:', error);
 		return { status: 'ERROR', message: 'Error sending Slack notification' };
 	}
 };
