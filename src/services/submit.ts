@@ -44,7 +44,7 @@ export const createContact = async(
 
 export const sendSlackNotification = async(contactData: any) => {
 	// const slackWebhookUrl = 'https://hooks.slack.com/services/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';
-	const slackWebhookUrl = 'https://hooks.slack.com/services/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';
+	const slackWebhookUrl = 'https://hooks.slack.com/services/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';
 	
 	const slackPayload = {
 		text: 'New Contact Form Submission',
