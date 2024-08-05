@@ -46,13 +46,13 @@ export const sendSlackNotification = async(contactData: any) => {
 	const slackWebhookUrl = 'https://hooks.slack.com/services/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';
 	
 	const slackPayload = {
-		text: 'New Contact Form Submission',
+		text: '<!channel> New Contact Form Submission',
 		blocks: [
 			{
 				type: 'section',
 				text: {
 					type: 'mrkdwn',
-					text: '*New Contact Form Submission*'
+					text: '*<!channel> New Contact Form Submission*'
 				}
 			},
 			{
@@ -70,18 +70,19 @@ export const sendSlackNotification = async(contactData: any) => {
 						type: 'mrkdwn',
 						text: `*Subject:* ${contactData.subject}`
 					},
-					{
-						type: 'mrkdwn',
-						text: `*Company:* ${contactData.company}`
-					},
-					{
-						type: 'mrkdwn',
-						text: `*Role:* ${contactData.role}`
-					},
-					{
-						type: 'mrkdwn',
-						text: `*Is Partner:* ${contactData.isPartner ? 'Yes' : 'No'}`
-					}
+					
+					// {
+					// 	type: 'mrkdwn',
+					// 	text: `*Company:* ${contactData.company}`
+					// },
+					// {
+					// 	type: 'mrkdwn',
+					// 	text: `*Role:* ${contactData.role}`
+					// },
+					// {
+					// 	type: 'mrkdwn',
+					// 	text: `*Is Partner:* ${contactData.isPartner ? 'Yes' : 'No'}`
+					// }
 				]
 			},
 			{
