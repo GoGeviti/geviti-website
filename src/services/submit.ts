@@ -36,7 +36,7 @@ export const createContact = async(
 		if (data?.errors?.length > 0) {
 			return { status: 'ERROR', message: data.errors[0].message };
 		}
-		return { status: 'OK', message: 'Contact created successfully' };
+		return { status: 'OK', message: 'Thank you! We\'ll get back to you shortly.' };
 	} catch (err:any) {
 		return { status: 'ERROR', message: 'Opps, something went wrong! ' };
 	}
@@ -95,7 +95,7 @@ export const sendSlackNotification = async(contactData: any) => {
 			throw new Error('Failed to send Slack notification');
 			
 		} else {
-			return { status: 'OK', message: 'Contact created successfully' };
+			return { status: 'OK', message: 'Thank you! We\'ll get back to you shortly.' };
 		}
 	} catch (error) {
 		// eslint-disable-next-line no-console
