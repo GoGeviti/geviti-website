@@ -6,6 +6,12 @@ const pricingData = {
 		title: 'Build a healthier future, today.',
 		description:
       'Every user starts with an at-home full panel to establish baselines. For paid memberships, the bloodwork cost is a one time fee. Labs are done at no added cost every 6 months.',
+		features: [
+			'Start with at-home bloodwork panel',
+			'Get free at-home labs every 6 months',
+			'Preventative and primary care, in-app',
+			'Custom supplements and Rx, delivered',
+		],
 		pricingOptions: [
 			{
 				title: 'Quarterly',
@@ -19,6 +25,15 @@ const pricingData = {
 				price: '297.99',
 			},
 		],
+		banner: {
+			caption: {
+				text: 'HSA/FSA',
+				textSuffix: 'ACCEPTED',
+			},
+			preTitle: 'Longeviti made simple',
+			title: 'Data Driven<br />Personalized Wellness',
+			image: '/images/pricing/phone-mockup.webp',
+		},
 		list: [
 			{
 				name: 'Free Membership',
@@ -30,8 +45,8 @@ const pricingData = {
 				biomakers: '70+',
 				mostPopular: false,
 				mostValue: false,
-				monthly: '$450',
-				quarterly: '$450',
+				monthly: '+ $450',
+				quarterly: '+ $450',
 				btnCta: {
 					href: '/onboarding',
 					text: 'Select Option',
@@ -39,69 +54,76 @@ const pricingData = {
 				listTitle: 'The Free Plan includes access to:',
 				list: [
 					{
-						title: 'Tailored supplement packs',
-						description:
-              '',
-					},
-					{
-						title: 'Additional testing options',
+						title: 'Telehealth visit to review labs',
 						description: '',
 					},
 					{
-						title: 'Wearables integration',
+						title: 'Plan & detailed workup',
 						description: '',
 					},
 					{
-						title: 'Personalized care plan',
+						title: 'Custom daily supplement packs',
 						description: '',
 					},
 					{
-						title: 'Bloodwork result tracking',
-						description: '',
-					},
-				],
-			},
-			{
-				name: 'Basic Membership',
-				keyword: InitialOfferingType.COMPREHENSIVE,
-				price: '$69',
-				priceMonthly: '$85',
-				priceDiscount: '$89',
-				priceNote: 'usd/mo',
-				biomakers: '70+',
-				mostPopular: true,
-				mostValue: false,
-				monthly: '$350',
-				quarterly: '$350',
-				btnCta: {
-					href: '/onboarding',
-					text: 'Select Option',
-				},
-				listTitle: 'Everything in the Free Plan, plus:',
-				list: [
-					{
-						title: '30% off tailored supplement packs ',
-						description:
-              '',
-					},
-					{
-						title: 'Discounted additional testing options ',
+						title: 'Additional at-home testing options',
 						description: '',
 					},
 					{
-						title: 'Free at-home semi-annual bloodwork',
+						title: 'Wearables integration and tracking',
 						description: '',
 					},
 					{
-						title: 'Dedicated health coach',
+						title: 'Personalized care plan from results',
 						description: '',
 					},
 					{
-						title: 'Unlimited health coach messaging',
+						title: 'Bloodwork result tracking in-app',
 						description: '',
 					},
 				],
 			},
+			// {
+			// 	name: 'Basic Membership',
+			// 	keyword: InitialOfferingType.COMPREHENSIVE,
+			// 	price: '$69',
+			// 	priceMonthly: '$85',
+			// 	priceDiscount: '$89',
+			// 	priceNote: 'usd/mo',
+			// 	biomakers: '70+',
+			// 	mostPopular: true,
+			// 	mostValue: false,
+			// 	monthly: '$350',
+			// 	quarterly: '$350',
+			// 	btnCta: {
+			// 		href: '/onboarding',
+			// 		text: 'Select Option',
+			// 	},
+			// 	listTitle: 'Everything in the Free Plan, plus:',
+			// 	list: [
+			// 		{
+			// 			title: '30% off tailored supplement packs ',
+			// 			description:
+			//         '',
+			// 		},
+			// 		{
+			// 			title: 'Discounted additional testing options ',
+			// 			description: '',
+			// 		},
+			// 		{
+			// 			title: 'Free at-home semi-annual bloodwork',
+			// 			description: '',
+			// 		},
+			// 		{
+			// 			title: 'Dedicated health coach',
+			// 			description: '',
+			// 		},
+			// 		{
+			// 			title: 'Unlimited health coach messaging',
+			// 			description: '',
+			// 		},
+			// 	],
+			// },
 			{
 				name: 'Premium Membership',
 				keyword: InitialOfferingType.ULTIMATE,
@@ -112,18 +134,17 @@ const pricingData = {
 				biomakers: '70+',
 				mostPopular: false,
 				mostValue: true,
-				monthly: '$300',
-				quarterly: '$300',
+				monthly: '+ $300',
+				quarterly: '+ $300',
 				btnCta: {
 					href: '/onboarding',
 					text: 'Get first month free',
 				},
-				listTitle: 'Everything in the Basic Plan, plus:',
+				listTitle: 'Everything in the Free Plan, plus:',
 				list: [
 					{
 						title: '50% off tailored supplement packs',
-						description:
-              '',
+						description: '',
 					},
 					{
 						title: 'Wholesale cost additional testing options',
@@ -142,7 +163,19 @@ const pricingData = {
 						description: '',
 					},
 					{
-						title: 'Quarterly practitioner visits in-app',
+						title: 'Practitioner visits in-app',
+						description: '',
+					},
+					{
+						title: 'Free at-home semi-annual bloodwork',
+						description: '',
+					},
+					{
+						title: 'Dedicated health coach',
+						description: '',
+					},
+					{
+						title: 'Unlimited health coach messaging',
 						description: '',
 					},
 				],
@@ -180,7 +213,7 @@ const pricingData = {
 				premium: '$300',
 			},
 			{
-				name: 'Longevity Panel  w/ +20 biomarker add-on',
+				name: 'Longevity Panel (+20 biomarker add-on)',
 				geviti: true,
 				free: '$535',
 				basic: '$435',
@@ -194,14 +227,14 @@ const pricingData = {
 				premium: '$250',
 			},
 			{
-				name: 'Hormone Health Finger Prick Test Kit',
+				name: 'Hormone Finger Prick Test Kit',
 				geviti: true,
 				free: '$150',
 				basic: '$125',
 				premium: '$100',
 			},
 			{
-				name: 'Cardiovascular Health Finger Prick Test Kit',
+				name: 'Cardiovascular Finger Prick Test Kit',
 				geviti: true,
 				free: '$150',
 				basic: '$125',
@@ -217,7 +250,7 @@ const pricingData = {
 			{
 				name: 'Tailored Supplement Packs',
 				geviti: true,
-				free: 'Full price ($50-$250/m*)',
+				free: '30% off',
 				basic: '30% off',
 				premium: '50% off',
 			},
@@ -231,7 +264,8 @@ const pricingData = {
           'Geviti currently offers services in eleven states: Arizona (AZ), California (CA), Colorado (CO), Utah (UT), Washington (WA), Texas (TX), Florida (FL), Georgia (GA), Kansas (KS), Oregon (OR), New Mexico (NM), and Missouri (MO). We are actively expanding to include more states across the country.',
 			},
 			{
-				title: 'What free at-home bloodwork option is included for me twice a year with my membership?',
+				title:
+          'What free at-home bloodwork option is included for me twice a year with my membership?',
 				content:
           'As part of your membership, you receive the "Essentials Diagnostic" twice each year. This foundational evaluation provides key insights into your health metrics. For a more detailed analysis, you have the option to upgrade to our comprehensive or ultimate diagnostic tiers at any time.',
 			},
@@ -241,12 +275,14 @@ const pricingData = {
           'You can easily cancel your Geviti membership at any time through your personal dashboard. Given the personalized nature of our services, refunds are not automatically granted but are considered on a case-by-case basis. If you have specific circumstances or need further assistance, please contact our support team for detailed guidance.',
 			},
 			{
-				title: 'Are the cost of supplements or prescriptions included in the membership fee?',
+				title:
+          'Are the cost of supplements or prescriptions included in the membership fee?',
 				content:
           'The membership fee provides access to our range of supplements and prescription services; however, the costs for these items are not included in the fee. Each supplement or prescription is priced separately, allowing you to choose exactly what fits your needs and budget.',
 			},
 			{
-				title: 'What if I have recently done labs? Do I still need to purchase a diagnostic package?',
+				title:
+          'What if I have recently done labs? Do I still need to purchase a diagnostic package?',
 				content:
           'We require all new members to purchase a diagnostic package as part of our initial assessment process. This ensures that we have the most recent and relevant data to provide personalized care. However, if you have recent lab results, please reach out to our support team. We may be able to adjust your initial requirements based on the specifics of your situation.',
 			},
@@ -269,7 +305,7 @@ const pricingData = {
 			externalLink: false,
 			text: 'Learn More',
 		},
-	}
+	},
 };
 
 export default pricingData;

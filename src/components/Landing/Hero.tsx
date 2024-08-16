@@ -12,8 +12,6 @@ import { useWindowDimensions } from '@/hooks';
 import { setCookie } from '@/services/cookies';
 
 import ButtonCta from '../ButtonCta';
-// import CustomLink from '../CustomLink';
-// import { ChevronRight } from '../Icons';
 import Navbar, { navbarDefaultTransition } from '../Navbar/Landing';
 
 import { slideUpTransition } from './transition';
@@ -31,14 +29,18 @@ const Hero: React.FC<HeroProps> = ({ showBanner = true, showIntro = 'true' }) =>
 	const [activeStepIdx, setActiveStepIdx] = useState<number>(-1);
 	const [prevIdx, setPrevIdx] = useState<number>(activeStepIdx);
 	const [startTimer, setStartTimer] = useState<boolean>(false);
+	const [isMounted, setIsMounted] = useState<boolean>(false);
 
 	const stepControls = useAnimationControls();
 
 	const windowDimensions = useWindowDimensions();
 	const isMobile = windowDimensions.width < screens.lg;
 
-	// const [scopeBanner, animateBanner] = useAnimate();
 	const controlsBanner = useAnimationControls();
+
+	useEffect(() => {
+		setIsMounted(true)
+	}, []);
 
 	useEffect(() => {
 		if (showBanner) {
@@ -106,8 +108,9 @@ const Hero: React.FC<HeroProps> = ({ showBanner = true, showIntro = 'true' }) =>
 						hidden: { y: '100%' }
 					} }
 					className='inline-flex font-medium text-[6.667vw] xs:text-3xl md:text-4xl lg:text-[5vh] xl:text-[46px] !leading-normal -tracking-0.04em text-grey-secondary'
-					dangerouslySetInnerHTML={ { __html: title } }
-				 />
+				 >
+					{ isMounted && <span dangerouslySetInnerHTML={ { __html: title } } /> }
+				 </motion.span>
 			</span>
 		));
 	};

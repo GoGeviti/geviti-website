@@ -131,11 +131,9 @@ const Benefits: React.FC = () => {
 												</h3>
 
 												<div className='absolute z-10 right-18px bottom-15px max-lg:hidden group-hover:translate-y-1 transform transition-transform ease-in-out duration-500'>
-													<Link
-														href={ item.href }
-														className='flex relative w-[62px] h-[62px] rounded-full bg-white/20 border-2 border-white/5 hover:bg-white/40'>
+													<div className='flex relative w-[62px] h-[62px] rounded-full bg-white/20 border-2 border-white/5 hover:bg-white/40'>
 														{ renderArrowNarrowRight() }
-													</Link>
+													</div>
 												</div>
 
 												<motion.div

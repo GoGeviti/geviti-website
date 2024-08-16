@@ -46,6 +46,7 @@ const config: Config = {
 					background: '#F2F2F2',
 					primary: '#919B9F',
 					secondary: '#FBFBFB',
+					'primary-light': '#FCFCFC',
 					dark: '#2D3135',
 					shadow: '#CFCFCF',
 					'background-2': '#EAEAEA',
@@ -145,7 +146,8 @@ const config: Config = {
 				'radial-gradient-quality-landing': 'radial-gradient(50% 50% at 50% 50%, #181A1C 0%, rgba(24, 26, 28, 0.00) 100%)',
 				'border-gradient-white': 'linear-gradient(180deg, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0.1) 100%)',
 				'border-innovative-image': 'linear-gradient(91.54deg, rgba(255, 255, 255, 0.15) 11.37%,rgba(228, 235, 238, 0.0375) 56.56%)',
-				'most-value': 'linear-gradient(199deg, #283A4B 5.71%, #000 93.76%)'
+				'most-value': 'linear-gradient(199deg, #283A4B 5.71%, #000 93.76%)',
+				'gradient-blue': 'linear-gradient(160deg, #A7DAFF 4.78%, #75C5FF 92.54%)'
 			},
 			animation: {
 				marquee: 'marquee 90s linear infinite',
@@ -241,6 +243,7 @@ const config: Config = {
 					'0px 8px 16px rgba(0, 0, 0, 0.25), inset 0px 6px 18px rgba(255, 255, 255, 0.15)',
 				'slider-solution-1': '0px 3px 6px rgba(0, 0, 0, 0.02), 0px 1px 1px rgba(0, 0, 0, 0.03)',
 				'slider-solution-2': '0px 2px 6px rgba(0, 0, 0, 0.1), 0px 1px 1px rgba(0, 0, 0, 0.03)',
+				'card-marketing-membership': '0px 188px 53px 0px rgba(158, 158, 158, 0.00), 0px 120px 48px 0px rgba(158, 158, 158, 0.01), 0px 68px 41px 0px rgba(158, 158, 158, 0.05), 0px 30px 30px 0px rgba(158, 158, 158, 0.09), 0px 8px 17px 0px rgba(158, 158, 158, 0.10)'
 			},
 		},
 		fontFamily: {

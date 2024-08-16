@@ -10,6 +10,7 @@ import FrequentlyAskedQuestions from './FrequentlyAskedQuestions';
 import * as HomeComponent from './Home';
 import * as HowItWorksComponent from './HowItWorks';
 import * as LandingComponent from './Landing';
+import * as MarketingComponent from './Marketing';
 import * as MarketPlaceComponent from './Marketplace';
 import * as MembershipComponent from './MemberShip';
 import Navbar from './Navbar';
@@ -32,6 +33,7 @@ export {
 	HomeComponent,
 	HowItWorksComponent,
 	LandingComponent,
+	MarketingComponent,
 	MarketPlaceComponent,
 	MembershipComponent,
 	Navbar,
@@ -39,5 +41,5 @@ export {
 	OrderComponent,
 	ProductsComponent,
 	RunningLogo,
-	SolutionsComponent
+	SolutionsComponent,
 };
