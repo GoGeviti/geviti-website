@@ -21,7 +21,7 @@ import { FormCheckoutSchema } from '@/validator/checkout';
 import { createSession, validateState } from '../api/onboarding';
 import { ProductsResponse } from '../api/types';
 import CustomDatePicker from '../DatePicker';
-import PrivacyPolicyStatement from '../PrivacyPolicyStatement';
+// import PrivacyPolicyStatement from '../PrivacyPolicyStatement';
 import CustomSelect from '../Select';
 import TextField from '../TextField';
 
@@ -57,7 +57,7 @@ const StripeForm: FC<StripeFormProps> = ({
 	priceId
 }) => {
 	const [stripeResponseLoading, setStripeResponseLoading] = useState(false);
-	const [termsChecked, setTermsChecked] = useState(false);
+	// const [termsChecked, setTermsChecked] = useState(false);
 	const [statesChecked, setStatesChecked] = useState(false);
 	const [sessionSecretS, setSessionSecret] = useState('');
 	// const [emailInput, setEmailInput] = useState('');
@@ -460,7 +460,7 @@ const StripeForm: FC<StripeFormProps> = ({
 									<EmbeddedCheckout />
 								</EmbeddedCheckoutProvider>
 							</div>
-							<div className='mt-[14px] flex items-start gap-x-[22px]'>
+							{ /* <div className='mt-[14px] flex items-start gap-x-[22px]'>
 								<input
 									id='checkout_terms'
 									type='checkbox'
@@ -474,7 +474,7 @@ const StripeForm: FC<StripeFormProps> = ({
 								>
 									<PrivacyPolicyStatement checkout /> { ' ' }
 								</label>
-							</div>
+							</div> */ }
 						</div>
 					) }
 					{

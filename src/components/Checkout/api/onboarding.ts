@@ -194,8 +194,7 @@ export const getAllProducts = async() : Promise<ProductsResponse[]> => {
 				method: 'GET',
 				headers: {
 					...headers,
-				},
-				cache: 'no-store',
+				}
 			}
 		);
 		const data = await processResponse<ProductsResponse[]>(res);
