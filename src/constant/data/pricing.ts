@@ -48,7 +48,7 @@ const pricingData = {
 				monthly: '+ $450',
 				quarterly: '+ $450',
 				btnCta: {
-					href: '/onboarding',
+					href: '/onboarding/payment',
 					text: 'Select Option',
 				},
 				listTitle: 'The Free Plan includes access to:',
@@ -83,47 +83,6 @@ const pricingData = {
 					},
 				],
 			},
-			// {
-			// 	name: 'Basic Membership',
-			// 	keyword: InitialOfferingType.COMPREHENSIVE,
-			// 	price: '$69',
-			// 	priceMonthly: '$85',
-			// 	priceDiscount: '$89',
-			// 	priceNote: 'usd/mo',
-			// 	biomakers: '70+',
-			// 	mostPopular: true,
-			// 	mostValue: false,
-			// 	monthly: '$350',
-			// 	quarterly: '$350',
-			// 	btnCta: {
-			// 		href: '/onboarding',
-			// 		text: 'Select Option',
-			// 	},
-			// 	listTitle: 'Everything in the Free Plan, plus:',
-			// 	list: [
-			// 		{
-			// 			title: '30% off tailored supplement packs ',
-			// 			description:
-			//         '',
-			// 		},
-			// 		{
-			// 			title: 'Discounted additional testing options ',
-			// 			description: '',
-			// 		},
-			// 		{
-			// 			title: 'Free at-home semi-annual bloodwork',
-			// 			description: '',
-			// 		},
-			// 		{
-			// 			title: 'Dedicated health coach',
-			// 			description: '',
-			// 		},
-			// 		{
-			// 			title: 'Unlimited health coach messaging',
-			// 			description: '',
-			// 		},
-			// 	],
-			// },
 			{
 				name: 'Premium Membership',
 				keyword: InitialOfferingType.ULTIMATE,
@@ -137,7 +96,7 @@ const pricingData = {
 				monthly: '+ $300',
 				quarterly: '+ $300',
 				btnCta: {
-					href: '/onboarding',
+					href: '/onboarding/payment',
 					text: 'Get first month free',
 				},
 				listTitle: 'Everything in the Free Plan, plus:',

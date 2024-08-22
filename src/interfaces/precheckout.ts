@@ -41,3 +41,16 @@ export interface DiscountData {
   email: string;
   phone_number: string;
 }
+
+export interface BillingInfo {
+  full_name: string;
+  city: string;
+  zip_code: string;
+  address_1: string;
+  address_2: string;
+  email: string;
+  state: string;
+  birthdate: Date | null;
+  gender: string;
+  phone_number: string;
+}

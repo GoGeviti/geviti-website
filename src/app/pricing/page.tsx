@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 
 import { Footer, FrequentlyAskedQuestions } from '@/components';
+import { getAllProducts } from '@/components/Checkout/api/onboarding';
 import BannerMember from '@/components/Pricing/Banner';
 import BiomarkersSection from '@/components/Pricing/BiomarkersSection';
 import Download from '@/components/Pricing/Download';
@@ -12,10 +13,13 @@ export const metadata: Metadata = {
 	title: 'Pricing',
 };
 
-const PricingPage = () => {
+const PricingPage = async() => {
+
+	const products = await getAllProducts();
+
 	return (
 		<div className='flex min-h-screen flex-col w-full bg-white font-Poppins'>
-			<Hero/>
+			<Hero products={ products } />
 			<PricingComparison />
 			<div className='lg:px-3'>
 				<BiomarkersSection

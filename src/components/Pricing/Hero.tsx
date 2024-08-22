@@ -8,6 +8,8 @@ import pricingData from '@/constant/data/pricing';
 import clsxm from '@/helpers/clsxm';
 
 import ButtonCta from '../ButtonCta';
+// import { getAllProducts } from '../Checkout/api/onboarding';
+import { ProductsResponse } from '../Checkout/api/types';
 import QuestionTooltip from '../Home/QuestionTooltip';
 import { CheckCircleIcon, GreenCheck, ShieldTick } from '../Icons';
 import ButtonSwitchMemberFreq from '../MemberShip/ButtonSwitchMemberFreq';
@@ -80,7 +82,15 @@ const PricingCardWrapper: React.FC<{
 	);
 };
 
-const Hero = () => {
+const formatPrice = (price?: string): string => {
+	const numericPrice = Number(price);
+	if (isNaN(numericPrice)) {
+		throw new Error('Invalid price value');
+	}
+	return `$${numericPrice.toFixed(0)}`;
+}
+
+const Hero:React.FC<{products?:ProductsResponse[]}> = ({ products }) => {
 	const ref = useRef<HTMLDivElement>(null);
 	const isInView = useInView(ref, { once: true });
 
@@ -233,7 +243,7 @@ const Hero = () => {
 									) }
 								>
 									<h3 className='!leading-[28px] text-[5.128vw] xs2:text-xl font-medium'>
-										{ item.name }
+										{ products![index].name ?? item.name }
 									</h3>
 
 									<span className='font-medium text-5xl !leading-[125%] py-1 h-full'>
@@ -248,7 +258,8 @@ const Hero = () => {
 														transition={ { ease: 'linear', duration: 0.25 } }
 														className='font-medium text-5xl !leading-[125%] py-1'
 													>
-														{ item.priceMonthly }{ ' ' }
+														{ formatPrice(products![index].productPrices?.find(e => e.billingFrequency === '1 month')?.price) }{ ' ' }
+														{ /* { item.priceMonthly }{ ' ' } */ }
 													</motion.span>
 												) : (
 													<motion.span
@@ -259,14 +270,15 @@ const Hero = () => {
 														transition={ { ease: 'linear', duration: 0.25 } }
 														className='font-medium text-5xl !leading-[125%] py-1'
 													>
-														{ item.price }{ ' ' }
+														{ formatPrice(products![index].productPrices?.find(e => e.billingFrequency === '3 month')?.price) }{ ' ' }
+														{ /* { item.price }{ ' ' } */ }
 													</motion.span>
 												) }
 										</AnimatePresence>
 										<span className='text-base font-medium'>
 											{ item.priceNote }
 										</span>
-										<span className='overflow-hidden'>
+										{ /* <span className='overflow-hidden'>
 											<AnimatePresence mode='wait'>
 												{ item.priceDiscount &&
                           pricingData.hero.pricingOptions[activeTabIdx]
@@ -283,9 +295,9 @@ const Hero = () => {
 													</motion.span>
 												) }
 											</AnimatePresence>
-										</span>
+										</span> */ }
 									</span>
-									<div className='overflow-hidden'>
+									{ /* <div className='overflow-hidden'>
 										<AnimatePresence mode='wait'>
 											{ pricingData.hero.pricingOptions[activeTabIdx].value ===
                       'monthly' ? (
@@ -318,7 +330,7 @@ const Hero = () => {
 													</motion.p>
 												) }
 										</AnimatePresence>
-									</div>
+									</div> */ }
 									<p className='text-xs leading-6'>
 										<span>
 											<span className='font-medium'>
@@ -332,7 +344,7 @@ const Hero = () => {
 										</span>
 									</p>
 									<ButtonCta
-										href={ item.btnCta.href }
+										href={ item.btnCta.href + '?product_id=' + products![index].stripeProductId + '&price_id=' + products![index].productPrices![activeTabIdx]?.priceId }
 										text={ item.btnCta.text }
 										theme={ item.mostValue ? 'secondary' : 'primary' }
 										className='w-full sm:w-fit mb-[37px] mt-[25px]'

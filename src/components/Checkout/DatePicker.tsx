@@ -12,6 +12,7 @@ type CustomDatePickerProps = {
 	isError?: boolean;
 	errorMessage?: string;
 	placeholder?: string;
+	isLight?: boolean;
 };
 
 const CustomDatePicker: React.FC<CustomDatePickerProps> = ({
@@ -19,7 +20,8 @@ const CustomDatePicker: React.FC<CustomDatePickerProps> = ({
 	onSelect,
 	isError,
 	errorMessage,
-	placeholder = 'Pick a date'
+	placeholder = 'Pick a date',
+	isLight = false
 }) => {
 	return (
 		<div className='flex flex-col'>
@@ -30,6 +32,7 @@ const CustomDatePicker: React.FC<CustomDatePickerProps> = ({
 				className={ clsxm(
 					'w-full text-white placeholder:text-grey-500 border-0 outline-none h-[54px] lg:h-[63px] py-18px px-6 justify-start bg-grey-950 text-left text-xs lg:text-lg !leading-normal font-normal !font-Poppins rounded-[10px]',
 					isError ? 'ring-1 ring-red-primary focus:ring-1 focus:ring-red-primary' : '!ring-0 focus:!ring-1 !ring-grey-primary',
+					isLight && 'border focus:border-[#E6E7E7] bg-white placeholder:text-[#AEB1B2] text-primary border-[#E6E7E7]',
 				) }
 				calendarClassName='!font-Poppins'
 				dateFormat='MM/dd/yyyy'
