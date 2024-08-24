@@ -95,10 +95,10 @@ const PricingComparison: React.FC = () => {
 							<span className='text-base !leading-6 font-semibold'>
 								{ el.name }
 							</span>
-							<div className='text-lg !leading-7 flex justify-between gap-1'>
+							{ /* <div className='text-lg !leading-7 flex justify-between gap-1'>
 								<h5>{ headerTitle('free') }</h5>
 								<span className='text-right'>{ el.free }</span>
-							</div>
+							</div> */ }
 							<div className='text-lg !leading-7 flex justify-between gap-1'>
 								<h5>{ headerTitle('premium') }</h5>
 								<span className='text-right'>{ el.premium }</span>
@@ -192,7 +192,7 @@ const PricingComparison: React.FC = () => {
 														{ el.name }
 													</td>
 														
-													<td className={ clsxm('px-4 w-1/6', paddingVertical) }>
+													{ /* <td className={ clsxm('px-4 w-1/6', paddingVertical) }>
 														<span className='w-full flex justify-center whitespace-nowrap'>
 															{ el.free }
 														</span>
@@ -201,7 +201,7 @@ const PricingComparison: React.FC = () => {
 														<span className='w-full flex justify-center whitespace-nowrap'>
 															{ el.basic }
 														</span>
-													</td>
+													</td> */ }
 													<td className={ clsxm('px-4 w-1/6 bg-blue-alice', elIdx === pricingComparisonData.list.length - 1 && 'rounded-b-20px', paddingVertical) }>
 														<span className='w-full flex justify-center whitespace-nowrap'>
 															{ el.premium }

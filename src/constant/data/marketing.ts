@@ -2,8 +2,8 @@ const marketingData = {
 	hero: {
 		titles: [
 			'Weight Loss, Simplified.',
-			'All The Tools You Need',
-			'In One Place.',
+			'Feel confident',
+			'in your own skin.',
 		],
 		list: [
 			'Wholesale access to weight loss medications',
@@ -45,7 +45,7 @@ const marketingData = {
 			{ id: 2, title: 'Supplements', pageTitle: 'Custom supplements' },
 		],
 		ctaList: {
-			text: 'Important Safety Information',
+			text: 'Requires Membership',
 		},
 		list: [
 			{

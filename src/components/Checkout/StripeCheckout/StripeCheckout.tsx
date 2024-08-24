@@ -38,10 +38,10 @@ type PageProps = {
 // TODO: make membership plans completely dynamic
 
 export const monthlyOrQuarterly = (billingFrequency: string) => {
-	if (billingFrequency === '1 month') {
+	if (billingFrequency === 'monthly') {
 		return 'Monthly';
 	}
-	if (billingFrequency === '3 month') {
+	if (billingFrequency === 'quarterly') {
 		return 'Quarterly';
 	}
 	return 'Monthly';

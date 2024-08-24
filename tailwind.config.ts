@@ -146,7 +146,7 @@ const config: Config = {
 				'radial-gradient-quality-landing': 'radial-gradient(50% 50% at 50% 50%, #181A1C 0%, rgba(24, 26, 28, 0.00) 100%)',
 				'border-gradient-white': 'linear-gradient(180deg, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0.1) 100%)',
 				'border-innovative-image': 'linear-gradient(91.54deg, rgba(255, 255, 255, 0.15) 11.37%,rgba(228, 235, 238, 0.0375) 56.56%)',
-				'most-value': 'linear-gradient(199deg, #283A4B 5.71%, #000 93.76%)',
+				'most-value': 'linear-gradient(200deg, #283A4B -10.51%, #000 156.02%)',
 				'gradient-blue': 'linear-gradient(160deg, #A7DAFF 4.78%, #75C5FF 92.54%)'
 			},
 			animation: {

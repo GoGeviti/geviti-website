@@ -16,6 +16,7 @@ export const metadata: Metadata = {
 const PricingPage = async() => {
 
 	const products = await getAllProducts();
+	console.log(JSON.stringify(products, null, 2));
 
 	return (
 		<div className='flex min-h-screen flex-col w-full bg-white font-Poppins'>

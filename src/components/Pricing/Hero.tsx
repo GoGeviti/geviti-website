@@ -83,11 +83,11 @@ const PricingCardWrapper: React.FC<{
 };
 
 const formatPrice = (price?: string): string => {
-	const numericPrice = Number(price);
-	if (isNaN(numericPrice)) {
-		throw new Error('Invalid price value');
-	}
-	return `$${numericPrice.toFixed(0)}`;
+	// const numericPrice = Number(price);
+	// if (isNaN(numericPrice)) {
+	// 	throw new Error('Invalid price value');
+	// }
+	return `$${price}`;
 }
 
 const Hero:React.FC<{products?:ProductsResponse[]}> = ({ products }) => {
@@ -220,8 +220,8 @@ const Hero:React.FC<{products?:ProductsResponse[]}> = ({ products }) => {
 									alt=''
 									src={ pricingData.hero.banner.image }
 									width={ 411 }
-									height={ 498 }
-									className='object-cover max-lg:scale-105 w-full h-[498px] lg:h-[488px] absolute -bottom-0 -right-2.5 lg:bottom-0 lg:right-0'
+									height={ 300 }
+									className='object-contain max-lg:scale-105 w-full h-[498px] lg:h-[350px] object-right absolute -bottom-0 -right-2.5 lg:bottom-0 lg:right-0'
 								/>
 							</div>
 						</PricingCardWrapper>
@@ -229,146 +229,97 @@ const Hero:React.FC<{products?:ProductsResponse[]}> = ({ products }) => {
 					{ pricingData.hero.list.map((item, index) => (
 						<div
 							key={ index }
-							className='w-full relative h-full'>
+							className='w-full relative h-full lg:col-span-2'>
 							<PricingCardWrapper
 								index={ index + 1 }
 								isInView={ isInView }>
 								<div
 									className={ clsxm(
-										'pt-[42px] pb-[34px] px-6 rounded-2xl w-full h-full relative',
+										'pt-[42px] pb-[34px] px-6 grid lg:gap-10 grid-cols-1 lg:grid-cols-2 rounded-2xl w-full h-full relative',
 										item.mostValue
 											? ' text-white bg-most-value'
 											: 'bg-[#FCFCFC] border-grey-100 border text-primary'
-										// index === 1 && 'z-10'
 									) }
 								>
-									<h3 className='!leading-[28px] text-[5.128vw] xs2:text-xl font-medium'>
-										{ products![index].name ?? item.name }
-									</h3>
+									<div>
+										<h3 className='!leading-[28px] text-[5.128vw] xs2:text-xl font-medium'>
+											{ products?.find(e => e.stripeProductId === item.stripeProductId)?.name ?? item.name }
+										</h3>
 
-									<span className='font-medium text-5xl !leading-[125%] py-1 h-full'>
-										<AnimatePresence mode='wait'>
-											{ pricingData.hero.pricingOptions[activeTabIdx].value ===
-                      'monthly' ? (
-													<motion.span
-														key='price_monthly'
-														initial={ { y: -50, opacity: 0 } }
-														animate={ { y: 0, opacity: 1 } }
-														exit={ { y: 50, opacity: 0 } }
-														transition={ { ease: 'linear', duration: 0.25 } }
-														className='font-medium text-5xl !leading-[125%] py-1'
-													>
-														{ formatPrice(products![index].productPrices?.find(e => e.billingFrequency === '1 month')?.price) }{ ' ' }
-														{ /* { item.priceMonthly }{ ' ' } */ }
-													</motion.span>
-												) : (
-													<motion.span
-														key='price_quarterly'
-														initial={ { y: -50, opacity: 0 } }
-														animate={ { y: 0, opacity: 1 } }
-														exit={ { y: 50, opacity: 0 } }
-														transition={ { ease: 'linear', duration: 0.25 } }
-														className='font-medium text-5xl !leading-[125%] py-1'
-													>
-														{ formatPrice(products![index].productPrices?.find(e => e.billingFrequency === '3 month')?.price) }{ ' ' }
-														{ /* { item.price }{ ' ' } */ }
-													</motion.span>
-												) }
-										</AnimatePresence>
-										<span className='text-base font-medium'>
-											{ item.priceNote }
-										</span>
-										{ /* <span className='overflow-hidden'>
+										<span className='font-medium text-5xl !leading-[125%] py-1 h-full'>
 											<AnimatePresence mode='wait'>
-												{ item.priceDiscount &&
-                          pricingData.hero.pricingOptions[activeTabIdx]
-                          	.value === 'quarterly' && (
-													<motion.span
-														key='discount'
-														initial={ { opacity: 0 } }
-														animate={ { opacity: 1 } }
-														exit={ { opacity: 0 } }
-														transition={ { ease: 'linear', duration: 0.25 } }
-														className='text-grey-primary pl-3 text-2xl leading-none font-medium line-through'
-													>
-														{ item.priceDiscount }
-													</motion.span>
-												) }
-											</AnimatePresence>
-										</span> */ }
-									</span>
-									{ /* <div className='overflow-hidden'>
-										<AnimatePresence mode='wait'>
-											{ pricingData.hero.pricingOptions[activeTabIdx].value ===
+												{ pricingData.hero.pricingOptions[activeTabIdx].value ===
                       'monthly' ? (
-													<motion.p
-														key='monthly'
-														initial={ { y: -50, opacity: 0 } }
-														animate={ { y: 0, opacity: 1 } }
-														exit={ { y: 50, opacity: 0 } }
-														transition={ { ease: 'linear', duration: 0.25 } }
-														className='text-xs !leading-6'
-													>
-														<span className='text-xl font-medium'>
-															{ item.monthly }{ ' ' }
-														</span>
-														<span>one time for at-home bloodwork</span>
-													</motion.p>
-												) : (
-													<motion.p
-														key='quarterly'
-														initial={ { y: -50, opacity: 0 } }
-														animate={ { y: 0, opacity: 1 } }
-														exit={ { y: 50, opacity: 0 } }
-														transition={ { ease: 'linear', duration: 0.25 } }
-														className='text-xs !leading-6'
-													>
-														<span className='text-xl font-medium'>
-															{ item.quarterly }{ ' ' }
-														</span>
-														<span>one time for at-home bloodwork</span>
-													</motion.p>
-												) }
-										</AnimatePresence>
-									</div> */ }
-									<p className='text-xs leading-6'>
-										<span>
-											<span className='font-medium'>
-                        “<span className='underline'>Longevity Panel</span>”
-											</span>{ ' ' }
-                      testing{ ' ' }
-											<span className='text-xl font-medium'>
-												{ item.biomakers }
-											</span>{ ' ' }
-                      biomarkers
+														<motion.span
+															key='price_monthly'
+															initial={ { y: -50, opacity: 0 } }
+															animate={ { y: 0, opacity: 1 } }
+															exit={ { y: 50, opacity: 0 } }
+															transition={ { ease: 'linear', duration: 0.25 } }
+															className='font-medium text-5xl !leading-[125%] py-1'
+														>
+															{ formatPrice(products?.find(e => e.stripeProductId === item.stripeProductId)?.productPrices?.find(e => e.billingFrequency === 'monthly')?.price) }{ ' ' }
+														</motion.span>
+													) : (
+														<motion.span
+															key='price_quarterly'
+															initial={ { y: -50, opacity: 0 } }
+															animate={ { y: 0, opacity: 1 } }
+															exit={ { y: 50, opacity: 0 } }
+															transition={ { ease: 'linear', duration: 0.25 } }
+															className='font-medium text-5xl !leading-[125%] py-1'
+														>
+															{ formatPrice(products?.find(e => e.stripeProductId === item.stripeProductId)?.productPrices?.find(e => e.billingFrequency === 'quarterly')?.price) }{ ' ' }
+														</motion.span>
+													) }
+											</AnimatePresence>
+											<span className='text-base font-medium'>
+												{ item.priceNote }
+											</span>
 										</span>
-									</p>
-									<ButtonCta
-										href={ item.btnCta.href + '?product_id=' + products![index].stripeProductId + '&price_id=' + products![index].productPrices![activeTabIdx]?.priceId }
-										text={ item.btnCta.text }
-										theme={ item.mostValue ? 'secondary' : 'primary' }
-										className='w-full sm:w-fit mb-[37px] mt-[25px]'
-									/>
+										<p className='text-xs leading-6'>
+											<span>
+												<span className='font-medium'>
+												Includes the
+                        “<span className='underline'>Longevity Panel</span>”
+												</span>{ ' ' }
+                      testing for{ ' ' }
+												<span className='text-xl font-medium'>
+													{ item.biomakers }
+												</span>{ ' ' }
+												biomarkers at-home by a licensed clinician
+											</span>
+										</p>
+										<ButtonCta
+											href={ item.btnCta.href + '?product_id=' + item.stripeProductId + '&price_id=' + products?.find(e => e.stripeProductId === item.stripeProductId)?.productPrices![activeTabIdx]?.priceId }
+											text={ item.btnCta.text }
+											theme={ item.mostValue ? 'secondary' : 'primary' }
+											className='w-full sm:w-fit mt-[25px]'
+										/>
+										<p className='text-[8px] font-Poppins font-light mt-4'>*By purchasing a monthly membership, you agree to a $150 cancellation fee for cancellations within the first 60 days. Applies to the monthly plan only.</p>
+									</div>
 
-									<span className='text-sm font-medium mb-3 inline-block'>
-										{ item.listTitle }
-									</span>
-									<ul className='flex flex-col gap-y-[11px] mb-6'>
-										{ item.list.map((feature, featureIdx) => (
-											<li
-												key={ `feature-${featureIdx}` }
-												className='text-sm !leading-normal gap-1.5 flex items-center font-medium -tracking-[0.53px]'
-											>
-												<QuestionTooltip
-													icon={
-														<GreenCheck className='w-4 h-4 text-green-alert' />
-													}
-													text={ feature.description || feature.title }
-												/>
-												{ feature.title }
-											</li>
-										)) }
-									</ul>
+									<div>
+										<span className='text-sm font-medium mb-3 inline-block'>
+											{ item.listTitle }
+										</span>
+										<ul className='flex flex-col gap-y-[11px] mb-6'>
+											{ item.list.map((feature, featureIdx) => (
+												<li
+													key={ `feature-${featureIdx}` }
+													className='text-sm !leading-normal gap-1.5 flex items-center font-medium -tracking-[0.53px]'
+												>
+													<QuestionTooltip
+														icon={
+															<GreenCheck className='w-4 h-4 text-green-alert' />
+														}
+														text={ feature.description || feature.title }
+													/>
+													{ feature.title }
+												</li>
+											)) }
+										</ul>
+									</div>
 
 									{ item.mostPopular && (
 										<span className='absolute top-0 right-6 -translate-y-1/2 text-sm !leading-normal text-primary font-medium bg-blue-primary py-2 px-6 rounded-full'>
@@ -378,15 +329,8 @@ const Hero:React.FC<{products?:ProductsResponse[]}> = ({ products }) => {
 									{ item.mostValue && (
 										<>
 											<span className='absolute top-0 max-lg:-translate-x-1/2 max-lg:left-1/2 lg:right-6 -translate-y-1/2 text-sm !leading-normal text-primary font-medium bg-blue-primary py-2 px-6 rounded-full'>
-                        Most Value
+											Free Bloodwork
 											</span>
-											{ /* <Image
-													src='/images/pricing/noise.png'
-													alt=''
-													fill
-													className='w-full h-full bg-blend-soft-light opacity-5 bg-repeat relative z-0'
-													sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
-												/> */ }
 										</>
 									) }
 								</div>
