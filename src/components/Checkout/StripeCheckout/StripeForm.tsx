@@ -123,7 +123,7 @@ const StripeForm: FC<StripeFormProps> = ({
 							productName: product.name,
 							quantity: 1,
 							price: product.productType === 'one_time' ? Number(product.productPrices.find(e => e.priceId === product.defaultPrice)?.price) : Number(product.productPrices.find(e => e.priceId === priceId)?.price),
-							price_id: priceId?.toString() ?? ''
+							price_id: product.productType === 'one_time' ? (product.productPrices.find(e => e.priceId === product.defaultPrice)?.priceId ?? '') : (product.productPrices.find(e => e.priceId === priceId)?.priceId ?? '')
 						}
 					})
 				})
