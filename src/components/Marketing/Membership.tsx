@@ -1,80 +1,42 @@
-'use client';
-
-import React, { useRef } from 'react';
-import { motion } from 'framer-motion';
+import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 
 import { marketingData } from '@/constant/data';
 import clsxm from '@/helpers/clsxm';
 
-import MotionViewport from '../MotionViewport';
-
 const membershipData = marketingData.membership;
 
-const transition = { duration: 0.64, ease: 'easeInOut' };
-const varFadeInUp = {
-	initial: { y: 24, opacity: 0 },
-	animate: {
-		y: 0,
-		opacity: 1,
-		transition: transition,
-	},
-};
-
 const Membership: React.FC = () => {
-	const wrapperItemsRef = useRef<HTMLDivElement>(null);
-
 	return (
-		<MotionViewport className='w-full'>
+		<div className='w-full'>
 			<div className='flex max-lg:flex-col gap-y-6 lg:grid lg:grid-cols-12 w-full container-center'>
 				<div className='lg:col-span-5'>
-					<motion.h2
-						variants={ varFadeInUp }
-						className='text-primary text-2xl lg:text-4xl !leading-normal lg:font-medium -tracking-0.04em'
-					>
+					<h2 className='text-primary text-2xl lg:text-4xl !leading-normal lg:font-medium -tracking-0.04em'>
 						<span dangerouslySetInnerHTML={ { __html: membershipData.title } } />
-					</motion.h2>
+					</h2>
 				</div>
 				<div className='lg:col-span-7 lg:max-w-[519px] lg:ml-auto'>
 					<div className='space-y-18px'>
-						<motion.p
-							variants={ varFadeInUp }
-							className='text-grey-primary text-sm font-medium !leading-6'
-						>
+						<p className='text-grey-primary text-sm font-medium !leading-6'>
 							{ membershipData.description }
-						</motion.p>
+						</p>
 
-						<motion.div
-							variants={ varFadeInUp }
-							className='max-sm:w-full flex'>
+						<div className='max-sm:w-full flex'>
 							<Link
 								href={ membershipData.cta.href }
 								className='btn btn-primary flex items-center justify-center max-sm:w-full py-3 px-5 sm:px-16 text-sm font-medium !leading-6'
 							>
 								{ membershipData.cta.text }
 							</Link>
-						</motion.div>
+						</div>
 					</div>
 				</div>
 			</div>
 			<div className='relative max-lg:ml-4'>
-				<div
-					id='carousel-membership'
-					ref={ wrapperItemsRef }
-					className='lg:container-center snap-x snap-mandatory pb-[62px] lg:pb-[224px] pt-[40px] lg:pt-[124px] max-lg:last:pr-4 max-lg:first:pl-4 no-scrollbar select-none transform flex lg:grid lg:grid-cols-4 lg:justify-center h-full flex-nowrap overflow-x-auto overflow-y-hidden scrolling-touch scroll-smooth gap-x-3.5 relative'
-				>
+				<div className='lg:container-center snap-x snap-mandatory pb-[62px] lg:pb-[224px] pt-[40px] lg:pt-[124px] max-lg:last:pr-4 max-lg:first:pl-4 no-scrollbar select-none transform flex lg:grid lg:grid-cols-4 lg:justify-center h-full flex-nowrap overflow-x-auto overflow-y-hidden scrolling-touch scroll-smooth gap-x-3.5 relative'>
 					{ membershipData.list.map((item, itemIdx) => (
-						<motion.div
-							key={ itemIdx }
-							variants={ {
-								initial: { opacity: 0 },
-								animate: {
-									opacity: 1,
-									transition: transition,
-								},
-							} }
-						>
+						<div key={ itemIdx }>
 							<div
 								className={ clsxm(
 									'lg:hover:shadow-card-marketing-membership flex-none snap-start overflow-hidden',
@@ -124,11 +86,11 @@ const Membership: React.FC = () => {
 									</div>
 								</div>
 							</div>
-						</motion.div>
+						</div>
 					)) }
 				</div>
 			</div>
-		</MotionViewport>
+		</div>
 	);
 };
 

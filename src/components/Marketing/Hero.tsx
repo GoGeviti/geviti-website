@@ -2,28 +2,24 @@
 
 import React, { CSSProperties, useState } from 'react';
 import { IoIosClose } from 'react-icons/io';
-import { motion } from 'framer-motion';
 import Image from 'next/image';
 
 import { marketingData } from '@/constant/data';
 import clsxm from '@/helpers/clsxm';
+import { Slug, SlugOpt } from '@/interfaces/marketing';
 
 import ButtonCta from '../ButtonCta';
 import { CheckCircleIcon } from '../Icons';
-import Navbar, { navbarDefaultTransition } from '../Navbar/Landing';
+import Navbar from '../Navbar/Landing';
 import PopupReview from '../PopupReview';
 
 const heroData = marketingData.hero;
-const transition = {
-	ease: 'easeInOut',
-	duration: 0.75,
-};
 
 type HeroProps = {
-  type?: string;
+  slug?: string;
 };
 
-const Hero: React.FC<HeroProps> = ({ type = 'men' }) => {
+const Hero: React.FC<HeroProps> = ({ slug = Slug.MEN_WEIGHT_LOSS }) => {
 	const [openPopup, setOpenPopup] = useState<boolean>(true);
 
 	const renderImage = (size: 'desktop' | 'mobile') => {
@@ -32,7 +28,7 @@ const Hero: React.FC<HeroProps> = ({ type = 'men' }) => {
 
 		return (
 			<Image
-				src={ currImage[type as 'women' | 'men'] ?? currImage.women }
+				src={ currImage[slug as SlugOpt] }
 				alt='hero'
 				priority={ true }
 				className={ clsxm(
@@ -47,47 +43,22 @@ const Hero: React.FC<HeroProps> = ({ type = 'men' }) => {
 		);
 	};
 
-	const renderTitles = (titles: string[]) => {
-		return titles.map((title: string, titleIdx: number) => (
-			<span
-				key={ `title-${titleIdx}` }
-				className='overflow-hidden inline-flex'>
-				<motion.span
-					variants={ {
-						visible: {
-							y: 0,
-							transition: transition,
-						},
-						hidden: { y: '100%' },
-					} }
-					className='inline-flex text-[7.2vw] xxs2:text-[7.692vw] xs2:text-3xl lg:text-[46px] !leading-normal font-medium -tracking-0.04em text-grey-secondary lg:text-white'
-				>
-					{ title }
-				</motion.span>
-			</span>
-		));
-	};
-
 	const renderPopup = () => {
 		return (
 			<PopupReview
 				motionProps={ {
 					variants: {
-						initial: { scale: 0, opacity: 0 },
-						animate: {
-							scale: 1,
+						visible: {
 							opacity: 1,
-							transition: { duration: 0.64, delay: 2, ease: 'easeInOut' },
 						},
-						exit: {
-							scale: 0,
+						hidden: {
 							opacity: 0,
-							transition: { duration: 0.64, ease: 'easeInOut' },
+							transition: { duration: 0.3, ease: 'easeInOut' },
 						},
 					},
-					initial: 'initial',
-					animate: openPopup ? 'animate' : 'initial',
-					exit: 'exit',
+					initial: 'visible',
+					animate: openPopup ? 'visible' : 'hidden',
+					exit: 'hidden',
 				} }
 				style={
           {
@@ -109,10 +80,34 @@ const Hero: React.FC<HeroProps> = ({ type = 'men' }) => {
 		);
 	};
 
+	const bgOverlayMobile = () => {
+		if (slug === Slug.MEN_HORMONE_THERAPY) {
+			return 'linear-gradient(0deg, #1B1310 30.38%, rgba(26, 22, 22, 0.495) 64.96%, rgba(24, 26, 28, 0) 94.74%)';
+		}
+
+		if (slug === Slug.MEN_WEIGHT_LOSS) {
+			return 'linear-gradient(0deg, #14222B 47.49%, rgba(24, 26, 28, 0.00) 94.74%)';
+		}
+
+		if (slug === Slug.WOMEN_WEIGHT_LOSS) {
+			return 'linear-gradient(0deg, #184860 47.49%, rgba(24, 72, 96, 0.00) 94.74%)';
+		}
+	};
+
 	const renderHero = () => {
 		return (
 			<div className='bg-primary h-[calc(100svh+14px)] lg:h-[calc(100vh-24px)] w-full overflow-hidden max-lg:rounded-t-none rounded-19px relative pt-11px lg:pt-5'>
-				<div className='absolute max-lg:bottom-[29.564vh] max-lg:h-[calc(100vh-29.564vh+14px)] lg:bottom-0 w-full h-full'>
+				<div
+					className={ clsxm(
+						'absolute lg:bottom-0 w-full h-full',
+						slug === Slug.WOMEN_WEIGHT_LOSS &&
+              'max-lg:bottom-[29.564vh] max-lg:h-[calc(100vh-29.564vh+14px)]',
+						slug === Slug.MEN_WEIGHT_LOSS &&
+              'max-lg:bottom-[21.253vh] max-lg:h-[calc(100vh-21.253vh+14px)]',
+						slug === Slug.MEN_HORMONE_THERAPY &&
+              'max-lg:bottom-[23.978vh] max-lg:h-[calc(100vh-23.978vh+14px)]'
+					) }
+				>
 					{ renderImage('desktop') }
 					{ renderImage('mobile') }
 				</div>
@@ -120,94 +115,72 @@ const Hero: React.FC<HeroProps> = ({ type = 'men' }) => {
 					{ renderPopup() }
 				</div>
 
+				{ slug !== Slug.WOMEN_WEIGHT_LOSS && (
+					<div
+						className='max-lg:hidden absolute inset-y-0 w-1/2'
+						style={ {
+							background:
+                slug === Slug.MEN_WEIGHT_LOSS
+                	? 'linear-gradient(90deg, #14222B -29.15%, rgba(22, 30, 36, 0.50) 53.32%, rgba(24, 26, 28, 0.00) 100%)'
+                	: 'linear-gradient(90deg, #120D0A -4.11%, rgba(18, 13, 10, 0.505) 63.56%, rgba(18, 13, 10, 0) 100%)',
+						} }
+					/>
+				) }
 				<div
 					className={ clsxm(
 						'lg:hidden absolute bottom-0 inset-x-0 w-full h-[71%] -z-0'
 					) }
 					style={ {
-						background:
-              type === 'women'
-              	? 'linear-gradient(0deg, #184860 47.49%, rgba(24, 72, 96, 0.00) 94.74%)'
-              	: 'linear-gradient(0deg, #14222B 47.49%, rgba(24, 26, 28, 0.00) 94.74%)',
+						background: bgOverlayMobile(),
 					} }
 				/>
 
 				<div className='h-full container-center relative'>
-					<div className='pb-6 lg:pb-[74px] h-full w-full flex flex-col justify-end'>
+					<div
+						className={ clsxm(
+							'lg:pb-[74px] h-full w-full flex flex-col justify-end',
+							slug === Slug.WOMEN_WEIGHT_LOSS && 'pb-6',
+							slug === Slug.MEN_WEIGHT_LOSS && 'pb-[42px]',
+							slug === Slug.MEN_HORMONE_THERAPY && 'pb-[87px]'
+						) }
+					>
 						<div className='text-left flex flex-col'>
-							<motion.h1
-								initial='hidden'
-								animate='visible'
-								variants={ {
-									visible: {
-										transition: {
-											staggerChildren: 0.25,
-										},
-									},
-								} }
-								className='flex flex-col'
-							>
-								{ renderTitles(heroData.titles) }
-							</motion.h1>
+							<h1 className='text-[7.2vw] xxs2:text-[7.692vw] xs2:text-3xl lg:text-[46px] !leading-normal font-medium -tracking-0.04em text-grey-secondary'>
+								<span
+									dangerouslySetInnerHTML={ {
+										__html: heroData.titles[slug as SlugOpt] ?? '',
+									} }
+								/>
+							</h1>
 
-							<motion.div
-								initial='hidden'
-								animate='visible'
-								variants={ {
-									visible: {
-										transition: {
-											staggerChildren: 0.25,
-											delayChildren: 0.25 * heroData.titles.length,
-										},
-									},
-								} }
-								className='mt-3.5 lg:mt-6 space-y-3'
-							>
-								{ heroData.list.map((item, itemIdx) => {
+							<div className='mt-3.5 lg:mt-6 space-y-3'>
+								{ heroData.list[slug as SlugOpt]?.map((item, itemIdx) => {
 									return (
-										<motion.div
-											variants={ {
-												hidden: { x: 24, opacity: 0 },
-												visible: { x: 0, opacity: 1 },
-											} }
-											transition={ transition }
+										<div
 											key={ itemIdx }
-											className='flex gap-1.5'
+											className='flex whitespace-nowrap gap-1.5'
 										>
 											<CheckCircleIcon className='w-4 h-4 flex-shrink-0 text-white' />
-											<span className='text-sm !leading-5 text-grey-50 lg:text-white'>
+											<span className='text-[3.111vw] xs:text-sm !leading-5 text-grey-50'>
 												{ item }
 											</span>
-										</motion.div>
+										</div>
 									);
 								}) }
-							</motion.div>
+							</div>
 
 							<div className='flex w-full mt-6 overflow-hidden'>
-								<motion.div
-									variants={ {
-										visible: {
-											y: 0,
-											transition: {
-												...transition,
-												delay: 0.25 * heroData.titles.length + 0.75,
-												duration: 1,
-											},
-										},
-										hidden: { y: '101%' },
-									} }
-									initial='hidden'
-									animate='visible'
-									className='max-sm:w-full flex'
-								>
+								<div className='max-sm:w-full flex'>
 									<ButtonCta
 										href={ heroData.cta.href }
 										theme='secondary'
 										className='max-sm:w-full'
 									>
-										{ heroData.cta.text }
+										<span
+											dangerouslySetInnerHTML={ { __html: heroData.cta.text } }
+										/>
 									</ButtonCta>
-								</motion.div>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -220,10 +193,7 @@ const Hero: React.FC<HeroProps> = ({ type = 'men' }) => {
 		<div className='lg:px-3 lg:pt-3 overflow-hidden lg:mb-[124px]'>
 			<Navbar
 				animationProps={ {
-					transition: {
-						...navbarDefaultTransition,
-						delay: 1.75,
-					},
+					initial: 'visible',
 				} }
 			/>
 			{ renderHero() }

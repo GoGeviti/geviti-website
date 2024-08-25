@@ -8,21 +8,20 @@ import Link from 'next/link';
 
 import { marketingData } from '@/constant/data';
 import clsxm from '@/helpers/clsxm';
+import { Slug, SlugOpt } from '@/interfaces/marketing';
 
 const bannerData = marketingData.banner;
 
 type BannerProps = {
-  type: string;
+  slug: string;
 };
 
-const Banner: React.FC<BannerProps> = ({ type = 'men' }) => {
+const Banner: React.FC<BannerProps> = ({ slug = Slug.MEN_WEIGHT_LOSS }) => {
 	const [openPopup, setOpenPopup] = useState<boolean>(true);
 
 	const renderImage = () => {
-		const image =
-      bannerData.image[type as 'women' | 'men'] ?? bannerData.image.women;
-		const imageMobile =
-      bannerData.imageMobile[type as 'women' | 'men'] ?? bannerData.image.women;
+		const image = bannerData.image[slug as SlugOpt];
+		const imageMobile = bannerData.imageMobile[slug as SlugOpt];
 
 		if (image || imageMobile) {
 			return (
@@ -32,7 +31,7 @@ const Banner: React.FC<BannerProps> = ({ type = 'men' }) => {
 						alt='banner'
 						className={ clsxm(
 							'object-cover pointer-events-none max-lg:hidden',
-							type === 'men' && 'object-top'
+							slug !== Slug.WOMEN_WEIGHT_LOSS && 'object-top'
 						) }
 						quality={ 100 }
 						sizes='(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw'
@@ -54,6 +53,20 @@ const Banner: React.FC<BannerProps> = ({ type = 'men' }) => {
 		return null;
 	};
 
+	const bgOverlayMobile = () => {
+		if (slug === Slug.MEN_HORMONE_THERAPY) {
+			return 'linear-gradient(0deg, #14222B 3.92%, rgba(22, 30, 36, 0.505) 49.88%, rgba(24, 26, 28, 0) 87.48%)';
+		}
+
+		if (slug === Slug.MEN_WEIGHT_LOSS) {
+			return 'linear-gradient(0deg, #080F00 32.21%, rgba(14, 26, 0, 0.00) 94.74%)';
+		}
+
+		if (slug === Slug.WOMEN_WEIGHT_LOSS) {
+			return 'linear-gradient(0deg, #649AAD 40.24%, rgba(24, 26, 28, 0.00) 94.74%)';
+		}
+	};
+
 	const renderBanner = () => {
 		return (
 			<div className='lg:px-3 overflow-hidden'>
@@ -64,26 +77,23 @@ const Banner: React.FC<BannerProps> = ({ type = 'men' }) => {
 
 					<div className='container-center max-lg:h-[811px] lg:h-[664px] px-5 pb-16 lg:p-60px w-full'>
 						<div className='h-full flex flex-col justify-end lg:justify-start relative z-10 max-w-[336px] lg:max-w-[611px] mx-auto lg:mx-0'>
-							<motion.h2
-								variants={ {
-									initial: { y: -24, opacity: 0 },
-									animate: { y: 0, opacity: 1 },
-								} }
-								initial='initial'
-								whileInView='animate'
-								viewport={ { once: true, amount: 0.3 } }
-								transition={ { duration: 0.64, ease: 'easeInOut' } }
-								className='text-white max-lg:text-center font-medium text-[9.6vw] xxs2:text-4xl lg:text-[46px] !leading-normal -tracking-0.04em'
-							>
+							<h2 className='text-white max-lg:text-center font-medium text-[9.6vw] xxs2:text-4xl lg:text-[46px] !leading-normal -tracking-0.04em'>
 								{ bannerData.title }
-							</motion.h2>
+							</h2>
 						</div>
 					</div>
-					<div className='absolute bottom-[180px] lg:bottom-0 w-full h-full max-lg:h-[631px]'>
+					<div
+						className={ clsxm(
+							'absolute w-full h-full',
+							slug === Slug.MEN_HORMONE_THERAPY
+								? 'bottom-0'
+								: 'bottom-[180px] lg:bottom-0 max-lg:h-[631px]'
+						) }
+					>
 						{ renderImage() }
 					</div>
 
-					{ type !== 'women' && (
+					{ slug !== Slug.WOMEN_WEIGHT_LOSS && (
 						<div
 							className='max-lg:hidden absolute inset-y-0 w-1/2'
 							style={ {
@@ -93,12 +103,12 @@ const Banner: React.FC<BannerProps> = ({ type = 'men' }) => {
 						/>
 					) }
 					<div
-						className='absolute bottom-0 inset-x-0 z-[5] w-full h-[523px] lg:hidden'
+						className={ clsxm(
+							'absolute bottom-0 inset-x-0 z-[5] w-full lg:hidden',
+							slug === Slug.MEN_HORMONE_THERAPY ? 'h-[504px]' : 'h-[523px]'
+						) }
 						style={ {
-							background:
-                type === 'women'
-                	? 'linear-gradient(0deg, #649AAD 40.24%, rgba(24, 26, 28, 0.00) 94.74%)'
-                	: 'linear-gradient(0deg, #080F00 32.21%, rgba(14, 26, 0, 0.00) 94.74%)',
+							background: bgOverlayMobile(),
 						} }
 					/>
 				</div>
@@ -110,55 +120,49 @@ const Banner: React.FC<BannerProps> = ({ type = 'men' }) => {
 		return (
 			<motion.div
 				variants={ {
-					initial: { scale: 0, opacity: 0 },
-					animate: {
-						scale: 1,
+					visible: {
 						opacity: 1,
-						transition: { duration: 0.64, delay: 0.4, ease: 'easeInOut' },
 					},
-					exit: {
-						scale: 0,
+					hidden: {
 						opacity: 0,
-						transition: { duration: 0.64, ease: 'easeInOut' },
+						transition: { duration: 0.3, ease: 'easeInOut' },
 					},
 				} }
-				initial='initial'
-				whileInView={ openPopup ? 'animate' : 'initial' }
-				viewport={ { once: true, amount: 0.3 } }
-				exit='exit'
+				initial='visible'
+				animate={ openPopup ? 'visible' : 'hidden' }
+				exit='hidden'
+				className='bg-white rounded-[20px] p-3 lg:w-[419px] relative'
 			>
-				<div className='bg-white rounded-[20px] p-3 lg:w-[419px] relative'>
-					<button
-						onClick={ () => setOpenPopup(false) }
-						className='focus:ring-0 focus:outline-none max-lg:hidden absolute right-3 top-3 rounded-full border-[0.6px] border-grey-100 hover:bg-grey-100 w-5 h-5 flex items-center justify-center'
-					>
-						<IoIosClose className='fill-grey-primary w-5 h-5 flex-shrink-0' />
-					</button>
-					<div className='grid grid-cols-10 gap-2.5 w-full'>
-						<div className='col-span-3 flex-shrink-0'>
-							<div className='w-full h-full bg-gradient-blue rounded-2xl relative overflow-hidden'>
-								<Image
-									src={ bannerData.popup.image }
-									alt=''
-									className='object-cover'
-									sizes='(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw'
-									fill
-								/>
-							</div>
+				<button
+					onClick={ () => setOpenPopup(false) }
+					className='focus:ring-0 focus:outline-none max-lg:hidden absolute right-3 top-3 rounded-full border-[0.6px] border-grey-100 hover:bg-grey-100 w-5 h-5 flex items-center justify-center'
+				>
+					<IoIosClose className='fill-grey-primary w-5 h-5 flex-shrink-0' />
+				</button>
+				<div className='grid grid-cols-10 gap-2.5 w-full'>
+					<div className='col-span-3 flex-shrink-0'>
+						<div className='w-full h-full bg-gradient-blue rounded-2xl relative overflow-hidden'>
+							<Image
+								src={ bannerData.popup.image }
+								alt=''
+								className='object-cover'
+								sizes='(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw'
+								fill
+							/>
 						</div>
-						<div className='text-primary w-full col-span-7'>
-							<h4 className='text-lg'>{ bannerData.popup.title }</h4>
-							<p className='mt-2.5 text-xs !leading-5 max-sm:max-w-[196px] lg:max-w-[252px]'>
-								{ bannerData.popup.description }
-							</p>
-							<div className='w-full flex mt-6 lg:mt-[22px]'>
-								<Link
-									href={ bannerData.popup.cta.href }
-									className='btn btn-primary w-full text-xs !leading-6 !py-2'
-								>
-									{ bannerData.popup.cta.text }
-								</Link>
-							</div>
+					</div>
+					<div className='text-primary w-full col-span-7'>
+						<h4 className='text-lg'>{ bannerData.popup.title }</h4>
+						<p className='mt-2.5 text-xs !leading-5 max-sm:max-w-[196px] lg:max-w-[252px]'>
+							{ bannerData.popup.description }
+						</p>
+						<div className='w-full flex mt-6 lg:mt-[22px]'>
+							<Link
+								href={ bannerData.popup.cta.href }
+								className='btn btn-primary w-full text-xs !leading-6 !py-2'
+							>
+								{ bannerData.popup.cta.text }
+							</Link>
 						</div>
 					</div>
 				</div>

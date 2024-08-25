@@ -14,28 +14,21 @@ import Link from 'next/link';
 import { marketingData } from '@/constant/data';
 import clsxm from '@/helpers/clsxm';
 import { screens } from '@/helpers/style';
+import { SlugOpt } from '@/interfaces/marketing';
 
 import { ArrowNarrowLeft, ArrowNarrowRight } from '../Icons';
-import MotionViewport from '../MotionViewport';
 import ShiftSection from '../ShiftSection';
 
 const topTierData = marketingData.topTier;
 
-const transition = { duration: 0.64, ease: 'easeInOut' };
-const varFadeInUp = {
-	initial: { y: 24, opacity: 0 },
-	animate: {
-		y: 0,
-		opacity: 1,
-		transition: transition,
-	},
-};
-
 const CARD_PRODUCT_WIDTH = 338.826;
 const SPACING_BETWEEN_CARD = 14;
-// const ACTIVE_CARD_BG = 'bg-[radial-gradient(55.65%_38.01%_at_50%_50%,#54B2F6_0%,#6EC2FF_100%)]'
 
-const TopTier: React.FC = () => {
+type TopTierProps = {
+  slug: string;
+};
+
+const TopTier: React.FC<TopTierProps> = ({ slug = 'men-weight-loss' }) => {
 	const [wrapperItems, setWrapperItems] = useState<HTMLDivElement | null>(null);
 	const [activeCardIdx, setActiveCardIdx] = useState<number>(0);
 	const [containerOffsetLeft, setContainerOffsetLeft] = useState<number>(16);
@@ -131,9 +124,9 @@ const TopTier: React.FC = () => {
 	}, [wrapperItems, isMobile]);
 
 	const tabs = topTierData.tabs;
-	const productsByCategory = useMemo(() => {
-		const productsData = topTierData.list;
+	const productsData = topTierData.list[slug as SlugOpt] ?? [];
 
+	const productsByCategory = useMemo(() => {
 		return productsData.filter(product => {
 			const filteredByCategory =
         product.category.id === tabs[selectedTabIdx]?.id;
@@ -261,9 +254,12 @@ const TopTier: React.FC = () => {
 								/>
 							</div>
 							<div className='flex flex-1 flex-col justify-end px-4 w-full'>
-								<button className='text-xs !leading-5 focus:ring-0 focus:outline-none w-full bg-white text-primary py-[7.73px] px-5 flex items-center justify-center rounded-[128px]'>
+								<Link
+									href={ topTierData.ctaList.href }
+									className='text-xs !leading-5 focus:ring-0 focus:outline-none w-full bg-white text-primary py-[7.73px] px-5 flex items-center justify-center rounded-[128px]'
+								>
 									{ topTierData.ctaList.text }
-								</button>
+								</Link>
 							</div>
 						</div>
 					</motion.div>
@@ -273,7 +269,7 @@ const TopTier: React.FC = () => {
 	};
 
 	return (
-		<MotionViewport
+		<div
 			style={
         {
         	'--container-offset-left': `${containerOffsetLeft}px`,
@@ -285,10 +281,7 @@ const TopTier: React.FC = () => {
 				<div
 					id='container-center'
 					className='lg:col-span-5'>
-					<motion.div
-						variants={ varFadeInUp }
-						className='flex flex-col text-primary text-2xl lg:text-4xl !leading-normal lg:font-medium -tracking-0.04em'
-					>
+					<div className='flex flex-col text-primary text-2xl lg:text-4xl !leading-normal lg:font-medium -tracking-0.04em'>
 						<ShiftSection
 							id={ `title-${tabs[selectedTabIdx].id}` }
 							prevElement={ tabs[prevSelectedTabIdx].pageTitle }
@@ -304,34 +297,26 @@ const TopTier: React.FC = () => {
 							{ tabs[selectedTabIdx].pageTitle }
 						</ShiftSection>
 						<span dangerouslySetInnerHTML={ { __html: topTierData.title } } />
-					</motion.div>
+					</div>
 				</div>
 				<div className='lg:col-span-7 lg:max-w-[519px] lg:ml-auto'>
 					<div className='space-y-18px'>
-						<motion.p
-							variants={ varFadeInUp }
-							className='text-grey-primary text-sm font-medium !leading-6'
-						>
+						<p className='text-grey-primary text-sm font-medium !leading-6'>
 							{ topTierData.description }
-						</motion.p>
+						</p>
 
-						<motion.div
-							variants={ varFadeInUp }
-							className='max-sm:w-full flex'>
+						<div className='max-sm:w-full flex'>
 							<Link
 								href={ topTierData.cta.href }
 								className='btn btn-primary flex items-center justify-center max-sm:w-full py-3 px-5 sm:px-16 text-sm font-medium !leading-6'
 							>
 								{ topTierData.cta.text }
 							</Link>
-						</motion.div>
+						</div>
 					</div>
 				</div>
 			</div>
-			<motion.div
-				variants={ varFadeInUp }
-				className='w-full relative mt-[42px] lg:mt-[124px]'
-			>
+			<div className='w-full relative mt-[42px] lg:mt-[124px]'>
 				<div className='w-full flex items-center lg:justify-between container-center mb-10'>
 					{ renderTabs() }
 					{ renderArrowButton() }
@@ -350,8 +335,8 @@ const TopTier: React.FC = () => {
 						</div>
 					</motion.div>
 				</AnimatePresence>
-			</motion.div>
-		</MotionViewport>
+			</div>
+		</div>
 	);
 };
 

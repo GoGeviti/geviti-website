@@ -1,26 +1,45 @@
 const marketingData = {
 	hero: {
-		titles: [
-			'Weight Loss, Simplified.',
-			'Feel confident',
-			'in your own skin.',
-		],
-		list: [
-			'Wholesale access to weight loss medications',
-			'Starting at just $90/month for Members',
-			'Ongoing care & health monitoring',
-		],
+		titles: {
+			'women-weight-loss':
+        'Weight Loss, Simplified.<br />Feel confident in your <span class="lg:hidden"><br /></span>own <span class="max-lg:hidden"><br /></span>skin.',
+			'men-weight-loss':
+        'Weight Loss, Simplified.<br />Become the best <span class="lg:hidden"><br /></span>version of <span class="max-lg:hidden"><br /></span>yourself.',
+			'men-hormone-therapy':
+        'Boost energy, build <span class="lg:hidden"><br /></span>muscle, <span class="max-lg:hidden"><br /></span>feel healthier.',
+		},
+		list: {
+			'men-weight-loss': [
+				'Wholesale access to weight loss medications',
+				'Starting at just $90/month for Members',
+				'Ongoing care & health monitoring',
+			],
+			'women-weight-loss': [
+				'Wholesale access to weight loss medications',
+				'Starting at just $90/month for Members',
+				'Ongoing care & health monitoring',
+			],
+			'men-hormone-therapy': [
+				'Doctor recommended products, wholesale cost',
+				'Personalized plans specifically based on your bloodwork',
+				'Ongoing care & health monitoring on your app',
+			],
+		},
 		cta: {
-			text: 'Get Started',
+			text: '<span class="lg:hidden">Join Geviti</span><span class="max-lg:hidden">Get Started</span>',
 			href: '/onboarding',
 		},
 		image: {
-			men: '/images/marketing/hero-men.webp',
-			women: '/images/marketing/hero-women.webp',
+			'men-hormone-therapy': '/images/marketing/men-hormone-therapy/hero.webp',
+			'men-weight-loss': '/images/marketing/men-weight-loss/hero.webp',
+			'women-weight-loss': '/images/marketing/women-weight-loss/hero.webp',
 		},
 		imageMobile: {
-			men: '/images/marketing/hero-men-mobile.webp',
-			women: '/images/marketing/hero-women-mobile.webp',
+			'men-hormone-therapy':
+        '/images/marketing/men-hormone-therapy/hero-mobile.webp',
+			'men-weight-loss': '/images/marketing/men-weight-loss/hero-mobile.webp',
+			'women-weight-loss':
+        '/images/marketing/women-weight-loss/hero-mobile.webp',
 		},
 		popup: {
 			title: 'HSA/FSA',
@@ -45,70 +64,133 @@ const marketingData = {
 			{ id: 2, title: 'Supplements', pageTitle: 'Custom supplements' },
 		],
 		ctaList: {
+			href: '/onboarding',
 			text: 'Requires Membership',
 		},
-		list: [
-			{
-				id: 1,
-				category: { id: 1 },
-				title: 'Semaglutide Injections',
-				description: 'Same active ingredient as Ozempic for only $90/mo.',
-				image: '/images/marketing/sermoreline.webp',
-			},
-			{
-				id: 2,
-				category: { id: 1 },
-				title: 'Tirzepatide Injections',
-				description: 'Same active ingredient as Mojourno for only $150/mo.',
-				image: '/images/marketing/sermoreline.webp',
-			},
-			{
-				id: 3,
-				category: { id: 1 },
-				title: 'Metformin',
-				description:
-          'Helps improve insulin sensitivity & reduce appetite. From $XX/mo.',
-				image: '/images/marketing/sermoreline.webp',
-			},
-			{
-				id: 4,
-				category: { id: 1 },
-				title: 'B12 Injections',
-				description:
-          'Boosts metabolism, improves energy levels & overall vitality. From $XX/mo.',
-				image: '/images/marketing/sermoreline.webp',
-			},
-			{
-				id: 5,
-				category: { id: 2 },
-				title: 'Semaglutide Injections',
-				description: 'Same active ingredient as Ozempic for only $90/mo.',
-				image: '/images/marketing/sermoreline.webp',
-			},
-			{
-				id: 6,
-				category: { id: 2 },
-				title: 'Tirzepatide Injections',
-				description: 'Same active ingredient as Mojourno for only $150/mo.',
-				image: '/images/marketing/sermoreline.webp',
-			},
-			{
-				id: 7,
-				category: { id: 2 },
-				title: 'Metformin',
-				description:
-          'Helps improve insulin sensitivity & reduce appetite. From $XX/mo.',
-				image: '/images/marketing/sermoreline.webp',
-			},
-			{
-				id: 8,
-				category: { id: 2 },
-				title: 'B12 Injections',
-				description:
-          'Boosts metabolism, improves energy levels & overall vitality. From $XX/mo.',
-				image: '/images/marketing/sermoreline.webp',
-			},
-		],
+		list: {
+			'women-weight-loss': [
+				{
+					id: 1,
+					category: { id: 1 },
+					title: 'Semaglutide Injections',
+					description: 'Same active ingredient as Ozempic for only $90/mo.',
+					image: '/images/marketing/products/semaglutide.webp',
+				},
+				{
+					id: 2,
+					category: { id: 1 },
+					title: 'Tirzepatide Injections',
+					description: 'Same active ingredient as Mojourno for only $150/mo.',
+					image: '/images/marketing/products/tirzepatide.webp',
+				},
+				{
+					id: 3,
+					category: { id: 1 },
+					title: 'Metformin (Cream)',
+					description:
+            'Helps improve insulin sensitivity & reduce appetite. From $65/mo.',
+					image: '/images/marketing/products/metformin-women.webp',
+				},
+				{
+					id: 4,
+					category: { id: 1 },
+					title: 'MIC B12 Injections',
+					description:
+            'Boosts metabolism, improves energy levels & overall vitality. From $15/mo.',
+					image: '/images/marketing/products/mic-b12-women.webp',
+				},
+				{
+					id: 5,
+					category: { id: 2 },
+					title: 'Longeviti Blend',
+					description:
+            'Custom supplements crafted specifically to your needs based on your bloodwork.',
+					image: '/images/marketing/products/longevity-blend.webp',
+				},
+			],
+			'men-weight-loss': [
+				{
+					id: 1,
+					category: { id: 1 },
+					title: 'Semaglutide Injections',
+					description: 'Same active ingredient as Ozempic for only $90/mo.',
+					image: '/images/marketing/products/semaglutide.webp',
+				},
+				{
+					id: 2,
+					category: { id: 1 },
+					title: 'Tirzepatide Injections',
+					description: 'Same active ingredient as Mojourno for only $150/mo.',
+					image: '/images/marketing/products/tirzepatide.webp',
+				},
+				{
+					id: 4,
+					category: { id: 1 },
+					title: 'MIC B12 Injections',
+					description:
+            'Boosts metabolism, improves energy levels & overall vitality. From $15/mo.',
+					image: '/images/marketing/products/mic-b12-men.webp',
+				},
+				{
+					id: 3,
+					category: { id: 1 },
+					title: 'Metformin (Cream)',
+					description:
+            'Helps improve insulin sensitivity & reduce appetite. From $65/mo.',
+					image: '/images/marketing/products/metformin-men.webp',
+				},
+				{
+					id: 5,
+					category: { id: 2 },
+					title: 'Longeviti Blend',
+					description:
+            'Custom supplements crafted specifically to your needs based on your bloodwork.',
+					image: '/images/marketing/products/longevity-blend.webp',
+				},
+			],
+			'men-hormone-therapy': [
+				{
+					id: 1,
+					category: { id: 1 },
+					title: 'Testosterone Injections',
+					description:
+            'A long-acting injectable testosterone to boost energy and vitality. From $15/mo.',
+					image: '/images/marketing/products/testosterone-cypionate.webp',
+				},
+				{
+					id: 2,
+					category: { id: 1 },
+					title: 'Oral Testosterone (Kyzatrex)',
+					description:
+            'A safe oral option to enhance test levels and vitality. From $65/mo.',
+					image: '/images/marketing/products/oral-testosterone.webp',
+				},
+				{
+					id: 3,
+					category: { id: 1 },
+					title: 'Testosterone Topical Cream',
+					description:
+            'A skin-applied testosterone therapy for steady hormone support. From $45/mo.',
+					image: '/images/marketing/products/testosterone-topical-cream.webp',
+				},
+				{
+					id: 4,
+					category: { id: 1 },
+					title: 'Testosterone Booster',
+					description:
+            'A hormone-regulating blend to naturally boost test and overall health. $35/mo',
+					image: '/images/marketing/products/testosterone-booster.webp',
+				},
+				{
+					id: 5,
+					category: { id: 2 },
+					title: 'Longeviti Blend',
+					description:
+            'Custom supplements crafted specifically to your needs based on your bloodwork.',
+					image: '/images/marketing/products/longevity-blend.webp',
+				},
+			],
+		},
 	},
 	membership: {
 		title:
@@ -215,12 +297,17 @@ const marketingData = {
 		title:
       'Look better. Feel better. Live longer. Geviti is your partner in long term health.',
 		image: {
-			men: '/images/marketing/banner-men.webp',
-			women: '/images/marketing/banner-women.webp',
+			'men-hormone-therapy':
+        '/images/marketing/men-hormone-therapy/banner.webp',
+			'men-weight-loss': '/images/marketing/men-weight-loss/banner.webp',
+			'women-weight-loss': '/images/marketing/women-weight-loss/banner.webp',
 		},
 		imageMobile: {
-			men: '/images/marketing/banner-men-mobile.webp',
-			women: '/images/marketing/banner-women-mobile.webp',
+			'men-hormone-therapy':
+        '/images/marketing/men-hormone-therapy/banner-mobile.webp',
+			'men-weight-loss': '/images/marketing/men-weight-loss/banner-mobile.webp',
+			'women-weight-loss':
+        '/images/marketing/women-weight-loss/banner-mobile.webp',
 		},
 		popup: {
 			title: 'Your journey starts here!',
