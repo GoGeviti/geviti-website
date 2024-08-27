@@ -4,10 +4,7 @@ import React, {
 } from 'react';
 import  Autocomplete from 'react-google-autocomplete';
 import InputMask from '@mona-health/react-input-mask';
-import {
-	EmbeddedCheckout,
-	EmbeddedCheckoutProvider,
-} from '@stripe/react-stripe-js';
+import { Elements, } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 import { FormikProps, useFormik } from 'formik';
 import { toast } from 'sonner';
@@ -21,9 +18,10 @@ import { FormCheckoutSchema } from '@/validator/checkout';
 import { createSession, validateState } from '../api/onboarding';
 import { ProductsResponse } from '../api/types';
 import CustomDatePicker from '../DatePicker';
-// import PrivacyPolicyStatement from '../PrivacyPolicyStatement';
 import CustomSelect from '../Select';
 import TextField from '../TextField';
+
+import StripePaymentElement from './StripePaymentElement';
 
 type StripeFormProps = {
   // stripe: Stripe | null;
@@ -57,13 +55,8 @@ const StripeForm: FC<StripeFormProps> = ({
 	priceId
 }) => {
 	const [stripeResponseLoading, setStripeResponseLoading] = useState(false);
-	// const [termsChecked, setTermsChecked] = useState(false);
 	const [statesChecked, setStatesChecked] = useState(false);
 	const [sessionSecretS, setSessionSecret] = useState('');
-	// const [emailInput, setEmailInput] = useState('');
-	// const [isCardNumberInputComplete, setIsCardNumberInputComplete] = useState(false);
-	// const [isCardExpiryInputComplete, setIsCardExpiryInputComplete] = useState(false);
-	// const [isCardCvcInputComplete, setIsCardCvcInputComplete] = useState(false);
 	const [formSubmitted, setFormSubmitted] = useState(false);
 
 	const formLoading = useMemo(
@@ -78,12 +71,6 @@ const StripeForm: FC<StripeFormProps> = ({
 		initialValues: initialValues,
 		enableReinitialize: true,
 		onSubmit: async(form: IPrecheckout.BillingInfo) => {
-			// console.log(form)
-			// if (!stripe || !elements || !isCardExpiryInputComplete || !isCardCvcInputComplete) {
-			// 	return;
-			// }
-			// const cardNumberElement = elements.getElement(CardNumberElement);
-			
 			try {
 				setStripeResponseLoading(true);
 				const isValidState = await validateState({
@@ -111,7 +98,7 @@ const StripeForm: FC<StripeFormProps> = ({
 						addressLine2: form.address_2,
 						city: form.city,
 						dob: form.birthdate,
-						gender: form.gender,
+						gender: form.gender.toLowerCase(),
 						phoneNumber: form.phone_number,
 						state: form.state,
 						zipCode: form.zip_code
@@ -122,8 +109,8 @@ const StripeForm: FC<StripeFormProps> = ({
 							productId: product.stripeProductId,
 							productName: product.name,
 							quantity: 1,
-							price: product.productType === 'one_time' ? Number(product.productPrices.find(e => e.priceId === product.defaultPrice)?.price) : Number(product.productPrices.find(e => e.priceId === priceId)?.price),
-							price_id: product.productType === 'one_time' ? product.defaultPrice : (priceId?.toString() ?? '')
+							price: Number(product.productPrices.find(e => e.priceId === priceId)?.price),
+							price_id: priceId?.toString() ?? ''
 						}
 					})
 				})
@@ -353,112 +340,21 @@ const StripeForm: FC<StripeFormProps> = ({
 					</div>
 					{ sessionSecretS && (
 						<div className='pb-6'>
-							<h1 className='text-[28px] mt-6'>Payment Details</h1>
-							{ /* <h4 className='text-sm mt-6 mb-3'>Email</h4>
-						<div className=''>
-							<input
-								type='email'
-								name='email'
-								placeholder='Email'
-								className={ clsxm(
-									inputStyles,
-									(formSubmitted && !emailInput) ? 'ring-1 ring-red-primary focus:ring-1 focus:ring-red-primary' : '!ring-0 focus:!ring-1 !ring-grey-primary'
-								)  }
-								autoComplete='off'
-								disabled={ formLoading }
-								onChange={ e => setEmailInput(e.target.value) }
-							/>
-							{ formSubmitted && !emailInput && (
-								<p className={ errorTextStyles }>Please enter your email</p>
-							) }
-						</div>
-						<h4 className='text-sm mt-6 mb-3'>Card Information</h4>
-						<div className=''>
-							<input
-								type='text'
-								name='name_on_card'
-								placeholder='Name on card'
-								className={ clsxm(
-									inputStyles,
-									(formSubmitted && !nameInput) ? 'ring-1 ring-red-primary focus:ring-1 focus:ring-red-primary' : '!ring-0 focus:!ring-1 !ring-grey-primary'
-								)  }
-								autoComplete='off'
-								disabled={ formLoading }
-								onChange={ e => setNameInput(e.target.value) }
-							/>
-							{ formSubmitted && !nameInput && (
-								<p className={ errorTextStyles }>Please enter name on card</p>
-							) }
-						</div>
-						<div className='flex flex-col pt-4'>
-							<CardNumberElement
-								options={ {
-									showIcon: true,
-									style: elementStyles,
-									iconStyle: 'solid',
-									disabled: formLoading,
-								} }
-								className={ clsxm(
-									inputStyles,
-									(formSubmitted && !isCardNumberInputComplete) ? 'ring-1 ring-red-primary focus:ring-1 focus:ring-red-primary' : '!ring-0 focus:!ring-1 !ring-grey-primary'
-								) }
-								onChange={ (({ empty }) => {
-									setIsCardNumberInputComplete(!empty);
-								}) }
-							/>
-							{ formSubmitted && !isCardNumberInputComplete && (
-								<p className={ errorTextStyles }>Please enter card number</p>
-							) }
-						</div>
-						<div className='flex pt-4'>
-							<div className='flex flex-col w-full mr-4'>
-								<CardExpiryElement
-									options={ {
-										style: elementStyles,
-										disabled: formLoading,
-									} }
-									className={ clsxm(
-										inputStyles,
-										'mr-[14px]',
-										(formSubmitted && !isCardExpiryInputComplete) ? 'ring-1 ring-red-primary focus:ring-1 focus:ring-red-primary' : '!ring-0 focus:!ring-1 !ring-grey-primary'
-									) }
-									onChange={ ({ empty }) => {
-										setIsCardExpiryInputComplete(!empty);
-									} }
-								/>
-								{ formSubmitted && !isCardExpiryInputComplete && (
-									<p className={ errorTextStyles }>Please enter card expiry date</p>
-								) }
-							</div>
-							<div className='flex flex-col w-full'>
-								<CardCvcElement
-									options={ {
-										style: elementStyles,
-										disabled: formLoading,
-									} }
-									className={ clsxm(
-										inputStyles,
-										(formSubmitted && !isCardCvcInputComplete) ? 'ring-1 ring-red-primary focus:ring-1 focus:ring-red-primary' : '!ring-0 focus:!ring-1 !ring-grey-primary'
-									) }
-									onChange={ ({ empty }) => {
-										setIsCardCvcInputComplete(!empty);
-									} }
-								/>
-								{ formSubmitted && !isCardCvcInputComplete && (
-									<p className={ errorTextStyles }>Please enter card cvc</p>
-								) }
-							</div>
-						
-						</div> */ }
+							<h1 className='text-[28px] mt-6 mb-3'>Payment Details</h1>
 							<div id='checkout'>
-								<EmbeddedCheckoutProvider
+								<Elements
 									stripe={ stripePromise }
 									options={ {
 										clientSecret: sessionSecretS,
+										appearance: {
+											variables: {
+												fontFamily: 'Poppins, sans-serif'
+											}
+										}
 									} }
 								>
-									<EmbeddedCheckout />
-								</EmbeddedCheckoutProvider>
+									<StripePaymentElement totalPrice={ totalPrice ?? 0 } />
+								</Elements>
 							</div>
 							{ /* <div className='mt-[14px] flex items-start gap-x-[22px]'>
 								<input
@@ -482,20 +378,24 @@ const StripeForm: FC<StripeFormProps> = ({
 							<button
 								type='submit'
 								disabled={ formLoading || !statesChecked }
-								className={ `h-[58px] my-10 py-3 px-[42px] text-white rounded-[1000px] ${(statesChecked) ? 'bg-black' : 'bg-grey-700'}` }
+								className={ clsxm(
+									'h-[58px] py-3 px-[42px] text-white rounded-[1000px] my-10',
+									statesChecked ? 'bg-black' : 'bg-grey-700',
+								) }
 							>
 								<div className='flex items-center justify-center'>
 									{ formLoading ? (
 										<Spinner />
 									) : (
 										<span>
-											{ `Pay Securely $${ totalPrice }` }
+												Continue to Payment
 										</span>
 									) }
 								</div>
 							</button>
 						)
 					}
+					
 				</div>
 			</div>
 		</form>

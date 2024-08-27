@@ -115,7 +115,7 @@ const ActionMenuList = ({ theme } : NavbarProps) => {
 	return (
 		<>
 			<CustomLink
-				href='https://app.gogeviti.com/'
+				href={ process.env.NEXT_PUBLIC_APP_URL ?? '/' }
 				// onClick={ () => handleSelectedItem(4) }
 				className={ clsxm(
 					'lg:w-[120px] rounded-md px-3 py-2 text-sm font-Poppins font-medium md:block hidden',

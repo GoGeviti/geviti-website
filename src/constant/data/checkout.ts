@@ -94,14 +94,14 @@ const checkoutData = {
 			title: 'Your order was placed successfully.',
 			titleMobile: 'Your order was placed#successfully.',
 			description:
-        'Thank you! Shortly you will receive a confirmation email with the order details. To get#started please proceed to the onboarding process.',
+        'Thank you! Shortly you will receive a confirmation email with the order details. To proceed#complete the onboarding process and schedule your bloodwork.',
 			descriptionMobile:
-        'Thank you! Shortly you will receive a confirmation#email with the order details. To get started please#proceed to the onboarding process.',
+        'Thank you! Shortly you will receive a confirmation#email with the order details. To proceed, complete the onboarding#process and schedule your bloodwork.',
 			btnPrimary: {
 				type: 'link',
-				externalLink: true,
-				href: 'https://app.gogeviti.com/',
-				text: 'Lets Begin Onboarding',
+				externalLink: false,
+				href: '/',
+				text: 'Go to Homepage',
 			},
 			btnSecondary: null,
 		},

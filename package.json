@@ -48,6 +48,7 @@
     "lexical": "^0.12.2",
     "lodash": "^4.17.21",
     "mini-svg-data-uri": "^1.4.4",
+    "moment": "^2.30.1",
     "next": "^14.2.3",
     "next-seo": "^6.5.0",
     "nextjs-toploader": "^1.4.2",

@@ -5,7 +5,7 @@ import { AiFillCloseCircle } from 'react-icons/ai';
 import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
 
-import MicroscopeIcon from '@/components/Icons/MicroscopeIcon';
+// import MicroscopeIcon from '@/components/Icons/MicroscopeIcon';
 import TagUserIcon from '@/components/Icons/TagUserIcon';
 import Button from '@/components/Onboarding/Button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/Sheet';
@@ -48,22 +48,15 @@ export const monthlyOrQuarterly = (billingFrequency: string) => {
 }
 
 const StripeCheckout: FC<PageProps> = ({ searchParams }) => {
-	// const searchParams = useSearchParams();
 	const router = useRouter();
 	const productId = searchParams?.product_id;
 	const priceId = searchParams?.price_id;
 
 	const [loading, setLoading] = useState(false);
 	const [couponLoading, setCouponLoading] = useState(false);
-	// const [productLoading, setProductLoading] = useState(false);
-	// const [membershipLoading, setMembershipLoading] = useState(false);
 	const [checkoutLoading, setCheckoutLoading] = useState(false);
-	// const [tempUser, setTempUser] = useState<TempUser>();
-	// const [productPrice, setProductPrice] = useState<ProductsPriceResponse>();
 	const [product, setProduct] = useState<ProductsResponse>();
-	const [allProducts, setAllProducts] = useState<ProductsResponse[]>();
 	const [productSelected, setProductSelected] = useState<ProductsResponse[]>([]);
-	// const [membership, setMembership] = useState<MembershipOfferingsReturnType>();
 	const [discount, setDiscount] = useState<DiscountReturnType | null>(null);
 	const [totalPrice, setTotalPrice] = useState<number>();
 	const [discountApplied, setDiscountApplied] = useState(false);
@@ -78,9 +71,9 @@ const StripeCheckout: FC<PageProps> = ({ searchParams }) => {
 			setLoading(true);
 			const products = await getAllProducts();
 			setProduct(products.find(it => it.stripeProductId === productId));
-			setAllProducts(products);
+			// setAllProducts(products);
 			if (Array.isArray(products)) {
-				setProductSelected(products.filter(it => it.stripeProductId === productId || it.productType === 'one_time'));
+				setProductSelected(products.filter(it => it.stripeProductId === productId));
 			} else {
 				setProductSelected([]);
 			}
@@ -199,7 +192,7 @@ const StripeCheckout: FC<PageProps> = ({ searchParams }) => {
 		[product, discount]
 	);
 	return (
-		<div className='flex flex-col lg:flex-row min-h-screen h-full w-full'>
+		<div className='flex flex-col lg:flex-row min-h-screen h-full w-full font-Poppins'>
 			<div className='min-h-screen h-auto w-full bg-primary max-lg:pb-20'>
 				<div className='flex flex-col w-full px-4 lg:px-20 sticky top-0'>
 					<PageHeader onBackClick={ () => router.back() } />
@@ -215,7 +208,7 @@ const StripeCheckout: FC<PageProps> = ({ searchParams }) => {
 							priceId={ priceId?.toString() ?? '' }
 						/>
 					</div>
-					<div className='my-6'>
+					{ /* <div className='my-6'>
 						<CheckoutItem
 							name={ allProducts?.find(it => it.productType === 'one_time')?.name }
 							plan='One Time Payment'
@@ -225,7 +218,7 @@ const StripeCheckout: FC<PageProps> = ({ searchParams }) => {
 							productPrices={ [] }
 							priceId={ priceId?.toString() ?? '' }
 						/>
-					</div>
+					</div> */ }
 					<div className='mt-11 lg:pl-[71px] lg:ml-6'>
 						<DiscountForm
 							loading={ couponLoading }
@@ -234,7 +227,7 @@ const StripeCheckout: FC<PageProps> = ({ searchParams }) => {
 							discountApplied={ discountApplied }
 						/>
 						<TotalCalc
-							productPrice={ Number(allProducts?.find(it => it.productType === 'one_time')?.productPrices[0].price) }
+							productPrice={ 0 }
 							membershipPrice={ Number(product?.productPrices.find(e => e.priceId === priceId)?.price) }
 							discount={ discount }
 							setTotalPrice={ setTotalPrice }

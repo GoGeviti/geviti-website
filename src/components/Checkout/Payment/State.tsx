@@ -1,8 +1,7 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
-import { useRouter } from 'next/navigation';
 
 import ButtonCta from '@/components/ButtonCta';
 import { checkoutData } from '@/constant/data';
@@ -175,8 +174,8 @@ const SuccessIcon = () => {
 };
 
 const State: React.FC<StateProps> = ({ type }) => {
-	const [externalHref, setExternalHref] = useState('');
-	const router = useRouter();
+	// const [externalHref, setExternalHref] = useState('');
+	// const router = useRouter();
 	const windowDimensions = useWindowDimensions();
 	const isMobile = windowDimensions.width < screens.lg;
 
@@ -196,11 +195,11 @@ const State: React.FC<StateProps> = ({ type }) => {
 		return <ExclamationIcon />;
 	};
 		
-	useEffect(() => {
-		const checkoutToken = sessionStorage.getItem('checkout_token') as string;
-		const dashboardHref = `${process.env.NEXT_PUBLIC_CREATE_PASS_LINK}${checkoutToken}`
-		setExternalHref(dashboardHref);
-	}, [])
+	// useEffect(() => {
+	// 	const checkoutToken = sessionStorage.getItem('checkout_token') as string;
+	// 	const dashboardHref = `${process.env.NEXT_PUBLIC_CREATE_PASS_LINK}${checkoutToken}`
+	// 	setExternalHref(dashboardHref);
+	// }, [])
 
 	return (
 		<div className='flex flex-col w-full h-full min-h-screen bg-white'>
@@ -297,14 +296,14 @@ const State: React.FC<StateProps> = ({ type }) => {
 										className='inline-block w-full'
 									>
 										<ButtonCta
-											href={ externalHref }
+											href={ btnPrimaryData.href }
 											externalLink={ btnPrimaryData?.externalLink }
 											arrowPosition={ type === 'error' ? 'left' : 'right' }
-											onClick={ () => {
-												router.replace('/');
-												sessionStorage.removeItem('checkout_token');
-												sessionStorage.removeItem('temp_user');
-											} }
+											// onClick={ () => {
+											// router.replace('/');
+											// sessionStorage.removeItem('checkout_token');
+											// sessionStorage.removeItem('temp_user');
+											// } }
 											className='max-sm:w-full'>
 											<span dangerouslySetInnerHTML={ { __html: btnPrimaryData.text } } />
 										</ButtonCta>
