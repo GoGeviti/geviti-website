@@ -21,7 +21,7 @@ export const TotalCalc: FC<ITotalCalc> = ({
 
 	const totalDiscount = useMemo(() => {
 		if (discount?.id) {
-			const discountAmount = (productPrice * discount.percent_off) / 100;
+			const discountAmount = (membershipPrice * discount.percent_off) / 100;
 			return discountAmount.toFixed(2);
 		}
 		return 0;
@@ -29,7 +29,7 @@ export const TotalCalc: FC<ITotalCalc> = ({
 
 	const totalDue = useMemo(() => {
 		if (discount?.id) {
-			const discountAmount = (productPrice * discount.percent_off) / 100;
+			const discountAmount = (membershipPrice * discount.percent_off) / 100;
 			const due = ((membershipPrice + productPrice) - discountAmount).toFixed(2);
 			setTotalPrice(Number(due));
 			return due;
@@ -44,7 +44,7 @@ export const TotalCalc: FC<ITotalCalc> = ({
 				<p className='text-grey-primary text-sm'>Total</p>
 				{ discount?.id && (
 					<p className='text-grey-primary py-6 text-sm'>
-            Coupon - { discount.name }
+            Coupon - { discount.percent_off }%
 					</p>
 				) }
 				<p className='text-white text-lg py-6'>Total due</p>
