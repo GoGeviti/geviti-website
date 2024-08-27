@@ -14,8 +14,8 @@ type PageProps = {
 const MarketingPage: NextPage<PageProps> = ({ params }) => {
 	return (
 		<div className='flex min-h-screen flex-col w-full bg-white font-Poppins'>
-			<MarketingComponent.Hero type={ params.slug } />
-			<MarketingComponent.TopTier />
+			<MarketingComponent.Hero slug={ params.slug } />
+			<MarketingComponent.TopTier slug={ params.slug } />
 			<MarketingComponent.Membership />
 			<MarketingComponent.Steps />
 			<FrequentlyAskedQuestions
@@ -25,8 +25,9 @@ const MarketingPage: NextPage<PageProps> = ({ params }) => {
 						{ marketingData.faq.subtitle }
 					</p>
 				}
+				disabledAnimation
 			/>
-			<MarketingComponent.Banner type={ params.slug } />
+			<MarketingComponent.Banner slug={ params.slug } />
 			<Footer landingPage />
 		</div>
 	);

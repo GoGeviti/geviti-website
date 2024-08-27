@@ -15,6 +15,7 @@ type FrequentlyAskedQuestionsProps = {
   }[];
   className?: string;
   subtitle?: React.ReactNode;
+  disabledAnimation?: boolean;
 };
 
 const primaryVariants = {
@@ -35,6 +36,7 @@ const FrequentlyAskedQuestions: React.FC<FrequentlyAskedQuestionsProps> = ({
 	data,
 	className,
 	subtitle,
+	disabledAnimation,
 }) => {
 	const { ref, inView } = useInView({ threshold: 0.3, triggerOnce: true });
 
@@ -48,11 +50,15 @@ const FrequentlyAskedQuestions: React.FC<FrequentlyAskedQuestionsProps> = ({
 				) }
 			>
 				<motion.div
-					initial='initial'
-					animate={ inView ? 'animate' : 'initial' }
-					transition={ {
-						staggerChildren: 0.05,
-					} }
+					{ ...(!disabledAnimation
+						? {
+							initial: 'initial',
+							animate: inView ? 'animate' : 'initial',
+							transition: {
+								staggerChildren: 0.05,
+							},
+						}
+						: {}) }
 					className='w-full'
 				>
 					<div className='grid grid-cols-1 lg:grid-cols-10 gap-14 w-full'>
