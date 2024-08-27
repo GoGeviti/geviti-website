@@ -3,6 +3,14 @@ import { NextResponse } from 'next/server'
  
 // This function can be marked `async` if using `await` inside
 export function middleware(request: NextRequest) {
+
+	const { pathname } = new URL(request.url);
+    
+	// Redirect /pickleballkingdom to /
+	if (pathname === '/pickleballkingdom') {
+		return NextResponse.redirect(new URL('/', request.url));
+	}
+
 	const userAgent = request.headers.get('user-agent')?.toLowerCase();
 
 	if (userAgent) {
@@ -21,5 +29,5 @@ export function middleware(request: NextRequest) {
  
 // See "Matching Paths" below to learn more
 export const config = {
-	matcher: '/mobile',
+	matcher: ['/mobile', '/pickleballkingdom'],
 }
