@@ -1,19 +1,22 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
+import { useRouter } from 'next/navigation';
 
 import ButtonCta from '@/components/ButtonCta';
 import { checkoutData } from '@/constant/data';
 import { screens } from '@/helpers/style';
 import { useWindowDimensions } from '@/hooks';
 
+import { getResetPasswordToken } from '../api/onboarding';
 import Band, { BAND_DURATION } from '../Band';
 import NavbarCheckout from '../Navbar';
 import { ButtonWrapper } from '../State';
 
 type StateProps = {
 	type: 'success' | 'error';
+	searchParams: { [key: string]: string | string[] | undefined; };
 };
 type ButtonDataType = {
 	type: string;
@@ -173,9 +176,10 @@ const SuccessIcon = () => {
 	);
 };
 
-const State: React.FC<StateProps> = ({ type }) => {
-	// const [externalHref, setExternalHref] = useState('');
-	// const router = useRouter();
+const State: React.FC<StateProps> = ({ type, searchParams }) => {
+	const [externalHref, setExternalHref] = useState('');
+	const router = useRouter();
+	const email = searchParams?.email
 	const windowDimensions = useWindowDimensions();
 	const isMobile = windowDimensions.width < screens.lg;
 
@@ -195,11 +199,18 @@ const State: React.FC<StateProps> = ({ type }) => {
 		return <ExclamationIcon />;
 	};
 		
-	// useEffect(() => {
-	// 	const checkoutToken = sessionStorage.getItem('checkout_token') as string;
-	// 	const dashboardHref = `${process.env.NEXT_PUBLIC_CREATE_PASS_LINK}${checkoutToken}`
-	// 	setExternalHref(dashboardHref);
-	// }, [])
+	useEffect(() => {
+		const getToken = async() => {
+			const token = await getResetPasswordToken(email?.toString() ?? '')
+			if (!token) {
+				setExternalHref(process.env.NEXT_PUBLIC_APP_URL ?? '')
+			} else {
+				const dashboardHref = `${process.env.NEXT_PUBLIC_APP_URL}/create-password?reset_token=${token.restKey}`
+				setExternalHref(dashboardHref);
+			}
+		}
+		getToken();
+	}, [email])
 
 	return (
 		<div className='flex flex-col w-full h-full min-h-screen bg-white'>
@@ -296,14 +307,12 @@ const State: React.FC<StateProps> = ({ type }) => {
 										className='inline-block w-full'
 									>
 										<ButtonCta
-											href={ btnPrimaryData.href }
+											href={ externalHref }
 											externalLink={ btnPrimaryData?.externalLink }
 											arrowPosition={ type === 'error' ? 'left' : 'right' }
-											// onClick={ () => {
-											// router.replace('/');
-											// sessionStorage.removeItem('checkout_token');
-											// sessionStorage.removeItem('temp_user');
-											// } }
+											onClick={ () => {
+												router.replace('/');
+											} }
 											className='max-sm:w-full'>
 											<span dangerouslySetInnerHTML={ { __html: btnPrimaryData.text } } />
 										</ButtonCta>

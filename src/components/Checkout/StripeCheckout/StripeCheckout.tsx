@@ -242,8 +242,23 @@ const StripeCheckout: FC<PageProps> = ({ searchParams }) => {
 							</Button>
 						</SheetTrigger>
 						<SheetContent
-							className='rounded-t-[20px] max-lg:h-[90vh] max-lg:overflow-y-auto'
-							side='bottom'>
+							className='rounded-t-[20px] h-[90dvh] overflow-y-auto'
+							side='bottom'
+							data-lenis-prevent
+							onInteractOutside={ e => {
+								const hasPacItem = e.composedPath().some((el: EventTarget) => {
+									if ('classList' in el) {
+										return Array.from((el as Element).classList).includes('pac-item');
+									}
+									return false;
+								});
+			
+								// if we click an autocomplete item, prevent the default onInteractOutside action, to close
+								if (hasPacItem) {
+									e.preventDefault();
+								}
+							} }
+						>
 							<StripeElementsProvider
 								loading={ checkoutLoading }
 								totalPrice={ totalPrice }

@@ -6,8 +6,14 @@ export const viewport: Viewport = {
 	themeColor: '#FFFFFF'
 };
 
-const PaymentSuccessPage: NextPage = () => {
-	return <CheckoutComponent.PaymentState type='success' />;
+type PageProps = {
+	searchParams: { [key: string]: string | string[] | undefined; };
+};
+
+const PaymentSuccessPage: NextPage<PageProps> = async({ searchParams }) => {
+	return <CheckoutComponent.PaymentState
+		searchParams={ searchParams }
+		type='success' />;
 };
 
 export default PaymentSuccessPage;

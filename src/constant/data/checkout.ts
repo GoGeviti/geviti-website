@@ -94,14 +94,14 @@ const checkoutData = {
 			title: 'Your order was placed successfully.',
 			titleMobile: 'Your order was placed#successfully.',
 			description:
-        'Thank you! Shortly you will receive a confirmation email with the order details. To proceed#complete the onboarding process and schedule your bloodwork.',
+        'Thank you! Shortly you will receive a confirmation email with the order details. To get#started please proceed to the onboarding process.',
 			descriptionMobile:
-        'Thank you! Shortly you will receive a confirmation#email with the order details. To proceed, complete the onboarding#process and schedule your bloodwork.',
+        'Thank you! Shortly you will receive a confirmation#email with the order details. To get started please#proceed to the onboarding process.',
 			btnPrimary: {
 				type: 'link',
-				externalLink: false,
-				href: '/',
-				text: 'Go to Homepage',
+				externalLink: true,
+				href: process.env.NEXT_PUBLIC_APP_URL,
+				text: 'Lets Begin Onboarding',
 			},
 			btnSecondary: null,
 		},

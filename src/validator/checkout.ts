@@ -6,14 +6,14 @@ import * as yup from 'yup';
 }
 
 export const FormCheckoutSchema = yup.object().shape({
-	full_name: yup.string().label('Name')
+	firstName: yup.string().label('First Name')
 		.required()
-		// .matches(/^[a-zA-ZÀ-ÖÙ-öù-ÿĀ-žḀ-ỿ\/]+$/, 'Please enter valid Name')
+		.matches(/^[a-zA-ZÀ-ÖÙ-öù-ÿĀ-žḀ-ỿ\/]+$/, 'Please enter valid First Name')
 		.max(40),
-	// last_name: yup.string().label('Last name')
-	// 	.required()
-	// 	.matches(/^[a-zA-ZÀ-ÖÙ-öù-ÿĀ-žḀ-ỿ\/]+$/, 'Please enter valid Last name')
-	// 	.max(40),
+	lastName: yup.string().label('Last name')
+		.required()
+		.matches(/^[a-zA-ZÀ-ÖÙ-öù-ÿĀ-žḀ-ỿ\/]+$/, 'Please enter valid Last name')
+		.max(40),
 	email: yup.string().email()
 		.required()
 		.label('Email'),

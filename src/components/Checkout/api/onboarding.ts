@@ -242,6 +242,25 @@ export const createSession = async(params: CreateSessionParams): Promise<{client
 	}
 }
 
+export const getResetPasswordToken = async(email:string): Promise<{restKey:string}> => {
+	try {
+		const res = await fetch(
+			`${onboardingApiUrl}/users/onboard`,
+			{
+				method: 'POST',
+				headers: {
+					...headers,
+				},
+				body: JSON.stringify({ email: email }),
+			}
+		);
+		const data = await processResponse<{restKey:string}>(res);
+		return data
+	} catch (error) {
+		return await processError(error);
+	}
+}
+
 export const validateState = async(params: ValidateUserStateParams): Promise<{stateExists:boolean}> => {
 	try {
 		const res = await fetch(

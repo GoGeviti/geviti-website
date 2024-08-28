@@ -43,7 +43,8 @@ export interface DiscountData {
 }
 
 export interface BillingInfo {
-  full_name: string;
+  firstName: string;
+  lastName: string;
   city: string;
   zip_code: string;
   address_1: string;

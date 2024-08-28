@@ -26,7 +26,7 @@ import StripePaymentElement from './StripePaymentElement';
 type StripeFormProps = {
   // stripe: Stripe | null;
   totalPrice?: number;
-  handleCheckout: (token: string) => void;
+  handleCheckout: () => void;
   loading: boolean;
 	coupon : string;
 	priceId: string | string[] | undefined
@@ -34,7 +34,8 @@ type StripeFormProps = {
 };
 
 const initialValues = {
-	full_name: '',
+	firstName: '',
+	lastName: '',
 	email: '',
 	state: '',
 	address_1: '',
@@ -74,8 +75,8 @@ const StripeForm: FC<StripeFormProps> = ({
 			try {
 				setStripeResponseLoading(true);
 				const isValidState = await validateState({
-					firstName: form.full_name,
-					lastName: '',
+					firstName: form.firstName,
+					lastName: form.lastName,
 					email: form.email,
 					addressLine1: form.address_1,
 					addressLine2: form.address_2,
@@ -91,8 +92,8 @@ const StripeForm: FC<StripeFormProps> = ({
 				}
 				const sessionSecret = await createSession({
 					user: {
-						firstName: form.full_name,
-						lastName: '',
+						firstName: form.firstName,
+						lastName: form.lastName,
 						email: form.email,
 						addressLine1: form.address_1,
 						addressLine2: form.address_2,
@@ -145,7 +146,7 @@ const StripeForm: FC<StripeFormProps> = ({
 		formik.setFieldValue('city', city ?? '');
 		formik.setFieldValue('state', state ?? '');
 		formik.setFieldValue('zip_code', zipCode ?? '');
-		formik.setFieldValue('address_1', address1 + ' ' + address2 ?? '');
+		formik.setFieldValue('address_1', (address1 ? address1  + ' ' : '') + address2 ?? '');
 		formik.setFieldValue('address_2', '');
 	}
 	const addressRef = useRef<HTMLInputElement>(null);
@@ -174,7 +175,7 @@ const StripeForm: FC<StripeFormProps> = ({
 		formik.setFieldValue(key, updatedVal);
 	};
 
-	const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_TOKEN_STAGING || 'pk_test_fAj7WlTrG0uc5Z9WHKQDdoTq');
+	const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_TOKEN_STAGING || '');
 
 	return (
 		<form
@@ -183,27 +184,53 @@ const StripeForm: FC<StripeFormProps> = ({
 				<div className={ clsxm('relative flex flex-col lg:w-[70%]') }>
 					<h1 className='text-[28px]'>Personal Information</h1>
 					<div className='mt-3 flex flex-col gap-[14px]'>
+						<div className='grid grid-cols-1 lg:grid-cols-2 gap-3 lg:gap-5'>
+							<TextField
+								isLight
+								id='firstName'
+								name='firstName'
+								placeholder='First Name'
+								value={ formik.values.firstName }
+								onChange={ formik.handleChange }
+								isError={ !!formik.errors.firstName }
+								errorMessage={ formik.errors.firstName }
+								wrapperClassName='w-full'
+								className='h-[54px] lg:h-[63px] lg:text-lg'
+							/>
+							<TextField
+								isLight
+								id='lastName'
+								name='lastName'
+								placeholder='Last Name'
+								value={ formik.values.lastName }
+								onChange={ formik.handleChange }
+								isError={ !!formik.errors.lastName }
+								errorMessage={ formik.errors.lastName }
+								wrapperClassName='w-full'
+								className='h-[54px] lg:h-[63px] lg:text-lg'
+							/>
+						</div>
+						<CustomDatePicker
+							isLight
+							value={ formik.values.birthdate }
+							onSelect={ (date: Date) => formik.setFieldValue('birthdate', date) }
+							isError={ !!formik.errors.birthdate }
+							errorMessage={ formik.errors.birthdate }
+							placeholder='Date of birth MM/DD/YYYY'
+						/>
 						<TextField
 							isLight
-							id='full_name'
-							name='full_name'
-							placeholder='Name'
-							value={ formik.values.full_name }
+							id='email'
+							name='email'
+							placeholder='Email'
+							value={ formik.values.email }
 							onChange={ formik.handleChange }
-							isError={ !!formik.errors.full_name }
-							errorMessage={ formik.errors.full_name }
+							isError={ !!formik.errors.email }
+							errorMessage={ formik.errors.email }
 							wrapperClassName='w-full'
 							className='h-[54px] lg:h-[63px] lg:text-lg'
 						/>
 						<div className='grid grid-cols-1 lg:grid-cols-2 gap-3 lg:gap-5'>
-							<CustomDatePicker
-								isLight
-								value={ formik.values.birthdate }
-								onSelect={ (date: Date) => formik.setFieldValue('birthdate', date) }
-								isError={ !!formik.errors.birthdate }
-								errorMessage={ formik.errors.birthdate }
-								placeholder='Date of birth MM/DD/YYYY'
-							/>
 							<CustomSelect
 								isLight
 								placeholder='Sex'
@@ -212,20 +239,6 @@ const StripeForm: FC<StripeFormProps> = ({
 								onChange={ val => formik.setFieldValue('gender', val) }
 								isError={ !!formik.errors.gender }
 								errorMessage={ formik.errors.gender }
-							/>
-						</div>
-						<div className='grid grid-cols-1 lg:grid-cols-2 gap-3 lg:gap-5'>
-							<TextField
-								isLight
-								id='email'
-								name='email'
-								placeholder='Email'
-								value={ formik.values.email }
-								onChange={ formik.handleChange }
-								isError={ !!formik.errors.email }
-								errorMessage={ formik.errors.email }
-								wrapperClassName='w-full'
-								className='h-[54px] lg:h-[63px] lg:text-lg'
 							/>
 							<div className='flex flex-col'>
 								<InputMask
@@ -249,7 +262,7 @@ const StripeForm: FC<StripeFormProps> = ({
 					</div>
 					<h4 className='text-sm mt-6'>Home Address</h4>
 					<div className='mt-3 flex flex-col gap-[14px]'>
-						<div className='flex flex-col'>
+						<div className='flex flex-col relative'>
 							<Autocomplete
 								apiKey={ process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY }
 								onPlaceSelected={ onPlaceSelected }
@@ -346,14 +359,11 @@ const StripeForm: FC<StripeFormProps> = ({
 									stripe={ stripePromise }
 									options={ {
 										clientSecret: sessionSecretS,
-										appearance: {
-											variables: {
-												fontFamily: 'Poppins, sans-serif'
-											}
-										}
 									} }
 								>
-									<StripePaymentElement totalPrice={ totalPrice ?? 0 } />
+									<StripePaymentElement
+										email={ formik.values.email }
+										totalPrice={ totalPrice ?? 0 } />
 								</Elements>
 							</div>
 							{ /* <div className='mt-[14px] flex items-start gap-x-[22px]'>

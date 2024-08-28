@@ -7,11 +7,13 @@ import { Spinner } from '@/components/Icons/Spinner'
 import clsxm from '@/helpers/clsxm'
 
 type StripePaymentElementProps = {
-  totalPrice: number
+  totalPrice: number;
+	email : string;
 }
 
 const StripePaymentElement:React.FC<StripePaymentElementProps> = ({
 	totalPrice,
+	email
 }) => {
 
 	const [formLoading, setFormLoading] = useState(false)
@@ -29,7 +31,7 @@ const StripePaymentElement:React.FC<StripePaymentElementProps> = ({
 		const { error } = await stripe.confirmPayment({
 			elements,
 			confirmParams: {
-				return_url: `${window.location.protocol}//${window.location.host}/onboarding/payment/success`,
+				return_url: `${window.location.protocol}//${window.location.host}/onboarding/payment/success?email=${email}`,
 			},
 		});
 		setFormLoading(false);
