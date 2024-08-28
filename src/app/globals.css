@@ -238,6 +238,6 @@ input[type="number"]::placeholder {
   content: none !important;
 }
 
-.StripeElement {
+.p-PaymentElement {
   @apply !font-Poppins;
 }
