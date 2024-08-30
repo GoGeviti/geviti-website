@@ -17,17 +17,17 @@ const getPricingCardVariants = (tierIdx: number): Variants => {
 		return {
 			initial: {
 				x: '100%',
-				opacity: 0
+				opacity: 0,
 			},
 			inView: {
 				x: 0,
 				opacity: 1,
 				transition: {
-					duration: .75,
+					duration: 0.75,
 					ease: 'easeInOut',
-					delay: 1.1
-				}
-			}
+					delay: 1.1,
+				},
+			},
 		};
 	} else if (tierIdx === 1) {
 		return {
@@ -36,10 +36,10 @@ const getPricingCardVariants = (tierIdx: number): Variants => {
 				y: 0,
 				opacity: 1,
 				transition: {
-					duration: .75,
-					ease: 'easeInOut'
-				}
-			}
+					duration: 0.75,
+					ease: 'easeInOut',
+				},
+			},
 		};
 	} else {
 		return {
@@ -48,19 +48,19 @@ const getPricingCardVariants = (tierIdx: number): Variants => {
 				x: 0,
 				opacity: 1,
 				transition: {
-					duration: .75,
+					duration: 0.75,
 					ease: 'easeInOut',
-					delay: 1.1
-				}
-			}
+					delay: 1.1,
+				},
+			},
 		};
 	}
 };
 
 const PricingCardWrapper: React.FC<{
-	index: number;
-	isInView: boolean;
-	children: React.ReactNode;
+  index: number;
+  isInView: boolean;
+  children: React.ReactNode;
 }> = ({ index, isInView, children }) => {
 	return (
 		<>
@@ -73,9 +73,7 @@ const PricingCardWrapper: React.FC<{
 				{ children }
 			</motion.div>
 
-			<div className='lg:hidden h-full'>
-				{ children }
-			</div>
+			<div className='lg:hidden h-full'>{ children }</div>
 		</>
 	);
 };
@@ -92,7 +90,8 @@ const Pricing = () => {
 		return (
 			<ButtonSwitchMemberFreq
 				options={ pricingData.hero.pricingOptions }
-				onChange={ (currentIdx: number) => setActiveTabIdx(currentIdx) } />
+				onChange={ (currentIdx: number) => setActiveTabIdx(currentIdx) }
+			/>
 		);
 	};
 
@@ -115,35 +114,49 @@ const Pricing = () => {
 					</div>
 
 					<div className='w-fit flex flex-col items-center justify-center gap-[14px]'>
-						<span className='text-center text-[10px] text-[#919B9F] uppercase font-semibold tracking-[1.1px] leading-[15px]'>Select Membership Frequency</span>
+						<span className='text-center text-[10px] text-[#919B9F] uppercase font-semibold tracking-[1.1px] leading-[15px]'>
+              Select Membership Frequency
+						</span>
 						{ renderButtonSwitchFrequency() }
 					</div>
 
 					<div
 						ref={ ref }
-						className='lg:max-w-full mx-auto sm:max-w-[392px] lg:grid-cols-3 grid-cols-1 grid gap-[42px] lg:gap-6 items-end w-full pt-[43px] lg:pt-[90px]'>
+						style={
+              {
+              	'--columns-desktop': `repeat(${pricingData.hero.list.length}, minmax(0, 1fr))`,
+              } as React.CSSProperties
+						}
+						className='lg:max-w-full mx-auto sm:max-w-[392px] lg:[grid-template-columns:var(--columns-desktop)] grid-cols-1 grid gap-[42px] lg:gap-6 items-end w-full pt-[43px] lg:pt-[90px]'
+					>
 						{ pricingData.hero.list.map((item, index) => (
 							<div
 								key={ index }
-								className='w-full relative h-full'
+								className={ clsxm(
+									'w-full relative h-full mx-auto',
+									pricingData.hero.list.length === 1 ? 'lg:max-w-[411px]' : ''
+								) }
 							>
 								<PricingCardWrapper
 									index={ index }
 									isInView={ isInView }>
-									<div className={ clsxm(
-										'pt-[42px] pb-[34px] px-6 rounded-2xl w-full h-full relative',
-										item.mostValue ? ' text-white bg-most-value' : 'bg-[#FCFCFC] border-grey-100 border text-primary',
-									// index === 1 && 'z-10'
-									) }>
-									
+									<div
+										className={ clsxm(
+											'pt-[42px] pb-[34px] px-6 rounded-2xl w-full h-full relative',
+											item.mostValue
+												? ' text-white bg-most-value'
+												: 'bg-[#FCFCFC] border-grey-100 border text-primary'
+											// index === 1 && 'z-10'
+										) }
+									>
 										<h3 className='!leading-[28px] text-[5.128vw] xs2:text-xl'>
 											{ item.name }
 										</h3>
 
 										<span className='font-medium text-5xl !leading-[125%] py-1 h-full'>
 											<AnimatePresence mode='wait'>
-												{ pricingData.hero.pricingOptions[activeTabIdx].value === 'monthly'
-													? (
+												{ pricingData.hero.pricingOptions[activeTabIdx].value ===
+                        'monthly' ? (
 														<motion.span
 															key='price_monthly'
 															initial={ { y: -50, opacity: 0 } }
@@ -152,7 +165,7 @@ const Pricing = () => {
 															transition={ { ease: 'linear', duration: 0.25 } }
 															className='font-medium text-5xl !leading-[125%] py-1'
 														>
-															{ item.priceMonthly } { ' ' }
+															{ item.priceMonthly }{ ' ' }
 														</motion.span>
 													) : (
 														<motion.span
@@ -163,7 +176,7 @@ const Pricing = () => {
 															transition={ { ease: 'linear', duration: 0.25 } }
 															className='font-medium text-5xl !leading-[125%] py-1'
 														>
-															{ item.price } { ' ' }
+															{ item.price }{ ' ' }
 														</motion.span>
 													) }
 											</AnimatePresence>
@@ -173,27 +186,27 @@ const Pricing = () => {
 											</span>
 											<span className='overflow-hidden'>
 												<AnimatePresence mode='wait'>
-													{
-														(item.priceDiscount && pricingData.hero.pricingOptions[activeTabIdx].value === 'quarterly') && (
-															<motion.span
-																key='discount'
-																initial={ { opacity: 0 } }
-																animate={ { opacity: 1 } }
-																exit={ { opacity: 0 } }
-																transition={ { ease: 'linear', duration: 0.25 } }
-																className='text-grey-primary pl-3 text-[28px] leading-none font-medium line-through'
-															>
-																{ item.priceDiscount }
-															</motion.span>
-														)
-													}
+													{ item.priceDiscount &&
+                            pricingData.hero.pricingOptions[activeTabIdx]
+                            	.value === 'quarterly' && (
+														<motion.span
+															key='discount'
+															initial={ { opacity: 0 } }
+															animate={ { opacity: 1 } }
+															exit={ { opacity: 0 } }
+															transition={ { ease: 'linear', duration: 0.25 } }
+															className='text-grey-primary pl-3 text-[28px] leading-none font-medium line-through'
+														>
+															{ item.priceDiscount }
+														</motion.span>
+													) }
 												</AnimatePresence>
 											</span>
 										</span>
 										<div className='overflow-hidden'>
 											<AnimatePresence mode='wait'>
-												{ pricingData.hero.pricingOptions[activeTabIdx].value === 'monthly'
-													? (
+												{ pricingData.hero.pricingOptions[activeTabIdx].value ===
+                        'monthly' ? (
 														<motion.p
 															key='monthly'
 															initial={ { y: -50, opacity: 0 } }
@@ -202,7 +215,9 @@ const Pricing = () => {
 															transition={ { ease: 'linear', duration: 0.25 } }
 															className='text-xs !leading-6'
 														>
-															<span className='text-xl font-medium'>{ item.monthly } </span>
+															<span className='text-xl font-medium'>
+																{ item.monthly }{ ' ' }
+															</span>
 															<span>one time for at-home bloodwork</span>
 														</motion.p>
 													) : (
@@ -214,14 +229,22 @@ const Pricing = () => {
 															transition={ { ease: 'linear', duration: 0.25 } }
 															className='text-xs !leading-6'
 														>
-															<span className='text-xl font-medium'>{ item.quarterly } </span>
+															<span className='text-xl font-medium'>
+																{ item.quarterly }{ ' ' }
+															</span>
 															<span>one time for at-home bloodwork</span>
 														</motion.p>
 													) }
 											</AnimatePresence>
 										</div>
 										<p className='text-xs leading-6'>
-											<span>“Longevity Panel” testing <span className='text-xl font-medium'>{ item.biomakers }</span> biomarkers</span>
+											<span>
+                        “Longevity Panel” testing{ ' ' }
+												<span className='text-xl font-medium'>
+													{ item.biomakers }
+												</span>{ ' ' }
+                        biomarkers
+											</span>
 										</p>
 										<ButtonCta
 											href={ item.btnCta.href }
@@ -230,32 +253,35 @@ const Pricing = () => {
 											className='w-full sm:w-fit mb-[37px] mt-[25px]'
 										/>
 
-										<span className='text-sm font-medium mb-3 inline-block'>{ item.listTitle }</span>
+										<span className='text-sm font-medium mb-3 inline-block'>
+											{ item.listTitle }
+										</span>
 										<ul className='flex flex-col gap-y-[11px] mb-6'>
 											{ item.list.map((feature, featureIdx) => (
 												<li
-													key={ `feature-${ featureIdx }` }
+													key={ `feature-${featureIdx}` }
 													className='text-sm !leading-normal gap-1.5 flex items-center font-medium -tracking-[0.53px]'
 												>
 													<QuestionTooltip
-														icon={ <GreenCheck className='w-4 h-4 text-green-alert' /> }
-														text={ feature.description || feature.title } />
+														icon={
+															<GreenCheck className='w-4 h-4 text-green-alert' />
+														}
+														text={ feature.description || feature.title }
+													/>
 													{ feature.title }
 												</li>
 											)) }
 										</ul>
 
-										{ item.mostPopular
-										&& (
+										{ item.mostPopular && (
 											<span className='absolute top-0 right-6 -translate-y-1/2 text-sm !leading-normal text-primary font-medium bg-blue-primary py-2 px-6 rounded-full'>
-												Most Popular
+                        Most Popular
 											</span>
 										) }
-										{ item.mostValue
-										&& (
+										{ item.mostValue && (
 											<>
 												<span className='absolute top-0 right-6 -translate-y-1/2 text-sm !leading-normal text-primary font-medium bg-blue-primary py-2 px-6 rounded-full'>
-												Most Value
+                          Most Value
 												</span>
 												{ /* <Image
 													src='/images/pricing/noise.png'
@@ -265,7 +291,6 @@ const Pricing = () => {
 													sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
 												/> */ }
 											</>
-											
 										) }
 									</div>
 								</PricingCardWrapper>

@@ -5,7 +5,7 @@ const pricingData = {
 		preTitle: 'Care based off of biomarkers',
 		title: 'Build a healthier future, today.',
 		description:
-      'Every user starts with an at-home full panel to establish baselines. For paid memberships, the bloodwork cost is a one time fee. Labs are done at no added cost every 6 months.',
+      'Every user begins with an at-home full panel to establish baselines. The cost of bloodwork is included in your membership. Labs are conducted at no extra cost every 6 months.',
 		features: [
 			'Start with at-home bloodwork panel',
 			'Get free at-home labs every 6 months',
@@ -115,7 +115,7 @@ const pricingData = {
 		headers: [
 			{
 				id: 'premium',
-				title: 'Premium Plan Pricing',
+				title: 'Longeviti Plan Pricing',
 				subtitle: '$362.00/mo',
 				geviti: true,
 			},
@@ -163,18 +163,23 @@ const pricingData = {
 			{
 				title: 'In which states is Geviti available?',
 				content:
-          'Geviti currently offers services in eleven states: Arizona (AZ), California (CA), Colorado (CO), Utah (UT), Washington (WA), Texas (TX), Florida (FL), Georgia (GA), Kansas (KS), Oregon (OR), New Mexico (NM), and Missouri (MO). We are actively expanding to include more states across the country.',
+          'Geviti currently offers services in twelve states: Arizona (AZ), California (CA), Colorado (CO), Utah (UT), Washington (WA), Texas (TX), Florida (FL), Georgia (GA), Kansas (KS), Oregon (OR), New Mexico (NM), and Missouri (MO). We are actively expanding to include more states across the country.',
+			},
+			{
+				title: 'How do I get started?',
+				content:
+          'Click any of the \'Get Started\' buttons to become a Geviti member by selecting your membership frequency. You\'ll be prompted to schedule an at-home bloodwork exam, and from there, we\'ll communicate with you through our mobile application.',
 			},
 			{
 				title:
           'What free at-home bloodwork option is included for me twice a year with my membership?',
 				content:
-          'As part of your membership, you receive the "Essentials Diagnostic" twice each year. This foundational evaluation provides key insights into your health metrics. For a more detailed analysis, you have the option to upgrade to our comprehensive or ultimate diagnostic tiers at any time.',
+          'As part of your membership, you receive the \'Longeviti Panel\' testing twice a year. This extensive evaluation offers valuable insights into over 90 biomarkers. If you were to pay out of pocket at Labcorp or Quest, this test could cost over $2,000.',
 			},
 			{
 				title: 'What is the membership cancellation and refund policy?',
 				content:
-          'You can easily cancel your Geviti membership at any time through your personal dashboard. Given the personalized nature of our services, refunds are not automatically granted but are considered on a case-by-case basis. If you have specific circumstances or need further assistance, please contact our support team for detailed guidance.',
+          'You can cancel your Geviti membership at any time through your personal dashboard. Please note, if you’re on a monthly plan and cancel within the first 60 days, a $150 cancellation fee will apply. This does not apply to quarterly. Due to the personalized nature of our services, refunds are not automatically provided but may be considered on a case-by-case basis. If you have specific circumstances or require additional assistance, please contact our support team for further guidance.',
 			},
 			{
 				title:
@@ -186,12 +191,12 @@ const pricingData = {
 				title:
           'What if I have recently done labs? Do I still need to purchase a diagnostic package?',
 				content:
-          'We require all new members to purchase a diagnostic package as part of our initial assessment process. This ensures that we have the most recent and relevant data to provide personalized care. However, if you have recent lab results, please reach out to our support team. We may be able to adjust your initial requirements based on the specifics of your situation.',
+          'Every membership includes an at-home blood draw as part of our initial assessment process, ensuring we have the most recent and relevant data to provide personalized care. If you have recent lab results and prefer not to undergo another panel, please reach out to our support team. We may be able to adjust your initial requirements based on your specific situation.',
 			},
 			{
 				title: 'Does a blood panel guarantee access to specific treatments?',
 				content:
-          'Purchasing a diagnostic package does not guarantee that you will receive any specific prescription treatment. The determination of appropriate treatments is solely at the discretion of your healthcare provider, based on a comprehensive evaluation of your test results and overall health profile.',
+          'Becoming a Geviti member does not guarantee that you will receive any specific prescription treatment. The decision on appropriate treatments is solely at the discretion of your healthcare provider, based on a thorough evaluation of your test results and overall health profile.',
 			},
 		],
 	},

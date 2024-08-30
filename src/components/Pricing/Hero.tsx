@@ -1,14 +1,12 @@
 'use client';
 import React, { CSSProperties, useRef, useState } from 'react';
-import { AnimatePresence, motion, useInView, Variants } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import Image from 'next/image';
 
-// import Image from 'next/image';
 import pricingData from '@/constant/data/pricing';
 import clsxm from '@/helpers/clsxm';
 
 import ButtonCta from '../ButtonCta';
-// import { getAllProducts } from '../Checkout/api/onboarding';
 import { ProductsResponse } from '../Checkout/api/types';
 import QuestionTooltip from '../Home/QuestionTooltip';
 import { CheckCircleIcon, GreenCheck, ShieldTick } from '../Icons';
@@ -16,71 +14,71 @@ import ButtonSwitchMemberFreq from '../MemberShip/ButtonSwitchMemberFreq';
 import Navbar from '../Navbar/Landing';
 import PopupReview from '../PopupReview';
 
-const getPricingCardVariants = (tierIdx: number): Variants => {
-	if (tierIdx === 0) {
-		return {
-			initial: {
-				x: '100%',
-				opacity: 0,
-			},
-			inView: {
-				x: 0,
-				opacity: 1,
-				transition: {
-					duration: 0.75,
-					ease: 'easeInOut',
-					delay: 1.1,
-				},
-			},
-		};
-	} else if (tierIdx === 1) {
-		return {
-			initial: { y: -50, opacity: 0 },
-			inView: {
-				y: 0,
-				opacity: 1,
-				transition: {
-					duration: 0.75,
-					ease: 'easeInOut',
-				},
-			},
-		};
-	} else {
-		return {
-			initial: { x: '-100%', opacity: 0 },
-			inView: {
-				x: 0,
-				opacity: 1,
-				transition: {
-					duration: 0.75,
-					ease: 'easeInOut',
-					delay: 1.1,
-				},
-			},
-		};
-	}
-};
+// const getPricingCardVariants = (tierIdx: number): Variants => {
+// 	if (tierIdx === 0) {
+// 		return {
+// 			initial: {
+// 				x: '100%',
+// 				opacity: 0,
+// 			},
+// 			inView: {
+// 				x: 0,
+// 				opacity: 1,
+// 				transition: {
+// 					duration: 0.75,
+// 					ease: 'easeInOut',
+// 					delay: 1.1,
+// 				},
+// 			},
+// 		};
+// 	} else if (tierIdx === 1) {
+// 		return {
+// 			initial: { y: -50, opacity: 0 },
+// 			inView: {
+// 				y: 0,
+// 				opacity: 1,
+// 				transition: {
+// 					duration: 0.75,
+// 					ease: 'easeInOut',
+// 				},
+// 			},
+// 		};
+// 	} else {
+// 		return {
+// 			initial: { x: '-100%', opacity: 0 },
+// 			inView: {
+// 				x: 0,
+// 				opacity: 1,
+// 				transition: {
+// 					duration: 0.75,
+// 					ease: 'easeInOut',
+// 					delay: 1.1,
+// 				},
+// 			},
+// 		};
+// 	}
+// };
 
-const PricingCardWrapper: React.FC<{
-  index: number;
-  isInView: boolean;
-  children: React.ReactNode;
-}> = ({ index, isInView, children }) => {
-	return (
-		<>
-			<motion.div
-				variants={ getPricingCardVariants(index) }
-				initial='initial'
-				animate={ isInView ? 'inView' : 'initial' }
-				className='max-lg:hidden h-full'
-			>
-				{ children }
-			</motion.div>
+// const PricingCardWrapper: React.FC<{
+//   index: number;
+//   isInView: boolean;
+//   children: React.ReactNode;
+// }> = ({ index, isInView, children }) => {
+//   return (
+//     <>
+//       <motion.div
+//         variants={getPricingCardVariants(index)}
+//         initial='initial'
+//         animate={isInView ? 'inView' : 'initial'}
+//         className='max-lg:hidden h-full'
+//       >
+//         {children}
+//       </motion.div>
 
-			<div className='lg:hidden h-full'>{ children }</div>
-		</>
-	);
-};
+//       <div className='lg:hidden h-full'>{children}</div>
+//     </>
+//   );
+// };
 
 const formatPrice = (price?: string): string => {
 	// const numericPrice = Number(price);
@@ -88,11 +86,11 @@ const formatPrice = (price?: string): string => {
 	// 	throw new Error('Invalid price value');
 	// }
 	return `$${price}`;
-}
+};
 
-const Hero:React.FC<{products?:ProductsResponse[]}> = ({ products }) => {
+const Hero: React.FC<{ products?: ProductsResponse[] }> = ({ products }) => {
 	const ref = useRef<HTMLDivElement>(null);
-	const isInView = useInView(ref, { once: true });
+	// const isInView = useInView(ref, { once: true });
 
 	const [activeTabIdx, setActiveTabIdx] = useState<number>(0);
 
@@ -140,7 +138,7 @@ const Hero:React.FC<{products?:ProductsResponse[]}> = ({ products }) => {
 	return (
 		<div
 			id='packages'
-			className=''>
+			className='font-Poppins relative z-[3]'>
 			<Navbar theme='light' />
 			<div className='container-center flex flex-col items-center'>
 				<div className='text-center pt-[129px] lg:pt-[177px] pb-[42px] lg:pb-6'>
@@ -185,156 +183,183 @@ const Hero:React.FC<{products?:ProductsResponse[]}> = ({ products }) => {
 
 				<div
 					ref={ ref }
-					className='lg:max-w-full mx-auto sm:max-w-[392px] lg:grid-cols-3 grid-cols-1 grid gap-[42px] lg:gap-6 items-end w-full pt-[64px]'
+					className='lg:max-w-[1061px] mx-auto sm:max-w-[392px] lg:grid-cols-9 flex max-lg:flex-col lg:grid gap-[42px] lg:gap-3.5 items-end w-full pt-[64px]'
 				>
-					<div className='w-full relative h-full max-lg:order-2'>
-						<PricingCardWrapper
-							index={ 0 }
-							isInView={ isInView }>
-							<div className='rounded-2xl pt-7 w-full h-full max-lg:min-h-[676px] relative overflow-hidden bg-[linear-gradient(0deg,#A7DAFF_0%,#75C5FF_100%)]'>
-								<div className='px-5'>
-									<div className='flex items-center gap-5px mb-6'>
-										<ShieldTick className='flex-shrink-0 w-5 h-5 text-primary' />
+					<div className='w-full relative h-full max-lg:order-2 lg:col-span-3'>
+						<div className='rounded-2xl pt-7 w-full h-full max-lg:min-h-[676px] relative overflow-hidden bg-[linear-gradient(0deg,#A7DAFF_0%,#75C5FF_100%)]'>
+							<div className='px-5'>
+								<div className='flex items-center gap-5px mb-3.5'>
+									<ShieldTick className='flex-shrink-0 w-5 h-5 text-primary' />
 
-										<span className='inline-flex items-baseline text-[19px] !leading-[140%] font-semibold text-primary'>
-											{ pricingData.hero.banner.caption.text }
-											<span className='ml-1.5 font-normal text-base'>
-												{ pricingData.hero.banner.caption.textSuffix }
-											</span>
+									<span className='inline-flex items-baseline text-[19px] !leading-[140%] font-semibold text-primary'>
+										{ pricingData.hero.banner.caption.text }
+										<span className='ml-1.5 font-normal text-base'>
+											{ pricingData.hero.banner.caption.textSuffix }
 										</span>
-									</div>
-									<div>
-										<p className='text-xs !leading-6 font-semibold tracking-0.11em text-grey-800 uppercase'>
-											{ pricingData.hero.banner.preTitle }
-										</p>
-										<h3 className='text-[6.222vw] xs:text-[28px] !leading-normal text-black'>
-											<span
-												dangerouslySetInnerHTML={ {
-													__html: pricingData.hero.banner.title,
-												} }
-											/>
-										</h3>
-									</div>
+									</span>
 								</div>
-								<Image
-									alt=''
-									src={ pricingData.hero.banner.image }
-									width={ 411 }
-									height={ 300 }
-									className='object-contain max-lg:scale-105 w-full h-[498px] lg:h-[350px] object-right absolute -bottom-0 -right-2.5 lg:bottom-0 lg:right-0'
-								/>
+								<div>
+									<p className='text-xs !leading-6 font-semibold tracking-0.11em text-grey-800 uppercase'>
+										{ pricingData.hero.banner.preTitle }
+									</p>
+									<h3 className='text-[5.333vw] xs:text-2xl !leading-normal text-black'>
+										<span
+											dangerouslySetInnerHTML={ {
+												__html: pricingData.hero.banner.title,
+											} }
+										/>
+									</h3>
+								</div>
 							</div>
-						</PricingCardWrapper>
+							<Image
+								alt=''
+								src={ pricingData.hero.banner.image }
+								width={ 411 }
+								height={ 300 }
+								className='object-contain scale-105 w-full h-[498px] lg:h-[380px] object-right absolute -bottom-0 -right-2.5 lg:-bottom-1.5 lg:right-1'
+							/>
+						</div>
 					</div>
 					{ pricingData.hero.list.map((item, index) => (
 						<div
 							key={ index }
-							className='w-full relative h-full lg:col-span-2'>
-							<PricingCardWrapper
-								index={ index + 1 }
-								isInView={ isInView }>
-								<div
-									className={ clsxm(
-										'pt-[42px] pb-[34px] px-6 grid lg:gap-10 grid-cols-1 lg:grid-cols-2 rounded-2xl w-full h-full relative',
-										item.mostValue
-											? ' text-white bg-most-value'
-											: 'bg-[#FCFCFC] border-grey-100 border text-primary'
-									) }
-								>
-									<div>
-										<h3 className='!leading-[28px] text-[5.128vw] xs2:text-xl font-medium'>
-											{ products?.find(e => e.stripeProductId === item.stripeProductId)?.name ?? item.name }
-										</h3>
+							className='w-full relative h-full lg:col-span-6'>
+							<div
+								className={ clsxm(
+									'pt-[42px] pb-[34px] px-6 grid gap-10 grid-cols-1 lg:grid-cols-2 rounded-2xl w-full h-full relative',
+									item.mostValue
+										? ' text-white bg-most-value'
+										: 'bg-[#FCFCFC] border-grey-100 border text-primary'
+								) }
+							>
+								<div>
+									<h3 className='!leading-[28px] text-[5.128vw] xs2:text-xl font-medium'>
+										{ products?.find(
+											e => e.stripeProductId === item.stripeProductId
+										)?.name ?? item.name }
+									</h3>
 
-										<span className='font-medium text-5xl !leading-[125%] py-1 h-full'>
-											<AnimatePresence mode='wait'>
-												{ pricingData.hero.pricingOptions[activeTabIdx].value ===
+									<span className='font-medium text-5xl !leading-[125%] py-1 h-full'>
+										<AnimatePresence mode='wait'>
+											{ pricingData.hero.pricingOptions[activeTabIdx].value ===
                       'monthly' ? (
-														<motion.span
-															key='price_monthly'
-															initial={ { y: -50, opacity: 0 } }
-															animate={ { y: 0, opacity: 1 } }
-															exit={ { y: 50, opacity: 0 } }
-															transition={ { ease: 'linear', duration: 0.25 } }
-															className='font-medium text-5xl !leading-[125%] py-1'
-														>
-															{ formatPrice(products?.find(e => e.stripeProductId === item.stripeProductId)?.productPrices?.find(e => e.billingFrequency === 'monthly')?.price) }{ ' ' }
-														</motion.span>
-													) : (
-														<motion.span
-															key='price_quarterly'
-															initial={ { y: -50, opacity: 0 } }
-															animate={ { y: 0, opacity: 1 } }
-															exit={ { y: 50, opacity: 0 } }
-															transition={ { ease: 'linear', duration: 0.25 } }
-															className='font-medium text-5xl !leading-[125%] py-1'
-														>
-															{ formatPrice(products?.find(e => e.stripeProductId === item.stripeProductId)?.productPrices?.find(e => e.billingFrequency === 'quarterly')?.price) }{ ' ' }
-														</motion.span>
-													) }
-											</AnimatePresence>
-											<span className='text-base font-medium'>
-												{ item.priceNote }
-											</span>
+													<motion.span
+														key='price_monthly'
+														initial={ { y: -50, opacity: 0 } }
+														animate={ { y: 0, opacity: 1 } }
+														exit={ { y: 50, opacity: 0 } }
+														transition={ { ease: 'linear', duration: 0.25 } }
+														className='font-medium text-5xl !leading-[125%] py-1'
+													>
+														{ formatPrice(
+															products
+																?.find(
+																	e =>
+																		e.stripeProductId === item.stripeProductId
+																)
+																?.productPrices?.find(
+																	e => e.billingFrequency === 'monthly'
+																)?.price
+														) }{ ' ' }
+													</motion.span>
+												) : (
+													<motion.span
+														key='price_quarterly'
+														initial={ { y: -50, opacity: 0 } }
+														animate={ { y: 0, opacity: 1 } }
+														exit={ { y: 50, opacity: 0 } }
+														transition={ { ease: 'linear', duration: 0.25 } }
+														className='font-medium text-5xl !leading-[125%] py-1'
+													>
+														{ formatPrice(
+															products
+																?.find(
+																	e =>
+																		e.stripeProductId === item.stripeProductId
+																)
+																?.productPrices?.find(
+																	e => e.billingFrequency === 'quarterly'
+																)?.price
+														) }{ ' ' }
+													</motion.span>
+												) }
+										</AnimatePresence>
+										<span className='text-base font-medium'>
+											{ item.priceNote }
 										</span>
-										<p className='text-xs leading-6'>
-											<span>
-												<span className='font-medium'>
-												Includes the
-                        “<span className='underline'>Longevity Panel</span>”
-												</span>{ ' ' }
+									</span>
+									<p className='text-xs leading-6'>
+										<span>
+											<span className='font-medium'>
+                        Includes the “
+												<span className='underline'>Longevity Panel</span>”
+											</span>{ ' ' }
                       testing for{ ' ' }
-												<span className='text-xl font-medium'>
-													{ item.biomakers }
-												</span>{ ' ' }
-												biomarkers at-home by a licensed clinician
-											</span>
+											<span className='text-xl font-medium'>
+												{ item.biomakers }
+											</span>{ ' ' }
+                      biomarkers at-home by a licensed clinician
+										</span>
+									</p>
+									<ButtonCta
+										href={
+											item.btnCta.href +
+                      '?product_id=' +
+                      item.stripeProductId +
+                      '&price_id=' +
+                      products?.find(
+                      	e => e.stripeProductId === item.stripeProductId
+                      )?.productPrices![activeTabIdx]?.priceId
+										}
+										text={ item.btnCta.text }
+										theme={ item.mostValue ? 'secondary' : 'primary' }
+										className='w-full sm:w-fit mt-[25px]'
+									/>
+									{ pricingData.hero.pricingOptions[activeTabIdx].value ===
+                    'monthly' && (
+										<p className='text-[8px] font-Poppins font-light mt-4'>
+                      *By purchasing a monthly membership, you agree to a $150
+                      cancellation fee for cancellations within the first 60
+                      days. Applies to the monthly plan only.
 										</p>
-										<ButtonCta
-											href={ item.btnCta.href + '?product_id=' + item.stripeProductId + '&price_id=' + products?.find(e => e.stripeProductId === item.stripeProductId)?.productPrices![activeTabIdx]?.priceId }
-											text={ item.btnCta.text }
-											theme={ item.mostValue ? 'secondary' : 'primary' }
-											className='w-full sm:w-fit mt-[25px]'
-										/>
-										<p className='text-[8px] font-Poppins font-light mt-4'>*By purchasing a monthly membership, you agree to a $150 cancellation fee for cancellations within the first 60 days. Applies to the monthly plan only.</p>
-									</div>
-
-									<div>
-										<span className='text-sm font-medium mb-3 inline-block'>
-											{ item.listTitle }
-										</span>
-										<ul className='flex flex-col gap-y-[11px] mb-6'>
-											{ item.list.map((feature, featureIdx) => (
-												<li
-													key={ `feature-${featureIdx}` }
-													className='text-sm !leading-normal gap-1.5 flex items-center font-medium -tracking-[0.53px]'
-												>
-													<QuestionTooltip
-														icon={
-															<GreenCheck className='w-4 h-4 text-green-alert' />
-														}
-														text={ feature.description || feature.title }
-													/>
-													{ feature.title }
-												</li>
-											)) }
-										</ul>
-									</div>
-
-									{ item.mostPopular && (
-										<span className='absolute top-0 right-6 -translate-y-1/2 text-sm !leading-normal text-primary font-medium bg-blue-primary py-2 px-6 rounded-full'>
-                      Most Popular
-										</span>
-									) }
-									{ item.mostValue && (
-										<>
-											<span className='absolute top-0 max-lg:-translate-x-1/2 max-lg:left-1/2 lg:right-6 -translate-y-1/2 text-sm !leading-normal text-primary font-medium bg-blue-primary py-2 px-6 rounded-full'>
-											Free Bloodwork
-											</span>
-										</>
 									) }
 								</div>
-							</PricingCardWrapper>
+
+								<div>
+									<span className='text-sm font-medium mb-3 inline-block'>
+										{ item.listTitle }
+									</span>
+									<ul className='flex flex-col gap-y-[11px] mb-6'>
+										{ item.list.map((feature, featureIdx) => (
+											<li
+												key={ `feature-${featureIdx}` }
+												className='text-sm !leading-normal gap-1.5 flex items-center font-medium -tracking-[0.53px]'
+											>
+												<QuestionTooltip
+													icon={
+														<GreenCheck className='w-4 h-4 text-green-alert' />
+													}
+													text={ feature.description || feature.title }
+												/>
+												{ feature.title }
+											</li>
+										)) }
+									</ul>
+								</div>
+
+								{ item.mostPopular && (
+									<span className='absolute top-0 right-6 -translate-y-1/2 text-sm !leading-normal text-primary font-medium bg-blue-primary py-2 px-6 rounded-full'>
+                    Most Popular
+									</span>
+								) }
+								{ item.mostValue && (
+									<>
+										<span className='absolute top-0 max-lg:-translate-x-1/2 max-lg:left-1/2 lg:right-6 -translate-y-1/2 text-sm !leading-normal text-primary font-medium bg-blue-primary py-2 px-6 rounded-full'>
+                      Free Bloodwork
+										</span>
+									</>
+								) }
+							</div>
 
 							{ /* { index === 1 && (
 								<div className='w-full h-[51px] hidden lg:flex' />
