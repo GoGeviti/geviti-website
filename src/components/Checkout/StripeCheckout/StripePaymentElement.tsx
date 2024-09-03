@@ -10,12 +10,14 @@ type StripePaymentElementProps = {
   totalPrice: number;
 	email : string;
 	token : string;
+	statesChecked: boolean;
 }
 
 const StripePaymentElement:React.FC<StripePaymentElementProps> = ({
 	totalPrice,
 	email,
-	token
+	token,
+	statesChecked
 }) => {
 
 	const [formLoading, setFormLoading] = useState(false)
@@ -53,10 +55,11 @@ const StripePaymentElement:React.FC<StripePaymentElementProps> = ({
 				} } />
 			<button
 				type='submit'
-				disabled={ formLoading }
+				disabled={ formLoading || !statesChecked }
 				onClick={ () => handleCheckout() }
 				className={ clsxm(
-					'h-[58px] py-3 px-[42px] text-white rounded-[1000px] w-full bg-black mt-5 mb-10',
+					'h-[58px] py-3 px-[42px] text-white rounded-[1000px] w-full mt-5 mb-10',
+					statesChecked ? 'bg-black' : 'bg-grey-700',
 				) }
 			>
 				<div className='flex items-center justify-center'>
