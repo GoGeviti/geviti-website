@@ -30,7 +30,7 @@ const slideUpVariants = {
 	initial: { y: '100%' },
 };
 
-const ExclamationIcon = () => {
+export const ExclamationIcon = () => {
 	return (
 		<div className='relative w-[200px] h-[200px] lg:w-[268px] lg:h-[268px]'>
 			<Band
@@ -101,7 +101,7 @@ const ExclamationIcon = () => {
 	);
 };
 
-const SuccessIcon = () => {
+export const SuccessIcon = () => {
 	const boxShadow = '0px -6.749px 6.749px 1.687px rgba(255, 255, 255, 0.25) inset';
 
 	return (
@@ -180,6 +180,7 @@ const State: React.FC<StateProps> = ({ type, searchParams }) => {
 	const [externalHref, setExternalHref] = useState('');
 	const router = useRouter();
 	const email = searchParams?.email
+	const tokenParam = searchParams?.token
 	const windowDimensions = useWindowDimensions();
 	const isMobile = windowDimensions.width < screens.lg;
 
@@ -201,7 +202,7 @@ const State: React.FC<StateProps> = ({ type, searchParams }) => {
 		
 	useEffect(() => {
 		const getToken = async() => {
-			const token = await getResetPasswordToken(email?.toString() ?? '')
+			const token = await getResetPasswordToken(email?.toString() ?? '', tokenParam?.toString() ?? '');
 			if (!token) {
 				setExternalHref(process.env.NEXT_PUBLIC_APP_URL ?? '')
 			} else {

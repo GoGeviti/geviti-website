@@ -9,11 +9,13 @@ import clsxm from '@/helpers/clsxm'
 type StripePaymentElementProps = {
   totalPrice: number;
 	email : string;
+	token : string;
 }
 
 const StripePaymentElement:React.FC<StripePaymentElementProps> = ({
 	totalPrice,
-	email
+	email,
+	token
 }) => {
 
 	const [formLoading, setFormLoading] = useState(false)
@@ -31,7 +33,7 @@ const StripePaymentElement:React.FC<StripePaymentElementProps> = ({
 		const { error } = await stripe.confirmPayment({
 			elements,
 			confirmParams: {
-				return_url: `${window.location.protocol}//${window.location.host}/onboarding/payment/success?email=${email}`,
+				return_url: `${window.location.protocol}//${window.location.host}/onboarding/payment/success?email=${email}&token=${token}`,
 			},
 		});
 		setFormLoading(false);

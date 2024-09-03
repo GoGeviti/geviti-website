@@ -223,16 +223,23 @@ export const getProductsPrice = async(id:string) : Promise<ProductsPriceResponse
 	}
 }
 
-export const createSession = async(params: CreateSessionParams): Promise<{clientSecret:string}> => {
+export const createSession = async({
+	header,
+	body,
+}: {
+	header : {[key:string]:string},
+	body : CreateSessionParams
+}): Promise<{clientSecret:string}> => {
 	try {
 		const res = await fetch(
 			`${onboardingApiUrl}/v2/billing/checkout/`,
 			{
 				method: 'POST',
 				headers: {
+					...header,
 					...headers,
 				},
-				body: JSON.stringify(params),
+				body: JSON.stringify(body),
 			}
 		);
 		const data = await processResponse<{clientSecret:string}>(res);
@@ -242,13 +249,14 @@ export const createSession = async(params: CreateSessionParams): Promise<{client
 	}
 }
 
-export const getResetPasswordToken = async(email:string): Promise<{restKey:string}> => {
+export const getResetPasswordToken = async(email:string, tokenPayload:string): Promise<{restKey:string}> => {
 	try {
 		const res = await fetch(
 			`${onboardingApiUrl}/users/onboard`,
 			{
 				method: 'POST',
 				headers: {
+					Authorization: `Bearer ${tokenPayload}`,
 					...headers,
 				},
 				body: JSON.stringify({ email: email }),
@@ -261,7 +269,7 @@ export const getResetPasswordToken = async(email:string): Promise<{restKey:strin
 	}
 }
 
-export const validateState = async(params: ValidateUserStateParams): Promise<{stateExists:boolean}> => {
+export const validateState = async(params: ValidateUserStateParams): Promise<{stateExists:boolean, token:string}> => {
 	try {
 		const res = await fetch(
 			`${onboardingApiUrl}/users/validate/state`,
@@ -273,8 +281,30 @@ export const validateState = async(params: ValidateUserStateParams): Promise<{st
 				body: JSON.stringify(params),
 			}
 		);
-		const data = await processResponse<{stateExists:boolean}>(res);
+		const data = await processResponse<{stateExists:boolean, token:string}>(res);
 		return data
+	} catch (error) {
+		return await processError(error);
+	}
+}
+
+export const joinWaitListV2 = async(params: ValidateUserStateParams) => {
+	try {
+		const res = await fetch(
+			`${onboardingApiUrl}/v3/users/waitlist`,
+			{
+				method: 'POST',
+				headers: {
+					...headers,
+				},
+				body: JSON.stringify(params),
+			}
+		);
+		if (res.ok) {
+			return true
+		} else {
+			return false
+		}
 	} catch (error) {
 		return await processError(error);
 	}

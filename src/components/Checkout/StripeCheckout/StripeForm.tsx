@@ -8,6 +8,7 @@ import { Elements, } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 import { FormikProps, useFormik } from 'formik';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
 
 import { Dialog, DialogContent } from '@/components/Dialog';
@@ -17,9 +18,10 @@ import clsxm from '@/helpers/clsxm';
 import { IPrecheckout } from '@/interfaces';
 import { FormCheckoutSchema } from '@/validator/checkout';
 
-import { createSession, validateState } from '../api/onboarding';
+import { createSession, joinWaitListV2, validateState } from '../api/onboarding';
 import { ProductsResponse } from '../api/types';
 import CustomDatePicker from '../DatePicker';
+import { ExclamationIcon } from '../Payment/State';
 import CustomSelect from '../Select';
 import TextField from '../TextField';
 
@@ -57,11 +59,15 @@ const StripeForm: FC<StripeFormProps> = ({
 	selectedProduct,
 	priceId
 }) => {
+	const router = useRouter();
 	const [stripeResponseLoading, setStripeResponseLoading] = useState(false);
 	const [statesChecked, setStatesChecked] = useState(false);
 	const [sessionSecretS, setSessionSecret] = useState('');
+	const [token, setToken] = useState('');
 	const [formSubmitted, setFormSubmitted] = useState(false);
 	const [isOpenDialogState, setIsOpenDialogState] = useState(false);
+	const [isOpenDialogNotAvailableState, setIsOpenDialogNotAvailableState] = useState(false);
+	const [isLoading, setIsLoading] = useState(false);
 
 	const formLoading = useMemo(
 		() => stripeResponseLoading || loading,
@@ -91,33 +97,40 @@ const StripeForm: FC<StripeFormProps> = ({
 					zipCode: form.zip_code
 				})
 				if (!isValidState.stateExists) {
-					throw 'State not available right now. Please try again later.';
+					return setIsOpenDialogNotAvailableState(true)
+					// throw 'State not available right now. Please try again later.';
 				}
 				const sessionSecret = await createSession({
-					user: {
-						firstName: form.firstName,
-						lastName: form.lastName,
-						email: form.email,
-						addressLine1: form.address_1,
-						addressLine2: form.address_2,
-						city: form.city,
-						dob: form.birthdate,
-						gender: form.gender.toLowerCase(),
-						phoneNumber: form.phone_number,
-						state: form.state,
-						zipCode: form.zip_code
+					header: {
+						'Authorization': 'Bearer ' + isValidState.token,
 					},
-					coupon: coupon,
-					product: selectedProduct.map(product => {
-						return {
-							productId: product.stripeProductId,
-							productName: product.name,
-							quantity: 1,
-							price: Number(product.productPrices.find(e => e.priceId === priceId)?.price),
-							price_id: priceId?.toString() ?? ''
-						}
-					})
+					body: {
+						user: {
+							firstName: form.firstName,
+							lastName: form.lastName,
+							email: form.email,
+							addressLine1: form.address_1,
+							addressLine2: form.address_2,
+							city: form.city,
+							dob: form.birthdate,
+							gender: form.gender.toLowerCase(),
+							phoneNumber: form.phone_number,
+							state: form.state,
+							zipCode: form.zip_code
+						},
+						coupon: coupon,
+						product: selectedProduct.map(product => {
+							return {
+								productId: product.stripeProductId,
+								productName: product.name,
+								quantity: 1,
+								price: Number(product.productPrices.find(e => e.priceId === priceId)?.price),
+								price_id: priceId?.toString() ?? ''
+							}
+						})
+					}
 				})
+				setToken(isValidState.token);
 				setSessionSecret(sessionSecret.clientSecret);
 				setStripeResponseLoading(false);
 			} catch (error:any) {
@@ -179,6 +192,30 @@ const StripeForm: FC<StripeFormProps> = ({
 	};
 
 	const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_TOKEN_STAGING || '');
+	
+	const joinWaitlist = async() => {
+		setIsLoading(true);
+		const res = await joinWaitListV2({
+			firstName: formik.values.firstName,
+			lastName: formik.values.lastName,
+			email: formik.values.email,
+			addressLine1: formik.values.address_1,
+			addressLine2: formik.values.address_2,
+			city: formik.values.city,
+			dob: formik.values.birthdate,
+			gender: formik.values.gender.toLowerCase(),
+			phoneNumber: formik.values.phone_number,
+			state: formik.values.state,
+			zipCode: formik.values.zip_code
+		})
+		setIsLoading(false);
+		if (res) {
+			toast.success('You have been added to the waitlist');
+			router.replace('/')
+		} else {
+			toast.error('An error occurred');
+		}
+	}
 
 	return (
 		<form
@@ -378,6 +415,7 @@ const StripeForm: FC<StripeFormProps> = ({
 								>
 									<StripePaymentElement
 										email={ formik.values.email }
+										token={ token }
 										totalPrice={ totalPrice ?? 0 } />
 								</Elements>
 							</div>
@@ -431,7 +469,7 @@ const StripeForm: FC<StripeFormProps> = ({
 			>
 				<DialogContent
 					position='default'
-					className='w-full lg:max-w-[319px] p-6 max-w-[calc(100vw-32px)] rounded-[20px]'
+					className='w-full lg:max-w-[367px] p-6 max-w-[calc(100vw-32px)] rounded-[20px]'
 					showClose={ false }
 				>
 					<div className='flex text-center flex-col font-Poppins'>
@@ -464,6 +502,50 @@ const StripeForm: FC<StripeFormProps> = ({
 								height={ 319 }
 							/>
 						</div>
+					</div>
+				</DialogContent>
+			</Dialog>
+			<Dialog
+				open={ isOpenDialogNotAvailableState }
+				modal={ true }
+				data-lenis-prevent
+				onOpenChange={ setIsOpenDialogNotAvailableState }
+			>
+				<DialogContent
+					position='default'
+					className='w-full lg:max-w-[367px] p-6 max-w-[calc(100vw-32px)] rounded-[20px]'
+					showClose={ false }
+				>
+					<div className='flex text-center flex-col font-Poppins'>
+						<button
+							onClick={ () => setIsOpenDialogNotAvailableState(prev => !prev) }
+							className='p-[10px] self-end rounded-full border border-[#E6E7E7]'>
+							<svg
+								xmlns='http://www.w3.org/2000/svg'
+								width='14'
+								height='14'
+								viewBox='0 0 14 14'
+								fill='none'>
+								<path
+									d='M10.5 11.5L2.5 3.50001C2.22666 3.22667 2.22666 2.77334 2.5 2.5C2.77333 2.22667 3.22667 2.22667 3.5 2.5L11.5 10.5C11.7734 10.7734 11.7734 11.2267 11.5 11.5C11.2267 11.7734 10.7734 11.7734 10.5 11.5Z'
+									fill='#919B9F'/>
+								<path
+									d='M2.49997 11.5C2.22664 11.2267 2.22664 10.7734 2.49997 10.5L10.5 2.5C10.7733 2.22667 11.2267 2.22667 11.5 2.5C11.7733 2.77334 11.7733 3.22667 11.5 3.50001L3.49997 11.5C3.22664 11.7734 2.77331 11.7734 2.49997 11.5Z'
+									fill='#919B9F'/>
+							</svg>
+						</button>
+						<div className='flex items-center justify-center'>
+							<ExclamationIcon/>
+						</div>
+						<p className='text-primary text-2xl mt-11'>Our Premium Tier is not available in your state yet </p>
+						<p className='text-grey-500 text-xs mt-2'>Downgrade to our Basic or Free plan, or join our waitlist for our Premium Tier.</p>
+						<button
+							type='button'
+							aria-label='Get Your Discount'
+							onClick={ () => joinWaitlist() }
+							disabled={ isLoading }
+							className='h-[58px] py-3 px-[42px] text-white rounded-[1000px] mt-11 bg-black'
+						>{ isLoading ? 'Loading...' : 'Join the waitlist' }</button>
 					</div>
 				</DialogContent>
 			</Dialog>
