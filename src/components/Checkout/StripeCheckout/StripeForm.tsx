@@ -97,7 +97,9 @@ const StripeForm: FC<StripeFormProps> = ({
 					zipCode: form.zip_code
 				})
 				if (!isValidState.stateExists) {
+					setStripeResponseLoading(false);
 					return setIsOpenDialogNotAvailableState(true)
+					
 					// throw 'State not available right now. Please try again later.';
 				}
 				const sessionSecret = await createSession({
