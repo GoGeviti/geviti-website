@@ -7,8 +7,10 @@ import InputMask from '@mona-health/react-input-mask';
 import { Elements, } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 import { FormikProps, useFormik } from 'formik';
+import Image from 'next/image';
 import { toast } from 'sonner';
 
+import { Dialog, DialogContent } from '@/components/Dialog';
 import { Spinner } from '@/components/Icons/Spinner';
 import { statesData } from '@/constant/data';
 import clsxm from '@/helpers/clsxm';
@@ -59,6 +61,7 @@ const StripeForm: FC<StripeFormProps> = ({
 	const [statesChecked, setStatesChecked] = useState(false);
 	const [sessionSecretS, setSessionSecret] = useState('');
 	const [formSubmitted, setFormSubmitted] = useState(false);
+	const [isOpenDialogState, setIsOpenDialogState] = useState(false);
 
 	const formLoading = useMemo(
 		() => stripeResponseLoading || loading,
@@ -347,7 +350,11 @@ const StripeForm: FC<StripeFormProps> = ({
 							<label
 								htmlFor='checkout_state'
 							>
-								<p className='text-sm text-[#6A6E70] font-Poppins'>I confirm I live in the state mentioned above and recognize that Geviti’s Premium Tier membership is only available in <span className='text-primary underline cursor-pointer'>these states.</span></p>
+								<p className='text-sm text-[#6A6E70] font-Poppins'>I confirm I live in the state mentioned above and recognize that Geviti’s Premium Tier membership is only available in { ' ' }
+									<button
+										onClick={ () => setIsOpenDialogState(prev => !prev) }
+										className='text-primary underline cursor-pointer'>these states.</button>
+								</p>
 							</label>
 						</div>
 					</div>
@@ -416,6 +423,50 @@ const StripeForm: FC<StripeFormProps> = ({
 					
 				</div>
 			</div>
+			<Dialog
+				open={ isOpenDialogState }
+				modal={ true }
+				data-lenis-prevent
+				onOpenChange={ setIsOpenDialogState }
+			>
+				<DialogContent
+					position='default'
+					className='w-full lg:max-w-[319px] p-6 max-w-[calc(100vw-32px)] rounded-[20px]'
+					showClose={ false }
+				>
+					<div className='flex text-center flex-col font-Poppins'>
+						<button
+							onClick={ () => setIsOpenDialogState(prev => !prev) }
+							className='p-[10px] self-end rounded-full border border-[#E6E7E7]'>
+							<svg
+								xmlns='http://www.w3.org/2000/svg'
+								width='14'
+								height='14'
+								viewBox='0 0 14 14'
+								fill='none'>
+								<path
+									d='M10.5 11.5L2.5 3.50001C2.22666 3.22667 2.22666 2.77334 2.5 2.5C2.77333 2.22667 3.22667 2.22667 3.5 2.5L11.5 10.5C11.7734 10.7734 11.7734 11.2267 11.5 11.5C11.2267 11.7734 10.7734 11.7734 10.5 11.5Z'
+									fill='#919B9F'/>
+								<path
+									d='M2.49997 11.5C2.22664 11.2267 2.22664 10.7734 2.49997 10.5L10.5 2.5C10.7733 2.22667 11.2267 2.22667 11.5 2.5C11.7733 2.77334 11.7733 3.22667 11.5 3.50001L3.49997 11.5C3.22664 11.7734 2.77331 11.7734 2.49997 11.5Z'
+									fill='#919B9F'/>
+							</svg>
+						</button>
+						<p className='text-grey-primary uppercase text-[8.809px] font-semibold tracking-[0.969px] mt-3'>What states do we support?</p>
+						<p className='text-primary text-lg '>Care that goes where you go.</p>
+						<p className='text-grey-400 text-[8.809px] mt-2'>Available in 12 states and expanding across all the country: AZ, CA, CO, UT, WA, TX, FL, GA, KS, OR, NM, MO</p>
+						<div className='flex items-center justify-center'>
+							<Image
+								src='/images/landing/compressed/continent_dots.webp'
+								alt='state'
+								className='mt-11'
+								width={ 319 }
+								height={ 319 }
+							/>
+						</div>
+					</div>
+				</DialogContent>
+			</Dialog>
 		</form>
 	);
 };
