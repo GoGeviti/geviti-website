@@ -539,8 +539,8 @@ const StripeForm: FC<StripeFormProps> = ({
 						<div className='flex items-center justify-center'>
 							<ExclamationIcon/>
 						</div>
-						<p className='text-primary text-2xl mt-11'>Our Premium Tier is not available in your state yet </p>
-						<p className='text-grey-500 text-xs mt-2'>Due to influx of demand, Geviti is not currently a available in your state. We plan to be live in all 50 states shortly. Join our waitlist to be one of the first notified!</p>
+						<p className='text-primary text-2xl mt-11'>Due to influx of demand, Geviti is not currently a available in your state.</p>
+						<p className='text-grey-500 text-xs mt-2'>We plan to be live in all 50 states shortly. Join our waitlist to be one of the first notified!</p>
 						<button
 							type='button'
 							aria-label='Get Your Discount'
