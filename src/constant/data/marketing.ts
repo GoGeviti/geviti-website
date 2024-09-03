@@ -198,7 +198,7 @@ const marketingData = {
 			})),
 		},
 		ctaList: {
-			href: '/onboarding',
+			href: '/pricing',
 			text: 'Requires Membership',
 		},
 		list: {

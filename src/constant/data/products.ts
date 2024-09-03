@@ -471,7 +471,7 @@ const productsData = {
           'The Longeviti Panel uncovers hidden risks like high glucose, imbalanced cholesterol, silent inflammation, and hormone imbalances, helping you prevent chronic diseases and take control of your future. A phlebotomist will draw your blood at home, testing 90+ biomarkers. Members receive this service free every 6 months.',
 				sort_description: '',
 				price:
-          'as low as $300. Included in Longeviti Membership at no additional cost twice per year.',
+          'as low as $300. Included in Longeviti Membership at no additional cost.',
 				category: { id: 2 },
 				subCategory: { id: [1] },
 				image:
@@ -902,7 +902,7 @@ const productsData = {
           'The Longeviti Panel uncovers hidden risks like high glucose, imbalanced cholesterol, silent inflammation, and hormone imbalances, helping you prevent chronic diseases and take control of your future. A phlebotomist will draw your blood at home, testing 90+ biomarkers. Members receive this service free every 6 months.',
 				sort_description: '',
 				price:
-          'as low as $300. Included in Longeviti Membership at no additional cost twice per year.',
+          'as low as $300. Included in Longeviti Membership at no additional cost.',
 				category: { id: 2 },
 				subCategory: { id: [1] },
 				image:

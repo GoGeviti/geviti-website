@@ -387,7 +387,7 @@ const StripeForm: FC<StripeFormProps> = ({
 							<label
 								htmlFor='checkout_state'
 							>
-								<p className='text-sm text-[#6A6E70] font-Poppins'>I confirm I live in the state mentioned above and recognize that Geviti’s Premium Tier membership is only available in { ' ' }
+								<p className='text-sm text-[#6A6E70] font-Poppins'>I confirm I live in the state mentioned above and recognize that Geviti’s Longeviti Membership is only available in { ' ' }
 									<button
 										onClick={ () => setIsOpenDialogState(prev => !prev) }
 										className='text-primary underline cursor-pointer'>these states.</button>
