@@ -130,7 +130,7 @@ const StripeForm: FC<StripeFormProps> = ({
 						})
 					}
 				})
-				setToken(isValidState.token);
+				setToken(sessionSecret.token);
 				setSessionSecret(sessionSecret.clientSecret);
 				setStripeResponseLoading(false);
 			} catch (error:any) {

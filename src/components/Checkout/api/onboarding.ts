@@ -229,7 +229,7 @@ export const createSession = async({
 }: {
 	header : {[key:string]:string},
 	body : CreateSessionParams
-}): Promise<{clientSecret:string}> => {
+}): Promise<{clientSecret:string, token:string}> => {
 	try {
 		const res = await fetch(
 			`${onboardingApiUrl}/v2/billing/checkout/`,
@@ -242,7 +242,7 @@ export const createSession = async({
 				body: JSON.stringify(body),
 			}
 		);
-		const data = await processResponse<{clientSecret:string}>(res);
+		const data = await processResponse<{clientSecret:string, token:string}>(res);
 		return data
 	} catch (error) {
 		return await processError(error);
