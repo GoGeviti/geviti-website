@@ -386,15 +386,14 @@ const StripeForm: FC<StripeFormProps> = ({
 								onChange={ (e: React.ChangeEvent<HTMLInputElement>) => setStatesChecked(e.target.checked) }
 								disabled={ formLoading }
 							/>
-							<label
-								htmlFor='checkout_state'
-							>
-								<p className='text-sm text-[#6A6E70] font-Poppins'>I confirm I live in the state mentioned above and recognize that Geviti’s Longeviti Membership is only available in { ' ' }
-									<button
-										onClick={ () => setIsOpenDialogState(prev => !prev) }
-										className='text-primary underline cursor-pointer'>these states.</button>
-								</p>
-							</label>
+							<p>
+								<span className='text-sm text-[#6A6E70] font-Poppins'>I confirm I live in the state mentioned above and recognize that Geviti’s Longeviti Membership is only available in { ' ' }
+								</span>
+								<button
+									type='button'
+									onClick={ () => setIsOpenDialogState(prev => !prev) }
+									className='text-primary underline cursor-pointer'>these states.</button>
+							</p>
 						</div>
 					</div>
 					{ sessionSecretS && (
