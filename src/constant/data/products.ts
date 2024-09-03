@@ -448,7 +448,7 @@ const productsData = {
 				id: 15,
 				name: 'Custom Supplements',
 				description:
-          'All the ingredients you need, none you don’t. Our LonGeviti Blends feature 100% personalized mix of supplements based on your test results & health coach recommendations. Welcome to the future of wellness.',
+          'All the ingredients you need, none you don’t. Our LonGeviti Blends feature a 100% personalized mix of supplements based on your test results and health coach recommendations, sold at wholesale cost for Longeviti Members. Welcome to the future of wellness.',
 				sort_description: '',
 				price: 'On average $150 per 30 days',
 				category: { id: 3 },
@@ -471,7 +471,7 @@ const productsData = {
           'The Longeviti Panel uncovers hidden risks like high glucose, imbalanced cholesterol, silent inflammation, and hormone imbalances, helping you prevent chronic diseases and take control of your future. A phlebotomist will draw your blood at home, testing 90+ biomarkers. Members receive this service free every 6 months.',
 				sort_description: '',
 				price:
-          'as low as $300. Included in Longeviti Membership at no additional cost.',
+          'as low as $300. Included in Longeviti Membership at no additional cost twice per year.',
 				category: { id: 2 },
 				subCategory: { id: [1] },
 				image:
@@ -879,7 +879,7 @@ const productsData = {
 				id: 15,
 				name: 'Custom Supplements',
 				description:
-          'All the ingredients you need, none you don’t. Our LonGeviti Blends feature 100% personalized mix of supplements based on your test results & health coach recommendations. Welcome to the future of wellness.',
+          'All the ingredients you need, none you don’t. Our LonGeviti Blends feature a 100% personalized mix of supplements based on your test results and health coach recommendations, sold at wholesale cost for Longeviti Members. Welcome to the future of wellness.',
 				sort_description: '',
 				price: 'On average $150 per 30 days',
 				category: { id: 3 },
@@ -902,7 +902,7 @@ const productsData = {
           'The Longeviti Panel uncovers hidden risks like high glucose, imbalanced cholesterol, silent inflammation, and hormone imbalances, helping you prevent chronic diseases and take control of your future. A phlebotomist will draw your blood at home, testing 90+ biomarkers. Members receive this service free every 6 months.',
 				sort_description: '',
 				price:
-          'as low as $300. Included in Longeviti Membership at no additional cost.',
+          'as low as $300. Included in Longeviti Membership at no additional cost twice per year.',
 				category: { id: 2 },
 				subCategory: { id: [1] },
 				image:

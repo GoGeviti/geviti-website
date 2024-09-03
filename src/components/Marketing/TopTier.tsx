@@ -7,30 +7,54 @@ import React, {
 	useMemo,
 	useState,
 } from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, motion, MotionProps } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
 
 import { marketingData } from '@/constant/data';
 import clsxm from '@/helpers/clsxm';
 import { screens } from '@/helpers/style';
-import { SlugOpt } from '@/interfaces/marketing';
+import { useCarousel } from '@/hooks/embla/use-carousel';
+import { Slug } from '@/interfaces/marketing';
 
-import { ArrowNarrowLeft, ArrowNarrowRight } from '../Icons';
 import ShiftSection from '../ShiftSection';
+
+import ArrowButtons from './ArrowButtons';
+import SectionHeading from './SectionHeading';
 
 const topTierData = marketingData.topTier;
 
 const CARD_PRODUCT_WIDTH = 338.826;
 const SPACING_BETWEEN_CARD = 14;
 
+type SlugPick =
+  | Slug.MEN_HORMONE_THERAPY
+  | Slug.MEN_WEIGHT_LOSS
+  | Slug.WOMEN_WEIGHT_LOSS
+  | Slug.MENOPAUSE;
 type TopTierProps = {
-  slug: string;
+  slug: SlugPick;
+};
+
+type ProductItem = {
+  id: number;
+  category: {
+    id: number;
+  };
+  title: string;
+  description: string;
+  image: string;
 };
 
 const TopTier: React.FC<TopTierProps> = ({ slug = 'men-weight-loss' }) => {
+	const carousel = useCarousel({
+		loop: false,
+		duration: 25,
+		align: 'start',
+	});
+	const { mainRef: emblaRef } = carousel;
+
 	const [wrapperItems, setWrapperItems] = useState<HTMLDivElement | null>(null);
-	const [activeCardIdx, setActiveCardIdx] = useState<number>(0);
 	const [containerOffsetLeft, setContainerOffsetLeft] = useState<number>(16);
 	const [selectedTabIdx, setSelectedTabIdx] = useState<number>(0);
 	const [prevSelectedTabIdx, setPrevSelectedTabIdx] =
@@ -64,7 +88,7 @@ const TopTier: React.FC<TopTierProps> = ({ slug = 'men-weight-loss' }) => {
 
 	useEffect(() => {
 		handleProductListScroll();
-		setActiveCardIdx(0);
+		// setActiveCardIdx(0);
 	}, [wrapperItems, isMounted]);
 
 	useEffect(() => {
@@ -89,42 +113,43 @@ const TopTier: React.FC<TopTierProps> = ({ slug = 'men-weight-loss' }) => {
 		};
 	}, []);
 
-	useEffect(() => {
-		const container: any = wrapperItems;
-		// Timer, used to detect whether horizontal scrolling is over
-		let timer: NodeJS.Timeout | null = null;
-		// Scrolling event start
-		if (container) {
-			container.addEventListener('scroll', function() {
-				if (timer) {
-					clearTimeout(timer);
-				}
-				// Renew timer
-				timer = setTimeout(function() {
-					// No scrolling event triggered. It is considered that
-					// scrolling has stopped do what you want to do, such
-					// as callback processing
-					[].slice
-						.call(container.children)
-						.forEach((ele: HTMLElement, index) => {
-							if (
-								Math.abs(
-									ele.getBoundingClientRect().left -
-                    container.getBoundingClientRect().left
-								) < 37.32 &&
-                isMobile
-							) {
-								// The 'ele' element at this moment is the element currently positioned.
-								setActiveCardIdx(index);
-							}
-						});
-				}, 100);
-			});
-		}
-	}, [wrapperItems, isMobile]);
+	// useEffect(() => {
+	//   // eslint-disable-next-line @typescript-eslint/no-explicit-any
+	//   const container: any = wrapperItems;
+	//   // Timer, used to detect whether horizontal scrolling is over
+	//   let timer: NodeJS.Timeout | null = null;
+	//   // Scrolling event start
+	//   if (container) {
+	//     container.addEventListener('scroll', function () {
+	//       if (timer) {
+	//         clearTimeout(timer);
+	//       }
+	//       // Renew timer
+	//       timer = setTimeout(function () {
+	//         // No scrolling event triggered. It is considered that
+	//         // scrolling has stopped do what you want to do, such
+	//         // as callback processing
+	//         [].slice
+	//           .call(container.children)
+	//           .forEach((ele: HTMLElement, index) => {
+	//             if (
+	//               Math.abs(
+	//                 ele.getBoundingClientRect().left -
+	//                   container.getBoundingClientRect().left
+	//               ) < 37.32 &&
+	//               isMobile
+	//             ) {
+	//               // The 'ele' element at this moment is the element currently positioned.
+	//               setActiveCardIdx(index);
+	//             }
+	//           });
+	//       }, 100);
+	//     });
+	//   }
+	// }, [wrapperItems, isMobile]);
 
-	const tabs = topTierData.tabs;
-	const productsData = topTierData.list[slug as SlugOpt] ?? [];
+	const tabs = topTierData.tabs[slug as SlugPick];
+	const productsData = topTierData.list[slug as SlugPick] ?? [];
 
 	const productsByCategory = useMemo(() => {
 		return productsData.filter(product => {
@@ -147,7 +172,7 @@ const TopTier: React.FC<TopTierProps> = ({ slug = 'men-weight-loss' }) => {
 	const renderTabs = () => {
 		return (
 			<div className='w-full flex flex-nowrap whitespace-nowrap gap-6 relative overflow-x-auto'>
-				{ topTierData.tabs.map((tab, tabIdx) => {
+				{ tabs.map((tab, tabIdx) => {
 					return (
 						<button
 							aria-label={ tab.title }
@@ -172,66 +197,172 @@ const TopTier: React.FC<TopTierProps> = ({ slug = 'men-weight-loss' }) => {
 	};
 
 	const renderArrowButton = () => {
-		const buttonClassName =
-      'rounded-full w-[34px] h-[34px] border-[0.7px] hover:bg-grey-primary-light flex items-center justify-center text-primary border-primary disabled:text-grey-primary disabled:border-grey-primary';
 		const defaultDisabled = disabledArrowScroll === 'all';
 
 		return (
-			<div className='flex items-center gap-3.5 max-sm:hidden'>
-				<button
-					className={ buttonClassName }
-					onClick={ () => handleArrowScroll('prev') }
-					disabled={ disabledArrowScroll === 'prev' || defaultDisabled }
+			<ArrowButtons
+				disabledPrev={ disabledArrowScroll === 'prev' || defaultDisabled }
+				disabledNext={ disabledArrowScroll === 'next' || defaultDisabled }
+				onClickPrev={ () => handleArrowScroll('prev') }
+				onClickNext={ () => handleArrowScroll('next') }
+			/>
+		);
+	};
+
+	const renderProductListMobile = () => {
+		return (
+			<div className='w-full relative'>
+				<div
+					className='overflow-hidden'
+					ref={ emblaRef }>
+					<div className='flex touch-pan-y touch-pinch-zoom scrolling-touch scroll-smooth [margin-left:var(--spacing-between-card-product)*-1] first:pl-0.5 last:mr-4'>
+						<ProductList
+							products={ productsByCategory }
+							activeCardIdx={ carousel.dots.selectedIndex }
+						/>
+					</div>
+				</div>
+			</div>
+		);
+	};
+
+	const renderProductListDesktop = () => {
+		return (
+			<div className='relative ml-4 lg:ml-10 xl:[margin-left:var(--container-offset-left)]'>
+				<div
+					id={ `TopTier-products-${selectedTabIdx}` }
+					ref={ wrapperItemsRef }
+					className={ clsxm(
+						'no-scrollbar overflow-y-hidden transition-all select-none transform flex flex-nowrap overflow-x-auto scrolling-touch scroll-smooth [margin-left:calc(var(--spacing-between-card-product)*-1)]',
+						'snap-x snap-mandatory py-0.5 last:pr-4 lg:last:pr-10 xl:last:[padding-right:var(--container-offset-left)]'
+					) }
+					onScroll={ handleProductListScroll }
 				>
-					<ArrowNarrowLeft className='flex-shrink-0' />
-				</button>
-				<button
-					className={ buttonClassName }
-					onClick={ () => handleArrowScroll('next') }
-					disabled={ disabledArrowScroll === 'next' || defaultDisabled }
-				>
-					<ArrowNarrowRight className='flex-shrink-0' />
-				</button>
+					<ProductList
+						products={ productsByCategory }
+						animationProps={ {
+							variants: {
+								default: { background: '#fcfcfc' },
+								active: { background: '#6EC2FF' },
+							},
+							initial: 'default',
+							whileHover: 'active',
+						} }
+					/>
+				</div>
 			</div>
 		);
 	};
 
 	const renderProductList = () => {
-		return (
-			<div
-				id={ `TopTier-products-${selectedTabIdx}` }
-				ref={ wrapperItemsRef }
-				style={
-          {
-          	'--card-product-width': `${CARD_PRODUCT_WIDTH}px`,
-          	'--spacing-between-card-product': `${SPACING_BETWEEN_CARD}px`,
-          } as CSSProperties
-				}
-				className={ clsxm(
-					'no-scrollbar overflow-y-hidden transition-all select-none transform flex flex-nowrap overflow-x-auto scrolling-touch scroll-smooth [column-gap:var(--spacing-between-card-product)]',
-					'snap-x snap-mandatory py-0.5 last:pr-4 lg:last:pr-10 xl:last:[padding-right:var(--container-offset-left)]'
-				) }
-				onScroll={ handleProductListScroll }
-			>
-				{ productsByCategory.map((item, itemIdx) => (
+		if (isMobile) return renderProductListMobile();
+		return renderProductListDesktop();
+	};
+
+	return (
+		<div
+			style={
+        {
+        	'--container-offset-left': `${containerOffsetLeft}px`,
+        	'--card-product-width': `${CARD_PRODUCT_WIDTH}px`,
+        	'--spacing-between-card-product': `${SPACING_BETWEEN_CARD}px`,
+        } as CSSProperties
+			}
+			className='w-full pb-[62px] lg:pb-[222px]'
+		>
+			<div className='w-full container-center'>
+				<div
+					id='container-center'
+					className='w-full'>
+					<SectionHeading
+						title={
+							slug === Slug.MENOPAUSE ? (
+								<span className='flex flex-col'>
+									{ tabs[selectedTabIdx].pageTitle }
+									<span className='text-grey-primary'>
+										{ topTierData.secondaryTitle[slug] }
+									</span>
+								</span>
+							) : (
+								<span className='flex flex-col'>
+									<ShiftSection
+										id={ `title-${tabs[selectedTabIdx].id}` }
+										prevElement={ tabs[prevSelectedTabIdx].pageTitle }
+										prevElementClassName='' // to remove default prevElementClassName
+										// wrapperClassName='min-h-[36px] lg:min-h-[54px]'
+										animationProps={ {
+											transition: {
+												duration: 0.75,
+												ease: 'easeIn',
+											},
+										} }
+									>
+										{ tabs[selectedTabIdx].pageTitle }
+									</ShiftSection>
+									<span className='text-grey-primary'>
+										{ topTierData.secondaryTitle[slug as SlugPick] }
+									</span>
+								</span>
+							)
+						}
+						description={ topTierData.description[slug as SlugPick] }
+						cta={ topTierData.cta }
+					/>
+				</div>
+			</div>
+			<div className='w-full relative mt-[42px] lg:mt-[124px]'>
+				<div className='w-full flex items-center lg:justify-between container-center mb-10'>
+					{ renderTabs() }
+					{ renderArrowButton() }
+				</div>
+
+				<AnimatePresence mode='wait'>
 					<motion.div
-						key={ item.id }
+						key={ `TopTier-marketing-${selectedTabIdx}` }
+						initial={ { y: 10, opacity: 0 } }
+						animate={ { y: 0, opacity: 1 } }
+						exit={ { y: -10, opacity: 0 } }
+						transition={ { duration: 0.375, ease: 'easeInOut' } }
+					>
+						{ renderProductList() }
+					</motion.div>
+				</AnimatePresence>
+			</div>
+		</div>
+	);
+};
+
+export default TopTier;
+
+type ProductListProps = {
+  products: ProductItem[];
+  animationProps?: MotionProps;
+  activeCardIdx?: number;
+};
+
+const ProductList: React.FC<ProductListProps> = ({
+	products,
+	animationProps,
+	activeCardIdx = -1,
+}) => {
+	return (
+		<>
+			{ products.map((item, itemIdx) => (
+				<div
+					key={ item.id }
+					className='min-w-0 [padding-left:var(--spacing-between-card-product)] flex flex-none sm:snap-start sm:overflow-hidden'
+					style={ {
+						transform: 'translate3d(0, 0, 0)',
+					} }
+				>
+					<motion.div
 						transition={ { duration: 0.2, ease: 'easeInOut' } }
-						variants={ {
-							default: { background: '#fcfcfc' },
-							active: { background: '#6EC2FF' },
-						} }
-						initial='default'
-						{ ...(isMobile
-							? {
-								animate: activeCardIdx === itemIdx ? 'active' : 'default',
-							}
-							: { whileHover: 'active' }) }
+						{ ...animationProps }
 						className={ clsxm(
 							activeCardIdx !== itemIdx
-								? 'max-lg:border-grey-100'
-								: 'max-lg:border-transparent',
-							'max-lg:border rounded-[14px] h-[468px] lg:h-[496px] w-[calc(100vw-53.32px)] sm:[width:var(--card-product-width)] flex flex-col flex-none snap-start overflow-hidden',
+								? 'max-sm:border-grey-100 max-sm:bg-grey-primary-light'
+								: 'max-sm:border-black/0 max-sm:bg-blue-primary',
+							'max-sm:border rounded-[14px] h-[468px] lg:h-[496px] w-[calc(100vw-53.32px)] sm:[width:var(--card-product-width)] flex flex-col flex-none',
 							'px-[13.6px] lg:px-[14.42px] pt-[13.6px] lg:pt-[14.42px] pb-[21.75px] lg:pb-[23.19px]'
 						) }
 						id={ `TopTier-product-item-${item.id}` }
@@ -263,81 +394,8 @@ const TopTier: React.FC<TopTierProps> = ({ slug = 'men-weight-loss' }) => {
 							</div>
 						</div>
 					</motion.div>
-				)) }
-			</div>
-		);
-	};
-
-	return (
-		<div
-			style={
-        {
-        	'--container-offset-left': `${containerOffsetLeft}px`,
-        } as CSSProperties
-			}
-			className='w-full pb-[62px] lg:pb-[222px]'
-		>
-			<div className='flex max-lg:flex-col gap-y-6 lg:grid lg:grid-cols-12 w-full container-center'>
-				<div
-					id='container-center'
-					className='lg:col-span-5'>
-					<div className='flex flex-col text-primary text-2xl lg:text-4xl !leading-normal lg:font-medium -tracking-0.04em'>
-						<ShiftSection
-							id={ `title-${tabs[selectedTabIdx].id}` }
-							prevElement={ tabs[prevSelectedTabIdx].pageTitle }
-							prevElementClassName='' // to remove default prevElementClassName
-							wrapperClassName='min-h-[36px] lg:min-h-[54px]'
-							animationProps={ {
-								transition: {
-									duration: 0.75,
-									ease: 'easeIn',
-								},
-							} }
-						>
-							{ tabs[selectedTabIdx].pageTitle }
-						</ShiftSection>
-						<span dangerouslySetInnerHTML={ { __html: topTierData.title } } />
-					</div>
 				</div>
-				<div className='lg:col-span-7 lg:max-w-[519px] lg:ml-auto'>
-					<div className='space-y-18px'>
-						<p className='text-grey-primary text-sm font-medium !leading-6'>
-							{ topTierData.description }
-						</p>
-
-						<div className='max-sm:w-full flex'>
-							<Link
-								href={ topTierData.cta.href }
-								className='btn btn-primary flex items-center justify-center max-sm:w-full py-3 px-5 sm:px-16 text-sm font-medium !leading-6'
-							>
-								{ topTierData.cta.text }
-							</Link>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div className='w-full relative mt-[42px] lg:mt-[124px]'>
-				<div className='w-full flex items-center lg:justify-between container-center mb-10'>
-					{ renderTabs() }
-					{ renderArrowButton() }
-				</div>
-
-				<AnimatePresence mode='wait'>
-					<motion.div
-						key={ `TopTier-marketing-${selectedTabIdx}` }
-						initial={ { y: 10, opacity: 0 } }
-						animate={ { y: 0, opacity: 1 } }
-						exit={ { y: -10, opacity: 0 } }
-						transition={ { duration: 0.375, ease: 'easeInOut' } }
-					>
-						<div className='relative ml-4 lg:ml-10 xl:[margin-left:var(--container-offset-left)]'>
-							{ renderProductList() }
-						</div>
-					</motion.div>
-				</AnimatePresence>
-			</div>
-		</div>
+			)) }
+		</>
 	);
 };
-
-export default TopTier;

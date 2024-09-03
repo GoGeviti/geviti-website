@@ -16,7 +16,7 @@ import PopupReview from '../PopupReview';
 const heroData = marketingData.hero;
 
 type HeroProps = {
-  slug?: string;
+  slug?: SlugOpt;
 };
 
 const Hero: React.FC<HeroProps> = ({ slug = Slug.MEN_WEIGHT_LOSS }) => {
@@ -37,8 +37,9 @@ const Hero: React.FC<HeroProps> = ({ slug = Slug.MEN_WEIGHT_LOSS }) => {
 						? 'md:hidden object-center'
 						: 'md:block hidden object-right'
 				) }
+				quality={ 100 }
 				fill
-				sizes='(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 100vw'
+				sizes='(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw'
 			/>
 		);
 	};
@@ -81,17 +82,64 @@ const Hero: React.FC<HeroProps> = ({ slug = Slug.MEN_WEIGHT_LOSS }) => {
 	};
 
 	const bgOverlayMobile = () => {
-		if (slug === Slug.MEN_HORMONE_THERAPY) {
-			return 'linear-gradient(0deg, #1B1310 30.38%, rgba(26, 22, 22, 0.495) 64.96%, rgba(24, 26, 28, 0) 94.74%)';
+		switch (slug) {
+			case Slug.MEN_HORMONE_THERAPY:
+				return 'linear-gradient(180deg, #1B1310 47.49%, rgba(24, 26, 28, 0) 94.74%)';
+			case Slug.MEN_WEIGHT_LOSS:
+				return 'linear-gradient(180deg, #14222B 47.49%, rgba(24, 26, 28, 0.00) 94.74%)';
+			case Slug.WOMEN_WEIGHT_LOSS:
+				return 'linear-gradient(180deg, #184860 47.49%, rgba(24, 72, 96, 0.00) 94.74%)';
+			case Slug.MENOPAUSE:
+			case Slug.BUSINESS_ORIENTED:
+			default:
+				return 'linear-gradient(180deg, #1E100D 47.49%, rgba(0, 0, 0, 0.495) 68.91%, rgba(0, 0, 0, 0) 91.87%)';
+		}
+	};
+
+	const bgOverlayDesktop = () => {
+		switch (slug) {
+			case Slug.MEN_WEIGHT_LOSS:
+				return 'linear-gradient(90deg, #14222B -29.15%, rgba(22, 30, 36, 0.50) 53.32%, rgba(24, 26, 28, 0.00) 100%)';
+			case Slug.BUSINESS_ORIENTED:
+				return 'linear-gradient(90deg, #120D0A -4.11%, rgba(18, 13, 10, 0.505) 73.91%, rgba(18, 13, 10, 0) 100%)';
+			case Slug.MEN_HORMONE_THERAPY:
+				return 'linear-gradient(90deg, #120D0A -4.11%, rgba(18, 13, 10, 0.505) 63.56%, rgba(18, 13, 10, 0) 100%)';
+			default:
+				return '';
+		}
+	};
+
+	const renderOverlayDesktop = () => {
+		const bg = bgOverlayDesktop();
+
+		if (bg) {
+			return (
+				<div
+					className='max-lg:hidden absolute inset-y-0 w-1/2'
+					style={ {
+						background: bg,
+					} }
+				/>
+			);
 		}
 
-		if (slug === Slug.MEN_WEIGHT_LOSS) {
-			return 'linear-gradient(0deg, #14222B 47.49%, rgba(24, 26, 28, 0.00) 94.74%)';
-		}
+		return null;
+	};
 
-		if (slug === Slug.WOMEN_WEIGHT_LOSS) {
-			return 'linear-gradient(0deg, #184860 47.49%, rgba(24, 72, 96, 0.00) 94.74%)';
-		}
+	const renderOverlayMobile = () => {
+		return (
+			<div
+				className={ clsxm(
+					'lg:hidden absolute bottom-0 inset-x-0 w-full h-[71%] -z-0 list-item bg-clip-text [background:var(--bg-overlay-hero-mobile)]'
+				) }
+				style={
+          {
+          	'--bg-overlay-hero-mobile': bgOverlayMobile(),
+          	transform: 'matrix(1, 0, 0, -1, 0, 0)',
+          } as React.CSSProperties
+				}
+			/>
+		);
 	};
 
 	const renderHero = () => {
@@ -105,7 +153,11 @@ const Hero: React.FC<HeroProps> = ({ slug = Slug.MEN_WEIGHT_LOSS }) => {
 						slug === Slug.MEN_WEIGHT_LOSS &&
               'max-lg:bottom-[21.253vh] max-lg:h-[calc(100vh-21.253vh+14px)]',
 						slug === Slug.MEN_HORMONE_THERAPY &&
-              'max-lg:bottom-[23.978vh] max-lg:h-[calc(100vh-23.978vh+14px)]'
+              'max-lg:bottom-[23.978vh] max-lg:h-[calc(100vh-23.978vh+14px)]',
+						slug === Slug.MENOPAUSE &&
+              'max-lg:bottom-[21.935vh] max-lg:h-[calc(100vh-21.935vh+14px)]',
+						slug === Slug.BUSINESS_ORIENTED &&
+              'max-lg:bottom-[21.935vh] max-lg:h-[calc(100vh-21.935vh+14px)]'
 					) }
 				>
 					{ renderImage('desktop') }
@@ -115,33 +167,21 @@ const Hero: React.FC<HeroProps> = ({ slug = Slug.MEN_WEIGHT_LOSS }) => {
 					{ renderPopup() }
 				</div>
 
-				{ slug !== Slug.WOMEN_WEIGHT_LOSS && (
-					<div
-						className='max-lg:hidden absolute inset-y-0 w-1/2'
-						style={ {
-							background:
-                slug === Slug.MEN_WEIGHT_LOSS
-                	? 'linear-gradient(90deg, #14222B -29.15%, rgba(22, 30, 36, 0.50) 53.32%, rgba(24, 26, 28, 0.00) 100%)'
-                	: 'linear-gradient(90deg, #120D0A -4.11%, rgba(18, 13, 10, 0.505) 63.56%, rgba(18, 13, 10, 0) 100%)',
-						} }
-					/>
-				) }
-				<div
-					className={ clsxm(
-						'lg:hidden absolute bottom-0 inset-x-0 w-full h-[71%] -z-0'
-					) }
-					style={ {
-						background: bgOverlayMobile(),
-					} }
-				/>
+				{ renderOverlayDesktop() }
+				{ renderOverlayMobile() }
 
 				<div className='h-full container-center relative'>
 					<div
 						className={ clsxm(
-							'lg:pb-[74px] h-full w-full flex flex-col justify-end',
-							slug === Slug.WOMEN_WEIGHT_LOSS && 'pb-6',
-							slug === Slug.MEN_WEIGHT_LOSS && 'pb-[42px]',
-							slug === Slug.MEN_HORMONE_THERAPY && 'pb-[87px]'
+							'h-full w-full flex flex-col justify-end lg:justify-start',
+							slug === Slug.WOMEN_WEIGHT_LOSS && 'max-lg:pb-6 lg:pt-[31.397vh]',
+							slug === Slug.MEN_WEIGHT_LOSS &&
+                'max-lg:pb-[5.722vh] lg:pt-[23.79vh]',
+							slug === Slug.MEN_HORMONE_THERAPY &&
+                'max-lg:pb-[11.853vh] lg:pt-[23.79vh]',
+							slug === Slug.MENOPAUSE && 'max-lg:pb-[5.722vh] lg:pt-[25.173vh]',
+							slug === Slug.BUSINESS_ORIENTED &&
+                'max-lg:pb-[5.722vh] lg:pt-[26.418vh]'
 						) }
 					>
 						<div className='text-left flex flex-col'>
@@ -177,7 +217,9 @@ const Hero: React.FC<HeroProps> = ({ slug = Slug.MEN_WEIGHT_LOSS }) => {
 										className='max-sm:w-full'
 									>
 										<span
-											dangerouslySetInnerHTML={ { __html: heroData.cta.text } }
+											dangerouslySetInnerHTML={ {
+												__html: heroData.cta.text[slug] ?? 'Get Started',
+											} }
 										/>
 									</ButtonCta>
 								</div>
@@ -195,6 +237,7 @@ const Hero: React.FC<HeroProps> = ({ slug = Slug.MEN_WEIGHT_LOSS }) => {
 				animationProps={ {
 					initial: 'visible',
 				} }
+				theme={ slug === Slug.MENOPAUSE ? 'light-grey' : 'dark' }
 			/>
 			{ renderHero() }
 			<div className='max-lg:px-4 max-lg:pb-[42px] max-lg:mt-[42px] max-w-2xl mx-auto lg:hidden'>

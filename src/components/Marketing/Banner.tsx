@@ -8,13 +8,18 @@ import Link from 'next/link';
 
 import { marketingData } from '@/constant/data';
 import clsxm from '@/helpers/clsxm';
-import { Slug, SlugOpt } from '@/interfaces/marketing';
+import { Slug } from '@/interfaces/marketing';
 
 const bannerData = marketingData.banner;
 
 type BannerProps = {
   slug: string;
 };
+
+type SlugOpt =
+  | Slug.MEN_HORMONE_THERAPY
+  | Slug.MEN_WEIGHT_LOSS
+  | Slug.WOMEN_WEIGHT_LOSS;
 
 const Banner: React.FC<BannerProps> = ({ slug = Slug.MEN_WEIGHT_LOSS }) => {
 	const [openPopup, setOpenPopup] = useState<boolean>(true);
@@ -69,7 +74,7 @@ const Banner: React.FC<BannerProps> = ({ slug = Slug.MEN_WEIGHT_LOSS }) => {
 
 	const renderBanner = () => {
 		return (
-			<div className='lg:px-3 overflow-hidden'>
+			<div className='lg:px-3 lg:pb-7 overflow-hidden'>
 				<div className='bg-primary w-full rounded-19px relative overflow-hidden'>
 					<div className='max-lg:hidden absolute right-6 bottom-5 z-30'>
 						{ renderPopup() }

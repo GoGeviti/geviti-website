@@ -3,7 +3,7 @@ import Image from 'next/image';
 import navbarData from '@/constant/data/navbar';
 
 type GevitiLogoProps = {
-	theme?: 'light' | 'dark';
+  theme?: 'light' | 'dark' | 'light-grey';
 };
 
 const GevitiLogo: React.FC<GevitiLogoProps> = ({ theme }) => {

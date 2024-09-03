@@ -2,13 +2,26 @@ import React from 'react';
 import Image from 'next/image';
 
 import { marketingData } from '@/constant/data';
+import clsxm from '@/helpers/clsxm';
+import { SlugOpt } from '@/interfaces/marketing';
 
 const stepsData = marketingData.steps;
 
-const Steps: React.FC = () => {
+type StepsProps = {
+  slug: SlugOpt;
+};
+
+const Steps: React.FC<StepsProps> = ({ slug }) => {
 	const renderImage = () => {
+		const bgTheme = stepsData.backgroundTheme[slug];
+
 		return (
-			<div className='group bg-gradient-blue w-full h-full max-lg:aspect-[450/743] max-h-[743px] relative overflow-hidden rounded-[16.6px]'>
+			<div
+				className={ clsxm(
+					'group w-full h-full max-lg:aspect-[450/743] max-h-[743px] relative overflow-hidden rounded-[16.6px]',
+					bgTheme === 'black' ? 'bg-primary' : 'bg-gradient-blue'
+				) }
+			>
 				<Image
 					src={ stepsData.image }
 					alt='Our Process'
@@ -29,7 +42,7 @@ const Steps: React.FC = () => {
 					</h2>
 				</div>
 				<div className='mt-[62px] flex flex-col gap-y-2.5 w-full'>
-					{ stepsData.list.map((item, itemIdx) => (
+					{ stepsData.list[slug].map((item, itemIdx) => (
 						<div
 							key={ item.title }
 							className='flex gap-6'>

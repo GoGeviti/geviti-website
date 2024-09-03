@@ -34,7 +34,7 @@ export const navbarVariants = {
 export const navbarDefaultTransition = {
 	delay: 2,
 	duration: 1,
-	ease: 'easeInOut'
+	ease: 'easeInOut',
 };
 
 export const MenuItem = ({
@@ -42,35 +42,34 @@ export const MenuItem = ({
 	active,
 	item,
 	children,
-	theme
+	theme,
 }: {
-	setActive: React.Dispatch<React.SetStateAction<string | null>>;
-	active: string | null;
-	item: string;
-	children?: React.ReactNode;
-	theme?: 'light' | 'dark';
+  setActive: React.Dispatch<React.SetStateAction<string | null>>;
+  active: string | null;
+  item: string;
+  children?: React.ReactNode;
+  theme?: 'light' | 'dark' | 'light-grey';
 }) => {
 	return (
 		<div
 			onMouseEnter={ () => setActive(item) }
-			className='relative font-Poppins'
-		>
+			className='relative font-Poppins'>
 			<motion.span
 				transition={ { duration: 0.3 } }
 				className={ clsxm(
 					'cursor-pointer text-sm font-medium !leading-[21px] inline-flex gap-2 items-center text-grey-50',
-					theme === 'light' && 'text-white'
+					theme === 'light' && 'text-white',
+					theme === 'light-grey' && 'text-grey-primary'
 				) }
 			>
 				{ item }
 				<span>
-					<ChevronDown className={
-						clsxm(
+					<ChevronDown
+						className={ clsxm(
 							'w-4 h-4 ease-out transform duration-200',
-							active === item && 'rotate-180',
-							theme === 'light' ? 'text-white' : 'text-grey-50'
-						)
-					} />
+							active === item && 'rotate-180'
+						) }
+					/>
 				</span>
 			</motion.span>
 			{ active !== null && (
@@ -106,12 +105,12 @@ export const MenuItem = ({
 };
 
 type NavbarProps = {
-	className?: string;
-	animationProps?: MotionProps;
-	theme?: 'light' | 'dark';
+  className?: string;
+  animationProps?: MotionProps;
+  theme?: 'light' | 'dark' | 'light-grey';
 };
 
-const ActionMenuList = ({ theme } : NavbarProps) => {
+const ActionMenuList = ({ theme }: NavbarProps) => {
 	return (
 		<>
 			<CustomLink
@@ -120,11 +119,12 @@ const ActionMenuList = ({ theme } : NavbarProps) => {
 				className={ clsxm(
 					'lg:w-[120px] rounded-md px-3 py-2 text-sm font-Poppins font-medium md:block hidden',
 					'text-grey-50',
-					theme === 'light' && 'text-white'
+					theme === 'light' && 'text-white',
+					theme === 'light-grey' && 'text-grey-primary'
 				) }
 				aria-label='Dashboard'
 			>
-				Dashboard
+        Dashboard
 			</CustomLink>
 			{ navbarData.actionsMenu?.map(menu => (
 				<CustomLink
@@ -134,12 +134,14 @@ const ActionMenuList = ({ theme } : NavbarProps) => {
 					key={ menu.name }
 					className='flex-shrink-0'
 				>
-					<div className={ clsxm(
-						'font-Poppins text-sm !leading-6 font-medium',
-						menu.type === 'button'
-							? 'text-primary px-6 py-[10.5px] bg-blue-primary rounded-full hover:scale-[1.03] active:scale-100 !duration-200 ease-[cubic-bezier(.15,1.14,.88,.98)]'
-							: 'text-grey-50'
-					) }>
+					<div
+						className={ clsxm(
+							'font-Poppins text-sm !leading-6 font-medium',
+							menu.type === 'button'
+								? 'text-primary px-6 py-[10.5px] bg-blue-primary rounded-full hover:scale-[1.03] active:scale-100 !duration-200 ease-[cubic-bezier(.15,1.14,.88,.98)]'
+								: 'text-grey-50'
+						) }
+					>
 						{ menu.name }
 					</div>
 				</CustomLink>
@@ -148,14 +150,23 @@ const ActionMenuList = ({ theme } : NavbarProps) => {
 	);
 };
 
-const Navbar: React.FC<NavbarProps> = ({ className, animationProps, theme }) => {
+const Navbar: React.FC<NavbarProps> = ({
+	className,
+	animationProps,
+	theme,
+}) => {
 	const [active, setActive] = useState<string | null>(null);
 	const [openSheet, setOpenSheet] = useState<boolean>(false);
 	const [overflow, setOverflow] = useState<string>('hidden');
 
 	return (
 		<header>
-			<div className={ clsxm('inset-x-0 top-0 z-50 absolute pt-4 lg:pt-[30px]', className) }>
+			<div
+				className={ clsxm(
+					'inset-x-0 top-0 z-50 absolute pt-4 lg:pt-[30px]',
+					className
+				) }
+			>
 				<div
 					className='container-center w-full'
 					style={ { overflow } }>
@@ -170,12 +181,11 @@ const Navbar: React.FC<NavbarProps> = ({ className, animationProps, theme }) => 
 					>
 						<nav
 							onMouseLeave={ () => setActive(null) }
-							className={
-								clsxm(
-									'relative overflow-visible visible h-[60px] lg:h-[69px] font-Poppins backdrop-blur-[25px] p-18px lg:pl-[42px] lg:py-3 lg:pr-3 rounded-[100px] bg-white/10 flex items-center space-x-5 xl:space-x-[50px] w-full justify-between',
-									theme === 'light' && 'bg-most-value'
-								)
-							}>
+							className={ clsxm(
+								'relative overflow-visible visible h-[60px] lg:h-[69px] font-Poppins backdrop-blur-[25px] p-18px lg:pl-[42px] lg:py-3 lg:pr-3 rounded-[100px] bg-white/10 flex items-center space-x-5 xl:space-x-[50px] w-full justify-between',
+								theme === 'light' && 'bg-most-value'
+							) }
+						>
 							<div className='flex items-center lg:space-x-5 xl:space-x-[50px]'>
 								<Link
 									href='/'
@@ -200,9 +210,12 @@ const Navbar: React.FC<NavbarProps> = ({ className, animationProps, theme }) => 
 																href={ menuChild.href }
 																className={ clsxm(
 																	'text-grey-50 text-sm !leading-[21px]',
-																	theme === 'light' && 'text-white'
+																	theme === 'light' && 'text-white',
+																	theme === 'light-grey' && 'text-grey-primary'
 																) }
-															>{ menuChild.name }</CustomLink>
+															>
+																{ menuChild.name }
+															</CustomLink>
 														)) }
 													</div>
 												</MenuItem>
@@ -218,8 +231,10 @@ const Navbar: React.FC<NavbarProps> = ({ className, animationProps, theme }) => 
 												onMouseEnter={ () => setActive(null) }
 												className={ clsxm(
 													'text-sm font-medium !leading-[21px] text-grey-50',
-													theme === 'light' && 'text-white'
-												) }>
+													theme === 'light' && 'text-white',
+													theme === 'light-grey' && 'text-grey-primary'
+												) }
+											>
 												{ menu.name }
 											</CustomLink>
 										);
@@ -243,7 +258,8 @@ const Navbar: React.FC<NavbarProps> = ({ className, animationProps, theme }) => 
 											'block h-6 w-6 text-grey-50',
 											theme === 'light' && 'text-white'
 										) }
-										aria-hidden='true' />
+										aria-hidden='true'
+									/>
 								</button>
 							</div>
 						</nav>

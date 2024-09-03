@@ -6,30 +6,18 @@ import { motion } from 'framer-motion';
 
 import clsxm from '@/helpers/clsxm';
 
-import Question from './Question';
+import AccordionList from './AccordionList';
+
+export type FaqItem = {
+  title: string;
+  content: string;
+};
 
 type FrequentlyAskedQuestionsProps = {
-  data: {
-    title: string;
-    content: string;
-  }[];
+  data: FaqItem[];
   className?: string;
   subtitle?: React.ReactNode;
   disabledAnimation?: boolean;
-};
-
-const primaryVariants = {
-	initial: {
-		y: 25,
-		opacity: 0,
-	},
-	animate: {
-		y: 0,
-		opacity: 1,
-		transition: {
-			ease: 'easeInOut',
-		},
-	},
 };
 
 const FrequentlyAskedQuestions: React.FC<FrequentlyAskedQuestionsProps> = ({
@@ -78,19 +66,7 @@ const FrequentlyAskedQuestions: React.FC<FrequentlyAskedQuestionsProps> = ({
 							</div>
 						</div>
 						<div className='lg:col-span-6 w-full -mt-6'>
-							{ data.map((item, itemIdx) => {
-								return (
-									<motion.div
-										key={ `faq-${itemIdx}` }
-										variants={ primaryVariants }>
-										<Question title={ item.title }>
-											<span
-												dangerouslySetInnerHTML={ { __html: item.content } }
-											/>
-										</Question>
-									</motion.div>
-								);
-							}) }
+							<AccordionList data={ data } />
 						</div>
 					</div>
 				</motion.div>

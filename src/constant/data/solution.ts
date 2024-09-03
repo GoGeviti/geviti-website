@@ -279,7 +279,7 @@ const solutionData = {
 			{
 				id: 'step-1',
 				title:
-          'Become a member by <br class="max-lg:hidden"/>purchasing a full panel <br class="max-lg:hidden"/>diagnostic package',
+          'Sign up for our <br class="max-lg:hidden"/>Longeviti Membership',
 				icon: MemberIcon,
 			},
 			{

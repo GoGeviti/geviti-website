@@ -10,15 +10,17 @@ import { useWindowDimensions } from '@/hooks';
 import { AccordionMinus, AccordionPlus } from '../Icons';
 
 type QuestionProps = {
-	title: string;
-	children: React.ReactNode;
-	defaultOpen?: boolean;
+  title: string;
+  children: React.ReactNode;
+  defaultOpen?: boolean;
+  isLastIdx?: boolean;
 };
 
 const Question: React.FC<QuestionProps> = ({
 	title,
 	children,
-	defaultOpen = false
+	defaultOpen = false,
+	isLastIdx,
 }) => {
 	const [open, setOpen] = useState<boolean>(defaultOpen);
 	const windowDimensions = useWindowDimensions();
@@ -27,7 +29,10 @@ const Question: React.FC<QuestionProps> = ({
 	return (
 		<motion.div
 			animate={ open ? 'open' : 'closed' }
-			className='border-b border-[#EAECF0] font-Poppins mt-[21px] lg:mt-6'
+			className={ clsxm(
+				'border-[#EAECF0] font-Poppins mt-[21px] lg:mt-6',
+				!isLastIdx && 'border-b'
+			) }
 		>
 			<button
 				onClick={ () => setOpen(pv => !pv) }
@@ -45,26 +50,30 @@ const Question: React.FC<QuestionProps> = ({
 							rotate: '-90deg',
 						},
 					} }
-					transition={ { ease: 'easeInOut', duration: .3 } }
+					transition={ { ease: 'easeInOut', duration: 0.3 } }
 					className='w-[21px] lg:w-6'
 				>
-					<AccordionMinus className={ clsxm(
-						'w-[21px] h-[23px] lg:w-6 lg:h-[26px]',
-						open ? 'block' : 'hidden'
-					) } />
-					<AccordionPlus className={ clsxm(
-						'w-[21px] h-[23px] lg:w-6 lg:h-[26px]',
-						open ? 'hidden' : 'block'
-					) } />
+					<AccordionMinus
+						className={ clsxm(
+							'w-[21px] h-[23px] lg:w-6 lg:h-[26px]',
+							open ? 'block' : 'hidden'
+						) }
+					/>
+					<AccordionPlus
+						className={ clsxm(
+							'w-[21px] h-[23px] lg:w-6 lg:h-[26px]',
+							open ? 'hidden' : 'block'
+						) }
+					/>
 				</motion.span>
 			</button>
 			<motion.div
 				initial={ false }
 				animate={ {
 					height: open ? 'fit-content' : '0px',
-					...isMobile
+					...(isMobile
 						? { marginBottom: open ? '14px' : '8px' }
-						: { marginBottom: open ? '8px' : '24px' }
+						: { marginBottom: open ? '8px' : '24px' }),
 				} }
 				className='overflow-hidden pr-[42px] lg:pr-12'
 			>
