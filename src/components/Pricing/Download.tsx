@@ -47,7 +47,7 @@ const PulseSyncFadeFast = ({
 					/>
 				);
 			}) }
-			<div className='w-[183px] h-[183px] sm:w-[333px] sm:h-[333px] absolute z-10 cursor-pointer bg-primary flex items-center text-white text-center -tracking-0.04em text-xs sm:text-[22px] flex-col rounded-full justify-center left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2'>
+			<div className='w-[183px] h-[183px] sm:w-[333px] sm:h-[333px] absolute z-10 cursor-pointer bg-primary flex items-center text-white text-center -tracking-0.04em text-xs sm:text-[22px] !leading-[18px] sm:!leading-[33px] flex-col rounded-full justify-center left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2'>
 				<svg
 					width='40'
 					height='39'
