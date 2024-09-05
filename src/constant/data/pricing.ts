@@ -5,7 +5,7 @@ const pricingData = {
 		preTitle: 'Care based off of biomarkers',
 		title: 'Build a healthier future, today.',
 		description:
-      'Every user begins with an at-home full panel to establish baselines. The cost of bloodwork is included in your membership. Labs are conducted at no extra cost every 6 months.',
+      'Every user starts with an at-home full panel to establish baselines. For paid memberships, the bloodwork cost is a one time fee. Labs are done at no added cost every 6 months. ',
 		features: [
 			'Start with at-home bloodwork panel',
 			'Get free at-home labs every 6 months',

@@ -279,7 +279,7 @@ const solutionData = {
 			{
 				id: 'step-1',
 				title:
-          'Sign up for our <br class="max-lg:hidden"/>Longeviti Membership',
+          'Sign up for our <br class="max-lg:hidden"/>Longeviti <br class="max-lg:hidden"/>Membership',
 				icon: MemberIcon,
 			},
 			{

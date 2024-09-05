@@ -15,7 +15,7 @@ const PricingBiomarkers: React.FC = () => {
 
 	return (
 		<div className='max-lg:container-center w-full'>
-			<div className='rounded-b-19px bg-[#F5FBFF] lg:max-w-[1061px] mx-auto w-full'>
+			<div className='lg:rounded-b-19px lg:bg-[#F5FBFF] lg:max-w-[1061px] mx-auto w-full'>
 				<PricingComparison
 					index={ 0 }
 					isOpen={ openIdx === 0 }

@@ -25,7 +25,7 @@ const PricingPage = async() => {
 				<BiomarkersSection
 					wrapperClassName='bg-white pt-[42px]' />
 			</div> */ }
-			<div className='max-lg:overflow-hidden max-lg:pb-10'>
+			<div className='max-lg:overflow-hidden max-lg:pb-10 lg:pt-[137px]'>
 				<Download />
 			</div>
 			<FrequentlyAskedQuestions

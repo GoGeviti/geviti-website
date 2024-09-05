@@ -83,7 +83,13 @@ const stepsListDefault = [
 
 const topTierTabsDefault = [
 	{ id: 1, title: 'Prescriptions', pageTitle: 'Top tier prescriptions' },
-	{ id: 2, title: 'Supplements', pageTitle: 'Custom supplements' },
+	{
+		id: 2,
+		title: 'Supplements',
+		pageTitle: 'Custom supplements',
+		description:
+      'A personalized blend of the most-bioavailable ingredients; all tailored specifically to you. Everything you need, nothing you don\'t.',
+	},
 ];
 
 const marketingData = {
@@ -223,7 +229,7 @@ const marketingData = {
 					title: 'Metformin (Cream)',
 					description:
             'Helps improve insulin sensitivity & reduce appetite. From $65/mo.',
-					image: '/images/marketing/products/metformin-women.webp',
+					image: '/images/marketing/products/metformin-cream.webp',
 				},
 				{
 					id: 4,
@@ -271,7 +277,7 @@ const marketingData = {
 					title: 'Metformin (Cream)',
 					description:
             'Helps improve insulin sensitivity & reduce appetite. From $65/mo.',
-					image: '/images/marketing/products/metformin-men.webp',
+					image: '/images/marketing/products/metformin-cream.webp',
 				},
 				{
 					id: 5,
@@ -328,24 +334,25 @@ const marketingData = {
 				{
 					id: 1,
 					category: { id: 1 },
-					title: 'Weight Loss',
-					description: 'Same active ingredient as Ozempic for only $90/mo.',
+					title: 'Custom Capsules',
+					description:
+            'Includes progesterone, estriol, and estradiol together or separately. $1/cap.',
 					image: '/images/marketing/products/mockup.webp',
 				},
 				{
 					id: 2,
 					category: { id: 1 },
-					title: 'Peptides',
+					title: 'Custom Troche',
 					description:
-            'Lorem ipsum dolor sit amet consectetur as low as $50/mo',
+            'Includes progesterone, estriol, and estradiol together or separately. $1/Troche.',
 					image: '/images/marketing/products/mockup.webp',
 				},
 				{
 					id: 3,
 					category: { id: 1 },
-					title: 'Supplements',
+					title: 'Custom Cream',
 					description:
-            'Lorem ipsum dolor sit amet consectetur as low as $50/mo',
+            'Includes progesterone, estriol, and estradiol together or separately. $1/gm.',
 					image: '/images/marketing/products/mockup.webp',
 				},
 				{
@@ -353,8 +360,8 @@ const marketingData = {
 					category: { id: 1 },
 					title: 'Weight Loss',
 					description:
-            'Lorem ipsum dolor sit amet consectetur as low as $50/mo',
-					image: '/images/marketing/products/mockup.webp',
+            'Safe and effective treatment options like GLP-1s and other medications. $90/mo',
+					image: '/images/marketing/products/semaglutide.webp',
 				},
 				{
 					id: 5,
@@ -433,19 +440,25 @@ const marketingData = {
 		image: '/images/marketing/faq.webp',
 		data: [
 			{
-				title: 'What states is Geviti in?',
+				title: 'In which states is Geviti available?',
 				content:
-          'As of now, we are only in Arizona. We plan on being in each state by the end of 2024. Be sure to opt-in to our progress so we can notify you if we don’t currently support your state.',
+          'Geviti currently offers services in twelve states: Arizona (AZ), California (CA), Colorado (CO), Utah (UT), Washington (WA), Texas (TX), Florida (FL), Georgia (GA), Kansas (KS), Oregon (OR), New Mexico (NM), and Missouri (MO). We are actively expanding to include more states across the country.',
 			},
 			{
-				title: 'What testing is included in the ‘Longevity Panel’?',
+				title: 'How do I get started?',
 				content:
-          'As part of your membership, you receive the "Longevity Panel" testing twice each year. This foundational evaluation provides key insights into your health metrics. For a more detailed analysis, you have the option to upgrade to our comprehensive or ultimate diagnostic tiers at any time.',
+          'Click any of the \'Get Started\' buttons to become a Geviti member by selecting your membership frequency. You\'ll be prompted to schedule an at-home bloodwork exam, and from there, we\'ll communicate with you through our mobile application.',
+			},
+			{
+				title:
+          'What free at-home bloodwork option is included for me twice a year with my membership?',
+				content:
+          'As part of your membership, you receive the \'Longeviti Panel\' testing twice a year. This extensive evaluation offers valuable insights into over 90 biomarkers. If you were to pay out of pocket at Labcorp or Quest, this test could cost over $2,000.',
 			},
 			{
 				title: 'What is the membership cancellation and refund policy?',
 				content:
-          'You can easily cancel your Geviti membership at any time through your personal dashboard. Given the personalized nature of our services, refunds are not automatically granted but are considered on a case-by-case basis. If you have specific circumstances or need further assistance, please contact our support team for detailed guidance.',
+          'You can cancel your Geviti membership at any time through your personal dashboard. Please note, if you’re on a monthly plan and cancel within the first 60 days, a $150 cancellation fee will apply. This does not apply to quarterly. Due to the personalized nature of our services, refunds are not automatically provided but may be considered on a case-by-case basis. If you have specific circumstances or require additional assistance, please contact our support team for further guidance.',
 			},
 			{
 				title:
@@ -457,12 +470,12 @@ const marketingData = {
 				title:
           'What if I have recently done labs? Do I still need to purchase a diagnostic package?',
 				content:
-          'We require all new members to purchase a diagnostic package as part of our initial assessment process. This ensures that we have the most recent and relevant data to provide personalized care. However, if you have recent lab results, please reach out to our support team. We may be able to adjust your initial requirements based on the specifics of your situation.',
+          'Every membership includes an at-home blood draw as part of our initial assessment process, ensuring we have the most recent and relevant data to provide personalized care. If you have recent lab results and prefer not to undergo another panel, please reach out to our support team. We may be able to adjust your initial requirements based on your specific situation.',
 			},
 			{
 				title: 'Does a blood panel guarantee access to specific treatments?',
 				content:
-          'Purchasing a diagnostic package does not guarantee that you will receive any specific prescription treatment. The determination of appropriate treatments is solely at the discretion of your healthcare provider, based on a comprehensive evaluation of your test results and overall health profile.',
+          'Becoming a Geviti member does not guarantee that you will receive any specific prescription treatment. The decision on appropriate treatments is solely at the discretion of your healthcare provider, based on a thorough evaluation of your test results and overall health profile.',
 			},
 		],
 	},

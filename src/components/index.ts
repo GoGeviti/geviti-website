@@ -16,6 +16,7 @@ import * as MembershipComponent from './MemberShip';
 import Navbar from './Navbar';
 import * as OnboardingComponent from './Onboarding';
 import * as OrderComponent from './Order';
+import * as PricingComponent from './Pricing';
 import * as ProductsComponent from './Products';
 import RunningLogo from './RunningLogo';
 import * as SolutionsComponent from './Solutions';
@@ -39,6 +40,7 @@ export {
 	Navbar,
 	OnboardingComponent,
 	OrderComponent,
+	PricingComponent,
 	ProductsComponent,
 	RunningLogo,
 	SolutionsComponent,

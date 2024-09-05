@@ -9,7 +9,8 @@ import InfiniteMovingFeatures from '../InfiniteMovingFeatures';
 const membershipData = landingData.membership;
 
 const Membership: React.FC = () => {
-	const renderTitleDesc = (item: any) => { // eslint-disable-line @typescript-eslint/no-explicit-any
+	const renderTitleDesc = (item: any) => {
+		// eslint-disable-line @typescript-eslint/no-explicit-any
 		return (
 			<div className='px-2 flex flex-col items-center text-center'>
 				<p className='text-pretitle text-grey-primary'>{ item.preTitle }</p>
@@ -25,7 +26,7 @@ const Membership: React.FC = () => {
 		);
 	};
 
-	const renderBtnCtaMobile = (props: { href: string; text: string; }) => {
+	const renderBtnCtaMobile = (props: { href: string; text: string }) => {
 		return (
 			<div className='px-4 flex justify-center max-sm:w-full lg:hidden'>
 				<ButtonCta
@@ -40,6 +41,20 @@ const Membership: React.FC = () => {
 	return (
 		<div className='lg:px-3 py-6 lg:pt-[13px] lg:pb-[25px] font-Poppins'>
 			<div className='grid grid-cols-1 lg:grid-cols-2 gap-6'>
+				<div className='bg-white rounded-19px py-[46px] lg:pb-0'>
+					{ renderTitleDesc(membershipData.priceSection) }
+					<div className='max-lg:hidden mt-[42px] px-2 flex justify-center'>
+						<ButtonCta
+							href={ membershipData.priceSection.btnCta.href }
+							text={ membershipData.priceSection.btnCta.text }
+							aria-label={ membershipData.priceSection.btnCta.text }
+						/>
+					</div>
+					<div className='overflow-x-hidden relative pt-5 lg:pt-[117px] pb-[45px] lg:pb-[63px]'>
+						<InfiniteMovingFeatures list={ membershipData.priceSection.list } />
+					</div>
+					{ renderBtnCtaMobile(membershipData.priceSection.btnCtaMobile) }
+				</div>
 				<div className='bg-white rounded-19px py-[46px] lg:pb-0'>
 					{ renderTitleDesc(membershipData.locationSection) }
 					<div className='max-lg:hidden mt-[22px] px-2 flex justify-center'>
@@ -59,22 +74,6 @@ const Membership: React.FC = () => {
 						/>
 					</div>
 					{ renderBtnCtaMobile(membershipData.locationSection.btnCtaMobile) }
-				</div>
-				<div className='bg-white rounded-19px py-[46px] lg:pb-0'>
-					{ renderTitleDesc(membershipData.priceSection) }
-					<div className='max-lg:hidden mt-[42px] px-2 flex justify-center'>
-						<ButtonCta
-							href={ membershipData.priceSection.btnCta.href }
-							text={ membershipData.priceSection.btnCta.text }
-							aria-label={ membershipData.priceSection.btnCta.text }
-						/>
-					</div>
-					<div className='overflow-x-hidden relative pt-60px lg:pt-[117px] pb-[45px] lg:pb-[63px]'>
-						<InfiniteMovingFeatures
-							list={ membershipData.priceSection.list }
-						/>
-					</div>
-					{ renderBtnCtaMobile(membershipData.priceSection.btnCtaMobile) }
 				</div>
 			</div>
 		</div>

@@ -43,7 +43,7 @@ const PopupReview: React.FC<PopupReviewProps> = ({
 				<div
 					style={ style }
 					className={ clsxm(
-						'bg-white max-lg:border max-lg:border-grey-50 rounded-[20px] p-3 relative',
+						'bg-white max-lg:border max-lg:border-grey-50 rounded-[20px] p-3 relative text-primary',
 						wrapperClassName
 					) }
 				>
@@ -85,7 +85,7 @@ const PopupReview: React.FC<PopupReviewProps> = ({
 							>
 								<ShieldTick
 									className={ clsxm(
-										'w-3.5 h-3.5 flex-shrink-0 text-primary',
+										'w-3.5 h-3.5 flex-shrink-0',
 										sizeLargerOnDesktop && 'lg:w-5 lg:h-5'
 									) }
 								/>

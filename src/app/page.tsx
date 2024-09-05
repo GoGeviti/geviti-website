@@ -1,37 +1,54 @@
 import React from 'react';
 import { NextPage } from 'next';
 
-import { Footer, LandingComponent, RunningLogo } from '@/components';
+import {
+	Footer,
+	LandingComponent,
+	PricingComponent,
+	RunningLogo,
+} from '@/components';
+import { getAllProducts } from '@/components/Checkout/api/onboarding';
 import IntroScreen from '@/components/IntroScreen';
 import { getCookie } from '@/services/cookies';
 
 const HomePage: NextPage = async() => {
-	const isCloseBanner = await getCookie('close_hero_banner');
+	const products = await getAllProducts();
 	const showIntro = await getCookie('show_intro');
 
 	return (
-		<React.Fragment>
-			<IntroScreen
-				type='video'
-				showIntro={ showIntro }>
-				<div className='flex min-h-screen flex-col w-full bg-grey-background font-Poppins'>
-					<LandingComponent.Hero
-						showIntro={ showIntro }
-						showBanner={ !isCloseBanner } />
-					<LandingComponent.Steps />
-					<RunningLogo />
-					<LandingComponent.TextReveal />
-					<LandingComponent.Membership />
-					<LandingComponent.FeaturesCarousel />
-					<LandingComponent.Benefits />
-					<LandingComponent.HomeKits />
-					<LandingComponent.Innovative />
-					<LandingComponent.Products />
-					<LandingComponent.Banner />
-					<Footer landingPage />
+		<IntroScreen
+			type='video'
+			showIntro={ showIntro }>
+			<div className='flex min-h-screen flex-col w-full bg-grey-background font-Poppins'>
+				<LandingComponent.Hero
+					showIntro={ showIntro }
+					showBanner={ false } />
+				<LandingComponent.Steps />
+				<RunningLogo />
+				<LandingComponent.TextReveal />
+				<LandingComponent.Membership />
+				<LandingComponent.FeaturesCarousel />
+				<LandingComponent.Benefits />
+				<LandingComponent.HomeKits />
+				<LandingComponent.Innovative />
+				<div className='lg:px-3 lg:py-6 overflow-hidden'>
+					<div className='lg:bg-white lg:rounded-[19px]'>
+						<PricingComponent.Hero
+							products={ products }
+							navbar={ false }
+							className='!pt-[52px] lg:!pt-[164px]'
+						/>
+						<PricingComponent.PricingBiomarkers />
+						<div className='max-lg:overflow-hidden pb-[42px] lg:pb-[64px] lg:pt-[118px]'>
+							<PricingComponent.Download />
+						</div>
+					</div>
 				</div>
-			</IntroScreen>
-		</React.Fragment>
+				<LandingComponent.Products />
+				<LandingComponent.Banner />
+				<Footer landingPage />
+			</div>
+		</IntroScreen>
 	);
 };
 

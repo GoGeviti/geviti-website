@@ -9,7 +9,7 @@ import clsxm from '@/helpers/clsxm';
 import ButtonCta from '../ButtonCta';
 import { ProductsResponse } from '../Checkout/api/types';
 import QuestionTooltip from '../Home/QuestionTooltip';
-import { CheckCircleIcon, GreenCheck, ShieldTick } from '../Icons';
+import { GreenCheck, ShieldTick } from '../Icons';
 import ButtonSwitchMemberFreq from '../MemberShip/ButtonSwitchMemberFreq';
 import Navbar from '../Navbar/Landing';
 import PopupReview from '../PopupReview';
@@ -88,7 +88,13 @@ const formatPrice = (price?: string): string => {
 	return `$${price}`;
 };
 
-const Hero: React.FC<{ products?: ProductsResponse[] }> = ({ products }) => {
+type HeroProps = {
+  products?: ProductsResponse[];
+  navbar?: boolean;
+  className?: string;
+};
+
+const Hero: React.FC<HeroProps> = ({ products, navbar = true, className }) => {
 	const ref = useRef<HTMLDivElement>(null);
 	// const isInView = useInView(ref, { once: true });
 
@@ -99,6 +105,7 @@ const Hero: React.FC<{ products?: ProductsResponse[] }> = ({ products }) => {
 			<ButtonSwitchMemberFreq
 				options={ pricingData.hero.pricingOptions }
 				onChange={ (currentIdx: number) => setActiveTabIdx(currentIdx) }
+				showHightlightTextOnMobile
 			/>
 		);
 	};
@@ -123,7 +130,7 @@ const Hero: React.FC<{ products?: ProductsResponse[] }> = ({ products }) => {
 					animate: 'animate',
 					exit: 'exit',
 				} }
-				className='max-sm:w-full'
+				className='max-sm:w-full max-sm:max-w-[277px]'
 				style={
           {
           	'--shadow-popup-pricing':
@@ -139,28 +146,33 @@ const Hero: React.FC<{ products?: ProductsResponse[] }> = ({ products }) => {
 		<div
 			id='packages'
 			className='font-Poppins relative z-[3]'>
-			<Navbar theme='light' />
-			<div className='container-center flex flex-col items-center'>
-				<div className='text-center pt-[129px] lg:pt-[177px] pb-[42px] lg:pb-6'>
-					<div className='pb-[42px] lg:pb-3 flex justify-center w-full'>
+			{ navbar && <Navbar theme='light' /> }
+			<div
+				className={ clsxm(
+					'container-center flex flex-col items-center pt-[129px] lg:pt-[177px]',
+					className
+				) }
+			>
+				<div className='text-center pb-[42px] lg:pb-6'>
+					<div className='pb-6 lg:pb-3 flex justify-center w-full'>
 						{ renderPopup() }
 					</div>
-					<div className='flex justify-center w-full mb-3.5 lg:hidden'>
-						<div className='flex items-center gap-1'>
-							<ShieldTick className='text-grey-primary flex-shrink-0 w-3.5 h-3.5' />
-							<span className='text-[13.44px] !leading-[140%] text-grey-primary font-semibold'>
-                HSA/FSA{ ' ' }
-								<span className='text-[11.529px] font-normal'>ACCEPTED</span>
-							</span>
-						</div>
-					</div>
-					<h2 className='mb-3 max-sm:max-w-[323px] mx-auto text-2xl md:text-3xl lg:text-[64px] !leading-normal text-primary -tracking-0.04em'>
+					{ /* <div className='flex justify-center w-full mb-3.5 lg:hidden'>
+            <div className='flex items-center gap-1'>
+              <ShieldTick className='text-grey-primary flex-shrink-0 w-3.5 h-3.5' />
+              <span className='text-[13.44px] !leading-[140%] text-grey-primary font-semibold'>
+                HSA/FSA{' '}
+                <span className='text-[11.529px] font-normal'>ACCEPTED</span>
+              </span>
+            </div>
+          </div> */ }
+					<h2 className='mb-3.5 lg:mb-3 max-sm:max-w-[323px] mx-auto text-2xl md:text-3xl lg:text-[64px] !leading-normal text-primary -tracking-0.04em'>
 						{ pricingData.hero.title }
 					</h2>
-					<p className='max-lg:hidden text-[3.077vw] xs2:text-xs lg:text-sm !leading-5 text-grey-400 max-w-[331px] sm:max-w-[627px] mx-auto'>
+					<p className='text-xs lg:text-sm !leading-5 text-grey-400 max-w-[283px] sm:max-w-[627px] mx-auto'>
 						{ pricingData.hero.description }
 					</p>
-					<div className='lg:hidden max-w-full mx-auto space-y-3 text-left'>
+					{ /* <div className='lg:hidden max-w-full mx-auto space-y-3 text-left'>
 						{ pricingData.hero.features.map((item, itemIdx) => (
 							<div
 								key={ `feature-${itemIdx}` }
@@ -171,7 +183,7 @@ const Hero: React.FC<{ products?: ProductsResponse[] }> = ({ products }) => {
 								</p>
 							</div>
 						)) }
-					</div>
+					</div> */ }
 				</div>
 
 				<div className='w-fit flex flex-col items-center justify-center gap-[14px]'>
@@ -183,9 +195,9 @@ const Hero: React.FC<{ products?: ProductsResponse[] }> = ({ products }) => {
 
 				<div
 					ref={ ref }
-					className='lg:max-w-[1061px] mx-auto sm:max-w-[392px] lg:grid-cols-9 flex max-lg:flex-col lg:grid gap-[42px] lg:gap-3.5 items-end w-full pt-[64px]'
+					className='lg:max-w-[1061px] mx-auto sm:max-w-[392px] lg:grid-cols-9 flex max-lg:flex-col lg:grid gap-16 lg:gap-3.5 items-end w-full pt-[58px] lg:pt-[78px]'
 				>
-					<div className='w-full relative h-full max-lg:order-2 lg:col-span-3'>
+					<div className='w-full relative h-full lg:col-span-3'>
 						<div className='rounded-2xl pt-7 w-full h-full max-lg:min-h-[676px] relative overflow-hidden bg-[linear-gradient(0deg,#A7DAFF_0%,#75C5FF_100%)]'>
 							<div className='px-5'>
 								<div className='flex items-center gap-5px mb-3.5'>
@@ -202,7 +214,7 @@ const Hero: React.FC<{ products?: ProductsResponse[] }> = ({ products }) => {
 									<p className='text-xs !leading-6 font-semibold tracking-0.11em text-grey-800 uppercase'>
 										{ pricingData.hero.banner.preTitle }
 									</p>
-									<h3 className='text-[5.333vw] xs:text-2xl !leading-normal text-black'>
+									<h3 className='text-2xl !leading-normal text-black -tracking-0.04em'>
 										<span
 											dangerouslySetInnerHTML={ {
 												__html: pricingData.hero.banner.title,
@@ -353,11 +365,9 @@ const Hero: React.FC<{ products?: ProductsResponse[] }> = ({ products }) => {
 									</span>
 								) }
 								{ item.mostValue && (
-									<>
-										<span className='absolute top-0 max-lg:-translate-x-1/2 max-lg:left-1/2 lg:right-6 -translate-y-1/2 text-sm !leading-normal text-primary font-medium bg-blue-primary py-2 px-6 rounded-full'>
-                      Free Bloodwork
-										</span>
-									</>
+									<span className='absolute top-0 right-6 -translate-y-1/2 text-sm !leading-normal text-primary font-medium bg-blue-primary py-2 px-6 rounded-full'>
+                    Free Bloodwork
+									</span>
 								) }
 							</div>
 

@@ -112,6 +112,8 @@ const config: Config = {
         '0.11em': '0.11em',
       },
       backgroundImage: {
+        'backdrop-hero-landing-left':
+          'linear-gradient(90deg, rgba(8, 16, 19, 0.6) 0%, rgba(8, 16, 19, 0.568221) 64.55%, rgba(8, 16, 19, 0) 96.41%)',
         'backdrop-hero-landing-bottom':
           'linear-gradient(0deg, #181a1c 20.46%, rgba(24, 26, 28, 0) 100%)',
         'backdrop-hero-membership-bottom':
@@ -128,12 +130,8 @@ const config: Config = {
           'linear-gradient(0deg, #181A1C 23.5%, rgba(24, 26, 28, 0.72) 74%, rgba(24, 26, 28, 0.00) 100%)',
         'solution-gradient-left':
           'linear-gradient(90deg, #181A1C -10.42%, rgba(24, 26, 28, 0.49) 46.3%, rgba(24, 26, 28, 0.00) 100%)',
-        'hero-landing-top':
-          'linear-gradient(180deg, #181A1C 40.05%, rgba(24, 26, 28, 0.00) 100%)',
         'img-grediant':
           'linear-gradient(360deg, #181A1C 0%, rgba(24, 26, 28, 0.00) 96.26%)',
-        'hero-landing-bottom':
-          'linear-gradient(0deg, #181A1C 20.06%, rgba(24, 26, 28, 0.00) 100%)',
         'banner-landing':
           'linear-gradient(90deg, #181A1C 0%, rgba(24, 26, 28, 0.49) 57.39%, rgba(24, 26, 28, 0.00) 95.66%)',
         'banner-mobile-landing':

@@ -8,40 +8,56 @@ import ButtonCta from '../ButtonCta';
 
 const innovativeData = landingData.innovative;
 
-{ /* eslint-disable @typescript-eslint/no-explicit-any */ }
+{
+	/* eslint-disable @typescript-eslint/no-explicit-any */
+}
 
 const Innovative: React.FC = () => {
-	const renderTitleGridContent = (title: string, cardTheme: 'light' | 'dark' = 'light', className?: string) => {
+	const renderTitleGridContent = (
+		title: string,
+		cardTheme: 'light' | 'dark' = 'light',
+		className?: string
+	) => {
 		return (
-			<h3 className={ clsxm(
-				'text-[6vw] xs:text-2xl md:text-3xl xl:text-4xl !leading-normal -tracking-0.04em',
-				cardTheme === 'dark' ? 'text-white' : 'text-primary',
-				className
-			) }>
+			<h3
+				className={ clsxm(
+					'text-[6vw] xs:text-2xl md:text-3xl xl:text-4xl !leading-normal -tracking-0.04em',
+					cardTheme === 'dark' ? 'text-white' : 'text-primary',
+					className
+				) }
+			>
 				<span dangerouslySetInnerHTML={ { __html: title } } />
 			</h3>
 		);
 	};
 
-	const renderDescGridContent = (description: string, cardTheme = 'light', className?: string) => {
+	const renderDescGridContent = (
+		description: string,
+		cardTheme = 'light',
+		className?: string
+	) => {
 		return (
-			<p className={ clsxm(
-				'text-xs lg:text-sm !leading-5',
-				cardTheme === 'dark' ? 'text-grey-300' : 'text-grey-400',
-				className
-			) }>{ description }</p>
+			<p
+				className={ clsxm(
+					'text-xs lg:text-sm !leading-5',
+					cardTheme === 'dark' ? 'text-grey-300' : 'text-grey-400',
+					className
+				) }
+			>
+				{ description }
+			</p>
 		);
 	};
 
 	const renderDashboardContent = (item: any) => {
 		return (
-			<div className='absolute pl-[39px] lg:pl-0 right-0 top-0 pt-[38px] lg:pt-0 flex-none'>
+			<div className='absolute pl-5 lg:pl-0 right-0 inset-y-0 pt-5 lg:pt-0 flex-none'>
 				<Image
 					alt='bloodwork'
 					src={ item.image }
-					width={ 2591.06 }
-					height={ 1727.38 }
-					className='w-[80.971rem] lg:w-[47.625rem] h-full pointer-events-none'
+					width={ 858 * 2 }
+					height={ 451 * 2 }
+					className='max-md:w-[80.971rem] lg:w-auto object-cover object-left h-full pointer-events-none'
 				/>
 			</div>
 		);
@@ -49,7 +65,7 @@ const Innovative: React.FC = () => {
 
 	const renderUseTelehealthContent = (item: any) => {
 		return (
-			<div className='h-full lg:grid lg:grid-cols-9 lg:gap-x-8 relative overflow-hidden'>
+			<div className='h-full lg:grid lg:grid-cols-11 lg:gap-x-5 relative overflow-hidden'>
 				<div className='flex flex-col justify-between h-full lg:pb-[41px] lg:col-span-4'>
 					<div className='flex flex-col gap-3.5 lg:gap-6 lg:max-w-[516px]'>
 						{ renderTitleGridContent(item.title, 'dark') }
@@ -60,13 +76,16 @@ const Innovative: React.FC = () => {
 					<div className='flex lg:mt-20 xl:mt-0'>
 						<ButtonCta
 							theme='secondary'
-							href={ item.btnCta.href }
-						>
-							<span dangerouslySetInnerHTML={ { __html: item.btnCta.text ?? 'Join Now' } } />
+							href={ item.btnCta.href }>
+							<span
+								dangerouslySetInnerHTML={ {
+									__html: item.btnCta.text ?? 'Join Now',
+								} }
+							/>
 						</ButtonCta>
 					</div>
 				</div>
-				<div className='lg:col-span-5 relative max-lg:hidden w-full h-full'>
+				<div className='lg:col-span-7 relative w-full h-full'>
 					{ renderDashboardContent(item) }
 				</div>
 			</div>
@@ -85,8 +104,9 @@ const Innovative: React.FC = () => {
 									'relative overflow-hidden',
 									itemIdx === 0 && 'z-30',
 									itemIdx === 1 && 'z-20 -top-4',
-									itemIdx === 2 && 'z-10 -top-8',
-								) }>
+									itemIdx === 2 && 'z-10 -top-8'
+								) }
+							>
 								<div className='relative overflow-hidden w-full h-full'>
 									<Image
 										src={ image }
@@ -106,7 +126,9 @@ const Innovative: React.FC = () => {
 				</div>
 				<div className='flex flex-col gap-y-3.5 lg:gap-y-6'>
 					{ renderTitleGridContent(item.title) }
-					{ renderDescGridContent(item.description) }
+					<div className='lg:max-w-[463px]'>
+						{ renderDescGridContent(item.description) }
+					</div>
 				</div>
 			</div>
 		);
@@ -114,13 +136,19 @@ const Innovative: React.FC = () => {
 
 	const renderApplicationContent = (item: any) => {
 		return (
-			<div className='h-full grid-cols-1 grid lg:grid-cols-2 max-lg:gap-y-[42px] lg:gap-x-8 relative overflow-hidden'>
-				<div className='lg:pb-[54px]'>
+			<div className='h-full grid-cols-1 grid lg:grid-cols-2 lg:gap-x-8 overflow-hidden'>
+				<div>
 					<div className='w-full flex flex-col gap-y-3.5 lg:gap-y-18px'>
-						<div className='max-sm:max-w-[350px]'>
+						<div className='max-sm:max-w-[350px] lg:max-w-[362px]'>
 							{ renderTitleGridContent(item.title, 'light', 'max-lg:text-black') }
 						</div>
-						{ renderDescGridContent(item.description, 'light', 'max-lg:text-black') }
+						<div className='max-w-[299px]'>
+							{ renderDescGridContent(
+								item.description,
+								'light',
+								'max-lg:text-black'
+							) }
+						</div>
 					</div>
 					<div className='flex flex-col gap-y-18px mt-7 lg:mt-12'>
 						{ item.list.map((detailItem: any, detailIdx: number) => {
@@ -140,24 +168,18 @@ const Innovative: React.FC = () => {
 						}) }
 					</div>
 				</div>
-				<div className='relative lg:absolute max-lg:flex max-lg:justify-center max-lg:w-full lg:top-0 lg:right-0'>
-					<div className='relative overflow-hidden w-[271.93px] h-[588.48px]'>
-						<div className='absolute w-full h-full bg-blue-alice rounded-t-[50px] -bottom-5' />
-						<video
-							autoPlay
-							muted
-							playsInline
-							className='absolute w-full h-full inset-0 object-cover z-10 pointer-events-none'
-						>
-							<source
-								src='/videos/application_safari.mp4'
-								type='video/mp4;codecs=hvc1'
+				<div className='absolute bottom-0 lg:inset-y-0 left-0 lg:left-[8%] xl:left-[14%] right-0'>
+					<div className='w-full max-sm:aspect-[343/413] max-lg:aspect-[688/514] max-sm:max-h-[425px] h-full relative overflow-hidden'>
+						<div className='max-lg:-bottom-[4.5%] max-lg:left-[7%] absolute w-full h-full'>
+							<Image
+								src={ item.image }
+								alt=''
+								fill
+								className='object-cover max-lg:object-right-top'
+								sizes='(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw'
+								quality={ 100 }
 							/>
-							<source
-								src='/videos/application.webm'
-								type='video/webm' />
-							Your browser does not support the video tag.
-						</video>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -166,35 +188,47 @@ const Innovative: React.FC = () => {
 
 	const renderGridItem = (item: any) => {
 		switch (item.id) {
-			case 'bloodwork-dashboard': return renderDashboardContent(item);
-			case 'telehealth-dashboard': return renderUseTelehealthContent(item);
-			case 'test-results': return renderUpdateTestResultContent(item);
-			case 'mobile-application': return renderApplicationContent(item);
-			default: return null;
+			case 'bloodwork-dashboard':
+				return renderDashboardContent(item);
+			case 'telehealth-dashboard':
+				return renderUseTelehealthContent(item);
+			case 'test-results':
+				return renderUpdateTestResultContent(item);
+			case 'mobile-application':
+				return renderApplicationContent(item);
+			default:
+				return null;
 		}
 	};
 
 	const resolveGridBoxClassName = (id: string) => {
 		switch (id) {
-			case 'bloodwork-dashboard': return 'lg:hidden bg-primary max-lg:order-3 max-lg:h-[369px] !pb-0 !pr-0';
-			case 'mobile-application': return 'lg:col-span-7 bg-white max-lg:order-2 max-lg:h-[738px] !pb-0';
-			case 'test-results': return 'lg:col-span-5 bg-white max-lg:order-1 max-lg:h-[369px] max-lg:!pb-[34px]';
-			case 'telehealth-dashboard': return 'lg:col-span-12 bg-primary max-lg:order-4 max-lg:h-[369px] lg:!pb-0 lg:!pr-0';
-			default: return '';
+			case 'bloodwork-dashboard':
+				return 'lg:hidden bg-primary max-lg:order-3 max-lg:h-[369px] !pb-0 !pr-0';
+			case 'mobile-application':
+				return 'lg:col-span-7 bg-white max-lg:order-2 max-lg:h-[738px] !pb-0';
+			case 'test-results':
+				return 'lg:col-span-5 bg-white max-lg:order-1 max-lg:h-[369px] max-lg:!pb-[34px]';
+			case 'telehealth-dashboard':
+				return 'lg:col-span-12 bg-primary max-lg:order-4 max-lg:h-[369px] lg:!pb-0 lg:!pr-0';
+			default:
+				return '';
 		}
 	};
 
 	return (
 		<div className='lg:px-3 font-Poppins'>
-			<div className='container-center text-center lg:text-left max-lg:hidden lg:mb-[88px]'>
-				<p className='text-grey-primary text-pretitle max-lg:mb-2.5'>{ innovativeData.preTitle }</p>
+			<div className='container-center text-center lg:text-left max-lg:hidden lg:mb-[90px]'>
+				<p className='text-grey-primary text-pretitle max-lg:mb-2.5'>
+					{ innovativeData.preTitle }
+				</p>
 
 				<h2 className='text-2xl md:text-4xl lg:text-[4.444vw] xl:text-[64px] lg:!leading-normal -tracking-0.04em max-md:mx-auto max-md:max-w-[330px]'>
 					<span dangerouslySetInnerHTML={ { __html: innovativeData.title } } />
 				</h2>
-				<p className='text-grey-400 text-xs lg:text-sm !leading-5 max-lg:mx-auto max-w-[300px] mt-2.5 lg:mt-4 lg:max-w-[561px]'>
-					{ innovativeData.description }
-				</p>
+				{ /* <p className='text-grey-400 text-xs lg:text-sm !leading-5 max-lg:mx-auto max-w-[300px] mt-2.5 lg:mt-4 lg:max-w-[561px]'>
+          {innovativeData.description}
+        </p> */ }
 			</div>
 			<div className='max-lg:px-4 grid grid-cols-1 lg:grid-cols-12 gap-6 lg:auto-rows-fr xl:auto-rows-[32.125rem]'>
 				{ innovativeData.list.map(item => (

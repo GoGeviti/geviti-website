@@ -305,7 +305,10 @@ const TopTier: React.FC<TopTierProps> = ({ slug = 'men-weight-loss' }) => {
 								</span>
 							)
 						}
-						description={ topTierData.description[slug as SlugPick] }
+						description={
+							tabs[selectedTabIdx]?.description ||
+              topTierData.description[slug as SlugPick]
+						}
 						cta={ topTierData.cta }
 					/>
 				</div>

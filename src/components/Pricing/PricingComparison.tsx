@@ -10,7 +10,7 @@ import { ChevronDown } from '../Icons';
 
 const pricingComparisonData = pricingData.pricingComparison;
 
-type HeaderID = 'free' | 'basic' | 'premium';
+// type HeaderID = 'free' | 'basic' | 'premium';
 // type HeaderData = {
 // 	id: string;
 // 	title: string;
@@ -89,11 +89,6 @@ const PricingComparison: React.FC<PricingComparisonProps> = ({
 		);
 	};
 
-	const headerTitle = (id: HeaderID) => {
-		const headers = pricingComparisonData.headers;
-		return headers.find(header => header.id === id)?.title ?? 'Plan';
-	};
-
 	const renderListMobile = () => {
 		return (
 			<div className={ clsxm('flex flex-col gap-y-[42px]') }>
@@ -101,19 +96,14 @@ const PricingComparison: React.FC<PricingComparisonProps> = ({
 					return (
 						<div
 							key={ `list-${elIdx}` }
-							className='w-full flex flex-col gap-y-1 text-primary'
+							className='w-full flex flex-col text-primary'
 						>
-							<span className='text-base !leading-6 font-semibold'>
-								{ el.name }
-							</span>
+							<span className='text-base font-semibold'>{ el.name }</span>
 							{ /* <div className='text-lg !leading-7 flex justify-between gap-1'>
 								<h5>{ headerTitle('free') }</h5>
 								<span className='text-right'>{ el.free }</span>
 							</div> */ }
-							<div className='text-lg !leading-7 flex justify-between gap-1'>
-								<h5>{ headerTitle('premium') }</h5>
-								<span className='text-right'>{ el.premium }</span>
-							</div>
+							<p className='text-lg !leading-normal'>{ el.premium }</p>
 						</div>
 					);
 				}) }
@@ -123,25 +113,22 @@ const PricingComparison: React.FC<PricingComparisonProps> = ({
 
 	const renderContentMobile = () => {
 		return (
-			<div className='lg:hidden mt-6 w-full border border-blue-primary bg-blue-alice rounded-20px py-6 px-3'>
+			<div className='lg:hidden mt-6 w-full border border-blue-primary bg-blue-alice rounded-20px py-6 px-2.5'>
 				{ renderListMobile() }
 			</div>
 		);
 	};
 
 	return (
-		<div className='w-full -mt-[19px] relative z-[2]'>
-			<div className='bg-white border border-t-0 border-grey-100 rounded-b-[19px] w-full px-4 pb-[19px] pt-[38px] lg:px-[42px]'>
+		<div className='w-full mt-6 lg:-mt-[19px] relative z-[2]'>
+			<div className='bg-white border lg:border-t-0 border-grey-100 max-lg:rounded-t-[19px] rounded-b-[19px] w-full px-4 pb-[42px] lg:pb-[19px] pt-[18px] lg:pt-[38px] lg:px-[42px]'>
 				<button
 					onClick={ () => toggleAccordion(index) }
 					className='focus:ring-0 w-full flex flex-col focus:outline-none'
 				>
 					<div className='flex items-center justify-between w-full'>
-						<h2 className='text-primary text-2xl lg:text-[28px] font-medium !leading-normal'>
-							<span className='max-lg:hidden'>
-                Member additional product pricing
-							</span>
-							<span className='lg:hidden'>Price comparisons</span>
+						<h2 className='text-primary text-2xl lg:text-[28px] font-medium !leading-normal text-left'>
+              Member additional product pricing
 						</h2>
 						<ChevronDown
 							className={ clsxm(

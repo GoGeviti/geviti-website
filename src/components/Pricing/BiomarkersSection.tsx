@@ -270,16 +270,18 @@ const BiomarkersSection: React.FC<BiomarkersSectionProps> = ({
 	};
 
 	return (
-		<div className={ clsxm('rounded-19px -mt-[19px]', wrapperClassName) }>
+		<div className={ clsxm('rounded-19px mt-6 lg:-mt-[19px]', wrapperClassName) }>
 			<div className='w-full flex flex-col '>
-				<div className='bg-[#F5FBFF] border border-t-0 border-[#D6EDFA] rounded-b-[19px] px-4 lg:px-[42px] pb-[19px] pt-[38px]'>
+				<div className='bg-[#F5FBFF] lg:border lg:border-t-0 border-[#D6EDFA] max-lg:rounded-t-[19px] rounded-b-[19px] px-3.5 lg:px-[42px] py-3.5 lg:pb-[19px] lg:pt-[38px]'>
 					<button
 						onClick={ () => toggleAccordion(sectionIndex) }
 						className='focus:ring-0 w-full flex flex-col focus:outline-none'
 					>
-						<span className='flex w-full text-primary justify-between items-center text-2xl lg:text-[28px] font-medium !leading-normal gap-3'>
-							<span>View “Longevity Panel” Biomarkers</span>
-
+						<span className='flex w-full text-primary justify-between items-center text-sm sm:text-2xl lg:text-[28px] text-left font-medium sm:!leading-normal gap-3'>
+							<span className='max-lg:hidden'>
+                View “Longevity Panel” Biomarkers
+							</span>
+							<span className='lg:hidden'>Compare Tested Biomarkers</span>
 							<ChevronDown
 								className={ clsxm(
 									'w-5 h-5 lg:w-6 lg:h-6 flex-shrink-0 text-primary ease-out transform duration-200',
