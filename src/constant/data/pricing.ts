@@ -132,7 +132,7 @@ const pricingData = {
 				premium: 'No markups',
 			},
 			{
-				name: 'Longevity Panel (90 biomarkers)',
+				name: 'Longeviti Panel (90 biomarkers)',
 				geviti: true,
 				premium: '$300',
 			},

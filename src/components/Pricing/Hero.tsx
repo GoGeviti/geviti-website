@@ -304,7 +304,7 @@ const Hero: React.FC<HeroProps> = ({ products, navbar = true, className }) => {
 										<span>
 											<span className='font-medium'>
                         Includes the “
-												<span className='underline'>Longevity Panel</span>”
+												<span className='underline'>Longeviti Panel</span>”
 											</span>{ ' ' }
                       testing for{ ' ' }
 											<span className='text-xl font-medium'>

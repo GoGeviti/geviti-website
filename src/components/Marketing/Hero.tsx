@@ -90,6 +90,7 @@ const Hero: React.FC<HeroProps> = ({ slug = Slug.MEN_WEIGHT_LOSS }) => {
 			case Slug.WOMEN_WEIGHT_LOSS:
 				return 'linear-gradient(180deg, #184860 47.49%, rgba(24, 72, 96, 0.00) 94.74%)';
 			case Slug.MENOPAUSE:
+				return 'linear-gradient(180deg, #111703 3.54%, rgba(17, 23, 3, 0.505) 70.51%, rgba(17, 23, 3, 0) 92.83%)';
 			case Slug.BUSINESS_ORIENTED:
 			default:
 				return 'linear-gradient(180deg, #1E100D 47.49%, rgba(0, 0, 0, 0.495) 68.91%, rgba(0, 0, 0, 0) 91.87%)';
@@ -98,6 +99,8 @@ const Hero: React.FC<HeroProps> = ({ slug = Slug.MEN_WEIGHT_LOSS }) => {
 
 	const bgOverlayDesktop = () => {
 		switch (slug) {
+			case Slug.MENOPAUSE:
+				return 'linear-gradient(90deg, #111703 -17.39%, rgba(17, 23, 3, 0.505) 60.21%, rgba(17, 23, 3, 0) 100%)';
 			case Slug.MEN_WEIGHT_LOSS:
 				return 'linear-gradient(90deg, #14222B -29.15%, rgba(22, 30, 36, 0.50) 53.32%, rgba(24, 26, 28, 0.00) 100%)';
 			case Slug.BUSINESS_ORIENTED:
@@ -154,8 +157,7 @@ const Hero: React.FC<HeroProps> = ({ slug = Slug.MEN_WEIGHT_LOSS }) => {
               'max-lg:bottom-[21.253vh] max-lg:h-[calc(100vh-21.253vh+14px)]',
 						slug === Slug.MEN_HORMONE_THERAPY &&
               'max-lg:bottom-[23.978vh] max-lg:h-[calc(100vh-23.978vh+14px)]',
-						slug === Slug.MENOPAUSE &&
-              'max-lg:bottom-[21.935vh] max-lg:h-[calc(100vh-21.935vh+14px)]',
+						slug === Slug.MENOPAUSE && 'max-lg:bottom-0',
 						slug === Slug.BUSINESS_ORIENTED &&
               'max-lg:bottom-[21.935vh] max-lg:h-[calc(100vh-21.935vh+14px)]'
 					) }
@@ -237,7 +239,6 @@ const Hero: React.FC<HeroProps> = ({ slug = Slug.MEN_WEIGHT_LOSS }) => {
 				animationProps={ {
 					initial: 'visible',
 				} }
-				theme={ slug === Slug.MENOPAUSE ? 'light-grey' : 'dark' }
 			/>
 			{ renderHero() }
 			<div className='max-lg:px-4 max-lg:pb-[42px] max-lg:mt-[42px] max-w-2xl mx-auto lg:hidden'>

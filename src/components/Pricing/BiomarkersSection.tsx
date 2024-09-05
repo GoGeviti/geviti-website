@@ -279,7 +279,7 @@ const BiomarkersSection: React.FC<BiomarkersSectionProps> = ({
 					>
 						<span className='flex w-full text-primary justify-between items-center text-sm sm:text-2xl lg:text-[28px] text-left font-medium sm:!leading-normal gap-3'>
 							<span className='max-lg:hidden'>
-                View “Longevity Panel” Biomarkers
+                View “Longeviti Panel” Biomarkers
 							</span>
 							<span className='lg:hidden'>Compare Tested Biomarkers</span>
 							<ChevronDown
