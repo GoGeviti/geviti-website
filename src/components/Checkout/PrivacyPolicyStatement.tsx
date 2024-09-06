@@ -35,9 +35,13 @@ const PrivacyPolicyStatement: React.FC<PrivacyPolicyStatementProps> = ({ highlig
 			) : (
 				<p className='text-sm font-normal text-[#6A6E70]'>By checking the box, you confirm that you have read, understood, and agree to abide by our <Link
 					href='/privacy-policy'
-					className='text-primary underline'>Privacy Policy</Link> and <Link
+					className='text-primary underline'>Privacy Policy</Link>, <Link
 					href='/terms-and-conditions'
-					className='text-primary underline'>Terms of Use</Link>.</p>
+					className='text-primary underline'>Terms of Use</Link> and <a
+					target='_blank'
+					rel='noopener noreferrer'
+					href='/files/HIPAA Authorization.pdf'
+					className='text-primary underline'>HIPAA Authorization</a>.</p>
 			) }
 		</span>
 	);

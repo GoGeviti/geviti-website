@@ -432,20 +432,22 @@ const TreatmentOptions: React.FC<TreatmentOptionsProps> = ({ type = 'men' }) => 
 										{ treatmentData.btnCta.text }
 									</Link>
 
-									{ productsByCategory.length > 1 && (
-										<button
-											className='group max-md:w-full border border-primary hover:opacity-70 rounded-full h-[58px] py-1.5 pl-[42px] pr-1.5 relative grid place-items-center grid-cols-[auto_46px] overflow-hidden'
-											aria-label='next product'
-											onClick={ swipeToNextImage }
-										>
-											<span className='text-lg leading-[133%] font-medium text-primary inline-block z-[2]'>
-												Next Product
-											</span>
-											<span className='w-[46px] relative flex items-center justify-center'>
-												<ChevronRight className='w-18px h-18px text-primary flex-shrink-0' />
-											</span>
-										</button>
-									) }
+									{ /* { productsByCategory.length > 1 && ( */ }
+									<a
+										href='/files/Geviti Rx Pricing Sheet (Updated September 2 2024).pdf'
+										target='_blank'
+										className='group max-md:w-full border border-primary hover:opacity-70 rounded-full h-[58px] py-1.5 pl-[42px] pr-1.5 relative grid place-items-center grid-cols-[auto_46px] overflow-hidden'
+										aria-label='next product'
+										onClick={ swipeToNextImage }
+									>
+										<span className='text-lg leading-[133%] font-medium text-primary inline-block z-[2]'>
+											See Pricing
+										</span>
+										<span className='w-[46px] relative flex items-center justify-center'>
+											<ChevronRight className='w-18px h-18px text-primary flex-shrink-0' />
+										</span>
+									</a>
+									{ /* ) } */ }
 								</div>
 							</div>
 						</div>

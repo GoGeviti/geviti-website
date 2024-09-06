@@ -62,7 +62,7 @@ const StripeForm: FC<StripeFormProps> = ({
 	const router = useRouter();
 	const [stripeResponseLoading, setStripeResponseLoading] = useState(false);
 	const [statesChecked, setStatesChecked] = useState(false);
-	const [sessionSecretS, setSessionSecret] = useState('');
+	const [sessionSecretS, setSessionSecret] = useState('pi_3PvtrbGBBGmxLhdL1295p0K7_secret_nwZyVM55iTz6vOiJyHM2MbW1x');
 	const [token, setToken] = useState('');
 	const [formSubmitted, setFormSubmitted] = useState(false);
 	const [isOpenDialogState, setIsOpenDialogState] = useState(false);
@@ -421,21 +421,7 @@ const StripeForm: FC<StripeFormProps> = ({
 										totalPrice={ totalPrice ?? 0 } />
 								</Elements>
 							</div>
-							{ /* <div className='mt-[14px] flex items-start gap-x-[22px]'>
-								<input
-									id='checkout_terms'
-									type='checkbox'
-									title=''
-									className='h-5 w-5 mt-2.5 rounded-[1px] text-grey-100 checked:text-primary outline outline-offset-2 outline-2 focus:outline-1 focus:text-primary focus:ring-grey-100 ring-black-secondary border-none ml-1'
-									onChange={ (e: React.ChangeEvent<HTMLInputElement>) => setTermsChecked(e.target.checked) }
-									disabled={ formLoading }
-								/>
-								<label
-									htmlFor='checkout_terms'
-								>
-									<PrivacyPolicyStatement checkout /> { ' ' }
-								</label>
-							</div> */ }
+							
 						</div>
 					) }
 					{

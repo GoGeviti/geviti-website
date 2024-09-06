@@ -425,7 +425,7 @@ const solutionData = {
 	membership: {
 		preTitle: 'Personalized plans that are right for you',
 		title:
-      'Memberships as low as <br class="sm:hidden"/>$99<span class="text-xs lg:text-2xl lg:!leading-9">/month</span>',
+      'Memberships as low as <br class="sm:hidden"/>$129<span class="text-xs lg:text-2xl lg:!leading-9">/month</span>',
 		description: 'Your Geviti membership will include the following:',
 		btnCta: {
 			text: 'Become A Member',

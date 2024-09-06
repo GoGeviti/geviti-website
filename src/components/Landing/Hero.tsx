@@ -485,10 +485,10 @@ const Hero: React.FC<HeroProps> = ({
 												className='flex w-full h-full'
 											>
 												<ButtonCta
-													href={ heroData.btnCta2.href }
 													externalLink={ heroData.btnCta2.externalLink }
 													aria-label={ heroData.btnCta2.text }
 													text={ heroData.btnCta2.text }
+													href={ heroData.btnCta2.href }
 													theme='blur'
 													className='max-sm:w-full'
 												/>

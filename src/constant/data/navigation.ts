@@ -15,11 +15,6 @@ const navigationData = {
 			externalLink: false
 		},
 		{
-			name: 'Learn More',
-			href: '/membership',
-			externalLink: false
-		},
-		{
 			name: 'Pricing',
 			href: '/pricing',
 			externalLink: false
@@ -29,6 +24,11 @@ const navigationData = {
 			href: '#',
 			externalLink: false,
 			items: [
+				{
+					name: 'Learn More',
+					href: '/membership',
+					externalLink: false
+				},
 				{
 					name: 'Blog',
 					href: '/blog'

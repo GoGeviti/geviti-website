@@ -50,7 +50,7 @@ const landingData = {
 			externalLink: false,
 		},
 		btnCta2: {
-			href: '/membership',
+			href: '#pricing',
 			externalLink: false,
 			text: 'Learn More',
 		},
@@ -282,7 +282,7 @@ const landingData = {
 		preTitle: 'Membership Benefits',
 		title: 'Therapeutics for optimization',
 		description:
-      '<span class="lg:hidden">Geviti has partnered with key compound pharmacies across the country to offer a range of anti-aging care at  the lowest prices possible. All clinical protocols are created and overseen by board certified providers.</span><span class="max-lg:hidden">Your Geviti membership will include the following: range of anti-aging care at the lowest prices possible. All clinical protocols are created and overseen by board certified providers.</span>',
+      '<span class="lg:hidden">Geviti has partnered with key compound pharmacies across the country to offer a range of anti-aging care at  the lowest prices possible. All clinical protocols are created and overseen by board certified providers.</span><span class="max-lg:hidden">Your Geviti membership will include the following range of anti-aging care at the lowest prices possible. All clinical protocols are created and overseen by board certified providers.</span>',
 		viewAll: {
 			text: 'View All Products',
 			href: '/products',
@@ -492,11 +492,11 @@ const landingData = {
         'At-home diagnostics and doctor-supervised treatments fostering vitality and longevity. Easily integrates into your life.',
 			btnCta: {
 				text: 'Learn More',
-				href: '/membership',
+				href: '#pricing',
 			},
 			btnCtaMobile: {
 				text: 'Learn More',
-				href: '/membership',
+				href: '#pricing',
 			},
 			list: [
 				{

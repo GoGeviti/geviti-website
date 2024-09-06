@@ -504,13 +504,13 @@ const membershipData = {
 			{
 				id: 'geviti',
 				title: 'Geviti',
-				subtitle: '$99.99/mo',
+				subtitle: '$129.00/mo',
 				geviti: true,
 			},
 			{
 				id: 'competitor_a',
 				title: 'Competitor A',
-				subtitle: '$129.00/mo',
+				subtitle: '$149.00/mo',
 				geviti: false,
 			},
 			{
@@ -588,7 +588,7 @@ const membershipData = {
 				geviti: true,
 				competitor_a: false,
 				competitor_b: false,
-				competitor_c: true,
+				competitor_c: false,
 			},
 			{
 				name: 'Mobile application for care',

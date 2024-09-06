@@ -238,7 +238,7 @@ const StripeCheckout: FC<PageProps> = ({ searchParams }) => {
 							asChild
 							className='lg:hidden'>
 							<Button className='bg-white text-primary h-[58px] text-lg'>
-							Pay Now
+								Begin Checkout
 							</Button>
 						</SheetTrigger>
 						<SheetContent

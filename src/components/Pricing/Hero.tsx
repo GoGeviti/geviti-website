@@ -14,72 +14,6 @@ import ButtonSwitchMemberFreq from '../MemberShip/ButtonSwitchMemberFreq';
 import Navbar from '../Navbar/Landing';
 import PopupReview from '../PopupReview';
 
-// const getPricingCardVariants = (tierIdx: number): Variants => {
-// 	if (tierIdx === 0) {
-// 		return {
-// 			initial: {
-// 				x: '100%',
-// 				opacity: 0,
-// 			},
-// 			inView: {
-// 				x: 0,
-// 				opacity: 1,
-// 				transition: {
-// 					duration: 0.75,
-// 					ease: 'easeInOut',
-// 					delay: 1.1,
-// 				},
-// 			},
-// 		};
-// 	} else if (tierIdx === 1) {
-// 		return {
-// 			initial: { y: -50, opacity: 0 },
-// 			inView: {
-// 				y: 0,
-// 				opacity: 1,
-// 				transition: {
-// 					duration: 0.75,
-// 					ease: 'easeInOut',
-// 				},
-// 			},
-// 		};
-// 	} else {
-// 		return {
-// 			initial: { x: '-100%', opacity: 0 },
-// 			inView: {
-// 				x: 0,
-// 				opacity: 1,
-// 				transition: {
-// 					duration: 0.75,
-// 					ease: 'easeInOut',
-// 					delay: 1.1,
-// 				},
-// 			},
-// 		};
-// 	}
-// };
-
-// const PricingCardWrapper: React.FC<{
-//   index: number;
-//   isInView: boolean;
-//   children: React.ReactNode;
-// }> = ({ index, isInView, children }) => {
-//   return (
-//     <>
-//       <motion.div
-//         variants={getPricingCardVariants(index)}
-//         initial='initial'
-//         animate={isInView ? 'inView' : 'initial'}
-//         className='max-lg:hidden h-full'
-//       >
-//         {children}
-//       </motion.div>
-
-//       <div className='lg:hidden h-full'>{children}</div>
-//     </>
-//   );
-// };
-
 const formatPrice = (price?: string): string => {
 	// const numericPrice = Number(price);
 	// if (isNaN(numericPrice)) {
@@ -92,9 +26,10 @@ type HeroProps = {
   products?: ProductsResponse[];
   navbar?: boolean;
   className?: string;
+	isFromHomePage?: boolean;
 };
 
-const Hero: React.FC<HeroProps> = ({ products, navbar = true, className }) => {
+const Hero: React.FC<HeroProps> = ({ products, navbar = true, className, isFromHomePage = false }) => {
 	const ref = useRef<HTMLDivElement>(null);
 	// const isInView = useInView(ref, { once: true });
 
@@ -323,6 +258,7 @@ const Hero: React.FC<HeroProps> = ({ products, navbar = true, className }) => {
                       	e => e.stripeProductId === item.stripeProductId
                       )?.productPrices![activeTabIdx]?.priceId
 										}
+										target={ isFromHomePage ? '_blank' : undefined }
 										text={ item.btnCta.text }
 										theme={ item.mostValue ? 'secondary' : 'primary' }
 										className='w-full sm:w-fit mt-[25px]'

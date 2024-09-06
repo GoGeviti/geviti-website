@@ -31,10 +31,13 @@ const HomePage: NextPage = async() => {
 				<LandingComponent.Benefits />
 				<LandingComponent.HomeKits />
 				<LandingComponent.Innovative />
-				<div className='lg:px-3 lg:py-6 overflow-hidden'>
+				<div
+					id='pricing'
+					className='lg:px-3 lg:py-6 overflow-hidden'>
 					<div className='lg:bg-white lg:rounded-[19px]'>
 						<PricingComponent.Hero
 							products={ products }
+							isFromHomePage={ true }
 							navbar={ false }
 							className='!pt-[52px] lg:!pt-[164px]'
 						/>
