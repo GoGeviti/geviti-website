@@ -37,7 +37,8 @@ const pricingData = {
 		list: [
 			{
 				name: 'Premium Membership',
-				stripeProductId: 'prod_QgoGvBsYKsIYqO',
+				// stripeProductId: 'prod_QgoGvBsYKsIYqO',
+				stripeProductId: process.env.NEXT_PUBLIC_STRIPE_PRODUCT_ID ?? '',
 				keyword: InitialOfferingType.ULTIMATE,
 				price: '$99',
 				priceMonthly: '$119',

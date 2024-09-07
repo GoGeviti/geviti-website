@@ -11,7 +11,7 @@ import { ProductsResponse } from '../Checkout/api/types';
 import QuestionTooltip from '../Home/QuestionTooltip';
 import { GreenCheck, ShieldTick } from '../Icons';
 import ButtonSwitchMemberFreq from '../MemberShip/ButtonSwitchMemberFreq';
-import Navbar from '../Navbar/Landing';
+import Navbar, { navbarDefaultTransition } from '../Navbar/Landing';
 import PopupReview from '../PopupReview';
 
 const formatPrice = (price?: string): string => {
@@ -49,17 +49,7 @@ const Hero: React.FC<HeroProps> = ({ products, navbar = true, className, isFromH
 		return (
 			<PopupReview
 				motionProps={ {
-					variants: {
-						initial: { scale: 0, opacity: 0 },
-						animate: {
-							scale: 1,
-							opacity: 1,
-						},
-						exit: {
-							scale: 0,
-							opacity: 0,
-						},
-					},
+					variants: undefined,
 					transition: { duration: 0.64, ease: 'easeInOut' },
 					initial: 'initial',
 					animate: 'animate',
@@ -81,7 +71,14 @@ const Hero: React.FC<HeroProps> = ({ products, navbar = true, className, isFromH
 		<div
 			id='packages'
 			className='font-Poppins relative z-[3]'>
-			{ navbar && <Navbar theme='light' /> }
+			{ navbar && <Navbar
+				animationProps={ {
+					transition: {
+						...navbarDefaultTransition,
+						delay: 1.1,
+					},
+				} }
+				theme='light' /> }
 			<div
 				className={ clsxm(
 					'container-center flex flex-col items-center pt-[129px] lg:pt-[177px]',
@@ -132,7 +129,7 @@ const Hero: React.FC<HeroProps> = ({ products, navbar = true, className, isFromH
 					ref={ ref }
 					className='lg:max-w-[1061px] mx-auto sm:max-w-[392px] lg:grid-cols-9 flex max-lg:flex-col lg:grid gap-16 lg:gap-3.5 items-end w-full pt-[58px] lg:pt-[78px]'
 				>
-					<div className='w-full relative h-full lg:col-span-3'>
+					<div className='w-full max-lg:order-2 relative h-full lg:col-span-3'>
 						<div className='rounded-2xl pt-7 w-full h-full max-lg:min-h-[676px] relative overflow-hidden bg-[linear-gradient(0deg,#A7DAFF_0%,#75C5FF_100%)]'>
 							<div className='px-5'>
 								<div className='flex items-center gap-5px mb-3.5'>

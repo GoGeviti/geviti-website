@@ -171,7 +171,7 @@ const Navbar: React.FC<NavbarProps> = ({
 					className='container-center w-full'
 					style={ { overflow } }>
 					<motion.div
-						variants={ navbarVariants }
+						variants={ navbarVariants   }
 						initial='hidden'
 						animate='visible'
 						className='inline-block w-full border border-white/5 rounded-full'
