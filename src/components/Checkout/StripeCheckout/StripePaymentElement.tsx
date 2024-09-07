@@ -73,7 +73,7 @@ const StripePaymentElement:React.FC<StripePaymentElementProps> = ({
 			</div>
 			<button
 				type='submit'
-				disabled={ formLoading || (!statesChecked && !termsChecked) }
+				disabled={ formLoading || !statesChecked || !termsChecked }
 				onClick={ () => handleCheckout() }
 				className={ clsxm(
 					'h-[58px] py-3 px-[42px] text-white rounded-[1000px] w-full mt-5 mb-10',
