@@ -144,7 +144,7 @@ const marketingData = {
           '<span class="lg:hidden">Join Geviti</span><span class="max-lg:hidden">Get Started</span>',
 				'business-oriented': 'Schedule A Call',
 			},
-			href: '/onboarding',
+			href: '/pricing',
 		},
 		image: {
 			'men-hormone-therapy': '/images/marketing/men-hormone-therapy/hero.webp',
@@ -191,7 +191,7 @@ const marketingData = {
         'Get direct access to safe and effective treatment options like Estradiol and other tailored medications if deemed appropriate by your provider.',
 		},
 		cta: {
-			href: '/onboarding',
+			href: '/pricing',
 			text: 'Sign Up Now',
 		},
 		tabs: {
@@ -229,7 +229,7 @@ const marketingData = {
 					title: 'Metformin (Cream)',
 					description:
             'Helps improve insulin sensitivity & reduce appetite. From $65/mo.',
-					image: '/images/marketing/products/metformin-cream.webp',
+					image: '/images/marketing/products/metformin.webp',
 				},
 				{
 					id: 4,
@@ -241,6 +241,22 @@ const marketingData = {
 				},
 				{
 					id: 5,
+					category: { id: 1 },
+					title: 'Sermorelin Injection',
+					description:
+            'Supports muscle growth, fat loss, and weight management. From $95/mo.',
+					image: '/images/marketing/products/sermorelin-injection.webp',
+				},
+				{
+					id: 6,
+					category: { id: 1 },
+					title: 'Sermorelin Troche',
+					description:
+            'Supports muscle growth, fat loss, and weight management. From $95/mo.',
+					image: '/images/marketing/products/sermorelin-troche.webp',
+				},
+				{
+					id: 7,
 					category: { id: 2 },
 					title: 'Longeviti Blend',
 					description:
@@ -277,10 +293,26 @@ const marketingData = {
 					title: 'Metformin (Cream)',
 					description:
             'Helps improve insulin sensitivity & reduce appetite. From $65/mo.',
-					image: '/images/marketing/products/metformin-cream.webp',
+					image: '/images/marketing/products/metformin.webp',
+				},
+				{
+					id: 4,
+					category: { id: 1 },
+					title: 'Sermorelin Injection',
+					description:
+            'Supports muscle growth, fat loss, and weight management. From $95/mo.',
+					image: '/images/marketing/products/sermorelin-injection.webp',
 				},
 				{
 					id: 5,
+					category: { id: 1 },
+					title: 'Sermorelin Troche',
+					description:
+            'Supports muscle growth, fat loss, and weight management. From $95/mo.',
+					image: '/images/marketing/products/sermorelin-troche.webp',
+				},
+				{
+					id: 6,
 					category: { id: 2 },
 					title: 'Longeviti Blend',
 					description:
@@ -397,7 +429,7 @@ const marketingData = {
 				'women-weight-loss': 'Get Started',
 				'business-oriented': 'Schedule A Call',
 			},
-			href: '/onboarding',
+			href: '/pricing',
 		},
 		list: {
 			'men-hormone-therapy': membershipListVersion1,
@@ -500,7 +532,7 @@ const marketingData = {
 			description: 'Purchase bloodwork and optimize your health today.',
 			cta: {
 				text: 'Get Started',
-				href: '/onboarding',
+				href: '/pricing',
 			},
 			image: '/images/marketing/phone.webp',
 		},
@@ -512,7 +544,7 @@ const marketingData = {
       'Empower your menopause journey with Geviti—tailored treatments and expert care included in your membership.',
 		cta: {
 			text: 'Sign Up Now',
-			href: '/onboarding',
+			href: '/pricing',
 		},
 		content: {
 			1: {
@@ -618,7 +650,7 @@ const marketingData = {
 		description:
       'Keep your team operating at the top of their game with cutting-edge, data-driven preventive health solutions & care.',
 		cta: {
-			href: '/onboarding',
+			href: '/pricing',
 			text: 'Schedule A Call',
 		},
 		content: {

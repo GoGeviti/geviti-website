@@ -33,9 +33,7 @@ const Hero: React.FC<HeroProps> = ({ slug = Slug.MEN_WEIGHT_LOSS }) => {
 				priority={ true }
 				className={ clsxm(
 					'object-cover pointer-events-none',
-					imageMobile
-						? 'md:hidden object-center'
-						: 'md:block hidden object-right'
+					imageMobile ? 'md:hidden object-top' : 'md:block hidden'
 				) }
 				quality={ 100 }
 				fill
@@ -150,16 +148,16 @@ const Hero: React.FC<HeroProps> = ({ slug = Slug.MEN_WEIGHT_LOSS }) => {
 			<div className='bg-primary h-[calc(100svh+14px)] lg:h-[calc(100vh-24px)] w-full overflow-hidden max-lg:rounded-t-none rounded-19px relative pt-11px lg:pt-5'>
 				<div
 					className={ clsxm(
-						'absolute lg:bottom-0 w-full h-full',
+						'absolute max-lg:top-0 lg:bottom-0 w-full h-full',
 						slug === Slug.WOMEN_WEIGHT_LOSS &&
-              'max-lg:bottom-[29.564vh] max-lg:h-[calc(100vh-29.564vh+14px)]',
+              'max-lg:h-[calc(100svh-29.564svh+14px)]',
 						slug === Slug.MEN_WEIGHT_LOSS &&
-              'max-lg:bottom-[21.253vh] max-lg:h-[calc(100vh-21.253vh+14px)]',
+              'max-lg:h-[calc(100svh-21.253svh+14px)]',
 						slug === Slug.MEN_HORMONE_THERAPY &&
-              'max-lg:bottom-[23.978vh] max-lg:h-[calc(100vh-23.978vh+14px)]',
-						slug === Slug.MENOPAUSE && 'max-lg:bottom-0',
+              'max-lg:h-[calc(100svh-23.978svh+14px)]',
+						// slug === Slug.MENOPAUSE && 'max-lg:bottom-0',
 						slug === Slug.BUSINESS_ORIENTED &&
-              'max-lg:bottom-[21.935vh] max-lg:h-[calc(100vh-21.935vh+14px)]'
+              'max-lg:h-[calc(100svh-21.935svh+14px)]'
 					) }
 				>
 					{ renderImage('desktop') }
