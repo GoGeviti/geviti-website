@@ -327,7 +327,7 @@ const Hero: React.FC<HeroProps> = ({
 						exit: 'exit',
 						viewport: { once: true },
 					} }
-					wrapperClassName='lg:w-[419px] !bg-black/[0.15] !text-white'
+					wrapperClassName='lg:w-auto pl-[18px] py-3 pr-[42px] !bg-black/[0.15] !text-white !border !border-white/[0.15] !rounded-[18px]'
 				/>
 			);
 		}

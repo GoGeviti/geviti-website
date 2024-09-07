@@ -279,7 +279,7 @@ const productsData = {
 				category: { id: 1 },
 				subCategory: { id: [2] },
 				image:
-          '/images/solution_media/products/anti-aging/sermorelin-mini.webp',
+          '/images/solution_media/products/anti-aging/sermorelin-troche.webp',
 				list: [
 					'Quick Absorption',
 					'Enhances Vitality',
@@ -387,14 +387,15 @@ const productsData = {
 			},
 			{
 				id: 12,
-				name: 'Peak Male Mini Troche',
+				name: 'Olympus Max',
 				description:
-          'Peak Male Mini Troche combines Oxytocin, PT-141 and Tadalafil. These compounds work together to improve overall emotional, physical and intimate well being. Comes with 10 dissolvable Troches.',
+          'Olympus Max combines Oxytocin, PT-141 and Tadalafil. These compounds work together to improve overall emotional, physical and intimate well being. Comes with 10 dissolvable Troches.',
 				sort_description: 'Sublingual Mini Troche',
 				price: 110,
 				category: { id: 1 },
 				subCategory: { id: [4] },
-				image: '/images/solution_media/products/sexual-health/peak-male.webp',
+				image:
+          '/images/solution_media/products/sexual-health/olympus-max-male.webp',
 				list: [
 					'Sublingual Troche',
 					'Oxytocin',
@@ -414,7 +415,7 @@ const productsData = {
 				category: { id: 1 },
 				subCategory: { id: [5] },
 				image:
-          '/images/solution_media/products/thyroid/desiccated-thyroid.webp',
+          '/images/solution_media/products/thyroid/desiccated-thyroid-male.webp',
 				list: [
 					'Enhances Energy',
 					'Balances Thyroid',
@@ -729,7 +730,7 @@ const productsData = {
 				category: { id: 1 },
 				subCategory: { id: [2] },
 				image:
-          '/images/solution_media/products/anti-aging/sermorelin-mini.webp',
+          '/images/solution_media/products/anti-aging/sermorelin-troche.webp',
 				list: [
 					'Quick Absorption',
 					'Enhances Vitality',
@@ -818,14 +819,15 @@ const productsData = {
 			},
 			{
 				id: 12,
-				name: 'Peak Female Mini Troche',
+				name: 'Olympus Max',
 				description:
-          'Peak Female Mini Troche combines Oxytocin, PT-141 and Tadalafil. These compounds work together to improve overall emotional, physical and intimate well being. Comes with 10 dissolvable Troches.',
+          'Olympus Max combines Oxytocin, PT-141 and Tadalafil. These compounds work together to improve overall emotional, physical and intimate well being. Comes with 10 dissolvable Troches.',
 				sort_description: 'Sublingual Mini Troche',
 				price: 110,
 				category: { id: 1 },
 				subCategory: { id: [4] },
-				image: '/images/solution_media/products/sexual-health/peak-female.webp',
+				image:
+          '/images/solution_media/products/sexual-health/olympus-max-female.webp',
 				list: [
 					'Sublingual Troche',
 					'Oxytocin',
@@ -845,7 +847,7 @@ const productsData = {
 				category: { id: 1 },
 				subCategory: { id: [5] },
 				image:
-          '/images/solution_media/products/thyroid/desiccated-thyroid.webp',
+          '/images/solution_media/products/thyroid/desiccated-thyroid-female.webp',
 				list: [
 					'Enhances Energy',
 					'Balances Thyroid',
