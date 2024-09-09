@@ -82,8 +82,8 @@ const PulseSyncFadeFast = ({
 
 const downloadPDF = () => {
 	const link = document.createElement('a');
-	link.href = '/files/Geviti Rx Pricing Sheet (Updated September 2 2024).pdf';
-	link.download = 'Geviti Rx Pricing Sheet (Updated September 2 2024).pdf';
+	link.href = '/files/Geviti Rx Pricing Sheet.pdf';
+	link.download = 'Geviti Rx Pricing Sheet.pdf';
 	link.click();
 };
 
