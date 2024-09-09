@@ -12,47 +12,56 @@ import { useWindowDimensions } from '@/hooks';
 import { setCookie } from '@/services/cookies';
 
 import ButtonCta from '../ButtonCta';
-// import CustomLink from '../CustomLink';
-// import { ChevronRight } from '../Icons';
 import Navbar, { navbarDefaultTransition } from '../Navbar/Landing';
+import PopupReview from '../PopupReview';
 
 import { slideUpTransition } from './transition';
 
 const heroData = landingData.hero;
 
 type HeroProps = {
-	showBanner?: boolean;
-	showIntro?: string;
+  showBanner?: boolean;
+  showIntro?: string;
 };
 
-const Hero: React.FC<HeroProps> = ({ showBanner = true, showIntro = 'true' }) => {
+const Hero: React.FC<HeroProps> = ({
+	showBanner = false,
+	showIntro = 'true',
+}) => {
 	const { ref, inView } = useInView();
 
 	const [activeStepIdx, setActiveStepIdx] = useState<number>(-1);
 	const [prevIdx, setPrevIdx] = useState<number>(activeStepIdx);
 	const [startTimer, setStartTimer] = useState<boolean>(false);
+	const [isMounted, setIsMounted] = useState<boolean>(false);
 
 	const stepControls = useAnimationControls();
 
 	const windowDimensions = useWindowDimensions();
 	const isMobile = windowDimensions.width < screens.lg;
 
-	// const [scopeBanner, animateBanner] = useAnimate();
 	const controlsBanner = useAnimationControls();
 
 	useEffect(() => {
+		setIsMounted(true);
+	}, []);
+
+	useEffect(() => {
 		if (showBanner) {
-			controlsBanner.start({ scale: 1 }, { ease: 'easeInOut', duration: .85, delay: 6 });
+			controlsBanner.start(
+				{ scale: 1 },
+				{ ease: 'easeInOut', duration: 0.85, delay: 6 }
+			);
 		}
 	}, [showBanner]);
 
 	useEffect(() => {
 		stepControls.start({
-			width: ((activeStepIdx + 1) * 20) + '%',
+			width: (activeStepIdx + 1) * 20 + '%',
 			transition: {
 				duration: 1,
-				ease: 'easeOut'
-			}
+				ease: 'easeOut',
+			},
 		});
 	}, [activeStepIdx]);
 
@@ -62,7 +71,9 @@ const Hero: React.FC<HeroProps> = ({ showBanner = true, showIntro = 'true' }) =>
 		if (startTimer && inView) {
 			timer = setTimeout(() => {
 				setPrevIdx(activeStepIdx);
-				setActiveStepIdx(prev => prev + 1 === heroData.mainKeys.length ? 0 : prev + 1);
+				setActiveStepIdx(prev =>
+					prev + 1 === heroData.mainKeys.length ? 0 : prev + 1
+				);
 			}, 3000);
 		} else {
 			clearTimeout(timer);
@@ -71,43 +82,49 @@ const Hero: React.FC<HeroProps> = ({ showBanner = true, showIntro = 'true' }) =>
 		return () => clearTimeout(timer);
 	}, [activeStepIdx, startTimer, inView]);
 
-	const handleScrollCarousel = useCallback((e: React.UIEvent<HTMLDivElement>) => {
-		const element = e.currentTarget;
+	const handleScrollCarousel = useCallback(
+		(e: React.UIEvent<HTMLDivElement>) => {
+			const element = e.currentTarget;
 
-		const windowScroll = element.scrollLeft;
-		const totalWidth = element.scrollWidth - element.clientWidth;
-		let scrollProgress = 0;
-		if (windowScroll === 0) scrollProgress = 0;
-		if (windowScroll > totalWidth) scrollProgress = 100;
-		else scrollProgress = (windowScroll / totalWidth) * 100;
+			const windowScroll = element.scrollLeft;
+			const totalWidth = element.scrollWidth - element.clientWidth;
+			let scrollProgress = 0;
+			if (windowScroll === 0) scrollProgress = 0;
+			if (windowScroll > totalWidth) scrollProgress = 100;
+			else scrollProgress = (windowScroll / totalWidth) * 100;
 
-		const activeItemIdx = Math.floor((scrollProgress * heroData.mainKeys.length) / 110);
-		setActiveStepIdx(activeItemIdx);
-		stepControls.start({
-			width: ((activeItemIdx + 1) * 20) + '%',
-			transition: {
-				duration: 1,
-				ease: 'easeOut'
-			}
-		});
-	}, []);
+			const activeItemIdx = Math.floor(
+				(scrollProgress * heroData.mainKeys.length) / 110
+			);
+			setActiveStepIdx(activeItemIdx);
+			stepControls.start({
+				width: (activeItemIdx + 1) * 20 + '%',
+				transition: {
+					duration: 1,
+					ease: 'easeOut',
+				},
+			});
+		},
+		[]
+	);
 
 	const renderTitles = (titles: string[]) => {
 		return titles.map((title: string, titleIdx: number) => (
 			<span
-				key={ `title-${ titleIdx }` }
+				key={ `title-${titleIdx}` }
 				className='overflow-hidden inline-flex'>
 				<motion.span
 					variants={ {
 						visible: {
 							y: 0,
-							transition: slideUpTransition
+							transition: slideUpTransition,
 						},
-						hidden: { y: '100%' }
+						hidden: { y: '100%' },
 					} }
 					className='inline-flex font-medium text-[6.667vw] xs:text-3xl md:text-4xl lg:text-[5vh] xl:text-[46px] !leading-normal -tracking-0.04em text-grey-secondary'
-					dangerouslySetInnerHTML={ { __html: title } }
-				 />
+				>
+					{ isMounted && <span dangerouslySetInnerHTML={ { __html: title } } /> }
+				</motion.span>
 			</span>
 		));
 	};
@@ -122,7 +139,9 @@ const Hero: React.FC<HeroProps> = ({ showBanner = true, showIntro = 'true' }) =>
 				priority={ true }
 				className={ clsxm(
 					'object-cover pointer-events-none',
-					imageMobile ? 'md:hidden object-center' : 'md:block hidden object-right'
+					imageMobile
+						? 'md:hidden object-center'
+						: 'md:block hidden object-right'
 				) }
 				fill
 				sizes='(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 100vw'
@@ -130,15 +149,31 @@ const Hero: React.FC<HeroProps> = ({ showBanner = true, showIntro = 'true' }) =>
 		);
 	};
 
-	const renderMainKeysItem = (item: {
-		icon: (props?: React.SVGProps<SVGSVGElement> | undefined) => React.JSX.Element; // eslint-disable-line no-unused-vars
-		text: string;
-	}, isItemActive: boolean) => {
+	const renderMainKeysItem = (
+		item: {
+      icon: (
+        // eslint-disable-next-line no-unused-vars
+        props?: React.SVGProps<SVGSVGElement> | undefined
+      ) => React.JSX.Element;
+      text: string;
+    },
+		isItemActive: boolean
+	) => {
 		if (item) {
 			return (
 				<div className='flex flex-col gap-3 max-lg:w-full max-lg:items-center'>
-					<item.icon className={ clsxm('flex-shrink-0', isItemActive ? 'text-blue-primary' : 'text-grey-400') } />
-					<p className={ clsxm('text-center lg:text-left text-sm !leading-[21px] font-medium', isItemActive ? 'text-grey-50' : 'text-grey-400') }>
+					<item.icon
+						className={ clsxm(
+							'flex-shrink-0',
+							isItemActive ? 'text-blue-primary' : 'text-grey-400'
+						) }
+					/>
+					<p
+						className={ clsxm(
+							'text-center lg:text-left text-sm !leading-[21px] font-medium',
+							isItemActive ? 'text-grey-50' : 'text-grey-400'
+						) }
+					>
 						<span dangerouslySetInnerHTML={ { __html: item.text } } />
 					</p>
 				</div>
@@ -164,7 +199,7 @@ const Hero: React.FC<HeroProps> = ({ showBanner = true, showIntro = 'true' }) =>
 						transition: {
 							ease: slideUpTransition.ease,
 							duration: 1,
-							delay: 2.1
+							delay: 2.1,
 						},
 					},
 				} }
@@ -174,21 +209,22 @@ const Hero: React.FC<HeroProps> = ({ showBanner = true, showIntro = 'true' }) =>
 				<AnimatePresence initial={ false }>
 					<div
 						className={ clsxm('inline-block overflow-hidden w-full') }
-						style={ { height: 100 } }>
+						style={ { height: 100 } }
+					>
 						<motion.span
 							className='flex flex-col w-full'
 							initial='initial'
 							animate='animate'
 							exit='exit'
-							key={ `mobile-mainkeys-${ activeStepIdx }` }
+							key={ `mobile-mainkeys-${activeStepIdx}` }
 							variants={ {
 								initial: { y: '0%' },
 								animate: { y: '-50%' },
-								exit: { y: '0%' }
+								exit: { y: '0%' },
 							} }
 							transition={ {
 								duration: 1,
-								ease: 'linear'
+								ease: 'linear',
 							} }
 						>
 							<span className='flex justify-center w-full pt-18px'>
@@ -213,10 +249,10 @@ const Hero: React.FC<HeroProps> = ({ showBanner = true, showIntro = 'true' }) =>
 					variants={ {
 						visible: {
 							transition: {
-								staggerChildren: .3,
-								delayChildren: showIntro === 'true' ? 2.7 : 1.7
-							}
-						}
+								staggerChildren: 0.3,
+								delayChildren: showIntro === 'true' ? 2.7 : 1.7,
+							},
+						},
 					} }
 					onScroll={ handleScrollCarousel }
 					className='lg:pt-6 max-lg:hidden no-scrollbar w-full flex flex-nowrap overflow-y-hidden overflow-x-scroll lg:overflow-hidden snap-x snap-mandatory scroll-smooth lg:justify-between'
@@ -228,7 +264,7 @@ const Hero: React.FC<HeroProps> = ({ showBanner = true, showIntro = 'true' }) =>
 							<span
 								key={ itemIdx }
 								className={ clsxm(
-									'flex lg:overflow-hidden lg:inline-block max-lg:w-full max-lg:justify-center snap-start max-lg:flex-none cursor-pointer',
+									'flex lg:overflow-hidden lg:inline-block max-lg:w-full max-lg:justify-center snap-start max-lg:flex-none cursor-pointer'
 									// isItemActive && 'text-grey-50'
 								) }
 								onMouseEnter={ () => setActiveStepIdx(itemIdx) }
@@ -238,7 +274,10 @@ const Hero: React.FC<HeroProps> = ({ showBanner = true, showIntro = 'true' }) =>
 										hidden: { y: '200%' },
 										visible: {
 											y: 0,
-											transition: { ease: slideUpTransition.ease, duration: 1.5 },
+											transition: {
+												ease: slideUpTransition.ease,
+												duration: 1.5,
+											},
 										},
 									} }
 								>
@@ -246,8 +285,7 @@ const Hero: React.FC<HeroProps> = ({ showBanner = true, showIntro = 'true' }) =>
 								</motion.div>
 							</span>
 						);
-					}
-					) }
+					}) }
 				</motion.div>
 			);
 		}
@@ -257,19 +295,58 @@ const Hero: React.FC<HeroProps> = ({ showBanner = true, showIntro = 'true' }) =>
 
 	const onCloseBanner = () => {
 		setCookie({ key: 'close_hero_banner', value: 'true' });
-		controlsBanner.start({ opacity: 0, scale: 0 }, { ease: 'easeInOut', duration: .75 });
+		controlsBanner.start(
+			{ opacity: 0, scale: 0 },
+			{ ease: 'easeInOut', duration: 0.75 }
+		);
+	};
+
+	const renderPopupReview = () => {
+		if (!isMobile) {
+			return (
+				<PopupReview
+					motionProps={ {
+						variants: {
+							initial: { scale: 0, opacity: 0 },
+							animate: {
+								scale: 1,
+								opacity: 1,
+							},
+							exit: {
+								scale: 0,
+								opacity: 0,
+							},
+						},
+						transition: {
+							duration: 0.64,
+							delay: showIntro === 'true' ? 5 : 4,
+							ease: 'easeInOut',
+						},
+						initial: 'initial',
+						whileInView: 'animate',
+						exit: 'exit',
+						viewport: { once: true },
+					} }
+					wrapperClassName='lg:w-auto pl-[18px] py-3 pr-[42px] !bg-black/[0.15] !text-white !border !border-white/[0.15] !rounded-[18px]'
+				/>
+			);
+		}
+
+		return null;
 	};
 
 	return (
 		<div
 			ref={ ref }
 			className='lg:px-3 lg:pt-3 overflow-hidden font-Poppins'>
-			<Navbar animationProps={ {
-				transition: {
-					...navbarDefaultTransition,
-					delay: showIntro === 'true' ? 3.1 : 1.1
-				}
-			} } />
+			<Navbar
+				animationProps={ {
+					transition: {
+						...navbarDefaultTransition,
+						delay: showIntro === 'true' ? 3.1 : 1.1,
+					},
+				} }
+			/>
 			<div className='bg-primary h-[calc(100svh+14px)] lg:h-[calc(100vh-24px)] w-full overflow-hidden max-lg:rounded-t-none rounded-19px relative pt-11px lg:pt-5'>
 				<div className='absolute inset-0 w-full h-full'>
 					<div className='relative overflow-hidden w-full h-full'>
@@ -277,34 +354,36 @@ const Hero: React.FC<HeroProps> = ({ showBanner = true, showIntro = 'true' }) =>
 						{ renderImage('mobile') }
 					</div>
 				</div>
-				<div className='absolute bottom-0 inset-x-0 w-full h-[72%] lg:h-[62%] bg-backdrop-hero-landing-bottom -z-0' />
+				<div className='absolute left-0 inset-y-0 w-[54%] h-full max-lg:hidden bg-backdrop-hero-landing-left' />
+				<div className='absolute bottom-0 inset-x-0 w-full h-[72%] lg:hidden bg-backdrop-hero-landing-bottom -z-0' />
 				<div className='h-full container-center'>
 					<div className='relative w-full h-full rounded-b-19px'>
-						{ heroData.banner.show
-							? (
-								<motion.div
-									animate={ controlsBanner }
-									initial={ { scale: 0 } }
-									className='absolute max-lg:left-0 right-0 top-[calc(60px+14px)] lg:top-[calc(69px+3.203vh)] xl:top-[calc(69px+41px)]'
-								>
-									<div className='bg-black/15 backdrop-blur-[25px] border border-white/15 relative pl-18px pr-[35px] lg:pr-[42px] py-3 rounded-xl lg:rounded-[18px] flex items-center gap-3 lg:gap-6 w-full lg:max-w-[471px]'>
-										<div className='absolute top-0 lg:top-0.5 right-1.5 lg:right-2'>
-											<button
-												onClick={ onCloseBanner }
-												aria-label='btn-banner'
-												className='focus:ring-0 focus:outline-none border border-white/10 bg-white/20 hover:bg-white/30 w-18px h-18px lg:w-[22px] lg:h-[22px] rounded-full relative'>
-												<IoClose className='text-white w-3.5 h-3.5 absolute-center flex-shrink-0' />
-											</button>
-										</div>
-										<div className='w-[47px] h-[47px] lg:w-16 lg:h-16 flex-shrink-0 rounded-[14px] lg:rounded-19px bg-primary relative'>
-											<heroData.banner.icon className='w-5 h-5 lg:w-7 lg:h-7 flex-shrink-0 absolute-center' />
-										</div>
-										<p
-											dangerouslySetInnerHTML={ { __html: heroData.banner.text } }
-											className='text-[10px] leading-4 lg:text-sm lg:leading-6 font-Poppins text-white' />
+						{ heroData.banner.show ? (
+							<motion.div
+								animate={ controlsBanner }
+								initial={ { scale: 0 } }
+								className='absolute max-lg:left-0 right-0 top-[calc(60px+14px)] lg:top-[calc(69px+3.203vh)] xl:top-[calc(69px+41px)]'
+							>
+								<div className='bg-black/15 backdrop-blur-[25px] border border-white/15 relative pl-18px pr-[35px] lg:pr-[42px] py-3 rounded-xl lg:rounded-[18px] flex items-center gap-3 lg:gap-6 w-full lg:max-w-[471px]'>
+									<div className='absolute top-0 lg:top-0.5 right-1.5 lg:right-2'>
+										<button
+											onClick={ onCloseBanner }
+											aria-label='btn-banner'
+											className='focus:ring-0 focus:outline-none border border-white/10 bg-white/20 hover:bg-white/30 w-18px h-18px lg:w-[22px] lg:h-[22px] rounded-full relative'
+										>
+											<IoClose className='text-white w-3.5 h-3.5 absolute-center flex-shrink-0' />
+										</button>
 									</div>
-								</motion.div>
-							) : null }
+									<div className='w-[47px] h-[47px] lg:w-16 lg:h-16 flex-shrink-0 rounded-[14px] lg:rounded-19px bg-primary relative'>
+										<heroData.banner.icon className='w-5 h-5 lg:w-7 lg:h-7 flex-shrink-0 absolute-center' />
+									</div>
+									<p
+										dangerouslySetInnerHTML={ { __html: heroData.banner.text } }
+										className='text-[10px] leading-4 lg:text-sm lg:leading-6 font-Poppins text-white'
+									/>
+								</div>
+							</motion.div>
+						) : null }
 						<div className='pb-18px lg:pb-[47px] h-full w-full flex flex-col justify-end'>
 							<div className='text-left flex flex-col'>
 								<span className='overflow-hidden inline-flex'>
@@ -314,14 +393,15 @@ const Hero: React.FC<HeroProps> = ({ showBanner = true, showIntro = 'true' }) =>
 												y: 0,
 												transition: {
 													...slideUpTransition,
-													delay: showIntro === 'true' ? 2.1 : 0.1
-												}
+													delay: showIntro === 'true' ? 2.1 : 0.1,
+												},
 											},
 											hidden: { y: '100%' },
 										} }
 										initial='hidden'
 										animate='visible'
-										className='text-grey-secondary font-Poppins inline-flex font-semibold text-[10px] sm:text-xs lg:text-sm !leading-6 uppercase tracking-0.11em'>
+										className='text-grey-secondary font-Poppins inline-flex font-semibold text-[10px] sm:text-xs lg:text-sm !leading-6 uppercase tracking-0.11em'
+									>
 										{ heroData.preTitle }
 									</motion.h2>
 								</span>
@@ -332,10 +412,10 @@ const Hero: React.FC<HeroProps> = ({ showBanner = true, showIntro = 'true' }) =>
 									variants={ {
 										visible: {
 											transition: {
-												staggerChildren: .5,
-												delayChildren: showIntro === 'true' ? 2.1 : 0.1
-											}
-										}
+												staggerChildren: 0.5,
+												delayChildren: showIntro === 'true' ? 2.1 : 0.1,
+											},
+										},
 									} }
 									className='sm:max-w-[738px] flex flex-col max-sm:hidden'
 								>
@@ -347,16 +427,16 @@ const Hero: React.FC<HeroProps> = ({ showBanner = true, showIntro = 'true' }) =>
 									variants={ {
 										visible: {
 											transition: {
-												staggerChildren: .25,
-											}
-										}
+												staggerChildren: 0.25,
+											},
+										},
 									} }
 									className='sm:hidden flex flex-col mt-5px'
 								>
 									{ renderTitles(heroData.titlesMobile) }
 								</motion.h1>
 
-								<div className='flex w-full mt-[5vh] xs:mt-[42px] lg:mt-[5.435vh] xl:mt-50px'>
+								<div className='flex w-full mt-[5vh] xs:mt-[42px] lg:mt-[5.435vh] xl:mt-50px relative'>
 									<div className='grid grid-cols-1 auto-rows-fr sm:flex gap-4 xxs:gap-6 lg:gap-[42px] items-center w-full'>
 										<div className='overflow-hidden inline-block h-full'>
 											<motion.div
@@ -366,10 +446,10 @@ const Hero: React.FC<HeroProps> = ({ showBanner = true, showIntro = 'true' }) =>
 														transition: {
 															...slideUpTransition,
 															delay: showIntro === 'true' ? 2.35 : 1.35,
-															duration: 1
-														}
+															duration: 1,
+														},
 													},
-													hidden: { y: '104%' }
+													hidden: { y: '104%' },
 												} }
 												initial='hidden'
 												animate='visible'
@@ -394,26 +474,30 @@ const Hero: React.FC<HeroProps> = ({ showBanner = true, showIntro = 'true' }) =>
 														y: 0,
 														transition: {
 															...slideUpTransition,
-															delay: showIntro === 'true' ? 2.35 : 1.80,
-															duration: 1
-														}
+															delay: showIntro === 'true' ? 2.35 : 1.8,
+															duration: 1,
+														},
 													},
-													hidden: { y: '100%' }
+													hidden: { y: '100%' },
 												} }
 												initial='hidden'
 												animate='visible'
 												className='flex w-full h-full'
 											>
 												<ButtonCta
-													href={ heroData.btnCta2.href }
 													externalLink={ heroData.btnCta2.externalLink }
 													aria-label={ heroData.btnCta2.text }
 													text={ heroData.btnCta2.text }
+													href={ heroData.btnCta2.href }
 													theme='blur'
 													className='max-sm:w-full'
 												/>
 											</motion.div>
 										</div>
+									</div>
+
+									<div className='absolute right-0 bottom-0 max-lg:hidden'>
+										{ renderPopupReview() }
 									</div>
 								</div>
 							</div>
@@ -427,8 +511,8 @@ const Hero: React.FC<HeroProps> = ({ showBanner = true, showIntro = 'true' }) =>
 											transition: {
 												delay: showIntro === 'true' ? 3.1 : 0.1,
 												duration: 1,
-												ease: 'easeInOut'
-											}
+												ease: 'easeInOut',
+											},
 										},
 										hidden: { opacity: 0, y: 5 },
 									} }

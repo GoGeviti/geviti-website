@@ -39,7 +39,7 @@ const ButtonSwitchMemberFreq: React.FC<ButtonSwitchMemberFreqProps> = ({
 		const currentOpt = options[activeTabIdx];
 
 		return (
-			<div className='relative w-full rounded-[100px] h-[49px] px-1.5 bg-grey-50'>
+			<div className='relative overflow-hidden w-full rounded-[100px] h-[49px] px-1.5 bg-grey-50'>
 				<div className='relative flex items-center h-full'>
 					{ options.map((opt, optIdx) => {
 						return (

@@ -17,6 +17,7 @@ type BannerProps = {
 		externalLink?: boolean;
 	};
 	overlayClassName?: string;
+	children?: React.ReactNode;
 };
 
 const Banner: React.FC<BannerProps> = ({
@@ -26,11 +27,14 @@ const Banner: React.FC<BannerProps> = ({
 	image,
 	imageMobile,
 	btnCta,
-	overlayClassName
+	overlayClassName,
+	children
 }) => {
 	return (
 		<div className='lg:px-3 overflow-hidden font-Poppins'>
 			<div className='bg-grey-secondary h-full w-full rounded-19px relative overflow-hidden'>
+				{ children }
+				
 				<div className='container-center max-lg:pb-[54px] grid-cols-1 grid lg:grid-cols-2 max-lg:gap-y-7 lg:gap-x-8 lg:relative'>
 					<div className='max-lg:h-[811px] lg:pb-[100px] lg:pt-[146px] w-full'>
 						<div className='h-full flex flex-col justify-end lg:justify-center relative z-10 max-lg:w-full lg:max-w-2xl mx-auto lg:mx-0'>
@@ -87,6 +91,7 @@ const Banner: React.FC<BannerProps> = ({
 							src={ imageMobile ?? image }
 							alt='mission'
 							loading='lazy'
+							quality={ 100 }
 							className='object-cover pointer-events-none'
 							fill
 						/>

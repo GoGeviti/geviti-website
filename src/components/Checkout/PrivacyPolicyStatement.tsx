@@ -18,7 +18,7 @@ const PrivacyPolicyStatement: React.FC<PrivacyPolicyStatementProps> = ({ highlig
 
 	return (
 		<span className={ clsxm(
-			'text-sm !leading-normal',
+			'text-sm !leading-normal font-Poppins',
 			theme === 'light' && 'text-grey-500',
 			theme === 'dark' && 'text-grey-primary'
 		) }>
@@ -33,11 +33,15 @@ const PrivacyPolicyStatement: React.FC<PrivacyPolicyStatementProps> = ({ highlig
 					<p>By clicking &quot;{ highlightText }&quot;, you automatically agree to abide by our policies and terms.</p>
 				</Fragment>
 			) : (
-				<p>By checking the box, you confirm that you have read, understood, and agree to abide by our <Link
+				<p className='text-sm font-normal text-[#6A6E70]'>By checking the box, you confirm that you have read, understood, and agree to abide by our <Link
 					href='/privacy-policy'
-					className={ linkClassName }>Privacy Policy</Link> and <Link
+					className='text-primary underline'>Privacy Policy</Link>, <Link
 					href='/terms-and-conditions'
-					className={ linkClassName }>Terms of Use</Link>.</p>
+					className='text-primary underline'>Terms of Use</Link> and <a
+					target='_blank'
+					rel='noopener noreferrer'
+					href='/files/HIPAA Authorization.pdf'
+					className='text-primary underline'>HIPAA Authorization</a>.</p>
 			) }
 		</span>
 	);

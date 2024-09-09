@@ -8,6 +8,7 @@ declare global {
 			NEXT_PUBLIC_GOOGLE_MAPS_API_KEY: string;
 			NEXT_PUBLIC_APPLE_STORE_URL: string;
 			NEXT_PUBLIC_PLAY_STORE_URL: string;
+			SLACK_WEBHOOK_URL: string;
 			NOTION_DATABASE_ID: string;
 			NEXT_PUBLIC_STAGE: 'development' | 'production';
 			NEXT_PUBLIC_PRECHECKOUT_WAITLIST: 'true' | 'false';

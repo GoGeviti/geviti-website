@@ -1,6 +1,6 @@
 import { FC, Fragment, useMemo } from 'react';
 
-import { DiscountReturnType, PROMO_TYPE } from '../api/types';
+import { DiscountReturnType } from '../api/types';
 
 interface ITotalCalc {
   productPrice: number;
@@ -19,9 +19,18 @@ export const TotalCalc: FC<ITotalCalc> = ({
 		[productPrice, membershipPrice]
 	);
 
+	const totalDiscount = useMemo(() => {
+		if (discount?.id) {
+			const discountAmount = (membershipPrice * discount.percent_off) / 100;
+			return discountAmount.toFixed(2);
+		}
+		return 0;
+	}, [discount]);
+
 	const totalDue = useMemo(() => {
-		if (discount?.coupon_exist) {
-			const due = (membershipPrice + discount.coupon_details.discounted_price).toFixed(2);
+		if (discount?.id) {
+			const discountAmount = (membershipPrice * discount.percent_off) / 100;
+			const due = ((membershipPrice + productPrice) - discountAmount).toFixed(2);
 			setTotalPrice(Number(due));
 			return due;
 		}
@@ -33,26 +42,20 @@ export const TotalCalc: FC<ITotalCalc> = ({
 		<div className='flex justify-between py-12'>
 			<div className='flex flex-col'>
 				<p className='text-grey-primary text-sm'>Total</p>
-				{ discount?.coupon_exist && (
+				{ discount?.id && (
 					<p className='text-grey-primary py-6 text-sm'>
-            Coupon - { discount.coupon_details.keyword }
+            Coupon - { discount.percent_off }%
 					</p>
 				) }
 				<p className='text-white text-lg py-6'>Total due</p>
 			</div>
 			<div className='flex flex-col text-right'>
 				<p className='text-grey-primary text-sm'>${ total }</p>
-				{ discount?.coupon_exist && (
+				{ discount?.id && (
 					<p className='text-grey-primary py-6 text-sm'>
-						{ discount?.coupon_details.promo_type === PROMO_TYPE.AMOUNT_OFF ? (
-							<Fragment>
-								-${ discount.coupon_details.amount_off }
-							</Fragment>
-						) : (
-							<Fragment>
-								-{ discount.coupon_details.amount_off }%
-							</Fragment>
-						) }
+						<Fragment>
+							-${ totalDiscount }
+						</Fragment>
 					</p>
 				) }
 				<p className='text-white text-lg py-6'>${ totalDue }</p>

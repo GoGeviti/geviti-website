@@ -200,7 +200,7 @@ const Navbar: React.FC<NavbarProps> = ({
 					className
 				) }
 			>
-				<nav className='w-full container-center'>
+				<nav className='w-full container-center border rounded-full border-[#F5F6F6]'>
 					<div className='flex h-60px lg:h-20 items-center justify-between'>
 						<div className='flex items-center'>
 							{ renderLogo() }
@@ -216,7 +216,7 @@ const Navbar: React.FC<NavbarProps> = ({
 									{ renderIconMenuList() }
 								</div>
 								<CustomLink
-									href='https://app.gogeviti.com/'
+									href={ process.env.NEXT_PUBLIC_APP_URL ?? '/' }
 									onClick={ () => handleSelectedItem(4) }
 									className={ clsxm(
 										'lg:w-[120px] rounded-md px-3 py-2 text-sm font-Poppins hover:font-semibold md:block hidden',

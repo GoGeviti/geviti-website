@@ -8,7 +8,7 @@ import clsxm from '@/helpers/clsxm';
 const shiftVariants = {
 	initial: { y: '0%' },
 	animate: { y: '-50%' },
-	exit: { y: '0%' }
+	exit: { y: '0%' },
 };
 
 const shiftVariantsMobile = {
@@ -24,12 +24,13 @@ const shiftVariantsMobile = {
 };
 
 type ShiftSectionProps = {
-	children: React.ReactNode;
-	prevElement?: React.ReactNode;
-	id: string;
-	isMobile?: boolean;
-	wrapperClassName?: string;
-	animationProps?: AnimationProps;
+  children: React.ReactNode;
+  prevElement?: React.ReactNode;
+  id: string;
+  isMobile?: boolean;
+  wrapperClassName?: string;
+  prevElementClassName?: string;
+  animationProps?: AnimationProps;
 };
 
 const ShiftSection: React.FC<ShiftSectionProps> = ({
@@ -38,7 +39,8 @@ const ShiftSection: React.FC<ShiftSectionProps> = ({
 	id,
 	isMobile,
 	wrapperClassName,
-	animationProps
+	prevElementClassName = 'max-lg:hidden',
+	animationProps,
 }) => {
 	const container = useRef<HTMLSpanElement>(null);
 	const [contentHeight, setContentHeight] = useState<number | string>(0);
@@ -56,7 +58,8 @@ const ShiftSection: React.FC<ShiftSectionProps> = ({
 		<AnimatePresence initial={ false }>
 			<div
 				className={ clsxm('inline-block overflow-hidden', wrapperClassName) }
-				style={ !isMobile ? { height: contentHeight } : {} }>
+				style={ !isMobile ? { height: contentHeight } : {} }
+			>
 				<motion.span
 					className='flex flex-col'
 					initial={ contentHeight === 0 && !isMobile ? { y: '-50%' } : 'initial' }
@@ -65,12 +68,12 @@ const ShiftSection: React.FC<ShiftSectionProps> = ({
 					key={ id }
 					variants={ isMobile ? shiftVariantsMobile : shiftVariants }
 					transition={ {
-						duration: .9,
-						ease: 'easeIn'
+						duration: 0.9,
+						ease: 'easeIn',
 					} }
 					{ ...animationProps }
 				>
-					<span className='max-lg:hidden'>{ prevElement }</span>
+					<span className={ prevElementClassName }>{ prevElement }</span>
 					<span ref={ container }>{ children }</span>
 				</motion.span>
 			</div>

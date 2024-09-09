@@ -3,14 +3,17 @@ import {
 	AddressValitationParams,
 	CheckoutParams,
 	CheckoutResponseType,
-	DiscountParams,
+	CreateSessionParams,
 	DiscountReturnType,
 	ErrorResponse,
 	InitialOfferingsReturnType,
 	MembershipOfferingsReturnType,
+	ProductsPriceResponse,
+	ProductsResponse,
 	TempUser,
 	TempUserDataParams,
 	TempUserReturnType,
+	ValidateUserStateParams,
 	WaitListParams,
 } from './types';
 
@@ -122,18 +125,14 @@ export const getMembershipOfferings = async(): Promise<MembershipOfferingsReturn
 	}
 };
 
-export const getDiscount = async(params: DiscountParams): Promise<DiscountReturnType> => {
+export const getDiscount = async(code: string): Promise<DiscountReturnType> => {
 	try {
-		const userToken = fetchUserToken();
-		if (!userToken) throw { message: 'No user found' };
-
 		const res = await fetch(
-			`${onboardingApiUrl}/billing/offerings-coupon?keyword=${params.keyword}&offering_id=${params.offering_id}&price=${params.price}
+			`${onboardingApiUrl}/coupons/${code}
     `,
 			{
 				method: 'GET',
 				headers: {
-					Authorization: `Token ${userToken}`,
 					...headers,
 				},
 				cache: 'no-store',
@@ -141,13 +140,7 @@ export const getDiscount = async(params: DiscountParams): Promise<DiscountReturn
 		);
 		const data = await processResponse<DiscountReturnType>(res);
 		return {
-			...data,
-			coupon_details: {
-				...data.coupon_details,
-				discounted_price: Number(data.coupon_details.discounted_price),
-				amount_off: Number(data.coupon_details.amount_off),
-				original_price: Number(data.coupon_details.original_price),
-			}
+			...data
 		}
 	} catch (error) {
 		return await processError(error);
@@ -188,6 +181,130 @@ export const validateAddress = async(params: AddressValitationParams): Promise<A
 			}
 		);
 		return await processResponse(res);
+	} catch (error) {
+		return await processError(error);
+	}
+}
+
+export const getAllProducts = async() : Promise<ProductsResponse[]> => {
+	try {
+		const res = await fetch(
+			`${onboardingApiUrl}/products`,
+			{
+				method: 'GET',
+				headers: {
+					...headers,
+				}
+			}
+		);
+		const data = await processResponse<ProductsResponse[]>(res);
+		return data
+	} catch (error) {
+		return await processError(error);
+	}
+}
+
+export const getProductsPrice = async(id:string) : Promise<ProductsPriceResponse[]> => {
+	try {
+		const res = await fetch(
+			`${onboardingApiUrl}/products/${id}`,
+			{
+				method: 'GET',
+				headers: {
+					...headers,
+				},
+				cache: 'no-store',
+			}
+		);
+		const data = await processResponse<ProductsPriceResponse[]>(res);
+		return data
+	} catch (error) {
+		return await processError(error);
+	}
+}
+
+export const createSession = async({
+	header,
+	body,
+}: {
+	header : {[key:string]:string},
+	body : CreateSessionParams
+}): Promise<{clientSecret:string, token:string}> => {
+	try {
+		const res = await fetch(
+			`${onboardingApiUrl}/v2/billing/checkout/`,
+			{
+				method: 'POST',
+				headers: {
+					...header,
+					...headers,
+				},
+				body: JSON.stringify(body),
+			}
+		);
+		const data = await processResponse<{clientSecret:string, token:string}>(res);
+		return data
+	} catch (error) {
+		return await processError(error);
+	}
+}
+
+export const getResetPasswordToken = async(email:string, tokenPayload:string): Promise<{restKey:string}> => {
+	try {
+		const res = await fetch(
+			`${onboardingApiUrl}/users/onboard`,
+			{
+				method: 'POST',
+				headers: {
+					Authorization: `Bearer ${tokenPayload}`,
+					...headers,
+				},
+				body: JSON.stringify({ email: email }),
+			}
+		);
+		const data = await processResponse<{restKey:string}>(res);
+		return data
+	} catch (error) {
+		return await processError(error);
+	}
+}
+
+export const validateState = async(params: ValidateUserStateParams): Promise<{stateExists:boolean, token:string}> => {
+	try {
+		const res = await fetch(
+			`${onboardingApiUrl}/users/validate/state`,
+			{
+				method: 'POST',
+				headers: {
+					...headers,
+				},
+				body: JSON.stringify(params),
+			}
+		);
+		const data = await processResponse<{stateExists:boolean, token:string}>(res);
+		return data
+	} catch (error) {
+		return await processError(error);
+	}
+}
+
+export const joinWaitListV2 = async(params: ValidateUserStateParams) => {
+	try {
+		const res = await fetch(
+			`${onboardingApiUrl}/v3/users/waitlist`,
+			{
+				method: 'POST',
+				headers: {
+					...headers,
+				},
+				body: JSON.stringify(params),
+			}
+		);
+		if (res.ok) {
+			return true
+		} else {
+			return false
+		}
 	} catch (error) {
 		return await processError(error);
 	}

@@ -86,7 +86,7 @@ const Comprehensive: React.FC = () => {
 							)) }
 						</div>
 						<CustomLink
-							href='/onboarding'
+							href='/pricing'
 							className='btn-cta-landing group btn-primary w-full text-center flex items-center justify-center'
 							aria-label={ items.btn }
 						>

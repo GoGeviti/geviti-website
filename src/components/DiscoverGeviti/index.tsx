@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useMemo, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { AnimatePresence, motion, useMotionValue } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -50,10 +50,9 @@ const DiscoverGeviti: React.FC<DiscoverGevitiProps> = ({
 	withBg = false,
 	// products,
 }) => {
-	const itemsRef = useRef<Array<HTMLDivElement | null>>([]);
-	const wrapperItemsRef = useRef<HTMLDivElement>(null);
 	const scrollbarWidth = useMotionValue('0%');
 
+	const [container, setContainer]  = useState<HTMLDivElement | null>(null)
 	const [selectedCategoryIdx, setSelectedCategoryIdx] = useState<number>(0);
 	const [selectedSubCategoryIdx, setSelectedSubCategoryIdx] = useState<number>(0);
 	const [disabledArrowScroll, setDisabledArrowScroll] = useState<string>('prev');
@@ -69,12 +68,11 @@ const DiscoverGeviti: React.FC<DiscoverGevitiProps> = ({
 		});
 	}, [selectedCategoryIdx, selectedSubCategoryIdx]);
 
-	useEffect(() => {
-		itemsRef.current = itemsRef.current.slice(0, productsByCategory.length);
-	}, [productsByCategory, selectedCategoryIdx]);
+	const wrapperItemsRef = useCallback((node: HTMLDivElement) => {
+		setContainer(node)
+	}, [selectedCategoryIdx, selectedSubCategoryIdx]);
 
 	const handleProductsPlaceholder = () => {
-		const container = wrapperItemsRef.current;
 		if (container) {
 			const containerWidth = container.clientWidth;
 			const totalProducts = productsByCategory.length;
@@ -90,7 +88,6 @@ const DiscoverGeviti: React.FC<DiscoverGevitiProps> = ({
 	}, []);
 
 	const handleProductListScroll = (init?: boolean) => {
-		const container = wrapperItemsRef.current;
 		if (container) {
 			const scroll = container.scrollLeft;
 			const total = container.scrollWidth - container.clientWidth;
@@ -104,7 +101,7 @@ const DiscoverGeviti: React.FC<DiscoverGevitiProps> = ({
 
 			if (isNotOverflowScroll) setDisabledArrowScroll('all');
 			else if (progress === 0) setDisabledArrowScroll('prev');
-			else if (progress === 100) setDisabledArrowScroll('next');
+			else if (progress >= 100) setDisabledArrowScroll('next');
 			else setDisabledArrowScroll('');
 		}
 	};
@@ -112,10 +109,9 @@ const DiscoverGeviti: React.FC<DiscoverGevitiProps> = ({
 	useEffect(() => {
 		handleProductListScroll(true);
 		handleProductsPlaceholder();
-	}, [wrapperItemsRef.current, selectedCategoryIdx, selectedSubCategoryIdx]);
+	}, [container]);
 
 	const handleArrowScroll = (dir: 'prev' | 'next') => {
-		const container = wrapperItemsRef.current;
 		if (container) {
 			if (dir === 'next') {
 				container.scrollLeft += (CARD_PRODUCT_WIDTH + SPACING_BETWEEN_CARD);
@@ -145,7 +141,6 @@ const DiscoverGeviti: React.FC<DiscoverGevitiProps> = ({
 						<div
 							key={ productIdx }
 							className='group snap-start hover:shadow-[0px_4px_24px_rgba(0,0,0,0.15)] transition-shadow duration-200 ease-in cursor-pointer relative flex flex-col overflow-hidden bg-grey-secondary flex-none w-[287px] h-[375px] xl:h-[412px] px-3 pt-3 pb-[21px] rounded-19px'
-							ref={ el => itemsRef.current[productIdx] = el }
 							id={ `discover-product-card-${ product.id }` }
 						>
 							<Link
@@ -362,7 +357,7 @@ const DiscoverGeviti: React.FC<DiscoverGevitiProps> = ({
 											aria-label={ subCategory.title }
 											key={ `subCategory-${ subCategory.id }` }
 											className={ clsxm(
-												'focus:ring-0 focus:outline-none transition-colors ease-in-out duration-200 border py-1 sm:py-2 px-2 sm:px-3.5 rounded-[100px] text-xs !leading-normal font-medium',
+												'focus:ring-0 focus:outline-none hover:bg-grey-primary-light transition-colors ease-in-out duration-200 border py-1 sm:py-2 px-2 sm:px-3.5 rounded-[100px] text-xs !leading-normal font-medium',
 												subCategoryIdx === selectedSubCategoryIdx ? 'border-primary text-primary' : 'border-grey-300 text-grey-300'
 											) }
 											onClick={ () => {

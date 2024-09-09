@@ -36,8 +36,8 @@ DialogOverlay.displayName = DialogPrimitive.Overlay.displayName;
 
 const DialogContent = React.forwardRef<
 	React.ElementRef<typeof DialogPrimitive.Content>,
-	React.ComponentPropsWithoutRef<typeof DialogPrimitive.Content> & { position?: 'default' | 'bottom-right' | 'bottom-left' }
->(({ className, children, ...props }, ref) => (
+	React.ComponentPropsWithoutRef<typeof DialogPrimitive.Content> & { position?: 'default' | 'bottom-right' | 'bottom-left', showClose?:boolean }
+>(({ className, children, showClose = true, ...props }, ref) => (
 	<DialogPortal>
 		<DialogOverlay />
 		<DialogPrimitive.Content
@@ -52,24 +52,28 @@ const DialogContent = React.forwardRef<
 			{ ...props }
 		>
 			{ children }
-			<DialogPrimitive.Close className='absolute max-sm:left-1/2 max-sm:-translate-x-1/2 sm:right-0 -top-20 focus:outline-none focus:border-none focus:ring-0 group'>
-				<div className='bg-grey-secondary bg-opacity-[0.06] group-hover:bg-opacity-10 rounded-full w-[65px] h-[65px] flex items-center justify-center flex-shrink-0'>
-					<svg
-						xmlns='http://www.w3.org/2000/svg'
-						width='33'
-						height='33'
-						viewBox='0 0 33 33'
-						fill='none'>
-						<path
-							d='M23.2708 9.72916L9.72916 23.2708M9.72916 9.72916L23.2708 23.2708'
-							stroke='#FBFBFB'
-							strokeWidth='2.70833'
-							strokeLinecap='round'
-							strokeLinejoin='round' />
-					</svg>
-				</div>
-				<span className='sr-only'>Close</span>
-			</DialogPrimitive.Close>
+			{
+				showClose && (
+					<DialogPrimitive.Close className='absolute max-sm:left-1/2 max-sm:-translate-x-1/2 sm:right-0 -top-20 focus:outline-none focus:border-none focus:ring-0 group'>
+						<div className='bg-grey-secondary bg-opacity-[0.06] group-hover:bg-opacity-10 rounded-full w-[65px] h-[65px] flex items-center justify-center flex-shrink-0'>
+							<svg
+								xmlns='http://www.w3.org/2000/svg'
+								width='33'
+								height='33'
+								viewBox='0 0 33 33'
+								fill='none'>
+								<path
+									d='M23.2708 9.72916L9.72916 23.2708M9.72916 9.72916L23.2708 23.2708'
+									stroke='#FBFBFB'
+									strokeWidth='2.70833'
+									strokeLinecap='round'
+									strokeLinejoin='round' />
+							</svg>
+						</div>
+						<span className='sr-only'>Close</span>
+					</DialogPrimitive.Close>
+				)
+			}
 		</DialogPrimitive.Content>
 	</DialogPortal>
 ));

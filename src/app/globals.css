@@ -237,3 +237,7 @@ input[type="number"]::placeholder {
 .pac-container:after {
   content: none !important;
 }
+
+.p-PaymentElement {
+  @apply !font-Poppins;
+}

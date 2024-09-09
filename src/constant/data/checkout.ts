@@ -100,7 +100,7 @@ const checkoutData = {
 			btnPrimary: {
 				type: 'link',
 				externalLink: true,
-				href: 'https://app.gogeviti.com/',
+				href: process.env.NEXT_PUBLIC_APP_URL,
 				text: 'Lets Begin Onboarding',
 			},
 			btnSecondary: null,

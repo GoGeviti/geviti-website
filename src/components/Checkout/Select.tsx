@@ -22,6 +22,7 @@ type SelectProps = {
 	errorMessage?: string;
 	disabled?: boolean;
 	size?: 'default' | 'small';
+	isLight?: boolean;
 };
 
 const CustomSelect: React.FC<SelectProps> = ({
@@ -32,7 +33,8 @@ const CustomSelect: React.FC<SelectProps> = ({
 	isError,
 	errorMessage,
 	disabled,
-	size = 'default'
+	size = 'default',
+	isLight = false
 }) => {
 	const renderSelect = () => {
 		return (
@@ -51,11 +53,12 @@ const CustomSelect: React.FC<SelectProps> = ({
 								value !== '' ? 'text-white' : 'text-grey-500',
 								isError ? 'ring-1 ring-red-primary data-[state=open]:ring-red-primary focus:ring-1 focus:ring-red-primary' : 'data-[state=open]:ring-1 data-[state=open]:ring-grey-primary focus:ring-grey-primary',
 								size === 'small' && 'h-auto lg:h-auto py-4 pl-4 border focus:border-[#E6E7E7] pr-[10px] bg-white placeholder:text-[#AEB1B2] text-primary text-xs lg:text-xs w-full border-[#E6E7E7]',
+								isLight && 'border focus:border-[#E6E7E7] bg-white placeholder:text-[#AEB1B2] text-primary border-[#E6E7E7]',
 							)
 						}>
 						<span className={ clsxm(
 							'w-full truncate overflow-hidden whitespace-nowrap text-left',
-							// (size === 'small' && value !== '') ? 'text-[#AEB1B2]' : 'text-primary',
+							(size === 'small' && !value) ? 'text-[#AEB1B2]' : 'text-primary',
 							// (size !== 'small' && value !== '') ? 'text-white' : 'text-grey-500',
 						) }>{ options.find(e => e.value === value)?.label ?? placeholder }</span>
 					</SelectTrigger>

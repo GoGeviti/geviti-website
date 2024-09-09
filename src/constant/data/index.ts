@@ -7,6 +7,7 @@ import footerData from './footer';
 import homeData from './home';
 import howItWorksData from './howItWorks';
 import landingData from './landing';
+import marketingData from './marketing';
 import marketplaceData from './marketplace';
 import membershipData from './membership';
 import navbarData from './navbar';
@@ -29,6 +30,7 @@ export {
 	homeData,
 	howItWorksData,
 	landingData,
+	marketingData,
 	marketplaceData,
 	membershipData,
 	navbarData,
@@ -39,5 +41,5 @@ export {
 	productsData,
 	recommendationPackages,
 	solutionData,
-	statesData
+	statesData,
 };

@@ -6,7 +6,7 @@ const howItWorksData = {
 		title: '<p>It’s never been easier to get the <br class="max-md:hidden"/> healthcare you deserve.</p>',
 		btnCtaList: [
 			{
-				href: '/onboarding',
+				href: '/pricing',
 				externalLink: false,
 				text: 'Get Started',
 			},
@@ -187,7 +187,7 @@ const howItWorksData = {
 		],
 		btnCtaList: [
 			{
-				href: '/onboarding',
+				href: '/pricing',
 				externalLink: false,
 				text: 'Start Now',
 			},

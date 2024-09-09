@@ -77,17 +77,24 @@ export enum PROMO_TYPE {
 }
 
 export interface DiscountReturnType {
-  coupon_exist: boolean;
-  coupon_details: {
-    keyword: string;
-    offering_id: string;
-    original_price: number;
-    discounted_price: number;
-    amount_off: number;
-    promo_type: PROMO_TYPE ;
-  };
+    id: string;
+    object: string;
+    amount_off: null;
+    applies_to: {
+      products: string[];
+    };
+    created: number;
+    currency: null;
+    duration: string;
+    duration_in_months: null;
+    livemode: boolean;
+    max_redemptions: number;
+    name: string;
+    percent_off: number;
+    redeem_by: null;
+    times_redeemed: number;
+    valid: boolean;
 }
-
 export interface CheckoutParams {
   user_token: string;
   stripe_token: string;
@@ -135,4 +142,82 @@ export interface AddressValidationResponseType {
         unconfirmedComponentTypes: string[];
     };
   };
+}
+
+export interface ProductsResponse {
+  stripeProductId: string;
+  defaultPrice: string;
+  name: string;
+  productType: string;
+  description: string;
+  productPrices: {
+    price: string;
+    priceId: string;
+    priceType: string;
+    billingFrequency: string;
+  }[]
+}
+export interface ProductsPriceResponse {
+  id: string;
+  object: string;
+  active: boolean;
+  billing_scheme: string;
+  created: number;
+  currency: string;
+  custom_unit_amount: null;
+  livemode: boolean;
+  lookup_key: null;
+  nickname: null;
+  product: string;
+  recurring: {
+    aggregate_usage: null;
+    interval: string;
+    interval_count: number;
+    meter: null;
+    trial_period_days: null;
+    usage_type: string;
+  };
+  tax_behavior: string;
+  tiers_mode: null;
+  transform_quantity: null;
+  type: string;
+  unit_amount: number;
+  unit_amount_decimal: string;
+}
+
+export interface CreateSessionParams {
+  user: {
+    firstName: string;
+    lastName: string;
+    dob: Date | null;
+    gender: string;
+    email: string;
+    phoneNumber: string;
+    addressLine1: string;
+    addressLine2: string;
+    city: string;
+    state: string;
+    zipCode: string;
+  };
+  coupon: string;
+  product: {
+    productId: string;
+    productName: string;
+    quantity: number;
+    price: number;
+    price_id: string;
+  }[];
+}
+export interface ValidateUserStateParams {
+  firstName: string;
+  lastName: string;
+  dob: Date | null;
+  gender: string;
+  email: string;
+  phoneNumber: string;
+  addressLine1: string;
+  addressLine2: string;
+  city: string;
+  state: string;
+  zipCode: string;
 }

@@ -16,7 +16,7 @@ const StepsSection: React.FC = () => {
 	const container = useRef<HTMLDivElement>(null);
 	const { scrollYProgress } = useScroll({
 		target: container,
-		offset: ['start 0.25', 'end 1']
+		offset: ['start 0.25', 'end 1'],
 	});
 
 	const onSelectStep = (stepIdx: number) => setSelectedIdx(stepIdx);
@@ -45,19 +45,24 @@ const StepsSection: React.FC = () => {
 			<div className='h-full w-full relative'>
 				<div
 					ref={ container }
-					className='container-center w-full py-[52px] lg:py-16 flex flex-col items-center justify-center text-center lg:my-auto'>
+					className='container-center w-full py-[52px] lg:py-16 flex flex-col items-center justify-center text-center lg:my-auto'
+				>
 					<div className='relative lg:h-[200vh] w-full'>
 						<div className='lg:sticky top-0 left-0 w-full flex flex-col lg:h-1/2 items-center justify-center'>
 							<div className='text-center sm:mx-auto'>
 								{ stepsData.preTitle && (
 									<p className='mb-5px lg:mb-3.5 uppercase text-grey-primary text-pretitle lg:text-base lg:leading-6'>
-										<span dangerouslySetInnerHTML={ { __html: stepsData.preTitle } } />
+										<span
+											dangerouslySetInnerHTML={ { __html: stepsData.preTitle } }
+										/>
 									</p>
 								) }
 
 								{ stepsData.title && (
 									<h2 className='font-Poppins text-primary !leading-[120.5%] lg:!leading-[107%] text-[7.251vw] xxs:text-2xl md:text-[32px] lg:text-[42px] -tracking-0.04em max-lg:max-w-[331px] max-lg:mx-auto'>
-										<span dangerouslySetInnerHTML={ { __html: stepsData.title } } />
+										<span
+											dangerouslySetInnerHTML={ { __html: stepsData.title } }
+										/>
 									</h2>
 								) }
 							</div>
@@ -79,10 +84,10 @@ const StepsSection: React.FC = () => {
 
 										return (
 											<button
-												key={ `step-${ step.id }` }
+												key={ `step-${step.id}` }
 												className='w-full flex flex-col max-lg:items-center gap-6'
 												onClick={ () => onSelectStep(stepIdx) }
-												aria-label={ `step-${ step.id }` }
+												aria-label={ `step-${step.id}` }
 											>
 												<div
 													className={ clsxm(
@@ -92,20 +97,23 @@ const StepsSection: React.FC = () => {
 															: 'bg-white'
 													) }
 												>
-													<Icon className={ clsxm(isSelected ? 'text-primary' : 'text-grey-400', 'flex-shrink-0 w-18px h-18px lg:w-6 lg:h-6') } />
+													<Icon
+														className={ clsxm(
+															isSelected ? 'text-primary' : 'text-grey-400',
+															'flex-shrink-0 w-18px h-18px lg:w-6 lg:h-6'
+														) }
+													/>
 												</div>
 
 												<p
 													className={ clsxm(
 														'cursor-pointer font-Poppins text-center lg:text-left text-lg !leading-normal font-medium',
-														isSelected
-															? 'text-primary'
-															: 'text-grey-400'
+														isSelected ? 'text-primary' : 'text-grey-400'
 													) }
 												>
 													<span
-														className='whitespace-nowrap'
-														dangerouslySetInnerHTML={ { __html: step.title } } />
+														dangerouslySetInnerHTML={ { __html: step.title } }
+													/>
 												</p>
 											</button>
 										);
@@ -113,9 +121,7 @@ const StepsSection: React.FC = () => {
 								</div>
 							</div>
 
-							<div className='flex justify-center'>
-								{ renderButtonCta() }
-							</div>
+							<div className='flex justify-center'>{ renderButtonCta() }</div>
 						</div>
 						{ /* <div className='max-lg:hidden lg:absolute top-1/4 left-0 h-3/4 w-full' /> */ }
 					</div>
