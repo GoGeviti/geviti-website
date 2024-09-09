@@ -1,5 +1,5 @@
 'use client';
-import React, { CSSProperties, useRef, useState } from 'react';
+import React, { CSSProperties, useMemo, useRef, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import Image from 'next/image';
 
@@ -15,12 +15,23 @@ import Navbar, { navbarDefaultTransition } from '../Navbar/Landing';
 import PopupReview from '../PopupReview';
 
 const formatPrice = (price?: string): string => {
-	// const numericPrice = Number(price);
-	// if (isNaN(numericPrice)) {
-	// 	throw new Error('Invalid price value');
-	// }
-	return `$${price}`;
+
+	if (!price) {
+		throw new Error('Price is required');
+	}
+
+	const numericPrice = Number(price);
+	if (isNaN(numericPrice)) {
+		throw new Error('Invalid price value');
+	}
+
+	return `$${numericPrice.toFixed(2).replace(/\.00$/, '')}`;
+	// return `$${price}`;
 };
+
+const convertActiveTabToBillingFrequency = (activeTabIdx: number): 'monthly' | 'quarterly' => {
+	return activeTabIdx === 0 ? 'quarterly' : 'monthly';
+}
 
 type HeroProps = {
   products?: ProductsResponse[];
@@ -66,6 +77,17 @@ const Hero: React.FC<HeroProps> = ({ products, navbar = true, className, isFromH
 			/>
 		);
 	};
+
+	const quarterlyPrice = useMemo(() => {
+		return products
+			?.find(e => e.stripeProductId === process.env.NEXT_PUBLIC_STRIPE_PRODUCT_ID)
+			?.productPrices?.find(e => e.billingFrequency === 'quarterly')
+			?.price;
+	}, [products]);
+
+	const dividedPrice = useMemo(() => {
+		return quarterlyPrice ? (Number(quarterlyPrice) / 3).toFixed(0) : null;
+	}, [quarterlyPrice]);
 
 	return (
 		<div
@@ -183,7 +205,7 @@ const Hero: React.FC<HeroProps> = ({ products, navbar = true, className, isFromH
 										)?.name ?? item.name }
 									</h3>
 
-									<span className='font-medium text-5xl !leading-[125%] py-1 h-full'>
+									<span className='font-medium text-5xl whitespace-nowrap !leading-[125%] py-1 h-full'>
 										<AnimatePresence mode='wait'>
 											{ pricingData.hero.pricingOptions[activeTabIdx].value ===
                       'monthly' ? (
@@ -215,21 +237,12 @@ const Hero: React.FC<HeroProps> = ({ products, navbar = true, className, isFromH
 														transition={ { ease: 'linear', duration: 0.25 } }
 														className='font-medium text-5xl !leading-[125%] py-1'
 													>
-														{ formatPrice(
-															products
-																?.find(
-																	e =>
-																		e.stripeProductId === item.stripeProductId
-																)
-																?.productPrices?.find(
-																	e => e.billingFrequency === 'quarterly'
-																)?.price
-														) }{ ' ' }
+														{ dividedPrice ? formatPrice(dividedPrice) : null }{ ' ' }
 													</motion.span>
 												) }
 										</AnimatePresence>
-										<span className='text-base font-medium'>
-											{ item.priceNote }
+										<span className='text-sm font-medium whitespace-nowrap'>
+											{ item.priceNote } { activeTabIdx === 0 && 'billed quarterly' }
 										</span>
 									</span>
 									<p className='text-xs leading-6'>
@@ -253,7 +266,7 @@ const Hero: React.FC<HeroProps> = ({ products, navbar = true, className, isFromH
                       '&price_id=' +
                       products?.find(
                       	e => e.stripeProductId === item.stripeProductId
-                      )?.productPrices![activeTabIdx]?.priceId
+                      )?.productPrices.find(i => i.billingFrequency === convertActiveTabToBillingFrequency(activeTabIdx))?.priceId
 										}
 										target={ isFromHomePage ? '_blank' : undefined }
 										text={ item.btnCta.text }

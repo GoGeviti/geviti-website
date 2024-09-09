@@ -224,7 +224,7 @@ const StripeForm: FC<StripeFormProps> = ({
 			onSubmit={ handleSubmit }>
 			<div className='flex flex-col justify-center items-center gap-2 w-full lg:mt-14 lg:pt-9'>
 				<div className={ clsxm('relative flex flex-col lg:w-[70%]') }>
-					<h1 className='text-[28px]'>Personal Information</h1>
+					<h1 className='text-[28px] font-Poppins'>Personal Information</h1>
 					<div className='mt-3 flex flex-col gap-[14px]'>
 						<div className='grid grid-cols-1 lg:grid-cols-2 gap-3 lg:gap-5'>
 							<TextField
@@ -388,11 +388,11 @@ const StripeForm: FC<StripeFormProps> = ({
 							/>
 							<p>
 								<span className='text-sm text-[#6A6E70] font-Poppins'>I confirm I live in the state mentioned above and recognize that Geviti’s Longeviti Membership is only available in { ' ' }
+									<button
+										type='button'
+										onClick={ () => setIsOpenDialogState(prev => !prev) }
+										className='text-primary underline cursor-pointer font-Poppins'>these states.</button>
 								</span>
-								<button
-									type='button'
-									onClick={ () => setIsOpenDialogState(prev => !prev) }
-									className='text-primary underline cursor-pointer'>these states.</button>
 							</p>
 						</div>
 					</div>
@@ -430,7 +430,7 @@ const StripeForm: FC<StripeFormProps> = ({
 								type='submit'
 								disabled={ formLoading || !statesChecked }
 								className={ clsxm(
-									'h-[58px] py-3 px-[42px] text-white rounded-[1000px] my-10',
+									'h-[58px] py-3 px-[42px] text-white font-Poppins rounded-[1000px] my-10',
 									statesChecked ? 'bg-black' : 'bg-grey-700',
 								) }
 							>
