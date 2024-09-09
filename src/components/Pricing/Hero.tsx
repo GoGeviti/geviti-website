@@ -240,10 +240,15 @@ const Hero: React.FC<HeroProps> = ({ products, navbar = true, className, isFromH
 														{ dividedPrice ? formatPrice(dividedPrice) : null }{ ' ' }
 													</motion.span>
 												) }
+											<motion.span
+												initial={ { y: -50, opacity: 0 } }
+												animate={ { y: 0, opacity: 1 } }
+												exit={ { y: 50, opacity: 0 } }
+												transition={ { ease: 'linear', duration: 0.25 } }
+												className='text-sm font-medium whitespace-nowrap'>
+												{ item.priceNote } { activeTabIdx === 0 ? 'billed quarterly' : 'billed monthly' }
+											</motion.span>
 										</AnimatePresence>
-										<span className='text-sm font-medium whitespace-nowrap'>
-											{ item.priceNote } { activeTabIdx === 0 && 'billed quarterly' }
-										</span>
 									</span>
 									<p className='text-xs leading-6'>
 										<span>
