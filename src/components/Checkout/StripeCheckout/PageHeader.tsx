@@ -13,7 +13,7 @@ const PageHeader: FC<{ onBackClick: () => void }> = ({ onBackClick }) => (
 		</button>
 		<div className='w-1/3 m-auto lg:mt-14 lg:w-full'>
 			<GevitiLogo />
-			<p className='hidden lg:block text-blue-primary mt-3'>Enjoy your first month for FREE!</p>
+			<p className='hidden lg:block text-blue-primary mt-3'>Enjoy your FREE bloodwork!</p>
 		</div>
 	</div>
 );
