@@ -49,6 +49,7 @@ const RootLayout: React.FC<{ children: React.ReactNode; }> = ({ children }) => {
 					})(window,document,'script','dataLayer','GTM-K227ZN5C');
       ` }
 			</Script>
+			
 			<StyledComponentsRegistry>
 				<body
 					className={ `${ poppins.variable } ${ brSonoma.variable } ${ grifter.variable }` }
@@ -71,6 +72,18 @@ const RootLayout: React.FC<{ children: React.ReactNode; }> = ({ children }) => {
 							} }
 						/>
 					</noscript>
+					<Script
+						id='rewardful_func'
+						strategy='beforeInteractive'>
+						{ `(function(w,r){w._rwq=r;w[r]=w[r]||function(){(w[r].q=w[r].q|| 
+    				[]).push(arguments)}})(window,'rewardful');` }
+					</Script>
+
+					<Script
+						id='rewardful_api'
+						strategy='beforeInteractive'
+						src='https://r.wdfl.co/rw.js'
+						data-rewardful='642d4d'  />
 				</body>
 			</StyledComponentsRegistry>
 		</html>

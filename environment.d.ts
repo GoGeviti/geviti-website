@@ -1,3 +1,7 @@
+interface RewardfulStatic {
+  (action: 'convert' | 'ready', data: any): void;
+  // Add other Rewardful methods here if needed
+}
 declare global {
 	namespace NodeJS {
 		interface ProcessEnv {
@@ -16,6 +20,8 @@ declare global {
 	}
 	interface Window {
     dataLayer: any[];
+		rewardful: RewardfulStatic;
+    _rwq: any[];
   }
 }
 
