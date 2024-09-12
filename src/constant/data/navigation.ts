@@ -5,19 +5,19 @@ const navigationData = {
 	logoDark: '/images/logo/logo_dark.webp',
 	menu: [
 		{
+			name: 'Membership',
+			href: '/membership',
+			externalLink: false,
+		},
+		{
 			name: 'Men\'s Health',
 			href: '/solution/men',
-			externalLink: false
+			externalLink: false,
 		},
 		{
 			name: 'Women\'s Health',
 			href: '/solution/women',
-			externalLink: false
-		},
-		{
-			name: 'Pricing',
-			href: '/pricing',
-			externalLink: false
+			externalLink: false,
 		},
 		{
 			name: 'Resources',
@@ -27,21 +27,21 @@ const navigationData = {
 				{
 					name: 'Learn More',
 					href: '/membership',
-					externalLink: false
+					externalLink: false,
 				},
 				{
 					name: 'Blog',
-					href: '/blog'
+					href: '/blog',
 				},
 				{
 					name: 'FAQ',
-					href: '/faq'
+					href: '/faq',
 				},
 				{
 					name: 'Contact Us',
-					href: '/contact-us'
-				}
-			]
+					href: '/contact-us',
+				},
+			],
 		},
 	],
 	iconsMenu: [
@@ -56,9 +56,9 @@ const navigationData = {
 			name: 'Get Started',
 			href: '/pricing',
 			externalLink: false,
-			type: 'button'
-		}
-	]
+			type: 'button',
+		},
+	],
 };
 
 export default navigationData;

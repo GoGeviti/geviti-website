@@ -43,7 +43,7 @@ const ShiftSection: React.FC<ShiftSectionProps> = ({
 	animationProps,
 }) => {
 	const container = useRef<HTMLSpanElement>(null);
-	const [contentHeight, setContentHeight] = useState<number | string>(0);
+	const [contentHeight, setContentHeight] = useState<number>(0);
 
 	useEffect(() => {
 		if (!isMobile) {
@@ -73,7 +73,9 @@ const ShiftSection: React.FC<ShiftSectionProps> = ({
 					} }
 					{ ...animationProps }
 				>
-					<span className={ prevElementClassName }>{ prevElement }</span>
+					{ contentHeight !== 0 && (
+						<span className={ prevElementClassName }>{ prevElement }</span>
+					) }
 					<span ref={ container }>{ children }</span>
 				</motion.span>
 			</div>

@@ -217,7 +217,7 @@ const PackagesSection: React.FC = () => {
 						disableMobile={ false }
 						onClick={ () => { setOpenDialogHelp(true); } }
 					>
-						<InfoCircle className='w-4 h-4' />
+						<InfoCircle className='w-4 h-4 text-grey-primary' />
 						<span className='text-sm font-semibold font-BRSonoma leading-5 text-primary'>
 							{ homeData.packages.helpText }
 						</span>

@@ -50,9 +50,9 @@ const landingData = {
 			externalLink: false,
 		},
 		btnCta2: {
-			href: '#pricing',
-			externalLink: false,
-			text: 'Learn More',
+			href: 'https://calendly.com/cole-gogeviti/discovery-call',
+			externalLink: true,
+			text: 'Schedule Call',
 		},
 		mainKeys: [
 			{
@@ -295,12 +295,12 @@ const landingData = {
 				imageMobile: '/images/landing/compressed/benefits-men-mobile.webp',
 				title: 'Mens Health',
 				details: [
-					'Testosterone Replacement',
 					'Hormone Optimization',
-					'Peptide Therapy',
 					'Medical Weight Loss',
+					'Peptide Therapies',
 					'Sexual Function',
-					'Other Anti-aging Solutions',
+					'Hair Loss Solutions',
+					'And More Modern Solutions',
 				],
 			},
 			{
@@ -312,10 +312,10 @@ const landingData = {
 				details: [
 					'Menopause Spectrum Care',
 					'PCOS Management',
-					'Peptide Therapy',
+					'Peptide Therapies',
 					'Medical Weight Loss',
 					'Sexual Wellness',
-					'Other Anti-aging Solutions',
+					'And More Modern Solutions',
 				],
 			},
 		],
@@ -442,29 +442,32 @@ const landingData = {
 			{
 				id: 'homekits',
 				preTitle: 'Members receive access to',
-				title: 'Innovative at-home diagnostics',
+				title: 'Innovative at-home bloodwork',
 				description:
           'Geviti offers a wide range of convenient and advanced <br class="max-lg:hidden"/>diagnostics, all from the comfort of your home. From mobile <br class="max-lg:hidden"/>phlebotomy, to at-home testing kits, we make health <br class="max-lg:hidden"/>screening ultra accessible.',
-				image: '/images/landing/compressed/homekits.webp',
-				imageMobile: '/images/landing/compressed/homekits-mobile.webp',
+				image: '/images/landing/compressed/homekits-bloodwork.webp',
+				imageMobile:
+          '/images/landing/compressed/homekits-bloodwork-mobile.webp',
 			},
 			{
 				id: 'prescription',
 				preTitle: 'Members receive access to',
 				title: 'Prescription wellness done right',
 				description:
-          'We offer hormone therapy, peptide therapy, and other prescription <br class="max-lg:hidden"/>wellness services under the supervision of medical professionals. <br class="max-lg:hidden"/>Once you receive approval from a provider through the Geviti app, <br class="max-lg:hidden"/>we\'ll deliver your treatment directly to you.',
-				image: '/images/landing/compressed/supplements-bottle.webp',
-				imageMobile: '/images/landing/compressed/supplements-bottle.webp',
+          'We offer hormone therapy, peptide therapy, and other <br class="max-lg:hidden"/>prescription wellness services under the supervision of medical <br class="max-lg:hidden"/>professionals. Once you receive approval from a provider <br class="max-lg:hidden"/>through the Geviti app, we\'ll deliver your treatment directly to you.',
+				image: '/images/landing/compressed/homekits-prescription.webp',
+				imageMobile:
+          '/images/landing/compressed/homekits-prescription-mobile.webp',
 			},
 			{
 				id: 'therapy',
 				preTitle: 'Members receive access to',
-				title: 'Customized supplements',
+				title: 'Customized Supplement Blends',
 				description:
-          'No more over spending on supplements that aren\'t designed <br class="max-lg:hidden"/>exactly for you. Geviti will analyze your biomarkers and create <br class="max-lg:hidden"/>totally custom supplements with everything you need, and <br class="max-lg:hidden"/>nothing that you don’t.',
-				image: '/images/landing/compressed/supplements-pouch.webp',
-				imageMobile: '/images/landing/compressed/supplements-pouch-mobile.webp',
+          'No more over spending on supplements that aren\'t designed exactly <br class="max-lg:hidden"/>for you. Geviti will analyze your biomarkers and create totally custom <br class="max-lg:hidden"/>supplements packs with everything you need, and nothing that you <br class="max-lg:hidden"/>don’t.',
+				image: '/images/landing/compressed/homekits-supplements.webp',
+				imageMobile:
+          '/images/landing/compressed/homekits-supplements-mobile.webp',
 			},
 		],
 		btnCta: {

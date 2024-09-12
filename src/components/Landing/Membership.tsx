@@ -70,7 +70,7 @@ const Membership: React.FC = () => {
 							alt='continent'
 							width={ 610 }
 							height={ 383.62 }
-							className='w-full h-full lg:h-[23.976rem] object-contain'
+							className='w-full h-full lg:h-[23.976rem] lg:w-auto object-contain'
 						/>
 					</div>
 					{ renderBtnCtaMobile(membershipData.locationSection.btnCtaMobile) }
