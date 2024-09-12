@@ -57,7 +57,7 @@ const Innovative: React.FC = () => {
 					src={ item.image }
 					width={ 858 * 2 }
 					height={ 451 * 2 }
-					className='max-md:w-[80.971rem] lg:w-auto object-cover object-left h-full pointer-events-none'
+					className='max-md:w-[80.971rem] lg:w-auto object-cover object-left-top h-full pointer-events-none rounded-tl-[19px]'
 				/>
 			</div>
 		);

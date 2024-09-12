@@ -129,7 +129,7 @@ const PricingComparison: React.FC<PricingComparisonProps> = ({
 	};
 
 	return (
-		<div className='w-full mt-6 lg:-mt-[19px] relative z-[2]'>
+		<div className='w-full mt-16 lg:-mt-[19px] relative z-[2]'>
 			<div className='bg-white border lg:border-t-0 border-grey-100 max-lg:rounded-t-[19px] rounded-b-[19px] w-full px-4 pb-[42px] lg:pb-[19px] pt-[18px] lg:pt-[38px] lg:px-[42px]'>
 				<button
 					onClick={ () => toggleAccordion(index) }

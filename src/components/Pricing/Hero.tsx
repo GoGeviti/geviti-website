@@ -15,7 +15,6 @@ import Navbar, { navbarDefaultTransition } from '../Navbar/Landing';
 import PopupReview from '../PopupReview';
 
 const formatPrice = (price?: string): string => {
-
 	if (!price) {
 		throw new Error('Price is required');
 	}
@@ -29,18 +28,25 @@ const formatPrice = (price?: string): string => {
 	// return `$${price}`;
 };
 
-const convertActiveTabToBillingFrequency = (activeTabIdx: number): 'monthly' | 'quarterly' => {
+const convertActiveTabToBillingFrequency = (
+	activeTabIdx: number
+): 'monthly' | 'quarterly' => {
 	return activeTabIdx === 0 ? 'quarterly' : 'monthly';
-}
+};
 
 type HeroProps = {
   products?: ProductsResponse[];
   navbar?: boolean;
   className?: string;
-	isFromHomePage?: boolean;
+  isFromHomePage?: boolean;
 };
 
-const Hero: React.FC<HeroProps> = ({ products, navbar = true, className, isFromHomePage = false }) => {
+const Hero: React.FC<HeroProps> = ({
+	products,
+	navbar = true,
+	className,
+	isFromHomePage = false,
+}) => {
 	const ref = useRef<HTMLDivElement>(null);
 	// const isInView = useInView(ref, { once: true });
 
@@ -80,9 +86,10 @@ const Hero: React.FC<HeroProps> = ({ products, navbar = true, className, isFromH
 
 	const quarterlyPrice = useMemo(() => {
 		return products
-			?.find(e => e.stripeProductId === process.env.NEXT_PUBLIC_STRIPE_PRODUCT_ID)
-			?.productPrices?.find(e => e.billingFrequency === 'quarterly')
-			?.price;
+			?.find(
+				e => e.stripeProductId === process.env.NEXT_PUBLIC_STRIPE_PRODUCT_ID
+			)
+			?.productPrices?.find(e => e.billingFrequency === 'quarterly')?.price;
 	}, [products]);
 
 	const dividedPrice = useMemo(() => {
@@ -93,14 +100,17 @@ const Hero: React.FC<HeroProps> = ({ products, navbar = true, className, isFromH
 		<div
 			id='packages'
 			className='font-Poppins relative z-[3]'>
-			{ navbar && <Navbar
-				animationProps={ {
-					transition: {
-						...navbarDefaultTransition,
-						delay: 1.1,
-					},
-				} }
-				theme='light' /> }
+			{ navbar && (
+				<Navbar
+					animationProps={ {
+						transition: {
+							...navbarDefaultTransition,
+							delay: 1.1,
+						},
+					} }
+					theme='light'
+				/>
+			) }
 			<div
 				className={ clsxm(
 					'container-center flex flex-col items-center pt-[129px] lg:pt-[177px]',
@@ -149,7 +159,7 @@ const Hero: React.FC<HeroProps> = ({ products, navbar = true, className, isFromH
 
 				<div
 					ref={ ref }
-					className='lg:max-w-[1061px] mx-auto sm:max-w-[392px] lg:grid-cols-9 flex max-lg:flex-col lg:grid gap-16 lg:gap-3.5 items-end w-full pt-[58px] lg:pt-[78px]'
+					className='lg:max-w-[1061px] mx-auto sm:max-w-[392px] lg:grid-cols-9 flex max-lg:flex-col lg:grid gap-6 lg:gap-3.5 items-end w-full pt-[58px] lg:pt-[78px]'
 				>
 					<div className='w-full max-lg:order-2 relative h-full lg:col-span-3'>
 						<div className='rounded-2xl pt-7 w-full h-full max-lg:min-h-[676px] relative overflow-hidden bg-[linear-gradient(0deg,#A7DAFF_0%,#75C5FF_100%)]'>
@@ -205,18 +215,18 @@ const Hero: React.FC<HeroProps> = ({ products, navbar = true, className, isFromH
 										)?.name ?? item.name }
 									</h3>
 
-									<span className='font-medium text-5xl whitespace-nowrap !leading-[125%] py-1 h-full'>
-										<AnimatePresence mode='wait'>
+									<AnimatePresence mode='wait'>
+										<motion.span
+											key={ `price_${pricingData.hero.pricingOptions[activeTabIdx].value}` }
+											initial={ { y: -50, opacity: 0 } }
+											animate={ { y: 0, opacity: 1 } }
+											exit={ { y: 50, opacity: 0 } }
+											transition={ { ease: 'linear', duration: 0.25 } }
+											className='font-medium text-5xl whitespace-nowrap !leading-[125%] py-1 h-full'
+										>
 											{ pricingData.hero.pricingOptions[activeTabIdx].value ===
                       'monthly' ? (
-													<motion.span
-														key='price_monthly'
-														initial={ { y: -50, opacity: 0 } }
-														animate={ { y: 0, opacity: 1 } }
-														exit={ { y: 50, opacity: 0 } }
-														transition={ { ease: 'linear', duration: 0.25 } }
-														className='font-medium text-5xl !leading-[125%] py-1'
-													>
+													<span className='font-medium text-5xl !leading-[125%] py-1'>
 														{ formatPrice(
 															products
 																?.find(
@@ -227,29 +237,20 @@ const Hero: React.FC<HeroProps> = ({ products, navbar = true, className, isFromH
 																	e => e.billingFrequency === 'monthly'
 																)?.price
 														) }{ ' ' }
-													</motion.span>
+													</span>
 												) : (
-													<motion.span
-														key='price_quarterly'
-														initial={ { y: -50, opacity: 0 } }
-														animate={ { y: 0, opacity: 1 } }
-														exit={ { y: 50, opacity: 0 } }
-														transition={ { ease: 'linear', duration: 0.25 } }
-														className='font-medium text-5xl !leading-[125%] py-1'
-													>
+													<span className='font-medium text-5xl !leading-[125%] py-1'>
 														{ dividedPrice ? formatPrice(dividedPrice) : null }{ ' ' }
-													</motion.span>
+													</span>
 												) }
-											<motion.span
-												initial={ { y: -50, opacity: 0 } }
-												animate={ { y: 0, opacity: 1 } }
-												exit={ { y: 50, opacity: 0 } }
-												transition={ { ease: 'linear', duration: 0.25 } }
-												className='text-sm font-medium whitespace-nowrap'>
-												{ item.priceNote } { activeTabIdx === 0 ? 'billed quarterly' : 'billed monthly' }
-											</motion.span>
-										</AnimatePresence>
-									</span>
+											<span className='text-sm font-medium whitespace-nowrap'>
+												{ item.priceNote }{ ' ' }
+												{ activeTabIdx === 0
+													? 'billed quarterly'
+													: 'billed monthly' }
+											</span>
+										</motion.span>
+									</AnimatePresence>
 									<p className='text-xs leading-6'>
 										<span>
 											<span className='font-medium'>
@@ -269,9 +270,15 @@ const Hero: React.FC<HeroProps> = ({ products, navbar = true, className, isFromH
                       '?product_id=' +
                       item.stripeProductId +
                       '&price_id=' +
-                      products?.find(
-                      	e => e.stripeProductId === item.stripeProductId
-                      )?.productPrices.find(i => i.billingFrequency === convertActiveTabToBillingFrequency(activeTabIdx))?.priceId
+                      products
+                      	?.find(
+                      		e => e.stripeProductId === item.stripeProductId
+                      	)
+                      	?.productPrices.find(
+                      		i =>
+                      			i.billingFrequency ===
+                            convertActiveTabToBillingFrequency(activeTabIdx)
+                      	)?.priceId
 										}
 										target={ isFromHomePage ? '_blank' : undefined }
 										text={ item.btnCta.text }
