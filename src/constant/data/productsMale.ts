@@ -128,7 +128,8 @@ const productsMale = [
 		price: 75,
 		category: { id: 1 },
 		subCategory: { id: [2] },
-		image: '/images/solution_media/products/anti-aging/sermorelin-troche.webp',
+		image:
+      '/images/solution_media/products/anti-aging/sermorelin-mini-troches.webp',
 		list: [
 			'Quick Absorption',
 			'Enhances Vitality',
@@ -158,25 +159,25 @@ const productsMale = [
 			'Stimulates Growth Hormone',
 		],
 	},
-	{
-		id: 8,
-		name: 'GHK-Cu Troche',
-		description:
-      'GHK-Cu Troches offer a convenient, sublingual route for the anti-aging benefits of GHK-Copper peptide, dissolving under the tongue for quick absorption. They promote skin health, wound healing, and collagen production, enhancing daily anti-aging routines with optimal bioavailability.',
-		sort_description: 'Sublingual Troche',
-		price: 110,
-		category: { id: 1 },
-		subCategory: { id: [2] },
-		image: '/images/solution_media/products/anti-aging/ghk-troche.webp',
-		list: [
-			'Convenient Use',
-			'Keeps Skin Young',
-			'Anti-Aging',
-			'Sublingual Delivery',
-			'Highly Bioavailable',
-			'Boosts Collagen Production',
-		],
-	},
+	// {
+	// 	id: 8,
+	// 	name: 'GHK-Cu Troche',
+	// 	description:
+	//     'GHK-Cu Troches offer a convenient, sublingual route for the anti-aging benefits of GHK-Copper peptide, dissolving under the tongue for quick absorption. They promote skin health, wound healing, and collagen production, enhancing daily anti-aging routines with optimal bioavailability.',
+	// 	sort_description: 'Sublingual Troche',
+	// 	price: 110,
+	// 	category: { id: 1 },
+	// 	subCategory: { id: [2] },
+	// 	image: '/images/solution_media/products/anti-aging/ghk-troche.webp',
+	// 	list: [
+	// 		'Convenient Use',
+	// 		'Keeps Skin Young',
+	// 		'Anti-Aging',
+	// 		'Sublingual Delivery',
+	// 		'Highly Bioavailable',
+	// 		'Boosts Collagen Production',
+	// 	],
+	// },
 	{
 		id: 9,
 		name: 'Semaglutide',

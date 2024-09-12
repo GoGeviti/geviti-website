@@ -108,7 +108,8 @@ const productsFemale = [
 		price: 75,
 		category: { id: 1 },
 		subCategory: { id: [2] },
-		image: '/images/solution_media/products/anti-aging/sermorelin-troche.webp',
+		image:
+      '/images/solution_media/products/anti-aging/sermorelin-mini-troches.webp',
 		list: [
 			'Quick Absorption',
 			'Enhances Vitality',
@@ -138,25 +139,25 @@ const productsFemale = [
 			'Stimulates Growth Hormone',
 		],
 	},
-	{
-		id: 8,
-		name: 'GHK-Cu Troche',
-		description:
-      'GHK-Cu Troches offer a convenient, sublingual route for the anti-aging benefits of GHK-Copper peptide, dissolving under the tongue for quick absorption. They promote skin health, wound healing, and collagen production, enhancing daily anti-aging routines with optimal bioavailability.',
-		sort_description: 'Sublingual Troche',
-		price: 110,
-		category: { id: 1 },
-		subCategory: { id: [2] },
-		image: '/images/solution_media/products/anti-aging/ghk-troche.webp',
-		list: [
-			'Convenient Use',
-			'Keeps Skin Young',
-			'Anti-Aging',
-			'Sublingual Delivery',
-			'Highly Bioavailable',
-			'Boosts Collagen Production',
-		],
-	},
+	// {
+	//   id: 8,
+	//   name: 'GHK-Cu Troche',
+	//   description:
+	//     'GHK-Cu Troches offer a convenient, sublingual route for the anti-aging benefits of GHK-Copper peptide, dissolving under the tongue for quick absorption. They promote skin health, wound healing, and collagen production, enhancing daily anti-aging routines with optimal bioavailability.',
+	//   sort_description: 'Sublingual Troche',
+	//   price: 110,
+	//   category: { id: 1 },
+	//   subCategory: { id: [2] },
+	//   image: '/images/solution_media/products/anti-aging/ghk-troche.webp',
+	//   list: [
+	//     'Convenient Use',
+	//     'Keeps Skin Young',
+	//     'Anti-Aging',
+	//     'Sublingual Delivery',
+	//     'Highly Bioavailable',
+	//     'Boosts Collagen Production',
+	//   ],
+	// },
 	{
 		id: 9,
 		name: 'Semaglutide',
@@ -565,6 +566,106 @@ const productsFemale = [
 			'Sexual Health',
 			'Improved Intimacy',
 			'30 Troches',
+		],
+	},
+	{
+		id: 33,
+		name: 'Estrogen Troches',
+		description:
+      'Estrogen troches help women restore hormonal balance, particularly during menopause. By replenishing estrogen levels, they reduce symptoms like hot flashes, mood swings, and vaginal dryness, promoting overall health and quality of life.',
+		sort_description: '',
+		price: 45,
+		category: { id: 1 },
+		subCategory: { id: [1] },
+		image:
+      '/images/solution_media/products/hormone-therapy/estrogen-troches.webp',
+		list: [
+			'Troche',
+			'Menopause Relief',
+			'Personalized',
+			'Hormone Balance',
+			'Symptom Reduction',
+			'Easy to Use',
+		],
+	},
+	{
+		id: 34,
+		name: 'Progesterone Troches',
+		description:
+      'Progesterone troches help balance hormones in women, reducing symptoms like mood changes and irregular cycles. By restoring progesterone levels, they support better sleep, mood regulation, and overall well-being.',
+		sort_description: '',
+		price: 45,
+		category: { id: 1 },
+		subCategory: { id: [1] },
+		image:
+      '/images/solution_media/products/hormone-therapy/progesterone-troches.webp',
+		list: [
+			'Troche',
+			'Cycle Regulation',
+			'Symptom Relief',
+			'Hormone Support',
+			'Easy Administration',
+			'Menopause Support',
+		],
+	},
+	{
+		id: 35,
+		name: 'Custom Hormone Troches',
+		description:
+      'Custom hormone troches provide a personalized approach to hormone therapy, combining estriol, estradiol, testosterone, or progesterone based on individual needs. They help women manage a wide range of symptoms related to hormonal imbalance, offering tailored support for optimal health.',
+		sort_description: '',
+		price: 45,
+		category: { id: 1 },
+		subCategory: { id: [1] },
+		image:
+      '/images/solution_media/products/hormone-therapy/custom-hormone-troches.webp',
+		list: [
+			'Troche',
+			'Hormone Balance',
+			'Tailored Solution',
+			'Personalized Therapy',
+			'Symptom Relief',
+			'Convenient',
+		],
+	},
+	{
+		id: 36,
+		name: 'Custom Hormone Cream',
+		description:
+      'Custom hormone cream delivers precise hormone therapy with a blend of estriol, estradiol, testosterone, or progesterone, customized to meet each woman’s specific needs. This topical solution supports hormonal balance and helps alleviate symptoms of imbalance, such as fatigue and mood swings.',
+		sort_description: '',
+		price: 45,
+		category: { id: 1 },
+		subCategory: { id: [1] },
+		image:
+      '/images/solution_media/products/hormone-therapy/custom-hormone-blend.webp',
+		list: [
+			'Topical',
+			'Tailored Formula',
+			'Symptom Relief',
+			'Hormone Balance',
+			'Easy Application',
+			'Personalized',
+		],
+	},
+	{
+		id: 37,
+		name: 'Custom Hormone Cream',
+		description:
+      'NAD+ is fundamental for DNA repair, cellular signaling, and gene expression regulation through its interaction with enzymes like sirtuins and poly (ADP-ribose) polymerases. The decline in NAD+ levels with age is associated with various age-related diseases.',
+		sort_description: '',
+		price: 45,
+		category: { id: 1 },
+		subCategory: { id: [1] },
+		image:
+      '/images/solution_media/products/hormone-therapy/estrogen-cream.webp',
+		list: [
+			'Protects From DHT',
+			'Faster Hair Growth',
+			'Oral Capsule',
+			'Strengthens Hair',
+			'Thickens New Hair',
+			'Taken Daily',
 		],
 	},
 ];
