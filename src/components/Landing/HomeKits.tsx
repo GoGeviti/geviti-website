@@ -149,11 +149,11 @@ const HomeKits: React.FC = () => {
 				<Image
 					src={ currentData.image }
 					alt=''
-					width={ 751 }
-					height={ 751 }
+					width={ 1400 }
+					height={ 1400 }
 					priority
 					className={ clsxm(
-						'w-[751px] left-[41%] -translate-x-[41%]',
+						'w-[950px] left-[55%] -translate-x-[55%]',
 						defaultImageDesktopClassName
 					) }
 				/>
@@ -165,11 +165,11 @@ const HomeKits: React.FC = () => {
 				<Image
 					src={ currentData.image }
 					alt=''
-					width={ 881 }
-					height={ 881 }
+					width={ 1400 }
+					height={ 1400 }
 					priority
 					className={ clsxm(
-						'w-[881px] -mt-[80px] left-1/2 -translate-x-1/2',
+						'w-[1100px] -mt-[110px] left-[85%] -translate-x-[85%]',
 						defaultImageDesktopClassName
 					) }
 				/>
@@ -185,7 +185,7 @@ const HomeKits: React.FC = () => {
 					height={ 657 }
 					priority
 					className={ clsxm(
-						'w-[1166px] mt-[65px] left-[47%] -translate-x-[47%]',
+						'w-[1155px] mt-[50px] left-[47%] -translate-x-[47%]',
 						defaultImageDesktopClassName
 					) }
 				/>

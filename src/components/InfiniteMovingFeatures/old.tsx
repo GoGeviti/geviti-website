@@ -286,10 +286,10 @@ const InfiniteMovingFeatures: React.FC<InfiniteMovingFeaturesProps> = ({
 					ratio: number,
 					startProgress: number,
 					draggable: any,
-					dragSnap: any,
+					dragSnap: any, // eslint-disable-line no-unused-vars
 					lastSnap: any,
 					initChangeX: any,
-					wasPlaying: any, // eslint-disable-line no-unused-vars
+					wasPlaying: any,
 					align = () => {
 						tl.progress(
 							wrap(startProgress + (draggable.startX - draggable.x) * ratio)
@@ -297,9 +297,10 @@ const InfiniteMovingFeatures: React.FC<InfiniteMovingFeaturesProps> = ({
 					},
 					syncIndex = () => tl.closestIndex(true);
 				typeof InertiaPlugin === 'undefined' &&
+          // eslint-disable-next-line no-console
           console.log(
           	'InertiaPlugin required for momentum-based scrolling and snapping. https://greensock.com/club'
-          ); // eslint-disable-line no-console
+          );
 				draggable = Draggable.create(proxy, {
 					trigger: items[0].parentNode,
 					type: 'x',

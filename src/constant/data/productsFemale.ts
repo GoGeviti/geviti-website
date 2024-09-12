@@ -1,104 +1,84 @@
 const productsFemale = [
-	{
-		id: 1,
-		name: 'Oral Estradiol',
-		description:
-      'Oral Estradiol replenishes estrogen levels, providing a core treatment for hormonal balance. This approach supports overall hormonal health by naturally augmenting the body\'s estrogen, ideal for managing symptoms associated with estrogen deficiency.',
-		sort_description: 'Product Info',
-		price: 30,
-		category: { id: 1 },
-		subCategory: { id: [1] },
-		image:
-      '/images/solution_media/products/hormone-therapy/oral-estradiol.webp',
-		list: [
-			'HRT',
-			'Bioidentical',
-			'Safe Profile',
-			'Oral Tablet',
-			'Daily Dosing',
-			'Enhances Natural Estrogen levels',
-		],
-	},
-	{
-		id: 2,
-		name: 'Oral Progesterone',
-		description:
-      'Oral Progesterone enhances natural progesterone levels, offering a fundamental solution for hormonal stability. This method supports reproductive health and mood regulation by naturally boosting the body\'s progesterone supply.',
-		sort_description: 'Product Info',
-		price: 40,
-		category: { id: 1 },
-		subCategory: { id: [1] },
-		image:
-      '/images/solution_media/products/hormone-therapy/oral-progresterone.webp',
-		list: [
-			'Daily Dosing',
-			'Safe Profile',
-			'Non-Invasive',
-			'Oral Tablet',
-			'Regulates Mood and Sleep Cycles',
-			'Supports Natural Progesterone',
-		],
-	},
-	{
-		id: 3,
-		name: 'Progesterone Cream',
-		description:
-      'Progesterone Cream directly delivers progesterone to the body, providing a targeted approach to hormonal balance. Ideal for skin application, this cream helps stabilize mood and supports overall reproductive health by supplementing natural progesterone levels.',
-		sort_description: 'Product Info',
-		price: 50,
-		category: { id: 1 },
-		subCategory: { id: [1] },
-		image:
-      '/images/solution_media/products/hormone-therapy/progesterone-cream.webp',
-		list: [
-			'Applied Topically',
-			'Non-injectable',
-			'Non-Invasive',
-			'Convenient Use',
-			'Controlled Dosing',
-			'Versatile Treatment',
-		],
-	},
-	{
-		id: 4,
-		name: 'Estradiol Cream',
-		description:
-      'Estradiol Cream applies bio-identical estradiol directly to the skin. This localized treatment method enhances estrogen levels, providing relief from menopausal symptoms and supporting overall hormonal health.',
-		sort_description: 'Product Info',
-		price: 70,
-		category: { id: 1 },
-		subCategory: { id: [1] },
-		image:
-      '/images/solution_media/products/hormone-therapy/estradiol-cream.webp',
-		list: [
-			'Applied Topically',
-			'Controlled Dosing',
-			'Convenient Use',
-			'Steady Absorption',
-			'Non-injectable',
-			'Versatile Treatment',
-		],
-	},
-	{
-		id: 5,
-		name: 'Testosterone Cream',
-		description:
-      'Testosterone Cream enhances natural testosterone levels specifically tailored for female physiology, offering a targeted approach to hormonal balance. This topical solution boosts vitality, enhances libido, and supports overall well-being by gently increasing testosterone, crucial for optimal health in women.',
-		sort_description: 'Product Info',
-		price: 50,
-		category: { id: 1 },
-		subCategory: { id: [1] },
-		image:
-      '/images/solution_media/products/hormone-therapy/testosterone-cream.webp',
-		list: [
-			'Applied Topically',
-			'Controlled Dosing',
-			'Convenient Use',
-			'Steady Absorption',
-			'Non-injectable',
-			'Versatile Treatment',
-		],
-	},
+	// {
+	//   id: 1,
+	//   name: 'Oral Estradiol',
+	//   description:
+	//     "Oral Estradiol replenishes estrogen levels, providing a core treatment for hormonal balance. This approach supports overall hormonal health by naturally augmenting the body's estrogen, ideal for managing symptoms associated with estrogen deficiency.",
+	//   sort_description: 'Product Info',
+	//   price: 30,
+	//   category: { id: 1 },
+	//   subCategory: { id: [1] },
+	//   image:
+	//     '/images/solution_media/products/hormone-therapy/oral-estradiol.webp',
+	//   list: [
+	//     'HRT',
+	//     'Bioidentical',
+	//     'Safe Profile',
+	//     'Oral Tablet',
+	//     'Daily Dosing',
+	//     'Enhances Natural Estrogen levels',
+	//   ],
+	// },
+	// {
+	//   id: 2,
+	//   name: 'Oral Progesterone',
+	//   description:
+	//     "Oral Progesterone enhances natural progesterone levels, offering a fundamental solution for hormonal stability. This method supports reproductive health and mood regulation by naturally boosting the body's progesterone supply.",
+	//   sort_description: 'Product Info',
+	//   price: 40,
+	//   category: { id: 1 },
+	//   subCategory: { id: [1] },
+	//   image:
+	//     '/images/solution_media/products/hormone-therapy/oral-progresterone.webp',
+	//   list: [
+	//     'Daily Dosing',
+	//     'Safe Profile',
+	//     'Non-Invasive',
+	//     'Oral Tablet',
+	//     'Regulates Mood and Sleep Cycles',
+	//     'Supports Natural Progesterone',
+	//   ],
+	// },
+	// {
+	// 	id: 3,
+	// 	name: 'Progesterone Cream',
+	// 	description:
+	//     'Progesterone Cream directly delivers progesterone to the body, providing a targeted approach to hormonal balance. Ideal for skin application, this cream helps stabilize mood and supports overall reproductive health by supplementing natural progesterone levels.',
+	// 	sort_description: 'Product Info',
+	// 	price: 50,
+	// 	category: { id: 1 },
+	// 	subCategory: { id: [1] },
+	// 	image:
+	//     '/images/solution_media/products/hormone-therapy/progesterone-cream.webp',
+	// 	list: [
+	// 		'Applied Topically',
+	// 		'Non-injectable',
+	// 		'Non-Invasive',
+	// 		'Convenient Use',
+	// 		'Controlled Dosing',
+	// 		'Versatile Treatment',
+	// 	],
+	// },
+	// {
+	// 	id: 5,
+	// 	name: 'Testosterone Cream',
+	// 	description:
+	//     'Testosterone Cream enhances natural testosterone levels specifically tailored for female physiology, offering a targeted approach to hormonal balance. This topical solution boosts vitality, enhances libido, and supports overall well-being by gently increasing testosterone, crucial for optimal health in women.',
+	// 	sort_description: 'Product Info',
+	// 	price: 50,
+	// 	category: { id: 1 },
+	// 	subCategory: { id: [1] },
+	// 	image:
+	//     '/images/solution_media/products/hormone-therapy/testosterone-cream.webp',
+	// 	list: [
+	// 		'Applied Topically',
+	// 		'Controlled Dosing',
+	// 		'Convenient Use',
+	// 		'Steady Absorption',
+	// 		'Non-injectable',
+	// 		'Versatile Treatment',
+	// 	],
+	// },
 	{
 		id: 6,
 		name: 'Sermorelin Mini Troche',
@@ -214,26 +194,6 @@ const productsFemale = [
 			'Improves Intimacy',
 			'Tadalafil',
 			'Improves Sexual Health',
-		],
-	},
-	{
-		id: 13,
-		name: 'Desiccated Thyroid',
-		description:
-      'Desiccated Thyroid is used to treat hypothyroidism. It supplements the body’s natural thyroid hormones helping to restore the balance of T3 and T4 levels.',
-		sort_description: 'Oral Gel Capsule',
-		price: 50,
-		category: { id: 1 },
-		subCategory: { id: [1] },
-		image:
-      '/images/solution_media/products/thyroid/desiccated-thyroid-female.webp',
-		list: [
-			'Enhances Energy',
-			'Balances Thyroid',
-			'Capsules',
-			'Weight Management',
-			'Mood Improvement',
-			'Improves Metabolism',
 		],
 	},
 	{
@@ -666,6 +626,46 @@ const productsFemale = [
 			'Strengthens Hair',
 			'Thickens New Hair',
 			'Taken Daily',
+		],
+	},
+	{
+		id: 38,
+		name: 'Estradiol Cream',
+		description:
+      'Estradiol Cream applies bio-identical estradiol directly to the skin. This localized treatment method enhances estrogen levels, providing relief from menopausal symptoms and supporting overall hormonal health.',
+		sort_description: 'Product Info',
+		price: 70,
+		category: { id: 1 },
+		subCategory: { id: [1] },
+		image:
+      '/images/solution_media/products/hormone-therapy/estradiol-cream.webp',
+		list: [
+			'Applied Topically',
+			'Controlled Dosing',
+			'Convenient Use',
+			'Steady Absorption',
+			'Non-injectable',
+			'Versatile Treatment',
+		],
+	},
+	{
+		id: 39,
+		name: 'Desiccated Thyroid',
+		description:
+      'Desiccated Thyroid is used to treat hypothyroidism. It supplements the body’s natural thyroid hormones helping to restore the balance of T3 and T4 levels.',
+		sort_description: 'Oral Gel Capsule',
+		price: 50,
+		category: { id: 1 },
+		subCategory: { id: [1] },
+		image:
+      '/images/solution_media/products/thyroid/desiccated-thyroid-female.webp',
+		list: [
+			'Enhances Energy',
+			'Balances Thyroid',
+			'Capsules',
+			'Weight Management',
+			'Mood Improvement',
+			'Improves Metabolism',
 		],
 	},
 ];

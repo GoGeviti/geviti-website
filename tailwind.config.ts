@@ -272,6 +272,13 @@ const config: Config = {
         'card-marketing-membership':
           '0px 188px 53px 0px rgba(158, 158, 158, 0.00), 0px 120px 48px 0px rgba(158, 158, 158, 0.01), 0px 68px 41px 0px rgba(158, 158, 158, 0.05), 0px 30px 30px 0px rgba(158, 158, 158, 0.09), 0px 8px 17px 0px rgba(158, 158, 158, 0.10)',
       },
+      transitionDuration: {
+        '50': '50ms',
+        '160': '160ms',
+        '400': '400ms',
+        '660': '660ms',
+        '750': '750ms',
+      },
     },
     fontFamily: {
       Poppins: ['var(--font-Poppins)', 'sans-serif'],

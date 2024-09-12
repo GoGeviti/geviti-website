@@ -8,8 +8,8 @@ import InfiniteMovingFeatures from '../InfiniteMovingFeatures';
 const membershipData = solutionData.membership;
 
 const Membership: React.FC = () => {
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	const renderTitleDesc = (item: any) => {
-		// eslint-disable-line @typescript-eslint/no-explicit-any
 		return (
 			<div className='px-4 flex flex-col lg:items-center lg:text-center'>
 				<p className='text-pretitle text-grey-primary'>{ item.preTitle }</p>

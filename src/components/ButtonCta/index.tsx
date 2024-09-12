@@ -4,16 +4,16 @@ import CustomLink, { CustomLinkProps } from '../CustomLink';
 import { ChevronRight } from '../Icons';
 
 type ButtonCtaProps = Omit<CustomLinkProps, 'href' | 'onClick'> & {
-	text?: string;
-	arrowClassName?: string;
-	theme?: 'primary' | 'secondary' | 'tertiary' | 'blur';
-	children?: React.ReactNode;
-	href?: string;
-	onClick?: () => void;
-	isLoading?: boolean;
-	arrowPosition?: 'left' | 'right';
-	size?: 'small' | 'default';
-	type?: 'button' | 'submit' | 'reset';
+  text?: string;
+  arrowClassName?: string;
+  theme?: 'primary' | 'secondary' | 'tertiary' | 'blur';
+  children?: React.ReactNode;
+  href?: string;
+  onClick?: () => void;
+  isLoading?: boolean;
+  arrowPosition?: 'left' | 'right';
+  size?: 'small' | 'default';
+  type?: 'button' | 'submit' | 'reset';
 };
 
 const ButtonCta: React.FC<ButtonCtaProps> = ({
@@ -34,7 +34,8 @@ const ButtonCta: React.FC<ButtonCtaProps> = ({
 		if (theme === 'primary') return 'bg-primary text-white';
 		if (theme === 'secondary') return 'bg-white text-primary';
 		if (theme === 'tertiary') return 'bg-blue-primary text-primary';
-		if (theme === 'blur') return 'bg-white/10 hover:bg-white/20 text-white border border-white/5 backdrop-blur-[25px]';
+		if (theme === 'blur')
+			return 'bg-white/10 hover:bg-white/20 text-white border border-white/5 backdrop-blur-[25px]';
 	};
 
 	const resolveArrowWrapperClassNem = () => {
@@ -50,27 +51,47 @@ const ButtonCta: React.FC<ButtonCtaProps> = ({
 		arrowPosition === 'right' && 'grid-cols-[auto_46px] pl-[42px] pr-1.5',
 		arrowPosition === 'left' && 'grid-cols-[46px_auto] pl-1.5 pr-[42px]',
 		size === 'small' && 'text-xs block pl-0',
-		
+
 		className
 	);
 
 	const renderChildren = () => {
 		return (
 			<>
-				<span className={ clsxm('inline-block z-[2]', arrowPosition === 'left' && 'order-1') }>
+				<span
+					className={ clsxm(
+						'inline-block z-[2]',
+						arrowPosition === 'left' && 'order-1'
+					) }
+				>
 					{ text || children }
 				</span>
 
-				<span className={ clsxm(
-					'rounded-full w-[46px] h-[46px] relative flex justify-center [&>*]:transform [&>*]:transition-all [&>*]:duration-[400ms] [&>*]:h-[46px] [&>*]:flex [&>*]:items-center',
-					resolveArrowWrapperClassNem(),
-					size === 'small' && 'w-[30px] h-[30px] [&>*]:h-[30px] [&>*]:flex [&>*]:items-center [&>*]:justify-center absolute top-[6px] right-[6px]',
-				) }>
+				<span
+					className={ clsxm(
+						'rounded-full w-[46px] h-[46px] relative flex justify-center [&>*]:transform [&>*]:transition-all [&>*]:duration-400 [&>*]:h-[46px] [&>*]:flex [&>*]:items-center',
+						resolveArrowWrapperClassNem(),
+						size === 'small' &&
+              'w-[30px] h-[30px] [&>*]:h-[30px] [&>*]:flex [&>*]:items-center [&>*]:justify-center absolute top-[6px] right-[6px]'
+					) }
+				>
 					<span className='opacity-0 group-hover:opacity-100 -translate-x-full group-hover:translate-x-0'>
-						<ChevronRight className={ clsxm(arrowClassName, arrowPosition === 'left' && 'rotate-180', 'flex-shrink-0') } />
+						<ChevronRight
+							className={ clsxm(
+								arrowClassName,
+								arrowPosition === 'left' && 'rotate-180',
+								'flex-shrink-0'
+							) }
+						/>
 					</span>
 					<span className='absolute top-0 opacity-100 group-hover:opacity-0 translate-x-0 group-hover:translate-x-full'>
-						<ChevronRight className={ clsxm(arrowClassName, arrowPosition === 'left' && 'rotate-180', 'flex-shrink-0') } />
+						<ChevronRight
+							className={ clsxm(
+								arrowClassName,
+								arrowPosition === 'left' && 'rotate-180',
+								'flex-shrink-0'
+							) }
+						/>
 					</span>
 				</span>
 			</>
