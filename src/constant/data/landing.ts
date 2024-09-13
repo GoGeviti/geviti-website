@@ -27,15 +27,15 @@ const landingData = {
 		],
 	},
 	hero: {
-		preTitle: 'Live optimized and age better',
-		title: 'Your partner in total health optimization and longevit<span class="ml-0.5">y<span>',
+		preTitle: 'Your partner in total health',
+		title: 'Your partner in total health optimization and longevit<span class="ml-0.5">y<span>.',
 		titles: [
-			'Live optimized and age better',
-			'optimization and longevit<span class="ml-0.5">y<span>',
+			'Your partner in total health',
+			'optimization and longevit<span class="ml-0.5">y<span>.',
 		],
 		titlesMobile: [
 			'Your partner in total health',
-			'optimization and longevit<span class="ml-0.5">y<span>',
+			'optimization and longevit<span class="ml-0.5">y<span>.',
 		],
 		banner: {
 			text: '<span class="font-medium">Geviti Closes Early Stage Seed Financing</span> 🎉 <br/>To Celebrate, Those Who Join Our Beta Before<br/>August 1st Will Be Grandfathered In At $89/M!',
