@@ -11,14 +11,16 @@ import { solutionData } from '@/constant/data';
 import clsxm from '@/helpers/clsxm';
 
 import ButtonCta from '../ButtonCta';
-import { Dialog, DialogContent } from '../Dialog';
-import { CheckBlue, ChevronRight, InfoCircle, XIcon } from '../Icons';
+import { CheckBlue, ChevronRight, InfoCircle } from '../Icons';
 import { Popover, PopoverContent, PopoverTrigger } from '../Popover';
 import ShiftSection from '../ShiftSection';
 
 import VerticalThumbs from './VerticalThumbs';
 
 const BiomarkersSection = dynamic(() => import('./BiomarkersSection'), {
+	ssr: false,
+});
+const DialogDisclaimer = dynamic(() => import('./DialogDisclaimer'), {
 	ssr: false,
 });
 
@@ -192,27 +194,6 @@ const TreatmentOptions: React.FC<TreatmentOptionsProps> = ({
 		);
 	};
 
-	// const dragEndHandler = (dragInfo: PanInfo, direction: 'x' | 'y') => {
-	// 	const draggedDistance = dragInfo.offset[direction];
-	// 	const swipeThreshold = 25;
-	// 	const spaceToScroll = 114;
-	// 	const thumbsMobileEl = document.getElementById('thumbs-products-slider');
-
-	// 	if (draggedDistance > swipeThreshold && (direction === 'x' ? activeIdx > 0 : true)) {
-	// 		swipeToImage(-1);
-	// 		if (sliderRef.current) {
-	// 			sliderRef.current.slickPrev();
-	// 		}
-	// 		if (thumbsMobileEl) thumbsMobileEl.scrollLeft -= spaceToScroll;
-	// 	} else if (draggedDistance < -swipeThreshold && (direction === 'x' ? activeIdx < productsByCategory.length - 1 : true)) {
-	// 		swipeToImage(1);
-	// 		if (sliderRef.current) {
-	// 			sliderRef.current.slickNext();
-	// 		}
-	// 		if (thumbsMobileEl) thumbsMobileEl.scrollLeft += spaceToScroll;
-	// 	}
-	// };
-
 	const renderDisclaimerText = () => {
 		return (
 			<span className='text-sm lg:text-xs !leading-5 text-[#508DBA] underline inline-flex gap-1 items-center'>
@@ -255,39 +236,10 @@ const TreatmentOptions: React.FC<TreatmentOptionsProps> = ({
 
 	const renderDialogDisclaimer = () => {
 		return (
-			<Dialog
+			<DialogDisclaimer
 				open={ openDisclaimerMobile }
-				modal={ true }
-				data-lenis-prevent
-				onOpenChange={ setOpenDisclaimerMobile }
-			>
-				<DialogContent
-					position='default'
-					className='w-full sm:max-w-[343px] px-4 pt-4 pb-[42px] bg-white max-w-[calc(100vw-32px)] rounded-[20px]'
-					showClose={ false }
-					overlayClassName='!bg-opacity-50 !backdrop-blur-[3px]'
-				>
-					<div className='flex flex-col gap-6'>
-						<div className='flex justify-between items-center'>
-							<div className='flex items-center gap-2'>
-								<InfoCircle className='w-6 h-6 text-primary flex-shrink-0' />
-								<h6 className='text-lg font-medium -tracking-0.04em text-primary'>
-                  Disclaimer
-								</h6>
-							</div>
-							<button
-								onClick={ () => setOpenDisclaimerMobile(false) }
-								className='focus:ring-0 focus:outline-none rounded-full w-[34px] h-[34px] bg-white border border-grey-100 relative'
-							>
-								<XIcon className='w-3.5 h-3.5 text-[#292D32] absolute-center' />
-							</button>
-						</div>
-						<p className='text-grey-600 text-lg'>
-							{ solutionData.treatmentOptions.disclaimer }
-						</p>
-					</div>
-				</DialogContent>
-			</Dialog>
+				setOpen={ setOpenDisclaimerMobile }
+			/>
 		);
 	};
 

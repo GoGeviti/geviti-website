@@ -138,7 +138,7 @@ const ActionMenuList = ({ theme }: NavbarProps) => {
 						className={ clsxm(
 							'font-Poppins text-sm !leading-6 font-medium',
 							menu.type === 'button'
-								? 'text-primary px-6 py-[10.5px] bg-blue-primary rounded-full hover:scale-[1.03] active:scale-100 !duration-200 ease-[cubic-bezier(.15,1.14,.88,.98)]'
+								? 'text-primary px-6 py-[10.5px] bg-blue-primary rounded-full hover:scale-[1.03] active:scale-100 !duration-200 ease-slide-in'
 								: 'text-grey-50'
 						) }
 					>

@@ -8,6 +8,7 @@ import React, {
 	useState,
 } from 'react';
 import { AnimatePresence, motion, MotionProps } from 'framer-motion';
+import { debounce } from 'lodash';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -92,7 +93,7 @@ const TopTier: React.FC<TopTierProps> = ({ slug = 'men-weight-loss' }) => {
 	}, [wrapperItems, isMounted]);
 
 	useEffect(() => {
-		const handleResize = () => {
+		const getContainerOffsetLeft = () => {
 			const containerCenterEl = document.getElementById('container-center');
 			if (containerCenterEl) {
 				setContainerOffsetLeft(containerCenterEl.offsetLeft);
@@ -104,7 +105,9 @@ const TopTier: React.FC<TopTierProps> = ({ slug = 'men-weight-loss' }) => {
 			setIsMobile(window.innerWidth < screens.sm);
 		};
 
-		handleResize();
+		getContainerOffsetLeft();
+
+		const handleResize = debounce(getContainerOffsetLeft, 800);
 
 		window.addEventListener('resize', handleResize);
 

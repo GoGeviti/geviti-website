@@ -7,18 +7,22 @@ import {
 	useScroll,
 	useTransform,
 } from 'framer-motion';
+import dynamic from 'next/dynamic';
 import Image from 'next/image';
 
-import { landingData } from '@/constant/data';
+import landingData from '@/constant/data/landing';
 import clsxm from '@/helpers/clsxm';
 import { screens } from '@/helpers/style';
 import { useWindowDimensions } from '@/hooks';
 
 import LogoBlueLayer from '../../../public/images/landing/compressed/blue-geviti.webp';
-import CursorSlider from '../CursorSlider';
 import CustomLink from '../CustomLink';
 import { ArrowNarrowLeft, ArrowNarrowRight, ChevronRight } from '../Icons';
 import ShiftSection from '../ShiftSection';
+
+const CursorSlider = dynamic(() => import('../CursorSlider'), {
+	ssr: false,
+});
 
 const imgVariants = {
 	initial: (trend: number) => ({

@@ -5,7 +5,7 @@ import { useInView } from 'react-intersection-observer';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 
-import { landingData } from '@/constant/data';
+import landingData from '@/constant/data/landing';
 import clsxm from '@/helpers/clsxm';
 
 import ButtonCta from '../ButtonCta';
@@ -14,11 +14,11 @@ import { GevitiRotateIcon } from '../Icons/Landing';
 const applicationData = landingData.application;
 
 type BoxTooltipProps = {
-	isExpanded: boolean;
-	className?: string;
-	text?: string;
-	itemIdx?: number;
-	handleChange?: () => void;
+  isExpanded: boolean;
+  className?: string;
+  text?: string;
+  itemIdx?: number;
+  handleChange?: () => void;
 };
 
 const BoxTooltip = ({
@@ -26,7 +26,7 @@ const BoxTooltip = ({
 	className,
 	text,
 	itemIdx = 0,
-	handleChange
+	handleChange,
 }: BoxTooltipProps) => {
 	const resolvePosition = () => {
 		switch (itemIdx) {
@@ -59,17 +59,21 @@ const BoxTooltip = ({
 					viewBox='0 0 24 24'
 					fill='none'
 					xmlns='http://www.w3.org/2000/svg'
-					className='flex-shrink-0'>
+					className='flex-shrink-0'
+				>
 					<path
 						d='M12 22.75C6.07 22.75 1.25 17.93 1.25 12C1.25 6.07 6.07 1.25 12 1.25C17.93 1.25 22.75 6.07 22.75 12C22.75 17.93 17.93 22.75 12 22.75ZM12 2.75C6.9 2.75 2.75 6.9 2.75 12C2.75 17.1 6.9 21.25 12 21.25C17.1 21.25 21.25 17.1 21.25 12C21.25 6.9 17.1 2.75 12 2.75Z'
-						fill='white' />
+						fill='white'
+					/>
 					<path
 						d='M16 12.75H8C7.59 12.75 7.25 12.41 7.25 12C7.25 11.59 7.59 11.25 8 11.25H16C16.41 11.25 16.75 11.59 16.75 12C16.75 12.41 16.41 12.75 16 12.75Z'
-						fill='white' />
+						fill='white'
+					/>
 					{ !isExpanded && (
 						<path
 							d='M12 16.75C11.59 16.75 11.25 16.41 11.25 16V8C11.25 7.59 11.59 7.25 12 7.25C12.41 7.25 12.75 7.59 12.75 8V16C12.75 16.41 12.41 16.75 12 16.75Z'
-							fill='white' />
+							fill='white'
+						/>
 					) }
 				</svg>
 			</span>
@@ -78,11 +82,7 @@ const BoxTooltip = ({
 
 	return (
 		<div>
-			<div className={ clsxm(
-				'absolute z-40',
-				resolvePosition(),
-				className
-			) }>
+			<div className={ clsxm('absolute z-40', resolvePosition(), className) }>
 				<div
 					className={ clsxm(
 						'max-xl:max-w-[437px] w-fit relative grid place-items-center overflow-hidden gap-6 p-[15px]',
@@ -94,11 +94,13 @@ const BoxTooltip = ({
 							: 'rounded-r-xl rounded-l-[80px] grid-cols-[46px_auto]'
 					) }
 				>
-					<span className={ clsxm(
-						'inline-block z-[2] font-medium text-xs !leading-5 font-Poppins',
-						!isExpanded && 'invisible',
-						itemIdx > 1 && 'order-1'
-					) }>
+					<span
+						className={ clsxm(
+							'inline-block z-[2] font-medium text-xs !leading-5 font-Poppins',
+							!isExpanded && 'invisible',
+							itemIdx > 1 && 'order-1'
+						) }
+					>
 						{ text }
 					</span>
 
@@ -113,7 +115,7 @@ const Application: React.FC = () => {
 	const [expandedIdx, setExpandedIdx] = useState<number>(0);
 	const { ref, inView } = useInView({
 		threshold: 0.5,
-		triggerOnce: true
+		triggerOnce: true,
 	});
 
 	const renderTitleDesc = () => {
@@ -175,9 +177,13 @@ const Application: React.FC = () => {
 										key={ itemIdx }
 										className={ clsxm(
 											'text-left focus:ring-0 rounded-xl py-2 px-[13px] bg-white/25 border border-white/15',
-											isExpanded && 'shadow-[0px_4px_15.800000190734863px_0px_rgba(2,23,27,0.1)]'
-										) }>
-										<span className={ clsxm(!isExpanded && 'line-clamp-1') }>{ isExpanded ? '-' : '+' } { item }</span>
+											isExpanded &&
+                        'shadow-[0px_4px_15.800000190734863px_0px_rgba(2,23,27,0.1)]'
+										) }
+									>
+										<span className={ clsxm(!isExpanded && 'line-clamp-1') }>
+											{ isExpanded ? '-' : '+' } { item }
+										</span>
 									</button>
 								);
 							}) }
@@ -189,7 +195,8 @@ const Application: React.FC = () => {
 
 					<div
 						ref={ ref }
-						className='lg:pt-[76px] xl2:pt-[100px] relative flex flex-col items-center w-full h-full'>
+						className='lg:pt-[76px] xl2:pt-[100px] relative flex flex-col items-center w-full h-full'
+					>
 						<div className='lg:border-b-0 border-[3px] border-white bg-blue-1 relative h-[216px] lg:h-full w-[339px] lg:w-[370px] max-lg:rounded-xl lg:rounded-t-[80px] flex shadow-[0px_4px_24px_rgba(0,0,0,0.15)]'>
 							<div className='pl-[19px] pt-[15px] lg:pt-10 lg:pl-8 flex'>
 								<GevitiRotateIcon className='w-11 h-[187px] lg:w-[66px] lg:h-[280.5px]' />
@@ -201,9 +208,9 @@ const Application: React.FC = () => {
 											opacity: 1,
 											x: 0,
 											transition: {
-												duration: .86,
-												ease: [0.21, 1, 0.38, 1.04]
-											}
+												duration: 0.86,
+												ease: [0.21, 1, 0.38, 1.04],
+											},
 										},
 										hidden: { opacity: 0, x: -100 },
 									} }

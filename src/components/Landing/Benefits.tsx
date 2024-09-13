@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
 
-import { landingData } from '@/constant/data';
+import landingData from '@/constant/data/landing';
 import clsxm from '@/helpers/clsxm';
 
 import { ArrowNarrowRight } from '../Icons';
@@ -169,7 +169,7 @@ const CardBenefit: React.FC<CardBenefitProps> = ({
 
 const Benefits: React.FC = () => {
 	const [hoveredIdx, setHoveredIdx] = useState<number>(-1);
-
+	
 	return (
 		<div className='lg:px-3 mt-6 font-Poppins'>
 			<div className='bg-white relative overflow-hidden rounded-19px py-[46px] lg:pt-[79px] lg:pb-[49px]'>

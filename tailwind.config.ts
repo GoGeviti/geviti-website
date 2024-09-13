@@ -279,11 +279,14 @@ const config: Config = {
         '660': '660ms',
         '750': '750ms',
       },
+      transitionTimingFunction: {
+        'slide-in': 'cubic-bezier(0.15, 1.14, 0.88, 0.98)',
+        'custom': 'cubic-bezier(0.87, 0, 0.13, 1)'
+      }
     },
     fontFamily: {
       Poppins: ['var(--font-Poppins)', 'sans-serif'],
       BRSonoma: ['var(--font-BRSonoma)', 'sans-serif'],
-      grifter: ['var(--font-grifter)', 'var(--font-Poppins)', 'sans-serif'],
     },
   },
   plugins: [

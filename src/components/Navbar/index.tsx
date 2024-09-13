@@ -148,7 +148,7 @@ const Navbar: React.FC<NavbarProps> = ({
 					>
 						<div
 							className={ clsxm(
-								'btn font-Poppins text-sm font-medium hover:scale-[1.03] active:scale-100 !duration-200 ease-[cubic-bezier(.15,1.14,.88,.98)] hover:!translate-y-0',
+								'btn font-Poppins text-sm font-medium hover:scale-[1.03] active:scale-100 !duration-200 ease-slide-in hover:!translate-y-0',
 								theme === 'dark'
 									? 'btn-secondary'
 									: 'btn-primary !text-grey-background'

@@ -2,12 +2,13 @@
 
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { AnimatePresence, motion, useMotionValue } from 'framer-motion';
+import { debounce } from 'lodash';
 import Image from 'next/image';
 import Link from 'next/link';
 
-import { landingData, productsData } from '@/constant/data';
+import landingData from '@/constant/data/landing';
+import productsData from '@/constant/data/products';
 import clsxm from '@/helpers/clsxm';
-import { screens } from '@/helpers/style';
 
 import { ArrowNarrowLeft, ArrowNarrowRight } from '../Icons';
 
@@ -16,33 +17,6 @@ type DiscoverGevitiProps = {
   description?: string;
   productsWrapperClassName?: string;
   withBg?: boolean;
-};
-
-export const handleIsElementScrolledIntoHorizontalView = (
-	elm: HTMLElement | null,
-	container: HTMLDivElement | null
-) => {
-	if (elm && container && window.innerWidth >= screens.lg) {
-		const checkIsVisible = () => {
-			const visible = container.scrollLeft + container.clientWidth,
-				isStartVisible = visible >= elm.offsetLeft + elm.clientWidth / 2,
-				isEndVisible =
-          visible <=
-          elm.offsetLeft + container.clientWidth + elm.clientWidth / 2;
-			// if both are true, item is visible relative to scroll position
-			// this does not mean, it is visible in the viewport
-			// return isStartVisible && isEndVisible;
-			if (isStartVisible && isEndVisible) {
-				elm.removeAttribute('style');
-			} else {
-				elm.setAttribute('style', 'opacity: 0.25;');
-			}
-		};
-
-		checkIsVisible();
-
-		elm.parentNode?.addEventListener('scroll', checkIsVisible);
-	}
 };
 
 const CARD_PRODUCT_WIDTH = 287;
@@ -99,28 +73,31 @@ const DiscoverGeviti: React.FC<DiscoverGevitiProps> = ({
 	};
 
 	useEffect(() => {
-		window.addEventListener('resize', handleProductsPlaceholder);
+		const handleResize = debounce(handleProductsPlaceholder, 800);
+		window.addEventListener('resize', handleResize);
 
-		return () =>
-			window.removeEventListener('resize', handleProductsPlaceholder);
+		return () => window.removeEventListener('resize', handleResize);
 	}, []);
 
-	const handleProductListScroll = (init?: boolean) => {
-		if (container) {
-			const scroll = container.scrollLeft;
-			const total = container.scrollWidth - container.clientWidth;
-			const isNotOverflowScroll = scroll === 0 && total === 0;
-			const progress = isNotOverflowScroll ? 100 : (scroll / total) * 100;
-			if (!init) {
-				scrollbarWidth.set(progress + '%');
-			}
+	const handleProductListScroll = useCallback(
+		(init?: boolean) => {
+			if (container) {
+				const scroll = container.scrollLeft;
+				const total = container.scrollWidth - container.clientWidth;
+				const isNotOverflowScroll = scroll === 0 && total === 0;
+				const progress = isNotOverflowScroll ? 100 : (scroll / total) * 100;
+				if (!init) {
+					scrollbarWidth.set(progress + '%');
+				}
 
-			if (isNotOverflowScroll) setDisabledArrowScroll('all');
-			else if (progress === 0) setDisabledArrowScroll('prev');
-			else if (progress >= 100) setDisabledArrowScroll('next');
-			else setDisabledArrowScroll('');
-		}
-	};
+				if (isNotOverflowScroll) setDisabledArrowScroll('all');
+				else if (progress === 0) setDisabledArrowScroll('prev');
+				else if (progress >= 100) setDisabledArrowScroll('next');
+				else setDisabledArrowScroll('');
+			}
+		},
+		[container]
+	);
 
 	useEffect(() => {
 		handleProductListScroll(true);

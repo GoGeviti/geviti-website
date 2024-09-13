@@ -1,10 +1,17 @@
 import React from 'react';
+import dynamic from 'next/dynamic';
 import Image from 'next/image';
 
-import { landingData } from '@/constant/data';
+import landingData from '@/constant/data/landing';
 
 import ButtonCta from '../ButtonCta';
-import InfiniteMovingFeatures from '../InfiniteMovingFeatures';
+
+const InfiniteMovingFeatures = dynamic(
+	() => import('../InfiniteMovingFeatures'),
+	{
+		ssr: false,
+	}
+);
 
 const membershipData = landingData.membership;
 

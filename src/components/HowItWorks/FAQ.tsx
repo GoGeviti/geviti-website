@@ -46,7 +46,7 @@ const faq: React.FC = () => {
 											{ items.questions }
 										</p>
 										<div className='!w-6 !h-6'>
-											<Plus2 className='!w-6 !h-6 ease-[cubic-bezier(0.87,_0,_0.13,_1)] transition-transform duration-300 group-data-[state=open]:hidden block' />
+											<Plus2 className='!w-6 !h-6 ease-custom transition-transform duration-300 group-data-[state=open]:hidden block' />
 											<Minus2 className='!w-6 !h-6 ase-[cubic-bezier(0.87,_0,_0.13,_1)] transition-transform duration-300 group-data-[state=open]:block hidden' />
 										</div>
 									</AccordionTrigger>

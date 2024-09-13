@@ -2,8 +2,11 @@
 
 import AutoScroll from 'embla-carousel-auto-scroll';
 import useEmblaCarousel from 'embla-carousel-react';
+import dynamic from 'next/dynamic';
 
-import PopoverPills from './PopoverPills';
+const PopoverPills = dynamic(() => import('./PopoverPills'), {
+	ssr: false,
+});
 
 type FeatureItem = {
   title: string;
@@ -31,26 +34,7 @@ const Carousel: React.FC<CarouselProps> = ({ slides, direction }) => {
 			speed: 1,
 		}),
 	]);
-	// const [emblaRef, emblaApi] = useEmblaCarousel(options, [
-	//   AutoScroll({
-	//     playOnInit: true,
-	//     stopOnMouseEnter: true,
-	//     stopOnInteraction: false,
-	//   }),
-	// ]);
-	// const [isPlaying, setIsPlaying] = useState(false);
-
-	// useEffect(() => {
-	//   const autoScroll = emblaApi?.plugins()?.autoScroll;
-	//   if (!autoScroll) return;
-
-	//   setIsPlaying(autoScroll.isPlaying());
-	//   emblaApi
-	//     .on('autoScroll:play', () => setIsPlaying(true))
-	//     .on('autoScroll:stop', () => setIsPlaying(false))
-	//     .on('reInit', () => setIsPlaying(autoScroll.isPlaying()));
-	// }, [emblaApi]);
-	const duplicateSlides = Array(10)
+	const duplicateSlides = Array(6)
 		.fill([...slides])
 		.flat();
 

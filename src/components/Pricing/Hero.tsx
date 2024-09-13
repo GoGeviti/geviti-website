@@ -1,6 +1,7 @@
 'use client';
 import React, { CSSProperties, useMemo, useRef, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
+import dynamic from 'next/dynamic';
 import Image from 'next/image';
 
 import pricingData from '@/constant/data/pricing';
@@ -8,11 +9,14 @@ import clsxm from '@/helpers/clsxm';
 
 import ButtonCta from '../ButtonCta';
 import { ProductsResponse } from '../Checkout/api/types';
-import QuestionTooltip from '../Home/QuestionTooltip';
 import { GreenCheck, ShieldTick } from '../Icons';
 import ButtonSwitchMemberFreq from '../MemberShip/ButtonSwitchMemberFreq';
 import Navbar, { navbarDefaultTransition } from '../Navbar/Landing';
 import PopupReview from '../PopupReview';
+
+const QuestionTooltip = dynamic(() => import('../Home/QuestionTooltip'), {
+	ssr: false,
+});
 
 const formatPrice = (price?: string): string => {
 	if (!price) {
@@ -65,13 +69,6 @@ const Hero: React.FC<HeroProps> = ({
 	const renderPopup = () => {
 		return (
 			<PopupReview
-				motionProps={ {
-					variants: undefined,
-					transition: { duration: 0.64, ease: 'easeInOut' },
-					initial: 'initial',
-					animate: 'animate',
-					exit: 'exit',
-				} }
 				className='max-sm:w-full max-sm:max-w-[277px]'
 				style={
           {

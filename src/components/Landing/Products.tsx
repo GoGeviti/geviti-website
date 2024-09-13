@@ -1,8 +1,11 @@
 import React from 'react';
+import dynamic from 'next/dynamic';
 
 import { landingData } from '@/constant/data';
 
-import DiscoverGeviti from '../DiscoverGeviti';
+const DiscoverGeviti = dynamic(() => import('../DiscoverGeviti'), {
+	ssr: false,
+});
 
 const ProductsSection: React.FC = async() => {
 	return (

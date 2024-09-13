@@ -1,7 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 
-import { landingData } from '@/constant/data';
+import landingData from '@/constant/data/landing';
 import clsxm from '@/helpers/clsxm';
 
 import ButtonCta from '../ButtonCta';

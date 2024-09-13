@@ -10,7 +10,7 @@ const Categories: React.FC = () => {
 	return (
 		<div className='container-center relative overflow-hidden'>
 			<div className='mx-auto py-[106px] overflow-hidden'>
-				<div className=' w-full grid md:grid-cols-3 gap-7 ease-[cubic-bezier(0.87,_0,_0.13,_1)] transition-transform duration-300'>
+				<div className=' w-full grid md:grid-cols-3 gap-7 ease-custom transition-transform duration-300'>
 					{ categoriesData.list.map((categories, id) => {
 						return (
 							<div

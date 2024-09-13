@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import SlickSlider, { Settings } from 'react-slick';
+import { debounce } from 'lodash';
 import Image from 'next/image';
 
 import clsxm from '@/helpers/clsxm';
@@ -43,6 +44,8 @@ const VerticalThumbs: React.FC<VerticalThumbsProps> = ({
 			sliderRef.current.slickNext();
 		}
 	};
+
+	const debounceHandleNextSlickSlider = debounce(handleNextSlickSlider, 250);
 
 	return (
 		<div className='flex flex-col'>
@@ -95,7 +98,7 @@ const VerticalThumbs: React.FC<VerticalThumbsProps> = ({
 			{ list.length >= 3 && (
 				<div className='mt-3 flex justify-center'>
 					<button
-						onClick={ handleNextSlickSlider }
+						onClick={ debounceHandleNextSlickSlider }
 						className='focus:ring-0 focus:outline-none group w-[30.22px] h-[30.22px] relative rounded-[10.42px] border-[1.56px] border-[#F6F6F6] shadow-[0px_2.08403px_10.4202px_rgba(0,0,0,0.1)]'
 					>
 						<ChevronRight className='rotate-90 text-grey-200 group-hover:text-grey-primary absolute-center flex-shrink-0' />

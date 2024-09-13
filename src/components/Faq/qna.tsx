@@ -41,8 +41,8 @@ const renderItem = (data: Faq[]) => {
 									{ items.title }
 								</p>
 								<div className='!w-5 !h-5'>
-									<ChevronRight className='!w-5 !h-5 text-grey-primary ease-[cubic-bezier(0.87,_0,_0.13,_1)] transition-transform duration-300 group-data-[state=open]:hidden block' />
-									<ChevronDown className='!w-5 !h-5 text-grey-primary ease-[cubic-bezier(0.87,_0,_0.13,_1)] transition-transform duration-300 group-data-[state=open]:block hidden' />
+									<ChevronRight className='!w-5 !h-5 text-grey-primary ease-custom transition-transform duration-300 group-data-[state=open]:hidden block' />
+									<ChevronDown className='!w-5 !h-5 text-grey-primary ease-custom transition-transform duration-300 group-data-[state=open]:block hidden' />
 								</div>
 							</AccordionTrigger>
 

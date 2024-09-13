@@ -1,7 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 
-import { landingData } from '@/constant/data';
+import landingData from '@/constant/data/landing';
 
 import ButtonCta from '../ButtonCta';
 
@@ -17,7 +17,9 @@ const Clinical: React.FC = () => {
 							<div className='text-center lg:text-left lg:max-w-xl'>
 								<p className='mb-[10px] md:mb-3 text-pretitle text-grey-primary'>
 									<span className='max-md:hidden'>{ clinicalData.preTitle }</span>
-									<span className='md:hidden'>{ clinicalData.preTitleMobile }</span>
+									<span className='md:hidden'>
+										{ clinicalData.preTitleMobile }
+									</span>
 								</p>
 
 								{ clinicalData.title && (
@@ -30,10 +32,18 @@ const Clinical: React.FC = () => {
 									<p className='text-grey-400 max-sm:max-w-[331px] md:max-w-[500px] max-lg:mx-auto text-xs md:text-sm !leading-5'>
 										<span
 											className='max-md:hidden'
-											dangerouslySetInnerHTML={ { __html: clinicalData.description } } />
+											dangerouslySetInnerHTML={ {
+												__html: clinicalData.description,
+											} }
+										/>
 										<span
 											className='md:hidden'
-											dangerouslySetInnerHTML={ { __html: clinicalData.descriptionMobile || clinicalData.description } } />
+											dangerouslySetInnerHTML={ {
+												__html:
+                          clinicalData.descriptionMobile ||
+                          clinicalData.description,
+											} }
+										/>
 									</p>
 								) }
 

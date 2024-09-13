@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { landingData } from '@/constant/data';
+import landingData from '@/constant/data/landing';
 
 import Banner from '../Banner';
 

@@ -1,12 +1,16 @@
 'use client';
 import React, { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
+import dynamic from 'next/dynamic';
 
 import membershipdata from '@/constant/data/membership';
 import clsxm from '@/helpers/clsxm';
 
-import BiomarkersList from '../BiomarkersList';
 import { ChevronDown, Filter } from '../Icons';
+
+const BiomarkersList = dynamic(() => import('../BiomarkersList'), {
+	ssr: false,
+});
 
 type TabProps = {
   selected: boolean;
