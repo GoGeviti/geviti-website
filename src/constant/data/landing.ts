@@ -462,7 +462,7 @@ const landingData = {
 			{
 				id: 'therapy',
 				preTitle: 'Members receive access to',
-				title: 'Customized Supplement Blends',
+				title: 'Customized supplement blends',
 				description:
           'No more over spending on supplements that aren\'t designed exactly <br class="max-lg:hidden"/>for you. Geviti will analyze your biomarkers and create totally custom <br class="max-lg:hidden"/>supplements packs with everything you need, and nothing that you <br class="max-lg:hidden"/>don’t.',
 				image: '/images/landing/compressed/homekits-supplements.webp',
