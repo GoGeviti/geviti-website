@@ -156,6 +156,7 @@ const HomeKits: React.FC = () => {
 					width={ 1400 }
 					height={ 1400 }
 					priority
+					unoptimized
 					className={ clsxm(
 						'w-[950px] left-[55%] -translate-x-[55%]',
 						defaultImageDesktopClassName
@@ -172,6 +173,7 @@ const HomeKits: React.FC = () => {
 					width={ 1400 }
 					height={ 1400 }
 					priority
+					unoptimized
 					className={ clsxm(
 						'w-[1100px] -mt-[110px] left-[85%] -translate-x-[85%]',
 						defaultImageDesktopClassName
@@ -188,6 +190,7 @@ const HomeKits: React.FC = () => {
 					width={ 1166 }
 					height={ 657 }
 					priority
+					unoptimized
 					className={ clsxm(
 						'w-[1155px] mt-[50px] left-[47%] -translate-x-[47%]',
 						defaultImageDesktopClassName
@@ -266,6 +269,7 @@ const HomeKits: React.FC = () => {
 											src={ item.imageMobile }
 											fill
 											alt=''
+											unoptimized
 											className={ clsxm(
 												item.id !== 'prescription'
 													? 'object-cover sm:object-contain'
