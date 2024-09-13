@@ -155,7 +155,7 @@ const pricingData = {
 			{
 				name: 'Metabolic Health Finger Prick Test Kit',
 				geviti: true,
-				premium: '$100',
+				premium: 'Free*',
 			},
 		],
 	},

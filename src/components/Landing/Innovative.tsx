@@ -1,7 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 
-import { landingData } from '@/constant/data';
+import landingData from '@/constant/data/landing';
 import clsxm from '@/helpers/clsxm';
 
 import ButtonCta from '../ButtonCta';
@@ -57,7 +57,7 @@ const Innovative: React.FC = () => {
 					src={ item.image }
 					width={ 858 * 2 }
 					height={ 451 * 2 }
-					className='max-md:w-[80.971rem] lg:w-auto object-cover object-left h-full pointer-events-none'
+					className='max-md:w-[80.971rem] lg:w-auto object-cover object-left-top h-full pointer-events-none rounded-tl-[19px]'
 				/>
 			</div>
 		);
@@ -176,8 +176,7 @@ const Innovative: React.FC = () => {
 								alt=''
 								fill
 								className='object-cover max-lg:object-right-top'
-								sizes='(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw'
-								quality={ 100 }
+								sizes='(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 100vw'
 							/>
 						</div>
 					</div>

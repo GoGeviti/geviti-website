@@ -1,12 +1,16 @@
 'use client';
 import React, { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
+import dynamic from 'next/dynamic';
 
 import membershipdata from '@/constant/data/membership';
 import clsxm from '@/helpers/clsxm';
 
-import BiomarkersList from '../BiomarkersList';
 import { ChevronDown, Filter } from '../Icons';
+
+const BiomarkersList = dynamic(() => import('../BiomarkersList'), {
+	ssr: false,
+});
 
 type TabProps = {
   selected: boolean;
@@ -293,7 +297,7 @@ const BiomarkersSection: React.FC<BiomarkersSectionProps> = ({
 							className={ clsxm(
 								'transform transition-opacity ease-in-out mt-5px lg:mt-1 text-grey-300 text-xs lg:text-lg !leading-normal',
 								isOpenSection
-									? 'opacity-0 duration-[50ms]'
+									? 'opacity-0 duration-50'
 									: 'opacity-100 delay-500 duration-500'
 							) }
 						>

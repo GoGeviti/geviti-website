@@ -14,7 +14,7 @@ const Categories: React.FC = () => {
 	return (
 		<div className='container-center relative overflow-hidden'>
 			<div className='mx-auto pt-[56px] overflow-hidden max-w-5xl'>
-				<div className=' w-full grid md:grid-cols-4 gap-[30px] ease-[cubic-bezier(0.87,_0,_0.13,_1)] transition-transform duration-300'>
+				<div className=' w-full grid md:grid-cols-4 gap-[30px] ease-custom transition-transform duration-300'>
 					{ categoriesData.list.map((categories, id) => {
 						 if (!showAllCategories && id >= 4) {
 							return null;
@@ -36,7 +36,7 @@ const Categories: React.FC = () => {
 					onClick={ () => setShowAllCategories(!showAllCategories) }
 					className='flex items-center justify-center mt-[34px] gap-2 h-[37px] mb-[27px]'>
 					<p className='font-Poppins text-[15px] font-semibold leading-5'>{ categoriesData.bottomBtn }</p>
-					<ChevronDown className={ clsxm('w-6 h-6 ease-[cubic-bezier(0.87,_0,_0.13,_1)] transition-transform duration-300 ', showAllCategories ? 'rotate-180' : 'rotate-0') }/>
+					<ChevronDown className={ clsxm('w-6 h-6 ease-custom transition-transform duration-300 ', showAllCategories ? 'rotate-180' : 'rotate-0') }/>
 				</div>
 			</div>
 		</div>

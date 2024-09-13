@@ -40,6 +40,7 @@
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
     "date-fns": "^2.30.0",
+    "embla-carousel-auto-scroll": "^8.2.1",
     "embla-carousel-react": "^8.2.0",
     "escape-html": "^1.0.3",
     "eslint": "8.47.0",

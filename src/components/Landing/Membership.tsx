@@ -1,16 +1,23 @@
 import React from 'react';
+import dynamic from 'next/dynamic';
 import Image from 'next/image';
 
-import { landingData } from '@/constant/data';
+import landingData from '@/constant/data/landing';
 
 import ButtonCta from '../ButtonCta';
-import InfiniteMovingFeatures from '../InfiniteMovingFeatures';
+
+const InfiniteMovingFeatures = dynamic(
+	() => import('../InfiniteMovingFeatures'),
+	{
+		ssr: false,
+	}
+);
 
 const membershipData = landingData.membership;
 
 const Membership: React.FC = () => {
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	const renderTitleDesc = (item: any) => {
-		// eslint-disable-line @typescript-eslint/no-explicit-any
 		return (
 			<div className='px-2 flex flex-col items-center text-center'>
 				<p className='text-pretitle text-grey-primary'>{ item.preTitle }</p>
@@ -70,7 +77,7 @@ const Membership: React.FC = () => {
 							alt='continent'
 							width={ 610 }
 							height={ 383.62 }
-							className='w-full h-full lg:h-[23.976rem] object-contain'
+							className='w-full h-full lg:h-[23.976rem] lg:w-auto object-contain'
 						/>
 					</div>
 					{ renderBtnCtaMobile(membershipData.locationSection.btnCtaMobile) }

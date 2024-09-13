@@ -585,6 +585,8 @@ const solutionData = {
 		],
 	},
 	treatmentOptions: {
+		disclaimer:
+      'Pricing is based on average dosing; actual costs may vary with your personalized plan. Membership and a prescription from our provider are required for access.',
 		men: {
 			preTitle: 'Easy online care',
 			title: 'Treatment options for male optimization',

@@ -5,21 +5,34 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
 
-import { landingData } from '@/constant/data';
+import landingData from '@/constant/data/landing';
 import clsxm from '@/helpers/clsxm';
-import { screens } from '@/helpers/style';
-import { useWindowDimensions } from '@/hooks';
 
 import { ArrowNarrowRight } from '../Icons';
 
 const benefitsData = landingData.benefits;
+const articleClassName =
+  'relative isolate flex flex-col justify-end overflow-hidden rounded-2xl px-3 pb-3 h-[542px]';
+const cardArticleClassName =
+  'rounded-2xl p-px border border-white/50 backdrop-blur-[50px] group';
+const innerCardArticleClassName =
+  'rounded-[calc(1rem-1px)] bg-[#042A4980] pt-6 sm:pt-[17px] pb-[21px] sm:pb-[15px] px-6 sm:px-18px text-white relative overflow-hidden group';
 
-const Benefits: React.FC = () => {
-	const [hoveredIdx, setHoveredIdx] = useState<number>(-1);
-	const windowDimensions = useWindowDimensions();
-	const isMobile = windowDimensions.width < screens.lg;
+type CardBenefitProps = {
+  item: (typeof benefitsData.list)[0];
+  itemIdx: number;
+  hovered: boolean;
+  setHoveredIdx: React.Dispatch<React.SetStateAction<number>>;
+};
 
-	const renderImage = (item: any, renderOnMobile?: boolean) => { // eslint-disable-line @typescript-eslint/no-explicit-any
+const CardBenefit: React.FC<CardBenefitProps> = ({
+	item,
+	itemIdx,
+	hovered,
+	setHoveredIdx,
+}) => {
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	const renderImage = (renderOnMobile?: boolean) => {
 		return (
 			<Image
 				src={ renderOnMobile ? item.imageMobile : item.image }
@@ -29,18 +42,134 @@ const Benefits: React.FC = () => {
 					renderOnMobile ? 'lg:hidden' : 'max-lg:hidden'
 				) }
 				sizes='(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 100vw'
-				quality={ 100 }
 				fill
 			/>
 		);
 	};
 
-	const renderArrowNarrowRight = () => {
+	const renderList = () => {
 		return (
-			<ArrowNarrowRight className='w-8 h-8 text-white absolute-center flex-shrink-0 -rotate-45' />
+			<ul className='list-inside list-disc mt-2.5 sm:mt-5px text-xs sm:text-sm !leading-7 text-grey-50'>
+				{ item.details.map((detail: string) => (
+					<li key={ detail }>{ detail }</li>
+				)) }
+			</ul>
 		);
 	};
 
+	const renderTitle = () => {
+		return (
+			<h3 className='text-2xl !leading-9 sm:text-3xl lg:text-4xl lg:!leading-[54px] -tracking-0.04em'>
+				{ item.title }
+			</h3>
+		);
+	};
+
+	const renderArrow = () => {
+		return (
+			<div className='absolute z-10 right-18px bottom-15px max-lg:hidden group-hover:translate-y-1 transform transition-transform ease-in-out duration-500'>
+				<div className='flex relative w-[62px] h-[62px] rounded-full bg-white/20 border-2 border-white/5 hover:bg-white/40'>
+					<ArrowNarrowRight className='w-8 h-8 text-white absolute-center flex-shrink-0 -rotate-45' />
+				</div>
+			</div>
+		);
+	};
+
+	return (
+		<>
+			<article
+				className={ clsxm(articleClassName, 'max-lg:hidden') }
+				onMouseEnter={ () => setHoveredIdx(itemIdx) }
+				onMouseLeave={ () => setHoveredIdx(-1) }
+			>
+				{ renderImage() }
+				<motion.div
+					variants={ {
+						visible: {
+							opacity: 1,
+							scale: 1,
+							transition: {
+								duration: 0.5,
+								ease: 'easeInOut',
+							},
+						},
+						hidden: { opacity: 0, scale: 0 },
+					} }
+					initial='hidden'
+					whileInView='visible'
+					viewport={ { once: true } }
+					className={ cardArticleClassName }
+				>
+					<motion.div
+						variants={ {
+							initial: { maxHeight: 91.4 },
+							visible: { maxHeight: 264.4 },
+						} }
+						initial='initial'
+						animate={ hovered ? 'visible' : 'initial' }
+						style={ { maxHeight: 91.4 } }
+						transition={ { duration: 0.6, ease: 'easeInOut' } }
+						className={ innerCardArticleClassName }
+					>
+						<Link href={ item.href }>
+							{ renderTitle() }
+							{ renderArrow() }
+
+							<motion.div
+								variants={ {
+									initial: { height: 0, y: 20 },
+									visible: { height: 'fit-content', y: 0 },
+								} }
+								initial='initial'
+								animate={ hovered ? 'visible' : 'initial' }
+								transition={ {
+									duration: 0.6,
+									ease: 'easeInOut',
+								} }
+								className='block'
+							>
+								{ renderList() }
+							</motion.div>
+						</Link>
+					</motion.div>
+				</motion.div>
+			</article>
+
+			<article className={ clsxm(articleClassName, 'lg:hidden') }>
+				{ renderImage(true) }
+				<motion.div
+					variants={ {
+						visible: {
+							opacity: 1,
+							scale: 1,
+							transition: {
+								duration: 0.5,
+								ease: 'easeInOut',
+							},
+						},
+						hidden: { opacity: 0, scale: 0 },
+					} }
+					initial='hidden'
+					whileInView='visible'
+					viewport={ { once: true } }
+					className={ cardArticleClassName }
+				>
+					<div className={ innerCardArticleClassName }>
+						<Link href={ item.href }>
+							{ renderTitle() }
+							{ renderArrow() }
+							<div className='flex'>{ renderList() }</div>
+						</Link>
+					</div>
+				</motion.div>
+			</article>
+		</>
+	);
+};
+
+const Benefits: React.FC = () => {
+	const [hoveredIdx, setHoveredIdx] = useState<number>(-1);
+	
 	return (
 		<div className='lg:px-3 mt-6 font-Poppins'>
 			<div className='bg-white relative overflow-hidden rounded-19px py-[46px] lg:pt-[79px] lg:pb-[49px]'>
@@ -56,7 +185,11 @@ const Benefits: React.FC = () => {
 
 						{ benefitsData.description && (
 							<p className='text-grey-400 text-xs sm:text-sm !leading-5 max-w-[342px] mx-auto lg:max-w-[628px]'>
-								<span dangerouslySetInnerHTML={ { __html: benefitsData.description } } />
+								<span
+									dangerouslySetInnerHTML={ {
+										__html: benefitsData.description,
+									} }
+								/>
 							</p>
 						) }
 					</div>
@@ -65,104 +198,13 @@ const Benefits: React.FC = () => {
 							const hovered = itemIdx === hoveredIdx;
 
 							return (
-								<article
+								<CardBenefit
 									key={ item.title }
-									className='relative isolate flex flex-col justify-end overflow-hidden rounded-2xl px-3 pb-3 h-[542px]'
-									{ ...!isMobile
-										? {
-											onMouseEnter: () => setHoveredIdx(itemIdx),
-											onMouseLeave: () => setHoveredIdx(-1),
-										}
-										: {}
-									}
-								>
-									{ renderImage(item) }
-									{ renderImage(item, true) }
-									<motion.div
-										variants={ {
-											visible: {
-												opacity: 1,
-												scale: 1,
-												transition: {
-													duration: .5,
-													ease: 'easeInOut'
-												}
-											},
-											hidden: { opacity: 0, scale: 0 },
-										} }
-										initial='hidden'
-										whileInView='visible'
-										viewport={ { once: true } }
-										className='rounded-2xl p-px border border-white/50 backdrop-blur-[50px] group'
-									>
-										<motion.div
-											{
-												...!isMobile
-													? {
-														variants: {
-															initial: { maxHeight: 91.4 },
-															visible: { maxHeight: 264.4 }
-														},
-														initial: 'initial',
-														animate: hovered ? 'visible' : 'initial',
-														style: { maxHeight: 91.4 },
-														transition: { duration: .6, ease: 'easeInOut' }
-													}
-													: {}
-											}
-											className='rounded-[calc(1rem-1px)] bg-[#042A4980] pt-6 sm:pt-[17px] pb-[21px] sm:pb-[15px] px-6 sm:px-18px text-white relative overflow-hidden group'
-										>
-										
-											{ /* <div className='absolute inset-0 w-full h-full'>
-												<div className='relative overflow-hidden w-full h-full'>
-													<Image
-														src='/images/landing/compressed/noise.png'
-														alt=''
-														fill
-														sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
-														quality={ 100 }
-														className='object-cover pointer-events-none'
-													/>
-												</div>
-											</div> */ }
-											<Link href={ item.href }>
-												<h3 className='text-2xl !leading-9 sm:text-3xl lg:text-4xl lg:!leading-[54px] -tracking-0.04em'>
-													{ item.title }
-												</h3>
-
-												<div className='absolute z-10 right-18px bottom-15px max-lg:hidden group-hover:translate-y-1 transform transition-transform ease-in-out duration-500'>
-													<div className='flex relative w-[62px] h-[62px] rounded-full bg-white/20 border-2 border-white/5 hover:bg-white/40'>
-														{ renderArrowNarrowRight() }
-													</div>
-												</div>
-
-												<motion.div
-													{ ...!isMobile
-														? {
-															variants: {
-																initial: { height: 0, y: 20 },
-																visible: { height: 'fit-content', y: 0 },
-															},
-															initial: 'initial',
-															animate: hovered ? 'visible' : 'initial',
-															transition: { duration: .6, ease: 'easeInOut' }
-														}
-														: {}
-													}
-													className='max-lg:flex block'
-												>
-													<ul className='list-inside list-disc mt-2.5 sm:mt-5px text-xs sm:text-sm !leading-7 text-grey-50'>
-														{ item.details.map(detail => (
-															<li key={ detail }>
-																{ detail }
-															</li>
-														)) }
-													</ul>
-												</motion.div>
-											</Link>
-										</motion.div>
-									</motion.div>
-								</article>
+									item={ item }
+									itemIdx={ itemIdx }
+									hovered={ hovered }
+									setHoveredIdx={ setHoveredIdx }
+								/>
 							);
 						}) }
 					</div>

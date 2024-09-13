@@ -2,42 +2,21 @@
 
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { AnimatePresence, motion, useMotionValue } from 'framer-motion';
+import { debounce } from 'lodash';
 import Image from 'next/image';
 import Link from 'next/link';
 
-import { landingData, productsData } from '@/constant/data';
+import landingData from '@/constant/data/landing';
+import productsData from '@/constant/data/products';
 import clsxm from '@/helpers/clsxm';
-import { screens } from '@/helpers/style';
 
 import { ArrowNarrowLeft, ArrowNarrowRight } from '../Icons';
 
 type DiscoverGevitiProps = {
-	title?: string;
-	description?: string;
-	productsWrapperClassName?: string;
-	withBg?: boolean;
-};
-
-export const handleIsElementScrolledIntoHorizontalView = (elm: HTMLElement | null, container: HTMLDivElement | null) => {
-	if (elm && container && window.innerWidth >= screens.lg) {
-		const checkIsVisible = () => {
-			const visible = container.scrollLeft + container.clientWidth,
-				isStartVisible = visible >= elm.offsetLeft + (elm.clientWidth / 2),
-				isEndVisible = visible <= elm.offsetLeft + container.clientWidth + (elm.clientWidth / 2);
-			// if both are true, item is visible relative to scroll position
-			// this does not mean, it is visible in the viewport
-			// return isStartVisible && isEndVisible;
-			if (isStartVisible && isEndVisible) {
-				elm.removeAttribute('style');
-			} else {
-				elm.setAttribute('style', 'opacity: 0.25;');
-			}
-		};
-
-		checkIsVisible();
-
-		elm.parentNode?.addEventListener('scroll', checkIsVisible);
-	}
+  title?: string;
+  description?: string;
+  productsWrapperClassName?: string;
+  withBg?: boolean;
 };
 
 const CARD_PRODUCT_WIDTH = 287;
@@ -52,59 +31,73 @@ const DiscoverGeviti: React.FC<DiscoverGevitiProps> = ({
 }) => {
 	const scrollbarWidth = useMotionValue('0%');
 
-	const [container, setContainer]  = useState<HTMLDivElement | null>(null)
+	const [container, setContainer] = useState<HTMLDivElement | null>(null);
 	const [selectedCategoryIdx, setSelectedCategoryIdx] = useState<number>(0);
-	const [selectedSubCategoryIdx, setSelectedSubCategoryIdx] = useState<number>(0);
-	const [disabledArrowScroll, setDisabledArrowScroll] = useState<string>('prev');
-	const [productsPlaceholderCount, setProductsPlaceholderCount] = useState<number>(0);
+	const [selectedSubCategoryIdx, setSelectedSubCategoryIdx] =
+    useState<number>(0);
+	const [disabledArrowScroll, setDisabledArrowScroll] =
+    useState<string>('prev');
+	const [productsPlaceholderCount, setProductsPlaceholderCount] =
+    useState<number>(0);
 
-	const selectedCategory = productsData.categories[selectedCategoryIdx].id as 'men' | 'women';
+	const selectedCategory = productsData.categories[selectedCategoryIdx].id as
+    | 'men'
+    | 'women';
 
 	const productsByCategory = useMemo(() => {
 		const filterCategoryOptions = productsData[selectedCategory].tabs;
 		return productsData[selectedCategory].products.filter(product => {
-			const filteredByCategory = product.category.id === filterCategoryOptions[selectedSubCategoryIdx]?.id;
+			const filteredByCategory =
+        product.category.id ===
+        filterCategoryOptions[selectedSubCategoryIdx]?.id;
 			return filteredByCategory;
 		});
 	}, [selectedCategoryIdx, selectedSubCategoryIdx]);
 
-	const wrapperItemsRef = useCallback((node: HTMLDivElement) => {
-		setContainer(node)
-	}, [selectedCategoryIdx, selectedSubCategoryIdx]);
+	const wrapperItemsRef = useCallback(
+		(node: HTMLDivElement) => {
+			setContainer(node);
+		},
+		[selectedCategoryIdx, selectedSubCategoryIdx]
+	);
 
 	const handleProductsPlaceholder = () => {
 		if (container) {
 			const containerWidth = container.clientWidth;
 			const totalProducts = productsByCategory.length;
-			const totalProductsIdeal = Math.floor(containerWidth / (CARD_PRODUCT_WIDTH));
+			const totalProductsIdeal = Math.floor(
+				containerWidth / CARD_PRODUCT_WIDTH
+			);
 			setProductsPlaceholderCount(totalProductsIdeal - totalProducts);
 		}
 	};
 
 	useEffect(() => {
-		window.addEventListener('resize', handleProductsPlaceholder);
+		const handleResize = debounce(handleProductsPlaceholder, 800);
+		window.addEventListener('resize', handleResize);
 
-		return () => window.removeEventListener('resize', handleProductsPlaceholder);
+		return () => window.removeEventListener('resize', handleResize);
 	}, []);
 
-	const handleProductListScroll = (init?: boolean) => {
-		if (container) {
-			const scroll = container.scrollLeft;
-			const total = container.scrollWidth - container.clientWidth;
-			const isNotOverflowScroll = scroll === 0 && total === 0;
-			const progress = isNotOverflowScroll
-				? 100
-				: ((scroll / total) * 100);
-			if (!init) {
-				scrollbarWidth.set(progress + '%');
-			}
+	const handleProductListScroll = useCallback(
+		(init?: boolean) => {
+			if (container) {
+				const scroll = container.scrollLeft;
+				const total = container.scrollWidth - container.clientWidth;
+				const isNotOverflowScroll = scroll === 0 && total === 0;
+				const progress = isNotOverflowScroll ? 100 : (scroll / total) * 100;
+				if (!init) {
+					scrollbarWidth.set(progress + '%');
+				}
 
-			if (isNotOverflowScroll) setDisabledArrowScroll('all');
-			else if (progress === 0) setDisabledArrowScroll('prev');
-			else if (progress >= 100) setDisabledArrowScroll('next');
-			else setDisabledArrowScroll('');
-		}
-	};
+				if (isNotOverflowScroll) setDisabledArrowScroll('all');
+				else if (progress === 0) setDisabledArrowScroll('prev');
+				else if (progress >= 100) setDisabledArrowScroll('next');
+				else setDisabledArrowScroll('');
+			}
+		},
+		[container]
+	);
 
 	useEffect(() => {
 		handleProductListScroll(true);
@@ -114,9 +107,9 @@ const DiscoverGeviti: React.FC<DiscoverGevitiProps> = ({
 	const handleArrowScroll = (dir: 'prev' | 'next') => {
 		if (container) {
 			if (dir === 'next') {
-				container.scrollLeft += (CARD_PRODUCT_WIDTH + SPACING_BETWEEN_CARD);
+				container.scrollLeft += CARD_PRODUCT_WIDTH + SPACING_BETWEEN_CARD;
 			} else {
-				container.scrollLeft -= (CARD_PRODUCT_WIDTH + SPACING_BETWEEN_CARD);
+				container.scrollLeft -= CARD_PRODUCT_WIDTH + SPACING_BETWEEN_CARD;
 			}
 		}
 	};
@@ -141,10 +134,10 @@ const DiscoverGeviti: React.FC<DiscoverGevitiProps> = ({
 						<div
 							key={ productIdx }
 							className='group snap-start hover:shadow-[0px_4px_24px_rgba(0,0,0,0.15)] transition-shadow duration-200 ease-in cursor-pointer relative flex flex-col overflow-hidden bg-grey-secondary flex-none w-[287px] h-[375px] xl:h-[412px] px-3 pt-3 pb-[21px] rounded-19px'
-							id={ `discover-product-card-${ product.id }` }
+							id={ `discover-product-card-${product.id}` }
 						>
 							<Link
-								href={ `/solution/${ selectedCategory }` }
+								href={ `/solution/${selectedCategory}` }
 								key={ product.id }
 								className='flex flex-col w-full h-full'
 							>
@@ -153,10 +146,8 @@ const DiscoverGeviti: React.FC<DiscoverGevitiProps> = ({
 										<Image
 											src={ product.image }
 											alt=''
-											sizes='(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 100vw'
-											quality={ 100 }
+											sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
 											fill
-											priority
 											className='object-contain w-full h-full pointer-events-none'
 										/>
 									</div>
@@ -193,7 +184,9 @@ const DiscoverGeviti: React.FC<DiscoverGevitiProps> = ({
 													</svg>
 
 													<span>
-														{ typeof product?.price === 'string' ? product?.price : `As low as $${ product?.price }/m*` }
+														{ typeof product?.price === 'string'
+															? product?.price
+															: `As low as $${product?.price}/m*` }
 													</span>
 												</div>
 											) }
@@ -232,7 +225,8 @@ const DiscoverGeviti: React.FC<DiscoverGevitiProps> = ({
 							className={ clsxm(
 								'text-sm !leading-[21px] h-full flex items-center justify-center text-grey-400 cursor-pointer whitespace-nowrap',
 								categoryIdx === 0 ? 'px-3.5 w-2/5' : 'px-6 w-3/5'
-							) }>
+							) }
+						>
 							{ category.title }
 						</button>
 					)) }
@@ -258,12 +252,12 @@ const DiscoverGeviti: React.FC<DiscoverGevitiProps> = ({
 		return (
 			<div className='overflow-hidden rounded-full bg-grey-100 relative w-full'>
 				<motion.div
-					key={ `progress-bar-${ selectedCategoryIdx }-${ selectedSubCategoryIdx }` }
+					key={ `progress-bar-${selectedCategoryIdx}-${selectedSubCategoryIdx}` }
 					className='h-1 rounded-full bg-blue-primary'
 					style={ { width: scrollbarWidth } }
 					transition={ {
-						duration: .9,
-						ease: 'easeInOut'
+						duration: 0.9,
+						ease: 'easeInOut',
 					} }
 				/>
 			</div>
@@ -272,7 +266,7 @@ const DiscoverGeviti: React.FC<DiscoverGevitiProps> = ({
 
 	const renderButtonArrowSlider = () => {
 		const buttonClassName =
-			'focus:ring-0 focus:outline-none relative text-primary disabled:text-grey-200';
+      'focus:ring-0 focus:outline-none relative text-primary disabled:text-grey-200';
 
 		return (
 			<div className='flex items-center gap-[15px]'>
@@ -280,7 +274,9 @@ const DiscoverGeviti: React.FC<DiscoverGevitiProps> = ({
 					className={ buttonClassName }
 					onClick={ () => handleArrowScroll('prev') }
 					aria-label='prev-products-scroll'
-					disabled={ disabledArrowScroll === 'prev' || disabledArrowScroll === 'all' }
+					disabled={
+						disabledArrowScroll === 'prev' || disabledArrowScroll === 'all'
+					}
 				>
 					<ArrowNarrowLeft className='w-6 h-6 flex-shrink-0' />
 				</button>
@@ -289,7 +285,9 @@ const DiscoverGeviti: React.FC<DiscoverGevitiProps> = ({
 					className={ buttonClassName }
 					onClick={ () => handleArrowScroll('next') }
 					aria-label='next-products-scroll'
-					disabled={ disabledArrowScroll === 'next' || disabledArrowScroll === 'all' }
+					disabled={
+						disabledArrowScroll === 'next' || disabledArrowScroll === 'all'
+					}
 				>
 					<ArrowNarrowRight className='w-6 h-6 flex-shrink-0' />
 				</button>
@@ -305,8 +303,9 @@ const DiscoverGeviti: React.FC<DiscoverGevitiProps> = ({
 				{ Array.from(Array(productsPlaceholderCount).keys()).map(i => {
 					return (
 						<div
-							key={ `new-product-${ i }` }
-							className='relative flex flex-col overflow-hidden bg-grey-secondary flex-none w-[287px] h-[375px] xl:h-[412px] px-3 pt-3 pb-[15px] rounded-19px'>
+							key={ `new-product-${i}` }
+							className='relative flex flex-col overflow-hidden bg-grey-secondary flex-none w-[287px] h-[375px] xl:h-[412px] px-3 pt-3 pb-[15px] rounded-19px'
+						>
 							<div className='bg-[#EAEAEA] rounded-[14px] w-full h-full flex flex-col items-center justify-between pt-[19px] pb-[30px] text-grey-primary'>
 								<Image
 									src='/images/landing/compressed/new-product-placeholder.webp'
@@ -316,10 +315,10 @@ const DiscoverGeviti: React.FC<DiscoverGevitiProps> = ({
 									height={ 246.16 }
 								/>
 								<p className='text-lg !leading-[25px] font-medium -tracking-0.04em'>
-									New Product
+                  New Product
 								</p>
 								<p className='text-2xl !leading-normal -tracking-0.04em'>
-									Coming Soon
+                  Coming Soon
 								</p>
 							</div>
 						</div>
@@ -351,24 +350,28 @@ const DiscoverGeviti: React.FC<DiscoverGevitiProps> = ({
 						<div className='flex max-lg:flex-col lg:items-center gap-6 lg:gap-[42px]'>
 							<div className='sm:w-fit'>{ renderButtonSwitchProducts() }</div>
 							<div className='w-full flex max-sm:justify-between lg:flex-nowrap lg:whitespace-nowrap gap-1 sm:gap-6 relative'>
-								{ landingData.products.subCategories.map((subCategory, subCategoryIdx) => {
-									return (
-										<button
-											aria-label={ subCategory.title }
-											key={ `subCategory-${ subCategory.id }` }
-											className={ clsxm(
-												'focus:ring-0 focus:outline-none hover:bg-grey-primary-light transition-colors ease-in-out duration-200 border py-1 sm:py-2 px-2 sm:px-3.5 rounded-[100px] text-xs !leading-normal font-medium',
-												subCategoryIdx === selectedSubCategoryIdx ? 'border-primary text-primary' : 'border-grey-300 text-grey-300'
-											) }
-											onClick={ () => {
-												setSelectedSubCategoryIdx(subCategoryIdx);
-												resetScrollbarWidth();
-											} }
-										>
-											{ subCategory.title }
-										</button>
-									);
-								}) }
+								{ landingData.products.subCategories.map(
+									(subCategory, subCategoryIdx) => {
+										return (
+											<button
+												aria-label={ subCategory.title }
+												key={ `subCategory-${subCategory.id}` }
+												className={ clsxm(
+													'focus:ring-0 focus:outline-none hover:bg-grey-primary-light transition-colors ease-in-out duration-200 border py-1 sm:py-2 px-2 sm:px-3.5 rounded-[100px] text-xs !leading-normal font-medium',
+													subCategoryIdx === selectedSubCategoryIdx
+														? 'border-primary text-primary'
+														: 'border-grey-300 text-grey-300'
+												) }
+												onClick={ () => {
+													setSelectedSubCategoryIdx(subCategoryIdx);
+													resetScrollbarWidth();
+												} }
+											>
+												{ subCategory.title }
+											</button>
+										);
+									}
+								) }
 							</div>
 						</div>
 					</div>
@@ -376,13 +379,18 @@ const DiscoverGeviti: React.FC<DiscoverGevitiProps> = ({
 
 				<AnimatePresence mode='wait'>
 					<motion.div
-						key={ `products-DiscoverGeviti-${ selectedCategoryIdx }-${ selectedSubCategoryIdx }` }
+						key={ `products-DiscoverGeviti-${selectedCategoryIdx}-${selectedSubCategoryIdx}` }
 						initial={ { y: 10, opacity: 0 } }
 						animate={ { y: 0, opacity: 1 } }
 						exit={ { y: -10, opacity: 0 } }
 						transition={ { duration: 0.375, ease: 'easeInOut' } }
 					>
-						<div className={ clsxm('relative wrapper-products-list ml-4 lg:ml-10 xl:ml-20', productsWrapperClassName) }>
+						<div
+							className={ clsxm(
+								'relative wrapper-products-list ml-4 lg:ml-10 xl:ml-20',
+								productsWrapperClassName
+							) }
+						>
 							{ renderProductList() }
 						</div>
 

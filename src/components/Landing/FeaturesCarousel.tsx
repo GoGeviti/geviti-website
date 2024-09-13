@@ -4,7 +4,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { AnimatePresence, motion } from 'framer-motion';
 
-import { landingData } from '@/constant/data';
+import landingData from '@/constant/data/landing';
 
 import ButtonCta from '../ButtonCta';
 import { ArrowNarrowLeft, ArrowNarrowRight, ChevronRight } from '../Icons';
@@ -19,7 +19,7 @@ const cardVariants = {
 	exit: (trend: number) => ({
 		y: trend === 1 ? -60 : 100,
 		scale: trend === 1 ? 0.5 : 1,
-		opacity: 0
+		opacity: 0,
 	}),
 };
 
@@ -47,9 +47,7 @@ const FeaturesCarousel: React.FC = () => {
 	}, [inView, activeIdx, vidRef?.current]);
 
 	const handleNext = () => {
-		setIdx(prevIndex =>
-			prevIndex + 1 === cards.length ? 0 : prevIndex + 1
-		);
+		setIdx(prevIndex => (prevIndex + 1 === cards.length ? 0 : prevIndex + 1));
 		setTrend(1);
 	};
 
@@ -62,7 +60,7 @@ const FeaturesCarousel: React.FC = () => {
 
 	const renderButtonArrowSlider = () => {
 		const buttonClassName =
-			'focus:ring-0 focus:outline-none relative max-lg:bg-white text-primary lg:text-blue-primary disabled:text-white lg:disabled:text-grey-200 max-lg:disabled:backdrop-blur-[12.7px] max-lg:disabled:bg-white/20 max-lg:rounded-full max-lg:w-[46px] max-lg:h-[46px]';
+      'focus:ring-0 focus:outline-none relative max-lg:bg-white text-primary lg:text-blue-primary disabled:text-white lg:disabled:text-grey-200 max-lg:disabled:backdrop-blur-[12.7px] max-lg:disabled:bg-white/20 max-lg:rounded-full max-lg:w-[46px] max-lg:h-[46px]';
 
 		return (
 			<div className='flex items-center max-lg:justify-between lg:gap-[11px]'>
@@ -70,7 +68,7 @@ const FeaturesCarousel: React.FC = () => {
 					onClick={ handlePrevious }
 					className={ buttonClassName }
 					disabled={ idx === 0 }
-					aria-label={ `prev-slider-${ idx }` }
+					aria-label={ `prev-slider-${idx}` }
 				>
 					<ChevronRight className='w-[17px] h-[17px] flex-shrink-0 absolute-center rotate-180 lg:hidden' />
 					<ArrowNarrowLeft className='w-6 h-6 flex-shrink-0 max-lg:hidden' />
@@ -79,7 +77,7 @@ const FeaturesCarousel: React.FC = () => {
 				<button
 					onClick={ handleNext }
 					className={ buttonClassName }
-					aria-label={ `next-slider-${ idx }` }
+					aria-label={ `next-slider-${idx}` }
 				>
 					<ChevronRight className='w-[17px] h-[17px] flex-shrink-0 absolute-center lg:hidden' />
 					<ArrowNarrowRight className='w-6 h-6 flex-shrink-0 max-lg:hidden' />
@@ -101,7 +99,7 @@ const FeaturesCarousel: React.FC = () => {
 		if (src) {
 			return (
 				<video
-					id={ `video-${ activeIdx }` }
+					id={ `video-${activeIdx}` }
 					ref={ vidRef }
 					// autoPlay={ activeIdx === 0 }
 					muted
@@ -110,9 +108,8 @@ const FeaturesCarousel: React.FC = () => {
 				>
 					<source
 						src={ src }
-						type='video/mp4'
-					/>
-					Your browser does not support the video tag.
+						type='video/mp4' />
+          Your browser does not support the video tag.
 				</video>
 			);
 		}
@@ -124,17 +121,18 @@ const FeaturesCarousel: React.FC = () => {
 		<div className='lg:px-3'>
 			<div
 				ref={ ref }
-				className='bg-primary rounded-19px py-6 lg:pt-50px lg:pb-[126px]'>
+				className='bg-primary rounded-19px py-6 lg:pt-50px lg:pb-[126px]'
+			>
 				<div className='container-center w-full'>
 					<div className='flex items-center space-x-14 max-lg:hidden'>
 						<div className='overflow-hidden rounded-full bg-grey-950 relative w-full'>
 							<motion.div
 								className='h-1 rounded-full bg-blue-primary'
 								initial={ { width: '0%' } }
-								animate={ { width: ((idx + 1) * (100 / cards.length)) + '%' } }
+								animate={ { width: (idx + 1) * (100 / cards.length) + '%' } }
 								transition={ {
 									duration: 1,
-									ease: 'easeInOut'
+									ease: 'easeInOut',
 								} }
 							/>
 						</div>
@@ -144,11 +142,19 @@ const FeaturesCarousel: React.FC = () => {
 					<div className='lg:mt-[124px]'>
 						<div className='grid grid-cols-1 lg:grid-cols-2 gap-[33px]'>
 							<div className='lg:max-w-[460px] w-full'>
-								<p className='max-lg:mb-2.5 text-pretitle text-[#5F6D7B] sm:text-grey-300'>{ featuresCarouselData.preTitle }</p>
+								<p className='max-lg:mb-2.5 text-pretitle text-[#5F6D7B] sm:text-grey-300'>
+									{ featuresCarouselData.preTitle }
+								</p>
 								<h2 className='text-white !leading-[133%] text-[6.857vw] xxs:text-[6.154vw] xs2:text-2xl lg:text-[3.853vw] xl:text-[42px] sm:!leading-normal -tracking-0.04em'>
-									<span dangerouslySetInnerHTML={ { __html: featuresCarouselData.title } } />
+									<span
+										dangerouslySetInnerHTML={ {
+											__html: featuresCarouselData.title,
+										} }
+									/>
 								</h2>
-								<p className='mt-2.5 lg:mt-3.5 text-grey-400 sm:text-grey-300 text-xs sm:text-sm !leading-5'>{ featuresCarouselData.description }</p>
+								<p className='mt-2.5 lg:mt-3.5 text-grey-400 sm:text-grey-300 text-xs sm:text-sm !leading-5'>
+									{ featuresCarouselData.description }
+								</p>
 								<div className='flex mt-[33px] lg:mt-[42px] max-lg:justify-center max-sm:w-full'>
 									<ButtonCta
 										href={ featuresCarouselData.btnCta.href }
@@ -177,18 +183,22 @@ const FeaturesCarousel: React.FC = () => {
 												<span className='h-full aspect-[400/174] max-h-[174px] w-full bg-blue-alice rounded-2xl relative overflow-hidden'>
 													{ renderAnimatedContentCard(cards[activeIdx].id) }
 												</span>
-												<p className='text-2xl !leading-normal'>{ cards[activeIdx].title }</p>
+												<p className='text-2xl !leading-normal'>
+													{ cards[activeIdx].title }
+												</p>
 												<p className='text-[3.5vw] xs2:text-sm sm:text-lg !leading-normal'>
-													<span dangerouslySetInnerHTML={ { __html: cards[activeIdx].description } } />
+													<span
+														dangerouslySetInnerHTML={ {
+															__html: cards[activeIdx].description,
+														} }
+													/>
 												</p>
 											</span>
 										</motion.span>
 									</AnimatePresence>
 								</div>
 							</div>
-							<div className='lg:hidden'>
-								{ renderButtonArrowSlider() }
-							</div>
+							<div className='lg:hidden'>{ renderButtonArrowSlider() }</div>
 						</div>
 					</div>
 				</div>

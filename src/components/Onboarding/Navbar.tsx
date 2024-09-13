@@ -8,13 +8,13 @@ import { useRouter } from 'next/navigation';
 import clsxm from '@/helpers/clsxm';
 
 type NavbarProps = {
-	onStepBack?: () => void;
-	theme?: 'light' | 'dark';
-	navbarRef?: React.RefObject<HTMLDivElement>;
-	progress: number;
+  onStepBack?: () => void;
+  theme?: 'light' | 'dark';
+  navbarRef?: React.RefObject<HTMLDivElement>;
+  progress: number;
 };
 
-const ArrowLeft = ({ className }: { className?: string; }) => {
+const ArrowLeft = ({ className }: { className?: string }) => {
 	return (
 		<svg
 			xmlns='http://www.w3.org/2000/svg'
@@ -91,8 +91,8 @@ const Navbar: React.FC<NavbarProps> = ({
 
 			<div className='flex relative h-0.5 w-full overflow-hidden bg-primary bg-opacity-10 shadow-[0px_5px_10px_rgba(167,172,188,0.05)]'>
 				<div
-					className='bg-blue-1 w-full h-full transition-transform duration-[660ms] ease-[cubic-bezier(0.65, 0, 0.35, 1)]'
-					style={ { transform: `translateX(-${ 100 - progress }%)` } }
+					className='bg-blue-1 w-full h-full transition-transform duration-660 ease-[cubic-bezier(0.65, 0, 0.35, 1)]'
+					style={ { transform: `translateX(-${100 - progress}%)` } }
 				/>
 			</div>
 		</div>

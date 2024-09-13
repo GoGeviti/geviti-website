@@ -7,18 +7,22 @@ import {
 	useScroll,
 	useTransform,
 } from 'framer-motion';
+import dynamic from 'next/dynamic';
 import Image from 'next/image';
 
-import { landingData } from '@/constant/data';
+import landingData from '@/constant/data/landing';
 import clsxm from '@/helpers/clsxm';
 import { screens } from '@/helpers/style';
 import { useWindowDimensions } from '@/hooks';
 
 import LogoBlueLayer from '../../../public/images/landing/compressed/blue-geviti.webp';
-import CursorSlider from '../CursorSlider';
 import CustomLink from '../CustomLink';
 import { ArrowNarrowLeft, ArrowNarrowRight, ChevronRight } from '../Icons';
 import ShiftSection from '../ShiftSection';
+
+const CursorSlider = dynamic(() => import('../CursorSlider'), {
+	ssr: false,
+});
 
 const imgVariants = {
 	initial: (trend: number) => ({
@@ -142,18 +146,19 @@ const HomeKits: React.FC = () => {
 
 	const renderDesktopImage = () => {
 		const defaultImageDesktopClassName =
-      'h-full object-contain pointer-events-none';
+      'h-full object-contain pointer-events-none relative';
 
 		if (currentData.id === 'homekits') {
 			return (
 				<Image
 					src={ currentData.image }
 					alt=''
-					width={ 1246.87 }
-					height={ 831.91 }
+					width={ 1400 }
+					height={ 1400 }
 					priority
+					unoptimized
 					className={ clsxm(
-						'w-[1246.87px] mt-[60px] max-lg:hidden',
+						'w-[950px] left-[55%] -translate-x-[55%]',
 						defaultImageDesktopClassName
 					) }
 				/>
@@ -165,11 +170,12 @@ const HomeKits: React.FC = () => {
 				<Image
 					src={ currentData.image }
 					alt=''
-					width={ 1325.33 }
-					height={ 994 }
+					width={ 1400 }
+					height={ 1400 }
 					priority
+					unoptimized
 					className={ clsxm(
-						'w-[1325.33px] -mt-[60px]',
+						'w-[1100px] -mt-[110px] left-[85%] -translate-x-[85%]',
 						defaultImageDesktopClassName
 					) }
 				/>
@@ -181,11 +187,12 @@ const HomeKits: React.FC = () => {
 				<Image
 					src={ currentData.image }
 					alt=''
-					width={ 651.26 }
-					height={ 585.62 }
+					width={ 1166 }
+					height={ 657 }
 					priority
+					unoptimized
 					className={ clsxm(
-						'w-[651.26px] relative left-1/2 -translate-x-1/2 top-[207px]',
+						'w-[1155px] mt-[50px] left-[47%] -translate-x-[47%]',
 						defaultImageDesktopClassName
 					) }
 				/>
@@ -248,23 +255,21 @@ const HomeKits: React.FC = () => {
 									style={ { y: backgroundY } }
 									className={ clsxm(
 										'flex relative z-2 snap-start',
-										item.id === 'homekits' && 'pt-20 sm:pt-5',
-										item.id === 'therapy' && 'pt-[60px] sm:pt-2',
-										item.id === 'prescription' && 'pt-[80px] sm:pt-[100px]'
+										item.id === 'homekits' && 'pt-10',
+										item.id === 'therapy' && 'pt-[50px]',
+										item.id === 'prescription' && 'pt-[70px]'
 									) }
 								>
 									<div
 										className={ clsxm(
-											'relative w-screen h-[380.13px]',
-											item.id === 'prescription'
-												? 'sm:h-[50vw]'
-												: 'sm:h-[58.651vw]'
+											'relative w-screen h-[380.13px] sm:h-[50vw]'
 										) }
 									>
 										<Image
 											src={ item.imageMobile }
 											fill
 											alt=''
+											unoptimized
 											className={ clsxm(
 												item.id !== 'prescription'
 													? 'object-cover sm:object-contain'
@@ -333,12 +338,12 @@ const HomeKits: React.FC = () => {
 							<div className='flex items-center'>{ renderButtonViewAll() }</div>
 						</div>
 					</div>
-					<div className='mt-2.5 lg:mt-3.5 w-full sm:max-w-[600px] lg:max-w-none max-lg:mx-auto min-h-[120px]'>
+					<div className='mt-2.5 lg:mt-3.5 w-full sm:max-w-[600px] lg:max-w-none max-lg:mx-auto min-h-[135px]'>
 						<ShiftSection
 							id={ `description-${currentData.id}` }
 							prevElement={ renderDescription(list[prevIdx].description) }
 							isMobile={ isMobile }
-							wrapperClassName='lg:min-h-[108px]'
+							wrapperClassName='lg:min-h-[135px]'
 						>
 							{ renderDescription(currentData.description) }
 						</ShiftSection>

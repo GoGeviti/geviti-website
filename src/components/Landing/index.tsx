@@ -9,6 +9,7 @@ import Hero from './Hero';
 import HomeKits from './HomeKits';
 import Innovative from './Innovative';
 import Membership from './Membership';
+import Pricing from './Pricing';
 import Products from './Products';
 import SectionCardsParallax from './SectionCardsParallax';
 import Steps from './Steps';
@@ -27,9 +28,10 @@ export {
 	HomeKits,
 	Innovative,
 	Membership,
+	Pricing,
 	Products,
 	SectionCardsParallax,
 	Steps,
 	Supplements,
-	TextReveal
+	TextReveal,
 };

@@ -2,24 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-.hero-solutions span {
-  @apply max-lg:font-bold font-Poppins lg:font-grifter -tracking-[0.04em] lg:tracking-[2.4px];
-}
-
-@layer utilities {
-  .animation-pause {
-    animation-play-state: paused;
-  }
-
-  .animation-running {
-    animation-play-state: running;
-  }
-
-  .zoom-1 {
-    zoom: 1;
-  }
-}
-
 html,
 body {
   padding: 0 !important;
@@ -65,12 +47,12 @@ body {
   @apply max-lg:hidden;
 }
 
-input[type="number"] {
+input[type='number'] {
   font-size: inherit;
   background-color: inherit;
 }
 
-input[type="number"]::placeholder {
+input[type='number']::placeholder {
   font-size: inherit;
   color: inherit;
 }
@@ -103,68 +85,25 @@ input[type="number"]::placeholder {
   @apply !bg-primary/90 text-white rounded-sm;
 }
 
-.tooltip-container[data-popper-placement*="top"] .tooltip-arrow::before {
+.tooltip-container[data-popper-placement*='top'] .tooltip-arrow::before {
   border: none !important;
 }
 
-.bg-investment {
-  background-size: cover;
-  background-position: center;
-}
-
-@media (max-width: 640px) {
-  .bg-investment {
-    background-size: 337% 64%;
-    background-position: 58%;
-  }
-  .after-gradient-wellnesscard::after {
-    position: absolute;
-    content: "";
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(
-      180deg,
-      #181a1c 0%,
-      rgba(24, 26, 28, 0.66) 55.04%,
-      rgba(24, 26, 28, 0) 83.09%
-    );
-    transform: matrix(1, 0, 0, -1, 0, 0);
-    border-radius: 16px;
-    z-index: 0;
-  }
-}
-
-.custom-cursor {
-  /* width: 8px;
-  height: 8px;
-  background-color: #FF5733;  */
-  background-color: black;
-  border-radius: 50%;
-  position: fixed;
-  pointer-events: none;
-  z-index: 9999;
-  /* Additional Tailwind CSS classes */
-  transform: translate(-50%, -50%);
-  mix-blend-mode: multiply;
-}
-
-[type="radio"]:checked,
-[type="radio"]:not(:checked) {
+[type='radio']:checked,
+[type='radio']:not(:checked) {
   position: absolute;
   left: -9999px;
 }
-[type="radio"]:checked + label,
-[type="radio"]:not(:checked) + label {
+[type='radio']:checked + label,
+[type='radio']:not(:checked) + label {
   position: relative;
   cursor: pointer;
   display: inline-block;
   padding-left: 22px;
 }
-[type="radio"]:checked + label:before,
-[type="radio"]:not(:checked) + label:before {
-  content: "";
+[type='radio']:checked + label:before,
+[type='radio']:not(:checked) + label:before {
+  content: '';
   position: absolute;
   left: 0;
   top: 50%;
@@ -174,15 +113,15 @@ input[type="number"]::placeholder {
   border-radius: 100%;
   background: #fff;
 }
-[type="radio"]:checked + label:before {
+[type='radio']:checked + label:before {
   border: 1px solid #99d4ff;
 }
-[type="radio"]:not(:checked) + label:before {
+[type='radio']:not(:checked) + label:before {
   border: 1px solid #7b7f81;
 }
-[type="radio"]:checked + label:after,
-[type="radio"]:not(:checked) + label:after {
-  content: "";
+[type='radio']:checked + label:after,
+[type='radio']:not(:checked) + label:after {
+  content: '';
   width: 8px;
   height: 8px;
   background: #99d4ff;
@@ -194,12 +133,12 @@ input[type="number"]::placeholder {
   -webkit-transition: all 0.2s ease;
   transition: all 0.2s ease;
 }
-[type="radio"]:not(:checked) + label:after {
+[type='radio']:not(:checked) + label:after {
   opacity: 0;
   -webkit-transform: scale(0);
   transform: scale(0);
 }
-[type="radio"]:checked + label:after {
+[type='radio']:checked + label:after {
   opacity: 1;
   -webkit-transform: scale(1);
   transform: scale(1);
@@ -223,7 +162,7 @@ input[type="number"]::placeholder {
 .pac-item {
   padding: 8px 16px !important;
   border-top: 1px solid #757c80 !important;
-  font-family: "Poppins", sans-serif !important;
+  font-family: 'Poppins', sans-serif !important;
 }
 
 .pac-item:first-child {

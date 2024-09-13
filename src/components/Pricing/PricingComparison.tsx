@@ -119,8 +119,17 @@ const PricingComparison: React.FC<PricingComparisonProps> = ({
 		);
 	};
 
+	const renderDisclaimer = () => {
+		return (
+			<div className='text-xs mt-3'>
+        *Free every 6 months. $350 per draw if ran additionally to the free
+        blood draws
+			</div>
+		);
+	};
+
 	return (
-		<div className='w-full mt-6 lg:-mt-[19px] relative z-[2]'>
+		<div className='w-full mt-16 lg:-mt-[19px] relative z-[2]'>
 			<div className='bg-white border lg:border-t-0 border-grey-100 max-lg:rounded-t-[19px] rounded-b-[19px] w-full px-4 pb-[42px] lg:pb-[19px] pt-[18px] lg:pt-[38px] lg:px-[42px]'>
 				<button
 					onClick={ () => toggleAccordion(index) }
@@ -141,7 +150,7 @@ const PricingComparison: React.FC<PricingComparisonProps> = ({
 						className={ clsxm(
 							'transform transition-opacity ease-in-out mt-5px lg:mt-1 text-grey-300 text-xs lg:text-lg !leading-normal',
 							isOpen
-								? 'opacity-0 duration-[50ms]'
+								? 'opacity-0 duration-50'
 								: 'opacity-100 delay-500 duration-500'
 						) }
 					>
@@ -155,7 +164,7 @@ const PricingComparison: React.FC<PricingComparisonProps> = ({
 							animate={ { opacity: 1, y: 0, height: 'fit-content' } }
 							exit={ { opacity: 0, y: -30, height: 0 } }
 							transition={ { duration: 0.5, ease: 'easeInOut' } }
-							className='w -full overflow-hidden flow-root'
+							className='w-full overflow-hidden flow-root'
 						>
 							<div className='inline-block min-w-full align-middle mt-[15px] max-lg:hidden'>
 								<table
@@ -227,7 +236,7 @@ const PricingComparison: React.FC<PricingComparisonProps> = ({
 														<span
 															className={ clsxm(
 																paddingVertical,
-																'w-full flex justify-center whitespace-nowrap bg-blue-alice px-4 border-x border-blue-primary',
+																'w-full flex flex-col items-center justify-center whitespace-nowrap bg-blue-alice px-4 border-x border-blue-primary',
 																elIdx === 0 && 'rounded-t-20px border-t',
 																elIdx ===
                                   pricingComparisonData.list.length - 1 &&
@@ -245,6 +254,8 @@ const PricingComparison: React.FC<PricingComparisonProps> = ({
 							</div>
 
 							{ renderContentMobile() }
+
+							{ renderDisclaimer() }
 						</motion.div>
 					) }
 				</AnimatePresence>

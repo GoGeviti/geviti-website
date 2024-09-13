@@ -8,7 +8,8 @@ import InfiniteMovingFeatures from '../InfiniteMovingFeatures';
 const membershipData = solutionData.membership;
 
 const Membership: React.FC = () => {
-	const renderTitleDesc = (item: any) => { // eslint-disable-line @typescript-eslint/no-explicit-any
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	const renderTitleDesc = (item: any) => {
 		return (
 			<div className='px-4 flex flex-col lg:items-center lg:text-center'>
 				<p className='text-pretitle text-grey-primary'>{ item.preTitle }</p>
@@ -25,7 +26,7 @@ const Membership: React.FC = () => {
 		);
 	};
 
-	const renderBtnCtaMobile = (props: { href: string; text: string; }) => {
+	const renderBtnCtaMobile = (props: { href: string; text: string }) => {
 		return (
 			<div className='px-4 flex justify-center max-sm:w-full lg:hidden'>
 				<ButtonCta
@@ -49,9 +50,7 @@ const Membership: React.FC = () => {
 					/>
 				</div>
 				<div className='overflow-x-hidden relative pt-[60px] lg:pt-[92px] pb-[45px] lg:pb-16'>
-					<InfiniteMovingFeatures
-						list={ membershipData.list }
-					/>
+					<InfiniteMovingFeatures list={ membershipData.list } />
 				</div>
 				{ renderBtnCtaMobile(membershipData.btnCtaMobile) }
 			</div>

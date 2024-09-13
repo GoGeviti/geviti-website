@@ -7,14 +7,19 @@ import Image from 'next/image';
 import { setCookieIntro } from '@/services/cookies';
 
 type IntroScreenProps = {
-	src?: string;
-	type?: 'video' | 'image';
-	screenId?: string;
-	children: React.ReactNode;
-	showIntro?: string;
+  src?: string;
+  type?: 'video' | 'image';
+  screenId?: string;
+  children: React.ReactNode;
+  showIntro?: string;
 };
 
-export default function IntroScreen({ children, src, type = 'video', showIntro = 'true' }: IntroScreenProps) {
+export default function IntroScreen({
+	children,
+	src,
+	type = 'video',
+	showIntro = 'true',
+}: IntroScreenProps) {
 	const vidRef = useRef<HTMLVideoElement | null>(null);
 	// const [videoLoaded, setVideoLoaded] = useState(false);
 	const controls = useAnimation();
@@ -32,10 +37,14 @@ export default function IntroScreen({ children, src, type = 'video', showIntro =
 
 	useEffect(() => {
 		handlePlayVideo();
-		document.body.style.overflowY = 'hidden';
+		if (showIntro === 'true') {
+			document.body.style.overflowY = 'hidden';
+		}
 
 		return () => {
-			document.body.style.overflowY = 'unset';
+			if (showIntro === 'true') {
+				document.body.style.overflowY = 'unset';
+			}
 		};
 	}, []);
 
@@ -52,9 +61,8 @@ export default function IntroScreen({ children, src, type = 'video', showIntro =
 				>
 					<source
 						src={ src ?? '/videos/intro.mp4' }
-						type='video/mp4'
-					/>
-					Your browser does not support the video tag.
+						type='video/mp4' />
+          Your browser does not support the video tag.
 				</video>
 			);
 		}
@@ -65,7 +73,7 @@ export default function IntroScreen({ children, src, type = 'video', showIntro =
 					initial={ {
 						y: '100%',
 						scale: 0.75,
-						opacity: 0
+						opacity: 0,
 					} }
 					animate={ {
 						y: 0,
@@ -73,10 +81,11 @@ export default function IntroScreen({ children, src, type = 'video', showIntro =
 						scale: 1,
 						transition: {
 							duration: 1.3,
-							ease: [0.76, 0, 0.24, 1]
-						}
+							ease: [0.76, 0, 0.24, 1],
+						},
 					} }
-					className='w-[145px] h-[34.12px] relative overflow-hidden'>
+					className='w-[145px] h-[34.12px] relative overflow-hidden'
+				>
 					<Image
 						src={ src ?? '/images/logo/logo_light.webp' }
 						alt='geviti'
@@ -93,43 +102,43 @@ export default function IntroScreen({ children, src, type = 'video', showIntro =
 
 	return (
 		<AnimatePresence>
-			{
-				showIntro === 'true' && (
-					<motion.div
-						key='loader'
-						variants={ {
-							initial: {
-								top: '0',
+			{ showIntro === 'true' && (
+				<motion.div
+					key='loader'
+					variants={ {
+						initial: {
+							top: '0',
+						},
+						enter: {
+							top: '-110vh',
+							transition: {
+								duration: 0.75,
+								delay: type === 'video' ? 2.1 : 1.5,
+								ease: [0.76, 0, 0.24, 1],
 							},
-							enter: {
-								top: '-110vh',
-								transition: { duration: .75, delay: type === 'video' ? 2.1 : 1.5, ease: [0.76, 0, 0.24, 1] },
-								transitionEnd: {
-									top: '110vh'
-								}
-							}
-						} }
-						initial = 'initial'
-						animate = { controls }
-						onAnimationComplete={ () => {
-							if (window) {
-								setTimeout(() => {
-									document.body.style.overflowY = 'unset';
-									setCookieIntro({ key: 'show_intro', value: 'false' });
-								}, 500);
-							}
-						} }
-						className='w-screen fixed h-[110vh] overflow-hidden top-0 z-[9999] left-0 pointer-events-none bg-blue-primary'
-					>
-						<div className='flex justify-center items-center h-screen w-full bg-primary'>
-							{ renderContent() }
-						</div>
-					</motion.div>
-				)
-			}
-			<motion.div key='content-children'>
-				{ children }
-			</motion.div>
+							transitionEnd: {
+								top: '110vh',
+							},
+						},
+					} }
+					initial='initial'
+					animate={ controls }
+					onAnimationComplete={ () => {
+						if (window) {
+							setTimeout(() => {
+								document.body.style.overflowY = 'unset';
+								setCookieIntro({ key: 'show_intro', value: 'false' });
+							}, 500);
+						}
+					} }
+					className='w-screen fixed h-[110vh] overflow-hidden top-0 z-[9999] left-0 pointer-events-none bg-blue-primary'
+				>
+					<div className='flex justify-center items-center h-screen w-full bg-primary'>
+						{ renderContent() }
+					</div>
+				</motion.div>
+			) }
+			<motion.div key='content-children'>{ children }</motion.div>
 		</AnimatePresence>
 	);
 }

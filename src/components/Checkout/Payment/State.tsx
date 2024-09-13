@@ -206,6 +206,11 @@ const State: React.FC<StateProps> = ({ type, searchParams }) => {
 			if (!token) {
 				setExternalHref(process.env.NEXT_PUBLIC_APP_URL ?? '')
 			} else {
+				if (typeof window !== 'undefined' && window.rewardful) {
+					window.rewardful('convert', {
+						email: email,
+					});
+				}
 				const dashboardHref = `${process.env.NEXT_PUBLIC_APP_URL}/create-password?reset_token=${token.restKey}`
 				setExternalHref(dashboardHref);
 			}

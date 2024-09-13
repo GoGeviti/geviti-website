@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import SlickSlider, { Settings } from 'react-slick';
+import { debounce } from 'lodash';
 import Image from 'next/image';
 
 import clsxm from '@/helpers/clsxm';
@@ -9,13 +10,18 @@ import clsxm from '@/helpers/clsxm';
 import { ChevronRight } from '../Icons';
 
 type VerticalThumbsProps = {
-	sliderRef: React.RefObject<SlickSlider>;
-	list: any[]; // eslint-disable-line @typescript-eslint/no-explicit-any
-	activeIdx: number;
-	onClick: (idx: number) => void; // eslint-disable-line no-unused-vars
+  sliderRef: React.RefObject<SlickSlider>;
+  list: any[]; // eslint-disable-line @typescript-eslint/no-explicit-any
+  activeIdx: number;
+  onClick: (idx: number) => void; // eslint-disable-line no-unused-vars
 };
 
-const VerticalThumbs: React.FC<VerticalThumbsProps> = ({ sliderRef, list, onClick, activeIdx }) => {
+const VerticalThumbs: React.FC<VerticalThumbsProps> = ({
+	sliderRef,
+	list,
+	onClick,
+	activeIdx,
+}) => {
 	const [isMounted, setIsMounted] = useState<boolean>(false);
 
 	useEffect(() => {
@@ -29,41 +35,47 @@ const VerticalThumbs: React.FC<VerticalThumbsProps> = ({ sliderRef, list, onClic
 		slidesToScroll: 1,
 		vertical: true,
 		verticalSwiping: true,
-		swipeToSlide: true
+		swipeToSlide: true,
 	};
 
 	const handleNextSlickSlider = () => {
 		if (sliderRef.current) {
+			onClick(activeIdx + 1);
 			sliderRef.current.slickNext();
 		}
 	};
 
+	const debounceHandleNextSlickSlider = debounce(handleNextSlickSlider, 250);
+
 	return (
 		<div className='flex flex-col'>
-			{
-				list.length > 1 && (
-					<p className='text-sm !leading-5 text-grey-primary mb-3.5'>
-				More Products
-					</p>
-				)
-			}
+			{ list.length > 1 && (
+				<p className='text-sm !leading-5 text-grey-primary mb-3.5'>
+          More Products
+				</p>
+			) }
 			<div
 				className='w-[127px]'
-				style={ { height: 141 * (list.length >= 3 ? 3 : list.length) } }>
+				style={ { height: 141 * (list.length >= 3 ? 3 : list.length) } }
+			>
 				{ list.length > 0 && isMounted && (
 					<SlickSlider
 						ref={ sliderRef }
 						{ ...settings }
-						className='relative overflow-hidden'>
+						className='relative overflow-hidden'
+					>
 						{ list.map((product, productIdx) => {
 							return (
 								<div
-									key={ `slider-${ productIdx }` }
-									className='w-full h-[143px] py-px'>
+									key={ `slider-${productIdx}` }
+									className='w-full h-[143px] py-px'
+								>
 									<div
 										className={ clsxm(
 											'transition-opacity transform duration-200 ease-in-out relative overflow-hidden rounded-[20px] w-full h-[127px] cursor-pointer',
-											productIdx === activeIdx ? 'border-[0.39px] border-grey-primary shadow-slider-solution-2' : 'border border-grey-50 opacity-50'
+											productIdx === activeIdx
+												? 'border-[0.39px] border-grey-primary shadow-slider-solution-2'
+												: 'border border-grey-50 opacity-50'
 										) }
 										onClick={ () => onClick(productIdx) }
 									>
@@ -86,8 +98,9 @@ const VerticalThumbs: React.FC<VerticalThumbsProps> = ({ sliderRef, list, onClic
 			{ list.length >= 3 && (
 				<div className='mt-3 flex justify-center'>
 					<button
-						onClick={ handleNextSlickSlider }
-						className='focus:ring-0 focus:outline-none group w-[30.22px] h-[30.22px] relative rounded-[10.42px] border-[1.56px] border-[#F6F6F6] shadow-[0px_2.08403px_10.4202px_rgba(0,0,0,0.1)]'>
+						onClick={ debounceHandleNextSlickSlider }
+						className='focus:ring-0 focus:outline-none group w-[30.22px] h-[30.22px] relative rounded-[10.42px] border-[1.56px] border-[#F6F6F6] shadow-[0px_2.08403px_10.4202px_rgba(0,0,0,0.1)]'
+					>
 						<ChevronRight className='rotate-90 text-grey-200 group-hover:text-grey-primary absolute-center flex-shrink-0' />
 					</button>
 				</div>
