@@ -27,7 +27,7 @@ const landingData = {
 		],
 	},
 	hero: {
-		preTitle: 'Your partner in total health',
+		preTitle: 'FEEL BETTER AND LIVE LONGER',
 		title: 'Your partner in total health optimization and longevit<span class="ml-0.5">y<span>.',
 		titles: [
 			'Your partner in total health',
