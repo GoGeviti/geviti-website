@@ -27,7 +27,7 @@ const Hero: React.FC<{ type: 'men' | 'women' }> = ({ type }) => {
 				quality={ 100 }
 				width={ 792.5 }
 				height={ 400 }
-				className='h-5 lg:h-[34px] w-full'
+				className='h-5 lg:h-[34px] w-full object-contain'
 				priority
 			/>
 		);
