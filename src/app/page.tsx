@@ -2,12 +2,12 @@ import React from 'react';
 import { NextPage } from 'next';
 
 import { Footer, LandingComponent, RunningLogo } from '@/components';
-// import { getAllProducts } from '@/components/Checkout/api/onboarding';
+import { getAllProducts } from '@/components/Checkout/api/onboarding';
 import IntroScreen from '@/components/IntroScreen';
 import { getCookie } from '@/services/cookies';
 
 const HomePage: NextPage = async() => {
-	// const products = await getAllProducts();
+	const products = await getAllProducts();
 	const showIntro = await getCookie('show_intro');
 
 	return (
@@ -26,7 +26,7 @@ const HomePage: NextPage = async() => {
 				<LandingComponent.Benefits />
 				<LandingComponent.HomeKits />
 				<LandingComponent.Innovative />
-				{ /* <LandingComponent.Pricing products={ products } /> */ }
+				<LandingComponent.Pricing products={ products } />
 				<LandingComponent.Products />
 				<LandingComponent.Banner />
 				<Footer landingPage />

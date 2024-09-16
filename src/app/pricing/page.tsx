@@ -1,10 +1,10 @@
 import { Metadata } from 'next';
 
 import { Footer, FrequentlyAskedQuestions } from '@/components';
-// import { getAllProducts } from '@/components/Checkout/api/onboarding';
+import { getAllProducts } from '@/components/Checkout/api/onboarding';
 import BannerMember from '@/components/Pricing/Banner';
 import Download from '@/components/Pricing/Download';
-// import Hero from '@/components/Pricing/Hero';
+import Hero from '@/components/Pricing/Hero';
 import PricingBiomarkers from '@/components/Pricing/PricingBiomarkers';
 import pricingData from '@/constant/data/pricing';
 
@@ -13,12 +13,12 @@ export const metadata: Metadata = {
 };
 
 const PricingPage = async() => {
-	// const products = await getAllProducts();
+	const products = await getAllProducts();
 	// console.log(JSON.stringify(products, null, 2));
 
 	return (
 		<div className='flex min-h-screen flex-col w-full bg-white font-Poppins'>
-			{ /* <Hero products={ products } /> */ }
+			<Hero products={ products } />
 			<PricingBiomarkers />
 			{ /* <PricingComparison />
 			<div className='lg:px-3'>
