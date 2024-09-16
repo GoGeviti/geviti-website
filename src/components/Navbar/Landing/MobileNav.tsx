@@ -87,9 +87,23 @@ const mobileLinkVarsOpacity = {
 type MobileNavProps = {
   open: boolean;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  menuList?: {
+    name: string;
+    href: string;
+    externalLink?: boolean;
+    items?: {
+      name: string;
+      href: string;
+      externalLink?: boolean;
+    }[];
+  }[];
 };
 
-const MobileNav: React.FC<MobileNavProps> = ({ open, setOpen }) => {
+const MobileNav: React.FC<MobileNavProps> = ({
+	open,
+	setOpen,
+	menuList: menuListProps = navbarData.menu,
+}) => {
 	const pathname = usePathname();
 	const [expandedIdx, setExpandedIdx] = useState<number | null>(null);
 
@@ -112,7 +126,7 @@ const MobileNav: React.FC<MobileNavProps> = ({ open, setOpen }) => {
 			href: '/',
 			items: [],
 		},
-		...navbarData.menu,
+		...menuListProps,
 	];
 
 	return (

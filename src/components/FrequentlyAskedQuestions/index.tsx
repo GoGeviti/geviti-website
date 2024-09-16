@@ -59,9 +59,9 @@ const FrequentlyAskedQuestions: React.FC<FrequentlyAskedQuestionsProps> = ({
 								) }
 								<div className='lg:max-w-[389px] mt-4 lg:mt-1'>
 									<h2 className='text-[9.3vw] xxs:text-[28px] !leading-[116%] lg:text-4xl lg:!leading-[125%] -tracking-0.04em text-primary'>
-                  Frequently asked
+                    Frequently asked
 										<br />
-                  questions
+                    questions
 									</h2>
 								</div>
 							</div>
