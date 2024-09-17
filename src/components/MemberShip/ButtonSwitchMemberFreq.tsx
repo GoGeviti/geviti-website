@@ -77,7 +77,7 @@ const ButtonSwitchMemberFreq: React.FC<ButtonSwitchMemberFreqProps> = ({
 								!showHightlightTextOnMobile && 'max-sm:hidden'
 							) }
 						>
-              17% off
+              13% off
 						</span>
 					) }
 				</motion.span>

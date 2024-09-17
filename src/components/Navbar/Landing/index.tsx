@@ -108,6 +108,16 @@ type NavbarProps = {
   className?: string;
   animationProps?: MotionProps;
   theme?: 'light' | 'dark' | 'light-grey';
+  menuList?: {
+    name: string;
+    href: string;
+    externalLink?: boolean;
+    items?: {
+      name: string;
+      href: string;
+      externalLink?: boolean;
+    }[];
+  }[];
 };
 
 const ActionMenuList = ({ theme }: NavbarProps) => {
@@ -154,6 +164,7 @@ const Navbar: React.FC<NavbarProps> = ({
 	className,
 	animationProps,
 	theme,
+	menuList = navbarData.menu,
 }) => {
 	const [active, setActive] = useState<string | null>(null);
 	const [openSheet, setOpenSheet] = useState<boolean>(false);
@@ -171,7 +182,7 @@ const Navbar: React.FC<NavbarProps> = ({
 					className='container-center w-full'
 					style={ { overflow } }>
 					<motion.div
-						variants={ navbarVariants   }
+						variants={ navbarVariants }
 						initial='hidden'
 						animate='visible'
 						className='inline-block w-full border border-white/5 rounded-full'
@@ -193,7 +204,7 @@ const Navbar: React.FC<NavbarProps> = ({
 									<GevitiLogo theme={ theme } />
 								</Link>
 								<div className='hidden lg:flex items-center space-x-5 xl:space-x-[50px]'>
-									{ navbarData.menu.map(menu => {
+									{ menuList.map(menu => {
 										if (menu.items) {
 											return (
 												<MenuItem
@@ -269,7 +280,8 @@ const Navbar: React.FC<NavbarProps> = ({
 
 			<MobileNav
 				open={ openSheet }
-				setOpen={ setOpenSheet } />
+				setOpen={ setOpenSheet }
+				menuList={ menuList } />
 		</header>
 	);
 };

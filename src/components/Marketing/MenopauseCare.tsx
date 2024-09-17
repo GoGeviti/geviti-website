@@ -1,21 +1,18 @@
 'use client';
 
+import React from 'react';
 import Image from 'next/image';
 
 import { marketingData } from '@/constant/data';
-import { screens } from '@/helpers/style';
-import { useWindowDimensions } from '@/hooks';
 
-import Ripple from './Ripple';
+import Ripple from '../Ripple';
+
 import SectionHeading from './SectionHeading';
 
 const menopauseCareData = marketingData.menopauseCare;
 const content = menopauseCareData.content;
 
 const MenopauseCare: React.FC = () => {
-	const windowDimensions = useWindowDimensions();
-	const isMobile = windowDimensions.width < screens.lg;
-
 	const renderBoxContent1 = () => {
 		return (
 			<div className='max-lg:order-1 w-full h-full bg-primary rounded-2xl relative max-lg:pb-0 p-6 text-white'>
@@ -97,6 +94,30 @@ const MenopauseCare: React.FC = () => {
 		);
 	};
 
+	const getRippleCircleClassName = (i: number) => {
+		if (i === 0) return 'w-[140px] lg:w-[127px]';
+		if (i === 1) return 'w-[203.01px] sm:w-[178.59px]';
+		return 'w-[286px] sm:w-[234px]';
+	};
+
+	const getRippleCircleStyle = (i: number) => {
+		const mainCircleOpacity = 0.25;
+		const opacity = mainCircleOpacity - i * 0.03;
+		const borderWidth = i === 0 ? '1.25' : 1.5 + (i - 1) * 0.5;
+		const boxShadow =
+      i % 2 === 1
+      	? '6.378px 6.378px 12.757px 12.757px rgba(255, 255, 255, 0.25) inset, 0px 74.946px 20.73px 20.73px rgba(0, 95, 163, 0.00), 0px 47.838px 19.135px 19.135px rgba(0, 95, 163, 0.01), 0px 27.108px 15.946px 15.946px rgba(0, 95, 163, 0.05), 0px 11.162px 11.162px 11.162px rgba(0, 95, 163, 0.09), 0px 3.189px 6.378px 6.378px rgba(0, 95, 163, 0.10)'
+      	: '8.357px 8.357px 16.715px 16.715px rgba(255, 255, 255, 0.25), 0px 98.198px 27.161px 27.161px rgba(0, 95, 163, 0.00), 0px 62.679px 25.072px 25.072px rgba(0, 95, 163, 0.01), 0px 35.518px 20.893px 20.893px rgba(0, 95, 163, 0.05), 0px 14.625px 14.625px 14.625px rgba(0, 95, 163, 0.09), 0px 4.179px 8.357px 8.357px rgba(0, 95, 163, 0.10)';
+
+		return {
+			opacity,
+			borderStyle: 'solid',
+			borderWidth: `${borderWidth}px`,
+			borderColor: 'white',
+			boxShadow,
+		} as React.CSSProperties;
+	};
+
 	const renderBoxRipples = () => {
 		return (
 			<div className='w-full h-[192px] lg:h-full rounded-20px overflow-hidden bg-grey-50 relative'>
@@ -128,8 +149,8 @@ const MenopauseCare: React.FC = () => {
 						</p>
 					</div>
 					<Ripple
-						mainCircleSize={ isMobile ? 140 : 127 }
-						multiplierSize={ isMobile ? 85 : 46 }
+						circleClassName={ getRippleCircleClassName }
+						circleStyle={ getRippleCircleStyle }
 					/>
 				</div>
 			</div>

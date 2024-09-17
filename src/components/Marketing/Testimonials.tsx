@@ -1,12 +1,6 @@
 'use client';
 
-import React, {
-	ComponentPropsWithRef,
-	useCallback,
-	useEffect,
-	useRef,
-	useState,
-} from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { EmblaCarouselType, EmblaEventType } from 'embla-carousel';
 import { motion, useMotionValue } from 'framer-motion';
 
@@ -15,6 +9,8 @@ import clsxm from '@/helpers/clsxm';
 import { screens } from '@/helpers/style';
 import { useWindowDimensions } from '@/hooks';
 import { useCarousel } from '@/hooks/embla/use-carousel';
+
+import DotButton from '../CarouselDotButton';
 
 import ArrowButtons from './ArrowButtons';
 import { SectionTitle } from './SectionHeading';
@@ -307,27 +303,5 @@ const CardTestimonial: React.FC<CardTestimonialProps> = ({
 				</div>
 			</motion.div>
 		</div>
-	);
-};
-
-type DotButtonProps = ComponentPropsWithRef<'button'> & {
-  selected: boolean;
-};
-
-const DotButton: React.FC<DotButtonProps> = props => {
-	const { children, selected, className, ...restProps } = props;
-
-	return (
-		<button
-			type='button'
-			className={ clsxm(
-				'focus:ring-0 focus:outline-none flex-shrink-0 w-2 h-2 rounded-full',
-				selected ? 'bg-blue-primary' : 'bg-grey-100',
-				className
-			) }
-			{ ...restProps }
-		>
-			{ children }
-		</button>
 	);
 };

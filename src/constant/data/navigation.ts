@@ -4,11 +4,11 @@ const navigationData = {
 	logoLight: '/images/logo/logo_light.webp',
 	logoDark: '/images/logo/logo_dark.webp',
 	menu: [
-		{
-			name: 'Membership',
-			href: '/membership',
-			externalLink: false,
-		},
+		// {
+		// 	name: 'Membership',
+		// 	href: '/membership',
+		// 	externalLink: false,
+		// },
 		{
 			name: 'Men\'s Health',
 			href: '/solution/men',
@@ -20,12 +20,17 @@ const navigationData = {
 			externalLink: false,
 		},
 		{
+			name: 'Pricing',
+			href: '/pricing',
+			externalLink: false,
+		},
+		{
 			name: 'Resources',
 			href: '#',
 			externalLink: false,
 			items: [
 				{
-					name: 'Learn More',
+					name: 'Membership',
 					href: '/membership',
 					externalLink: false,
 				},

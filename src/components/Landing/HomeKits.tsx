@@ -153,12 +153,12 @@ const HomeKits: React.FC = () => {
 				<Image
 					src={ currentData.image }
 					alt=''
-					width={ 1400 }
-					height={ 1400 }
+					width={ 700 }
+					height={ 700 }
 					priority
 					unoptimized
 					className={ clsxm(
-						'w-[950px] left-[55%] -translate-x-[55%]',
+						'w-[700px] mt-[50px] left-[45%] -translate-x-[50%]',
 						defaultImageDesktopClassName
 					) }
 				/>
@@ -175,7 +175,7 @@ const HomeKits: React.FC = () => {
 					priority
 					unoptimized
 					className={ clsxm(
-						'w-[1100px] -mt-[110px] left-[85%] -translate-x-[85%]',
+						'w-[880px]  left-[50%] mt-[-7%] -translate-x-[50%]',
 						defaultImageDesktopClassName
 					) }
 				/>
@@ -192,7 +192,7 @@ const HomeKits: React.FC = () => {
 					priority
 					unoptimized
 					className={ clsxm(
-						'w-[1155px] mt-[50px] left-[47%] -translate-x-[47%]',
+						'w-[1155px] mt-[50px] left-[50%] -translate-x-[50%]',
 						defaultImageDesktopClassName
 					) }
 				/>
@@ -338,12 +338,12 @@ const HomeKits: React.FC = () => {
 							<div className='flex items-center'>{ renderButtonViewAll() }</div>
 						</div>
 					</div>
-					<div className='mt-2.5 lg:mt-3.5 w-full sm:max-w-[600px] lg:max-w-none max-lg:mx-auto min-h-[135px]'>
+					<div className='mt-2.5 lg:mt-3.5 w-full h-[110px] sm:max-w-[600px] lg:max-w-none max-lg:mx-auto'>
 						<ShiftSection
 							id={ `description-${currentData.id}` }
 							prevElement={ renderDescription(list[prevIdx].description) }
 							isMobile={ isMobile }
-							wrapperClassName='lg:min-h-[135px]'
+							wrapperClassName=''
 						>
 							{ renderDescription(currentData.description) }
 						</ShiftSection>

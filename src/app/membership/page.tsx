@@ -14,10 +14,12 @@ import { mergeOpenGraph } from '@/lib/mergeOpenGraph';
 
 export const metadata: Metadata = {
 	title: 'Membership',
-	description: 'Unlock premier health insights & solutions with exclusive Geviti membership benefits.',
+	description:
+    'Unlock premier health insights & solutions with exclusive Geviti membership benefits.',
 	openGraph: mergeOpenGraph({
 		title: 'Membership',
-		description: 'Unlock premier health insights & solutions with exclusive Geviti membership benefits.',
+		description:
+      'Unlock premier health insights & solutions with exclusive Geviti membership benefits.',
 		image: '/meta/membership.jpg',
 	}),
 };
@@ -48,9 +50,8 @@ const MemberShipPage = async() => {
 				</div>
 			</div>
 			{ /* <MembershipComponent.Pricing /> */ }
-			 <div className='lg:px-3'>
-				<MembershipComponent.BiomarkersSection
-					wrapperClassName='bg-white pt-6 pb-[42px] lg:py-[62px]' />
+			<div className='lg:px-3'>
+				<MembershipComponent.BiomarkersSection wrapperClassName='bg-white pt-6 pb-[42px] lg:py-[62px]' />
 			</div>
 			<MembershipComponent.PricingComparison />
 			<MembershipComponent.ChooseGeviti />

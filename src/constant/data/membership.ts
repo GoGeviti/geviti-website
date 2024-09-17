@@ -225,7 +225,7 @@ const membershipData = {
 			{
 				title: 'Quarterly',
 				value: 'quarterly',
-				s: '17% off',
+				s: '13% off',
 				price: '99.95',
 			},
 			{
