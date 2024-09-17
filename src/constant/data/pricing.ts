@@ -135,7 +135,7 @@ const pricingData = {
 			{
 				name: 'Longeviti Panel (90 biomarkers)',
 				geviti: true,
-				premium: '$300',
+				premium: 'Free*',
 			},
 			{
 				name: 'Biological Age Test Kit',
@@ -155,7 +155,7 @@ const pricingData = {
 			{
 				name: 'Metabolic Health Finger Prick Test Kit',
 				geviti: true,
-				premium: 'Free*',
+				premium: '$100',
 			},
 		],
 	},
