@@ -338,12 +338,12 @@ const HomeKits: React.FC = () => {
 							<div className='flex items-center'>{ renderButtonViewAll() }</div>
 						</div>
 					</div>
-					<div className='mt-2.5 lg:mt-3.5 w-full sm:max-w-[600px] lg:max-w-none max-lg:mx-auto min-h-[135px]'>
+					<div className='mt-2.5 lg:mt-3.5 w-full sm:max-w-[600px] lg:max-w-none max-lg:mx-auto'>
 						<ShiftSection
 							id={ `description-${currentData.id}` }
 							prevElement={ renderDescription(list[prevIdx].description) }
 							isMobile={ isMobile }
-							wrapperClassName='lg:min-h-[135px]'
+							wrapperClassName=''
 						>
 							{ renderDescription(currentData.description) }
 						</ShiftSection>
