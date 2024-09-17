@@ -24,10 +24,10 @@ const Solutions = () => {
 				<RunningLogo />
 			</div>
 			<SolutionsComponent.WellnessPro type='women' />
-			<div className='lg:px-3 py-6'>
+			<SolutionsComponent.TreatmentOptions type='women' />
+			<div className='lg:px-3 pb-6'>
 				<MembershipComponent.BiomarkersSection wrapperClassName='bg-white pt-6 pb-[42px] lg:py-[62px]' />
 			</div>
-			{ /* <SolutionsComponent.TreatmentOptions type='women' /> */ }
 			<SolutionsComponent.Steps theme='blue' />
 			<SolutionsComponent.Membership />
 			<FrequentlyAskedQuestions data={ solutionData.faq.data } />
