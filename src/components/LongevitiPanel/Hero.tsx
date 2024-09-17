@@ -21,7 +21,7 @@ const Hero: React.FC = () => {
 					},
 				} }
 				theme='light'
-				menuList={ longevitiPanelData.navbar.menu }
+				// menuList={ longevitiPanelData.navbar.menu }
 			/>
 			<div className='pt-[118px] lg:pt-[193px] w-full container-center'>
 				<div className='flex flex-col items-center text-center mx-auto max-w-[331px] sm:max-w-[738px]'>

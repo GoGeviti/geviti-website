@@ -1,6 +1,8 @@
 import { Metadata } from 'next';
 
-import { Footer, FrequentlyAskedQuestions, RunningLogo, SolutionsComponent } from '@/components';
+import {
+	Footer, FrequentlyAskedQuestions, MembershipComponent, RunningLogo, SolutionsComponent
+} from '@/components';
 import { solutionData } from '@/constant/data';
 import { mergeOpenGraph } from '@/lib/mergeOpenGraph';
 
@@ -22,7 +24,10 @@ const Solutions = () => {
 				<RunningLogo />
 			</div>
 			<SolutionsComponent.WellnessPro type='women' />
-			<SolutionsComponent.TreatmentOptions type='women' />
+			<div className='lg:px-3 py-6'>
+				<MembershipComponent.BiomarkersSection wrapperClassName='bg-white pt-6 pb-[42px] lg:py-[62px]' />
+			</div>
+			{ /* <SolutionsComponent.TreatmentOptions type='women' /> */ }
 			<SolutionsComponent.Steps theme='blue' />
 			<SolutionsComponent.Membership />
 			<FrequentlyAskedQuestions data={ solutionData.faq.data } />
