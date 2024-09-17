@@ -454,7 +454,7 @@ const landingData = {
 				preTitle: 'Members receive access to',
 				title: 'Prescription wellness done right',
 				description:
-          'We offer hormone therapy, peptide therapy, and other <br class="max-lg:hidden"/>prescription wellness services under the supervision of medical <br class="max-lg:hidden"/>professionals. We\'ll deliver your treatment directly to you.',
+          'We offer hormone therapy, peptide therapy, and other <br class="max-lg:hidden"/>prescription wellness services under the supervision of medical <br class="max-lg:hidden"/>professionals. Once you receive approval from a provider <br class="max-lg:hidden"/>through the Geviti app, we\'ll deliver your treatment directly to you.',
 				image: '/images/landing/compressed/homekits-prescription.webp',
 				imageMobile:
           '/images/landing/compressed/homekits-prescription-mobile.webp',

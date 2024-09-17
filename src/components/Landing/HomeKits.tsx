@@ -338,7 +338,7 @@ const HomeKits: React.FC = () => {
 							<div className='flex items-center'>{ renderButtonViewAll() }</div>
 						</div>
 					</div>
-					<div className='mt-2.5 lg:mt-3.5 w-full sm:max-w-[600px] lg:max-w-none max-lg:mx-auto'>
+					<div className='mt-2.5 lg:mt-3.5 w-full h-[110px] sm:max-w-[600px] lg:max-w-none max-lg:mx-auto'>
 						<ShiftSection
 							id={ `description-${currentData.id}` }
 							prevElement={ renderDescription(list[prevIdx].description) }
