@@ -663,7 +663,7 @@ const membershipData = {
 			id: 1,
 			preTitle: 'Data-driven health and wellness, made simple.',
 			title:
-        'The ultimate wellness platform.<br class="sm:hidden"/>Look better. Feel better. Live Longer.',
+        'The ultimate wellness platform.<br class="sm:hidden"/> Look better. Feel better. Live Longer.',
 			description:
         'Geviti transcends the usual health and wellness offerings, providing unparalleled value at a lower cost. Our mission is to make longevity-focused care exceptionally accessible.',
 			image: null,

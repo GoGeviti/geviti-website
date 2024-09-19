@@ -67,22 +67,26 @@ const PulseSyncFadeFast = ({
 	);
 };
 
-const downloadPDF = () => {
-	const link = document.createElement('a');
-	link.href = '/files/Geviti Rx Pricing Sheet.pdf';
-	link.download = 'Geviti Rx Pricing Sheet.pdf';
-	link.click();
-};
+// const downloadPDF = () => {
+// 	const link = document.createElement('a');
+// 	link.href = '/files/Geviti Rx Pricing Sheet.pdf';
+// 	link.download = 'Geviti Rx Pricing Sheet.pdf';
+// 	link.click();
+// };
 
 const Download = () => {
 	return (
 		<div className='lg:px-3 font-Poppins'>
 			<div className='container-center pt-[42px] flex items-center justify-center'>
-				<button onClick={ () => downloadPDF() }>
+				<a
+					href='/files/Geviti Rx Pricing Sheet.pdf'
+					target='_blank'
+					rel='noopener noreferrer'
+				>
 					<PulseSyncFadeFast
 						duration={ 3.4 }
 						delay={ 0.8 } />
-				</button>
+				</a>
 			</div>
 		</div>
 	);

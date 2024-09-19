@@ -49,18 +49,21 @@ const DialogDiscount: React.FC<DialogDiscountProps> = ({
     	onSubmit: async(form: IPrecheckout.DiscountData) => {
     		try {
     			setIsLoading(true);
-    			await createDiscount({
+    			const result = await createDiscount({
     				...form,
     			});
     			setIsLoading(false);
-    			toast.success(
-    				'Thank you! You should receive the discount code in your inbox shortly.'
-    			);
-    			onOpenChange && onOpenChange(false);
-    			// setCookie({ key: 'discount_submited', value: 'true' });
+    			if (result.status === 'OK') {
+    				toast.success(
+    					'Thank you! You should receive the discount code in your inbox shortly.'
+    				);
+    				onOpenChange && onOpenChange(false);
+    			} else {
+    				throw new Error(result.message || 'An unexpected error occurred');
+    			}
     		} catch (error: any) {
     			setIsLoading(false);
-    			toast.error(error as string, {
+    			toast.error(error?.message as string, {
     				icon: <AiFillCloseCircle className='h-5 w-5 text-danger' />,
     			});
     		}
