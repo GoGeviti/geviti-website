@@ -14,6 +14,8 @@ declare global {
 			NEXT_PUBLIC_PLAY_STORE_URL: string;
 			SLACK_WEBHOOK_URL: string;
 			NOTION_DATABASE_ID: string;
+			KLAVIYO_API_KEY: string;
+			KLAVIYO_LISTID: string;
 			NEXT_PUBLIC_STAGE: 'development' | 'production';
 			NEXT_PUBLIC_PRECHECKOUT_WAITLIST: 'true' | 'false';
 		}
