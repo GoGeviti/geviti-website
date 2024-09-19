@@ -117,6 +117,6 @@ export const createDiscount = async(
 				errorMessage = errorDetail;
 			}
 		}
-		throw new Error(errorMessage);
+		return { status: 'ERROR', message: errorMessage };
 	}
 };
