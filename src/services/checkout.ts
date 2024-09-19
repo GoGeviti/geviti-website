@@ -4,12 +4,12 @@
 import { Client } from '@hubspot/api-client';
 import { format } from 'date-fns';
 import {
-	ApiKeySession, ListMembersAddQuery, ListsApi, ProfileCreateQuery, ProfileEnum, ProfilesApi
+	ApiKeySession, ProfileCreateQuery, ProfileEnum, ProfilesApi, SubscriptionCreateJobCreateQuery
 } from 'klaviyo-api'
 
 const session = new ApiKeySession(process.env.KLAVIYO_API_KEY)
 const profilesApi = new ProfilesApi(session)
-const listApi = new ListsApi(session)
+// const listApi = new ListsApi(session)
 
 import { IPrecheckout } from '@/interfaces';
 
@@ -95,16 +95,58 @@ export const createDiscount = async(
 			}
 		}
 		
-		const resCreateProfile = await profilesApi.createProfile(profile);
-		const addProfileToList:ListMembersAddQuery = {
-			data: [
-				{
-					type: ProfileEnum.Profile,
-					id: resCreateProfile.body.data.id ?? ''
+		const resCreateProfile = await profilesApi.createOrUpdateProfile(profile);
+		const subscribe : SubscriptionCreateJobCreateQuery = {
+			'data': {
+				'type': 'profile-subscription-bulk-create-job',
+				'attributes': {
+					'customSource': 'Marketing Event',
+					'profiles': {
+						'data': [
+							{
+								'type': 'profile',
+								'id': resCreateProfile.body.data.id ?? '',
+								'attributes': {
+									'email': formData.email,
+									'phoneNumber': formData.phone_number.replaceAll(' ', ''),
+									'subscriptions': {
+										'email': {
+											'marketing': {
+												'consent': 'SUBSCRIBED'
+											}
+										},
+										'sms': {
+											'marketing': {
+												'consent': 'SUBSCRIBED'
+											}
+										}
+									}
+								}
+							}
+						]
+					},
+					// 'historical_import': false
+				},
+				'relationships': {
+					'list': {
+						'data': {
+							'type': 'list',
+							'id': process.env.KLAVIYO_LISTID
+						}
+					}
 				}
-			]
+			}
 		}
-		listApi.createListRelationships(process.env.KLAVIYO_LISTID, addProfileToList)
+		await profilesApi.subscribeProfiles(subscribe)
+		// const addProfileToList:ListMembersAddQuery = {
+		// 	data: [
+		// 		{
+		// 			type: ProfileEnum.Profile,
+		// 			id: resCreateProfile.body.data.id ?? ''
+		// 		}
+		// 	]
+		// }
+		// listApi.createListRelationships(process.env.KLAVIYO_LISTID, addProfileToList)
 		return { status: 'OK', message: 'Data Created' };
 	} catch (error:any) {
 		let errorMessage = 'Opss Something Wrong!';
