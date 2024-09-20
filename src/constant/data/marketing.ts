@@ -383,7 +383,7 @@ const marketingData = {
 					title: 'Gonadorelin',
 					description:
             'Supports natural testosterone production & preserves testicular function. From $70/mo.',
-					image: '/images/solution_media/products/testosterone-therapy/gonadorelin-injections.webp',
+					image: '/images/solution_media/products/testosterone-therapy/gonadorelin-mini-troches.webp',
 				},
 				{
 					id: 9,
