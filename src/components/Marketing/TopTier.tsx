@@ -377,7 +377,7 @@ const ProductList: React.FC<ProductListProps> = ({
 							<div>
 								<h4 className='text-lg'>{ item.title }</h4>
 							</div>
-							<p className='text-xs !leading-5 mt-1.5 max-w-[252px]'>
+							<p className='text-xs !leading-5 mt-1.5'>
 								{ item.description }
 							</p>
 							<div className='relative overflow-hidden w-full h-full'>
