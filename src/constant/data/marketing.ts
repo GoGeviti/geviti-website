@@ -256,6 +256,14 @@ const marketingData = {
 					image: '/images/marketing/products/sermorelin-troche.webp',
 				},
 				{
+					id: 8,
+					category: { id: 1 },
+					title: 'Semaglutide (Sublingual)',
+					description:
+            'Get the benefits of Semaglutide without  mess or needles. From $80/mo.',
+					image: '/images/solution_media/products/weight-loss/semaglutide-drops.webp',
+				},
+				{
 					id: 7,
 					category: { id: 2 },
 					title: 'Longeviti Blend',
@@ -352,6 +360,38 @@ const marketingData = {
 					description:
             'A hormone-regulating blend to naturally boost test and overall health. $35/mo',
 					image: '/images/marketing/products/testosterone-booster.webp',
+				},
+				{
+					id: 6,
+					category: { id: 1 },
+					title: 'Enclomiphene Citrate',
+					description:
+            'Stimulate your body’s own natural testosterone production. From $41/mo.',
+					image: '/images/solution_media/products/testosterone-therapy/enclomiphene-citrat.webp',
+				},
+				{
+					id: 7,
+					category: { id: 1 },
+					title: 'HCG',
+					description:
+            'Stimulates natural testosterone production. Price varies.',
+					image: '/images/solution_media/products/testosterone-therapy/hcg.webp',
+				},
+				{
+					id: 8,
+					category: { id: 1 },
+					title: 'Gonadorelin',
+					description:
+            'Supports natural testosterone production & preserves testicular function. From $70/mo.',
+					image: '/images/solution_media/products/testosterone-therapy/gonadorelin-injections.webp',
+				},
+				{
+					id: 9,
+					category: { id: 1 },
+					title: 'Anastrozole',
+					description:
+            'Blocks estrogen to prevent gynecomastia and maintain hormone balance. From $70/mo.',
+					image: '/images/solution_media/products/testosterone-therapy/anastrozole.webp',
 				},
 				{
 					id: 5,
