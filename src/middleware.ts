@@ -1,6 +1,9 @@
+import ReactGA from 'react-ga4';
 import type { NextRequest } from 'next/server'
 import { NextResponse } from 'next/server'
- 
+
+const trackingId = 'G-9NMVVP83JB';
+
 // This function can be marked `async` if using `await` inside
 export function middleware(request: NextRequest) {
 
@@ -8,6 +11,8 @@ export function middleware(request: NextRequest) {
     
 	// Redirect /pickleballkingdom to /
 	if (pathname === '/pickleballkingdom') {
+		ReactGA.initialize(trackingId);
+		ReactGA.send({ hitType: 'pageview', page: '/pickleballkingdom', title: 'Pickleball Kingdom' });
 		return NextResponse.redirect(new URL('/', request.url));
 	}
 
