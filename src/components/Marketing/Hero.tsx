@@ -201,9 +201,11 @@ const Hero: React.FC<HeroProps> = ({ slug = Slug.MEN_WEIGHT_LOSS }) => {
 											className='flex whitespace-nowrap gap-1.5'
 										>
 											<CheckCircleIcon className='w-4 h-4 flex-shrink-0 text-white' />
-											<span className='text-[3.111vw] xs:text-sm !leading-5 text-grey-50'>
-												{ item }
-											</span>
+											<span
+												dangerouslySetInnerHTML={ {
+													__html: item ?? '',
+												} }
+												className='text-[3.111vw] xs:text-sm !leading-5 text-grey-50' />
 										</div>
 									);
 								}) }

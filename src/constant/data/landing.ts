@@ -52,7 +52,7 @@ const landingData = {
 		btnCta2: {
 			href: 'https://calendly.com/cole-gogeviti/discovery-call',
 			externalLink: true,
-			text: 'Schedule Call',
+			text: 'Talk to Us',
 		},
 		mainKeys: [
 			{

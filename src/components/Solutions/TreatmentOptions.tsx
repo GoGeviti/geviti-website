@@ -17,9 +17,9 @@ import ShiftSection from '../ShiftSection';
 
 import VerticalThumbs from './VerticalThumbs';
 
-const BiomarkersSection = dynamic(() => import('./BiomarkersSection'), {
-	ssr: false,
-});
+// const BiomarkersSection = dynamic(() => import('./BiomarkersSection'), {
+// 	ssr: false,
+// });
 const DialogDisclaimer = dynamic(() => import('./DialogDisclaimer'), {
 	ssr: false,
 });
@@ -549,13 +549,13 @@ const TreatmentOptions: React.FC<TreatmentOptionsProps> = ({
 					</div>
 				</div>
 
-				{ selectedSubCategory?.biomarkers && (
+				{ /* { selectedSubCategory?.biomarkers && (
 					<BiomarkersSection
 						key={ `${selectedTabIdx}-${selectedSubCategoryIdx}` }
 						list={ selectedSubCategory?.biomarkers }
 						type={ type }
 					/>
-				) }
+				) } */ }
 			</div>
 
 			{ renderDialogDisclaimer() }

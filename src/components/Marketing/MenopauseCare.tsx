@@ -13,35 +13,35 @@ const menopauseCareData = marketingData.menopauseCare;
 const content = menopauseCareData.content;
 
 const MenopauseCare: React.FC = () => {
-	const renderBoxContent1 = () => {
-		return (
-			<div className='max-lg:order-1 w-full h-full bg-primary rounded-2xl relative max-lg:pb-0 p-6 text-white'>
-				<div className='flex flex-col gap-3.5'>
-					<h5 className='text-lg'>{ content[1].title }</h5>
-					<p className='max-w-[353px] text-xs !leading-6'>
-						{ content[1].description }
-					</p>
-					<ul className='max-w-[353px] list-disc list-inside text-sm'>
-						{ content[1].list.map((text, textIdx) => (
-							<li key={ textIdx }>{ text }</li>
-						)) }
-					</ul>
-				</div>
-				<div className='flex justify-center -mt-6 lg:absolute lg:bottom-0 lg:right-0'>
-					<div className='relative overflow-hidden h-[293px] aspect-square'>
-						<Image
-							src={ content[1].image }
-							alt=''
-							fill
-							className='object-contain'
-							sizes='(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw'
-							quality={ 100 }
-						/>
-					</div>
-				</div>
-			</div>
-		);
-	};
+	// const renderBoxContent1 = () => {
+	// 	return (
+	// 		<div className='max-lg:order-1 w-full h-full bg-primary rounded-2xl relative max-lg:pb-0 p-6 text-white'>
+	// 			<div className='flex flex-col gap-3.5'>
+	// 				<h5 className='text-lg'>{ content[1].title }</h5>
+	// 				<p className='max-w-[353px] text-xs !leading-6'>
+	// 					{ content[1].description }
+	// 				</p>
+	// 				<ul className='max-w-[353px] list-disc list-inside text-sm'>
+	// 					{ content[1].list.map((text, textIdx) => (
+	// 						<li key={ textIdx }>{ text }</li>
+	// 					)) }
+	// 				</ul>
+	// 			</div>
+	// 			<div className='flex justify-center -mt-6 lg:absolute lg:bottom-0 lg:right-0'>
+	// 				<div className='relative overflow-hidden h-[293px] aspect-square'>
+	// 					<Image
+	// 						src={ content[1].image }
+	// 						alt=''
+	// 						fill
+	// 						className='object-contain'
+	// 						sizes='(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw'
+	// 						quality={ 100 }
+	// 					/>
+	// 				</div>
+	// 			</div>
+	// 		</div>
+	// 	);
+	// };
 
 	const renderBoxSymtomps = ({
 		image,
@@ -159,10 +159,12 @@ const MenopauseCare: React.FC = () => {
 
 	const renderBoxContent2 = () => {
 		return (
-			<div className='max-lg:order-3 max-lg:mt-[46px] w-full h-full bg-grey-primary-light rounded-2xl max-lg:px-0 p-6 text-primary'>
-				<h5 className='text-lg'>{ content[2].title }</h5>
-				<p className='mt-1.5 text-xs !leading-5'>{ content[2].description }</p>
-				<div className='mt-6 lg:mt-[21px] grid grid-cols-1 lg:grid-cols-3 gap-4 lg:gap-2'>
+			<div className='max-lg:order-3 flex flex-col justify-between max-lg:mt-[46px] w-full h-full bg-grey-primary-light rounded-2xl max-lg:px-0 p-6 text-primary'>
+				<div>
+					<h5 className='text-lg'>{ content[2].title }</h5>
+					<p className='mt-1.5 max-w-[397px] text-xs !leading-5'>{ content[2].description }</p>
+				</div>
+				<div className='mt-6 lg:mt-[21px] grid grid-cols-1 h-full lg:grid-cols-3 gap-4 lg:gap-2'>
 					{ renderBoxSymtomps(content[2].perimenopause) }
 					{ renderBoxRipples() }
 					{ renderBoxSymtomps(content[2].postmenopause) }
@@ -173,18 +175,26 @@ const MenopauseCare: React.FC = () => {
 
 	const renderBoxContent3 = () => {
 		return (
-			<div className='max-lg:order-2 lg:row-span-2 flex flex-col w-full h-full bg-grey-primary-light rounded-2xl p-6 text-primary'>
+			<div className='max-lg:order-2 flex flex-col w-full h-full bg-grey-primary-light rounded-2xl p-6 text-primary'>
 				<h5 className='text-lg'>{ content[3].title }</h5>
 				<p className='max-w-[397px] text-xs !leading-5 mt-1.5'>
 					{ content[3].description }
 				</p>
-				<div className='mt-6 w-full h-auto lg:h-full max-lg:aspect-[295/495] relative overflow-hidden bg-grey-50 rounded-20px'>
+				<div className='mt-6 w-full h-auto lg:h-[316px] max-lg:aspect-[295/495] relative overflow-hidden bg-grey-50 rounded-20px'>
 					<div className='max-lg:-bottom-[2%] absolute inset-x-0 w-full h-full'>
 						<Image
 							src={ content[3].image }
 							alt=''
 							fill
-							className='object-cover max-lg:object-left-top'
+							className='object-cover max-lg:hidden'
+							sizes='(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw'
+							quality={ 100 }
+						/>
+						<Image
+							src={ content[3].imageMobile }
+							alt=''
+							fill
+							className='object-cover lg:hidden'
 							sizes='(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw'
 							quality={ 100 }
 						/>
@@ -202,10 +212,10 @@ const MenopauseCare: React.FC = () => {
 				cta={ menopauseCareData.cta }
 			/>
 
-			<div className='w-full grid lg:grid-cols-2 lg:grid-rows-2 gap-y-6 lg:gap-y-5 lg:gap-x-6 mt-[42px] lg:mt-16'>
-				{ renderBoxContent1() }
-				{ renderBoxContent3() }
+			<div className='w-full grid lg:grid-cols-2 gap-y-6 lg:gap-y-5 lg:gap-x-6 mt-[42px] lg:mt-16'>
+				{ /* { renderBoxContent1() } */ }
 				{ renderBoxContent2() }
+				{ renderBoxContent3() }
 			</div>
 		</div>
 	);
