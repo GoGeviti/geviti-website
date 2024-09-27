@@ -8,12 +8,14 @@ type RippleProps = {
   circleStyle?: (i: number) => React.CSSProperties;
   // eslint-disable-next-line no-unused-vars
   circleClassName?: (i: number) => string;
+	disabledAnimate?: boolean;
 };
 
 const Ripple = React.memo(function Ripple({
 	numCircles = 3,
 	circleStyle,
 	circleClassName,
+	disabledAnimate
 }: RippleProps) {
 	return (
 		<div className='absolute inset-0 flex items-center justify-center'>
@@ -24,8 +26,9 @@ const Ripple = React.memo(function Ripple({
 					<div
 						key={ i }
 						className={ clsxm(
-							`absolute aspect-square animate-ripple rounded-full border [--i:${i}]`,
-							circleClassName ? circleClassName(i) : ''
+							`absolute aspect-square rounded-full border [--i:${i}]`,
+							circleClassName ? circleClassName(i) : '',
+							!disabledAnimate && 'animate-ripple'
 						) }
 						style={
               {
