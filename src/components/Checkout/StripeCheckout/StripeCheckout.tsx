@@ -90,7 +90,7 @@ const StripeCheckout: FC<PageProps> = ({ searchParams }) => {
 				setDiscount(couponDiscount);
 				if (couponDiscount?.id) {
 					setDiscountApplied(true);
-					setPromoCode(() => code);
+					setPromoCode(() => code.toUpperCase());
 				} else {
 					setDiscountApplied(false);
 					setPromoCode(() => '');
