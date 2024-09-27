@@ -1,8 +1,8 @@
 'use client';
 
-import React, { FC, useCallback, useEffect, useState } from 'react';
-import { AiFillCloseCircle } from 'react-icons/ai';
 import { useRouter } from 'next/navigation';
+import { FC, useCallback, useEffect, useState } from 'react';
+import { AiFillCloseCircle } from 'react-icons/ai';
 import { toast } from 'sonner';
 
 // import MicroscopeIcon from '@/components/Icons/MicroscopeIcon';
@@ -14,9 +14,6 @@ import {
 	// checkout,
 	getAllProducts,
 	getDiscount,
-	// getInitialOfferings,
-	// getMembershipOfferings,
-	// getProductsPrice,
 } from '../api/onboarding';
 import {
 	DiscountReturnType,
@@ -60,6 +57,7 @@ const StripeCheckout: FC<PageProps> = ({ searchParams }) => {
 	const [discount, setDiscount] = useState<DiscountReturnType | null>(null);
 	const [totalPrice, setTotalPrice] = useState<number>();
 	const [discountApplied, setDiscountApplied] = useState(false);
+	const [promoCode, setPromoCode] = useState('');
 
 	useEffect(() => {
 		// setProductLoading(true);
@@ -92,8 +90,10 @@ const StripeCheckout: FC<PageProps> = ({ searchParams }) => {
 				setDiscount(couponDiscount);
 				if (couponDiscount?.id) {
 					setDiscountApplied(true);
+					setPromoCode(() => code.toUpperCase());
 				} else {
 					setDiscountApplied(false);
+					setPromoCode(() => '');
 					toast.error('Coupon doesn\'t exist', {
 						icon: <AiFillCloseCircle className='h-5 w-5 text-danger' />,
 					});
@@ -102,6 +102,7 @@ const StripeCheckout: FC<PageProps> = ({ searchParams }) => {
 				setCouponLoading(false);
 			} catch (error) {
 				setDiscount(null);
+				setPromoCode('');
 				setDiscountApplied(false);
 				// setLoading(false);
 				setCouponLoading(false);
@@ -189,7 +190,7 @@ const StripeCheckout: FC<PageProps> = ({ searchParams }) => {
 				});
 			}
 		},
-		[product, discount]
+		[product, discount, promoCode]
 	);
 	return (
 		<div className='flex flex-col lg:flex-row min-h-screen h-full w-full font-Poppins'>
@@ -263,7 +264,7 @@ const StripeCheckout: FC<PageProps> = ({ searchParams }) => {
 								loading={ checkoutLoading }
 								totalPrice={ totalPrice }
 								handleCheckout={ handleCheckout }
-								coupon={ discount?.id ?? '' }
+								coupon={ discount?.id && promoCode ? promoCode : '' }
 								selectedProduct={ productSelected }
 								priceId={ priceId }
 							/>
@@ -273,7 +274,7 @@ const StripeCheckout: FC<PageProps> = ({ searchParams }) => {
 			</div>
 			<div className='h-full w-full bg-white max-lg:hidden'>
 				<StripeElementsProvider
-					coupon={ discount?.id ?? '' }
+					coupon={ discount?.id && promoCode ? promoCode : '' }
 					loading={ checkoutLoading }
 					totalPrice={ totalPrice }
 					handleCheckout={ handleCheckout }

@@ -200,6 +200,7 @@ export interface CreateSessionParams {
     zipCode: string;
   };
   coupon: string;
+  referral?: string;
   product: {
     productId: string;
     productName: string;
