@@ -1,14 +1,14 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, {
-	FC, useEffect, useMemo, useRef, useState
-} from 'react';
-import  Autocomplete from 'react-google-autocomplete';
 import InputMask from '@mona-health/react-input-mask';
 import { Elements, } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 import { FormikProps, useFormik } from 'formik';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
+import React, {
+	FC, useEffect, useMemo, useRef, useState
+} from 'react';
+import Autocomplete from 'react-google-autocomplete';
 import { toast } from 'sonner';
 
 import { Dialog, DialogContent } from '@/components/Dialog';
@@ -68,6 +68,7 @@ const StripeForm: FC<StripeFormProps> = ({
 	const [isOpenDialogState, setIsOpenDialogState] = useState(false);
 	const [isOpenDialogNotAvailableState, setIsOpenDialogNotAvailableState] = useState(false);
 	const [isLoading, setIsLoading] = useState(false);
+	const [referral, setReferral] = useState('')
 
 	const formLoading = useMemo(
 		() => stripeResponseLoading || loading,
@@ -121,6 +122,7 @@ const StripeForm: FC<StripeFormProps> = ({
 							zipCode: form.zip_code
 						},
 						coupon: coupon,
+						referral: referral.length ? referral : undefined,
 						product: selectedProduct.map(product => {
 							return {
 								productId: product.stripeProductId,
@@ -218,6 +220,12 @@ const StripeForm: FC<StripeFormProps> = ({
 			toast.error('An error occurred');
 		}
 	}
+
+	useEffect(() => {
+		window.rewardful('ready', function() {
+			setReferral(window.Rewardful.referral);
+		});
+	}, []);
 
 	return (
 		<form
