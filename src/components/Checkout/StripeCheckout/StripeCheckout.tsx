@@ -267,6 +267,7 @@ const StripeCheckout: FC<PageProps> = ({ searchParams }) => {
 								coupon={ discount?.id && promoCode ? promoCode : '' }
 								selectedProduct={ productSelected }
 								priceId={ priceId }
+								discount={ discount }
 							/>
 						</SheetContent>
 					</Sheet>
@@ -277,6 +278,7 @@ const StripeCheckout: FC<PageProps> = ({ searchParams }) => {
 					coupon={ discount?.id && promoCode ? promoCode : '' }
 					loading={ checkoutLoading }
 					totalPrice={ totalPrice }
+					discount={ discount }
 					handleCheckout={ handleCheckout }
 					selectedProduct={ productSelected }
 					priceId={ priceId }

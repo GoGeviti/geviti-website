@@ -19,7 +19,7 @@ import { IPrecheckout } from '@/interfaces';
 import { FormCheckoutSchema } from '@/validator/checkout';
 
 import { createSession, joinWaitListV2, validateState } from '../api/onboarding';
-import { ProductsResponse } from '../api/types';
+import { DiscountReturnType, ProductsResponse } from '../api/types';
 import CustomDatePicker from '../DatePicker';
 import { ExclamationIcon } from '../Payment/State';
 import CustomSelect from '../Select';
@@ -34,7 +34,8 @@ type StripeFormProps = {
   loading: boolean;
 	coupon : string;
 	priceId: string | string[] | undefined
-	selectedProduct : ProductsResponse[]
+	selectedProduct : ProductsResponse[];
+	discount:DiscountReturnType | null;
 };
 
 const initialValues = {
@@ -57,7 +58,8 @@ const StripeForm: FC<StripeFormProps> = ({
 	loading,
 	coupon,
 	selectedProduct,
-	priceId
+	priceId,
+	discount
 }) => {
 	const router = useRouter();
 	const [stripeResponseLoading, setStripeResponseLoading] = useState(false);
@@ -166,7 +168,7 @@ const StripeForm: FC<StripeFormProps> = ({
 		formik.setFieldValue('city', city ?? '');
 		formik.setFieldValue('state', state ?? '');
 		formik.setFieldValue('zip_code', zipCode ?? '');
-		formik.setFieldValue('address_1', (address1 ? address1  + ' ' : '') + address2 ?? '');
+		formik.setFieldValue('address_1', (address1 ? address1  + ' ' : '') + address2);
 		formik.setFieldValue('address_2', '');
 	}
 	const addressRef = useRef<HTMLInputElement>(null);
@@ -423,9 +425,14 @@ const StripeForm: FC<StripeFormProps> = ({
 									} }
 								>
 									<StripePaymentElement
+										coupon={ coupon }
 										statesChecked={ statesChecked }
 										email={ formik.values.email }
 										token={ token }
+										discount={ discount }
+										priceId={ priceId }
+										products={ selectedProduct }
+										form={ formik.values }
 										totalPrice={ totalPrice ?? 0 } />
 								</Elements>
 							</div>

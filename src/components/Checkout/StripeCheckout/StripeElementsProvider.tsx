@@ -2,7 +2,7 @@
 
 import { FC, useEffect } from 'react';
 
-import { ProductsResponse } from '../api/types';
+import { DiscountReturnType, ProductsResponse } from '../api/types';
 
 // import { Elements, ElementsConsumer } from '@stripe/react-stripe-js';
 // import { loadStripe } from '@stripe/stripe-js';
@@ -14,7 +14,8 @@ type BillingFormProps = {
   loading: boolean;
 	coupon: string;
 	priceId: string | string[] | undefined
-	selectedProduct : ProductsResponse[]
+	selectedProduct : ProductsResponse[];
+	discount:DiscountReturnType | null;
 };
 const StripeElementsProvider: FC<BillingFormProps> = ({
 	totalPrice,
@@ -22,7 +23,8 @@ const StripeElementsProvider: FC<BillingFormProps> = ({
 	loading,
 	coupon,
 	selectedProduct,
-	priceId
+	priceId,
+	discount,
 }) => {
 	// const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_TOKEN_STAGING || 'pk_test_fAj7WlTrG0uc5Z9WHKQDdoTq');
 
@@ -32,6 +34,7 @@ const StripeElementsProvider: FC<BillingFormProps> = ({
 
 	return (
 		<StripeForm
+			discount={ discount }
 			totalPrice={ totalPrice }
 			handleCheckout={ handleCheckout }
 			loading={ loading }

@@ -27,6 +27,7 @@ declare global {
 			referral: string
 		}
     _rwq: any[];
+		gtag: (...args: any[]) => void;
   }
 }
 

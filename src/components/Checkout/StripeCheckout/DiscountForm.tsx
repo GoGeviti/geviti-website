@@ -1,4 +1,4 @@
-import { FC, useRef } from 'react';
+import { FC,  useCallback,  useState } from 'react';
 import { debounce } from 'lodash';
 
 import { GreenCircleTick } from '@/components/Icons/GreenCircleTick';
@@ -18,10 +18,15 @@ const DiscountForm: FC<DiscountFormProps> = ({
 	loading,
 	disabled,
 }) => {
-	const inputRef = useRef<HTMLInputElement>(null);
-	const debounceSubmitCoupon = debounce(enteredCoupon => {
-		submitCoupon(enteredCoupon);
-	}, 800);
+	const [inputValue, setInputValue] = useState('');
+	const [prevValue, setPrevValue] = useState('');
+	
+	const debounceSubmitCoupon = useCallback(
+		debounce(enteredCoupon => {
+			submitCoupon(enteredCoupon);
+		}, 800),
+		[]
+	);
 
 	// const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
 	// 	if (e.target.value) debounceSubmitCoupon(e.target.value);
@@ -30,11 +35,11 @@ const DiscountForm: FC<DiscountFormProps> = ({
 	const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const newValue = e.target.value;
 
-		// Check if the current value is different from the ref value to avoid unnecessary debounce
-		if (inputRef.current && newValue !== inputRef.current.value) {
-			inputRef.current.value = newValue;
-				
-			if (newValue) debounceSubmitCoupon(newValue);
+		setInputValue(newValue);
+		// Call debounceSubmitCoupon only if the new value is different from the previous value
+		if (newValue !== prevValue) {
+			setPrevValue(newValue);
+			debounceSubmitCoupon(newValue);
 		}
 	};
 
@@ -48,7 +53,7 @@ const DiscountForm: FC<DiscountFormProps> = ({
 			</label>
 
 			<TextField
-				ref={ inputRef }
+				value={ inputValue }
 				className='mt-6'
 				id='coupon_code'
 				type='text'

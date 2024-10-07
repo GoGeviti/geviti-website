@@ -79,12 +79,19 @@ const RootLayout: React.FC<{ children: React.ReactNode; }> = ({ children }) => {
 						/>
 					</noscript>
 					<Script
+						id='google-ads-config'
+						strategy='afterInteractive'>
+						{ `
+						gtag('config', 'AW-11455487187');
+					` }
+					</Script>
+					<Script
 						src={ SCRIPT_URL }
 						data-rewardful={ API_KEY } />
 					<Script
 						id='rewardful-queue'
 						strategy='beforeInteractive'>
-						{`(function(w,r){w._rwq=r;w[r]=w[r]||function(){(w[r].q=w[r].q||[]).push(arguments)}})(window,'rewardful');`}
+						{ '(function(w,r){w._rwq=r;w[r]=w[r]||function(){(w[r].q=w[r].q||[]).push(arguments)}})(window,\'rewardful\');' }
 					</Script>
 				</body>
 			</StyledComponentsRegistry>

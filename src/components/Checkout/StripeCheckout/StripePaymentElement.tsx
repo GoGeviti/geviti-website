@@ -5,14 +5,21 @@ import { toast } from 'sonner'
 
 import { Spinner } from '@/components/Icons/Spinner'
 import clsxm from '@/helpers/clsxm'
+import { IPrecheckout } from '@/interfaces'
 
+import { DiscountReturnType, ProductsResponse } from '../api/types'
 import PrivacyPolicyStatement from '../PrivacyPolicyStatement'
 
 type StripePaymentElementProps = {
   totalPrice: number;
 	email : string;
 	token : string;
+	coupon : string;
 	statesChecked: boolean;
+	products: ProductsResponse[];
+	priceId: string | string[] | undefined;
+	discount:DiscountReturnType | null;
+	form: IPrecheckout.BillingInfo
 }
 
 const StripePaymentElement:React.FC<StripePaymentElementProps> = ({
@@ -20,6 +27,11 @@ const StripePaymentElement:React.FC<StripePaymentElementProps> = ({
 	email,
 	token,
 	statesChecked,
+	coupon,
+	products,
+	priceId,
+	discount,
+	form
 }) => {
 
 	const [formLoading, setFormLoading] = useState(false)
@@ -38,40 +50,55 @@ const StripePaymentElement:React.FC<StripePaymentElementProps> = ({
 		const { error } = await stripe.confirmPayment({
 			elements,
 			confirmParams: {
-				return_url: `${window.location.protocol}//${window.location.host}/onboarding/payment/success?email=${email}&token=${token}`,
+				return_url: `${window.location.protocol}//${window.location.host}/onboarding/payment/success?email=${email}&token=${token}&price=${totalPrice}`,
 			},
 		});
-		// 	window.dataLayer = window.dataLayer || [];
-		// 	window.dataLayer.push({ ecommerce: null });
-		// 	window.dataLayer.push({
-		// 		event: 'purchase',
-		// 		ecommerce: {
-		// 			transaction_id: checkoutResp.billingId,
-		// 			affiliation: 'GoGeveti',
-		// 			value: totalPrice,
-		// 			tax: 0,
-		// 			shipping: 0,
-		// 			currency: 'USD',
-		// 			coupon: '',
-		// 			items: [
-		// 				{
-		// 					item_id: product.id,
-		// 					item_name: product.name,
-		// 					affiliation: 'GoGeveti',
-		// 					coupon: discount?.coupon_details.keyword || '',
-		// 					currency: 'USD',
-		// 					index: '0',
-		// 					discount: discount?.coupon_details?.discounted_price ?? 0,
-		// 					item_brand: '',
-		// 					item_category: '',
-		// 					item_category2: '',
-		// 					item_variant: membership?.billing_frequency?.toLowerCase(),
-		// 					price: product.price,
-		// 					quantity: 1
-		// 				}
-		// 			]
-		// 		}
-		// 	});
+		window.dataLayer = window.dataLayer || [];
+		window.dataLayer.push({ ecommerce: null });
+		window.dataLayer.push({
+			event: 'purchase',
+			user_data: {
+				user_id: '',
+				email: form.email,
+				phone_number: form.phone_number, // E.164 format
+				address: {
+					first_name: form.firstName,
+					last_name: form.lastName,
+					street: form.address_1,
+					city: form.city,
+					region: form.state,
+					region_code: form.state,
+					postal_code: form.zip_code,
+					country: 'us', // Use 2-letter country codes, per the ISO 3166-1 alpha-2 standard.
+				}
+			},
+			ecommerce: {
+				transaction_id: token,
+				affiliation: 'GoGeveti',
+				value: totalPrice,
+				tax: 0,
+				shipping: 0,
+				currency: 'USD',
+				coupon: '',
+				items: products.map(product => {
+					return {
+						item_id: product.stripeProductId,
+						item_name: product.name,
+						affiliation: 'GoGeveti',
+						coupon: coupon || '',
+						currency: 'USD',
+						index: '0',
+						discount: discount?.amount_off ?? 0,
+						item_brand: '',
+						item_category: '',
+						item_category2: '',
+						item_variant: product.productPrices.find(e => e.priceId === priceId)?.billingFrequency,
+						price: Number(product.productPrices.find(e => e.priceId === priceId)?.price),
+						quantity: 1
+					}
+				})
+			}
+		});
 		setFormLoading(false);
 		if (error.type === 'card_error' || error.type === 'validation_error' || error.type === 'invalid_request_error') {
 			toast.error(error.message);
