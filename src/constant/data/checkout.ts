@@ -6,7 +6,7 @@ const checkoutData = {
 		description:
       'We need some personal information to ensure Geviti has the resources to serve you and to confirm your eligibility for our services.',
 		image: '/images/logo/logo_light.webp',
-		statesAvailable: ['AZ', 'CA', 'CO', 'UT', 'WA', 'TX', 'FL', 'GA', 'KS', 'OR', 'NM', 'MO'],
+		statesAvailable: ['AZ', 'CA', 'CO', 'FL', 'GA', 'IL', 'IN', 'KS', 'MO', 'NM', 'NV', 'OR', 'TN', 'TX', 'UT', 'VA', 'WA'],
 		submitLabel: 'Next Step',
 		cancelLabel: 'Cancel',
 		homeAddressSectionLabel: 'Home Address',

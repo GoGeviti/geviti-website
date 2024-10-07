@@ -571,7 +571,7 @@ const landingData = {
 			preTitle: 'What states do we support?',
 			title: 'Care that goes where you go.',
 			description:
-        'Available in 12 states and expanding across all the country: <br/>AZ, CA, CO, UT, WA, TX, FL, GA, KS, OR, NM, MO',
+        'Available in 17 states and expanding across all the country: <br/>AZ, CA, CO, FL, GA, IL, IN, KS, MO, NM, NV, OR, TN, TX, UT, VA, WA.',
 			btnCta: {
 				text: 'Become a member',
 				href: '/pricing',

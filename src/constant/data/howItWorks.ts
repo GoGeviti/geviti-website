@@ -204,7 +204,7 @@ const howItWorksData = {
 		list: [
 			{
 				questions: 'What states does Geviti currently support?',
-				answer: 'As of now, we are only in Arizona. We plan on being in each state by the end of 2024. Be sure to opt-in to our progress so we can notify you if we don’t currently support your state.'
+				answer: 'Geviti currently offers services in seventeen states: Arizona (AZ), California (CA), Colorado (CO), Florida (FL), Georgia (GA), Illinois (IL), Indiana (IN), Kansas (KS), Missouri (MO), New Mexico (NM), Nevada (NV), Oregon (OR), Tennessee (TN), Texas (TX), Utah (UT), Virginia (VA), Washington (WA). We are actively expanding to include more states across the country.'
 			},
 			{
 				questions: 'How much is a membership for Geviti?',

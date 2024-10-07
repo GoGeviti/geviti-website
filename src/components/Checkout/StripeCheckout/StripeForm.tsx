@@ -1,14 +1,14 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import React, {
+	FC, useEffect, useMemo, useRef, useState
+} from 'react';
+import Autocomplete from 'react-google-autocomplete';
 import InputMask from '@mona-health/react-input-mask';
 import { Elements, } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 import { FormikProps, useFormik } from 'formik';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import React, {
-	FC, useEffect, useMemo, useRef, useState
-} from 'react';
-import Autocomplete from 'react-google-autocomplete';
 import { toast } from 'sonner';
 
 import { Dialog, DialogContent } from '@/components/Dialog';
@@ -488,7 +488,7 @@ const StripeForm: FC<StripeFormProps> = ({
 						</button>
 						<p className='text-grey-primary uppercase text-[8.809px] font-semibold tracking-[0.969px] mt-3'>What states do we support?</p>
 						<p className='text-primary text-lg '>Care that goes where you go.</p>
-						<p className='text-grey-400 text-[8.809px] mt-2'>Available in 12 states and expanding across all the country: AZ, CA, CO, UT, WA, TX, FL, GA, KS, OR, NM, MO</p>
+						<p className='text-grey-400 text-[8.809px] mt-2'>Available in 17 states and expanding across all the country: AZ, CA, CO, FL, GA, IL, IN, KS, MO, NM, NV, OR, TN, TX, UT, VA, WA.</p>
 						<div className='flex items-center justify-center'>
 							<Image
 								src='/images/landing/compressed/continent_dots.webp'

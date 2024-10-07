@@ -1,4 +1,4 @@
-import { ChangeEvent, FC } from 'react';
+import { FC, useRef } from 'react';
 import { debounce } from 'lodash';
 
 import { GreenCircleTick } from '@/components/Icons/GreenCircleTick';
@@ -18,12 +18,24 @@ const DiscountForm: FC<DiscountFormProps> = ({
 	loading,
 	disabled,
 }) => {
+	const inputRef = useRef<HTMLInputElement>(null);
 	const debounceSubmitCoupon = debounce(enteredCoupon => {
 		submitCoupon(enteredCoupon);
 	}, 800);
 
-	const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
-		if (e.target.value) debounceSubmitCoupon(e.target.value);
+	// const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+	// 	if (e.target.value) debounceSubmitCoupon(e.target.value);
+	// };
+
+	const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		const newValue = e.target.value;
+
+		// Check if the current value is different from the ref value to avoid unnecessary debounce
+		if (inputRef.current && newValue !== inputRef.current.value) {
+			inputRef.current.value = newValue;
+				
+			if (newValue) debounceSubmitCoupon(newValue);
+		}
 	};
 
 	return (
@@ -36,6 +48,7 @@ const DiscountForm: FC<DiscountFormProps> = ({
 			</label>
 
 			<TextField
+				ref={ inputRef }
 				className='mt-6'
 				id='coupon_code'
 				type='text'

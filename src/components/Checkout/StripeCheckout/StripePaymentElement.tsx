@@ -41,6 +41,37 @@ const StripePaymentElement:React.FC<StripePaymentElementProps> = ({
 				return_url: `${window.location.protocol}//${window.location.host}/onboarding/payment/success?email=${email}&token=${token}`,
 			},
 		});
+		// 	window.dataLayer = window.dataLayer || [];
+		// 	window.dataLayer.push({ ecommerce: null });
+		// 	window.dataLayer.push({
+		// 		event: 'purchase',
+		// 		ecommerce: {
+		// 			transaction_id: checkoutResp.billingId,
+		// 			affiliation: 'GoGeveti',
+		// 			value: totalPrice,
+		// 			tax: 0,
+		// 			shipping: 0,
+		// 			currency: 'USD',
+		// 			coupon: '',
+		// 			items: [
+		// 				{
+		// 					item_id: product.id,
+		// 					item_name: product.name,
+		// 					affiliation: 'GoGeveti',
+		// 					coupon: discount?.coupon_details.keyword || '',
+		// 					currency: 'USD',
+		// 					index: '0',
+		// 					discount: discount?.coupon_details?.discounted_price ?? 0,
+		// 					item_brand: '',
+		// 					item_category: '',
+		// 					item_category2: '',
+		// 					item_variant: membership?.billing_frequency?.toLowerCase(),
+		// 					price: product.price,
+		// 					quantity: 1
+		// 				}
+		// 			]
+		// 		}
+		// 	});
 		setFormLoading(false);
 		if (error.type === 'card_error' || error.type === 'validation_error' || error.type === 'invalid_request_error') {
 			toast.error(error.message);
