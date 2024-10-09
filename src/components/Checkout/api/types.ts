@@ -208,6 +208,7 @@ export interface CreateSessionParams {
     price: number;
     price_id: string;
   }[];
+  payment_token?:string
 }
 export interface ValidateUserStateParams {
   firstName: string;

@@ -19,9 +19,20 @@ export const TotalCalc: FC<ITotalCalc> = ({
 		[productPrice, membershipPrice]
 	);
 
+	const calculateDiscountAmount = () => {
+		if (discount?.percent_off) {
+			return (membershipPrice * discount.percent_off) / 100;
+		}
+		if (discount?.amount_off) {
+			const amountOffDollars = discount.amount_off / 100;
+			return Math.min(amountOffDollars, membershipPrice);
+		}
+		return 0;
+	};
+
 	const totalDiscount = useMemo(() => {
 		if (discount?.id) {
-			const discountAmount = (membershipPrice * discount.percent_off) / 100;
+			const discountAmount = calculateDiscountAmount();
 			return discountAmount.toFixed(2);
 		}
 		return 0;
@@ -29,7 +40,7 @@ export const TotalCalc: FC<ITotalCalc> = ({
 
 	const totalDue = useMemo(() => {
 		if (discount?.id) {
-			const discountAmount = (membershipPrice * discount.percent_off) / 100;
+			const discountAmount = calculateDiscountAmount();
 			const due = ((membershipPrice + productPrice) - discountAmount).toFixed(2);
 			setTotalPrice(Number(due));
 			return due;
@@ -38,13 +49,29 @@ export const TotalCalc: FC<ITotalCalc> = ({
 		return total;
 	}, [total, discount]);
 
+	const calculateEffectivePercentage = (discountAmount: number, price: number) => {
+		return ((discountAmount / price) * 100).toFixed(2);
+	};
+
+	const displayPercentage = useMemo(() => {
+		if (discount?.id) {
+			if (discount.percent_off) {
+				return discount.percent_off;
+			} else if (discount.amount_off) {
+				const discountAmount = calculateDiscountAmount();
+				return calculateEffectivePercentage(discountAmount, membershipPrice);
+			}
+		}
+		return '0.00';
+	}, [discount, membershipPrice]);
+
 	return (
 		<div className='flex justify-between py-12'>
 			<div className='flex flex-col'>
 				<p className='text-grey-primary text-sm'>Total</p>
 				{ discount?.id && (
 					<p className='text-grey-primary py-6 text-sm'>
-            Coupon - { discount.percent_off }%
+            Coupon - { displayPercentage }%
 					</p>
 				) }
 				<p className='text-white text-lg py-6'>Total due</p>

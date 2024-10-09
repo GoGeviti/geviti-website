@@ -133,7 +133,8 @@ const StripeForm: FC<StripeFormProps> = ({
 								price: Number(product.productPrices.find(e => e.priceId === priceId)?.price),
 								price_id: priceId?.toString() ?? ''
 							}
-						})
+						}),
+						// payment_token: isValidState.token
 					}
 				})
 				setToken(sessionSecret.token);

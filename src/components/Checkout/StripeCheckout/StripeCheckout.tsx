@@ -69,7 +69,6 @@ const StripeCheckout: FC<PageProps> = ({ searchParams }) => {
 			setLoading(true);
 			const products = await getAllProducts();
 			setProduct(products.find(it => it.stripeProductId === productId));
-			// setAllProducts(products);
 			if (Array.isArray(products)) {
 				setProductSelected(products.filter(it => it.stripeProductId === productId));
 			} else {
@@ -85,8 +84,8 @@ const StripeCheckout: FC<PageProps> = ({ searchParams }) => {
 			try {
 				// setLoading(true);
 				setCouponLoading(true);
-				if (!code || !product) throw 'No coupon applied'
-				const couponDiscount = await getDiscount(code);
+				if (!code || !productSelected) throw 'No coupon applied'
+				const couponDiscount = await getDiscount(code, productId?.toString() ?? '');
 				setDiscount(couponDiscount);
 				if (couponDiscount?.id) {
 					setDiscountApplied(true);
@@ -111,7 +110,7 @@ const StripeCheckout: FC<PageProps> = ({ searchParams }) => {
 				});
 			}
 		},
-		[product, getDiscount]
+		[]
 	);
 
 	const handleCheckout = useCallback(
@@ -127,57 +126,6 @@ const StripeCheckout: FC<PageProps> = ({ searchParams }) => {
 				}
 				setLoading(true);
 				setCheckoutLoading(true);
-				// const checkoutResp = await checkout({
-				// 	user_token: '123',
-				// 	stripe_token: token,
-				// 	product: {
-				// 		price: product.price.toString(),
-				// 		offering_id: product.id,
-				// 	},
-				// 	membership: {
-				// 		price: membership.price.toString(),
-				// 		offering_id: membership.id,
-				// 	},
-				// 	addons: {
-				// 		price: '',
-				// 		offering_id: '',
-				// 	},
-				// 	coupon: discount?.coupon_details.keyword || '',
-				// });
-				// sessionStorage.setItem('checkout_token', checkoutResp.token);
-				// if (checkoutResp.token) {
-				// 	window.dataLayer = window.dataLayer || [];
-				// 	window.dataLayer.push({ ecommerce: null });
-				// 	window.dataLayer.push({
-				// 		event: 'purchase',
-				// 		ecommerce: {
-				// 			transaction_id: checkoutResp.billingId,
-				// 			affiliation: 'GoGeveti',
-				// 			value: totalPrice,
-				// 			tax: 0,
-				// 			shipping: 0,
-				// 			currency: 'USD',
-				// 			coupon: '',
-				// 			items: [
-				// 				{
-				// 					item_id: product.id,
-				// 					item_name: product.name,
-				// 					affiliation: 'GoGeveti',
-				// 					coupon: discount?.coupon_details.keyword || '',
-				// 					currency: 'USD',
-				// 					index: '0',
-				// 					discount: discount?.coupon_details?.discounted_price ?? 0,
-				// 					item_brand: '',
-				// 					item_category: '',
-				// 					item_category2: '',
-				// 					item_variant: membership?.billing_frequency?.toLowerCase(),
-				// 					price: product.price,
-				// 					quantity: 1
-				// 				}
-				// 			]
-				// 		}
-				// 	});
-				// }
 				setLoading(false);
 				setCheckoutLoading(false);
 				router.push('payment/success');
