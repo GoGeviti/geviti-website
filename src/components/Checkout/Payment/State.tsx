@@ -181,6 +181,7 @@ const State: React.FC<StateProps> = ({ type, searchParams }) => {
 	const router = useRouter();
 	const email = searchParams?.email
 	const tokenParam = searchParams?.token
+	const price = searchParams?.price
 	const windowDimensions = useWindowDimensions();
 	const isMobile = windowDimensions.width < screens.lg;
 
@@ -209,6 +210,16 @@ const State: React.FC<StateProps> = ({ type, searchParams }) => {
 				if (typeof window !== 'undefined' && window.rewardful) {
 					window.rewardful('convert', {
 						email: email,
+					});
+				}
+
+				// Trigger Google conversion tracking
+				if (typeof window !== 'undefined' && window.gtag) {
+					window.gtag('event', 'conversion', {
+						'send_to': 'AW-11455487187/6DMzCOi2tNkZENO5s9Yq',
+						'value': price, // You can dynamically assign the value here based on the purchase
+						'currency': 'USD', // Dynamically assign the currency
+						'transaction_id': tokenParam || '' // Dynamically assign transaction ID
 					});
 				}
 				const dashboardHref = `${process.env.NEXT_PUBLIC_APP_URL}/create-password?reset_token=${token.restKey}`

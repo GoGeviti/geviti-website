@@ -124,7 +124,7 @@ const marketingData = {
 			],
 			menopause: [
 				'Doctor recommended hormone treatments',
-				'Starting at just $XX/month for Members',
+				'<span class="lg:hidden">Personalized plans based on your bloodwork</span><span class="max-lg:hidden">Personalized protocol based on your bloodwork</span>',
 				'Ongoing care & health monitoring',
 			],
 			'business-oriented': [
@@ -406,10 +406,10 @@ const marketingData = {
 				{
 					id: 1,
 					category: { id: 1 },
-					title: 'Custom Capsules',
+					title: 'Micronized Progesterone',
 					description:
             'Includes progesterone, estriol, and estradiol together or separately. $1/cap.',
-					image: '/images/marketing/products/mockup.webp',
+					image: '/images/marketing/products/micronized-progesterone.webp',
 				},
 				{
 					id: 2,
@@ -417,7 +417,7 @@ const marketingData = {
 					title: 'Custom Troche',
 					description:
             'Includes progesterone, estriol, and estradiol together or separately. $1/Troche.',
-					image: '/images/marketing/products/mockup.webp',
+					image: '/images/solution_media/products/hormone-therapy/custom-hormone-troches.webp',
 				},
 				{
 					id: 3,
@@ -425,7 +425,7 @@ const marketingData = {
 					title: 'Custom Cream',
 					description:
             'Includes progesterone, estriol, and estradiol together or separately. $1/gm.',
-					image: '/images/marketing/products/mockup.webp',
+					image: '/images/solution_media/products/hormone-therapy/custom-hormone-blend.webp',
 				},
 				{
 					id: 4,
@@ -433,7 +433,7 @@ const marketingData = {
 					title: 'Weight Loss',
 					description:
             'Safe and effective treatment options like GLP-1s and other medications. $90/mo',
-					image: '/images/marketing/products/semaglutide.webp',
+					image: '/images/solution_media/products/weight-loss/semaglutide-troches-male.webp',
 				},
 				{
 					id: 5,
@@ -514,7 +514,7 @@ const marketingData = {
 			{
 				title: 'In which states is Geviti available?',
 				content:
-          'Geviti currently offers services in twelve states: Arizona (AZ), California (CA), Colorado (CO), Utah (UT), Washington (WA), Texas (TX), Florida (FL), Georgia (GA), Kansas (KS), Oregon (OR), New Mexico (NM), and Missouri (MO). We are actively expanding to include more states across the country.',
+          'Geviti currently offers services in seventeen states: Arizona (AZ), California (CA), Colorado (CO), Florida (FL), Georgia (GA), Illinois (IL), Indiana (IN), Kansas (KS), Missouri (MO), New Mexico (NM), Nevada (NV), Oregon (OR), Tennessee (TN), Texas (TX), Utah (UT), Virginia (VA), Washington (WA). We are actively expanding to include more states across the country.',
 			},
 			{
 				title: 'How do I get started?',
@@ -640,6 +640,7 @@ const marketingData = {
 				description:
           'Comprehensive bloodwork that could cost you thousands elsewhere - we’re giving it to you for free every 6 months. Just one of the benefits of being a Geviti Member.',
 				image: '/images/marketing/menopause/menopause-care-3.webp',
+				imageMobile: '/images/marketing/menopause/menopause-care-3-mobile.webp',
 			},
 		},
 	},

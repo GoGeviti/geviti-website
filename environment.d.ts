@@ -23,7 +23,11 @@ declare global {
 	interface Window {
     dataLayer: any[];
 		rewardful: RewardfulStatic;
+		Rewardful: {
+			referral: string
+		}
     _rwq: any[];
+		gtag: (...args: any[]) => void;
   }
 }
 

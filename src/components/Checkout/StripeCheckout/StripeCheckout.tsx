@@ -1,6 +1,6 @@
 'use client';
 
-import React, { FC, useCallback, useEffect, useState } from 'react';
+import { FC, useCallback, useEffect, useState } from 'react';
 import { AiFillCloseCircle } from 'react-icons/ai';
 import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
@@ -14,9 +14,6 @@ import {
 	// checkout,
 	getAllProducts,
 	getDiscount,
-	// getInitialOfferings,
-	// getMembershipOfferings,
-	// getProductsPrice,
 } from '../api/onboarding';
 import {
 	DiscountReturnType,
@@ -60,6 +57,7 @@ const StripeCheckout: FC<PageProps> = ({ searchParams }) => {
 	const [discount, setDiscount] = useState<DiscountReturnType | null>(null);
 	const [totalPrice, setTotalPrice] = useState<number>();
 	const [discountApplied, setDiscountApplied] = useState(false);
+	const [promoCode, setPromoCode] = useState('');
 
 	useEffect(() => {
 		// setProductLoading(true);
@@ -71,7 +69,6 @@ const StripeCheckout: FC<PageProps> = ({ searchParams }) => {
 			setLoading(true);
 			const products = await getAllProducts();
 			setProduct(products.find(it => it.stripeProductId === productId));
-			// setAllProducts(products);
 			if (Array.isArray(products)) {
 				setProductSelected(products.filter(it => it.stripeProductId === productId));
 			} else {
@@ -87,13 +84,15 @@ const StripeCheckout: FC<PageProps> = ({ searchParams }) => {
 			try {
 				// setLoading(true);
 				setCouponLoading(true);
-				if (!code || !product) throw 'No coupon applied'
-				const couponDiscount = await getDiscount(code);
+				if (!code || !productSelected) throw 'No coupon applied'
+				const couponDiscount = await getDiscount(code, productId?.toString() ?? '');
 				setDiscount(couponDiscount);
 				if (couponDiscount?.id) {
 					setDiscountApplied(true);
+					setPromoCode(() => code.toUpperCase());
 				} else {
 					setDiscountApplied(false);
+					setPromoCode(() => '');
 					toast.error('Coupon doesn\'t exist', {
 						icon: <AiFillCloseCircle className='h-5 w-5 text-danger' />,
 					});
@@ -102,6 +101,7 @@ const StripeCheckout: FC<PageProps> = ({ searchParams }) => {
 				setCouponLoading(false);
 			} catch (error) {
 				setDiscount(null);
+				setPromoCode('');
 				setDiscountApplied(false);
 				// setLoading(false);
 				setCouponLoading(false);
@@ -110,7 +110,7 @@ const StripeCheckout: FC<PageProps> = ({ searchParams }) => {
 				});
 			}
 		},
-		[product, getDiscount]
+		[]
 	);
 
 	const handleCheckout = useCallback(
@@ -126,57 +126,6 @@ const StripeCheckout: FC<PageProps> = ({ searchParams }) => {
 				}
 				setLoading(true);
 				setCheckoutLoading(true);
-				// const checkoutResp = await checkout({
-				// 	user_token: '123',
-				// 	stripe_token: token,
-				// 	product: {
-				// 		price: product.price.toString(),
-				// 		offering_id: product.id,
-				// 	},
-				// 	membership: {
-				// 		price: membership.price.toString(),
-				// 		offering_id: membership.id,
-				// 	},
-				// 	addons: {
-				// 		price: '',
-				// 		offering_id: '',
-				// 	},
-				// 	coupon: discount?.coupon_details.keyword || '',
-				// });
-				// sessionStorage.setItem('checkout_token', checkoutResp.token);
-				// if (checkoutResp.token) {
-				// 	window.dataLayer = window.dataLayer || [];
-				// 	window.dataLayer.push({ ecommerce: null });
-				// 	window.dataLayer.push({
-				// 		event: 'purchase',
-				// 		ecommerce: {
-				// 			transaction_id: checkoutResp.billingId,
-				// 			affiliation: 'GoGeveti',
-				// 			value: totalPrice,
-				// 			tax: 0,
-				// 			shipping: 0,
-				// 			currency: 'USD',
-				// 			coupon: '',
-				// 			items: [
-				// 				{
-				// 					item_id: product.id,
-				// 					item_name: product.name,
-				// 					affiliation: 'GoGeveti',
-				// 					coupon: discount?.coupon_details.keyword || '',
-				// 					currency: 'USD',
-				// 					index: '0',
-				// 					discount: discount?.coupon_details?.discounted_price ?? 0,
-				// 					item_brand: '',
-				// 					item_category: '',
-				// 					item_category2: '',
-				// 					item_variant: membership?.billing_frequency?.toLowerCase(),
-				// 					price: product.price,
-				// 					quantity: 1
-				// 				}
-				// 			]
-				// 		}
-				// 	});
-				// }
 				setLoading(false);
 				setCheckoutLoading(false);
 				router.push('payment/success');
@@ -189,7 +138,7 @@ const StripeCheckout: FC<PageProps> = ({ searchParams }) => {
 				});
 			}
 		},
-		[product, discount]
+		[product, discount, promoCode]
 	);
 	return (
 		<div className='flex flex-col lg:flex-row min-h-screen h-full w-full font-Poppins'>
@@ -263,9 +212,10 @@ const StripeCheckout: FC<PageProps> = ({ searchParams }) => {
 								loading={ checkoutLoading }
 								totalPrice={ totalPrice }
 								handleCheckout={ handleCheckout }
-								coupon={ discount?.id ?? '' }
+								coupon={ discount?.id && promoCode ? promoCode : '' }
 								selectedProduct={ productSelected }
 								priceId={ priceId }
+								discount={ discount }
 							/>
 						</SheetContent>
 					</Sheet>
@@ -273,9 +223,10 @@ const StripeCheckout: FC<PageProps> = ({ searchParams }) => {
 			</div>
 			<div className='h-full w-full bg-white max-lg:hidden'>
 				<StripeElementsProvider
-					coupon={ discount?.id ?? '' }
+					coupon={ discount?.id && promoCode ? promoCode : '' }
 					loading={ checkoutLoading }
 					totalPrice={ totalPrice }
+					discount={ discount }
 					handleCheckout={ handleCheckout }
 					selectedProduct={ productSelected }
 					priceId={ priceId }

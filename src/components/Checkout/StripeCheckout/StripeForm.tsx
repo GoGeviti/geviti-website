@@ -2,7 +2,7 @@
 import React, {
 	FC, useEffect, useMemo, useRef, useState
 } from 'react';
-import  Autocomplete from 'react-google-autocomplete';
+import Autocomplete from 'react-google-autocomplete';
 import InputMask from '@mona-health/react-input-mask';
 import { Elements, } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
@@ -19,7 +19,7 @@ import { IPrecheckout } from '@/interfaces';
 import { FormCheckoutSchema } from '@/validator/checkout';
 
 import { createSession, joinWaitListV2, validateState } from '../api/onboarding';
-import { ProductsResponse } from '../api/types';
+import { DiscountReturnType, ProductsResponse } from '../api/types';
 import CustomDatePicker from '../DatePicker';
 import { ExclamationIcon } from '../Payment/State';
 import CustomSelect from '../Select';
@@ -34,7 +34,8 @@ type StripeFormProps = {
   loading: boolean;
 	coupon : string;
 	priceId: string | string[] | undefined
-	selectedProduct : ProductsResponse[]
+	selectedProduct : ProductsResponse[];
+	discount:DiscountReturnType | null;
 };
 
 const initialValues = {
@@ -57,7 +58,8 @@ const StripeForm: FC<StripeFormProps> = ({
 	loading,
 	coupon,
 	selectedProduct,
-	priceId
+	priceId,
+	discount
 }) => {
 	const router = useRouter();
 	const [stripeResponseLoading, setStripeResponseLoading] = useState(false);
@@ -68,6 +70,7 @@ const StripeForm: FC<StripeFormProps> = ({
 	const [isOpenDialogState, setIsOpenDialogState] = useState(false);
 	const [isOpenDialogNotAvailableState, setIsOpenDialogNotAvailableState] = useState(false);
 	const [isLoading, setIsLoading] = useState(false);
+	const [referral, setReferral] = useState('')
 
 	const formLoading = useMemo(
 		() => stripeResponseLoading || loading,
@@ -121,6 +124,7 @@ const StripeForm: FC<StripeFormProps> = ({
 							zipCode: form.zip_code
 						},
 						coupon: coupon,
+						referral: referral.length ? referral : undefined,
 						product: selectedProduct.map(product => {
 							return {
 								productId: product.stripeProductId,
@@ -129,7 +133,8 @@ const StripeForm: FC<StripeFormProps> = ({
 								price: Number(product.productPrices.find(e => e.priceId === priceId)?.price),
 								price_id: priceId?.toString() ?? ''
 							}
-						})
+						}),
+						// payment_token: isValidState.token
 					}
 				})
 				setToken(sessionSecret.token);
@@ -164,7 +169,7 @@ const StripeForm: FC<StripeFormProps> = ({
 		formik.setFieldValue('city', city ?? '');
 		formik.setFieldValue('state', state ?? '');
 		formik.setFieldValue('zip_code', zipCode ?? '');
-		formik.setFieldValue('address_1', (address1 ? address1  + ' ' : '') + address2 ?? '');
+		formik.setFieldValue('address_1', (address1 ? address1  + ' ' : '') + address2);
 		formik.setFieldValue('address_2', '');
 	}
 	const addressRef = useRef<HTMLInputElement>(null);
@@ -218,6 +223,12 @@ const StripeForm: FC<StripeFormProps> = ({
 			toast.error('An error occurred');
 		}
 	}
+
+	useEffect(() => {
+		window.rewardful('ready', function() {
+			setReferral(window.Rewardful.referral);
+		});
+	}, []);
 
 	return (
 		<form
@@ -415,9 +426,14 @@ const StripeForm: FC<StripeFormProps> = ({
 									} }
 								>
 									<StripePaymentElement
+										coupon={ coupon }
 										statesChecked={ statesChecked }
 										email={ formik.values.email }
 										token={ token }
+										discount={ discount }
+										priceId={ priceId }
+										products={ selectedProduct }
+										form={ formik.values }
 										totalPrice={ totalPrice ?? 0 } />
 								</Elements>
 							</div>
@@ -480,7 +496,7 @@ const StripeForm: FC<StripeFormProps> = ({
 						</button>
 						<p className='text-grey-primary uppercase text-[8.809px] font-semibold tracking-[0.969px] mt-3'>What states do we support?</p>
 						<p className='text-primary text-lg '>Care that goes where you go.</p>
-						<p className='text-grey-400 text-[8.809px] mt-2'>Available in 12 states and expanding across all the country: AZ, CA, CO, UT, WA, TX, FL, GA, KS, OR, NM, MO</p>
+						<p className='text-grey-400 text-[8.809px] mt-2'>Available in 17 states and expanding across all the country: AZ, CA, CO, FL, GA, IL, IN, KS, MO, NM, NV, OR, TN, TX, UT, VA, WA.</p>
 						<div className='flex items-center justify-center'>
 							<Image
 								src='/images/landing/compressed/continent_dots.webp'

@@ -81,15 +81,15 @@ const productsFemale = [
 	// },
 	{
 		id: 6,
-		name: 'Sermorelin Mini Troche',
+		name: 'Sermorelin Troche',
 		description:
-      'Sermorelin Mini Troches dissolve under the tongue for rapid absorption, stimulating natural growth hormone production without the need for injections. They support anti-aging, muscle strength, and vitality.',
-		sort_description: 'Sublingual Mini Troche',
+      'Sermorelin Troches dissolve under the tongue for rapid absorption, stimulating natural growth hormone production without the need for injections. They support anti-aging, muscle strength, and vitality.',
+		sort_description: 'Sublingual Sermorelin Troche',
 		price: 75,
 		category: { id: 1 },
 		subCategory: { id: [2] },
 		image:
-      '/images/solution_media/products/anti-aging/sermorelin-mini-troches.webp',
+      '/images/solution_media/products/anti-aging/sermorelin-troches.webp',
 		list: [
 			'Quick Absorption',
 			'Enhances Vitality',

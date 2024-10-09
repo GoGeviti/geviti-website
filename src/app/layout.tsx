@@ -10,11 +10,17 @@ import { mergeOpenGraph } from '@/lib/mergeOpenGraph';
 import StyledComponentsRegistry from '@/lib/registry';
 
 import 'aos/dist/aos.css';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
 import 'react-datepicker/dist/react-datepicker.css';
+import 'slick-carousel/slick/slick-theme.css';
+import 'slick-carousel/slick/slick.css';
 import './globals.css';
 import './main.css';
+
+// Use your Rewardful API Key
+const API_KEY = process.env.NEXT_PUBLIC_REWARDFUL_API_KEY || '642d4d';
+
+// If not setting NEXT_PUBLIC_APP_REWARDFUL_SCRIPT_URL, just use https://r.wdfl.co/rw.js
+const SCRIPT_URL = process.env.NEXT_PUBLIC_APP_REWARDFUL_SCRIPT_URL || 'https://r.wdfl.co/rw.js';
 
 export const metadata: Metadata = {
 	title: 'Geviti',
@@ -73,17 +79,20 @@ const RootLayout: React.FC<{ children: React.ReactNode; }> = ({ children }) => {
 						/>
 					</noscript>
 					<Script
-						id='rewardful_func'
-						strategy='beforeInteractive'>
-						{ `(function(w,r){w._rwq=r;w[r]=w[r]||function(){(w[r].q=w[r].q|| 
-    				[]).push(arguments)}})(window,'rewardful');` }
+						id='google-ads-config'
+						strategy='afterInteractive'>
+						{ `
+						gtag('config', 'AW-11455487187');
+					` }
 					</Script>
-
 					<Script
-						id='rewardful_api'
-						strategy='beforeInteractive'
-						src='https://r.wdfl.co/rw.js'
-						data-rewardful='642d4d'  />
+						src={ SCRIPT_URL }
+						data-rewardful={ API_KEY } />
+					<Script
+						id='rewardful-queue'
+						strategy='beforeInteractive'>
+						{ '(function(w,r){w._rwq=r;w[r]=w[r]||function(){(w[r].q=w[r].q||[]).push(arguments)}})(window,\'rewardful\');' }
+					</Script>
 				</body>
 			</StyledComponentsRegistry>
 		</html>

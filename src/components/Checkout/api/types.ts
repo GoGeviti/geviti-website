@@ -200,6 +200,7 @@ export interface CreateSessionParams {
     zipCode: string;
   };
   coupon: string;
+  referral?: string;
   product: {
     productId: string;
     productName: string;
@@ -207,6 +208,7 @@ export interface CreateSessionParams {
     price: number;
     price_id: string;
   }[];
+  payment_token?:string
 }
 export interface ValidateUserStateParams {
   firstName: string;

@@ -125,10 +125,10 @@ export const getMembershipOfferings = async(): Promise<MembershipOfferingsReturn
 	}
 };
 
-export const getDiscount = async(code: string): Promise<DiscountReturnType> => {
+export const getDiscount = async(code: string, product_id:string): Promise<DiscountReturnType> => {
 	try {
 		const res = await fetch(
-			`${onboardingApiUrl}/coupons/${code}
+			`${onboardingApiUrl}/coupons/${code}?product_id=${product_id}
     `,
 			{
 				method: 'GET',
