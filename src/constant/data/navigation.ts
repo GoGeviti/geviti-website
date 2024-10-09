@@ -20,6 +20,11 @@ const navigationData = {
 			externalLink: false,
 		},
 		{
+			name: 'Bloodwork',
+			href: '/longeviti-panel',
+			externalLink: false,
+		},
+		{
 			name: 'Pricing',
 			href: '/pricing',
 			externalLink: false,
