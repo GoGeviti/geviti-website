@@ -10,20 +10,20 @@ import clsxm from '@/helpers/clsxm';
 const analyzedData = longevitiPanelData.analyzed;
 
 const Analyzed: React.FC = () => {
-	const [selectedCategoryIdx, setSelectedCategoryIdx] = useState<number>(0);
+	const [selectedCategoryIdx, setSelectedCategoryIdx] = useState<number>(1);
 	const [openIdx, setOpenIdx] = useState<number>(-1);
 
 	const renderButtonSwitch = () => {
 		return (
 			<div className='relative w-full rounded-[100px] h-[49px] px-1.5 bg-grey-50'>
 				<div className='relative flex items-center justify-center w-full h-full gap-3.5'>
-					{ analyzedData.categories.map((opt, optIdx) => {
-						const selected = selectedCategoryIdx === optIdx;
+					{ analyzedData.categories.map(opt => {
+						const selected = selectedCategoryIdx === opt.id;
 
 						return (
 							<button
-								key={ `opt-${optIdx}` }
-								onClick={ () => setSelectedCategoryIdx(optIdx) }
+								key={ `opt-${opt.id}` }
+								onClick={ () => setSelectedCategoryIdx(opt.id) }
 								className={ clsxm(
 									selected
 										? 'text-white font-medium'
@@ -72,7 +72,7 @@ const Analyzed: React.FC = () => {
 					transition={ { duration: 0.375, ease: 'easeInOut' } }
 				>
 					<div className='w-full flex flex-col gap-y-3.5 lg:gap-y-6'>
-						{ analyzedData.data.map((item, itemIdx) => (
+						{ analyzedData.categories.find(e => e.id === selectedCategoryIdx)?.data.map((item, itemIdx) => (
 							<Accordion
 								key={ item.title }
 								index={ itemIdx }
@@ -90,7 +90,7 @@ const Analyzed: React.FC = () => {
 
 export default Analyzed;
 
-type AccordionProps = (typeof analyzedData.data)[0] & {
+type AccordionProps = (typeof analyzedData.categories[0]['data'])[0] & {
   index: number;
   openIdx: number;
   setOpenIdx: React.Dispatch<React.SetStateAction<number>>;
@@ -148,7 +148,7 @@ const Accordion: React.FC<AccordionProps> = ({
 							alt={ title }
 							width={ 46 }
 							height={ 46 }
-							className='w-auto h-auto flex-shrink-0'
+							className='w-[46px] h-[46px] flex-shrink-0'
 						/>
 
 						<h5 className='text-lg lg:text-2xl !leading-normal max-lg:font-medium -tracking-0.04em text-primary'>
