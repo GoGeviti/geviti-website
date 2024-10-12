@@ -649,7 +649,7 @@ const marketingData = {
       'What our customers<br/><span class="text-grey-primary">say about us</span>',
 		list: [
 			{
-				body: 'Since starting on my custom Longeviti Blend, I’ve not only been waking up before my alarm, but I’ve also had some of my best workouts in years',
+				body: 'Since starting on my custom Longeviti Blend, I’ve not only been waking up before my alarm, but I’ve also had some of my best workouts in years.',
 				author: {
 					name: '',
 					company: 'Cole M.',
