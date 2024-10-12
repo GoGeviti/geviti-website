@@ -659,14 +659,14 @@ const marketingData = {
 				body: 'Everyone with whom I have interacted at Geviti is genuinely concerned about creating an optimal healthcare outcome for their clients.',
 				author: {
 					name: '',
-					company: 'Kurt M',
+					company: 'Kurt M.',
 				},
 			},
 			{
 				body: 'Having struggled with fatigue, low energy, and poor sleep, I can honestly say Geviti has been life-changing.',
 				author: {
 					name: '',
-					company: 'Mark L',
+					company: 'Mark L.',
 				},
 			},
 			// {
