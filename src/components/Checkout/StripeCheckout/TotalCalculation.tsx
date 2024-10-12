@@ -36,7 +36,7 @@ export const TotalCalc: FC<ITotalCalc> = ({
 			return discountAmount.toFixed(2);
 		}
 		return 0;
-	}, [discount]);
+	}, [discount, membershipPrice]);
 
 	const totalDue = useMemo(() => {
 		if (discount?.id) {
