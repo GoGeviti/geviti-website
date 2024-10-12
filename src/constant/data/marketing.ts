@@ -649,38 +649,52 @@ const marketingData = {
       'What our customers<br/><span class="text-grey-primary">say about us</span>',
 		list: [
 			{
-				body: 'Geviti\'s custom supplements have transformed my health. I feel more energetic and healthier.',
+				body: 'Since starting on my custom Longeviti Blend, I’ve not only been waking up before my alarm, but I’ve also had some of my best workouts in years.',
 				author: {
-					name: 'Alex Buckmaster',
-					company: 'Cala Foods',
+					name: '',
+					company: 'Cole M.',
 				},
 			},
 			{
-				body: 'More energy, better digestion, and excellent customer service with Geviti.',
+				body: 'Everyone with whom I have interacted at Geviti is genuinely concerned about creating an optimal healthcare outcome for their clients.',
 				author: {
-					name: 'Judith Rodriguez',
-					company: 'Rainbow Bay Crafts',
+					name: '',
+					company: 'Kurt M.',
 				},
 			},
 			{
-				body: 'High-quality custom supplements that make a difference. I feel supported and healthier.',
+				body: 'Having struggled with fatigue, low energy, and poor sleep, I can honestly say Geviti has been life-changing.',
 				author: {
-					name: 'Rhonda Rhodes',
-					company: 'Giant',
+					name: '',
+					company: 'Mark L.',
 				},
 			},
+			// {
+			// 	body: 'Personalized approach to health care with noticeable benefits. Love Geviti!',
+			// 	author: {
+			// 		name: '',
+			// 		company: 'Electronic Geek',
+			// 	},
+			// },
+			// {
+			// 	body: 'Geviti\'s personalized approach ensures I get what my body needs. Highly recommend!',
+			// 	author: {
+			// 		name: '',
+			// 		company: 'Daniel Hamilton',
+			// 	},
+			// },
+			// {
+			// 	body: 'Top-notch health care services and game-changing custom supplements.',
+			// 	author: {
+			// 		name: 'Kathy Pacheco',
+			// 		company: 'Specialty Restaurant Group',
+			// 	},
+			// },
 			{
-				body: 'Top-notch health care services and game-changing custom supplements.',
-				author: {
-					name: 'Rhonda Rhodes',
-					company: 'Giant',
-				},
-			},
-			{
-				body: 'Geviti\'s personalized approach ensures I get what my body needs. Highly recommend!',
+				body: 'I love that I get to meet with the doctor online and get personalized care rather than having to go into an office.',
 				author: {
 					name: 'Eddie Lake',
-					company: 'Magna Architectural Design',
+					company: 'Cathy F.',
 				},
 			},
 		],
