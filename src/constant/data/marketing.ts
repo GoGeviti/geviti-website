@@ -669,27 +669,27 @@ const marketingData = {
 					company: 'Mark L',
 				},
 			},
-			{
-				body: 'Personalized approach to health care with noticeable benefits. Love Geviti!',
-				author: {
-					name: '',
-					company: 'Electronic Geek',
-				},
-			},
-			{
-				body: 'Geviti\'s personalized approach ensures I get what my body needs. Highly recommend!',
-				author: {
-					name: '',
-					company: 'Daniel Hamilton',
-				},
-			},
-			{
-				body: 'Top-notch health care services and game-changing custom supplements.',
-				author: {
-					name: 'Kathy Pacheco',
-					company: 'Specialty Restaurant Group',
-				},
-			},
+			// {
+			// 	body: 'Personalized approach to health care with noticeable benefits. Love Geviti!',
+			// 	author: {
+			// 		name: '',
+			// 		company: 'Electronic Geek',
+			// 	},
+			// },
+			// {
+			// 	body: 'Geviti\'s personalized approach ensures I get what my body needs. Highly recommend!',
+			// 	author: {
+			// 		name: '',
+			// 		company: 'Daniel Hamilton',
+			// 	},
+			// },
+			// {
+			// 	body: 'Top-notch health care services and game-changing custom supplements.',
+			// 	author: {
+			// 		name: 'Kathy Pacheco',
+			// 		company: 'Specialty Restaurant Group',
+			// 	},
+			// },
 			{
 				body: 'I love that I get to meet with the doctor online and get personalized care rather than having to go into an office.',
 				author: {
