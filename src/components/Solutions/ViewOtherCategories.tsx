@@ -1,23 +1,23 @@
 'use client';
 
-import { Swiper as SwiperType } from 'swiper';
-import { Swiper, SwiperSlide } from 'swiper/react';
-
-import ArrowButtons from '../Marketing/ArrowButtons';
-const topTierData = marketingData.topTier.list['men-hormone-therapy'];
-
+// const topTierData = marketingData.topTier.list['men-hormone-therapy'];
 import { useRef, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { FreeMode, Mousewheel } from 'swiper/modules';
+import { Swiper as SwiperType } from 'swiper';
+import { FreeMode } from 'swiper/modules';
+import { Swiper, SwiperSlide } from 'swiper/react';
 
-import { marketingData } from '@/constant/data';
+import { Category, Product } from '@/payload/payload-types';
 
+// import { marketingData } from '@/constant/data';
 import 'swiper/css/free-mode';
+
+import ArrowButtons from '../Marketing/ArrowButtons';
 
 import 'swiper/css';
 
-const ViewOtherCategories: React.FC = () => {
+const ViewOtherCategories: React.FC<{data:Category[] | Product[]}> = ({ data }) => {
 	const swiperRef = useRef<SwiperType>();
 
 	const [disabledPrev, setDisabledPrev] = useState(true);
@@ -31,9 +31,9 @@ const ViewOtherCategories: React.FC = () => {
 	return (
 		<div className='w-full pb-[56px]' >
 			<div className='w-full relative mt-[42px] lg:mt-[124px]'>
-				<div className='w-full flex items-center lg:justify-between container-center mb-10'>
+				<div className='w-full flex-col lg:flex-row flex items-center lg:justify-between container-center mb-10'>
 					<div className='w-full flex'>
-						<h3 className='font-medium text-primary md:text-[32px] lg:text-4xl'>View other product <br/><span className='text-grey-primary'>categories</span></h3>
+						<h3 className='font-medium text-primary text-2xl md:text-[32px] lg:text-4xl'>View other product <br/><span className='text-grey-primary'>categories</span></h3>
 					</div>
 					<ArrowButtons
 						disabledPrev={ disabledPrev }
@@ -43,33 +43,44 @@ const ViewOtherCategories: React.FC = () => {
 					/>
 				</div>
 
-				<div className='ml-[calc((100vw-1360px)/2)] pl-4 lg:pl-10'>
+				<div className='lg:ml-[calc((100vw-1360px)/2)] pl-4 lg:pl-10'>
 					<Swiper
 						onBeforeInit={ swiper => {
 							swiperRef.current = swiper;
 						} }
 						slidesPerView={ 3.7 }
+						breakpoints={ {
+							0: {
+								slidesPerView: 1.2,
+								spaceBetween: 10,
+								freeMode: false,
+							},
+							768: {
+								slidesPerView: 3.7,
+								spaceBetween: 14,
+							},
+						} }
 						spaceBetween={ 14 }
-						className='w-full !pr-[calc((100vw-1360px)/2+16px)] lg:!pr-[calc((100vw-1360px)/2+40px)]'
-						modules={ [FreeMode, Mousewheel] }
+						className='lg:w-full lg:!pr-[calc((100vw-1360px)/2+40px)]'
+						modules={ [FreeMode] }
 						freeMode={ true }
 						onSlideChange={ () => swiperRef.current && handleSlideChange(swiperRef.current) }
 		  			onReachEnd={ () => swiperRef.current && handleSlideChange(swiperRef.current) }
 					>
-						{ topTierData.map((item, productIdx) => {
+						{ data.map((item, productIdx) => {
 							return (
 								<SwiperSlide key={ productIdx }>
-									<div className='w-[338px] h-[496px] hover:bg-blue-primary bg-grey-primary-light transition-all ease-in-out duration-500 rounded-[14px] flex flex-col justify-between'>
+									<div className='lg:w-[338px] h-[496px] hover:bg-blue-primary bg-grey-primary-light transition-all ease-in-out duration-500 rounded-[14px] flex flex-col justify-between'>
 										<div className='px-[14px] pt-[14px]'>
-											<h4 className='text-lg'>{ item.title }</h4>
-											<p className='text-xs !leading-5 mt-1'>
+											<h4 className='text-lg'>{ item.name }</h4>
+											{ /* <p className='text-xs !leading-5 mt-1'>
 												{ item.description }
-											</p>
+											</p> */ }
 										</div>
 										<div className='w-full h-full flex items-center justify-center'>
 											<Image
-												src={ item.image }
-												alt={ item.title }
+												src={ item.image.url ?? '' }
+												alt={ item.image.alt ?? '' }
 												width={ 294 }
 												height={ 294 }
 												className='object-contain'

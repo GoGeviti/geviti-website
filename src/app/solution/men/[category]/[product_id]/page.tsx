@@ -1,9 +1,12 @@
 import React from 'react'
+import { notFound } from 'next/navigation'
 
 import { Footer, FrequentlyAskedQuestions, MarketingComponent, RunningLogo } from '@/components'
 import Navbar, { navbarDefaultTransition } from '@/components/Navbar/Landing'
 import { ViewOtherCategories } from '@/components/Solutions'
 import { solutionData } from '@/constant/data'
+import { Product } from '@/payload/payload-types'
+import { getProductByCategory } from '@/services/products'
 
 import { Biomakers } from './Biomakers'
 import Description from './Description'
@@ -18,7 +21,24 @@ const biomakersList = [
 	'Flexible Dosing',
 ];
 
-const ProductCategorySingle = () => {
+const ProductCategorySingle = async({ params: { category = '', product_id = '' } }) => {
+
+	let productsData: Product[] = [];
+	let productDataSingle: Product;
+
+	try {
+		const data = await getProductByCategory(category);
+		if (!data.find(e => e.slug === product_id)) {
+			return notFound();
+		}
+
+		productsData = data.filter(e => e.slug !== product_id);
+		productDataSingle = data.find(e => e.slug === product_id) as Product;
+		
+	} catch (error) {
+		return notFound();
+	}
+
 	return (
 		<div className='flex min-h-screen flex-col w-full font-Poppins'>
 			<Navbar
@@ -30,12 +50,12 @@ const ProductCategorySingle = () => {
 					},
 				} }
 			/>
-			<Hero/>
+			<Hero data={ productDataSingle } />
 			<div className='pb-[31px]'>
 				<Description/>
 			</div>
 			<Biomakers items={ biomakersList } />
-			<ViewOtherCategories/>
+			<ViewOtherCategories data={ productsData } />
 			<div className='mt-[42px] lg:mt-[87px]'>
 				<RunningLogo />
 			</div>

@@ -1,42 +1,33 @@
 export interface Category {
-	id: number;
-	title: string;
-	description: string;
-	updatedAt: string;
-	createdAt: string;
+  id: number;
+  type: 'male' | 'female';
+  name: string;
+  title: string;
+  description: string;
+  image: Media;
   slug?: string | null;
+  updatedAt: string;
+  createdAt: string;
 }
 export interface Product {
-	id: number;
-	name: string;
-	description: string;
-	sort_description?: string;
-	price: number;
-	category: Category;
-	benefits: Benefit[];
-	bloodTest?: boolean;
-	fdaApproved?: boolean;
-	shopify_variant_id?: string;
-	images: {
-		image: Media;
-		id?: string;
-	}[];
-	faq: {
-		title?: string;
-		description?: string;
-		id?: string;
-	}[];
-	laedTime: {
-		title?: string;
-		description?: string;
-	},
-	price_membership: {
-		id?: string;
-		title?: string;
-	}[];
-	updatedAt: string;
-	createdAt: string;
+  id: number;
+  order?: number | null;
+  name: string;
+  price: string;
+  description: string;
+  category: Category;
+  treatmentOptions?: ProductTreatmentOption[] | null;
+  image: Media;
   slug?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+
+export interface ProductTreatmentOption {
+  id: number;
+  name: string;
+  updatedAt: string;
+  createdAt: string;
 }
 export interface Benefit {
 	id: number;

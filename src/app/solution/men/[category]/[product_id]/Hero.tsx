@@ -3,18 +3,19 @@ import Image from 'next/image'
 
 import ButtonCta from '@/components/ButtonCta'
 import PopupReview from '@/components/PopupReview'
+import { Product } from '@/payload/payload-types'
 
-const Hero = () => {
+const Hero:React.FC<{data:Product}> = ({ data }) => {
 	return (
-		<div className='min-h-screen relative lg:px-3 pt-[217px]'>
+		<div className='lg:min-h-screen relative lg:px-3 py-40 lg:pt-[217px]'>
       	<div className='container-center'>
-				<div className='grid grid-cols-2 place-items-center gap-[140px]'>
+				<div className='grid grid-cols-1 lg:grid-cols-2 place-items-center gap-[140px]'>
 					<Image
-						src='/images/solution_media/category-oral-testosterone.png'
-						alt='category product'
+						src={ data.image.url ?? '' }
+						alt={ data.image.alt ?? '' }
 						width={ 510 }
 						height={ 510 }
-						className='object-contain w-[510px]'
+						className='object-contain max-lg:hidden lg:w-[510px]'
 					/>
 					<div className='flex flex-col gap-6 '>
 						<PopupReview
@@ -28,12 +29,12 @@ const Hero = () => {
 							wrapperClassName='[box-shadow:var(--shadow-popup-longeviti-panel)] max-sm:w-full lg:w-[274px]'
 						/>
 						<div>
-							<h3 className='text-primary font-medium text-4xl leading-[54px]'>Kyzatrex™</h3>
-							<h5 className='text-2xl text-grey-primary'>As low as $95/m*</h5>
+							<h3 className='text-primary font-medium text-3xl lg:text-4xl lg:leading-[54px]'>{ data.name }</h3>
+							<h5 className='text-xl lg:text-2xl text-grey-primary'>{ data.price }</h5>
 						</div>
-						<p className='text-grey-primary text-sm leading-5'>The FDA&apos;s approval of oral testosterone undecanoate offers a breakthrough in TRT, providing an easy-to-use, effective option for managing Low T. This addition enhances the therapy landscape, simplifying the path to hormonal balance for many.</p>
-						<div>
-							<ButtonCta>See if i qualify</ButtonCta>
+						<p className='text-grey-primary text-sm leading-5'>{ data.description }</p>
+						<div className='w-fit'>
+							<ButtonCta href='/pricing'>See if i qualify</ButtonCta>
 						</div>
 					</div>
 				</div>
