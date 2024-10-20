@@ -204,24 +204,24 @@ const FeaturesCarousel: React.FC = () => {
 							className='grid grid-cols-1 lg:grid-cols-2 gap-[33px]'>
 							<div className='lg:max-w-[460px] w-full'>
 								<p className='max-lg:mb-2.5 text-pretitle text-[#5F6D7B] sm:text-grey-300'>
-									{ featuresCarouselData[activeIdx].preTitle }
+									{ featuresCarouselData![activeIdx]?.preTitle }
 								</p>
 								<h2 className='text-white !leading-[133%] text-[6.857vw] xxs:text-[6.154vw] xs2:text-2xl lg:text-[3.853vw] xl:text-[42px] sm:!leading-normal -tracking-0.04em'>
 									<span
 										dangerouslySetInnerHTML={ {
-											__html: featuresCarouselData[activeIdx].title,
+											__html: featuresCarouselData![activeIdx]?.title,
 										} }
 									/>
 								</h2>
 								<p className='mt-2.5 lg:mt-3.5 text-grey-400 sm:text-grey-300 text-xs sm:text-sm !leading-5'>
-									{ featuresCarouselData[activeIdx].description }
+									{ featuresCarouselData![activeIdx]?.description }
 								</p>
 								{
-									featuresCarouselData[activeIdx].btnCta && (
+									featuresCarouselData![activeIdx]?.btnCta && (
 										<div className='flex mt-[33px] lg:mt-[42px] max-lg:justify-center max-sm:w-full'>
 											<ButtonCta
-												href={ featuresCarouselData[activeIdx].btnCta.href }
-												text={ featuresCarouselData[activeIdx].btnCta.text }
+												href={ featuresCarouselData![activeIdx]?.btnCta?.href }
+												text={ featuresCarouselData![activeIdx]?.btnCta?.text }
 												theme='secondary'
 												className='max-sm:w-full'
 											/>
@@ -241,21 +241,21 @@ const FeaturesCarousel: React.FC = () => {
 											initial='initial'
 											animate='animate'
 											exit='exit'
-											key={ featuresCarouselData[activeIdx].card.id }
+											key={ featuresCarouselData![activeIdx]?.card.id }
 											transition={ { duration: 1, ease: 'easeInOut' } }
 											className='text-primary font-Poppins p-4 lg:p-6 rounded-19px bg-white absolute inset-0 w-full h-full'
 										>
 											<span className='flex flex-col gap-3'>
 												<span className='h-full aspect-[400/174] max-h-[174px] w-full bg-blue-alice rounded-2xl relative overflow-hidden'>
-													{ renderAnimatedContentCard(featuresCarouselData[activeIdx].card.id) }
+													{ renderAnimatedContentCard(featuresCarouselData![activeIdx]?.card.id) }
 												</span>
 												<p className='text-2xl !leading-normal'>
-													{ featuresCarouselData[activeIdx].card.title }
+													{ featuresCarouselData![activeIdx]?.card.title }
 												</p>
 												<p className='text-[3.5vw] xs2:text-sm sm:text-lg !leading-normal'>
 													<span
 														dangerouslySetInnerHTML={ {
-															__html: featuresCarouselData[activeIdx].card.description,
+															__html: featuresCarouselData![activeIdx]?.card.description,
 														} }
 													/>
 												</p>
