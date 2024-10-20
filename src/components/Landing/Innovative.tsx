@@ -216,19 +216,19 @@ const Innovative: React.FC = () => {
 	};
 
 	return (
-		<div className='lg:px-3 font-Poppins'>
-			<div className='container-center text-center lg:text-left max-lg:hidden lg:mb-[90px]'>
-				<p className='text-grey-primary text-pretitle max-lg:mb-2.5'>
+		<div className='lg:px-3 font-Poppins mt-6'>
+			{ /* <div className='container-center text-center lg:text-left max-lg:hidden lg:mb-[90px]'> */ }
+			{ /* <p className='text-grey-primary text-pretitle max-lg:mb-2.5'>
 					{ innovativeData.preTitle }
 				</p>
 
 				<h2 className='text-2xl md:text-4xl lg:text-[4.444vw] xl:text-[64px] lg:!leading-normal -tracking-0.04em max-md:mx-auto max-md:max-w-[330px]'>
 					<span dangerouslySetInnerHTML={ { __html: innovativeData.title } } />
-				</h2>
-				{ /* <p className='text-grey-400 text-xs lg:text-sm !leading-5 max-lg:mx-auto max-w-[300px] mt-2.5 lg:mt-4 lg:max-w-[561px]'>
+				</h2> */ }
+			{ /* <p className='text-grey-400 text-xs lg:text-sm !leading-5 max-lg:mx-auto max-w-[300px] mt-2.5 lg:mt-4 lg:max-w-[561px]'>
           {innovativeData.description}
         </p> */ }
-			</div>
+			{ /* </div> */ }
 			<div className='max-lg:px-4 grid grid-cols-1 lg:grid-cols-12 gap-6 lg:auto-rows-fr xl:auto-rows-[32.125rem]'>
 				{ innovativeData.list.map(item => (
 					<div

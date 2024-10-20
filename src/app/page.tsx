@@ -18,14 +18,16 @@ const HomePage: NextPage = async() => {
 				<LandingComponent.Hero
 					showIntro={ showIntro }
 					showBanner={ false } />
-				<LandingComponent.Steps />
-				<RunningLogo />
 				<LandingComponent.TextReveal />
+				<LandingComponent.Steps />
+				<div className='mb-16'>
+					<RunningLogo />
+				</div>
 				<LandingComponent.Membership />
 				<LandingComponent.FeaturesCarousel />
 				<LandingComponent.Benefits />
-				<LandingComponent.HomeKits />
 				<LandingComponent.Innovative />
+				<LandingComponent.HomeKits />
 				<LandingComponent.Pricing products={ products } />
 				<LandingComponent.Products />
 				<LandingComponent.Banner />
