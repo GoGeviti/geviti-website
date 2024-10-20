@@ -5,7 +5,7 @@ import NextTopLoader from 'nextjs-toploader';
 import { AOSInit } from '@/components';
 import LenisScroller from '@/components/LenisScroller';
 import Provider from '@/components/Provider';
-import { brSonoma, poppins } from '@/constant/fonts';
+import { brSonoma } from '@/constant/fonts';
 import { mergeOpenGraph } from '@/lib/mergeOpenGraph';
 import StyledComponentsRegistry from '@/lib/registry';
 
@@ -58,7 +58,7 @@ const RootLayout: React.FC<{ children: React.ReactNode; }> = ({ children }) => {
 			
 			<StyledComponentsRegistry>
 				<body
-					className={ `${ poppins.variable } ${ brSonoma.variable }` }
+					className={ `${ brSonoma.variable }` }
 					suppressHydrationWarning
 				>
 					<NextTopLoader
