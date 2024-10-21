@@ -86,7 +86,7 @@ const Hero: React.FC = () => {
 					</ul>
 				</div>
 
-				<div className='absolute left-1/2 top-5 w-screen max-lg:hidden'>
+				<div className='absolute left-1/2 top-7 w-screen max-lg:hidden'>
 					<Image
 						src={ heroData.benefits.image }
 						alt=''
