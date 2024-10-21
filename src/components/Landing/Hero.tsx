@@ -35,9 +35,6 @@ const Hero: React.FC<HeroProps> = ({
 }) => {
 	const { ref } = useInView();
 
-	// const [activeStepIdx, setActiveStepIdx] = useState<number>(-1);
-	// const [prevIdx, setPrevIdx] = useState<number>(activeStepIdx);
-	// const [startTimer, setStartTimer] = useState<boolean>(false);
 	const [isMounted, setIsMounted] = useState<boolean>(false);
 
 	const stepControls = useAnimationControls();
@@ -48,59 +45,6 @@ const Hero: React.FC<HeroProps> = ({
 	useEffect(() => {
 		setIsMounted(true);
 	}, []);
-
-	// useEffect(() => {
-	// 	stepControls.start({
-	// 		width: (activeStepIdx + 1) * 20 + '%',
-	// 		transition: {
-	// 			duration: 1,
-	// 			ease: 'easeOut',
-	// 		},
-	// 	});
-	// }, [activeStepIdx]);
-
-	// useEffect(() => {
-	// 	let timer: NodeJS.Timeout | undefined = undefined;
-
-	// 	if (startTimer && inView) {
-	// 		timer = setTimeout(() => {
-	// 			setPrevIdx(activeStepIdx);
-	// 			setActiveStepIdx(prev =>
-	// 				prev + 1 === heroData.mainKeys.length ? 0 : prev + 1
-	// 			);
-	// 		}, 3000);
-	// 	} else {
-	// 		clearTimeout(timer);
-	// 	}
-
-	// 	return () => clearTimeout(timer);
-	// }, [activeStepIdx, startTimer, inView]);
-
-	// const handleScrollCarousel = useCallback(
-	// 	(e: React.UIEvent<HTMLDivElement>) => {
-	// 		const element = e.currentTarget;
-
-	// 		const windowScroll = element.scrollLeft;
-	// 		const totalWidth = element.scrollWidth - element.clientWidth;
-	// 		let scrollProgress = 0;
-	// 		if (windowScroll === 0) scrollProgress = 0;
-	// 		if (windowScroll > totalWidth) scrollProgress = 100;
-	// 		else scrollProgress = (windowScroll / totalWidth) * 100;
-
-	// 		const activeItemIdx = Math.floor(
-	// 			(scrollProgress * heroData.mainKeys.length) / 110
-	// 		);
-	// 		setActiveStepIdx(activeItemIdx);
-	// 		stepControls.start({
-	// 			width: (activeItemIdx + 1) * 20 + '%',
-	// 			transition: {
-	// 				duration: 1,
-	// 				ease: 'easeOut',
-	// 			},
-	// 		});
-	// 	},
-	// 	[]
-	// );
 
 	const renderTitles = (titles: string[]) => {
 		return titles.map((title: string, titleIdx: number) => (
@@ -143,129 +87,20 @@ const Hero: React.FC<HeroProps> = ({
 		);
 	};
 
-	// const renderMainKeysItem = (
-	// 	item: string,
-	// ) => {
-	// 	if (item) {
-	// 		return (
-	// 			<div className='flex flex-col gap-3 max-lg:w-full max-lg:items-center'>
-	// 				{ /* <item.icon
-	// 					className={ clsxm(
-	// 						'flex-shrink-0',
-	// 						isItemActive ? 'text-blue-primary' : 'text-grey-400'
-	// 					) }
-	// 				/> */ }
-	// 				<p
-	// 					className={ clsxm(
-	// 						'text-center lg:text-left text-sm !leading-[21px] font-medium',
-	// 					) }
-	// 				>
-	// 					<span dangerouslySetInnerHTML={ { __html: item } } />
-	// 				</p>
-	// 			</div>
-	// 		);
-	// 	}
-
-	// 	return null;
-	// };
-
-	// const renderMainKeysMobile = () => {
-	// 	const list = heroData.mainKeys;
-	// 	const currentItem = activeStepIdx > -1 ? list[activeStepIdx] : list[0];
-	// 	const prevItem = prevIdx > -1 ? list[prevIdx] : list[list.length - 1];
-
-	// 	return (
-	// 		<motion.div
-	// 			className='lg:hidden'
-	// 			variants={ {
-	// 				hidden: { y: '100%', opacity: 0 },
-	// 				visible: {
-	// 					y: 0,
-	// 					opacity: 1,
-	// 					transition: {
-	// 						ease: slideUpTransition.ease,
-	// 						duration: 1,
-	// 						delay: 2.1,
-	// 					},
-	// 				},
-	// 			} }
-	// 			initial='hidden'
-	// 			animate='visible'
-	// 		>
-	// 			<AnimatePresence initial={ false }>
-	// 				<div
-	// 					className={ clsxm('inline-block overflow-hidden w-full') }
-	// 					style={ { height: 100 } }
-	// 				>
-	// 					<motion.span
-	// 						className='flex flex-col w-full'
-	// 						initial='initial'
-	// 						animate='animate'
-	// 						exit='exit'
-	// 						key={ `mobile-mainkeys-${activeStepIdx}` }
-	// 						variants={ {
-	// 							initial: { y: '0%' },
-	// 							animate: { y: '-50%' },
-	// 							exit: { y: '0%' },
-	// 						} }
-	// 						transition={ {
-	// 							duration: 1,
-	// 							ease: 'linear',
-	// 						} }
-	// 					>
-	// 						<span className='flex justify-center w-full pt-18px'>
-	// 							{ renderMainKeysItem(prevItem, false) }
-	// 						</span>
-	// 						<span className='flex justify-center w-full pt-18px'>
-	// 							{ renderMainKeysItem(currentItem, true) }
-	// 						</span>
-	// 					</motion.span>
-	// 				</div>
-	// 			</AnimatePresence>
-	// 		</motion.div>
-	// 	);
-	// };
-
 	const renderMainKeys = () => {
 		return (
-			<motion.div
-				initial='hidden'
-				animate='visible'
-				variants={ {
-					visible: {
-						transition: {
-							staggerChildren: 0.3,
-							delayChildren: showIntro === 'true' ? 2.7 : 1.7,
-						},
-					},
-				} }
-				className='lg:pt-11 w-full flex flex-wrap max-lg:px-4 lg:justify-center gap-4 max-lg:pb-6 pt-11 lg:gap-6 relative z-10'
-			>
+			<div className='lg:pt-11 w-full flex flex-wrap max-lg:px-4 lg:justify-center gap-4 max-lg:pb-6 pt-11 lg:gap-6 relative z-10' >
 				{ heroData.mainKeys.map((item, itemIdx) => {
-					// const isItemActive = itemIdx <= activeStepIdx;
-
 					return (
-						<motion.div
+						<div
 							key={ 'landing-hero-mainkeys-' + itemIdx }
-							variants={ {
-								hidden: { y: '500%' },
-								visible: {
-									y: 0,
-									transition: {
-										ease: slideUpTransition.ease,
-										duration: 1.5,
-									},
-								},
-							} }
-							className={ clsxm(
-								'flex items-center justify-center p-[10px] rounded-lg bg-white/20 text-grey-50  text-sm font-medium'
-							) }
+							className={ clsxm('flex items-center justify-center p-[10px] rounded-lg bg-white/20 text-grey-50  text-sm font-medium') }
 						>
 							<span className='whitespace-nowrap'>{ item }</span>
-						</motion.div>
+						</div>
 					);
 				}) }
-			</motion.div>
+			</div>
 		);
 	};
 

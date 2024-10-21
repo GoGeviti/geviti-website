@@ -1,6 +1,6 @@
 'use client';
-import React, { useState } from 'react';
-import { motion, MotionProps } from 'framer-motion';
+import React, { useEffect, useState } from 'react';
+import { AnimatePresence, motion, MotionProps, useAnimation } from 'framer-motion';
 import Link from 'next/link';
 
 import navbarData from '@/constant/data/navigation';
@@ -169,114 +169,177 @@ const Navbar: React.FC<NavbarProps> = ({
 	const [active, setActive] = useState<string | null>(null);
 	const [openSheet, setOpenSheet] = useState<boolean>(false);
 	const [overflow, setOverflow] = useState<string>('hidden');
+	const [isVisible, setIsVisible] = useState(true);
+	const [lastScrollY, setLastScrollY] = useState(0);
+
+	const controls = useAnimation();
+
+	useEffect(() => {
+		const controlNavbar = () => {
+			if (typeof window !== 'undefined') {
+				if (window.scrollY > lastScrollY) { // if scroll down hide the navbar
+					setIsVisible(false);
+				} else { // if scroll up show the navbar
+					setIsVisible(true);
+				}
+
+				// remember current page location to use in the next move
+				setLastScrollY(window.scrollY);
+			}
+		};
+
+		if (typeof window !== 'undefined') {
+			window.addEventListener('scroll', controlNavbar);
+
+			// cleanup function
+			return () => {
+				window.removeEventListener('scroll', controlNavbar);
+			};
+		}
+	}, [lastScrollY]);
+
+	useEffect(() => {
+		if (isVisible) {
+			controls.start('visible');
+		} else {
+			controls.start('hidden');
+		}
+	}, [isVisible, controls]);
+
+	const navbarAnimationVariants = {
+		visible: {
+			y: 0,
+			opacity: 1,
+			transition: {
+				y: { type: 'spring', stiffness: 300, damping: 30 },
+				opacity: { duration: 0.2 }
+			}
+		},
+		hidden: {
+			y: '-100%',
+			opacity: 0,
+			transition: {
+				y: { type: 'spring', stiffness: 300, damping: 30 },
+				opacity: { duration: 0.2 }
+			}
+		}
+	};
 
 	return (
 		<header>
-			<div
-				className={ clsxm(
-					'inset-x-0 top-0 z-50 absolute pt-4 lg:pt-[30px]',
-					className
-				) }
-			>
-				<div
-					className='container-center w-full'
-					style={ { overflow } }>
+			<AnimatePresence>
+				{ isVisible && (
 					<motion.div
-						variants={ navbarVariants }
+						className={ clsxm(
+							'inset-x-0 top-0 z-50 fixed pt-4 lg:pt-[30px]',
+							className
+						) }
 						initial='hidden'
-						animate='visible'
-						className='inline-block w-full border border-white/5 rounded-full'
-						transition={ navbarDefaultTransition }
-						onAnimationComplete={ () => setOverflow('') }
-						{ ...animationProps }
+						animate={ controls }
+						exit='hidden'
+						variants={ navbarAnimationVariants }
 					>
-						<nav
-							onMouseLeave={ () => setActive(null) }
-							className={ clsxm(
-								'relative overflow-visible visible h-[60px] lg:h-[69px] font-Poppins backdrop-blur-[25px] p-18px lg:pl-[42px] lg:py-3 lg:pr-3 rounded-[100px] bg-white/10 flex items-center space-x-5 xl:space-x-[50px] w-full justify-between',
-								theme === 'light' && 'bg-most-value'
-							) }
-						>
-							<div className='flex items-center lg:space-x-5 xl:space-x-[50px]'>
-								<Link
-									href='/'
-									className='focus:ring-0 focus:outline-none'>
-									<GevitiLogo theme={ theme } />
-								</Link>
-								<div className='hidden lg:flex items-center space-x-5 xl:space-x-[50px]'>
-									{ menuList.map(menu => {
-										if (menu.items) {
-											return (
-												<MenuItem
-													key={ menu.name }
-													setActive={ setActive }
-													active={ active }
-													item={ menu.name }
-													theme={ theme }
-												>
-													<div className='flex flex-col space-y-2'>
-														{ menu.items.map(menuChild => (
-															<CustomLink
-																key={ menuChild.name }
-																href={ menuChild.href }
-																className={ clsxm(
-																	'text-grey-50 text-sm !leading-[21px]',
-																	theme === 'light' && 'text-white',
-																	theme === 'light-grey' && 'text-grey-primary'
-																) }
-															>
-																{ menuChild.name }
-															</CustomLink>
-														)) }
-													</div>
-												</MenuItem>
-											);
-										}
-
-										return (
-											<CustomLink
-												// onClick={ () => handleSelectedItem(menuIdx) }
-												key={ menu.name }
-												href={ menu.href }
-												externalLink={ menu.externalLink }
-												onMouseEnter={ () => setActive(null) }
-												className={ clsxm(
-													'text-sm font-medium !leading-[21px] text-grey-50',
-													theme === 'light' && 'text-white',
-													theme === 'light-grey' && 'text-grey-primary'
-												) }
-											>
-												{ menu.name }
-											</CustomLink>
-										);
-									}) }
-								</div>
-							</div>
-							<div className='hidden lg:flex items-center space-x-5'>
-								{ /* { renderIconMenuList() } */ }
-								<ActionMenuList theme={ theme } />
-							</div>
-							<div className='flex lg:hidden'>
-								<button
-									className='focus:outline-none focus:border-0 focus:ring-0'
-									onClick={ () => {
-										setOpenSheet(prevOpen => !prevOpen);
-									} }
-									aria-label='Toggle Menu'
+						<div
+							className='container-center w-full'
+							style={ { overflow } }>
+							<motion.div
+								variants={ navbarVariants }
+								initial='hidden'
+								animate='visible'
+								className='inline-block w-full border border-white/5 rounded-full'
+								transition={ navbarDefaultTransition }
+								onAnimationComplete={ () => setOverflow('') }
+								{ ...animationProps }
+							>
+								<nav
+									onMouseLeave={ () => setActive(null) }
+									className={ clsxm(
+										'relative overflow-visible visible h-[60px] lg:h-[69px] font-Poppins backdrop-blur-[25px] p-18px lg:pl-[42px] lg:py-3 lg:pr-3 rounded-[100px] bg-white/10 flex items-center space-x-5 xl:space-x-[50px] w-full justify-between',
+										theme === 'light' && 'bg-most-value'
+									) }
 								>
-									<Bars3Icon
-										className={ clsxm(
-											'block h-6 w-6 text-grey-50',
-											theme === 'light' && 'text-white'
-										) }
-										aria-hidden='true'
-									/>
-								</button>
-							</div>
-						</nav>
+									<div className='flex items-center lg:space-x-5 xl:space-x-[50px]'>
+										<Link
+											href='/'
+											className='focus:ring-0 focus:outline-none'>
+											<GevitiLogo theme={ theme } />
+										</Link>
+										<div className='hidden lg:flex items-center space-x-5 xl:space-x-[50px]'>
+											{ menuList.map(menu => {
+												if (menu.items) {
+													return (
+														<MenuItem
+															key={ menu.name }
+															setActive={ setActive }
+															active={ active }
+															item={ menu.name }
+															theme={ theme }
+														>
+															<div className='flex flex-col space-y-2'>
+																{ menu.items.map(menuChild => (
+																	<CustomLink
+																		key={ menuChild.name }
+																		href={ menuChild.href }
+																		className={ clsxm(
+																			'text-grey-50 text-sm !leading-[21px]',
+																			theme === 'light' && 'text-white',
+																			theme === 'light-grey' && 'text-grey-primary'
+																		) }
+																	>
+																		{ menuChild.name }
+																	</CustomLink>
+																)) }
+															</div>
+														</MenuItem>
+													);
+												}
+
+												return (
+													<CustomLink
+														// onClick={ () => handleSelectedItem(menuIdx) }
+														key={ menu.name }
+														href={ menu.href }
+														externalLink={ menu.externalLink }
+														onMouseEnter={ () => setActive(null) }
+														className={ clsxm(
+															'text-sm font-medium !leading-[21px] text-grey-50',
+															theme === 'light' && 'text-white',
+															theme === 'light-grey' && 'text-grey-primary'
+														) }
+													>
+														{ menu.name }
+													</CustomLink>
+												);
+											}) }
+										</div>
+									</div>
+									<div className='hidden lg:flex items-center space-x-5'>
+										{ /* { renderIconMenuList() } */ }
+										<ActionMenuList theme={ theme } />
+									</div>
+									<div className='flex lg:hidden'>
+										<button
+											className='focus:outline-none focus:border-0 focus:ring-0'
+											onClick={ () => {
+												setOpenSheet(prevOpen => !prevOpen);
+											} }
+											aria-label='Toggle Menu'
+										>
+											<Bars3Icon
+												className={ clsxm(
+													'block h-6 w-6 text-grey-50',
+													theme === 'light' && 'text-white'
+												) }
+												aria-hidden='true'
+											/>
+										</button>
+									</div>
+								</nav>
+							</motion.div>
+						</div>
 					</motion.div>
-				</div>
-			</div>
+				) }
+			</AnimatePresence>
 
 			<MobileNav
 				open={ openSheet }
