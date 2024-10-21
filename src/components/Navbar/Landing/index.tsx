@@ -63,10 +63,10 @@ export const MenuItem = ({
 				transition={ { duration: 0.3 } }
 				className={ clsxm(
 					'cursor-pointer text-sm font-medium !leading-[21px] inline-flex gap-2 items-center text-grey-50',
-					theme === 'light' && 'text-white',
 					theme === 'light-grey' && 'text-grey-primary',
 					isScrolled && 'text-grey-primary hover:text-primary',
-					isActiveMenu && 'text-primary'
+					isActiveMenu && 'text-primary',
+					theme === 'light' && 'text-white hover:text-grey-50',
 				) }
 			>
 				{ item }
@@ -92,8 +92,8 @@ export const MenuItem = ({
 								layoutId='active' // layoutId ensures smooth animation
 								className={ clsxm(
 									'bg-white/10 backdrop-blur-[27px] border border-white/5 rounded-[9px] overflow-hidden relative',
+									isScrolled && 'bg-grey-50',
 									theme === 'light' && 'bg-most-value',
-									isScrolled && 'bg-grey-50'
 								) }
 							>
 								<div className='absolute inset-0 w-full h-full bg-white/10 border border-white/5 backdrop-blur-[27px]' />
@@ -138,9 +138,9 @@ const ActionMenuList = ({ theme, isScrolled }: NavbarProps) => {
 				className={ clsxm(
 					'lg:w-[120px] rounded-md px-3 py-2 text-sm font-Poppins font-medium md:block hidden',
 					'text-grey-50',
-					theme === 'light' && 'text-white',
 					theme === 'light-grey' && 'text-grey-primary',
-					isScrolled && 'text-grey-primary hover:text-primary'
+					isScrolled && 'text-grey-primary hover:text-primary',
+					theme === 'light' && 'text-white hover:text-grey-50',
 				) }
 				aria-label='Dashboard'
 			>
@@ -266,7 +266,7 @@ const Navbar: React.FC<NavbarProps> = ({
 									className={ clsxm(
 										'relative overflow-visible transition-all duration-300 visible h-[60px] lg:h-[69px] font-Poppins backdrop-blur-[25px] p-18px lg:pl-[42px] lg:py-3 lg:pr-3 rounded-[100px] flex items-center space-x-5 xl:space-x-[50px] w-full justify-between',
 										isScrolled ? 'bg-grey-50 backdrop-blur-none' : 'bg-white/10',
-										theme === 'light' && !isScrolled && 'bg-most-value'
+										theme === 'light' && 'bg-most-value'
 									) }
 								>
 									<div className='flex items-center lg:space-x-5 xl:space-x-[50px]'>
@@ -298,10 +298,10 @@ const Navbar: React.FC<NavbarProps> = ({
 																		href={ menuChild.href }
 																		className={ clsxm(
 																			'text-grey-50 text-sm !leading-[21px]',
-																			theme === 'light' && 'text-white',
 																			theme === 'light-grey' && 'text-grey-primary',
 																			isScrolled && 'text-grey-primary hover:text-primary',
-																			isScrolled && pathname === menuChild.href && 'text-primary'
+																			isScrolled && pathname === menuChild.href && 'text-primary',
+																			theme === 'light' && 'text-white hover:text-grey-50',
 																		) }
 																	>
 																		{ menuChild.name }
@@ -321,10 +321,10 @@ const Navbar: React.FC<NavbarProps> = ({
 														onMouseEnter={ () => setActive(null) }
 														className={ clsxm(
 															'text-sm font-medium !leading-[21px] text-grey-50',
-															theme === 'light' && 'text-white',
 															theme === 'light-grey' && 'text-grey-primary',
 															isScrolled && 'text-grey-primary hover:text-primary',
-															isScrolled && pathname.includes(menu.href) && 'text-primary'
+															isScrolled && pathname.includes(menu.href) && 'text-primary',
+															theme === 'light' && 'text-white hover:text-grey-50',
 														) }
 													>
 														{ menu.name }
@@ -350,7 +350,7 @@ const Navbar: React.FC<NavbarProps> = ({
 											<Bars3Icon
 												className={ clsxm(
 													'block h-6 w-6 text-grey-50',
-													theme === 'light' && 'text-white',
+													theme === 'light' && 'text-white hover:text-grey-50',
 													isScrolled && 'text-primary'
 												) }
 												aria-hidden='true'

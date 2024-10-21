@@ -11,7 +11,7 @@ const GevitiLogo: React.FC<GevitiLogoProps> = ({ theme, isScrolled }) => {
 	return (
 		<div className='flex-shrink-0 relative overflow-hidden w-[85px] h-5'>
 			<Image
-				src={ isScrolled ? navbarData.logoDark : theme === 'light' ? navbarData.logoLight : navbarData.logoLight }
+				src={ theme === 'light' ? navbarData.logoLight : isScrolled ? navbarData.logoDark  : navbarData.logoLight }
 				alt='logo'
 				fill
 				priority
