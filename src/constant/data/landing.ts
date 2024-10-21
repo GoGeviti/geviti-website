@@ -271,7 +271,7 @@ const landingData = {
 		},
 	},
 	benefits: {
-		preTitle: 'Anti-aging care” instead of “membership benefits',
+		preTitle: 'Anti-aging care',
 		title: 'Optimize health & wellness',
 		description:
       'A fully integrated health program that brings together advanced diagnostics, expert medical care and coaching, science-backed longevity therapies for optimal well-being and long-term vitality.',

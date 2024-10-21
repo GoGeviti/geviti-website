@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { AnimatePresence, motion, MotionProps, useAnimation } from 'framer-motion';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 import navbarData from '@/constant/data/navigation';
 import clsxm from '@/helpers/clsxm';
@@ -43,10 +44,12 @@ export const MenuItem = ({
 	item,
 	children,
 	theme,
+	isScrolled
 }: {
   setActive: React.Dispatch<React.SetStateAction<string | null>>;
   active: string | null;
   item: string;
+  isScrolled: boolean;
   children?: React.ReactNode;
   theme?: 'light' | 'dark' | 'light-grey';
 }) => {
@@ -59,7 +62,8 @@ export const MenuItem = ({
 				className={ clsxm(
 					'cursor-pointer text-sm font-medium !leading-[21px] inline-flex gap-2 items-center text-grey-50',
 					theme === 'light' && 'text-white',
-					theme === 'light-grey' && 'text-grey-primary'
+					theme === 'light-grey' && 'text-grey-primary',
+					isScrolled && 'text-grey-primary hover:text-primary'
 				) }
 			>
 				{ item }
@@ -85,7 +89,8 @@ export const MenuItem = ({
 								layoutId='active' // layoutId ensures smooth animation
 								className={ clsxm(
 									'bg-white/10 backdrop-blur-[27px] border border-white/5 rounded-[9px] overflow-hidden relative',
-									theme === 'light' && 'bg-most-value'
+									theme === 'light' && 'bg-most-value',
+									isScrolled && 'bg-grey-50'
 								) }
 							>
 								<div className='absolute inset-0 w-full h-full bg-white/10 border border-white/5 backdrop-blur-[27px]' />
@@ -118,9 +123,10 @@ type NavbarProps = {
       externalLink?: boolean;
     }[];
   }[];
+  isScrolled?: boolean
 };
 
-const ActionMenuList = ({ theme }: NavbarProps) => {
+const ActionMenuList = ({ theme, isScrolled }: NavbarProps) => {
 	return (
 		<>
 			<CustomLink
@@ -130,7 +136,8 @@ const ActionMenuList = ({ theme }: NavbarProps) => {
 					'lg:w-[120px] rounded-md px-3 py-2 text-sm font-Poppins font-medium md:block hidden',
 					'text-grey-50',
 					theme === 'light' && 'text-white',
-					theme === 'light-grey' && 'text-grey-primary'
+					theme === 'light-grey' && 'text-grey-primary',
+					isScrolled && 'text-grey-primary hover:text-primary'
 				) }
 				aria-label='Dashboard'
 			>
@@ -171,27 +178,27 @@ const Navbar: React.FC<NavbarProps> = ({
 	const [overflow, setOverflow] = useState<string>('hidden');
 	const [isVisible, setIsVisible] = useState(true);
 	const [lastScrollY, setLastScrollY] = useState(0);
+	const [isScrolled, setIsScrolled] = useState(false);
+	const pathname = usePathname();
 
 	const controls = useAnimation();
 
 	useEffect(() => {
 		const controlNavbar = () => {
 			if (typeof window !== 'undefined') {
-				if (window.scrollY > lastScrollY) { // if scroll down hide the navbar
+				if (window.scrollY > lastScrollY) {
 					setIsVisible(false);
-				} else { // if scroll up show the navbar
+				} else {
 					setIsVisible(true);
 				}
 
-				// remember current page location to use in the next move
 				setLastScrollY(window.scrollY);
+				setIsScrolled(window.scrollY > 200);
 			}
 		};
 
 		if (typeof window !== 'undefined') {
 			window.addEventListener('scroll', controlNavbar);
-
-			// cleanup function
 			return () => {
 				window.removeEventListener('scroll', controlNavbar);
 			};
@@ -231,7 +238,7 @@ const Navbar: React.FC<NavbarProps> = ({
 				{ isVisible && (
 					<motion.div
 						className={ clsxm(
-							'inset-x-0 top-0 z-50 fixed pt-4 lg:pt-[30px]',
+							'inset-x-0 top-0 z-[999] fixed pt-4 lg:pt-[30px]',
 							className
 						) }
 						initial='hidden'
@@ -254,15 +261,18 @@ const Navbar: React.FC<NavbarProps> = ({
 								<nav
 									onMouseLeave={ () => setActive(null) }
 									className={ clsxm(
-										'relative overflow-visible visible h-[60px] lg:h-[69px] font-Poppins backdrop-blur-[25px] p-18px lg:pl-[42px] lg:py-3 lg:pr-3 rounded-[100px] bg-white/10 flex items-center space-x-5 xl:space-x-[50px] w-full justify-between',
-										theme === 'light' && 'bg-most-value'
+										'relative overflow-visible transition-all duration-300 visible h-[60px] lg:h-[69px] font-Poppins backdrop-blur-[25px] p-18px lg:pl-[42px] lg:py-3 lg:pr-3 rounded-[100px] flex items-center space-x-5 xl:space-x-[50px] w-full justify-between',
+										isScrolled ? 'bg-grey-50 backdrop-blur-none' : 'bg-white/10',
+										theme === 'light' && !isScrolled && 'bg-most-value'
 									) }
 								>
 									<div className='flex items-center lg:space-x-5 xl:space-x-[50px]'>
 										<Link
 											href='/'
 											className='focus:ring-0 focus:outline-none'>
-											<GevitiLogo theme={ theme } />
+											<GevitiLogo
+												isScrolled={ isScrolled }
+												theme={ theme } />
 										</Link>
 										<div className='hidden lg:flex items-center space-x-5 xl:space-x-[50px]'>
 											{ menuList.map(menu => {
@@ -274,6 +284,7 @@ const Navbar: React.FC<NavbarProps> = ({
 															active={ active }
 															item={ menu.name }
 															theme={ theme }
+															isScrolled={ isScrolled }
 														>
 															<div className='flex flex-col space-y-2'>
 																{ menu.items.map(menuChild => (
@@ -283,7 +294,9 @@ const Navbar: React.FC<NavbarProps> = ({
 																		className={ clsxm(
 																			'text-grey-50 text-sm !leading-[21px]',
 																			theme === 'light' && 'text-white',
-																			theme === 'light-grey' && 'text-grey-primary'
+																			theme === 'light-grey' && 'text-grey-primary',
+																			isScrolled && 'text-grey-primary hover:text-primary',
+																			isScrolled && pathname === menuChild.href && 'text-primary'
 																		) }
 																	>
 																		{ menuChild.name }
@@ -304,7 +317,9 @@ const Navbar: React.FC<NavbarProps> = ({
 														className={ clsxm(
 															'text-sm font-medium !leading-[21px] text-grey-50',
 															theme === 'light' && 'text-white',
-															theme === 'light-grey' && 'text-grey-primary'
+															theme === 'light-grey' && 'text-grey-primary',
+															isScrolled && 'text-grey-primary hover:text-primary',
+															isScrolled && pathname === menu.href && 'text-primary'
 														) }
 													>
 														{ menu.name }
@@ -315,7 +330,9 @@ const Navbar: React.FC<NavbarProps> = ({
 									</div>
 									<div className='hidden lg:flex items-center space-x-5'>
 										{ /* { renderIconMenuList() } */ }
-										<ActionMenuList theme={ theme } />
+										<ActionMenuList
+											isScrolled={ isScrolled }
+											theme={ theme } />
 									</div>
 									<div className='flex lg:hidden'>
 										<button
