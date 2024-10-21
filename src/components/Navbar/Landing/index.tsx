@@ -33,7 +33,7 @@ export const navbarVariants = {
 };
 
 export const navbarDefaultTransition = {
-	delay: 2,
+	// delay: 2,
 	duration: 1,
 	ease: 'easeInOut',
 };
@@ -172,7 +172,7 @@ const ActionMenuList = ({ theme, isScrolled }: NavbarProps) => {
 
 const Navbar: React.FC<NavbarProps> = ({
 	className,
-	animationProps,
+	// animationProps,
 	theme,
 	menuList = navbarData.menu,
 }) => {
@@ -259,7 +259,7 @@ const Navbar: React.FC<NavbarProps> = ({
 								className='inline-block w-full border border-white/5 rounded-full'
 								transition={ navbarDefaultTransition }
 								onAnimationComplete={ () => setOverflow('') }
-								{ ...animationProps }
+								// { ...animationProps }
 							>
 								<nav
 									onMouseLeave={ () => setActive(null) }
