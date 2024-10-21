@@ -33,7 +33,7 @@ const TextReveal: React.FC = () => {
 	const words = paragraph.split(' ');
 
 	return (
-		<div className='lg:px-3 font-Poppins mt-6 lg:mt-[77px]'>
+		<div className='lg:px-3 font-Poppins mt-6'>
 			<div
 				ref={ container }
 				className='bg-primary w-full rounded-19px block my-auto mx-0 px-[1.25rem]'

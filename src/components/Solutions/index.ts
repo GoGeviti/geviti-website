@@ -4,6 +4,7 @@ import Membership from './Membership';
 import OptimizedYourSelf from './OptimizedYourSelf';
 import Steps from './Steps';
 import TreatmentOptions from './TreatmentOptions';
+import ViewOtherCategories from './ViewOtherCategories';
 import WellnessPro from './WellnessPro';
 
 export {
@@ -13,5 +14,6 @@ export {
 	OptimizedYourSelf,
 	Steps,
 	TreatmentOptions,
+	ViewOtherCategories,
 	WellnessPro
 };

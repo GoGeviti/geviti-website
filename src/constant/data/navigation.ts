@@ -13,11 +13,55 @@ const navigationData = {
 			name: 'Men\'s Health',
 			href: '/solution/men',
 			externalLink: false,
+			items: [
+				{
+					name: 'Hair Regrowth Solutions',
+					href: '/solution/men/hair-regrowth-solutions',
+				},
+				{
+					name: 'Sexual Health',
+					href: '/solution/men/sexual-health',
+				},
+				{
+					name: 'Weight Management',
+					href: '/solution/men/weight-management',
+				},
+				{
+					name: 'Hormone Optimization',
+					href: '/solution/men/hormone-optimization',
+				},
+				{
+					name: 'Anti-aging Peptides',
+					href: '/solution/men/anti-aging-peptides',
+				},
+			],
 		},
 		{
 			name: 'Women\'s Health',
 			href: '/solution/women',
 			externalLink: false,
+			items: [
+				{
+					name: 'Hair Regrowth Solutions',
+					href: '/solution/women/hair-regrowth-solutions',
+				},
+				{
+					name: 'Sexual Health',
+					href: '/solution/women/sexual-health',
+				},
+				{
+					name: 'Weight Management',
+					href: '/solution/women/weight-management',
+				},
+				{
+					name: 'Hormone Optimization',
+					href: '/solution/women/hormone-optimization',
+				},
+				{
+					name: 'Anti-aging Peptides',
+					href: '/solution/women/anti-aging-peptides',
+				},
+			],
 		},
 		{
 			name: 'Bloodwork',
