@@ -44,12 +44,14 @@ export const MenuItem = ({
 	item,
 	children,
 	theme,
-	isScrolled
+	isScrolled,
+	isActiveMenu
 }: {
   setActive: React.Dispatch<React.SetStateAction<string | null>>;
   active: string | null;
   item: string;
   isScrolled: boolean;
+  isActiveMenu?:boolean
   children?: React.ReactNode;
   theme?: 'light' | 'dark' | 'light-grey';
 }) => {
@@ -63,7 +65,8 @@ export const MenuItem = ({
 					'cursor-pointer text-sm font-medium !leading-[21px] inline-flex gap-2 items-center text-grey-50',
 					theme === 'light' && 'text-white',
 					theme === 'light-grey' && 'text-grey-primary',
-					isScrolled && 'text-grey-primary hover:text-primary'
+					isScrolled && 'text-grey-primary hover:text-primary',
+					isActiveMenu && 'text-primary'
 				) }
 			>
 				{ item }
@@ -277,6 +280,7 @@ const Navbar: React.FC<NavbarProps> = ({
 										<div className='hidden lg:flex items-center space-x-5 xl:space-x-[50px]'>
 											{ menuList.map(menu => {
 												if (menu.items) {
+													const isActive = isScrolled && (pathname === menu.href || pathname.startsWith(`${menu.href}/`));
 													return (
 														<MenuItem
 															key={ menu.name }
@@ -285,6 +289,7 @@ const Navbar: React.FC<NavbarProps> = ({
 															item={ menu.name }
 															theme={ theme }
 															isScrolled={ isScrolled }
+															isActiveMenu={ isActive }
 														>
 															<div className='flex flex-col space-y-2'>
 																{ menu.items.map(menuChild => (
@@ -319,7 +324,7 @@ const Navbar: React.FC<NavbarProps> = ({
 															theme === 'light' && 'text-white',
 															theme === 'light-grey' && 'text-grey-primary',
 															isScrolled && 'text-grey-primary hover:text-primary',
-															isScrolled && pathname === menu.href && 'text-primary'
+															isScrolled && pathname.includes(menu.href) && 'text-primary'
 														) }
 													>
 														{ menu.name }
@@ -345,7 +350,8 @@ const Navbar: React.FC<NavbarProps> = ({
 											<Bars3Icon
 												className={ clsxm(
 													'block h-6 w-6 text-grey-50',
-													theme === 'light' && 'text-white'
+													theme === 'light' && 'text-white',
+													isScrolled && 'text-primary'
 												) }
 												aria-hidden='true'
 											/>
