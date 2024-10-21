@@ -41,6 +41,7 @@ export const navbarDefaultTransition = {
 export const MenuItem = ({
 	setActive,
 	active,
+	href,
 	item,
 	children,
 	theme,
@@ -50,6 +51,7 @@ export const MenuItem = ({
   setActive: React.Dispatch<React.SetStateAction<string | null>>;
   active: string | null;
   item: string;
+	href?: string
   isScrolled: boolean;
   isActiveMenu?:boolean
   children?: React.ReactNode;
@@ -69,7 +71,15 @@ export const MenuItem = ({
 					theme === 'light' && 'text-white hover:text-grey-50',
 				) }
 			>
-				{ item }
+				{
+					href !== '#' ? (
+						<Link href={ href ?? '' } >
+							{ item }
+						</Link>
+					) : (
+						item
+					)
+				}
 				<span>
 					<ChevronDown
 						className={ clsxm(
@@ -189,7 +199,7 @@ const Navbar: React.FC<NavbarProps> = ({
 	useEffect(() => {
 		const controlNavbar = () => {
 			if (typeof window !== 'undefined') {
-				if (window.scrollY > lastScrollY) {
+				if (window.scrollY > 10 && window.scrollY > lastScrollY) {
 					setIsVisible(false);
 				} else {
 					setIsVisible(true);
@@ -285,6 +295,7 @@ const Navbar: React.FC<NavbarProps> = ({
 														<MenuItem
 															key={ menu.name }
 															setActive={ setActive }
+															href={ menu.href }
 															active={ active }
 															item={ menu.name }
 															theme={ theme }
