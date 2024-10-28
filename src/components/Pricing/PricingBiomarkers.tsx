@@ -5,7 +5,10 @@ import React, { useState } from 'react';
 import BiomarkersSection from './BiomarkersSection';
 import PricingComparison from './PricingComparison';
 
-const PricingBiomarkers: React.FC = () => {
+type PricingBiomarkersProps = {
+	isFromHomePage?: boolean;
+}
+const PricingBiomarkers: React.FC<PricingBiomarkersProps> = ({ isFromHomePage }) => {
 	const [openIdx, setOpenIdx] = useState<number>(-1);
 
 	const toggleAccordion = (idx: number) => {
@@ -21,11 +24,15 @@ const PricingBiomarkers: React.FC = () => {
 					isOpen={ openIdx === 0 }
 					toggleAccordion={ toggleAccordion }
 				/>
-				<BiomarkersSection
-					index={ 1 }
-					isOpen={ openIdx === 1 }
-					toggleAccordion={ toggleAccordion }
-				/>
+				{
+					!isFromHomePage && (
+						<BiomarkersSection
+							index={ 1 }
+							isOpen={ openIdx === 1 }
+							toggleAccordion={ toggleAccordion }
+						/>
+					)
+				}
 			</div>
 		</div>
 	);
