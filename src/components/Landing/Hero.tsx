@@ -1,5 +1,5 @@
 'use client';
-import React, { useEffect, useState } from 'react';
+import React, { Suspense, useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { motion, useAnimationControls } from 'framer-motion';
 import dynamic from 'next/dynamic';
@@ -18,16 +18,36 @@ import { slideUpTransition } from './transition';
 
 const PopupReview = dynamic(() => import('../PopupReview'), {
 	ssr: false,
+	loading: () => null,
 });
 const HeroBanner = dynamic(() => import('./HeroBanner'), {
 	ssr: false,
+	loading: () => null,
 });
 
 const heroData = landingData.hero;
 
 type HeroProps = {
-  showBanner?: boolean;
-  showIntro?: string;
+	showBanner?: boolean;
+	showIntro?: string;
+};
+
+const HeroImage = ({ type }: { type: 'desktop' | 'mobile' }) => {
+	const imageMobile = type === 'mobile';
+	return (
+		<Image
+			src={ imageMobile ? heroData.imageMobile : heroData.image }
+			alt='hero'
+			priority={ type === 'desktop' }
+			className={ clsxm(
+				'object-cover pointer-events-none',
+				imageMobile ? 'md:hidden object-center' : 'md:block hidden object-right'
+			) }
+			fill
+			sizes={ imageMobile ? '100vw' : '90vw' }
+			loading={ type === 'mobile' ? 'lazy' : 'eager' }
+		/>
+	);
 };
 
 const Hero: React.FC<HeroProps> = ({
@@ -68,25 +88,9 @@ const Hero: React.FC<HeroProps> = ({
 		));
 	};
 
-	const renderImage = (type: 'desktop' | 'mobile') => {
-		const imageMobile = type === 'mobile';
-
-		return (
-			<Image
-				src={ imageMobile ? heroData.imageMobile : heroData.image }
-				alt='hero'
-				priority={ true }
-				className={ clsxm(
-					'object-cover pointer-events-none',
-					imageMobile
-						? 'md:hidden object-center'
-						: 'md:block hidden object-right'
-				) }
-				fill
-				sizes='(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 100vw'
-			/>
-		);
-	};
+	const renderImage = (type: 'desktop' | 'mobile') => (
+		<HeroImage type={ type } />
+	);
 
 	const renderMainKeys = () => {
 		return (
@@ -169,9 +173,9 @@ const Hero: React.FC<HeroProps> = ({
 				<div className='absolute bottom-0 inset-x-0 w-full h-[28%] max-lg:bg-backdrop-hero-landing-bottom-desktop' />
 				<div className='h-full container-center'>
 					<div className='relative z-20 w-full h-full rounded-b-19px'>
-						{ heroData.banner.show ? (
-							<HeroBanner showBanner={ showBanner } />
-						) : null }
+						<Suspense fallback={ null }>
+							{ heroData.banner.show && <HeroBanner showBanner={ showBanner } /> }
+						</Suspense>
 						<div className='lg:pb-[47px] h-full w-full flex flex-col justify-end'>
 							<div className='text-left flex flex-col'>
 								<span className='overflow-hidden inline-flex'>
@@ -292,9 +296,11 @@ const Hero: React.FC<HeroProps> = ({
 										</div>
 									</div>
 
-									<div className='absolute right-0 bottom-0 max-lg:hidden'>
-										{ renderPopupReview() }
-									</div>
+									<Suspense fallback={ null }>
+										<div className='absolute right-0 bottom-0 max-lg:hidden'>
+											{ renderPopupReview() }
+										</div>
+									</Suspense>
 								</div>
 							</div>
 
@@ -325,7 +331,7 @@ const Hero: React.FC<HeroProps> = ({
 								</motion.div>
 								{ /* <div className='absolute h-full w-full bg-red-500 inset-0'>
 										Gradient
-								</div> */ }
+									</div> */ }
 								<div className='max-lg:hidden'>
 									{ renderMainKeys() }
 								</div>
