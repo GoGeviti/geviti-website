@@ -251,7 +251,7 @@ const Navbar: React.FC<NavbarProps> = ({
 				{ isVisible && (
 					<motion.div
 						className={ clsxm(
-							'inset-x-0 top-0 z-[999] fixed pt-4 lg:pt-[30px]',
+							'inset-x-0 top-0 z-50 fixed pt-4 lg:pt-[30px]',
 							className
 						) }
 						initial='hidden'
@@ -274,7 +274,7 @@ const Navbar: React.FC<NavbarProps> = ({
 								<nav
 									onMouseLeave={ () => setActive(null) }
 									className={ clsxm(
-										'relative overflow-visible transition-all duration-300 visible h-[60px] lg:h-[69px] font-Poppins backdrop-blur-[25px] p-18px lg:pl-[42px] lg:py-3 lg:pr-3 rounded-[100px] flex items-center space-x-5 xl:space-x-[50px] w-full justify-between',
+										'relative overflow-visible transition-all duration-300 visible h-[60px] lg:h-[69px] font-Poppins p-18px lg:pl-[42px] lg:py-3 lg:pr-3 rounded-[100px] flex items-center space-x-5 xl:space-x-[50px] w-full justify-between',
 										isScrolled ? 'bg-grey-50 backdrop-blur-none' : 'bg-white/10',
 										theme === 'light' && 'bg-most-value'
 									) }

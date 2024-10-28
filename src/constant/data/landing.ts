@@ -119,8 +119,8 @@ const landingData = {
 		},
 	},
 	steps: {
-		preTitle: 'No more guessing where your health is',
-		title: 'Your journey begins with a full blood panel.',
+		preTitle: 'Your journey begins with a full blood panel',
+		title: 'No more guessing where your health is',
 		btnCta: {
 			href: '/pricing',
 			externalLink: false,
@@ -297,7 +297,7 @@ const landingData = {
 					},
 					{
 						cheked: false,
-						text: 'Reactive. Care once sick.',
+						text: 'Reactive. Care once already sick.',
 					},
 					{
 						cheked: false,
@@ -310,7 +310,7 @@ const landingData = {
 				]
 			},
 			{
-				title: 'Geviti',
+				title: 'Geviti Membership:',
 				items: [
 					{
 						cheked: true,
@@ -628,9 +628,9 @@ const landingData = {
 		{
 			align: 'right',
 			preTitle: 'A holistic approach',
-			title: 'Eastern and western<br />medicine, combined. ',
+			title: 'Functional and modern<br />medicine, combined.',
 			description:
-				'At Geviti, we bring together the best of both worlds by integrating the wisdom of Eastern practices with the advancements of Western medicine. This holistic approach ensures that your health journey is supported from all angles, promoting optimal balance, healing, and long-term wellness.',
+				'At Geviti, we combine the best of functional medicine with modern medical advancements. This integrative approach addresses root causes of health concerns, promoting optimal balance, healing, and long-term wellness to support your journey from all angles.',
 			card: {
 				id: 'coaching',
 				title: 'Health Coaching',

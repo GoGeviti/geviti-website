@@ -1,6 +1,15 @@
-import React from 'react'
+'use client'
+import React, { useMemo } from 'react'
+import { usePathname } from 'next/navigation';
 
 const Description = () => {
+	const pathname = usePathname();
+
+	const optimizationType = useMemo(() => {
+		const isWomen = pathname?.includes('/women/');
+		return isWomen ? 'female optimization' : 'male optimization';
+	}, [pathname]);
+
 	return (
 		<div className='lg:px-3 max-lg:mt-16'>
 			<div className='container-center'>
@@ -8,7 +17,7 @@ const Description = () => {
 					<div className='flex flex-col lg:flex-row items-start justify-between'>
 						<div className='w-full'>
 							<h3 className='text-2xl lg:text-4xl font-medium text-primary whitespace-nowrap'>
-								Treatment options for <br/><span className='text-grey-primary'>male optimization</span>
+								Treatment options for <br/><span className='text-grey-primary'>{ optimizationType }</span>
 							</h3>
 						</div>
 						<div className='flex flex-col gap-8 lg:gap-16 max-lg:mt-3'>
@@ -19,8 +28,8 @@ const Description = () => {
 									<p className='text-grey-primary text-sm'>Men In the united states from ages 25-75 have low T</p>
 								</div>
 								<div>
-									<h2 className='text-primary font-medium text-3xl lg:text-[46px]'>69%</h2>
-									<p className='text-grey-primary text-sm'>Of Adults in the united states are obese or overweight</p>
+									<h2 className='text-primary font-medium text-3xl lg:text-[46px]'>83%</h2>
+									<p className='text-grey-primary text-sm'>Of couples say a healthy sex life is critical to their relationship satisfaction.</p>
 								</div>
 							</div>
 						</div>

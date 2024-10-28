@@ -89,15 +89,21 @@ const Hero: React.FC<HeroProps> = ({
 
 	const renderMainKeys = () => {
 		return (
-			<div className='lg:pt-11 w-full flex flex-wrap max-lg:px-4 lg:justify-center gap-4 max-lg:pb-6 pt-11 lg:gap-6 relative z-10' >
+			<div className='lg:pt-11 w-full flex flex-wrap max-lg:px-4 lg:justify-center gap-4 max-lg:pb-6 pt-11 lg:gap-6 relative z-10'>
 				{ heroData.mainKeys.map((item, itemIdx) => {
 					return (
-						<div
-							key={ 'landing-hero-mainkeys-' + itemIdx }
-							className={ clsxm('flex items-center justify-center p-[10px] rounded-lg bg-white/20 text-grey-50  text-sm font-medium') }
+						<motion.div
+							key={ `landing-hero-mainkeys-${itemIdx}` }
+							initial={ { opacity: 0, y: 20 } }
+							animate={ { opacity: 1, y: 0 } }
+							transition={ {
+								duration: 0.5,
+								delay: showIntro === 'true' ? 3.5 + itemIdx * 0.2 : 1.5 + itemIdx * 0.2,
+							} }
+							className={ clsxm('flex items-center justify-center p-[10px] rounded-lg bg-white/20 text-grey-50 text-sm font-medium') }
 						>
 							<span className='whitespace-nowrap'>{ item }</span>
-						</div>
+						</motion.div>
 					);
 				}) }
 			</div>

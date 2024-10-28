@@ -88,7 +88,7 @@ const ViewOtherCategories: React.FC<{data:Category[] | Product[]}> = ({ data }) 
 										</div>
 										<div className='flex flex-1 flex-col justify-end px-4 w-full mb-6'>
 											<Link
-												href={ '/' }
+												href={ item.slug ?? '' }
 												className='text-xs !leading-5 focus:ring-0 focus:outline-none w-full bg-white text-primary py-[7.73px] px-5 flex items-center justify-center rounded-[128px]'
 											>
 													View Category

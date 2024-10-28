@@ -1,6 +1,9 @@
 import React from 'react'
 import { notFound } from 'next/navigation'
 
+import { Biomakers } from '@/app/solution/men/[category]/[product_id]/Biomakers'
+import Hero from '@/app/solution/men/[category]/[product_id]/Hero'
+import Description from '@/app/solution/men/[category]/Description'
 import { Footer, FrequentlyAskedQuestions, MarketingComponent, RunningLogo } from '@/components'
 import Navbar, { navbarDefaultTransition } from '@/components/Navbar/Landing'
 import { ViewOtherCategories } from '@/components/Solutions'
@@ -8,9 +11,9 @@ import { solutionData } from '@/constant/data'
 import { Product } from '@/payload/payload-types'
 import { getProductByCategory } from '@/services/products'
 
-import { Biomakers } from './Biomakers'
-import Description from './Description'
-import Hero from './Hero'
+// import { Biomakers } from '../Biomakers'
+// import Description from '../Description'
+// import Hero from '../Hero'
 
 const biomakersList = [
 	'Oral Capsule',

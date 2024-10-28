@@ -8,9 +8,13 @@ import { solutionData } from '@/constant/data';
 import { Category, Product } from '@/payload/payload-types';
 import { getCategories, getProductByCategory } from '@/services/products';
 
-import Description from './Description';
-import Hero from './Hero';
-import ProductsSlider from './ProductsSlider';
+import Description from '../../men/[category]/Description';
+import Hero from '../../men/[category]/Hero';
+import ProductsSlider from '../../men/[category]/ProductsSlider';
+
+// import Description from './Description';
+// import Hero from './Hero';
+// import ProductsSlider from './ProductsSlider';
 
 const ProductCategory = async({ params: { category = '' } }) => {
 

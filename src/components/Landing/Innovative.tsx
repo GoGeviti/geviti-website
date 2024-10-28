@@ -150,7 +150,7 @@ const Innovative: React.FC = () => {
 							) }
 						</div>
 					</div>
-					<div className='flex flex-col gap-y-18px mt-7 lg:mt-12'>
+					<div className='flex flex-col gap-y-18px mt-7 mb-[14px] lg:mt-12'>
 						{ item.list.map((detailItem: any, detailIdx: number) => {
 							const Icon = detailItem.icon;
 

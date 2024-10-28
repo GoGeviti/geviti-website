@@ -1,6 +1,7 @@
 import React from 'react'
 
 const Description = () => {
+
 	return (
 		<div className='lg:px-3'>
 			<div className='container-center'>
