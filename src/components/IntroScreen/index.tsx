@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
-import { AnimatePresence, motion, useAnimation } from 'framer-motion';
+import { motion, useAnimation } from 'framer-motion';
 import Image from 'next/image';
 
 import { setCookieIntro } from '@/services/cookies';
@@ -21,14 +21,17 @@ export default function IntroScreen({
 	showIntro = 'true',
 }: IntroScreenProps) {
 	const vidRef = useRef<HTMLVideoElement | null>(null);
-	// const [videoLoaded, setVideoLoaded] = useState(false);
 	const controls = useAnimation();
 
 	const handlePlayVideo = async() => {
 		if (vidRef.current && type === 'video' && showIntro === 'true') {
-			vidRef.current.play();
-			// setVideoLoaded(true);
-			await controls.start('enter');
+			try {
+				await vidRef.current.play();
+				await controls.start('enter');
+			} catch (error) {
+				console.error('Video playback failed:', error);
+				await controls.start('enter');
+			}
 		}
 		if (type === 'image') {
 			await controls.start('enter');
@@ -51,19 +54,21 @@ export default function IntroScreen({
 	const renderContent = () => {
 		if (type === 'video') {
 			return (
-				<video
-					ref={ vidRef }
-					muted
-					width={ 3432 }
-					height={ 2160 }
-					playsInline
-					className='w-full h-[540px] lg:h-full object-cover'
-				>
-					<source
-						src={ src ?? '/videos/intro.mp4' }
-						type='video/mp4' />
-          Your browser does not support the video tag.
-				</video>
+				<div className='w-full h-full'>
+					<video
+						ref={ vidRef }
+						muted
+						playsInline
+						preload='auto'
+						className='w-full h-[540px] lg:h-full object-cover'
+					>
+						<source
+							src={ src ?? '/videos/intro.mp4' }
+							type='video/mp4'
+						/>
+						<p className='hidden'>Your browser does not support the video tag.</p>
+					</video>
+				</div>
 			);
 		}
 
@@ -84,13 +89,14 @@ export default function IntroScreen({
 							ease: [0.76, 0, 0.24, 1],
 						},
 					} }
-					className='w-[145px] h-[34.12px] relative overflow-hidden'
+					className='w-[145px] h-[34.12px] relative'
 				>
 					<Image
 						src={ src ?? '/images/logo/logo_light.webp' }
 						alt='geviti'
 						priority
-						fill
+						width={ 145 }
+						height={ 34 }
 						className='w-full h-full object-contain'
 					/>
 				</motion.div>
@@ -101,35 +107,33 @@ export default function IntroScreen({
 	};
 
 	return (
-		<AnimatePresence>
+		<>
 			{ showIntro === 'true' && (
 				<motion.div
 					key='loader'
 					variants={ {
 						initial: {
-							top: '0',
+							transform: 'translateY(0)',
 						},
 						enter: {
-							top: '-110vh',
+							transform: 'translateY(-110vh)',
 							transition: {
 								duration: 0.75,
 								delay: type === 'video' ? 2.1 : 1.5,
 								ease: [0.76, 0, 0.24, 1],
 							},
 							transitionEnd: {
-								top: '110vh',
+								transform: 'translateY(110vh)',
 							},
 						},
 					} }
 					initial='initial'
 					animate={ controls }
 					onAnimationComplete={ () => {
-						if (window) {
-							setTimeout(() => {
-								document.body.style.overflowY = 'unset';
-								setCookieIntro({ key: 'show_intro', value: 'false' });
-							}, 500);
-						}
+						setTimeout(() => {
+							document.body.style.overflowY = 'unset';
+							setCookieIntro({ key: 'show_intro', value: 'false' });
+						}, 500);
 					} }
 					className='w-screen fixed h-[110vh] overflow-hidden top-0 z-[9999] left-0 pointer-events-none bg-blue-primary'
 				>
@@ -138,7 +142,7 @@ export default function IntroScreen({
 					</div>
 				</motion.div>
 			) }
-			<motion.div key='content-children'>{ children }</motion.div>
-		</AnimatePresence>
+			{ children }
+		</>
 	);
 }

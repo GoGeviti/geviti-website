@@ -69,7 +69,7 @@ const MenuItem = memo(({
   setActive: React.Dispatch<React.SetStateAction<string | null>>;
   active: string | null;
   item: string;
- href?: string
+  href?: string
   isScrolled: boolean;
   isActiveMenu?:boolean
   children?: React.ReactNode;
@@ -149,7 +149,7 @@ const MenuItem = memo(({
 						<div>
 							<p className='text-[10px] font-semibold uppercase tracking-[1.1px] pb-[14px]'>Get Started</p>
 							<Link
-								href='/membership'
+								href='/pricing'
 								className=''>
 								<div className='relative group w-[177px] h-[131px] rounded-lg overflow-hidden cursor-pointer'>
 									<Image
@@ -161,7 +161,7 @@ const MenuItem = memo(({
 									<div className='absolute inset-0 w-full h-full bg-primary' />
 									<div className='absolute h-[100px] z-[21] bottom-0 w-full rounded-b-lg bg-gradient-to-t from-primary to-transparent' />
 									<div className='absolute bottom-0 w-full z-30 flex items-center justify-between px-2.5 pb-2.5 h-fit'>
-										<span className='text-white text-xs whitespace-nowrap'>Become a members</span>
+										<span className='text-white text-xs whitespace-nowrap'>Become a member</span>
 										<div className='w-6 h-6 flex items-center justify-center rounded-full bg-white'>
 											<ArrowUpRightLink className='transform translate-y-0 stroke-primary transition-all duration-200 ease-in-out translate-x-0 group-hover:translate-y-[-1px] group-hover:translate-x-[2px]' />
 										</div>

@@ -23,43 +23,49 @@ const HomePage: NextPage = async() => {
 	const showIntro = await getCookie('show_intro');
 
 	return (
-		<IntroScreen
-			type='video'
-			showIntro={ showIntro }>
-			<div className='flex min-h-screen flex-col w-full bg-grey-background font-Poppins'>
-				<LandingComponent.Hero
-					showIntro={ showIntro }
-					showBanner={ false } />
-				<LandingComponent.TextReveal />
-				<LandingComponent.Steps />
-				<div className='mb-16'>
-					<RunningLogo />
-				</div>
-				<LandingComponent.Membership />
-				<LandingComponent.FeaturesCarousel />
-				<LandingComponent.Benefits />
-				<LandingComponent.Innovative />
-				<LandingComponent.HomeKits />
-				{ products?.length && (
-					<div
-						id='pricing'
-						className='lg:px-3 lg:py-6 overflow-hidden'>
-						<div className='lg:bg-white lg:rounded-[19px] pb-[42px] lg:pb-[64px]'>
-							<HeroPricing
-								products={ products }
-								isFromHomePage={ true }
-								navbar={ false }
-								className='!pt-[52px] lg:!pt-[164px]'
-							/>
-							<PricingBiomarkers isFromHomePage={ true } />
-						</div>
+		<>
+			<IntroScreen
+				type='video'
+				showIntro={ showIntro }>
+				<div className='flex min-h-screen flex-col w-full bg-grey-background font-Poppins'>
+					{ /* Add width and height to prevent layout shifts */ }
+					<div style={ { minHeight: '100vh' } }>
+						<LandingComponent.Hero
+							showIntro={ showIntro }
+							showBanner={ false }
+						/>
 					</div>
-				) }
-				<LandingComponent.Products />
-				<LandingComponent.Banner />
-				<Footer landingPage />
-			</div>
-		</IntroScreen>
+					<LandingComponent.TextReveal />
+					<LandingComponent.Steps />
+					<div className='mb-16'>
+						<RunningLogo />
+					</div>
+					<LandingComponent.Membership />
+					<LandingComponent.FeaturesCarousel />
+					<LandingComponent.Benefits />
+					<LandingComponent.Innovative />
+					<LandingComponent.HomeKits />
+					{ products?.length && (
+						<div
+							id='pricing'
+							className='lg:px-3 lg:py-6 overflow-hidden'>
+							<div className='lg:bg-white lg:rounded-[19px] pb-[42px] lg:pb-[64px]'>
+								<HeroPricing
+									products={ products }
+									isFromHomePage={ true }
+									navbar={ false }
+									className='!pt-[52px] lg:!pt-[164px]'
+								/>
+								<PricingBiomarkers isFromHomePage={ true } />
+							</div>
+						</div>
+					) }
+					<LandingComponent.Products />
+					<LandingComponent.Banner />
+					<Footer landingPage />
+				</div>
+			</IntroScreen>
+		</>
 	);
 };
 
