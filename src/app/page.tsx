@@ -2,21 +2,35 @@ import React from 'react';
 import { NextPage } from 'next';
 import dynamic from 'next/dynamic';
 
-import { Footer, LandingComponent, RunningLogo } from '@/components';
+import { Footer } from '@/components';
 import { getAllProducts } from '@/components/Checkout/api/onboarding';
 import IntroScreen from '@/components/IntroScreen';
 import { getCookie } from '@/services/cookies';
 
-const HeroPricing = dynamic(() => import('@/components/Pricing/Hero'), {
-	ssr: false,
+// Components that need SEO should have SSR enabled
+const Hero = dynamic(() => import('@/components/Landing/Hero'));
+const TextReveal = dynamic(() => import('@/components/Landing/TextReveal'));
+const Products = dynamic(() => import('@/components/Landing/Products'));
+const Banner = dynamic(() => import('@/components/Landing/Banner'));
+
+// Interactive components that don't need SEO can disable SSR
+const FeaturesCarousel = dynamic(() => import('@/components/Landing/FeaturesCarousel'), {
+	ssr: false // Interactive component, doesn't need SEO
+});
+const RunningLogo = dynamic(() => import('@/components/RunningLogo'), {
+	ssr: false // Animation component, doesn't need SEO
 });
 
-const PricingBiomarkers = dynamic(
-	() => import('@/components/Pricing/PricingBiomarkers'),
-	{
-		ssr: false,
-	}
-);
+// Components with important content should have SSR enabled
+const Steps = dynamic(() => import('@/components/Landing/Steps'));
+const Membership = dynamic(() => import('@/components/Landing/Membership'));
+const Benefits = dynamic(() => import('@/components/Landing/Benefits'));
+const Innovative = dynamic(() => import('@/components/Landing/Innovative'));
+const HomeKits = dynamic(() => import('@/components/Landing/HomeKits'));
+
+// Pricing components should have SSR for SEO
+const HeroPricing = dynamic(() => import('@/components/Pricing/Hero'));
+const PricingBiomarkers = dynamic(() => import('@/components/Pricing/PricingBiomarkers'));
 
 const HomePage: NextPage = async() => {
 	const products = await getAllProducts();
@@ -30,21 +44,31 @@ const HomePage: NextPage = async() => {
 				<div className='flex min-h-screen flex-col w-full bg-grey-background font-Poppins'>
 					{ /* Add width and height to prevent layout shifts */ }
 					<div style={ { minHeight: '100vh' } }>
-						<LandingComponent.Hero
+						<Hero
 							showIntro={ showIntro }
 							showBanner={ false }
 						/>
 					</div>
-					<LandingComponent.TextReveal />
-					<LandingComponent.Steps />
-					<div className='mb-16'>
-						<RunningLogo />
-					</div>
-					<LandingComponent.Membership />
-					<LandingComponent.FeaturesCarousel />
-					<LandingComponent.Benefits />
-					<LandingComponent.Innovative />
-					<LandingComponent.HomeKits />
+					{ /* Wrap heavy sections in suspense boundaries */ }
+					<React.Suspense fallback={ <div className='min-h-[200px]' /> }>
+						<TextReveal />
+						<Steps />
+						<div className='mb-16'>
+							<RunningLogo />
+						</div>
+					</React.Suspense>
+					
+					<React.Suspense fallback={ <div className='min-h-[200px]' /> }>
+						<Membership />
+						<FeaturesCarousel />
+						<Benefits />
+					</React.Suspense>
+					
+					<React.Suspense fallback={ <div className='min-h-[200px]' /> }>
+						<Innovative />
+						<HomeKits />
+					</React.Suspense>
+
 					{ products?.length && (
 						<div
 							id='pricing'
@@ -60,8 +84,12 @@ const HomePage: NextPage = async() => {
 							</div>
 						</div>
 					) }
-					<LandingComponent.Products />
-					<LandingComponent.Banner />
+					
+					<React.Suspense fallback={ <div className='min-h-[200px]' /> }>
+						<Products />
+						<Banner />
+					</React.Suspense>
+					
 					<Footer landingPage />
 				</div>
 			</IntroScreen>
