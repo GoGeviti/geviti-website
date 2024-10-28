@@ -55,7 +55,6 @@ const HomePage: NextPage = async() => {
 						</div>
 					</div>
 				) }
-				{ /* <LandingComponent.Pricing products={ products } /> */ }
 				<LandingComponent.Products />
 				<LandingComponent.Banner />
 				<Footer landingPage />

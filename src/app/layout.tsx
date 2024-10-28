@@ -43,17 +43,37 @@ const RootLayout: React.FC<{ children: React.ReactNode; }> = ({ children }) => {
 				name='cometly-domain-verification'
 				content='007df841-addd-4846-93c2-f94f19c48097'/>
 			<AOSInit />
-			{ /* <Script src='//embed.typeform.com/next/embed.js' /> */ }
+			
+			{ /* Google Ads Tag - Add this first */ }
+			<Script
+				src='https://www.googletagmanager.com/gtag/js?id=AW-11455487187'
+				strategy='afterInteractive'
+			/>
+			
+			{ /* Google Ads Configuration - Add this second */ }
+			<Script
+				id='google-ads-init'
+				strategy='afterInteractive'
+			>
+				{ `
+					window.dataLayer = window.dataLayer || [];
+					function gtag(){dataLayer.push(arguments);}
+					gtag('js', new Date());
+					gtag('config', 'AW-11455487187');
+				` }
+			</Script>
+
+			{ /* Keep existing Google Tag Manager script */ }
 			<Script
 				id='google-tag-manager'
 				strategy='afterInteractive'>
 				{ `
-        (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+					(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 					new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 					j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 					'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 					})(window,document,'script','dataLayer','GTM-K227ZN5C');
-      ` }
+				` }
 			</Script>
 			
 			<StyledComponentsRegistry>
@@ -78,13 +98,6 @@ const RootLayout: React.FC<{ children: React.ReactNode; }> = ({ children }) => {
 							} }
 						/>
 					</noscript>
-					<Script
-						id='google-ads-config'
-						strategy='afterInteractive'>
-						{ `
-						gtag('config', 'AW-11455487187');
-					` }
-					</Script>
 					<Script
 						src={ SCRIPT_URL }
 						data-rewardful={ API_KEY } />

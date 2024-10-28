@@ -2,9 +2,10 @@ import React from 'react'
 import { notFound } from 'next/navigation'
 
 import { Footer, FrequentlyAskedQuestions, MarketingComponent, RunningLogo } from '@/components'
-import Navbar, { navbarDefaultTransition } from '@/components/Navbar/Landing'
+import Navbar from '@/components/Navbar/Landing'
 import { ViewOtherCategories } from '@/components/Solutions'
 import { solutionData } from '@/constant/data'
+import { navbarDefaultTransition } from '@/constant/data/navbar';
 import { Product } from '@/payload/payload-types'
 import { getProductByCategory } from '@/services/products'
 

@@ -5,9 +5,10 @@ import { Biomakers } from '@/app/solution/men/[category]/[product_id]/Biomakers'
 import Hero from '@/app/solution/men/[category]/[product_id]/Hero'
 import Description from '@/app/solution/men/[category]/Description'
 import { Footer, FrequentlyAskedQuestions, MarketingComponent, RunningLogo } from '@/components'
-import Navbar, { navbarDefaultTransition } from '@/components/Navbar/Landing'
+import Navbar from '@/components/Navbar/Landing'
 import { ViewOtherCategories } from '@/components/Solutions'
 import { solutionData } from '@/constant/data'
+import { navbarDefaultTransition } from '@/constant/data/navbar';
 import { Product } from '@/payload/payload-types'
 import { getProductByCategory } from '@/services/products'
 

@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
 
+import { navbarDefaultTransition } from '@/constant/data/navbar';
 import pricingData from '@/constant/data/pricing';
 import clsxm from '@/helpers/clsxm';
 
@@ -11,7 +12,7 @@ import ButtonCta from '../ButtonCta';
 import { ProductsResponse } from '../Checkout/api/types';
 import { GreenCheck, ShieldTick } from '../Icons';
 import ButtonSwitchMemberFreq from '../MemberShip/ButtonSwitchMemberFreq';
-import Navbar, { navbarDefaultTransition } from '../Navbar/Landing';
+import Navbar from '../Navbar/Landing';
 import PopupReview from '../PopupReview';
 
 const QuestionTooltip = dynamic(() => import('../Home/QuestionTooltip'), {
@@ -338,5 +339,4 @@ const Hero: React.FC<HeroProps> = ({
 		</React.Fragment>
 	);
 };
-
 export default Hero;

@@ -4,6 +4,7 @@ import { AnimatePresence, motion, MotionProps, useAnimation } from 'framer-motio
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
+import { navbarDefaultTransition } from '@/constant/data/navbar';
 import navbarData from '@/constant/data/navigation';
 import clsxm from '@/helpers/clsxm';
 
@@ -22,7 +23,7 @@ const transition = {
 	restSpeed: 0.001,
 };
 
-export const navbarVariants = {
+const navbarVariants = {
 	visible: {
 		y: 0,
 		opacity: 1,
@@ -30,12 +31,6 @@ export const navbarVariants = {
 		borderRadius: '100px',
 	},
 	hidden: { y: '-100%', opacity: 0 },
-};
-
-export const navbarDefaultTransition = {
-	// delay: 2,
-	duration: 1,
-	ease: 'easeInOut',
 };
 
 export const MenuItem = ({

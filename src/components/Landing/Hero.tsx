@@ -6,12 +6,13 @@ import dynamic from 'next/dynamic';
 import Image from 'next/image';
 
 import landingData from '@/constant/data/landing';
+import { navbarDefaultTransition } from '@/constant/data/navbar';
 import clsxm from '@/helpers/clsxm';
 import { screens } from '@/helpers/style';
 import { useWindowDimensions } from '@/hooks';
 
 import ButtonCta from '../ButtonCta';
-import Navbar, { navbarDefaultTransition } from '../Navbar/Landing';
+import Navbar from '../Navbar/Landing';
 
 import { slideUpTransition } from './transition';
 

@@ -51,4 +51,10 @@ const navigationData = {
 	]
 };
 
+export const navbarDefaultTransition = {
+	// delay: 2,
+	duration: 1,
+	ease: 'easeInOut',
+};
+
 export default navigationData;
