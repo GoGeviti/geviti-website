@@ -599,6 +599,24 @@ export const ArrowUpRight = (props?: React.SVGProps<SVGSVGElement>) => (
 	</svg>
 );
 
+export const ArrowUpRightLink = (props?: React.SVGProps<SVGSVGElement>) => (
+	<svg
+		width='14'
+		height='14'
+		viewBox='0 0 14 14'
+		fill='none'
+		xmlns='http://www.w3.org/2000/svg'
+		{ ...props }>
+		<path
+			d='M4.0835 9.91668L9.91683 4.08334M9.91683 4.08334H4.0835M9.91683 4.08334V9.91668'
+			stroke='#181A1C'
+			strokeWidth='1.41667'
+			strokeLinecap='round'
+			strokeLinejoin='round'/>
+	</svg>
+
+);
+
 export const CheckCircleIcon = (props?: React.SVGProps<SVGSVGElement>) => {
 	return (
 		<svg
