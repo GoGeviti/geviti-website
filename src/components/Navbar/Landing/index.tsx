@@ -90,7 +90,7 @@ const MenuItem = memo(({
 						'bg-white/90',
 						'backdrop-blur-[30px]', // Using backdrop-filter explicitly
 						'border border-grey-100',
-						theme === 'light' && 'bg-most-value',
+						theme === 'light' && 'bg-most-value text-white',
 					) }
 				>
 					<motion.div
@@ -100,18 +100,26 @@ const MenuItem = memo(({
 						<div>
 							<p className='text-[10px] font-semibold uppercase tracking-[1.1px] pb-[14px]'>Explore</p>
 							<ul className='flex flex-col gap-[14px]'>
-								<li className='text-sm flex gap-2 items-center text-primary transition-colors duration-200 group cursor-pointer'>
+								<li className={ clsxm(
+									'text-sm flex gap-2 items-center transition-colors duration-200 group cursor-pointer',
+									theme === 'light' ? 'text-white' : 'text-primary'
+								) }>
 									<ArrowUpRightLink className={ clsxm(
-										'w-[14px] h-[14px] text-primary stroke-primary text-[14px]',
+										'w-[14px] h-[14px] stroke-primary text-[14px]',
+										theme === 'light' ? 'text-white stroke-white' : 'text-primary stroke-primary',
 										'transform translate-x-[-10px] opacity-0',
 										'group-hover:translate-x-0 group-hover:opacity-100',
 										'transition-all duration-200 ease-in-out'
 									) } />
 									<span>Overview & Benefits</span>
 								</li>
-								<li className='text-sm flex gap-2 items-center text-primary transition-colors duration-200 group cursor-pointer'>
+								<li className={ clsxm(
+									'text-sm flex gap-2 items-center transition-colors duration-200 group cursor-pointer',
+									theme === 'light' ? 'text-white' : 'text-primary'
+								) }>
 									<ArrowUpRightLink className={ clsxm(
-										'w-[14px] h-[14px] text-primary stroke-primary text-[14px]',
+										'w-[14px] h-[14px] stroke-primary text-[14px]',
+										theme === 'light' ? 'text-white stroke-white' : 'text-primary stroke-primary',
 										'transform translate-x-[-10px] opacity-0',
 										'group-hover:translate-x-0 group-hover:opacity-100',
 										'transition-all duration-200 ease-in-out'
@@ -119,9 +127,13 @@ const MenuItem = memo(({
 
 									<span>At-home Bloodwork</span>
 								</li>
-								<li className='text-sm flex gap-2 items-center text-primary transition-colors duration-200 group cursor-pointer'>
+								<li className={ clsxm(
+									'text-sm flex gap-2 items-center transition-colors duration-200 group cursor-pointer',
+									theme === 'light' ? 'text-white' : 'text-primary'
+								) }>
 									<ArrowUpRightLink className={ clsxm(
-										'w-[14px] h-[14px] text-primary stroke-primary text-[14px]',
+										'w-[14px] h-[14px] stroke-primary text-[14px]',
+										theme === 'light' ? 'text-white stroke-white' : 'text-primary stroke-primary',
 										'transform translate-x-[-10px] opacity-0',
 										'group-hover:translate-x-0 group-hover:opacity-100',
 										'transition-all duration-200 ease-in-out'
@@ -151,7 +163,7 @@ const MenuItem = memo(({
 									<div className='absolute bottom-0 w-full z-30 flex items-center justify-between px-2.5 pb-2.5 h-fit'>
 										<span className='text-white text-xs whitespace-nowrap'>Become a members</span>
 										<div className='w-6 h-6 flex items-center justify-center rounded-full bg-white'>
-											<ArrowUpRightLink className='transform translate-y-0 transition-all duration-200 ease-in-out translate-x-0 group-hover:translate-y-[-1px] group-hover:translate-x-[2px]' />
+											<ArrowUpRightLink className='transform translate-y-0 stroke-primary transition-all duration-200 ease-in-out translate-x-0 group-hover:translate-y-[-1px] group-hover:translate-x-[2px]' />
 										</div>
 									</div>
 								</div>
@@ -171,7 +183,7 @@ const MenuItem = memo(({
 					layoutId='active'
 					className={ clsxm(
 						'relative rounded-[9px] overflow-hidden',
-						'bg-grey-50/70',
+						'bg-white',
 						'backdrop-filter backdrop-blur-[30px]', // Using backdrop-filter explicitly
 						'border border-grey-100',
 						theme === 'light' && 'bg-most-value',
@@ -374,7 +386,7 @@ const Navbar: React.FC<NavbarProps> = ({
 										theme === 'light-grey' && 'text-grey-primary',
 										// isScrolled && 'text-grey-primary hover:text-primary',
 										isScrolled && pathname === menuChild.href && 'text-primary',
-										theme === 'light' && 'text-primary hover:text-primary/80',
+										theme === 'light' && 'text-white',
 									) }
 								>
 									{ menuChild.name }

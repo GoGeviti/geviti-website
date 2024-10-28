@@ -609,7 +609,6 @@ export const ArrowUpRightLink = (props?: React.SVGProps<SVGSVGElement>) => (
 		{ ...props }>
 		<path
 			d='M4.0835 9.91668L9.91683 4.08334M9.91683 4.08334H4.0835M9.91683 4.08334V9.91668'
-			stroke='#181A1C'
 			strokeWidth='1.41667'
 			strokeLinecap='round'
 			strokeLinejoin='round'/>
