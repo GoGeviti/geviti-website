@@ -17,7 +17,7 @@ import ArrowButtons from '../Marketing/ArrowButtons';
 
 import 'swiper/css';
 
-const ViewOtherCategories: React.FC<{data:Category[] | Product[]}> = ({ data }) => {
+const ViewOtherCategories: React.FC<{data:Category[] | Product[], isProduct?: boolean}> = ({ data, isProduct }) => {
 	const swiperRef = useRef<SwiperType>();
 
 	const [disabledPrev, setDisabledPrev] = useState(true);
@@ -33,7 +33,7 @@ const ViewOtherCategories: React.FC<{data:Category[] | Product[]}> = ({ data }) 
 			<div className='w-full relative mt-[42px] lg:mt-[124px]'>
 				<div className='w-full flex-col lg:flex-row flex items-center lg:justify-between container-center mb-10'>
 					<div className='w-full flex'>
-						<h3 className='font-medium text-primary text-2xl md:text-[32px] lg:text-4xl'>View other product <br/><span className='text-grey-primary'>categories</span></h3>
+						<h3 className='font-medium text-primary text-2xl md:text-[32px] lg:text-4xl'>View other { isProduct ? 'popular' : 'product' }<br/><span className='text-grey-primary'>{ isProduct ? 'products' : 'categories' }</span></h3>
 					</div>
 					<ArrowButtons
 						disabledPrev={ disabledPrev }
@@ -91,7 +91,7 @@ const ViewOtherCategories: React.FC<{data:Category[] | Product[]}> = ({ data }) 
 												href={ item.slug ?? '' }
 												className='text-xs !leading-5 focus:ring-0 focus:outline-none w-full bg-white text-primary py-[7.73px] px-5 flex items-center justify-center rounded-[128px]'
 											>
-													View Category
+												{ isProduct ? 'View Product' : 'View Category' }
 											</Link>
 										</div>
 									</div>

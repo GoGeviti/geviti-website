@@ -1,10 +1,23 @@
 export interface Category {
   id: number;
-  type: 'male' | 'female';
+  type: 'male' | 'female' | 'both';
   name: string;
   title: string;
   description: string;
   image: Media;
+  stats?: {
+    mainDescription?: string | null;
+    statistic1?: {
+      numberValue?: string | null;
+      numberUnit?: string | null;
+      description?: string | null;
+    };
+    statistic2?: {
+      numberValue?: string | null;
+      numberUnit?: string | null;
+      description?: string | null;
+    };
+  };
   slug?: string | null;
   updatedAt: string;
   createdAt: string;
@@ -18,6 +31,19 @@ export interface Product {
   category: Category;
   treatmentOptions?: ProductTreatmentOption[] | null;
   image: Media;
+  stats?: {
+    mainDescription?: string | null;
+    statistic1?: {
+      numberValue?: string | null;
+      numberUnit?: string | null;
+      description?: string | null;
+    };
+    statistic2?: {
+      numberValue?: string | null;
+      numberUnit?: string | null;
+      description?: string | null;
+    };
+  };
   slug?: string | null;
   updatedAt: string;
   createdAt: string;

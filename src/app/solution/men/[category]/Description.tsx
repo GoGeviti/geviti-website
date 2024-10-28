@@ -2,7 +2,13 @@
 import React, { useMemo } from 'react'
 import { usePathname } from 'next/navigation';
 
-const Description = () => {
+import { Category } from '@/payload/payload-types';
+
+interface DescriptionProps {
+	data: Category['stats']
+}
+
+const Description: React.FC<DescriptionProps> = ({ data }) => {
 	const pathname = usePathname();
 
 	const optimizationType = useMemo(() => {
@@ -21,15 +27,15 @@ const Description = () => {
 							</h3>
 						</div>
 						<div className='flex flex-col gap-8 lg:gap-16 max-lg:mt-3'>
-							<p className='text-grey-primary text-sm'>Geviti takes the guesswork out of health optimization. With AI powered insights, a dedicated care team, and science backed solutions, <br className='max-lg:hidden'/>increasing health span and lifespan has never been easier.</p>
+							<p className='text-grey-primary text-sm'>{ data?.mainDescription }</p>
 							<div className='flex flex-col lg:flex-row items-center gap-5 lg:gap-[88px]'>
 								<div>
-									<h2 className='text-primary font-medium text-3xl lg:text-[46px]'>20<span className='text-2xl font-normal'>million</span> </h2>
-									<p className='text-grey-primary text-sm'>Men In the united states from ages 25-75 have low T</p>
+									<h2 className='text-primary font-medium text-3xl lg:text-[46px]'>{ data?.statistic1?.numberValue }<span className='text-2xl font-normal'>{ data?.statistic1?.numberUnit }</span> </h2>
+									<p className='text-grey-primary text-sm'>{ data?.statistic1?.description }</p>
 								</div>
 								<div>
-									<h2 className='text-primary font-medium text-3xl lg:text-[46px]'>83%</h2>
-									<p className='text-grey-primary text-sm'>Of couples say a healthy sex life is critical to their relationship satisfaction.</p>
+									<h2 className='text-primary font-medium text-3xl lg:text-[46px]'>{ data?.statistic2?.numberValue }<span>{ data?.statistic2?.numberUnit }</span> </h2>
+									<p className='text-grey-primary text-sm'>{ data?.statistic2?.description }</p>
 								</div>
 							</div>
 						</div>

@@ -55,10 +55,12 @@ const ProductCategorySingle = async({ params: { category = '', product_id = '' }
 			/>
 			<Hero data={ productDataSingle } />
 			<div className='pb-[31px]'>
-				<Description/>
+				<Description data={ productDataSingle.stats }/>
 			</div>
 			<Biomakers items={ biomakersList } />
-			<ViewOtherCategories data={ productsData } />
+			<ViewOtherCategories
+				isProduct
+				data={ productsData } />
 			<div className='mt-[42px] lg:mt-[87px]'>
 				<RunningLogo />
 			</div>

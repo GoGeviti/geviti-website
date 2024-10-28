@@ -8,8 +8,10 @@ import { solutionData } from '@/constant/data'
 import { Product } from '@/payload/payload-types'
 import { getProductByCategory } from '@/services/products'
 
+import Description from '../Description'
+
 import { Biomakers } from './Biomakers'
-import Description from './Description'
+// import Description from './Description'
 import Hero from './Hero'
 
 const biomakersList = [
@@ -52,10 +54,12 @@ const ProductCategorySingle = async({ params: { category = '', product_id = '' }
 			/>
 			<Hero data={ productDataSingle } />
 			<div className='pb-[31px]'>
-				<Description/>
+				<Description data={ productDataSingle.stats }/>
 			</div>
 			<Biomakers items={ biomakersList } />
-			<ViewOtherCategories data={ productsData } />
+			<ViewOtherCategories
+				isProduct
+				data={ productsData } />
 			<div className='mt-[42px] lg:mt-[87px]'>
 				<RunningLogo />
 			</div>

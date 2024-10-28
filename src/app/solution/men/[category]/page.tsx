@@ -48,7 +48,7 @@ const ProductCategory = async({ params: { category = '' } }) => {
 				} }
 			/>
 			<Hero data={ categoryData.singleCategory }/>
-			<Description/>
+			<Description data={ categoryData.singleCategory.stats }/>
 			{
 				productsData.length > 0 && (
 					<ProductsSlider products={ productsData }/>
