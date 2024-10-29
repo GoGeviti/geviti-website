@@ -39,7 +39,7 @@ const ProductsSlider:React.FC<{products : Product[]} > = ({ products }) => {
 
 	return (
 		<div className='lg:px-3 font-Poppins text-white max-lg:mt-10'>
-			<div className='bg-primary rounded-[40px] transition-all duration-300 ease-in-out'>
+			<div className='bg-primary rounded-[40px] transition-all duration-300 ease-in-out overflow-hidden'>
 				<div className='flex flex-col lg:flex-row gap-3 items-start lg:gap-[239px] justify-between pt-[42px] px-5 lg:px-[42px]'>
 					<div className='flex flex-col gap-[6px] w-[536px] overflow-hidden'>
 						<FadeText
@@ -99,41 +99,39 @@ const ProductsSlider:React.FC<{products : Product[]} > = ({ products }) => {
 							);
 						}) }
 					</Swiper>
-					<div className='min-w-0'>
-						<div className=''>
-							<div className={ clsxm(
-								'flex items-center',
-								products.length > 2 ? 'justify-between' : 'justify-end'
-							) }>
-								{
-									products.length > 2 && (
-										<button
-											onClick={ () => setisViewAll(true) }
-											className='text-xs text-white underline'>View all</button>
-									)
-								}
-								<div className='flex items-center order-1 gap-[14px] justify-end pr-[42px]'>
+					<div className='min-w-0 max-lg:w-full'>
+						<div className={ clsxm(
+							'flex items-center max-lg:hidden',
+							products.length > 2 ? 'justify-between' : 'justify-end'
+						) }>
+							{
+								products.length > 2 && (
 									<button
-										onClick={ () => swiperRef.current?.slidePrev() }
-										className={
-											clsxm(
-												'w-[34px] h-[34px] rounded-full border flex items-center justify-center',
-												activeIndex === 0 ? 'text-grey-primary border-grey-primary' : 'opacity-100 border-white text-white'
-											)
-										}>
-										<ArrowNarrowLeft/>
-									</button>
-									<button
-										onClick={ () => swiperRef.current?.slideNext() }
-										className={
-											clsxm(
-												'w-[34px] h-[34px] rounded-full border flex items-center justify-center',
-												activeIndex === products.length - 1 ? 'text-grey-primary border-grey-primary' : 'opacity-100 border-white text-white'
-											)
-										}>
-										<ArrowNarrowRight/>
-									</button>
-								</div>
+										onClick={ () => setisViewAll(true) }
+										className='text-xs text-white underline'>View all</button>
+								)
+							}
+							<div className='flex items-center order-1 gap-[14px] justify-end pr-[42px]'>
+								<button
+									onClick={ () => swiperRef.current?.slidePrev() }
+									className={
+										clsxm(
+											'w-[34px] h-[34px] rounded-full border flex items-center justify-center',
+											activeIndex === 0 ? 'text-grey-primary border-grey-primary' : 'opacity-100 border-white text-white'
+										)
+									}>
+									<ArrowNarrowLeft/>
+								</button>
+								<button
+									onClick={ () => swiperRef.current?.slideNext() }
+									className={
+										clsxm(
+											'w-[34px] h-[34px] rounded-full border flex items-center justify-center',
+											activeIndex === products.length - 1 ? 'text-grey-primary border-grey-primary' : 'opacity-100 border-white text-white'
+										)
+									}>
+									<ArrowNarrowRight/>
+								</button>
 							</div>
 						</div>
 						<div className='mt-11'>

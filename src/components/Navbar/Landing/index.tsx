@@ -478,8 +478,8 @@ const Navbar: React.FC<NavbarProps> = ({
 											<Bars3Icon
 												className={ clsxm(
 													'block h-6 w-6 text-grey-50',
+													isScrolled && 'text-primary',
 													theme === 'light' && 'text-white hover:text-grey-50',
-													isScrolled && 'text-primary'
 												) }
 												aria-hidden='true'
 											/>
