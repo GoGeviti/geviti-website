@@ -330,21 +330,41 @@ const Navbar: React.FC<NavbarProps> = ({
 		if (typeof window === 'undefined') return;
 		
 		const currentScrollY = window.scrollY;
-		setIsVisible(currentScrollY <= 10 || currentScrollY <= lastScrollY);
+		const scrollDifference = currentScrollY - lastScrollY;
+		
+		// Show navbar when:
+		// 1. At the top of the page (currentScrollY <= 10)
+		// 2. Scrolling up (scrollDifference < 0)
+		// Hide navbar when:
+		// 1. Scrolling down (scrollDifference > 0)
+		// 2. Not at the top of the page
+		if (currentScrollY <= 10) {
+			setIsVisible(true);
+		} else if (scrollDifference > 0) {
+			setIsVisible(false);
+		} else if (scrollDifference < 0) {
+			setIsVisible(true);
+		}
+		
 		setLastScrollY(currentScrollY);
 		setIsScrolled(currentScrollY > 200);
 	}, [lastScrollY]);
 
+	// Add debouncing to smooth out rapid scroll events
 	useEffect(() => {
 		if (typeof window === 'undefined') return;
 
-		const throttledControlNavbar = () => {
-			window.requestAnimationFrame(controlNavbar);
+		let timeoutId: NodeJS.Timeout;
+		
+		const debouncedControlNavbar = () => {
+			clearTimeout(timeoutId);
+			timeoutId = setTimeout(controlNavbar, 16); // Reduced debounce time for smoother response
 		};
 
-		window.addEventListener('scroll', throttledControlNavbar);
+		window.addEventListener('scroll', debouncedControlNavbar);
 		return () => {
-			window.removeEventListener('scroll', throttledControlNavbar);
+			window.removeEventListener('scroll', debouncedControlNavbar);
+			clearTimeout(timeoutId);
 		};
 	}, [controlNavbar]);
 
