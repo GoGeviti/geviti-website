@@ -19,8 +19,8 @@ const navigationData = {
 					href: '/solution/men/hair-regrowth-solutions',
 				},
 				{
-					name: 'Sexual Health',
-					href: '/solution/men/sexual-health',
+					name: 'Sexual Health and Vitality',
+					href: '/solution/men/sexual-health-and-vitality',
 				},
 				{
 					name: 'Weight Management',
@@ -46,8 +46,8 @@ const navigationData = {
 					href: '/solution/women/hair-regrowth-solutions',
 				},
 				{
-					name: 'Sexual Health',
-					href: '/solution/women/sexual-health',
+					name: 'Sexual Health and Vitality',
+					href: '/solution/women/sexual-health-and-vitality',
 				},
 				{
 					name: 'Weight Management',

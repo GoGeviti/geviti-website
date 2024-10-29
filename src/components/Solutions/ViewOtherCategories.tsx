@@ -83,6 +83,7 @@ const ViewOtherCategories: React.FC<{data:Category[] | Product[], isProduct?: bo
 												alt={ item.image.alt ?? '' }
 												width={ 294 }
 												height={ 294 }
+												quality={ 75 }
 												className='object-contain'
 											/>
 										</div>

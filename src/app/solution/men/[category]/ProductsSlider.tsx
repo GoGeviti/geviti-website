@@ -1,6 +1,6 @@
 'use client';
 
-import React, {  useRef, useState } from 'react';
+import React, {  useEffect, useRef, useState } from 'react';
 import { AiOutlineCloseCircle } from 'react-icons/ai';
 import { motion } from 'framer-motion'
 import Image from 'next/image';
@@ -27,6 +27,15 @@ const ProductsSlider:React.FC<{products : Product[]} > = ({ products }) => {
 	const [activeIndex, setActiveIndex] = useState<number>(0);
 	const pathname = usePathname();
 	const [isViewAll, setisViewAll] = useState(false)
+
+	useEffect(() => {
+		if (isViewAll) {
+			document.body.style.overflow = 'hidden'; // standard no-scroll implementation
+			document.body.setAttribute('data-lenis-prevent', 'true'); // Make sure you pass true as string
+		} else {
+			document.body.style.overflow = 'auto';
+		}
+	}, [isViewAll]);
 
 	return (
 		<div className='lg:px-3 font-Poppins text-white max-lg:mt-10'>
@@ -79,7 +88,8 @@ const ProductsSlider:React.FC<{products : Product[]} > = ({ products }) => {
 										<Image
 											src={ product.image.url ?? '' }
 											alt='slider'
-											priority={ true }
+											// priority={ true }
+											quality={ 75 }
 											width={ 396 }
 											height={ 396 }
 											className='object-cover'
@@ -91,10 +101,17 @@ const ProductsSlider:React.FC<{products : Product[]} > = ({ products }) => {
 					</Swiper>
 					<div className='min-w-0'>
 						<div className=''>
-							<div className='flex items-center justify-between'>
-								<button
-									onClick={ () => setisViewAll(true) }
-									className='text-xs text-white underline'>View all</button>
+							<div className={ clsxm(
+								'flex items-center',
+								products.length > 2 ? 'justify-between' : 'justify-end'
+							) }>
+								{
+									products.length > 2 && (
+										<button
+											onClick={ () => setisViewAll(true) }
+											className='text-xs text-white underline'>View all</button>
+									)
+								}
 								<div className='flex items-center order-1 gap-[14px] justify-end pr-[42px]'>
 									<button
 										onClick={ () => swiperRef.current?.slidePrev() }
@@ -202,15 +219,16 @@ const ProductsSlider:React.FC<{products : Product[]} > = ({ products }) => {
 			<Dialog
 				open={ isViewAll }
 				modal={ true }
-				data-lenis-prevent
 				onOpenChange={ setisViewAll }
 			>
 				<DialogContent
+					overlayClassName='bg-primary bg-opacity-50'
 					position='default'
-					className='w-full bg-primary p-10 max-w-[calc(100vw-32px)] rounded-[20px]'
+					className='w-full bg-primary p-10 max-w-[calc(100vw-32px)] block rounded-[20px]'
 					showClose={ false }
 				>
-					<div className='flex text-center flex-col font-Poppins'>
+					<div
+						className='flex text-center flex-col font-Poppins max-h-[75vh] overflow-y-auto no-scrollbar'>
 						<button
 							onClick={ () => setisViewAll(prev => !prev) }
 							className='self-end text-[34px] text-white cursor-pointer'>
@@ -240,36 +258,13 @@ const ProductsSlider:React.FC<{products : Product[]} > = ({ products }) => {
 									</Link>
 								);
 							}) }
-							{ products.map((product, productIdx) => {
-								return (
-									<Link
-										key={ productIdx }
-										href={ pathname + '/' + product.slug } >
-										<div
-											className={ clsxm(
-												'w-full h-full lg:h-[270px] max-lg:aspect-square flex opacity-100 bg-grey-950 items-center py-[22px] justify-center border rounded-lg lg:rounded-[30px] cursor-pointer border-grey-primary overflow-hidden'
-											) }>
-											<Image
-												src={ product.image.url ?? '' }
-												alt='slider'
-												className='w-40 max-lg:aspect-square  lg:w-[226px] lg:h-[226px] object-contain'
-												priority={ true }
-												width={ 226 }
-												height={ 226 }
-											/>
-										</div>
-										<p className='text-lg mt-3 text-left text-white'>{ product.name }</p>
-										<p className='text-xs mt-2 text-left text-white'>{ product.price }</p>
-									</Link>
-								);
-							}) }
 						</div>
 						<div className='w-fit mt-11 mx-auto'>
 							<Link
 								href={ '/pricing' }
 								className=' text-white border border-white w-full rounded-full h-[58px] flex items-center justify-center py-3 px-[42px] text-lg font-medium !leading-6'
 							>
-											Get Started
+												Get Started
 							</Link>
 						</div>
 					</div>
