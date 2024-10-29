@@ -8,7 +8,7 @@ import { Swiper as SwiperType } from 'swiper';
 import { FreeMode } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
-import { Category, Product } from '@/payload/payload-types';
+import { Category } from '@/payload/payload-types';
 
 // import { marketingData } from '@/constant/data';
 import 'swiper/css/free-mode';
@@ -17,7 +17,7 @@ import ArrowButtons from '../Marketing/ArrowButtons';
 
 import 'swiper/css';
 
-const ViewOtherCategories: React.FC<{data:Category[] | Product[], isProduct?: boolean}> = ({ data, isProduct }) => {
+const ViewOtherCategories: React.FC<{data:Category[], isProduct?: boolean}> = ({ data, isProduct }) => {
 	const swiperRef = useRef<SwiperType>();
 
 	const [disabledPrev, setDisabledPrev] = useState(true);
@@ -72,7 +72,8 @@ const ViewOtherCategories: React.FC<{data:Category[] | Product[], isProduct?: bo
 								<SwiperSlide key={ productIdx }>
 									<div className='lg:w-[338px] h-[496px] hover:bg-blue-primary bg-grey-primary-light transition-all ease-in-out duration-500 rounded-[14px] flex flex-col justify-between'>
 										<div className='px-[14px] pt-[14px]'>
-											<h4 className='text-lg'>{ item.name }</h4>
+
+											<h4 className='text-lg'>{ isProduct ?  item.name : item.categoryName }</h4>
 											{ /* <p className='text-xs !leading-5 mt-1'>
 												{ item.description }
 											</p> */ }

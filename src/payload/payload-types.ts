@@ -2,6 +2,7 @@ export interface Category {
   id: number;
   type: 'male' | 'female' | 'both';
   name: string;
+  categoryName: string;
   title: string;
   description: string;
   image: Media;
