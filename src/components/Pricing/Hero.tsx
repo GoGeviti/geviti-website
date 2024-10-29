@@ -3,6 +3,7 @@ import React, { CSSProperties, useMemo, useRef, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
+import Link from 'next/link';
 
 import { navbarDefaultTransition } from '@/constant/data/navbar';
 import pricingData from '@/constant/data/pricing';
@@ -254,7 +255,9 @@ const Hero: React.FC<HeroProps> = ({
 											<span>
 												<span className='font-medium'>
                         Includes the “
-													<span className='underline'>Longeviti Panel</span>”
+													<Link
+														href='/longeviti-panel'
+														className='underline'>Longeviti Panel</Link>”
 												</span>{ ' ' }
                       testing for{ ' ' }
 												<span className='text-xl font-medium'>

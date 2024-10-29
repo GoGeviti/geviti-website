@@ -28,13 +28,13 @@ const Description: React.FC<DescriptionProps> = ({ data }) => {
 						</div>
 						<div className='flex flex-col gap-8 lg:gap-16 max-lg:mt-3'>
 							<p className='text-grey-primary text-sm'>{ data?.mainDescription }</p>
-							<div className='flex flex-col lg:flex-row items-center gap-5 lg:gap-[88px]'>
+							<div className='grid grid-cols-1 lg:grid-cols-2 gap-5 lg:gap-[88px]'>
 								<div>
 									<h2 className='text-primary font-medium text-3xl lg:text-[46px]'>{ data?.statistic1?.numberValue }<span className='text-2xl font-normal'>{ data?.statistic1?.numberUnit }</span> </h2>
 									<p className='text-grey-primary text-sm'>{ data?.statistic1?.description }</p>
 								</div>
 								<div>
-									<h2 className='text-primary font-medium text-3xl lg:text-[46px]'>{ data?.statistic2?.numberValue }<span>{ data?.statistic2?.numberUnit }</span> </h2>
+									<h2 className='text-primary font-medium text-3xl lg:text-[46px]'>{ data?.statistic2?.numberValue }<span className='text-2xl font-normal'>{ data?.statistic2?.numberUnit }</span> </h2>
 									<p className='text-grey-primary text-sm'>{ data?.statistic2?.description }</p>
 								</div>
 							</div>

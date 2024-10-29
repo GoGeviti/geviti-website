@@ -31,8 +31,8 @@ const navigationData = {
 					href: '/solution/men/hormone-optimization',
 				},
 				{
-					name: 'Anti-aging Peptides',
-					href: '/solution/men/anti-aging-peptides',
+					name: 'Longevity and Peptide Therapy',
+					href: '/solution/men/longevity-and-peptide-therapy',
 				},
 			],
 		},
@@ -58,8 +58,8 @@ const navigationData = {
 					href: '/solution/women/hormone-optimization',
 				},
 				{
-					name: 'Anti-aging Peptides',
-					href: '/solution/women/anti-aging-peptides',
+					name: 'Longevity and Peptide Therapy',
+					href: '/solution/women/longevity-and-peptide-therapy',
 				},
 			],
 		},
