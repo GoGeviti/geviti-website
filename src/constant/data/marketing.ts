@@ -693,7 +693,7 @@ const marketingData = {
 			{
 				body: 'I love that I get to meet with the doctor online and get personalized care rather than having to go into an office.',
 				author: {
-					name: 'Eddie Lake',
+					name: '',
 					company: 'Cathy F.',
 				},
 			},

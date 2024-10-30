@@ -101,7 +101,7 @@ const membershipData = {
 	chooseGevity: {
 		preTitle: 'Tailor-made longevity',
 		title: 'Why Choose Geviti?',
-		image: '/images/membership/compressed/oral.webp',
+		image: '/images/membership/compressed/oral.png',
 		btnCta: {
 			href: '/pricing',
 			text: 'Get Started',
@@ -699,7 +699,7 @@ const membershipData = {
 			preTitle: 'Data-driven health and wellness, made simple.',
 			title: 'Doctor  monitored cutting <br class="sm:hidden"/>edge care',
 			description: '',
-			image: '/images/membership/compressed/features-products.webp',
+			image: '/images/membership/compressed/features-products.png',
 			main: false,
 			list: {
 				listStyleType: 'disc',
