@@ -89,7 +89,7 @@ const ProductsSlider:React.FC<{products : Product[]} > = ({ products }) => {
 											src={ product.image.url ?? '' }
 											alt='slider'
 											// priority={ true }
-											quality={ 75 }
+											// quality={ 75 }
 											width={ 396 }
 											height={ 396 }
 											className='object-cover'

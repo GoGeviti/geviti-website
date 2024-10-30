@@ -13,7 +13,18 @@ import Description from './Description';
 import Hero from './Hero';
 import ProductsSlider from './ProductsSlider';
 
+// interface PageProps {
+// 	params: {
+// 		category: string;
+// 	};
+// 	searchParams: { [key: string]: string | string[] | undefined };
+// 	segment: string;
+// }
+
 const ProductCategory = async({ params: { category = '' } }) => {
+
+	// const segments = segment?.split('/') || [];
+	// const gender = segments[1]; // 'men' will be at index 1
 
 	let categoryData: {
 		singleCategory: Category;
@@ -28,7 +39,7 @@ const ProductCategory = async({ params: { category = '' } }) => {
 	}
 
 	try {
-		categoryData = await getCategories(category);
+		categoryData = await getCategories(category, 'men');
 	} catch (error) {
 		return notFound();
 	}

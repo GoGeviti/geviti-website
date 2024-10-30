@@ -100,46 +100,52 @@ const MenuItem = memo(({
 						<div>
 							<p className='text-[10px] font-semibold uppercase tracking-[1.1px] pb-[14px]'>Explore</p>
 							<ul className='flex flex-col gap-[14px]'>
-								<li className={ clsxm(
-									'text-sm flex gap-2 items-center transition-colors duration-200 group cursor-pointer',
-									theme === 'light' ? 'text-white' : 'text-primary'
-								) }>
-									<ArrowUpRightLink className={ clsxm(
-										'w-[14px] h-[14px] stroke-primary text-[14px]',
-										theme === 'light' ? 'text-white stroke-white' : 'text-primary stroke-primary',
-										'transform translate-x-[-10px] opacity-0',
-										'group-hover:translate-x-0 group-hover:opacity-100',
-										'transition-all duration-200 ease-in-out'
-									) } />
-									<span>Overview & Benefits</span>
-								</li>
-								<li className={ clsxm(
-									'text-sm flex gap-2 items-center transition-colors duration-200 group cursor-pointer',
-									theme === 'light' ? 'text-white' : 'text-primary'
-								) }>
-									<ArrowUpRightLink className={ clsxm(
-										'w-[14px] h-[14px] stroke-primary text-[14px]',
-										theme === 'light' ? 'text-white stroke-white' : 'text-primary stroke-primary',
-										'transform translate-x-[-10px] opacity-0',
-										'group-hover:translate-x-0 group-hover:opacity-100',
-										'transition-all duration-200 ease-in-out'
-									) } />
+								<Link href={ active === 'Men\'s Health' ? '/solution/men' : '/solution/women' }>
+									<li className={ clsxm(
+										'text-sm flex gap-2 items-center transition-colors duration-200 group cursor-pointer',
+										theme === 'light' ? 'text-white' : 'text-primary'
+									) }>
+										<ArrowUpRightLink className={ clsxm(
+											'w-[14px] h-[14px] stroke-primary text-[14px]',
+											theme === 'light' ? 'text-white stroke-white' : 'text-primary stroke-primary',
+											'transform translate-x-[-10px] opacity-0',
+											'group-hover:translate-x-0 group-hover:opacity-100',
+											'transition-all duration-200 ease-in-out'
+										) } />
+										<span>Overview & Benefits</span>
+									</li>
+								</Link>
+								<Link href={ `/longeviti-panel?gender=${active === 'Men\'s Health' ? 'men' : 'women'}` }>
+									<li className={ clsxm(
+										'text-sm flex gap-2 items-center transition-colors duration-200 group cursor-pointer',
+										theme === 'light' ? 'text-white' : 'text-primary'
+									) }>
+										<ArrowUpRightLink className={ clsxm(
+											'w-[14px] h-[14px] stroke-primary text-[14px]',
+											theme === 'light' ? 'text-white stroke-white' : 'text-primary stroke-primary',
+											'transform translate-x-[-10px] opacity-0',
+											'group-hover:translate-x-0 group-hover:opacity-100',
+											'transition-all duration-200 ease-in-out'
+										) } />
 
-									<span>At-home Bloodwork</span>
-								</li>
-								<li className={ clsxm(
-									'text-sm flex gap-2 items-center transition-colors duration-200 group cursor-pointer',
-									theme === 'light' ? 'text-white' : 'text-primary'
-								) }>
-									<ArrowUpRightLink className={ clsxm(
-										'w-[14px] h-[14px] stroke-primary text-[14px]',
-										theme === 'light' ? 'text-white stroke-white' : 'text-primary stroke-primary',
-										'transform translate-x-[-10px] opacity-0',
-										'group-hover:translate-x-0 group-hover:opacity-100',
-										'transition-all duration-200 ease-in-out'
-									) } />
-									<span>Custom Supplements</span>
-								</li>
+										<span>At-home Bloodwork</span>
+									</li>
+								</Link>
+								<Link href='/pricing'>
+									<li className={ clsxm(
+										'text-sm flex gap-2 items-center transition-colors duration-200 group cursor-pointer',
+										theme === 'light' ? 'text-white' : 'text-primary'
+									) }>
+										<ArrowUpRightLink className={ clsxm(
+											'w-[14px] h-[14px] stroke-primary text-[14px]',
+											theme === 'light' ? 'text-white stroke-white' : 'text-primary stroke-primary',
+											'transform translate-x-[-10px] opacity-0',
+											'group-hover:translate-x-0 group-hover:opacity-100',
+											'transition-all duration-200 ease-in-out'
+										) } />
+										<span>Custom Supplements</span>
+									</li>
+								</Link>
 							</ul>
 						</div>
 						<div>

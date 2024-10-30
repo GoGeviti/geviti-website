@@ -17,7 +17,21 @@ import ProductsSlider from '../../men/[category]/ProductsSlider';
 // import Hero from './Hero';
 // import ProductsSlider from './ProductsSlider';
 
+// interface PageProps {
+// 	params: {
+// 		category: string;
+// 	};
+// 	searchParams: { [key: string]: string | string[] | undefined };
+// 	segment: string;
+// }
+
 const ProductCategory = async({ params: { category = '' } }) => {
+
+	// const segments = segment?.split('/') || [];
+	// const gender = segments[1]; // 'women' will be at index 1
+
+	// console.log('gender ==> ', gender);
+	// console.log('segments ==> ', segments);
 
 	let categoryData: {
 		singleCategory: Category;
@@ -32,7 +46,7 @@ const ProductCategory = async({ params: { category = '' } }) => {
 	}
 
 	try {
-		categoryData = await getCategories(category);
+		categoryData = await getCategories(category, 'women');
 	} catch (error) {
 		return notFound();
 	}

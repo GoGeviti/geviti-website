@@ -1,8 +1,9 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import Image from 'next/image';
+import { useSearchParams } from 'next/navigation';
 
 import longevitiPanelData from '@/constant/data/longevitiPanel';
 import clsxm from '@/helpers/clsxm';
@@ -10,7 +11,15 @@ import clsxm from '@/helpers/clsxm';
 const analyzedData = longevitiPanelData.analyzed;
 
 const Analyzed: React.FC = () => {
+	const searchParams = useSearchParams();
+	const gender = searchParams.get('gender');
+
 	const [selectedCategoryIdx, setSelectedCategoryIdx] = useState<number>(1);
+
+	useEffect(() => {
+		setSelectedCategoryIdx(gender === 'women' ? 2 : 1);
+	}, [gender]);
+
 	const [openIdx, setOpenIdx] = useState<number>(-1);
 
 	const renderButtonSwitch = () => {

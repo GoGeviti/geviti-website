@@ -76,19 +76,19 @@ const pricingData = {
 						description: '',
 					},
 					{
-						title: 'Daily supplement packs (no markups)',
+						title: 'Daily supplement packs (wholesale)',
 						description: '',
 					},
 					{
-						title: 'Wholesale cost for additional testing',
+						title: 'Speciality testing (wholesale pricing)',
 						description: '',
 					},
 					{
-						title: 'Access to functional medicine providers',
+						title: 'Direct access to medical providers',
 						description: '',
 					},
 					{
-						title: 'Exclusive pharmacy pricing (no markups)',
+						title: 'Exclusive pharmacy pricing (wholesale)',
 						description: '',
 					},
 					{
@@ -99,10 +99,10 @@ const pricingData = {
 						title: 'Easy access to prescriptions',
 						description: '',
 					},
-					{
-						title: 'Quarterly practitioner visits via the app',
-						description: '',
-					},
+					// {
+					// 	title: 'Quarterly practitioner visits via the app',
+					// 	description: '',
+					// },
 					{
 						title: 'Dedicated wellness professional',
 						description: '',
@@ -125,12 +125,12 @@ const pricingData = {
 			{
 				name: 'Tailored Supplement Packs',
 				geviti: true,
-				premium: 'No markups',
+				premium: 'Wholesale',
 			},
 			{
 				name: 'Prescription Therapeutics ',
 				geviti: true,
-				premium: 'No markups',
+				premium: 'Wholesale',
 			},
 			{
 				name: 'Longeviti Panel (90 biomarkers)',

@@ -134,7 +134,7 @@ const landingData = {
 			},
 			{
 				id: 'step-2',
-				title: 'Complete<br />your at-home<br />blood draw',
+				title: 'Schedule<br />your at-home<br />blood draw',
 				icon: HomeOutlineIcon,
 			},
 			{

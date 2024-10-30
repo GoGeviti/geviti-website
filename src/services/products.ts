@@ -114,13 +114,32 @@ export const getCategoryBySlug = async(slug:string): Promise<Category> => {
 		return Promise.reject(error);
 	}
 };
-export const getCategories = async(slug?:string): Promise<{
+export const getCategories = async(slug?:string, gender?:string): Promise<{
 	singleCategory: Category;
 	categories: Category[];
 }> => {
+	const type = gender === 'women' ? 'female' : 'male';
+	const stringifiedQuery = qs.stringify(
+		{
+			depth: 2,
+			draft: false,
+			where: {
+				or: [
+					{
+						type: { equals: type }
+					},
+					{
+						type: { equals: 'both' }
+					}
+				]
+			},
+			limit: 99,
+		},
+		{ addQueryPrefix: true }
+	);
 	try {
 		const res = await fetch(
-			process.env.BASE_API_URL + '/api/categories?depth=2&limit=99',
+			process.env.BASE_API_URL + `/api/categories?${stringifiedQuery}`,
 			{
 				cache: 'no-store',
 			}
