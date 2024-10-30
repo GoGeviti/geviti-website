@@ -134,7 +134,7 @@ const EmployeePricing: React.FC = () => {
 								<div className='mt-6 lg:mt-3.5 rounded-2xl w-full flex max-lg:flex-col gap-2.5 lg:items-center lg:justify-around p-3.5 lg:p-6 border border-grey-50 bg-grey-primary-light'>
 									{ renderTextSavings(
 										'Project monthly savings:',
-										formatter.format(3.27 * (currentPrice * value))
+										formatter.format((3.27 + 2.73) * (currentPrice * value))
 									) }
 									{ renderTextSavings(
 										'Absenteeism savings:',
@@ -142,7 +142,7 @@ const EmployeePricing: React.FC = () => {
 									) }
 									{ renderTextSavings(
 										'Healthcare Cost Reduction:',
-										formatter.format(136 * value)
+										formatter.format(3.27 * (currentPrice * value))
 									) }
 								</div>
 							</div>

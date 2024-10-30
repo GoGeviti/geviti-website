@@ -607,9 +607,9 @@ const membershipData = {
           'Geviti currently offers services in seventeen states: Arizona (AZ), California (CA), Colorado (CO), Florida (FL), Georgia (GA), Illinois (IL), Indiana (IN), Kansas (KS), Missouri (MO), New Mexico (NM), Nevada (NV), Oregon (OR), Tennessee (TN), Texas (TX), Utah (UT), Virginia (VA), Washington (WA). We are actively expanding to include more states across the country.',
 			},
 			{
-				title: 'How do I get started?',
+				title: 'How do I get my business started?',
 				content:
-          'Click any of the \'Get Started\' buttons to become a Geviti member by selecting your membership frequency. You\'ll be prompted to schedule an at-home bloodwork exam, and from there, we\'ll communicate with you through our mobile application.',
+          'Click any of the \'Schedule A Call\' buttons to speak with one of our Geviti Membership Advisors. We’ll answer any questions you have and help you get started today!',
 			},
 			{
 				title:
