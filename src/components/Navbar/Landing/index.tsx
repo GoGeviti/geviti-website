@@ -131,7 +131,7 @@ const MenuItem = memo(({
 										<span>At-home Bloodwork</span>
 									</li>
 								</Link>
-								<Link href='/pricing'>
+								{ /* <Link href='/pricing'>
 									<li className={ clsxm(
 										'text-sm flex gap-2 items-center transition-colors duration-200 group cursor-pointer',
 										theme === 'light' ? 'text-white' : 'text-primary'
@@ -145,7 +145,7 @@ const MenuItem = memo(({
 										) } />
 										<span>Custom Supplements</span>
 									</li>
-								</Link>
+								</Link> */ }
 							</ul>
 						</div>
 						<div>
