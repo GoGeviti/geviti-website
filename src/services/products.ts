@@ -61,7 +61,7 @@ export const getProductByCategory = async(
 				slug: { equals: productSlug },
 				'category.slug': { equals: category },
 			},
-			// limit: 1,
+			limit: 99,
 		},
 		{ addQueryPrefix: true }
 	);
