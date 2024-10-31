@@ -130,7 +130,7 @@ const marketingData = {
 			'business-oriented': [
 				'Comprehensive bi-annual at-home bloodwork',
 				'Personalized guidance & optimization plans',
-				'Telehealth access to Primary Care',
+				'Telehealth access to Medical Providers',
 			],
 		},
 		cta: {
@@ -144,7 +144,13 @@ const marketingData = {
           '<span class="lg:hidden">Join Geviti</span><span class="max-lg:hidden">Get Started</span>',
 				'business-oriented': 'Schedule A Call',
 			},
-			href: '/pricing',
+			href: {
+				menopause: '/pricing',
+				'men-hormone-therapy': '/pricing',
+				'men-weight-loss': '/pricing',
+				'women-weight-loss': '/pricing',
+				'business-oriented': 'https://calendly.com/cole-gogeviti/business-discovery-call',
+			},
 		},
 		image: {
 			'men-hormone-therapy': '/images/marketing/men-hormone-therapy/hero.webp',
@@ -517,20 +523,20 @@ const marketingData = {
           'Geviti currently offers services in seventeen states: Arizona (AZ), California (CA), Colorado (CO), Florida (FL), Georgia (GA), Illinois (IL), Indiana (IN), Kansas (KS), Missouri (MO), New Mexico (NM), Nevada (NV), Oregon (OR), Tennessee (TN), Texas (TX), Utah (UT), Virginia (VA), Washington (WA). We are actively expanding to include more states across the country.',
 			},
 			{
-				title: 'How do I get started?',
+				title: 'How do I get my business started?',
 				content:
-          'Click any of the \'Get Started\' buttons to become a Geviti member by selecting your membership frequency. You\'ll be prompted to schedule an at-home bloodwork exam, and from there, we\'ll communicate with you through our mobile application.',
+          'Click any of the \'Schedule A Call\' buttons to speak with one of our Geviti Membership Advisors. We’ll answer any questions you have and help you get started today!',
+			},
+			{
+				title: 'Does Geviti provide Primary Care?',
+				content:
+          'Geviti provides preventative and holistic care for our members. We believe in empowering our members to be proactive about their health rather than reactive. At this time, we do not offer primary care services.',
 			},
 			{
 				title:
           'What free at-home bloodwork option is included for me twice a year with my membership?',
 				content:
           'As part of your membership, you receive the \'Longeviti Panel\' testing twice a year. This extensive evaluation offers valuable insights into over 90 biomarkers. If you were to pay out of pocket at Labcorp or Quest, this test could cost over $2,000.',
-			},
-			{
-				title: 'What is the membership cancellation and refund policy?',
-				content:
-          'You can cancel your Geviti membership at any time through your personal dashboard. Please note, if you’re on a monthly plan and cancel within the first 60 days, a $150 cancellation fee will apply. This does not apply to quarterly. Due to the personalized nature of our services, refunds are not automatically provided but may be considered on a case-by-case basis. If you have specific circumstances or require additional assistance, please contact our support team for further guidance.',
 			},
 			{
 				title:
@@ -693,7 +699,7 @@ const marketingData = {
 			{
 				body: 'I love that I get to meet with the doctor online and get personalized care rather than having to go into an office.',
 				author: {
-					name: 'Eddie Lake',
+					name: '',
 					company: 'Cathy F.',
 				},
 			},
@@ -716,24 +722,24 @@ const marketingData = {
           'Don’t let reactive healthcare cost your business time & money.',
 				list: [
 					{
-						counterText: '5x',
+						counterText: '4x',
 						text: 'Average additional cost of employees with multiple chronic conditions vs those without',
 					},
 					{
-						counterText:
-              '57<span class="text-sm lg:text-2xl !leading-normal">%</span>',
-						text: 'Employees state health & wellness programs are an important factor in staying in their current job',
+						counterText: '$6',
+						text: '6-to-1 ROI on workplace wellness investments, resulting in a $3.27 reduction in medical costs and a $2.73 decrease in absenteeism.',
 					},
 					{
-						counterText: '5x',
-						text: 'something about absenteeism or productivity***',
+						counterText:
+			  '57<span class="text-sm lg:text-2xl !leading-normal">%</span>',
+						text: 'Employees state health & wellness programs are an important factor in staying in their current job',
 					},
 				],
 			},
 			2: {
-				title: 'The perfect blend of preventive & primary care.',
+				title: 'Holistic care from the comfort of your home.',
 				description:
-          'We understand that illnesses arise, which is why we also provide full PCP access through our partner Guardian Medical Direction.',
+          'We recognize that fatigue, stress management, and metabolic health all play a role in employee productivity, which is why we integrate medical provider access with expert health coaching.',
 				image: '/images/marketing/business-oriented/phone.webp',
 			},
 		},
@@ -751,31 +757,31 @@ const marketingData = {
 				title: 'Small Team',
 				min: 10,
 				max: 49,
-				price: 99,
+				price: 129,
 			},
 			{
 				title: 'Medium Team',
 				min: 50,
 				max: 99,
-				price: 95,
+				price: 119,
 			},
 			{
 				title: 'Large Team',
 				min: 100,
 				max: 199,
-				price: 90,
+				price: 109,
 			},
 			{
 				title: 'Enterprise',
 				min: 200,
 				max: Infinity,
-				price: 85,
+				price: 99,
 			},
 		],
 		disclaimer: {
 			title: '*Disclaimer',
 			content:
-        'Geviti is your partner in workforce optimization through energy boosting, productivity improvement and disease prevention.',
+        'This calculator estimates potential cost savings based on data from the Harvard study on corporate wellness programs, which found an average ROI of 6:1, including $3.27 saved in medical costs and $2.73 in reduced absenteeism per dollar spent. Actual results may vary depending on individual company factors and wellness program implementation. This tool is for informational purposes only and does not guarantee specific financial outcomes.',
 		},
 	},
 };

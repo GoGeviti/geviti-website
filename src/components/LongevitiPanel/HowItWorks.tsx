@@ -24,7 +24,7 @@ const HowItWorks: React.FC = () => {
 
 	const { ref, inView } = useInView({
 		threshold: 0.5,
-		triggerOnce: true,
+		triggerOnce: false,
 	});
 	const carousel = useCarousel({
 		loop: true,

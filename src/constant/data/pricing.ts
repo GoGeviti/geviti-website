@@ -76,19 +76,19 @@ const pricingData = {
 						description: '',
 					},
 					{
-						title: 'Daily supplement packs (no markups)',
+						title: 'Daily supplement packs (wholesale)',
 						description: '',
 					},
 					{
-						title: 'Wholesale cost for additional testing',
+						title: 'Speciality testing (wholesale pricing)',
 						description: '',
 					},
 					{
-						title: 'Access to functional medicine providers',
+						title: 'Direct access to medical providers',
 						description: '',
 					},
 					{
-						title: 'Exclusive pharmacy pricing (no markups)',
+						title: 'Exclusive pharmacy pricing (wholesale)',
 						description: '',
 					},
 					{
@@ -99,10 +99,10 @@ const pricingData = {
 						title: 'Easy access to prescriptions',
 						description: '',
 					},
-					{
-						title: 'Quarterly practitioner visits via the app',
-						description: '',
-					},
+					// {
+					// 	title: 'Quarterly practitioner visits via the app',
+					// 	description: '',
+					// },
 					{
 						title: 'Dedicated wellness professional',
 						description: '',
@@ -125,12 +125,12 @@ const pricingData = {
 			{
 				name: 'Tailored Supplement Packs',
 				geviti: true,
-				premium: 'No markups',
+				premium: 'Wholesale',
 			},
 			{
 				name: 'Prescription Therapeutics ',
 				geviti: true,
-				premium: 'No markups',
+				premium: 'Wholesale',
 			},
 			{
 				name: 'Longeviti Panel (90 biomarkers)',
@@ -167,9 +167,9 @@ const pricingData = {
           'Geviti currently offers services in seventeen states: Arizona (AZ), California (CA), Colorado (CO), Florida (FL), Georgia (GA), Illinois (IL), Indiana (IN), Kansas (KS), Missouri (MO), New Mexico (NM), Nevada (NV), Oregon (OR), Tennessee (TN), Texas (TX), Utah (UT), Virginia (VA), Washington (WA). We are actively expanding to include more states across the country.',
 			},
 			{
-				title: 'How do I get started?',
+				title: 'How do I get my business started?',
 				content:
-          'Click any of the \'Get Started\' buttons to become a Geviti member by selecting your membership frequency. You\'ll be prompted to schedule an at-home bloodwork exam, and from there, we\'ll communicate with you through our mobile application.',
+          'Click any of the \'Schedule A Call\' buttons to speak with one of our Geviti Membership Advisors. We’ll answer any questions you have and help you get started today!',
 			},
 			{
 				title:

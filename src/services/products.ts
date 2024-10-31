@@ -49,19 +49,19 @@ export const getProductById = async(id: string): Promise<Product> => {
 	}
 };
 
-export const getProductByName = async(
-	productName: string,
-	category: string
-): Promise<Product> => {
+export const getProductByCategory = async(
+	category: string,
+	productSlug?: string,
+): Promise<Product[]> => {
 	const stringifiedQuery = qs.stringify(
 		{
 			depth: 2,
 			draft: false,
 			where: {
-				slug: { equals: productName },
+				slug: { equals: productSlug },
 				'category.slug': { equals: category },
 			},
-			limit: 1,
+			limit: 99,
 		},
 		{ addQueryPrefix: true }
 	);
@@ -72,26 +72,84 @@ export const getProductByName = async(
 				cache: 'no-store',
 			}
 		);
-		const data = await res.json();
+		const data = await res.json() as PaginatedDocs<Product>;
 		if (!res.ok) {
 			return Promise.reject('Not Found');
 		}
-		return data.docs[0];
+		return data.docs;
 	} catch (error) {
 		return Promise.reject(error);
 	}
 };
 
-export const getCategory = async(): Promise<PaginatedDocs<Category>> => {
+export const getCategoryBySlug = async(slug:string): Promise<Category> => {
+	const stringifiedQuery = qs.stringify(
+		{
+			depth: 2,
+			draft: false,
+			where: {
+				slug: { equals: slug },
+			},
+			limit: 1,
+		},
+		{ addQueryPrefix: true }
+	);
 	try {
 		const res = await fetch(
-			process.env.BASE_API_URL + '/api/categories?depth=1',
+			process.env.BASE_API_URL + `/api/categories?${stringifiedQuery}`,
 			{
 				cache: 'no-store',
 			}
 		);
 		const data = await res.json();
-		return data;
+		if (!res.ok) {
+			return Promise.reject('Not Found');
+		}
+		if (data.docs.length > 0) {
+			return data.docs[0];
+		}
+		return Promise.reject('Not Found');
+	} catch (error) {
+		// console.log(error);
+		return Promise.reject(error);
+	}
+};
+export const getCategories = async(slug?:string, gender?:string): Promise<{
+	singleCategory: Category;
+	categories: Category[];
+}> => {
+	const type = gender === 'women' ? 'female' : 'male';
+	const stringifiedQuery = qs.stringify(
+		{
+			depth: 2,
+			draft: false,
+			where: {
+				or: [
+					{
+						type: { equals: type }
+					},
+					{
+						type: { equals: 'both' }
+					}
+				]
+			},
+			limit: 99,
+		},
+		{ addQueryPrefix: true }
+	);
+	try {
+		const res = await fetch(
+			process.env.BASE_API_URL + `/api/categories?${stringifiedQuery}`,
+			{
+				cache: 'no-store',
+			}
+		);
+		const data = await res.json() as PaginatedDocs<Category>;
+		const singleCategory = data.docs.find(category => category.slug === slug);
+		if (slug && !singleCategory) {
+			return Promise.reject('Not Found');
+		}
+		return { singleCategory: singleCategory ?? data.docs[0], categories: data.docs.filter(category => category.slug !== slug) };
 	} catch (error) {
 		// console.log(error);
 		return Promise.reject(error);

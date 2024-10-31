@@ -214,8 +214,9 @@ const Hero: React.FC<HeroProps> = ({ slug = Slug.MEN_WEIGHT_LOSS }) => {
 							<div className='flex w-full mt-6 overflow-hidden'>
 								<div className='max-sm:w-full flex'>
 									<ButtonCta
-										href={ heroData.cta.href }
+										href={ heroData.cta.href[slug as SlugOpt] }
 										theme='secondary'
+										externalLink={ slug === Slug.BUSINESS_ORIENTED }
 										className='max-sm:w-full'
 									>
 										<span

@@ -82,7 +82,7 @@ const Features: React.FC = () => {
 								className={ clsxm(
 									'w-full h-full object-contain',
 									feature.id === 2 && 'object-center',
-									feature.id === 3 && 'object-right-bottom',
+									feature.id === 3 && 'object-center',
 									feature.id === 4 && 'object-bottom'
 								) }
 							/>

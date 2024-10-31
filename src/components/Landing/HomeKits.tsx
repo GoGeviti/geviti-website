@@ -192,7 +192,7 @@ const HomeKits: React.FC = () => {
 					priority
 					unoptimized
 					className={ clsxm(
-						'w-[1155px] mt-[50px] left-[50%] -translate-x-[50%]',
+						'w-[1050px] mt-[50px] left-[50%] -translate-x-[50%]',
 						defaultImageDesktopClassName
 					) }
 				/>

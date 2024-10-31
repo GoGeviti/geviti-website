@@ -1,3 +1,4 @@
+import React from 'react';
 import { NextPage } from 'next';
 
 import { Footer, FrequentlyAskedQuestions } from '@/components';
@@ -10,7 +11,9 @@ const LongevitiPanelPage: NextPage = () => {
 			<LongevitiPanelComponent.Hero />
 			<LongevitiPanelComponent.HowItWorks />
 			<LongevitiPanelComponent.BannerParallax />
-			<LongevitiPanelComponent.Analyzed />
+			<React.Suspense fallback={ <div className='min-h-[200px]' /> }>
+				<LongevitiPanelComponent.Analyzed />
+			</React.Suspense>
 			<LongevitiPanelComponent.Apps />
 			<FrequentlyAskedQuestions
 				data={ longevitiPanelData.faq.data }

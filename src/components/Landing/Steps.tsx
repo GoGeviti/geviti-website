@@ -41,11 +41,11 @@ const StepsSection: React.FC = () => {
 	};
 
 	return (
-		<div className='font-Poppins mb-9 mt-[27px] lg:my-[66px]'>
+		<div className='font-Poppins mb-9 max-lg:mt-[27px]'>
 			<div className='h-full w-full relative'>
 				<div
 					ref={ container }
-					className='container-center w-full py-[52px] lg:py-16 flex flex-col items-center justify-center text-center lg:my-auto'
+					className='container-center w-full max-lg:py-[52px] flex flex-col items-center justify-center text-center lg:my-auto'
 				>
 					<div className='relative lg:h-[200vh] w-full'>
 						<div className='lg:sticky top-0 left-0 w-full flex flex-col lg:h-1/2 items-center justify-center'>

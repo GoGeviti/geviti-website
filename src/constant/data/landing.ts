@@ -2,17 +2,17 @@ import { ShoppingBagIcon } from '@/components/Icons';
 import {
 	BarChartSquareIcon,
 	ChartIcon,
-	DNAIcon,
+	// DNAIcon,
 	DocumentIcon,
 	EmergencyCallAddIcon,
 	FavoriteChartIcon,
 	GevitiIcon,
-	HeartbeatIcon,
+	// HeartbeatIcon,
 	HomeOutlineIcon,
 	InformationIcon,
-	MedicalDocIcon,
-	MonitoringIcon,
-	PillIcon,
+	// MedicalDocIcon,
+	// MonitoringIcon,
+	// PillIcon,
 	TeamIcon,
 } from '@/components/Icons/Landing';
 
@@ -52,29 +52,21 @@ const landingData = {
 		btnCta2: {
 			href: 'https://calendly.com/cole-gogeviti/discovery-call',
 			externalLink: true,
-			text: 'Talk to Us',
+			text: 'Schedule a call',
 		},
 		mainKeys: [
-			{
-				icon: MonitoringIcon,
-				text: 'Hormone Therapy<br />Made Simple',
-			},
-			{
-				icon: DNAIcon,
-				text: 'At-home Blood and<br />DNA Testing',
-			},
-			{
-				icon: MedicalDocIcon,
-				text: 'Data-driven Care<br />No Guesswork',
-			},
-			{
-				icon: PillIcon,
-				text: 'Custom Supplements<br />Made For You',
-			},
-			{
-				icon: HeartbeatIcon,
-				text: 'Anti-aging Peptides<br />Safe and Effective',
-			},
+			'Maximize healthspan',
+			'Increase lifespan',
+			'Build lean muscle',
+			'Reduce body fat',
+			'Optimize hormone levels',
+			'Reduce aging rate',
+			'Improve sleep quality',
+			'Enhance cognitive performance',
+			'Boost sexual wellness',
+			'Regrow hair',
+			'Lower cancer risk',
+			'Strengthen heart health',
 		],
 	},
 	products: {
@@ -127,8 +119,8 @@ const landingData = {
 		},
 	},
 	steps: {
-		preTitle: 'No more guessing where your health is',
-		title: 'Your journey begins with a full blood panel.',
+		preTitle: 'Your journey begins with a full blood panel',
+		title: 'No more guessing where your health is',
 		btnCta: {
 			href: '/pricing',
 			externalLink: false,
@@ -142,7 +134,7 @@ const landingData = {
 			},
 			{
 				id: 'step-2',
-				title: 'Complete<br />your at-home<br />blood draw',
+				title: 'Schedule<br />your at-home<br />blood draw',
 				icon: HomeOutlineIcon,
 			},
 			{
@@ -279,44 +271,76 @@ const landingData = {
 		},
 	},
 	benefits: {
-		preTitle: 'Membership Benefits',
-		title: 'Therapeutics for optimization',
+		preTitle: 'Anti-aging care',
+		title: 'Optimize health & wellness',
 		description:
-      '<span class="lg:hidden">Geviti has partnered with key compound pharmacies across the country to offer a range of anti-aging care at  the lowest prices possible. All clinical protocols are created and overseen by board certified providers.</span><span class="max-lg:hidden">Your Geviti membership will include the following range of anti-aging care at the lowest prices possible. All clinical protocols are created and overseen by board certified providers.</span>',
-		viewAll: {
-			text: 'View All Products',
-			href: '/products',
-		},
+      'A fully integrated health program that brings together advanced diagnostics, expert medical care and coaching, science-backed longevity therapies for optimal well-being and long-term vitality.',
 		list: [
 			{
-				id: 'men',
-				href: '/solution/men',
-				image: '/images/landing/compressed/benefits-men.webp',
-				imageMobile: '/images/landing/compressed/benefits-men-mobile.webp',
-				title: 'Mens Health',
-				details: [
-					'Hormone Optimization',
-					'Medical Weight Loss',
-					'Peptide Therapies',
-					'Sexual Function',
-					'Hair Loss Solutions',
-					'And More Modern Solutions',
-				],
+				title: 'Traditional Healthcare:',
+				items: [
+					{
+						cheked: false,
+						text: '~20 biomarkers if labs are done',
+					},
+					{
+						cheked: false,
+						text: 'Generalized one-size-fits all',
+					},
+					{
+						cheked: false,
+						text: 'Immediate symptom-only approach',
+					},
+					{
+						cheked: false,
+						text: 'In-person visits required',
+					},
+					{
+						cheked: false,
+						text: 'Reactive. Care once already sick.',
+					},
+					{
+						cheked: false,
+						text: 'Limited communication',
+					},
+					{
+						cheked: false,
+						text: 'One-off visits',
+					}
+				]
 			},
 			{
-				id: 'women',
-				href: '/solution/women',
-				image: '/images/landing/compressed/benefits-women.webp',
-				imageMobile: '/images/landing/compressed/benefits-women-mobile.webp',
-				title: 'Women\'s Health',
-				details: [
-					'Menopause Spectrum Care',
-					'PCOS Management',
-					'Peptide Therapies',
-					'Medical Weight Loss',
-					'Sexual Wellness',
-					'And More Modern Solutions',
-				],
+				title: 'Geviti Membership:',
+				items: [
+					{
+						cheked: true,
+						text: '90+ biomarkers every 6 months',
+					},
+					{
+						cheked: true,
+						text: 'Personalized to you',
+					},
+					{
+						cheked: true,
+						text: 'Holistic root cause approach',
+					},
+					{
+						cheked: true,
+						text: 'Convenience (all from the comfort of your home)',
+					},
+					{
+						cheked: true,
+						text: 'Proactive/Preventative',
+					},
+					{
+						cheked: true,
+						text: 'Direct access to care in our app',
+					},
+					{
+						cheked: true,
+						text: 'Continual health partner',
+					}
+				]
 			},
 		],
 	},
@@ -490,15 +514,15 @@ const landingData = {
 		priceSection: {
 			preTitle: 'Personalized plans that are right for you',
 			title:
-        'Memberships as low as $129<span class="text-xs sm:text-[20px] lg:text-2xl !leading-normal">/month</span>',
+        'Memberships start at $129<span class="text-xs sm:text-[20px] lg:text-2xl !leading-normal">/month</span>',
 			description:
-        'At-home diagnostics and doctor-supervised treatments fostering vitality and longevity. Easily integrates into your life.',
+        'Geviti easily integrates into your life with at-home diagnostics and doctor-supervised treatments on your time.',
 			btnCta: {
 				text: 'Learn More',
 				href: '#pricing',
 			},
 			btnCtaMobile: {
-				text: 'Learn More',
+				text: 'Join Geviti',
 				href: '#pricing',
 			},
 			list: [
@@ -583,42 +607,68 @@ const landingData = {
 			image: '/images/landing/compressed/continent_dots.webp',
 		},
 	},
-	features: {
-		preTitle: 'membership features',
-		title: 'A wellness team in your<br />pocket',
-		description:
-      'Geviti provides our users with a comprehensive care team. Instead of being forced to choose between a healthcare provider and a health coach, we offer a solution where the two work in tandem to craft the ultimate longevity regimen.',
-		btnCta: {
-			href: '/pricing',
-			text: 'Join Geviti',
-		},
-		cards: [
-			{
+	features: [
+		{
+			align: 'left',
+			preTitle: 'Direct access',
+			title: 'A wellness team in your<br />pocket',
+			description:
+				'Geviti provides our users with a comprehensive care team. Instead of being forced to choose between a healthcare provider and a health coach, we offer a solution where the two work in tandem to craft the ultimate longevity regimen.',
+			btnCta: {
+				href: '/pricing',
+				text: 'Join Geviti',
+			},
+			card: {
 				id: 'doctor',
 				title: 'Doctor Led Care',
 				description:
-          'Cutting edge therapeutics including hormone therapy, peptide therapy, medical weight loss, and more monitored by board certified providers.',
-			},
-			{
+					'Cutting edge therapeutics including hormone therapy, peptide therapy, medical weight loss, and more monitored by board certified providers.',
+			}
+		},
+		{
+			align: 'right',
+			preTitle: 'A holistic approach',
+			title: 'Functional and modern<br />medicine, combined.',
+			description:
+				'At Geviti, we combine the best of functional medicine with modern medical advancements. This integrative approach addresses root causes of health concerns, promoting optimal balance, healing, and long-term wellness to support your journey from all angles.',
+			card: {
 				id: 'coaching',
 				title: 'Health Coaching',
 				description:
-          'Bi-weekly check-ins from your designated <br class="max-lg:hidden"/>health coach to hold you accountable to <br class="max-lg:hidden"/>your goals and ensure you have the <br class="max-lg:hidden"/>necessary tools for success',
+					'Bi-weekly check-ins from your designated <br class="max-lg:hidden"/>health coach to hold you accountable to <br class="max-lg:hidden"/>your goals and ensure you have the <br class="max-lg:hidden"/>necessary tools for success',
 			},
-			{
+		},
+		{
+			align: 'left',
+			preTitle: 'data-driven care',
+			title: 'Custom plans tailored<br />to your needs.',
+			description:
+				'No two bodies are the same, and your care plan shouldn’t be either. Geviti designs personalized health plans based on your unique biomarkers, lifestyle, and goals. Whether it’s optimizing longevity or improving daily performance, your regimen is crafted just for you.',
+			btnCta: {
+				href: '/pricing',
+				text: 'Join Geviti',
+			},
+			card: {
 				id: 'protocols',
 				title: 'Tailored Protocols',
 				description:
-          'The creation of an action plan based off of <br class="max-lg:hidden"/>your bloodwork results, focusing on <br class="max-lg:hidden"/>lifestyle, nutrition, supplementation, and <br class="max-lg:hidden"/>overall health optimization.',
+					'The creation of an action plan based off of <br class="max-lg:hidden"/>your bloodwork results, focusing on <br class="max-lg:hidden"/>lifestyle, nutrition, supplementation, and <br class="max-lg:hidden"/>overall health optimization.',
 			},
-			{
+		},
+		{
+			align: 'right',
+			preTitle: 'Not a one and done approach',
+			title: 'Ongoing care and<br />health monitoring.',
+			description:
+				'Your health is always evolving, and so is our care. With Geviti’s continuous health tracking and regular check-ins, we ensure that your plan adapts to your progress. From real-time metrics to follow-up lab work, your wellness is in constant focus.',
+			card: {
 				id: 'education',
 				title: 'Health Education',
 				description:
-          'Regular check-ins to educate and monitor <br class="max-lg:hidden"/>progress over time, observing changes in <br class="max-sm:hidden"/>bloodwork biomarkers, wearable device <br class="max-sm:hidden"/>health metrics, and more.',
+					'Regular check-ins to educate and monitor progress over time, observing changes in bloodwork biomarkers, wearable device health metrics, and more.',
 			},
-		],
-	},
+		},
+	],
 };
 
 export default landingData;

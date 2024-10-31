@@ -9,6 +9,7 @@ import Link from 'next/link';
 import landingData from '@/constant/data/landing';
 import productsData from '@/constant/data/products';
 import clsxm from '@/helpers/clsxm';
+import { Product } from '@/payload/payload-types';
 
 import { ArrowNarrowLeft, ArrowNarrowRight } from '../Icons';
 
@@ -17,22 +18,128 @@ type DiscoverGevitiProps = {
   description?: string;
   productsWrapperClassName?: string;
   withBg?: boolean;
+  products?: Product[];
 };
 
 const CARD_PRODUCT_WIDTH = 287;
 const SPACING_BETWEEN_CARD = 24;
+
+const ProductCard = ({
+	id,
+	name,
+	description,
+	price,
+	imageUrl,
+	categorySlug,
+	productSlug,
+	isPrescription,
+	selectedCategoryIdx
+}:{
+	id: string;
+	name: string;
+	description: string;
+	price: number | string;
+	imageUrl: string;
+	categorySlug?: string;
+	productSlug?: string;
+	isPrescription: boolean;
+	selectedCategoryIdx:string
+}) => {
+
+	let href = '/pricing';
+
+	if (isPrescription) {
+		href = `/solution/${selectedCategoryIdx === 'male' ? 'men' : 'women'}/${categorySlug}/${productSlug}`;
+	}
+
+	if (name === 'Longeviti Panel') {
+		href = '/longeviti-panel';
+	}
+
+	return (
+		<div
+			key={ id }
+			className='group snap-start hover:shadow-[0px_4px_24px_rgba(0,0,0,0.15)] transition-shadow duration-200 ease-in cursor-pointer relative flex flex-col overflow-hidden bg-grey-secondary flex-none w-[287px] h-[375px] xl:h-[412px] px-3 pt-3 pb-[21px] rounded-19px'
+			id={ `discover-product-card-${id}` }
+		>
+			<Link
+				href={ href }
+				key={ id }
+				className='flex flex-col w-full h-full'
+			>
+				<div className='relative overflow-hidden rounded-2xl bg-[#EAEAEA] w-full h-[221px]'>
+					<div className='relative overflow-hidden w-full h-[221px] top-6'>
+						<Image
+							src={ imageUrl ?? '' }
+							alt=''
+							sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
+							fill
+							className='object-contain w-full h-full pointer-events-none'
+						/>
+					</div>
+				</div>
+				<div className='flex flex-1 flex-col space-y-1 pt-[23px] px-[13px]'>
+					<h3 className='text-lg font-medium text-primary leading-[141%] -tracking-0.04em whitespace-normal'>
+						{ name }
+					</h3>
+					<p className='text-sm text-grey-primary whitespace-normal mt-5px line-clamp-3'>
+						{ description }
+					</p>
+					<div className='flex flex-1 flex-col justify-end text-primary pt-3.5'>
+						<div className='flex'>
+							{ price !== undefined && (
+								<div className='text-xs !leading-normal bg-blue-1 rounded-full py-0.5 pl-1.5 pr-3 flex items-center justify-center gap-1 flex-shrink-0 text-primary'>
+									<svg
+										xmlns='http://www.w3.org/2000/svg'
+										width='13'
+										height='14'
+										viewBox='0 0 13 14'
+										fill='none'
+										className='flex-shrink-0'
+									>
+										<circle
+											cx='6.38889'
+											cy='6.95243'
+											r='6.38889'
+											fill='#181A1C'
+										/>
+										<path
+											d='M6.58204 7.12628V8.40728H7.77054L7.64171 8.53443C7.01408 9.15109 6.15 9.06288 5.98347 9.03904C4.86646 8.87931 4.22626 8.12041 4.22626 6.95622C4.22626 5.62912 5.05106 4.83763 6.43436 4.83763C6.92767 4.83763 7.46026 4.89962 7.88287 5.17775C8.0604 5.29457 8.21593 5.45112 8.31333 5.64343C8.41781 5.84845 8.4453 6.09957 8.4453 6.32764H9.93072C9.93072 6.14009 9.92758 5.94937 9.89695 5.76422C9.81368 5.25801 9.52697 4.79154 9.16798 4.43633C8.82785 4.09939 8.40995 3.84748 7.96613 3.67821C7.47832 3.49147 6.95595 3.40326 6.43436 3.40326C4.28517 3.40326 2.83981 4.83048 2.83981 6.95622C2.83981 7.51805 2.93329 8.03299 3.11632 8.48595C3.28756 8.90872 3.54914 9.29254 3.87278 9.59213C4.18698 9.88616 4.56561 10.1142 4.99686 10.27C5.53337 10.4639 6.10994 10.5346 6.66059 10.4758C7.27173 10.4106 7.83338 10.204 8.28191 9.87662C8.36518 9.81623 8.44766 9.75106 8.52307 9.68113L8.64482 9.57147V10.502H9.93858V7.12628H6.58126H6.58204Z'
+											fill='#A3E0FF'
+										/>
+									</svg>
+
+									<span>
+										{ typeof price === 'string'
+											? price
+											: `As low as $${price}/m*` }
+									</span>
+								</div>
+							) }
+						</div>
+					</div>
+				</div>
+				{ /* <div className='absolute right-[11px] bottom-[21px]'>
+					<div className='w-[46px] h-[46px] border border-grey-100 max-lg:border-primary group-hover:border-primary max-lg:bg-primary group-hover:bg-primary relative rounded-full transition-all duration-200 ease-in'>
+						<ArrowNarrowRight className='text-gray-100 max-lg:text-blue-primary group-hover:text-blue-primary w-6 h-6 absolute-center flex-shrink-0 -rotate-45 transition-all duration-200 ease-in' />
+					</div>
+				</div> */ }
+			</Link>
+		</div>
+	);
+}
 
 const DiscoverGeviti: React.FC<DiscoverGevitiProps> = ({
 	title = landingData.products.title,
 	description = landingData.products.description,
 	productsWrapperClassName = 'mt-[18px]',
 	withBg = false,
-	// products,
+	products,
 }) => {
 	const scrollbarWidth = useMotionValue('0%');
 
 	const [container, setContainer] = useState<HTMLDivElement | null>(null);
-	const [selectedCategoryIdx, setSelectedCategoryIdx] = useState<number>(0);
+	const [selectedCategoryIdx, setSelectedCategoryIdx] = useState('male');
 	const [selectedSubCategoryIdx, setSelectedSubCategoryIdx] =
     useState<number>(0);
 	const [disabledArrowScroll, setDisabledArrowScroll] =
@@ -40,16 +147,14 @@ const DiscoverGeviti: React.FC<DiscoverGevitiProps> = ({
 	const [productsPlaceholderCount, setProductsPlaceholderCount] =
     useState<number>(0);
 
-	const selectedCategory = productsData.categories[selectedCategoryIdx].id as
-    | 'men'
-    | 'women';
+	// const selectedCategory = productsData.categories[selectedCategoryIdx].id as
+	// | 'men'
+	// | 'women';
 
 	const productsByCategory = useMemo(() => {
-		const filterCategoryOptions = productsData[selectedCategory].tabs;
-		return productsData[selectedCategory].products.filter(product => {
-			const filteredByCategory =
-        product.category.id ===
-        filterCategoryOptions[selectedSubCategoryIdx]?.id;
+		const filterCategoryOptions = productsData[selectedCategoryIdx === 'male' ? 'men' : 'women'].tabs;
+		return productsData[selectedCategoryIdx === 'male' ? 'men' : 'women'].products.filter(product => {
+			const filteredByCategory =  product.category.id === filterCategoryOptions[selectedSubCategoryIdx]?.id;
 			return filteredByCategory;
 		});
 	}, [selectedCategoryIdx, selectedSubCategoryIdx]);
@@ -129,79 +234,39 @@ const DiscoverGeviti: React.FC<DiscoverGevitiProps> = ({
 				ref={ wrapperItemsRef }
 				onScroll={ () => handleProductListScroll(false) }
 			>
-				{ productsByCategory.map((product, productIdx) => {
-					return (
-						<div
-							key={ productIdx }
-							className='group snap-start hover:shadow-[0px_4px_24px_rgba(0,0,0,0.15)] transition-shadow duration-200 ease-in cursor-pointer relative flex flex-col overflow-hidden bg-grey-secondary flex-none w-[287px] h-[375px] xl:h-[412px] px-3 pt-3 pb-[21px] rounded-19px'
-							id={ `discover-product-card-${product.id}` }
-						>
-							<Link
-								href={ `/solution/${selectedCategory}` }
-								key={ product.id }
-								className='flex flex-col w-full h-full'
-							>
-								<div className='relative overflow-hidden rounded-2xl bg-[#EAEAEA] w-full h-[221px]'>
-									<div className='relative overflow-hidden w-full h-[221px] top-6'>
-										<Image
-											src={ product.image }
-											alt=''
-											sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
-											fill
-											className='object-contain w-full h-full pointer-events-none'
-										/>
-									</div>
-								</div>
-								<div className='flex flex-1 flex-col space-y-1 pt-[23px] px-[13px]'>
-									<h3 className='text-lg font-medium text-primary leading-[141%] -tracking-0.04em whitespace-normal'>
-										{ product.name }
-									</h3>
-									<p className='text-sm text-grey-primary whitespace-normal mt-5px line-clamp-3'>
-										{ product.description }
-									</p>
-									<div className='flex flex-1 flex-col justify-end text-primary pt-3.5'>
-										<div className='flex'>
-											{ product.price !== undefined && (
-												<div className='text-xs !leading-normal bg-blue-1 rounded-full py-0.5 pl-1.5 pr-3 flex items-center justify-center gap-1 flex-shrink-0 text-primary'>
-													<svg
-														xmlns='http://www.w3.org/2000/svg'
-														width='13'
-														height='14'
-														viewBox='0 0 13 14'
-														fill='none'
-														className='flex-shrink-0'
-													>
-														<circle
-															cx='6.38889'
-															cy='6.95243'
-															r='6.38889'
-															fill='#181A1C'
-														/>
-														<path
-															d='M6.58204 7.12628V8.40728H7.77054L7.64171 8.53443C7.01408 9.15109 6.15 9.06288 5.98347 9.03904C4.86646 8.87931 4.22626 8.12041 4.22626 6.95622C4.22626 5.62912 5.05106 4.83763 6.43436 4.83763C6.92767 4.83763 7.46026 4.89962 7.88287 5.17775C8.0604 5.29457 8.21593 5.45112 8.31333 5.64343C8.41781 5.84845 8.4453 6.09957 8.4453 6.32764H9.93072C9.93072 6.14009 9.92758 5.94937 9.89695 5.76422C9.81368 5.25801 9.52697 4.79154 9.16798 4.43633C8.82785 4.09939 8.40995 3.84748 7.96613 3.67821C7.47832 3.49147 6.95595 3.40326 6.43436 3.40326C4.28517 3.40326 2.83981 4.83048 2.83981 6.95622C2.83981 7.51805 2.93329 8.03299 3.11632 8.48595C3.28756 8.90872 3.54914 9.29254 3.87278 9.59213C4.18698 9.88616 4.56561 10.1142 4.99686 10.27C5.53337 10.4639 6.10994 10.5346 6.66059 10.4758C7.27173 10.4106 7.83338 10.204 8.28191 9.87662C8.36518 9.81623 8.44766 9.75106 8.52307 9.68113L8.64482 9.57147V10.502H9.93858V7.12628H6.58126H6.58204Z'
-															fill='#A3E0FF'
-														/>
-													</svg>
-
-													<span>
-														{ typeof product?.price === 'string'
-															? product?.price
-															: `As low as $${product?.price}/m*` }
-													</span>
-												</div>
-											) }
-										</div>
-									</div>
-								</div>
-								{ /* <div className='absolute right-[11px] bottom-[21px]'>
-									<div className='w-[46px] h-[46px] border border-grey-100 max-lg:border-primary group-hover:border-primary max-lg:bg-primary group-hover:bg-primary relative rounded-full transition-all duration-200 ease-in'>
-										<ArrowNarrowRight className='text-gray-100 max-lg:text-blue-primary group-hover:text-blue-primary w-6 h-6 absolute-center flex-shrink-0 -rotate-45 transition-all duration-200 ease-in' />
-									</div>
-								</div> */ }
-							</Link>
-						</div>
-					);
-				}) }
+				{
+					selectedSubCategoryIdx !== 0
+						? productsByCategory.map((e, i) => {
+							return (
+								<ProductCard
+									key={ i }
+									isPrescription={ false }
+									id={ e.id.toString() }
+									name={ e.name }
+									description={ e.description }
+									price={ e.price }
+									imageUrl={ e.image }
+									selectedCategoryIdx={ selectedCategoryIdx }
+								/>
+							)
+						})
+						: products?.filter(e => e.category.type === selectedCategoryIdx || e.category.type === 'both').map((e, i) => {
+							return (
+								<ProductCard
+									key={ i }
+									id={ e.id.toString() }
+									name={ e.name }
+									description={ e.description }
+									price={ e.price }
+									imageUrl={ e.image.url ?? '' }
+									categorySlug={ e.category.slug ?? '' }
+									productSlug={ e.slug ?? '' }
+									selectedCategoryIdx={ selectedCategoryIdx }
+									isPrescription={ true }
+								/>
+							)
+						})
+				}
 
 				{ renderPlaceholderProductList() }
 			</div>
@@ -209,17 +274,26 @@ const DiscoverGeviti: React.FC<DiscoverGevitiProps> = ({
 	};
 
 	const renderButtonSwitchProducts = () => {
-		const categories = productsData.categories;
+		// const categories = productsData.categories;
 
 		return (
 			<div className='relative w-full rounded-[100px] h-[49px] px-1.5 bg-white'>
 				<div className='relative flex items-center h-full'>
-					{ categories.map((category, categoryIdx) => (
+					{ [
+						{
+							id: 'male',
+							title: 'Mens Products',
+						},
+						{
+							id: 'female',
+							title: 'Womens Products',
+						},
+					].map((category, categoryIdx) => (
 						<button
 							key={ category.title }
 							aria-label={ category.title }
 							onClick={ () => {
-								setSelectedCategoryIdx(categoryIdx);
+								setSelectedCategoryIdx(category.id);
 								resetScrollbarWidth();
 							} }
 							className={ clsxm(
@@ -237,12 +311,12 @@ const DiscoverGeviti: React.FC<DiscoverGevitiProps> = ({
 					transition={ { type: 'spring', duration: 0.75 } }
 					className={ clsxm(
 						'bg-primary cursor-pointer rounded-[100px] font-medium text-white whitespace-nowrap shadow-[0px_4px_8px_0px_rgba(0,0,0,0.1)] text-sm !leading-[21px] flex items-center justify-center h-[37px] top-1.5 absolute',
-						selectedCategoryIdx === 0
+						selectedCategoryIdx === 'male'
 							? 'left-1.5 w-[calc(40%-6px)] px-3.5'
 							: 'left-[40%] w-[calc(60%-6px)] px-6'
 					) }
 				>
-					{ categories[selectedCategoryIdx].title }
+					{ selectedCategoryIdx === 'male' ? 'Mens Products' : 'Womens Products' }
 				</motion.span>
 			</div>
 		);

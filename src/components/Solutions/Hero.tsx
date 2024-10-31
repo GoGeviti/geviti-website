@@ -4,11 +4,12 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 
+import { navbarDefaultTransition } from '@/constant/data/navbar';
 import solutionData from '@/constant/data/solution';
 import clsxm from '@/helpers/clsxm';
 
 import ButtonCta from '../ButtonCta';
-import Navbar, { navbarDefaultTransition } from '../Navbar/Landing';
+import Navbar from '../Navbar/Landing';
 
 const slideUpTransition = {
 	ease: 'easeInOut',

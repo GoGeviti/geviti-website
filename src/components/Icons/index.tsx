@@ -599,6 +599,23 @@ export const ArrowUpRight = (props?: React.SVGProps<SVGSVGElement>) => (
 	</svg>
 );
 
+export const ArrowUpRightLink = (props?: React.SVGProps<SVGSVGElement>) => (
+	<svg
+		width='14'
+		height='14'
+		viewBox='0 0 14 14'
+		fill='none'
+		xmlns='http://www.w3.org/2000/svg'
+		{ ...props }>
+		<path
+			d='M4.0835 9.91668L9.91683 4.08334M9.91683 4.08334H4.0835M9.91683 4.08334V9.91668'
+			strokeWidth='1.41667'
+			strokeLinecap='round'
+			strokeLinejoin='round'/>
+	</svg>
+
+);
+
 export const CheckCircleIcon = (props?: React.SVGProps<SVGSVGElement>) => {
 	return (
 		<svg
@@ -1258,4 +1275,25 @@ export const TickCircle = (props?: React.SVGAttributes<SVGSVGElement>) => (
 			d='M7.93508 11.685C7.78508 11.685 7.64258 11.625 7.53758 11.52L5.41508 9.39745C5.19758 9.17995 5.19758 8.81995 5.41508 8.60245C5.63258 8.38495 5.99258 8.38495 6.21008 8.60245L7.93508 10.3275L11.7901 6.47245C12.0076 6.25495 12.3676 6.25495 12.5851 6.47245C12.8026 6.68995 12.8026 7.04995 12.5851 7.26745L8.33258 11.52C8.22758 11.625 8.08508 11.685 7.93508 11.685Z'
 			fill='currentColor'/>
 	</svg>
+);
+
+export const MouseIcon = (props?: React.SVGAttributes<SVGSVGElement>) => (
+	<svg
+		width='24'
+		height='24'
+		viewBox='0 0 24 24'
+		fill='none'
+		xmlns='http://www.w3.org/2000/svg'
+		{ ...props }>
+		<path
+			d='M12 22.75C7.45 22.75 3.75 19.05 3.75 14.5V9.5C3.75 4.95 7.45 1.25 12 1.25C16.55 1.25 20.25 4.95 20.25 9.5V14.5C20.25 19.05 16.55 22.75 12 22.75ZM12 2.75C8.28 2.75 5.25 5.78 5.25 9.5V14.5C5.25 18.22 8.28 21.25 12 21.25C15.72 21.25 18.75 18.22 18.75 14.5V9.5C18.75 5.78 15.72 2.75 12 2.75Z'
+			fill='#181A1C'/>
+		<path
+			d='M12 11.75C10.76 11.75 9.75 10.74 9.75 9.5V7.5C9.75 6.26 10.76 5.25 12 5.25C13.24 5.25 14.25 6.26 14.25 7.5V9.5C14.25 10.74 13.24 11.75 12 11.75ZM12 6.75C11.59 6.75 11.25 7.09 11.25 7.5V9.5C11.25 9.91 11.59 10.25 12 10.25C12.41 10.25 12.75 9.91 12.75 9.5V7.5C12.75 7.09 12.41 6.75 12 6.75Z'
+			fill='#181A1C'/>
+		<path
+			d='M12 6.75C11.59 6.75 11.25 6.41 11.25 6V2C11.25 1.59 11.59 1.25 12 1.25C12.41 1.25 12.75 1.59 12.75 2V6C12.75 6.41 12.41 6.75 12 6.75Z'
+			fill='#181A1C'/>
+	</svg>
+
 );

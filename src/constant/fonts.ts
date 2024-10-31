@@ -1,13 +1,13 @@
-import { Poppins } from 'next/font/google';
+// import { Poppins } from 'next/font/google';
 import localFont from 'next/font/local';
 
-const poppins = Poppins({
-	weight: ['400', '500', '600', '700', '800', '900'],
-	fallback: ['sans-serif'],
-	subsets: ['latin', 'latin-ext'],
-	variable: '--font-Poppins',
-	display: 'swap'
-});
+// const poppins = Poppins({
+// 	weight: ['400', '500', '600', '700', '800', '900'],
+// 	fallback: ['sans-serif'],
+// 	subsets: ['latin', 'latin-ext'],
+// 	variable: '--font-Poppins',
+// 	display: 'swap',
+// });
 
 const brSonoma = localFont({
 	display: 'swap',
@@ -63,7 +63,7 @@ const brSonoma = localFont({
 			style: 'italic',
 		},
 	],
-	variable: '--font-BRSonoma'
+	variable: '--font-BRSonoma',
 });
 
 const grifter = localFont({
@@ -73,9 +73,9 @@ const grifter = localFont({
 			path: './fonts/grifterbold.otf',
 			weight: '700',
 			style: 'normal',
-		}
+		},
 	],
-	variable: '--font-grifter'
+	variable: '--font-grifter',
 });
 
-export { brSonoma, grifter, poppins };
+export { brSonoma, grifter };
