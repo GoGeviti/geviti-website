@@ -15,7 +15,7 @@ const Hero:React.FC<{data:Category}> = ({ data }) => {
 	return (
 		<div className='lg:min-h-screen relative lg:px-3 pt-36 lg:pt-[201px]'>
 			<div className='container-center'>
-				<div className='flex flex-col gap-6 max-w-[431px] relative z-10'>
+				<div className='flex flex-col max-lg:items-center gap-6 max-w-[431px] relative z-10'>
 					<PopupReview
 						className='max-sm:w-full lg:hidden max-sm:max-w-[277px]'
 						style={
@@ -26,10 +26,30 @@ const Hero:React.FC<{data:Category}> = ({ data }) => {
 						}
 						wrapperClassName='[box-shadow:var(--shadow-popup-longeviti-panel)] max-sm:w-full lg:w-[274px]'
 					/>
-					<h3 className='text-primary font-medium text-4xl lg:leading-[54px]'>{ data.title }</h3>
-					<p className='text-grey-primary text-sm leading-5'>{ data.description }</p>
+					<h3 className='text-primary max-lg:text-center lg:font-medium text-[28px] lg:text-4xl lg:leading-[54px]'>{ data.title }</h3>
+					<p className='text-grey-primary max-lg:text-center text-xs lg:text-sm leading-5'>{ data.description }</p>
 					<div>
 						<ButtonCta>Get Started</ButtonCta>
+					</div>
+					<div className='lg:hidden mt-10 relative'>
+						<motion.div
+							style={ { y } }>
+							<Image
+								src={ data.image.url ?? '' }
+								alt='category product'
+								width={ 630 }
+								height={ 630 }
+								// quality={ 75 }
+								className='object-contain w-full'
+							/>
+						</motion.div>
+						<Image
+							src='/images/solution_media/geviti-logo-background.png'
+							alt='logo'
+							width={ 982 }
+							height={ 248 }
+							className='object-contain w-screen top-1/2 -translate-y-1/2 absolute lg:hidden z-[-1]'
+						/>
 					</div>
 				</div>
 				<Image

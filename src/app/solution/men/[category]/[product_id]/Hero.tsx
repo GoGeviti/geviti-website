@@ -7,7 +7,7 @@ import { Product } from '@/payload/payload-types'
 
 const Hero:React.FC<{data:Product}> = ({ data }) => {
 	return (
-		<div className='lg:min-h-screen relative lg:px-3 py-40 lg:pt-[217px]'>
+		<div className='lg:min-h-screen relative lg:px-3 pt-40 lg:pt-[217px]'>
       	<div className='container-center'>
 				<div className='grid grid-cols-1 lg:grid-cols-2 place-items-center gap-[140px]'>
 					<Image
@@ -17,7 +17,7 @@ const Hero:React.FC<{data:Product}> = ({ data }) => {
 						height={ 510 }
 						className='object-contain max-lg:hidden lg:w-[510px]'
 					/>
-					<div className='flex flex-col gap-6 '>
+					<div className='flex flex-col max-lg:text-center max-lg:items-center gap-6 '>
 						<PopupReview
 							className='max-sm:w-full max-sm:max-w-[277px]'
 							style={
@@ -36,6 +36,13 @@ const Hero:React.FC<{data:Product}> = ({ data }) => {
 						<div className='w-fit'>
 							<ButtonCta href='/pricing'>See if i qualify</ButtonCta>
 						</div>
+						<Image
+							src={ data.image.url ?? '' }
+							alt={ data.image.alt ?? '' }
+							width={ 510 }
+							height={ 510 }
+							className='object-contain lg:hidden w-full'
+						/>
 					</div>
 				</div>
 			</div>
