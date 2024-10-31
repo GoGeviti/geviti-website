@@ -86,7 +86,7 @@ const HowItWorksCards: React.FC<CardListProps> = ({
 									initial: 'initial',
 									animate: inView ? 'animate' : 'initial',
 									transition: {
-										delay: 6 + (3 - index) * 0.2,
+										delay: 4 + (3 - index) * 0.2,
 										duration: 0.4,
 										ease: 'easeInOut',
 									},
@@ -97,7 +97,7 @@ const HowItWorksCards: React.FC<CardListProps> = ({
 									{ ...(!isMobile && {
 										animate: inView ? { scale: 0.9 } : { scale: 1 },
 										transition: {
-											delay: 6 + (3 - index) * 0.2 + 0.8, // 0.8 = 0.2 * 4 cards
+											delay: 4 + (3 - index) * 0.2 + 0.8, // 0.8 = 0.2 * 4 cards
 											duration: 0.4,
 											ease: 'easeInOut',
 										},
@@ -132,13 +132,13 @@ const HowItWorksCards: React.FC<CardListProps> = ({
 			<div className='absolute-center'>
 				<div className='w-[224px] sm:w-[254px] h-auto relative'>
 					<WrapperDotIcon
-						delay={ 3.5 }
+						delay={ 2.5 }
 						className='left-[17px]'
 						dotClassName='-top-[1px]'
 						inView={ inView }
 					/>
 					<WrapperDotIcon
-						delay={ 4.5 }
+						delay={ 3.5 }
 						className='right-[17px]'
 						dotClassName='-top-[1px]'
 						inView={ inView }
@@ -158,7 +158,7 @@ const HowItWorksCards: React.FC<CardListProps> = ({
 										: 'inset(50% 0% 50% 0%)',
 									scale: 1,
 								},
-								transition: { duration: 1, delay: 3, ease: 'easeIn' },
+								transition: { duration: 1, delay: 2, ease: 'easeIn' },
 							}) }
 						>
 							<Image
@@ -301,7 +301,7 @@ const HowItWorksCards: React.FC<CardListProps> = ({
 								width: '50%',
 								transition: {
 									...transition,
-									delay: 2,
+									delay: 1,
 								},
 							}
 							: { width: '0%' }
@@ -322,7 +322,7 @@ const HowItWorksCards: React.FC<CardListProps> = ({
 									width: '50%',
 									transition: {
 										...transition,
-										delay: 3,
+										delay: 2,
 									},
 								}
 								: { width: '0%' }
@@ -337,7 +337,7 @@ const HowItWorksCards: React.FC<CardListProps> = ({
 									width: '50%',
 									transition: {
 										...transition,
-										delay: 5,
+										delay: 3,
 									},
 								}
 								: { width: '0%' }
@@ -357,7 +357,7 @@ const HowItWorksCards: React.FC<CardListProps> = ({
 							width: '50%',
 							transition: {
 								...transition,
-								delay: 5.5,
+								delay: 3.5,
 							},
 						}
 						: { width: '0%' }

@@ -34,7 +34,7 @@ const Hero:React.FC<{data:Product}> = ({ data }) => {
 						</div>
 						<p className='text-grey-primary text-sm leading-5'>{ data.description }</p>
 						<div className='w-fit'>
-							<ButtonCta href='/pricing'>See if i qualify</ButtonCta>
+							<ButtonCta href='/pricing'>Become a member</ButtonCta>
 						</div>
 						<Image
 							src={ data.image.url ?? '' }

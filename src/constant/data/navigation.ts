@@ -19,7 +19,7 @@ const navigationData = {
 					href: '/solution/men/longevity-and-peptide-therapy',
 				},
 				{
-					name: 'Hormone Health and Optimization',
+					name: 'Hormone Health Optimization',
 					href: '/solution/men/hormone-optimization',
 				},
 				{
@@ -46,7 +46,7 @@ const navigationData = {
 					href: '/solution/women/longevity-and-peptide-therapy',
 				},
 				{
-					name: 'Hormone Health and Optimization',
+					name: 'Hormone Health Optimization',
 					href: '/solution/women/hormone-health-and-optimization-female',
 				},
 				{

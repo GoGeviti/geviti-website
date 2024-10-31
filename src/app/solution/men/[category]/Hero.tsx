@@ -28,8 +28,8 @@ const Hero:React.FC<{data:Category}> = ({ data }) => {
 					/>
 					<h3 className='text-primary max-lg:text-center lg:font-medium text-[28px] lg:text-4xl lg:leading-[54px]'>{ data.title }</h3>
 					<p className='text-grey-primary max-lg:text-center text-xs lg:text-sm leading-5'>{ data.description }</p>
-					<div>
-						<ButtonCta>Get Started</ButtonCta>
+					<div className='w-fit'>
+						<ButtonCta href='/pricing'>Get Started</ButtonCta>
 					</div>
 					<div className='lg:hidden mt-10 relative'>
 						<motion.div

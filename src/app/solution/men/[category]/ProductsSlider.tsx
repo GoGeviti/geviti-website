@@ -204,7 +204,8 @@ const ProductsSlider:React.FC<{products : Product[]} > = ({ products }) => {
 										View Product
 								</Link>
 								<Link
-									href={ '/pricing' }
+									href={ '/pricing#' }
+									scroll={ true }
 									className=' text-white border border-white w-full rounded-full h-[58px] flex items-center justify-center py-3 px-[42px] text-lg font-medium !leading-6'
 								>
 										Join Geviti

@@ -149,7 +149,7 @@ const MenuItem = memo(({
 							</ul>
 						</div>
 						<div>
-							<p className='text-[10px] font-semibold uppercase tracking-[1.1px] pb-[14px]'>Explore</p>
+							<p className='text-[10px] font-semibold uppercase tracking-[1.1px] pb-[14px]'>Product Category</p>
 							{ children }
 						</div>
 						<div>
