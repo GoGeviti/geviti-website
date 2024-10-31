@@ -144,7 +144,13 @@ const marketingData = {
           '<span class="lg:hidden">Join Geviti</span><span class="max-lg:hidden">Get Started</span>',
 				'business-oriented': 'Schedule A Call',
 			},
-			href: '/pricing',
+			href: {
+				menopause: '/pricing',
+				'men-hormone-therapy': '/pricing',
+				'men-weight-loss': '/pricing',
+				'women-weight-loss': '/pricing',
+				'business-oriented': 'https://calendly.com/cole-gogeviti/business-discovery-call',
+			},
 		},
 		image: {
 			'men-hormone-therapy': '/images/marketing/men-hormone-therapy/hero.webp',
