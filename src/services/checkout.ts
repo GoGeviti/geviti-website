@@ -162,3 +162,84 @@ export const createDiscount = async(
 		return { status: 'ERROR', message: errorMessage };
 	}
 };
+
+export const submitGiveaway = async(
+	formData: IPrecheckout.DiscountData & {
+		birthdate: Date | null;
+	}
+): Promise<ResponseType> => {
+
+	try {
+		const profile: ProfileCreateQuery = {
+			data: {
+				type: ProfileEnum.Profile,
+				attributes: {
+					email: formData.email,
+					phoneNumber: formData.phone_number,
+					firstName: formData.name,
+					lastName: '',
+					location: {
+						region: formData.state,
+					}
+				}
+			}
+		}
+		
+		const resCreateProfile = await profilesApi.createOrUpdateProfile(profile);
+		const subscribe : SubscriptionCreateJobCreateQuery = {
+			'data': {
+				'type': 'profile-subscription-bulk-create-job',
+				'attributes': {
+					'customSource': 'Marketing Event',
+					'profiles': {
+						'data': [
+							{
+								'type': 'profile',
+								'id': resCreateProfile.body.data.id ?? '',
+								'attributes': {
+									'email': formData.email,
+									'phoneNumber': formData.phone_number.replaceAll(' ', ''),
+									'subscriptions': {
+										'email': {
+											'marketing': {
+												'consent': 'SUBSCRIBED'
+											}
+										},
+										'sms': {
+											'marketing': {
+												'consent': 'SUBSCRIBED'
+											}
+										}
+									}
+								}
+							}
+						]
+					},
+					// 'historical_import': false
+				},
+				'relationships': {
+					'list': {
+						'data': {
+							'type': 'list',
+							'id': 'T6d9qR'
+						}
+					}
+				}
+			}
+		}
+		await profilesApi.subscribeProfiles(subscribe)
+		return { status: 'OK', message: 'Data Created' };
+	} catch (error:any) {
+		let errorMessage = 'Opss Something Wrong!';
+
+		// Check if error response contains the expected structure
+		if (error.response && error.response.data && Array.isArray(error.response.data.errors)) {
+			// Extract the first error detail if available
+			const errorDetail = error.response.data.errors[0]?.detail;
+			if (errorDetail) {
+				errorMessage = errorDetail;
+			}
+		}
+		return { status: 'ERROR', message: errorMessage };
+	}
+};

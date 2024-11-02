@@ -8,6 +8,7 @@ export enum Slug {
   WOMEN_WEIGHT_LOSS = 'women-weight-loss',
   MENOPAUSE = 'menopause',
   BUSINESS_ORIENTED = 'business-oriented',
+  GIVEAWAY = 'giveaway',
 }
 
 export type SlugOpt = `${Slug}`;

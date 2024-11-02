@@ -6,6 +6,7 @@ import { ChevronRight } from '../Icons';
 type ButtonCtaProps = Omit<CustomLinkProps, 'href' | 'onClick'> & {
   text?: string;
   arrowClassName?: string;
+	hideArrow?: boolean;
   theme?: 'primary' | 'secondary' | 'tertiary' | 'blur';
   children?: React.ReactNode;
   href?: string;
@@ -14,6 +15,7 @@ type ButtonCtaProps = Omit<CustomLinkProps, 'href' | 'onClick'> & {
   arrowPosition?: 'left' | 'right';
   size?: 'small' | 'default';
   type?: 'button' | 'submit' | 'reset';
+	disabled?: boolean;
 };
 
 const ButtonCta: React.FC<ButtonCtaProps> = ({
@@ -28,6 +30,7 @@ const ButtonCta: React.FC<ButtonCtaProps> = ({
 	size = 'default',
 	arrowPosition = 'right',
 	type = 'button',
+	hideArrow = false,
 	...props
 }) => {
 	const resolveBtnWrapperClassName = () => {
@@ -66,34 +69,38 @@ const ButtonCta: React.FC<ButtonCtaProps> = ({
 				>
 					{ text || children }
 				</span>
-
-				<span
-					className={ clsxm(
-						'rounded-full w-[46px] h-[46px] relative flex justify-center [&>*]:transform [&>*]:transition-all [&>*]:duration-400 [&>*]:h-[46px] [&>*]:flex [&>*]:items-center',
-						resolveArrowWrapperClassNem(),
-						size === 'small' &&
-              'w-[30px] h-[30px] [&>*]:h-[30px] [&>*]:flex [&>*]:items-center [&>*]:justify-center absolute top-[6px] right-[6px]'
-					) }
-				>
-					<span className='opacity-0 group-hover:opacity-100 -translate-x-full group-hover:translate-x-0'>
-						<ChevronRight
-							className={ clsxm(
-								arrowClassName,
-								arrowPosition === 'left' && 'rotate-180',
-								'flex-shrink-0'
-							) }
-						/>
-					</span>
-					<span className='absolute top-0 opacity-100 group-hover:opacity-0 translate-x-0 group-hover:translate-x-full'>
-						<ChevronRight
-							className={ clsxm(
-								arrowClassName,
-								arrowPosition === 'left' && 'rotate-180',
-								'flex-shrink-0'
-							) }
-						/>
-					</span>
-				</span>
+				{
+					!hideArrow &&
+						(
+							<span
+								className={ clsxm(
+									'rounded-full w-[46px] h-[46px] relative flex justify-center [&>*]:transform [&>*]:transition-all [&>*]:duration-400 [&>*]:h-[46px] [&>*]:flex [&>*]:items-center',
+									resolveArrowWrapperClassNem(),
+									size === 'small' &&
+									'w-[30px] h-[30px] [&>*]:h-[30px] [&>*]:flex [&>*]:items-center [&>*]:justify-center absolute top-[6px] right-[6px]'
+								) }
+							>
+								<span className='opacity-0 group-hover:opacity-100 -translate-x-full group-hover:translate-x-0'>
+									<ChevronRight
+										className={ clsxm(
+											arrowClassName,
+											arrowPosition === 'left' && 'rotate-180',
+											'flex-shrink-0'
+										) }
+									/>
+								</span>
+								<span className='absolute top-0 opacity-100 group-hover:opacity-0 translate-x-0 group-hover:translate-x-full'>
+									<ChevronRight
+										className={ clsxm(
+											arrowClassName,
+											arrowPosition === 'left' && 'rotate-180',
+											'flex-shrink-0'
+										) }
+									/>
+								</span>
+							</span>
+						)
+				}
 			</>
 		);
 	};
@@ -116,7 +123,7 @@ const ButtonCta: React.FC<ButtonCtaProps> = ({
 			type={ type }
 			className={ btnClassName }
 			onClick={ onClick }
-			disabled={ isLoading }
+			disabled={ isLoading || props.disabled }
 		>
 			{ renderChildren() }
 		</button>
