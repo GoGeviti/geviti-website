@@ -7,7 +7,7 @@ import { getTermsAndConditions } from '@/services/products';
 import TermsClientPage from './page.client';
 
 const TermsPage: NextPage = async() => {
-	const data = await getTermsAndConditions();
+	const data = await getTermsAndConditions(1);
 	const date = new Date(data.updatedAt);
 	const formattedDate = date.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
 	return (
