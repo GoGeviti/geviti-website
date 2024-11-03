@@ -180,6 +180,9 @@ export const submitGiveaway = async(
 					lastName: '',
 					location: {
 						region: formData.state,
+					},
+					properties: {
+						date_of_birth: formData.birthdate ? format(formData.birthdate, 'MM/dd/yyyy') : '-'
 					}
 				}
 			}
