@@ -71,7 +71,7 @@ const GiveawayRules = () => {
     			setIsLoading(false);
     			if (result.status === 'OK') {
     				toast.success(
-    					'Thank you! You should receive the discount code in your inbox shortly.'
+    					'Thank you for entering the giveaway! Check your email for confirmation.'
     				);
     			} else {
     				throw new Error(result.message || 'An unexpected error occurred');
