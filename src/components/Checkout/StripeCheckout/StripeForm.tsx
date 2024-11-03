@@ -16,6 +16,7 @@ import { Spinner } from '@/components/Icons/Spinner';
 import { statesData } from '@/constant/data';
 import clsxm from '@/helpers/clsxm';
 import { IPrecheckout } from '@/interfaces';
+import { createKlaviyoProfile } from '@/services/klaviyo';
 import { FormCheckoutSchema } from '@/validator/checkout';
 
 import { createSession, joinWaitListV2, validateState } from '../api/onboarding';
@@ -65,6 +66,10 @@ const StripeForm: FC<StripeFormProps> = ({
 	const [stripeResponseLoading, setStripeResponseLoading] = useState(false);
 	const [statesChecked, setStatesChecked] = useState(false);
 	const [sessionSecretS, setSessionSecret] = useState('');
+	const [klaviyoRes, setKlaviyoRes] = useState({
+		profileId: '',
+		listId: ''
+	})
 	const [token, setToken] = useState('');
 	const [formSubmitted, setFormSubmitted] = useState(false);
 	const [isOpenDialogState, setIsOpenDialogState] = useState(false);
@@ -136,6 +141,28 @@ const StripeForm: FC<StripeFormProps> = ({
 						}),
 						// payment_token: isValidState.token
 					}
+				})
+				const klaviyo = await createKlaviyoProfile({
+					data: {
+						type: 'profile',
+						attributes: {
+							firstName: form.firstName,
+							lastName: form.lastName,
+							location: {
+								city: form.city,
+								region: form.state,
+								address1: form.address_1,
+								address2: form.address_2,
+								zip: form.zip_code,
+							},
+							email: form.email,
+							phoneNumber: form.phone_number,
+						}
+					}
+				}, 'UqUaJC')
+				setKlaviyoRes({
+					profileId: klaviyo.profileId ?? '',
+					listId: klaviyo.listId ?? ''
 				})
 				setToken(sessionSecret.token);
 				setSessionSecret(sessionSecret.clientSecret);
@@ -428,6 +455,7 @@ const StripeForm: FC<StripeFormProps> = ({
 									} }
 								>
 									<StripePaymentElement
+										klaviyoRes={ klaviyoRes }
 										coupon={ coupon }
 										statesChecked={ statesChecked }
 										email={ formik.values.email }
