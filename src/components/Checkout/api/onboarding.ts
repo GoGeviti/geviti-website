@@ -1,3 +1,5 @@
+import { createKlaviyoProfile } from '@/services/klaviyo';
+
 import {
 	AddressValidationResponseType,
 	AddressValitationParams,
@@ -243,6 +245,24 @@ export const createSession = async({
 			}
 		);
 		const data = await processResponse<{clientSecret:string, token:string}>(res);
+		await createKlaviyoProfile({
+			data: {
+				type: 'profile',
+				attributes: {
+					firstName: body.user.firstName,
+					lastName: body.user.lastName,
+					location: {
+						city: body.user.city,
+						region: body.user.state,
+						address1: body.user.addressLine1,
+						address2: body.user.addressLine2,
+						zip: body.user.zipCode,
+					},
+					email: body.user.email,
+					phoneNumber: body.user.phoneNumber,
+				}
+			}
+		}, 'UqUaJC')
 		return data
 	} catch (error) {
 		return await processError(error);

@@ -225,9 +225,11 @@ const StripeForm: FC<StripeFormProps> = ({
 	}
 
 	useEffect(() => {
-		window.rewardful('ready', function() {
-			setReferral(window.Rewardful.referral);
-		});
+		if (typeof window !== 'undefined' && window.rewardful) {
+			window.rewardful('ready', function() {
+				setReferral(window.Rewardful.referral);
+			});
+		}
 	}, []);
 
 	return (
