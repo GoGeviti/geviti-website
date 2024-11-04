@@ -1,6 +1,7 @@
 import { NextPage } from 'next';
 
 import { MarketingComponent } from '@/components';
+import { marketingData } from '@/constant/data';
 import { Slug } from '@/interfaces/marketing';
 
 const BusinessOrientedPage: NextPage = () => {
@@ -12,7 +13,7 @@ const BusinessOrientedPage: NextPage = () => {
 			<MarketingComponent.Steps slug={ Slug.BUSINESS_ORIENTED } />
 			<MarketingComponent.Testimonials />
 			<MarketingComponent.EmployeePricing />
-			<MarketingComponent.FAQ />
+			<MarketingComponent.FAQ data={ marketingData.faqBusiness } />
 		</div>
 	);
 };

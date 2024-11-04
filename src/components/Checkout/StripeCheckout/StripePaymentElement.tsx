@@ -6,6 +6,7 @@ import { toast } from 'sonner'
 import { Spinner } from '@/components/Icons/Spinner'
 import clsxm from '@/helpers/clsxm'
 import { IPrecheckout } from '@/interfaces'
+import { deleteKlaviyoProfileFromList } from '@/services/klaviyo'
 
 import { DiscountReturnType, ProductsResponse } from '../api/types'
 import PrivacyPolicyStatement from '../PrivacyPolicyStatement'
@@ -19,7 +20,11 @@ type StripePaymentElementProps = {
 	products: ProductsResponse[];
 	priceId: string | string[] | undefined;
 	discount:DiscountReturnType | null;
-	form: IPrecheckout.BillingInfo
+	form: IPrecheckout.BillingInfo,
+	klaviyoRes? : {
+		profileId?: string;
+		listId?: string;
+	}
 }
 
 const StripePaymentElement:React.FC<StripePaymentElementProps> = ({
@@ -31,7 +36,8 @@ const StripePaymentElement:React.FC<StripePaymentElementProps> = ({
 	products,
 	priceId,
 	discount,
-	form
+	form,
+	klaviyoRes
 }) => {
 
 	const [formLoading, setFormLoading] = useState(false)
@@ -44,67 +50,91 @@ const StripePaymentElement:React.FC<StripePaymentElementProps> = ({
 		setFormLoading(true);
 		if (!stripe || !elements) {
 			toast.error('Stripe is not available right now. Please try again later.');
-			return
+			return;
 		}
 
-		const { error } = await stripe.confirmPayment({
+		const { error, paymentIntent } = await stripe.confirmPayment({
 			elements,
+			redirect: 'if_required', // Disable automatic redirect
 			confirmParams: {
 				return_url: `${window.location.protocol}//${window.location.host}/onboarding/payment/success?email=${email}&token=${token}&price=${totalPrice}`,
 			},
 		});
-		window.dataLayer = window.dataLayer || [];
-		window.dataLayer.push({ ecommerce: null });
-		window.dataLayer.push({
-			event: 'purchase',
-			user_data: {
-				user_id: '',
-				email: form.email,
-				phone_number: form.phone_number, // E.164 format
-				address: {
-					first_name: form.firstName,
-					last_name: form.lastName,
-					street: form.address_1,
-					city: form.city,
-					region: form.state,
-					region_code: form.state,
-					postal_code: form.zip_code,
-					country: 'us', // Use 2-letter country codes, per the ISO 3166-1 alpha-2 standard.
-				}
-			},
-			ecommerce: {
-				transaction_id: token,
-				affiliation: 'GoGeveti',
-				value: totalPrice,
-				tax: 0,
-				shipping: 0,
-				currency: 'USD',
-				coupon: '',
-				items: products.map(product => {
-					return {
-						item_id: product.stripeProductId,
-						item_name: product.name,
-						affiliation: 'GoGeveti',
-						coupon: coupon || '',
-						currency: 'USD',
-						index: '0',
-						discount: discount?.amount_off ?? 0,
-						item_brand: '',
-						item_category: '',
-						item_category2: '',
-						item_variant: product.productPrices.find(e => e.priceId === priceId)?.billingFrequency,
-						price: Number(product.productPrices.find(e => e.priceId === priceId)?.price),
-						quantity: 1
-					}
-				})
+
+		if (error) {
+			setFormLoading(false);
+			if (error.type === 'card_error' || error.type === 'validation_error' || error.type === 'invalid_request_error') {
+				toast.error(error.message);
+			} else {
+				toast.error('An unexpected error occurred.');
 			}
-		});
-		setFormLoading(false);
-		if (error.type === 'card_error' || error.type === 'validation_error' || error.type === 'invalid_request_error') {
-			toast.error(error.message);
-		} else {
-			toast.error('An unexpected error occurred.');
+			return;
 		}
+
+		// Payment successful
+		if (paymentIntent && paymentIntent.status === 'succeeded') {
+			// Push to dataLayer first
+			window.dataLayer = window.dataLayer || [];
+			window.dataLayer.push({ ecommerce: null });
+			window.dataLayer.push({
+				event: 'purchase',
+				user_data: {
+					user_id: '',
+					email: form.email,
+					phone_number: form.phone_number,
+					address: {
+						first_name: form.firstName,
+						last_name: form.lastName,
+						street: form.address_1,
+						city: form.city,
+						region: form.state,
+						region_code: form.state,
+						postal_code: form.zip_code,
+						country: 'us',
+					}
+				},
+				ecommerce: {
+					transaction_id: token,
+					affiliation: 'GoGeveti',
+					value: totalPrice,
+					tax: 0,
+					shipping: 0,
+					currency: 'USD',
+					coupon: '',
+					items: products.map(product => {
+						return {
+							item_id: product.stripeProductId,
+							item_name: product.name,
+							affiliation: 'GoGeveti',
+							coupon: coupon || '',
+							currency: 'USD',
+							index: '0',
+							discount: discount?.amount_off ?? 0,
+							item_brand: '',
+							item_category: '',
+							item_category2: '',
+							item_variant: product.productPrices.find(e => e.priceId === priceId)?.billingFrequency,
+							price: Number(product.productPrices.find(e => e.priceId === priceId)?.price),
+							quantity: 1
+						}
+					})
+				}
+			});
+
+			try {
+				// Wait for Klaviyo operation to complete
+				await deleteKlaviyoProfileFromList(klaviyoRes?.profileId ?? '', klaviyoRes?.listId ?? '');
+        
+				// After both dataLayer push and Klaviyo deletion are complete, redirect
+				window.location.href = `${window.location.protocol}//${window.location.host}/onboarding/payment/success?email=${email}&token=${token}&price=${totalPrice}`;
+			} catch (errorKlaviyo:any) {
+				console.error('Error deleting Klaviyo profile:', errorKlaviyo);
+				// Still redirect even if Klaviyo deletion fails
+				window.location.href = `${window.location.protocol}//${window.location.host}/onboarding/payment/success?email=${email}&token=${token}&price=${totalPrice}`;
+			}
+		}
+
+		setFormLoading(false);
 	}
 
 	return (

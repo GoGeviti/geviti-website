@@ -1,13 +1,18 @@
 'use server';
 
-import { ApiKeySession, ProfileCreateQuery, ProfilesApi, SubscriptionCreateJobCreateQuery } from 'klaviyo-api'
+import {
+	ApiKeySession, ListsApi, ProfileCreateQuery, ProfilesApi, SubscriptionCreateJobCreateQuery
+} from 'klaviyo-api'
 
 const session = new ApiKeySession(process.env.KLAVIYO_API_KEY)
 const profilesApi = new ProfilesApi(session)
+const listsApi = new ListsApi(session)
 
 type ResponseType = {
 	status: 'OK' | 'ERROR';
 	message?: string;
+	profileId?: string;
+	listId?: string;
 };
 
 export const createKlaviyoProfile = async(
@@ -60,9 +65,9 @@ export const createKlaviyoProfile = async(
 				}
 			}
 		}
-		const re = await profilesApi.subscribeProfiles(subscribe)
-		console.log('re ==> ', re)
-		return { status: 'OK', message: 'Data Created' };
+		await profilesApi.subscribeProfiles(subscribe)
+		// console.log('re ==> ', re)
+		return { status: 'OK', message: 'Data Created', profileId: resCreateProfile.body.data.id ?? '', listId: listID };
 	} catch (error:any) {
 		console.log(error)
 		let errorMessage = 'Opss Something Wrong!';
@@ -78,3 +83,22 @@ export const createKlaviyoProfile = async(
 		return { status: 'ERROR', message: errorMessage };
 	}
 };
+
+export const deleteKlaviyoProfileFromList = async(
+	profileId:string,
+	listId:string
+): Promise<ResponseType> => {
+	try {
+		await listsApi.deleteListRelationships(listId, {
+			data: [
+				{
+					type: 'profile',
+					id: profileId
+				}
+			]
+		});
+		return { status: 'OK', message: 'Data Deleted' };
+	} catch (error) {
+		return { status: 'ERROR', message: 'Opss Something Wrong!' };
+	}
+}

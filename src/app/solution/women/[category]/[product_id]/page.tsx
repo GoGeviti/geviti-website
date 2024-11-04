@@ -16,14 +16,14 @@ import { getProductByCategory } from '@/services/products'
 // import Description from '../Description'
 // import Hero from '../Hero'
 
-const biomakersList = [
-	'Oral Capsule',
-	'FDA Approved',
-	'Bioidentical',
-	'96% Efficacy',
-	'Twice Daily',
-	'Flexible Dosing',
-];
+// const biomakersList = [
+// 	'Oral Capsule',
+// 	'FDA Approved',
+// 	'Bioidentical',
+// 	'96% Efficacy',
+// 	'Twice Daily',
+// 	'Flexible Dosing',
+// ];
 
 const ProductCategorySingle = async({ params: { category = '', product_id = '' } }) => {
 
@@ -58,7 +58,7 @@ const ProductCategorySingle = async({ params: { category = '', product_id = '' }
 			<div className='pb-[31px]'>
 				<Description data={ productDataSingle.stats }/>
 			</div>
-			<Biomakers items={ biomakersList } />
+			<Biomakers items={ productDataSingle.treatmentOptions?.map(e => e.name) ?? [] } />
 			<ViewOtherCategories
 				isProduct
 				data={ productsData } />

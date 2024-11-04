@@ -33,7 +33,8 @@ const Hero: React.FC<HeroProps> = ({ slug = Slug.MEN_WEIGHT_LOSS }) => {
 				priority={ true }
 				className={ clsxm(
 					'object-cover pointer-events-none',
-					imageMobile ? 'md:hidden object-top' : 'md:block hidden'
+					imageMobile ? 'md:hidden object-top' : 'md:block hidden',
+					slug === Slug.GIVEAWAY && 'max-md:object-[70%]'
 				) }
 				quality={ 100 }
 				fill
@@ -103,6 +104,8 @@ const Hero: React.FC<HeroProps> = ({ slug = Slug.MEN_WEIGHT_LOSS }) => {
 				return 'linear-gradient(90deg, #14222B -29.15%, rgba(22, 30, 36, 0.50) 53.32%, rgba(24, 26, 28, 0.00) 100%)';
 			case Slug.BUSINESS_ORIENTED:
 				return 'linear-gradient(90deg, #120D0A -4.11%, rgba(18, 13, 10, 0.505) 73.91%, rgba(18, 13, 10, 0) 100%)';
+			case Slug.GIVEAWAY:
+				return 'linear-gradient(90deg, #1B1000 -16.37%, rgba(27, 16, 0, 0.50) 47.63%, rgba(27, 16, 0, 0.00) 100%)';
 			case Slug.MEN_HORMONE_THERAPY:
 				return 'linear-gradient(90deg, #120D0A -4.11%, rgba(18, 13, 10, 0.505) 63.56%, rgba(18, 13, 10, 0) 100%)';
 			default:
@@ -157,13 +160,18 @@ const Hero: React.FC<HeroProps> = ({ slug = Slug.MEN_WEIGHT_LOSS }) => {
               'max-lg:h-[calc(100svh-23.978svh+14px)]',
 						// slug === Slug.MENOPAUSE && 'max-lg:bottom-0',
 						slug === Slug.BUSINESS_ORIENTED &&
+              'max-lg:h-[calc(100svh-21.935svh+14px)]',
+						slug === Slug.GIVEAWAY &&
               'max-lg:h-[calc(100svh-21.935svh+14px)]'
 					) }
 				>
 					{ renderImage('desktop') }
 					{ renderImage('mobile') }
 				</div>
-				<div className='max-lg:hidden absolute right-6 bottom-6 z-30'>
+				<div className={ clsxm(
+					'max-lg:hidden absolute right-6 bottom-6 z-30',
+					slug === Slug.GIVEAWAY && 'hidden'
+				) }>
 					{ renderPopup() }
 				</div>
 
@@ -181,7 +189,9 @@ const Hero: React.FC<HeroProps> = ({ slug = Slug.MEN_WEIGHT_LOSS }) => {
                 'max-lg:pb-[11.853vh] lg:pt-[23.79vh]',
 							slug === Slug.MENOPAUSE && 'max-lg:pb-[5.722vh] lg:pt-[25.173vh]',
 							slug === Slug.BUSINESS_ORIENTED &&
-                'max-lg:pb-[5.722vh] lg:pt-[26.418vh]'
+                'max-lg:pb-[5.722vh] lg:pt-[26.418vh]',
+							slug === Slug.GIVEAWAY &&
+                'max-lg:pb-[5.722vh] lg:pt-[26.418vh]',
 						) }
 					>
 						<div className='text-left flex flex-col'>
@@ -193,14 +203,23 @@ const Hero: React.FC<HeroProps> = ({ slug = Slug.MEN_WEIGHT_LOSS }) => {
 								/>
 							</h1>
 
-							<div className='mt-3.5 lg:mt-6 space-y-3'>
+							<div className={ clsxm(
+								'mt-3.5 lg:mt-6 space-y-3',
+								slug === Slug.GIVEAWAY && 'max-w-[458px]'
+							) }>
 								{ heroData.list[slug as SlugOpt]?.map((item, itemIdx) => {
 									return (
 										<div
 											key={ itemIdx }
-											className='flex whitespace-nowrap gap-1.5'
+											className={ clsxm(
+												'flex whitespace-nowrap gap-1.5',
+												slug === Slug.GIVEAWAY && 'whitespace-normal'
+											) }
 										>
-											<CheckCircleIcon className='w-4 h-4 flex-shrink-0 text-white' />
+											<CheckCircleIcon className={ clsxm(
+												'w-4 h-4 flex-shrink-0 text-white',
+												slug === Slug.GIVEAWAY && 'hidden'
+											) } />
 											<span
 												dangerouslySetInnerHTML={ {
 													__html: item ?? '',
@@ -211,22 +230,26 @@ const Hero: React.FC<HeroProps> = ({ slug = Slug.MEN_WEIGHT_LOSS }) => {
 								}) }
 							</div>
 
-							<div className='flex w-full mt-6 overflow-hidden'>
-								<div className='max-sm:w-full flex'>
-									<ButtonCta
-										href={ heroData.cta.href[slug as SlugOpt] }
-										theme='secondary'
-										externalLink={ slug === Slug.BUSINESS_ORIENTED }
-										className='max-sm:w-full'
-									>
-										<span
-											dangerouslySetInnerHTML={ {
-												__html: heroData.cta.text[slug] ?? 'Get Started',
-											} }
-										/>
-									</ButtonCta>
-								</div>
-							</div>
+							{
+								slug !== Slug.GIVEAWAY && (
+									<div className='flex w-full mt-6 overflow-hidden'>
+										<div className='max-sm:w-full flex'>
+											<ButtonCta
+												href={ heroData.cta.href[slug as SlugOpt] }
+												theme='secondary'
+												externalLink={ slug === Slug.BUSINESS_ORIENTED }
+												className='max-sm:w-full'
+											>
+												<span
+													dangerouslySetInnerHTML={ {
+														__html: heroData.cta.text[slug] ?? 'Get Started',
+													} }
+												/>
+											</ButtonCta>
+										</div>
+									</div>
+								)
+							}
 						</div>
 					</div>
 				</div>
@@ -242,7 +265,10 @@ const Hero: React.FC<HeroProps> = ({ slug = Slug.MEN_WEIGHT_LOSS }) => {
 				} }
 			/>
 			{ renderHero() }
-			<div className='max-lg:px-4 max-lg:pb-[42px] max-lg:mt-[42px] max-w-2xl mx-auto lg:hidden'>
+			<div className={clsxm(
+				'max-lg:px-4 max-lg:pb-[42px] max-lg:mt-[42px] max-w-2xl mx-auto lg:hidden',
+				slug === Slug.GIVEAWAY && 'hidden'
+			)}>
 				{ renderPopup() }
 			</div>
 		</div>

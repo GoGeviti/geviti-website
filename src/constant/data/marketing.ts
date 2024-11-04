@@ -105,6 +105,8 @@ const marketingData = {
         'Experience true relief<br/>through the stages of<br/>menopause.',
 			'business-oriented':
         'Your key to a<br/>healthier, more<br/>productive workforce.',
+			'giveaway':
+        'Win a 1-Year Free Geviti<br class="max-lg:hidden"/> Membership and Build a<br class="max-lg:hidden"/> Healthier Future, Today!',
 		},
 		list: {
 			'men-weight-loss': [
@@ -132,6 +134,9 @@ const marketingData = {
 				'Personalized guidance & optimization plans',
 				'Telehealth access to Medical Providers',
 			],
+			'giveaway': [
+				'Enter for a chance to win a 1-Year Geviti Membership and access a dedicated team of health experts, personalized health plans, regular at-home bloodwork, exclusive pricing on prescriptions and supplements, and a pathway to a healthier, more vibrant life.',
+			],
 		},
 		cta: {
 			text: {
@@ -149,6 +154,7 @@ const marketingData = {
 				'men-hormone-therapy': '/pricing',
 				'men-weight-loss': '/pricing',
 				'women-weight-loss': '/pricing',
+				'giveaway': '/pricing',
 				'business-oriented': 'https://calendly.com/cole-gogeviti/business-discovery-call',
 			},
 		},
@@ -158,6 +164,7 @@ const marketingData = {
 			'women-weight-loss': '/images/marketing/women-weight-loss/hero.webp',
 			menopause: '/images/marketing/menopause/hero.webp',
 			'business-oriented': '/images/marketing/business-oriented/hero.webp',
+			'giveaway': '/images/marketing/giveaway/hero.jpg',
 		},
 		imageMobile: {
 			'men-hormone-therapy':
@@ -168,6 +175,7 @@ const marketingData = {
 			menopause: '/images/marketing/menopause/hero-mobile.webp',
 			'business-oriented':
         '/images/marketing/business-oriented/hero-mobile.webp',
+			'giveaway': '/images/marketing/giveaway/hero.jpg',
 		},
 		popup: {
 			title: 'HSA/FSA',
@@ -466,6 +474,7 @@ const marketingData = {
         'Experience a new level of personalized health with Geviti. Everything you need to feel and look your best, all in one streamlined platform.',
 			'business-oriented':
         'Experience a new level of personalized health with Geviti. Everything your team needs to feel their best, all in one streamlined platform.',
+			'giveaway': ''
 		},
 		cta: {
 			text: {
@@ -474,6 +483,7 @@ const marketingData = {
 				'men-weight-loss': 'Get Started',
 				'women-weight-loss': 'Get Started',
 				'business-oriented': 'Schedule A Call',
+				'giveaway': ''
 			},
 			href: '/pricing',
 		},
@@ -483,6 +493,7 @@ const marketingData = {
 			'women-weight-loss': membershipListVersion1,
 			menopause: membershipListVersion2,
 			'business-oriented': membershipListVersion2,
+			'giveaway': []
 		},
 	},
 	steps: {
@@ -493,6 +504,7 @@ const marketingData = {
 			'men-hormone-therapy': stepsListDefault,
 			'men-weight-loss': stepsListDefault,
 			'women-weight-loss': stepsListDefault,
+			'giveaway': stepsListDefault,
 			'business-oriented': stepsListDefault.map(item => {
 				if (item.title === 'Tailored Products') {
 					return {
@@ -510,6 +522,7 @@ const marketingData = {
 			'men-weight-loss': 'blue',
 			'women-weight-loss': 'blue',
 			'business-oriented': 'black',
+			'giveaway': 'black',
 		},
 	},
 	faq: {
@@ -523,9 +536,54 @@ const marketingData = {
           'Geviti currently offers services in seventeen states: Arizona (AZ), California (CA), Colorado (CO), Florida (FL), Georgia (GA), Illinois (IL), Indiana (IN), Kansas (KS), Missouri (MO), New Mexico (NM), Nevada (NV), Oregon (OR), Tennessee (TN), Texas (TX), Utah (UT), Virginia (VA), Washington (WA). We are actively expanding to include more states across the country.',
 			},
 			{
+				title: 'How do I get started?',
+				content:
+					'Click any of the \'Get Started\' buttons to become a Geviti member by selecting your membership frequency. You\'ll be prompted to schedule an at-home bloodwork exam, and from there, we\'ll communicate with you through our mobile application.',
+			},
+			{
+				title: 'Does Geviti provide Primary Care?',
+				content:
+          'Geviti provides preventative and holistic care for our members. We believe in empowering our members to be proactive about their health rather than reactive. At this time, we do not offer primary care services.',
+			},
+			{
+				title:
+          'What free at-home bloodwork option is included for me twice a year with my membership?',
+				content:
+          'As part of your membership, you receive the \'Longeviti Panel\' testing twice a year. This extensive evaluation offers valuable insights into over 90 biomarkers. If you were to pay out of pocket at Labcorp or Quest, this test could cost over $2,000.',
+			},
+			{
+				title:
+          'Are the cost of supplements or prescriptions included in the membership fee?',
+				content:
+          'The membership fee provides access to our range of supplements and prescription services; however, the costs for these items are not included in the fee. Each supplement or prescription is priced separately, allowing you to choose exactly what fits your needs and budget.',
+			},
+			{
+				title:
+          'What if I have recently done labs? Do I still need to purchase a diagnostic package?',
+				content:
+          'Every membership includes an at-home blood draw as part of our initial assessment process, ensuring we have the most recent and relevant data to provide personalized care. If you have recent lab results and prefer not to undergo another panel, please reach out to our support team. We may be able to adjust your initial requirements based on your specific situation.',
+			},
+			{
+				title: 'Does a blood panel guarantee access to specific treatments?',
+				content:
+          'Becoming a Geviti member does not guarantee that you will receive any specific prescription treatment. The decision on appropriate treatments is solely at the discretion of your healthcare provider, based on a thorough evaluation of your test results and overall health profile.',
+			},
+		],
+	},
+	faqBusiness: {
+		subtitle: 'Tailor-made longevity',
+		title: 'Frequently asked\nquestions',
+		image: '/images/marketing/faq.webp',
+		data: [
+			{
+				title: 'In which states is Geviti available?',
+				content:
+          'Geviti currently offers services in seventeen states: Arizona (AZ), California (CA), Colorado (CO), Florida (FL), Georgia (GA), Illinois (IL), Indiana (IN), Kansas (KS), Missouri (MO), New Mexico (NM), Nevada (NV), Oregon (OR), Tennessee (TN), Texas (TX), Utah (UT), Virginia (VA), Washington (WA). We are actively expanding to include more states across the country.',
+			},
+			{
 				title: 'How do I get my business started?',
 				content:
-          'Click any of the \'Schedule A Call\' buttons to speak with one of our Geviti Membership Advisors. We’ll answer any questions you have and help you get started today!',
+					'Click any of the \'Schedule A Call\' buttons to speak with one of our Geviti Membership Advisors. We’ll answer any questions you have and help you get started today!',
 			},
 			{
 				title: 'Does Geviti provide Primary Care?',

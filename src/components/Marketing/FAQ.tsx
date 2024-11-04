@@ -4,10 +4,22 @@ import Image from 'next/image';
 import { marketingData } from '@/constant/data';
 
 import AccordionList from '../FrequentlyAskedQuestions/AccordionList';
+interface FAQProps {
+	data?: {
+    subtitle: string;
+    title: string;
+    image: string;
+    data: {
+        title: string;
+        content: string;
+    }[];
+}
+}
 
-const faqData = marketingData.faq;
+const FAQ: React.FC<FAQProps> = ({ data }) => {
 
-const FAQ: React.FC = () => {
+	const faqData = data || marketingData.faq;
+
 	return (
 		<div className='container-center w-full'>
 			<div className='grid grid-cols-1 lg:grid-cols-9 gap-[42px] pb-14 lg:pb-20'>

@@ -7,9 +7,11 @@ type PrivacyPolicyStatementProps = {
 	highlightText?: string;
 	theme?: 'light' | 'dark';
 	checkout?: boolean;
+	giveaway?: boolean;
+
 };
 
-const PrivacyPolicyStatement: React.FC<PrivacyPolicyStatementProps> = ({ highlightText, theme = 'dark', checkout = false }) => {
+const PrivacyPolicyStatement: React.FC<PrivacyPolicyStatementProps> = ({ highlightText, theme = 'dark', checkout = false, giveaway }) => {
 	const linkClassName = clsxm(
 		'underline',
 		theme === 'light' && 'text-primary',
@@ -22,17 +24,7 @@ const PrivacyPolicyStatement: React.FC<PrivacyPolicyStatementProps> = ({ highlig
 			theme === 'light' && 'text-grey-500',
 			theme === 'dark' && 'text-grey-primary'
 		) }>
-			{ !checkout ? (
-				<Fragment>
-					<p>Before we continue, please review our <Link
-						href='/privacy-policy'
-						className={ linkClassName }>Privacy Policy</Link> and <Link
-						href='/terms-and-conditions'
-						className={ linkClassName }>Terms of Use</Link>.</p>
-					<br className='lg:hidden' />
-					<p>By clicking &quot;{ highlightText }&quot;, you automatically agree to abide by our policies and terms.</p>
-				</Fragment>
-			) : (
+			{ checkout ? (
 				<p className='text-sm font-normal text-[#6A6E70]'>By checking the box, you confirm that you have read, understood, and agree to abide by our <Link
 					href='/privacy-policy'
 					className='text-primary underline'>Privacy Policy</Link>, <Link
@@ -42,6 +34,23 @@ const PrivacyPolicyStatement: React.FC<PrivacyPolicyStatementProps> = ({ highlig
 					rel='noopener noreferrer'
 					href='/files/HIPAA Authorization.pdf'
 					className='text-primary underline'>HIPAA Authorization</a>.</p>
+				
+			) : giveaway ? (
+				<p className='text-sm font-normal text-[#6A6E70]'>By entering, you agree to the <Link
+					href='/terms-and-conditions?type=giveaway'
+					className='text-primary underline'>Terms and Conditions
+				</Link> of the giveaway.
+				</p>
+			) : (
+				<Fragment>
+					<p>Before we continue, please review our <Link
+						href='/privacy-policy'
+						className={ linkClassName }>Privacy Policy</Link> and <Link
+						href='/terms-and-conditions'
+						className={ linkClassName }>Terms of Use</Link>.</p>
+					<br className='lg:hidden' />
+					<p>By clicking &quot;{ highlightText }&quot;, you automatically agree to abide by our policies and terms.</p>
+				</Fragment>
 			) }
 		</span>
 	);
