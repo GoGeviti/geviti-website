@@ -259,7 +259,7 @@ export const getPrivacyById = async(): Promise<Privacy> => {
 
 export const getTermsAndConditions = async(id:number): Promise<Privacy> => {
 	const stringifiedQuery = qs.stringify({
-		depth: 1,
+		depth: 2,
 		limit: 1,
 		draft: false,
 		sort: '-updatedAt',

@@ -37,9 +37,9 @@ const PrivacyPolicyStatement: React.FC<PrivacyPolicyStatementProps> = ({ highlig
 				
 			) : giveaway ? (
 				<p className='text-sm font-normal text-[#6A6E70]'>By entering, you agree to the <Link
-						href='/terms-and-conditions'
-						className='text-primary underline'>Terms and Conditions
-					</Link> of the giveaway.
+					href='/terms-and-conditions?type=giveaway'
+					className='text-primary underline'>Terms and Conditions
+				</Link> of the giveaway.
 				</p>
 			) : (
 				<Fragment>
