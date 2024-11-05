@@ -153,7 +153,7 @@ const Hero: React.FC<HeroProps> = ({ slug = Slug.MEN_WEIGHT_LOSS }) => {
 		return (
 			<div className={ clsxm(
 				'bg-primary h-[calc(100svh+14px)] lg:h-[calc(100vh-24px)] w-full overflow-hidden max-lg:rounded-t-none rounded-19px relative pt-11px lg:pt-5',
-				slug === Slug.ABOUT_US &&  'lg:h-[786px]',
+				slug === Slug.ABOUT_US &&  'lg:h-[636px]',
 			) }>
 				<div
 					className={ clsxm(
@@ -201,7 +201,7 @@ const Hero: React.FC<HeroProps> = ({ slug = Slug.MEN_WEIGHT_LOSS }) => {
 							slug === Slug.GIVEAWAY &&
                 'max-lg:pb-[5.722vh] lg:pt-[26.418vh]',
 							slug === Slug.ABOUT_US &&
-                'max-lg:pb-[5.722vh] lg:pt-[26.418vh]',
+                'max-lg:pb-[5.722vh] lg:pt-[220px]',
 						) }
 					>
 						<div className='text-left flex flex-col'>
