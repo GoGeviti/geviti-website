@@ -73,7 +73,9 @@ const ProductCard = ({
 							src={ imageUrl ?? '' }
 							alt=''
 							sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
-							fill
+							// fill
+							width={ 221 }
+							height={ 221 }
 							className='object-contain object-center w-full h-full pointer-events-none'
 						/>
 					</div>
