@@ -5,12 +5,17 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import Image from 'next/image';
 
 import longevitiPanelData from '@/constant/data/longevitiPanel';
+import clsxm from '@/helpers/clsxm';
 
 import ButtonCta from '../ButtonCta';
 
 const bannerData = longevitiPanelData.banner;
 
-const BannerParallax: React.FC = () => {
+type BannerParallaxProps = {
+	containerClassName?: string;
+};
+
+const BannerParallax: React.FC<BannerParallaxProps> = ({ containerClassName }) => {
 	const container = useRef<HTMLDivElement>(null);
 
 	const { scrollYProgress } = useScroll({
@@ -21,7 +26,10 @@ const BannerParallax: React.FC = () => {
 	const translateY = useTransform(scrollYProgress, [0, 1], ['10%', '-10%']);
 
 	return (
-		<div className='overflow-hidden rounded-[20px] px-4 lg:px-3 pt-3.5 lg:pt-0 pb-[76px] lg:pb-[164px]'>
+		<div className={ clsxm(
+			'overflow-hidden rounded-[20px] px-4 lg:px-3 pt-3.5 lg:pt-0 pb-[76px] lg:pb-[164px]',
+			containerClassName
+		) }>
 			<div className='relative overflow-hidden rounded-[20px] w-full h-[447px] sm:h-[497px]'>
 				<div className='relative z-10 max-lg:px-3.5 max-w-[682px] mx-auto w-full h-full flex flex-col items-center justify-center text-center text-white'>
 					<h2 className='text-2xl sm:text-3xl lg:text-[46px] sm:font-medium !leading-normal -tracking-0.04em'>

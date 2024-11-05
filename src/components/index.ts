@@ -1,3 +1,4 @@
+import * as AboutUsComponent from './AbousUs';
 import AOSInit from './AOSInit';
 import * as ArticleComponent from './Article';
 import * as BlogComponent from './Blog';
@@ -22,6 +23,7 @@ import RunningLogo from './RunningLogo';
 import * as SolutionsComponent from './Solutions';
 
 export {
+	AboutUsComponent,
 	AOSInit,
 	ArticleComponent,
 	BlogComponent,

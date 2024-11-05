@@ -28,7 +28,17 @@ const footerData = {
 					externalLink: false
 				}
 			]
-		}
+		},
+		{
+			title: 'About Geviti',
+			menu: [
+				{
+					name: 'About Us',
+					href: '/about-us',
+					externalLink: false
+				},
+			]
+		},
 	],
 	socialMedia: [
 		// {
