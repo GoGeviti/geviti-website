@@ -1,7 +1,8 @@
 'use client';
 
 import * as React from 'react';
-import DatePicker from 'react-datepicker';
+import DatePickerComponent from 'react-datepicker';
+const DatePicker = DatePickerComponent as any;
 import InputMask from '@mona-health/react-input-mask';
 
 import clsxm from '@/helpers/clsxm';

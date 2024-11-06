@@ -9,7 +9,7 @@ import ButtonCta from '../ButtonCta';
 const InfiniteMovingFeatures = dynamic(
 	() => import('../InfiniteMovingFeatures'),
 	{
-		ssr: false,
+		// ssr: false,
 	}
 );
 

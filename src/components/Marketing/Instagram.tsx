@@ -19,7 +19,7 @@ const images = [
 ]
 
 const Instagram = () => {
-	const swiperRef = useRef<SwiperType>();
+	const swiperRef = useRef<SwiperType>(undefined);
 
 	return (
 		<div className='w-full pb-[95px] lg:pb-[150px]' >

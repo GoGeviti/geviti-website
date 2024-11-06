@@ -10,7 +10,7 @@ import clsxm from '@/helpers/clsxm';
 type NavbarProps = {
   onStepBack?: () => void;
   theme?: 'light' | 'dark';
-  navbarRef?: React.RefObject<HTMLDivElement>;
+  navbarRef?: React.RefObject<HTMLDivElement | null>;
   progress: number;
 };
 

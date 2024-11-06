@@ -17,7 +17,7 @@ type SliderProductsProps = {
 };
 
 const SliderProducts: React.FC<SliderProductsProps> = ({ images }) => {
-	const swiperRef = useRef<SwiperType>();
+	const swiperRef = useRef<SwiperType>(undefined);
 	const [thumbsSwiper, setThumbsSwiper] = useState<SwiperType>();
 
 	const [activeIndex, setActiveIndex] = useState<number>(0);

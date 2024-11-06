@@ -5,20 +5,21 @@ import dynamic from 'next/dynamic';
 import { Footer } from '@/components';
 import { getAllProducts } from '@/components/Checkout/api/onboarding';
 import IntroScreen from '@/components/IntroScreen';
+import { Products } from '@/components/Landing';
 import { getCookie } from '@/services/cookies';
 
 // Components that need SEO should have SSR enabled
 const Hero = dynamic(() => import('@/components/Landing/Hero'));
 const TextReveal = dynamic(() => import('@/components/Landing/TextReveal'));
-const Products = dynamic(() => import('@/components/Landing/Products'));
+// const Products = dynamic(() => import('@/components/Landing/Products'));
 const Banner = dynamic(() => import('@/components/Landing/Banner'));
 
 // Interactive components that don't need SEO can disable SSR
 const FeaturesCarousel = dynamic(() => import('@/components/Landing/FeaturesCarousel'), {
-	ssr: false // Interactive component, doesn't need SEO
+	// ssr: false
 });
 const RunningLogo = dynamic(() => import('@/components/RunningLogo'), {
-	ssr: false // Animation component, doesn't need SEO
+	// ssr: false
 });
 
 // Components with important content should have SSR enabled
@@ -85,8 +86,8 @@ const HomePage: NextPage = async() => {
 						</div>
 					) }
 					
+					<Products />
 					<React.Suspense fallback={ <div className='min-h-[200px]' /> }>
-						<Products />
 						<Banner />
 					</React.Suspense>
 					

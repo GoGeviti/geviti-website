@@ -23,8 +23,17 @@ import Hero from './Hero'
 // 	'Twice Daily',
 // 	'Flexible Dosing',
 // ];
+type Params = Promise<{ category: string, product_id:string  }>
 
-const ProductCategorySingle = async({ params: { category = '', product_id = '' } }) => {
+const ProductCategorySingle = async(props:{
+	params : Params
+}) => {
+	const params = await props.params;
+
+	const {
+		category = '',
+		product_id = ''
+	} = params;
 
 	let productsData: Product[] = [];
 	let productDataSingle: Product;

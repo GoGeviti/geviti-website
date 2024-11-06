@@ -9,6 +9,7 @@ export enum Slug {
   MENOPAUSE = 'menopause',
   BUSINESS_ORIENTED = 'business-oriented',
   GIVEAWAY = 'giveaway',
+  ABOUT_US = 'about-us',
 }
 
 export type SlugOpt = `${Slug}`;

@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { AnimatePresence } from 'framer-motion';
 
-import { PageProps } from '@/app/onboarding/page';
+// import { PageProps } from '@/app/onboarding/page';
 import { IPrecheckout } from '@/interfaces';
 
 import Form from './Form';
@@ -26,6 +26,10 @@ export enum CheckoutStep {
   STRIPE_PAYMENT_SUCCESSFUL = 'STRIPE_PAYMENT_SUCCESSFUL',
   STRIPE_PAYMENT_FAIL = 'STRIPE_PAYMENT_FAIL',
 }
+
+type PageProps = {
+	searchParams: { [key: string]: string | string[] | undefined; };
+};
 
 const Main: React.FC<PageProps> = ({ searchParams }) => {
 	const setInitialStep = () => {

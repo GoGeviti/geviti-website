@@ -34,7 +34,8 @@ const Hero: React.FC<HeroProps> = ({ slug = Slug.MEN_WEIGHT_LOSS }) => {
 				className={ clsxm(
 					'object-cover pointer-events-none',
 					imageMobile ? 'md:hidden object-top' : 'md:block hidden',
-					slug === Slug.GIVEAWAY && 'max-md:object-[70%]'
+					slug === Slug.GIVEAWAY && 'max-md:object-[70%]',
+					slug === Slug.ABOUT_US && 'max-md:object-[70%] lg:object-right',
 				) }
 				quality={ 100 }
 				fill
@@ -106,6 +107,8 @@ const Hero: React.FC<HeroProps> = ({ slug = Slug.MEN_WEIGHT_LOSS }) => {
 				return 'linear-gradient(90deg, #120D0A -4.11%, rgba(18, 13, 10, 0.505) 73.91%, rgba(18, 13, 10, 0) 100%)';
 			case Slug.GIVEAWAY:
 				return 'linear-gradient(90deg, #1B1000 -16.37%, rgba(27, 16, 0, 0.50) 47.63%, rgba(27, 16, 0, 0.00) 100%)';
+			case Slug.ABOUT_US:
+				return 'linear-gradient(90deg, #1D1A15 -42.3%, rgba(29, 26, 21, 0.50) 50.33%, rgba(29, 26, 21, 0.00) 92.83%)';
 			case Slug.MEN_HORMONE_THERAPY:
 				return 'linear-gradient(90deg, #120D0A -4.11%, rgba(18, 13, 10, 0.505) 63.56%, rgba(18, 13, 10, 0) 100%)';
 			default:
@@ -148,7 +151,10 @@ const Hero: React.FC<HeroProps> = ({ slug = Slug.MEN_WEIGHT_LOSS }) => {
 
 	const renderHero = () => {
 		return (
-			<div className='bg-primary h-[calc(100svh+14px)] lg:h-[calc(100vh-24px)] w-full overflow-hidden max-lg:rounded-t-none rounded-19px relative pt-11px lg:pt-5'>
+			<div className={ clsxm(
+				'bg-primary h-[calc(100svh+14px)] lg:h-[calc(100vh-24px)] w-full overflow-hidden max-lg:rounded-t-none rounded-19px relative pt-11px lg:pt-5',
+				slug === Slug.ABOUT_US &&  'lg:h-[636px]',
+			) }>
 				<div
 					className={ clsxm(
 						'absolute max-lg:top-0 lg:bottom-0 w-full h-full',
@@ -162,7 +168,9 @@ const Hero: React.FC<HeroProps> = ({ slug = Slug.MEN_WEIGHT_LOSS }) => {
 						slug === Slug.BUSINESS_ORIENTED &&
               'max-lg:h-[calc(100svh-21.935svh+14px)]',
 						slug === Slug.GIVEAWAY &&
-              'max-lg:h-[calc(100svh-21.935svh+14px)]'
+              'max-lg:h-[calc(100svh-21.935svh+14px)]',
+						slug === Slug.ABOUT_US &&
+              'max-lg:h-[calc(100svh-21.935svh+14px)]',
 					) }
 				>
 					{ renderImage('desktop') }
@@ -170,7 +178,7 @@ const Hero: React.FC<HeroProps> = ({ slug = Slug.MEN_WEIGHT_LOSS }) => {
 				</div>
 				<div className={ clsxm(
 					'max-lg:hidden absolute right-6 bottom-6 z-30',
-					slug === Slug.GIVEAWAY && 'hidden'
+					(slug === Slug.GIVEAWAY || slug === Slug.ABOUT_US) && 'hidden'
 				) }>
 					{ renderPopup() }
 				</div>
@@ -192,6 +200,8 @@ const Hero: React.FC<HeroProps> = ({ slug = Slug.MEN_WEIGHT_LOSS }) => {
                 'max-lg:pb-[5.722vh] lg:pt-[26.418vh]',
 							slug === Slug.GIVEAWAY &&
                 'max-lg:pb-[5.722vh] lg:pt-[26.418vh]',
+							slug === Slug.ABOUT_US &&
+                'max-lg:pb-[5.722vh] lg:pt-[220px]',
 						) }
 					>
 						<div className='text-left flex flex-col'>
@@ -213,12 +223,12 @@ const Hero: React.FC<HeroProps> = ({ slug = Slug.MEN_WEIGHT_LOSS }) => {
 											key={ itemIdx }
 											className={ clsxm(
 												'flex whitespace-nowrap gap-1.5',
-												slug === Slug.GIVEAWAY && 'whitespace-normal'
+												(slug === Slug.GIVEAWAY || slug === Slug.ABOUT_US) && 'whitespace-normal'
 											) }
 										>
 											<CheckCircleIcon className={ clsxm(
 												'w-4 h-4 flex-shrink-0 text-white',
-												slug === Slug.GIVEAWAY && 'hidden'
+												(slug === Slug.GIVEAWAY || slug === Slug.ABOUT_US) && 'hidden'
 											) } />
 											<span
 												dangerouslySetInnerHTML={ {
@@ -231,7 +241,7 @@ const Hero: React.FC<HeroProps> = ({ slug = Slug.MEN_WEIGHT_LOSS }) => {
 							</div>
 
 							{
-								slug !== Slug.GIVEAWAY && (
+								(slug !== Slug.GIVEAWAY && slug !== Slug.ABOUT_US) && (
 									<div className='flex w-full mt-6 overflow-hidden'>
 										<div className='max-sm:w-full flex'>
 											<ButtonCta
@@ -265,10 +275,10 @@ const Hero: React.FC<HeroProps> = ({ slug = Slug.MEN_WEIGHT_LOSS }) => {
 				} }
 			/>
 			{ renderHero() }
-			<div className={clsxm(
+			<div className={ clsxm(
 				'max-lg:px-4 max-lg:pb-[42px] max-lg:mt-[42px] max-w-2xl mx-auto lg:hidden',
-				slug === Slug.GIVEAWAY && 'hidden'
-			)}>
+				(slug === Slug.GIVEAWAY || slug === Slug.ABOUT_US) && 'hidden'
+			) }>
 				{ renderPopup() }
 			</div>
 		</div>

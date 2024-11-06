@@ -25,7 +25,16 @@ import ProductsSlider from '../../men/[category]/ProductsSlider';
 // 	segment: string;
 // }
 
-const ProductCategory = async({ params: { category = '' } }) => {
+type Params = Promise<{ category: string }>
+
+const ProductCategory = async(props:{
+	params: Params
+}) => {
+	const params = await props.params;
+
+	const {
+		category = ''
+	} = params;
 
 	// const segments = segment?.split('/') || [];
 	// const gender = segments[1]; // 'women' will be at index 1

@@ -1,7 +1,9 @@
 'use client';
 
 import React, { useState } from 'react';
-import DatePicker from 'react-datepicker';
+import DatePickerComponent from 'react-datepicker';
+const DatePicker = DatePickerComponent as any;
+
 import { AiFillCloseCircle } from 'react-icons/ai';
 import { FormikProps, useFormik } from 'formik';
 import { motion, Variants } from 'framer-motion';
@@ -121,7 +123,7 @@ const FormDetail: React.FC<FormDetailProps> = ({ onSubmit, userData, isAlreadyOn
 				<InputLabel>Birthday (MM/DD/YYYY)</InputLabel>
 				<div>
 					<DatePicker
-						onChange={ val => onChangeInput('birthdate', val as Date) }
+						onChange={ (val:Date) => onChangeInput('birthdate', val as Date) }
 						selected={ formik.values.birthdate }
 						placeholderText='MM/DD/YYYY'
 						className={ clsxm(

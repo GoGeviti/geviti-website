@@ -107,6 +107,8 @@ const marketingData = {
         'Your key to a<br/>healthier, more<br/>productive workforce.',
 			'giveaway':
         'Win a 1-Year Free Geviti<br class="max-lg:hidden"/> Membership and Build a<br class="max-lg:hidden"/> Healthier Future, Today!',
+			'about-us':
+        'Geviti exists to prevent avoidable<br class="max-lg:hidden"/> disease and to maximize your<br class="max-lg:hidden"/> life’s potential.',
 		},
 		list: {
 			'men-weight-loss': [
@@ -137,6 +139,9 @@ const marketingData = {
 			'giveaway': [
 				'Enter for a chance to win a 1-Year Geviti Membership and access a dedicated team of health experts, personalized health plans, regular at-home bloodwork, exclusive pricing on prescriptions and supplements, and a pathway to a healthier, more vibrant life.',
 			],
+			'about-us': [
+				'',
+			],
 		},
 		cta: {
 			text: {
@@ -155,6 +160,7 @@ const marketingData = {
 				'men-weight-loss': '/pricing',
 				'women-weight-loss': '/pricing',
 				'giveaway': '/pricing',
+				'about-us': '/pricing',
 				'business-oriented': 'https://calendly.com/cole-gogeviti/business-discovery-call',
 			},
 		},
@@ -165,6 +171,7 @@ const marketingData = {
 			menopause: '/images/marketing/menopause/hero.webp',
 			'business-oriented': '/images/marketing/business-oriented/hero.webp',
 			'giveaway': '/images/marketing/giveaway/hero.jpg',
+			'about-us': '/images/about_us/hero.webp',
 		},
 		imageMobile: {
 			'men-hormone-therapy':
@@ -176,6 +183,7 @@ const marketingData = {
 			'business-oriented':
         '/images/marketing/business-oriented/hero-mobile.webp',
 			'giveaway': '/images/marketing/giveaway/hero.jpg',
+			'about-us': '/images/about_us/hero.webp',
 		},
 		popup: {
 			title: 'HSA/FSA',
@@ -474,7 +482,8 @@ const marketingData = {
         'Experience a new level of personalized health with Geviti. Everything you need to feel and look your best, all in one streamlined platform.',
 			'business-oriented':
         'Experience a new level of personalized health with Geviti. Everything your team needs to feel their best, all in one streamlined platform.',
-			'giveaway': ''
+			'giveaway': '',
+			'about-us': '',
 		},
 		cta: {
 			text: {
@@ -483,7 +492,8 @@ const marketingData = {
 				'men-weight-loss': 'Get Started',
 				'women-weight-loss': 'Get Started',
 				'business-oriented': 'Schedule A Call',
-				'giveaway': ''
+				'giveaway': '',
+				'about-us': '',
 			},
 			href: '/pricing',
 		},
@@ -493,7 +503,8 @@ const marketingData = {
 			'women-weight-loss': membershipListVersion1,
 			menopause: membershipListVersion2,
 			'business-oriented': membershipListVersion2,
-			'giveaway': []
+			'giveaway': [],
+			'about-us': [],
 		},
 	},
 	steps: {
@@ -505,6 +516,7 @@ const marketingData = {
 			'men-weight-loss': stepsListDefault,
 			'women-weight-loss': stepsListDefault,
 			'giveaway': stepsListDefault,
+			'about-us': stepsListDefault,
 			'business-oriented': stepsListDefault.map(item => {
 				if (item.title === 'Tailored Products') {
 					return {
@@ -523,6 +535,7 @@ const marketingData = {
 			'women-weight-loss': 'blue',
 			'business-oriented': 'black',
 			'giveaway': 'black',
+			'about-us': 'black',
 		},
 	},
 	faq: {
