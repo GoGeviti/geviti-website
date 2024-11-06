@@ -11,7 +11,7 @@ const AboutUsPage = () => {
 			<MarketingComponent.Hero slug={ Slug.ABOUT_US } />
 			<AboutUsComponent.Video />
 			<AboutUsComponent.Headshot />
-			<AboutUsComponent.Doctor />
+			{/* <AboutUsComponent.Doctor /> */}
 			<LongevitiPanelComponent.BannerParallax containerClassName='pb-0 lg:pb-0' />
 			<FrequentlyAskedQuestions data={ solutionData.faq.data } />
 			<Footer/>
