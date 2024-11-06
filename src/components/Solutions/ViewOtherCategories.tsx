@@ -18,7 +18,7 @@ import ArrowButtons from '../Marketing/ArrowButtons';
 import 'swiper/css';
 
 const ViewOtherCategories: React.FC<{data:Category[] | Product[], isProduct?: boolean}> = ({ data, isProduct }) => {
-	const swiperRef = useRef<SwiperType>();
+	const swiperRef = useRef<SwiperType>(undefined);
 
 	const [disabledPrev, setDisabledPrev] = useState(true);
 	const [disabledNext, setDisabledNext] = useState(false);

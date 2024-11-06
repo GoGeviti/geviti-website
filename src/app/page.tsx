@@ -16,10 +16,10 @@ const Banner = dynamic(() => import('@/components/Landing/Banner'));
 
 // Interactive components that don't need SEO can disable SSR
 const FeaturesCarousel = dynamic(() => import('@/components/Landing/FeaturesCarousel'), {
-	ssr: false // Interactive component, doesn't need SEO
+	// ssr: false
 });
 const RunningLogo = dynamic(() => import('@/components/RunningLogo'), {
-	ssr: false // Animation component, doesn't need SEO
+	// ssr: false
 });
 
 // Components with important content should have SSR enabled

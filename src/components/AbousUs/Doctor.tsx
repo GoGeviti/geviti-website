@@ -35,7 +35,7 @@ const data = [
 ]
 
 const Doctor: React.FC = () => {
-	const swiperRef = useRef<SwiperType>();
+	const swiperRef = useRef<SwiperType>(undefined);
 
 	// const [disabledPrev, setDisabledPrev] = useState(true);
 	// const [disabledNext, setDisabledNext] = useState(false);

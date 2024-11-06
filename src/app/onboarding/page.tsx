@@ -4,10 +4,11 @@ import { CheckoutComponent } from '@/components';
 import IntroScreen from '@/components/IntroScreen';
 
 export type PageProps = {
-	searchParams: { [key: string]: string | string[] | undefined; };
+	searchParams: Promise<{ [key: string]: string | string[] | undefined; }>;
 };
 
-export async function generateViewport({ searchParams }: PageProps): Promise<Viewport> {
+export async function generateViewport(props: PageProps): Promise<Viewport> {
+	const searchParams = await props.searchParams;
 	const userEmail = searchParams?.email;
 
 	return {
@@ -15,7 +16,8 @@ export async function generateViewport({ searchParams }: PageProps): Promise<Vie
 	};
 }
 
-const OnboardingPage: NextPage<PageProps> = async({ searchParams }) => {
+const OnboardingPage: NextPage<PageProps> = async props => {
+	const searchParams = await props.searchParams;
 	return (
 		<IntroScreen type='image'>
 			<CheckoutComponent.Main searchParams={ searchParams } />

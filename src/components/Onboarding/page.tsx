@@ -5,10 +5,11 @@ import { OnboardingComponent } from '@/components';
 import { getCartData } from '@/services/precheckout';
 
 export type PageProps = {
-	searchParams: { [key: string]: string | string[] | undefined; };
+	searchParams: Promise<{ [key: string]: string | string[] | undefined; }>;
 };
 
-export async function generateViewport({ searchParams }: PageProps): Promise<Viewport> {
+export async function generateViewport(props: PageProps): Promise<Viewport> {
+	const searchParams = await props.searchParams;
 	const variantID = searchParams?.variant;
 
 	return {
@@ -16,9 +17,10 @@ export async function generateViewport({ searchParams }: PageProps): Promise<Vie
 	};
 }
 
-const OnboardingPage: NextPage<PageProps> = ({ searchParams }) => {
+const OnboardingPage: NextPage<PageProps> = async props => {
+	const searchParams = await props.searchParams;
 	const variantID = searchParams?.variant;
-	const cartData = getCartData();
+	const cartData = await getCartData();
 
 	if (variantID && !cartData?.variantID) {
 		redirect('/pricing');

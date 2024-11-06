@@ -10,7 +10,16 @@ import PageClient from './page.client';
 
 export const dynamic = 'force-dynamic';
 
-export default async function Page({ params: { id = '' } }) {
+type Params = Promise<{ id: string }>
+
+export default async function Page(props:{
+	params : Params
+}) {
+	const params = await props.params;
+
+	const {
+		id = ''
+	} = params;
 
 	let post: Post | null = null;
 
@@ -30,7 +39,14 @@ export default async function Page({ params: { id = '' } }) {
 	return <PageClient post={ post } />;
 }
 
-export async function generateMetadata({ params: { id = '' } }): Promise<Metadata> {
+export async function generateMetadata(props:{
+	params : Params
+}): Promise<Metadata> {
+	const params = await props.params;
+
+	const {
+		id = ''
+	} = params;
 
 	let post: Post | null = null;
 

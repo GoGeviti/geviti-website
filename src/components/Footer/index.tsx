@@ -25,7 +25,7 @@ type FooterProps = {
 const WrapperFooter: React.FC<FooterProps & {
 	children: React.ReactNode;
 	isMobile?: boolean;
-	containerRef?: React.RefObject<HTMLDivElement>;
+	containerRef?: React.RefObject<HTMLDivElement | null>;
 	scrollYProgress: MotionValue<number>;
 }> = ({ isMobile, landingPage, children, containerRef, scrollYProgress }) => {
 	const wrapperClassName = 'pt-6 pb-[106px] lg:pt-12 lg:h-[569px] lg:pb-[310px] bg-white rounded-19px relative overflow-hidden w-full';

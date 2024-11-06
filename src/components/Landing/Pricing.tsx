@@ -4,15 +4,15 @@ import dynamic from 'next/dynamic';
 import { ProductsResponse } from '../Checkout/api/types';
 
 const Download = dynamic(() => import('../Pricing/Download'), {
-	ssr: false,
+	// ssr: false,
 });
 const Hero = dynamic(() => import('../Pricing/Hero'), {
-	ssr: false,
+	// ssr: false,
 });
 const PricingBiomarkers = dynamic(
 	() => import('../Pricing/PricingBiomarkers'),
 	{
-		ssr: false,
+		// ssr: false,
 	}
 );
 

@@ -10,7 +10,7 @@ import clsxm from '@/helpers/clsxm';
 import { ChevronRight } from '../Icons';
 
 type VerticalThumbsProps = {
-  sliderRef: React.RefObject<SlickSlider>;
+  sliderRef: React.RefObject<SlickSlider | null>;
   list: any[]; // eslint-disable-line @typescript-eslint/no-explicit-any
   activeIdx: number;
   onClick: (idx: number) => void; // eslint-disable-line no-unused-vars

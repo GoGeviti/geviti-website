@@ -6,7 +6,7 @@ import { Product } from '@/payload/payload-types';
 import { getProducts } from '@/services/products';
 
 const DiscoverGeviti = dynamic(() => import('../DiscoverGeviti'), {
-	ssr: false,
+	// ssr: false,
 });
 
 const ProductsSection: React.FC = async() => {

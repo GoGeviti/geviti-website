@@ -12,7 +12,7 @@ import { CheckoutData } from '@/interfaces/precheckout';
 import { setCartData } from '@/services/precheckout';
 
 import * as OnboardingComponent from './index';
-import { PageProps } from './page';
+// import { PageProps } from './page';
 import type { Tier } from './PricingPlans';
 import type { TipProps } from './Tip';
 
@@ -60,7 +60,7 @@ export type FormOption = {
 	nextStep: NextStepAction;
 };
 
-type OrderJourneyProps = PageProps & {
+type OrderJourneyProps = {searchParams : { [key: string]: string | string[] | undefined; }} & {
 	state?: CheckoutData;
 };
 

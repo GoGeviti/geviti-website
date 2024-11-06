@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/strict-boolean-expressions */
-import React, { Fragment } from 'react';
+import React, { Fragment, type JSX } from 'react';
 import type { SerializedListItemNode, SerializedListNode } from '@lexical/list';
 import type { SerializedHeadingNode } from '@lexical/rich-text';
 import type {

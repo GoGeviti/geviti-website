@@ -22,7 +22,7 @@ import 'swiper/css';
 
 const ProductsSlider:React.FC<{products : Product[]} > = ({ products }) => {
 
-	const swiperRef = useRef<SwiperType>();
+	const swiperRef = useRef<SwiperType>(undefined);
 	const [thumbsSwiper, setThumbsSwiper] = useState<SwiperType>();
 	const [activeIndex, setActiveIndex] = useState<number>(0);
 	const pathname = usePathname();
@@ -186,7 +186,8 @@ const ProductsSlider:React.FC<{products : Product[]} > = ({ products }) => {
 												exit={ { y: -10, opacity: 0 } }
 												transition={ { duration: 0.375, ease: 'easeInOut', delay: 0.05 * biomakerIdx, } }
 												key={ `category-biomakerIdx-${activeIndex}-${biomakerIdx}` }
-												className='flex items-center gap-2'>
+												className='flex items-center gap-2'
+											>
 												<CheckBlue className='flex-shrink-0 w-3.5 h-3.5' />
 												<span className='text-xs text-white'>
 													{ biomaker.name }

@@ -7,10 +7,11 @@ export const viewport: Viewport = {
 };
 
 type PageProps = {
-	searchParams: { [key: string]: string | string[] | undefined; };
+	searchParams:Promise<{ [key: string]: string | string[] | undefined }>;
 };
 
-const PaymentSuccessPage: NextPage<PageProps> = async({ searchParams }) => {
+const PaymentSuccessPage: NextPage<PageProps> = async props => {
+	const searchParams = await props.searchParams;
 	return <CheckoutComponent.PaymentState
 		searchParams={ searchParams }
 		type='success' />;

@@ -14,18 +14,19 @@ type ResponseType = {
 export const setCartData = async(data: IPrecheckout.CheckoutData) => {
 	const threeMonths = 90 * 24 * 60 * 60 * 1000;
 
-	cookies().set('cart', JSON.stringify(data), { expires: Date.now() + threeMonths });
+	(await cookies()).set('cart', JSON.stringify(data), { expires: Date.now() + threeMonths });
 };
 
-export const getCartData = (): IPrecheckout.CheckoutData | undefined => {
-	const cartCookies = cookies().get('cart');
+export const getCartData = async(): Promise<IPrecheckout.CheckoutData | undefined> => {
+	const cokies = await cookies();
+	const cartCookies = cokies.get('cart');
 	const cart = cartCookies?.value;
 
 	return cart && JSON.parse(cart);
 };
 
 // create function to calculate age
-export const calculateAge = (birthdate: Date) => {
+const calculateAge = (birthdate: Date) => {
 	const today = new Date();
 	return today.getFullYear() - birthdate.getFullYear();
 };
