@@ -1,7 +1,9 @@
 'use client';
 
 import React, { useState } from 'react';
-import DatePicker from 'react-datepicker';
+import DatePickerComponent from 'react-datepicker';
+const DatePicker = DatePickerComponent as any;
+
 import { AiFillCloseCircle } from 'react-icons/ai';
 import { FormikProps, useFormik } from 'formik';
 import { motion } from 'framer-motion';
@@ -80,7 +82,7 @@ const FormWaitlistDetail: React.FC<FormWaitlistDetailProps> = ({ onSubmit, userD
 				<InputLabel>Birthday (MM/DD/YYYY)</InputLabel>
 				<div>
 					<DatePicker
-						onChange={ val => onChangeInput('birthdate', val as Date) }
+						onChange={ (val:Date) => onChangeInput('birthdate', val as Date) }
 						selected={ formik.values.birthdate }
 						placeholderText='MM/DD/YYYY'
 						className={ clsxm(

@@ -25,42 +25,46 @@ import ProductsSlider from '../../men/[category]/ProductsSlider';
 // 	segment: string;
 // }
 
-const ProductCategory = async props => {
-    const params = await props.params;
+type Params = Promise<{ category: string }>
 
-    const {
-        category = ''
-    } = params;
+const ProductCategory = async(props:{
+	params: Params
+}) => {
+	const params = await props.params;
 
-    // const segments = segment?.split('/') || [];
-    // const gender = segments[1]; // 'women' will be at index 1
+	const {
+		category = ''
+	} = params;
 
-    // console.log('gender ==> ', gender);
-    // console.log('segments ==> ', segments);
+	// const segments = segment?.split('/') || [];
+	// const gender = segments[1]; // 'women' will be at index 1
 
-    let categoryData: {
+	// console.log('gender ==> ', gender);
+	// console.log('segments ==> ', segments);
+
+	let categoryData: {
 		singleCategory: Category;
 		categories: Category[];
 	};
-    let productsData: Product[] = [];
+	let productsData: Product[] = [];
 
-    try {
+	try {
 		productsData = await getProductByCategory(category);
 	} catch (error) {
 		
 	}
 
-    try {
+	try {
 		categoryData = await getCategories(category, 'women');
 	} catch (error) {
 		return notFound();
 	}
 
-    if (!categoryData) {
+	if (!categoryData) {
 		return notFound();
 	}
 
-    return (
+	return (
 		<div className='flex min-h-screen flex-col w-full font-Poppins'>
 			<Navbar
 				theme='light'

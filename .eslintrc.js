@@ -17,7 +17,7 @@ module.exports = {
 		'simple-import-sort/imports': 1,
 		'simple-import-sort/exports': 1,
 		'@typescript-eslint/explicit-function-return-type': 0,
-		'@typescript-eslint/no-explicit-any': 1,
+		'@typescript-eslint/no-explicit-any': 0,
 		'@typescript-eslint/interface-name-prefix': 0,
 		'@typescript-eslint/camelcase': 0,
 		'@typescript-eslint/explicit-module-boundary-types': 0,

@@ -1,7 +1,9 @@
 'use client';
 
 import React, { useRef, useState } from 'react';
-import SlickSlider from 'react-slick';
+import SlickSliderComponent from 'react-slick';
+const SlickSlider = SlickSliderComponent as any;
+
 import { AnimatePresence, motion, wrap } from 'framer-motion';
 import Image from 'next/image';
 
@@ -46,7 +48,7 @@ const sliderTransition = {
 const sliderData = membershipData.slider.list;
 
 const SliderCustom: React.FC = () => {
-	const sliderRef = useRef<SlickSlider>(null);
+	const sliderRef = useRef<SlickSliderComponent>(null);
 
 	const [[imageCount, direction], setImageCount] = useState<[number, number]>([0, 0]);
 

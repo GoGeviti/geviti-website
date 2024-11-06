@@ -50,7 +50,7 @@ const DraggableCarousel: React.FC<DraggableCarouselProps> = ({
 	return (
 		<div
 			className='wrapper w-full h-full flex items-center overflow-hidden relative -my-4 py-4'
-			ref={ el => (containerRefs.current[listIndex] = el) }
+			ref={ el => { containerRefs.current[listIndex] = el; } }
 		>
 			{ items.map((detail, detailIdx) => {
 				return (

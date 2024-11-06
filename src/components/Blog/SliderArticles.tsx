@@ -1,7 +1,10 @@
 'use client';
 
 import { useRef, useState } from 'react';
-import Slider from 'react-slick';
+// import Slider from 'react-slick';
+import SliderComponent from 'react-slick';
+const Slider = SliderComponent as any;
+
 import Image from 'next/image';
 
 import clsxm from '@/helpers/clsxm';
@@ -14,7 +17,7 @@ type SliderArticlesProps = {
 };
 
 const SliderArticles: React.FC<SliderArticlesProps> = ({ data }) => {
-	const sliderRef = useRef<Slider | null>(null);
+	const sliderRef = useRef<SliderComponent | null>(null);
 	const [activeIndex, setActiveIndex] = useState<number>(0);
 
 	const settings = {

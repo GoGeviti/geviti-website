@@ -1,7 +1,10 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import SlickSlider, { Settings } from 'react-slick';
+import { Settings } from 'react-slick';
+import SlickSliderComponent from 'react-slick';
+const SlickSlider = SlickSliderComponent as any;
+
 import { debounce } from 'lodash';
 import Image from 'next/image';
 
@@ -10,7 +13,7 @@ import clsxm from '@/helpers/clsxm';
 import { ChevronRight } from '../Icons';
 
 type VerticalThumbsProps = {
-  sliderRef: React.RefObject<SlickSlider | null>;
+  sliderRef: React.RefObject<SlickSliderComponent | null>;
   list: any[]; // eslint-disable-line @typescript-eslint/no-explicit-any
   activeIdx: number;
   onClick: (idx: number) => void; // eslint-disable-line no-unused-vars

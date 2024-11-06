@@ -25,18 +25,22 @@ import { getProductByCategory } from '@/services/products'
 // 	'Flexible Dosing',
 // ];
 
-const ProductCategorySingle = async props => {
-    const params = await props.params;
+type Params = Promise<{ category: string, product_id: string }>
 
-    const {
-        category = '',
-        product_id = ''
-    } = params;
+const ProductCategorySingle = async(props:{
+	params: Params
+}) => {
+	const params = await props.params;
 
-    let productsData: Product[] = [];
-    let productDataSingle: Product;
+	const {
+		category = '',
+		product_id = ''
+	} = params;
 
-    try {
+	let productsData: Product[] = [];
+	let productDataSingle: Product;
+
+	try {
 		const data = await getProductByCategory(category);
 		if (!data.find(e => e.slug === product_id)) {
 			return notFound();
@@ -49,7 +53,7 @@ const ProductCategorySingle = async props => {
 		return notFound();
 	}
 
-    return (
+	return (
 		<div className='flex min-h-screen flex-col w-full font-Poppins'>
 			<Navbar
 				theme='light'
