@@ -33,9 +33,15 @@ const ProductsSlider:React.FC<{products : Product[]} > = ({ products }) => {
 			document.body.style.overflow = 'hidden'; // standard no-scroll implementation
 			document.body.setAttribute('data-lenis-prevent', 'true'); // Make sure you pass true as string
 		} else {
+			document.body.removeAttribute('data-lenis-prevent');
 			document.body.style.overflow = 'auto';
 		}
 	}, [isViewAll]);
+
+	const enableLenis = () => {
+		document.body.removeAttribute('data-lenis-prevent');
+		document.body.style.overflow = 'auto';
+	}
 
 	return (
 		<div className='lg:px-3 font-Poppins text-white max-lg:mt-10'>
@@ -200,12 +206,14 @@ const ProductsSlider:React.FC<{products : Product[]} > = ({ products }) => {
 							</div>
 							<div className='flex pr-5 lg:pr-[42px]  flex-col lg:flex-row items-center gap-3 lg:gap-[42px] mt-[42px]'>
 								<Link
+									prefetch={ true }
 									href={ pathname + '/' + products[activeIndex].slug }
 									className='bg-white text-primary rounded-full w-full h-[58px] flex items-center justify-center py-3 px-[42px] text-lg font-medium !leading-6'
 								>
 										View Product
 								</Link>
 								<Link
+									prefetch={ true }
 									href={ '/pricing#' }
 									scroll={ true }
 									className=' text-white border border-white w-full rounded-full h-[58px] flex items-center justify-center py-3 px-[42px] text-lg font-medium !leading-6'
@@ -239,6 +247,8 @@ const ProductsSlider:React.FC<{products : Product[]} > = ({ products }) => {
 							{ products.map((product, productIdx) => {
 								return (
 									<Link
+										onClick={ enableLenis }
+										prefetch={ true }
 										key={ productIdx }
 										href={ pathname + '/' + product.slug } >
 										<div
@@ -262,6 +272,7 @@ const ProductsSlider:React.FC<{products : Product[]} > = ({ products }) => {
 						</div>
 						<div className='w-fit mt-11 mx-auto'>
 							<Link
+								prefetch={ true }
 								href={ '/pricing' }
 								className=' text-white border border-white w-full rounded-full h-[58px] flex items-center justify-center py-3 px-[42px] text-lg font-medium !leading-6'
 							>
