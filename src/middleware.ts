@@ -41,5 +41,5 @@ export function middleware(request: NextRequest) {
 
 // Match paths for middleware to apply to specific paths
 export const config = {
-	matcher: ['/', '/mobile', '/pickleballkingdom'],
+	matcher: ['/:path*'],
 };
