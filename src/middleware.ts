@@ -1,25 +1,18 @@
-// import ReactGA from 'react-ga4';
+import ReactGA from 'react-ga4';
 import type { NextRequest } from 'next/server'
 import { NextResponse } from 'next/server'
 
-// const trackingId = 'G-9NMVVP83JB';
+const trackingId = 'G-9NMVVP83JB';
 
 // This function can be marked `async` if using `await` inside
 export function middleware(request: NextRequest) {
- 	const hostname = request.headers.get('host') || ''
-	const { pathname } = new URL(request.url);
 
-	// Only redirect www for the production domain (gogeviti.com)
-	if (hostname === 'gogeviti.com') {
-		const newUrl = new URL(request.url)
-		newUrl.hostname = 'www.gogeviti.com'
-		return NextResponse.redirect(newUrl, 308)
-	}
+	const { pathname } = new URL(request.url);
     
 	// Redirect /pickleballkingdom to /
 	if (pathname === '/pickleballkingdom') {
-		// ReactGA.initialize(trackingId);
-		// ReactGA.send({ hitType: 'pageview', page: '/pickleballkingdom', title: 'Pickleball Kingdom' });
+		ReactGA.initialize(trackingId);
+		ReactGA.send({ hitType: 'pageview', page: '/pickleballkingdom', title: 'Pickleball Kingdom' });
 		return NextResponse.redirect(new URL('/', request.url));
 	}
 
@@ -41,10 +34,5 @@ export function middleware(request: NextRequest) {
  
 // See "Matching Paths" below to learn more
 export const config = {
-	matcher: [
-		 // Add the catch-all route for www redirect
-		 '/((?!api|_next|_static|_vercel|[\\w-]+\\.\\w+).*)',
-		'/mobile',
-		'/pickleballkingdom'
-	],
+	matcher: ['/mobile', '/pickleballkingdom'],
 }
