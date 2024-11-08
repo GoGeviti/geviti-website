@@ -95,7 +95,8 @@ const Hero:React.FC<{data:Category}> = ({ data }) => {
 						alt='category product'
 						width={ 630 }
 						height={ 630 }
-						// quality={ 75 }
+						priority
+						quality={ 100 }
 						className='object-contain w-[630px]'
 					/>
 				</motion.div>
