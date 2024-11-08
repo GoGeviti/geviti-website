@@ -38,8 +38,9 @@ const Hero:React.FC<{data:Category}> = ({ data }) => {
 								src={ data.image.url ?? '' }
 								alt='category product'
 								width={ 630 }
+								priority
 								height={ 630 }
-								// quality={ 75 }
+								quality={ 100 }
 								className='object-contain w-full'
 							/>
 						</motion.div>
