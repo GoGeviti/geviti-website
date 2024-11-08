@@ -43,6 +43,8 @@ const Hero:React.FC<{data:Product}> = ({ data }) => {
 							alt={ data.image.alt ?? '' }
 							width={ 510 }
 							height={ 510 }
+							quality={ 100 }
+							priority={ true }
 							className='object-contain lg:hidden w-full'
 						/>
 					</div>
