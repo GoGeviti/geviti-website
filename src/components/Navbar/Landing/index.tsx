@@ -100,7 +100,9 @@ const MenuItem = memo(({
 						<div>
 							<p className='text-[10px] font-semibold uppercase tracking-[1.1px] pb-[14px]'>Explore</p>
 							<ul className='flex flex-col gap-[14px]'>
-								<Link href={ active === 'Men\'s Health' ? '/solution/men' : '/solution/women' }>
+								<Link
+									prefetch={ true }
+									href={ active === 'Men\'s Health' ? '/solution/men' : '/solution/women' }>
 									<li className={ clsxm(
 										'text-sm flex gap-2 items-center transition-colors duration-200 group cursor-pointer',
 										theme === 'light' ? 'text-white' : 'text-primary'
@@ -115,7 +117,9 @@ const MenuItem = memo(({
 										<span>Overview & Benefits</span>
 									</li>
 								</Link>
-								<Link href={ `/longeviti-panel?gender=${active === 'Men\'s Health' ? 'men' : 'women'}` }>
+								<Link
+									prefetch={ true }
+									href={ `/longeviti-panel?gender=${active === 'Men\'s Health' ? 'men' : 'women'}` }>
 									<li className={ clsxm(
 										'text-sm flex gap-2 items-center transition-colors duration-200 group cursor-pointer',
 										theme === 'light' ? 'text-white' : 'text-primary'
@@ -156,6 +160,7 @@ const MenuItem = memo(({
 							<p className='text-[10px] font-semibold uppercase tracking-[1.1px] pb-[14px]'>Get Started</p>
 							<Link
 								href='/pricing'
+								prefetch={ true }
 								className=''>
 								<div className='relative group w-[177px] h-[131px] rounded-lg overflow-hidden cursor-pointer'>
 									<Image
@@ -223,7 +228,9 @@ const MenuItem = memo(({
 			>
 				{
 					href !== '#' ? (
-						<Link href={ href ?? '' } >
+						<Link
+							prefetch={ true }
+							href={ href ?? '' } >
 							{ item }
 						</Link>
 					) : (
@@ -480,6 +487,7 @@ const Navbar: React.FC<NavbarProps> = ({
 									<div className='flex items-center lg:space-x-5 xl:space-x-[50px]'>
 										<Link
 											href='/'
+											prefetch={ true }
 											className='focus:ring-0 focus:outline-none'>
 											<GevitiLogo
 												isScrolled={ isScrolled }

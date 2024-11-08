@@ -109,7 +109,7 @@ const PackagesSection: React.FC = () => {
 
 									{ isSelected && (
 										<Link
-											prefetch={ false }
+											prefetch={ true }
 											href={ `/orders?package=${ packageItemIdx + 1 }` }
 											className='btn btn-primary mt-5 flex items-center gap-1.5 w-fit'>
 											<span className='text-xs font-medium font-BRSonoma leading-[159%]'>Continue</span>
@@ -169,7 +169,7 @@ const PackagesSection: React.FC = () => {
 						<p className='text-primary text-base leading-[150%] font-Poppins font-medium'>{ items.priceThen } <span className='text-grey-primary text-sm'>{ items.priceThenNote }</span></p>
 						<p className='text-grey-primary text-sm leading-[150%] font-Poppins mt-4'>{ items.desc }</p>
 						<Link
-							prefetch={ false }
+							prefetch={ true }
 							href={ `/orders?package=${ id + 1 }` }
 							className='btn-cta-landing group btn-primary w-full text-center mt-14'
 							aria-label={ items.btn }
