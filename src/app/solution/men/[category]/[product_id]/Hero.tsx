@@ -15,6 +15,8 @@ const Hero:React.FC<{data:Product}> = ({ data }) => {
 						alt={ data.image.alt ?? '' }
 						width={ 510 }
 						height={ 510 }
+						quality={ 100 }
+						priority={ true }
 						className='object-contain max-lg:hidden lg:w-[510px]'
 					/>
 					<div className='flex flex-col max-lg:text-center max-lg:items-center gap-6 '>
@@ -41,6 +43,8 @@ const Hero:React.FC<{data:Product}> = ({ data }) => {
 							alt={ data.image.alt ?? '' }
 							width={ 510 }
 							height={ 510 }
+							quality={ 100 }
+							priority={ true }
 							className='object-contain lg:hidden w-full'
 						/>
 					</div>
