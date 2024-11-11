@@ -8,7 +8,9 @@ import longevitiPanelData from '@/constant/data/longevitiPanel';
 const LongevitiPanelPage: NextPage = () => {
 	return (
 		<div className='flex min-h-screen flex-col w-full bg-white font-Poppins'>
-			<LongevitiPanelComponent.Hero />
+			<LongevitiPanelComponent.Hero
+				{ ...longevitiPanelData.hero }
+				longeviti_type='panel' />
 			<LongevitiPanelComponent.HowItWorks />
 			<LongevitiPanelComponent.BannerParallax />
 			<React.Suspense fallback={ <div className='min-h-[200px]' /> }>

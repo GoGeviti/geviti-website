@@ -59,6 +59,7 @@ const longevitiPanelData = {
 		title: 'Comprehensive Longeviti<br />Bloodwork Panel',
 		description:
       'Our Longeviti Bloodwork Panel offers an in-depth analysis of 90+ critical biomarkers, giving you a complete picture of your health to guide you toward a longer, healthier life.',
+		image: '',
 		benefits: {
 			title: 'Why Choose Our Panel?',
 			description:
