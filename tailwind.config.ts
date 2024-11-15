@@ -275,6 +275,7 @@ const config: Config = {
           '0px 2px 6px rgba(0, 0, 0, 0.1), 0px 1px 1px rgba(0, 0, 0, 0.03)',
 				'card-marketing-membership':
           '0px 188px 53px 0px rgba(158, 158, 158, 0.00), 0px 120px 48px 0px rgba(158, 158, 158, 0.01), 0px 68px 41px 0px rgba(158, 158, 158, 0.05), 0px 30px 30px 0px rgba(158, 158, 158, 0.09), 0px 8px 17px 0px rgba(158, 158, 158, 0.10)',
+				'card-ingredients': '0px 96px 27px 0px rgba(7, 77, 100, 0.00), 0px 61px 25px 0px rgba(7, 77, 100, 0.01), 0px 35px 21px 0px rgba(7, 77, 100, 0.05), 0px 15px 15px 0px rgba(7, 77, 100, 0.09), 0px 4px 8px 0px rgba(7, 77, 100, 0.10)'
 			},
 			transitionDuration: {
 				'50': '50ms',
@@ -335,6 +336,24 @@ const config: Config = {
 					'@apply stroke-primary w-4 h-4 sm:w-18px sm:h-18px group-hover:translate-x-1 transform transition-all duration-100':
             {},
 				},
+				'.h2': {
+					'@apply font-Poppins font-medium  text-primary text-[46px]': {}
+				},
+				'.h3': {
+					'@apply font-Poppins font-medium text-primary text-[36px]': {}
+				},
+				'.h5': {
+					'@apply font-Poppins font-normal text-primary text-[24px]': {}
+				},
+				'.h6': {
+					'@apply font-Poppins font-medium text-primary text-[18px]': {}
+				},
+				'.body-small': {
+					'@apply font-Poppins text-sm text-grey-primary': {},
+				},
+				'.body-extra-small': {
+					'@apply font-Poppins text-xs text-grey-primary': {}
+				}
 			});
 		},
 	],

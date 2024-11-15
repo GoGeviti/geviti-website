@@ -34,6 +34,15 @@ const HEAD_TAGS = (
 			name='cometly-domain-verification'
 			content='007df841-addd-4846-93c2-f94f19c48097'
 		/>
+		<Script
+			id='sa-dynamic-optimization'
+			src='data:text/javascript;base64,dmFyIHNjcmlwdCA9IGRvY3VtZW50LmNyZWF0ZUVsZW1lbnQoInNjcmlwdCIpO3NjcmlwdC5zZXRBdHRyaWJ1dGUoIm5vd3Byb2NrZXQiLCAiIik7c2NyaXB0LnNldEF0dHJpYnV0ZSgibml0cm8tZXhjbHVkZSIsICIiKTtzY3JpcHQuc3JjID0gImh0dHBzOi8vZGFzaGJvYXJkLnFlcmFtYXJrZXRpbmcuY29tL3NjcmlwdHMvZHluYW1pY19vcHRpbWl6YXRpb24uanMiO3NjcmlwdC5kYXRhc2V0LnV1aWQgPSAiYjc5NmYzNTgtZWY0ZS00NmViLWE4MjEtNzcyYjJmNDNjZjMwIjtzY3JpcHQuaWQgPSAic2EtZHluYW1pYy1vcHRpbWl6YXRpb24tbG9hZGVyIjtkb2N1bWVudC5oZWFkLmFwcGVuZENoaWxkKHNjcmlwdCk7'
+			strategy='beforeInteractive'
+			type='text/javascript'
+			data-uuid='b796f358-ef4e-46eb-a821-772b2f43cf30'
+			data-nowprocket=''
+			data-nitro-exclude=''
+		/>
 	</>
 );
 

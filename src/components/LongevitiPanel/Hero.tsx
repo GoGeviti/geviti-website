@@ -1,16 +1,19 @@
-import { CSSProperties } from 'react';
+import React, { CSSProperties } from 'react';
 import Image from 'next/image';
 
 import longevitiPanelData from '@/constant/data/longevitiPanel';
+import clsxm from '@/helpers/clsxm';
 
 import ButtonCta from '../ButtonCta';
 import { TickCircle } from '../Icons';
 import Navbar from '../Navbar/Landing';
 import PopupReview from '../PopupReview';
 
-const heroData = longevitiPanelData.hero;
+type HeroProps = typeof longevitiPanelData.hero & {
+	longeviti_type : 'blend' | 'panel';
+};
 
-const Hero: React.FC = () => {
+const Hero: React.FC<HeroProps> = heroData => {
 	return (
 		<div className='overflow-hidden relative'>
 			<Navbar
@@ -50,8 +53,27 @@ const Hero: React.FC = () => {
 					</p>
 				</div>
 			</div>
-			<div className='lg:pt-[185px] relative flex container-center max-lg:flex-col pb-[36px] lg:pb-[215px]'>
-				<div className='w-full max-lg:order-2 flex flex-col max-lg:items-center max-lg:text-center'>
+			{
+				heroData.longeviti_type === 'blend' && (
+					<div className='flex text-center justify-center lg:-mt-20'>
+						<Image
+							alt='packaging'
+							src={ heroData.image }
+							width={ 857 }
+							height={ 875 }
+							className='object-contain'
+						/>
+					</div>
+				)
+			}
+			<div className={ clsxm(
+				'relative flex container-center max-lg:flex-col pb-[36px] lg:pb-[215px]',
+				heroData.longeviti_type === 'panel' && 'lg:pt-[185px] '
+			) }>
+				<div className={ clsxm(
+					'w-full flex flex-col max-lg:items-center max-lg:text-center',
+					heroData.longeviti_type === 'panel' && 'max-lg:order-2 '
+				) }>
 					<div className='sm:max-w-[434px] flex flex-col'>
 						<h2 className='text-2xl sm:text-3xl lg:text-4xl !leading-normal sm:font-medium -tracking-0.04em text-primary'>
 							{ heroData.benefits.title }
@@ -59,15 +81,18 @@ const Hero: React.FC = () => {
 						<p className='mt-3.5 text-xs !leading-normal sm:text-sm text-grey-primary'>
 							{ heroData.benefits.description }
 						</p>
-						<div className='mt-[42px] max-sm:w-full'>
+						<div className='mt-[42px] max-sm:w-full w-fit'>
 							<ButtonCta
 								text={ heroData.benefits.cta.text }
 								href={ heroData.benefits.cta.href }
-								className='max-sm:w-full'
+								className='max-sm:w-full w-fit'
 							/>
 						</div>
 					</div>
-					<ul className='sm:max-w-[434px] lg:max-w-[395px] mt-[42px] flex flex-col gap-y-6 text-left'>
+					<ul className={ clsxm(
+						'sm:max-w-[434px] lg:max-w-[395px] mt-[42px] flex flex-col gap-y-6 text-left',
+						heroData.longeviti_type === 'blend' && 'lg:max-w-[511px]'
+					) }>
 						{ heroData.benefits.list.map(item => (
 							<li
 								key={ item.title }
@@ -86,25 +111,53 @@ const Hero: React.FC = () => {
 					</ul>
 				</div>
 
-				<div className='absolute left-1/2 top-7 w-screen max-lg:hidden'>
-					<Image
-						src={ heroData.benefits.image }
-						alt=''
-						width={ 1750 }
-						height={ 2192 }
-						priority
-						className='w-auto h-[1300px] object-contain max-lg:hidden'
-					/>
-				</div>
-				<div className='flex -mx-4 order-1 relative -mb-[22%] lg:hidden'>
-					<Image
-						src={ heroData.benefits.imageMobile }
-						alt=''
-						width={ 1750 }
-						height={ 2192 }
-						className='w-full h-auto object-contain lg:hidden'
-					/>
-				</div>
+				{
+					heroData.longeviti_type === 'panel' ? (
+						<React.Fragment>
+							<div className='absolute left-1/2 top-7 w-screen max-lg:hidden'>
+								<Image
+									src={ heroData.benefits.image }
+									alt=''
+									width={ 1750 }
+									height={ 2192 }
+									priority
+									className='w-auto h-[1300px] object-contain max-lg:hidden'
+								/>
+							</div>
+							<div className='flex -mx-4 order-1 relative -mb-[22%] lg:hidden'>
+								<Image
+									src={ heroData.benefits.imageMobile }
+									alt=''
+									width={ 1750 }
+									height={ 2192 }
+									className='w-full h-auto object-contain lg:hidden'
+								/>
+							</div>
+						</React.Fragment>
+					) : (
+						<React.Fragment>
+							<div className='absolute left-[38%] -top-[12%] w-screen max-lg:hidden'>
+								<Image
+									src={ heroData.benefits.image }
+									alt=''
+									width={ 1750 }
+									height={ 2192 }
+									priority
+									className='w-auto h-[1100px] object-contain max-lg:hidden'
+								/>
+							</div>
+							<div className='flex -mx-4 order-1 relative -mb-[22%] lg:hidden'>
+								<Image
+									src={ heroData.benefits.imageMobile }
+									alt=''
+									width={ 1750 }
+									height={ 2192 }
+									className='w-full h-auto object-contain lg:hidden'
+								/>
+							</div>
+						</React.Fragment>
+					)
+				}
 			</div>
 		</div>
 	);
