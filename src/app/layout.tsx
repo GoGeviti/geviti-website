@@ -37,13 +37,14 @@ const HEAD_TAGS = (
 		 <Script
 			id='sa-dynamic-optimization'
 			type='text/javascript'
-			src='data:text/javascript;base64,dmVyIHNjcmlwdCA9IGRvY3VtZW50LmNyZWF0ZUVsZW1lbnQoInNjcmlwdCIpO3NjcmlwdC5zZXRBdHRyaWJ1dGUoIm5vd3Byb2NrZXQiLCAiIik7c2NyaXB0LnNldEF0dHJpYnV0ZSgibml0cm8tZXhjbHVkZSIsICIiKTtzY3JpcHQuc3JjID0gImh0dHBzOi8vZGFzaGJvYXJkLnFlcmFtYXJrZXRpbmcuY29tL3NjcmlwdHMvZHluYW1pY19vcHRpbWl6YXRpb24uanMiO3NjcmlwdC5kYXRhc2V0LnV1aWQgPSAiYjc5NmYzNTgtZWY0ZS00NmViLWE4MjEtNzcyYjJmNDNjZjMwIjtzY3JpcHQuaWQgPSAic2EtZHluYW1pYy1vcHRpbWl6YXRpb24tbG9hZGVyIjtkb2N1bWVudC5oZWFkLmFwcGVuZENoaWxkKHNjcmlwdCk7'
+			src='https://dashboard.qeramarketing.com/scripts/dynamic_optimization.js'
 			strategy='afterInteractive'
 			onLoad={ () => {
 				const script = document.getElementById('sa-dynamic-optimization');
 				if (script) {
 					script.setAttribute('nowprocket', '');
 					script.setAttribute('nitro-exclude', '');
+					script.dataset.uuid = 'b796f358-ef4e-46eb-a821-772b2f43cf30';
 				}
 			} }
 		/>
