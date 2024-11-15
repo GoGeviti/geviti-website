@@ -34,6 +34,15 @@ const HEAD_TAGS = (
 			name='cometly-domain-verification'
 			content='007df841-addd-4846-93c2-f94f19c48097'
 		/>
+		<Script
+			id='sa-dynamic-optimization'
+			strategy='afterInteractive'
+			data-uuid='b796f358-ef4e-46eb-a821-772b2f43cf30'
+			src='https://dashboard.qeramarketing.com/scripts/dynamic_optimization.js'
+			nonce='sa-dynamic-optimization'
+			data-nowprocket='true'
+			nitro-exclude='true'
+		/>
 	</>
 );
 
