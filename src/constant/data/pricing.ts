@@ -5,7 +5,7 @@ const pricingData = {
 		preTitle: 'Care based off of biomarkers',
 		title: 'Build a healthier future, today.',
 		description:
-      'Every user begins with an at-home full panel to establish baselines. The cost of bloodwork is included in your membership. Labs are conducted at no extra cost every 6 months.',
+      'Our membership connects you with health experts, offering data-driven care plans, doctor-monitored treatments, routine labs, custom supplements, and more.',
 		features: [
 			'Start with at-home bloodwork panel',
 			'Get free at-home labs every 6 months',
@@ -20,7 +20,7 @@ const pricingData = {
 				price: '99.95',
 			},
 			{
-				title: 'Monthly',
+				title: 'Semi Annual',
 				value: 'monthly',
 				price: '297.99',
 			},

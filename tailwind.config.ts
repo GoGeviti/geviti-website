@@ -163,6 +163,8 @@ const config: Config = {
           'linear-gradient(160deg, #A7DAFF 4.78%, #75C5FF 92.54%)',
 				'gradient-blue-products':
           'linear-gradient(343deg, #4AADF6 -12.96%, #8CCEFF 67.54%)',
+				'member-mobile':
+          'linear-gradient(103deg, #000 4.16%, #2A2A2A 101.14%)',
 			},
 			animation: {
 				marquee: 'marquee 90s linear infinite',

@@ -1,8 +1,10 @@
 import { Metadata } from 'next';
 
 import { Footer, FrequentlyAskedQuestions, RunningLogo, SolutionsComponent } from '@/components';
+import { ViewOtherCategories } from '@/components/Solutions';
 import { solutionData } from '@/constant/data';
 import { mergeOpenGraph } from '@/lib/mergeOpenGraph';
+import { getCategories } from '@/services/products';
 
 export const metadata: Metadata = {
 	title: 'Men’s Health',
@@ -14,7 +16,9 @@ export const metadata: Metadata = {
 	}),
 };
 
-const Solutions = () => {
+const Solutions = async() => {
+	const categoryData = await getCategories(undefined, 'male');
+
 	return (
 		<div className='flex min-h-screen flex-col w-full bg-grey-background font-Poppins'>
 			<SolutionsComponent.Hero type='men' />
@@ -22,6 +26,11 @@ const Solutions = () => {
 				<RunningLogo />
 			</div>
 			<SolutionsComponent.WellnessPro type='men' />
+			{
+				categoryData.categories && (
+					<ViewOtherCategories data={ categoryData.categories } />
+				)
+			}
 			{ /* <SolutionsComponent.TreatmentOptions type='men' /> */ }
 			<div className='lg:px-3 pb-6'>
 				{ /* <MembershipComponent.BiomarkersSection wrapperClassName='bg-white pt-6 pb-[42px] lg:py-[62px]' /> */ }

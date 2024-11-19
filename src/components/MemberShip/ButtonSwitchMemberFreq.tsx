@@ -29,10 +29,10 @@ const ButtonSwitchMemberFreq: React.FC<ButtonSwitchMemberFreqProps> = ({
 
 	const setItemClassName = (optIdx: number) => {
 		if (!showHightlightTextOnMobile) {
-			return optIdx === 0 ? 'px-3.5 w-[95px] sm:w-[156px]' : 'px-6 w-[104px] sm:w-[156px]';
+			return optIdx === 0 ? 'px-3.5 w-[95px] sm:w-[156px]' : 'px-3.5 w-[95px] sm:w-[156px]';
 		}
 
-		return optIdx === 0 ? 'px-3.5 w-[156px]' : 'px-6 w-[104px] sm:w-[156px]';
+		return optIdx === 0 ? 'px-3.5 w-[156px]' : 'px-3.5 w-[156px]';
 	};
 
 	const renderButtonSwitchFrequency = () => {
@@ -66,11 +66,11 @@ const ButtonSwitchMemberFreq: React.FC<ButtonSwitchMemberFreqProps> = ({
 						activeTabIdx === 0 ? 'left-1.5' : 'left-[95px] sm:left-[162px]',
 						showHightlightTextOnMobile && activeTabIdx > 0 && 'max-sm:left-[162px]',
 						setItemClassName(activeTabIdx),
-						currentOpt.title === 'Quarterly' ? 'justify-between' : 'justify-center'
+						currentOpt.title === 'Quarterly' ? 'justify-center' : 'justify-center'
 					) }
 				>
 					{ currentOpt.title }
-					{ currentOpt.title === 'Quarterly' && (
+					{ /* { currentOpt.title === 'Quarterly' && (
 						<span
 							className={ clsxm(
 								'text-blue-primary text-xs !leading-normal w-[55px] h-[21px] flex-shrink-0 bg-[#F2FAFF]/15 border-[0.55px] border-white/15 rounded-[100px] flex items-center justify-center',
@@ -79,7 +79,7 @@ const ButtonSwitchMemberFreq: React.FC<ButtonSwitchMemberFreqProps> = ({
 						>
               13% off
 						</span>
-					) }
+					) } */ }
 				</motion.span>
 			</div>
 		);
