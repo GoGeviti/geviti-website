@@ -81,12 +81,10 @@ const DialogDiscount: React.FC<DialogDiscountProps> = ({
 			<div className='font-Poppins'>
 				<div className='flex flex-col gap-2'>
 					<h4 className='text-center text-[28px] capitalize text-primary'>
-            Get 10% Off Your First Month
+					Black Friday Deal!
 					</h4>
 					<p className='text-center text-xs text-[#6A6E70]'>
-            Sign up for our Email and SMS updates and get 10% off your first
-            month! By building a comprehensive picture of your health, we can
-            tailor wellness plans & products specifically to you.
+					Black Friday Sale 50% off your first<br/>month with code <b>&quot;BLACKFRIDAY&quot;</b>
 					</p>
 				</div>
 				<form
@@ -172,7 +170,7 @@ const DialogDiscount: React.FC<DialogDiscountProps> = ({
 			>
 				<DialogContent
 					position='bottom-left'
-					className='max-w-[518px] rounded-[20px] overflow-y-auto shadow-[3px_6px_24px_0px_rgba(0,0,0,0.25)]'
+					className='max-w-[518px] bg-white rounded-[20px] overflow-y-auto shadow-[3px_6px_24px_0px_rgba(0,0,0,0.25)]'
 				>
 					<div className='flex flex-col'>
 						<div className='relative w-full md:h-[199px]'>
@@ -200,10 +198,10 @@ const DialogDiscount: React.FC<DialogDiscountProps> = ({
 							<Image
 								fill
 								priority
-								sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
+								quality={ 100 }
 								alt='discount'
 								className='w-full h-full object-cover max-md:hidden'
-								src='/images/home/discount.webp'
+								src='/images/home/black_friday.jpg'
 							/>
 						</div>
 						<div className='p-6 flex flex-col gap-6'>{ renderContent() }</div>

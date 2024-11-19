@@ -56,56 +56,40 @@ const pricingData = {
 				listTitle: 'Your membership includes access to:',
 				list: [
 					{
-						title: 'Free at-home bloodwork twice per year',
-						description: '',
+						title: 'Free routine labs at-home',
+						description: 'Routine bloodwork is everything. We’ll send a licensed phlebotomist to you for an at-home or in-office blood draw twice a year, looking at over 90 different biomarkers.',
 					},
 					{
-						title: 'Online provider visits to review labs',
-						description: '',
+						title: 'Personalized care plans ',
+						description: 'Fully customized plan tailored to your goals, including personalized supplements, doctor-monitored medications, metabolic health coaching, and actionable insights based on your data.  ',
 					},
 					{
-						title: 'Wearables integration and tracking',
-						description: '',
+						title: 'Wholesale pricing ',
+						description: 'Access compounded medications, supplements, and testing at wholesale prices. Save money while receiving premium, medically guided health solutions for your wellness journey.',
 					},
 					{
-						title: 'Personalized care plan from results',
-						description: '',
+						title: 'Custom supplements ',
+						description: 'Get science-backed supplements tailored to your unique needs. Based on your bloodwork, these blends ensure you get exactly what your body needs for optimal health and performance.',
 					},
 					{
-						title: 'Bloodwork result tracking in-app',
-						description: '',
+						title: 'Doctor monitored treatments',
+						description: 'Treatments are overseen by licensed medical providers who monitor progress and adjust plans as needed, ensuring your journey is safe, effective, and aligned with your health goals.',
 					},
 					{
-						title: 'Daily supplement packs (wholesale)',
-						description: '',
+						title: 'Specialty testing options',
+						description: 'From gut health and micronutrient testing, uncover deeper insights into your health. Our specialized tests provide data-driven solutions for a comprehensive wellness strategy.',
 					},
 					{
-						title: 'Speciality testing (wholesale pricing)',
-						description: '',
+						title: 'Dedicated wellness specialists',
+						description: 'Stay supported with direct access to a personal wellness specialist. Get guidance, answers, and accountability to keep your health journey on track every step of the way.',
 					},
 					{
-						title: 'Direct access to medical providers',
-						description: '',
+						title: 'Mobile application',
+						description: 'Track your health, schedule bloodwork, manage prescriptions, and access your care plan—all from a user-friendly app designed to make proactive care simple and convenient.',
 					},
 					{
-						title: 'Exclusive pharmacy pricing (wholesale)',
-						description: '',
-					},
-					{
-						title: 'Prescriptions delivered to your door',
-						description: '',
-					},
-					{
-						title: 'Easy access to prescriptions',
-						description: '',
-					},
-					// {
-					// 	title: 'Quarterly practitioner visits via the app',
-					// 	description: '',
-					// },
-					{
-						title: 'Dedicated wellness professional',
-						description: '',
+						title: 'AI health companion',
+						description: 'Leverage cutting-edge AI to track your progress, analyze your data, and provide actionable insights, keeping your health goals within reach with personalized, real-time support.',
 					},
 				],
 			},

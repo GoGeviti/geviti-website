@@ -8,18 +8,18 @@ import Image from 'next/image';
 import landingData from '@/constant/data/landing';
 import { navbarDefaultTransition } from '@/constant/data/navbar';
 import clsxm from '@/helpers/clsxm';
-import { screens } from '@/helpers/style';
-import { useWindowDimensions } from '@/hooks';
 
+// import { screens } from '@/helpers/style';
+// import { useWindowDimensions } from '@/hooks';
 import ButtonCta from '../ButtonCta';
 import Navbar from '../Navbar/Landing';
 
 import { slideUpTransition } from './transition';
 
-const PopupReview = dynamic(() => import('../PopupReview'), {
-	ssr: false,
-	loading: () => null,
-});
+// const PopupReview = dynamic(() => import('../PopupReview'), {
+// 	ssr: false,
+// 	loading: () => null,
+// });
 const HeroBanner = dynamic(() => import('./HeroBanner'), {
 	ssr: false,
 	loading: () => null,
@@ -44,7 +44,7 @@ const HeroImage = ({ type }: { type: 'desktop' | 'mobile' }) => {
 				imageMobile ? 'md:hidden object-center' : 'md:block hidden object-right'
 			) }
 			fill
-			sizes={ imageMobile ? '100vw' : '90vw' }
+			quality={ 100 }
 			loading={ type === 'mobile' ? 'lazy' : 'eager' }
 		/>
 	);
@@ -60,8 +60,8 @@ const Hero: React.FC<HeroProps> = ({
 
 	const stepControls = useAnimationControls();
 
-	const windowDimensions = useWindowDimensions();
-	const isMobile = windowDimensions.width < screens.lg;
+	// const windowDimensions = useWindowDimensions();
+	// const isMobile = windowDimensions.width < screens.lg;
 
 	useEffect(() => {
 		setIsMounted(true);
@@ -115,39 +115,39 @@ const Hero: React.FC<HeroProps> = ({
 		);
 	};
 
-	const renderPopupReview = () => {
-		if (!isMobile) {
-			return (
-				<PopupReview
-					motionProps={ {
-						variants: {
-							initial: { scale: 0, opacity: 0 },
-							animate: {
-								scale: 1,
-								opacity: 1,
-							},
-							exit: {
-								scale: 0,
-								opacity: 0,
-							},
-						},
-						transition: {
-							duration: 0.64,
-							delay: showIntro === 'true' ? 5 : 4,
-							ease: 'easeInOut',
-						},
-						initial: 'initial',
-						whileInView: 'animate',
-						exit: 'exit',
-						viewport: { once: true },
-					} }
-					wrapperClassName='lg:w-auto pl-[18px] py-3 pr-[42px] !bg-black/[0.15] !text-white !border !border-white/[0.15] !rounded-[18px]'
-				/>
-			);
-		}
+	// const renderPopupReview = () => {
+	// 	if (!isMobile) {
+	// 		return (
+	// 			<PopupReview
+	// 				motionProps={ {
+	// 					variants: {
+	// 						initial: { scale: 0, opacity: 0 },
+	// 						animate: {
+	// 							scale: 1,
+	// 							opacity: 1,
+	// 						},
+	// 						exit: {
+	// 							scale: 0,
+	// 							opacity: 0,
+	// 						},
+	// 					},
+	// 					transition: {
+	// 						duration: 0.64,
+	// 						delay: showIntro === 'true' ? 5 : 4,
+	// 						ease: 'easeInOut',
+	// 					},
+	// 					initial: 'initial',
+	// 					whileInView: 'animate',
+	// 					exit: 'exit',
+	// 					viewport: { once: true },
+	// 				} }
+	// 				wrapperClassName='lg:w-auto pl-[18px] py-3 pr-[42px] !bg-black/[0.15] !text-white !border !border-white/[0.15] !rounded-[18px]'
+	// 			/>
+	// 		);
+	// 	}
 
-		return null;
-	};
+	// 	return null;
+	// };
 
 	return (
 		<div
@@ -173,9 +173,9 @@ const Hero: React.FC<HeroProps> = ({
 				<div className='absolute bottom-0 inset-x-0 w-full h-[28%] max-lg:bg-backdrop-hero-landing-bottom-desktop' />
 				<div className='h-full container-center'>
 					<div className='relative z-20 w-full h-full rounded-b-19px'>
-						<Suspense fallback={ null }>
+						{ /* <Suspense fallback={ null }>
 							{ heroData.banner.show && <HeroBanner showBanner={ showBanner } /> }
-						</Suspense>
+						</Suspense> */ }
 						<div className='lg:pb-[47px] h-full w-full flex flex-col justify-end'>
 							<div className='text-left flex flex-col'>
 								<span className='overflow-hidden inline-flex'>
@@ -297,9 +297,10 @@ const Hero: React.FC<HeroProps> = ({
 									</div>
 
 									<Suspense fallback={ null }>
-										<div className='absolute right-0 bottom-0 max-lg:hidden'>
+										{ /* <div className='absolute right-0 bottom-0 max-lg:hidden'>
 											{ renderPopupReview() }
-										</div>
+										</div> */ }
+										{ heroData.banner.show && <HeroBanner showBanner={ showBanner } /> }
 									</Suspense>
 								</div>
 							</div>

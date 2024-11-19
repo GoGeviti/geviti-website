@@ -113,7 +113,9 @@ const config: Config = {
 			},
 			backgroundImage: {
 				'backdrop-hero-landing-left':
-          'linear-gradient(90deg, rgba(8, 16, 19, 0.6) 0%, rgba(8, 16, 19, 0.568221) 64.55%, rgba(8, 16, 19, 0) 96.41%)',
+          'linear-gradient(90deg, rgba(8, 16, 19, 0.45) 0%, rgba(8, 16, 19, 0.23) 64.55%, rgba(8, 16, 19, 0.00) 96.41%)',
+				// 'backdrop-hero-landing-left':
+				//   'linear-gradient(90deg, rgba(8, 16, 19, 0.6) 0%, rgba(8, 16, 19, 0.568221) 64.55%, rgba(8, 16, 19, 0) 96.41%)',
 				'backdrop-hero-landing-bottom':
           'linear-gradient(0deg, #181A1C 20.46%, rgba(24, 26, 28, 0.00) 100%)',
 				'backdrop-hero-landing-bottom-desktop':
