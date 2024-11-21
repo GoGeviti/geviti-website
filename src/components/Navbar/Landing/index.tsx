@@ -29,7 +29,6 @@ const navbarVariants = {
 	visible: {
 		y: 0,
 		opacity: 1,
-		backdropFilter: 'blur(25px)',
 		borderRadius: '100px',
 	},
 	hidden: { y: '-100%', opacity: 0 },
@@ -480,7 +479,7 @@ const Navbar: React.FC<NavbarProps> = ({
 									onMouseLeave={ handleMenuClose }
 									className={ clsxm(
 										'relative overflow-visible transition-all duration-300 visible h-[60px] lg:h-[69px] font-Poppins p-18px lg:pl-[42px] lg:py-3 lg:pr-3 rounded-[100px] flex items-center space-x-5 xl:space-x-[50px] w-full justify-between',
-										isScrolled ? 'bg-grey-50 backdrop-blur-none' : 'bg-white/10',
+										isScrolled ? 'bg-grey-50 backdrop-blur-none' : 'bg-white/10 backdrop-blur-xl',
 										theme === 'light' && 'bg-most-value'
 									) }
 								>

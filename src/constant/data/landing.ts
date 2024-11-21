@@ -45,6 +45,8 @@ const landingData = {
 		},
 		image: '/images/landing/compressed/hero.webp',
 		imageMobile: '/images/landing/compressed/hero-mobile.webp',
+		imageLanding: '/images/landing/compressed/hero-landing.webp',
+		imageLandingMobile: '/images/landing/compressed/hero-landing-mobile.webp',
 		btnCta: {
 			text: 'Join Geviti',
 			href: '/pricing',

@@ -30,13 +30,22 @@ const heroData = landingData.hero;
 type HeroProps = {
 	showBanner?: boolean;
 	showIntro?: string;
+	isLanding?: boolean;
 };
 
-const HeroImage = ({ type }: { type: 'desktop' | 'mobile' }) => {
+const HeroImage = ({ type, isLanding }: { type: 'desktop' | 'mobile', isLanding:boolean }) => {
 	const imageMobile = type === 'mobile';
+	const imageSrc = isLanding
+		? imageMobile
+			? heroData.imageLandingMobile
+			: heroData.imageLanding
+		: imageMobile
+			? heroData.imageMobile
+			: heroData.image;
+
 	return (
 		<Image
-			src={ imageMobile ? heroData.imageMobile : heroData.image }
+			src={ imageSrc }
 			alt='hero'
 			priority={ type === 'desktop' }
 			className={ clsxm(
@@ -52,6 +61,7 @@ const HeroImage = ({ type }: { type: 'desktop' | 'mobile' }) => {
 
 const Hero: React.FC<HeroProps> = ({
 	showBanner = false,
+	isLanding = false,
 	showIntro = 'true',
 }) => {
 	const { ref } = useInView();
@@ -89,12 +99,17 @@ const Hero: React.FC<HeroProps> = ({
 	};
 
 	const renderImage = (type: 'desktop' | 'mobile') => (
-		<HeroImage type={ type } />
+		<HeroImage
+			type={ type }
+			isLanding={ isLanding } />
 	);
 
 	const renderMainKeys = () => {
 		return (
-			<div className='lg:pt-11 w-full flex flex-wrap max-lg:px-4 lg:justify-center gap-4 max-lg:pb-6 pt-11 lg:gap-6 relative z-10'>
+			<div className={ clsxm(
+				'lg:pt-11 w-full flex flex-wrap max-lg:px-4 lg:justify-center gap-4 max-lg:pb-6 pt-11 lg:gap-6 relative z-10',
+				isLanding && 'lg:pt-8'
+			) }>
 				{ heroData.mainKeys.map((item, itemIdx) => {
 					return (
 						<motion.div
@@ -105,7 +120,7 @@ const Hero: React.FC<HeroProps> = ({
 								duration: 0.5,
 								delay: showIntro === 'true' ? 3.5 + itemIdx * 0.2 : 1.5 + itemIdx * 0.2,
 							} }
-							className={ clsxm('flex items-center justify-center p-[10px] rounded-lg bg-white/20 text-grey-50 text-sm font-medium') }
+							className={ clsxm('flex items-center justify-center p-[10px] rounded-lg bg-white/20 backdrop-blur-md text-grey-50 text-sm font-medium') }
 						>
 							<span className='whitespace-nowrap'>{ item }</span>
 						</motion.div>
@@ -228,7 +243,10 @@ const Hero: React.FC<HeroProps> = ({
 									{ renderTitles(heroData.titlesMobile) }
 								</motion.h1>
 
-								<div className='flex w-full mt-[5vh] xs:mt-[42px] lg:mt-[5.435vh] xl:mt-50px relative'>
+								<div className={ clsxm(
+									'flex w-full mt-[5vh] xs:mt-[42px] lg:mt-[5.435vh] xl:mt-50px relative',
+									isLanding && 'lg:mt-8 xl:mt-8'
+								) }>
 									<div className='grid grid-cols-1 auto-rows-fr sm:flex gap-4 xxs:gap-6 lg:gap-[42px] items-center w-full'>
 										<div className='overflow-hidden inline-block h-full'>
 											<motion.div
@@ -305,7 +323,10 @@ const Hero: React.FC<HeroProps> = ({
 								</div>
 							</div>
 
-							<div className='mt-[5.2vh] relative xs:mt-[46px] lg:mt-[9.13vh] xl:mt-[84px]'>
+							<div className={ clsxm(
+								'mt-[5.2vh] relative xs:mt-[46px] lg:mt-[9.13vh] xl:mt-[84px]',
+								isLanding && 'lg:mt-8 xl:mt-8'
+							) }>
 								<motion.div
 									variants={ {
 										visible: {
