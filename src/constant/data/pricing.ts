@@ -31,7 +31,7 @@ const pricingData = {
 				textSuffix: 'ACCEPTED',
 			},
 			preTitle: 'Longeviti made simple',
-			title: 'Data Driven<br />Personalized Wellness',
+			title: 'Data Driven Personalized Wellness',
 			image: '/images/pricing/phone-mockup.webp',
 		},
 		list: [
