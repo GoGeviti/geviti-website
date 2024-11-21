@@ -1,16 +1,21 @@
 'use client';
-
-import React from 'react';
+import React, { useRef, useState } from 'react';
+import { motion } from 'framer-motion'
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { Swiper as SwiperType } from 'swiper';
+import { Swiper, SwiperSlide } from 'swiper/react';
 
+import clsxm from '@/helpers/clsxm';
 import { Product } from '@/payload/payload-types';
+
+import 'swiper/css';
 
 const Card = (product:Product) => {
 	const pathName = usePathname();
 	return (
-		<div className='w-[319px] flex-shrink-0 lg:w-1/4 max-lg:pb-3'> { /* Added padding wrapper */ }
+		<div className='w-full flex-shrink-0 lg:w-1/4 max-lg:p-4'> { /* Added padding wrapper */ }
 			<div className='h-full flex flex-col bg-white shadow-[0px_1px_15.2px_0px_rgba(0,0,0,0.10)] rounded-2xl p-3.5'>
 				<Link
 					href={ pathName + '/' + product.slug }
@@ -45,8 +50,10 @@ const Card = (product:Product) => {
 };
 
 const ProductsSlider:React.FC<{products : Product[]}> = ({ products }) => {
+	const swiperRef = useRef<SwiperType>(undefined);
+	const [activeSlide, setActiveSlide] = useState(0)
 	return (
-		<div className='lg:px-3 max-lg:mt-16'>
+		<div className='lg:px-3'>
 			<div className='container-center'>
 				<div className='lg:pb-[89px] pt-16'>
 					<div className='flex flex-col lg:flex-row items-start justify-between'>
@@ -59,13 +66,74 @@ const ProductsSlider:React.FC<{products : Product[]}> = ({ products }) => {
 							<p className='text-primary text-sm'>The FDA&apos;s approval of oral testosterone undecanoate offers a breakthrough in TRT, providing an easy-to-use, effective option for managing Low T. This addition enhances the therapy landscape, simplifying the path to hormonal balance for many.</p>
 						</div>
 					</div>
-					<div className='mt-16 flex no-scrollbar lg:justify-center items-stretch lg:flex-wrap max-lg:overflow-x-auto gap-5 lg:gap-16'>
+					<div className='mt-16 max-lg:hidden flex no-scrollbar lg:justify-center items-stretch lg:flex-wrap max-lg:overflow-x-auto gap-5 lg:gap-16'>
 						{ products.map((product, index) => (
 							<Card
 								key={ index }
 								{ ...product }
 							/>
 						)) }
+					</div>
+					<div className='lg:hidden mt-11'>
+						<Swiper
+							onBeforeInit={ swiper => {
+								swiperRef.current = swiper;
+							} }
+							onSlideChange={ swiper => {
+								setActiveSlide(swiper.activeIndex)
+							} }
+							slidesPerView={ 4 }
+							breakpoints={ {
+								0: {
+									slidesPerView: 1,
+									spaceBetween: 24,
+									slidesOffsetAfter: 16,
+									allowTouchMove: true,
+								},
+								768: {
+									slidesPerView: 4,
+									spaceBetween: 24,
+									allowTouchMove: false,
+								},
+							} }
+							spaceBetween={ 24 }
+							slidesOffsetAfter={ 16 }
+						>
+							{ products.map((product, index) => (
+								<SwiperSlide key={ index }>
+									<Card
+										key={ index }
+										{ ...product }
+									/>
+								</SwiperSlide>
+							)) }
+						</Swiper>
+						<div className='flex items-center lg:hidden justify-center gap-1'>
+							{ products.map((_, idx) => (
+								<div
+									key={ idx }
+									className='relative w-2 h-2'
+									onClick={ () => {
+										swiperRef.current?.slideTo(idx);
+									} }
+								>
+									<div className={ clsxm(
+										'w-2 h-2 rounded-full bg-grey-100'
+									) } />
+									{ idx === activeSlide && (
+										<motion.div
+											layoutId='activeBullet'
+											className='absolute inset-0 rounded-full bg-blue-primary'
+											transition={ {
+												type: 'spring',
+												stiffness: 350,
+												damping: 30
+											} }
+										/>
+									) }
+								</div>
+							)) }
+						</div>
 					</div>
 				</div>
 			</div>

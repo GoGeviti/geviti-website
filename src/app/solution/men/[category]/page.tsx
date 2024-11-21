@@ -75,7 +75,7 @@ const ProductCategory = async(props : {
 					<ProductsSlider products={ productsData }/>
 				)
 			}
-			<div className='mt-[42px] lg:mt-[124px]'>
+			<div className='mt-[42px]'>
 				<RunningLogo />
 			</div>
 			<ViewOtherCategories data={ categoryData.categories } />
