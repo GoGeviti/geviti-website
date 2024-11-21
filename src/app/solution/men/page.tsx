@@ -28,7 +28,9 @@ const Solutions = async() => {
 			<SolutionsComponent.WellnessPro type='men' />
 			{
 				categoryData.categories && (
-					<ViewOtherCategories data={ categoryData.categories } />
+					<ViewOtherCategories
+						baseUrl='/men'
+						data={ categoryData.categories } />
 				)
 			}
 			{ /* <SolutionsComponent.TreatmentOptions type='men' /> */ }

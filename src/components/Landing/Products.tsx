@@ -85,7 +85,7 @@ const ProductsSection: React.FC<ProductSectionProps> = ({ data }) => {
 							transition={ { duration: 0.375, ease: 'easeInOut' } }
 						>
 							<ViewOtherCategories
-								baseUrl={ `/solution/${selectedCategoryIdx === 'male' ? 'men' : 'women'}` }
+								baseUrl={ `/${selectedCategoryIdx === 'male' ? 'men' : 'women'}` }
 								hideHeader={ true }
 								data={ data.filter(e => ['both', selectedCategoryIdx].includes(e.type)) } />
 						</motion.div>

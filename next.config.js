@@ -9,7 +9,28 @@ const nextConfig = {
 				hostname: '**',
 			},
 		],
-	}
+	},
+	async rewrites() {
+		return [
+			{
+				source: '/men/:path*',
+				destination: '/solution/men/:path*',
+			},
+			{
+				source: '/women/:path*',
+				destination: '/solution/women/:path*',
+			}
+		];
+	},
+	async redirects() {
+		return [
+			{
+				source: '/solution/:path*',
+				destination: '/:path*',
+				permanent: true, // Redirect permanen for SEO
+			},
+		];
+	},
 };
 
 module.exports = nextConfig;

@@ -18,7 +18,7 @@ export const metadata: Metadata = {
 
 const Solutions = async() => {
 
-	const categoryData = await getCategories(undefined, 'female');
+	const categoryData = await getCategories(undefined, 'women');
 
 	return (
 		<div className='flex min-h-screen flex-col w-full bg-grey-background font-Poppins'>
@@ -29,7 +29,9 @@ const Solutions = async() => {
 			<SolutionsComponent.WellnessPro type='women' />
 			{
 				categoryData.categories && (
-					<ViewOtherCategories data={ categoryData.categories } />
+					<ViewOtherCategories
+						baseUrl='/women'
+						data={ categoryData.categories } />
 				)
 			}
 			{ /* <SolutionsComponent.TreatmentOptions type='women' /> */ }

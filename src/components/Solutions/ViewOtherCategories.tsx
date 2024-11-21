@@ -25,7 +25,7 @@ const ViewOtherCategories: React.FC<{data:Category[] | Product[], isProduct?: bo
 	const [disabledPrev, setDisabledPrev] = useState(true);
 	const [disabledNext, setDisabledNext] = useState(false);
 	const pathname = usePathname();
-	const basePath = baseUrl ? baseUrl : pathname.split('/').slice(0, 3)
+	const basePath = baseUrl ? baseUrl : pathname.split('/').slice(0, 2)
 		.join('/');
 
 	const handleSlideChange = (swiper:SwiperType) => {
