@@ -274,7 +274,7 @@ const landingData = {
 		},
 	},
 	benefits: {
-		preTitle: 'Anti-aging care',
+		preTitle: 'data driven care based upon bloodwork',
 		title: 'Optimize health & wellness',
 		description:
       'A fully integrated health program that brings together advanced diagnostics, expert medical care and coaching, science-backed longevity therapies for optimal well-being and long-term vitality.',
@@ -329,7 +329,7 @@ const landingData = {
 					},
 					{
 						cheked: true,
-						text: 'Convenience (all from the comfort of your home)',
+						text: 'Care from home, or on the go',
 					},
 					{
 						cheked: true,
