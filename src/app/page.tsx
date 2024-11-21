@@ -7,6 +7,7 @@ import { getAllProducts } from '@/components/Checkout/api/onboarding';
 import IntroScreen from '@/components/IntroScreen';
 import { Products } from '@/components/Landing';
 import { getCookie } from '@/services/cookies';
+import { getAllCategories } from '@/services/products';
 
 // Components that need SEO should have SSR enabled
 const Hero = dynamic(() => import('@/components/Landing/Hero'));
@@ -35,6 +36,7 @@ const PricingBiomarkers = dynamic(() => import('@/components/Pricing/PricingBiom
 
 const HomePage: NextPage = async() => {
 	const products = await getAllProducts();
+	const categories = await getAllCategories();
 	const showIntro = await getCookie('show_intro');
 
 	return (
@@ -87,7 +89,7 @@ const HomePage: NextPage = async() => {
 						</div>
 					) }
 					
-					<Products />
+					<Products data={ categories.categories } />
 					<React.Suspense fallback={ <div className='min-h-[200px]' /> }>
 						<Banner />
 					</React.Suspense>
