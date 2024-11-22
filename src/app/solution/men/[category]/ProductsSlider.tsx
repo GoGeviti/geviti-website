@@ -49,7 +49,15 @@ const Card = (product:Product) => {
 	);
 };
 
-const ProductsSlider:React.FC<{products : Product[]}> = ({ products }) => {
+type ProductsSliderType = {
+	products : Product[]
+	hormoneTreatment?: {
+    title?: string | null;
+    description?: string | null;
+  };
+}
+
+const ProductsSlider:React.FC<ProductsSliderType> = ({ products, hormoneTreatment }) => {
 	const swiperRef = useRef<SwiperType>(undefined);
 	const [activeSlide, setActiveSlide] = useState(0)
 	return (
@@ -59,11 +67,11 @@ const ProductsSlider:React.FC<{products : Product[]}> = ({ products }) => {
 					<div className='flex flex-col lg:flex-row items-start justify-between'>
 						<div className='w-full'>
 							<h3 className='text-2xl lg:text-4xl font-medium text-primary'>
-                Hormone optimization options
+								{ hormoneTreatment?.title }
 							</h3>
 						</div>
 						<div className='flex flex-col gap-8 max-w-[533px] lg:gap-16 max-lg:mt-3'>
-							<p className='text-primary text-sm'>The FDA&apos;s approval of oral testosterone undecanoate offers a breakthrough in TRT, providing an easy-to-use, effective option for managing Low T. This addition enhances the therapy landscape, simplifying the path to hormonal balance for many.</p>
+							<p className='text-primary text-sm'>{ hormoneTreatment?.description }</p>
 						</div>
 					</div>
 					<div className='mt-16 max-lg:hidden flex no-scrollbar lg:justify-center items-stretch lg:flex-wrap max-lg:overflow-x-auto gap-5 lg:gap-16'>

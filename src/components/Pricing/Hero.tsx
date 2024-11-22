@@ -298,14 +298,14 @@ const Hero: React.FC<HeroProps> = ({
 											theme={ item.mostValue ? 'secondary' : 'primary' }
 											className='w-full sm:w-fit mt-[25px]'
 										/>
-										{ pricingData.hero.pricingOptions[activeTabIdx].value ===
+										{ /* { pricingData.hero.pricingOptions[activeTabIdx].value ===
                     'monthly' && (
 											<p className='text-[8px] font-Poppins font-light mt-4'>
                       *By purchasing a monthly membership, you agree to a $150
                       cancellation fee for cancellations within the first 60
                       days. Applies to the monthly plan only.
 											</p>
-										) }
+										) } */ }
 									</div>
 
 									<div>

@@ -20,7 +20,7 @@ const pricingData = {
 				price: '99.95',
 			},
 			{
-				title: 'Semi Annual',
+				title: 'Annual',
 				value: 'monthly',
 				price: '297.99',
 			},

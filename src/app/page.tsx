@@ -38,6 +38,7 @@ const HomePage: NextPage = async() => {
 	const products = await getAllProducts();
 	const categories = await getAllCategories();
 	const showIntro = await getCookie('show_intro');
+	const showBanner = await getCookie('close_hero_banner');
 
 	return (
 		<>
@@ -49,7 +50,7 @@ const HomePage: NextPage = async() => {
 					<div style={ { minHeight: '100vh' } }>
 						<Hero
 							showIntro={ showIntro }
-							showBanner={ false }
+							showBanner={ showBanner === 'true' }
 							isLanding={ false }
 						/>
 					</div>

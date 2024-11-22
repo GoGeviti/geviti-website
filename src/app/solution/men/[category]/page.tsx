@@ -72,7 +72,9 @@ const ProductCategory = async(props : {
 			<Description data={ categoryData.singleCategory.stats }/>
 			{
 				productsData.length > 0 && (
-					<ProductsSlider products={ productsData }/>
+					<ProductsSlider
+						hormoneTreatment={ categoryData.singleCategory.hormoneTreatment }
+						products={ productsData }/>
 				)
 			}
 			<div className='mt-[42px]'>
