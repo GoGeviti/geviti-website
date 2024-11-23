@@ -50,7 +50,7 @@ const HomePage: NextPage = async() => {
 					<div style={ { minHeight: '100vh' } }>
 						<Hero
 							showIntro={ showIntro }
-							showBanner={ showBanner === 'true' }
+							showBanner={ showBanner !== 'true' }
 							isLanding={ false }
 						/>
 					</div>

@@ -50,7 +50,7 @@ const HomePage: NextPage = async() => {
 						<Hero
 							isLanding={ true }
 							showIntro={ showIntro }
-							showBanner={ showBanner === 'true' }
+							showBanner={ showBanner !== 'true' }
 						/>
 					</div>
 					{ /* Wrap heavy sections in suspense boundaries */ }
