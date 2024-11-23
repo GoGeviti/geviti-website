@@ -10,6 +10,7 @@ import Link from 'next/link';
 import { screens } from '@/helpers/style';
 import { useWindowDimensions } from '@/hooks';
 import { Post } from '@/payload/payload-types';
+// import { getPlaceholderImage } from '@/utils/getPlaceholderImage';
 
 // const articleData = blogData.topics;
 
@@ -32,6 +33,63 @@ const Topics: React.FC<{
 	const [selectedItem, setSelectedItem] = useState(0);
 	const windowDimensions = useWindowDimensions();
 	const isMobile = windowDimensions.width < screens.md;
+	// const [blurDataUrls, setBlurDataUrls] = useState<{ [key: string]: string }>({});
+
+	// // Fetch blur URLs when articleData changes
+	// useEffect(() => {
+	// 	const loadBlurUrls = async() => {
+	// 		const urls: { [key: string]: string } = {};
+	// 		await Promise.all(
+	// 			articleData.flatMap(article =>
+	// 				article.list.map(async item => {
+	// 					const blur = await getPlaceholderImage(item.hero.media.url ?? '');
+	// 					urls[item.hero.media.url ?? ''] = blur.placeholder;
+	// 				})
+	// 			)
+	// 		);
+	// 		setBlurDataUrls(urls);
+	// 	};
+
+	// 	loadBlurUrls();
+	// }, [articleData]);
+
+	const renderItem = (data: Post[]) => {
+		return (
+			<div className='w-full grid grid-cols-1 md:grid-cols-4 gap-[10px] md:gap-[18px] pt-[30px]'>
+				{ data.map((items, id) => (
+					<Link
+						href={ `/blog/${items.slug}` }
+						key={ id }
+						prefetch={ true }
+						className='relative bg-white rounded-lg md:rounded-2xl overflow-hidden flex flex-row md:flex-col max-md:items-center max-md:p-5 max-md:space-x-[9px]'
+					>
+						<div>
+							<div className='relative md:h-[254px] w-[74px] h-[74px] max-md:rounded-lg overflow-hidden md:w-full'>
+								<Image
+									src={ items.hero.media.url ?? '' }
+									width={ 306 }
+									height={ 254 }
+									loading={ id > 3 ? 'lazy' : 'eager' }
+									className='object-cover object-center w-full h-full hover:scale-105 transition-all duration-300 ease-in-out'
+									alt={ items.title }
+									placeholder='blur'
+									blurDataURL='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mOsa2yqBwAFCAICLICSyQAAAABJRU5ErkJggg=='
+								/>
+							</div>
+						</div>
+						<div className='flex flex-col text-start md:p-5'>
+							<p className='text-grey-primary font-BRSonoma text-xs'>
+								{ items.hero.categories?.title }
+							</p>
+							<p className='text-primary font-Poppins text-base font-medium -tracking-[0.64px] leading-5 md:leading-6'>
+								{ items.title }
+							</p>
+						</div>
+					</Link>
+				)) }
+			</div>
+		);
+	};
 
 	return (
 		<div className='container-center mx-auto w-full relative mt-20'>
@@ -59,13 +117,10 @@ const Topics: React.FC<{
 						{ articleData
 							.sort((a, b) => a.name.localeCompare(b.name))
 							.map((items, id) => (
-								<div
-									key={ id }
-								// className={ clsxm(id === 0 ? 'w-[18px]' : id === 1 ? 'w-[75px]' : id === 2 ? 'w-[46px]' : 'w-[59px]') }
-								>
+								<div key={ id }>
 									<TabsTrigger
 										className='text-[15px] cursor-pointer pb-[9px] pt-[25px] leading-none text-primary select-none data-[state=active]:font-bold relative outline-none'
-										value={ `tab-${ id }` }
+										value={ `tab-${id}` }
 										onClick={ () => setSelectedItem(id) }
 									>
 										<p>{ items.name }</p>
@@ -81,7 +136,7 @@ const Topics: React.FC<{
 							return (
 								<TabsContent
 									key={ id }
-									value={ `tab-${ id }` }>
+									value={ `tab-${id}` }>
 									{ isMobile
 										? showAllTabs
 											? renderItem(it.list)
@@ -108,41 +163,6 @@ const Topics: React.FC<{
 					</div>
 				</Tabs>
 			</div>
-		</div>
-	);
-};
-
-const renderItem = (data: Post[]) => {
-	return (
-		<div className='w-full grid grid-cols-1 md:grid-cols-4 gap-[10px] md:gap-[18px] pt-[30px]'>
-			{ data.map((items, id) => {
-				return (
-					<Link
-						href={ `/blog/${ items.slug }` }
-						key={ id }
-						className='relative bg-white rounded-lg md:rounded-2xl overflow-hidden flex flex-row md:flex-col max-md:items-center max-md:p-5 max-md:space-x-[9px]'
-					>
-						<div>
-							<div className='relative md:h-[254px] w-[74px] h-[74px] max-md:rounded-lg overflow-hidden md:w-full'>
-								<Image
-									src={ items.hero.media.url ?? '' }
-									fill
-									className='object-cover object-center hover:scale-105 transition-all duration-300 ease-in-out'
-									alt={ items.title }
-								/>
-							</div>
-						</div>
-						<div className='flex flex-col text-start md:p-5'>
-							<p className='text-grey-primary font-BRSonoma text-xs'>
-								{ items.hero.categories?.title }
-							</p>
-							<p className='text-primary font-Poppins text-base font-medium -tracking-[0.64px] leading-5 md:leading-6'>
-								{ items.title }
-							</p>
-						</div>
-					</Link>
-				);
-			}) }
 		</div>
 	);
 };
