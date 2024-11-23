@@ -26,6 +26,7 @@ const Card = (product:Product) => {
 							alt={ product.name }
 							width={ 226 }
 							height={ 226 }
+							loading='eager'
 							className='object-contain'
 						/>
 					</div>
