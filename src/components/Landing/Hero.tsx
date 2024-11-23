@@ -47,14 +47,14 @@ const HeroImage = ({ type, isLanding }: { type: 'desktop' | 'mobile', isLanding:
 		<Image
 			src={ imageSrc }
 			alt='hero'
-			priority={ type === 'desktop' }
+			priority={ true }
 			className={ clsxm(
 				'object-cover pointer-events-none',
 				imageMobile ? 'md:hidden object-center' : 'md:block hidden object-right'
 			) }
 			fill
 			quality={ 100 }
-			loading={ type === 'mobile' ? 'lazy' : 'eager' }
+			loading={ 'eager' }
 		/>
 	);
 };
@@ -188,9 +188,11 @@ const Hero: React.FC<HeroProps> = ({
 				<div className='absolute bottom-0 inset-x-0 w-full h-[28%] max-lg:bg-backdrop-hero-landing-bottom-desktop' />
 				<div className='h-full container-center'>
 					<div className='relative z-20 w-full h-full rounded-b-19px'>
-						{ /* <Suspense fallback={ null }>
-							{ heroData.banner.show && <HeroBanner showBanner={ showBanner } /> }
-						</Suspense> */ }
+						<Suspense fallback={ null }>
+							<div className='lg:hidden'>
+								{ heroData.banner.show && <HeroBanner showBanner={ showBanner } /> }
+							</div>
+						</Suspense>
 						<div className='lg:pb-[47px] h-full w-full flex flex-col justify-end'>
 							<div className='text-left flex flex-col'>
 								<span className='overflow-hidden inline-flex'>
@@ -318,7 +320,9 @@ const Hero: React.FC<HeroProps> = ({
 										{ /* <div className='absolute right-0 bottom-0 max-lg:hidden'>
 											{ renderPopupReview() }
 										</div> */ }
-										{ heroData.banner.show && <HeroBanner showBanner={ showBanner } /> }
+										<div className='max-lg:hidden'>
+											{ heroData.banner.show && <HeroBanner showBanner={ showBanner } /> }
+										</div>
 									</Suspense>
 								</div>
 							</div>
