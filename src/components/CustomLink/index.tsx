@@ -15,6 +15,7 @@ type CustomLinkProps = Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, keyof
   maxImages?: number
   timeout?: number
 	externalLink?: boolean;
+  disablePrefetch?: boolean;
   prioritySelectors?: string[]
   onPrefetchStart?: () => void
   onPrefetchComplete?: () => void
@@ -62,6 +63,7 @@ const CustomLink = ({
 	maxImages = 30,
 	timeout = 3000,
 	prioritySelectors = ['img.hero', 'img.critical'],
+	disablePrefetch = false,
 	onPrefetchStart,
 	onPrefetchComplete,
 	onPrefetchError,
@@ -104,7 +106,7 @@ const CustomLink = ({
 	}, [maxImages, prioritySelectors, prefetchImage, onPrefetchComplete, onPrefetchError])
 
 	const handlePrefetch = useCallback(async() => {
-		if (hasPreloaded || htmlCache.current) return
+		if (hasPreloaded || htmlCache.current || disablePrefetch) return
 
 		try {
 			onPrefetchStart?.()
@@ -144,7 +146,8 @@ const CustomLink = ({
 		timeout,
 		prefetchImages,
 		onPrefetchStart,
-		onPrefetchError
+		onPrefetchError,
+		disablePrefetch
 	])
 
 	// Cleanup on unmount
@@ -163,7 +166,7 @@ const CustomLink = ({
 			onMouseEnter={ handlePrefetch }
 			onTouchStart={ handlePrefetch }
 			{ ...props }
-			prefetch={ false }
+			prefetch={ true }
 			{ ...externalLink
 				? {
 					target: '_blank',
