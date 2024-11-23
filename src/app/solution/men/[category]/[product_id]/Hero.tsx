@@ -17,6 +17,7 @@ const Hero:React.FC<{data:Product}> = ({ data }) => {
 						height={ 510 }
 						quality={ 100 }
 						priority={ true }
+						loading='eager'
 						className='object-contain max-lg:hidden lg:w-[510px]'
 					/>
 					<div className='flex flex-col max-lg:text-center max-lg:items-center gap-6 '>
@@ -45,6 +46,7 @@ const Hero:React.FC<{data:Product}> = ({ data }) => {
 							height={ 510 }
 							quality={ 100 }
 							priority={ true }
+							loading='eager'
 							className='object-contain lg:hidden w-full'
 						/>
 					</div>

@@ -39,6 +39,7 @@ const Hero:React.FC<{data:Category}> = ({ data }) => {
 								alt='category product'
 								width={ 630 }
 								priority={ true }
+								loading='eager'
 								height={ 630 }
 								quality={ 100 }
 								className='object-contain w-full'
@@ -47,6 +48,8 @@ const Hero:React.FC<{data:Category}> = ({ data }) => {
 						<Image
 							src='/images/solution_media/geviti-logo-background.png'
 							alt='logo'
+							priority={ true }
+							loading='eager'
 							width={ 982 }
 							height={ 248 }
 							className='object-contain w-screen top-1/2 -translate-y-1/2 absolute lg:hidden z-[-1]'
@@ -58,6 +61,8 @@ const Hero:React.FC<{data:Category}> = ({ data }) => {
 					alt='logo'
 					width={ 982 }
 					height={ 248 }
+					priority={ true }
+					loading='eager'
 					className='object-contain w-screen max-lg:hidden lg:max-w-[982px] z-[-1] mx-auto mt-8'
 				/>
 				<div className='flex items-center max-lg:hidden justify-between pb-[136px] pt-[34px]'>
@@ -97,6 +102,7 @@ const Hero:React.FC<{data:Category}> = ({ data }) => {
 						height={ 630 }
 						priority={ true }
 						quality={ 100 }
+						loading='eager'
 						className='object-contain w-[630px]'
 					/>
 				</motion.div>
