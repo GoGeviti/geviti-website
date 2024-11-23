@@ -2,11 +2,11 @@
 
 import React, { useState } from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
 
 import { blogData } from '@/constant/data';
 import { Post } from '@/payload/payload-types';
 
+import CustomLink from '../CustomLink';
 import { ArrowEmail } from '../Icons';
 
 import { SliderArticles } from '.';
@@ -33,7 +33,7 @@ const Articles = ({ post }: { post: Post[]; }) => {
 					{ post?.map((items, id) => {
 						const isHovered = hoveredItem === id;
 						return (
-							<Link
+							<CustomLink
 								href={ `/blog/${ items.slug }` }
 								key={ id }
 								className='relative'
@@ -65,7 +65,7 @@ const Articles = ({ post }: { post: Post[]; }) => {
 									<ArrowEmail className='w-[45px] h-[45px]' />
 								</button>
 								<div className='z-0 bottom-0 absolute bg-gradient-to-t from-black/70 via-black/30 to-black/0 h-full w-full rounded-[20px]' />
-							</Link>
+							</CustomLink>
 						);
 					}) }
 				</div>

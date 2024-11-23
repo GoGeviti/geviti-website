@@ -3,7 +3,6 @@
 // const topTierData = marketingData.topTier.list['men-hormone-therapy'];
 import { useRef, useState } from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Swiper as SwiperType } from 'swiper';
 import { FreeMode } from 'swiper/modules';
@@ -15,6 +14,7 @@ import { Category, Product } from '@/payload/payload-types';
 // import { marketingData } from '@/constant/data';
 import 'swiper/css/free-mode';
 
+import CustomLink from '../CustomLink';
 import ArrowButtons from '../Marketing/ArrowButtons';
 
 import 'swiper/css';
@@ -103,12 +103,12 @@ const ViewOtherCategories: React.FC<{data:Category[] | Product[], isProduct?: bo
 											/>
 										</div>
 										<div className='flex flex-1 flex-col justify-end px-4 w-full mb-6'>
-											<Link
+											<CustomLink
 												href={ basePath + '/' + (item.slug ?? '') }
 												className='text-xs !leading-5 focus:ring-0 focus:outline-none w-full bg-white text-primary py-[7.73px] px-5 flex items-center justify-center rounded-[128px]'
 											>
 												{ isProduct ? 'View Product' : 'View Category' }
-											</Link>
+											</CustomLink>
 										</div>
 									</div>
 								</SwiperSlide>
