@@ -20,7 +20,7 @@ const pricingData = {
 				price: '99.95',
 			},
 			{
-				title: 'Annual',
+				title: 'Monthly',
 				value: 'monthly',
 				price: '297.99',
 			},
