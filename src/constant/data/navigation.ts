@@ -11,55 +11,55 @@ const navigationData = {
 		// },
 		{
 			name: 'Men\'s Health',
-			href: '/solution/men',
+			href: '/men',
 			externalLink: false,
 			items: [
 				{
 					name: 'Longevity and Peptide Therapy',
-					href: '/solution/men/longevity-and-peptide-therapy',
+					href: '/men/longevity-and-peptide-therapy',
 				},
 				{
 					name: 'Hormone Health Optimization',
-					href: '/solution/men/hormone-optimization',
+					href: '/men/hormone-optimization',
 				},
 				{
 					name: 'Medical Weight Management',
-					href: '/solution/men/medical-weight-management',
+					href: '/men/medical-weight-management',
 				},
 				{
 					name: 'Sexual Health and Vitality',
-					href: '/solution/men/sexual-health-and-vitality',
+					href: '/men/sexual-health-and-vitality',
 				},
 				{
 					name: 'Hair Regrowth Solutions',
-					href: '/solution/men/hair-regrowth-solutions',
+					href: '/men/hair-regrowth-solutions',
 				},
 			],
 		},
 		{
 			name: 'Women\'s Health',
-			href: '/solution/women',
+			href: '/women',
 			externalLink: false,
 			items: [
 				{
 					name: 'Longevity and Peptide Therapy',
-					href: '/solution/women/longevity-and-peptide-therapy',
+					href: '/women/longevity-and-peptide-therapy',
 				},
 				{
 					name: 'Hormone Health Optimization',
-					href: '/solution/women/hormone-health-and-optimization-female',
+					href: '/women/hormone-health-and-optimization-female',
 				},
 				{
 					name: 'Medical Weight Management',
-					href: '/solution/women/medical-weight-management-female',
+					href: '/women/medical-weight-management-female',
 				},
 				{
 					name: 'Sexual Health and Vitality',
-					href: '/solution/women/sexual-health-and-vitality-female',
+					href: '/women/sexual-health-and-vitality-female',
 				},
 				{
 					name: 'Hair Regrowth Solutions',
-					href: '/solution/women/hair-regrowth-solutions-female',
+					href: '/women/hair-regrowth-solutions-female',
 				},
 			],
 		},

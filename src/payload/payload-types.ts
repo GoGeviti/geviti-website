@@ -19,6 +19,10 @@ export interface Category {
       description?: string | null;
     };
   };
+  hormoneTreatment?: {
+    title?: string | null;
+    description?: string | null;
+  };
   slug?: string | null;
   updatedAt: string;
   createdAt: string;

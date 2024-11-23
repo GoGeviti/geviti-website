@@ -102,7 +102,7 @@ const MenuItem = memo(({
 							<ul className='flex flex-col gap-[14px]'>
 								<Link
 									prefetch={ true }
-									href={ active === 'Men\'s Health' ? '/solution/men' : '/solution/women' }>
+									href={ active === 'Men\'s Health' ? '/men' : '/women' }>
 									<li className={ clsxm(
 										'text-sm flex gap-2 items-center transition-colors duration-200 group cursor-pointer',
 										theme === 'light' ? 'text-white' : 'text-primary'

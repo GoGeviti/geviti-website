@@ -1,7 +1,7 @@
 'use client';
 import React, { CSSProperties, useMemo, useRef, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import dynamic from 'next/dynamic';
+// import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -11,14 +11,14 @@ import clsxm from '@/helpers/clsxm';
 
 import ButtonCta from '../ButtonCta';
 import { ProductsResponse } from '../Checkout/api/types';
-import { GreenCheck, ShieldTick } from '../Icons';
+import { ChevronDown, GreenCheck, ShieldTick } from '../Icons';
 import ButtonSwitchMemberFreq from '../MemberShip/ButtonSwitchMemberFreq';
 import Navbar from '../Navbar/Landing';
 import PopupReview from '../PopupReview';
 
-const QuestionTooltip = dynamic(() => import('../Home/QuestionTooltip'), {
-	ssr: false,
-});
+// const QuestionTooltip = dynamic(() => import('../Home/QuestionTooltip'), {
+// 	ssr: false,
+// });
 
 const formatPrice = (price?: string): string => {
 	if (!price) {
@@ -57,6 +57,7 @@ const Hero: React.FC<HeroProps> = ({
 	// const isInView = useInView(ref, { once: true });
 
 	const [activeTabIdx, setActiveTabIdx] = useState<number>(0);
+	const [activeListDropdown, setActiveListDropdown] = useState(-1);
 
 	const renderButtonSwitchFrequency = () => {
 		return (
@@ -162,7 +163,7 @@ const Hero: React.FC<HeroProps> = ({
 						className='lg:max-w-[1061px] mx-auto sm:max-w-[392px] lg:grid-cols-9 flex max-lg:flex-col lg:grid gap-6 lg:gap-3.5 items-end w-full pt-[58px] lg:pt-[78px]'
 					>
 						<div className='w-full max-lg:order-2 relative h-full lg:col-span-3'>
-							<div className='rounded-2xl pt-7 w-full h-full max-lg:min-h-[676px] relative overflow-hidden bg-[linear-gradient(0deg,#A7DAFF_0%,#75C5FF_100%)]'>
+							<div className='rounded-2xl pt-7 w-full max-lg:h-full max-lg:min-h-[529px] lg:h-[450px] relative overflow-hidden bg-[linear-gradient(0deg,#A7DAFF_0%,#75C5FF_100%)]'>
 								<div className='px-5'>
 									<div className='flex items-center gap-5px mb-3.5'>
 										<ShieldTick className='flex-shrink-0 w-5 h-5 text-primary' />
@@ -175,10 +176,10 @@ const Hero: React.FC<HeroProps> = ({
 										</span>
 									</div>
 									<div>
-										<p className='text-xs !leading-6 font-semibold tracking-0.11em text-grey-800 uppercase'>
+										<p className='text-[10px] !leading-6 font-semibold tracking-0.11em text-grey-800 uppercase'>
 											{ pricingData.hero.banner.preTitle }
 										</p>
-										<h3 className='text-2xl !leading-normal text-black -tracking-0.04em'>
+										<h3 className='h6 !leading-normal text-black -tracking-0.04em'>
 											<span
 												dangerouslySetInnerHTML={ {
 													__html: pricingData.hero.banner.title,
@@ -192,17 +193,27 @@ const Hero: React.FC<HeroProps> = ({
 									src={ pricingData.hero.banner.image }
 									width={ 411 }
 									height={ 300 }
-									className='object-contain scale-105 w-full h-[498px] lg:h-[380px] object-right absolute -bottom-0 -right-2.5 lg:-bottom-1.5 lg:right-1'
+									className='object-contain w-full h-[458px] lg:h-[350px] object-right absolute -bottom-10 lg:-bottom-1.5 lg:right-0'
 								/>
 							</div>
 						</div>
 						{ pricingData.hero.list.map((item, index) => (
 							<div
 								key={ index }
-								className='w-full relative h-full lg:col-span-6'>
+								className='w-full relative h-full lg:h-[450px] lg:col-span-6'>
+								{ item.mostPopular && (
+									<span className='absolute z-10 top-0 right-6 -translate-y-1/2 text-sm !leading-normal text-primary font-medium bg-blue-primary py-2 px-6 rounded-full'>
+                    Most Popular
+									</span>
+								) }
+								{ item.mostValue && (
+									<span className='absolute z-10 top-0 right-6 -translate-y-1/2 text-sm !leading-normal text-primary font-medium bg-blue-primary py-2 px-6 rounded-full'>
+                    Free Bloodwork
+									</span>
+								) }
 								<div
 									className={ clsxm(
-										'pt-[42px] pb-[34px] px-6 grid gap-10 grid-cols-1 lg:grid-cols-2 rounded-2xl w-full h-full relative',
+										'pt-[42px] pb-[34px] px-6 grid gap-10 grid-cols-1 lg:grid-cols-2 rounded-2xl overflow-hidden w-full h-full relative',
 										item.mostValue
 											? ' text-white bg-most-value'
 											: 'bg-[#FCFCFC] border-grey-100 border text-primary'
@@ -287,14 +298,14 @@ const Hero: React.FC<HeroProps> = ({
 											theme={ item.mostValue ? 'secondary' : 'primary' }
 											className='w-full sm:w-fit mt-[25px]'
 										/>
-										{ pricingData.hero.pricingOptions[activeTabIdx].value ===
+										{ /* { pricingData.hero.pricingOptions[activeTabIdx].value ===
                     'monthly' && (
 											<p className='text-[8px] font-Poppins font-light mt-4'>
                       *By purchasing a monthly membership, you agree to a $150
                       cancellation fee for cancellations within the first 60
                       days. Applies to the monthly plan only.
 											</p>
-										) }
+										) } */ }
 									</div>
 
 									<div>
@@ -305,30 +316,30 @@ const Hero: React.FC<HeroProps> = ({
 											{ item.list.map((feature, featureIdx) => (
 												<li
 													key={ `feature-${featureIdx}` }
-													className='text-sm !leading-normal gap-1.5 flex items-center font-medium -tracking-[0.53px]'
+													className='text-sm !leading-normal gap-1.5 flex items-start font-medium -tracking-[0.53px]'
 												>
-													<QuestionTooltip
-														icon={
-															<GreenCheck className='w-4 h-4 text-green-alert' />
-														}
-														text={ feature.description || feature.title }
-													/>
-													{ feature.title }
+													<div className='mt-1'>
+														<GreenCheck className='w-4 h-4 text-green-alert' />
+													</div>
+													<button
+														onClick={ () => setActiveListDropdown(activeListDropdown === featureIdx ? -1 : featureIdx) }
+														className='flex flex-col cursor-pointer'>
+														<div className='flex items-center gap-2'>
+															<span>{ feature.title }</span>
+															<ChevronDown className={ ` transform ${activeListDropdown === featureIdx ? 'rotate-180' : 'rotate-0'} transition-transform ease-out duration-300` }/>
+														</div>
+														<p className={ clsxm(
+															'body-extra-small text-left',
+															'max-h-[300px] overflow-hidden transition-all duration-300',
+															activeListDropdown === featureIdx ? 'max-h-[300px]' : 'max-h-0'
+														) }>
+															{ feature.description }
+														</p>
+													</button>
 												</li>
 											)) }
 										</ul>
 									</div>
-
-									{ item.mostPopular && (
-										<span className='absolute top-0 right-6 -translate-y-1/2 text-sm !leading-normal text-primary font-medium bg-blue-primary py-2 px-6 rounded-full'>
-                    Most Popular
-										</span>
-									) }
-									{ item.mostValue && (
-										<span className='absolute top-0 right-6 -translate-y-1/2 text-sm !leading-normal text-primary font-medium bg-blue-primary py-2 px-6 rounded-full'>
-                    Free Bloodwork
-										</span>
-									) }
 								</div>
 
 								{ /* { index === 1 && (

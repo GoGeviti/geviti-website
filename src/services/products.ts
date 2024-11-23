@@ -156,6 +156,32 @@ export const getCategories = async(slug?:string, gender?:string): Promise<{
 	}
 };
 
+export const getAllCategories = async(): Promise<{
+	categories: Category[];
+}> => {
+	const stringifiedQuery = qs.stringify(
+		{
+			depth: 2,
+			draft: false,
+			limit: 99,
+		},
+		{ addQueryPrefix: true }
+	);
+	try {
+		const res = await fetch(
+			process.env.BASE_API_URL + `/api/categories?${stringifiedQuery}`,
+			{
+				cache: 'no-store',
+			}
+		);
+		const data = await res.json() as PaginatedDocs<Category>;
+		return { categories: data.docs };
+	} catch (error) {
+		// console.log(error);
+		return Promise.reject(error);
+	}
+};
+
 export const getBenefits = async(): Promise<PaginatedDocs<Benefit>> => {
 	try {
 		const res = await fetch(

@@ -5,6 +5,7 @@ import { AiOutlineCheckCircle, AiOutlineCloseCircle } from 'react-icons/ai';
 import { motion, useInView } from 'framer-motion';
 
 import landingData from '@/constant/data/landing';
+import clsxm from '@/helpers/clsxm';
 
 const benefitsData = landingData.benefits;
 
@@ -38,6 +39,9 @@ const Benefits: React.FC = () => {
 									initial={ { opacity: 0, y: 10 } }
 									animate={ isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 } }
 									transition={ { duration: 0.6, delay: 0.4 + idx * 0.1 } }
+									className={ clsxm(
+										idx === 0 ? 'max-lg:order-2' : 'max-lg:order-1'
+									) }
 								>
 									<h3 className='text-2xl text-primary pb-3 lg:pb-4 lg:border-b border-grey-100'>
 										{ benefit.title }
@@ -58,7 +62,7 @@ const Benefits: React.FC = () => {
 														<AiOutlineCloseCircle className='h-6 w-6 text-red-alert' />
 													)
 												}
-												<span>{ detail.text }</span>
+												<span className='uppercase'>{ detail.text }</span>
 											</motion.li>
 										)) }
 									</ul>

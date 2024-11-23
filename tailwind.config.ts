@@ -113,7 +113,9 @@ const config: Config = {
 			},
 			backgroundImage: {
 				'backdrop-hero-landing-left':
-          'linear-gradient(90deg, rgba(8, 16, 19, 0.6) 0%, rgba(8, 16, 19, 0.568221) 64.55%, rgba(8, 16, 19, 0) 96.41%)',
+          'linear-gradient(90deg, rgba(8, 16, 19, 0.45) 0%, rgba(8, 16, 19, 0.23) 64.55%, rgba(8, 16, 19, 0.00) 96.41%)',
+				// 'backdrop-hero-landing-left':
+				//   'linear-gradient(90deg, rgba(8, 16, 19, 0.6) 0%, rgba(8, 16, 19, 0.568221) 64.55%, rgba(8, 16, 19, 0) 96.41%)',
 				'backdrop-hero-landing-bottom':
           'linear-gradient(0deg, #181A1C 20.46%, rgba(24, 26, 28, 0.00) 100%)',
 				'backdrop-hero-landing-bottom-desktop':
@@ -163,6 +165,8 @@ const config: Config = {
           'linear-gradient(160deg, #A7DAFF 4.78%, #75C5FF 92.54%)',
 				'gradient-blue-products':
           'linear-gradient(343deg, #4AADF6 -12.96%, #8CCEFF 67.54%)',
+				'member-mobile':
+          'linear-gradient(103deg, #000 4.16%, #2A2A2A 101.14%)',
 			},
 			animation: {
 				marquee: 'marquee 90s linear infinite',

@@ -70,6 +70,7 @@ const ProductCategorySingle = async(props:{
 			</div>
 			<Biomakers items={ productDataSingle.treatmentOptions?.map(e => e.name) ?? [] } />
 			<ViewOtherCategories
+				baseUrl={ `/women/${category}` }
 				isProduct
 				data={ productsData } />
 			<div className='mt-[42px] lg:mt-[87px]'>

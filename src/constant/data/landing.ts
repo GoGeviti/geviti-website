@@ -2,6 +2,7 @@ import { ShoppingBagIcon } from '@/components/Icons';
 import {
 	BarChartSquareIcon,
 	ChartIcon,
+	DiscountIcon,
 	// DNAIcon,
 	DocumentIcon,
 	EmergencyCallAddIcon,
@@ -9,7 +10,7 @@ import {
 	GevitiIcon,
 	// HeartbeatIcon,
 	HomeOutlineIcon,
-	InformationIcon,
+	// InformationIcon,
 	// MedicalDocIcon,
 	// MonitoringIcon,
 	// PillIcon,
@@ -38,12 +39,14 @@ const landingData = {
 			'optimization and longevit<span class="ml-0.5">y<span>.',
 		],
 		banner: {
-			text: '<span class="font-medium">Geviti Closes Early Stage Seed Financing</span> 🎉 <br/>To Celebrate, Those Who Join Our Beta Before<br/>August 1st Will Be Grandfathered In At $89/M!',
-			icon: InformationIcon,
+			text: 'Black Friday Sale 50% off your first month<br className="max-lg:hidden" /> with code <b>"BLACKFRIDAY"</b>',
+			icon: DiscountIcon,
 			show: true,
 		},
 		image: '/images/landing/compressed/hero.webp',
 		imageMobile: '/images/landing/compressed/hero-mobile.webp',
+		imageLanding: '/images/landing/compressed/hero-landing.webp',
+		imageLandingMobile: '/images/landing/compressed/hero-landing-mobile.webp',
 		btnCta: {
 			text: 'Join Geviti',
 			href: '/pricing',
@@ -271,7 +274,7 @@ const landingData = {
 		},
 	},
 	benefits: {
-		preTitle: 'Anti-aging care',
+		preTitle: 'data driven care based upon bloodwork',
 		title: 'Optimize health & wellness',
 		description:
       'A fully integrated health program that brings together advanced diagnostics, expert medical care and coaching, science-backed longevity therapies for optimal well-being and long-term vitality.',
@@ -326,7 +329,7 @@ const landingData = {
 					},
 					{
 						cheked: true,
-						text: 'Convenience (all from the comfort of your home)',
+						text: 'Care from home, or on the go',
 					},
 					{
 						cheked: true,

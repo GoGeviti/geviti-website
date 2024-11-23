@@ -4,10 +4,12 @@
 import { useRef, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { Swiper as SwiperType } from 'swiper';
 import { FreeMode } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
+import clsxm from '@/helpers/clsxm';
 import { Category, Product } from '@/payload/payload-types';
 
 // import { marketingData } from '@/constant/data';
@@ -17,11 +19,14 @@ import ArrowButtons from '../Marketing/ArrowButtons';
 
 import 'swiper/css';
 
-const ViewOtherCategories: React.FC<{data:Category[] | Product[], isProduct?: boolean}> = ({ data, isProduct }) => {
+const ViewOtherCategories: React.FC<{data:Category[] | Product[], isProduct?: boolean, hideHeader?:boolean, baseUrl?:string}> = ({ data, isProduct, hideHeader = false, baseUrl }) => {
 	const swiperRef = useRef<SwiperType>(undefined);
 
 	const [disabledPrev, setDisabledPrev] = useState(true);
 	const [disabledNext, setDisabledNext] = useState(false);
+	const pathname = usePathname();
+	const basePath = baseUrl ? baseUrl : pathname.split('/').slice(0, 2)
+		.join('/');
 
 	const handleSlideChange = (swiper:SwiperType) => {
 		setDisabledPrev(swiper.isBeginning);
@@ -30,18 +35,25 @@ const ViewOtherCategories: React.FC<{data:Category[] | Product[], isProduct?: bo
 
 	return (
 		<div className='w-full pb-[56px]' >
-			<div className='w-full relative mt-[42px] lg:mt-[124px]'>
-				<div className='w-full flex-col lg:flex-row flex items-center lg:justify-between container-center mb-10'>
-					<div className='w-full flex'>
-						<h3 className='font-medium text-primary text-2xl md:text-[32px] lg:text-4xl'>View other { isProduct ? 'popular' : 'product' }<br/><span className='text-grey-primary'>{ isProduct ? 'products' : 'categories' }</span></h3>
-					</div>
-					<ArrowButtons
-						disabledPrev={ disabledPrev }
-						disabledNext={ disabledNext }
-						onClickPrev={ () => swiperRef.current?.slidePrev() }
-						onClickNext={ () => swiperRef.current?.slideNext() }
-					/>
-				</div>
+			<div className={ clsxm(
+				'w-full relative mt-[42px] lg:mt-[124px]',
+				hideHeader && 'mt-[30px] lg:mt-[30px]'
+			) }>
+				{
+					!hideHeader && (
+						<div className='w-full flex-col lg:flex-row flex items-center lg:justify-between container-center mb-10'>
+							<div className='w-full flex'>
+								<h3 className='font-medium text-primary text-2xl md:text-[32px] lg:text-4xl'>View other { isProduct ? 'popular' : 'product' }<br/><span className='text-grey-primary'>{ isProduct ? 'products' : 'categories' }</span></h3>
+							</div>
+							<ArrowButtons
+								disabledPrev={ disabledPrev }
+								disabledNext={ disabledNext }
+								onClickPrev={ () => swiperRef.current?.slidePrev() }
+								onClickNext={ () => swiperRef.current?.slideNext() }
+							/>
+						</div>
+					)
+				}
 
 				<div className='lg:ml-[calc((100vw-1360px)/2)] pl-4 lg:pl-10'>
 					<Swiper
@@ -92,7 +104,7 @@ const ViewOtherCategories: React.FC<{data:Category[] | Product[], isProduct?: bo
 										</div>
 										<div className='flex flex-1 flex-col justify-end px-4 w-full mb-6'>
 											<Link
-												href={ item.slug ?? '' }
+												href={ basePath + '/' + (item.slug ?? '') }
 												className='text-xs !leading-5 focus:ring-0 focus:outline-none w-full bg-white text-primary py-[7.73px] px-5 flex items-center justify-center rounded-[128px]'
 											>
 												{ isProduct ? 'View Product' : 'View Category' }
