@@ -341,13 +341,24 @@ const MobileNav: React.FC<MobileNavProps> = ({
 																	<CustomLink
 																		href={ `/longeviti-panel?gender=${expandedIdx !== null && menuList[expandedIdx]?.name === 'Men\'s Health' ? 'men' : 'women'}` }
 																		className={ clsxm(
-																			'h6 mb-8',
+																			'h6',
 																			pathname === '/longeviti-panel'
 																				? 'text-grey-50'
 																				: 'text-grey-primary'
 																		) }
 																	>
 																		At-home Bloodwork
+																	</CustomLink>
+																	<CustomLink
+																		href={ '/longeviti-blend' }
+																		className={ clsxm(
+																			'h6 mb-8',
+																			pathname === '/longeviti-blend'
+																				? 'text-grey-50'
+																				: 'text-grey-primary'
+																		) }
+																	>
+																		Custom Supplements
 																	</CustomLink>
 																</div>
 																<span className='text-[10px] uppercase tracking-[1.1px] text-grey-300'>Product Category</span>

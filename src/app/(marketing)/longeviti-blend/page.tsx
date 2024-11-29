@@ -14,7 +14,7 @@ const LongevitiBlendPage: NextPage = () => {
 				{ ...longevitiBlendData.hero }
 				longeviti_type='blend' />
 			<LongevitiBlendComponent.HowItWorks />
-			<LongevitiBlendComponent.Ingredients />
+			<LongevitiBlendComponent.Unique />
 			<LongevitiBlendComponent.TextRevealByWord text={ longevitiBlendData.textRefeal } />
 			<MarketingComponent.Testimonials />
 			<LongevitiBlendComponent.Apps />

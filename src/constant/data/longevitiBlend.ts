@@ -70,7 +70,7 @@ const longevitiBlendData = {
 	},
 	hero: {
 		preTitle: 'Boost Your Health with Custom Packs',
-		title: 'Personalized Nutrition Based<br />on Your Bloodwork',
+		title: 'Custom daily supplement<br />packs formulated for you.',
 		description:
       'Experience the ultimate in personalized health with our Tailored Supplement Packs, expertly crafted using your unique bloodwork data, advanced AI insights, and input from your dedicated care team. We ensure each supplement is perfectly suited to your body\'s specific needs.',
 		image: '/images/longeviti_blend/hero.webp',
@@ -78,8 +78,8 @@ const longevitiBlendData = {
 			title: 'Why Choose Our Tailored Supplement Packs?',
 			description:
         'Every body has a unique set of needs that a one-size-fits-all approach to supplementation can’t address. At Geviti, your Longeviti Blend supplements are uniquely crafted to help you achieve optimal health.',
-			image: '/images/longeviti_blend/packs.webp',
-			imageMobile: '/images/longeviti_blend/packs.webp',
+			image: '/images/longeviti_blend/hero.webp',
+			imageMobile: '/images/longeviti_blend/hero.webp',
 			cta: {
 				text: 'Become a member',
 				href: '/pricing',

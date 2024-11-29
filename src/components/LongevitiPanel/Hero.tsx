@@ -53,7 +53,7 @@ const Hero: React.FC<HeroProps> = heroData => {
 					</p>
 				</div>
 			</div>
-			{
+			{ /* {
 				heroData.longeviti_type === 'blend' && (
 					<div className='flex text-center justify-center lg:-mt-20'>
 						<Image
@@ -65,14 +65,14 @@ const Hero: React.FC<HeroProps> = heroData => {
 						/>
 					</div>
 				)
-			}
+			} */ }
 			<div className={ clsxm(
 				'relative flex container-center max-lg:flex-col pb-[36px] lg:pb-[215px]',
-				heroData.longeviti_type === 'panel' && 'lg:pt-[185px] '
+				(heroData.longeviti_type === 'panel' || heroData.longeviti_type === 'blend') && 'lg:pt-[185px] '
 			) }>
 				<div className={ clsxm(
 					'w-full flex flex-col max-lg:items-center max-lg:text-center',
-					heroData.longeviti_type === 'panel' && 'max-lg:order-2 '
+					(heroData.longeviti_type === 'panel' || heroData.longeviti_type === 'blend') && 'max-lg:order-2 '
 				) }>
 					<div className='sm:max-w-[434px] flex flex-col'>
 						<h2 className='text-2xl sm:text-3xl lg:text-4xl !leading-normal sm:font-medium -tracking-0.04em text-primary'>
@@ -136,17 +136,17 @@ const Hero: React.FC<HeroProps> = heroData => {
 						</React.Fragment>
 					) : (
 						<React.Fragment>
-							<div className='absolute left-[38%] -top-[12%] w-screen max-lg:hidden'>
+							<div className='absolute left-[48%] -translate-y-1/2 top-1/2 w-screen max-lg:hidden'>
 								<Image
 									src={ heroData.benefits.image }
 									alt=''
-									width={ 1750 }
-									height={ 2192 }
+									width={ 668 }
+									height={ 654 }
 									priority
-									className='w-auto h-[1100px] object-contain max-lg:hidden'
+									className='w-auto h-[654px] object-contain max-lg:hidden'
 								/>
 							</div>
-							<div className='flex -mx-4 order-1 relative -mb-[22%] lg:hidden'>
+							<div className='flex -mx-4 order-1 relative -mb-[2%] lg:hidden'>
 								<Image
 									src={ heroData.benefits.imageMobile }
 									alt=''
