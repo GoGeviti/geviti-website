@@ -11,6 +11,7 @@ import FrequentlyAskedQuestions from './FrequentlyAskedQuestions';
 import * as HomeComponent from './Home';
 import * as HowItWorksComponent from './HowItWorks';
 import * as LandingComponent from './Landing';
+import Line from './Line'
 import * as MarketingComponent from './Marketing';
 import * as MarketPlaceComponent from './Marketplace';
 import * as MembershipComponent from './MemberShip';
@@ -36,6 +37,7 @@ export {
 	HomeComponent,
 	HowItWorksComponent,
 	LandingComponent,
+	Line,
 	MarketingComponent,
 	MarketPlaceComponent,
 	MembershipComponent,

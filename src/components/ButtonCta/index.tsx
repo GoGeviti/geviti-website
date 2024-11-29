@@ -7,7 +7,7 @@ type ButtonCtaProps = Omit<CustomLinkProps, 'href' | 'onClick'> & {
   text?: string;
   arrowClassName?: string;
 	hideArrow?: boolean;
-  theme?: 'primary' | 'secondary' | 'tertiary' | 'blur';
+  theme?: 'primary' | 'secondary' | 'tertiary' | 'blur' | 'outline';
   children?: React.ReactNode;
   href?: string;
   onClick?: () => void;
@@ -36,6 +36,7 @@ const ButtonCta: React.FC<ButtonCtaProps> = ({
 	const resolveBtnWrapperClassName = () => {
 		if (theme === 'primary') return 'bg-primary text-white';
 		if (theme === 'secondary') return 'bg-white text-primary';
+		if (theme === 'outline') return 'bg-transparent border border-grey-primary text-primary';
 		if (theme === 'tertiary') return 'bg-blue-primary text-primary';
 		if (theme === 'blur')
 			return 'bg-white/10 hover:bg-white/20 text-white border border-white/5 backdrop-blur-[25px]';
@@ -44,6 +45,7 @@ const ButtonCta: React.FC<ButtonCtaProps> = ({
 	const resolveArrowWrapperClassNem = () => {
 		if (theme === 'primary') return 'bg-white text-primary';
 		if (theme === 'secondary') return 'bg-primary text-blue-primary';
+		if (theme === 'outline') return 'bg-primary text-blue-primary';
 		if (theme === 'tertiary') return 'bg-blue-alice text-primary';
 		if (theme === 'blur') return 'bg-transparent text-white';
 	};
@@ -53,6 +55,7 @@ const ButtonCta: React.FC<ButtonCtaProps> = ({
 		resolveBtnWrapperClassName(),
 		arrowPosition === 'right' && 'grid-cols-[auto_46px] pl-[42px] pr-1.5',
 		arrowPosition === 'left' && 'grid-cols-[46px_auto] pl-1.5 pr-[42px]',
+		hideArrow && 'grid-cols-1 pr-[42px]',
 		size === 'small' && 'text-xs block pl-0',
 
 		className

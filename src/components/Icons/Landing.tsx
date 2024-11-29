@@ -303,6 +303,30 @@ export const DNAIcon = (props?: React.SVGProps<SVGSVGElement>) => (
 			strokeLinecap='round' />
 	</svg>
 );
+
+export const LeafIcon = (props?: React.SVGProps<SVGSVGElement>) => (
+	<svg
+		width='24'
+		height='25'
+		viewBox='0 0 24 25'
+		fill='none'
+		xmlns='http://www.w3.org/2000/svg'
+		{ ...props }>
+		<path
+			d='M11.0002 20.8828C9.24428 20.8881 7.55048 20.2333 6.25474 19.0482C4.959 17.8631 4.15599 16.2344 4.00496 14.4849C3.85393 12.7355 4.36591 10.9932 5.43937 9.60355C6.51283 8.21394 8.06935 7.27851 9.80022 6.98281C15.5002 5.88281 17.0002 5.36281 19.0002 2.88281C20.0002 4.88281 21.0002 7.06281 21.0002 10.8828C21.0002 16.3828 16.2202 20.8828 11.0002 20.8828Z'
+			stroke='currentColor'
+			strokeWidth='2'
+			strokeLinecap='round'
+			strokeLinejoin='round'/>
+		<path
+			d='M2 21.8828C2 18.8828 3.85 16.5228 7.08 15.8828C9.5 15.4028 12 13.8828 13 12.8828'
+			stroke='currentColor'
+			strokeWidth='2'
+			strokeLinecap='round'
+			strokeLinejoin='round'/>
+	</svg>
+
+);
 export const MedicalDocIcon = (props?: React.SVGProps<SVGSVGElement>) => (
 	<svg
 		width='24'
