@@ -75,11 +75,11 @@ const ProductCategorySingle = async(props:{
 			</div> */ }
 			<Line className='max-lg:hidden'/>
 			<License/>
-			<Tested/>
+			<Tested data={ productDataSingle.testing }/>
 			<Biomakers
 				stats={ productDataSingle.stats }
 				items={ productDataSingle.treatmentOptions?.map(e => e.name) ?? [] } />
-			<Why/>
+			<Why data={ productDataSingle.why }/>
 			<ViewOtherCategories
 				baseUrl={ `/women/${category}` }
 				isProduct

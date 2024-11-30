@@ -32,6 +32,7 @@ export interface Product {
   order?: number | null;
   name: string;
   price: string;
+  retail_price?: string | null;
   description: string;
   category: Category;
   treatmentOptions?: ProductTreatmentOption[] | null;
@@ -49,6 +50,20 @@ export interface Product {
       description?: string | null;
     };
   };
+  testing?:
+    | {
+        title?: string | null;
+        description?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  why?:
+    | {
+        title?: string | null;
+        description?: string | null;
+        id?: string | null;
+      }[]
+    | null;
   slug?: string | null;
   updatedAt: string;
   createdAt: string;

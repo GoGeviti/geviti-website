@@ -1,31 +1,9 @@
 import React from 'react'
 
 import { TickCircle } from '@/components/Icons'
+import { Product } from '@/payload/payload-types'
 
-const items = [
-	{
-		title: 'Identity Test',
-		desc: 'Verifies the medication\'s active ingredients match the prescription to ensure accurate treatment.'
-	},
-	{
-		title: 'Potency Test',
-		desc: 'Measures the medication\'s strength to confirm it meets the prescribed dosage for optimal results.'
-	},
-	{
-		title: 'Purity Test',
-		desc: 'Assesses the medication to ensure it is free from impurities or contaminants for safe and reliable use.'
-	},
-	{
-		title: 'Sterility Test',
-		desc: 'Confirms the medication is completely free of harmful bacteria or microbes to ensure patient safety.'
-	},
-	{
-		title: 'pH Test',
-		desc: 'Tests the medication\'s pH level to confirm stability, compatibility, and safety for effective use.'
-	},
-]
-
-const Tested = () => {
+const Tested = ({ data } : {data : Product['testing']}) => {
 	return (
 		<div className='lg:px-3'>
 			<div className='container-center'>
@@ -35,7 +13,7 @@ const Tested = () => {
 				</h3>
 				<div className='mt-14 flex flex-col lg:flex-row items-center w-full justify-center gap-5 flex-wrap'>
 					{
-						items.map((e, i) => {
+						data?.map((e, i) => {
 							return (
 								<div
 									key={ i }
@@ -47,7 +25,7 @@ const Tested = () => {
 											<span className='text-[10px] font-medium text-green-alert'>Passed</span>
 										</div>
 									</div>
-									<p className='body-small mt-3.5'>{ e.desc }</p>
+									<p className='body-small mt-3.5'>{ e.description }</p>
 								</div>
 							)
 						})

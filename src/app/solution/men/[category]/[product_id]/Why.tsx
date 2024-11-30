@@ -1,27 +1,9 @@
 import React from 'react'
 
 import ButtonCta from '@/components/ButtonCta'
+import { Product } from '@/payload/payload-types'
 
-const items = [
-	{
-		title: 'Lorem ipsum dolor sit amet consectetur',
-		desc: 'Lorem ipsum dolor sit amet consectetur. Ac sed consectetur mauris in id nullam volutpat viverra. Netus convallis vivamus quisque dignissim nisi tristique. Urna senectus tempor magna sit. Sollicitudin non tellus lectus vestibulum odio amet.'
-	},
-	{
-		title: 'Lorem ipsum dolor sit amet consectetur',
-		desc: 'Lorem ipsum dolor sit amet consectetur. Ac sed consectetur mauris in id nullam volutpat viverra. Netus convallis vivamus quisque dignissim nisi tristique. Urna senectus tempor magna sit. Sollicitudin non tellus lectus vestibulum odio amet.'
-	},
-	{
-		title: 'Lorem ipsum dolor sit amet consectetur',
-		desc: 'Lorem ipsum dolor sit amet consectetur. Ac sed consectetur mauris in id nullam volutpat viverra. Netus convallis vivamus quisque dignissim nisi tristique. Urna senectus tempor magna sit. Sollicitudin non tellus lectus vestibulum odio amet.'
-	},
-	{
-		title: 'Lorem ipsum dolor sit amet consectetur',
-		desc: 'Lorem ipsum dolor sit amet consectetur. Ac sed consectetur mauris in id nullam volutpat viverra. Netus convallis vivamus quisque dignissim nisi tristique. Urna senectus tempor magna sit. Sollicitudin non tellus lectus vestibulum odio amet.'
-	},
-]
-
-const Why = () => {
+const Why = ({ data } : {data : Product['why']}) => {
 	return (
 		<div className='lg:px-3 mt-[42px] lg:mt-[124px]'>
 			<div className='container-center'>
@@ -35,7 +17,7 @@ const Why = () => {
 				</div>
 				<div className='mt-16 flex flex-col gap-6'>
 					{
-						items.map((e, i) => (
+						data?.map((e, i) => (
 							<div
 								key={ i }
 								className='bg-white flex-col lg:flex-row gap-3 border border-grey-100 rounded-[14px] px-6 py-8 flex items-start justify-between'>
@@ -44,7 +26,7 @@ const Why = () => {
 									<span>{ e.title }</span>
 								</h5>
 								<p className='lg:w-1/2 body-small'>
-									{ e.desc }
+									{ e.description }
 								</p>
 							</div>
 						))

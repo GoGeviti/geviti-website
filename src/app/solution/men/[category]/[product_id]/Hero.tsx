@@ -48,7 +48,7 @@ const Hero:React.FC<{data:Product}> = ({ data }) => {
 							/>
 							<h5 className='h3 text-primary max-lg:leading-none'>{ data.name }</h5>
 							<h6 className='h5 leading-none text-grey-primary'>{ data.price }</h6>
-							<h6 className='h6 leading-none text-grey-primary'>Retail price $125/m*</h6>
+							<h6 className='h6 leading-none text-grey-primary'>{ data.retail_price }</h6>
 							<div className='flex flex-col gap-3.5 lg:gap-6'>
 								<div className='flex items-center gap-[15px]'>
 									<DNAIcon className='w-6 h-6 text-primary flex-shrink-0 transform rotate-45'/>
@@ -81,6 +81,7 @@ const Hero:React.FC<{data:Product}> = ({ data }) => {
 								className='max-lg:w-full h-[58px]'
 								href='/pricing'>Become a member</ButtonCta>
 							<ButtonCta
+								href='/pricing'
 								className='max-lg:w-full h-[58px]'
 								theme='outline'
 								hideArrow={ true }
