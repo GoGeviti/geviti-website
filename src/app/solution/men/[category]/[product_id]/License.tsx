@@ -12,7 +12,7 @@ const License = () => {
 					<br/>
         Each prescription undergoes thorough quality testing in labs registered with the FDA and DEA. Our partner pharmacies focus on four essential factors to ensure every compounded medication meets the highest safety and quality standards.
 				</p>
-				<div className='flex flex-wrap items-center justify-center gap-11 mt-14'>
+				<div className='flex flex-wrap items-center justify-center gap-5 lg:gap-11 mt-14'>
 					{
 						[...Array(5)].map((_, index) => (
 							<Image
@@ -20,6 +20,7 @@ const License = () => {
 								width={ 106 }
 								height={ 106 }
 								alt='license'
+								className='max-lg:w-[calc(33%-40px)]'
 								src={ `/images/solution_media/products/license-${index + 1}.webp` }
 							/>
 						))

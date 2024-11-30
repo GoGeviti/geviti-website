@@ -54,14 +54,14 @@ const HowItWorks = () => {
 						{ data.map((item, productIdx) => {
 							return (
 								<SwiperSlide key={ productIdx }>
-									<div className='flex flex-col bg-grey-primary-light h-[425px] self-stretch flex-1 border border-grey-50 overflow-hidden gap-4 lg:gap-6 p-3.5 rounded-[18px]'>
+									<div className='flex flex-col bg-white lg:bg-grey-primary-light h-[425px] self-stretch flex-1 border border-grey-50 overflow-hidden gap-4 lg:gap-6 p-3.5 rounded-[18px]'>
 										<div className='w-full h-[233px] overflow-hidden'>
 											<Image
 												src={ item.image ?? '' }
 												alt={ 'doctor' }
 												width={ 300 }
 												height={ 300 }
-												className='object-cover w-full h-full'
+												className='object-contain lg:object-cover aspect-video w-full h-full'
 											/>
 										</div>
 										<div className='flex items-start gap-4'>
