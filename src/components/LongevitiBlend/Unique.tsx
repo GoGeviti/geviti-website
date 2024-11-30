@@ -32,7 +32,7 @@ const ProductCard = ({ title, badge, description, className }:ProductCardProps) 
 
 const Unique = () => {
 	return (
-		<div className='lg:px-3 my-11 lg:my-[124px] '>
+		<div className='lg:px-3 my-11 lg:my-[124px] max-lg:mb-[130px]'>
 			<div className='container-center'>
 				<div className='overflow-hidden lg:hidden'>
 					<div className='relative max-w-[461px] h-[361px] mx-auto'>
@@ -108,32 +108,32 @@ const Unique = () => {
 							title='CurcuPlex'
 							badge='C-Reactive Protein'
 							description='Highly bioavailable turmeric extract that supports joint health, inflammation balance, and oxidative stress without synthetic additives.'
-							className='mx-auto max-lg:sticky max-lg:top-[100px]'
+							className='mx-auto max-lg:sticky max-lg:-mt-10 max-lg:transform max-lg:translate-y-0 max-lg:top-[100px]'
 						/>
 						<ProductCard
 							title='K2&nbsp;&#8209;&nbsp;D3&nbsp;5000'
 							badge='Vitamin D (25-OH)'
 							description='Optimizes calcium absorption for bone strength, cardiovascular health, and immune support, addressing deficiencies in vitamins K2 and D3.'
-							className='max-lg:sticky max-lg:top-[150px] mx-auto'
+							className='max-lg:sticky max-lg:top-[100px] max-lg:-mt-10 max-lg:transform max-lg:translate-y-[50px] mx-auto'
 						/>
 						<ProductCard
 							title='NAD+'
 							badge='Glucose (Fasting)'
 							description='Boosts cellular energy, DNA repair, and metabolic function, targeting age-related NAD+ decline and mitochondrial health challenges.'
-							className='max-lg:sticky max-lg:top-[200px] lg:mr-auto'
+							className='max-lg:sticky max-lg:top-[100px] max-lg:-mt-10 max-lg:transform max-lg:translate-y-[100px] lg:mr-auto'
 						/>
 
 						<ProductCard
 							title='NAC'
 							badge='ALT, AST, GGT (Liver Enzymes)'
 							description='Replenishes glutathione for detoxification, respiratory health, and antioxidant defense, addressing oxidative stress and toxin buildup.'
-							className='max-lg:sticky max-lg:top-[250px] lg:ml-auto'
+							className='max-lg:sticky max-lg:top-[100px] max-lg:-mt-10 max-lg:transform max-lg:translate-y-[150px] lg:ml-auto'
 						/>
 						<ProductCard
 							title='Magnesium L&#8209;Threonate'
 							badge='Cortisol (AM/PM)'
 							description='Enhances cognitive function and supports brain health by increasing magnesium levels in the brain, potentially improving memory and learning abilities.'
-							className='max-lg:sticky max-lg:top-[300px] mx-auto'
+							className='max-lg:sticky max-lg:top-[100px] max-lg:-mt-[70px] max-lg:transform max-lg:translate-y-[230px] mx-auto'
 						/>
 					</div>
 				</div>

@@ -5,22 +5,22 @@ import { Product } from '@/payload/payload-types'
 
 const Tested = ({ data } : {data : Product['testing']}) => {
 	return (
-		<div className='lg:px-3'>
+		<div className='lg:px-3 max-lg:mb-[200px]'>
 			<div className='container-center'>
 				<h3
 					className='lg:h3 h5 text-primary lg:text-center'>
            Clean, simple and tested
 				</h3>
-				<div className='mt-14 flex flex-col lg:flex-row items-center w-full justify-center gap-5 flex-wrap'>
+				<div className='mt-14 flex flex-col lg:flex-row items-center w-full justify-center lg:gap-5 flex-wrap'>
 					{
 						data?.map((e, i) => {
-							const topPosition = 100 + (i * 50);
+							const translateY = i * 50;
 							
 							return (
 								<div
 									key={ i }
-									style={ { '--top-position': `${topPosition}px` } as React.CSSProperties }
-									className='bg-white w-full lg:w-[calc(33%-40px)] max-lg:sticky max-lg:top-[--top-position] border border-grey-100 rounded-[15px] py-3.5 px-6 gap-3.5'>
+									style={ { '--translateY': `${translateY}px` } as React.CSSProperties }
+									className='bg-white w-full lg:w-[calc(33%-40px)] max-lg:transform max-lg:translate-y-[--translateY] max-lg:sticky max-lg:top-[100px] border border-grey-100 rounded-[15px] py-3.5 px-6 gap-3.5 max-lg:-mt-5'>
 									<div className='flex items-center justify-between'>
 										<h6 className='h6'>{ e.title }</h6>
 										<div className='h-7 rounded-full bg-[#F6FFFC] border px-3 border-green-alert flex items-center justify-center gap-1'>
