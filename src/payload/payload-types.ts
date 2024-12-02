@@ -37,6 +37,16 @@ export interface Product {
   category: Category;
   treatmentOptions?: ProductTreatmentOption[] | null;
   image: Media;
+  productFeatures?:
+  | {
+      icon: Media;
+      text: string;
+      highlightText?: string | null;
+      highlightLink?: string | null;
+      openInNewTab?: boolean | null;
+      id?: string | null;
+    }[]
+  | null;
   stats?: {
     mainDescription?: string | null;
     statistic1?: {
