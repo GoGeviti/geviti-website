@@ -94,7 +94,7 @@ const StripeCheckout: FC<PageProps> = ({ searchParams }) => {
 			try {
 				// setLoading(true);
 				setCouponLoading(true);
-				if (!code || !productMembership) throw 'No coupon applied'
+				if (!code) throw 'No coupon applied'
 				const couponDiscount = await getDiscount(code, productId?.toString() ?? '');
 				setDiscount(couponDiscount);
 				if (couponDiscount?.id) {
