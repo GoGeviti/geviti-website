@@ -1,7 +1,9 @@
 import React from 'react'
 import { notFound } from 'next/navigation'
 
-import { Footer, FrequentlyAskedQuestions, MarketingComponent, RunningLogo } from '@/components'
+import {
+	Footer, FrequentlyAskedQuestions, Line, MarketingComponent, RunningLogo
+} from '@/components'
 import Navbar from '@/components/Navbar/Landing'
 import { ViewOtherCategories } from '@/components/Solutions'
 import { solutionData } from '@/constant/data'
@@ -9,11 +11,13 @@ import { navbarDefaultTransition } from '@/constant/data/navbar';
 import { Product } from '@/payload/payload-types'
 import { getProductByCategory } from '@/services/products'
 
-import Description from '../Description'
-
+// import Description from '../Description'
 import { Biomakers } from './Biomakers'
 // import Description from './Description'
 import Hero from './Hero'
+import License from './License'
+import Tested from './Tested'
+import Why from './Why'
 
 // const biomakersList = [
 // 	'Oral Capsule',
@@ -63,10 +67,16 @@ const ProductCategorySingle = async(props:{
 				} }
 			/>
 			<Hero data={ productDataSingle } />
-			<div className='pb-[31px]'>
+			{ /* <div className='pb-[31px]'>
 				<Description data={ productDataSingle.stats }/>
-			</div>
-			<Biomakers items={ productDataSingle.treatmentOptions?.map(e => e.name) ?? [] } />
+			</div> */ }
+			<Line className='max-lg:hidden'/>
+			<License/>
+			<Tested data={ productDataSingle.testing }/>
+			<Biomakers
+				stats={ productDataSingle.stats }
+				items={ productDataSingle.treatmentOptions?.map(e => e.name) ?? [] } />
+			<Why data={ productDataSingle.why }/>
 			<ViewOtherCategories
 				baseUrl={ `/men/${category}` }
 				isProduct

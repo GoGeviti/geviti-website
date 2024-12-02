@@ -31,7 +31,7 @@ const MemberFrequencyPlan: React.FC<MemberFrequencyPlanProps> = ({ setStep }) =>
 	const searchParams = useSearchParams();
 	const router = useRouter();
 
-	const [activeTabIdx, setActiveTabIdx] = useState<number>(0);
+	const [activeTabIdx] = useState<number>(0);
 	const [offerings, setOfferings] = useState<MembershipOfferingsReturnType[]>();
 	const [monthlyPrice, setMonthlyPrice] = useState(0);
 	const [quarterlyPrice, setQuarterlyPrice] = useState(0);
@@ -132,8 +132,8 @@ const MemberFrequencyPlan: React.FC<MemberFrequencyPlanProps> = ({ setStep }) =>
 									theme='light' />
 								<div className='w-fit max-lg:my-[42px] lg:mb-[2.222vh] 2xl:mb-6'>
 									<ButtonSwitchMemberFreq
-										options={ membershipFrequencyData.frequencyOptions }
-										onChange={ (currentIdx: number) => setActiveTabIdx(currentIdx) }
+										// options={ membershipFrequencyData.frequencyOptions }
+										// onChange={ (currentIdx: number) => setActiveTabIdx(currentIdx) }
 										layoutId='switch-membership-frequency-checkout'
 										showHightlightTextOnMobile
 									/>

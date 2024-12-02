@@ -2,7 +2,6 @@
 
 import React, { useState } from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
 
 import clsxm from '@/helpers/clsxm';
 import { Post } from '@/payload/payload-types';
@@ -129,7 +128,7 @@ const renderItem = (data?: Post[]) => {
 		>
 			{ data?.map((items, id) => {
 				return (
-					<Link
+					<CustomLink
 						href={ `/blog/${ items.slug }` }
 						key={ id }
 						className='relative bg-white max-md:rounded-lg overflow-hidden flex flex-row md:flex-col max-md:items-center max-md:p-5 max-md:space-x-[9px]'
@@ -152,7 +151,7 @@ const renderItem = (data?: Post[]) => {
 								{ items.title }
 							</p>
 						</div>
-					</Link>
+					</CustomLink>
 				);
 			}) }
 		</div>

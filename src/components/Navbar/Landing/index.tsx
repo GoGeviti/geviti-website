@@ -2,7 +2,7 @@
 import React, { memo, useCallback, useEffect, useState } from 'react';
 import { AnimatePresence, motion, MotionProps, useAnimation } from 'framer-motion';
 import Image from 'next/image';
-import Link from 'next/link';
+// import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
 import { navbarDefaultTransition } from '@/constant/data/navbar';
@@ -100,7 +100,7 @@ const MenuItem = memo(({
 						<div>
 							<p className='text-[10px] font-semibold uppercase tracking-[1.1px] pb-[14px]'>Explore</p>
 							<ul className='flex flex-col gap-[14px]'>
-								<Link
+								<CustomLink
 									prefetch={ true }
 									href={ active === 'Men\'s Health' ? '/men' : '/women' }>
 									<li className={ clsxm(
@@ -116,8 +116,8 @@ const MenuItem = memo(({
 										) } />
 										<span>Overview & Benefits</span>
 									</li>
-								</Link>
-								<Link
+								</CustomLink>
+								<CustomLink
 									prefetch={ true }
 									href={ `/longeviti-panel?gender=${active === 'Men\'s Health' ? 'men' : 'women'}` }>
 									<li className={ clsxm(
@@ -134,8 +134,8 @@ const MenuItem = memo(({
 
 										<span>At-home Bloodwork</span>
 									</li>
-								</Link>
-								{ /* <Link href='/pricing'>
+								</CustomLink>
+								<CustomLink href='/longeviti-blend'>
 									<li className={ clsxm(
 										'text-sm flex gap-2 items-center transition-colors duration-200 group cursor-pointer',
 										theme === 'light' ? 'text-white' : 'text-primary'
@@ -149,7 +149,7 @@ const MenuItem = memo(({
 										) } />
 										<span>Custom Supplements</span>
 									</li>
-								</Link> */ }
+								</CustomLink>
 							</ul>
 						</div>
 						<div>
@@ -158,7 +158,7 @@ const MenuItem = memo(({
 						</div>
 						<div>
 							<p className='text-[10px] font-semibold uppercase tracking-[1.1px] pb-[14px]'>Get Started</p>
-							<Link
+							<CustomLink
 								href='/pricing'
 								prefetch={ true }
 								className=''>
@@ -178,7 +178,7 @@ const MenuItem = memo(({
 										</div>
 									</div>
 								</div>
-							</Link>
+							</CustomLink>
 						</div>
 					</motion.div>
 				</motion.div>
@@ -228,11 +228,11 @@ const MenuItem = memo(({
 			>
 				{
 					href !== '#' ? (
-						<Link
+						<CustomLink
 							prefetch={ true }
 							href={ href ?? '' } >
 							{ item }
-						</Link>
+						</CustomLink>
 					) : (
 						item
 					)
@@ -485,14 +485,14 @@ const Navbar: React.FC<NavbarProps> = ({
 									) }
 								>
 									<div className='flex items-center lg:space-x-5 xl:space-x-[50px]'>
-										<Link
+										<CustomLink
 											href='/'
 											prefetch={ true }
 											className='focus:ring-0 focus:outline-none'>
 											<GevitiLogo
 												isScrolled={ isScrolled }
 												theme={ theme } />
-										</Link>
+										</CustomLink>
 										<div className='hidden lg:flex items-center space-x-5 xl:space-x-[50px]'>
 											{ renderNavigationItems() }
 										</div>

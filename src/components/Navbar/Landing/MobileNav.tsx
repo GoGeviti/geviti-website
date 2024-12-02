@@ -5,9 +5,10 @@ import { AnimatePresence, motion } from 'framer-motion';
 import Image from 'next/image';
 // import Image from 'next/image';
 // import Image from 'next/image';
-import Link from 'next/link';
+// import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
+import CustomLink from '@/components/CustomLink';
 // import cartIcon from '@/assets/mobile-nav/cart.svg';
 // import dashboardIcon from '@/assets/mobile-nav/dashboard.svg';
 import { ArrowNarrowLeft, ArrowUpRightLink, ShoppingBagIcon } from '@/components/Icons';
@@ -188,9 +189,9 @@ const MobileNav: React.FC<MobileNavProps> = ({
 					<div className='flex h-full flex-col'>
 						<div className='flex flex-col gap-10 mb-[34px]'>
 							<div className='flex justify-between'>
-								<Link href='/'>
+								<CustomLink href='/'>
 									<GevitiLogo />
-								</Link>
+								</CustomLink>
 								<IoClose
 									className='w-6 h-6 text-grey-50'
 									onClick={ toggleMenu }
@@ -225,7 +226,7 @@ const MobileNav: React.FC<MobileNavProps> = ({
 													Dashboard
 										</span>
 									</a>
-									<Link
+									<CustomLink
 										href='/pricing'
 										prefetch={ true }
 										className=''>
@@ -243,7 +244,7 @@ const MobileNav: React.FC<MobileNavProps> = ({
 												</div>
 											</div>
 										</div>
-									</Link>
+									</CustomLink>
 									<div className='flex flex-col h-full gap-4'>
 										<span className='text-[10px] uppercase tracking-[1.1px] text-grey-300'>main menu</span>
 										{ menuList.map((link, index) => {
@@ -267,7 +268,7 @@ const MobileNav: React.FC<MobileNavProps> = ({
 																{ link.name }
 															</p>
 														) : (
-															<Link href={ link.href }>{ link.name }</Link>
+															<CustomLink href={ link.href }>{ link.name }</CustomLink>
 														) }
 													</motion.div>
 												</div>
@@ -299,14 +300,14 @@ const MobileNav: React.FC<MobileNavProps> = ({
 															Back
 													</span>
 												</button>
-												<Link
+												<CustomLink
 													href='/pricing'
 													className='flex items-center w-full justify-center text-white py-3 px-6 rounded-xl text-sm gap-2 bg-grey-950 border-[0.5px] border-grey-primary-light/60'
 												>
 													<span className=''>
 													Get Started
 													</span>
-												</Link>
+												</CustomLink>
 											</div>
 											<span className='text-blue-primary uppercase font-semibold tracking-[1.76px] mt-10'>
 												{ expandedIdx !== null && menuList[expandedIdx]?.name }
@@ -326,7 +327,7 @@ const MobileNav: React.FC<MobileNavProps> = ({
 															<>
 																<span className='text-[10px] uppercase tracking-[1.1px] text-grey-300'>Explore</span>
 																<div className='flex flex-col gap-4'>
-																	<Link
+																	<CustomLink
 																		href={ expandedIdx !== null && menuList[expandedIdx]?.name === 'Men\'s Health' ? '/solution/men' : '/solution/women' }
 																		className={ clsxm(
 																			'h6',
@@ -336,18 +337,29 @@ const MobileNav: React.FC<MobileNavProps> = ({
 																		) }
 																	>
 																		Overview & Benefits
-																	</Link>
-																	<Link
+																	</CustomLink>
+																	<CustomLink
 																		href={ `/longeviti-panel?gender=${expandedIdx !== null && menuList[expandedIdx]?.name === 'Men\'s Health' ? 'men' : 'women'}` }
 																		className={ clsxm(
-																			'h6 mb-8',
+																			'h6',
 																			pathname === '/longeviti-panel'
 																				? 'text-grey-50'
 																				: 'text-grey-primary'
 																		) }
 																	>
 																		At-home Bloodwork
-																	</Link>
+																	</CustomLink>
+																	<CustomLink
+																		href={ '/longeviti-blend' }
+																		className={ clsxm(
+																			'h6 mb-8',
+																			pathname === '/longeviti-blend'
+																				? 'text-grey-50'
+																				: 'text-grey-primary'
+																		) }
+																	>
+																		Custom Supplements
+																	</CustomLink>
 																</div>
 																<span className='text-[10px] uppercase tracking-[1.1px] text-grey-300'>Product Category</span>
 															</>
@@ -359,7 +371,7 @@ const MobileNav: React.FC<MobileNavProps> = ({
 															key={ item.name }
 															className='overflow-hidden'>
 															<motion.div variants={ mobileLinkVars }>
-																<Link
+																<CustomLink
 																	href={ item.href }
 																	className={ clsxm(
 																		'h6',
@@ -369,7 +381,7 @@ const MobileNav: React.FC<MobileNavProps> = ({
 																	) }
 																>
 																	{ item.name }
-																</Link>
+																</CustomLink>
 															</motion.div>
 														</div>
 													)) }
@@ -383,7 +395,7 @@ const MobileNav: React.FC<MobileNavProps> = ({
 							{ /* <div className='border-t border-[#2D2F31] pt-5 mt-5 -mx-4'>
 								<div className='px-4'>
 									<motion.div variants={ mobileLinkVarsOpacity }>
-										<Link
+										<CustomLink
 											href={ process.env.NEXT_PUBLIC_APP_URL ?? '/' }
 											className='flex items-center gap-2.5'
 										>
@@ -396,7 +408,7 @@ const MobileNav: React.FC<MobileNavProps> = ({
 											<span className='font-Poppins text-white text-[20px] tracking-tight'>
                         Dashboard
 											</span>
-										</Link>
+										</CustomLink>
 									</motion.div>
 								</div>
 							</div> */ }

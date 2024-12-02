@@ -34,66 +34,64 @@ const pricingData = {
 			title: 'Data Driven Personalized Wellness',
 			image: '/images/pricing/phone-mockup.webp',
 		},
-		list: [
-			{
-				name: 'Premium Membership',
-				// stripeProductId: 'prod_QgoGvBsYKsIYqO',
-				stripeProductId: process.env.NEXT_PUBLIC_STRIPE_PRODUCT_ID ?? '',
-				keyword: InitialOfferingType.ULTIMATE,
-				price: '$99',
-				priceMonthly: '$119',
-				priceDiscount: '$119',
-				priceNote: 'usd/mo',
-				biomakers: '90+',
-				mostPopular: false,
-				mostValue: true,
-				monthly: '+ $300',
-				quarterly: '+ $300',
-				btnCta: {
-					href: '/onboarding/payment',
-					text: 'Get started',
-				},
-				listTitle: 'Your membership includes access to:',
-				list: [
-					{
-						title: 'Free routine labs at-home',
-						description: 'Routine bloodwork is everything. We’ll send a licensed phlebotomist to you for an at-home or in-office blood draw twice a year, looking at over 90 different biomarkers.',
-					},
-					{
-						title: 'Personalized care plans ',
-						description: 'Fully customized plan tailored to your goals, including personalized supplements, doctor-monitored medications, metabolic health coaching, and actionable insights based on your data.  ',
-					},
-					{
-						title: 'Wholesale pricing ',
-						description: 'Access compounded medications, supplements, and testing at wholesale prices. Save money while receiving premium, medically guided health solutions for your wellness journey.',
-					},
-					{
-						title: 'Custom supplements ',
-						description: 'Get science-backed supplements tailored to your unique needs. Based on your bloodwork, these blends ensure you get exactly what your body needs for optimal health and performance.',
-					},
-					{
-						title: 'Doctor monitored treatments',
-						description: 'Treatments are overseen by licensed medical providers who monitor progress and adjust plans as needed, ensuring your journey is safe, effective, and aligned with your health goals.',
-					},
-					{
-						title: 'Specialty testing options',
-						description: 'From gut health and micronutrient testing, uncover deeper insights into your health. Our specialized tests provide data-driven solutions for a comprehensive wellness strategy.',
-					},
-					{
-						title: 'Dedicated wellness specialists',
-						description: 'Stay supported with direct access to a personal wellness specialist. Get guidance, answers, and accountability to keep your health journey on track every step of the way.',
-					},
-					{
-						title: 'Mobile application',
-						description: 'Track your health, schedule bloodwork, manage prescriptions, and access your care plan—all from a user-friendly app designed to make proactive care simple and convenient.',
-					},
-					{
-						title: 'AI health companion',
-						description: 'Leverage cutting-edge AI to track your progress, analyze your data, and provide actionable insights, keeping your health goals within reach with personalized, real-time support.',
-					},
-				],
+		list: {
+			name: 'Premium Membership',
+			// stripeProductId: 'prod_QgoGvBsYKsIYqO',
+			stripeProductId: process.env.NEXT_PUBLIC_STRIPE_PRODUCT_ID ?? '',
+			keyword: InitialOfferingType.ULTIMATE,
+			price: '$99',
+			priceMonthly: '$119',
+			priceDiscount: '$119',
+			priceNote: 'usd/mo',
+			biomakers: '90+',
+			mostPopular: false,
+			mostValue: true,
+			monthly: '+ $300',
+			quarterly: '+ $300',
+			btnCta: {
+				href: '/onboarding/payment',
+				text: 'Get started',
 			},
-		],
+			listTitle: 'Your membership includes access to:',
+			list: [
+				{
+					title: 'Free routine labs at-home',
+					description: 'Routine bloodwork is everything. We’ll send a licensed phlebotomist to you for an at-home or in-office blood draw twice a year, looking at over 90 different biomarkers.',
+				},
+				{
+					title: 'Personalized care plans ',
+					description: 'Fully customized plan tailored to your goals, including personalized supplements, doctor-monitored medications, metabolic health coaching, and actionable insights based on your data.  ',
+				},
+				{
+					title: 'Wholesale pricing ',
+					description: 'Access compounded medications, supplements, and testing at wholesale prices. Save money while receiving premium, medically guided health solutions for your wellness journey.',
+				},
+				{
+					title: 'Custom supplements ',
+					description: 'Get science-backed supplements tailored to your unique needs. Based on your bloodwork, these blends ensure you get exactly what your body needs for optimal health and performance.',
+				},
+				{
+					title: 'Doctor monitored treatments',
+					description: 'Treatments are overseen by licensed medical providers who monitor progress and adjust plans as needed, ensuring your journey is safe, effective, and aligned with your health goals.',
+				},
+				{
+					title: 'Specialty testing options',
+					description: 'From gut health and micronutrient testing, uncover deeper insights into your health. Our specialized tests provide data-driven solutions for a comprehensive wellness strategy.',
+				},
+				{
+					title: 'Dedicated wellness specialists',
+					description: 'Stay supported with direct access to a personal wellness specialist. Get guidance, answers, and accountability to keep your health journey on track every step of the way.',
+				},
+				{
+					title: 'Mobile application',
+					description: 'Track your health, schedule bloodwork, manage prescriptions, and access your care plan—all from a user-friendly app designed to make proactive care simple and convenient.',
+				},
+				{
+					title: 'AI health companion',
+					description: 'Leverage cutting-edge AI to track your progress, analyze your data, and provide actionable insights, keeping your health goals within reach with personalized, real-time support.',
+				},
+			],
+		},
 	},
 	pricingComparison: {
 		title: 'Price comparisons',

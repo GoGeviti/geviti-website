@@ -3,8 +3,13 @@ import { notFound } from 'next/navigation'
 
 import { Biomakers } from '@/app/solution/men/[category]/[product_id]/Biomakers'
 import Hero from '@/app/solution/men/[category]/[product_id]/Hero'
-import Description from '@/app/solution/men/[category]/Description'
-import { Footer, FrequentlyAskedQuestions, MarketingComponent, RunningLogo } from '@/components'
+import License from '@/app/solution/men/[category]/[product_id]/License'
+import Tested from '@/app/solution/men/[category]/[product_id]/Tested'
+import Why from '@/app/solution/men/[category]/[product_id]/Why'
+// import Description from '@/app/solution/men/[category]/Description'
+import {
+	Footer, FrequentlyAskedQuestions, Line, MarketingComponent, RunningLogo
+} from '@/components'
 import Navbar from '@/components/Navbar/Landing'
 import { ViewOtherCategories } from '@/components/Solutions'
 import { solutionData } from '@/constant/data'
@@ -65,10 +70,16 @@ const ProductCategorySingle = async(props:{
 				} }
 			/>
 			<Hero data={ productDataSingle } />
-			<div className='pb-[31px]'>
+			{ /* <div className='pb-[31px]'>
 				<Description data={ productDataSingle.stats }/>
-			</div>
-			<Biomakers items={ productDataSingle.treatmentOptions?.map(e => e.name) ?? [] } />
+			</div> */ }
+			<Line className='max-lg:hidden'/>
+			<License/>
+			<Tested data={ productDataSingle.testing }/>
+			<Biomakers
+				stats={ productDataSingle.stats }
+				items={ productDataSingle.treatmentOptions?.map(e => e.name) ?? [] } />
+			<Why data={ productDataSingle.why }/>
 			<ViewOtherCategories
 				baseUrl={ `/women/${category}` }
 				isProduct

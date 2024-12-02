@@ -4020,6 +4020,13 @@ i18next@22.5.1:
   dependencies:
     "@babel/runtime" "^7.20.6"
 
+iconsax-react@^0.0.8:
+  version "0.0.8"
+  resolved "https://registry.yarnpkg.com/iconsax-react/-/iconsax-react-0.0.8.tgz#5e992e9bd4bb298da019b2c13f76de5e4bb8e4b4"
+  integrity sha512-l3dVk4zGtkkJHgvNYqAf0wDKqnKxXykee5/DoESGo2JvSYwaxajJUHSX2YrPRXSov8Hd8ClGFwJxCEaEjrFD1Q==
+  dependencies:
+    prop-types "^15.7.2"
+
 ieee754@^1.1.13, ieee754@^1.1.4, ieee754@^1.2.1:
   version "1.2.1"
   resolved "https://registry.npmjs.org/ieee754/-/ieee754-1.2.1.tgz"

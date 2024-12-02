@@ -2,11 +2,11 @@
 import React, { useRef, useState } from 'react';
 import { motion } from 'framer-motion'
 import Image from 'next/image';
-import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Swiper as SwiperType } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
+import { CustomLink } from '@/components';
 import clsxm from '@/helpers/clsxm';
 import { Product } from '@/payload/payload-types';
 
@@ -17,7 +17,7 @@ const Card = (product:Product) => {
 	return (
 		<div className='w-full flex-shrink-0 lg:w-1/4 max-lg:p-4'> { /* Added padding wrapper */ }
 			<div className='h-full flex flex-col bg-white shadow-[0px_1px_15.2px_0px_rgba(0,0,0,0.10)] rounded-2xl p-3.5'>
-				<Link
+				<CustomLink
 					href={ pathName + '/' + product.slug }
 					className='flex flex-col h-full'>
 					<div className='flex items-center justify-center bg-blue-primary rounded-[14px] overflow-hidden'>
@@ -44,7 +44,7 @@ const Card = (product:Product) => {
 								) }
 						</p>
 					</div>
-				</Link>
+				</CustomLink>
 			</div>
 		</div>
 	);

@@ -48,6 +48,7 @@
     "formik": "^2.4.5",
     "framer-motion": "12.0.0-alpha.1",
     "gsap": "^3.12.5",
+    "iconsax-react": "^0.0.8",
     "klaviyo-api": "^12.0.1",
     "lexical": "^0.12.2",
     "lodash": "^4.17.21",

@@ -1,31 +1,35 @@
 import { FC, Fragment, useMemo } from 'react';
 
-import { DiscountReturnType } from '../api/types';
+// import { DiscountReturnType } from '../api/types';
+import { useCheckoutStore } from '@/store/checkoutStore';
 
 interface ITotalCalc {
-  productPrice: number;
-  membershipPrice: number;
-  discount: DiscountReturnType | null;
-  setTotalPrice: React.Dispatch<React.SetStateAction<number | undefined>>;
+//   productPrice: number;
+//   membershipPrice: number;
+//   discount: DiscountReturnType | null;
+//   setTotalPrice: React.Dispatch<React.SetStateAction<number | undefined>>;
 }
 export const TotalCalc: FC<ITotalCalc> = ({
-	productPrice,
-	membershipPrice,
-	discount,
-	setTotalPrice,
+	// productPrice,
+	// membershipPrice,
+	// discount,
+	// setTotalPrice,
 }) => {
+
+	const { selectedProductPrice, discount, setTotalPrice } = useCheckoutStore();
+
 	const total = useMemo(
-		() => (productPrice + membershipPrice).toFixed(2),
-		[productPrice, membershipPrice]
+		() => (selectedProductPrice?.price ?? 0).toFixed(2),
+		[selectedProductPrice]
 	);
 
 	const calculateDiscountAmount = () => {
 		if (discount?.percent_off) {
-			return (membershipPrice * discount.percent_off) / 100;
+			return ((selectedProductPrice?.price ?? 0) * discount.percent_off) / 100;
 		}
 		if (discount?.amount_off) {
 			const amountOffDollars = discount.amount_off / 100;
-			return Math.min(amountOffDollars, membershipPrice);
+			return Math.min(amountOffDollars, selectedProductPrice?.price ?? 0);
 		}
 		return 0;
 	};
@@ -36,12 +40,12 @@ export const TotalCalc: FC<ITotalCalc> = ({
 			return discountAmount.toFixed(2);
 		}
 		return 0;
-	}, [discount, membershipPrice]);
+	}, [discount, selectedProductPrice]);
 
 	const totalDue = useMemo(() => {
 		if (discount?.id) {
 			const discountAmount = calculateDiscountAmount();
-			const due = ((membershipPrice + productPrice) - discountAmount).toFixed(2);
+			const due = ((selectedProductPrice?.price ?? 0) - discountAmount).toFixed(2);
 			setTotalPrice(Number(due));
 			return due;
 		}
@@ -59,11 +63,11 @@ export const TotalCalc: FC<ITotalCalc> = ({
 				return discount.percent_off;
 			} else if (discount.amount_off) {
 				const discountAmount = calculateDiscountAmount();
-				return calculateEffectivePercentage(discountAmount, membershipPrice);
+				return calculateEffectivePercentage(discountAmount, selectedProductPrice?.price ?? 0);
 			}
 		}
 		return '0.00';
-	}, [discount, membershipPrice]);
+	}, [discount, selectedProductPrice]);
 
 	return (
 		<div className='flex justify-between py-12'>
