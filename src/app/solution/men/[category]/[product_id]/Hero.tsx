@@ -80,13 +80,13 @@ const Hero:React.FC<{data:Product}> = ({ data }) => {
 							<ButtonCta
 								className='max-lg:w-full h-[58px]'
 								href='/pricing'>Become a member</ButtonCta>
-							<ButtonCta
+							{ /* <ButtonCta
 								href='/pricing'
 								className='max-lg:w-full h-[58px]'
 								theme='outline'
 								hideArrow={ true }
 								text='Purchase now'
-							/>
+							/> */ }
 						</div>
 						<div className='lg:hidden'>
 							<Image
