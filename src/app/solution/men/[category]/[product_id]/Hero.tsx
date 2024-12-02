@@ -1,9 +1,9 @@
 import React, { CSSProperties } from 'react'
-import { DollarSquare, TruckFast } from 'iconsax-react';
+// import { DollarSquare, TruckFast } from 'iconsax-react';
 import Image from 'next/image'
 
 import ButtonCta from '@/components/ButtonCta'
-import { DNAIcon, LeafIcon } from '@/components/Icons/Landing'
+// import { DNAIcon, LeafIcon } from '@/components/Icons/Landing'
 import PopupReview from '@/components/PopupReview'
 import { Product } from '@/payload/payload-types'
 
@@ -50,7 +50,31 @@ const Hero:React.FC<{data:Product}> = ({ data }) => {
 							<h6 className='h5 leading-none text-grey-primary'>{ data.price }</h6>
 							<h6 className='h6 leading-none text-grey-primary'>{ data.retail_price }</h6>
 							<div className='flex flex-col gap-3.5 lg:gap-6'>
-								<div className='flex items-center gap-[15px]'>
+								{ data.productFeatures?.map((e, idx) => (
+									<div
+										className='flex items-center gap-[15px]'
+										key={ idx }>
+										<Image
+											src={ e.icon.url ?? '' }
+											alt={ e.icon.alt ?? 'icon' }
+											width={ 24 }
+											height={ 24 }
+											className='w-6 h-6 text-primary flex-shrink-0'/>
+										<span className='h6 text-grey-primary'>
+											{ `${e.text} ` }
+											{ e.highlightText && e.highlightLink ? (
+												<a
+													href={ e.highlightLink }
+													target={ e.openInNewTab ? '_blank' : '_self' }
+													className='text-[#4AADF6]'
+													rel='noreferrer'>{ e.highlightText }</a>
+											) : (
+												<span className='text-[#4AADF6]'>{ e.highlightText }</span>
+											) }
+										</span>
+									</div>
+								)) }
+								{ /* <div className='flex items-center gap-[15px]'>
 									<DNAIcon className='w-6 h-6 text-primary flex-shrink-0 transform rotate-45'/>
 									<span className='h6 text-grey-primary'>Supports <span className='text-[#4AADF6]'>testosterone levels</span></span>
 								</div>
@@ -72,7 +96,7 @@ const Hero:React.FC<{data:Product}> = ({ data }) => {
 								<div className='flex items-center gap-[15px]'>
 									<LeafIcon className='w-6 text-primary h-6 flex-shrink-0'/>
 									<span className='h6 text-grey-primary'>Compounded in USA Pharmacy</span>
-								</div>
+								</div> */ }
 							</div>
 						</div>
 						<p className='body-extra-small lg:body-small'>{ data.description }</p>
