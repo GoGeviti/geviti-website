@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 
 import { Footer, FrequentlyAskedQuestions } from '@/components';
-import { getAllProducts } from '@/components/Checkout/api/onboarding';
+import { getProductMemberhsip } from '@/components/Checkout/api/onboarding';
 import BannerMember from '@/components/Pricing/Banner';
 // import Download from '@/components/Pricing/Download';
 import Hero from '@/components/Pricing/Hero';
@@ -13,12 +13,12 @@ export const metadata: Metadata = {
 };
 
 const PricingPage = async() => {
-	const products = await getAllProducts();
-	// console.log(JSON.stringify(products, null, 2));
+	const productMembership = await getProductMemberhsip();
 
 	return (
 		<div className='flex min-h-screen flex-col w-full bg-white font-Poppins'>
-			<Hero products={ products } />
+			<Hero
+				productMembership={ productMembership } />
 			{ /* <PricingBiomarkers /> */ }
 			{ /* <PricingComparison />
 			<div className='lg:px-3'>

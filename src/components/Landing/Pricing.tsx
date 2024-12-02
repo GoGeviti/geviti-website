@@ -1,7 +1,8 @@
 import React from 'react';
 import dynamic from 'next/dynamic';
 
-import { ProductsResponse } from '../Checkout/api/types';
+// import { ProductsResponse } from '../Checkout/api/types';
+import { ProductMembership } from '@/interfaces/product';
 
 const Download = dynamic(() => import('../Pricing/Download'), {
 	// ssr: false,
@@ -17,18 +18,18 @@ const PricingBiomarkers = dynamic(
 );
 
 type PricingProps = {
-  products?: ProductsResponse[];
+  products?: ProductMembership;
 };
 
 const Pricing: React.FC<PricingProps> = ({ products }) => {
-	if (products?.length) {
+	if (products) {
 		return (
 			<div
 				id='pricing'
 				className='lg:px-3 lg:py-6 overflow-hidden'>
 				<div className='lg:bg-white lg:rounded-[19px]'>
 					<Hero
-						products={ products }
+						productMembership={ products }
 						isFromHomePage={ true }
 						navbar={ false }
 						className='!pt-[52px] lg:!pt-[164px]'

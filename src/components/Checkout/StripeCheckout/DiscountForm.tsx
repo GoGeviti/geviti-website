@@ -1,23 +1,28 @@
+/* eslint-disable no-unused-vars */
 import { FC,  useCallback,  useState } from 'react';
 import { debounce } from 'lodash';
 
 import { GreenCircleTick } from '@/components/Icons/GreenCircleTick';
 import { Spinner } from '@/components/Icons/Spinner';
+import { useCheckoutStore } from '@/store/checkoutStore';
 
 import TextField from '../TextField';
 
 type DiscountFormProps = {
-  submitCoupon: (code?: string) => void;
-  discountApplied: boolean;
-  loading: boolean;
-	disabled: boolean;
+	submitCoupon: (code?: string) => void;
+	// discountApplied: boolean;
+	// loading: boolean;
+	// disabled: boolean;
 };
 const DiscountForm: FC<DiscountFormProps> = ({
 	submitCoupon,
-	discountApplied = false,
-	loading,
-	disabled,
+	// discountApplied = false,
+	// loading,
+	// disabled,
 }) => {
+
+	const { couponLoading: loading, discountApplied } = useCheckoutStore();
+
 	const [inputValue, setInputValue] = useState('');
 	const [prevValue, setPrevValue] = useState('');
 	
@@ -60,7 +65,7 @@ const DiscountForm: FC<DiscountFormProps> = ({
 				name='coupon_code'
 				placeholder='Coupon Discount'
 				onChange={ handleInputChange }
-				disabled={ disabled }
+				disabled={ loading }
 			/>
 			{ loading && <Spinner className='absolute w-4 h-4 lg:w-6 lg:h-6 right-[22px] bottom-[20px] lg:bottom-[18px]' /> }
 			{ !loading && discountApplied && <GreenCircleTick className='absolute w-4 h-4 lg:w-6 lg:h-6 right-[22px] bottom-[20px] lg:bottom-[18px]' /> }

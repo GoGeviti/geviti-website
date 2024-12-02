@@ -17,10 +17,11 @@ import { statesData } from '@/constant/data';
 import clsxm from '@/helpers/clsxm';
 import { IPrecheckout } from '@/interfaces';
 import { createKlaviyoProfile } from '@/services/klaviyo';
+import { useCheckoutStore } from '@/store/checkoutStore';
 import { FormCheckoutSchema } from '@/validator/checkout';
 
 import { createSession, joinWaitListV2, validateState } from '../api/onboarding';
-import { DiscountReturnType, ProductsResponse } from '../api/types';
+// import { DiscountReturnType, ProductsResponse } from '../api/types';
 import CustomDatePicker from '../DatePicker';
 import { ExclamationIcon } from '../Payment/State';
 import CustomSelect from '../Select';
@@ -30,13 +31,13 @@ import StripePaymentElement from './StripePaymentElement';
 
 type StripeFormProps = {
   // stripe: Stripe | null;
-  totalPrice?: number;
+//   totalPrice?: number;
   handleCheckout: () => void;
-  loading: boolean;
-	coupon : string;
-	priceId: string | string[] | undefined
-	selectedProduct : ProductsResponse[];
-	discount:DiscountReturnType | null;
+//   loading: boolean;
+// 	coupon : string;
+// 	priceId: string | string[] | undefined
+// 	selectedProduct : ProductsResponse[];
+// 	discount:DiscountReturnType | null;
 };
 
 const initialValues = {
@@ -55,13 +56,16 @@ const initialValues = {
 
 const StripeForm: FC<StripeFormProps> = ({
 	// elements,
-	totalPrice,
-	loading,
-	coupon,
-	selectedProduct,
-	priceId,
-	discount
+	// totalPrice,
+	// loading,
+	// coupon,
+	// selectedProduct,
+	// priceId,
+	// discount
 }) => {
+
+	const { checkoutLoading: loading, promoCode: coupon, productMembership: selectedProduct, selectedProductPrice } = useCheckoutStore();
+
 	const router = useRouter();
 	const [stripeResponseLoading, setStripeResponseLoading] = useState(false);
 	const [statesChecked, setStatesChecked] = useState(false);
@@ -130,15 +134,13 @@ const StripeForm: FC<StripeFormProps> = ({
 						},
 						coupon: coupon,
 						referral: referral.length ? referral : undefined,
-						product: selectedProduct.map(product => {
-							return {
-								productId: product.stripeProductId,
-								productName: product.name,
-								quantity: 1,
-								price: Number(product.productPrices.find(e => e.priceId === priceId)?.price),
-								price_id: priceId?.toString() ?? ''
-							}
-						}),
+						product: [{
+							productId: selectedProduct?.productId.toString() ?? '',
+							productName: selectedProduct?.productName ?? '',
+							quantity: 1,
+							price: selectedProductPrice?.price ?? 0,
+							price_id: selectedProductPrice?.priceId ?? ''
+						}],
 						// payment_token: isValidState.token
 					}
 				})
@@ -456,15 +458,16 @@ const StripeForm: FC<StripeFormProps> = ({
 								>
 									<StripePaymentElement
 										klaviyoRes={ klaviyoRes }
-										coupon={ coupon }
+										// coupon={ coupon }
 										statesChecked={ statesChecked }
 										email={ formik.values.email }
 										token={ token }
-										discount={ discount }
-										priceId={ priceId }
-										products={ selectedProduct }
+										// discount={ discount }
+										// priceId={ priceId }
+										// products={ selectedProduct }
 										form={ formik.values }
-										totalPrice={ totalPrice ?? 0 } />
+										// totalPrice={ totalPrice ?? 0 }
+									/>
 								</Elements>
 							</div>
 							

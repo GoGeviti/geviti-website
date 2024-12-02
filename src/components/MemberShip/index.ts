@@ -3,7 +3,7 @@ import BiomarkersSection from './BiomarkersSection';
 import ChooseGeviti from './ChooseGeviti';
 import Features from './Features';
 import Hero from './Hero';
-import Pricing from './Pricing';
+// import Pricing from './Pricing';
 import PricingComparison from './PricingComparison';
 import Products from './Products';
 import SliderCustom from './SliderCustom';
@@ -15,7 +15,7 @@ export {
 	ChooseGeviti,
 	Features,
 	Hero,
-	Pricing,
+	// Pricing,
 	PricingComparison,
 	Products,
 	SliderCustom,

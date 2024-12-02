@@ -7,19 +7,20 @@ import { Spinner } from '@/components/Icons/Spinner'
 import clsxm from '@/helpers/clsxm'
 import { IPrecheckout } from '@/interfaces'
 import { deleteKlaviyoProfileFromList } from '@/services/klaviyo'
+import { useCheckoutStore } from '@/store/checkoutStore'
 
-import { DiscountReturnType, ProductsResponse } from '../api/types'
+// import { DiscountReturnType, ProductsResponse } from '../api/types'
 import PrivacyPolicyStatement from '../PrivacyPolicyStatement'
 
 type StripePaymentElementProps = {
-  totalPrice: number;
+	// totalPrice: number;
 	email : string;
 	token : string;
-	coupon : string;
+	// coupon : string;
 	statesChecked: boolean;
-	products: ProductsResponse[];
-	priceId: string | string[] | undefined;
-	discount:DiscountReturnType | null;
+	// products: ProductsResponse[];
+	// priceId: string | string[] | undefined;
+	// discount:DiscountReturnType | null;
 	form: IPrecheckout.BillingInfo,
 	klaviyoRes? : {
 		profileId?: string;
@@ -28,17 +29,19 @@ type StripePaymentElementProps = {
 }
 
 const StripePaymentElement:React.FC<StripePaymentElementProps> = ({
-	totalPrice,
+	// totalPrice,
 	email,
 	token,
 	statesChecked,
-	coupon,
-	products,
-	priceId,
-	discount,
+	// coupon,
+	// products,
+	// priceId,
+	// discount,
 	form,
 	klaviyoRes
 }) => {
+
+	const { discount, promoCode: coupon, totalPrice, productMembership, selectedProductPrice } = useCheckoutStore();
 
 	const [formLoading, setFormLoading] = useState(false)
 	const [termsChecked, setTermsChecked] = useState(false)
@@ -101,10 +104,27 @@ const StripePaymentElement:React.FC<StripePaymentElementProps> = ({
 					shipping: 0,
 					currency: 'USD',
 					coupon: '',
-					items: products.map(product => {
-						return {
-							item_id: product.stripeProductId,
-							item_name: product.name,
+					// items: products.map(product => {
+					// 	return {
+					// 		item_id: product.stripeProductId,
+					// 		item_name: product.name,
+					// 		affiliation: 'GoGeveti',
+					// 		coupon: coupon || '',
+					// 		currency: 'USD',
+					// 		index: '0',
+					// 		discount: discount?.amount_off ?? 0,
+					// 		item_brand: '',
+					// 		item_category: '',
+					// 		item_category2: '',
+					// 		item_variant: product.productPrices.find(e => e.priceId === priceId)?.billingFrequency,
+					// 		price: Number(product.productPrices.find(e => e.priceId === priceId)?.price),
+					// 		quantity: 1
+					// 	}
+					// })
+					items: [
+						{
+							item_id: productMembership?.productId.toString() ?? '',
+							item_name: productMembership?.productName ?? '',
 							affiliation: 'GoGeveti',
 							coupon: coupon || '',
 							currency: 'USD',
@@ -113,11 +133,11 @@ const StripePaymentElement:React.FC<StripePaymentElementProps> = ({
 							item_brand: '',
 							item_category: '',
 							item_category2: '',
-							item_variant: product.productPrices.find(e => e.priceId === priceId)?.billingFrequency,
-							price: Number(product.productPrices.find(e => e.priceId === priceId)?.price),
+							item_variant: selectedProductPrice?.billingFrequency,
+							price: Number(selectedProductPrice?.price),
 							quantity: 1
 						}
-					})
+					]
 				}
 			});
 
