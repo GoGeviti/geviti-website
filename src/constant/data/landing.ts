@@ -2,7 +2,6 @@ import { ShoppingBagIcon } from '@/components/Icons';
 import {
 	BarChartSquareIcon,
 	ChartIcon,
-	DiscountIcon,
 	// DNAIcon,
 	DocumentIcon,
 	EmergencyCallAddIcon,
@@ -10,6 +9,7 @@ import {
 	GevitiIcon,
 	// HeartbeatIcon,
 	HomeOutlineIcon,
+	InformationIcon,
 	// InformationIcon,
 	// MedicalDocIcon,
 	// MonitoringIcon,
@@ -39,8 +39,8 @@ const landingData = {
 			'optimization and longevit<span class="ml-0.5">y<span>.',
 		],
 		banner: {
-			text: 'Black Friday Sale 50% off your first month<br className="max-lg:hidden" /> with code <b>"BLACKFRIDAY"</b>',
-			icon: DiscountIcon,
+			text: '<span class="font-medium">Geviti Closes Early Stage Seed Financing</span> 🎉 <br/>To Celebrate, Those Who Join Our Beta Before<br/>August 1st Will Be Grandfathered In At $89/M!',
+			icon: InformationIcon,
 			show: true,
 		},
 		image: '/images/landing/compressed/hero.webp',
