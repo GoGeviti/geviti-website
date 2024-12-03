@@ -32,7 +32,7 @@ const HomeKits = dynamic(() => import('@/components/Landing/HomeKits'));
 
 // Pricing components should have SSR for SEO
 const HeroPricing = dynamic(() => import('@/components/Pricing/Hero'));
-const PricingBiomarkers = dynamic(() => import('@/components/Pricing/PricingBiomarkers'));
+// const PricingBiomarkers = dynamic(() => import('@/components/Pricing/PricingBiomarkers'));
 
 const HomePage: NextPage = async() => {
 	const productMembership = await getProductMemberhsip();
@@ -78,14 +78,14 @@ const HomePage: NextPage = async() => {
 						<div
 							id='pricing'
 							className='lg:px-3 lg:py-6 overflow-hidden'>
-							<div className='lg:bg-white lg:rounded-[19px] pb-[42px] lg:pb-[64px]'>
+							<div className='lg:bg-white lg:rounded-[19px] pb-[42px] lg:pb-[177px]'>
 								<HeroPricing
 									productMembership={ productMembership }
 									isFromHomePage={ true }
 									navbar={ false }
 									className='!pt-[52px] lg:!pt-[164px]'
 								/>
-								<PricingBiomarkers isFromHomePage={ true } />
+								{ /* <PricingBiomarkers isFromHomePage={ true } /> */ }
 							</div>
 						</div>
 					) }
