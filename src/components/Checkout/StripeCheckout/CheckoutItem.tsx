@@ -1,37 +1,51 @@
 'use client';
 
 import React, { FC, useState } from 'react';
-import { isArray } from 'lodash';
+// import { isArray } from 'lodash';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/Popover';
 import Skeleton from '@/components/Skeleton/Skeleton';
 import clsxm from '@/helpers/clsxm';
+import { formatPrice } from '@/lib/formatPrice';
+// import { monthlyOrQuarterly } from './StripeCheckout';
+import { useCheckoutStore } from '@/store/checkoutStore';
 
-import { ProductsResponse } from '../api/types';
-
-import { monthlyOrQuarterly } from './StripeCheckout';
+// import { ProductsResponse } from '../api/types';
 
 interface ICheckoutItem {
-  name?: string;
-  price?: number;
-  plan?: string;
-  metadata?: string;
-  icon?: React.JSX.Element;
-	loading: boolean;
-	productPrices? : ProductsResponse['productPrices'];
-	priceId: string
+	// name?: string;
+	// price?: number;
+	// plan?: string;
+	metadata?: string;
+	icon?: React.JSX.Element;
+	// loading: boolean;
+	// productPrices? : ProductsResponse['productPrices'];
+	// priceId: string
 }
-const CheckoutItem: FC<ICheckoutItem> = ({ name, priceId, price, plan, metadata, icon, loading, productPrices }) => {
+const CheckoutItem: FC<ICheckoutItem> = ({
+	// name,
+	// price,
+	// plan,
+	metadata,
+	icon,
+	// loading,
+	// productPrices
+}) => {
 	const [openPopover, setOpenPopover] = useState(false);
 
 	const router = useRouter();
 	const pathname = usePathname();
 	const query = useSearchParams();
 
+	const { selectedProductPrice, productMembership, loading, setSelectedProductPrice } = useCheckoutStore();
+
 	const handleChangePriceId = (newPriceId:string) => {
 		const params = new URLSearchParams(query);
 		params.set('price_id', newPriceId);
+
+		setSelectedProductPrice(productMembership?.productPrices?.find(e => e.priceId === newPriceId) ?? null);
+		setOpenPopover(false);
 
 		router.push(`${pathname}?${params.toString()}`);
 	};
@@ -46,14 +60,14 @@ const CheckoutItem: FC<ICheckoutItem> = ({ name, priceId, price, plan, metadata,
 					<Skeleton
 						loading={ loading }
 						className='h-7 w-60'>
-						<h3 className='inline-block text-white text-lg lg:text-2xl'>{ name }</h3>
+						<h3 className='inline-block text-white text-lg lg:text-2xl'>{ productMembership?.productName }</h3>
 					</Skeleton>
 					<Skeleton
 						loading={ loading }
 						className='h-5 w-[50%]'>
 						<div className='relative'>
 							{
-								isArray(productPrices) && productPrices?.length > 1 ? (
+								(productMembership?.productPrices?.length ?? 0) > 1 ? (
 									<Popover
 										open={ openPopover }
 										onOpenChange={ setOpenPopover }>
@@ -63,8 +77,8 @@ const CheckoutItem: FC<ICheckoutItem> = ({ name, priceId, price, plan, metadata,
 										>
 											<div
 												onClick={ () => setOpenPopover(!openPopover) }
-												className='flex items-center gap-2 text-grey-primary text-sm'>
-												<span>{ plan } </span>
+												className='flex items-center gap-2 text-grey-primary capitalize text-sm'>
+												<span>{ `Billed ${selectedProductPrice?.billingFrequency}` } </span>
 												<svg
 													width='10'
 													height='7'
@@ -91,21 +105,21 @@ const CheckoutItem: FC<ICheckoutItem> = ({ name, priceId, price, plan, metadata,
 											className='border flex flex-col gap-3 rounded-[9px] w-[302px] border-[#3B3C3E] bg-[#252627] shadow-[2px_2px_8px_0px_rgba(0,0,0,0.25)] p-3'
 										>
 											{
-												productPrices?.map(e => {
+												productMembership?.productPrices?.map(e => {
 													return (
 														<div
 															key={ e.priceId }
 															className='flex items-center justify-between'>
 															<div>
 																<span className={ clsxm(
-																	'font-Poppins text-sm text-[#ECF8FF]',
-																	e.priceId !== priceId && 'text-grey-primary'
-																) }>{ `Billed ${monthlyOrQuarterly(e.billingFrequency ?? '')}` }</span>
-																<p className='font-Poppins text-xs text-grey-primary'>${ e.price }</p>
+																	'font-Poppins text-sm text-[#ECF8FF] capitalize',
+																	e.priceId !== selectedProductPrice?.priceId && 'text-grey-primary'
+																) }>{ `Billed ${e?.billingFrequency}` }</span>
+																<p className='font-Poppins text-xs text-grey-primary'>{ formatPrice(e.price.toString() ?? '0') }</p>
 															</div>
 															<button onClick={ () => handleChangePriceId(e.priceId) }>
 																{
-																	e.priceId === priceId ? (
+																	e.priceId === selectedProductPrice?.priceId ? (
 																		<svg
 																			width='16'
 																			height='17'
@@ -154,8 +168,8 @@ const CheckoutItem: FC<ICheckoutItem> = ({ name, priceId, price, plan, metadata,
 										</PopoverContent>
 									</Popover>
 								) : (
-									<div className='flex items-center gap-2 text-grey-primary text-sm'>
-										<span>{ plan } </span>
+									<div className='flex items-center gap-2 text-grey-primary capitalize text-sm'>
+										<span>{ `Billed ${selectedProductPrice?.billingFrequency}` }</span>
 									</div>
 								)
 							}
@@ -168,7 +182,7 @@ const CheckoutItem: FC<ICheckoutItem> = ({ name, priceId, price, plan, metadata,
 						loading={ loading }
 						className='h-5 w-28'>
 
-						<p className='text-lg'>${ price?.toFixed(2) }</p>
+						<p className='text-lg'>{ formatPrice(selectedProductPrice?.price.toString() ?? '0') }</p>
 					</Skeleton>
 					<Skeleton
 						loading={ loading }

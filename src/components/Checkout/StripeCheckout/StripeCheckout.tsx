@@ -1,6 +1,6 @@
 'use client';
 
-import { FC, useCallback, useEffect, useState } from 'react';
+import { FC, useCallback, useEffect } from 'react';
 import { AiFillCloseCircle } from 'react-icons/ai';
 import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
@@ -9,19 +9,12 @@ import { toast } from 'sonner';
 import TagUserIcon from '@/components/Icons/TagUserIcon';
 import Button from '@/components/Onboarding/Button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/Sheet';
+import { useCheckoutStore } from '@/store/checkoutStore';
 
 import {
-	// checkout,
-	getAllProducts,
 	getDiscount,
+	getProductMemberhsip,
 } from '../api/onboarding';
-import {
-	DiscountReturnType,
-	// InitialOfferingsReturnType,
-	// MembershipOfferingsReturnType,
-	// ProductsPriceResponse,
-	ProductsResponse,
-} from '../api/types';
 
 import CheckoutItem from './CheckoutItem';
 import DiscountForm from './DiscountForm';
@@ -34,30 +27,51 @@ type PageProps = {
 };
 // TODO: make membership plans completely dynamic
 
-export const monthlyOrQuarterly = (billingFrequency: string) => {
-	if (billingFrequency === 'monthly') {
-		return 'Monthly';
-	}
-	if (billingFrequency === 'quarterly') {
-		return 'Quarterly';
-	}
-	return 'Monthly';
-}
+// export const monthlyOrQuarterly = (billingFrequency: string) => {
+// 	if (billingFrequency === 'monthly') {
+// 		return 'Monthly';
+// 	}
+// 	if (billingFrequency === 'quarterly') {
+// 		return 'Quarterly';
+// 	}
+// 	return 'Monthly';
+// }
 
 const StripeCheckout: FC<PageProps> = ({ searchParams }) => {
 	const router = useRouter();
 	const productId = searchParams?.product_id;
 	const priceId = searchParams?.price_id;
 
-	const [loading, setLoading] = useState(false);
-	const [couponLoading, setCouponLoading] = useState(false);
-	const [checkoutLoading, setCheckoutLoading] = useState(false);
-	const [product, setProduct] = useState<ProductsResponse>();
-	const [productSelected, setProductSelected] = useState<ProductsResponse[]>([]);
-	const [discount, setDiscount] = useState<DiscountReturnType | null>(null);
-	const [totalPrice, setTotalPrice] = useState<number>();
-	const [discountApplied, setDiscountApplied] = useState(false);
-	const [promoCode, setPromoCode] = useState('');
+	// const [loading, setLoading] = useState(false);
+	// const [couponLoading, setCouponLoading] = useState(false);
+	// const [checkoutLoading, setCheckoutLoading] = useState(false);
+	// const [product, setProduct] = useState<ProductsResponse>();
+	// const [productSelected, setProductSelected] = useState<ProductsResponse[]>([]);
+	// const [discount, setDiscount] = useState<DiscountReturnType | null>(null);
+	// const [totalPrice, setTotalPrice] = useState<number>();
+	// const [discountApplied, setDiscountApplied] = useState(false);
+	// const [promoCode, setPromoCode] = useState('');
+
+	const {
+		setLoading,
+		setCouponLoading,
+		setCheckoutLoading,
+		setDiscount,
+		// setTotalPrice,
+		setPromoCode,
+		setDiscountApplied,
+		setProductMembership,
+		setSelectedProductPrice,
+		// selectedProductPrice,
+		productMembership,
+		// loading,
+		// couponLoading,
+		// checkoutLoading,
+		discount,
+		// totalPrice,
+		promoCode,
+		// discountApplied,
+	} = useCheckoutStore();
 
 	useEffect(() => {
 		// setProductLoading(true);
@@ -67,13 +81,9 @@ const StripeCheckout: FC<PageProps> = ({ searchParams }) => {
 		}
 		const getOfferings = async() => {
 			setLoading(true);
-			const products = await getAllProducts();
-			setProduct(products.find(it => it.stripeProductId === productId));
-			if (Array.isArray(products)) {
-				setProductSelected(products.filter(it => it.stripeProductId === productId));
-			} else {
-				setProductSelected([]);
-			}
+			const products = await getProductMemberhsip();
+			setProductMembership(products)
+			setSelectedProductPrice(products.productPrices.find(it => it.priceId === priceId) ?? null);
 			setLoading(false);
 		};
 		getOfferings();
@@ -84,15 +94,15 @@ const StripeCheckout: FC<PageProps> = ({ searchParams }) => {
 			try {
 				// setLoading(true);
 				setCouponLoading(true);
-				if (!code || !productSelected) throw 'No coupon applied'
+				if (!code) throw 'No coupon applied'
 				const couponDiscount = await getDiscount(code, productId?.toString() ?? '');
 				setDiscount(couponDiscount);
 				if (couponDiscount?.id) {
 					setDiscountApplied(true);
-					setPromoCode(() => code.toUpperCase());
+					setPromoCode(code.toUpperCase());
 				} else {
 					setDiscountApplied(false);
-					setPromoCode(() => '');
+					setPromoCode('');
 					toast.error('Coupon doesn\'t exist', {
 						icon: <AiFillCloseCircle className='h-5 w-5 text-danger' />,
 					});
@@ -118,7 +128,7 @@ const StripeCheckout: FC<PageProps> = ({ searchParams }) => {
 			// token: string,
 		) => {
 			try {
-				if (!product) {
+				if (!productMembership) {
 					toast.error('', {
 						icon: <AiFillCloseCircle className='h-5 w-5 text-danger' />,
 					});
@@ -138,7 +148,7 @@ const StripeCheckout: FC<PageProps> = ({ searchParams }) => {
 				});
 			}
 		},
-		[product, discount, promoCode]
+		[productMembership, discount, promoCode]
 	);
 	return (
 		<div className='flex flex-col lg:flex-row min-h-screen h-full w-full font-Poppins'>
@@ -147,40 +157,24 @@ const StripeCheckout: FC<PageProps> = ({ searchParams }) => {
 					<PageHeader onBackClick={ () => router.back() } />
 					<div className='my-6'>
 						<CheckoutItem
-							name={ `${product?.name}` }
-							plan={ `Billed ${monthlyOrQuarterly(product?.productPrices.find(e => e.priceId === priceId)?.billingFrequency ?? '')}` }
-							price={ Number(product?.productPrices.find(e => e.priceId === priceId)?.price) }
+							// name={ `${productMembership?.productName}` }
+							// plan={ `Billed ${selectedProductPrice?.billingFrequency}` }
+							// price={ Number(selectedProductPrice?.price) }
+							// loading={ loading }
+							// productPrices={ productMembership?.productPrices }
+							// priceId={ priceId?.toString() ?? '' }
 							metadata={ '' }
 							icon={ TagUserIcon }
-							loading={ loading }
-							productPrices={ product?.productPrices }
-							priceId={ priceId?.toString() ?? '' }
 						/>
 					</div>
-					{ /* <div className='my-6'>
-						<CheckoutItem
-							name={ allProducts?.find(it => it.productType === 'one_time')?.name }
-							plan='One Time Payment'
-							price={ Number(allProducts?.find(it => it.productType === 'one_time')?.productPrices[0].price) }
-							icon={ MicroscopeIcon }
-							loading={ loading }
-							productPrices={ [] }
-							priceId={ priceId?.toString() ?? '' }
-						/>
-					</div> */ }
 					<div className='mt-11 lg:pl-[71px] lg:ml-6'>
 						<DiscountForm
-							loading={ couponLoading }
-							disabled= { couponLoading }
+							// loading={ couponLoading }
+							// disabled= { couponLoading }
 							submitCoupon={ handleCouponSubmit }
-							discountApplied={ discountApplied }
+							// discountApplied={ discountApplied }
 						/>
-						<TotalCalc
-							productPrice={ 0 }
-							membershipPrice={ Number(product?.productPrices.find(e => e.priceId === priceId)?.price) }
-							discount={ discount }
-							setTotalPrice={ setTotalPrice }
-						/>
+						<TotalCalc />
 					</div>
 					<Sheet >
 						<SheetTrigger
@@ -209,13 +203,13 @@ const StripeCheckout: FC<PageProps> = ({ searchParams }) => {
 							} }
 						>
 							<StripeElementsProvider
-								loading={ checkoutLoading }
-								totalPrice={ totalPrice }
+								// // loading={ checkoutLoading }
+								// totalPrice={ totalPrice }
 								handleCheckout={ handleCheckout }
-								coupon={ discount?.id && promoCode ? promoCode : '' }
-								selectedProduct={ productSelected }
-								priceId={ priceId }
-								discount={ discount }
+								// coupon={ discount?.id && promoCode ? promoCode : '' }
+								// selectedProduct={ productSelected }
+								// priceId={ priceId }
+								// discount={ discount }
 							/>
 						</SheetContent>
 					</Sheet>
@@ -223,13 +217,13 @@ const StripeCheckout: FC<PageProps> = ({ searchParams }) => {
 			</div>
 			<div className='h-full w-full bg-white max-lg:hidden'>
 				<StripeElementsProvider
-					coupon={ discount?.id && promoCode ? promoCode : '' }
-					loading={ checkoutLoading }
-					totalPrice={ totalPrice }
-					discount={ discount }
 					handleCheckout={ handleCheckout }
-					selectedProduct={ productSelected }
-					priceId={ priceId }
+					// coupon={ discount?.id && promoCode ? promoCode : '' }
+					// loading={ checkoutLoading }
+					// totalPrice={ totalPrice }
+					// discount={ discount }
+					// selectedProduct={ productSelected }
+					// priceId={ priceId }
 				/>
 			</div>
 		</div>

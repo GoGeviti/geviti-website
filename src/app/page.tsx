@@ -3,7 +3,7 @@ import { NextPage } from 'next';
 import dynamic from 'next/dynamic';
 
 import { Footer } from '@/components';
-import { getAllProducts } from '@/components/Checkout/api/onboarding';
+import { getProductMemberhsip } from '@/components/Checkout/api/onboarding';
 import IntroScreen from '@/components/IntroScreen';
 import {
 	DirectAccess, GevitiForFree, Marketplace, Products, Review, SocialProof
@@ -37,7 +37,7 @@ const HeroPricing = dynamic(() => import('@/components/Pricing/Hero'));
 // const PricingBiomarkers = dynamic(() => import('@/components/Pricing/PricingBiomarkers'));
 
 const HomePage: NextPage = async() => {
-	const products = await getAllProducts();
+	const productMembership = await getProductMemberhsip();
 	const categories = await getAllCategories();
 	const showIntro = await getCookie('show_intro');
 	const showBanner = await getCookie('close_hero_banner');
@@ -74,13 +74,13 @@ const HomePage: NextPage = async() => {
 						<Benefits />
 					</React.Suspense>
 
-					{ products?.length && (
+					{ productMembership && (
 						<div
 							id='pricing'
 							className='lg:px-3 lg:py-6 overflow-hidden'>
-							<div className='lg:bg-white lg:rounded-[19px] pb-[42px] lg:pb-[64px]'>
+							<div className='lg:bg-white lg:rounded-[19px] pb-[42px] lg:pb-[177px]'>
 								<HeroPricing
-									products={ products }
+									productMembership={ productMembership }
 									isFromHomePage={ true }
 									navbar={ false }
 									className='!pt-[52px] lg:!pt-[164px]'

@@ -1,3 +1,5 @@
+import { ProductMembership } from '@/interfaces/product';
+
 import {
 	AddressValidationResponseType,
 	AddressValitationParams,
@@ -199,6 +201,27 @@ export const getAllProducts = async() : Promise<ProductsResponse[]> => {
 		);
 		const data = await processResponse<ProductsResponse[]>(res);
 		return data
+	} catch (error) {
+		return await processError(error);
+	}
+}
+
+export const getProductMemberhsip = async() : Promise<ProductMembership> => {
+	try {
+		const res = await fetch(
+			`${onboardingApiUrl}/products/membership`,
+			{
+				method: 'GET',
+				headers: {
+					...headers,
+				}
+			}
+		);
+		const data = await processResponse<ProductMembership>(res);
+		return {
+			...data,
+			productPrices: data.productPrices.filter(it => !it.isHidden)
+		}
 	} catch (error) {
 		return await processError(error);
 	}

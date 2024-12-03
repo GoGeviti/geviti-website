@@ -1,86 +1,65 @@
 'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 
 import clsxm from '@/helpers/clsxm';
+import { ProductMembership } from '@/interfaces/product';
+import { useCheckoutStore } from '@/store/checkoutStore';
 
 type ButtonSwitchMemberFreqProps = {
   layoutId?: string;
-  options: {
-    title: string;
-  }[];
-  onChange?: (currentActiveIdx: number) => void; // eslint-disable-line no-unused-vars
   showHightlightTextOnMobile?: boolean;
 };
 
 const ButtonSwitchMemberFreq: React.FC<ButtonSwitchMemberFreqProps> = ({
 	layoutId = 'pill-tab-switch-pricingplans',
-	options,
-	onChange,
-	showHightlightTextOnMobile,
 }) => {
-	const [activeTabIdx, setActiveTabIdx] = useState<number>(0);
+	const { setSelectedProductPrice, productMembership, selectedProductPrice } = useCheckoutStore();
 
-	const handleClick = (idx: number) => {
-		setActiveTabIdx(idx);
-		if (onChange) onChange(idx);
-	};
-
-	const setItemClassName = (optIdx: number) => {
-		if (!showHightlightTextOnMobile) {
-			return optIdx === 0 ? 'px-3.5 w-[95px] sm:w-[156px]' : 'px-3.5 w-[95px] sm:w-[156px]';
-		}
-
-		return optIdx === 0 ? 'px-3.5 w-[156px]' : 'px-3.5 w-[156px]';
+	const handleClick = (opt: ProductMembership['productPrices'][0]) => {
+		setSelectedProductPrice(opt);
 	};
 
 	const renderButtonSwitchFrequency = () => {
-		const currentOpt = options[activeTabIdx];
+		const selectedIndex = productMembership?.productPrices.findIndex(
+			e => e.productPriceId === selectedProductPrice?.productPriceId
+		) ?? 0;
+		const totalOptions = productMembership?.productPrices.length ?? 1;
 
 		return (
 			<div className='relative overflow-hidden w-full rounded-[100px] h-[49px] px-1.5 bg-grey-50'>
-				<div className='relative flex items-center h-full'>
-					{ options.map((opt, optIdx) => {
+				<div
+					className='relative grid h-full'
+					style={ { gridTemplateColumns: `repeat(${totalOptions}, 1fr)` } }>
+					{ productMembership?.productPrices.map(opt => {
+						const isSelected = opt.productPriceId === selectedProductPrice?.productPriceId;
 						return (
 							<button
-								key={ opt.title }
-								aria-label={ opt.title }
-								onClick={ () => handleClick(optIdx) }
+								key={ opt.productPriceId }
+								aria-label={ opt.nickname }
+								onClick={ () => handleClick(opt) }
 								className={ clsxm(
-									'text-sm !leading-normal h-full flex items-center justify-center text-grey-400 cursor-pointer whitespace-nowrap',
-									setItemClassName(optIdx)
+									'text-sm !leading-normal h-full flex px-10 items-center justify-center cursor-pointer whitespace-nowrap',
+									isSelected ? 'text-white z-10' : 'text-grey-400'
 								) }
 							>
-								{ opt.title }
+								{ opt.billingFrequency.charAt(0).toUpperCase() + opt.billingFrequency.slice(1) }
 							</button>
 						);
 					}) }
+					
+					<motion.div
+						layoutId={ layoutId }
+						initial={ false }
+						transition={ { type: 'spring', duration: 0.5 } }
+						className='bg-primary absolute rounded-[100px] px-10 shadow-[0px_4px_8px_0px_rgba(0,0,0,0.1)] h-[37px] top-1.5'
+						style={ {
+							width: `calc(${100 / totalOptions}% - 12px)`,
+							left: `calc(${(selectedIndex * 100) / totalOptions}% + 6px)`,
+						} }
+					/>
 				</div>
-
-				<motion.span
-					layoutId={ layoutId }
-					transition={ { type: 'spring', duration: 0.75 } }
-					className={ clsxm(
-						'bg-primary cursor-pointer rounded-[100px] font-medium text-white whitespace-nowrap shadow-[0px_4px_8px_0px_rgba(0,0,0,0.1)] text-sm !leading-normal flex items-center h-[37px] top-1.5 absolute',
-						activeTabIdx === 0 ? 'left-1.5' : 'left-[95px] sm:left-[162px]',
-						showHightlightTextOnMobile && activeTabIdx > 0 && 'max-sm:left-[162px]',
-						setItemClassName(activeTabIdx),
-						currentOpt.title === 'Quarterly' ? 'justify-center' : 'justify-center'
-					) }
-				>
-					{ currentOpt.title }
-					{ /* { currentOpt.title === 'Quarterly' && (
-						<span
-							className={ clsxm(
-								'text-blue-primary text-xs !leading-normal w-[55px] h-[21px] flex-shrink-0 bg-[#F2FAFF]/15 border-[0.55px] border-white/15 rounded-[100px] flex items-center justify-center',
-								!showHightlightTextOnMobile && 'max-sm:hidden'
-							) }
-						>
-              13% off
-						</span>
-					) } */ }
-				</motion.span>
 			</div>
 		);
 	};
