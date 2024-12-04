@@ -13,7 +13,8 @@ import { navbarDefaultTransition } from '@/constant/data/navbar';
 import pricingData from '@/constant/data/pricing';
 import clsxm from '@/helpers/clsxm';
 import { ProductMembership } from '@/interfaces/product';
-import { formatPrice } from '@/lib/formatPrice';
+// import { formatPrice } from '@/lib/formatPrice';
+import { generateStripeNickname } from '@/lib/generateStripeNickname';
 import { useCheckoutStore } from '@/store/checkoutStore';
 
 import ButtonCta from '../ButtonCta';
@@ -34,17 +35,22 @@ const Hero: React.FC<HeroProps> = ({
 	navbar = true,
 	className,
 	isFromHomePage = false,
-	productMembership,
+	productMembership: productMembershipProps,
 }) => {
 	const ref = useRef<HTMLDivElement>(null);
 
-	const { setProductMembership, selectedProductPrice } = useCheckoutStore();
+	const { productMembership, setProductMembership, selectedProductPrice, setSelectedProductPrice } = useCheckoutStore();
 
 	useEffect(() => {
-		if (productMembership) {
-			setProductMembership(productMembership);
+		if (productMembershipProps) {
+			setSelectedProductPrice(productMembershipProps.productPrices[0]);
+			setProductMembership(productMembershipProps);
 		}
-	}, [productMembership]);
+	}, [productMembershipProps]);
+
+	// useEffect(() => {
+	// 	console.log('Hero component re-rendered with selectedProductPrice:', selectedProductPrice); // Add this line
+	// }, [selectedProductPrice]);
 
 	const [activeListDropdown, setActiveListDropdown] = useState(-1);
 
@@ -172,16 +178,32 @@ const Hero: React.FC<HeroProps> = ({
 											transition={ { ease: 'linear', duration: 0.25 } }
 											className='font-medium text-5xl whitespace-nowrap !leading-[125%] py-1 h-full'
 										>
-											<span className='font-medium text-5xl !leading-[125%] py-1'>
-												{ formatPrice(selectedProductPrice?.price.toString() ?? '0') }{ ' ' }
-											</span>
+											{ (() => {
+												if (!selectedProductPrice) {
+													return (
+														<span className='font-medium text-5xl !leading-[125%] py-1'>
+                              Loading...
+														</span>
+													);
+												}
+												const priceDetails = generateStripeNickname(
+													selectedProductPrice.price,
+													selectedProductPrice.interval || 'month',
+													selectedProductPrice.intervalCount || 1
+												);
+
+												return (
+													<span className='font-medium text-5xl !leading-[125%] py-1'>
+														{ priceDetails.perMonthPrice || '$0' }
+														<span className='text-xs font-medium whitespace-nowrap'>
+															{ priceDetails.formattedPrice || '/month' }
+														</span>
+													</span>
+												);
+											})() }
 										</motion.span>
 									</AnimatePresence>
 									<p className='text-xs leading-6'>
-										<span className='text-[10px] font-medium whitespace-nowrap'>
-											{ selectedProductPrice?.nickname }
-										</span>
-										<br/>
 										<span>
 											<span className='font-medium'>
                         Includes the “

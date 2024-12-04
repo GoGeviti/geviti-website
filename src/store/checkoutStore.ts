@@ -50,7 +50,7 @@ export const useCheckoutStore = create<CheckoutState>(set => ({
 	setProductMembership: productMembership => {
 		set(() => ({
 			productMembership,
-			selectedProductPrice: productMembership.productPrices.filter(e => !e.isHidden)[0],
+			// selectedProductPrice: productMembership.productPrices.filter(e => !e.isHidden)[0],
 		}))
 	},
 	setSelectedProductPrice: productPrice => {
