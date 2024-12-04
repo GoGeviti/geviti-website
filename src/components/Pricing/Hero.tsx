@@ -196,7 +196,7 @@ const Hero: React.FC<HeroProps> = ({
 													<span className='font-medium text-5xl !leading-[125%] py-1'>
 														{ priceDetails.perMonthPrice || '$0' }
 														<span className='text-xs font-medium whitespace-nowrap'>
-															{ priceDetails.formattedPrice || '/month' }
+															{ priceDetails.suffix || '/month' }
 														</span>
 													</span>
 												);
@@ -204,6 +204,27 @@ const Hero: React.FC<HeroProps> = ({
 										</motion.span>
 									</AnimatePresence>
 									<p className='text-xs leading-6'>
+										{ (() => {
+											if (!selectedProductPrice) {
+												return (
+													<span className='text-[10px] font-medium whitespace-nowrap'>
+                              Loading...
+													</span>
+												);
+											}
+											const priceDetails = generateStripeNickname(
+												selectedProductPrice.price,
+												selectedProductPrice.interval || 'month',
+												selectedProductPrice.intervalCount || 1
+											);
+
+											return (
+												<span className='text-[10px] font-medium whitespace-nowrap'>
+													{ priceDetails.formattedPrice || '/month' }
+												</span>
+											);
+										})() }
+										<br/>
 										<span>
 											<span className='font-medium'>
                         Includes the “
