@@ -61,17 +61,17 @@ export function generateStripeNickname(price: number, interval: BillingInterval,
 		case 'day':
 			perMonthPrice = price;
 			firstPart = 'Daily';
-			lastPart = 'day';
+			lastPart = intervalCount + ' day';
 			break;
 		case 'week':
 			perMonthPrice = price;
 			firstPart = 'Weekly';
-			lastPart = 'week';
+			lastPart = intervalCount + ' week';
 			break;
 		case 'month':
 			perMonthPrice = intervalCount === 3 ? price / 3 : price;
 			firstPart = intervalCount === 3 ? 'Quarterly' : 'Monthly';
-			lastPart = intervalCount === 3 ? '3 months' : '1 month';
+			lastPart = intervalCount === 3 ? '3 months' :  intervalCount + ' month';
 			break;
 		case 'year':
 			perMonthPrice = price / 12;
