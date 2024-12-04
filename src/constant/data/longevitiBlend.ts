@@ -56,7 +56,7 @@ const longevitiBlendData = {
 			image: '/images/longeviti_blend/ingredients/vitamin-b12.png',
 		},
 	],
-	textRefeal: 'Plus thousands more ingredients meticulously selected to nourish your body and support your health. Our extensive range ensures you have the right options at your fingertips, empowering your journey toward a healthier, more vibrant life.',
+	textRefeal: 'We have exclusive access to the top ingredients expertly selected to nourish  and support your health. Our extensive range ensures you have the right options at your fingertips, empowering your journey toward a healthier, more vibrant life.',
 	apps: {
 		preTitle: 'An INVESTMENT IN YOUR FUTURE',
 		title: 'Get Started Today',
