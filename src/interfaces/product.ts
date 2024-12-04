@@ -1,3 +1,5 @@
+import { BillingInterval } from '@/lib/generateStripeNickname';
+
 export interface ProductItem {
 	id: number;
 	name: string;
@@ -35,7 +37,7 @@ export interface ProductPrice {
 	priceId:          string;
 	priceType:        string;
 	billingFrequency: string;
-	interval:         string;
+	interval:         BillingInterval;
 	intervalCount:    number;
 	isCurrentPrice:   boolean;
 	isHidden:         boolean;

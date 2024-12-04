@@ -9,11 +9,12 @@ import { toast } from 'sonner';
 import TagUserIcon from '@/components/Icons/TagUserIcon';
 import Button from '@/components/Onboarding/Button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/Sheet';
+import { ProductMembership } from '@/interfaces/product';
 import { useCheckoutStore } from '@/store/checkoutStore';
 
 import {
 	getDiscount,
-	getProductMemberhsip,
+	// getProductMemberhsip,
 } from '../api/onboarding';
 
 import CheckoutItem from './CheckoutItem';
@@ -24,6 +25,7 @@ import { TotalCalc } from './TotalCalculation';
 
 type PageProps = {
 	searchParams: { [key: string]: string | string[] | undefined; };
+	priceData?: ProductMembership;
 };
 // TODO: make membership plans completely dynamic
 
@@ -37,7 +39,7 @@ type PageProps = {
 // 	return 'Monthly';
 // }
 
-const StripeCheckout: FC<PageProps> = ({ searchParams }) => {
+const StripeCheckout: FC<PageProps> = ({ searchParams, priceData }) => {
 	const router = useRouter();
 	const productId = searchParams?.product_id;
 	const priceId = searchParams?.price_id;
@@ -73,21 +75,28 @@ const StripeCheckout: FC<PageProps> = ({ searchParams }) => {
 		// discountApplied,
 	} = useCheckoutStore();
 
+	// useEffect(() => {
+	// 	// setProductLoading(true);
+	// 	if (!productId || !priceId) {
+	// 		router.replace('/pricing');
+	// 		return;
+	// 	}
+	// 	const getOfferings = async() => {
+	// 		setLoading(true);
+	// 		const products = await getProductMemberhsip();
+	// 		setProductMembership(products)
+	// 		setSelectedProductPrice(products.productPrices.find(it => it.priceId === priceId) ?? null);
+	// 		setLoading(false);
+	// 	};
+	// 	getOfferings();
+	// }, []);
+
 	useEffect(() => {
-		// setProductLoading(true);
-		if (!productId || !priceId) {
-			router.replace('/pricing');
-			return;
+		if (priceData) {
+			setSelectedProductPrice(priceData.productPrices.find(it => it.priceId === priceId) ?? null);
+			setProductMembership(priceData)
 		}
-		const getOfferings = async() => {
-			setLoading(true);
-			const products = await getProductMemberhsip();
-			setProductMembership(products)
-			setSelectedProductPrice(products.productPrices.find(it => it.priceId === priceId) ?? null);
-			setLoading(false);
-		};
-		getOfferings();
-	}, []);
+	}, [priceData]);
 
 	const handleCouponSubmit = useCallback(
 		async(code?: string) => {
