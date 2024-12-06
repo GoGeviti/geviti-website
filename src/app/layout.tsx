@@ -16,13 +16,15 @@ import 'slick-carousel/slick/slick.css';
 import './globals.css';
 import './main.css';
 
-// Use your Rewardful API Key
-const API_KEY = process.env.NEXT_PUBLIC_REWARDFUL_API_KEY || '642d4d';
+// Add environment check utility
+const isDevelopment = process.env.NODE_ENV === 'development';
 
-// If not setting NEXT_PUBLIC_APP_REWARDFUL_SCRIPT_URL, just use https://r.wdfl.co/rw.js
-const SCRIPT_URL = process.env.NEXT_PUBLIC_APP_REWARDFUL_SCRIPT_URL || 'https://r.wdfl.co/rw.js';
+// Update API_KEY and SCRIPT_URL definitions
+const API_KEY = isDevelopment ? '' : (process.env.NEXT_PUBLIC_REWARDFUL_API_KEY || '642d4d');
+const SCRIPT_URL = isDevelopment ? '' : (process.env.NEXT_PUBLIC_APP_REWARDFUL_SCRIPT_URL || 'https://r.wdfl.co/rw.js');
 
-const HEAD_TAGS = (
+// Conditionally render HEAD_TAGS
+const HEAD_TAGS = isDevelopment ? null : (
 	<>
 		<link
 			rel='preconnect'
@@ -63,21 +65,22 @@ export const viewport: Viewport = {
 const RootLayout: React.FC<{ children: React.ReactNode; }> = ({ children }) => {
 	return (
 		<html lang='en'>
-			{ HEAD_TAGS }
+			{ !isDevelopment && HEAD_TAGS }
 			<AOSInit />
 			
-			{ /* Essential scripts keep afterInteractive */ }
-			<Script
-				id='google-tag-manager'
-				strategy='afterInteractive'>
-				{ `
-					(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-					new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-					j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-						'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-					})(window,document,'script','dataLayer','GTM-K227ZN5C');
-				` }
-			</Script>
+			{ !isDevelopment && (
+				<Script
+					id='google-tag-manager'
+					strategy='afterInteractive'>
+					{ `
+						(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+						new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+						j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+							'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+						})(window,document,'script','dataLayer','GTM-K227ZN5C');
+					` }
+				</Script>
+			) }
 			
 			<StyledComponentsRegistry>
 				<body
@@ -91,44 +94,47 @@ const RootLayout: React.FC<{ children: React.ReactNode; }> = ({ children }) => {
 					{ children }
 					<LenisScroller />
 					
-					{ /* Move less critical scripts to lazyOnload */ }
-					<Script
-						src='https://www.googletagmanager.com/gtag/js?id=AW-11455487187'
-						strategy='lazyOnload'
-					/>
-					<Script
-						id='google-ads-init'
-						strategy='lazyOnload'
-					>
-						{ `
-							window.dataLayer = window.dataLayer || [];
-							function gtag(){dataLayer.push(arguments);}
-							gtag('js', new Date());
-							gtag('config', 'AW-11455487187');
-						` }
-					</Script>
-					<Script
-						src={ SCRIPT_URL }
-						data-rewardful={ API_KEY }
-						strategy='lazyOnload'
-					/>
-					<Script
-						id='rewardful-queue'
-						strategy='lazyOnload'>
-						{ '(function(w,r){w._rwq=r;w[r]=w[r]||function(){(w[r].q=w[r].q||[]).push(arguments)}})(window,\'rewardful\');' }
-					</Script>
-					
-					<noscript>
-						<iframe
-							src='https://www.googletagmanager.com/ns.html?id=GTM-K227ZN5C'
-							height='0'
-							width='0'
-							style={ {
-								display: 'none',
-								visibility: 'hidden',
-							} }
-						/>
-					</noscript>
+					{ !isDevelopment && (
+						<>
+							<Script
+								src='https://www.googletagmanager.com/gtag/js?id=AW-11455487187'
+								strategy='lazyOnload'
+							/>
+							<Script
+								id='google-ads-init'
+								strategy='lazyOnload'
+							>
+								{ `
+									window.dataLayer = window.dataLayer || [];
+									function gtag(){dataLayer.push(arguments);}
+									gtag('js', new Date());
+									gtag('config', 'AW-11455487187');
+								` }
+							</Script>
+							<Script
+								src={ SCRIPT_URL }
+								data-rewardful={ API_KEY }
+								strategy='lazyOnload'
+							/>
+							<Script
+								id='rewardful-queue'
+								strategy='lazyOnload'>
+								{ '(function(w,r){w._rwq=r;w[r]=w[r]||function(){(w[r].q=w[r].q||[]).push(arguments)}})(window,\'rewardful\');' }
+							</Script>
+							
+							<noscript>
+								<iframe
+									src='https://www.googletagmanager.com/ns.html?id=GTM-K227ZN5C'
+									height='0'
+									width='0'
+									style={ {
+										display: 'none',
+										visibility: 'hidden',
+									} }
+								/>
+							</noscript>
+						</>
+					) }
 				</body>
 			</StyledComponentsRegistry>
 		</html>

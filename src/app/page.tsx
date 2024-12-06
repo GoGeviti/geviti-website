@@ -78,7 +78,7 @@ const HomePage: NextPage = async() => {
 						<div
 							id='pricing'
 							className='lg:px-3 lg:py-6 overflow-hidden'>
-							<div className='lg:bg-white lg:rounded-[19px] pb-[42px] lg:pb-[177px]'>
+							<div className='lg:bg-white lg:rounded-[19px] pb-[42px] lg:pb-16'>
 								<HeroPricing
 									productMembership={ productMembership }
 									isFromHomePage={ true }
