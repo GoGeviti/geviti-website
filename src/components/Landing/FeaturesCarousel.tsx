@@ -3,6 +3,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { AnimatePresence, motion } from 'framer-motion';
+import Image from 'next/image';
 
 // import { features } from 'process';
 import landingData from '@/constant/data/landing';
@@ -96,10 +97,10 @@ const FeaturesCarousel: React.FC = () => {
 	};
 
 	const getVideoSource = (id: string) => {
-		if (id === 'doctor') return '/videos/doctor.mp4';
-		if (id === 'coaching') return '/videos/coaching.mp4';
-		if (id === 'protocols') return '/videos/protocols.mp4';
-		if (id === 'education') return '/videos/education.mp4';
+		if (id === 'doctor') return '/images/landing/feature-01.webp';
+		if (id === 'coaching') return '/images/landing/feature-03.webp';
+		if (id === 'protocols') return '/images/landing/feature-02.webp';
+		if (id === 'education') return '/images/landing/feature-04.webp';
 	};
 
 	const renderAnimatedContentCard = (id: string) => {
@@ -107,19 +108,25 @@ const FeaturesCarousel: React.FC = () => {
 
 		if (src) {
 			return (
-				<video
-					id={ `video-${activeIdx}` }
-					// ref={ vidRef }
-					autoPlay={ true }
-					muted
-					playsInline
-					className='w-full h-full object-cover absolute inset-0'
-				>
-					<source
-						src={ src }
-						type='video/mp4' />
-          Your browser does not support the video tag.
-				</video>
+				<Image
+					alt='card'
+					src={ src }
+					width={ 448 }
+					height={ 390 }
+				/>
+				// <video
+				// 	id={ `video-${activeIdx}` }
+				// 	// ref={ vidRef }
+				// 	autoPlay={ true }
+				// 	muted
+				// 	playsInline
+				// 	className='w-full h-full object-cover absolute inset-0'
+				// >
+				// 	<source
+				// 		src={ src }
+				// 		type='video/mp4' />
+			//   Your browser does not support the video tag.
+				// </video>
 			);
 		}
 
@@ -175,12 +182,12 @@ const FeaturesCarousel: React.FC = () => {
 											featureIdx % 2 !== 0 ? 'lg:order-1' : 'justify-center lg:justify-end'
 										) }>
 											<div className='w-full sm:w-[448px] relative h-[358px] sm:h-[390px]'>
-												<span className='text-primary font-Poppins p-4 lg:p-6 rounded-19px bg-white absolute inset-0 w-full h-full'>
-													<span className='flex flex-col gap-3'>
-														<span className='h-full aspect-[400/174] max-h-[174px] w-full bg-blue-alice rounded-2xl relative overflow-hidden'>
-															{ renderAnimatedContentCard(feature.card.id) }
-														</span>
-														<p className='text-2xl !leading-normal'>
+												<span className='text-primary font-Poppins p-3.5 rounded-19px bg-white absolute inset-0 w-full h-full'>
+													<div className='h-full w-full bg-blue-alice rounded-2xl relative overflow-hidden'>
+														{ renderAnimatedContentCard(feature.card.id) }
+													</div>
+													{ /* <span className='flex flex-col gap-3'> */ }
+													{ /* <p className='text-2xl !leading-normal'>
 															{ feature.card.title }
 														</p>
 														<p className='text-[3.5vw] xs2:text-sm sm:text-lg !leading-normal'>
@@ -189,8 +196,8 @@ const FeaturesCarousel: React.FC = () => {
 																	__html: feature.card.description,
 																} }
 															/>
-														</p>
-													</span>
+														</p> */ }
+													{ /* </span> */ }
 												</span>
 											</div>
 										</div>

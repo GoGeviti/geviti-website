@@ -53,7 +53,7 @@ const ProductsSection: React.FC<ProductSectionProps> = ({ data }) => {
 	return (
 		<div
 			id='landing-discover-geviti'
-			className='lg:pt-[81px]'
+			className='pt-6 lg:pt-[81px]'
 		>
 			<div
 				className={ clsxm(
