@@ -219,7 +219,7 @@ const Review = () => {
 							{ testimonials.map((testimonial, index) => (
 								<div
 									key={ index }
-									className='flex-[0_0_100%] min-w-0 sm:flex-[0_0_50%] md:flex-[0_0_57%]'
+									className='flex-[0_0_100%] min-w-0 sm:flex-[0_0_50%] md:flex-[0_0_50%]'
 								>
 									<div className='h-full'>
 										<TestimonialCard { ...testimonial } />
