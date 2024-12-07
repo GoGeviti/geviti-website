@@ -1,9 +1,9 @@
 'use client'
 import React from 'react'
-import { FaUser } from 'react-icons/fa'
 import Autoscroll from 'embla-carousel-auto-scroll'
 // import { FaStar } from 'react-icons/fa'
 import useEmblaCarousel from 'embla-carousel-react'
+import Image from 'next/image'
 
 import { StarIcon } from '../Icons'
 
@@ -24,38 +24,20 @@ interface TestimonialCardProps {
 const testimonials: TestimonialCardProps[] = [
 	{
 		rating: 5,
-		text: 'More energy, better digestion, and excellent customer service with Geviti.',
+		text: 'Geviti\'s custom supplements have transformed my health. I feel more energetic and healthier.',
 		author: {
-			name: 'Kimberly Mastrangelo',
-			title: 'Material scheduling',
-			image: '/placeholder.svg'
+			name: 'Alex Buckmaster',
+			title: 'CEO, Cala Foods',
+			image: '/images/landing/social-01.png'
 		}
 	},
 	{
 		rating: 5,
-		text: 'High-quality custom supplements that make a difference. I feel supported and healthier.',
+		text: 'Geviti\'s custom supplements have transformed my health. I feel more energetic and healthier.',
 		author: {
-			name: 'Jerry Helfer',
-			title: 'Speech writer',
-			image: '/placeholder.svg'
-		}
-	},
-	{
-		rating: 4,
-		text: 'Personalized approach to health care with noticeable results from Geviti!',
-		author: {
-			name: 'David Chen',
-			title: 'Software engineer',
-			image: '/placeholder.svg'
-		}
-	},
-	{
-		rating: 5,
-		text: 'The best health care services and life-changing custom supplements.',
-		author: {
-			name: 'Sarah Master',
-			title: 'Health foods',
-			image: '/placeholder.svg'
+			name: 'Kenneth Allen',
+			title: 'Switchboard operator',
+			image: '/images/landing/social-02.png'
 		}
 	},
 	{
@@ -64,36 +46,72 @@ const testimonials: TestimonialCardProps[] = [
 		author: {
 			name: 'Kimberly Mastrangelo',
 			title: 'Material scheduling',
-			image: '/placeholder.svg'
-		}
-	},
-	{
-		rating: 5,
-		text: 'High-quality custom supplements that make a difference. I feel supported and healthier.',
-		author: {
-			name: 'Jerry Helfer',
-			title: 'Speech writer',
-			image: '/placeholder.svg'
+			image: '/images/landing/social-03.png'
 		}
 	},
 	{
 		rating: 4,
-		text: 'Personalized approach to health care with noticeable results from Geviti!',
+		text: 'High-quality custom supplements that make a difference. I feel supported and healthier.',
 		author: {
-			name: 'David Chen',
-			title: 'Software engineer',
-			image: '/placeholder.svg'
+			name: 'Judith Rodriguez',
+			title: 'Cost recovery technician',
+			image: '/images/landing/social-04.png'
 		}
 	},
 	{
 		rating: 5,
-		text: 'The best health care services and life-changing custom supplements.',
+		text: 'Geviti\'s custom supplements have transformed my health. I feel more energetic and healthier.',
 		author: {
-			name: 'Sarah Master',
-			title: 'Health foods',
-			image: '/placeholder.svg'
+			name: 'Dennis Callis',
+			title: 'Department head',
+			image: '/images/landing/social-05.png'
 		}
-	}
+	},
+	{
+		rating: 5,
+		text: 'Geviti\'s custom supplements have transformed my health. I feel more energetic and healthier.',
+		author: {
+			name: 'Alex Buckmaster',
+			title: 'CEO, Cala Foods',
+			image: '/images/landing/social-01.png'
+		}
+	},
+	{
+		rating: 5,
+		text: 'Geviti\'s custom supplements have transformed my health. I feel more energetic and healthier.',
+		author: {
+			name: 'Kenneth Allen',
+			title: 'Switchboard operator',
+			image: '/images/landing/social-02.png'
+		}
+	},
+	{
+		rating: 5,
+		text: 'More energy, better digestion, and excellent customer service with Geviti.',
+		author: {
+			name: 'Kimberly Mastrangelo',
+			title: 'Material scheduling',
+			image: '/images/landing/social-03.png'
+		}
+	},
+	{
+		rating: 4,
+		text: 'High-quality custom supplements that make a difference. I feel supported and healthier.',
+		author: {
+			name: 'Judith Rodriguez',
+			title: 'Cost recovery technician',
+			image: '/images/landing/social-04.png'
+		}
+	},
+	{
+		rating: 5,
+		text: 'Geviti\'s custom supplements have transformed my health. I feel more energetic and healthier.',
+		author: {
+			name: 'Dennis Callis',
+			title: 'Department head',
+			image: '/images/landing/social-05.png'
+		}
+	},
 ]
 
 function TestimonialCard({ rating, text, author }: TestimonialCardProps) {
@@ -109,8 +127,14 @@ function TestimonialCard({ rating, text, author }: TestimonialCardProps) {
 			</div>
 			<p className='h6 text-primary flex-grow mb-6'>{ text }</p>
 			<div className='flex items-center gap-6'>
-				<div className='flex items-center justify-center border rounded-full w-10 h-10'>
-					<FaUser/>
+				<div className='flex items-center overflow-hidden justify-center border rounded-full w-10 h-10'>
+					<Image
+						src={ author.image }
+						alt={ author.name }
+						width={ 40 }
+						height={ 40 }
+						className='rounded-full'
+					/>
 				</div>
 				{ /* <Image
 					src={ author.image }

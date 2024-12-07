@@ -131,12 +131,12 @@ const GevitiForFree = () => {
 	}
 
 	return (
-		<div className='lg:max-w-[1061px] mx-auto sm:max-w-[392px] mt-16'>
+		<div className='lg:max-w-[1061px] px-3 mx-auto sm:max-w-[392px] mt-6 lg:mt-16'>
 			<div className='px-6 py-8 rounded-[14px] border border-grey-50 bg-grey-primary-light'>
 				<div
 					onClick={ () => setIsOpen(!isOpen) }
 					className='flex items-center justify-between cursor-pointer'>
-					<h5 className='h5 text-grey-primary'>Or try Geviti for free</h5>
+					<h5 className='h6 lg:h5 text-grey-primary'>Or try Geviti for free</h5>
 					<div>
 						<svg
 							width='24'
@@ -161,11 +161,11 @@ const GevitiForFree = () => {
 					</div>
 				</div>
 				<div className={ clsxm(
-					'overflow-hidden transition-all duration-300',
-					isOpen ? 'max-h-[600px] mt-[10px] opacity-100' : 'max-h-0 opacity-0 mt-0'
+					'overflow-hidden transition-all duration-500 lg:duration-300',
+					isOpen ? 'max-h-[1200px] lg:max-h-[600px] mt-[10px] opacity-100' : 'max-h-0 opacity-0 mt-0'
 				) }>
 					<div className='text-center'>
-						<h2 className='h2 text-primary'>Limited access at full prices.</h2>
+						<h2 className='h5 lg:h2 text-primary'>Limited access at full prices.</h2>
 						<div className='max-w-[627px] mx-auto'>
 							<p className='body-extra-small text-grey-400 mt-3'>Not ready for the Longeviti Plus membership? No problem. This plan gives you access to doctor-monitored prescriptions, specialty testing, and more—without the commitment.</p>
 						</div>
@@ -173,15 +173,15 @@ const GevitiForFree = () => {
 						Join for free
 						</button>
 					</div>
-					<div className='mt-11 p-6 rounded-2xl bg-white border border-grey-100 grid grid-cols-3 gap-10'>
+					<div className='mt-11 p-6 rounded-2xl bg-white border border-grey-100 grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-10'>
 						<div className='flex flex-col gap-1.5 text-primary'>
 							<span className='text-xl font-medium'>Longeviti Lite</span>
-							<h2 className='h2'>Free</h2>
+							<h2 className='max-lg:leading-none h2'>Free</h2>
 							<p className='body-extra-small'>Grants access to our mobile app and marketplace, allowing you to shop at standard retail pricing.</p>
 						</div>
-						<div className='col-span-2'>
-							<p className='body-small'>Your membership includes access to:</p>
-							<div className='mt-3.5 flex gap-x-6'>
+						<div className='lg:col-span-2'>
+							<p className='body-small text-primary'>Your membership includes access to:</p>
+							<div className='mt-3.5 flex flex-col lg:flex-row gap-x-6'>
 								<div className='flex-1 flex flex-col gap-y-1.5'>
 									<FeatureList
 										features={ MEMBERSHIP_FEATURES.slice(0, 5) }

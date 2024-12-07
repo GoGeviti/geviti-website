@@ -6,7 +6,7 @@ import { Footer } from '@/components';
 import { getProductMemberhsip } from '@/components/Checkout/api/onboarding';
 import IntroScreen from '@/components/IntroScreen';
 import {
-	DirectAccess, GevitiForFree, Marketplace, Products, Review, SocialProof
+	GevitiForFree, Marketplace, Products, Review, SocialProof
 } from '@/components/Landing';
 import { getCookie } from '@/services/cookies';
 import { getAllCategories } from '@/services/products';
@@ -18,9 +18,9 @@ const Hero = dynamic(() => import('@/components/Landing/Hero'));
 const Banner = dynamic(() => import('@/components/Landing/Banner'));
 
 // Interactive components that don't need SEO can disable SSR
-// const FeaturesCarousel = dynamic(() => import('@/components/Landing/FeaturesCarousel'), {
-// 	// ssr: false
-// });
+const FeaturesCarousel = dynamic(() => import('@/components/Landing/FeaturesCarousel'), {
+	// ssr: false
+});
 // const RunningLogo = dynamic(() => import('@/components/RunningLogo'), {
 // 	// ssr: false
 // });
@@ -92,7 +92,8 @@ const HomePage: NextPage = async() => {
 					) }
 					
 					<React.Suspense fallback={ <div className='min-h-[200px]' /> }>
-						<DirectAccess />
+						{ /* <DirectAccess /> */ }
+						<FeaturesCarousel />
 						<Innovative />
 						{ /* <HomeKits /> */ }
 					</React.Suspense>

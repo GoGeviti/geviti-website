@@ -614,7 +614,7 @@ const landingData = {
 		{
 			align: 'left',
 			preTitle: 'Direct access',
-			title: 'A wellness team in your<br />pocket',
+			title: 'Routine bloodwork,<br/>automated.',
 			description:
 				'Geviti provides our users with a comprehensive care team. Instead of being forced to choose between a healthcare provider and a health coach, we offer a solution where the two work in tandem to craft the ultimate longevity regimen.',
 			btnCta: {
@@ -631,9 +631,9 @@ const landingData = {
 		{
 			align: 'right',
 			preTitle: 'A holistic approach',
-			title: 'Functional and modern<br />medicine, combined.',
+			title: 'A wellness team, in<br />your pocket.',
 			description:
-				'At Geviti, we combine the best of functional medicine with modern medical advancements. This integrative approach addresses root causes of health concerns, promoting optimal balance, healing, and long-term wellness to support your journey from all angles.',
+				'At Geviti, we bring together the best of both worlds by integrating the wisdom of Eastern practices with the advancements of Western medicine. This holistic approach ensures that your health journey is supported from all angles, promoting optimal balance, healing, and long-term wellness.',
 			card: {
 				id: 'coaching',
 				title: 'Health Coaching',
@@ -661,7 +661,7 @@ const landingData = {
 		{
 			align: 'right',
 			preTitle: 'Not a one and done approach',
-			title: 'Ongoing care and<br />health monitoring.',
+			title: 'Exclusive membership<br />benefits.',
 			description:
 				'Your health is always evolving, and so is our care. With Geviti’s continuous health tracking and regular check-ins, we ensure that your plan adapts to your progress. From real-time metrics to follow-up lab work, your wellness is in constant focus.',
 			card: {

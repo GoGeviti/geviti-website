@@ -1,8 +1,8 @@
 'use client'
 import React, { useCallback, useEffect, useRef } from 'react'
-import { FaUser } from 'react-icons/fa'
 import { EmblaCarouselType, EmblaEventType } from 'embla-carousel'
 import useEmblaCarousel from 'embla-carousel-react'
+import Image from 'next/image'
 
 import { ChevronRight, QuoteBlue } from '../Icons'
 
@@ -21,31 +21,39 @@ const testimonials: TestimonialCardProps[] = [
 		author: {
 			name: 'Chris Powell',
 			title: 'TV Host for ABC’s “Extreme Weight Loss”',
-			image: '/placeholder.svg'
+			image: '/images/landing/review-02.webp'
 		}
 	},
 	{
 		text: 'Geviti\'s custom supplements have transformed my health. I feel more energetic and healthier.',
 		author: {
-			name: 'Chris Powell',
-			title: 'TV Host for ABC’s “Extreme Weight Loss”',
-			image: '/placeholder.svg'
+			name: 'Brian Pruett',
+			title: 'Fitness Influencer ',
+			image: '/images/landing/review-05.webp'
 		}
 	},
 	{
 		text: 'Geviti\'s custom supplements have transformed my health. I feel more energetic and healthier.',
 		author: {
-			name: 'Chris Powell',
-			title: 'TV Host for ABC’s “Extreme Weight Loss”',
-			image: '/placeholder.svg'
+			name: 'Dr. Jeremy London',
+			title: 'Cardiovascular Surgeon, Medical Advisor',
+			image: '/images/landing/review-03.webp'
 		}
 	},
 	{
 		text: 'Geviti\'s custom supplements have transformed my health. I feel more energetic and healthier.',
 		author: {
-			name: 'Chris Powell',
-			title: 'TV Host for ABC’s “Extreme Weight Loss”',
-			image: '/placeholder.svg'
+			name: 'Dr. Joy Kong',
+			title: 'Stem Cell “Doctor of the Decade”',
+			image: '/images/landing/review-04.webp'
+		}
+	},
+	{
+		text: 'Geviti\'s custom supplements have transformed my health. I feel more energetic and healthier.',
+		author: {
+			name: 'Alex Clark',
+			title: 'Host of top podcast “Culture Apothecary”',
+			image: '/images/landing/review-01.webp'
 		}
 	},
 ]
@@ -53,16 +61,25 @@ const testimonials: TestimonialCardProps[] = [
 function TestimonialCard({ text, author }: TestimonialCardProps) {
 	
 	return (
-		<div className='testimonial-card bg-[#FAFAFA] flex items-center gap-6 relative px-5 py-[30px] rounded-[20px]'>
-			<div className='h-[320px] flex-shrink-0 bg-blue-primary w-[292px] border-blue-primary border rounded-xl flex items-center justify-center'>
-				<FaUser/>
+		<div className='testimonial-card bg-[#FAFAFA] flex flex-col lg:flow-row items-center gap-6 relative px-5 py-[30px] rounded-[20px]'>
+			<div className='h-[320px] overflow-hidden flex-shrink-0 w-full lg:w-[292px] rounded-xl flex items-center justify-center'>
+				<Image
+					width={ 292 }
+					height={ 320 }
+					className='w-full h-full object-top object-cover'
+					alt='person'
+					src={ author.image }
+				/>
+			</div>
+			<div className='lg:hidden self-start'>
+				<QuoteBlue/>
 			</div>
 			<div>
 				<h5 className='h5 text-primary'>{ text }</h5>
 				<p className='mt-4 text-lg text-primary'>{ author.name }</p>
 				<p className='text-lg text-grey-primary mt-1'>{ author.title }</p>
 			</div>
-			<div className='absolute top-5 right-5'>
+			<div className='max-lg:hidden absolute top-5 right-5'>
 				<QuoteBlue/>
 			</div>
 		</div>
@@ -187,18 +204,18 @@ const Review = () => {
 	}, [emblaApi, setTweenNodes, setTweenFactor, tweenScale, onSelect])
 
 	return (
-		<div className='px-3 font-Poppins mb-6'>
+		<div className='lg:px-3 font-Poppins mb-6'>
 			<div className='bg-white rounded-[19px] py-16 overflow-hidden'>
-				<div className='px-16'>
+				<div className='px-4 lg:px-16'>
 					<h3 className='text-2xl lg:text-4xl font-medium text-primary whitespace-nowrap'>
             We are trusted by <br/><span className='text-grey-primary'>some amazing people</span>
 					</h3>
 				</div>
-				<div className='mt-14'>
+				<div className='mt-6 lg:mt-14'>
 					<div
 						className='overflow-hidden'
 						ref={ emblaRef }>
-						<div className='flex touch-pan-y'>
+						<div className='flex max-lg:px-4 touch-pan-y'>
 							{ testimonials.map((testimonial, index) => (
 								<div
 									key={ index }
