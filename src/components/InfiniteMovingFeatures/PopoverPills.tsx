@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { memo, useCallback, useMemo, useState } from 'react';
 
 import clsxm from '@/helpers/clsxm';
 
@@ -16,42 +16,38 @@ type PopoverPillsProps = {
   onToggleAnimation?: (state: string) => void; // eslint-disable-line no-unused-vars
 };
 
-const PopoverPills: React.FC<PopoverPillsProps> = ({
-	item,
-	onToggleAnimation,
-}) => {
+const PopoverPills: React.FC<PopoverPillsProps> = memo(({ item, onToggleAnimation }) => {
 	const [open, setOpen] = useState<boolean>(false);
 
-	const handleToggleAnim = (nextState: boolean) => {
+	const handleToggleAnim = useCallback((nextState: boolean) => {
 		if (onToggleAnimation) {
-			if (nextState) onToggleAnimation('paused');
-			else onToggleAnimation('running');
+			onToggleAnimation(nextState ? 'paused' : 'running');
 		}
-	};
+	}, [onToggleAnimation]);
 
-	const handleClick = () => {
+	const handleClick = useCallback(() => {
 		handleToggleAnim(!open);
 		setOpen(!open);
-	};
+	}, [open, handleToggleAnim]);
 
-	const handleMouseEnter = () => {
+	const handleMouseEnter = useCallback(() => {
 		handleToggleAnim(true);
 		setOpen(true);
-	};
+	}, [handleToggleAnim]);
 
-	const handleMouseLeave = () => {
+	const handleMouseLeave = useCallback(() => {
 		handleToggleAnim(false);
 		setOpen(false);
-	};
+	}, [handleToggleAnim]);
 
-	const triggerClassName = clsxm(
+	const triggerClassName = useMemo(() => clsxm(
 		'font-Poppins cursor-pointer flex text-center select-none relative !rounded-19px text-[28px] leading-6 py-5 px-6',
 		open
 			? 'bg-primary text-white rounded-19px shadow-feature'
 			: 'bg-[#F2FAFF] text-blue-primary'
-	);
+	), [open]);
 
-	return (
+	const content = useMemo(() => (
 		<Popover
 			open={ open }
 			onOpenChange={ setOpen }>
@@ -84,7 +80,11 @@ const PopoverPills: React.FC<PopoverPillsProps> = ({
 				</span>
 			</PopoverContent>
 		</Popover>
-	);
-};
+	), [open, triggerClassName, item, handleClick, handleMouseEnter, handleMouseLeave]);
+
+	return content;
+});
+
+PopoverPills.displayName = 'PopoverPills';
 
 export default PopoverPills;

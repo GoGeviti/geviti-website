@@ -1,5 +1,6 @@
 'use client';
 
+import React, { memo, useMemo } from 'react';
 import AutoScroll from 'embla-carousel-auto-scroll';
 import useEmblaCarousel from 'embla-carousel-react';
 import dynamic from 'next/dynamic';
@@ -24,7 +25,7 @@ type CarouselProps = {
   direction: 'forward' | 'backward';
 };
 
-const Carousel: React.FC<CarouselProps> = ({ slides, direction }) => {
+const Carousel = memo(({ slides, direction }: CarouselProps) => {
 	const [emblaRef] = useEmblaCarousel({ loop: true }, [
 		AutoScroll({
 			playOnInit: true,
@@ -34,11 +35,14 @@ const Carousel: React.FC<CarouselProps> = ({ slides, direction }) => {
 			speed: 1,
 		}),
 	]);
-	const duplicateSlides = Array(6)
-		.fill([...slides])
-		.flat();
 
-	return (
+	// Reduce number of duplicate slides for better performance
+	const duplicateSlides = useMemo(() =>
+		Array(3).fill([...slides])
+			.flat()
+	, [slides]);
+
+	const content = useMemo(() => (
 		<div
 			className='overflow-hidden -my-[30px] py-[30px]'
 			ref={ emblaRef }>
@@ -63,17 +67,19 @@ const Carousel: React.FC<CarouselProps> = ({ slides, direction }) => {
 				)) }
 			</div>
 		</div>
-	);
-};
+	), [emblaRef, duplicateSlides]);
+
+	return content;
+});
+
+Carousel.displayName = 'Carousel';
 
 type InfiniteMovingFeaturesProps = {
   list: FeatureList[];
 };
 
-const InfiniteMovingFeatures: React.FC<InfiniteMovingFeaturesProps> = ({
-	list,
-}) => {
-	return (
+const InfiniteMovingFeatures = memo(({ list }: InfiniteMovingFeaturesProps) => {
+	const content = useMemo(() => (
 		<div className='flex flex-col gap-[30px]'>
 			{ list.map(slide => (
 				<Carousel
@@ -83,7 +89,11 @@ const InfiniteMovingFeatures: React.FC<InfiniteMovingFeaturesProps> = ({
 				/>
 			)) }
 		</div>
-	);
-};
+	), [list]);
+
+	return content;
+});
+
+InfiniteMovingFeatures.displayName = 'InfiniteMovingFeatures';
 
 export default InfiniteMovingFeatures;

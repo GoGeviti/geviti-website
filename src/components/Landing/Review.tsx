@@ -61,11 +61,11 @@ const testimonials: TestimonialCardProps[] = [
 function TestimonialCard({ text, author }: TestimonialCardProps) {
 	
 	return (
-		<div className='testimonial-card bg-[#FAFAFA] flex flex-col lg:flow-row items-center gap-6 relative px-5 py-[30px] rounded-[20px]'>
-			<div className='h-[320px] overflow-hidden flex-shrink-0 w-full lg:w-[292px] rounded-xl flex items-center justify-center'>
+		<div className='testimonial-card bg-[#FAFAFA] flex flex-col lg:flex-row items-center gap-6 relative px-5 py-[30px] rounded-[20px]'>
+			<div className='h-[302px] overflow-hidden flex-shrink-0 w-full lg:w-[277px] rounded-xl flex items-center justify-center'>
 				<Image
-					width={ 292 }
-					height={ 320 }
+					width={ 277 }
+					height={ 302 }
 					className='w-full h-full object-top object-cover'
 					alt='person'
 					src={ author.image }
@@ -204,7 +204,7 @@ const Review = () => {
 	}, [emblaApi, setTweenNodes, setTweenFactor, tweenScale, onSelect])
 
 	return (
-		<div className='lg:px-3 font-Poppins mb-6'>
+		<div className='px-3 font-Poppins lg:mb-6'>
 			<div className='bg-white rounded-[19px] py-16 overflow-hidden'>
 				<div className='px-4 lg:px-16'>
 					<h3 className='text-2xl lg:text-4xl font-medium text-primary whitespace-nowrap'>
@@ -219,7 +219,7 @@ const Review = () => {
 							{ testimonials.map((testimonial, index) => (
 								<div
 									key={ index }
-									className='flex-[0_0_100%] min-w-0 sm:flex-[0_0_50%] md:flex-[0_0_50%]'
+									className='flex-[0_0_100%] min-w-0 sm:flex-[0_0_50%] md:flex-[0_0_54%]'
 								>
 									<div className='h-full'>
 										<TestimonialCard { ...testimonial } />

@@ -17,7 +17,8 @@ import './globals.css';
 import './main.css';
 
 // Add environment check utility
-const isDevelopment = process.env.NODE_ENV === 'development';
+// const isDevelopment = process.env.NODE_ENV === 'development';
+const isDevelopment = true;
 
 // Update API_KEY and SCRIPT_URL definitions
 const API_KEY = isDevelopment ? '' : (process.env.NEXT_PUBLIC_REWARDFUL_API_KEY || '642d4d');

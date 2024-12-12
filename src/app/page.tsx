@@ -6,9 +6,14 @@ import { Footer } from '@/components';
 import { getProductMemberhsip } from '@/components/Checkout/api/onboarding';
 import IntroScreen from '@/components/IntroScreen';
 import {
-	GevitiForFree, Marketplace, Products, Review, SocialProof
+	FeaturedOn,
+	GevitiForFree,
+	Marketplace,
+	Products,
+	Review,
+	SocialProof
 } from '@/components/Landing';
-import { getCookie } from '@/services/cookies';
+// import { getCookie } from '@/services/cookies';
 import { getAllCategories } from '@/services/products';
 
 // Components that need SEO should have SSR enabled
@@ -39,8 +44,10 @@ const HeroPricing = dynamic(() => import('@/components/Pricing/Hero'));
 const HomePage: NextPage = async() => {
 	const productMembership = await getProductMemberhsip();
 	const categories = await getAllCategories();
-	const showIntro = await getCookie('show_intro');
-	const showBanner = await getCookie('close_hero_banner');
+	// const showIntro = await getCookie('show_intro');
+	// const showBanner = await getCookie('close_hero_banner');
+	const showIntro = 'false';
+	const showBanner = 'false';
 
 	return (
 		<>
@@ -52,11 +59,12 @@ const HomePage: NextPage = async() => {
 					<div style={ { minHeight: '100vh' } }>
 						<Hero
 							showIntro={ showIntro }
-							showBanner={ showBanner !== 'true' }
+							showBanner={ showBanner === 'false' }
 							isLanding={ false }
 						/>
 					</div>
 					<Marketplace/>
+					<FeaturedOn/>
 					{ /* Wrap heavy sections in suspense boundaries */ }
 					<React.Suspense fallback={ <div className='min-h-[200px]' /> }>
 						{ /* <TextReveal /> */ }

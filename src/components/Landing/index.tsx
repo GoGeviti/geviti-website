@@ -4,6 +4,7 @@ import Benefits from './Benefits';
 import BiologicalKit from './BiologicalKit';
 import Clinical from './Clinical';
 import DirectAccess from './DirectAccess'
+import FeaturedOn from './FeaturedOn';
 import FeaturesCarousel from './FeaturesCarousel';
 import Flexible from './Flexible';
 import GevitiForFree from './GevitiForFree';
@@ -28,6 +29,7 @@ export {
 	BiologicalKit,
 	Clinical,
 	DirectAccess,
+	FeaturedOn,
 	FeaturesCarousel,
 	Flexible,
 	GevitiForFree,

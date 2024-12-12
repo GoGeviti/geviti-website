@@ -21,19 +21,8 @@ const cards = [
 			'Custom Supplements',
 			'Speciality Testing',
 			'Partner Products'
-		]
-	},
-	{
-		title: 'At-home Health Screening',
-		desc: 'Access cutting edge testing to gather critical insights into your overall health status.',
-		image: '/images/landing/card-02.png',
-		list: [
-			'Hormone Therapy',
-			'Medical Weight-loss',
-			'Peptide Therapy',
-			'Lifestyle Medications',
-			'Custom Supplements',
-		]
+		],
+		isComingSoon: false
 	},
 	{
 		title: ' Mobile Stem Cell Therapy',
@@ -45,7 +34,21 @@ const cards = [
 			'Peptide Therapy',
 			'Lifestyle Medications',
 			'Custom Supplements',
-		]
+		],
+		isComingSoon: true
+	},
+	{
+		title: 'At-home Health Screening',
+		desc: 'Access cutting edge testing to gather critical insights into your overall health status.',
+		image: '/images/landing/card-02.png',
+		list: [
+			'Hormone Therapy',
+			'Medical Weight-loss',
+			'Peptide Therapy',
+			'Lifestyle Medications',
+			'Custom Supplements',
+		],
+		isComingSoon: false
 	},
 	{
 		title: 'Custom Supplements',
@@ -59,7 +62,8 @@ const cards = [
 			'Custom Supplements',
 			'Speciality Testing',
 			'Partner Products'
-		]
+		],
+		isComingSoon: false
 	},
 ]
 
@@ -80,7 +84,8 @@ const Card = ({
 	className,
 	style,
 	setCardOpen,
-	transition
+	transition,
+	isComingSoon
 }: CardType) => {
 	return (
 		<motion.div
@@ -95,14 +100,21 @@ const Card = ({
 				cardOpen === title ? 'z-20' : 'z-10',
 				className
 			) }>
-			<div className='w-[92px] overflow-hidden flex-shrink-0 h-[92px] border flex rounded-2xl items-center justify-center '>
-				<Image
-					width={ 92 }
-					height={ 92 }
-					quality={ 100 }
-					alt='products'
-					src={ image }
-				/>
+			<div className='flex flex-col'>
+				<div className='w-[92px] overflow-hidden flex-shrink-0 h-[92px] border flex rounded-2xl items-center justify-center '>
+					<Image
+						width={ 92 }
+						height={ 92 }
+						quality={ 100 }
+						alt='products'
+						src={ image }
+					/>
+				</div>
+				{
+					isComingSoon && (
+						<span className='body-extra-small text-[#00A0EA] mt-1 text-center'>Coming soon</span>
+					)
+				}
 			</div>
 			<div>
 				<h6 className='body-small leading-none font-semibold text-primary uppercase'>{ title }</h6>
