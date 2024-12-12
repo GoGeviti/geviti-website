@@ -5,12 +5,16 @@ import { motion, useAnimationControls } from 'framer-motion';
 // import dynamic from 'next/dynamic';
 import Image from 'next/image';
 
-import landingData from '@/constant/data/landing';
+import heroImage from '@/assets/landing/hero.webp';
+import heroImageLanding from '@/assets/landing/hero-landing.webp';
+import heroImageLandingMobile from '@/assets/landing/hero-landing-mobile.webp';
+import heroImageMobile from '@/assets/landing/hero-mobile.webp';
 import { navbarDefaultTransition } from '@/constant/data/navbar';
 import clsxm from '@/helpers/clsxm';
 import { screens } from '@/helpers/style';
 import { useWindowDimensions } from '@/hooks';
 
+import landingData from '../../constant/data/landing';
 // import { screens } from '@/helpers/style';
 // import { useWindowDimensions } from '@/hooks';
 import ButtonCta from '../ButtonCta';
@@ -18,11 +22,6 @@ import Navbar from '../Navbar/Landing';
 import PopupReview from '../PopupReview';
 
 import { slideUpTransition } from './transition';
-
-import heroImage from '/images/landing/compressed/hero.webp';
-import heroImageLanding from '/images/landing/compressed/hero-landing.webp';
-import heroImageLandingMobile from '/images/landing/compressed/hero-landing-mobile.webp';
-import heroImageMobile from '/images/landing/compressed/hero-mobile.webp';
 
 // const PopupReview = dynamic(() => import('../PopupReview'), {
 // 	ssr: false,
