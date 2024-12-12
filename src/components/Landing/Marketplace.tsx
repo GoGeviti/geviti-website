@@ -90,7 +90,7 @@ const Card = ({
 			transition={ transition }
 			style={ style }
 			className={ clsxm(
-				'bg-grey-50 border w-full max-lg:!transform-none lg:max-w-[386px] rounded-[20px] p-3.5 backdrop-blur-[30px] flex items-start gap-6 border-grey-100',
+				'	bg-[#f5f6f6]/50 border w-full max-lg:!transform-none lg:max-w-[386px] rounded-[20px] p-3.5 backdrop-blur-[10px] flex items-start gap-6 border-grey-100',
 				'lg:absolute',
 				cardOpen === title ? 'z-20' : 'z-10',
 				className
@@ -141,7 +141,7 @@ const Marketplace = () => {
 	const card1Y = useTransform(scrollY, [0, 1000], [200, 100])
 	const card2Y = useTransform(scrollY, [0, 1000], [160, 80])
 	const card3Y = useTransform(scrollY, [0, 1000], [500, 400])
-	const card4Y = useTransform(scrollY, [0, 1000], [450, 350])
+	const card4Y = useTransform(scrollY, [0, 1000], [450, 400])
 
 	return (
 		<div className='px-3 max-lg:mt-6'>

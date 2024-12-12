@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { AnimatePresence, motion } from 'framer-motion';
 import Image from 'next/image';
@@ -36,24 +36,24 @@ const FeaturesCarousel: React.FC = () => {
 	// const windowDimensions = useWindowDimensions();
 	// const isMobile = windowDimensions.width < screens.md;
 
-	const { ref, inView } = useInView();
+	const { ref } = useInView();
 
 	const [idx, setIdx] = useState<number>(0);
 	const [trend, setTrend] = useState<number>(1);
 
-	const vidRef = useRef<HTMLVideoElement | null>(null);
+	// const vidRef = useRef<HTMLVideoElement | null>(null);
 
 	const activeIdx = Math.abs(idx % featuresCarouselData.length);
 
-	useEffect(() => {
-		if (inView) {
-			setTimeout(() => {
-				if (vidRef.current) {
-					vidRef.current.play();
-				}
-			}, 750);
-		}
-	}, [inView, activeIdx, vidRef?.current]);
+	// useEffect(() => {
+	// 	if (inView) {
+	// 		setTimeout(() => {
+	// 			if (vidRef.current) {
+	// 				vidRef.current.play();
+	// 			}
+	// 		}, 750);
+	// 	}
+	// }, [inView, activeIdx, vidRef?.current]);
 
 	const handleNext = () => {
 		setIdx(prevIndex => (prevIndex + 1 === featuresCarouselData.length ? 0 : prevIndex + 1));
@@ -133,14 +133,163 @@ const FeaturesCarousel: React.FC = () => {
 		return null;
 	};
 
+	const renderMobile = () => {
+		return (
+			<>
+				<div className='lg:hidden'>
+					<div
+						className='grid grid-cols-1 lg:grid-cols-2 gap-[33px]'>
+						<div className='lg:max-w-[460px] w-full'>
+							<p className='max-lg:mb-2.5 text-pretitle text-[#5F6D7B] sm:text-grey-300'>
+								{ featuresCarouselData![activeIdx]?.preTitle }
+							</p>
+							<h2 className='text-white !leading-[133%] text-[6.857vw] xxs:text-[6.154vw] xs2:text-2xl lg:text-[3.853vw] xl:text-[42px] sm:!leading-normal -tracking-0.04em'>
+								<span
+									dangerouslySetInnerHTML={ {
+										__html: featuresCarouselData![activeIdx]?.title,
+									} }
+								/>
+							</h2>
+							<p className='mt-2.5 lg:mt-3.5 text-grey-400 sm:text-grey-300 text-xs sm:text-sm !leading-5'>
+								{ featuresCarouselData![activeIdx]?.description }
+							</p>
+							{
+									featuresCarouselData![activeIdx]?.btnCta && (
+									<div className='flex mt-[33px] lg:mt-[42px] max-lg:justify-center max-sm:w-full'>
+										<ButtonCta
+											href={ featuresCarouselData![activeIdx]?.btnCta?.href }
+											text={ featuresCarouselData![activeIdx]?.btnCta?.text }
+											theme='secondary'
+											className='max-sm:w-full'
+										/>
+									</div>
+								)
+							}
+						</div>
+						<div className='flex justify-center lg:justify-end relative'>
+							<div className='w-full sm:w-[448px] relative h-[358px] sm:h-[390px]'>
+								<AnimatePresence
+									initial={ false }
+									custom={ trend }
+								>
+									<motion.span
+										custom={ trend }
+										variants={ cardVariants }
+										initial='initial'
+										animate='animate'
+										exit='exit'
+										key={ featuresCarouselData![activeIdx]?.card.id }
+										transition={ { duration: 1, ease: 'easeInOut' } }
+										className='text-primary font-Poppins p-4 lg:p-6 rounded-19px bg-white absolute inset-0 w-full h-full'
+									>
+										<span className='flex flex-col gap-3'>
+											<span className='h-full aspect-[400/174] max-h-[174px] w-full bg-blue-alice rounded-2xl relative overflow-hidden'>
+												{ renderAnimatedContentCard(featuresCarouselData![activeIdx]?.card.id) }
+											</span>
+											<p className='text-2xl !leading-normal'>
+												{ featuresCarouselData![activeIdx]?.card.title }
+											</p>
+											<p className='text-[3.5vw] xs2:text-sm sm:text-lg !leading-normal'>
+												<span
+													dangerouslySetInnerHTML={ {
+														__html: featuresCarouselData![activeIdx]?.card.description,
+													} }
+												/>
+											</p>
+										</span>
+									</motion.span>
+								</AnimatePresence>
+							</div>
+						</div>
+					</div>
+
+				</div>
+				<div className='lg:hidden'>{ renderButtonArrowSlider() }</div>
+			</>
+		)
+	}
+
+	const renderDesktopFeature = (feature: any, featureIdx: number) => {
+		
+		return (
+		  <div
+				key={ featureIdx }
+				className={ clsxm(
+					'bg-primary sticky rounded-19px py-6 lg:py-[73px] max-lg:hidden',
+					'transition-all duration-300 top-20',
+				  ) }
+		  >
+				<div
+			  className='container-center flex flex-col gap-11 w-full'
+			 
+				>
+			  <div
+						className='grid grid-cols-1 lg:grid-cols-2 gap-[33px]'>
+						<div className={ clsxm(
+							'lg:max-w-[460px] w-full',
+							featureIdx % 2 !== 0 ? 'lg:order-2' : 'lg:ml-[18%]'
+						) }>
+							<p className='max-lg:mb-2.5 text-pretitle text-[#5F6D7B] sm:text-grey-300'>
+								{ feature.preTitle }
+							</p>
+							<h2 className='text-white !leading-[133%] text-[6.857vw] xxs:text-[6.154vw] xs2:text-2xl lg:text-[3.853vw] xl:text-[42px] sm:!leading-normal -tracking-0.04em'>
+								<span
+									dangerouslySetInnerHTML={ {
+										__html: feature.title,
+									} }
+								/>
+							</h2>
+							<p className='mt-2.5 lg:mt-3.5 text-grey-400 sm:text-grey-300 text-xs sm:text-sm !leading-5'>
+								{ feature.description }
+							</p>
+							{
+								feature.btnCta && (
+									<div className='flex mt-[33px] lg:mt-[42px] max-lg:justify-center max-sm:w-full'>
+										<ButtonCta
+											href={ feature.btnCta.href }
+											text={ feature.btnCta.text }
+											theme='secondary'
+											className='max-sm:w-full'
+										/>
+									</div>
+								)
+							}
+						</div>
+						<div className={ clsxm(
+							'flex relative',
+							featureIdx % 2 !== 0 ? 'lg:order-1' : 'justify-center lg:justify-end'
+						) }>
+							<div className='w-full sm:w-[448px] relative h-[358px] sm:h-[390px]'>
+								<span className='text-primary font-Poppins p-3.5 rounded-19px bg-white absolute inset-0 w-full h-full'>
+									<div className='h-full w-full bg-blue-alice rounded-2xl relative overflow-hidden'>
+										{ renderAnimatedContentCard(feature.card.id) }
+									</div>
+								</span>
+							</div>
+						</div>
+					</div>
+				</div>
+		  </div>
+		);
+	  };
+
 	return (
 		<div className='lg:px-3'>
+
+			<div className='max-lg:hidden flex flex-col gap-5' >
+				{
+					featuresCarouselData.map((feature, featureIdx) =>
+						renderDesktopFeature(feature, featureIdx)
+					)
+				}
+			</div>
+
 			<div
 				ref={ ref }
-				className='bg-primary rounded-19px py-6 lg:py-[73px]'
+				className='bg-primary lg:hidden rounded-19px py-6 lg:py-[73px]'
 			>
 				<div className='container-center flex flex-col gap-11 w-full'>
-					<div className='max-lg:hidden flex flex-col gap-[110px]'>
+					{ /* <div className='max-lg:hidden flex flex-col gap-[110px]'>
 						{
 							featuresCarouselData.map((feature, featureIdx) => {
 								return (
@@ -186,18 +335,6 @@ const FeaturesCarousel: React.FC = () => {
 													<div className='h-full w-full bg-blue-alice rounded-2xl relative overflow-hidden'>
 														{ renderAnimatedContentCard(feature.card.id) }
 													</div>
-													{ /* <span className='flex flex-col gap-3'> */ }
-													{ /* <p className='text-2xl !leading-normal'>
-															{ feature.card.title }
-														</p>
-														<p className='text-[3.5vw] xs2:text-sm sm:text-lg !leading-normal'>
-															<span
-																dangerouslySetInnerHTML={ {
-																	__html: feature.card.description,
-																} }
-															/>
-														</p> */ }
-													{ /* </span> */ }
 												</span>
 											</div>
 										</div>
@@ -205,76 +342,8 @@ const FeaturesCarousel: React.FC = () => {
 								)
 							})
 						}
-					</div>
-					<div className='lg:hidden'>
-						<div
-							className='grid grid-cols-1 lg:grid-cols-2 gap-[33px]'>
-							<div className='lg:max-w-[460px] w-full'>
-								<p className='max-lg:mb-2.5 text-pretitle text-[#5F6D7B] sm:text-grey-300'>
-									{ featuresCarouselData![activeIdx]?.preTitle }
-								</p>
-								<h2 className='text-white !leading-[133%] text-[6.857vw] xxs:text-[6.154vw] xs2:text-2xl lg:text-[3.853vw] xl:text-[42px] sm:!leading-normal -tracking-0.04em'>
-									<span
-										dangerouslySetInnerHTML={ {
-											__html: featuresCarouselData![activeIdx]?.title,
-										} }
-									/>
-								</h2>
-								<p className='mt-2.5 lg:mt-3.5 text-grey-400 sm:text-grey-300 text-xs sm:text-sm !leading-5'>
-									{ featuresCarouselData![activeIdx]?.description }
-								</p>
-								{
-									featuresCarouselData![activeIdx]?.btnCta && (
-										<div className='flex mt-[33px] lg:mt-[42px] max-lg:justify-center max-sm:w-full'>
-											<ButtonCta
-												href={ featuresCarouselData![activeIdx]?.btnCta?.href }
-												text={ featuresCarouselData![activeIdx]?.btnCta?.text }
-												theme='secondary'
-												className='max-sm:w-full'
-											/>
-										</div>
-									)
-								}
-							</div>
-							<div className='flex justify-center lg:justify-end relative'>
-								<div className='w-full sm:w-[448px] relative h-[358px] sm:h-[390px]'>
-									<AnimatePresence
-										initial={ false }
-										custom={ trend }
-									>
-										<motion.span
-											custom={ trend }
-											variants={ cardVariants }
-											initial='initial'
-											animate='animate'
-											exit='exit'
-											key={ featuresCarouselData![activeIdx]?.card.id }
-											transition={ { duration: 1, ease: 'easeInOut' } }
-											className='text-primary font-Poppins p-4 lg:p-6 rounded-19px bg-white absolute inset-0 w-full h-full'
-										>
-											<span className='flex flex-col gap-3'>
-												<span className='h-full aspect-[400/174] max-h-[174px] w-full bg-blue-alice rounded-2xl relative overflow-hidden'>
-													{ renderAnimatedContentCard(featuresCarouselData![activeIdx]?.card.id) }
-												</span>
-												<p className='text-2xl !leading-normal'>
-													{ featuresCarouselData![activeIdx]?.card.title }
-												</p>
-												<p className='text-[3.5vw] xs2:text-sm sm:text-lg !leading-normal'>
-													<span
-														dangerouslySetInnerHTML={ {
-															__html: featuresCarouselData![activeIdx]?.card.description,
-														} }
-													/>
-												</p>
-											</span>
-										</motion.span>
-									</AnimatePresence>
-								</div>
-							</div>
-						</div>
-
-					</div>
-					<div className='lg:hidden'>{ renderButtonArrowSlider() }</div>
+					</div> */ }
+					{ renderMobile() }
 				</div>
 			</div>
 		</div>

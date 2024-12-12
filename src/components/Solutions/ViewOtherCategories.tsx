@@ -19,8 +19,16 @@ import ArrowButtons from '../Marketing/ArrowButtons';
 
 import 'swiper/css';
 
-const ViewOtherCategories: React.FC<{data:Category[] | Product[], isProduct?: boolean, hideHeader?:boolean, baseUrl?:string}> = ({ data, isProduct, hideHeader = false, baseUrl }) => {
-	const swiperRef = useRef<SwiperType>(undefined);
+const ViewOtherCategories: React.FC<{
+	data: Category[] | Product[],
+	isProduct?: boolean,
+	hideHeader?: boolean,
+	baseUrl?: string,
+	swiperRef?: React.MutableRefObject<SwiperType | undefined>,
+	onSlideChange?: (swiper: SwiperType) => void
+}> = ({ data, isProduct, hideHeader = false, baseUrl, swiperRef, onSlideChange }) => {
+	const localSwiperRef = useRef<SwiperType>(undefined);
+	const activeRef = swiperRef || localSwiperRef;
 
 	const [disabledPrev, setDisabledPrev] = useState(true);
 	const [disabledNext, setDisabledNext] = useState(false);
@@ -31,6 +39,7 @@ const ViewOtherCategories: React.FC<{data:Category[] | Product[], isProduct?: bo
 	const handleSlideChange = (swiper:SwiperType) => {
 		setDisabledPrev(swiper.isBeginning);
 		setDisabledNext(swiper.isEnd);
+		onSlideChange?.(swiper);
 	};
 
 	return (
@@ -48,8 +57,8 @@ const ViewOtherCategories: React.FC<{data:Category[] | Product[], isProduct?: bo
 							<ArrowButtons
 								disabledPrev={ disabledPrev }
 								disabledNext={ disabledNext }
-								onClickPrev={ () => swiperRef.current?.slidePrev() }
-								onClickNext={ () => swiperRef.current?.slideNext() }
+								onClickPrev={ () => activeRef.current?.slidePrev() }
+								onClickNext={ () => activeRef.current?.slideNext() }
 							/>
 						</div>
 					)
@@ -58,7 +67,7 @@ const ViewOtherCategories: React.FC<{data:Category[] | Product[], isProduct?: bo
 				<div className='lg:ml-[calc((100vw-1360px)/2)] pl-4 lg:pl-10'>
 					<Swiper
 						onBeforeInit={ swiper => {
-							swiperRef.current = swiper;
+							activeRef.current = swiper;
 						} }
 						slidesPerView={ 3.7 }
 						breakpoints={ {
@@ -73,16 +82,17 @@ const ViewOtherCategories: React.FC<{data:Category[] | Product[], isProduct?: bo
 							},
 						} }
 						spaceBetween={ 14 }
-						className='lg:w-full lg:!pr-[calc((100vw-1360px)/2+40px)]'
+						slidesOffsetAfter={ 80 }
+						// className='lg:w-full lg:!pr-[calc((100vw-1360px)/2+40px)]'
 						modules={ [FreeMode] }
 						freeMode={ true }
-						onSlideChange={ () => swiperRef.current && handleSlideChange(swiperRef.current) }
-		  			onReachEnd={ () => swiperRef.current && handleSlideChange(swiperRef.current) }
+						onSlideChange={ () => activeRef.current && handleSlideChange(activeRef.current) }
+		  			onReachEnd={ () => activeRef.current && handleSlideChange(activeRef.current) }
 					>
 						{ data.map((item, productIdx) => {
 							return (
 								<SwiperSlide key={ productIdx }>
-									<div className='lg:w-[338px] h-[496px] hover:bg-blue-primary bg-grey-primary-light transition-all ease-in-out duration-500 rounded-[14px] flex flex-col justify-between'>
+									<div className='h-[496px] hover:bg-blue-primary w-full bg-grey-primary-light transition-all ease-in-out duration-500 rounded-[14px] flex flex-col justify-between'>
 										<div className='px-[14px] pt-[14px]'>
 
 											<h4 className='text-lg'>
