@@ -59,11 +59,13 @@ const HeroImage = ({ type, isLanding }: { type: 'desktop' | 'mobile', isLanding:
 				'object-cover pointer-events-none',
 				imageMobile ? 'md:hidden object-center' : 'md:block hidden object-right'
 			) }
-			fill
-			quality={ 100 }
+			// fill
+			quality={ 90 }
+			width={ 1396 }
+			height={ 816 }
 			placeholder='blur'
 			loading={ 'eager' }
-			sizes={ imageMobile ? '(max-width: 768px) 100vw' : '100vw' }
+			sizes='100vw'
 		/>
 	);
 };

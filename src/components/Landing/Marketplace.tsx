@@ -117,7 +117,7 @@ const Card = ({
 				}
 			</div>
 			<div>
-				<h6 className='body-small leading-none font-semibold text-primary uppercase'>{ title }</h6>
+				<h5 className='body-small leading-none font-semibold text-primary uppercase'>{ title }</h5>
 				<p className='body-extra-small text-primary mt-2' >{ desc }</p>
 				<ul className={ clsxm(
 					'list-disc text-grey-600 body-small list-inside',
@@ -159,7 +159,7 @@ const Marketplace = () => {
 		<div className='px-3 max-lg:mt-6'>
 			<div className='bg-white rounded-[20px] overflow-hidden'>
 				<div className='text-center flex flex-col items-center max-lg:px-4 justify-center mx-auto max-w-[730px] pt-7 lg:pt-[66px]'>
-					<h3 className='text-[28px] capitalize lg:h3 text-primary'><span className='max-lg:hidden'>Step into</span> the only marketplace for longevity</h3>
+					<h4 className='text-[28px] capitalize lg:h3 text-primary'><span className='max-lg:hidden'>Step into</span> the only marketplace for longevity</h4>
 					<p className='mt-3 body-small'>We connect members with at-home specialty testing, precision medications, customized supplements, and proactive care, empowering them to live optimized.</p>
 					<div className=' w-full lg:w-fit mt-10 relative z-10'>
 						<ButtonCta

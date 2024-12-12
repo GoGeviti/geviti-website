@@ -95,9 +95,9 @@ const ViewOtherCategories: React.FC<{
 									<div className='h-[496px] hover:bg-blue-primary w-full bg-grey-primary-light transition-all ease-in-out duration-500 rounded-[14px] flex flex-col justify-between'>
 										<div className='px-[14px] pt-[14px]'>
 
-											<h4 className='text-lg'>
+											<span className='text-lg'>
 												{ isProduct ? (item as Product).name : (item as Category).categoryName }
-											</h4>
+											</span>
 											{ /* <p className='text-xs !leading-5 mt-1'>
 												{ item.description }
 											</p> */ }

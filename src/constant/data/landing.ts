@@ -35,8 +35,7 @@ const landingData = {
 			'optimization and longevit<span class="ml-0.5">y<span>.',
 		],
 		titlesMobile: [
-			'Your partner in total health',
-			'optimization and longevit<span class="ml-0.5">y<span>.',
+			'Your partner in total health optimization and longevit<span class="ml-0.5">y<span>.',
 		],
 		banner: {
 			text: '<span class="font-medium">Geviti Closes Early Stage Seed Financing</span> 🎉 <br/>To Celebrate, Those Who Join Our Beta Before<br/>August 1st Will Be Grandfathered In At $89/M!',

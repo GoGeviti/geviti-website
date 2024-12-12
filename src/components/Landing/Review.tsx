@@ -75,7 +75,7 @@ function TestimonialCard({ text, author }: TestimonialCardProps) {
 				<QuoteBlue/>
 			</div>
 			<div>
-				<h5 className='h5 text-primary'>{ text }</h5>
+				<h6 className='h5 text-primary'>{ text }</h6>
 				<p className='mt-4 text-lg text-primary'>{ author.name }</p>
 				<p className='text-lg text-grey-primary mt-1'>{ author.title }</p>
 			</div>
