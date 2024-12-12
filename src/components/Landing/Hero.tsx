@@ -61,6 +61,7 @@ const HeroImage = ({ type, isLanding }: { type: 'desktop' | 'mobile', isLanding:
 			) }
 			fill
 			quality={ 100 }
+			placeholder='blur'
 			loading={ 'eager' }
 			sizes={ imageMobile ? '(max-width: 768px) 100vw' : '100vw' }
 		/>
@@ -191,11 +192,11 @@ const Hero: React.FC<HeroProps> = ({
 							isMobile ? (
 								<HeroImage
 									type='mobile'
-									isLanding={ true } />
+									isLanding={ isLanding } />
 							) : (
 								<HeroImage
 									type='desktop'
-									isLanding={ true } />
+									isLanding={ isLanding } />
 							)
 						}
 					</div>
