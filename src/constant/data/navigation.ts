@@ -79,17 +79,12 @@ const navigationData = {
 			externalLink: false,
 			items: [
 				{
-					name: 'For Businesses',
-					href: '/business-oriented',
+					name: 'About Us',
+					href: '/about-us',
 					externalLink: false,
 				},
 				{
-					name: 'Membership',
-					href: '/membership',
-					externalLink: false,
-				},
-				{
-					name: 'Blog',
+					name: 'Wellness Blog',
 					href: '/blog',
 				},
 				{
@@ -99,6 +94,11 @@ const navigationData = {
 				{
 					name: 'Contact Us',
 					href: '/contact-us',
+				},
+				{
+					name: 'For Business',
+					href: '/business-oriented',
+					externalLink: false,
 				},
 			],
 		},
