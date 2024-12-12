@@ -232,6 +232,7 @@ const Review = () => {
 								className='disabled:opacity-30'
 								onClick={ scrollPrev }
 								disabled={ prevBtnDisabled }
+								aria-label='Previous slide'
 							>
 								<ChevronRight className='transform rotate-180 text-blue-primary' />
 							</button>
@@ -253,6 +254,7 @@ const Review = () => {
 								className='disabled:opacity-30'
 								onClick={ scrollNext }
 								disabled={ nextBtnDisabled }
+								aria-label='Next slide'
 							>
 								<ChevronRight className='text-blue-primary'/>
 							</button>
