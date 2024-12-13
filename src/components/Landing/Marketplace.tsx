@@ -7,62 +7,52 @@ import Image from 'next/image'
 import clsxm from '@/helpers/clsxm'
 
 import ButtonCta from '../ButtonCta'
+import CustomLink from '../CustomLink'
 
 const cards = [
 	{
 		title: 'Compounded medications',
-		desc: 'Made in the USA in an FDA approved facility. Meticulously tested for purity abd potency.',
+		desc: 'Made in the USA in an FDA approved facility. Meticulously tested for purity and potency.',
 		image: '/images/landing/card-01.png',
 		list: [
 			'Hormone Therapy',
 			'Medical Weight-loss',
 			'Peptide Therapy',
 			'Lifestyle Medications',
-			'Custom Supplements',
-			'Speciality Testing',
-			'Partner Products'
+			// 'Custom Supplements',
+			// 'Speciality Testing',
+			// 'Partner Products'
 		],
-		isComingSoon: false
+		isComingSoon: false,
+		link: '',
 	},
 	{
 		title: ' Mobile Stem Cell Therapy',
-		desc: 'The worlds most powerful tool to boost regeneration, reduce inflammation, improve energy, and support anti-aging',
+		desc: 'The most powerful tool to boost regeneration, reduce inflammation, improve energy, and support anti-aging.',
 		image: '/images/landing/card-03.png',
-		list: [
-			'Hormone Therapy',
-			'Medical Weight-loss',
-			'Peptide Therapy',
-			'Lifestyle Medications',
-			'Custom Supplements',
-		],
-		isComingSoon: true
+		list: [],
+		isComingSoon: true,
+		link: '',
 	},
 	{
 		title: 'At-home Health Screening',
 		desc: 'Access cutting edge testing to gather critical insights into your overall health status.',
 		image: '/images/landing/card-02.png',
 		list: [
-			'Hormone Therapy',
-			'Medical Weight-loss',
-			'Peptide Therapy',
-			'Lifestyle Medications',
-			'Custom Supplements',
+			'Longeviti Panel',
+			'DUTCH Complete',
+			'GI Map',
+			'Metabolomix Nutritional Test',
 		],
-		isComingSoon: false
+		isComingSoon: false,
+		link: '',
 	},
 	{
 		title: 'Custom Supplements',
 		desc: 'Data-driven custom packs based upon your bloodwork results, goals, and lifestyle. No guesswork, only results.',
 		image: '/images/landing/card-04.png',
-		list: [
-			'Hormone Therapy',
-			'Medical Weight-loss',
-			'Peptide Therapy',
-			'Lifestyle Medications',
-			'Custom Supplements',
-			'Speciality Testing',
-			'Partner Products'
-		],
+		list: [],
+		link: '/longeviti-blend',
 		isComingSoon: false
 	},
 ]
@@ -85,7 +75,8 @@ const Card = ({
 	style,
 	setCardOpen,
 	transition,
-	isComingSoon
+	isComingSoon,
+	link
 }: CardType) => {
 	return (
 		<motion.div
@@ -134,11 +125,23 @@ const Card = ({
 						})
 					}
 				</ul>
-				<button
-					className='underline text-sm font-semibold mt-2'
-					onClick={ () => cardOpen === title ? setCardOpen('') : setCardOpen(title) }>
-					{ cardOpen === title ? 'See less' : 'See full list' }
-				</button>
+				{
+					link && (
+						<CustomLink
+							href={ link }
+							className='underline text-sm font-semibold mt-2'
+						>Learn more</CustomLink>
+					)
+				}
+				{
+					list.length > 0 && (
+						<button
+							className='underline text-sm font-semibold mt-2'
+							onClick={ () => cardOpen === title ? setCardOpen('') : setCardOpen(title) }>
+							{ cardOpen === title ? 'See less' : 'See full list' }
+						</button>
+					)
+				}
 			</div>
 		</motion.div>
 	)
@@ -159,7 +162,7 @@ const Marketplace = () => {
 		<div className='px-3 max-lg:mt-6'>
 			<div className='bg-white rounded-[20px] overflow-hidden'>
 				<div className='text-center flex flex-col items-center max-lg:px-4 justify-center mx-auto max-w-[730px] pt-7 lg:pt-[66px]'>
-					<h4 className='text-[28px] capitalize lg:h3 text-primary'><span className='max-lg:hidden'>Step into</span> the only marketplace for longevity</h4>
+					<h4 className='text-[28px] lg:h3 text-primary lg:whitespace-nowrap'>Step into the only marketplace for longevity</h4>
 					<p className='mt-3 body-small'>We connect members with at-home specialty testing, precision medications, customized supplements, and proactive care, empowering them to live optimized.</p>
 					<div className=' w-full lg:w-fit mt-10 relative z-10'>
 						<ButtonCta
