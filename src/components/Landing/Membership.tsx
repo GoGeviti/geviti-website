@@ -18,7 +18,7 @@ const membershipData = landingData.membership;
 const Membership = () => {
 
 	return (
-		<div className='px-3 py-3.5 lg:py-6 font-Poppins'>
+		<div className='px-3 pb-3.5 lg:pb-6 font-Poppins'>
 			<div className='bg-white rounded-19px py-[46px] lg:pb-0'>
 				<div className='px-2 flex flex-col items-center text-center'>
 					<div className='my-2.5 lg:mt-0 lg:mb-3'>

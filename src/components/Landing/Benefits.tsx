@@ -15,7 +15,7 @@ const Benefits: React.FC = () => {
 	
 	return (
 		<div
-			className='px-3 mt-6 font-Poppins'
+			className='px-3 pb-3.5 lg:pb-6 font-Poppins'
 			ref={ ref }>
 			<motion.div
 				className='bg-white relative overflow-hidden rounded-19px py-[46px] lg:pt-[79px] lg:pb-[49px]'

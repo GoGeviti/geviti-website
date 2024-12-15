@@ -159,7 +159,7 @@ const Marketplace = () => {
 	const card4Y = useTransform(scrollY, [0, 1000], [450, 400])
 
 	return (
-		<div className='px-3 max-lg:mt-6'>
+		<div className='px-3 py-3.5 lg:py-6'>
 			<div className='bg-white rounded-[20px] overflow-hidden'>
 				<div className='text-center flex flex-col items-center max-lg:px-4 justify-center mx-auto max-w-[730px] pt-7 lg:pt-[66px]'>
 					<h4 className='text-[28px] lg:h3 text-primary lg:whitespace-nowrap'>Step into the only marketplace for longevity</h4>

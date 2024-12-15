@@ -18,7 +18,7 @@ const list = [
 
 const FeaturedOn = () => {
 	return (
-		<div className='px-3 pt-3.5 lg:pt-6'>
+		<div className='px-3 pb-3.5 lg:pb-6 lg:pt-3'>
 			<div className='bg-white flex flex-col lg:flex-row lg:items-center justify-between rounded-[20px] px-3 lg:px-20 py-6 gap-6 lg:py-16'>
 				<h3 className='text-2xl lg:text-4xl font-medium text-primary whitespace-nowrap'>
           Geviti <br/><span className='text-grey-primary'>featured on</span>
