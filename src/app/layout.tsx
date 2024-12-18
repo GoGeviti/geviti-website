@@ -5,6 +5,7 @@ import NextTopLoader from 'nextjs-toploader';
 import { AOSInit } from '@/components';
 import LenisScroller from '@/components/LenisScroller';
 import Provider from '@/components/Provider';
+import ReactQueryProvider from '@/components/ReactQueryProvider';
 import { brSonoma } from '@/constant/fonts';
 import { mergeOpenGraph } from '@/lib/mergeOpenGraph';
 import StyledComponentsRegistry from '@/lib/registry';
@@ -92,7 +93,9 @@ const RootLayout: React.FC<{ children: React.ReactNode; }> = ({ children }) => {
 						showSpinner={ false }
 						color='#A3E0FF' />
 					<Provider />
-					{ children }
+					<ReactQueryProvider>
+						<main>{ children }</main>
+					</ReactQueryProvider>
 					<LenisScroller />
 					
 					{ !isDevelopment && (

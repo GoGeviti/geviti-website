@@ -7,6 +7,7 @@ import {
 	Faq,
 	PaginatedDocs,
 	Post,
+	PostCategory,
 	Privacy,
 	Product,
 } from '@/payload/payload-types';
@@ -231,25 +232,54 @@ export const getPostById = async(slug: string): Promise<Post> => {
 };
 
 export const getAllPost = async(
-	limit?: number
+	limit?: number,
+	page: number = 1,
+	categoryId?: string
 ): Promise<PaginatedDocs<Post>> => {
 	const stringifiedQuery = qs.stringify({
-		depth: 1,
-		limit: limit ?? 100,
-		sort: 'order',
-		draft: true,
+		depth: 2, // Changed to depth 2 to get category relationships
+		limit: limit ?? 6,
+		page: page,
+		sort: 'updatedAt',
+		draft: false,
 		where: {
-			_status: {
-				equals: 'published',
-			},
+			// _status: {
+			// 	equals: 'published',
+			// },
+			...(categoryId && categoryId !== '0' && {
+				'hero.categories': {
+					equals: categoryId
+				}
+			})
 		},
 	});
 
-	// console.log('getAllPost ==> ', process.env.BASE_API_URL + `/api/posts?${stringifiedQuery}`);
+	try {
+		const res = await fetch(
+			process.env.NEXT_PUBLIC_BASE_API_URL + `/api/posts?${stringifiedQuery}`,
+			{
+				cache: 'no-store',
+			}
+		);
+		const data = await res.json();
+		return data;
+	} catch (error) {
+		return Promise.reject(error);
+	}
+};
+
+export const getAllPostCategories = async(
+	limit?: number
+): Promise<PaginatedDocs<PostCategory>> => {
+	const stringifiedQuery = qs.stringify({
+		depth: 1,
+		limit: limit ?? 100,
+		sort: 'title',
+	});
 
 	try {
 		const res = await fetch(
-			process.env.BASE_API_URL + `/api/posts?${ stringifiedQuery }`,
+			process.env.NEXT_PUBLIC_BASE_API_URL + `/api/post-categories?${ stringifiedQuery }`,
 			{
 				cache: 'no-store',
 			}

@@ -16,7 +16,8 @@ const blockComponents = {
 
 export const Blocks: React.FC<{
   blocks: (Post['layout'][0])[]
-  disableTopPadding?: boolean
+  disableTopPadding?: boolean;
+	headingRefs?: React.RefObject<{[key: string]: HTMLElement | null}>;
 }> = props => {
 	const { blocks } = props;
 
@@ -30,7 +31,13 @@ export const Blocks: React.FC<{
 
 					if (blockType && blockType in blockComponents) {
 						const Block = blockComponents[blockType];
-						const paddingTop = 'pt-10 lg:pt-[70px]';
+						let paddingTop = '';
+						if (blockType === 'quote' && index !== 0) {
+							paddingTop = 'pt-10 lg:pt-[70px]';
+						}
+						if (blockType === 'quote' && index === 0) {
+							paddingTop = 'pb-10 lg:pb-[70px]';
+						}
 						// if (index !== 0) {
 						// 	paddingTop = 'pt-10 lg:pt-[70px]';
 						// }

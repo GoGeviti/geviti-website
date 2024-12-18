@@ -30,9 +30,12 @@ import {
 
 interface Props {
 	nodes: SerializedLexicalNode[];
+	headingRefs?: React.RefObject<{ [key: string]: HTMLElement | null }>;
+	blockIndex: number;
+	columnIndex: number;
 }
 
-export function serializeLexical({ nodes }: Props): JSX.Element {
+export function serializeLexical({ nodes, headingRefs, blockIndex, columnIndex }: Props): JSX.Element {
 	return (
 		<Fragment>
 			{ nodes?.map((_node, index): JSX.Element | null => {
@@ -47,7 +50,7 @@ export function serializeLexical({ nodes }: Props): JSX.Element {
 					if (node.format & IS_BOLD) {
 						text = (
 							<strong
-								className='font-semibold'
+								className='font-semibold text-grey-800'
 								key={ index }>
 								{ text }
 							</strong>
@@ -111,9 +114,9 @@ export function serializeLexical({ nodes }: Props): JSX.Element {
 									}
 								}
 							}
-							return serializeLexical({ nodes: node.children });
+							return serializeLexical({ nodes: node.children, headingRefs, blockIndex, columnIndex });
 						} else {
-							return serializeLexical({ nodes: node.children });
+							return serializeLexical({ nodes: node.children, headingRefs, blockIndex, columnIndex });
 						}
 					}
 				};
@@ -130,7 +133,7 @@ export function serializeLexical({ nodes }: Props): JSX.Element {
 					case 'paragraph': {
 						return (
 							<p
-								className='lg:text-xl font-Poppins text-primary'
+								className='lg:text-lg font-Poppins text-grey-400'
 								key={ index }>
 								{ serializedChildren }
 							</p>
@@ -144,6 +147,8 @@ export function serializeLexical({ nodes }: Props): JSX.Element {
 							'h1' | 'h2' | 'h3' | 'h4' | 'h5'
 						>;
 						const Tag = node?.tag as Heading;
+						const headingId = `heading-${columnIndex}-${index}`;
+
 						return (
 							<Tag
 								className={ clsxm(
@@ -154,7 +159,13 @@ export function serializeLexical({ nodes }: Props): JSX.Element {
 									'text-[24px] md:text-[26px] mb-[10px] md:mb-[31px]',
 									node?.tag === 'h3' && 'text-[20.5px] md:text-[22.5px]'
 								) }
+								id={ headingId }
 								key={ index }
+								ref={ el => {
+									if (headingRefs?.current) {
+										headingRefs.current[headingId] = el;
+									}
+								} }
 							>
 								{ serializedChildren }
 							</Tag>
@@ -221,7 +232,7 @@ export function serializeLexical({ nodes }: Props): JSX.Element {
 						return (
 							<Tag
 								className={ clsxm(
-									'lg:text-xl font-Poppins text-primary list-inside flex flex-col gap-2 mt-2',
+									'lg:text-lg font-Poppins text-grey-400 list-inside flex flex-col gap-2 mt-2',
 									node?.tag === 'ol' && 'list-decimal',
 									node?.tag === 'ul' && 'list-disc'
 								) }

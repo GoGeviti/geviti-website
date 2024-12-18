@@ -1,59 +1,36 @@
 import { NextPage } from 'next';
 
 import { BlogComponent } from '@/components';
-import { Post } from '@/payload/payload-types';
-import { getAllPost } from '@/services/products';
-
-interface GroupedPost {
-	name: string;
-	list: Post[];
-}
+import { getAllPost, getAllPostCategories } from '@/services/products';
 
 const BlogPage: NextPage = async() => {
 
-	const allPost = await getAllPost();
+	const latestPost = await getAllPost(3);
+	const categoriesRes = await getAllPostCategories();
 
-	const groupFaqsByCategory = (posts: Post[]): GroupedPost[] => {
-		return posts.reduce((result: GroupedPost[], post: Post) => {
-			const existingCategory = result.find(group => group.name === post.hero.categories?.title);
-
-			if (existingCategory) {
-				existingCategory.list.push(post);
-			} else {
-				result.push({
-					name: post.hero.categories?.title ?? '',
-					list: [post],
-				});
-			}
-
-			return result;
-		}, [
-			{
-				name: 'All',
-				list: posts,
-			},
-		]);
+	const allCategory = {
+		title: 'All',
+		id: 0,
+		description: '',
+		updatedAt: '',
+		createdAt: ''
 	};
-
-	const topicsData = groupFaqsByCategory(allPost.docs);
+	const categories =  [allCategory, ...categoriesRes?.docs];
 
 	return (
 		<div className='flex min-h-screen flex-col w-full bg-grey-background'>
 			<BlogComponent.Hero
-				hero={ {
-					title: allPost.docs[0].title,
-					image: allPost.docs[0].hero.media.url,
-					preTitle: allPost.docs[0].hero.categories?.title ?? '',
-					btn: 'Read Article',
-					btnLink: `/blog/${ allPost.docs[0].slug }`,
-				} }
+				hero={ latestPost.docs.slice(0, 3) }
 				classname=''
 			/>
-			<BlogComponent.Topics
-				title='Popular Topics'
-				btnRight='View All'
-				articleData={ topicsData } />
-			<BlogComponent.Articles post={ allPost.docs.slice(0, 3) } />
+			<div className='px-3 pb-14 pt-20'>
+				<div className='container-center flex flex-col gap-[18px]'>
+					<h2 className='h2'>Blog</h2>
+					<p className='body-small text-grey-primary max-w-[472px]'>Lorem ipsum dolor sit amet consectetur. Ullamcorper egestas nibh massa diam sapien fusce. Nisl tortor turpis maecenas scelerisque aenean sem amet et</p>
+				</div>
+			</div>
+			<BlogComponent.Topics categories={ categories ?? [] } />
+			{ /* <BlogComponent.Articles post={ allPost.docs.slice(0, 3) } /> */ }
 			<BlogComponent.Updated />
 		</div>
 	);

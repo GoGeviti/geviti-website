@@ -600,6 +600,23 @@ export const ArrowUpRight = (props?: React.SVGProps<SVGSVGElement>) => (
 	</svg>
 );
 
+export const ArrowUpRight2 = (props?: React.SVGProps<SVGSVGElement>) => (
+	<svg
+		xmlns='http://www.w3.org/2000/svg'
+		width='25'
+		height='26'
+		viewBox='0 0 25 26'
+		fill='none'
+		{ ...props }
+	>
+		<path
+			fillRule='evenodd'
+			clipRule='evenodd'
+			d='M18.0191 15.3338C18.0191 15.5459 18.104 15.7298 18.2383 15.8641C18.3727 15.9985 18.5636 16.0904 18.7686 16.0833C19.1788 16.0833 19.5182 15.7439 19.5182 15.3338V6.74953C19.5182 6.33941 19.1788 6 18.7686 6L10.1844 6C9.77424 6 9.43483 6.33941 9.43483 6.74953C9.43483 7.15966 9.77424 7.49907 10.1844 7.49907H16.9584L6.21744 18.24C5.92752 18.5299 5.92752 19.0108 6.21744 19.3007C6.50735 19.5906 6.98818 19.5906 7.2781 19.3007L18.0191 8.55968L18.0191 15.3338Z'
+			fill='#292D32'/>
+	</svg>
+);
+
 export const ArrowUpRightLink = (props?: React.SVGProps<SVGSVGElement>) => (
 	<svg
 		width='14'

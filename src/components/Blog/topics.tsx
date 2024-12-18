@@ -1,167 +1,166 @@
 'use client';
-
-import React, { useState } from 'react';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@radix-ui/react-tabs';
+import React, { useCallback, useState } from 'react';
+import { CgSpinner } from 'react-icons/cg';
+import { motion } from 'framer-motion';
+// import { Tabs, TabsContent, TabsList, TabsTrigger } from '@radix-ui/react-tabs';
 import Image from 'next/image';
 import Link from 'next/link';
 
-// import clsxm from '@/helpers/clsxm';
-// import { blogData } from '@/constant/data';
-import { screens } from '@/helpers/style';
-import { useWindowDimensions } from '@/hooks';
-import { Post } from '@/payload/payload-types';
-// import { getPlaceholderImage } from '@/utils/getPlaceholderImage';
+import clsxm from '@/helpers/clsxm';
+import { usePosts } from '@/hooks/api/blogs';
+import { Post, PostCategory } from '@/payload/payload-types';
 
-// const articleData = blogData.topics;
+import { ArrowUpRight2 } from '../Icons';
 
-// interface TopicsProps {
-// 	id:number
-//   image: string;
-//   pretitle: string;
-//   title: string;
-// }
-
-const Topics: React.FC<{
-	title: string;
-	btnRight: string;
-	articleData: {
-		name: string;
-		list: Post[];
-	}[];
-}> = ({ articleData, title, btnRight }) => {
-	const [showAllTabs, setShowAllTabs] = useState(false);
+const Topics = ({ categories } : {categories:PostCategory[]}) => {
 	const [selectedItem, setSelectedItem] = useState(0);
-	const windowDimensions = useWindowDimensions();
-	const isMobile = windowDimensions.width < screens.md;
-	// const [blurDataUrls, setBlurDataUrls] = useState<{ [key: string]: string }>({});
+	// const { data: categories = [] } = useCategories();
+	// const selectedCategory = categories.;
+  
+	const {
+		data,
+		fetchNextPage,
+		hasNextPage,
+		isFetching,
+		isLoading
+	} = usePosts(selectedItem);
 
-	// // Fetch blur URLs when articleData changes
-	// useEffect(() => {
-	// 	const loadBlurUrls = async() => {
-	// 		const urls: { [key: string]: string } = {};
-	// 		await Promise.all(
-	// 			articleData.flatMap(article =>
-	// 				article.list.map(async item => {
-	// 					const blur = await getPlaceholderImage(item.hero.media.url ?? '');
-	// 					urls[item.hero.media.url ?? ''] = blur.placeholder;
-	// 				})
-	// 			)
-	// 		);
-	// 		setBlurDataUrls(urls);
-	// 	};
+	const posts = data?.pages.flatMap(page => page.docs) ?? [];
 
-	// 	loadBlurUrls();
-	// }, [articleData]);
+	const lastPostElementRef = useCallback((node: HTMLDivElement) => {
+		if (isFetching || !node) return;
+		const observer = new IntersectionObserver(entries => {
+			if (entries[0].isIntersecting && hasNextPage) {
+				fetchNextPage();
+			}
+		});
+		observer.observe(node);
+		return () => observer.disconnect();
+	}, [isFetching, hasNextPage, fetchNextPage]);
 
-	const renderItem = (data: Post[]) => {
+	const handleCategoryChange = (id: number) => {
+		setSelectedItem(id);
+	};
+
+	const renderItem = (item: Post) => {
 		return (
-			<div className='w-full grid grid-cols-1 md:grid-cols-4 gap-[10px] md:gap-[18px] pt-[30px]'>
-				{ data.map((items, id) => (
-					<Link
-						href={ `/blog/${items.slug}` }
-						key={ id }
-						prefetch={ true }
-						className='relative bg-white rounded-lg md:rounded-2xl overflow-hidden flex flex-row md:flex-col max-md:items-center max-md:p-5 max-md:space-x-[9px]'
-					>
-						<div>
-							<div className='relative md:h-[254px] w-[74px] h-[74px] max-md:rounded-lg overflow-hidden md:w-full'>
-								<Image
-									src={ items.hero.media.url ?? '' }
-									width={ 306 }
-									height={ 254 }
-									loading={ id > 3 ? 'lazy' : 'eager' }
-									className='object-cover object-center w-full h-full hover:scale-105 transition-all duration-300 ease-in-out'
-									alt={ items.title }
-									placeholder='blur'
-									blurDataURL='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mOsa2yqBwAFCAICLICSyQAAAABJRU5ErkJggg=='
-								/>
+			<div className='w-full h-full group'>
+				<Link
+					href={ `/blog/${item.slug}` }
+					prefetch={ true }
+					className=''
+				>
+					<div className='relative rounded-lg overflow-hidden w-full h-[305px]'>
+						<Image
+							src={ item.hero.media.url ?? '' }
+							width={ 413 }
+							height={ 305 }
+							loading={ 'lazy' }
+							className='object-cover object-center w-full h-full hover:scale-105 transition-all duration-300 ease-in-out'
+							alt={ item.title }
+							placeholder='blur'
+							blurDataURL='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mOsa2yqBwAFCAICLICSyQAAAABJRU5ErkJggg=='
+						/>
+						<div className='absolute body-extra-small text-white border rounded-full border-white/25 bg-white/20 backdrop-blur-2xl overflow-hidden top-6 left-6 py-2 px-4 flex items-center justify-center'>
+							{ item.hero.categories?.title }
+						</div>
+					</div>
+					<div className='flex flex-col text-start gap-y-3.5 mt-6'>
+						<div className='flex items-start justify-between gap-2'>
+							<p className={ clsxm(
+								'h6 text-primary',
+							) }>
+								{ item.title }
+							</p>
+							<div className='w-6 h-6 flex items-center flex-shrink-0 justify-center overflow-hidden'>
+								<ArrowUpRight2 className={ clsxm(
+									'text-2xl text-primary w-6 h-6',
+									'transform -translate-x-10 translate-y-3 opacity-0',
+									'group-hover:translate-x-0 group-hover:translate-y-0 group-hover:opacity-100',
+									'transition-all duration-200 ease-in-out'
+								) }/>
 							</div>
 						</div>
-						<div className='flex flex-col text-start md:p-5'>
-							<p className='text-grey-primary font-BRSonoma text-xs'>
-								{ items.hero.categories?.title }
-							</p>
-							<p className='text-primary font-Poppins text-base font-medium -tracking-[0.64px] leading-5 md:leading-6'>
-								{ items.title }
-							</p>
-						</div>
-					</Link>
-				)) }
+						<p className='body-small text-grey-600 line-clamp-3'>Lorem ipsum dolor sit amet consectetur. Ullamcorper egestas nibh massa diam sapien fusce. Nisl tortor turpis maecenas scelerisque aenean sem amet et</p>
+						<p className='body-extra-small text-grey-primary'>
+							<span>{ new Date(item.updatedAt).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }) }</span>
+							<span> • </span>
+							<span>15 mins read</span>
+						</p>
+					</div>
+				</Link>
 			</div>
 		);
 	};
 
 	return (
-		<div className='container-center mx-auto w-full relative mt-20'>
+		<div className='container-center mx-auto w-full relative'>
 			<div className='w-full '>
-				<div className='flex justify-center md:justify-between items-center'>
-					<p className='text-primary font-Poppins text-4xl -tracking-[1.44px] text-center'>
-						{ title }
-					</p>
-					<button
-						className='btn-cta-landing group btn-primary px-9 md:block hidden'
-						onClick={ () => setShowAllTabs(!showAllTabs) }
+				<div
+					className='flex flex-col'>
+					<div
+						className='shrink-0 overflow-x-auto no-scrollbar flex md:space-x-[18px] max-md:justify-between relative'
 					>
-						<span className='text-btn-cta-landing'>
-							{ showAllTabs ? 'View Less' : btnRight }
-						</span>
-					</button>
-				</div>
-				<Tabs
-					className='flex flex-col'
-					defaultValue='tab-0'>
-					<TabsList
-						className='shrink-0 flex border-b border-primary/10 md:space-x-[56px] max-md:justify-between'
-						aria-label={ title }
-					>
-						{ articleData
-							.sort((a, b) => a.name.localeCompare(b.name))
-							.map((items, id) => (
-								<div key={ id }>
-									<TabsTrigger
-										className='text-[15px] cursor-pointer pb-[9px] pt-[25px] leading-none text-primary select-none data-[state=active]:font-bold relative outline-none'
-										value={ `tab-${id}` }
-										onClick={ () => setSelectedItem(id) }
-									>
-										<p>{ items.name }</p>
-										{ selectedItem === id && (
-											<div className='absolute h-[1px] rounded w-full bg-primary -bottom-0' />
-										) }
-									</TabsTrigger>
-								</div>
-							)) }
-					</TabsList>
-					<div className=''>
-						{ articleData.map((it, id) => {
-							return (
-								<TabsContent
-									key={ id }
-									value={ `tab-${id}` }>
-									{ isMobile
-										? showAllTabs
-											? renderItem(it.list)
-											: renderItem(it.list.slice(0, 3))
-										: showAllTabs
-											? renderItem(it.list)
-											: renderItem(it.list.slice(0, 4)) }
-									{ it.list.length > 3 && (
-										<button
-											className='btn-cta-landing group btn-primary px-9 md:hidden w-fit absolute -bottom-5 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20'
-											onClick={ () => setShowAllTabs(!showAllTabs) }
-										>
-											<span className='text-btn-cta-landing'>
-												{ showAllTabs ? 'View Less' : btnRight }
-											</span>
-										</button>
-									) }
-									{ it.list.length > 3 && isMobile && !showAllTabs && (
-										<div className='bg-gradient-to-t from-grey-background/90 to-grey-background/0 absolute -bottom-5 z-10 w-[calc(100vw-24px)] h-[131px]' />
-									) }
-								</TabsContent>
-							);
-						}) }
+						{ categories?.map((category, id) => (
+							<motion.button
+								key={ id }
+								className={ clsxm(
+									'py-2 px-6 rounded-[10px] flex items-center justify-center border text-lg',
+									selectedItem === category.id ? 'border-grey-100 text-primary' : 'border-transparent text-grey-primary',
+								) }
+								value={ `tab-${id}` }
+								onClick={ () => handleCategoryChange(category.id) }
+								whileHover={ { scale: 1.05 } }
+								whileTap={ { scale: 0.95 } }
+								transition={ {
+									type: 'spring',
+									stiffness: 300,
+									damping: 20
+								} }
+							>
+								<p>{ category.title }</p>
+							</motion.button>
+						)) }
 					</div>
-				</Tabs>
+					<div className='grid grid-cols-1 max-md:gap-y-11 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8'>
+						{ posts?.map((post, index) => (
+							<div
+								key={ post.id }
+								ref={ index === posts.length - 1 ? lastPostElementRef : null }
+							>
+								{ renderItem(post) }
+							</div>
+						)) }
+					</div>
+					{
+						!isLoading && posts.length === 0 && (
+							<div className='flex items-center justify-center gap-2 my-20'>
+								<span className='h6 text-grey-primary'>
+								No data found
+								</span>
+							</div>
+						)
+					}
+					{ isLoading ? (
+						<div className='flex items-center justify-center gap-2 my-20'>
+							<div className='w-6 h-6 flex items-center justify-center animate-spin'>
+								<CgSpinner className='text-[24px] text-[#C1C1C1]'/>
+							</div>
+							<span className='h6 text-grey-primary'>Loading</span>
+						</div>
+					) : (
+						<>
+							{ isFetching && !isLoading && (
+								<div className='flex items-center justify-center gap-2 my-20'>
+									<div className='w-6 h-6 flex items-center justify-center animate-spin'>
+										<CgSpinner className='text-[24px] text-[#C1C1C1]'/>
+									</div>
+									<span className='h6 text-grey-primary'>Loading more</span>
+								</div>
+							) }
+						</>
+					) }
+				</div>
 			</div>
 		</div>
 	);
