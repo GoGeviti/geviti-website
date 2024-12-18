@@ -31,8 +31,8 @@ import {
 interface Props {
 	nodes: SerializedLexicalNode[];
 	headingRefs?: React.RefObject<{ [key: string]: HTMLElement | null }>;
-	blockIndex: number;
-	columnIndex: number;
+	blockIndex?: number;
+	columnIndex?: number;
 }
 
 export function serializeLexical({ nodes, headingRefs, blockIndex, columnIndex }: Props): JSX.Element {

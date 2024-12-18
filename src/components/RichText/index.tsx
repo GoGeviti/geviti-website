@@ -7,7 +7,7 @@ import { serializeLexical } from './serialize';
 
 // import classes from './index.module.scss';
 
-const RichText: React.FC<{ className?: string; content: any, blockIndex:number, columnIndex : number, headingRefs?: React.RefObject<{[key: string]: HTMLElement | null}> }> = ({ className, content,  headingRefs, columnIndex, blockIndex }) => {
+const RichText: React.FC<{ className?: string; content: any, blockIndex?:number, columnIndex? : number, headingRefs?: React.RefObject<{[key: string]: HTMLElement | null}> }> = ({ className, content,  headingRefs, columnIndex, blockIndex }) => {
 	if (!content) {
 		return null;
 	}
