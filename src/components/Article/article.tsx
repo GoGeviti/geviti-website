@@ -137,7 +137,7 @@ const Articles: React.FC<ArticlesProps> = ({
 // 						<div>
 // 							<div className='relative md:h-[254px] w-[74px] h-[74px] max-md:rounded-lg max-md:overflow-hidden md:w-full'>
 // 								<Image
-// 									src={ items.hero.media.url ?? '' }
+// 									src={ items.hero?.media?.url ?? '' }
 // 									fill
 // 									className='object-cover object-center'
 // 									alt={ items.hero.media.alt ?? '' }
@@ -178,7 +178,7 @@ const renderItem = (data: Post[]) => {
 						>
 							<div className='relative rounded-lg overflow-hidden w-full h-[305px]'>
 								<Image
-									src={ item.hero.media.url ?? '' }
+									src={ item.hero?.media?.url ?? '' }
 									width={ 413 }
 									height={ 305 }
 									loading={ 'lazy' }

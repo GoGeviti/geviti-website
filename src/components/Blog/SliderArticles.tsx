@@ -73,7 +73,7 @@ const SliderArticles: React.FC<SliderArticlesProps> = ({ data }) => {
 								className='w-full h-full relative focus:ring-0 focus:outline-none focus:border-none pl-[10px]'
 							>
 								<Image
-									src={ items.hero.media.url ?? '' }
+									src={ items.hero?.media?.url ?? '' }
 									width={ 1000 }
 									height={ 1000 }
 									className='object-cover !h-[500px] w-full rounded-[20px]'

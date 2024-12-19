@@ -52,7 +52,7 @@ const Topics = ({ categories } : {categories:PostCategory[]}) => {
 				>
 					<div className='relative rounded-lg overflow-hidden w-full h-[305px]'>
 						<Image
-							src={ item.hero.media.url ?? '' }
+							src={ item.hero?.media?.url ?? '' }
 							width={ 413 }
 							height={ 305 }
 							loading={ 'lazy' }

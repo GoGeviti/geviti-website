@@ -46,7 +46,7 @@ const Hero: React.FC<HeroProps> = ({ hero, classname }) => {
 						<SwiperSlide key={ index }>
 							<div className='relative w-full h-full lg:rounded-[19px]'>
 								<Image
-									src={ item.hero.media.url ?? '' }
+									src={ item.hero?.media?.url ?? '' }
 									alt={ `hero-${index}` }
 									priority
 									className='object-cover object-center'

@@ -24,7 +24,7 @@ const HeroDetail = ({ post } : {post:Post}) => {
 				</div>
 				<div className='h-[569px] w-full mt-14 rounded-[19px] relative overflow-hidden'>
 					<Image
-						src={ post.hero.media.url ?? '' }
+						src={ post.hero?.media?.url ?? '' }
 						alt='hero'
 						layout='fill'
 						priority

@@ -41,7 +41,7 @@ const Articles = ({ post }: { post: Post[]; }) => {
 							// onMouseLeave={ handleMouseLeave }
 							>
 								<Image
-									src={ items.hero.media.url ?? '' }
+									src={ items.hero?.media?.url ?? '' }
 									width={ 1000 }
 									height={ 1000 }
 									className={ `object-cover transition-all ease-in-out duration-300 !h-[500px] ${ isHovered ? 'w-[500px] ' : 'w-[320px]' } rounded-[20px]` }

@@ -48,7 +48,7 @@ const LearnMore: React.FC<LearnMoreProps> = async({ withBg = false }) => {
 										>
 											<div>
 												<Image
-													src={ items.hero.media.url ?? '' }
+													src={ items.hero?.media?.url ?? '' }
 													alt={ items.title ?? '' }
 													className='object-cover object-center w-full md:w-[382px] h-[189px] md:h-[233px] rounded-[13px]'
 													width={ 100 }
