@@ -29,7 +29,7 @@ const Hero: React.FC<HeroProps> = ({ hero, classname }) => {
 			<Navbar animationProps={ { variants: { hidden: { y: 0, opacity: 1 }, visible: { y: 0, opacity: 1 } } } } />
 
 			<div className={ clsxm(
-				'bg-primary h-[calc(100vh-30px)] lg:max-h-[636px] w-full rounded-b-[19px] lg:rounded-[19px] overflow-hidden relative pt-11px lg:pt-5',
+				'bg-primary h-[calc(100vh-30px)] lg:max-h-[636px] w-full rounded-b-[19px] lg:rounded-[19px] overflow-hidden relative',
 				classname
 			) }>
 				<Swiper
@@ -58,7 +58,7 @@ const Hero: React.FC<HeroProps> = ({ hero, classname }) => {
 					)) }
 				</Swiper>
 
-				<div className='relative w-full h-full container-center lg:rounded-b-[19px]'>
+				<div className='absolute top-0 z-10 w-full h-full container-center lg:rounded-b-[19px]'>
 					<div className='max-w-[660px] flex flex-col justify-end pb-16 w-full h-full z-100'>
 						<p className='font-Poppins text-sm font-semibold text-white leading-[1.54px] uppercase'>
 							{ hero[selectedIndex]?.hero.categories?.title }
