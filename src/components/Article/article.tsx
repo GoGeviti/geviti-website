@@ -2,8 +2,8 @@
 
 import React, { useState } from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
 
+// import Link from 'next/link';
 import clsxm from '@/helpers/clsxm';
 import { Post } from '@/payload/payload-types';
 
@@ -171,7 +171,7 @@ const renderItem = (data: Post[]) => {
 					<div
 						key={ id }
 						className='w-full h-full group'>
-						<Link
+						<CustomLink
 							href={ `/blog/${item.slug}` }
 							prefetch={ true }
 							className=''
@@ -214,7 +214,7 @@ const renderItem = (data: Post[]) => {
 									<span>15 mins read</span>
 								</p>
 							</div>
-						</Link>
+						</CustomLink>
 					</div>
 				)
 			}) }
