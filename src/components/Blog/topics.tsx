@@ -4,12 +4,12 @@ import { CgSpinner } from 'react-icons/cg';
 import { motion } from 'framer-motion';
 // import { Tabs, TabsContent, TabsList, TabsTrigger } from '@radix-ui/react-tabs';
 import Image from 'next/image';
-import Link from 'next/link';
 
 import clsxm from '@/helpers/clsxm';
 import { usePosts } from '@/hooks/api/blogs';
 import { Post, PostCategory } from '@/payload/payload-types';
 
+import CustomLink from '../CustomLink';
 import { ArrowUpRight2 } from '../Icons';
 
 const Topics = ({ categories } : {categories:PostCategory[]}) => {
@@ -45,9 +45,8 @@ const Topics = ({ categories } : {categories:PostCategory[]}) => {
 	const renderItem = (item: Post) => {
 		return (
 			<div className='w-full h-full group'>
-				<Link
+				<CustomLink
 					href={ `/blog/${item.slug}` }
-					prefetch={ true }
 					className=''
 				>
 					<div className='relative rounded-lg overflow-hidden w-full h-[305px]'>
@@ -88,7 +87,7 @@ const Topics = ({ categories } : {categories:PostCategory[]}) => {
 							<span>15 mins read</span>
 						</p>
 					</div>
-				</Link>
+				</CustomLink>
 			</div>
 		);
 	};

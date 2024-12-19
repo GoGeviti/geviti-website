@@ -25,9 +25,13 @@ const HeroDetail = ({ post } : {post:Post}) => {
 				<div className='h-[569px] w-full mt-14 rounded-[19px] relative overflow-hidden'>
 					<Image
 						src={ post.hero?.media?.url ?? '' }
-						alt='hero'
+						alt={ post.hero.media.alt ?? 'Hero Image' }
 						layout='fill'
+						height={ 569 }
+						width={ 1024 }
 						priority
+						placeholder='blur'
+						blurDataURL='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mOsa2yqBwAFCAICLICSyQAAAABJRU5ErkJggg=='
 						className='w-full h-full object-center object-cover'
 					/>
 				</div>
