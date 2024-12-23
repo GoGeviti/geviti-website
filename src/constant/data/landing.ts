@@ -625,6 +625,7 @@ const landingData = {
 				title: 'Doctor Led Care',
 				description:
 					'Cutting edge therapeutics including hormone therapy, peptide therapy, medical weight loss, and more monitored by board certified providers.',
+				image: '/images/landing/feature-01.webp',
 			}
 		},
 		{
@@ -638,6 +639,7 @@ const landingData = {
 				title: 'Health Coaching',
 				description:
 					'Bi-weekly check-ins from your designated <br class="max-lg:hidden"/>health coach to hold you accountable to <br class="max-lg:hidden"/>your goals and ensure you have the <br class="max-lg:hidden"/>necessary tools for success',
+				image: '/images/landing/feature-02.webp',
 			},
 		},
 		{
@@ -655,6 +657,7 @@ const landingData = {
 				title: 'Tailored Protocols',
 				description:
 					'The creation of an action plan based off of <br class="max-lg:hidden"/>your bloodwork results, focusing on <br class="max-lg:hidden"/>lifestyle, nutrition, supplementation, and <br class="max-lg:hidden"/>overall health optimization.',
+				image: '/images/landing/feature-03.webp',
 			},
 		},
 		{
@@ -668,6 +671,7 @@ const landingData = {
 				title: 'Health Education',
 				description:
 					'Regular check-ins to educate and monitor progress over time, observing changes in bloodwork biomarkers, wearable device health metrics, and more.',
+				image: '/images/landing/feature-04.webp',
 			},
 		},
 	],

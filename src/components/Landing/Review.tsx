@@ -20,40 +20,48 @@ const testimonials: TestimonialCardProps[] = [
 		text: 'Geviti\'s custom supplements have transformed my health. I feel more energetic and healthier.',
 		author: {
 			name: 'Chris Powell',
-			title: 'TV Host for ABC’s “Extreme Weight Loss”',
+			title: 'TV Host for ABC’s “Extreme Weight Loss” ',
+			image: '/images/landing/review-01.webp'
+		}
+	},
+	{
+		text: 'I highly recommend every woman entering in their midlife years get this done. It’s such a fantastic investment in yourself and your health!',
+		author: {
+			name: 'Chrissa Benson',
+			title: 'Women’s Exercise Specialist',
 			image: '/images/landing/review-02.webp'
 		}
 	},
 	{
-		text: 'Geviti\'s custom supplements have transformed my health. I feel more energetic and healthier.',
+		text: 'Since starting The Longeviti Blend I have noticed improvement in my recovery and energy along with less fatigue.',
 		author: {
-			name: 'Brian Pruett',
-			title: 'Fitness Influencer ',
-			image: '/images/landing/review-05.webp'
-		}
-	},
-	{
-		text: 'Geviti\'s custom supplements have transformed my health. I feel more energetic and healthier.',
-		author: {
-			name: 'Dr. Jeremy London',
-			title: 'Cardiovascular Surgeon, Medical Advisor',
+			name: 'Brandon Fougnies',
+			title: 'Elite Personal Trainer',
 			image: '/images/landing/review-03.webp'
 		}
 	},
 	{
-		text: 'Geviti\'s custom supplements have transformed my health. I feel more energetic and healthier.',
+		text: 'I had dealt with some hypothyroidsim, chronic stress & gut issues, now I’m able to stay on top of my hormones. I’ve loved every aspect of Geviti!',
 		author: {
-			name: 'Dr. Joy Kong',
-			title: 'Stem Cell “Doctor of the Decade”',
+			name: 'Melissa-Sue Methven',
+			title: 'Author of The Truth Behind the Smiles',
 			image: '/images/landing/review-04.webp'
 		}
 	},
 	{
-		text: 'Geviti\'s custom supplements have transformed my health. I feel more energetic and healthier.',
+		text: 'Just turned 50 years old and I feel amazing. I’ve really leaned on Geviti to stay optimized in my health and wellness.',
 		author: {
-			name: 'Alex Clark',
-			title: 'Host of top podcast “Culture Apothecary”',
-			image: '/images/landing/review-01.webp'
+			name: 'Ernie Meeks',
+			title: 'Commercial Airline Pilot & Host of Flying With Big Ern Podcast',
+			image: '/images/landing/review-05.webp'
+		}
+	},
+	{
+		text: 'From getting my blood drawn in my own home, to chatting with a doctor on zoom, to my customized supplements showing up at my door. You’ll love Geviti.',
+		author: {
+			name: 'Christa Treat',
+			title: 'Flight Attendant',
+			image: '/images/landing/review-06.webp'
 		}
 	},
 ]
@@ -204,7 +212,7 @@ const Review = () => {
 	}, [emblaApi, setTweenNodes, setTweenFactor, tweenScale, onSelect])
 
 	return (
-		<div className='px-3 font-Poppins lg:mb-6'>
+		<div className='px-3 font-Poppins mb-3.5 lg:mb-6'>
 			<div className='bg-white rounded-[19px] py-16 overflow-hidden'>
 				<div className='px-4 lg:px-16'>
 					<h3 className='text-2xl lg:text-4xl font-medium text-primary whitespace-nowrap'>

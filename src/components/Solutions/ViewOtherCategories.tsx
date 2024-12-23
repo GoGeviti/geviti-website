@@ -25,8 +25,9 @@ const ViewOtherCategories: React.FC<{
 	hideHeader?: boolean,
 	baseUrl?: string,
 	swiperRef?: React.MutableRefObject<SwiperType | undefined>,
-	onSlideChange?: (swiper: SwiperType) => void
-}> = ({ data, isProduct, hideHeader = false, baseUrl, swiperRef, onSlideChange }) => {
+	onSlideChange?: (swiper: SwiperType) => void,
+	headerText?: { main: string; sub: string } // New prop for header text as an object
+}> = ({ data, isProduct, hideHeader = false, baseUrl, swiperRef, onSlideChange, headerText }) => {
 	const localSwiperRef = useRef<SwiperType>(undefined);
 	const activeRef = swiperRef || localSwiperRef;
 
@@ -43,7 +44,7 @@ const ViewOtherCategories: React.FC<{
 	};
 
 	return (
-		<div className='w-full pb-[56px]' >
+		<div className='w-full pb-6 lg:pb-[56px]' >
 			<div className={ clsxm(
 				'w-full relative mt-[42px] lg:mt-[124px]',
 				hideHeader && 'mt-[30px] lg:mt-[30px]'
@@ -51,8 +52,18 @@ const ViewOtherCategories: React.FC<{
 				{
 					!hideHeader && (
 						<div className='w-full flex-col lg:flex-row flex items-center lg:justify-between container-center mb-10'>
-							<div className='w-full flex'>
+							{ /* <div className='w-full flex'>
 								<h3 className='font-medium text-primary text-2xl md:text-[32px] lg:text-4xl'>View other { isProduct ? 'popular' : 'product' }<br/><span className='text-grey-primary'>{ isProduct ? 'products' : 'categories' }</span></h3>
+							</div> */ }
+							<div className='w-full flex'>
+								{ headerText ? (
+									<h3 className='font-medium text-primary text-2xl md:text-[32px] lg:text-4xl'>
+										{ headerText.main }<br />
+										<span className='text-grey-primary'>{ headerText.sub }</span>
+									</h3>
+								) : (
+									<h3 className='font-medium text-primary text-2xl md:text-[32px] lg:text-4xl'>View other { isProduct ? 'popular' : 'product' }<br /><span className='text-grey-primary'>{ isProduct ? 'products' : 'categories' }</span></h3>
+								) }
 							</div>
 							<ArrowButtons
 								disabledPrev={ disabledPrev }

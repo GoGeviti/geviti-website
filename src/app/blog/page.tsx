@@ -26,7 +26,7 @@ const BlogPage: NextPage = async() => {
 			<div className='px-3 pb-14 pt-20'>
 				<div className='container-center flex flex-col gap-[18px]'>
 					<h2 className='h2'>Blog</h2>
-					<p className='body-small text-grey-primary max-w-[472px]'>Lorem ipsum dolor sit amet consectetur. Ullamcorper egestas nibh massa diam sapien fusce. Nisl tortor turpis maecenas scelerisque aenean sem amet et</p>
+					<p className='body-small text-grey-primary max-w-[472px]'>Information is everywhere. It is hard to know what is right and what is wrong. Geviti’s Wellness Blog aims to be a source of truth for those looking to optimize both health span and lifespan. Like everything at Geviti, our blogs are data-driven.</p>
 				</div>
 			</div>
 			<BlogComponent.Topics categories={ categories ?? [] } />

@@ -8,7 +8,9 @@ import { ContentBlock } from '../Content';
 // import { ContentMedia } from '../ContentMedia';
 import QuoteBlock from '../QuoteBlock';
 
-const blockComponents = {
+const blockComponents: {
+	[key: string]: React.ComponentType<any>
+} = {
 	quote: QuoteBlock,
 	content: ContentBlock,
 	// contentMedia: ContentMedia,
@@ -51,9 +53,10 @@ export const Blocks: React.FC<{
 										)
 									}
 									key={ index }>
-									{ /* @ts-expect-error */ }
 									<Block
-										{ ...block } />
+										{ ...block }
+										headingRefs={ props.headingRefs }
+									/>
 								</div>
 							);
 						}

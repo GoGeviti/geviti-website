@@ -45,9 +45,16 @@ const Unique = () => {
 						/>
 					</div>
 				</div>
-				<div className='max-lg:-mt-16'>
-					<h3 className='lg:h3 h5 text-center'>Unique blends for your unique needs.</h3>
-					<p className='h6 lg:h5 mt-3.5 text-center'>See Nathan&apos;s Blend</p>
+				<div className='max-lg:-mt-16 flex flex-col gap-3.5'>
+					<p className='text-center font-semibold uppercase tracking-[1.76px] text-primary'>See Nathan&apos;s Blend</p>
+					<h3 className='lg:h3 h5 text-center text-primary font-normal'>Unique blends for your unique needs.</h3>
+					<p className='body-small text-grey-primary text-center'>
+						Designed to optimize your <span className='h-7 rounded-full bg-[#F6FFFC] border px-3 border-[#DDF7ED] w-fit inline-flex items-center justify-center gap-1'>
+							<TickCircle className='w-3 h-3 flex-shrink-0 text-green-alert'/>
+							<span className='text-[10px] font-medium text-green-alert'>Biomarkers</span>
+						</span> from your Longeviti Panel results <br className='max-lg:hidden' />
+						ensuring truly data-driven supplementation.
+					</p>
 				</div>
 				<div className='grid grid-cols-1 md:grid-cols-3 gap-5 lg:gap-y-[88px] items-center mt-14 relative'>
 					{ /* Center Image */ }
@@ -133,7 +140,7 @@ const Unique = () => {
 							title='Magnesium L&#8209;Threonate'
 							badge='Cortisol (AM/PM)'
 							description='Enhances cognitive function and supports brain health by increasing magnesium levels in the brain, potentially improving memory and learning abilities.'
-							className='max-lg:sticky max-lg:top-[100px] max-lg:-mt-[70px] max-lg:transform max-lg:translate-y-[230px] mx-auto'
+							className='max-lg:sticky max-lg:top-[100px] max-lg:-mt-10 max-lg:transform max-lg:translate-y-[200px] mx-auto'
 						/>
 					</div>
 				</div>

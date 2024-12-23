@@ -1,121 +1,79 @@
 'use client'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Autoscroll from 'embla-carousel-auto-scroll'
-// import { FaStar } from 'react-icons/fa'
 import useEmblaCarousel from 'embla-carousel-react'
 import Image from 'next/image'
 
 import { StarIcon } from '../Icons'
 
-// import Image from 'next/image'
-
-// import clsxm from '@/helpers/clsxm'
-
 interface TestimonialCardProps {
-  rating: number
-  text: string
-  author: {
-    name: string
-    title: string
-    image: string
-  }
+	rating: number
+	text: string
+	author: {
+		name: string
+		title: string
+		image: string
+	}
 }
 
-const testimonials: TestimonialCardProps[] = [
+const defaultTestimonials: TestimonialCardProps[] = [
 	{
 		rating: 5,
-		text: 'Geviti\'s custom supplements have transformed my health. I feel more energetic and healthier.',
+		text: 'Everyone with whom I have interacted at Geviti has been professional and personable, and they seem genuinely concerned about creating an optimal healthcare outcome for their clients.',
 		author: {
-			name: 'Alex Buckmaster',
-			title: 'CEO, Cala Foods',
+			name: 'Kurt Mechelke',
+			title: 'Doctor of Chiropractic',
 			image: '/images/landing/social-01.png'
 		}
 	},
 	{
 		rating: 5,
-		text: 'Geviti\'s custom supplements have transformed my health. I feel more energetic and healthier.',
+		text: 'Aside from the convenience of this platform, I’ve been extremely impressed with the overall approach to health and fitness from my health coach Sharon.',
 		author: {
-			name: 'Kenneth Allen',
-			title: 'Switchboard operator',
+			name: 'Joe Kennedy',
+			title: 'Business Owner',
 			image: '/images/landing/social-02.png'
 		}
 	},
 	{
 		rating: 5,
-		text: 'More energy, better digestion, and excellent customer service with Geviti.',
+		text: 'Since starting on my custom Longeviti Blend, I’ve not only been waking up before my alarm, but I’ve also had some of my best workouts in years',
 		author: {
-			name: 'Kimberly Mastrangelo',
-			title: 'Material scheduling',
+			name: 'Cole Matheis',
+			title: 'Senior Strategy Consultant',
 			image: '/images/landing/social-03.png'
 		}
 	},
 	{
-		rating: 4,
-		text: 'High-quality custom supplements that make a difference. I feel supported and healthier.',
+		rating: 5,
+		text: 'I love that I get to meet with the doctor online and get personalized care rather than having to go into an office.',
 		author: {
-			name: 'Judith Rodriguez',
-			title: 'Cost recovery technician',
+			name: 'Cathy Fougnies',
+			title: 'Mother & Grandmother',
 			image: '/images/landing/social-04.png'
 		}
 	},
 	{
 		rating: 5,
-		text: 'Geviti\'s custom supplements have transformed my health. I feel more energetic and healthier.',
+		text: 'As someone who used to struggle with constant fatigue, low energy, and poor sleep, I can honestly say that Geviti has been a life-changing experience.',
 		author: {
-			name: 'Dennis Callis',
-			title: 'Department head',
+			name: 'Mark Lovelady',
+			title: 'Business Operations Manager',
 			image: '/images/landing/social-05.png'
 		}
 	},
 	{
 		rating: 5,
-		text: 'Geviti\'s custom supplements have transformed my health. I feel more energetic and healthier.',
+		text: 'The supplement packets are wonderful for traveling and make daily routine hassle free and simple. Geviti is a great company and I highly recommend for all your wellness needs!',
 		author: {
-			name: 'Alex Buckmaster',
-			title: 'CEO, Cala Foods',
-			image: '/images/landing/social-01.png'
-		}
-	},
-	{
-		rating: 5,
-		text: 'Geviti\'s custom supplements have transformed my health. I feel more energetic and healthier.',
-		author: {
-			name: 'Kenneth Allen',
-			title: 'Switchboard operator',
-			image: '/images/landing/social-02.png'
-		}
-	},
-	{
-		rating: 5,
-		text: 'More energy, better digestion, and excellent customer service with Geviti.',
-		author: {
-			name: 'Kimberly Mastrangelo',
-			title: 'Material scheduling',
-			image: '/images/landing/social-03.png'
-		}
-	},
-	{
-		rating: 4,
-		text: 'High-quality custom supplements that make a difference. I feel supported and healthier.',
-		author: {
-			name: 'Judith Rodriguez',
-			title: 'Cost recovery technician',
-			image: '/images/landing/social-04.png'
-		}
-	},
-	{
-		rating: 5,
-		text: 'Geviti\'s custom supplements have transformed my health. I feel more energetic and healthier.',
-		author: {
-			name: 'Dennis Callis',
-			title: 'Department head',
-			image: '/images/landing/social-05.png'
+			name: 'Casie Messer',
+			title: 'Mother & Grandmother',
+			image: '/images/landing/social-06.png'
 		}
 	},
 ]
 
-function TestimonialCard({ rating, text, author }: TestimonialCardProps) {
-	
+const TestimonialCard = React.memo(({ rating, text, author }: TestimonialCardProps) => {
 	return (
 		<div className='flex flex-col h-full p-6 bg-grey-primary-light border-grey-50 rounded-[20px] border'>
 			<div className='flex gap-1 mb-3.5'>
@@ -127,22 +85,20 @@ function TestimonialCard({ rating, text, author }: TestimonialCardProps) {
 			</div>
 			<p className='h6 text-primary flex-grow mb-6'>{ text }</p>
 			<div className='flex items-center gap-6'>
-				<div className='flex items-center overflow-hidden justify-center border rounded-full w-10 h-10'>
-					<Image
-						src={ author.image }
-						alt={ author.name }
-						width={ 40 }
-						height={ 40 }
-						className='rounded-full'
-					/>
-				</div>
-				{ /* <Image
-					src={ author.image }
-					alt={ author.name }
-					width={ 40 }
-					height={ 40 }
-					className='rounded-full'
-				/> */ }
+				{
+					author.image && (
+						<div className='flex items-center overflow-hidden justify-center border rounded-full w-10 h-10'>
+							<Image
+								src={ author.image }
+								alt={ author.name }
+								width={ 40 }
+								height={ 40 }
+								className='rounded-full'
+								loading='lazy'
+							/>
+						</div>
+					)
+				}
 				<div className='flex flex-col'>
 					<div className='body-small text-primary'>{ author.name }</div>
 					<div className='text-sm text-grey-primary'>{ author.title }</div>
@@ -150,9 +106,17 @@ function TestimonialCard({ rating, text, author }: TestimonialCardProps) {
 			</div>
 		</div>
 	)
+})
+
+TestimonialCard.displayName = 'TestimonialCard'
+
+interface SocialProofProps {
+	testimonials?: TestimonialCardProps[]
 }
 
-const SocialProof = () => {
+const SocialProof = ({ testimonials = defaultTestimonials }: SocialProofProps) => {
+	const [autoScrollEnabled, setAutoScrollEnabled] = useState(true)
+	
 	const [emblaRef] = useEmblaCarousel({
 		align: 'center',
 		loop: true,
@@ -162,28 +126,32 @@ const SocialProof = () => {
 	[
 		Autoscroll({
 			stopOnInteraction: false,
-			speed: 1,
-			playOnInit: true,
+			speed: 0.5,
+			playOnInit: autoScrollEnabled,
 		})
 	]
 	)
 
-	// const handleMouseEnter = () => {
-	// 	const autoScroll = emblaApi?.plugins()?.autoScroll
-	// 	if (!autoScroll) return
-	// 	autoScroll.stop()
-	// };
+	useEffect(() => {
+		const observer = new IntersectionObserver(
+			([entry]) => {
+				setAutoScrollEnabled(entry.isIntersecting)
+			},
+			{ threshold: 0.1 }
+		)
 
-	// const handleMouseLeave = () => {
-	// 	const autoScroll = emblaApi?.plugins()?.autoScroll
-	// 	if (!autoScroll) return
-	// 	autoScroll.play()
-	// };
+		const element = document.querySelector('.social-proof-container')
+		if (element) {
+			observer.observe(element)
+		}
+
+		return () => observer.disconnect()
+	}, [])
 
 	return (
 		<div className='px-3 font-Poppins mb-6'>
-			<div className='bg-white rounded-[19px] py-16 overflow-hidden'>
-				<div className='px-16'>
+			<div className='bg-white rounded-[19px] py-16 overflow-hidden social-proof-container'>
+				<div className='px-3 lg:px-16'>
 					<h3 className='text-2xl lg:text-4xl font-medium text-primary whitespace-nowrap'>
 						What our customers <br/><span className='text-grey-primary'>say about us</span>
 					</h3>
@@ -199,8 +167,6 @@ const SocialProof = () => {
 								<div
 									key={ index }
 									className='flex-[0_0_100%] min-w-0 px-3 md:px-5 sm:flex-[0_0_50%] md:flex-[0_0_40%] lg:flex-[0_0_29%]'
-									// onMouseEnter={ handleMouseEnter }
-									// onMouseLeave={ handleMouseLeave }
 								>
 									<div className='h-full'>
 										<TestimonialCard { ...testimonial } />
@@ -215,4 +181,4 @@ const SocialProof = () => {
 	)
 }
 
-export default SocialProof
+export default React.memo(SocialProof)

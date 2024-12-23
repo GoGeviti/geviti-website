@@ -153,7 +153,7 @@ const MenuItem = memo(({
 							</ul>
 						</div>
 						<div>
-							<p className='text-[10px] font-semibold uppercase tracking-[1.1px] pb-[14px]'>Product Category</p>
+							<p className='text-[10px] font-semibold uppercase tracking-[1.1px] pb-[14px]'>Prescriptions</p>
 							{ children }
 						</div>
 						<div>
@@ -193,14 +193,13 @@ const MenuItem = memo(({
 					transition={ transition }
 					layoutId='active'
 					className={ clsxm(
-						'relative rounded-[9px] overflow-hidden',
-						'bg-white',
-						'backdrop-filter backdrop-blur-[30px]', // Using backdrop-filter explicitly
+						'relative rounded-[20px] overflow-hidden',
+						'bg-white/90',
+						'backdrop-blur-[30px]',
 						'border border-grey-100',
 						theme === 'light' && 'bg-most-value',
 					) }
 				>
-					{ /* <div className='absolute inset-0 w-full h-full bg-white/10 border border-white/5 backdrop-blur-[27px]' /> */ }
 					<motion.div
 						layout
 						className='w-max h-full p-4 relative z-50'

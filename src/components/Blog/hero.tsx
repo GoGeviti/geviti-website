@@ -38,8 +38,12 @@ const Hero: React.FC<HeroProps> = ({ hero, classname }) => {
 					} }
 					centeredSlides={ true }
 					loop={ true }
+					autoplay={ {
+						delay: 5000,
+						disableOnInteraction: false,
+					} }
 					modules={ [Autoplay, Navigation] }
-					onSlideChange={ swiper => setSelectedIndex(swiper.activeIndex) }
+					onSlideChange={ swiper => setSelectedIndex(swiper.realIndex) }
 					className='absolute inset-0 w-full h-full z-0'
 				>
 					{ hero.map((item, index) => (
@@ -67,13 +71,13 @@ const Hero: React.FC<HeroProps> = ({ hero, classname }) => {
 							<span dangerouslySetInnerHTML={ { __html: hero[selectedIndex]?.title } } />
 						</div>
 						<p className='body-extra-small lg:body-small lg:text-grey-secondary text-grey-secondary max-w-[447px]'>
-              Lorem ipsum dolor sit amet consectetur. Ullamcorper egestas nibh massa diam sapien fusce. Nisl tortor turpis maecenas scelerisque aenean sem amet et
+							{ hero[selectedIndex]?.meta?.description }
 						</p>
 						<div className='mt-6 flex items-center gap-3.5'>
 							{ hero.map((_, index) => (
 								<div
 									key={ index }
-									onClick={ () => swiperRef.current?.slideTo(index) }
+									onClick={ () => swiperRef.current?.slideToLoop(index) }
 									className={ clsxm(
 										'w-[10px] h-[10px] rounded-full border cursor-pointer border-white transition-colors duration-200',
 										index === selectedIndex ? 'bg-white' : 'bg-transparent'

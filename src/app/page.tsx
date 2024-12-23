@@ -7,7 +7,7 @@ import { getProductMemberhsip } from '@/components/Checkout/api/onboarding';
 import IntroScreen from '@/components/IntroScreen';
 import {
 	FeaturedOn,
-	GevitiForFree,
+	// GevitiForFree,
 	Marketplace,
 	Products,
 	Review,
@@ -68,15 +68,15 @@ const HomePage: NextPage = async() => {
 					{ productMembership && (
 						<div
 							id='pricing'
-							className='lg:px-3 pb-3.5 lg:pb-6 overflow-hidden'>
-							<div className='lg:bg-white lg:rounded-[19px] pb-[42px] lg:pb-16'>
+							className='lg:px-3 lg:pb-6 overflow-hidden'>
+							<div className='lg:bg-white lg:rounded-[19px] lg:pb-16'>
 								<HeroPricing
 									productMembership={ productMembership }
 									isFromHomePage={ true }
 									navbar={ false }
 									className='!pt-[52px] lg:!pt-[164px]'
 								/>
-								<GevitiForFree/>
+								{ /* <GevitiForFree/> */ }
 							</div>
 						</div>
 					) }

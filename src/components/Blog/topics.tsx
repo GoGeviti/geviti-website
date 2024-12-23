@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 // import { Tabs, TabsContent, TabsList, TabsTrigger } from '@radix-ui/react-tabs';
 import Image from 'next/image';
 
+import { calculateReadingTime } from '@/helpers/calculateReadingTime';
 import clsxm from '@/helpers/clsxm';
 import { usePosts } from '@/hooks/api/blogs';
 import { Post, PostCategory } from '@/payload/payload-types';
@@ -80,11 +81,11 @@ const Topics = ({ categories } : {categories:PostCategory[]}) => {
 								) }/>
 							</div>
 						</div>
-						<p className='body-small text-grey-600 line-clamp-3'>Lorem ipsum dolor sit amet consectetur. Ullamcorper egestas nibh massa diam sapien fusce. Nisl tortor turpis maecenas scelerisque aenean sem amet et</p>
+						<p className='body-small text-grey-600 line-clamp-3'>{ item.meta?.description }</p>
 						<p className='body-extra-small text-grey-primary'>
 							<span>{ new Date(item.updatedAt).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }) }</span>
 							<span> • </span>
-							<span>15 mins read</span>
+							<span>{ calculateReadingTime(item.layout) } mins read</span>
 						</p>
 					</div>
 				</CustomLink>

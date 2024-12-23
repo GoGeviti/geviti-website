@@ -361,7 +361,7 @@ const MobileNav: React.FC<MobileNavProps> = ({
 																		Custom Supplements
 																	</CustomLink>
 																</div>
-																<span className='text-[10px] uppercase tracking-[1.1px] text-grey-300'>Product Category</span>
+																<span className='text-[10px] uppercase tracking-[1.1px] text-grey-300'>Prescriptions</span>
 															</>
 														)
 													}

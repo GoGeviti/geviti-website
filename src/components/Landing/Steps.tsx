@@ -40,7 +40,7 @@ const StepsSection: React.FC = () => {
 	};
 
 	return (
-		<div className='font-Poppins max-lg:mt-[27px] px-3'>
+		<div className='font-Poppins max-lg:mt-6 px-3'>
 			<div className='h-full w-full relative bg-white lg:pt-11 lg:pb-16 rounded-[20px]'>
 				<div
 					ref={ container }

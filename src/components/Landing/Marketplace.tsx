@@ -1,10 +1,12 @@
 /* eslint-disable no-unused-vars */
 'use client'
 import React from 'react'
-import { motion, MotionStyle, useScroll, useTransform } from 'framer-motion'
+import { motion, MotionStyle } from 'framer-motion'
 import Image from 'next/image'
 
 import clsxm from '@/helpers/clsxm'
+import { screens } from '@/helpers/style'
+import { useWindowDimensions } from '@/hooks'
 
 import ButtonCta from '../ButtonCta'
 import CustomLink from '../CustomLink'
@@ -25,14 +27,16 @@ const cards = [
 		],
 		isComingSoon: false,
 		link: '',
+		mobileOrder: 1,
 	},
 	{
-		title: ' Mobile Stem Cell Therapy',
+		title: 'Mobile Stem Cell Therapy',
 		desc: 'The most powerful tool to boost regeneration, reduce inflammation, improve energy, and support anti-aging.',
 		image: '/images/landing/card-03.png',
 		list: [],
 		isComingSoon: true,
 		link: '',
+		mobileOrder: 4,
 	},
 	{
 		title: 'At-home Health Screening',
@@ -46,6 +50,7 @@ const cards = [
 		],
 		isComingSoon: false,
 		link: '',
+		mobileOrder: 2,
 	},
 	{
 		title: 'Custom Supplements',
@@ -53,7 +58,8 @@ const cards = [
 		image: '/images/landing/card-04.png',
 		list: [],
 		link: '/longeviti-blend',
-		isComingSoon: false
+		isComingSoon: false,
+		mobileOrder: 3,
 	},
 ]
 
@@ -149,14 +155,9 @@ const Card = ({
 
 const Marketplace = () => {
 	const [cardOpen, setCardOpen] = React.useState('')
-	const { scrollY } = useScroll()
 
-	// Create transform values for each card
-	// Adjust the input/output ranges to control parallax intensity
-	const card1Y = useTransform(scrollY, [0, 1000], [200, 100])
-	const card2Y = useTransform(scrollY, [0, 1000], [160, 80])
-	const card3Y = useTransform(scrollY, [0, 1000], [500, 400])
-	const card4Y = useTransform(scrollY, [0, 1000], [450, 400])
+	const windowDimensions = useWindowDimensions();
+	const isMobile = windowDimensions.width < screens.md;
 
 	return (
 		<div className='px-3 py-3.5 lg:py-6'>
@@ -182,22 +183,23 @@ const Marketplace = () => {
 
 					{ /* Floating cards */ }
 					<div className='relative max-lg:px-4 max-lg:flex max-lg:gap-3.5 max-lg:mt-6 max-lg:flex-col z-10'>
-						{ cards.map((card, index) => (
-							<Card
-								key={ card.title }
-								{ ...card }
-								cardOpen={ cardOpen }
-								setCardOpen={ setCardOpen }
-								style={ { y: [card1Y, card2Y, card3Y, card4Y][index] } }
-								className={ [
-									'left-[50px]',
-									'right-[50px]',
-									'left-[100px]',
-									'right-[100px]'
-								][index] }
-								transition={ { delay: index * 0.2 } }  // Stagger the animations
-							/>
-						)) }
+						{ [...cards]
+							.sort((a, b) => isMobile ? a.mobileOrder - b.mobileOrder : 0)
+							.map((card, index) => (
+								<Card
+									key={ card.title }
+									{ ...card }
+									cardOpen={ cardOpen }
+									setCardOpen={ setCardOpen }
+									className={ [
+										'top-[140px] left-[50px]',
+										'top-[100px] right-[50px]',
+										'top-[440px] left-[100px]',
+										'top-[390px] right-[100px]'
+									][index] }
+									transition={ { delay: index * 0.2 } }
+								/>
+							)) }
 					</div>
 
 					<Image

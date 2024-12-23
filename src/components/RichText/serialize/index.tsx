@@ -174,7 +174,6 @@ export function serializeLexical({ nodes, headingRefs, blockIndex, columnIndex }
 
 					case 'upload': {
 						const node = _node as SerializedUploadNode;
-
 						const value = node.value;
 						const caption = node?.fields?.caption as {
 							root: SerializedHeadingNode;
@@ -183,21 +182,27 @@ export function serializeLexical({ nodes, headingRefs, blockIndex, columnIndex }
 						const serializedCaption = caption?.root
 							? serializedChildrenFn(caption?.root as SerializedElementNode)
 							: '';
+
+						// Common image props
+						const imageProps = {
+							src: (value?.url as string) ?? '/images/ImageError.jpg',
+							alt: (value?.alt as string) ?? 'Error loading image',
+							fill: true,
+							className: 'object-cover rounded-[30px] object-center',
+							onError: (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+								const target = e.target as HTMLImageElement;
+								target.src = '/images/ImageError.jpg';
+							}
+						};
+
 						if (serializedCaption) {
 							return (
-								<div
-									className={ clsxm(
-										'flex flex-col md:flex-row gap-[30px] mt-[30px] items-center',
-										alignment === 'right' && 'md:flex-row-reverse'
-									) }
-								>
+								<div className={ clsxm(
+									'flex flex-col md:flex-row gap-[30px] mt-[30px] items-center',
+									alignment === 'right' && 'md:flex-row-reverse'
+								) }>
 									<div className='w-full md:w-[60%] h-[280px] relative'>
-										<Image
-											src={ (value?.url as string) ?? '' }
-											alt={ (value?.alt as string) ?? '' }
-											fill
-											className='object-cover rounded-[30px] object-center'
-										/>
+										<Image { ...imageProps } />
 									</div>
 									<div className='md:w-[40%] text-primary font-Poppins text-base md:text-xl leading-[30px] md:leading-10 -tracking-[0.64px] md:-tracking-[0.8px]'>
 										<p>{ serializedCaption }</p>
@@ -207,12 +212,7 @@ export function serializeLexical({ nodes, headingRefs, blockIndex, columnIndex }
 						} else {
 							return (
 								<div className='w-full h-[350px] md:h-[340px] relative lg:mt-5 lg:mb-[30px] mt-[10px] mb-5'>
-									<Image
-										src={ (value?.url as string) ?? '' }
-										alt={ (value?.alt as string) ?? '' }
-										fill
-										className='object-cover rounded-[30px] object-center'
-									/>
+									<Image { ...imageProps } />
 								</div>
 							);
 						}
