@@ -188,7 +188,7 @@ export function serializeLexical({ nodes, headingRefs, blockIndex, columnIndex }
 							src: (value?.url as string) ?? '/images/ImageError.jpg',
 							alt: (value?.alt as string) ?? 'Error loading image',
 							fill: true,
-							className: 'object-cover rounded-[30px] object-center',
+							className: 'object-cover rounded-[30px] object-center border border-grey-200',
 							onError: (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
 								const target = e.target as HTMLImageElement;
 								target.src = '/images/ImageError.jpg';
@@ -201,7 +201,7 @@ export function serializeLexical({ nodes, headingRefs, blockIndex, columnIndex }
 									'flex flex-col md:flex-row gap-[30px] mt-[30px] items-center',
 									alignment === 'right' && 'md:flex-row-reverse'
 								) }>
-									<div className='w-full md:w-[60%] h-[280px] relative'>
+									<div className='w-full md:w-[60%]  h-[280px] relative'>
 										<Image { ...imageProps } />
 									</div>
 									<div className='md:w-[40%] text-primary font-Poppins text-base md:text-xl leading-[30px] md:leading-10 -tracking-[0.64px] md:-tracking-[0.8px]'>

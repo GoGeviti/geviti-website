@@ -86,8 +86,8 @@ const HowItWorksCards: React.FC<CardListProps> = ({
 									initial: 'initial',
 									animate: inView ? 'animate' : 'initial',
 									transition: {
-										delay: 4 + (3 - index) * 0.2,
-										duration: 0.4,
+										delay: 2 + (3 - index) * 0.1,
+										duration: 0.3,
 										ease: 'easeInOut',
 									},
 								}) }
@@ -97,8 +97,8 @@ const HowItWorksCards: React.FC<CardListProps> = ({
 									{ ...(!isMobile && {
 										animate: inView ? { scale: 0.9 } : { scale: 1 },
 										transition: {
-											delay: 4 + (3 - index) * 0.2 + 0.8, // 0.8 = 0.2 * 4 cards
-											duration: 0.4,
+											delay: 2 + (3 - index) * 0.1 + 0.4,
+											duration: 0.3,
 											ease: 'easeInOut',
 										},
 									}) }
@@ -158,7 +158,7 @@ const HowItWorksCards: React.FC<CardListProps> = ({
 										: 'inset(50% 0% 50% 0%)',
 									scale: 1,
 								},
-								transition: { duration: 1, delay: 2, ease: 'easeIn' },
+								transition: { duration: 0.6, delay: 1, ease: 'easeIn' },
 							}) }
 						>
 							<Image
@@ -187,7 +187,7 @@ const HowItWorksCards: React.FC<CardListProps> = ({
 				{ ...(!isMobile && {
 					initial: { opacity: 0 },
 					animate: { opacity: inView ? 1 : 0 },
-					transition: { duration: 1.25, delay: 1.25, ease: 'easeInOut' },
+					transition: { duration: 0.8, delay: 0.6, ease: 'easeInOut' },
 				}) }
 				className='relative flex w-[126px] h-[126px] sm:w-[163px] sm:h-[163px] flex-col items-center justify-center overflow-hidden'
 			>
@@ -243,7 +243,7 @@ const HowItWorksCards: React.FC<CardListProps> = ({
 							{ ...(!isMobile && {
 								initial: { translateY: '0%' },
 								animate: { translateY: inView ? '-200%' : '0%' },
-								transition: { duration: 0.5, delay: 1.35, ease: 'easeInOut' },
+								transition: { duration: 0.3, delay: 0.7, ease: 'easeInOut' },
 							}) }
 							className='focus:ring-0 focus:outline-none group relative flex'
 						>
@@ -287,7 +287,7 @@ const HowItWorksCards: React.FC<CardListProps> = ({
       'absolute top-1/2 -translate-y-1/2 border-2 border-gray-100 border-dashed max-sm:hidden';
 		const rightLine = clsxm(lineClassName, 'left-1/2 right-0');
 		const leftLine = clsxm(lineClassName, 'left-0 right-1/2');
-		const transition = { duration: 1, ease: 'easeInOut' };
+		const transition = { duration: 0.6, ease: 'easeInOut' };
 
 		if (isMobile) return null;
 
@@ -301,7 +301,7 @@ const HowItWorksCards: React.FC<CardListProps> = ({
 								width: '50%',
 								transition: {
 									...transition,
-									delay: 1,
+									delay: 0.5,
 								},
 							}
 							: { width: '0%' }
@@ -322,7 +322,7 @@ const HowItWorksCards: React.FC<CardListProps> = ({
 									width: '50%',
 									transition: {
 										...transition,
-										delay: 2,
+										delay: 1,
 									},
 								}
 								: { width: '0%' }
@@ -337,7 +337,7 @@ const HowItWorksCards: React.FC<CardListProps> = ({
 									width: '50%',
 									transition: {
 										...transition,
-										delay: 3,
+										delay: 1.5,
 									},
 								}
 								: { width: '0%' }
@@ -357,7 +357,7 @@ const HowItWorksCards: React.FC<CardListProps> = ({
 							width: '50%',
 							transition: {
 								...transition,
-								delay: 3.5,
+								delay: 2,
 							},
 						}
 						: { width: '0%' }
@@ -437,7 +437,7 @@ const WrapperDotIcon: React.FC<WrapperDotIconProps> = ({
 		<motion.div
 			initial={ { opacity: 0 } }
 			animate={ { opacity: inView ? 1 : 0 } }
-			transition={ { delay, duration: 1, ease: 'easeInOut' } }
+			transition={ { delay: (delay ?? 0) / 2, duration: 0.6, ease: 'easeInOut' } }
 			className={ clsxm(
 				'absolute top-1/2 -translate-y-1/2 z-10 max-lg:hidden',
 				className

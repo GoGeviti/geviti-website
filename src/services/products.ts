@@ -258,13 +258,14 @@ export const getPostById = async(slug: string): Promise<Post> => {
 export const getAllPost = async(
 	limit?: number,
 	page: number = 1,
-	categoryId?: string
+	categoryId?: string,
+	sort?: string
 ): Promise<PaginatedDocs<Post>> => {
 	const stringifiedQuery = qs.stringify({
 		depth: 2, // Changed to depth 2 to get category relationships
 		limit: limit ?? 6,
 		page: page,
-		sort: 'updatedAt',
+		sort: sort ?? 'updatedAt',
 		draft: false,
 		where: {
 			// _status: {
