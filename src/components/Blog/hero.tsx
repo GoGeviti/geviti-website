@@ -10,6 +10,7 @@ import { Post } from '@/payload/payload-types';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
+import CustomLink from '../CustomLink';
 import Navbar from '../Navbar/Landing';
 
 // Import Swiper styles
@@ -67,9 +68,11 @@ const Hero: React.FC<HeroProps> = ({ hero, classname }) => {
 						<p className='font-Poppins text-sm font-semibold text-white leading-[1.54px] uppercase'>
 							{ hero[selectedIndex]?.hero.categories?.title }
 						</p>
-						<div className='lg:h2 text-[29px] line-clamp-2 lg:text-grey-secondary text-grey-secondary md:mt-5 mt-[10px] md:mb-3 mb-[14px]'>
+						<CustomLink
+							href={ `/blog/${hero[selectedIndex]?.slug}`	 }
+							className='lg:h2 text-[29px] line-clamp-2 lg:text-grey-secondary text-grey-secondary md:mt-5 mt-[10px] md:mb-3 mb-[14px]'>
 							<span dangerouslySetInnerHTML={ { __html: hero[selectedIndex]?.title } } />
-						</div>
+						</CustomLink>
 						<p className='body-extra-small lg:body-small lg:text-grey-secondary text-grey-secondary max-w-[447px]'>
 							{ hero[selectedIndex]?.meta?.description }
 						</p>

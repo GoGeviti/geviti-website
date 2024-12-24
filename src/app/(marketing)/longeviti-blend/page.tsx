@@ -5,7 +5,7 @@ import { Footer, FrequentlyAskedQuestions } from '@/components';
 import SocialProof from '@/components/Landing/SocialProof';
 import LongevitiBlendComponent from '@/components/LongevitiBlend';
 import LongevitiPanelComponent from '@/components/LongevitiPanel';
-import { marketingData } from '@/constant/data';
+// import { marketingData } from '@/constant/data';
 import longevitiBlendData from '@/constant/data/longevitiBlend';
 import longevitiPanelData from '@/constant/data/longevitiPanel';
 
@@ -19,10 +19,10 @@ const LongevitiBlendPage: NextPage = () => {
 			<LongevitiBlendComponent.Unique />
 			<LongevitiBlendComponent.TextRevealByWord text={ longevitiBlendData.textRefeal } />
 			{ /* <MarketingComponent.Testimonials /> */ }
-			{ /* <SocialProof/> */ }
-			<SocialProof testimonials={ [
+			<SocialProof/>
+			{ /* <SocialProof testimonials={ [
 				...marketingData.testimonials.list.map(item => ({
-					rating: Math.random() < 0.3 ? 4 : 5, // 30% chance of 4 stars, 70% chance of 5 stars
+					rating: 5,
 					text: item.body,
 					author: {
 						name: item.author.name,
@@ -31,7 +31,7 @@ const LongevitiBlendPage: NextPage = () => {
 					}
 				})),
 				...marketingData.testimonials.list.map(item => ({
-					rating: Math.random() < 0.3 ? 4 : 5,
+					rating: 5,
 					text: item.body,
 					author: {
 						name: item.author.name,
@@ -39,7 +39,7 @@ const LongevitiBlendPage: NextPage = () => {
 						image: ''
 					}
 				}))
-			] } />
+			] } /> */ }
 			<LongevitiBlendComponent.Apps />
 			<FrequentlyAskedQuestions
 				data={ longevitiPanelData.faq.data }

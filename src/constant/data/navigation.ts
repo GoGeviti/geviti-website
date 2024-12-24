@@ -69,7 +69,7 @@ const navigationData = {
 		// 	externalLink: false,
 		// },
 		{
-			name: 'Pricing',
+			name: 'Membership',
 			href: '/pricing',
 			externalLink: false,
 		},

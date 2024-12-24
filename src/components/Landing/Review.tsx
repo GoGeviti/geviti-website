@@ -17,7 +17,7 @@ interface TestimonialCardProps {
 
 const testimonials: TestimonialCardProps[] = [
 	{
-		text: 'Geviti\'s custom supplements have transformed my health. I feel more energetic and healthier.',
+		text: 'I’ve had a phenomenal experience thus far and I am really looking forward to seeing where this goes. I highly recommend.',
 		author: {
 			name: 'Chris Powell',
 			title: 'TV Host for ABC’s “Extreme Weight Loss” ',
@@ -69,13 +69,14 @@ const testimonials: TestimonialCardProps[] = [
 function TestimonialCard({ text, author }: TestimonialCardProps) {
 	
 	return (
-		<div className='testimonial-card bg-[#FAFAFA] flex flex-col lg:flex-row items-center gap-6 relative px-5 py-[30px] rounded-[20px]'>
+		<div className='testimonial-card bg-[#FAFAFA] flex flex-col lg:flex-row items-end gap-6 relative px-5 py-[30px] rounded-[20px]'>
 			<div className='h-[302px] overflow-hidden flex-shrink-0 w-full lg:w-[277px] rounded-xl flex items-center justify-center'>
 				<Image
 					width={ 277 }
 					height={ 302 }
 					className='w-full h-full object-top object-cover'
 					alt='person'
+					quality={ 100 }
 					src={ author.image }
 				/>
 			</div>
@@ -227,7 +228,7 @@ const Review = () => {
 							{ testimonials.map((testimonial, index) => (
 								<div
 									key={ index }
-									className='flex-[0_0_100%] min-w-0 sm:flex-[0_0_50%] md:flex-[0_0_54%]'
+									className='flex-[0_0_100%] min-w-0 sm:flex-[0_0_50%] md:flex-[0_0_55%]'
 								>
 									<div className='h-full'>
 										<TestimonialCard { ...testimonial } />
