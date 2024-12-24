@@ -98,7 +98,8 @@ const navigationData = {
 				},
 				{
 					name: 'FAQ',
-					href: '/faq',
+					href: 'https://help.gogeviti.com',
+					externalLink: true,
 				},
 			],
 		},
