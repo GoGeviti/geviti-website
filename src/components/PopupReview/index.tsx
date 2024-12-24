@@ -89,7 +89,7 @@ const PopupReview: React.FC<PopupReviewProps> = ({
 										sizeLargerOnDesktop && 'lg:w-5 lg:h-5'
 									) }
 								/>
-								<h4
+								<span
 									className={ clsxm(
 										'font-semibold text-sm leading-7',
 										sizeLargerOnDesktop && 'lg:text-[20px]'
@@ -104,7 +104,7 @@ const PopupReview: React.FC<PopupReviewProps> = ({
 									>
 										{ popup.titleSuffix }
 									</span>
-								</h4>
+								</span>
 							</div>
 							<div className='flex items-center'>
 								{ [...Array(5)].map((_, index) => (

@@ -19,18 +19,20 @@ const PricingBiomarkers: React.FC<PricingBiomarkersProps> = ({ isFromHomePage })
 	return (
 		<div className='max-lg:container-center w-full'>
 			<div className='lg:rounded-b-19px lg:bg-[#F5FBFF] lg:max-w-[1061px] mx-auto w-full'>
-				<PricingComparison
-					index={ 0 }
-					isOpen={ openIdx === 0 }
-					toggleAccordion={ toggleAccordion }
-				/>
 				{
 					!isFromHomePage && (
-						<BiomarkersSection
-							index={ 1 }
-							isOpen={ openIdx === 1 }
-							toggleAccordion={ toggleAccordion }
-						/>
+						<>
+							<PricingComparison
+								index={ 0 }
+								isOpen={ openIdx === 0 }
+								toggleAccordion={ toggleAccordion }
+							/>
+							<BiomarkersSection
+								index={ 1 }
+								isOpen={ openIdx === 1 }
+								toggleAccordion={ toggleAccordion }
+							/>
+						</>
 					)
 				}
 			</div>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { RefObject } from 'react';
 
 import { Post } from '@/payload/payload-types';
 
@@ -8,10 +8,12 @@ type Props = Extract<Post['layout'][0], { blockType: 'content' }>
 
 export const ContentBlock: React.FC<
   Props & {
-    id?: string
+    id?: string;
+    headingRefs?: RefObject<{[key: string]: HTMLElement | null}>;
+		
   }
 > = props => {
-	const { columns } = props;
+	const { columns, headingRefs, id } = props;
 
 	return (
 		<div>
@@ -25,7 +27,12 @@ export const ContentBlock: React.FC<
           			key={ index }
           			className={ `${index !== 0 ? 'mt-10 lg:mt-[70px]' : ''}` }
           		>
-          			<RichText content={ richText } />
+          			<RichText
+          				blockIndex={ id ? parseInt(id) : 0 }
+          				content={ richText }
+          				columnIndex={ index }
+          				headingRefs={ headingRefs }
+          			/>
           		</div>
           	);
           }) }

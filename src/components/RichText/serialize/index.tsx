@@ -30,9 +30,12 @@ import {
 
 interface Props {
 	nodes: SerializedLexicalNode[];
+	headingRefs?: React.RefObject<{ [key: string]: HTMLElement | null }>;
+	blockIndex?: number;
+	columnIndex?: number;
 }
 
-export function serializeLexical({ nodes }: Props): JSX.Element {
+export function serializeLexical({ nodes, headingRefs, blockIndex, columnIndex }: Props): JSX.Element {
 	return (
 		<Fragment>
 			{ nodes?.map((_node, index): JSX.Element | null => {
@@ -47,7 +50,7 @@ export function serializeLexical({ nodes }: Props): JSX.Element {
 					if (node.format & IS_BOLD) {
 						text = (
 							<strong
-								className='font-semibold'
+								className='font-semibold text-grey-800'
 								key={ index }>
 								{ text }
 							</strong>
@@ -111,9 +114,9 @@ export function serializeLexical({ nodes }: Props): JSX.Element {
 									}
 								}
 							}
-							return serializeLexical({ nodes: node.children });
+							return serializeLexical({ nodes: node.children, headingRefs, blockIndex, columnIndex });
 						} else {
-							return serializeLexical({ nodes: node.children });
+							return serializeLexical({ nodes: node.children, headingRefs, blockIndex, columnIndex });
 						}
 					}
 				};
@@ -130,7 +133,7 @@ export function serializeLexical({ nodes }: Props): JSX.Element {
 					case 'paragraph': {
 						return (
 							<p
-								className='lg:text-xl font-Poppins text-primary'
+								className='lg:text-lg font-Poppins text-grey-400'
 								key={ index }>
 								{ serializedChildren }
 							</p>
@@ -144,6 +147,8 @@ export function serializeLexical({ nodes }: Props): JSX.Element {
 							'h1' | 'h2' | 'h3' | 'h4' | 'h5'
 						>;
 						const Tag = node?.tag as Heading;
+						const headingId = `heading-${columnIndex}-${index}`;
+
 						return (
 							<Tag
 								className={ clsxm(
@@ -154,7 +159,13 @@ export function serializeLexical({ nodes }: Props): JSX.Element {
 									'text-[24px] md:text-[26px] mb-[10px] md:mb-[31px]',
 									node?.tag === 'h3' && 'text-[20.5px] md:text-[22.5px]'
 								) }
+								id={ headingId }
 								key={ index }
+								ref={ el => {
+									if (headingRefs?.current) {
+										headingRefs.current[headingId] = el;
+									}
+								} }
 							>
 								{ serializedChildren }
 							</Tag>
@@ -163,7 +174,6 @@ export function serializeLexical({ nodes }: Props): JSX.Element {
 
 					case 'upload': {
 						const node = _node as SerializedUploadNode;
-
 						const value = node.value;
 						const caption = node?.fields?.caption as {
 							root: SerializedHeadingNode;
@@ -172,21 +182,27 @@ export function serializeLexical({ nodes }: Props): JSX.Element {
 						const serializedCaption = caption?.root
 							? serializedChildrenFn(caption?.root as SerializedElementNode)
 							: '';
+
+						// Common image props
+						const imageProps = {
+							src: (value?.url as string) ?? '/images/ImageError.jpg',
+							alt: (value?.alt as string) ?? 'Error loading image',
+							fill: true,
+							className: 'object-cover rounded-[30px] object-center border border-grey-200',
+							onError: (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+								const target = e.target as HTMLImageElement;
+								target.src = '/images/ImageError.jpg';
+							}
+						};
+
 						if (serializedCaption) {
 							return (
-								<div
-									className={ clsxm(
-										'flex flex-col md:flex-row gap-[30px] mt-[30px] items-center',
-										alignment === 'right' && 'md:flex-row-reverse'
-									) }
-								>
-									<div className='w-full md:w-[60%] h-[280px] relative'>
-										<Image
-											src={ (value?.url as string) ?? '' }
-											alt={ (value?.alt as string) ?? '' }
-											fill
-											className='object-cover rounded-[30px] object-center'
-										/>
+								<div className={ clsxm(
+									'flex flex-col md:flex-row gap-[30px] mt-[30px] items-center',
+									alignment === 'right' && 'md:flex-row-reverse'
+								) }>
+									<div className='w-full md:w-[60%]  h-[280px] relative'>
+										<Image { ...imageProps } />
 									</div>
 									<div className='md:w-[40%] text-primary font-Poppins text-base md:text-xl leading-[30px] md:leading-10 -tracking-[0.64px] md:-tracking-[0.8px]'>
 										<p>{ serializedCaption }</p>
@@ -196,12 +212,7 @@ export function serializeLexical({ nodes }: Props): JSX.Element {
 						} else {
 							return (
 								<div className='w-full h-[350px] md:h-[340px] relative lg:mt-5 lg:mb-[30px] mt-[10px] mb-5'>
-									<Image
-										src={ (value?.url as string) ?? '' }
-										alt={ (value?.alt as string) ?? '' }
-										fill
-										className='object-cover rounded-[30px] object-center'
-									/>
+									<Image { ...imageProps } />
 								</div>
 							);
 						}
@@ -221,7 +232,7 @@ export function serializeLexical({ nodes }: Props): JSX.Element {
 						return (
 							<Tag
 								className={ clsxm(
-									'lg:text-xl font-Poppins text-primary list-inside flex flex-col gap-2 mt-2',
+									'lg:text-lg font-Poppins text-grey-400 list-inside flex flex-col gap-2 mt-2',
 									node?.tag === 'ol' && 'list-decimal',
 									node?.tag === 'ul' && 'list-disc'
 								) }

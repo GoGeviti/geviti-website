@@ -69,7 +69,7 @@ const navigationData = {
 		// 	externalLink: false,
 		// },
 		{
-			name: 'Pricing',
+			name: 'Membership',
 			href: '/pricing',
 			externalLink: false,
 		},
@@ -79,26 +79,26 @@ const navigationData = {
 			externalLink: false,
 			items: [
 				{
-					name: 'For Businesses',
+					name: 'Wellness Blog',
+					href: '/blog',
+				},
+				{
+					name: 'For Business',
 					href: '/business-oriented',
 					externalLink: false,
 				},
 				{
-					name: 'Membership',
-					href: '/membership',
-					externalLink: false,
+					name: 'Contact Us',
+					href: '/contact-us',
 				},
 				{
-					name: 'Blog',
-					href: '/blog',
+					name: 'About Us',
+					href: '/about-us',
+					externalLink: false,
 				},
 				{
 					name: 'FAQ',
 					href: '/faq',
-				},
-				{
-					name: 'Contact Us',
-					href: '/contact-us',
 				},
 			],
 		},

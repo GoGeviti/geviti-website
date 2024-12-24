@@ -3,7 +3,7 @@ import Image from 'next/image'
 
 const Headshot = () => {
 	return (
-		<div className='px-4 lg:px-3 lg:pb-[176px]'>
+		<div className='px-4 lg:px-3 lg:mb-16'>
 			<div className='bg-primary rounded-[20px] p-3.5 lg:p-[42px] overflow-hidden flex flex-col lg:flex-row gap-6 lg:gap-[140px]'>
 				{ /* <div className='rounded-[14px] lg:rounded-[24px] overflow-hidden w-full max-w-[548px] max-h-[363px] lg:max-h-[720px]'>
 				</div> */ }

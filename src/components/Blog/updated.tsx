@@ -37,7 +37,7 @@ const Updated: React.FC = () => {
 	};
 
 	return (
-		<div className='overflow-hidden lg:container-center sm:mx-auto w-full pb-3.5'>
+		<div className='overflow-hidden lg:container-center sm:mx-auto w-full pb-3.5 pt-20'>
 			<div className='lg:py-15px h-[300px] w-full lg:rounded-[19px] relative bg-black'>
 				<div className='absolute inset-0 w-full h-full z-0'>
 					{ updatednData.image && (

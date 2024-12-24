@@ -69,7 +69,7 @@ const CustomLink = ({
 	onPrefetchError,
 	externalLink,
 	...props
-}: CustomLinkProps): JSX.Element => {
+}: CustomLinkProps) => {
 	const [hasPreloaded, setHasPreloaded] = useState<boolean>(false)
 	const abortController = useRef<AbortController | null>(null)
 	const htmlCache = useRef<string | null>(null)

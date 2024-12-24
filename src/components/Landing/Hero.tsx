@@ -5,12 +5,16 @@ import { motion, useAnimationControls } from 'framer-motion';
 // import dynamic from 'next/dynamic';
 import Image from 'next/image';
 
-import landingData from '@/constant/data/landing';
+import heroImage from '@/assets/landing/hero.webp';
+import heroImageLanding from '@/assets/landing/hero-landing.webp';
+import heroImageLandingMobile from '@/assets/landing/hero-landing-mobile.webp';
+import heroImageMobile from '@/assets/landing/hero-mobile.webp';
 import { navbarDefaultTransition } from '@/constant/data/navbar';
 import clsxm from '@/helpers/clsxm';
 import { screens } from '@/helpers/style';
 import { useWindowDimensions } from '@/hooks';
 
+import landingData from '../../constant/data/landing';
 // import { screens } from '@/helpers/style';
 // import { useWindowDimensions } from '@/hooks';
 import ButtonCta from '../ButtonCta';
@@ -40,11 +44,11 @@ const HeroImage = ({ type, isLanding }: { type: 'desktop' | 'mobile', isLanding:
 	const imageMobile = type === 'mobile';
 	const imageSrc = isLanding
 		? imageMobile
-			? heroData.imageLandingMobile
-			: heroData.imageLanding
+			? heroImageLandingMobile
+			: heroImageLanding
 		: imageMobile
-			? heroData.imageMobile
-			: heroData.image;
+			? heroImageMobile
+			: heroImage;
 
 	return (
 		<Image
@@ -56,8 +60,10 @@ const HeroImage = ({ type, isLanding }: { type: 'desktop' | 'mobile', isLanding:
 				imageMobile ? 'md:hidden object-center' : 'md:block hidden object-right'
 			) }
 			fill
-			quality={ 100 }
+			quality={ 90 }
+			placeholder='blur'
 			loading={ 'eager' }
+			sizes='100vw'
 		/>
 	);
 };
@@ -101,11 +107,11 @@ const Hero: React.FC<HeroProps> = ({
 		));
 	};
 
-	const renderImage = (type: 'desktop' | 'mobile') => (
-		<HeroImage
-			type={ type }
-			isLanding={ isLanding } />
-	);
+	// const renderImage = (type: 'desktop' | 'mobile') => (
+	// 	<HeroImage
+	// 		type={ type }
+	// 		isLanding={ isLanding } />
+	// );
 
 	const renderMainKeys = () => {
 		return (
@@ -182,8 +188,17 @@ const Hero: React.FC<HeroProps> = ({
 			<div className='bg-primary h-[calc(100svh+14px)] lg:h-[calc(100vh-24px)] w-full overflow-hidden max-lg:rounded-none rounded-19px relative pt-11px lg:pt-5'>
 				<div className='absolute inset-0 w-full h-full'>
 					<div className='relative overflow-hidden w-full h-full'>
-						{ renderImage('desktop') }
-						{ renderImage('mobile') }
+						{
+							isMobile ? (
+								<HeroImage
+									type='mobile'
+									isLanding={ isLanding } />
+							) : (
+								<HeroImage
+									type='desktop'
+									isLanding={ isLanding } />
+							)
+						}
 					</div>
 				</div>
 				<div className='absolute left-0 inset-y-0 w-[54%] h-full max-lg:hidden bg-backdrop-hero-landing-left' />

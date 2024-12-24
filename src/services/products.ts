@@ -7,6 +7,7 @@ import {
 	Faq,
 	PaginatedDocs,
 	Post,
+	PostCategory,
 	Privacy,
 	Product,
 } from '@/payload/payload-types';
@@ -114,11 +115,21 @@ export const getCategoryBySlug = async(slug:string): Promise<Category> => {
 		return Promise.reject(error);
 	}
 };
+
+const categoryOrderMap: { [key: string]: number } = {
+	'Hormone Optimization': 1,
+	'Sexual Health and Vitality': 2,
+	'Longevity and Peptide Therapy': 3,
+	'Hair Regrowth Solutions': 4,
+	'Medical Weight Management': 5
+};
+
 export const getCategories = async(slug?:string, gender?:string): Promise<{
 	singleCategory: Category;
 	categories: Category[];
 }> => {
 	const type = gender === 'women' ? 'female' : 'male';
+
 	const stringifiedQuery = qs.stringify(
 		{
 			depth: 2,
@@ -149,7 +160,16 @@ export const getCategories = async(slug?:string, gender?:string): Promise<{
 		if (slug && !singleCategory) {
 			return Promise.reject('Not Found');
 		}
-		return { singleCategory: singleCategory ?? data.docs[0], categories: data.docs.filter(category => category.slug !== slug) };
+		
+		// Sort the categories
+		const sortedDocs = data.docs.sort((a, b) =>
+			(categoryOrderMap[a.name] || 999) - (categoryOrderMap[b.name] || 999)
+		);
+
+		return {
+			singleCategory: singleCategory ?? sortedDocs[0],
+			categories: sortedDocs.filter(category => category.slug !== slug)
+		};
 	} catch (error) {
 		// console.log(error);
 		return Promise.reject(error);
@@ -169,15 +189,20 @@ export const getAllCategories = async(): Promise<{
 	);
 	try {
 		const res = await fetch(
-			process.env.BASE_API_URL + `/api/categories?${stringifiedQuery}`,
+			process.env.BASE_API_URL + `/api/categories${stringifiedQuery}`,
 			{
 				cache: 'no-store',
 			}
 		);
 		const data = await res.json() as PaginatedDocs<Category>;
-		return { categories: data.docs };
+		
+		// Sort using the same categoryMap approach
+		const sortedCategories = [...data.docs].sort((a, b) =>
+			(categoryOrderMap[a.name] || 999) - (categoryOrderMap[b.name] || 999)
+		);
+
+		return { categories: sortedCategories };
 	} catch (error) {
-		// console.log(error);
 		return Promise.reject(error);
 	}
 };
@@ -231,25 +256,55 @@ export const getPostById = async(slug: string): Promise<Post> => {
 };
 
 export const getAllPost = async(
-	limit?: number
+	limit?: number,
+	page: number = 1,
+	categoryId?: string,
+	sort?: string
 ): Promise<PaginatedDocs<Post>> => {
 	const stringifiedQuery = qs.stringify({
-		depth: 1,
-		limit: limit ?? 100,
-		sort: 'order',
-		draft: true,
+		depth: 2, // Changed to depth 2 to get category relationships
+		limit: limit ?? 6,
+		page: page,
+		sort: sort ?? 'updatedAt',
+		draft: false,
 		where: {
-			_status: {
-				equals: 'published',
-			},
+			// _status: {
+			// 	equals: 'published',
+			// },
+			...(categoryId && categoryId !== '0' && {
+				'hero.categories': {
+					equals: categoryId
+				}
+			})
 		},
 	});
 
-	// console.log('getAllPost ==> ', process.env.BASE_API_URL + `/api/posts?${stringifiedQuery}`);
+	try {
+		const res = await fetch(
+			process.env.NEXT_PUBLIC_BASE_API_URL + `/api/posts?${stringifiedQuery}`,
+			{
+				cache: 'no-store',
+			}
+		);
+		const data = await res.json();
+		return data;
+	} catch (error) {
+		return Promise.reject(error);
+	}
+};
+
+export const getAllPostCategories = async(
+	limit?: number
+): Promise<PaginatedDocs<PostCategory>> => {
+	const stringifiedQuery = qs.stringify({
+		depth: 1,
+		limit: limit ?? 100,
+		sort: 'title',
+	});
 
 	try {
 		const res = await fetch(
-			process.env.BASE_API_URL + `/api/posts?${ stringifiedQuery }`,
+			process.env.NEXT_PUBLIC_BASE_API_URL + `/api/post-categories?${ stringifiedQuery }`,
 			{
 				cache: 'no-store',
 			}

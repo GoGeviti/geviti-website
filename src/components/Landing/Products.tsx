@@ -1,19 +1,54 @@
 'use client'
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
+import { Swiper as SwiperType } from 'swiper';
 
 import clsxm from '@/helpers/clsxm';
 import { Category } from '@/payload/payload-types';
 
+import { ArrowNarrowLeft, ArrowNarrowRight } from '../Icons';
 import { ViewOtherCategories } from '../Solutions';
 
 type ProductSectionProps = {
 	data : Category[];
 }
 
+const NavigationButtons = ({ isBeginning, isEnd, swiperRef }: {
+  isBeginning: boolean,
+  isEnd: boolean,
+  swiperRef: React.MutableRefObject<SwiperType | undefined>
+}) => (
+	<div className='flex items-center gap-[14px] justify-center'>
+		<button
+			onClick={ () => swiperRef.current?.slidePrev() }
+			className={ clsxm(
+				'w-[34px] h-[34px] rounded-full border flex items-center justify-center',
+				!isBeginning ? 'border-primary' : 'border-grey-primary'
+			) }>
+			<ArrowNarrowLeft className={ !isBeginning ? 'text-primary' : 'text-grey-primary' }/>
+		</button>
+		<button
+			onClick={ () => swiperRef.current?.slideNext() }
+			className={ clsxm(
+				'w-[34px] h-[34px] rounded-full border flex items-center justify-center',
+				!isEnd ? 'border-primary' : 'border-grey-primary'
+			) }>
+			<ArrowNarrowRight className={ !isEnd ? 'text-primary' : 'text-grey-primary' }/>
+		</button>
+	</div>
+);
+
 const ProductsSection: React.FC<ProductSectionProps> = ({ data }) => {
 
 	const [selectedCategoryIdx, setSelectedCategoryIdx] = useState<string>('male');
+	const [isBeginning, setIsBeginning] = useState(true);
+	const [isEnd, setIsEnd] = useState(false);
+	const swiperRef = useRef<SwiperType>(undefined);
+
+	const handleSlideChange = (swiper: SwiperType) => {
+		setIsBeginning(swiper.isBeginning);
+		setIsEnd(swiper.isEnd);
+	};
 
 	const renderButtonSwitchProducts = () => (
 		<div className='relative w-full rounded-[100px] h-[49px] px-1.5 bg-white'>
@@ -53,7 +88,7 @@ const ProductsSection: React.FC<ProductSectionProps> = ({ data }) => {
 	return (
 		<div
 			id='landing-discover-geviti'
-			className='lg:pt-[81px]'
+			className='pt-6 lg:pt-[81px]'
 		>
 			<div
 				className={ clsxm(
@@ -71,8 +106,14 @@ const ProductsSection: React.FC<ProductSectionProps> = ({ data }) => {
 							Browse our wide range of products!
 								</p>
 							</div>
-							<div className='flex max-lg:flex-col lg:items-center gap-6 lg:gap-[42px]'>
+							<div className='flex max-lg:flex-col lg:items-center justify-between gap-6 lg:gap-[42px]'>
 								<div className='sm:w-fit'>{ renderButtonSwitchProducts() }</div>
+								<div className='hidden lg:block'>
+									<NavigationButtons
+										isBeginning={ isBeginning }
+										isEnd={ isEnd }
+										swiperRef={ swiperRef } />
+								</div>
 							</div>
 						</div>
 					</div>
@@ -85,9 +126,17 @@ const ProductsSection: React.FC<ProductSectionProps> = ({ data }) => {
 							transition={ { duration: 0.375, ease: 'easeInOut' } }
 						>
 							<ViewOtherCategories
+								swiperRef={ swiperRef }
 								baseUrl={ `/${selectedCategoryIdx === 'male' ? 'men' : 'women'}` }
 								hideHeader={ true }
+								onSlideChange={ handleSlideChange }
 								data={ data.filter(e => ['both', selectedCategoryIdx].includes(e.type)) } />
+							{ /* <div className='lg:hidden mb-6 -mt-10'>
+								<NavigationButtons
+									isBeginning={ isBeginning }
+									isEnd={ isEnd }
+									swiperRef={ swiperRef } />
+							</div> */ }
 						</motion.div>
 					</AnimatePresence>
 				</div>
