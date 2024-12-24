@@ -54,7 +54,7 @@ const landingData = {
 		btnCta2: {
 			href: 'https://calendly.com/cole-gogeviti/discovery-call',
 			externalLink: true,
-			text: 'Schedule a call',
+			text: 'Discovery call',
 		},
 		mainKeys: [
 			'Maximize healthspan',
