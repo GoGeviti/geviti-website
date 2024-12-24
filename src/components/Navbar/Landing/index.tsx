@@ -413,6 +413,7 @@ const Navbar: React.FC<NavbarProps> = ({
 								<CustomLink
 									key={ menuChild.name }
 									href={ menuChild.href }
+									externalLink={ menuChild.externalLink }
 									className={ clsxm(
 										'text-primary text-sm !leading-[21px]',
 										theme === 'light-grey' && 'text-grey-primary',
