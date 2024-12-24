@@ -3,6 +3,7 @@ import Image from 'next/image';
 
 import clsxm from '@/helpers/clsxm';
 
+import CustomLink from '../CustomLink';
 import { TickCircle } from '../Icons';
 
 interface ProductCardProps {
@@ -52,7 +53,9 @@ const Unique = () => {
 						Designed to optimize your <span className='h-7 rounded-full bg-[#F6FFFC] border px-3 border-[#DDF7ED] w-fit inline-flex items-center justify-center gap-1'>
 							<TickCircle className='w-3 h-3 flex-shrink-0 text-green-alert'/>
 							<span className='text-[10px] font-medium text-green-alert'>Biomarkers</span>
-						</span> from your Longeviti Panel results <br className='max-lg:hidden' />
+						</span> from your <CustomLink
+							href='/longeviti-panel'
+							className='text-grey-600 hover:text-primary underline'>Longeviti Panel</CustomLink> <br className='max-lg:hidden' />
 						ensuring truly data-driven supplementation.
 					</p>
 				</div>
@@ -73,13 +76,13 @@ const Unique = () => {
 						<ProductCard
 							title='CurcuPlex'
 							badge='C-Reactive Protein'
-							description='Highly bioavailable turmeric extract that supports joint health, inflammation balance, and oxidative stress without synthetic additives.'
+							description="Nathan's CRP was high, so Geviti added CurcuPlex, a bioavailable curcumin to support joint health and lower inflammation."
 							className='mx-auto max-lg:top-[100px]'
 						/>
 						<ProductCard
 							title='K2&nbsp;&#8209;&nbsp;D3&nbsp;5000'
 							badge='Vitamin D (25-OH)'
-							description='Optimizes calcium absorption for bone strength, cardiovascular health, and immune support, addressing deficiencies in vitamins K2 and D3.'
+							description="Calcium wasn't absorbed effectively, so we added K2/D3 to strengthen bones, support Nathan’s heart, and enhance immunity."
 							className='mx-auto'
 						/>
 					</div>
@@ -88,14 +91,14 @@ const Unique = () => {
 						<ProductCard
 							title='NAD+'
 							badge='Glucose (Fasting)'
-							description='Boosts cellular energy, DNA repair, and metabolic function, targeting age-related NAD+ decline and mitochondrial health challenges.'
+							description='Nathan’s energy levels and mitochondrial function needed a boost, so we included NAD+ to combat age-related decline and enhance cellular repair.'
 							className='lg:mr-auto'
 						/>
 
 						<ProductCard
 							title='NAC'
 							badge='ALT, AST, GGT (Liver Enzymes)'
-							description='Replenishes glutathione for detoxification, respiratory health, and antioxidant defense, addressing oxidative stress and toxin buildup.'
+							description='Oxidative stress and toxin buildup called for NAC to replenish glutathione, support detoxification, and boost respiratory health.'
 							className='lg:ml-auto'
 						/>
 
@@ -106,7 +109,7 @@ const Unique = () => {
 						<ProductCard
 							title='Magnesium L&#8209;Threonate'
 							badge='Cortisol (AM/PM)'
-							description='Enhances cognitive function and supports brain health by increasing magnesium levels in the brain, potentially improving memory and learning abilities.'
+							description='Nathan experienced focus issues and restless sleep, so we added Magnesium L-Threonate to support brain function and improve rest quality.'
 							className='mx-auto'
 						/>
 					</div>
@@ -114,32 +117,32 @@ const Unique = () => {
 						<ProductCard
 							title='CurcuPlex'
 							badge='C-Reactive Protein'
-							description='Highly bioavailable turmeric extract that supports joint health, inflammation balance, and oxidative stress without synthetic additives.'
+							description="Nathan's CRP was high, so Geviti added CurcuPlex, a bioavailable curcumin to support joint health and lower inflammation."
 							className='mx-auto max-lg:sticky max-lg:-mt-10 max-lg:transform max-lg:translate-y-0 max-lg:top-[100px]'
 						/>
 						<ProductCard
 							title='K2&nbsp;&#8209;&nbsp;D3&nbsp;5000'
 							badge='Vitamin D (25-OH)'
-							description='Optimizes calcium absorption for bone strength, cardiovascular health, and immune support, addressing deficiencies in vitamins K2 and D3.'
+							description="Calcium wasn't absorbed effectively, so we added K2/D3 to strengthen bones, support Nathan’s heart, and enhance immunity."
 							className='max-lg:sticky max-lg:top-[100px] max-lg:-mt-10 max-lg:transform max-lg:translate-y-[50px] mx-auto'
 						/>
 						<ProductCard
 							title='NAD+'
 							badge='Glucose (Fasting)'
-							description='Boosts cellular energy, DNA repair, and metabolic function, targeting age-related NAD+ decline and mitochondrial health challenges.'
+							description='Nathan’s energy levels and mitochondrial function needed a boost, so we included NAD+ to combat age-related decline and enhance cellular repair.'
 							className='max-lg:sticky max-lg:top-[100px] max-lg:-mt-10 max-lg:transform max-lg:translate-y-[100px] lg:mr-auto'
 						/>
 
 						<ProductCard
 							title='NAC'
 							badge='ALT, AST, GGT (Liver Enzymes)'
-							description='Replenishes glutathione for detoxification, respiratory health, and antioxidant defense, addressing oxidative stress and toxin buildup.'
+							description='Oxidative stress and toxin buildup called for NAC to replenish glutathione, support detoxification, and boost respiratory health.'
 							className='max-lg:sticky max-lg:top-[100px] max-lg:-mt-10 max-lg:transform max-lg:translate-y-[150px] lg:ml-auto'
 						/>
 						<ProductCard
 							title='Magnesium L&#8209;Threonate'
 							badge='Cortisol (AM/PM)'
-							description='Enhances cognitive function and supports brain health by increasing magnesium levels in the brain, potentially improving memory and learning abilities.'
+							description='Nathan experienced focus issues and restless sleep, so we added Magnesium L-Threonate to support brain function and improve rest quality.'
 							className='max-lg:sticky max-lg:top-[100px] max-lg:-mt-10 max-lg:transform max-lg:translate-y-[200px] mx-auto'
 						/>
 					</div>

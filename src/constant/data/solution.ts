@@ -401,7 +401,7 @@ const solutionData = {
 			{
 				title: 'What is the membership cancellation and refund policy?',
 				content:
-          'You can cancel your Geviti membership at any time through your personal dashboard. Please note, if you’re on a monthly plan and cancel within the first 60 days, a $150 cancellation fee will apply. This does not apply to quarterly. Due to the personalized nature of our services, refunds are not automatically provided but may be considered on a case-by-case basis. If you have specific circumstances or require additional assistance, please contact our support team for further guidance.',
+          'You can cancel your Geviti membership at any time through your personal dashboard. Due to the personalized nature of our services, refunds are not automatically provided but may be considered on a case-by-case basis. If you have specific circumstances or require additional assistance, please contact our support team for further guidance.',
 			},
 			{
 				title:
