@@ -154,6 +154,7 @@ const Hero: React.FC<HeroProps> = ({ slug = Slug.MEN_WEIGHT_LOSS }) => {
 			<div className={ clsxm(
 				'bg-primary h-[calc(100svh+14px)] lg:h-[calc(100vh-24px)] w-full overflow-hidden max-lg:rounded-t-none rounded-19px relative pt-11px lg:pt-5',
 				slug === Slug.ABOUT_US &&  'lg:h-[636px]',
+				slug === Slug.CONTACT_US && 'lg:h-[636px]',
 			) }>
 				<div
 					className={ clsxm(
@@ -171,6 +172,8 @@ const Hero: React.FC<HeroProps> = ({ slug = Slug.MEN_WEIGHT_LOSS }) => {
               'max-lg:h-[calc(100svh-21.935svh+14px)]',
 						slug === Slug.ABOUT_US &&
               'max-lg:h-[calc(100svh-21.935svh+14px)]',
+						slug === Slug.CONTACT_US &&
+              'max-lg:h-[calc(100svh-21.935svh+14px)]',
 					) }
 				>
 					{ renderImage('desktop') }
@@ -178,7 +181,7 @@ const Hero: React.FC<HeroProps> = ({ slug = Slug.MEN_WEIGHT_LOSS }) => {
 				</div>
 				<div className={ clsxm(
 					'max-lg:hidden absolute right-6 bottom-6 z-30',
-					(slug === Slug.GIVEAWAY || slug === Slug.ABOUT_US) && 'hidden'
+					(slug === Slug.GIVEAWAY || slug === Slug.ABOUT_US || slug === Slug.CONTACT_US) && 'hidden'
 				) }>
 					{ renderPopup() }
 				</div>
@@ -202,9 +205,18 @@ const Hero: React.FC<HeroProps> = ({ slug = Slug.MEN_WEIGHT_LOSS }) => {
                 'max-lg:pb-[5.722vh] lg:pt-[26.418vh]',
 							slug === Slug.ABOUT_US &&
                 'max-lg:pb-[5.722vh] lg:pt-[220px]',
+							slug === Slug.CONTACT_US &&
+              'max-lg:pb-[5.722vh] lg:pt-[200px]',
 						) }
 					>
 						<div className='text-left flex flex-col'>
+							{
+								slug === Slug.CONTACT_US && (
+									<span className='text-sm uppercase text-grey-secondary tracking-[1.54px] mb-6'>
+										{ heroData.preTitle[slug] }
+									</span>
+								)
+							}
 							<h1 className='text-[7.2vw] xxs2:text-[7.692vw] xs2:text-3xl lg:text-[46px] !leading-normal font-medium -tracking-0.04em text-grey-secondary'>
 								<span
 									dangerouslySetInnerHTML={ {
@@ -241,11 +253,11 @@ const Hero: React.FC<HeroProps> = ({ slug = Slug.MEN_WEIGHT_LOSS }) => {
 							</div>
 
 							{
-								(slug !== Slug.GIVEAWAY && slug !== Slug.ABOUT_US) && (
+								(slug !== Slug.GIVEAWAY && slug !== Slug.ABOUT_US && slug !== Slug.CONTACT_US) && (
 									<div className='flex w-full mt-6 overflow-hidden'>
 										<div className='max-sm:w-full flex'>
 											<ButtonCta
-												href={ heroData.cta.href[slug as SlugOpt] }
+												href={ heroData.cta.href[slug] }
 												theme='secondary'
 												externalLink={ slug === Slug.BUSINESS_ORIENTED }
 												className='max-sm:w-full'
@@ -268,7 +280,10 @@ const Hero: React.FC<HeroProps> = ({ slug = Slug.MEN_WEIGHT_LOSS }) => {
 	};
 
 	return (
-		<div className='lg:px-3 lg:pt-3 overflow-hidden lg:mb-[124px]'>
+		<div className={ clsxm(
+			'lg:px-3 lg:pt-3 overflow-hidden lg:mb-[124px]',
+			Slug.CONTACT_US && 'lg:mb-[30px]'
+		) }>
 			<Navbar
 				animationProps={ {
 					initial: 'visible',
@@ -277,7 +292,7 @@ const Hero: React.FC<HeroProps> = ({ slug = Slug.MEN_WEIGHT_LOSS }) => {
 			{ renderHero() }
 			<div className={ clsxm(
 				'max-lg:px-4 max-lg:pb-[42px] max-lg:mt-[42px] max-w-2xl mx-auto lg:hidden',
-				(slug === Slug.GIVEAWAY || slug === Slug.ABOUT_US) && 'hidden'
+				(slug === Slug.GIVEAWAY || slug === Slug.ABOUT_US || slug === Slug.CONTACT_US) && 'hidden'
 			) }>
 				{ renderPopup() }
 			</div>

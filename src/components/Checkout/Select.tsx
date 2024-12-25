@@ -59,7 +59,7 @@ const CustomSelect: React.FC<SelectProps> = ({
 						<span className={ clsxm(
 							'w-full truncate overflow-hidden whitespace-nowrap text-left',
 							(size === 'small' && !value) ? 'text-[#AEB1B2]' : 'text-primary',
-							// (size !== 'small' && value !== '') ? 'text-white' : 'text-grey-500',
+							(size !== 'small' && !value) ? 'text-[#AEB1B2]' : 'text-primary',
 						) }>{ options.find(e => e.value === value)?.label ?? placeholder }</span>
 					</SelectTrigger>
 					<SelectContent className=' bg-grey-950 text-xs lg:text-lg !leading-normal font-Poppins text-white z-[53] rounded-[10px] max-h-[200px]'>

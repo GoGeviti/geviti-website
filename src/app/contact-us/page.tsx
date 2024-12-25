@@ -1,7 +1,11 @@
 import { Metadata, NextPage } from 'next';
 
-import { ContactUsComponent } from '@/components';
-import { contactUsData } from '@/constant/data';
+import { Footer, FrequentlyAskedQuestions, MarketingComponent } from '@/components';
+import ContactForm from '@/components/Contact/ContactForm';
+import { Benefits, SocialProof } from '@/components/Landing';
+import LongevitiPanelComponent from '@/components/LongevitiPanel';
+import { faqDataDefault } from '@/constant/data/faq';
+import { Slug } from '@/interfaces/marketing';
 import { mergeOpenGraph } from '@/lib/mergeOpenGraph';
 import { getAllContactSubjects } from '@/services/products';
 
@@ -16,14 +20,22 @@ export const metadata: Metadata = {
 };
 
 const ContactUsPage: NextPage = async() => {
-
 	const subjectData = await getAllContactSubjects();
+
 	return (
-		<div className='flex min-h-screen flex-col w-full bg-grey-background'>
-			<ContactUsComponent.Hero hero={ contactUsData.hero }/>
-			<ContactUsComponent.Form
-				subject={ subjectData.docs }
-			/>
+		<div className='flex min-h-screen flex-col w-full bg-white font-Poppins'>
+			<MarketingComponent.Hero slug={ Slug.CONTACT_US } />
+			<ContactForm subject={ subjectData.docs } />
+			<Benefits />
+			<MarketingComponent.Instagram className='pb-0 lg:pb-0' />
+			<div className='lg:py-10'>
+				<SocialProof/>
+			</div>
+			<LongevitiPanelComponent.BannerParallax />
+			<FrequentlyAskedQuestions
+				className='pt-0 lg:pt-0'
+				data={ faqDataDefault } />
+			<Footer/>
 		</div>
 	);
 };

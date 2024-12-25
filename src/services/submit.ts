@@ -67,6 +67,10 @@ export const sendSlackNotification = async(contactData: any) => {
 					},
 					{
 						type: 'mrkdwn',
+						text: `*Phone Number:* ${contactData?.phone_number ?? '-'}`
+					},
+					{
+						type: 'mrkdwn',
 						text: `*Subject:* ${contactData.subject}`
 					},
 					// {
@@ -102,7 +106,6 @@ export const sendSlackNotification = async(contactData: any) => {
 			body: JSON.stringify(slackPayload),
 		});
 
-		// console.log('response => ', response);
 		if (!response.ok) {
 			// const errorText = await response.text();
 			// // console.error('Failed to send Slack notification errorText =>', errorText);

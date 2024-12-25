@@ -6,6 +6,8 @@ import { Swiper as SwiperType } from 'swiper';
 import { FreeMode } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
+import clsxm from '@/helpers/clsxm';
+
 import 'swiper/css/free-mode';
 
 import 'swiper/css';
@@ -18,11 +20,15 @@ const images = [
 	'/images/marketing/giveaway/ig-05.webp',
 ]
 
-const Instagram = () => {
+const Instagram = ({
+	className,
+}: {
+	className?: string;
+}) => {
 	const swiperRef = useRef<SwiperType>(undefined);
 
 	return (
-		<div className='w-full pb-[95px] lg:pb-[150px]' >
+		<div className={ clsxm('w-full pb-[95px] lg:pb-[150px]', className) } >
 			<div className='w-full flex-col lg:flex-row flex items-center lg:justify-between container-center mb-10'>
 				<div className='w-full flex'>
 					<h3 className='font-medium text-primary text-2xl md:text-[32px] lg:text-4xl'>Follow us<br/><span className='text-grey-primary'>on <a
