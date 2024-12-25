@@ -491,6 +491,7 @@ const marketingData = {
         'Experience a new level of personalized health with Geviti. Everything your team needs to feel their best, all in one streamlined platform.',
 			'giveaway': '',
 			'about-us': '',
+			'contact-us': '',
 		},
 		cta: {
 			text: {
@@ -501,6 +502,7 @@ const marketingData = {
 				'business-oriented': 'Schedule A Call',
 				'giveaway': '',
 				'about-us': '',
+				'contact-us': '',
 			},
 			href: '/pricing',
 		},
@@ -512,6 +514,7 @@ const marketingData = {
 			'business-oriented': membershipListVersion2,
 			'giveaway': [],
 			'about-us': [],
+			'contact-us': [],
 		},
 	},
 	steps: {
@@ -524,6 +527,7 @@ const marketingData = {
 			'women-weight-loss': stepsListDefault,
 			'giveaway': stepsListDefault,
 			'about-us': stepsListDefault,
+			'contact-us': stepsListDefault,
 			'business-oriented': stepsListDefault.map(item => {
 				if (item.title === 'Tailored Products') {
 					return {
@@ -543,6 +547,7 @@ const marketingData = {
 			'business-oriented': 'black',
 			'giveaway': 'black',
 			'about-us': 'black',
+			'contact-us': 'black',
 		},
 	},
 	faq: {
