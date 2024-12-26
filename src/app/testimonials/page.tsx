@@ -16,7 +16,7 @@ const TestimonialsPage: NextPage = () => {
 			<Hero/>
 			<Video/>
 			<Review/>
-			<SocialProof />
+			<SocialProof hideSeeMore />
 			<LongevitiPanelComponent.BannerParallax containerClassName='lg:pb-0' />
 			<Footer />
 		</div>

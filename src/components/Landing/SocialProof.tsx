@@ -4,7 +4,8 @@ import Autoscroll from 'embla-carousel-auto-scroll'
 import useEmblaCarousel from 'embla-carousel-react'
 import Image from 'next/image'
 
-import { StarIcon } from '../Icons'
+import CustomLink from '../CustomLink'
+import { ChevronRight, StarIcon } from '../Icons'
 
 interface TestimonialCardProps {
 	rating: number
@@ -111,10 +112,11 @@ const TestimonialCard = React.memo(({ rating, text, author }: TestimonialCardPro
 TestimonialCard.displayName = 'TestimonialCard'
 
 interface SocialProofProps {
-	testimonials?: TestimonialCardProps[]
+	testimonials?: TestimonialCardProps[],
+	hideSeeMore?: boolean
 }
 
-const SocialProof = ({ testimonials = defaultTestimonials }: SocialProofProps) => {
+const SocialProof = ({ testimonials = defaultTestimonials, hideSeeMore = false }: SocialProofProps) => {
 	const [autoScrollEnabled, setAutoScrollEnabled] = useState(true)
 	
 	const [emblaRef] = useEmblaCarousel({
@@ -151,10 +153,18 @@ const SocialProof = ({ testimonials = defaultTestimonials }: SocialProofProps) =
 	return (
 		<div className='px-3 font-Poppins mb-6'>
 			<div className='bg-white rounded-[19px] py-16 overflow-hidden social-proof-container'>
-				<div className='px-3 lg:px-16'>
+				<div className='px-3 lg:px-16 flex items-start justify-between'>
 					<h3 className='text-2xl lg:text-4xl font-medium text-primary whitespace-nowrap'>
 						What our customers <br/><span className='text-grey-primary'>say about us</span>
 					</h3>
+					{ !hideSeeMore && (
+						<CustomLink
+							href='/testimonials'
+							className='flex items-center gap-2 text-primary font-medium text-sm group relative after:absolute after:bottom-0 after:left-1/2 after:h-[1px] after:bg-primary after:transition-all after:duration-300 after:w-0 hover:after:w-full after:-translate-x-1/2 after:origin-center'>
+							<span>See more testimonials</span>
+							<ChevronRight className='transition-transform group-hover:translate-x-1'/>
+						</CustomLink>
+					) }
 				</div>
 				<div className='relative mt-16'>
 					<div className='absolute inset-y-0 left-0 w-[219px] bg-[linear-gradient(90deg,#FFF_0%,rgba(255,255,255,0.00)_100%)] z-10 hidden md:block' />
