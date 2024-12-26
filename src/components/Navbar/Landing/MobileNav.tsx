@@ -268,7 +268,9 @@ const MobileNav: React.FC<MobileNavProps> = ({
 																{ link.name }
 															</p>
 														) : (
-															<CustomLink href={ link.href }>{ link.name }</CustomLink>
+															<CustomLink href={ link.href }>
+																<p>{ link.name }</p>
+															</CustomLink>
 														) }
 													</motion.div>
 												</div>
