@@ -1,5 +1,7 @@
 import React from 'react';
 
+import clsxm from '@/helpers/clsxm';
+
 import { ArrowNarrowLeft, ArrowNarrowRight } from '../Icons';
 
 type ArrowButtonsProps = {
@@ -7,6 +9,7 @@ type ArrowButtonsProps = {
   disabledNext?: boolean;
   onClickPrev?: () => void;
   onClickNext?: () => void;
+	className?:string
 };
 
 const ArrowButtons: React.FC<ArrowButtonsProps> = ({
@@ -14,13 +17,19 @@ const ArrowButtons: React.FC<ArrowButtonsProps> = ({
 	disabledPrev,
 	onClickNext,
 	onClickPrev,
+	className
 }) => {
 	const renderArrowButton = () => {
 		const buttonClassName =
       'rounded-full w-[34px] h-[34px] border-[0.7px] hover:bg-grey-primary-light flex items-center justify-center text-primary border-primary disabled:text-grey-primary disabled:border-grey-primary';
 
 		return (
-			<div className='flex items-center gap-3.5 max-sm:hidden'>
+			<div className={
+				clsxm(
+					'flex items-center gap-3.5 max-sm:hidden',
+					className
+				)
+			}>
 				<button
 					className={ buttonClassName }
 					onClick={ onClickPrev }

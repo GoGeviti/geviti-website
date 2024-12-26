@@ -346,6 +346,9 @@ const config: Config = {
 				'.h3': {
 					'@apply font-Poppins font-medium text-primary text-[36px]': {}
 				},
+				'.h4': {
+					'@apply font-Poppins text-primary text-[28px]': {}
+				},
 				'.h5': {
 					'@apply font-Poppins font-normal text-primary text-[24px]': {}
 				},

@@ -2,18 +2,12 @@ import { ShoppingBagIcon } from '@/components/Icons';
 import {
 	BarChartSquareIcon,
 	ChartIcon,
-	// DNAIcon,
 	DocumentIcon,
 	EmergencyCallAddIcon,
 	FavoriteChartIcon,
 	GevitiIcon,
-	// HeartbeatIcon,
 	HomeOutlineIcon,
 	InformationIcon,
-	// InformationIcon,
-	// MedicalDocIcon,
-	// MonitoringIcon,
-	// PillIcon,
 	TeamIcon,
 } from '@/components/Icons/Landing';
 
