@@ -52,13 +52,6 @@ const videoData = [
 		author: 'Meet Christa',
 		rating: 5,
 	},
-	{
-		image: 'https://i.ytimg.com/vi/9-ruPMjfUUU/maxresdefault.jpg',
-		video: 'https://www.youtube.com/embed/9-ruPMjfUUU',
-		description: 'Since starting The Longeviti Blend, I\'ve noticed significant improvements in my recovery times and overall energy levels. As a fitness trainer, recovery is crucial for maintaining peak performance, and I\'ve found that I\'m feeling less fatigued after intense workouts and long days with clients. My energy is more sustained throughout the day. The blend seems to support both my physical recovery and mental clarity, allowing me to keep up with my demanding schedule and feel my best both in and out of the gym.',
-		author: 'Meet Brandon',
-		rating: 5,
-	},
 ];
 
 const Video = () => {
