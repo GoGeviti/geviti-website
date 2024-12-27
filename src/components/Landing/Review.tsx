@@ -5,6 +5,7 @@ import useEmblaCarousel from 'embla-carousel-react'
 
 import { testimonials } from '@/constant/data/review'
 
+import CustomLink from '../CustomLink'
 import { ChevronRight } from '../Icons'
 
 import { TestimonialCard } from './TestimonialCard'
@@ -129,10 +130,16 @@ const Review = () => {
 	return (
 		<div className='px-3 font-Poppins mb-3.5 lg:mb-6'>
 			<div className='bg-white rounded-[19px] py-16 overflow-hidden'>
-				<div className='px-4 lg:px-16'>
+				<div className='px-4 flex lg:items-start justify-between max-lg:flex-col max-lg:gap-3.5 lg:px-16'>
 					<h3 className='text-2xl lg:text-4xl font-medium text-primary whitespace-nowrap'>
             We are trusted by <br/><span className='text-grey-primary'>some amazing people</span>
 					</h3>
+					<CustomLink
+						href='/testimonials'
+						className='flex items-center gap-2 text-primary font-medium text-sm group relative after:absolute after:bottom-0 after:left-1/2 after:h-[1px] after:bg-primary after:transition-all after:duration-300 after:w-0 hover:after:w-full after:-translate-x-1/2 after:origin-center'>
+						<span>See more testimonials</span>
+						<ChevronRight className='transition-transform group-hover:translate-x-1'/>
+					</CustomLink>
 				</div>
 				<div className='mt-6 lg:mt-14'>
 					<div

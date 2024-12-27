@@ -18,17 +18,17 @@ import 'swiper/css';
 
 const videoData = [
 	{
-		image: 'https://i.ytimg.com/vi/LDPoReqyvKI/maxresdefault.jpg',
-		video: 'https://www.youtube.com/embed/LDPoReqyvKI',
-		description: 'As someone who used to struggle with constant fatigue, low energy, and poor sleep, I can honestly say that Geviti has been a life-changing experience. Within a few weeks, I noticed a significant boost in my energy levels, and my sleep habits improved dramatically. Instead of waking up tired, I now feel rested and more focused throughout the day. Geviti\'s approach to health is unlike anything I\'ve experienced before.  If you\'re looking to improve your health, energy, maintain an active lifestyle, and quality of life as you get older, I can\'t recommend Geviti enough.',
-		author: 'Meet Mark',
-		rating: 5,
-	},
-	{
 		image: 'https://i.ytimg.com/vi/43uaBvS-gfM/maxresdefault.jpg',
 		video: 'https://www.youtube.com/embed/43uaBvS-gfM',
 		description: 'I\'ve had a phenomenal experience so far and am really looking forward to seeing where this goes. I\'m excited to see my next test results and how my biomarkers have changed. I highly recommend it.',
 		author: 'Meet Chris',
+		rating: 5,
+	},
+	{
+		image: 'https://i.ytimg.com/vi/LDPoReqyvKI/maxresdefault.jpg',
+		video: 'https://www.youtube.com/embed/LDPoReqyvKI',
+		description: 'As someone who used to struggle with constant fatigue, low energy, and poor sleep, I can honestly say that Geviti has been a life-changing experience. Within a few weeks, I noticed a significant boost in my energy levels, and my sleep habits improved dramatically. Instead of waking up tired, I now feel rested and more focused throughout the day. Geviti\'s approach to health is unlike anything I\'ve experienced before.  If you\'re looking to improve your health, energy, maintain an active lifestyle, and quality of life as you get older, I can\'t recommend Geviti enough.',
+		author: 'Meet Mark',
 		rating: 5,
 	},
 	{
@@ -82,7 +82,7 @@ const Video = () => {
 		<div className='lg:px-3 mt-[177px] lg:mt-[133px]'>
 			<div className='container-center'>
 				<h3 className='text-2xl lg:text-4xl font-medium text-primary whitespace-nowrap'>
-					Watch what
+					Hear what
 					<br />
 					<span className='text-grey-primary'>our members say</span>
 				</h3>

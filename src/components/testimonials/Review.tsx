@@ -37,7 +37,7 @@ const Review = () => {
 					<div className='max-w-[847px] w-full'>
 						<TestimonialCard
 							contentClassName='max-w-[386px] ml-auto'
-							{ ...testimonials[0] } />
+							{ ...testimonials[2] } />
 					</div>
 					<div className='max-w-[847px] w-full self-end'>
 						<TestimonialCard
@@ -63,7 +63,7 @@ const Review = () => {
 						<SwiperSlide>
 							<TestimonialCard
 								imageClassName='max-lg:h-[204px]'
-								{ ...testimonials[0] } />
+								{ ...testimonials[2] } />
 						</SwiperSlide>
 						<SwiperSlide>
 							<TestimonialCard

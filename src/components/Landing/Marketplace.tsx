@@ -167,9 +167,9 @@ const Marketplace = () => {
 					<p className='mt-3 body-small'>We connect members with at-home specialty testing, precision medications, customized supplements, and proactive care, empowering them to live optimized.</p>
 					<div className=' w-full lg:w-fit mt-10 relative z-10'>
 						<ButtonCta
+							href='/pricing'
 							className='w-full'>
-							<span className='max-lg:hidden'>Sign Up</span>
-							<span className='lg:hidden'>Marketplace</span>
+							Become a Member
 						</ButtonCta>
 					</div>
 				</div>
