@@ -79,17 +79,17 @@ const navigationData = {
 			externalLink: false,
 			items: [
 				{
-					name: 'For Business',
-					href: '/business-oriented',
-					externalLink: false,
-				},
-				{
 					name: 'Wellness Blog',
 					href: '/blog',
 				},
 				{
 					name: 'Testimonials',
 					href: '/testimonials',
+					externalLink: false,
+				},
+				{
+					name: 'For Business',
+					href: '/business-oriented',
 					externalLink: false,
 				},
 				{
