@@ -29,7 +29,6 @@ const navbarVariants = {
 	visible: {
 		y: 0,
 		opacity: 1,
-		backdropFilter: 'blur(25px)',
 		borderRadius: '100px',
 	},
 	hidden: { y: '-100%', opacity: 0 },
@@ -64,7 +63,8 @@ const MenuItem = memo(({
 	children,
 	theme,
 	isScrolled,
-	isActiveMenu
+	isActiveMenu,
+	background = 'bg-most-value'
 }: {
   setActive: React.Dispatch<React.SetStateAction<string | null>>;
   active: string | null;
@@ -74,6 +74,7 @@ const MenuItem = memo(({
   isActiveMenu?:boolean
   children?: React.ReactNode;
   theme?: 'light' | 'dark' | 'light-grey';
+	background?: string;
 }) => {
 	const handleMouseEnter = useCallback(() => {
 		setActive(item);
@@ -90,7 +91,8 @@ const MenuItem = memo(({
 						'bg-white/90',
 						'backdrop-blur-[30px]', // Using backdrop-filter explicitly
 						'border border-grey-100',
-						theme === 'light' && 'bg-most-value text-white',
+						theme === 'light' && 'text-white',
+						theme === 'light' && background
 					) }
 				>
 					<motion.div
@@ -197,7 +199,7 @@ const MenuItem = memo(({
 						'bg-white/90',
 						'backdrop-blur-[30px]',
 						'border border-grey-100',
-						theme === 'light' && 'bg-most-value',
+						theme === 'light' && background
 					) }
 				>
 					<motion.div
@@ -320,13 +322,15 @@ type NavbarProps = {
       externalLink?: boolean;
     }[];
   }[];
-  isScrolled?: boolean
+  isScrolled?: boolean;
+	background?: string;
 };
 
 const Navbar: React.FC<NavbarProps> = ({
 	className,
 	theme,
 	menuList = navbarData.menu,
+	background = 'bg-most-value'
 }) => {
 	const [active, setActive] = useState<string | null>(null);
 	const [openSheet, setOpenSheet] = useState<boolean>(false);
@@ -407,6 +411,7 @@ const Navbar: React.FC<NavbarProps> = ({
 						theme={ theme }
 						isScrolled={ isScrolled }
 						isActiveMenu={ isActive }
+						background={ background }
 					>
 						<div className='flex flex-col gap-[14px]'>
 							{ menu.items.map(menuChild => (
@@ -447,7 +452,7 @@ const Navbar: React.FC<NavbarProps> = ({
 				</CustomLink>
 			);
 		});
-	}, [menuList, isScrolled, pathname, active, theme, handleMenuClose]);
+	}, [menuList, isScrolled, pathname, active, theme, background, handleMenuClose]);
 
 	return (
 		<header>
@@ -455,7 +460,7 @@ const Navbar: React.FC<NavbarProps> = ({
 				{ isVisible && (
 					<motion.div
 						className={ clsxm(
-							'inset-x-0 top-0 z-50 fixed pt-4 lg:pt-[30px]',
+							'inset-x-0 top-4 lg:top-[30px] z-50 fixed',
 							className
 						) }
 						initial='hidden'
@@ -480,7 +485,7 @@ const Navbar: React.FC<NavbarProps> = ({
 									className={ clsxm(
 										'relative overflow-visible transition-all duration-300 visible h-[60px] lg:h-[69px] font-Poppins p-18px lg:pl-[42px] lg:py-3 lg:pr-3 rounded-[100px] flex items-center space-x-5 xl:space-x-[50px] w-full justify-between',
 										isScrolled ? 'bg-grey-50 backdrop-blur-none' : 'bg-white/10',
-										theme === 'light' && 'bg-most-value'
+										theme === 'light' && background
 									) }
 								>
 									<div className='flex items-center lg:space-x-5 xl:space-x-[50px]'>

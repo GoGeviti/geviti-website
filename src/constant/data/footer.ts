@@ -1,5 +1,6 @@
 const footerData = {
-	logo: '/images/logo/logo_dark.webp',
+	logoLight: '/images/logo/logo_light.webp',
+	logoDark: '/images/logo/logo_dark.webp',
 	image: '/images/logo/geviti-footer.png',
 	content: 'Stay in the loop with exclusive offers and product previews.',
 	bottomContent: '*Product images are for display purposes; actual items from US-based pharmacies may vary.',
@@ -60,6 +61,28 @@ const footerData = {
 			alt: 'linkedin',
 			url: 'https://www.linkedin.com/company/geviti/about/',
 			image: '/images/social_media/linkedin.svg'
+		}
+	],
+	socialMediaLight: [
+		// {
+		// 	alt: 'facebook',
+		// 	url: 'https://www.facebook.com/profile.php?id=61550625100704',
+		// 	image: '/images/social_media/facebook_light.svg'
+		// },
+		// {
+		// 	alt: 'twitter',
+		// 	url: 'https://twitter.com/gogeviti',
+		// 	image: '/images/social_media/twitter_light.svg'
+		// },
+		{
+			alt: 'instagram',
+			url: 'https://www.instagram.com/gogeviti/?hl=en',
+			image: '/images/social_media/instagram_light.svg'
+		},
+		{
+			alt: 'linkedin',
+			url: 'https://www.linkedin.com/company/geviti/about/',
+			image: '/images/social_media/linkedin_light.svg'
 		}
 	],
 	disclaimer: {

@@ -1,4 +1,4 @@
-// import { Poppins } from 'next/font/google';
+import { Playfair_Display } from 'next/font/google';
 import localFont from 'next/font/local';
 
 // const poppins = Poppins({
@@ -78,4 +78,25 @@ const grifter = localFont({
 	variable: '--font-grifter',
 });
 
-export { brSonoma, grifter };
+const libreCaslon = localFont({
+	display: 'swap',
+	src: [
+		{
+			path: './fonts/LibreCaslonCondensed-Regular.ttf',
+			weight: '400',
+			style: 'normal',
+		},
+	],
+	variable: '--font-LibreCaslon',
+});
+
+const playFairDisplay = Playfair_Display({
+	weight: ['400', '500'],
+	fallback: ['sans-serif'],
+	subsets: ['latin'],
+	style: ['normal', 'italic'],
+	variable: '--font-PlayFairDisplay',
+	display: 'swap',
+});
+
+export { brSonoma, grifter, libreCaslon, playFairDisplay };
