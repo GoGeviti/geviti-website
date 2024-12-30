@@ -69,3 +69,19 @@ export const GiveawayFormSchema = yup.object().shape({
 		.test('birthdate', 'Enter a valid date', value => isValid(value))
 		.test('birthdate', 'Must be 18 years or older', value => differenceInYears(new Date(), new Date(value)) >= 18),
 });
+
+export const ContactFormSchema = yup.object().shape({
+	full_name: yup.string().label('Full Name')
+		.required()
+		// .matches(/^[a-zA-ZÀ-ÖÙ-öù-ÿĀ-žḀ-ỿ\/]+$/, 'Please enter valid Name')
+		.max(40),
+	email: yup.string().email()
+		.required()
+		.label('Email'),
+	phone_number: yup.number().required()
+		.label('Phone number'),
+	message: yup.string().required()
+		.label('Message'),
+	subject: yup.string().required()
+		.label('Subject'),
+});

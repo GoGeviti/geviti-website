@@ -7,6 +7,8 @@ import cartIcon from '@/assets/mobile-nav/cart.svg';
 import dashboardIcon from '@/assets/mobile-nav/dashboard.svg';
 import navigationData from '@/constant/data/navbar';
 
+import CustomLink from '../CustomLink';
+
 interface MobileNavProps {
 	isOpen: boolean;
 	onClose: () => void;
@@ -92,7 +94,7 @@ const MobileNav = (props: MobileNavProps) => {
 					Cart
 				</span>
 			</a>
-			<a
+			<CustomLink
 				className='flex items-center gap-[10px]'
 				href='/'>
 				<Image
@@ -104,7 +106,7 @@ const MobileNav = (props: MobileNavProps) => {
 				<span className='font-Poppins text-white text-[20px] tracking-tight'>
 					Dashboard
 				</span>
-			</a>
+			</CustomLink>
 		</div>
 	);
 };

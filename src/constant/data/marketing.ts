@@ -94,6 +94,9 @@ const topTierTabsDefault = [
 
 const marketingData = {
 	hero: {
+		preTitle: {
+			'contact-us': 'Get in Touch with Geviti',
+		},
 		titles: {
 			'women-weight-loss':
         'Weight Loss, Simplified.<br />Feel confident in your <span class="lg:hidden"><br /></span>own <span class="max-lg:hidden"><br /></span>skin.',
@@ -109,6 +112,7 @@ const marketingData = {
         'Win a 1-Year Free Geviti<br class="max-lg:hidden"/> Membership and Build a<br class="max-lg:hidden"/> Healthier Future, Today!',
 			'about-us':
         'Geviti exists to prevent avoidable<br class="max-lg:hidden"/> disease and to maximize your<br class="max-lg:hidden"/> life’s potential.',
+			'contact-us': 'We\'re Here to Support Your <br class="max-lg:hidden"/>Journey Toward Longevity, <br class="max-lg:hidden"/>and a Healthier Future',
 		},
 		list: {
 			'men-weight-loss': [
@@ -142,6 +146,7 @@ const marketingData = {
 			'about-us': [
 				'',
 			],
+			'contact-us': [],
 		},
 		cta: {
 			text: {
@@ -172,6 +177,7 @@ const marketingData = {
 			'business-oriented': '/images/marketing/business-oriented/hero.webp',
 			'giveaway': '/images/marketing/giveaway/hero.jpg',
 			'about-us': '/images/about_us/hero.webp',
+			'contact-us': '/images/contact/hero.webp',
 		},
 		imageMobile: {
 			'men-hormone-therapy':
@@ -184,6 +190,7 @@ const marketingData = {
         '/images/marketing/business-oriented/hero-mobile.webp',
 			'giveaway': '/images/marketing/giveaway/hero.jpg',
 			'about-us': '/images/about_us/hero.webp',
+			'contact-us': '/images/contact/hero-mobile.webp',
 		},
 		popup: {
 			title: 'HSA/FSA',
@@ -484,6 +491,7 @@ const marketingData = {
         'Experience a new level of personalized health with Geviti. Everything your team needs to feel their best, all in one streamlined platform.',
 			'giveaway': '',
 			'about-us': '',
+			'contact-us': '',
 		},
 		cta: {
 			text: {
@@ -494,6 +502,7 @@ const marketingData = {
 				'business-oriented': 'Schedule A Call',
 				'giveaway': '',
 				'about-us': '',
+				'contact-us': '',
 			},
 			href: '/pricing',
 		},
@@ -505,6 +514,7 @@ const marketingData = {
 			'business-oriented': membershipListVersion2,
 			'giveaway': [],
 			'about-us': [],
+			'contact-us': [],
 		},
 	},
 	steps: {
@@ -517,6 +527,7 @@ const marketingData = {
 			'women-weight-loss': stepsListDefault,
 			'giveaway': stepsListDefault,
 			'about-us': stepsListDefault,
+			'contact-us': stepsListDefault,
 			'business-oriented': stepsListDefault.map(item => {
 				if (item.title === 'Tailored Products') {
 					return {
@@ -536,6 +547,7 @@ const marketingData = {
 			'business-oriented': 'black',
 			'giveaway': 'black',
 			'about-us': 'black',
+			'contact-us': 'black',
 		},
 	},
 	faq: {

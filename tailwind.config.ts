@@ -364,27 +364,30 @@ const config: Config = {
         '.arrow-btn-cta-landing': {
           '@apply stroke-primary w-4 h-4 sm:w-18px sm:h-18px group-hover:translate-x-1 transform transition-all duration-100':
             {},
-        },
-        '.h2': {
-          '@apply font-Poppins font-medium  text-primary text-[46px]': {},
-        },
-        '.h3': {
-          '@apply font-Poppins font-medium text-primary text-[36px]': {},
-        },
-        '.h5': {
-          '@apply font-Poppins font-normal text-primary text-[24px]': {},
-        },
-        '.h6': {
-          '@apply font-Poppins font-medium text-primary text-[18px]': {},
-        },
-        '.body-small': {
-          '@apply font-Poppins text-sm text-grey-primary': {},
-        },
-        '.body-extra-small': {
-          '@apply font-Poppins text-xs text-grey-primary': {},
-        },
-      });
-    },
-  ],
+				},
+				'.h2': {
+					'@apply font-Poppins font-medium  text-primary text-[46px]': {}
+				},
+				'.h3': {
+					'@apply font-Poppins font-medium text-primary text-[36px]': {}
+				},
+				'.h4': {
+					'@apply font-Poppins text-primary text-[28px]': {}
+				},
+				'.h5': {
+					'@apply font-Poppins font-normal text-primary text-[24px]': {}
+				},
+				'.h6': {
+					'@apply font-Poppins font-medium text-primary text-[18px]': {}
+				},
+				'.body-small': {
+					'@apply font-Poppins text-sm text-grey-primary': {},
+				},
+				'.body-extra-small': {
+					'@apply font-Poppins text-xs text-grey-primary': {}
+				}
+			});
+		},
+	],
 };
 export default config;

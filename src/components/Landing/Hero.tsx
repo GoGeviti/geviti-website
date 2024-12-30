@@ -325,7 +325,7 @@ const Hero: React.FC<HeroProps> = ({
 												<ButtonCta
 													externalLink={ heroData.btnCta2.externalLink }
 													aria-label={ heroData.btnCta2.text }
-													text={ heroData.btnCta2.text }
+													text={ heroData.btnCta2.textMobile }
 													href={ heroData.btnCta2.href }
 													theme='blur'
 													className='max-sm:w-full lg:hidden'

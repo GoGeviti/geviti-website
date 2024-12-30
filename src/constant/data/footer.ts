@@ -15,8 +15,8 @@ const footerData = {
 				},
 				{
 					name: 'FAQs',
-					href: '/faq',
-					externalLink: false
+					href: 'https://help.gogeviti.com',
+					externalLink: true
 				},
 				{
 					name: 'Terms & Conditions',

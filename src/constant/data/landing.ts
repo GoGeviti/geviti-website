@@ -2,18 +2,12 @@ import { ShoppingBagIcon } from '@/components/Icons';
 import {
 	BarChartSquareIcon,
 	ChartIcon,
-	// DNAIcon,
 	DocumentIcon,
 	EmergencyCallAddIcon,
 	FavoriteChartIcon,
 	GevitiIcon,
-	// HeartbeatIcon,
 	HomeOutlineIcon,
 	InformationIcon,
-	// InformationIcon,
-	// MedicalDocIcon,
-	// MonitoringIcon,
-	// PillIcon,
 	TeamIcon,
 } from '@/components/Icons/Landing';
 
@@ -54,7 +48,8 @@ const landingData = {
 		btnCta2: {
 			href: 'https://calendly.com/cole-gogeviti/discovery-call',
 			externalLink: true,
-			text: 'Discovery call',
+			text: 'Schedule a discovery call',
+			textMobile: 'Discovery call',
 		},
 		mainKeys: [
 			'Maximize healthspan',

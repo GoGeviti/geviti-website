@@ -83,6 +83,11 @@ const navigationData = {
 					href: '/blog',
 				},
 				{
+					name: 'Testimonials',
+					href: '/testimonials',
+					externalLink: false,
+				},
+				{
 					name: 'For Business',
 					href: '/business-oriented',
 					externalLink: false,
@@ -98,7 +103,8 @@ const navigationData = {
 				},
 				{
 					name: 'FAQ',
-					href: '/faq',
+					href: 'https://help.gogeviti.com',
+					externalLink: true,
 				},
 			],
 		},
