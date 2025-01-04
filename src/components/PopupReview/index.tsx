@@ -6,13 +6,15 @@ import Image from 'next/image';
 
 import clsxm from '@/helpers/clsxm';
 
-import { ShieldTick } from '../Icons';
+import CustomLink from '../CustomLink';
+import { ChevronRight, ShieldTick } from '../Icons';
 
 type PopupReviewProps = {
   motionProps?: MotionProps;
   className?: string;
   wrapperClassName?: string;
   sizeLargerOnDesktop?: boolean;
+  hideReadTestimonials?: boolean;
   style?: CSSProperties;
   buttonClose?: React.ReactNode;
 };
@@ -34,6 +36,7 @@ const PopupReview: React.FC<PopupReviewProps> = ({
 	style,
 	sizeLargerOnDesktop,
 	buttonClose,
+	hideReadTestimonials = false
 }) => {
 	const renderPopup = () => {
 		return (
@@ -119,6 +122,16 @@ const PopupReview: React.FC<PopupReviewProps> = ({
 									</div>
 								)) }
 							</div>
+							{
+								!hideReadTestimonials && (
+									<CustomLink
+										href='/testimonials'
+										className='flex items-center gap-2 group text-xs'>
+										<span className='underline whitespace-nowrap'>Read Testimonials</span>
+										<ChevronRight className='transition-transform group-hover:translate-x-1'/>
+									</CustomLink>
+								)
+							}
 						</div>
 					</div>
 				</div>

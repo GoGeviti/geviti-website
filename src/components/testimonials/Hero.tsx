@@ -18,7 +18,9 @@ const Hero = () => {
 						} }
 						className='w-fit rounded-[20px] overflow-hidden'
 					>
-						<PopupReview wrapperClassName='border border-grey-50 w-fit' />
+						<PopupReview
+							hideReadTestimonials
+							wrapperClassName='border border-grey-50 w-fit' />
 					</div>
 					<h1 className='mt-6 h5 lg:h2'>
             Why Our Members Love<br/>Geviti.
