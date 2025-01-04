@@ -91,7 +91,7 @@ const Topics = ({ categories } : {categories:PostCategory[]}) => {
 						<p className='body-extra-small text-grey-primary'>
 							<span>{ new Date(item.updatedAt).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }) }</span>
 							<span> • </span>
-							<span>{ calculateReadingTime(item.layout) } mins read</span>
+							<span>{ calculateReadingTime(item.layout) } min read</span>
 						</p>
 					</div>
 				</CustomLink>
