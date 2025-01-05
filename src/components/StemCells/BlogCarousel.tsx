@@ -1,11 +1,14 @@
 'use client';
 
-import React, { useCallback, useEffect, useRef } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { EmblaCarouselType, EmblaEventType } from 'embla-carousel';
 import useEmblaCarousel from 'embla-carousel-react';
 import Image from 'next/image';
 
+import clsxm from '@/helpers/clsxm';
 import { numberWithinRange } from '@/lib/numberWithinRange';
+
+import SectionAnimate from './SectionAnimate';
 
 const posts = [
 	{
@@ -40,6 +43,8 @@ const posts = [
 const TWEEN_FACTOR_BASE = 0.84;
 
 const BlogCarousel = () => {
+	const [hovered, setHovered] = useState<number | null>(null);
+
 	const [emblaRef, emblaApi] = useEmblaCarousel({
 		align: 'start',
 		loop: true,
@@ -104,17 +109,30 @@ const BlogCarousel = () => {
 	}, [emblaApi, tweenOpacity]);
 
 	return (
-		<div
-			className='overflow-hidden'
-			ref={ emblaRef }>
-			<div className='lg:container-center flex lg:grid lg:grid-cols-3 lg:justify-center h-full flex-nowrap lg:gap-x-5 max-lg:touch-pan-y max-lg:touch-pinch-zoom scrolling-touch scroll-smooth max-lg:ml-px'>
-				{ posts.map(post => (
-					<BlogContent
-						key={ post.id }
-						post={ post } />
-				)) }
+		<SectionAnimate
+			by='section'
+			animation='fadeIn'
+			whileInView='show'
+			initial='hidden'
+			exit='exit'
+			viewport={ { once: true, amount: 0.5 } }
+		>
+			<div
+				className='overflow-hidden'
+				ref={ emblaRef }>
+				<div className='lg:container-center flex lg:grid lg:grid-cols-3 lg:justify-center h-full flex-nowrap lg:gap-x-5 max-lg:touch-pan-y max-lg:touch-pinch-zoom scrolling-touch scroll-smooth max-lg:ml-px'>
+					{ posts.map((post, index) => (
+						<BlogContent
+							key={ post.id }
+							post={ post }
+							index={ index }
+							hovered={ hovered }
+							setHovered={ setHovered }
+						/>
+					)) }
+				</div>
 			</div>
-		</div>
+		</SectionAnimate>
 	);
 };
 
@@ -127,17 +145,34 @@ type BlogContentProps = {
     date: string;
     totalRead: string;
   };
+  index: number;
+  hovered: number | null;
+  setHovered: React.Dispatch<React.SetStateAction<number | null>>;
 };
 
-const BlogContent: React.FC<BlogContentProps> = ({ post }) => {
+const BlogContent: React.FC<BlogContentProps> = ({
+	post,
+	index,
+	hovered,
+	setHovered,
+}) => {
 	return (
 		<article
+			onMouseEnter={ () => setHovered(index) }
+			onMouseLeave={ () => setHovered(null) }
 			className='min-w-0 flex flex-none max-lg:pl-[15px]'
 			style={ {
 				transform: 'translate3d(0, 0, 0)',
 			} }
 		>
-			<div className='group cursor-pointer flex flex-col items-start justify-between h-full w-[calc(100vw-76.11px)] sm:w-[413px] lg:w-full relative'>
+			<div
+				className={ clsxm(
+					'group cursor-pointer flex flex-col items-start justify-between h-full w-[calc(100vw-76.11px)] sm:w-[413px] lg:w-full relative transition-all duration-300 ease-out',
+					hovered !== null &&
+            hovered !== index &&
+            'lg:blur-[2px] lg:scale-[0.98]'
+				) }
+			>
 				<div className='relative w-full'>
 					<div className='aspect-[299/221] sm:aspect-[413/305] w-full relative overflow-hidden rounded-lg'>
 						<Image
@@ -145,7 +180,7 @@ const BlogContent: React.FC<BlogContentProps> = ({ post }) => {
 							src={ post.image }
 							sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
 							fill
-							className='w-full h-full object-cover group-hover:scale-[1.015] transition-all duration-150 ease-in-out'
+							className='w-full h-full object-cover'
 						/>
 					</div>
 					<div className='max-w-xl flex flex-col mt-[30px] lg:mt-[41px]'>

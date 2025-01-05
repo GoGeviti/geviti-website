@@ -1,6 +1,11 @@
+'use client';
+
+import { motion } from 'framer-motion';
+
 import Navbar from '../Navbar/Landing';
 
 import ButtonCTA from './ButtonCTA';
+import SectionAnimate from './SectionAnimate';
 
 const Hero = () => {
 	return (
@@ -13,13 +18,16 @@ const Hero = () => {
 
 			<div className='relative isolate overflow-hidden container-center bg-midnight-blue'>
 				<div className='pt-[165.3px] lg:pt-[267px] w-full max-w-[1042px] mx-auto'>
-					<svg
+					<motion.svg
 						width='1042'
 						height='263'
 						viewBox='0 0 1042 263'
 						fill='none'
 						xmlns='http://www.w3.org/2000/svg'
 						className='w-full h-auto'
+						initial={ { filter: 'blur(10px)', opacity: 0 } }
+						whileInView={ { filter: 'blur(0px)', opacity: 1 } }
+						viewport={ { amount: 0.5, once: true } }
 					>
 						<path
 							fillRule='evenodd'
@@ -55,23 +63,47 @@ const Hero = () => {
 									stopColor='#0B0F26' />
 							</radialGradient>
 						</defs>
-					</svg>
+					</motion.svg>
 				</div>
-				<div className='mt-[58.3px] lg:mt-[0.04px] max-w-[824px] mx-auto container-center w-full'>
-					<div className='flex flex-col gap-y-6'>
-						<h1 className='font-LibreCaslon font-normal text-[8vw]/normal xs3:text-[32px]/normal md:text-4xl lg:text-[64px]/normal -tracking-0.04em text-center text-grey-secondary'>
-              Mobile Stem Cell Therapy
-						</h1>
-						<p className='font-Poppins text-[3vw]/5 xs3:text-xs/5 max-w-[343px] sm:max-w-[544px] text-center mx-auto text-blue-alice'>
-              The world`&apos;s most powerful longevity treatment unlocks your
-              body`&apos;s regenerative potential offering hope and healing for
-              a wide range of conditions.
-						</p>
-					</div>
-					<div className='mt-[42px] lg:mt-6 flex justify-center'>
+				<motion.div
+					initial='hidden'
+					whileInView='show'
+					viewport={ { amount: 0.5, once: true } }
+					exit='exit'
+					variants={ {
+						show: {
+							transition: { staggerChildren: 0.25, delayChildren: 1.05 },
+						},
+						exit: {
+							transition: { staggerChildren: 0.25, staggerDirection: -1 },
+						},
+					} }
+					className='mt-[58.3px] lg:mt-[0.04px] max-w-[824px] mx-auto container-center w-full flex flex-col items-center'
+				>
+					<SectionAnimate
+						animation='slideUp'
+						by='character'
+						delay={ 0.5 }
+						segmentClassName='font-LibreCaslon font-normal text-[8vw]/normal xs3:text-[32px]/normal md:text-4xl lg:text-[64px]/normal -tracking-0.04em text-center text-grey-secondary'
+					>
+            Mobile Stem Cell Therapy
+					</SectionAnimate>
+					<SectionAnimate
+						by='section'
+						className='mt-6 font-Poppins text-[3vw]/5 xs3:text-xs/5 max-w-[343px] sm:max-w-[544px] text-center mx-auto text-blue-alice'
+					>
+            The world`&apos;s most powerful longevity treatment unlocks your
+            body`&apos;s regenerative potential offering hope and healing for a
+            wide range of conditions.
+					</SectionAnimate>
+
+					<SectionAnimate
+						by='section'
+						className='mt-[42px] lg:mt-6 flex justify-center'
+					>
 						<ButtonCTA className='max-sm:w-full'>Coming Soon</ButtonCTA>
-					</div>
-				</div>
+					</SectionAnimate>
+				</motion.div>
 
 				<div
 					style={ {
