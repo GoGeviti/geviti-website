@@ -19,7 +19,7 @@ const HeroDetail = ({ post, readingTime } : { post: Post, readingTime: number })
 					<p className='body-extra-small text-grey-primary'>
 						<span>{ new Date(post.updatedAt).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }) }</span>
 						<span> • </span>
-						<span>{ readingTime } mins read</span>
+						<span>{ readingTime } min read</span>
 					</p>
 				</div>
 				<div className='h-[569px] w-full mt-14 rounded-[19px] relative overflow-hidden'>
