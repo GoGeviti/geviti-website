@@ -1,10 +1,26 @@
+'use client';
+
+import { useRef } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import Image from 'next/image';
 
 import FooterContent from '../Footer/Content';
 
 const FooterStemCells = () => {
+	const container = useRef<HTMLDivElement>(null);
+	const { scrollYProgress } = useScroll({
+		target: container,
+		offset: ['start end', 'end end'],
+	});
+	const progressYMain = useTransform(scrollYProgress, [0, 1], [-100, 0]);
+	const progressY1 = useTransform(scrollYProgress, [0, 1], [100, 0]);
+	const progressY2 = useTransform(scrollYProgress, [0, 1], [50, 0]);
+
 	return (
-		<div className='relative w-full sm:pb-[114.96px] overflow-hidden font-Poppins'>
+		<div
+			ref={ container }
+			className='relative w-full sm:pb-[114.96px] overflow-hidden font-Poppins'
+		>
 			<div className='relative overflow-hidden w-full'>
 				<FooterContent
 					landingPage
@@ -147,7 +163,10 @@ const FooterStemCells = () => {
 			</svg>
 
 			<div className='absolute bottom-[251px] sm:bottom-[162px] left-[51.4%] -translate-x-[51.4%]'>
-				<div className='w-[223px] lg:w-[485px] h-auto aspect-square relative overflow-hidden'>
+				<motion.div
+					style={ { y: progressYMain } }
+					className='w-[223px] lg:w-[485px] h-auto aspect-square relative overflow-hidden'
+				>
 					<Image
 						src='/images/stem-cells/footer/main-cell.webp'
 						alt='cells'
@@ -155,10 +174,13 @@ const FooterStemCells = () => {
 						sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
 						className='object-contain'
 					/>
-				</div>
+				</motion.div>
 			</div>
 			<div className='absolute left-[6.4%] -translate-x-[6.4%] sm:left-[28.3%] sm:-translate-x-[28.3%] bottom-[388px] lg:bottom-[518px]'>
-				<div className='w-[43px] lg:w-[77px] h-auto aspect-square relative overflow-hidden'>
+				<motion.div
+					style={ { y: progressY1 } }
+					className='w-[43px] lg:w-[77px] h-auto aspect-square relative overflow-hidden'
+				>
 					<Image
 						src='/images/stem-cells/footer/cell-1.webp'
 						alt='cells'
@@ -166,10 +188,13 @@ const FooterStemCells = () => {
 						sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
 						className='object-contain'
 					/>
-				</div>
+				</motion.div>
 			</div>
 			<div className='absolute max-sm:right-[7%] sm:left-[73.8%] sm:-translate-x-[73.8%] bottom-[396px] sm:bottom-[425px]'>
-				<div className='w-[78px] lg:w-[131px] h-auto aspect-square relative overflow-hidden'>
+				<motion.div
+					style={ { y: progressY2 } }
+					className='w-[78px] lg:w-[131px] h-auto aspect-square relative overflow-hidden'
+				>
 					<Image
 						src='/images/stem-cells/footer/cell-2.webp'
 						alt='cells'
@@ -177,7 +202,7 @@ const FooterStemCells = () => {
 						sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
 						className='object-contain'
 					/>
-				</div>
+				</motion.div>
 			</div>
 		</div>
 	);

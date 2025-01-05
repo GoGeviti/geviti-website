@@ -1,10 +1,13 @@
 'use client';
 
 import React from 'react';
+import { motion } from 'framer-motion';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
 
 import clsxm from '@/helpers/clsxm';
+
+import SectionAnimate from './SectionAnimate';
 
 const FeaturesCarousel = dynamic(() => import('./FeaturesCarousel'));
 
@@ -61,7 +64,10 @@ export const FeatureContent: React.FC<FeatureContentProps> = ({
 	index,
 }) => {
 	return (
-		<div className='flex flex-col'>
+		<SectionAnimate
+			by='section'
+			animation='fadeIn'
+			className='flex flex-col'>
 			<dt className='text-sm/6 uppercase font-semibold text-white tracking-0.11em'>
 				<div className='mb-6 flex max-lg:justify-center h-[50px]'>
 					<Image
@@ -84,7 +90,7 @@ export const FeatureContent: React.FC<FeatureContentProps> = ({
 			>
 				<p className='flex-auto'>{ feature.description }</p>
 			</dd>
-		</div>
+		</SectionAnimate>
 	);
 };
 
@@ -94,7 +100,21 @@ const Features = () => {
 			<div className='max-lg:hidden font-Poppins py-[90px]'>
 				<div className='container-center w-full'>
 					<div className='mx-auto max-w-[1093px]'>
-						<dl className='grid gap-x-8 gap-y-[105px] w-full lg:grid-cols-3'>
+						<motion.dl
+							initial='hidden'
+							whileInView='show'
+							viewport={ { amount: 0.5, once: true } }
+							exit='exit'
+							variants={ {
+								show: {
+									transition: { staggerChildren: 0.25 },
+								},
+								exit: {
+									transition: { staggerChildren: 0.25, staggerDirection: -1 },
+								},
+							} }
+							className='grid gap-x-8 gap-y-[105px] w-full lg:grid-cols-3'
+						>
 							{ features.map((feature, featureIdx) => (
 								<FeatureContent
 									key={ feature.name }
@@ -102,7 +122,7 @@ const Features = () => {
 									index={ featureIdx }
 								/>
 							)) }
-						</dl>
+						</motion.dl>
 					</div>
 				</div>
 			</div>

@@ -1,5 +1,6 @@
 import Image from 'next/image';
 
+import AnimatedLine from './AnimatedLine';
 import PathText from './PathText';
 import PointCircle from './PointCircle';
 
@@ -19,11 +20,11 @@ const MobileTherapy = () => {
 	return (
 		<div className='mb-[95px] lg:mb-[149px] xxxl:container-center relative isolate flex flex-col font-Poppins'>
 			<Image
-				src='/images/stem-cells/mobile-therapy/apps.png'
+				src='/images/stem-cells/mobile-therapy/apps.webp'
 				alt='apps'
 				width={ 1440 * 10 }
 				height={ 959 * 10 }
-				className='w-[672px] h-[448px] max-lg:object-cover lg:w-screen lg:h-auto'
+				className='w-[672px] h-[448px] max-sm:object-cover sm:w-screen sm:h-auto'
 				quality={ 100 }
 			/>
 			<div className='lg:hidden container-center w-full'>
@@ -55,19 +56,16 @@ const MobileTherapy = () => {
 
 					<div className='max-lg:hidden absolute left-[138.92px] bottom-[172px]'>
 						<div className='relative'>
-							<svg
-								width='323'
-								height='45'
-								viewBox='0 0 323 45'
-								fill='none'
-								xmlns='http://www.w3.org/2000/svg'
-							>
-								<path
-									d='M0.918472 44.7386L40.5566 5.10051C43.1821 2.475 46.743 1 50.4561 1H322.541'
-									stroke='white'
-									strokeWidth='0.717026'
-								/>
-							</svg>
+							<AnimatedLine
+								svgProps={ {
+									width: '323',
+									height: '45',
+									viewBox: '0 0 323 45',
+								} }
+								pathProps={ {
+									d: 'M0.918472 44.7386L40.5566 5.10051C43.1821 2.475 46.743 1 50.4561 1H322.541',
+								} }
+							/>
 							<div className='absolute max-w-[317px] top-[23.15px] left-[76.62px]'>
 								<PathText { ...content1 } />
 							</div>
@@ -77,24 +75,21 @@ const MobileTherapy = () => {
 			</div>
 
 			<div className='absolute top-[40%] lg:top-[58%] left-[22%] lg:left-[35%]'>
-				<div className='relative'>
+				<div className='max-lg:hidden relative'>
 					<PointCircle />
 
 					<div className='max-lg:hidden absolute right-[138.92px] -bottom-[51px]'>
 						<div className='relative'>
-							<svg
-								width='322'
-								height='46'
-								viewBox='0 0 322 46'
-								fill='none'
-								xmlns='http://www.w3.org/2000/svg'
-							>
-								<path
-									d='M321.623 0.999672L281.984 40.6378C279.359 43.2633 275.798 44.7383 272.085 44.7383H-1.52588e-05'
-									stroke='white'
-									strokeWidth='0.717026'
-								/>
-							</svg>
+							<AnimatedLine
+								svgProps={ {
+									width: '322',
+									height: '46',
+									viewBox: '0 0 322 46',
+								} }
+								pathProps={ {
+									d: 'M321.623 0.999672L281.984 40.6378C279.359 43.2633 275.798 44.7383 272.085 44.7383H-1.52588e-05',
+								} }
+							/>
 
 							<div className='max-lg:hidden absolute bottom-[23.15px] right-[76.62px]'>
 								<PathText { ...content2 } />
