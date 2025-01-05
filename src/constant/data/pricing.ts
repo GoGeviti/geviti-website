@@ -50,6 +50,7 @@ const pricingData = {
 			quarterly: '+ $300',
 			btnCta: {
 				href: '/onboarding/payment',
+				// href: '/waitlist',
 				text: 'Get started',
 			},
 			listTitle: 'Your membership includes access to:',

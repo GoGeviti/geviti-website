@@ -3,9 +3,11 @@
 
 import { Client } from '@hubspot/api-client';
 import { format } from 'date-fns';
+import jwt from 'jsonwebtoken';
 import {
 	ApiKeySession, ProfileCreateQuery, ProfileEnum, ProfilesApi, SubscriptionCreateJobCreateQuery
 } from 'klaviyo-api'
+import { cookies } from 'next/headers';
 
 const session = new ApiKeySession(process.env.KLAVIYO_API_KEY)
 const profilesApi = new ProfilesApi(session)
@@ -246,3 +248,101 @@ export const submitGiveaway = async(
 		return { status: 'ERROR', message: errorMessage };
 	}
 };
+export const submitWaitlist = async(
+	formData: {
+		firstName: string;
+		lastName: string;
+		email: string;
+	}
+): Promise<ResponseType> => {
+
+	try {
+		const profile: ProfileCreateQuery = {
+			data: {
+				type: ProfileEnum.Profile,
+				attributes: {
+					email: formData.email,
+					firstName: formData.firstName,
+					lastName: formData.lastName,
+				}
+			}
+		}
+		
+		const resCreateProfile = await profilesApi.createOrUpdateProfile(profile);
+		const subscribe : SubscriptionCreateJobCreateQuery = {
+			'data': {
+				'type': 'profile-subscription-bulk-create-job',
+				'attributes': {
+					'customSource': 'Marketing Event',
+					'profiles': {
+						'data': [
+							{
+								'type': 'profile',
+								'id': resCreateProfile.body.data.id ?? '',
+								'attributes': {
+									'email': formData.email,
+									'subscriptions': {
+										'email': {
+											'marketing': {
+												'consent': 'SUBSCRIBED'
+											}
+										}
+									}
+								}
+							}
+						]
+					},
+					// 'historical_import': false
+				},
+				'relationships': {
+					'list': {
+						'data': {
+							'type': 'list',
+							'id': 'RAB6DH'
+						}
+					}
+				}
+			}
+		}
+		await profilesApi.subscribeProfiles(subscribe)
+		return { status: 'OK', message: 'Data Created' };
+	} catch (error:any) {
+		let errorMessage = 'Opss Something Wrong!';
+
+		// Check if error response contains the expected structure
+		if (error.response && error.response.data && Array.isArray(error.response.data.errors)) {
+			// Extract the first error detail if available
+			const errorDetail = error.response.data.errors[0]?.detail;
+			if (errorDetail) {
+				errorMessage = errorDetail;
+			}
+		}
+		return { status: 'ERROR', message: errorMessage };
+	}
+};
+
+export const submitWaitlistWithPassword = async(
+	formData: {
+		password: string;
+	}
+): Promise<ResponseType> => {
+	if (formData.password === process.env.WAITLIST_PASSWORD) {
+		const token = jwt.sign(
+			{ authorized: true },
+			process.env.JWT_SECRET as string,
+			{ expiresIn: '24h' }
+		);
+
+		// Set the cookie using next/headers
+		const cookieStore = await cookies();
+		cookieStore.set('waitlist-token', token, {
+			path: '/',
+			maxAge: 60 * 60 * 24, // 24 hours
+			httpOnly: true, // Makes cookie inaccessible to client-side JS
+			secure: process.env.NODE_ENV === 'production', // Only sends over HTTPS in production
+		});
+
+		return { status: 'OK', message: 'Password is correct' };
+	}
+	return { status: 'ERROR', message: 'Invalid Password' };
+}
