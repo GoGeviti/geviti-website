@@ -8,11 +8,11 @@ import Video from '@/components/testimonials/Video';
 import Hero from '@/components/Waitlist/Hero';
 
 type PageProps = {
-	searchParams: { [key: string]: string | string[] | undefined };
+	searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 };
 
 const WaitlistPage: NextPage<PageProps> = async props => {
-	const searchParams = props.searchParams;
+	const searchParams = await props.searchParams;
 	// const productId = searchParams?.product_id;
 	// const priceId = searchParams?.price_id;
 
