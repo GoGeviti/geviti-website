@@ -327,7 +327,10 @@ export const submitWaitlistWithPassword = async(
 		password: string;
 	}
 ): Promise<ResponseType> => {
-	if (formData.password === process.env.WAITLIST_PASSWORD) {
+	// Get the passwords string and split it into an array
+	const validPasswords = (process.env.WAITLIST_PASSWORD || '').split(',').map(pwd => pwd.trim());
+	
+	if (validPasswords.includes(formData.password)) {
 		const token = jwt.sign(
 			{ authorized: true },
 			process.env.JWT_SECRET as string,
