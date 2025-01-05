@@ -123,9 +123,9 @@ const Form = (props: PageProps) => {
 						disabled={ formik.values.havePassword }
 					/>
 				</div>
-				<div className={ `lg:col-span-2 overflow-hidden transition-all duration-300 ${
+				<div className={ `lg:col-span-2 transition-all duration-300 ${
 					formik.values.havePassword
-						? 'max-h-[80px] opacity-100'
+						? 'max-h-[100px] opacity-100'
 						: 'max-h-0 opacity-0'
 				}` }>
 					<TextField
