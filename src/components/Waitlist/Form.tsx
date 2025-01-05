@@ -85,7 +85,7 @@ const Form = (props: PageProps) => {
 	return (
 		<form
 			onSubmit={ onSubmitForm }
-			className='mt-10 max-w-[588px] mx-auto'
+			className='mt-10 relative z-10 max-w-[588px] mx-auto'
 		>
 			<div className='grid grid-cols-1 lg:grid-cols-2 gap-6'>
 				<TextField
