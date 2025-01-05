@@ -13,10 +13,22 @@ export function middleware(request: NextRequest) {
 	if (pathname === '/waitlist') {
 		const token = request.cookies.get('waitlist-token');
 		if (token) {
-			// return NextResponse.redirect(new URL('/onboarding/payment', request.url));
-			const url = new URL('/onboarding/payment', request.url);
-			url.search = new URL(request.url).search;
-			return NextResponse.redirect(url);
+			try {
+				// Verify the JWT token
+				const decoded = jwt.verify(token.value, process.env.JWT_SECRET as string);
+				
+				if (!decoded || typeof decoded !== 'object' || !decoded.authorized) {
+					return NextResponse.next();
+				}
+				
+				// Token is valid, redirect to payment
+				const url = new URL('/onboarding/payment', request.url);
+				url.search = new URL(request.url).search;
+				return NextResponse.redirect(url);
+			} catch (error) {
+				// Token is invalid or expired, continue to waitlist
+				return NextResponse.next();
+			}
 		} else {
 			return NextResponse.next();
 		}
