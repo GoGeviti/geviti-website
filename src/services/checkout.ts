@@ -5,13 +5,14 @@ import { Client } from '@hubspot/api-client';
 import { format } from 'date-fns';
 import jwt from 'jsonwebtoken';
 import {
-	ApiKeySession, ProfileCreateQuery, ProfileEnum, ProfilesApi, SubscriptionCreateJobCreateQuery
+	ApiKeySession, 	ProfileCreateQuery, ProfileEnum, ProfilesApi, SegmentsApi,
+	SubscriptionCreateJobCreateQuery
 } from 'klaviyo-api'
 import { cookies } from 'next/headers';
 
 const session = new ApiKeySession(process.env.KLAVIYO_API_KEY)
 const profilesApi = new ProfilesApi(session)
-// const listApi = new ListsApi(session)
+const segmentApi = new SegmentsApi(session)
 
 import { IPrecheckout } from '@/interfaces';
 
@@ -346,3 +347,15 @@ export const submitWaitlistWithPassword = async(
 	}
 	return { status: 'ERROR', message: 'Invalid Password' };
 }
+
+export const getWaitlistTotal = async(): Promise<number> => {
+	try {
+		const response = await segmentApi.getSegment('Yye7vr', {
+			additionalFieldsSegment: ['profile_count']
+		});
+		return response.body.data.attributes.profileCount || 0;
+	} catch (error) {
+		console.error('Error fetching waitlist count:', error);
+		return 0;
+	}
+};

@@ -9,13 +9,14 @@ import Form from './Form';
 
 type HeroProps = {
 	searchParams: { [key: string]: string | string[] | undefined };
+	totalWaitlist: number;
 };
 
 const Hero = async(props: HeroProps) => {
 	const searchParams = props.searchParams;
 	const productId = searchParams?.product_id;
 	const priceId = searchParams?.price_id;
-
+	const totalWaitlist = props.totalWaitlist;
 	if (!productId || !priceId) {
 		return notFound();
 	}
@@ -130,6 +131,7 @@ const Hero = async(props: HeroProps) => {
 				 <Form
 					productId={ productId as string }
 					priceId={ priceId as string }
+					totalWaitlist={ totalWaitlist }
 				/>
 			</div>
 		</div>
