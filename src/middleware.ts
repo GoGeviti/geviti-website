@@ -1,4 +1,5 @@
 import ReactGA from 'react-ga4';
+import jwt from 'jsonwebtoken';
 import type { NextRequest } from 'next/server'
 import { NextResponse } from 'next/server'
 
@@ -29,7 +30,20 @@ export function middleware(request: NextRequest) {
 			url.search = new URL(request.url).search;
 			return NextResponse.redirect(url);
 		} else {
-			return NextResponse.next();
+			try {
+				// Verify the JWT token using the same secret
+				const decoded = jwt.verify(token.value, process.env.JWT_SECRET as string);
+				
+				if (!decoded || typeof decoded !== 'object' || !decoded.authorized) {
+					return NextResponse.redirect(new URL('/waitlist', request.url));
+				}
+				
+				// Token is valid, continue
+				return NextResponse.next();
+			} catch (error) {
+				// Token is invalid or expired
+				return NextResponse.redirect(new URL('/waitlist', request.url));
+			}
 		}
 	}
     
