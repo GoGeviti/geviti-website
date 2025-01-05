@@ -7,20 +7,49 @@ import Image from 'next/image';
 import { XIcon } from '../Icons';
 
 import ButtonCTA from './ButtonCTA';
+import SectionAnimate from './SectionAnimate';
 import SectionTitle from './SectionTitle';
 
 const VideoResearch = () => {
 	return (
 		<div className='container-center w-full pb-[105px] lg:pb-[212px]'>
-			<div className='gap-y-[42px] max-w-[738px] mx-auto flex flex-col items-center text-center'>
-				<SectionTitle>
-          Watch the latest research
-					<br className='lg:hidden' />
-          on a new interview with
-					<br className='lg:hidden' />
-					<span className='font-normal italic'>Dr. Joy Kong</span>
-				</SectionTitle>
-				<ButtonCTA className='max-sm:w-full'>Coming Soon</ButtonCTA>
+			<div className='max-w-[738px] mx-auto'>
+				<motion.div
+					initial='hidden'
+					whileInView='show'
+					viewport={ { amount: 0.5, once: true } }
+					exit='exit'
+					variants={ {
+						show: {
+							transition: { staggerChildren: 0.06 },
+						},
+						exit: {
+							transition: { staggerChildren: 0.06, staggerDirection: -1 },
+						},
+					} }
+					className='text-center flex flex-col items-center gap-y-[42px]'
+				>
+					<div className='max-lg:hidden'>
+						<SectionTitle>Watch the latest research on a new</SectionTitle>
+						<SectionTitle>
+              interview with{ ' ' }
+							<span className='font-normal italic'>Dr. Joy Kong</span>
+						</SectionTitle>
+					</div>
+					<div className='lg:hidden'>
+						<SectionTitle>Watch the latest research</SectionTitle>
+						<SectionTitle>on a new interview with</SectionTitle>
+						<SectionTitle>
+							<span className='font-normal italic'>Dr. Joy Kong</span>
+						</SectionTitle>
+					</div>
+
+					<SectionAnimate
+						by='section'
+						animation='blurInUp'>
+						<ButtonCTA className='max-sm:w-full'>Coming Soon</ButtonCTA>
+					</SectionAnimate>
+				</motion.div>
 			</div>
 			<div className='max-w-[1229px] mx-auto mt-[105px] lg:mt-[59px]'>
 				<VideoDialog />
@@ -115,7 +144,7 @@ const VideoDialog = () => {
 									className='w-full h-full rounded-2xl'
 									allowFullScreen
 									allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
-								 />
+								/>
 							</div>
 						</motion.div>
 					</motion.div>

@@ -1,3 +1,6 @@
+'use client';
+
+import { motion } from 'framer-motion';
 import Image from 'next/image';
 
 import clsxm from '@/helpers/clsxm';
@@ -24,7 +27,7 @@ const processData = [
 ];
 
 const InnovativeProcess = () => {
-	const renderCircle = () => {
+	const renderCircle = (id?: string) => {
 		return (
 			<svg
 				width='46'
@@ -38,7 +41,7 @@ const InnovativeProcess = () => {
 						cx='19'
 						cy='16'
 						r='14'
-						fill='url(#paint0_radial_15169_41146)'
+						fill={ `url(#paint0_radial_15169_41146_${id})` }
 					/>
 					<circle
 						cx='19'
@@ -143,7 +146,7 @@ const InnovativeProcess = () => {
 						/>
 					</filter>
 					<radialGradient
-						id='paint0_radial_15169_41146'
+						id={ `paint0_radial_15169_41146_${id}` }
 						cx='0'
 						cy='0'
 						r='1'
@@ -161,18 +164,28 @@ const InnovativeProcess = () => {
 	};
 
 	return (
-		<div className='pb-[95px] lg:pb-[248px] font-Poppins'>
+		<div className='pb-[485px] lg:pb-[248px] font-Poppins'>
 			<div className='container-center w-full'>
-				<span className='text-center'>
+				<motion.div
+					initial='hidden'
+					whileInView='show'
+					viewport={ { amount: 0.5, once: true } }
+					exit='exit'
+					variants={ {
+						show: {
+							transition: { staggerChildren: 0.06 },
+						},
+						exit: {
+							transition: { staggerChildren: 0.06, staggerDirection: -1 },
+						},
+					} }
+					className='text-center flex flex-col items-center'
+				>
 					<SectionTitle>
-            Our{ ' ' }
-						<span className='font-normal italic'>
-              Innovative
-							<br />
-						</span>{ ' ' }
-            Process
+            Our <span className='font-normal italic'>Innovative</span>
 					</SectionTitle>
-				</span>
+					<SectionTitle>Process</SectionTitle>
+				</motion.div>
 
 				<div className='mt-[34px] w-full relative flex flex-col items-center'>
 					<div className='absolute top-0 left-1/2 -translate-x-1/2'>
@@ -274,7 +287,7 @@ const InnovativeProcess = () => {
 								</linearGradient>
 							</defs>
 
-							{ renderCircle() }
+							{ renderCircle('1') }
 						</svg>
 
 						<svg
@@ -307,59 +320,64 @@ const InnovativeProcess = () => {
 										stopColor='#4749CF' />
 								</linearGradient>
 							</defs>
-							{ renderCircle() }
+							{ renderCircle('2') }
 						</svg>
 					</div>
 
-					{ processData.map(process => (
-						<div
-							key={ process.id }
-							className={ clsxm(
-								'max-lg:-mt-[144px] lg:absolute',
-								process.position === 'left' && 'lg:top-[240px] lg:left-[134px]',
-								process.position === 'right' && 'lg:top-0 lg:right-[134px]'
-							) }
-						>
+					<div className='max-lg:-mt-[144px] max-lg:relative w-full flex flex-col items-center'>
+						{ processData.map(process => (
 							<div
+								key={ process.id }
 								className={ clsxm(
-									'p-[3px] rounded-[20px] w-full lg:w-[345px] bg-blend-screen relative [background:linear-gradient(0deg,#212261,#212261),_radial-gradient(47.54%_47.54%_at_50.14%_0%,#743DF2_0%,_rgba(18,18,53,0)_100%)]',
-									process.position === 'left'
-										? 'lg:[background:linear-gradient(0deg,#212261,#212261),_radial-gradient(41.59%_33.23%_at_100%_52.33%,#743DF2_0%,rgba(18, 18, 53, 0)_100%)]'
-										: 'lg:[background:linear-gradient(0deg,#212261,#212261),_radial-gradient(53.77%_42.95%_at_0%_54.15%,#6C30F6_0%,rgba(18, 18, 53, 0)_100%)]'
+									'absolute',
+									process.position === 'left' &&
+                    'lg:top-[240px] lg:left-[134px]',
+									process.position === 'right' &&
+                    'max-lg:-z-10 top-[40px] max-lg:scale-90 lg:top-0 lg:right-[134px]'
 								) }
 							>
 								<div
-									style={ {
-										background:
-                      'radial-gradient(117.12% 161.33% at 50% 23.87%, #2D2E83 0%, #212261 18%, #131337 43%, #0B0F26 66%, #0B0F26 86%, #0B0F26 100%)',
-									} }
-									className='rounded-[19px] p-6 text-white bg-blend-screen mix-blend-normal'
+									className={ clsxm(
+										'p-[3px] rounded-[20px] w-full lg:w-[345px] bg-blend-screen relative [background:linear-gradient(0deg,#212261,#212261),_radial-gradient(47.54%_47.54%_at_50.14%_0%,#743DF2_0%,_rgba(18,18,53,0)_100%)]',
+										process.position === 'left'
+											? 'lg:[background:linear-gradient(0deg,#212261,#212261),_radial-gradient(41.59%_33.23%_at_100%_52.33%,#743DF2_0%,rgba(18, 18, 53, 0)_100%)]'
+											: 'lg:[background:linear-gradient(0deg,#212261,#212261),_radial-gradient(53.77%_42.95%_at_0%_54.15%,#6C30F6_0%,rgba(18, 18, 53, 0)_100%)]'
+									) }
 								>
-									<div className='flex flex-col'>
-										<dt className='text-sm/6 font-semibold text-white tracking-0.11em uppercase'>
-											<div className='mb-6 h-[182px] w-full relative overflow-hidden rounded-[14px]'>
-												<Image
-													src={ process.image }
-													alt={ process.name }
-													fill
-													className='object-cover'
+									<div
+										style={ {
+											background:
+                        'radial-gradient(117.12% 161.33% at 50% 23.87%, #2D2E83 0%, #212261 18%, #131337 43%, #0B0F26 66%, #0B0F26 86%, #0B0F26 100%)',
+										} }
+										className='rounded-[19px] p-6 text-white bg-blend-screen mix-blend-normal'
+									>
+										<div className='flex flex-col'>
+											<dt className='text-sm/6 font-semibold text-white tracking-0.11em uppercase'>
+												<div className='mb-6 h-[182px] w-full relative overflow-hidden rounded-[14px]'>
+													<Image
+														src={ process.image }
+														alt={ process.name }
+														fill
+														className='object-cover'
+														sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
+													/>
+												</div>
+												{ process.name }
+											</dt>
+											<dd className='mt-2 flex flex-auto flex-col text-xs/5 text-white'>
+												<p
+													className='flex-auto'
+													dangerouslySetInnerHTML={ {
+														__html: process.description,
+													} }
 												/>
-											</div>
-											{ process.name }
-										</dt>
-										<dd className='mt-2 flex flex-auto flex-col text-xs/5 text-white'>
-											<p
-												className='flex-auto'
-												dangerouslySetInnerHTML={ {
-													__html: process.description,
-												} }
-											/>
-										</dd>
+											</dd>
+										</div>
 									</div>
 								</div>
 							</div>
-						</div>
-					)) }
+						)) }
+					</div>
 				</div>
 			</div>
 		</div>
