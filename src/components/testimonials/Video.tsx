@@ -54,7 +54,11 @@ const videoData = [
 	},
 ];
 
-const Video = () => {
+type VideoProps = {
+	className?: string;
+}
+
+const Video: React.FC<VideoProps> = ({ className }) => {
 
 	const swiperRef = useRef<SwiperType>(undefined);
 	const [thumbsSwiper, setThumbsSwiper] = useState<SwiperType>();
@@ -72,7 +76,10 @@ const Video = () => {
 	};
 
 	return (
-		<div className='lg:px-3 mt-[177px] lg:mt-[133px]'>
+		<div className={ clsxm(
+			'lg:px-3 mt-[177px] lg:mt-[133px]',
+			className
+		) }>
 			<div className='container-center'>
 				<h3 className='text-2xl lg:text-4xl font-medium text-primary whitespace-nowrap'>
 					Hear what
