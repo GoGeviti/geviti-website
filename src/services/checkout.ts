@@ -3,7 +3,7 @@
 
 import { Client } from '@hubspot/api-client';
 import { format } from 'date-fns';
-import jwt from 'jsonwebtoken';
+import { SignJWT } from 'jose';
 import {
 	ApiKeySession, 	ProfileCreateQuery, ProfileEnum, ProfilesApi, SegmentsApi,
 	SubscriptionCreateJobCreateQuery
@@ -331,19 +331,19 @@ export const submitWaitlistWithPassword = async(
 	const validPasswords = (process.env.WAITLIST_PASSWORD || '').split(',').map(pwd => pwd.trim());
 	
 	if (validPasswords.includes(formData.password)) {
-		const token = jwt.sign(
-			{ authorized: true },
-			process.env.JWT_SECRET as string,
-			{ expiresIn: '24h' }
-		);
+		// Create a new JWT using jose
+		const token = await new SignJWT({ authorized: true })
+			.setProtectedHeader({ alg: 'HS256' })
+			.setExpirationTime('24h')
+			.sign(new TextEncoder().encode(process.env.JWT_SECRET));
 
 		// Set the cookie using next/headers
 		const cookieStore = await cookies();
 		cookieStore.set('waitlist-token', token, {
 			path: '/',
 			maxAge: 60 * 60 * 24, // 24 hours
-			httpOnly: true, // Makes cookie inaccessible to client-side JS
-			secure: process.env.NODE_ENV === 'production', // Only sends over HTTPS in production
+			httpOnly: true,
+			secure: process.env.NODE_ENV === 'production',
 		});
 
 		return { status: 'OK', message: 'Password is correct' };
