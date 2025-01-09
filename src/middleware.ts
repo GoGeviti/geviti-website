@@ -1,61 +1,58 @@
 import ReactGA from 'react-ga4';
-import jwt from 'jsonwebtoken';
+import * as jose from 'jose';
 import type { NextRequest } from 'next/server'
 import { NextResponse } from 'next/server'
 
 const trackingId = 'G-9NMVVP83JB';
 
-// This function can be marked `async` if using `await` inside
-export function middleware(request: NextRequest) {
-
+export async function middleware(request: NextRequest) {
 	const { pathname } = new URL(request.url);
 
 	if (pathname === '/waitlist') {
 		const token = request.cookies.get('waitlist-token');
-		if (token) {
+		
+		if (token?.value) {
 			try {
-				// Verify the JWT token
-				const decoded = jwt.verify(token.value, process.env.JWT_SECRET as string);
+				const secret = new TextEncoder().encode(process.env.JWT_SECRET);
+				const { payload } = await jose.jwtVerify(token.value, secret);
 				
-				if (!decoded || typeof decoded !== 'object' || !decoded.authorized) {
-					return NextResponse.next();
+				if (payload?.authorized) {
+					// Token is valid, redirect to payment
+					const url = new URL('/onboarding/payment', request.url);
+					url.search = new URL(request.url).search;
+					return NextResponse.redirect(url);
 				}
-				
-				// Token is valid, redirect to payment
-				const url = new URL('/onboarding/payment', request.url);
-				url.search = new URL(request.url).search;
-				return NextResponse.redirect(url);
 			} catch (error) {
-				// Token is invalid or expired, continue to waitlist
+				// Invalid token - continue to waitlist page
 				return NextResponse.next();
 			}
-		} else {
-			return NextResponse.next();
 		}
+		return NextResponse.next();
 	}
 
 	if (pathname === '/onboarding/payment') {
 		const token = request.cookies.get('waitlist-token');
-		if (!token) {
+		if (!token?.value) {
 			const url = new URL('/waitlist', request.url);
-			// Preserve all query parameters from the original URL
 			url.search = new URL(request.url).search;
 			return NextResponse.redirect(url);
-		} else {
-			try {
-				// Verify the JWT token using the same secret
-				const decoded = jwt.verify(token.value, process.env.JWT_SECRET as string);
-				
-				if (!decoded || typeof decoded !== 'object' || !decoded.authorized) {
-					return NextResponse.redirect(new URL('/waitlist', request.url));
-				}
-				
-				// Token is valid, continue
-				return NextResponse.next();
-			} catch (error) {
-				// Token is invalid or expired
-				return NextResponse.redirect(new URL('/waitlist', request.url));
+		}
+
+		try {
+			const secret = new TextEncoder().encode(process.env.JWT_SECRET);
+			const { payload } = await jose.jwtVerify(token.value, secret);
+			
+			if (!payload?.authorized) {
+				const url = new URL('/waitlist', request.url);
+				url.search = new URL(request.url).search;
+				return NextResponse.redirect(url);
 			}
+			
+			return NextResponse.next();
+		} catch (error) {
+			const url = new URL('/waitlist', request.url);
+			url.search = new URL(request.url).search;
+			return NextResponse.redirect(url);
 		}
 	}
     
@@ -78,11 +75,9 @@ export function middleware(request: NextRequest) {
 		}
 	}
 
-	// Continue with the request if no user agent match
 	return NextResponse.next();
 }
  
-// See "Matching Paths" below to learn more
 export const config = {
 	matcher: ['/mobile', '/pickleballkingdom', '/onboarding/payment', '/waitlist'],
 }

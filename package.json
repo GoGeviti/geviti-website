@@ -50,6 +50,7 @@
     "framer-motion": "12.0.0-alpha.1",
     "gsap": "^3.12.5",
     "iconsax-react": "^0.0.8",
+    "jose": "^5.9.6",
     "jsonwebtoken": "^9.0.2",
     "klaviyo-api": "^12.0.1",
     "lexical": "^0.12.2",
