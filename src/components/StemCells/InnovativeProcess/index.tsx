@@ -17,38 +17,6 @@ if (typeof window !== 'undefined') {
 	gsap.registerPlugin(MotionPathPlugin, ScrollTrigger);
 }
 
-// const wavePointsPath2 = [
-//   'M110.499 4C110.499 4 348.499 209.5 110.499 338C-127.502 466.5 110.499 522.062 110.499 640V942',
-//   'M 110.499 4 C 110.499 4 348.499 209.5 110.499 338 C -72 446 110.499 522.062 110.499 640 V 942',
-//   'M110.499 4C110.499 4 348.499 209.5 110.499 338C-127.502 466.5 110.499 522.062 110.499 640V942',
-// ];
-
-// const wavePointsMorePath2 = [
-//   'M110.499 4C110.499 4 348.499 209.5 110.499 338C-127.502 466.5 110.499 522.062 110.499 640V942',
-//   'M 110.499 4 C 110.499 4 348.499 209.5 110.499 338 C -164 475 110.499 522.062 110.499 640 V 942',
-//   'M110.499 4C110.499 4 348.499 209.5 110.499 338C-127.502 466.5 110.499 522.062 110.499 640V942',
-// ];
-
-// const wavePointsPath1 = [
-//   'M26.4988 4C26.4988 4 -22.0031 14.5 26.4984 144C75 273.5 26.4987 418.062 26.4987 536L26.4988 942',
-//   'M 26.4988 4 C 26.4988 4 -27 10 26.4984 144 C 91 280 26.4987 418.062 26.4987 536 L 26.4988 942',
-//   'M26.4988 4C26.4988 4 -22.0031 14.5 26.4984 144C75 273.5 26.4987 418.062 26.4987 536L26.4988 942',
-// ];
-
-// const wavePointsMorePath1 = [
-//   'M26.4988 4C26.4988 4 -22.0031 14.5 26.4984 144C75 273.5 26.4987 418.062 26.4987 536L26.4988 942',
-//   'M 26.4988 4 C 26.4988 4 -31 14 26.4984 144 C 101 293 26.4987 418.062 26.4987 536 L 26.4988 942',
-//   'M26.4988 4C26.4988 4 -22.0031 14.5 26.4984 144C75 273.5 26.4987 418.062 26.4987 536L26.4988 942',
-// ];
-
-// const waveAnimation = (path: SVGPathElement, keyframes: string[]) => {
-//   return gsap.to(path, {
-//     keyframes: keyframes.map((d) => ({ attr: { d }, duration: 2 })),
-//     repeat: 3,
-//     ease: 'sine.inOut',
-//   });
-// };
-
 const InnovativeProcess = () => {
 	useEffect(() => {
 		if (window && window.innerWidth > 0) {
@@ -155,7 +123,7 @@ const InnovativeProcess = () => {
 				// .to(path2, {
 				//   keyframes: wavePointsMorePath2.map((d) => ({
 				//     attr: { d },
-				//     duration: 1.5, // Kurangi durasi setiap keyframe menjadi 1.5 detik
+				//     duration: 1.5,
 				//   })),
 				//   repeat: 2,
 				//   onComplete: () => {
@@ -165,11 +133,10 @@ const InnovativeProcess = () => {
 				// .to(
 				//   circle,
 				//   {
-				//     x: '-=10', // Gerak ke kanan 20px
-				//     duration: 3, // Selaras dengan keyframe path2
+				//     x: '-=10',
+				//     duration: 3,
 				//     yoyo: true,
-				//     repeat: 3, // Total 3 detik
-				//     ease: 'sine.inOut',
+				//     repeat: 3,
 				//   },
 				//   '<'
 				// )
@@ -209,7 +176,7 @@ const InnovativeProcess = () => {
 				// .to(path1, {
 				//   keyframes: wavePointsMorePath1.map((d) => ({
 				//     attr: { d },
-				//     duration: 1.5, // Kurangi durasi setiap keyframe menjadi 1.5 detik
+				//     duration: 1.5,
 				//   })),
 				//   repeat: 2,
 				//   onComplete: () => {
@@ -219,11 +186,10 @@ const InnovativeProcess = () => {
 				// .to(
 				//   circle,
 				//   {
-				//     x: '+=10', // Gerak ke kanan 20px
-				//     duration: 3, // Selaras dengan keyframe path2
+				//     x: '+=10',
+				//     duration: 3,
 				//     yoyo: true,
-				//     repeat: 3, // Total 3 detik
-				//     ease: 'sine.inOut',
+				//     repeat: 3,
 				//   },
 				//   '<'
 				// )
@@ -288,3 +254,35 @@ const InnovativeProcess = () => {
 };
 
 export default InnovativeProcess;
+
+// const wavePointsPath2 = [
+//   'M110.499 4C110.499 4 348.499 209.5 110.499 338C-127.502 466.5 110.499 522.062 110.499 640V942',
+//   'M 110.499 4 C 110.499 4 348.499 209.5 110.499 338 C -72 446 110.499 522.062 110.499 640 V 942',
+//   'M110.499 4C110.499 4 348.499 209.5 110.499 338C-127.502 466.5 110.499 522.062 110.499 640V942',
+// ];
+
+// const wavePointsMorePath2 = [
+//   'M110.499 4C110.499 4 348.499 209.5 110.499 338C-127.502 466.5 110.499 522.062 110.499 640V942',
+//   'M 110.499 4 C 110.499 4 348.499 209.5 110.499 338 C -164 475 110.499 522.062 110.499 640 V 942',
+//   'M110.499 4C110.499 4 348.499 209.5 110.499 338C-127.502 466.5 110.499 522.062 110.499 640V942',
+// ];
+
+// const wavePointsPath1 = [
+//   'M26.4988 4C26.4988 4 -22.0031 14.5 26.4984 144C75 273.5 26.4987 418.062 26.4987 536L26.4988 942',
+//   'M 26.4988 4 C 26.4988 4 -27 10 26.4984 144 C 91 280 26.4987 418.062 26.4987 536 L 26.4988 942',
+//   'M26.4988 4C26.4988 4 -22.0031 14.5 26.4984 144C75 273.5 26.4987 418.062 26.4987 536L26.4988 942',
+// ];
+
+// const wavePointsMorePath1 = [
+//   'M26.4988 4C26.4988 4 -22.0031 14.5 26.4984 144C75 273.5 26.4987 418.062 26.4987 536L26.4988 942',
+//   'M 26.4988 4 C 26.4988 4 -31 14 26.4984 144 C 101 293 26.4987 418.062 26.4987 536 L 26.4988 942',
+//   'M26.4988 4C26.4988 4 -22.0031 14.5 26.4984 144C75 273.5 26.4987 418.062 26.4987 536L26.4988 942',
+// ];
+
+// const waveAnimation = (path: SVGPathElement, keyframes: string[]) => {
+//   return gsap.to(path, {
+//     keyframes: keyframes.map((d) => ({ attr: { d }, duration: 2 })),
+//     repeat: 3,
+//     ease: 'sine.inOut',
+//   });
+// };
