@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, m } from 'framer-motion';
 
 import { useCarousel } from '@/hooks/embla/use-carousel';
 
@@ -49,7 +49,7 @@ const OverviewDefinitionCarousel: React.FC<OverviewDefinitionCarouselProps> = ({
 							className='flex items-center'>
 							<AnimatePresence mode='wait'>
 								{ index === selectedIndex ? (
-									<motion.span
+									<m.span
 										initial={ { opacity: 0 } }
 										animate={ { opacity: 1 } }
 										exit={ { opacity: 0 } }
@@ -57,9 +57,9 @@ const OverviewDefinitionCarousel: React.FC<OverviewDefinitionCarouselProps> = ({
 										className='text-blue-alice text-xs/5 font-Poppins'
 									>
 										{ slides[selectedIndex].name }
-									</motion.span>
+									</m.span>
 								) : (
-									<motion.button
+									<m.button
 										initial={ { width: 0 } }
 										animate={ { width: index === selectedIndex ? 0 : 23 } }
 										exit={ { width: 0 } }
