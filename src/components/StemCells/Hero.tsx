@@ -12,7 +12,7 @@ const Hero = () => {
 		<>
 			<Navbar
 				theme='light'
-				className='!backdrop-blur-[25px]'
+				className='!backdrop-blur-[50px]'
 				background='!bg-grey-50/10'
 			/>
 
