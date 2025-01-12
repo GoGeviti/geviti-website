@@ -17,19 +17,17 @@ const slides = [
 	{
 		id: 1,
 		name: 'What are MSCs?',
-		content: () => <WhatMsc />,
+		content: <WhatMsc />,
 	},
 	{
 		id: 2,
 		name: 'Why choose Geviti?',
-		content: ({ pointProgress }: { pointProgress?: number }) => (
-			<WhyChoose pointProgress={ pointProgress } />
-		),
+		content: <WhyChoose />,
 	},
 	{
 		id: 3,
 		name: 'Why Stem Cell Therapy?',
-		content: () => <WhyStemCell />,
+		content: <WhyStemCell />,
 	},
 ];
 
@@ -37,7 +35,6 @@ const slidesLength = slides.length;
 
 const OverviewDefinition = () => {
 	const [activeCard, setActiveCard] = useState(0);
-	const [pointProgress, setPointProgress] = useState(0);
 
 	const ref = useRef<any>(null);
 	const { scrollYProgress } = useScroll({
@@ -58,11 +55,6 @@ const OverviewDefinition = () => {
 			0
 		);
 		setActiveCard(closestBreakpointIndex);
-
-		if (closestBreakpointIndex === 1) {
-			const progress = (latest - cardsBreakpoints[1]) / (1 / slidesLength);
-			setPointProgress(Math.min(Math.max(progress, 0), 1));
-		}
 	});
 
 	return (
@@ -82,7 +74,7 @@ const OverviewDefinition = () => {
 								transition={ { duration: 0.5 } }
 								className='w-full h-full'
 							>
-								{ slides?.[activeCard]?.content({ pointProgress }) }
+								{ slides?.[activeCard]?.content }
 							</motion.div>
 						</AnimatePresence>
 
