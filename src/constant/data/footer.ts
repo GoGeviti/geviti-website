@@ -87,7 +87,7 @@ const footerData = {
 	],
 	disclaimer: {
 		label: 'Please read the disclaimer +',
-		content: '<span class="block">*Lab tests are ordered solely at the discretion of clinicians. If a physician decides not to order a test, the cost will be refunded.</span><span class="block">*Product images are for display purposes; actual items from US-based pharmacies may vary.</span><span class="block">All professional medical services are offered by licensed physicians and clinicians who operate within independently owned and professionally managed practices. Geviti is a healthcare technology company and does not function as a laboratory or medical provider. All laboratory and medical services are delivered by independent third-party entities.</span>'
+		content: '<span class="block">*Lab tests are ordered solely at the discretion of clinicians. If a physician decides not to order a test, the cost will be refunded.</span><span class="block">*Product images are for display purposes; actual items from US-based pharmacies may vary.</span><span class="block">*The cost per month for prescription (Rx) products is based on an average dosing. Your cost may be higher or lower depending on your personalized care plan.</span><span class="block">All professional medical services are offered by licensed physicians and clinicians who operate within independently owned and professionally managed practices. Geviti is a healthcare technology company and does not function as a laboratory or medical provider. All laboratory and medical services are delivered by independent third-party entities.</span>'
 	}
 };
 
