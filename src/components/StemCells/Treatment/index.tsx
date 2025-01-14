@@ -3,11 +3,11 @@
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 
-import AnimatedLine from './AnimatedLine';
-import ButtonCTA from './ButtonCTA';
-import PathText from './PathText';
-import PointCircle from './PointCircle';
-import SectionAnimate from './SectionAnimate';
+import AnimatedLine from '../AnimatedLine';
+import ButtonCTA from '../ButtonCTA';
+import PathText from '../PathText';
+import PointCircle from '../PointCircle';
+import SectionAnimate from '../SectionAnimate';
 
 const Treatment = () => {
 	const renderWelcomeText = () => {

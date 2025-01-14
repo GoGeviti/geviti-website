@@ -145,12 +145,11 @@ export const Path1 = () => {
 			viewBox='0 0 53 946'
 			fill='none'
 			xmlns='http://www.w3.org/2000/svg'
-			className='max-lg:hidden overflow-visible'
 		>
 			<path
 				id='sc_ip_path_1'
-				d='M26.4988 4C26.4988 4 -22.0031 14.5 26.4984 144C75 273.5 26.4987 418.062 26.4987 536L26.4988 942'
-				stroke='url(#paint0_linear_15169_39965)'
+				d='M26.4987 4C26.4987 4 -22.0032 14.5 26.4984 144C74.9999 273.5 26.4986 418.062 26.4986 536L26.4987 942'
+				stroke='url(#paint0_linear_15169_43742)'
 				strokeOpacity='0'
 				strokeWidth='8'
 				strokeLinecap='round'
@@ -158,10 +157,10 @@ export const Path1 = () => {
 			/>
 			<defs>
 				<linearGradient
-					id='paint0_linear_15169_39965'
-					x1='26.4985'
+					id='paint0_linear_15169_43742'
+					x1='26.4984'
 					y1='4'
-					x2='26.4985'
+					x2='26.4984'
 					y2='942'
 					gradientUnits='userSpaceOnUse'
 				>
@@ -179,18 +178,16 @@ export const Path2 = () => {
 	return (
 		<svg
 			id='sc_ip_svg_2'
-			width='221'
+			width='111'
 			height='946'
-			viewBox='0 0 221 946'
+			viewBox='0 0 111 946'
 			fill='none'
 			xmlns='http://www.w3.org/2000/svg'
-			className='max-lg:hidden overflow-visible'
 		>
 			<path
 				id='sc_ip_path_2'
-				d='M110.499 4C110.499 4 348.499 209.5 110.499 338C-127.502 466.5 110.499 522.062 110.499 640V942'
-				// d='M110.499 4C110.499 4 348.499 209.5 110.499 338C-127.502 466.5 110.499 522.062 110.499 640V942'
-				stroke='url(#paint0_linear_15169_41139)'
+				d='M55.4987 4C55.4987 4 169.497 184.5 55.4987 338C-58.5 491.5 55.4987 522.062 55.4987 640V942'
+				stroke='url(#paint0_linear_15169_43743)'
 				strokeOpacity='0'
 				strokeWidth='8'
 				strokeLinecap='round'
@@ -198,10 +195,10 @@ export const Path2 = () => {
 			/>
 			<defs>
 				<linearGradient
-					id='paint0_linear_15169_41139'
-					x1='110.499'
+					id='paint0_linear_15169_43743'
+					x1='55.4987'
 					y1='4'
-					x2='110.499'
+					x2='55.4987'
 					y2='942'
 					gradientUnits='userSpaceOnUse'
 				>
