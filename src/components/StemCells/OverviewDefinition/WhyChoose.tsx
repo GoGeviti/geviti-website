@@ -14,6 +14,7 @@ const WhyChoose = () => (
 				src='/images/stem-cells/overview/background-2.webp'
 				width={ 1890.945 }
 				height={ 1714.32 }
+				priority
 				className='h-auto w-full lg:w-[630.315px] object-cover'
 				alt='cells'
 			/>
