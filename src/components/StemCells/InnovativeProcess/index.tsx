@@ -97,9 +97,13 @@ const InnovativeProcess = () => {
 						},
 						'-=2'
 					)
-					.set(boxMobile2, { autoAlpha: 1, scale: 1, zIndex: 1, y: -35 }, '<')
-					.set(boxMobile1, { autoAlpha: 1, scale: 0.9, zIndex: -1, y: 0 })
-					.to(boxContentMobile2, { autoAlpha: 1 })
+					.to(
+						boxMobile2,
+						{ autoAlpha: 1, scale: 1, zIndex: 1, y: -35, duration: 0.5 },
+						'<'
+					)
+					.set(boxMobile1, { autoAlpha: 1, scale: 0.9, zIndex: -1, y: 0 }, '<')
+					.to(boxContentMobile2, { autoAlpha: 1 }, '<')
 					.to(circle, {
 						duration: 2,
 						ease: 'sine.inOut',
@@ -203,9 +207,10 @@ const InnovativeProcess = () => {
 										});
 									}
 								} else {
-									gsap.set([box1, box2], {
+									gsap.to([box1, box2], {
 										autoAlpha: 0.3,
 										scale: 0.5,
+										duration: 0.5,
 									});
 								}
 							},
