@@ -89,9 +89,9 @@ const WrapperCard = ({ position = 'left', children, id }: any) => {
 			className={ clsxm(
 				'absolute opacity-0',
 				position === 'left' &&
-          'max-lg:-bottom-[35px] lg:top-[240px] lg:right-[134px] xl:right-[174px]',
+          'max-lg:-bottom-[35px] lg:top-[280px] lg:right-[134px] xl:right-[174px]',
 				position === 'right' &&
-          'max-lg:-bottom-[35px] lg:top-2.5 lg:left-[134px] xl:left-[174px]'
+          'max-lg:-bottom-[35px] lg:top-28 lg:left-[134px] xl:left-[174px]'
 			) }
 		>
 			<div

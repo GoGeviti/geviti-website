@@ -81,7 +81,7 @@ const MobileTherapy = () => {
 	return (
 		<div className='mb-[95px] lg:mb-[149px] xxxl:container-center relative isolate flex flex-col font-Poppins'>
 			<Image
-				src='/images/stem-cells/mobile-therapy/apps.webp'
+				src='/images/stem-cells/mobile-therapy/apps-2.webp'
 				alt='apps'
 				width={ 14400 }
 				height={ 9590 }
