@@ -114,6 +114,14 @@ const StripeForm: FC<StripeFormProps> = ({
 					
 					// throw 'State not available right now. Please try again later.';
 				}
+
+				const getFPTid = () => {
+					if (typeof window !== 'undefined') {
+						return (window as any).FPROM?.data?.tid;
+					}
+					return undefined;
+				};
+
 				const sessionSecret = await createSession({
 					header: {
 						'Authorization': 'Bearer ' + isValidState.token,
@@ -134,6 +142,7 @@ const StripeForm: FC<StripeFormProps> = ({
 						},
 						coupon: coupon,
 						referral: referral.length ? referral : undefined,
+						fp_tid: getFPTid(),
 						product: [{
 							productId: selectedProduct?.productId.toString() ?? '',
 							productName: selectedProduct?.productName ?? '',

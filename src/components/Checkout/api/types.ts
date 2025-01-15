@@ -201,6 +201,7 @@ export interface CreateSessionParams {
   };
   coupon: string;
   referral?: string;
+  fp_tid?: string;
   product: {
     productId: string;
     productName: string;
