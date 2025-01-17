@@ -9,14 +9,16 @@ import PointCircle from '../PointCircle';
 
 const WhyChoose = () => (
 	<div className='h-full w-full flex items-center justify-center text-white relative'>
-		<div className='relative flex items-center justify-center lg:ml-20'>
-			<Image
-				src='/images/stem-cells/overview/background-2.webp'
-				width={ 1890.945 }
-				height={ 1714.32 }
-				className='h-auto w-full lg:w-[630.315px] object-cover'
-				alt='cells'
-			/>
+		<div className='relative max-lg:w-full flex items-center justify-center lg:ml-20'>
+			<div className='w-full lg:w-[630.315px] h-auto aspect-[630.31/571.44]'>
+				<Image
+					src='/images/stem-cells/overview/background-2.webp'
+					width={ 1890.945 }
+					height={ 1714.32 }
+					className='h-auto w-full lg:w-[630.315px] object-cover'
+					alt='cells'
+				/>
+			</div>
 
 			<motion.div
 				initial={ { opacity: 0 } }
