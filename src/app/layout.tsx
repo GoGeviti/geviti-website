@@ -126,6 +126,19 @@ const RootLayout: React.FC<{ children: React.ReactNode; }> = ({ children }) => {
 								{ '(function(w,r){w._rwq=r;w[r]=w[r]||function(){(w[r].q=w[r].q||[]).push(arguments)}})(window,\'rewardful\');' }
 							</Script>
 							
+							<Script
+								id='firstpromoter-init'
+								strategy='lazyOnload'>
+								{ `(function(w){w.fpr=w.fpr||function(){w.fpr.q = w.fpr.q||[];w.fpr.q[arguments[0]=='set'?'unshift':'push'](arguments);};})(window);
+								fpr("init", {cid:"85sg3xje"}); 
+								fpr("click");` }
+							</Script>
+							<Script
+								src='https://cdn.firstpromoter.com/fpr.js'
+								strategy='lazyOnload'
+								async
+							/>
+							
 							<noscript>
 								<iframe
 									src='https://www.googletagmanager.com/ns.html?id=GTM-K227ZN5C'

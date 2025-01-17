@@ -1,5 +1,6 @@
 'use client';
 
+import Spline from '@splinetool/react-spline';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 
@@ -88,7 +89,7 @@ const Treatment = () => {
 					</div>
 
 					<div className='relative w-full h-full'>
-						<div className='absolute top-3 lg:-top-[19px] left-[130px] md:left-[30%] lg:left-[118px]'>
+						<div className='absolute z-20 top-3 lg:-top-[19px] left-[130px] md:left-[30%] lg:left-[118px]'>
 							<motion.div
 								initial={ { opacity: 0 } }
 								whileInView={ { opacity: 1 } }
@@ -119,7 +120,19 @@ const Treatment = () => {
 								alt=''
 								width={ 1253.3 }
 								height={ 1057.3 }
-								className='w-[626.65px] h-auto object-contain'
+								className='w-[626.65px] lg:hidden h-auto object-contain'
+							/>
+							<div className='absolute top-0 -left-20 z-10 max-lg:hidden w-[580px] h-[529px]'>
+								<Spline scene='https://prod.spline.design/l-S0yTucN7gkxo8B/scene.splinecode' />
+								<div className='absolute bottom-5 right-5 z-20 w-40 h-10 bg-midnight-blue' />
+
+							</div>
+							<Image
+								src='/images/stem-cells/treatment/small-cells.webp'
+								alt=''
+								width={ 271 }
+								height={ 383 }
+								className='w-[271px] max-lg:hidden h-auto object-contain absolute -bottom-10 right-0'
 							/>
 						</motion.div>
 					</div>

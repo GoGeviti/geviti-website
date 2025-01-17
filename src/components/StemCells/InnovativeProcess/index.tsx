@@ -79,7 +79,7 @@ const InnovativeProcess = () => {
 						},
 						'-=5'
 					)
-					.to([box1, box2], { autoAlpha: 0.3, scale: 0.5 }, '-=3')
+					.to([box1, box2], { autoAlpha: 0.3, filter: 'blur(5px)', scale: 0.5 }, '-=3')
 					.to(path1, { strokeOpacity: 0.3, duration: 1 }, '-=3')
 					.to(
 						circle,
@@ -158,11 +158,13 @@ const InnovativeProcess = () => {
 									} else {
 										gsap.to(box2, {
 											autoAlpha: 1,
+											filter: 'blur(0)',
 											scale: 1,
 											duration: 0.5,
 										});
 										gsap.to(box1, {
 											autoAlpha: 0.3,
+											filter: 'blur(5px)',
 											scale: 0.5,
 											duration: 0.5,
 										});
@@ -197,11 +199,13 @@ const InnovativeProcess = () => {
 									} else {
 										gsap.to(box1, {
 											autoAlpha: 1,
+											filter: 'blur(0)',
 											scale: 1,
 											duration: 0.5,
 										});
 										gsap.to(box2, {
 											autoAlpha: 0.3,
+											filter: 'blur(5px)',
 											scale: 0.5,
 											duration: 0.5,
 										});
@@ -209,6 +213,7 @@ const InnovativeProcess = () => {
 								} else {
 									gsap.to([box1, box2], {
 										autoAlpha: 0.3,
+										filter: 'blur(5px)',
 										scale: 0.5,
 										duration: 0.5,
 									});
@@ -228,10 +233,10 @@ const InnovativeProcess = () => {
 		<div className='pb-[72px] lg:pb-[248px] font-Poppins'>
 			<div className='container-center w-full'>
 				<Title />
-				<div className='mt-[34px] w-full relative flex flex-col items-center'>
+				<div className='mt-[34px] w-full blu relative flex flex-col items-center'>
 					<div
 						id='sc_ip_container'
-						className='relative h-[200vh] w-full'>
+						className='relative backd h-[200vh] w-full'>
 						<div className='sticky top-0 left-0 w-full flex flex-col h-1/2 lg:min-h-[946px] items-center'>
 							<div className='max-lg:hidden relative'>
 								<div className='absolute top-0 left-1/2 -translate-x-1/2 z-[1]'>

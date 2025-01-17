@@ -24,7 +24,7 @@ const HowItWorks = () => {
 			<div className='container-center'>
 				<div className='max-w-[525px] text-center mx-auto'>
 					<h2 className='lg:h3 h5'>How It Works</h2>
-					<p className='body-small'>Your bloodwork data is used to craft a personalized, nutriceutical-grade ingredient mix specifically tailored to your needs.</p>
+					<p className='body-small'>Your bloodwork data is used to craft a personalized, nutraceutical-grade ingredient mix specifically tailored to your needs.</p>
 				</div>
 				<div className='mt-16'>
 					<Swiper

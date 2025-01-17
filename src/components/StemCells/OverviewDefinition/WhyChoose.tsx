@@ -17,6 +17,7 @@ const WhyChoose = () => (
 					height={ 1714.32 }
 					className='h-auto w-full lg:w-[630.315px] object-cover'
 					alt='cells'
+					priority
 				/>
 			</div>
 

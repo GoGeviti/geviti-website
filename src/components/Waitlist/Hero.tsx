@@ -50,7 +50,7 @@ const Hero = async(props: HeroProps) => {
 						</div>
 					</div>
 					<div className='flex items-center justify-between'>
-						<div className='rounded-[20px] w-[209px] overflow-hidden bg-red-500/20 h-[159px] ml-[70px]'>
+						<div className='rounded-[20px] w-[209px] overflow-hidden h-[159px] ml-[70px]'>
 							<Image
 								src='/images/waitlist/hero-03.webp'
 								alt='Hero 01'
@@ -61,7 +61,7 @@ const Hero = async(props: HeroProps) => {
 								className='w-full h-full object-cover object-center'
 							/>
 						</div>
-						<div className='rounded-[20px] w-[209px] overflow-hidden bg-red-500/20 h-[159px] mr-[70px]'>
+						<div className='rounded-[20px] w-[209px] overflow-hidden h-[159px] mr-[70px]'>
 							<Image
 								src='/images/waitlist/hero-04.webp'
 								alt='Hero 01'
