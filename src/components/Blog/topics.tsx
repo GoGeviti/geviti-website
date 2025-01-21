@@ -16,7 +16,7 @@ import CustomSelect from '../Onboarding/InputSelect';
 
 const Topics = ({ categories } : {categories:PostCategory[]}) => {
 	const [selectedItem, setSelectedItem] = useState(0);
-	const [sort, setSort] = useState('updatedAt');
+	const [sort, setSort] = useState('-updatedAt');
 	// const { data: categories = [] } = useCategories();
 	// const selectedCategory = categories.;
   
