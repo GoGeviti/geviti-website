@@ -265,7 +265,7 @@ export const getAllPost = async(
 		depth: 2, // Changed to depth 2 to get category relationships
 		limit: limit ?? 6,
 		page: page,
-		sort: sort ?? 'updatedAt',
+		sort: sort ?? '-updatedAt',
 		draft: false,
 		where: {
 			// _status: {

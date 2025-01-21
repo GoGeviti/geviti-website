@@ -132,7 +132,7 @@ const Topics = ({ categories } : {categories:PostCategory[]}) => {
 						<div className='flex max-lg:justify-between max-lg:w-full max-lg:order-1 items-center gap-[18px]'>
 							<span className='body-small text-grey-primary'>Sort by</span>
 							<CustomSelect
-								options={ [{ label: 'Newest', value: 'updatedAt' }, { label: 'Oldest', value: '-updatedAt' }] }
+								options={ [{ label: 'Newest', value: '-updatedAt' }, { label: 'Oldest', value: 'updatedAt' }] }
 								value={ sort }
 								onChange={ handleSortChange }
 							/>
