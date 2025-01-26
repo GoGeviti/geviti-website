@@ -106,14 +106,16 @@ const Packages: React.FC = () => {
 						/>
 					</div>
 					<div className='flex max-lg:mx-auto lg:justify-end w-[98.4vw] lg:w-full'>
-						<Image
-							src='/images/cultureapothecary/package-3.webp'
-							alt=''
-							width={ 604 * 3 }
-							height={ 597 * 3 }
-							quality={ 100 }
-							className='w-full scale-[1.15] lg:scale-110 h-auto object-cover transform origin-[-20%_0%]'
-						/>
+						<div className='w-full scale-[1.15] lg:scale-110 h-auto transform origin-[-20%_0%] aspect-[604/597]'>
+							<Image
+								src='/images/cultureapothecary/package-3-2.webp'
+								alt=''
+								fill
+								sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 50vw'
+								className='w-full h-auto object-cover'
+								priority
+							/>
+						</div>
 					</div>
 				</div>
 			</div>
