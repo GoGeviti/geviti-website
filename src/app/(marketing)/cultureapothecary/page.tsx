@@ -40,7 +40,7 @@ const CultureApothecary: NextPage = () => {
 					src='/images/cultureapothecary/faq-background.webp'
 					fill
 					className='w-full object-cover'
-					sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 100vw'
+					sizes='100vw'
 					alt=''
 					quality={ 100 }
 				/>
