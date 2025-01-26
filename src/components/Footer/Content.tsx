@@ -18,10 +18,13 @@ import { Popover, PopoverContent, PopoverTrigger } from '../Popover';
 
 type FooterProps = {
   landingPage?: boolean;
-	theme?: 'dark' | 'light';
+  theme?: 'dark' | 'light';
 };
 
-const FooterContent: React.FC<FooterProps> = ({ landingPage, theme = 'light' }) => {
+const FooterContent: React.FC<FooterProps> = ({
+	landingPage,
+	theme = 'light',
+}) => {
 	const [email, setEmail] = useState<string>('');
 	const [openDisclaimer, setOpenDisclaimer] = useState<boolean>(false);
 	const [loading, setLoading] = useState<boolean>(false);
@@ -66,10 +69,12 @@ const FooterContent: React.FC<FooterProps> = ({ landingPage, theme = 'light' }) 
 					<div
 						key={ `child-${item.title}` }
 						className='flex flex-col gap-y-9px'>
-						<p className={ clsxm('text-base font-medium mb-18px', {
-							['text-primary']: theme === 'light',
-							['text-white']: theme === 'dark'
-						}) }>
+						<p
+							className={ clsxm('text-base font-medium mb-18px', {
+								['text-primary']: theme === 'light',
+								['text-white']: theme === 'dark',
+							}) }
+						>
 							{ item.title }
 						</p>
 
@@ -79,10 +84,13 @@ const FooterContent: React.FC<FooterProps> = ({ landingPage, theme = 'light' }) 
 								key={ childItem.name }
 								href={ childItem.href }
 								externalLink={ childItem.externalLink }
-								className={ clsxm('text-xs !leading-[18px] font-medium font-Poppins', {
-									['text-grey-primary']: theme === 'light',
-									['text-grey-primary sm:text-white']: theme === 'dark'
-								}) }
+								className={ clsxm(
+									'text-xs !leading-[18px] font-medium font-Poppins',
+									{
+										['text-grey-primary']: theme === 'light',
+										['text-grey-primary sm:text-white']: theme === 'dark',
+									}
+								) }
 							>
 								{ childItem.name }
 							</CustomLink>
@@ -99,9 +107,7 @@ const FooterContent: React.FC<FooterProps> = ({ landingPage, theme = 'light' }) 
 
 		return (
 			<div className='flex items-end gap-14'>
-				{ theme === 'light' && (
-					<LegitScriptSeal />
-				) }
+				{ theme === 'light' && <LegitScriptSeal /> }
 				<div>
 					<div
 						className={ clsxm(
@@ -133,9 +139,8 @@ const FooterContent: React.FC<FooterProps> = ({ landingPage, theme = 'light' }) 
 											[openDisclaimer
 												? 'text-grey-400 sm:text-primary'
 												: 'text-primary']: theme === 'light',
-											['text-white']: theme === 'dark'
+											['text-white']: theme === 'dark',
 										}
-                    
 									) }
 									{ ...(isMobile
 										? {
@@ -153,7 +158,7 @@ const FooterContent: React.FC<FooterProps> = ({ landingPage, theme = 'light' }) 
 								{ ...(isMobile
 									? {
 										side: 'top',
-										align: 'start',
+										align: 'end',
 										sideOffset: 20,
 									}
 									: {
@@ -164,19 +169,25 @@ const FooterContent: React.FC<FooterProps> = ({ landingPage, theme = 'light' }) 
 										onMouseEnter: handleMouseEnterDisclaimer,
 										onMouseLeave: handleMouseLeaveDisclaimer,
 									}) }
-								className={ clsxm('border border-grey-100 shadow-[0px_4px_18px_rgba(0,0,0,0.15)] backdrop-blur-[40px] rounded-2xl px-[15px] py-6 sm:px-6 w-[var(--radix-popover-trigger-width)] md:w-full md:max-w-2xl', {
-									['bg-white/30']: theme === 'light',
-									['bg-midnight-blue/30']: theme === 'dark'
-								}) }
+								className={ clsxm(
+									'border border-grey-100 shadow-[0px_4px_18px_rgba(0,0,0,0.15)] backdrop-blur-[40px] rounded-2xl px-[15px] py-6 sm:px-6 max-w-[70vw] md:w-full md:max-w-2xl',
+									{
+										['bg-white/30']: theme === 'light',
+										['bg-midnight-blue/30']: theme === 'dark',
+									}
+								) }
 							>
 								<span
 									dangerouslySetInnerHTML={ {
 										__html: footerData.disclaimer.content,
 									} }
-									className={ clsxm('text-[10px] sm:text-xs !leading-5 font-medium font-Poppins flex flex-col gap-y-2.5', {
-										['text-grey-600']: theme === 'light',
-										['text-white']: theme === 'dark'
-									}) }
+									className={ clsxm(
+										'text-[10px] sm:text-xs !leading-5 font-medium font-Poppins flex flex-col gap-y-2.5',
+										{
+											['text-grey-600']: theme === 'light',
+											['text-white']: theme === 'dark',
+										}
+									) }
 								/>
 							</PopoverContent>
 						</Popover>
@@ -196,7 +207,9 @@ const FooterContent: React.FC<FooterProps> = ({ landingPage, theme = 'light' }) 
 						<div className='relative overflow-hidden w-[69.98px] sm:w-[85px] h-[16.47px] sm:h-5'>
 							<Image
 								alt='logo'
-								src={ theme === 'light' ? footerData.logoDark : footerData.logoLight }
+								src={
+									theme === 'light' ? footerData.logoDark : footerData.logoLight
+								}
 								fill
 								loading='lazy'
 								className='object-contain'
@@ -206,10 +219,15 @@ const FooterContent: React.FC<FooterProps> = ({ landingPage, theme = 'light' }) 
 					</CustomLink>
 
 					<div className='mt-18px sm:mt-[26px] max-sm:max-w-[330px]'>
-						<p className={ clsxm('text-xs max-sm:!leading-[19px] sm:text-sm font-medium', {
-							['text-primary']: theme === 'light',
-							['text-white']: theme === 'dark'
-						}) }>
+						<p
+							className={ clsxm(
+								'text-xs max-sm:!leading-[19px] sm:text-sm font-medium',
+								{
+									['text-primary']: theme === 'light',
+									['text-white']: theme === 'dark',
+								}
+							) }
+						>
 							{ footerData.content }
 						</p>
 					</div>
@@ -224,10 +242,15 @@ const FooterContent: React.FC<FooterProps> = ({ landingPage, theme = 'light' }) 
 							onChange={ (e: React.ChangeEvent<HTMLInputElement>) =>
 								setEmail(e.target.value) }
 							placeholder='Email*'
-							className={ clsxm('!border-b w-full sm:w-[447px] py-[11px] sm:py-15px pr-8 !pl-0 bg-transparent text-xs sm:text-sm font-medium border-0 focus:border-0 focus:ring-0 focus:outline-0', {
-								['placeholder:text-primary text-primary !border-[#C4C4C4] focus:!border-primary']: theme === 'light',
-								['placeholder:text-white text-white !border-[#C4C4C4] sm:!border-white focus:!border-white']: theme === 'dark'
-							}) }
+							className={ clsxm(
+								'!border-b w-full sm:w-[447px] py-[11px] sm:py-15px pr-8 !pl-0 bg-transparent text-xs sm:text-sm font-medium border-0 focus:border-0 focus:ring-0 focus:outline-0',
+								{
+									['placeholder:text-primary text-primary !border-[#C4C4C4] focus:!border-primary']:
+                    theme === 'light',
+									['placeholder:text-white text-white !border-[#C4C4C4] sm:!border-white focus:!border-white']:
+                    theme === 'dark',
+								}
+							) }
 							required
 						/>
 						{ theme === 'light' && (
@@ -243,7 +266,10 @@ const FooterContent: React.FC<FooterProps> = ({ landingPage, theme = 'light' }) 
 					</form>
 
 					<div className='mt-[34px] sm:mt-[65px] flex flex-wrap items-center gap-[23px]'>
-						{ (theme === 'light' ? footerData.socialMedia : footerData.socialMediaLight).map(item => (
+						{ (theme === 'light'
+							? footerData.socialMedia
+							: footerData.socialMediaLight
+						).map(item => (
 							<CustomLink
 								key={ item.alt }
 								href={ item.url }

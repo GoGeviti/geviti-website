@@ -42,6 +42,7 @@ const Hero: React.FC = () => {
 								fill
 								sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 100vw'
 								className='w-full object-cover object-top'
+								priority
 							/>
 						</div>
 
