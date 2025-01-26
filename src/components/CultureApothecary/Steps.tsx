@@ -148,7 +148,7 @@ const stepsData = [
 
 const Steps: React.FC = () => {
 	const [activeCard, setActiveCard] = useState<number>(0);
-	const ref = useRef<any>(null);
+	const ref = useRef<HTMLDivElement | null>(null);
 	const { scrollYProgress } = useScroll({
 		target: ref,
 		offset: ['start 0', 'end 0.5'],
@@ -172,7 +172,7 @@ const Steps: React.FC = () => {
 	});
 
 	return (
-		<div className='w-full mb-10 lg:mb-[128px] py-[124px] lg:py-[101px]'>
+		<div className='w-full mb-10 lg:mb-[128px] py-[124px] lg:py-[101px] relative'>
 			<div
 				ref={ ref }
 				className='lg:min-h-[calc(230px*6)] relative flex max-lg:flex-col w-full h-full gap-[236px] container-center'

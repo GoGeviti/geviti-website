@@ -2,7 +2,7 @@ import { Suspense } from 'react';
 import { NextPage } from 'next';
 import Image from 'next/image';
 
-import { Video } from '@/components/AbousUs';
+import Video from '@/components/AbousUs/Video';
 import Hero from '@/components/CultureApothecary/Hero';
 import Packages from '@/components/CultureApothecary/Packages';
 import Solution from '@/components/CultureApothecary/Solution';
@@ -40,7 +40,7 @@ const CultureApothecary: NextPage = () => {
 					src='/images/cultureapothecary/faq-background.webp'
 					fill
 					className='w-full object-cover'
-					sizes='100vw'
+					sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 100vw'
 					alt=''
 					quality={ 100 }
 				/>

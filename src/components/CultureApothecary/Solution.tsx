@@ -136,27 +136,7 @@ const Solution: React.FC = () => {
 							<span className='max-lg:hidden'>Join Geviti</span>
 						</ButtonCta>
 
-						<div className='-mt-3'>
-							{ renderAccordionList() }
-							{ /* <Accordion type='single' collapsible>
-                {accordionData.map((item, index) => (
-                  <AccordionItem
-                    key={index}
-                    value={`culture-solution-${index}`}
-                    className='!border-none py-3'
-                  >
-                    <AccordionTrigger className='w-full flex items-center gap-3.5 text-left [&[data-state=open]>svg:nth-of-type(1)]:text-blue-primary [&[data-state=open]>svg:nth-of-type(2)]:rotate-180 data-[state=closed]:text-grey-primary data-[state=open]:text-primary font-medium text-lg -tracking-0.04em'>
-                      <CheckCircleIcon className='ease-in-out transform transition-colors duration-300 w-[18px] h-[18px] shrink-0' />
-                      <h5 className='flex-auto'>{item.title}</h5>
-                      <ChevronDown className='w-4 h-4 ease-out transform duration-200 shrink-0' />
-                    </AccordionTrigger>
-                    <AccordionContent className='pt-1 pl-8 text-left text-grey-primary text-sm'>
-                      {item.description}
-                    </AccordionContent>
-                  </AccordionItem>
-                ))}
-              </Accordion> */ }
-						</div>
+						<div className='-mt-3'>{ renderAccordionList() }</div>
 					</div>
 				</div>
 			</div>
