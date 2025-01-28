@@ -56,7 +56,7 @@ const Video = () => {
 
 	return (
 		<>
-			<div className='lg:px-3 max-lg:mt-[56px] pb-[45px] lg:pb-[140px]'>
+			<div className='lg:px-3 max-lg:mt-[56px] pb-[45px]'>
 				<div className='container-center grid grid-cols-1 place-items-center gap-[65px] lg:gap-[128px] lg:grid-cols-2'>
 					<div className='flex flex-col max-lg:order-reverse max-lg:text-center  gap-[17px] lg:gap-[58px]'>
 						<div>
