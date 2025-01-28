@@ -601,7 +601,7 @@ const landingData = {
 				text: 'Become a member',
 				href: '/pricing',
 			},
-			image: '/images/landing/compressed/continent_dots.webp',
+			image: '/images/landing/compressed/continent_dots_42.png',
 		},
 	},
 	features: [
