@@ -433,7 +433,7 @@ const StripeForm: FC<StripeFormProps> = ({
 								id='checkout_state'
 								type='checkbox'
 								title=''
-								className='h-5 w-5 mt-2.5 rounded-[1px] text-grey-100 checked:text-primary outline outline-offset-2 outline-2 focus:outline-1 focus:text-primary focus:ring-grey-100 ring-black-secondary border-none ml-1'
+								className='h-5 w-5 mt-2.5 cursor-pointer rounded-[1px] text-grey-100 checked:text-primary outline outline-offset-2 outline-2 focus:outline-1 focus:text-primary focus:ring-grey-100 ring-black-secondary border-none ml-1'
 								onChange={ (e: React.ChangeEvent<HTMLInputElement>) => setStatesChecked(e.target.checked) }
 								disabled={ formLoading }
 							/>
@@ -538,10 +538,10 @@ const StripeForm: FC<StripeFormProps> = ({
 						</button>
 						<p className='text-grey-primary uppercase text-[8.809px] font-semibold tracking-[0.969px] mt-3'>What states do we support?</p>
 						<p className='text-primary text-lg '>Care that goes where you go.</p>
-						<p className='text-grey-400 text-[8.809px] mt-2'>Available in 17 states and expanding across all the country: AZ, CA, CO, FL, GA, IL, IN, KS, MO, NM, NV, OR, TN, TX, UT, VA, WA.</p>
+						<p className='text-grey-400 text-[8.809px] mt-2'>Available in 42 states and expanding across the country. Currently we are not available in: AL, AR, KY, NJ, NY, RI, AK, HI.</p>
 						<div className='flex items-center justify-center'>
 							<Image
-								src='/images/landing/compressed/continent_dots.webp'
+								src='/images/landing/compressed/continent_dots_42.svg'
 								alt='state'
 								className='mt-11'
 								width={ 319 }
