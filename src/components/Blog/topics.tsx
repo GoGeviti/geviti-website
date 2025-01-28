@@ -16,7 +16,7 @@ import CustomSelect from '../Onboarding/InputSelect';
 
 const Topics = ({ categories } : {categories:PostCategory[]}) => {
 	const [selectedItem, setSelectedItem] = useState(0);
-	const [sort, setSort] = useState('updatedAt');
+	const [sort, setSort] = useState('-updatedAt');
 	// const { data: categories = [] } = useCategories();
 	// const selectedCategory = categories.;
   
@@ -132,7 +132,7 @@ const Topics = ({ categories } : {categories:PostCategory[]}) => {
 						<div className='flex max-lg:justify-between max-lg:w-full max-lg:order-1 items-center gap-[18px]'>
 							<span className='body-small text-grey-primary'>Sort by</span>
 							<CustomSelect
-								options={ [{ label: 'Newest', value: 'updatedAt' }, { label: 'Oldest', value: '-updatedAt' }] }
+								options={ [{ label: 'Newest', value: '-updatedAt' }, { label: 'Oldest', value: 'updatedAt' }] }
 								value={ sort }
 								onChange={ handleSortChange }
 							/>

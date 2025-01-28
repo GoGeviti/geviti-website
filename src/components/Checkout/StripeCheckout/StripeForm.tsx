@@ -438,7 +438,7 @@ const StripeForm: FC<StripeFormProps> = ({
 								disabled={ formLoading }
 							/>
 							<p>
-								<span className='text-sm text-[#6A6E70] font-Poppins'>I confirm I live in the state mentioned above and recognize that Geviti’s Longeviti Membership is only available in { ' ' }
+								<span className='text-sm text-[#6A6E70] font-Poppins'>I confirm I live in the state mentioned above and recognize that Geviti’s Longeviti Membership is not available in { ' ' }
 									<button
 										type='button'
 										onClick={ () => setIsOpenDialogState(prev => !prev) }
