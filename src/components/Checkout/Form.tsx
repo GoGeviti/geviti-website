@@ -144,7 +144,7 @@ const Form: React.FC<{
 		formik.setFieldValue('city', city ?? '');
 		formik.setFieldValue('state', state ?? '');
 		formik.setFieldValue('zip_code', zipCode ?? '');
-		formik.setFieldValue('address_1', address1 + ' ' + address2 ?? '');
+		formik.setFieldValue('address_1', (address1 ? address1 + ' ' : '') + (address2 ?? ''));
 		formik.setFieldValue('address_2', '');
 	}
 

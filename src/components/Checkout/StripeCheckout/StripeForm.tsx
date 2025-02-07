@@ -20,7 +20,7 @@ import { createKlaviyoProfile } from '@/services/klaviyo';
 import { useCheckoutStore } from '@/store/checkoutStore';
 import { FormCheckoutSchema } from '@/validator/checkout';
 
-import { createSession, joinWaitListV2, validateState } from '../api/onboarding';
+import { createSession, joinWaitListV2, validateState, validateVitalBlood } from '../api/onboarding';
 // import { DiscountReturnType, ProductsResponse } from '../api/types';
 import CustomDatePicker from '../DatePicker';
 import { ExclamationIcon } from '../Payment/State';
@@ -111,8 +111,26 @@ const StripeForm: FC<StripeFormProps> = ({
 				if (!isValidState.stateExists) {
 					setStripeResponseLoading(false);
 					return setIsOpenDialogNotAvailableState(true)
-					
-					// throw 'State not available right now. Please try again later.';
+				}
+
+				          // Validate vital bloodwork availability
+				const vitalBloodAvailability = await validateVitalBlood({
+					userAddress: {
+						line1: form.address_1,
+						line2: form.address_2,
+						city: form.city,
+						state: form.state,
+						zip: form.zip_code,
+					},
+				});
+
+				if (!vitalBloodAvailability.isAddressValid) {
+					setStripeResponseLoading(false);
+					toast.error(
+						vitalBloodAvailability.message ||
+						'Vital bloodwork is not available in your area'
+					);
+					return;
 				}
 
 				const getFPTid = () => {
@@ -538,10 +556,10 @@ const StripeForm: FC<StripeFormProps> = ({
 						</button>
 						<p className='text-grey-primary uppercase text-[8.809px] font-semibold tracking-[0.969px] mt-3'>What states do we support?</p>
 						<p className='text-primary text-lg '>Care that goes where you go.</p>
-						<p className='text-grey-400 text-[8.809px] mt-2'>Available in 42 states and expanding across the country. Currently we are not available in: AL, AR, KY, NJ, NY, RI, AK, HI.</p>
+						<p className='text-grey-400 text-[8.809px] mt-2'>Available in 29 states and expanding across the country. Currently we are not available in: AL, AK, AR, CT, HI, ID, IA, KY, ME, MT, ND, NE, NJ, NY, OK, RI, SC, SD, VT, WV, WY.</p>
 						<div className='flex items-center justify-center'>
 							<Image
-								src='/images/landing/compressed/continent_dots_42.svg'
+								src='/images/landing/compressed/continent_dots_29.svg'
 								alt='state'
 								className='mt-11'
 								width={ 319 }
