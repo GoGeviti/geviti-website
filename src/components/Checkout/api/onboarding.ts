@@ -332,3 +332,43 @@ export const joinWaitListV2 = async(params: ValidateUserStateParams) => {
 		return await processError(error);
 	}
 }
+
+interface VitalBloodAddressParams {
+	userAddress: {
+		line1: string;
+		line2?: string;
+		city: string;
+		state: string;
+		zip: string;
+	}
+}
+
+interface VitalBloodResponse {
+	isAddressValid: boolean;
+	message?: string;
+}
+
+export const validateVitalBlood = async(params: VitalBloodAddressParams): Promise<VitalBloodResponse> => {
+	try {
+		const queryParams = new URLSearchParams({
+			'userAddress[line1]': params.userAddress.line1,
+			'userAddress[line2]': params.userAddress.line2 || '',
+			'userAddress[city]': params.userAddress.city,
+			'userAddress[state]': params.userAddress.state,
+			'userAddress[zip]': params.userAddress.zip
+		});
+
+		const res = await fetch(
+			`${onboardingApiUrl}/vital-bloodwork/address/info?${queryParams}`,
+			{
+				method: 'GET',
+				headers: {
+					...headers,
+				},
+			}
+		);
+		return await processResponse(res);
+	} catch (error) {
+		return await processError(error);
+	}
+}
