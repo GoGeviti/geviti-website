@@ -1,4 +1,9 @@
+'use client';
+
+import { useEffect, useState } from 'react';
 import Image from 'next/image';
+
+import { useCarousel } from '@/hooks/embla/use-carousel';
 
 import AnimatedLine from './AnimatedLine';
 import PathText from './PathText';
@@ -16,39 +21,74 @@ const content2 = {
     ' The worlds most powerful tool to boost regeneration, reduce inflammation, improve energy, and support anti-aging',
 };
 
+const slides = [content1, content2];
+
 const MobileTherapy = () => {
+	const [isMounted, setIsMounted] = useState<boolean>(false);
+	const carousel = useCarousel({
+		loop: true,
+		duration: 25,
+		align: 'start',
+	});
+	const { mainRef: emblaRef } = carousel;
+
+	useEffect(() => {
+		setIsMounted(true);
+	}, []);
+
+	const renderCardList = () => {
+		return (
+			<div
+				className='overflow-hidden'
+				ref={ emblaRef }>
+				<div className='lg:container-center flex flex-nowrap touch-pan-y touch-pinch-zoom scrolling-touch scroll-smooth'>
+					{ isMounted
+						? slides.map((slide, index) => (
+							<div
+								key={ slide.title }
+								className='w-full min-w-0 flex flex-none px-4'
+							>
+								<div
+									className='p-[3px] rounded-[20px] bg-blend-screen'
+									style={ {
+										background:
+                        'linear-gradient(0deg, #212261, #212261), radial-gradient(47.54% 47.54% at 50.14% 0%, #743DF2 0%, rgba(18, 18, 53, 0) 100%)',
+									} }
+								>
+									<div
+										className='p-6 rounded-[19px] bg-blend-screen mix-blend-normal'
+										style={ {
+											background:
+                          'radial-gradient(117.12% 161.33% at 50% 23.87%, #2D2E83 0%, #212261 18%, #131337 43%, #0B0F26 66%, #0B0F26 86%, #0B0F26 100%)',
+										} }
+									>
+										<p className='text-sm/6 font-semibold text-white tracking-0.11em uppercase'>
+											{ slides[index]?.title }
+										</p>
+										<p className='mt-2 text-xs/5 text-white'>
+											{ slides[index]?.description }
+										</p>
+									</div>
+								</div>
+							</div>
+						))
+						: null }
+				</div>
+			</div>
+		);
+	};
+
 	return (
 		<div className='mb-[95px] lg:mb-[149px] xxxl:container-center relative isolate flex flex-col font-Poppins'>
 			<Image
-				src='/images/stem-cells/mobile-therapy/apps.webp'
+				src='/images/stem-cells/mobile-therapy/apps-2.webp'
 				alt='apps'
-				width={ 1440 * 10 }
-				height={ 959 * 10 }
+				width={ 14400 }
+				height={ 9590 }
 				className='w-[672px] h-[448px] max-sm:object-cover sm:w-screen sm:h-auto'
 				quality={ 100 }
 			/>
-			<div className='lg:hidden container-center w-full'>
-				<div
-					className='p-[3px] rounded-[20px] bg-blend-screen'
-					style={ {
-						background:
-              'linear-gradient(0deg, #212261, #212261), radial-gradient(47.54% 47.54% at 50.14% 0%, #743DF2 0%, rgba(18, 18, 53, 0) 100%)',
-					} }
-				>
-					<div
-						className='p-6 rounded-[19px] bg-blend-screen mix-blend-normal'
-						style={ {
-							background:
-                'radial-gradient(117.12% 161.33% at 50% 23.87%, #2D2E83 0%, #212261 18%, #131337 43%, #0B0F26 66%, #0B0F26 86%, #0B0F26 100%)',
-						} }
-					>
-						<p className='text-sm/6 font-semibold text-white tracking-0.11em uppercase'>
-							{ content1.title }
-						</p>
-						<p className='mt-2 text-xs/5 text-white'>{ content1.description }</p>
-					</div>
-				</div>
-			</div>
+			<div className='lg:hidden w-full'>{ renderCardList() }</div>
 
 			<div className='absolute top-[10%] lg:top-[13%] left-[48.5%]'>
 				<div className='relative'>

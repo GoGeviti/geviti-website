@@ -27,6 +27,8 @@
     "@radix-ui/react-slider": "^1.2.0",
     "@radix-ui/react-tabs": "^1.0.4",
     "@radix-ui/react-tooltip": "^1.0.7",
+    "@splinetool/react-spline": "^4.0.0",
+    "@splinetool/runtime": "^1.9.59",
     "@stripe/react-stripe-js": "^2.7.1",
     "@stripe/stripe-js": "^3.4.1",
     "@studio-freight/lenis": "^1.0.39",
