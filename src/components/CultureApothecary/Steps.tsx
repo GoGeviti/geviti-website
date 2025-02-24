@@ -146,7 +146,7 @@ const stepsData = [
 	},
 ];
 
-const Steps: React.FC = () => {
+const Steps: React.FC<{className?: string;}> = ({ className }) => {
 	const [activeCard, setActiveCard] = useState<number>(0);
 	const ref = useRef<HTMLDivElement | null>(null);
 	const { scrollYProgress } = useScroll({
@@ -172,7 +172,7 @@ const Steps: React.FC = () => {
 	});
 
 	return (
-		<div className='w-full mb-10 lg:mb-[128px] py-[124px] lg:py-[101px] relative'>
+		<div className={ clsxm('w-full mb-10 lg:mb-[128px] py-[124px] lg:py-[101px] relative', className) }>
 			<div
 				ref={ ref }
 				className='lg:min-h-[calc(230px*6)] relative flex max-lg:flex-col w-full h-full gap-[236px] container-center'

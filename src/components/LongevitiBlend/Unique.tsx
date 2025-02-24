@@ -31,9 +31,14 @@ const ProductCard = ({ title, badge, description, className }:ProductCardProps) 
 	);
 }
 
-const Unique = () => {
+type UniqueProps = {
+	type?: 'nathan' | 'sample';
+	className?: string;
+};
+
+const Unique: React.FC<UniqueProps> = ({ type = 'nathan', className }) => {
 	return (
-		<div className='lg:px-3 my-11 lg:my-[124px] max-lg:mb-[130px]'>
+		<div className={ clsxm('lg:px-3 my-11 lg:my-[124px] max-lg:mb-[130px]', className) }>
 			<div className='container-center'>
 				<div className='overflow-hidden lg:hidden'>
 					<div className='relative max-w-[461px] h-[361px] mx-auto'>
@@ -47,7 +52,7 @@ const Unique = () => {
 					</div>
 				</div>
 				<div className='max-lg:-mt-16 flex flex-col gap-3.5'>
-					<p className='text-center font-semibold uppercase tracking-[1.76px] text-primary'>See Nathan&apos;s Blend</p>
+					<p className='text-center font-semibold uppercase tracking-[1.76px] text-primary'>{ type === 'nathan' ? 'See Nathan\'s Blend' : 'See sample Blend' }</p>
 					<h3 className='lg:h3 h5 text-center text-primary font-normal'>Unique blends for your unique needs.</h3>
 					<p className='body-small text-grey-primary text-center'>
 						Designed to optimize your <span className='h-7 rounded-full bg-[#F6FFFC] border px-3 border-[#DDF7ED] w-fit inline-flex items-center justify-center gap-1'>
@@ -76,7 +81,7 @@ const Unique = () => {
 						<ProductCard
 							title='CurcuPlex'
 							badge='C-Reactive Protein'
-							description="Nathan's CRP was high, so Geviti added CurcuPlex, a bioavailable curcumin to support joint health and lower inflammation."
+							description={ `${type === 'nathan' ? 'Nathan’s' : 'User’s'} CRP was high, so Geviti added CurcuPlex, a bioavailable curcumin to support joint health and lower inflammation.` }
 							className='mx-auto max-lg:top-[100px]'
 						/>
 						<ProductCard
@@ -91,7 +96,7 @@ const Unique = () => {
 						<ProductCard
 							title='NAD+'
 							badge='Glucose (Fasting)'
-							description='Nathan’s energy levels and mitochondrial function needed a boost, so we included NAD+ to combat age-related decline and enhance cellular repair.'
+							description={ `${type === 'nathan' ? 'Nathan’s' : 'User’s'} energy levels and mitochondrial function needed a boost, so we included NAD+ to combat age-related decline and enhance cellular repair.` }
 							className='lg:mr-auto'
 						/>
 
@@ -109,7 +114,7 @@ const Unique = () => {
 						<ProductCard
 							title='Magnesium L&#8209;Threonate'
 							badge='Cortisol (AM/PM)'
-							description='Nathan experienced focus issues and restless sleep, so we added Magnesium L-Threonate to support brain function and improve rest quality.'
+							description={ `${type === 'nathan' ? 'Nathan' : 'User'} experienced focus issues and restless sleep, so we added Magnesium L-Threonate to support brain function and improve rest quality.` }
 							className='mx-auto'
 						/>
 					</div>
@@ -117,7 +122,7 @@ const Unique = () => {
 						<ProductCard
 							title='CurcuPlex'
 							badge='C-Reactive Protein'
-							description="Nathan's CRP was high, so Geviti added CurcuPlex, a bioavailable curcumin to support joint health and lower inflammation."
+							description={ `${type === 'nathan' ? 'Nathan’s' : 'User’s'} CRP was high, so Geviti added CurcuPlex, a bioavailable curcumin to support joint health and lower inflammation.` }
 							className='mx-auto max-lg:sticky max-lg:-mt-10 max-lg:transform max-lg:translate-y-0 max-lg:top-[100px]'
 						/>
 						<ProductCard
@@ -129,7 +134,7 @@ const Unique = () => {
 						<ProductCard
 							title='NAD+'
 							badge='Glucose (Fasting)'
-							description='Nathan’s energy levels and mitochondrial function needed a boost, so we included NAD+ to combat age-related decline and enhance cellular repair.'
+							description={ `${type === 'nathan' ? 'Nathan’s' : 'User’s'} energy levels and mitochondrial function needed a boost, so we included NAD+ to combat age-related decline and enhance cellular repair.` }
 							className='max-lg:sticky max-lg:top-[100px] max-lg:-mt-10 max-lg:transform max-lg:translate-y-[100px] lg:mr-auto'
 						/>
 
@@ -142,7 +147,7 @@ const Unique = () => {
 						<ProductCard
 							title='Magnesium L&#8209;Threonate'
 							badge='Cortisol (AM/PM)'
-							description='Nathan experienced focus issues and restless sleep, so we added Magnesium L-Threonate to support brain function and improve rest quality.'
+							description={ `${type === 'nathan' ? 'Nathan' : 'User'} experienced focus issues and restless sleep, so we added Magnesium L-Threonate to support brain function and improve rest quality.` }
 							className='max-lg:sticky max-lg:top-[100px] max-lg:-mt-10 max-lg:transform max-lg:translate-y-[200px] mx-auto'
 						/>
 					</div>

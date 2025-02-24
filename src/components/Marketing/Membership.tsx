@@ -40,10 +40,10 @@ const Membership: React.FC<MemberShipProps> = ({ slug }) => {
 		<div className='w-full'>
 			<div className='w-full container-center'>
 				<SectionHeading
-					title={ membershipData.title }
+					title={ membershipData.title[slug] }
 					description={ membershipData.description[slug] }
 					cta={ {
-						href: membershipData.cta.href,
+						href: membershipData.cta.href[slug],
 						text: membershipData.cta.text[slug],
 					} }
 				/>
