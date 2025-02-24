@@ -99,4 +99,10 @@ const playFairDisplay = Playfair_Display({
 	display: 'swap',
 });
 
-export { brSonoma, grifter, libreCaslon, playFairDisplay };
+const BDSupperRegular = localFont({
+	src: './fonts/BDSupperRegular.ttf',
+});
+
+export {
+	BDSupperRegular, brSonoma, grifter, libreCaslon, playFairDisplay
+};
