@@ -3,6 +3,7 @@ import Image from 'next/image';
 
 import ButtonCta from '../ButtonCta';
 import PopupReview from '../PopupReview';
+import Link from 'next/link';
 
 const Hero: React.FC = () => {
 	return (
@@ -26,12 +27,33 @@ const Hero: React.FC = () => {
             heal you. We&apos;re here to build personalized, longevity-oriented
             solutions based on the precise needs expressed by your body.
 					</p>
-					<ButtonCta
+					<div className='flex max-sm:flex-col items-center sm:items-end gap-[41px]'>
+						<ButtonCta
+							href='/pricing'
+							className='mt-[42px] w-full sm:w-fit'>
+              Join Geviti
+						</ButtonCta>
+
+						<div className='flex flex-col gap-y-4 pb-1'>
+							<p className='body-small text-primary'>
+                Questions about our membership?
+							</p>
+							<Link
+								href='https://calendly.com/cole-gogeviti/business-discovery-call'
+								target='_blank'
+								rel='noreferrer'
+								className='text-lg/6 font-medium text-primary underline'
+							>
+                Schedule A Call
+							</Link>
+						</div>
+					</div>
+					{ /* <ButtonCta
 						href='/pricing'
 						className='mt-[42px] w-full sm:w-fit'>
 						<span className='lg:hidden'>Become A Member</span>
 						<span className='max-lg:hidden'>Join Geviti</span>
-					</ButtonCta>
+					</ButtonCta> */ }
 				</div>
 				<div className='max-lg:mt-16 lg:flex-none lg:ml-[69px] lg:absolute lg:left-1/2 lg:right-0 xxxl:right-auto'>
 					<div className='relative flex'>
@@ -60,8 +82,7 @@ const Hero: React.FC = () => {
 								/>
 							</svg>
 							<p className='italic font-medium -tracking-0.04em text-primary text-base/[21px] max-w-[280px]'>
-                Every body is unique and there is no one-size-fits-all product
-                to heal you.
+								Feel like a celebrity with your own personal health concierge service at your fingertips, without the price.
 							</p>
 							<svg
 								width='17'
