@@ -630,7 +630,7 @@ const marketingData = {
 			{
 				title: 'In which states is Geviti available?',
 				content:
-          'Geviti currently offers services in 19 states across the United States. We are unable to offer services in the following states: AL, AK, AR, CT, HI, ID, IA, KY, ME, MT, ND, NE, NJ, NY, OK, RI, SC, SD, VT, WV, WY. We are actively working to expand to these states in the future.',
+          'Geviti currently offers services in 29 states across the United States. We are unable to offer services in the following states: AL, AK, AR, CT, HI, ID, IA, KY, ME, MT, ND, NE, NJ, NY, OK, RI, SC, SD, VT, WV, WY. We are actively working to expand to these states in the future.',
 			},
 			{
 				title: 'How do I get started?',
@@ -675,7 +675,7 @@ const marketingData = {
 			{
 				title: 'In which states is Geviti available?',
 				content:
-          'Geviti currently offers services in 19 states across the United States. We are unable to offer services in the following states: AL, AK, AR, CT, HI, ID, IA, KY, ME, MT, ND, NE, NJ, NY, OK, RI, SC, SD, VT, WV, WY. We are actively working to expand to these states in the future.',
+          'Geviti currently offers services in 29 states across the United States. We are unable to offer services in the following states: AL, AK, AR, CT, HI, ID, IA, KY, ME, MT, ND, NE, NJ, NY, OK, RI, SC, SD, VT, WV, WY. We are actively working to expand to these states in the future.',
 			},
 			{
 				title: 'How do I get my business started?',

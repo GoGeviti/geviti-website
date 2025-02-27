@@ -204,7 +204,7 @@ const howItWorksData = {
 		list: [
 			{
 				questions: 'What states does Geviti currently support?',
-				answer: 'Geviti currently offers services in 19 states across the United States. We are unable to offer services in the following states: AL, AK, AR, CT, HI, ID, IA, KY, ME, MT, ND, NE, NJ, NY, OK, RI, SC, SD, VT, WV, WY. We are actively working to expand to these states in the future.'
+				answer: 'Geviti currently offers services in 29 states across the United States. We are unable to offer services in the following states: AL, AK, AR, CT, HI, ID, IA, KY, ME, MT, ND, NE, NJ, NY, OK, RI, SC, SD, VT, WV, WY. We are actively working to expand to these states in the future.'
 			},
 			{
 				questions: 'How much is a membership for Geviti?',
