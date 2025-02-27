@@ -61,7 +61,7 @@ const Video = () => {
 					<div className='flex flex-col max-lg:order-reverse max-lg:text-center  gap-[17px] lg:gap-[58px]'>
 						<div>
 							<h3 className='font-medium text-primary text-2xl md:text-[32px] lg:text-4xl'>Why was Geviti started?</h3>
-							<p className='text-sm lg:text-lg text-grey-400 mt-3'>To make high-end, data-driven health optimization accessible to millions worldwide.</p>
+							<p className='text-sm lg:text-lg text-grey-400 mt-3 max-w-[476px]'>To make high-end, data-driven health optimization accessible to millions worldwide.</p>
 						</div>
 						<div>
 							<div className='w-full lg:w-[522px] max-h-[286px] h-full max-lg:aspect-video rounded-[20px] overflow-hidden group relative flex items-center justify-center'>

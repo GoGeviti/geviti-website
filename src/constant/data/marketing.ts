@@ -58,6 +58,37 @@ const membershipListVersion2 = [
 	},
 ];
 
+const membershipListVersion3 = [
+	{
+		title:
+      'At-Home Bloodwork<br /><span class="text-grey-primary">Every 6 Months (Free)</span>',
+		description:
+      'Receive complimentary at-home bloodwork twice a year to monitor and optimize your health.',
+		image: '/images/marketing/free-bloodwork.webp',
+	},
+	{
+		title:
+      'Direct access to<br /><span class="text-grey-primary">Health Experts</span>',
+		description:
+      'Connect with your dedicated care team anytime for ongoing personalized health advice and support.',
+		image: '/images/marketing/ongoing-support.webp',
+	},
+	{
+		title:
+      'Wholesale cost of Rx, peptides<br /><span class="text-grey-primary">and custom supplements</span>',
+		description:
+      'Access to reliable, doctor-approved medications & supplements tailored to your specific health needs.',
+		image: '/images/marketing/trusted-medications-2.webp',
+	},
+	{
+		title:
+      'Convenient mobile application<br /><span class="text-grey-primary">for easy access</span>',
+		description:
+      'View health reporting, schedule consultations, order product, & message your care team – all from the Geviti app.',
+		image: '/images/marketing/access-care-team.webp',
+	},
+];
+
 const stepsListDefault = [
 	{
 		title: 'Intro Screening:',
@@ -108,11 +139,13 @@ const marketingData = {
         'Experience true relief<br/>through the stages of<br/>menopause.',
 			'business-oriented':
         'Your key to a<br/>healthier, more<br/>productive workforce.',
-			'giveaway':
+			giveaway:
         'Win a 1-Year Free Geviti<br class="max-lg:hidden"/> Membership and Build a<br class="max-lg:hidden"/> Healthier Future, Today!',
 			'about-us':
         'Geviti exists to prevent avoidable<br class="max-lg:hidden"/> disease and to maximize your<br class="max-lg:hidden"/> life’s potential.',
-			'contact-us': 'We\'re Here to Support Your <br class="max-lg:hidden"/>Journey Toward Longevity, <br class="max-lg:hidden"/>and a Healthier Future',
+			'contact-us':
+        'We\'re Here to Support Your <br class="max-lg:hidden"/>Journey Toward Longevity, <br class="max-lg:hidden"/>and a Healthier Future',
+			'coffee-chill': ''
 		},
 		list: {
 			'men-weight-loss': [
@@ -140,13 +173,12 @@ const marketingData = {
 				'Personalized guidance & optimization plans',
 				'Telehealth access to Medical Providers',
 			],
-			'giveaway': [
+			giveaway: [
 				'Enter for a chance to win a 1-Year Geviti Membership and access a dedicated team of health experts, personalized health plans, regular at-home bloodwork, exclusive pricing on prescriptions and supplements, and a pathway to a healthier, more vibrant life.',
 			],
-			'about-us': [
-				'',
-			],
+			'about-us': [''],
 			'contact-us': [],
+			'coffee-chill': [],
 		},
 		cta: {
 			text: {
@@ -158,15 +190,18 @@ const marketingData = {
 				'women-weight-loss':
           '<span class="lg:hidden">Join Geviti</span><span class="max-lg:hidden">Get Started</span>',
 				'business-oriented': 'Schedule A Call',
+				'coffee-chill': '',
 			},
 			href: {
 				menopause: '/pricing',
 				'men-hormone-therapy': '/pricing',
 				'men-weight-loss': '/pricing',
 				'women-weight-loss': '/pricing',
-				'giveaway': '/pricing',
+				giveaway: '/pricing',
 				'about-us': '/pricing',
-				'business-oriented': 'https://calendly.com/cole-gogeviti/business-discovery-call',
+				'coffee-chill': '/pricing',
+				'business-oriented':
+          'https://calendly.com/cole-gogeviti/business-discovery-call',
 			},
 		},
 		image: {
@@ -175,9 +210,10 @@ const marketingData = {
 			'women-weight-loss': '/images/marketing/women-weight-loss/hero.webp',
 			menopause: '/images/marketing/menopause/hero.webp',
 			'business-oriented': '/images/marketing/business-oriented/hero.webp',
-			'giveaway': '/images/marketing/giveaway/hero.jpg',
+			giveaway: '/images/marketing/giveaway/hero.jpg',
 			'about-us': '/images/about_us/hero.webp',
 			'contact-us': '/images/contact/hero.webp',
+			'coffee-chill': '/images/contact/hero.webp',
 		},
 		imageMobile: {
 			'men-hormone-therapy':
@@ -188,9 +224,10 @@ const marketingData = {
 			menopause: '/images/marketing/menopause/hero-mobile.webp',
 			'business-oriented':
         '/images/marketing/business-oriented/hero-mobile.webp',
-			'giveaway': '/images/marketing/giveaway/hero.jpg',
+			giveaway: '/images/marketing/giveaway/hero.jpg',
 			'about-us': '/images/about_us/hero.webp',
 			'contact-us': '/images/contact/hero-mobile.webp',
+			'coffee-chill': '',
 		},
 		popup: {
 			title: 'HSA/FSA',
@@ -290,7 +327,8 @@ const marketingData = {
 					title: 'Semaglutide (Sublingual)',
 					description:
             'Get the benefits of Semaglutide without  mess or needles. From $80/mo.',
-					image: '/images/solution_media/products/weight-loss/semaglutide-drops.webp',
+					image:
+            '/images/solution_media/products/weight-loss/semaglutide-drops.webp',
 				},
 				{
 					id: 7,
@@ -396,7 +434,8 @@ const marketingData = {
 					title: 'Enclomiphene Citrate',
 					description:
             'Stimulate your body’s own natural testosterone production. From $41/mo.',
-					image: '/images/solution_media/products/testosterone-therapy/enclomiphene-citrat.webp',
+					image:
+            '/images/solution_media/products/testosterone-therapy/enclomiphene-citrat.webp',
 				},
 				{
 					id: 7,
@@ -404,7 +443,8 @@ const marketingData = {
 					title: 'HCG',
 					description:
             'Stimulates natural testosterone production. Price varies.',
-					image: '/images/solution_media/products/testosterone-therapy/hcg.webp',
+					image:
+            '/images/solution_media/products/testosterone-therapy/hcg.webp',
 				},
 				{
 					id: 8,
@@ -412,7 +452,8 @@ const marketingData = {
 					title: 'Gonadorelin',
 					description:
             'Supports natural testosterone production & preserves testicular function. From $70/mo.',
-					image: '/images/solution_media/products/testosterone-therapy/gonadorelin-mini-troches.webp',
+					image:
+            '/images/solution_media/products/testosterone-therapy/gonadorelin-mini-troches.webp',
 				},
 				{
 					id: 9,
@@ -420,7 +461,8 @@ const marketingData = {
 					title: 'Anastrozole',
 					description:
             'Blocks estrogen to prevent gynecomastia and maintain hormone balance. From $70/mo.',
-					image: '/images/solution_media/products/testosterone-therapy/anastrozole.webp',
+					image:
+            '/images/solution_media/products/testosterone-therapy/anastrozole.webp',
 				},
 				{
 					id: 5,
@@ -446,7 +488,8 @@ const marketingData = {
 					title: 'Custom Troche',
 					description:
             'Includes progesterone, estriol, and estradiol together or separately. $1/Troche.',
-					image: '/images/solution_media/products/hormone-therapy/custom-hormone-troches.webp',
+					image:
+            '/images/solution_media/products/hormone-therapy/custom-hormone-troches.webp',
 				},
 				{
 					id: 3,
@@ -454,7 +497,8 @@ const marketingData = {
 					title: 'Custom Cream',
 					description:
             'Includes progesterone, estriol, and estradiol together or separately. $1/gm.',
-					image: '/images/solution_media/products/hormone-therapy/custom-hormone-blend.webp',
+					image:
+            '/images/solution_media/products/hormone-therapy/custom-hormone-blend.webp',
 				},
 				{
 					id: 4,
@@ -462,7 +506,8 @@ const marketingData = {
 					title: 'Weight Loss',
 					description:
             'Safe and effective treatment options like GLP-1s and other medications. $90/mo',
-					image: '/images/solution_media/products/weight-loss/semaglutide-troches-male.webp',
+					image:
+            '/images/solution_media/products/weight-loss/semaglutide-troches-male.webp',
 				},
 				{
 					id: 5,
@@ -476,8 +521,17 @@ const marketingData = {
 		},
 	},
 	membership: {
-		title:
-      'What\'s Included In a<br /><span class="text-grey-primary">Geviti Membership</span>',
+		title: {
+			menopause: 'What\'s Included In a<br /><span class="text-grey-primary">Geviti Membership</span>',
+			'men-hormone-therapy': 'What\'s Included In a<br /><span class="text-grey-primary">Geviti Membership</span>',
+			'men-weight-loss': 'What\'s Included In a<br /><span class="text-grey-primary">Geviti Membership</span>',
+			'women-weight-loss': 'What\'s Included In a<br /><span class="text-grey-primary">Geviti Membership</span>',
+			'business-oriented': 'What\'s Included In a<br /><span class="text-grey-primary">Geviti Membership</span>',
+			giveaway: 'What\'s Included In a<br /><span class="text-grey-primary">Geviti Membership</span>',
+			'about-us': 'What\'s Included In a<br /><span class="text-grey-primary">Geviti Membership</span>',
+			'contact-us': 'What\'s Included In a<br /><span class="text-grey-primary">Geviti Membership</span>',
+			'coffee-chill': 'What is included in a<br /><span class="text-grey-primary">Geviti Membership</span>'
+		},
 		description: {
 			menopause:
         'Experience a new level of personalized health with Geviti. Everything you need to feel and look your best, all in one streamlined platform.',
@@ -489,9 +543,11 @@ const marketingData = {
         'Experience a new level of personalized health with Geviti. Everything you need to feel and look your best, all in one streamlined platform.',
 			'business-oriented':
         'Experience a new level of personalized health with Geviti. Everything your team needs to feel their best, all in one streamlined platform.',
-			'giveaway': '',
+			giveaway: '',
 			'about-us': '',
 			'contact-us': '',
+			'coffee-chill':
+        'Experience a new level of wellness you didn’t know was possible. Total health optimization at your fingertips. Future you will thank you.',
 		},
 		cta: {
 			text: {
@@ -500,11 +556,24 @@ const marketingData = {
 				'men-weight-loss': 'Get Started',
 				'women-weight-loss': 'Get Started',
 				'business-oriented': 'Schedule A Call',
-				'giveaway': '',
+				giveaway: '',
 				'about-us': '',
 				'contact-us': '',
+				'coffee-chill': 'Schedule A Call',
 			},
-			href: '/pricing',
+			href: {
+				menopause: '/pricing',
+				'men-hormone-therapy': '/pricing',
+				'men-weight-loss': '/pricing',
+				'women-weight-loss': '/pricing',
+				giveaway: '/pricing',
+				'about-us': '/pricing',
+				'contact-us': '/pricing',
+				'business-oriented':
+          'https://calendly.com/cole-gogeviti/business-discovery-call',
+				'coffee-chill':
+          'https://calendly.com/cole-gogeviti/business-discovery-call',
+			},
 		},
 		list: {
 			'men-hormone-therapy': membershipListVersion1,
@@ -512,9 +581,10 @@ const marketingData = {
 			'women-weight-loss': membershipListVersion1,
 			menopause: membershipListVersion2,
 			'business-oriented': membershipListVersion2,
-			'giveaway': [],
+			giveaway: [],
 			'about-us': [],
 			'contact-us': [],
+			'coffee-chill': membershipListVersion3,
 		},
 	},
 	steps: {
@@ -525,9 +595,10 @@ const marketingData = {
 			'men-hormone-therapy': stepsListDefault,
 			'men-weight-loss': stepsListDefault,
 			'women-weight-loss': stepsListDefault,
-			'giveaway': stepsListDefault,
+			giveaway: stepsListDefault,
 			'about-us': stepsListDefault,
 			'contact-us': stepsListDefault,
+			'coffee-chill': stepsListDefault,
 			'business-oriented': stepsListDefault.map(item => {
 				if (item.title === 'Tailored Products') {
 					return {
@@ -545,9 +616,10 @@ const marketingData = {
 			'men-weight-loss': 'blue',
 			'women-weight-loss': 'blue',
 			'business-oriented': 'black',
-			'giveaway': 'black',
+			giveaway: 'black',
 			'about-us': 'black',
 			'contact-us': 'black',
+			'coffee-chill': 'black',
 		},
 	},
 	faq: {
@@ -558,12 +630,12 @@ const marketingData = {
 			{
 				title: 'In which states is Geviti available?',
 				content:
-          'Geviti currently offers services in 42 states across the United States. We are unable to offer services in the following states: Alabama (AL), Alaska (AK), Arkansas (AR), Hawaii (HI), Kentucky (KY), New Jersey (NJ), New York (NY), and Rhode Island (RI). We are actively working to expand to these states in the future.',
+          'Geviti currently offers services in 19 states across the United States. We are unable to offer services in the following states: AL, AK, AR, CT, HI, ID, IA, KY, ME, MT, ND, NE, NJ, NY, OK, RI, SC, SD, VT, WV, WY. We are actively working to expand to these states in the future.',
 			},
 			{
 				title: 'How do I get started?',
 				content:
-					'Click any of the \'Get Started\' buttons to become a Geviti member by selecting your membership frequency. You\'ll be prompted to schedule an at-home bloodwork exam, and from there, we\'ll communicate with you through our mobile application.',
+          'Click any of the \'Get Started\' buttons to become a Geviti member by selecting your membership frequency. You\'ll be prompted to schedule an at-home bloodwork exam, and from there, we\'ll communicate with you through our mobile application.',
 			},
 			{
 				title: 'Does Geviti provide Primary Care?',
@@ -603,12 +675,12 @@ const marketingData = {
 			{
 				title: 'In which states is Geviti available?',
 				content:
-          'Geviti currently offers services in 42 states across the United States. We are unable to offer services in the following states: Alabama (AL), Alaska (AK), Arkansas (AR), Hawaii (HI), Kentucky (KY), New Jersey (NJ), New York (NY), and Rhode Island (RI). We are actively working to expand to these states in the future.',
+          'Geviti currently offers services in 19 states across the United States. We are unable to offer services in the following states: AL, AK, AR, CT, HI, ID, IA, KY, ME, MT, ND, NE, NJ, NY, OK, RI, SC, SD, VT, WV, WY. We are actively working to expand to these states in the future.',
 			},
 			{
 				title: 'How do I get my business started?',
 				content:
-					'Click any of the \'Schedule A Call\' buttons to speak with one of our Geviti Membership Advisors. We’ll answer any questions you have and help you get started today!',
+          'Click any of the \'Schedule A Call\' buttons to speak with one of our Geviti Membership Advisors. We’ll answer any questions you have and help you get started today!',
 			},
 			{
 				title: 'Does Geviti provide Primary Care?',
@@ -814,7 +886,7 @@ const marketingData = {
 					},
 					{
 						counterText:
-			  '57<span class="text-sm lg:text-2xl !leading-normal">%</span>',
+              '57<span class="text-sm lg:text-2xl !leading-normal">%</span>',
 						text: 'Employees state health & wellness programs are an important factor in staying in their current job',
 					},
 				],

@@ -10,7 +10,15 @@ import CustomLink from '../CustomLink';
 import { Dialog, DialogContent } from '../Dialog';
 import { ChevronRight } from '../Icons';
 
-const testimonialsData = [
+type Testimonial = {
+  image: string;
+  imageMobile?: string;
+  video: string;
+  description: string;
+  author: string;
+};
+
+const defaultTestimonialsData: Testimonial[] = [
 	{
 		image: '/images/cultureapothecary/reviews-christa.webp',
 		video: 'https://www.youtube.com/embed/LsNk5Rr88BE',
@@ -35,9 +43,13 @@ const testimonialsData = [
 	},
 ];
 
-const Testimonials: React.FC = () => {
+const Testimonials: React.FC<{ testimonials?: Testimonial[] }> = ({
+	testimonials,
+}) => {
 	const [isOpen, setIsOpen] = useState<boolean>(false);
 	const [activeIndex, setActiveIndex] = useState<number>(-1);
+
+	const testimonialsData = testimonials || defaultTestimonialsData;
 
 	const openDialogVideo = (indexToOpen: number) => {
 		setIsOpen(true);
