@@ -151,7 +151,7 @@ const Steps: React.FC<{className?: string;}> = ({ className }) => {
 	const ref = useRef<HTMLDivElement | null>(null);
 	const { scrollYProgress } = useScroll({
 		target: ref,
-		offset: ['start 0', 'end 0.5'],
+		offset: ['start 0', 'end 0'],
 	});
 	const cardLength = stepsData.length;
 
@@ -173,15 +173,14 @@ const Steps: React.FC<{className?: string;}> = ({ className }) => {
 
 	return (
 		<div className={ clsxm('w-full mb-10 lg:mb-[128px] py-[124px] lg:py-[101px] relative', className) }>
-			<div
-				ref={ ref }
-				className='lg:min-h-[calc(230px*6)] relative flex max-lg:flex-col w-full h-full gap-[236px] container-center'
-			>
-				<div className='hidden lg:block sticky top-2 max-w-[522px] aspect-[522/659] h-[85.93vh]'>
+			<div className='lg:min-h-[1840px] relative flex max-lg:flex-col w-full h-full lg:gap-40 xl:gap-[236px] container-center'>
+				<div className='hidden lg:block sticky top-2 self-start max-w-[522px] aspect-[522/659] h-[85.93vh]'>
 					{ stepsData[activeCard].content ?? null }
 				</div>
 				<div className='relative flex'>
-					<div className='max-w-[522px] max-lg:space-y-[109px]'>
+					<div
+						ref={ ref }
+						className='max-w-[522px] max-lg:space-y-[109px] flex flex-col lg:h-fit'>
 						{ stepsData.map((item, index) => (
 							<div
 								key={ item.title + index }

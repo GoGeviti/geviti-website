@@ -15,7 +15,6 @@ import Unique from '@/components/LongevitiBlend/Unique';
 import Membership from '@/components/Marketing/Membership';
 import Navbar from '@/components/Navbar/Landing';
 import coffeeChillData from '@/constant/data/coffeeChill';
-import { faqDataDefault } from '@/constant/data/faq';
 import { Slug } from '@/interfaces/marketing';
 
 const CoffeeAndChill: NextPage = () => {
@@ -41,6 +40,7 @@ const CoffeeAndChill: NextPage = () => {
 			<Testimonials testimonials={ coffeeChillData.testimonials } />
 
 			<OnePackage
+				title={ coffeeChillData.onePackage.title }
 				description={ coffeeChillData.onePackage.description }
 				className='lg:mt-[42px] lg:pb-[132px]'
 			/>
@@ -59,7 +59,7 @@ const CoffeeAndChill: NextPage = () => {
 				<BannerImage />
 			</div>
 			<FrequentlyAskedQuestions
-				data={ faqDataDefault }
+				data={ coffeeChillData.faq.data }
 				disabledAnimation
 				className='max-lg:!pb-[27px] max-lg:!pt-[79px]'
 			/>
