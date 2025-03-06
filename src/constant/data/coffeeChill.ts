@@ -52,11 +52,11 @@ const coffeeChillData = {
 			},
 			{
 				title: 'Why should I choose Geviti’s Longeviti Blend instead of buying my own supplements?',
-				content: ''
+				content: 'Geviti’s Longeviti Blend eliminates the guesswork of supplementation by providing a personalized formula based on your bloodwork results. Unlike assembling your own supplements, the Longeviti Blend is expertly crafted to target your unique health needs, ensuring precise dosages, high-quality ingredients, and maximum effectiveness. It’s convenient, cost-effective, and evolves with your health, offering a seamless way to support your longevity and well-being.'
 			},
 			{
 				title: 'How does Geviti\'s \'Longeviti Panel\' compare to the bloodwork from my Primary Care Physician?',
-				content: ''
+				content: 'Geviti’s Longeviti Panel offers a level of depth unmatched by traditional bloodwork from most primary care physicians. While standard panels typically test for 10-20 biomarkers, the Longeviti Panel analyzes over 94 biomarkers, providing a comprehensive view of your metabolic, hormonal, cardiovascular, immune and overall health. This allows us to identify imbalances and deficiencies often missed in routine testing and craft personalized health plans to optimize your longevity and well-being.'
 			},
 			{
 				title:
