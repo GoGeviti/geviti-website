@@ -36,7 +36,7 @@ const Question: React.FC<QuestionProps> = ({
 		>
 			<button
 				onClick={ () => setOpen(pv => !pv) }
-				className='pb-2 w-full flex justify-between gap-[21px] lg:gap-6'
+				className='pb-2 w-full flex items-start justify-between gap-[21px] lg:gap-6'
 			>
 				<span className='text-base lg:text-lg font-medium text-left'>
 					{ title }
@@ -51,18 +51,18 @@ const Question: React.FC<QuestionProps> = ({
 						},
 					} }
 					transition={ { ease: 'easeInOut', duration: 0.3 } }
-					className='w-[21px] lg:w-6'
+					className='w-[21px] lg:w-6 flex-shrink-0'
 				>
 					<AccordionMinus
 						className={ clsxm(
 							'w-[21px] h-[23px] lg:w-6 lg:h-[26px]',
-							open ? 'block' : 'hidden'
+							!open && 'hidden'
 						) }
 					/>
 					<AccordionPlus
 						className={ clsxm(
 							'w-[21px] h-[23px] lg:w-6 lg:h-[26px]',
-							open ? 'hidden' : 'block'
+							open && 'hidden'
 						) }
 					/>
 				</motion.span>
