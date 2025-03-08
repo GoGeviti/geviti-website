@@ -92,7 +92,7 @@ const Testimonials: React.FC<{ testimonials?: Testimonial[] }> = ({
 				<div className='flex max-lg:flex-col lg:grid lg:grid-cols-[341px_1fr] gap-[100px] lg:gap-20'>
 					<div className='flex flex-col gap-6'>
 						<h2 className='h5 lg:h3 max-xs3:text-[6vw] -tracking-0.04em'>
-              Here from
+              Hear from
 							<br />
 							<span className='text-grey-primary'>our members</span>
 						</h2>

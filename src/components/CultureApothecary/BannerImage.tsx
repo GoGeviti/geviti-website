@@ -2,7 +2,9 @@ import Image from 'next/image';
 
 const BannerImage: React.FC = () => {
 	return (
-		<div className='w-full relative overflow-hidden aspect-[375/361] sm:aspect-[1433/811]'>
+		<div
+			className='w-full relative overflow-hidden aspect-[375/361] sm:aspect-[1433/811]'
+			style={ { maxHeight: 'clamp(0px, 100vh, 812px)' } }>
 			<Image
 				src='/images/cultureapothecary/faq-background.webp'
 				fill
