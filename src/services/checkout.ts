@@ -62,25 +62,7 @@ export const createNotionDatabase = async(
 
 export const createDiscount = async(
 	formData: IPrecheckout.DiscountData
-): Promise<ResponseType> => {
-	// const res = await hubspotClient.crm.contacts.basicApi
-	// 	.create({
-	// 		associations: [],
-	// 		properties: {
-	// 			firstname: formData.name,
-	// 			email: formData.email,
-	// 			phone: formData.phone_number,
-	// 			state: formData.state,
-	// 		},
-	// 	})
-	// 	.then(async responseCreate => {
-	// 		await hubspotClient.crm.lists.membershipsApi.add(8, [Number(responseCreate.id)]);
-	// 		return { status: 'OK', message: 'Data Created' };
-	// 	})
-	// 	.catch((e:any) => {
-	// 		return { status: 'ERROR', message: e.body.message };
-	// 	});
-	// return res as ResponseType;
+): Promise<ResponseType & { profileId?: string }> => {
 
 	try {
 		const profile: ProfileCreateQuery = {
@@ -88,7 +70,7 @@ export const createDiscount = async(
 				type: ProfileEnum.Profile,
 				attributes: {
 					email: formData.email,
-					phoneNumber: formData.phone_number,
+					// phoneNumber: formData.phone_number,
 					firstName: formData.name,
 					lastName: '',
 					location: {
@@ -99,6 +81,8 @@ export const createDiscount = async(
 		}
 		
 		const resCreateProfile = await profilesApi.createOrUpdateProfile(profile);
+		const profileId = resCreateProfile.body.data.id ?? '';
+		
 		const subscribe : SubscriptionCreateJobCreateQuery = {
 			'data': {
 				'type': 'profile-subscription-bulk-create-job',
@@ -108,21 +92,21 @@ export const createDiscount = async(
 						'data': [
 							{
 								'type': 'profile',
-								'id': resCreateProfile.body.data.id ?? '',
+								'id': profileId,
 								'attributes': {
 									'email': formData.email,
-									'phoneNumber': formData.phone_number.replaceAll(' ', ''),
+									// 'phoneNumber': formData.phone_number ? formData.phone_number.replaceAll(' ', '') : '',
 									'subscriptions': {
 										'email': {
 											'marketing': {
 												'consent': 'SUBSCRIBED'
 											}
 										},
-										'sms': {
+										'sms': formData.phone_number ? {
 											'marketing': {
 												'consent': 'SUBSCRIBED'
 											}
-										}
+										} : undefined
 									}
 								}
 							}
@@ -134,23 +118,14 @@ export const createDiscount = async(
 					'list': {
 						'data': {
 							'type': 'list',
-							'id': process.env.KLAVIYO_LISTID
+							'id': formData.options
 						}
 					}
 				}
 			}
 		}
 		await profilesApi.subscribeProfiles(subscribe)
-		// const addProfileToList:ListMembersAddQuery = {
-		// 	data: [
-		// 		{
-		// 			type: ProfileEnum.Profile,
-		// 			id: resCreateProfile.body.data.id ?? ''
-		// 		}
-		// 	]
-		// }
-		// listApi.createListRelationships(process.env.KLAVIYO_LISTID, addProfileToList)
-		return { status: 'OK', message: 'Data Created' };
+		return { status: 'OK', message: 'Data Created', profileId };
 	} catch (error:any) {
 		let errorMessage = 'Opss Something Wrong!';
 
@@ -162,6 +137,40 @@ export const createDiscount = async(
 				errorMessage = errorDetail;
 			}
 		}
+		return { status: 'ERROR', message: errorMessage };
+	}
+};
+
+// New function to update profile with phone number
+export const updateDiscountWithPhone = async(
+	{ profileId, phone_number }: { profileId: string; phone_number: string }
+): Promise<ResponseType> => {
+	try {
+		if (!profileId || !phone_number) {
+			return { status: 'ERROR', message: 'Missing required data' };
+		}
+
+		await profilesApi.updateProfile(profileId, {
+			data: {
+				type: ProfileEnum.Profile,
+				id: profileId,
+				attributes: {
+					phoneNumber: phone_number.replaceAll(' ', ''),
+				}
+			}
+		});
+
+		return { status: 'OK', message: 'Profile updated with phone number' };
+	} catch (error: any) {
+		let errorMessage = 'Error updating profile';
+
+		if (error.response && error.response.data && Array.isArray(error.response.data.errors)) {
+			const errorDetail = error.response.data.errors[0]?.detail;
+			if (errorDetail) {
+				errorMessage = errorDetail;
+			}
+		}
+
 		return { status: 'ERROR', message: errorMessage };
 	}
 };

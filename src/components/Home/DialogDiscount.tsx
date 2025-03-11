@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { AiFillCloseCircle } from 'react-icons/ai';
 import InputMask from '@mona-health/react-input-mask';
 import { FormikProps, useFormik } from 'formik';
@@ -9,14 +9,37 @@ import { toast } from 'sonner';
 import { statesData } from '@/constant/data';
 import clsxm from '@/helpers/clsxm';
 import { IPrecheckout } from '@/interfaces';
-import { createDiscount } from '@/services/checkout';
+import { createDiscount, updateDiscountWithPhone } from '@/services/checkout';
 // import { setCookie } from '@/services/cookies';
-import { DiscountFormSchema } from '@/validator/checkout';
+import { DiscountFormStep1Schema, DiscountFormStep3Schema } from '@/validator/checkout';
 
 import ButtonCta from '../ButtonCta';
 import CustomSelect from '../Checkout/Select';
 import TextField from '../Checkout/TextField';
 import { Dialog, DialogContent } from '../Dialog';
+
+const options = [
+	{
+		id: 'options-1',
+		value: 'SAySbb',
+		label: 'Overall Health Optimization',
+	},
+	{
+		label: 'Peptide Therapies',
+		value: 'XUZ2ui',
+		id: 'options-2',
+	},
+	{
+		label: 'Weight Management',
+		value: 'RENyi4',
+		id: 'options-3',
+	},
+	{
+		label: 'Other',
+		value: 'RnTM7m',
+		id: 'options-4',
+	}
+]
 
 type DialogDiscountProps = {
   open?: boolean;
@@ -28,6 +51,7 @@ const initialValues = {
 	email: '',
 	state: '',
 	phone_number: '',
+	options: 'SAySbb',
 };
 
 const states = statesData.states.options;
@@ -38,29 +62,82 @@ const DialogDiscount: React.FC<DialogDiscountProps> = ({
 }) => {
 	const [enableValidation, setEnableValidation] = useState<boolean>(false);
 	const [isLoading, setIsLoading] = useState(false);
+	const [selectedOption, setSelectedOption] = useState(initialValues.options);
+	const [currentStep, setCurrentStep] = useState<number>(1);
+	const [profileId, setProfileId] = useState<string>('');
+
+	const handleOptionChange = (option: string) => {
+		setSelectedOption(option);
+		formik.setFieldValue('options', option);
+	}
+
+	// Get validation schema based on current step
+	const getValidationSchema = () => {
+		switch (currentStep) {
+			case 1:
+				return DiscountFormStep1Schema;
+			case 3:
+				return DiscountFormStep3Schema;
+			default:
+				return null; // No validation for step 2
+		}
+	};
 
 	const formik: FormikProps<IPrecheckout.DiscountData> =
     useFormik<IPrecheckout.DiscountData>({
     	validateOnBlur: enableValidation,
     	validateOnChange: enableValidation,
-    	validationSchema: DiscountFormSchema,
+    	validationSchema: getValidationSchema(),
     	initialValues: initialValues,
     	enableReinitialize: true,
     	onSubmit: async(form: IPrecheckout.DiscountData) => {
     		try {
     			setIsLoading(true);
-    			const result = await createDiscount({
-    				...form,
-    			});
-    			setIsLoading(false);
-    			if (result.status === 'OK') {
-    				toast.success(
-    					'Thank you! You should receive the discount code in your inbox shortly.'
-    				);
-    				onOpenChange && onOpenChange(false);
-    			} else {
-    				throw new Error(result.message || 'An unexpected error occurred');
+    			
+    			if (currentStep === 1) {
+    					setCurrentStep(2);
+    					setIsLoading(false);
+    					return;
+    			} else if (currentStep === 2) {
+    				// Submit data to Klaviyo after step 2
+    				const result = await createDiscount({
+    					...form,
+    				});
+    				
+    				if (result.status === 'OK' && result.profileId) {
+    					setProfileId(result.profileId);
+    					setCurrentStep(3);
+    					setIsLoading(false);
+    					return;
+    				} else {
+    					throw new Error(result.message || 'An unexpected error occurred');
+    				}
+    			} else if (currentStep === 3) {
+    				// Update profile with phone number in step 3
+    				if (form.phone_number) {
+    					const result = await updateDiscountWithPhone({
+    						profileId,
+    						phone_number: form.phone_number
+    					});
+    					
+    					if (result.status === 'OK') {
+    						toast.success(
+    							'Thank you! You should receive the discount code in your inbox shortly.'
+    						);
+    						onOpenChange && onOpenChange(false);
+    					} else {
+    						throw new Error(result.message || 'An unexpected error occurred');
+    					}
+    				} else {
+    					// Skip step 3
+    					toast.success(
+    						'Thank you! You should receive the discount code in your inbox shortly.'
+    					);
+    					onOpenChange && onOpenChange(false);
+    				}
     			}
+    			
+    			setIsLoading(false);
     		} catch (error: any) {
     			setIsLoading(false);
     			toast.error(error?.message as string, {
@@ -75,18 +152,23 @@ const DialogDiscount: React.FC<DialogDiscountProps> = ({
 		setEnableValidation(true);
 		formik.handleSubmit();
 	};
+	
+	// const handleSkipStep3 = () => {
+	// 	toast.success(
+	// 		'Thank you! You should receive the discount code in your inbox shortly.'
+	// 	);
+	// 	onOpenChange && onOpenChange(false);
+	// };
 
-	const renderContent = () => {
+	const renderContentStep1 = () => {
 		return (
 			<div className='font-Poppins'>
 				<div className='flex flex-col gap-2'>
 					<h4 className='text-center text-[28px] capitalize text-primary'>
-					Get 10% Off Your First Month
+					Get access to the 5 critical biomarkers for longevity
 					</h4>
 					<p className='text-center text-xs text-[#6A6E70]'>
-						Sign up for our Email and SMS updates and get 10% off your first
-						month! By building a comprehensive picture of your health, we can
-						tailor wellness plans & products specifically to you.
+					See what biomarkers are often overlooked by the traditional<br/>medical system.
 					</p>
 				</div>
 				<form
@@ -127,6 +209,87 @@ const DialogDiscount: React.FC<DialogDiscountProps> = ({
 						errorMessage={ formik.errors.email }
 						wrapperClassName='w-full'
 					/>
+					<ButtonCta
+						type='submit'
+						aria-label='Get your PDF'
+						text={ isLoading ? 'Loading...' : 'Get your PDF' }
+						theme='primary'
+						size='small'
+						className='w-full lg:max-w-[210px] mx-auto h-[42px] text-xs'
+					/>
+				</form>
+			</div>
+		);
+	};
+
+	const renderContentStep2 = () => {
+		return (
+			<div className='font-Poppins'>
+				<div className='flex flex-col gap-2'>
+					<h4 className='text-center text-[28px] capitalize text-primary'>
+					What brings you to geviti?
+					</h4>
+					<p className='text-center text-xs text-[#6A6E70]'>
+					At Geviti everything is personalized based on you as the individual. This helps us understand how you plan on utilizing our services.
+					</p>
+				</div>
+				<form
+					onSubmit={ onSubmitForm }
+					className='flex flex-col gap-6 mt-6'>
+					<div className='my-3 max-w-[323px] w-full mx-auto'>
+						{
+							options.map(e => {
+								return (
+									<div
+										key={ e.id }
+										onClick={ () => handleOptionChange(e.value) }
+										className='flex cursor-pointer items-center justify-between py-2.5'
+									>
+										<label
+											htmlFor={ e.id }
+											className='cursor-pointer'
+										>
+											{ e.label }
+										</label>
+										<div
+											className={ `h-[18px] w-[18px] rounded-full border flex items-center justify-center cursor-pointer ${
+												selectedOption === e.value ? 'border-primary' : 'border-grey-primary'
+											}` }
+										>
+											{ selectedOption === e.value && <div className='h-3 w-3 bg-primary rounded-full' /> }
+										</div>
+									</div>
+								)
+							})
+						}
+					</div>
+					<ButtonCta
+						type='submit'
+						aria-label='Submit'
+						text={ isLoading ? 'Loading...' : 'Submit' }
+						theme='primary'
+						size='small'
+						className='w-full lg:max-w-[210px] mx-auto h-[42px] text-xs'
+					/>
+				</form>
+			</div>
+		)
+	}
+
+	const renderContentStep3 = () => {
+		return (
+			<div className='font-Poppins'>
+				<div className='flex flex-col gap-2'>
+					<h4 className='text-center text-[28px] capitalize text-primary'>
+					Get 10% off your first three months with geviti
+					</h4>
+					<p className='text-center text-xs text-[#6A6E70]'>
+					See what biomarkers are often overlooked by the traditional medical system.
+					</p>
+				</div>
+				<form
+					onSubmit={ onSubmitForm }
+					className='flex flex-col gap-6 mt-6'>
 					<div className='flex flex-col'>
 						<InputMask
 							mask='+1\ 999 999 9999'
@@ -150,18 +313,41 @@ const DialogDiscount: React.FC<DialogDiscountProps> = ({
 							</p>
 						) }
 					</div>
-					<ButtonCta
-						type='submit'
-						aria-label='Get Your Discount'
-						text={ isLoading ? 'Loading...' : 'Get Your Discount' }
-						theme='primary'
-						size='small'
-						className='w-full lg:max-w-[210px] mx-auto h-[42px] text-xs'
-					/>
+					<div className='flex flex-row justify-between gap-2 w-full lg:max-w-[320px] mx-auto'>
+						<ButtonCta
+							type='submit'
+							aria-label='Get 10% off'
+							text={ isLoading ? 'Loading...' : 'Get 10% off' }
+							theme='primary'
+							size='small'
+							className='w-full h-[42px] text-xs'
+						/>
+					</div>
 				</form>
 			</div>
-		);
-	};
+		)
+	}
+
+	const renderActiveContent = () => {
+		switch (currentStep) {
+			case 1:
+				return renderContentStep1();
+			case 2:
+				return renderContentStep2();
+			case 3:
+				return renderContentStep3();
+			default:
+				return renderContentStep1();
+		}
+	}
+
+	useEffect(() => {
+		if (open) {
+			setEnableValidation(false);
+			setCurrentStep(1);
+			formik.resetForm();
+		}
+	}, [open]);
 
 	const renderDialog = () => {
 		return (
@@ -206,7 +392,7 @@ const DialogDiscount: React.FC<DialogDiscountProps> = ({
 								src='/images/home/discount.webp'
 							/>
 						</div>
-						<div className='p-6 flex flex-col gap-6'>{ renderContent() }</div>
+						<div className='p-6 flex flex-col gap-6 min-h-[378px]'>{ renderActiveContent() }</div>
 					</div>
 				</DialogContent>
 			</Dialog>
