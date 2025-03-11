@@ -176,7 +176,7 @@ export const updateDiscountWithPhone = async(
 };
 
 export const submitGiveaway = async(
-	formData: IPrecheckout.DiscountData & {
+	formData: Omit<IPrecheckout.DiscountData, 'options'> & {
 		birthdate: Date | null;
 	}
 ): Promise<ResponseType> => {
