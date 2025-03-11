@@ -168,7 +168,7 @@ const DialogDiscount: React.FC<DialogDiscountProps> = ({
 					Get access to the 5 critical biomarkers for longevity
 					</h4>
 					<p className='text-center text-xs text-[#6A6E70]'>
-					See what biomarkers are often overlooked by the traditional<br/>medical system.
+					See what biomarkers are often overlooked by the traditional<br className='max-lg:hidden'/> medical system.
 					</p>
 				</div>
 				<form
@@ -211,8 +211,8 @@ const DialogDiscount: React.FC<DialogDiscountProps> = ({
 					/>
 					<ButtonCta
 						type='submit'
-						aria-label='Get your PDF'
-						text={ isLoading ? 'Loading...' : 'Get your PDF' }
+						aria-label='Proceed to Step 2'
+						text={ isLoading ? 'Loading...' : 'Proceed to Step 2' }
 						theme='primary'
 						size='small'
 						className='w-full lg:max-w-[210px] mx-auto h-[42px] text-xs'
@@ -284,7 +284,7 @@ const DialogDiscount: React.FC<DialogDiscountProps> = ({
 					Get 10% off your first three months with geviti
 					</h4>
 					<p className='text-center text-xs text-[#6A6E70]'>
-					See what biomarkers are often overlooked by the traditional medical system.
+					Sign up for our SMS updates and get 10% off your first three months! By building a comprehensive picture of your health, we can tailor wellness plans & products specifically to you.
 					</p>
 				</div>
 				<form
