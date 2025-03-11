@@ -389,14 +389,35 @@ export const submitWaitlistWithPassword = async(
 	return { status: 'ERROR', message: 'Invalid Password' };
 }
 
+let cachedCount = 0;
+let lastFetchTime = 0;
+const CACHE_TTL = 5 * 60 * 1000; // 5 minutes in milliseconds
+
 export const getWaitlistTotal = async(): Promise<number> => {
+	const now = Date.now();
+  
+	// Return cached value if it's still fresh
+	if (now - lastFetchTime < CACHE_TTL) {
+		return cachedCount;
+	}
+  
 	try {
 		const response = await segmentApi.getSegment('Yye7vr', {
 			additionalFieldsSegment: ['profile_count']
 		});
-		return response.body.data.attributes.profileCount || 0;
+    
+		// Update cache
+		cachedCount = response.body.data.attributes.profileCount || 0;
+		lastFetchTime = now;
+		return cachedCount;
 	} catch (error) {
 		console.error('Error fetching waitlist count:', error);
+
+		// If we have a cached value, return it even if expired
+		if (cachedCount > 0) {
+			return cachedCount;
+		}
+    
 		return 0;
 	}
 };
