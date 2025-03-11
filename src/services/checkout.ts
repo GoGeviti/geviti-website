@@ -102,11 +102,11 @@ export const createDiscount = async(
 												'consent': 'SUBSCRIBED'
 											}
 										},
-										'sms': formData.phone_number ? {
-											'marketing': {
-												'consent': 'SUBSCRIBED'
-											}
-										} : undefined
+										// 'sms': formData.phone_number ? {
+										// 	'marketing': {
+										// 		'consent': 'SUBSCRIBED'
+										// 	}
+										// } : undefined
 									}
 								}
 							}
@@ -155,10 +155,39 @@ export const updateDiscountWithPhone = async(
 				type: ProfileEnum.Profile,
 				id: profileId,
 				attributes: {
-					phoneNumber: phone_number.replaceAll(' ', ''),
+					phoneNumber: phone_number.replaceAll(' ', '')
 				}
 			}
 		});
+
+		const subscribe : SubscriptionCreateJobCreateQuery = {
+			'data': {
+				'type': 'profile-subscription-bulk-create-job',
+				'attributes': {
+					'customSource': 'Marketing Event',
+					'profiles': {
+						'data': [
+							{
+								'type': 'profile',
+								'id': profileId,
+								'attributes': {
+									'phoneNumber': phone_number.replaceAll(' ', ''),
+									'subscriptions': {
+										'sms': {
+											'marketing': {
+												'consent': 'SUBSCRIBED'
+											}
+										}
+									}
+								}
+							}
+						]
+					},
+					// 'historical_import': false
+				}
+			}
+		}
+		await profilesApi.subscribeProfiles(subscribe)
 
 		return { status: 'OK', message: 'Profile updated with phone number' };
 	} catch (error: any) {
