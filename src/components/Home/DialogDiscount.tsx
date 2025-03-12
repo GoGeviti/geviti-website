@@ -211,11 +211,11 @@ const DialogDiscount: React.FC<DialogDiscountProps> = ({
 					/>
 					<ButtonCta
 						type='submit'
-						aria-label='Proceed to Step 2'
-						text={ isLoading ? 'Loading...' : 'Proceed to Step 2' }
+						aria-label='Proceed To Step 2'
+						text={ isLoading ? 'Loading...' : 'Proceed To Step 2' }
 						theme='primary'
 						size='small'
-						className='w-full lg:max-w-[210px] mx-auto h-[42px] text-xs'
+						className='w-full lg:w-fit pl-[42px] pr-[60px] mx-auto h-[42px] text-xs'
 					/>
 				</form>
 			</div>
@@ -265,11 +265,11 @@ const DialogDiscount: React.FC<DialogDiscountProps> = ({
 					</div>
 					<ButtonCta
 						type='submit'
-						aria-label='Submit'
-						text={ isLoading ? 'Loading...' : 'Submit' }
+						aria-label='Get Your PDF'
+						text={ isLoading ? 'Loading...' : 'Get Your PDF' }
 						theme='primary'
 						size='small'
-						className='w-full lg:max-w-[210px] mx-auto h-[42px] text-xs'
+						className='w-full lg:w-fit pl-[42px] pr-[60px] mx-auto h-[42px] text-xs'
 					/>
 				</form>
 			</div>
@@ -316,12 +316,12 @@ const DialogDiscount: React.FC<DialogDiscountProps> = ({
 					<div className='flex flex-row justify-between gap-2 w-full lg:max-w-[320px] mx-auto'>
 						<ButtonCta
 							type='submit'
-							aria-label='Get 10% off'
-							text={ isLoading ? 'Loading...' : 'Get 10% off' }
+							aria-label='Get 10% Off'
+							text={ isLoading ? 'Loading...' : 'Get 10% Off' }
 							theme='primary'
 							size='small'
-							className='w-full h-[42px] text-xs'
-						/>
+							className='w-full lg:w-fit pl-[42px] pr-[60px] mx-auto h-[42px] text-xs'
+						 />
 					</div>
 				</form>
 			</div>
