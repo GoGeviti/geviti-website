@@ -21,7 +21,6 @@ import { useCheckoutStore } from '@/store/checkoutStore';
 import { FormCheckoutSchema } from '@/validator/checkout';
 
 import { createSession, joinWaitListV2, validateState, validateVitalBlood } from '../api/onboarding';
-// import { DiscountReturnType, ProductsResponse } from '../api/types';
 import CustomDatePicker from '../DatePicker';
 import { ExclamationIcon } from '../Payment/State';
 import CustomSelect from '../Select';
@@ -30,14 +29,8 @@ import TextField from '../TextField';
 import StripePaymentElement from './StripePaymentElement';
 
 type StripeFormProps = {
-  // stripe: Stripe | null;
-//   totalPrice?: number;
   handleCheckout: () => void;
-//   loading: boolean;
-// 	coupon : string;
-// 	priceId: string | string[] | undefined
-// 	selectedProduct : ProductsResponse[];
-// 	discount:DiscountReturnType | null;
+
 };
 
 const initialValues = {
@@ -54,15 +47,7 @@ const initialValues = {
 	phone_number: '',
 };
 
-const StripeForm: FC<StripeFormProps> = ({
-	// elements,
-	// totalPrice,
-	// loading,
-	// coupon,
-	// selectedProduct,
-	// priceId,
-	// discount
-}) => {
+const StripeForm: FC<StripeFormProps> = () => {
 
 	const { checkoutLoading: loading, promoCode: coupon, productMembership: selectedProduct, selectedProductPrice } = useCheckoutStore();
 
