@@ -74,7 +74,9 @@ const StripeCheckout: FC<PageProps> = ({ searchParams, priceData }) => {
 
 	const getFPRef = () => {
 		if (typeof window !== 'undefined') {
-			return (window as any).FPROM?.data?.ref;
+			// const fprom = (window as any).FPROM?.data?.ref_id;
+			// console.log('fprom ==> ', fprom);
+			return (window as any).FPROM?.data?.ref_id;
 		}
 		return undefined;
 	};
