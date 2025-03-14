@@ -1,6 +1,6 @@
 import { NextPage } from 'next';
 
-import { getProductMemberhsip } from '@/components/Checkout/api/onboarding';
+import { getProductMembership } from '@/components/Checkout/api/onboarding';
 import StripeCheckout from '@/components/Checkout/StripeCheckout';
 import IntroScreen from '@/components/IntroScreen';
 
@@ -10,10 +10,8 @@ type PageProps = {
 
 const PaymentSuccessPage: NextPage<PageProps> = async props => {
 	const searchParams = await props.searchParams;
-	// const productId = searchParams?.product_id;
-	// const priceId = searchParams?.price_id;
 
-	const productMembership = await getProductMemberhsip();
+	const productMembership = await getProductMembership();
 
 	return (
 		<IntroScreen type='image'>
