@@ -12,6 +12,7 @@ import {
 	MembershipOfferingsReturnType,
 	ProductsPriceResponse,
 	ProductsResponse,
+	ReferralCouponReturnType,
 	TempUser,
 	TempUserDataParams,
 	TempUserReturnType,
@@ -144,6 +145,29 @@ export const getDiscount = async(code: string, product_id:string): Promise<Disco
 		return {
 			...data
 		}
+	} catch (error) {
+		return await processError(error);
+	}
+};
+
+export const getReferralDiscount = async(code: string): Promise<ReferralCouponReturnType['coupons'][0] | null> => {
+	try {
+		const res = await fetch(
+			`${onboardingApiUrl}/coupons/referral-coupon/${code}
+    `,
+			{
+				method: 'GET',
+				headers: {
+					...headers,
+				},
+				cache: 'no-store',
+			}
+		);
+		const data = await processResponse<ReferralCouponReturnType>(res);
+		if (data.coupons.length > 0) {
+			return data.coupons[0]
+		}
+		return null
 	} catch (error) {
 		return await processError(error);
 	}
