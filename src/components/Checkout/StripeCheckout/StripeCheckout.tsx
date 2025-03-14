@@ -43,9 +43,9 @@ const StripeCheckout: FC<PageProps> = ({ searchParams, priceData }) => {
 		promoCode,
 	} = useCheckoutStore();
 
-	const getFPTid = () => {
+	const getFPRef = () => {
 		if (typeof window !== 'undefined') {
-			return (window as any).FPROM?.data?.tid;
+			return (window as any).FPROM?.data?.ref;
 		}
 		return undefined;
 	};
@@ -55,7 +55,7 @@ const StripeCheckout: FC<PageProps> = ({ searchParams, priceData }) => {
 			setSelectedProductPrice(priceData.productPrices.find(it => it.priceId === priceId) ?? null);
 			setProductMembership(priceData)
 
-			const referralCode = getFPTid();
+			const referralCode = getFPRef();
 			// const referralCode = 'bilal31';
 			if (referralCode) {
 				getReferralDiscount(referralCode).then(res => {
