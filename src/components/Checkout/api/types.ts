@@ -95,6 +95,19 @@ export interface DiscountReturnType {
     times_redeemed: number;
     valid: boolean;
 }
+
+export interface ReferralCouponReturnType {
+  coupons: {
+    id: number;
+    name: string;
+    amount: number;
+    unit: string;
+    default_promo_code: string;
+    campaign_id: number;
+    campaign_name: string;
+  }[];
+}
+
 export interface CheckoutParams {
   user_token: string;
   stripe_token: string;

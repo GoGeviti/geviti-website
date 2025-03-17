@@ -12,10 +12,7 @@ import { Sheet, SheetContent, SheetTrigger } from '@/components/Sheet';
 import { ProductMembership } from '@/interfaces/product';
 import { useCheckoutStore } from '@/store/checkoutStore';
 
-import {
-	getDiscount,
-	// getProductMemberhsip,
-} from '../api/onboarding';
+import { getDiscount, getReferralDiscount, } from '../api/onboarding';
 
 import CheckoutItem from './CheckoutItem';
 import DiscountForm from './DiscountForm';
@@ -75,26 +72,27 @@ const StripeCheckout: FC<PageProps> = ({ searchParams, priceData }) => {
 		// discountApplied,
 	} = useCheckoutStore();
 
-	// useEffect(() => {
-	// 	// setProductLoading(true);
-	// 	if (!productId || !priceId) {
-	// 		router.replace('/pricing');
-	// 		return;
-	// 	}
-	// 	const getOfferings = async() => {
-	// 		setLoading(true);
-	// 		const products = await getProductMemberhsip();
-	// 		setProductMembership(products)
-	// 		setSelectedProductPrice(products.productPrices.find(it => it.priceId === priceId) ?? null);
-	// 		setLoading(false);
-	// 	};
-	// 	getOfferings();
-	// }, []);
+	const getFPTid = () => {
+		if (typeof window !== 'undefined') {
+			return (window as any).FPROM?.data?.tid;
+		}
+		return undefined;
+	};
 
 	useEffect(() => {
 		if (priceData) {
 			setSelectedProductPrice(priceData.productPrices.find(it => it.priceId === priceId) ?? null);
 			setProductMembership(priceData)
+
+			const referralCode = getFPTid();
+			// const referralCode = 'bilal31';
+			if (referralCode) {
+				getReferralDiscount(referralCode).then(res => {
+					if (res) {
+						handleCouponSubmit(res?.default_promo_code);
+					}
+				});
+			}
 		}
 	}, [priceData]);
 
@@ -131,7 +129,6 @@ const StripeCheckout: FC<PageProps> = ({ searchParams, priceData }) => {
 		},
 		[]
 	);
-
 	const handleCheckout = useCallback(
 		async(
 			// token: string,
@@ -159,6 +156,7 @@ const StripeCheckout: FC<PageProps> = ({ searchParams, priceData }) => {
 		},
 		[productMembership, discount, promoCode]
 	);
+
 	return (
 		<div className='flex flex-col lg:flex-row min-h-screen h-full w-full font-Poppins'>
 			<div className='min-h-screen h-auto w-full bg-primary max-lg:pb-20'>

@@ -21,9 +21,9 @@ const DiscountForm: FC<DiscountFormProps> = ({
 	// disabled,
 }) => {
 
-	const { couponLoading: loading, discountApplied } = useCheckoutStore();
+	const { couponLoading: loading, discountApplied, promoCode, setPromoCode } = useCheckoutStore();
 
-	const [inputValue, setInputValue] = useState('');
+	// const [inputValue, setInputValue] = useState('');
 	const [prevValue, setPrevValue] = useState('');
 	
 	const debounceSubmitCoupon = useCallback(
@@ -40,7 +40,7 @@ const DiscountForm: FC<DiscountFormProps> = ({
 	const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const newValue = e.target.value;
 
-		setInputValue(newValue);
+		setPromoCode(newValue);
 		// Call debounceSubmitCoupon only if the new value is different from the previous value
 		if (newValue !== prevValue) {
 			setPrevValue(newValue);
@@ -58,7 +58,7 @@ const DiscountForm: FC<DiscountFormProps> = ({
 			</label>
 
 			<TextField
-				value={ inputValue }
+				value={ promoCode }
 				className='mt-6'
 				id='coupon_code'
 				type='text'
