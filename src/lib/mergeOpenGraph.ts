@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 
-export const SITEURL = 'https://' + (process.env.NEXT_PUBLIC_VERCEL_ENV === 'production' ? process.env.NEXT_PUBLIC_VERCEL_PROJECT_PRODUCTION_URL : process.env.NEXT_PUBLIC_VERCEL_URL);
+export const SITEURL = 'https://' +  process.env.BASE_URL;
 
 const defaultOpenGraph: Metadata['openGraph'] = {
 	title: 'Geviti',
