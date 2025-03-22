@@ -121,8 +121,7 @@ const Solution: React.FC = () => {
 					<div className='lg:max-w-[507px] max-lg:px-4 flex flex-col gap-[42px]'>
 						<h2 className='h5 lg:h3 max-xs3:text-[6vw] max-sm:max-w-[337px]'>
 							<span className='max-lg:hidden'>
-                We help address a variety of symptoms for total health
-                optimization.
+							We assist in total body optimization for a healthier, longer lifespan
 							</span>
 							<span className='lg:hidden'>
                 We assist in total body optimization for a healthier, longer
