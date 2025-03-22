@@ -541,10 +541,10 @@ const StripeForm: FC<StripeFormProps> = () => {
 						</button>
 						<p className='text-grey-primary uppercase text-[8.809px] font-semibold tracking-[0.969px] mt-3'>What states do we support?</p>
 						<p className='text-primary text-lg '>Care that goes where you go.</p>
-						<p className='text-grey-400 text-[8.809px] mt-2'>Available in 29 states and expanding across the country. Currently we are not available in: AL, AK, AR, CT, HI, ID, IA, KY, ME, MT, ND, NE, NJ, NY, OK, RI, SC, SD, VT, WV, WY.</p>
+						<p className='text-grey-400 text-[8.809px] mt-2'>Available in 29 states and expanding across the country. Currently, we are available in: AZ, CA, CO, DE, FL, GA, IL, IN, KS, LA, MA, MD, MI, MN, MO, MS, NC, NH, NM, NV, OH, OR, PA, TN, TX, UT, VA, WA, WI.</p>
 						<div className='flex items-center justify-center'>
 							<Image
-								src='/images/landing/compressed/continent_dots_29.svg'
+								src='/images/landing/compressed/continent_dots_available_29.svg'
 								alt='state'
 								className='mt-11'
 								width={ 319 }
