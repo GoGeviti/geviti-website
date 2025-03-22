@@ -227,7 +227,7 @@ export const faqDataDefault = [
 	{
 		title: 'In which states is Geviti available?',
 		content:
-      'Geviti currently offers services in 29 states across the United States. We are unable to offer services in the following states: AL, AK, AR, CT, HI, ID, IA, KY, ME, MT, ND, NE, NJ, NY, OK, RI, SC, SD, VT, WV, WY. We are actively working to expand to these states in the future.',
+      'Available in 29 states and expanding across the country. Currently, we are available in: AZ, CA, CO, DE, FL, GA, IL, IN, KS, LA, MA, MD, MI, MN, MO, MS, NC, NH, NM, NV, OH, OR, PA, TN, TX, UT, VA, WA, WI. We are actively working to expand to these states in the future.',
 	},
 	{
 		title: 'How do I get started?',
