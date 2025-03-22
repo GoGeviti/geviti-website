@@ -87,14 +87,15 @@ const heroData = {
 	},
 }
 
-interface PageProps {
-	params: {
-		influencer: string;
-	}
-}
+type Params = Promise<{
+	influencer: string;
+}>
 
-const CultureApothecary = async({ params }: PageProps) => {
-	const { influencer } = await params
+const CultureApothecary = async(props:{
+	params : Params
+}) => {
+	const { influencer } = await props.params
+
 	if (!paths.includes(influencer)) {
 		notFound();
 	}
