@@ -1,4 +1,5 @@
 import { Suspense } from 'react';
+import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
 import Video from '@/components/AbousUs/Video';
@@ -16,6 +17,7 @@ import Analyzed from '@/components/LongevitiPanel/Analyzed';
 import Navbar from '@/components/Navbar/Landing';
 import RunningLogo from '@/components/RunningLogo';
 import { faqDataDefault } from '@/constant/data/faq';
+import { mergeOpenGraph } from '@/lib/mergeOpenGraph';
 
 const paths = [
 	'cultureapothecary',
@@ -95,24 +97,27 @@ const heroData = {
 	},
 }
 
-interface PageProps {
-	params: {
-		influencer: string;
-	}
+type Props = {
+  params: Promise<{ influencer: string }>
 }
 
-const CultureApothecary = async({ params }: PageProps) => {
+export async function generateMetadata(
+	{ params }: Props,
+): Promise<Metadata> {
+	// Read route param
 	const { influencer } = await params
+
+	// Check if influencer exists in our paths
 	if (!paths.includes(influencer)) {
 		return {
 			title: 'Not Found',
 			description: 'The page you are looking for does not exist.'
 		}
 	}
-  
+
 	// Get hero data for this influencer
 	const hero = heroData[influencer as keyof typeof heroData];
-  
+
 	return {
 		title: hero.title,
 		description: hero.description,
