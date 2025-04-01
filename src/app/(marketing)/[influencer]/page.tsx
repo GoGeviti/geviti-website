@@ -42,7 +42,7 @@ const heroData = {
 	'wellnessherway': {
 		title: 'Welcome to Geviti: Personalized Health Optimization, Designed for Her Journey.',
 		description: 'Every body is unique and there is no one-size-fits-all product to heal you. We\'re here to build personalized, longevity-oriented solutions based on the precise needs expressed by your body.',
-		image: '/images/cultureapothecary/hero/wellnessherway.webp',
+		image: '/images/cultureapothecary/hero/og/wellnessherway.png',
 		ogImage: '/images/cultureapothecary/hero/og/wellnessherway.png',
 		imageAlt: 'Gracie Norton',
 		popupReview: ''
@@ -90,7 +90,7 @@ const heroData = {
 	'1000hoursoutside': {
 		title: 'Welcome to Geviti, Your Partner in Feeling Younger Every Year.',
 		description: 'Every body is unique and there is no one-size-fits-all product to heal you. We\'re here to build personalized, longevity-oriented solutions based on the precise needs expressed by your body.',
-		image: '/images/cultureapothecary/hero/1000hoursoutside.webp',
+		image: '/images/cultureapothecary/hero/1000hoursoutside.jpg',
 		ogImage: '/images/cultureapothecary/hero/og/1000hoursoutside.jpeg',
 		imageAlt: '1000 Hours Outside',
 		popupReview: 'The health of the whole person is something we fully believe in; mind, spirit and body. Geviti has us covered when it comes to understanding the health of our body, and we love that!'

@@ -68,6 +68,7 @@ const Hero: React.FC<HeroProps> = ({ title, description, image, imageAlt, popupR
 								alt={ imageAlt }
 								src={ image }
 								fill
+								quality={ 100 }
 								sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 100vw'
 								className='w-full object-cover object-top'
 								priority
