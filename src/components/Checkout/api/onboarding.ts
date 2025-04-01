@@ -335,7 +335,7 @@ export const validateState = async(params: ValidateUserStateParams): Promise<{st
 	}
 }
 
-export const joinWaitListV2 = async(params: ValidateUserStateParams) => {
+export const joinWaitListV2 = async(params: ValidateUserStateParams, tokenState:string) => {
 	try {
 		const res = await fetch(
 			`${onboardingApiUrl}/v3/users/waitlist`,
@@ -343,6 +343,7 @@ export const joinWaitListV2 = async(params: ValidateUserStateParams) => {
 				method: 'POST',
 				headers: {
 					...headers,
+					Authorization: `Bearer ${tokenState}`,
 				},
 				body: JSON.stringify(params),
 			}

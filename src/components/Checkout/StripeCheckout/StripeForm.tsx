@@ -60,6 +60,7 @@ const StripeForm: FC<StripeFormProps> = () => {
 		listId: ''
 	})
 	const [token, setToken] = useState('');
+	const [tokenState, setTokenState] = useState('');
 	const [formSubmitted, setFormSubmitted] = useState(false);
 	const [isOpenDialogState, setIsOpenDialogState] = useState(false);
 	const [isOpenDialogNotAvailableState, setIsOpenDialogNotAvailableState] = useState(false);
@@ -79,6 +80,7 @@ const StripeForm: FC<StripeFormProps> = () => {
 		enableReinitialize: true,
 		onSubmit: async(form: IPrecheckout.BillingInfo) => {
 			try {
+				setTokenState('')
 				setStripeResponseLoading(true);
 				const isValidState = await validateState({
 					firstName: form.firstName,
@@ -95,6 +97,7 @@ const StripeForm: FC<StripeFormProps> = () => {
 				})
 				if (!isValidState.stateExists) {
 					setStripeResponseLoading(false);
+					setTokenState(isValidState.token)
 					return setIsOpenDialogNotAvailableState(true)
 				}
 
@@ -255,7 +258,7 @@ const StripeForm: FC<StripeFormProps> = () => {
 			phoneNumber: formik.values.phone_number,
 			state: formik.values.state,
 			zipCode: formik.values.zip_code
-		})
+		}, tokenState)
 		setIsLoading(false);
 		if (res) {
 			toast.success('You have been added to the waitlist');
