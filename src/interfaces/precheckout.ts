@@ -40,6 +40,7 @@ export interface DiscountData {
   state: string;
   email: string;
   phone_number: string;
+  options: string;
 }
 
 export interface BillingInfo {

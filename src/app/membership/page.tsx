@@ -8,7 +8,7 @@ import {
 	PricingComponent,
 	RunningLogo,
 } from '@/components';
-import { getProductMemberhsip } from '@/components/Checkout/api/onboarding';
+import { getProductMembership } from '@/components/Checkout/api/onboarding';
 import { membershipData } from '@/constant/data';
 import { mergeOpenGraph } from '@/lib/mergeOpenGraph';
 
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
 };
 
 const MemberShipPage = async() => {
-	const productMembership = await getProductMemberhsip();
+	const productMembership = await getProductMembership();
 	return (
 		<div className='flex min-h-screen flex-col w-full bg-grey-background font-Poppins'>
 			<MembershipComponent.Hero />

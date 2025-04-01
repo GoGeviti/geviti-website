@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 
 import { Footer, FrequentlyAskedQuestions } from '@/components';
-import { getProductMemberhsip } from '@/components/Checkout/api/onboarding';
+import { getProductMembership } from '@/components/Checkout/api/onboarding';
 import BannerMember from '@/components/Pricing/Banner';
 // import Download from '@/components/Pricing/Download';
 import Hero from '@/components/Pricing/Hero';
@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 };
 
 const PricingPage = async() => {
-	const productMembership = await getProductMemberhsip();
+	const productMembership = await getProductMembership();
 
 	return (
 		<div className='flex min-h-screen flex-col w-full bg-white font-Poppins'>

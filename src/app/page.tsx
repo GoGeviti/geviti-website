@@ -3,7 +3,7 @@ import { NextPage } from 'next';
 import dynamic from 'next/dynamic';
 
 import { Footer } from '@/components';
-import { getProductMemberhsip } from '@/components/Checkout/api/onboarding';
+import { getProductMembership } from '@/components/Checkout/api/onboarding';
 import IntroScreen from '@/components/IntroScreen';
 import {
 	FeaturedOn,
@@ -34,7 +34,7 @@ const Innovative = dynamic(() => import('@/components/Landing/Innovative'));
 const HeroPricing = dynamic(() => import('@/components/Pricing/Hero'));
 
 const HomePage: NextPage = async() => {
-	const productMembership = await getProductMemberhsip();
+	const productMembership = await getProductMembership();
 	const categories = await getAllCategories();
 	const showIntro = await getCookie('show_intro');
 	const showBanner = await getCookie('close_hero_banner');

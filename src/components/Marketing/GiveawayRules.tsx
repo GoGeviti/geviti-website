@@ -45,8 +45,8 @@ const initialValues = {
 	birthdate: null
 };
 
-type GiveAwayFormType = IPrecheckout.DiscountData&{
-  birthdate: Date | null;
+type GiveAwayFormType = Omit<IPrecheckout.DiscountData, 'options'> & {
+	birthdate: Date | null;
 }
 
 const GiveawayRules = () => {

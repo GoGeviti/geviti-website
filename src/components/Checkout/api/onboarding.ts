@@ -230,7 +230,7 @@ export const getAllProducts = async() : Promise<ProductsResponse[]> => {
 	}
 }
 
-export const getProductMemberhsip = async() : Promise<ProductMembership> => {
+export const getProductMembership = async() : Promise<ProductMembership> => {
 	try {
 		const res = await fetch(
 			`${onboardingApiUrl}/products/membership`,

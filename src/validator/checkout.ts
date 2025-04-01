@@ -36,10 +36,27 @@ export const FormCheckoutSchema = yup.object().shape({
 		.test('birthdate', 'Must be 18 years or older', value => differenceInYears(new Date(), new Date(value)) >= 18),
 });
 
+// Create step-specific schemas
+export const DiscountFormStep1Schema = yup.object().shape({
+	name: yup.string().label('Name')
+		.required()
+		.max(40),
+	email: yup.string().email()
+		.required()
+		.label('Email'),
+	state: yup.string().required()
+		.label('State'),
+});
+
+export const DiscountFormStep3Schema = yup.object().shape({
+	phone_number: yup.string().required()
+		.label('Phone number'),
+});
+
+// Keep the complete schema for final validation if needed
 export const DiscountFormSchema = yup.object().shape({
 	name: yup.string().label('Name')
 		.required()
-		// .matches(/^[a-zA-ZÀ-ÖÙ-öù-ÿĀ-žḀ-ỿ\/]+$/, 'Please enter valid Name')
 		.max(40),
 	email: yup.string().email()
 		.required()
@@ -47,13 +64,14 @@ export const DiscountFormSchema = yup.object().shape({
 	phone_number: yup.string().required()
 		.label('Phone number'),
 	state: yup.string().required()
-		.label('State')
+		.label('State'),
+	options: yup.string().required()
+		.label('Options'),
 });
 
 export const GiveawayFormSchema = yup.object().shape({
 	name: yup.string().label('Name')
 		.required()
-		// .matches(/^[a-zA-ZÀ-ÖÙ-öù-ÿĀ-žḀ-ỿ\/]+$/, 'Please enter valid Name')
 		.max(40),
 	email: yup.string().email()
 		.required()
@@ -73,7 +91,6 @@ export const GiveawayFormSchema = yup.object().shape({
 export const ContactFormSchema = yup.object().shape({
 	full_name: yup.string().label('Full Name')
 		.required()
-		// .matches(/^[a-zA-ZÀ-ÖÙ-öù-ÿĀ-žḀ-ỿ\/]+$/, 'Please enter valid Name')
 		.max(40),
 	email: yup.string().email()
 		.required()
