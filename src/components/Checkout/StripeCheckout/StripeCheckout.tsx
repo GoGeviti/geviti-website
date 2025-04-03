@@ -82,7 +82,7 @@ const StripeCheckout: FC<PageProps> = ({ searchParams, priceData }) => {
 					setPromoCode(code.toUpperCase());
 				} else {
 					setDiscountApplied(false);
-					setPromoCode('');
+					// setPromoCode('');
 					toast.error('Coupon doesn\'t exist', {
 						icon: <AiFillCloseCircle className='h-5 w-5 text-danger' />,
 					});
@@ -90,7 +90,7 @@ const StripeCheckout: FC<PageProps> = ({ searchParams, priceData }) => {
 				setCouponLoading(false);
 			} catch (error) {
 				setDiscount(null);
-				setPromoCode('');
+				// setPromoCode('');
 				setDiscountApplied(false);
 				setCouponLoading(false);
 				toast.error(error as string, {
