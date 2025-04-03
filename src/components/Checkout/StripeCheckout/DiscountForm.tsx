@@ -29,7 +29,7 @@ const DiscountForm: FC<DiscountFormProps> = ({
 	const debounceSubmitCoupon = useCallback(
 		debounce(enteredCoupon => {
 			submitCoupon(enteredCoupon);
-		}, 800),
+		}, 2000),
 		[]
 	);
 
