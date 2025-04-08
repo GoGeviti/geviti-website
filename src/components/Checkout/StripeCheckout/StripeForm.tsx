@@ -64,6 +64,8 @@ const StripeForm: FC<StripeFormProps> = () => {
 	const [formSubmitted, setFormSubmitted] = useState(false);
 	const [isOpenDialogState, setIsOpenDialogState] = useState(false);
 	const [isOpenDialogNotAvailableState, setIsOpenDialogNotAvailableState] = useState(false);
+	const [isOpenDialogWalkIn, setIsOpenDialogWalkIn] = useState(true);
+	// const [isApprovedWalkIn, setIsApprovedWalkIn] = useState(false);
 	const [isLoading, setIsLoading] = useState(false);
 	const [referral, setReferral] = useState('')
 
@@ -101,7 +103,7 @@ const StripeForm: FC<StripeFormProps> = () => {
 					return setIsOpenDialogNotAvailableState(true)
 				}
 
-				          // Validate vital bloodwork availability
+			  // Validate vital bloodwork availability
 				const vitalBloodAvailability = await validateVitalBlood({
 					userAddress: {
 						line1: form.address_1,
@@ -114,76 +116,78 @@ const StripeForm: FC<StripeFormProps> = () => {
 
 				if (!vitalBloodAvailability.isAddressValid) {
 					setStripeResponseLoading(false);
-					toast.error(
-						vitalBloodAvailability.message ||
-						'Vital bloodwork is not available in your area'
-					);
+					// toast.error(
+					// 	vitalBloodAvailability.message ||
+					// 	'Vital bloodwork is not available in your area'
+					// );
+					setIsOpenDialogWalkIn(true);
 					return;
 				}
+				await proceedWithCheckout();
 
-				const getFPTid = () => {
-					if (typeof window !== 'undefined') {
-						return (window as any).FPROM?.data?.tid;
-					}
-					return undefined;
-				};
+				// const getFPTid = () => {
+				// 	if (typeof window !== 'undefined') {
+				// 		return (window as any).FPROM?.data?.tid;
+				// 	}
+				// 	return undefined;
+				// };
 
-				const sessionSecret = await createSession({
-					header: {
-						'Authorization': 'Bearer ' + isValidState.token,
-					},
-					body: {
-						user: {
-							firstName: form.firstName,
-							lastName: form.lastName,
-							email: form.email,
-							addressLine1: form.address_1,
-							addressLine2: form.address_2,
-							city: form.city,
-							dob: form.birthdate,
-							gender: form.gender.toLowerCase(),
-							phoneNumber: form.phone_number,
-							state: form.state,
-							zipCode: form.zip_code
-						},
-						coupon: coupon,
-						referral: referral.length ? referral : undefined,
-						fp_tid: getFPTid(),
-						product: [{
-							productId: selectedProduct?.productId.toString() ?? '',
-							productName: selectedProduct?.productName ?? '',
-							quantity: 1,
-							price: selectedProductPrice?.price ?? 0,
-							price_id: selectedProductPrice?.priceId ?? ''
-						}],
-						// payment_token: isValidState.token
-					}
-				})
-				const klaviyo = await createKlaviyoProfile({
-					data: {
-						type: 'profile',
-						attributes: {
-							firstName: form.firstName,
-							lastName: form.lastName,
-							location: {
-								city: form.city,
-								region: form.state,
-								address1: form.address_1,
-								address2: form.address_2,
-								zip: form.zip_code,
-							},
-							email: form.email,
-							phoneNumber: form.phone_number,
-						}
-					}
-				}, 'UqUaJC')
-				setKlaviyoRes({
-					profileId: klaviyo.profileId ?? '',
-					listId: klaviyo.listId ?? ''
-				})
-				setToken(sessionSecret.token);
-				setSessionSecret(sessionSecret.clientSecret);
-				setStripeResponseLoading(false);
+				// const sessionSecret = await createSession({
+				// 	header: {
+				// 		'Authorization': 'Bearer ' + isValidState.token,
+				// 	},
+				// 	body: {
+				// 		user: {
+				// 			firstName: form.firstName,
+				// 			lastName: form.lastName,
+				// 			email: form.email,
+				// 			addressLine1: form.address_1,
+				// 			addressLine2: form.address_2,
+				// 			city: form.city,
+				// 			dob: form.birthdate,
+				// 			gender: form.gender.toLowerCase(),
+				// 			phoneNumber: form.phone_number,
+				// 			state: form.state,
+				// 			zipCode: form.zip_code
+				// 		},
+				// 		coupon: coupon,
+				// 		referral: referral.length ? referral : undefined,
+				// 		fp_tid: getFPTid(),
+				// 		product: [{
+				// 			productId: selectedProduct?.productId.toString() ?? '',
+				// 			productName: selectedProduct?.productName ?? '',
+				// 			quantity: 1,
+				// 			price: selectedProductPrice?.price ?? 0,
+				// 			price_id: selectedProductPrice?.priceId ?? ''
+				// 		}],
+				// 		// payment_token: isValidState.token
+				// 	}
+				// })
+				// const klaviyo = await createKlaviyoProfile({
+				// 	data: {
+				// 		type: 'profile',
+				// 		attributes: {
+				// 			firstName: form.firstName,
+				// 			lastName: form.lastName,
+				// 			location: {
+				// 				city: form.city,
+				// 				region: form.state,
+				// 				address1: form.address_1,
+				// 				address2: form.address_2,
+				// 				zip: form.zip_code,
+				// 			},
+				// 			email: form.email,
+				// 			phoneNumber: form.phone_number,
+				// 		}
+				// 	}
+				// }, 'UqUaJC')
+				// setKlaviyoRes({
+				// 	profileId: klaviyo.profileId ?? '',
+				// 	listId: klaviyo.listId ?? ''
+				// })
+				// setToken(sessionSecret.token);
+				// setSessionSecret(sessionSecret.clientSecret);
+				// setStripeResponseLoading(false);
 			} catch (error:any) {
 				setStripeResponseLoading(false);
 				if (typeof error === 'string') {
@@ -195,8 +199,89 @@ const StripeForm: FC<StripeFormProps> = () => {
 		},
 	});
 
+	const handleContinue = async() => {
+		setIsOpenDialogWalkIn(false);
+		await proceedWithCheckout();
+	};
+
+	const proceedWithCheckout = async() => {
+		try {
+			setStripeResponseLoading(true);
+			const getFPTid = () => {
+				if (typeof window !== 'undefined') {
+					return (window as any).FPROM?.data?.tid;
+				}
+				return undefined;
+			};
+
+			const sessionSecret = await createSession({
+				header: {
+					'Authorization': 'Bearer ' + tokenState,
+				},
+				body: {
+					user: {
+						firstName: formik.values.firstName,
+						lastName: formik.values.lastName,
+						email: formik.values.email,
+						addressLine1: formik.values.address_1,
+						addressLine2: formik.values.address_2,
+						city: formik.values.city,
+						dob: formik.values.birthdate,
+						gender: formik.values.gender.toLowerCase(),
+						phoneNumber: formik.values.phone_number,
+						state: formik.values.state,
+						zipCode: formik.values.zip_code
+					},
+					coupon: coupon,
+					referral: referral.length ? referral : undefined,
+					fp_tid: getFPTid(),
+					product: [{
+						productId: selectedProduct?.productId.toString() ?? '',
+						productName: selectedProduct?.productName ?? '',
+						quantity: 1,
+						price: selectedProductPrice?.price ?? 0,
+						price_id: selectedProductPrice?.priceId ?? ''
+					}],
+				}
+			});
+
+			const klaviyo = await createKlaviyoProfile({
+				data: {
+					type: 'profile',
+					attributes: {
+						firstName: formik.values.firstName,
+						lastName: formik.values.lastName,
+						location: {
+							city: formik.values.city,
+							region: formik.values.state,
+							address1: formik.values.address_1,
+							address2: formik.values.address_2,
+							zip: formik.values.zip_code,
+						},
+						email: formik.values.email,
+						phoneNumber: formik.values.phone_number,
+					}
+				}
+			}, 'UqUaJC');
+
+			setKlaviyoRes({
+				profileId: klaviyo.profileId ?? '',
+				listId: klaviyo.listId ?? ''
+			});
+			setToken(sessionSecret.token);
+			setSessionSecret(sessionSecret.clientSecret);
+			setStripeResponseLoading(false);
+		} catch (error: any) {
+			setStripeResponseLoading(false);
+			if (typeof error === 'string') {
+				toast.error(error);
+			} else {
+				toast.error('An error occurred');
+			}
+		}
+	};
+
 	const handleSubmit = async(e: React.FormEvent<HTMLFormElement>) => {
-		
 		e.preventDefault();
 		setFormSubmitted(true);
 		formik.handleSubmit();
@@ -444,7 +529,7 @@ const StripeForm: FC<StripeFormProps> = () => {
 								disabled={ formLoading }
 							/>
 							<p>
-								<span className='text-sm text-[#6A6E70] font-Poppins'>I confirm I live in the state mentioned above and recognize that Geviti’s Longeviti Membership is not available in { ' ' }
+								<span className='text-sm text-[#6A6E70] font-Poppins'>I confirm I live in the state mentioned above and recognize that Geviti&apos;s Longeviti Membership is not available in { ' ' }
 									<button
 										type='button'
 										onClick={ () => setIsOpenDialogState(prev => !prev) }
@@ -485,7 +570,6 @@ const StripeForm: FC<StripeFormProps> = () => {
 									/>
 								</Elements>
 							</div>
-							
 						</div>
 					) }
 					{
@@ -510,7 +594,6 @@ const StripeForm: FC<StripeFormProps> = () => {
 							</button>
 						)
 					}
-					
 				</div>
 			</div>
 			<Dialog
@@ -598,6 +681,50 @@ const StripeForm: FC<StripeFormProps> = () => {
 							disabled={ isLoading }
 							className='h-[58px] py-3 px-[42px] text-white rounded-[1000px] mt-11 bg-black'
 						>{ isLoading ? 'Loading...' : 'Join the waitlist' }</button>
+					</div>
+				</DialogContent>
+			</Dialog>
+			<Dialog
+				open={ isOpenDialogWalkIn }
+				modal={ true }
+				data-lenis-prevent
+				onOpenChange={ setIsOpenDialogWalkIn }
+			>
+				<DialogContent
+					position='default'
+					className='w-full lg:max-w-screen-xs p-6 max-w-[calc(100vw-32px)] rounded-[20px]'
+					showClose={ false }
+				>
+					<div className='flex text-center flex-col font-Poppins'>
+						<button
+							onClick={ () => setIsOpenDialogWalkIn(prev => !prev) }
+							className='p-[10px] self-end rounded-full border border-[#E6E7E7]'>
+							<svg
+								xmlns='http://www.w3.org/2000/svg'
+								width='14'
+								height='14'
+								viewBox='0 0 14 14'
+								fill='none'>
+								<path
+									d='M10.5 11.5L2.5 3.50001C2.22666 3.22667 2.22666 2.77334 2.5 2.5C2.77333 2.22667 3.22667 2.22667 3.5 2.5L11.5 10.5C11.7734 10.7734 11.7734 11.2267 11.5 11.5C11.2267 11.7734 10.7734 11.7734 10.5 11.5Z'
+									fill='#919B9F'/>
+								<path
+									d='M2.49997 11.5C2.22664 11.2267 2.22664 10.7734 2.49997 10.5L10.5 2.5C10.7733 2.22667 11.2267 2.22667 11.5 2.5C11.7733 2.77334 11.7733 3.22667 11.5 3.50001L3.49997 11.5C3.22664 11.7734 2.77331 11.7734 2.49997 11.5Z'
+									fill='#919B9F'/>
+							</svg>
+						</button>
+						<div className='flex items-center justify-center'>
+							<ExclamationIcon/>
+						</div>
+						<p className='text-primary text-2xl mt-11'>Looks Like You&apos;re Out of Our At-Home Coverage Area</p>
+						<p className='text-grey-500 text-xs mt-2'>No worries you can still place your order!<br/>Since we don&apos;t offer At-Home Phlebotomy in your area yet, you&apos;ll just need to do a <b>Walk-In Blood Draw</b> at one of our partner labs.</p>
+						<button
+							type='button'
+							aria-label='Continue'
+							onClick={ () => handleContinue() }
+							disabled={ isLoading }
+							className='h-[58px] py-3 px-[42px] text-white rounded-[1000px] mt-11 bg-black'
+						>{ isLoading ? 'Loading...' : 'Continue' }</button>
 					</div>
 				</DialogContent>
 			</Dialog>
