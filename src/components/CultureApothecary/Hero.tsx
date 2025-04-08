@@ -89,7 +89,7 @@ const Hero: React.FC<HeroProps> = ({ title, description, image, imageAlt, popupR
 									/>
 								</svg>
 								<p className='italic font-medium -tracking-0.04em text-primary text-base/[21px] max-w-[280px]'>
-								Feel like a celebrity with your own personal health concierge service at your fingertips, without the price.
+									{ popupReview }
 								</p>
 								<svg
 									width='17'
