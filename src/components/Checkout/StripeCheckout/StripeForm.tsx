@@ -64,7 +64,7 @@ const StripeForm: FC<StripeFormProps> = () => {
 	const [formSubmitted, setFormSubmitted] = useState(false);
 	const [isOpenDialogState, setIsOpenDialogState] = useState(false);
 	const [isOpenDialogNotAvailableState, setIsOpenDialogNotAvailableState] = useState(false);
-	const [isOpenDialogWalkIn, setIsOpenDialogWalkIn] = useState(true);
+	const [isOpenDialogWalkIn, setIsOpenDialogWalkIn] = useState(false);
 	// const [isApprovedWalkIn, setIsApprovedWalkIn] = useState(false);
 	const [isLoading, setIsLoading] = useState(false);
 	const [referral, setReferral] = useState('')
@@ -97,9 +97,12 @@ const StripeForm: FC<StripeFormProps> = () => {
 					state: form.state,
 					zipCode: form.zip_code
 				})
+
+				if (isValidState.token) {
+					setTokenState(isValidState.token)
+				}
 				if (!isValidState.stateExists) {
 					setStripeResponseLoading(false);
-					setTokenState(isValidState.token)
 					return setIsOpenDialogNotAvailableState(true)
 				}
 
@@ -191,7 +194,11 @@ const StripeForm: FC<StripeFormProps> = () => {
 			} catch (error:any) {
 				setStripeResponseLoading(false);
 				if (typeof error === 'string') {
-					toast.error(error);
+					if (error.includes('This area is not currently serviceable for blood work')) {
+						setIsOpenDialogWalkIn(true);
+					} else {
+						toast.error(error);
+					}
 				} else {
 					toast.error('An error occurred');
 				}
@@ -648,7 +655,7 @@ const StripeForm: FC<StripeFormProps> = () => {
 			>
 				<DialogContent
 					position='default'
-					className='w-full lg:max-w-[367px] p-6 max-w-[calc(100vw-32px)] rounded-[20px]'
+					className='w-full lg:max-w-screen-xs p-6 max-w-[calc(100vw-32px)] rounded-[20px]'
 					showClose={ false }
 				>
 					<div className='flex text-center flex-col font-Poppins'>
