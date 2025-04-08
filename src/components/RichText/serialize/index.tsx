@@ -154,7 +154,7 @@ export function serializeLexical({ nodes, headingRefs, blockIndex, columnIndex }
 								className={ clsxm(
 									'font-Poppins text-primary text-lg md:text-[21px] leading-none font-semibold',
 									node?.tag === 'h1' &&
-									'text-[30px] md:text-[32px] mb-[10px] md:mb-[31px]',
+									'text-[30px] md:text-[32px] mb-[10px] md:mb-[31px] leading-none',
 									node?.tag === 'h2' &&
 									'text-[24px] md:text-[26px] mb-[10px] md:mb-[31px]',
 									node?.tag === 'h3' && 'text-[20.5px] md:text-[22.5px]'
