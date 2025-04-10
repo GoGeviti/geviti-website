@@ -723,8 +723,8 @@ const StripeForm: FC<StripeFormProps> = () => {
 						<div className='flex items-center justify-center'>
 							<ExclamationIcon/>
 						</div>
-						<p className='text-primary text-2xl mt-11'>Looks Like You&apos;re Out of Our At-Home Coverage Area</p>
-						<p className='text-grey-500 text-xs mt-2'>No worries you can still place your order!<br/>Since we don&apos;t offer At-Home Phlebotomy in your area yet, you&apos;ll just need to do a <b>Walk-In Blood Draw</b> at one of our partner labs.</p>
+						<p className='text-primary text-2xl mt-11'>Looks like you&apos;re outside our at-home phlebotomy area</p>
+						<p className='text-grey-500 text-xs mt-2'>No worries you can still place your order!<br/>While we don&apos;t offer at-home phlebotomy in your area yet, you can conveniently get a walk-in blood draw at one of LabCorp&apos;s over 2,000 locations</p>
 						<button
 							type='button'
 							aria-label='Continue'
