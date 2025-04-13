@@ -42,6 +42,7 @@ const Video = () => {
 				>
 					<div className='aspect-video w-full'>
 						<iframe
+							title='Video'
 							width='100%'
 							height='100%'
 							src='https://www.youtube.com/embed/NwiXo66FZ7M'
