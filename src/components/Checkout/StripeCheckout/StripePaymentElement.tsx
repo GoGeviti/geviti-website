@@ -104,23 +104,6 @@ const StripePaymentElement:React.FC<StripePaymentElementProps> = ({
 					shipping: 0,
 					currency: 'USD',
 					coupon: '',
-					// items: products.map(product => {
-					// 	return {
-					// 		item_id: product.stripeProductId,
-					// 		item_name: product.name,
-					// 		affiliation: 'GoGeveti',
-					// 		coupon: coupon || '',
-					// 		currency: 'USD',
-					// 		index: '0',
-					// 		discount: discount?.amount_off ?? 0,
-					// 		item_brand: '',
-					// 		item_category: '',
-					// 		item_category2: '',
-					// 		item_variant: product.productPrices.find(e => e.priceId === priceId)?.billingFrequency,
-					// 		price: Number(product.productPrices.find(e => e.priceId === priceId)?.price),
-					// 		quantity: 1
-					// 	}
-					// })
 					items: [
 						{
 							item_id: productMembership?.productId.toString() ?? '',
@@ -140,6 +123,28 @@ const StripePaymentElement:React.FC<StripePaymentElementProps> = ({
 					]
 				}
 			});
+
+			// Fire Magellan Purchase event
+			if (typeof window !== 'undefined' && window.MAI) {
+				window.MAI.emit('purchase', totalPrice, 'USD', token,
+					{
+						quantity: 1,
+						discountCode: coupon || undefined,
+						isNewCustomer: true,
+						lineItems: [
+							{
+								quantity: 1,
+								productId: productMembership?.productId.toString() ?? '',
+								productName: productMembership?.productName ?? '',
+								productType: 'membership',
+								productVendor: 'GoGeveti',
+								variantId: selectedProductPrice?.priceId ?? '',
+								variantName: selectedProductPrice?.billingFrequency ?? ''
+							}
+						]
+					}
+				);
+			}
 
 			try {
 				// Wait for Klaviyo operation to complete

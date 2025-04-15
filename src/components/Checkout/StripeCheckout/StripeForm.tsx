@@ -278,6 +278,29 @@ const StripeForm: FC<StripeFormProps> = () => {
 			setToken(sessionSecret.token);
 			setSessionSecret(sessionSecret.clientSecret);
 			setStripeResponseLoading(false);
+			// if (typeof window !== 'undefined' && window.MAI) {
+			// 	window.MAI.emit('lead', Number(selectedProductPrice?.price), 'USD', {
+			// 		eventType: 'checkout',
+			// 		firstName: formik.values.firstName,
+			// 		lastName: formik.values.lastName,
+			// 		email: formik.values.email,
+			// 		addressLine1: formik.values.address_1,
+			// 		addressLine2: formik.values.address_2,
+			// 		city: formik.values.city,
+			// 		dob: formik.values.birthdate,
+			// 		gender: formik.values.gender.toLowerCase(),
+			// 		phoneNumber: formik.values.phone_number,
+			// 		state: formik.values.state,
+			// 		zipCode: formik.values.zip_code,
+			// 		productID: selectedProduct?.productId.toString() ?? '',
+			// 		quantity: 1,
+			// 		productName: selectedProduct?.productName ?? '',
+			// 		productType: 'membership',
+			// 		productVendor: 'GoGeveti',
+			// 		variantId: selectedProductPrice?.priceId ?? '',
+			// 		variantName: selectedProductPrice?.billingFrequency ?? ''
+			// 	})
+			// }
 		} catch (error: any) {
 			setStripeResponseLoading(false);
 			if (typeof error === 'string') {

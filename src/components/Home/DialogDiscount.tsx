@@ -125,6 +125,16 @@ const DialogDiscount: React.FC<DialogDiscountProps> = ({
     							'Thank you! You should receive the discount code in your inbox shortly.'
     						);
     						onOpenChange && onOpenChange(false);
+    						if (typeof window !== 'undefined' && window.MAI) {
+    							window.MAI.emit('lead', 0, 'USD', {
+    								eventType: 'Get PDF',
+    								firstName: formik.values.name,
+    								email: formik.values.email,
+    								phoneNumber: formik.values.phone_number,
+    								state: formik.values.state,
+    								options: formik.values.options,
+    							})
+    						}
     					} else {
     						throw new Error(result.message || 'An unexpected error occurred');
     					}

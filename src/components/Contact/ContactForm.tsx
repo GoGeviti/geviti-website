@@ -1,19 +1,22 @@
 'use client'
 import React, { useState } from 'react'
-import { AiFillCheckCircle, AiFillCloseCircle } from 'react-icons/ai'
+// import { AiFillCheckCircle, AiFillCloseCircle } from 'react-icons/ai'
 import InputMask from '@mona-health/react-input-mask'
 import { FormikProps, useFormik } from 'formik'
 import Image from 'next/image'
-import { toast } from 'sonner'
 
+// import { toast } from 'sonner'
 import clsxm from '@/helpers/clsxm'
 import { ContactSubject } from '@/payload/payload-types'
 import { ContactUsType, createContact, sendSlackNotification } from '@/services/submit'
 import { ContactFormSchema } from '@/validator/checkout'
 
 import ButtonCta from '../ButtonCta'
+import { ExclamationIcon, SuccessIcon } from '../Checkout/Payment/State'
 import CustomSelect from '../Checkout/Select'
 import TextField from '../Checkout/TextField'
+import { DialogContent } from '../Dialog'
+import { Dialog } from '../Dialog'
 
 const initialValues = {
 	full_name: '',
@@ -32,6 +35,12 @@ const ContactForm = ({
 
 	const [enableValidation, setEnableValidation] = useState<boolean>(false);
 	const [isLoading, setIsLoading] = useState(false);
+	const [isOpenDialogMessage, setIsOpenDialogMessage] = useState({
+		status: false,
+		message: '',
+		messageDescription: '',
+		isError: false,
+	});
 
 	const formik: FormikProps<ContactUsType> =
     useFormik<ContactUsType>({
@@ -42,15 +51,32 @@ const ContactForm = ({
     	enableReinitialize: true,
     	onSubmit: async(form: ContactUsType) => {
     		setIsLoading(true);
-    		const { status, message: messageResponse } = await createContact(form);
+    		const { status } = await createContact(form);
     		if (status === 'OK') {
     			await sendSlackNotification({ ...form, subject: subject.find(sub => sub.id.toString() === form.subject.toString())?.title });
-    			toast.success(messageResponse, {
-    				icon: <AiFillCheckCircle className='h-5 w-5 text-green-alert' />,
+    			formik.resetForm();
+    			setIsOpenDialogMessage({
+    				status: true,
+    				message: 'Thank you! We\'ll get back to you shortly.',
+    				messageDescription: 'We have received your message and will respond to you as soon as possible.',
+    				isError: false,
     			});
+    			if (typeof window !== 'undefined' && window.MAI) {
+    				window.MAI.emit('lead', 0, 'USD', {
+    					eventType: 'Contact Us',
+    					firstName: form.full_name,
+    					email: form.email,
+    					phoneNumber: form.phone_number,
+    					message: form.message,
+    					subject: subject.find(sub => sub.id.toString() === form.subject.toString())?.title,
+    				})
+    			}
     		} else {
-    			toast.error(messageResponse, {
-    				icon: <AiFillCloseCircle className='h-5 w-5 text-danger' />,
+    			setIsOpenDialogMessage({
+    				status: true,
+    				message: 'Oops! Something went wrong.',
+    				messageDescription: 'Please try again later.',
+    				isError: true,
     			});
     		}
     		setIsLoading(false);
@@ -219,6 +245,57 @@ const ContactForm = ({
 					</form>
 				</div>
 			</div>
+			<Dialog
+				open={ isOpenDialogMessage.status }
+				modal={ true }
+				data-lenis-prevent
+				onOpenChange={ open => setIsOpenDialogMessage({ ...isOpenDialogMessage, status: open }) }
+			>
+				<DialogContent
+					position='default'
+					className='w-full lg:max-w-screen-xs p-6 max-w-[calc(100vw-32px)] rounded-[20px]'
+					showClose={ false }
+				>
+					<div className='flex text-center flex-col font-Poppins'>
+						<button
+							onClick={ () => setIsOpenDialogMessage({ status: false, message: '', messageDescription: '', isError: false }) }
+							className='p-[10px] self-end rounded-full border border-[#E6E7E7]'>
+
+							<svg
+								xmlns='http://www.w3.org/2000/svg'
+								width='14'
+								height='14'
+								viewBox='0 0 14 14'
+								fill='none'>
+								<path
+									d='M10.5 11.5L2.5 3.50001C2.22666 3.22667 2.22666 2.77334 2.5 2.5C2.77333 2.22667 3.22667 2.22667 3.5 2.5L11.5 10.5C11.7734 10.7734 11.7734 11.2267 11.5 11.5C11.2267 11.7734 10.7734 11.7734 10.5 11.5Z'
+									fill='#919B9F'/>
+								<path
+									d='M2.49997 11.5C2.22664 11.2267 2.22664 10.7734 2.49997 10.5L10.5 2.5C10.7733 2.22667 11.2267 2.22667 11.5 2.5C11.7733 2.77334 11.7733 3.22667 11.5 3.50001L3.49997 11.5C3.22664 11.7734 2.77331 11.7734 2.49997 11.5Z'
+									fill='#919B9F'/>
+							</svg>
+						</button>
+						<div className='flex items-center justify-center'>
+							{ isOpenDialogMessage.isError ? <ExclamationIcon/> : <SuccessIcon/> }
+						</div>
+						<p className='text-primary text-2xl mt-11'>{ isOpenDialogMessage.message }</p>
+						{ isOpenDialogMessage.messageDescription && (
+							<p className='text-grey-500 text-sm mt-2'>{ isOpenDialogMessage.messageDescription }</p>
+						) }
+						<button
+							type='button'
+							aria-label='Continue'
+							onClick={ () => {
+								setIsOpenDialogMessage({ status: false, message: '', messageDescription: '', isError: false });
+								formik.resetForm();
+							} }
+							className='h-[58px] py-3 px-[42px] text-white rounded-[1000px] mt-11 bg-black'
+						  >
+								Close
+						</button>
+					</div>
+				</DialogContent>
+			</Dialog>
 		</div>
 	)
 }
