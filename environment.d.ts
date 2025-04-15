@@ -2,6 +2,7 @@ interface RewardfulStatic {
   (action: 'convert' | 'ready', data: any): void;
   // Add other Rewardful methods here if needed
 }
+
 declare global {
 	namespace NodeJS {
 		interface ProcessEnv {
@@ -28,6 +29,7 @@ declare global {
 		}
     _rwq: any[];
 		gtag: (...args: any[]) => void;
+    MAI?: any;
   }
 }
 

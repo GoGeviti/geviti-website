@@ -38,6 +38,7 @@ const StripeCheckout: FC<PageProps> = ({ searchParams, priceData }) => {
 		setDiscountApplied,
 		setProductMembership,
 		setSelectedProductPrice,
+		selectedProductPrice,
 		productMembership,
 		discount,
 		promoCode,
@@ -65,6 +66,26 @@ const StripeCheckout: FC<PageProps> = ({ searchParams, priceData }) => {
 						handleCouponSubmit(res?.default_promo_code);
 					}
 				});
+			}
+
+			if (typeof window !== 'undefined' && window.MAI) {
+				window.MAI.emit('checkout', Number(selectedProductPrice?.price), 'USD', {
+					id: productMembership?.productId.toString() ?? '',
+					quantity: 1,
+					discountCode: promoCode,
+					lineItems: [
+						{
+							quantity: 1,
+							productId: productMembership?.productId.toString() ?? '',
+							productName: productMembership?.productName ?? '',
+							productType: 'membership',
+							productVendor: 'GoGeveti',
+							variantId: selectedProductPrice?.priceId ?? '',
+							variantName: selectedProductPrice?.billingFrequency ?? ''
+						}
+					]
+				}
+				);
 			}
 		}
 	}, [priceData]);

@@ -2,8 +2,12 @@ import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 
+import clsxm from '@/helpers/clsxm';
+
 import ButtonCta from '../ButtonCta';
 import PopupReview from '../PopupReview';
+
+import VideoButton from './VideoButton';
 
 interface HeroProps {
 	title: string;
@@ -11,9 +15,17 @@ interface HeroProps {
 	image: string;
 	popupReview?: string;
 	imageAlt: string;
+	videoUrl?: string;
 }
 
-const Hero: React.FC<HeroProps> = ({ title, description, image, imageAlt, popupReview }) => {
+const getYoutubeThumbnail = (url: string) => {
+	const videoId = url.match(/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/)?.[1];
+	return videoId ? `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg` : null;
+};
+
+const Hero: React.FC<HeroProps> = ({ title, description, image, imageAlt, popupReview, videoUrl }) => {
+	const thumbnailUrl = videoUrl ? getYoutubeThumbnail(videoUrl) : image;
+	
 	return (
 		<div className='relative overflow-hidden isolate pt-[154px] lg:pt-[164px] pb-[124px] lg:pb-[218px]'>
 			<div className='lg:flex lg:container-center'>
@@ -63,19 +75,23 @@ const Hero: React.FC<HeroProps> = ({ title, description, image, imageAlt, popupR
 				</div>
 				<div className='max-lg:mt-16 lg:flex-none lg:ml-[69px] lg:absolute lg:left-1/2 lg:right-0 xxxl:right-auto'>
 					<div className='relative flex'>
-						<div className='flex-none lg:max-w-none relative w-full aspect-[708/550] lg:h-[550px] overflow-hidden'>
+						<div className={ 'flex-none lg:max-w-[708px] relative w-full aspect-[708/550] overflow-hidden lg:h-[550px]' }>
+							{ videoUrl && <VideoButton videoUrl={ videoUrl } /> }
 							<Image
 								alt={ imageAlt }
-								src={ image }
+								src={ thumbnailUrl || image }
 								fill
 								quality={ 100 }
 								sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 100vw'
-								className='w-full object-cover object-top'
+								className={ clsxm(
+									'w-full',
+									videoUrl ? 'object-contain object-center' : 'object-cover object-top'
+								) }
 								priority
 							/>
 						</div>
-						{ popupReview && (
-							<div className='absolute -bottom-[60px] lg:-bottom-[42px] left-1/2 max-lg:-translate-x-1/2 lg:-left-[42px] w-full max-w-[calc(100vw-54px)] xs:max-w-[342px] rounded-xl py-3 px-5 flex flex-col gap-y-3 border border-grey-100 bg-white/50 backdrop-blur-lg'>
+						{ (popupReview && !videoUrl) && (
+							<div className='absolute z-20 -bottom-[60px] lg:-bottom-[42px] left-1/2 max-lg:-translate-x-1/2 lg:-left-[42px] w-full max-w-[calc(100vw-54px)] xs:max-w-[342px] rounded-xl py-3 px-5 flex flex-col gap-y-3 border border-grey-100 bg-white/50 backdrop-blur-lg'>
 								<svg
 									width='17'
 									height='16'
