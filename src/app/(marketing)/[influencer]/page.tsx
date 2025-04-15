@@ -36,10 +36,12 @@ const heroData = {
 		title: 'Welcome to Geviti: Your All-in-One Platform for Personalized Health Optimization',
 		description: 'Every body is unique and there is no one-size-fits-all product to heal you. We\'re here to build personalized, longevity-oriented solutions based on the precise needs expressed by your body.',
 		image: '/images/cultureapothecary/hero/cultureapothecary.webp',
+		solutionImage: '/images/cultureapothecary/hero/cultureapothecary.webp',
 		videoUrl: 'https://www.youtube.com/watch?v=kVr1JTxWVQk&t=217s',
 		ogImage: '/images/cultureapothecary/hero/og/cultureapothecary.jpeg',
 		imageAlt: 'Alex Clark',
-		popupReview: 'Feel like a celebrity with your own personal health concierge service at your fingertips, without the price.',
+		popupReview: '',
+		solutionReview: 'Feel like a celebrity with your own personal health concierge service at your fingertips, without the price.',
 	},
 	'wellnessherway': {
 		title: 'Welcome to Geviti: Personalized Health Optimization, Designed for Her Journey.',
@@ -48,7 +50,9 @@ const heroData = {
 		ogImage: '/images/cultureapothecary/hero/og/wellnessherway.png',
 		imageAlt: 'Gracie Norton',
 		popupReview: '',
-		videoUrl: ''
+		videoUrl: '',
+		solutionReview: '',
+		solutionImage: ''
 	},
 	'deargabby': {
 		title: 'Welcome to Geviti, Your Partner in Feeling Younger Every Year.',
@@ -57,7 +61,9 @@ const heroData = {
 		ogImage: '/images/cultureapothecary/hero/og/deargabby.jpeg',
 		imageAlt: 'Dear Gabby',
 		popupReview: '',
-		videoUrl: ''
+		videoUrl: '',
+		solutionReview: '',
+		solutionImage: ''
 	},
 	'thatsthepoint': {
 		title: 'Welcome to Geviti: Cutting Through the Health Noise with Data-Driven Precision.',
@@ -66,7 +72,9 @@ const heroData = {
 		ogImage: '/images/cultureapothecary/hero/og/thatsthepoint.jpeg',
 		imageAlt: 'That’s the Point',
 		popupReview: '',
-		videoUrl: ''
+		videoUrl: '',
+		solutionReview: '',
+		solutionImage: ''
 	},
 	'thebestofyou': {
 		title: 'Welcome to Geviti, Your Partner in Feeling Younger Every Year.',
@@ -75,7 +83,9 @@ const heroData = {
 		ogImage: '/images/cultureapothecary/hero/og/thebestofyou.png',
 		imageAlt: 'The Best of You',
 		popupReview: 'Taking charge of your health isn’t just about adding years to your life—it’s about adding life to your years. Geviti makes proactive wellness simple, giving you expert support before issues arise!',
-		videoUrl: ''
+		videoUrl: '',
+		solutionReview: '',
+		solutionImage: ''
 	},
 	'raisingboysandgirls': {
 		title: 'Geviti: Because Your Family Deserves the Healthiest Version of You',
@@ -84,7 +94,9 @@ const heroData = {
 		ogImage: '/images/cultureapothecary/hero/og/raisingboysandgirls.jpeg',
 		imageAlt: 'Raising boys and girls',
 		popupReview: 'Self-care and prioritizing health are important at every age, and we’re grateful to Geviti for making that more accessible to us all!',
-		videoUrl: ''
+		videoUrl: '',
+		solutionReview: '',
+		solutionImage: ''
 	},
 	'thatsoundsfun': {
 		title: 'Welcome to Geviti, Your Partner in Feeling Younger Every Year.',
@@ -93,7 +105,9 @@ const heroData = {
 		ogImage: '/images/cultureapothecary/hero/og/thatsoundsfun.jpeg',
 		imageAlt: 'That sounds fun',
 		popupReview: 'Anything we can do to pursue health and prevent illness is worth our time and efforts- Geviti is a perfect tool and teammate to reaching those goals.',
-		videoUrl: ''
+		videoUrl: '',
+		solutionReview: '',
+		solutionImage: ''
 	},
 	'1000hoursoutside': {
 		title: 'Welcome to Geviti, Your Partner in Feeling Younger Every Year.',
@@ -102,7 +116,9 @@ const heroData = {
 		ogImage: '/images/cultureapothecary/hero/og/1000hoursoutside.jpeg',
 		imageAlt: '1000 Hours Outside',
 		popupReview: 'The health of the whole person is something we fully believe in; mind, spirit and body. Geviti has us covered when it comes to understanding the health of our body, and we love that!',
-		videoUrl: ''
+		videoUrl: '',
+		solutionReview: '',
+		solutionImage: ''
 	},
 	'wellnessandwisdom': {
 		title: 'Welcome to Geviti: Advanced Biomarker Analysis for Data-Driven Health Optimization.',
@@ -111,7 +127,9 @@ const heroData = {
 		ogImage: '/images/cultureapothecary/hero/wellnessandwisdom.jpg',
 		imageAlt: 'Wellness and Wisdom',
 		popupReview: '',
-		videoUrl: ''
+		videoUrl: '',
+		solutionReview: '',
+		solutionImage: '/images/cultureapothecary/hero/wellnessandwisdom-solution.jpg'
 	},
 }
 
@@ -170,8 +188,8 @@ const CultureApothecary = async(props:{
 				popupReview={ hero.popupReview || undefined }
 			/>
 			<Solution
-				imageUrl={ hero.videoUrl ? hero.image : undefined }
-				popupReview={ hero.videoUrl ? hero.popupReview : undefined }
+				imageUrl={ hero.solutionImage ? hero.solutionImage : undefined }
+				popupReview={ hero.solutionReview ? hero.solutionReview : undefined }
 			/>
 			<Benefits />
 			<Testimonials />
