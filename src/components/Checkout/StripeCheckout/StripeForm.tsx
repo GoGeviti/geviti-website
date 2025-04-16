@@ -61,6 +61,7 @@ const StripeForm: FC<StripeFormProps> = () => {
 	})
 	const [token, setToken] = useState('');
 	const [tokenState, setTokenState] = useState('');
+	const tokenRef = useRef('');
 	const [formSubmitted, setFormSubmitted] = useState(false);
 	const [isOpenDialogState, setIsOpenDialogState] = useState(false);
 	const [isOpenDialogNotAvailableState, setIsOpenDialogNotAvailableState] = useState(false);
@@ -98,11 +99,15 @@ const StripeForm: FC<StripeFormProps> = () => {
 					zipCode: form.zip_code
 				})
 
+				// console.log('isValidState ==> ', isValidState)
+
 				if (isValidState.token) {
-					setTokenState(isValidState.token)
+					setTokenState(isValidState.token);
+					tokenRef.current = isValidState.token;
 				}
 				if (!isValidState.stateExists) {
 					setStripeResponseLoading(false);
+					// setTokenState(isValidState.token)
 					return setIsOpenDialogNotAvailableState(true)
 				}
 
@@ -223,7 +228,7 @@ const StripeForm: FC<StripeFormProps> = () => {
 
 			const sessionSecret = await createSession({
 				header: {
-					'Authorization': 'Bearer ' + tokenState,
+					'Authorization': 'Bearer ' + tokenRef.current,
 				},
 				body: {
 					user: {
