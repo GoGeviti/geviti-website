@@ -57,7 +57,7 @@ const Hero: React.FC<HeroProps> = ({ title, description, image, imageAlt, popupR
                 Questions about our membership?
 							</p>
 							<Link
-								href='https://calendly.com/cole-gogeviti/business-discovery-call'
+								href='https://calendly.com/cole-gogeviti/discovery-call'
 								target='_blank'
 								rel='noreferrer'
 								className='text-lg/6 font-medium text-primary underline'
