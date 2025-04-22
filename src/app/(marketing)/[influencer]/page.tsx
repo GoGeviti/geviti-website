@@ -28,7 +28,8 @@ const paths = [
 	'raisingboysandgirls',
 	'thatsoundsfun',
 	'1000hoursoutside',
-	'wellnessandwisdom'
+	'wellnessandwisdom',
+	'onward'
 ]
 
 const heroData = {
@@ -42,6 +43,9 @@ const heroData = {
 		imageAlt: 'Alex Clark',
 		popupReview: '',
 		solutionReview: 'Feel like a celebrity with your own personal health concierge service at your fingertips, without the price.',
+		thumbnailVideoUrl: '',
+		imageTitle: '',
+		imageDescription: '',
 	},
 	'wellnessherway': {
 		title: 'Welcome to Geviti: Personalized Health Optimization, Designed for Her Journey.',
@@ -52,7 +56,10 @@ const heroData = {
 		popupReview: '',
 		videoUrl: '',
 		solutionReview: '',
-		solutionImage: ''
+		solutionImage: '',
+		thumbnailVideoUrl: '',
+		imageTitle: '',
+		imageDescription: '',
 	},
 	'deargabby': {
 		title: 'Welcome to Geviti, Your Partner in Feeling Younger Every Year.',
@@ -63,7 +70,10 @@ const heroData = {
 		popupReview: '',
 		videoUrl: '',
 		solutionReview: '',
-		solutionImage: ''
+		solutionImage: '',
+		thumbnailVideoUrl: '',
+		imageTitle: '',
+		imageDescription: '',
 	},
 	'thatsthepoint': {
 		title: 'Welcome to Geviti: Cutting Through the Health Noise with Data-Driven Precision.',
@@ -74,7 +84,10 @@ const heroData = {
 		popupReview: '',
 		videoUrl: '',
 		solutionReview: '',
-		solutionImage: ''
+		solutionImage: '',
+		thumbnailVideoUrl: '',
+		imageTitle: '',
+		imageDescription: '',
 	},
 	'thebestofyou': {
 		title: 'Welcome to Geviti, Your Partner in Feeling Younger Every Year.',
@@ -85,7 +98,10 @@ const heroData = {
 		popupReview: 'Taking charge of your health isn’t just about adding years to your life—it’s about adding life to your years. Geviti makes proactive wellness simple, giving you expert support before issues arise!',
 		videoUrl: '',
 		solutionReview: '',
-		solutionImage: ''
+		solutionImage: '',
+		thumbnailVideoUrl: '',
+		imageTitle: '',
+		imageDescription: '',
 	},
 	'raisingboysandgirls': {
 		title: 'Geviti: Because Your Family Deserves the Healthiest Version of You',
@@ -96,7 +112,10 @@ const heroData = {
 		popupReview: 'Self-care and prioritizing health are important at every age, and we’re grateful to Geviti for making that more accessible to us all!',
 		videoUrl: '',
 		solutionReview: '',
-		solutionImage: ''
+		solutionImage: '',
+		thumbnailVideoUrl: '',
+		imageTitle: '',
+		imageDescription: '',
 	},
 	'thatsoundsfun': {
 		title: 'Welcome to Geviti, Your Partner in Feeling Younger Every Year.',
@@ -107,7 +126,10 @@ const heroData = {
 		popupReview: 'Anything we can do to pursue health and prevent illness is worth our time and efforts- Geviti is a perfect tool and teammate to reaching those goals.',
 		videoUrl: '',
 		solutionReview: '',
-		solutionImage: ''
+		solutionImage: '',
+		thumbnailVideoUrl: '',
+		imageTitle: '',
+		imageDescription: '',
 	},
 	'1000hoursoutside': {
 		title: 'Welcome to Geviti, Your Partner in Feeling Younger Every Year.',
@@ -118,7 +140,10 @@ const heroData = {
 		popupReview: 'The health of the whole person is something we fully believe in; mind, spirit and body. Geviti has us covered when it comes to understanding the health of our body, and we love that!',
 		videoUrl: '',
 		solutionReview: '',
-		solutionImage: ''
+		solutionImage: '',
+		thumbnailVideoUrl: '',
+		imageTitle: '',
+		imageDescription: '',
 	},
 	'wellnessandwisdom': {
 		title: 'Welcome to Geviti: Advanced Biomarker Analysis for Data-Driven Health Optimization.',
@@ -129,7 +154,24 @@ const heroData = {
 		popupReview: '',
 		videoUrl: '',
 		solutionReview: '',
-		solutionImage: '/images/cultureapothecary/hero/wellnessandwisdom-solution.jpg'
+		solutionImage: '/images/cultureapothecary/hero/wellnessandwisdom-solution.jpg',
+		thumbnailVideoUrl: '',
+		imageTitle: '',
+		imageDescription: '',
+	},
+	'onward': {
+		title: 'Peak Performance Starts With Knowing What Your Body Needs.',
+		description: 'Every body is unique and there is no one-size-fits-all product to heal you. We\'re here to build personalized, longevity-oriented solutions based on the precise needs expressed by your body.',
+		image: '/images/cultureapothecary/hero/onward.jpg',
+		thumbnailVideoUrl: '/images/cultureapothecary/hero/onward.jpg',
+		ogImage: '/images/cultureapothecary/hero/onward.jpg',
+		imageAlt: 'Wellness and Wisdom',
+		popupReview: '',
+		videoUrl: 'https://www.youtube.com/watch?v=vLdzl4_27ok',
+		solutionReview: '',
+		solutionImage: '/images/cultureapothecary/hero/onward-solution.jpg',
+		imageTitle: 'DJ Walton',
+		imageDescription: 'Boxing Coach & Founder of Onward',
 	},
 }
 
@@ -186,6 +228,9 @@ const CultureApothecary = async(props:{
 				imageAlt={ hero.imageAlt }
 				videoUrl={ hero.videoUrl || undefined }
 				popupReview={ hero.popupReview || undefined }
+				thumbnailVideoUrl={ hero.thumbnailVideoUrl || undefined }
+				imageTitle={ hero.imageTitle || undefined }
+				imageDescription={ hero.imageDescription || undefined }
 			/>
 			<Solution
 				imageUrl={ hero.solutionImage ? hero.solutionImage : undefined }
