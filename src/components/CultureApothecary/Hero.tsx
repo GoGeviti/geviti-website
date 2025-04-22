@@ -16,6 +16,9 @@ interface HeroProps {
 	popupReview?: string;
 	imageAlt: string;
 	videoUrl?: string;
+	thumbnailVideoUrl?: string;
+	imageTitle?: string;
+	imageDescription?: string;
 }
 
 const getYoutubeThumbnail = (url: string) => {
@@ -23,8 +26,8 @@ const getYoutubeThumbnail = (url: string) => {
 	return videoId ? `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg` : null;
 };
 
-const Hero: React.FC<HeroProps> = ({ title, description, image, imageAlt, popupReview, videoUrl }) => {
-	const thumbnailUrl = videoUrl ? getYoutubeThumbnail(videoUrl) : image;
+const Hero: React.FC<HeroProps> = ({ title, description, image, imageAlt, popupReview, videoUrl, thumbnailVideoUrl, imageTitle, imageDescription }) => {
+	const thumbnailUrl = videoUrl ? thumbnailVideoUrl ? thumbnailVideoUrl : getYoutubeThumbnail(videoUrl) : image;
 	
 	return (
 		<div className='relative overflow-hidden isolate pt-[154px] lg:pt-[164px] pb-[124px] lg:pb-[218px]'>
@@ -89,7 +92,9 @@ const Hero: React.FC<HeroProps> = ({ title, description, image, imageAlt, popupR
 								) }
 								priority
 							/>
+							
 						</div>
+						
 						{ (popupReview && !videoUrl) && (
 							<div className='absolute z-20 -bottom-[60px] lg:-bottom-[42px] left-1/2 max-lg:-translate-x-1/2 lg:-left-[42px] w-full max-w-[calc(100vw-54px)] xs:max-w-[342px] rounded-xl py-3 px-5 flex flex-col gap-y-3 border border-grey-100 bg-white/50 backdrop-blur-lg'>
 								<svg
@@ -123,6 +128,12 @@ const Hero: React.FC<HeroProps> = ({ title, description, image, imageAlt, popupR
 							</div>
 						) }
 					</div>
+					{ (imageTitle || imageDescription) && (
+						<div className='ml-8 mt-3'>
+							{ imageTitle && <h3 className='h3'>{ imageTitle }</h3> }
+							{ imageDescription && <p className='body-small'>{ imageDescription }</p> }
+						</div>
+					) }
 				</div>
 			</div>
 		</div>
