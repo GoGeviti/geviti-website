@@ -40,9 +40,13 @@ const accordionData = [
 type SolutionProps = {
 	imageUrl?: string;
 	popupReview?: string;
+	list?: {
+		title: string;
+		description: string;
+	}[];
 }
 
-const Solution: React.FC<SolutionProps> = ({ imageUrl, popupReview }) => {
+const Solution: React.FC<SolutionProps> = ({ imageUrl, popupReview, list }) => {
 	const [openIdx, setOpenIdx] = useState<number>(0);
 
 	const toggleAccordion = (idx: number) => {
@@ -51,7 +55,8 @@ const Solution: React.FC<SolutionProps> = ({ imageUrl, popupReview }) => {
 	};
 
 	const renderAccordionList = () => {
-		return accordionData.map(({ title, description }, index) => {
+		const data = list?.length ? list : accordionData;
+		return data.map(({ title, description }, index) => {
 			const isOpen = index === openIdx;
 
 			return (
