@@ -19,6 +19,8 @@ import RunningLogo from '@/components/RunningLogo';
 import { faqDataDefault } from '@/constant/data/faq';
 import { mergeOpenGraph } from '@/lib/mergeOpenGraph';
 
+import { influencerData } from './data';
+
 const paths = [
 	'cultureapothecary',
 	'wellnessherway',
@@ -31,149 +33,6 @@ const paths = [
 	'wellnessandwisdom',
 	'onward'
 ]
-
-const heroData = {
-	'cultureapothecary': {
-		title: 'Welcome to Geviti: Your All-in-One Platform for Personalized Health Optimization',
-		description: 'Every body is unique and there is no one-size-fits-all product to heal you. We\'re here to build personalized, longevity-oriented solutions based on the precise needs expressed by your body.',
-		image: '/images/cultureapothecary/hero/cultureapothecary.webp',
-		solutionImage: '/images/cultureapothecary/hero/cultureapothecary.webp',
-		videoUrl: 'https://www.youtube.com/watch?v=kVr1JTxWVQk&t=217s',
-		ogImage: '/images/cultureapothecary/hero/og/cultureapothecary.jpeg',
-		imageAlt: 'Alex Clark',
-		popupReview: '',
-		solutionReview: 'Feel like a celebrity with your own personal health concierge service at your fingertips, without the price.',
-		thumbnailVideoUrl: '',
-		imageTitle: '',
-		imageDescription: '',
-	},
-	'wellnessherway': {
-		title: 'Welcome to Geviti: Personalized Health Optimization, Designed for Her Journey.',
-		description: 'Every body is unique and there is no one-size-fits-all product to heal you. We\'re here to build personalized, longevity-oriented solutions based on the precise needs expressed by your body.',
-		image: '/images/cultureapothecary/hero/og/wellnessherway.png',
-		ogImage: '/images/cultureapothecary/hero/og/wellnessherway.png',
-		imageAlt: 'Gracie Norton',
-		popupReview: '',
-		videoUrl: '',
-		solutionReview: '',
-		solutionImage: '',
-		thumbnailVideoUrl: '',
-		imageTitle: '',
-		imageDescription: '',
-	},
-	'deargabby': {
-		title: 'Welcome to Geviti, Your Partner in Feeling Younger Every Year.',
-		description: 'Every body is unique and there is no one-size-fits-all product to heal you. We\'re here to build personalized, longevity-oriented solutions based on the precise needs expressed by your body.',
-		image: '/images/cultureapothecary/hero/deargabby.webp',
-		ogImage: '/images/cultureapothecary/hero/og/deargabby.jpeg',
-		imageAlt: 'Dear Gabby',
-		popupReview: '',
-		videoUrl: '',
-		solutionReview: '',
-		solutionImage: '',
-		thumbnailVideoUrl: '',
-		imageTitle: '',
-		imageDescription: '',
-	},
-	'thatsthepoint': {
-		title: 'Welcome to Geviti: Cutting Through the Health Noise with Data-Driven Precision.',
-		description: 'Every body is unique and there is no one-size-fits-all product to heal you. We\'re here to build personalized, longevity-oriented solutions based on the precise needs expressed by your body.',
-		image: '/images/cultureapothecary/hero/thatsthepoint.webp',
-		ogImage: '/images/cultureapothecary/hero/og/thatsthepoint.jpeg',
-		imageAlt: 'That’s the Point',
-		popupReview: '',
-		videoUrl: '',
-		solutionReview: '',
-		solutionImage: '',
-		thumbnailVideoUrl: '',
-		imageTitle: '',
-		imageDescription: '',
-	},
-	'thebestofyou': {
-		title: 'Welcome to Geviti, Your Partner in Feeling Younger Every Year.',
-		description: 'Every body is unique and there is no one-size-fits-all product to heal you. We\'re here to build personalized, longevity-oriented solutions based on the precise needs expressed by your body.',
-		image: '/images/cultureapothecary/hero/thebestofyou.webp',
-		ogImage: '/images/cultureapothecary/hero/og/thebestofyou.png',
-		imageAlt: 'The Best of You',
-		popupReview: 'Taking charge of your health isn’t just about adding years to your life—it’s about adding life to your years. Geviti makes proactive wellness simple, giving you expert support before issues arise!',
-		videoUrl: '',
-		solutionReview: '',
-		solutionImage: '',
-		thumbnailVideoUrl: '',
-		imageTitle: '',
-		imageDescription: '',
-	},
-	'raisingboysandgirls': {
-		title: 'Geviti: Because Your Family Deserves the Healthiest Version of You',
-		description: 'Every body is unique and there is no one-size-fits-all product to heal you. We\'re here to build personalized, longevity-oriented solutions based on the precise needs expressed by your body.',
-		image: '/images/cultureapothecary/hero/raisingboysandgirls.webp',
-		ogImage: '/images/cultureapothecary/hero/og/raisingboysandgirls.jpeg',
-		imageAlt: 'Raising boys and girls',
-		popupReview: 'Self-care and prioritizing health are important at every age, and we’re grateful to Geviti for making that more accessible to us all!',
-		videoUrl: '',
-		solutionReview: '',
-		solutionImage: '',
-		thumbnailVideoUrl: '',
-		imageTitle: '',
-		imageDescription: '',
-	},
-	'thatsoundsfun': {
-		title: 'Welcome to Geviti, Your Partner in Feeling Younger Every Year.',
-		description: 'Every body is unique and there is no one-size-fits-all product to heal you. We\'re here to build personalized, longevity-oriented solutions based on the precise needs expressed by your body.',
-		image: '/images/cultureapothecary/hero/thatsoundsfun.webp',
-		ogImage: '/images/cultureapothecary/hero/og/thatsoundsfun.jpeg',
-		imageAlt: 'That sounds fun',
-		popupReview: 'Anything we can do to pursue health and prevent illness is worth our time and efforts- Geviti is a perfect tool and teammate to reaching those goals.',
-		videoUrl: '',
-		solutionReview: '',
-		solutionImage: '',
-		thumbnailVideoUrl: '',
-		imageTitle: '',
-		imageDescription: '',
-	},
-	'1000hoursoutside': {
-		title: 'Welcome to Geviti, Your Partner in Feeling Younger Every Year.',
-		description: 'Every body is unique and there is no one-size-fits-all product to heal you. We\'re here to build personalized, longevity-oriented solutions based on the precise needs expressed by your body.',
-		image: '/images/cultureapothecary/hero/1000hoursoutside.jpg',
-		ogImage: '/images/cultureapothecary/hero/og/1000hoursoutside.jpeg',
-		imageAlt: '1000 Hours Outside',
-		popupReview: 'The health of the whole person is something we fully believe in; mind, spirit and body. Geviti has us covered when it comes to understanding the health of our body, and we love that!',
-		videoUrl: '',
-		solutionReview: '',
-		solutionImage: '',
-		thumbnailVideoUrl: '',
-		imageTitle: '',
-		imageDescription: '',
-	},
-	'wellnessandwisdom': {
-		title: 'Welcome to Geviti: Advanced Biomarker Analysis for Data-Driven Health Optimization.',
-		description: 'Every body is unique and there is no one-size-fits-all product to heal you. We\'re here to build personalized, longevity-oriented solutions based on the precise needs expressed by your body.',
-		image: '/images/cultureapothecary/hero/wellnessandwisdom.jpg',
-		ogImage: '/images/cultureapothecary/hero/wellnessandwisdom.jpg',
-		imageAlt: 'Wellness and Wisdom',
-		popupReview: '',
-		videoUrl: '',
-		solutionReview: '',
-		solutionImage: '/images/cultureapothecary/hero/wellnessandwisdom-solution.jpg',
-		thumbnailVideoUrl: '',
-		imageTitle: '',
-		imageDescription: '',
-	},
-	'onward': {
-		title: 'Peak Performance Starts With Knowing What Your Body Needs.',
-		description: 'Every body is unique and there is no one-size-fits-all product to heal you. We\'re here to build personalized, longevity-oriented solutions based on the precise needs expressed by your body.',
-		image: '/images/cultureapothecary/hero/onward.jpg',
-		thumbnailVideoUrl: '/images/cultureapothecary/hero/onward.jpg',
-		ogImage: '/images/cultureapothecary/hero/onward.jpg',
-		imageAlt: 'Wellness and Wisdom',
-		popupReview: '',
-		videoUrl: 'https://www.youtube.com/watch?v=vLdzl4_27ok',
-		solutionReview: '',
-		solutionImage: '/images/cultureapothecary/hero/onward-solution.jpg',
-		imageTitle: 'DJ Walton',
-		imageDescription: 'Boxing Coach & Founder of Onward',
-	},
-}
 
 type Props = {
   params: Promise<{ influencer: string }>
@@ -194,7 +53,7 @@ export async function generateMetadata(
 	}
   
 	// Get hero data for this influencer
-	const hero = heroData[influencer as keyof typeof heroData];
+	const hero = influencerData[influencer as keyof typeof influencerData];
   
 	return {
 		title: hero.title,
@@ -216,7 +75,7 @@ const CultureApothecary = async(props:{
 		notFound();
 	}
 
-	const hero = heroData[influencer as keyof typeof heroData];
+	const hero = influencerData[influencer as keyof typeof influencerData];
 
 	return (
 		<div className='flex min-h-screen flex-col w-full bg-white font-Poppins'>
@@ -235,6 +94,7 @@ const CultureApothecary = async(props:{
 			<Solution
 				imageUrl={ hero.solutionImage ? hero.solutionImage : undefined }
 				popupReview={ hero.solutionReview ? hero.solutionReview : undefined }
+				list={ hero.accordionData }
 			/>
 			<Benefits />
 			<Testimonials />
