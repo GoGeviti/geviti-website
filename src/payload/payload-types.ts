@@ -74,6 +74,26 @@ export interface Product {
         id?: string | null;
       }[]
     | null;
+  faq?:
+    | {
+        title?: string | null;
+        description?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  costComparison?: {
+      geviti?: {
+        price?: string | null;
+      };
+      competitor1?: {
+        name?: string | null;
+        price?: string | null;
+      };
+      competitor2?: {
+        name?: string | null;
+        price?: string | null;
+      };
+    };
   slug?: string | null;
   updatedAt: string;
   createdAt: string;

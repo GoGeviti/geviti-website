@@ -4,15 +4,13 @@ import { notFound } from 'next/navigation'
 import { Biomakers } from '@/app/solution/men/[category]/[product_id]/Biomakers'
 import Hero from '@/app/solution/men/[category]/[product_id]/Hero'
 import License from '@/app/solution/men/[category]/[product_id]/License'
+import PriceComparison from '@/app/solution/men/[category]/[product_id]/PriceComparison'
 import Tested from '@/app/solution/men/[category]/[product_id]/Tested'
 import Why from '@/app/solution/men/[category]/[product_id]/Why'
 // import Description from '@/app/solution/men/[category]/Description'
-import {
-	Footer, FrequentlyAskedQuestions, Line, MarketingComponent, RunningLogo
-} from '@/components'
+import { Footer, FrequentlyAskedQuestions, Line, RunningLogo } from '@/components'
 import Navbar from '@/components/Navbar/Landing'
 import { ViewOtherCategories } from '@/components/Solutions'
-import { solutionData } from '@/constant/data'
 import { navbarDefaultTransition } from '@/constant/data/navbar';
 import { Product } from '@/payload/payload-types'
 import { getProductByCategory } from '@/services/products'
@@ -74,21 +72,27 @@ const ProductCategorySingle = async(props:{
 				<Description data={ productDataSingle.stats }/>
 			</div> */ }
 			<Line className='max-lg:hidden'/>
-			<License/>
-			<Tested data={ productDataSingle.testing }/>
+			<Why data={ productDataSingle.why }/>
+			<FrequentlyAskedQuestions
+				className='lg:pb-0'
+				data={ productDataSingle.faq?.map(e => ({
+					title: e.title ?? '',
+					content: e.description ?? ''
+				})) ?? [] } />
+			<PriceComparison product={ productDataSingle } />
 			<Biomakers
 				stats={ productDataSingle.stats }
 				items={ productDataSingle.treatmentOptions?.map(e => e.name) ?? [] } />
-			<Why data={ productDataSingle.why }/>
+			<div className='lg:mt-[124px] lg:mb-16'>
+				<RunningLogo />
+			</div>
+			<License/>
+			<Tested data={ productDataSingle.testing }/>
 			<ViewOtherCategories
 				baseUrl={ `/women/${category}` }
 				isProduct
 				data={ productsData } />
-			<div className='mt-[42px] lg:mt-[87px]'>
-				<RunningLogo />
-			</div>
-			<MarketingComponent.Testimonials />
-			<FrequentlyAskedQuestions data={ solutionData.faq.data } />
+			{ /* <MarketingComponent.Testimonials /> */ }
 			<Footer landingPage />
 		</div>
 	)
