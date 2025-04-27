@@ -1,12 +1,11 @@
 import React from 'react'
 import { notFound } from 'next/navigation'
 
-import {
-	Footer, FrequentlyAskedQuestions, Line, MarketingComponent, RunningLogo
-} from '@/components'
+import { Footer, FrequentlyAskedQuestions, Line, RunningLogo } from '@/components'
+import LongevitiBlendComponent from '@/components/LongevitiBlend';
 import Navbar from '@/components/Navbar/Landing'
 import { ViewOtherCategories } from '@/components/Solutions'
-import { solutionData } from '@/constant/data'
+// import { solutionData } from '@/constant/data'
 import { navbarDefaultTransition } from '@/constant/data/navbar';
 import { Product } from '@/payload/payload-types'
 import { getProductByCategory } from '@/services/products'
@@ -16,6 +15,7 @@ import { Biomakers } from './Biomakers'
 // import Description from './Description'
 import Hero from './Hero'
 import License from './License'
+import PriceComparison from './PriceComparison';
 import Tested from './Tested'
 import Why from './Why'
 
@@ -71,21 +71,29 @@ const ProductCategorySingle = async(props:{
 				<Description data={ productDataSingle.stats }/>
 			</div> */ }
 			<Line className='max-lg:hidden'/>
-			<License/>
-			<Tested data={ productDataSingle.testing }/>
+			<Why data={ productDataSingle.why }/>
+			<FrequentlyAskedQuestions
+				className='lg:pb-0'
+				data={ productDataSingle.faq?.map(e => ({
+					title: e.title ?? '',
+					content: e.description ?? ''
+				})) ?? [] } />
+			<PriceComparison product={ productDataSingle } />
+			<LongevitiBlendComponent.HowItWorks />
 			<Biomakers
 				stats={ productDataSingle.stats }
 				items={ productDataSingle.treatmentOptions?.map(e => e.name) ?? [] } />
-			<Why data={ productDataSingle.why }/>
+			<div className='lg:mt-[124px] lg:mb-16'>
+				<RunningLogo />
+			</div>
+			<License/>
+			<Tested data={ productDataSingle.testing }/>
 			<ViewOtherCategories
 				baseUrl={ `/men/${category}` }
 				isProduct
 				data={ productsData } />
-			<div className='mt-[42px] lg:mt-[87px]'>
-				<RunningLogo />
-			</div>
-			<MarketingComponent.Testimonials />
-			<FrequentlyAskedQuestions data={ solutionData.faq.data } />
+
+			{ /* <MarketingComponent.Testimonials /> */ }
 			<Footer landingPage />
 		</div>
 	)
