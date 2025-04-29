@@ -67,11 +67,12 @@ const Hero: React.FC<HeroProps> = heroData => {
 				)
 			} */ }
 			<div className={ clsxm(
-				'relative flex container-center max-lg:flex-col pb-[36px] lg:pb-[215px]',
-				(heroData.longeviti_type === 'panel' || heroData.longeviti_type === 'blend') && 'lg:pt-[185px] '
+				'relative flex container-center max-lg:flex-col',
+				(heroData.longeviti_type === 'panel' || heroData.longeviti_type === 'blend') && 'lg:pt-[185px] ',
+				heroData.longeviti_type === 'blend' ? 'pb-0 lg:pb-0' : 'pb-[36px] lg:pb-[215px]'
 			) }>
 				<div className={ clsxm(
-					'w-full flex flex-col max-lg:items-center max-lg:text-center',
+					'w-fit flex flex-col max-lg:items-center max-lg:text-center',
 					(heroData.longeviti_type === 'panel' || heroData.longeviti_type === 'blend') && 'max-lg:order-2 '
 				) }>
 					<div className='sm:max-w-[434px] flex flex-col'>
@@ -136,19 +137,31 @@ const Hero: React.FC<HeroProps> = heroData => {
 						</React.Fragment>
 					) : (
 						<React.Fragment>
-							<div className='absolute left-[48%] -translate-y-1/2 top-1/2 w-screen max-lg:hidden'>
+							{ /* <div className='max-lg:mt-16 h-[757px] lg:flex-none -bottom-[78px] lg:ml-[69px] lg:absolute lg:left-1/2 lg:right-0 xxxl:right-auto'>
 								<Image
 									src={ heroData.benefits.image }
 									alt=''
-									width={ 668 }
-									height={ 654 }
+									width={ 501 }
+									height={ 757 }
 									priority
-									className='w-auto h-[654px] object-contain max-lg:hidden'
+									quality={ 100 }
+									className='w-auto h-full ml-auto mt-auto object-cover max-lg:hidden'
+								/>
+							</div> */ }
+							<div className='w-[501px] h-[757px] ml-auto mr-[-106px] max-lg:hidden'>
+								<Image
+									src={ heroData.benefits.image }
+									alt=''
+									width={ 501 }
+									height={ 757 }
+									priority
+									quality={ 100 }
+									className='w-[501px] h-[757px] object-contain max-lg:hidden'
 								/>
 							</div>
-							<div className='flex -mx-4 order-1 relative -mb-[2%] lg:hidden'>
+							<div className='flex -mx-4 order-1 relative my-16 lg:hidden'>
 								<Image
-									src={ heroData.benefits.imageMobile }
+									src={ heroData.benefits.image }
 									alt=''
 									width={ 1750 }
 									height={ 2192 }
