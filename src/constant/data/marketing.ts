@@ -127,6 +127,7 @@ const marketingData = {
 	hero: {
 		preTitle: {
 			'contact-us': 'Get in Touch with Geviti',
+			'health-experts': 'Your care is our calling',
 		},
 		titles: {
 			'women-weight-loss':
@@ -145,7 +146,8 @@ const marketingData = {
         'Geviti exists to prevent avoidable<br class="max-lg:hidden"/> disease and to maximize your<br class="max-lg:hidden"/> life’s potential.',
 			'contact-us':
         'We\'re Here to Support Your <br class="max-lg:hidden"/>Journey Toward Longevity, <br class="max-lg:hidden"/>and a Healthier Future',
-			'coffee-chill': ''
+			'coffee-chill': '',
+			'health-experts': 'Healthcare professionals <br class="max-lg:hidden"/>dedicated to compassionate, <br class="max-lg:hidden"/>expert care.',
 		},
 		list: {
 			'men-weight-loss': [
@@ -179,6 +181,7 @@ const marketingData = {
 			'about-us': [''],
 			'contact-us': [],
 			'coffee-chill': [],
+			'health-experts': [],
 		},
 		cta: {
 			text: {
@@ -191,6 +194,7 @@ const marketingData = {
           '<span class="lg:hidden">Join Geviti</span><span class="max-lg:hidden">Get Started</span>',
 				'business-oriented': 'Schedule A Call',
 				'coffee-chill': '',
+				'health-experts': '',
 			},
 			href: {
 				menopause: '/pricing',
@@ -200,6 +204,7 @@ const marketingData = {
 				giveaway: '/pricing',
 				'about-us': '/pricing',
 				'coffee-chill': '/pricing',
+				'health-experts': '/pricing',
 				'business-oriented':
           'https://calendly.com/cole-gogeviti/business-discovery-call',
 			},
@@ -214,6 +219,7 @@ const marketingData = {
 			'about-us': '/images/about_us/hero.webp',
 			'contact-us': '/images/contact/hero.webp',
 			'coffee-chill': '/images/contact/hero.webp',
+			'health-experts': '/images/healthexperts/hero.webp',
 		},
 		imageMobile: {
 			'men-hormone-therapy':
@@ -228,6 +234,7 @@ const marketingData = {
 			'about-us': '/images/about_us/hero.webp',
 			'contact-us': '/images/contact/hero-mobile.webp',
 			'coffee-chill': '',
+			'health-experts': '/images/healthexperts/hero.webp',
 		},
 		popup: {
 			title: 'HSA/FSA',
@@ -546,6 +553,7 @@ const marketingData = {
 			giveaway: '',
 			'about-us': '',
 			'contact-us': '',
+			'health-experts': '',
 			'coffee-chill':
         'Experience a new level of wellness you didn’t know was possible. Total health optimization at your fingertips. Future you will thank you.',
 		},
@@ -559,6 +567,7 @@ const marketingData = {
 				giveaway: '',
 				'about-us': '',
 				'contact-us': '',
+				'health-experts': '',
 				'coffee-chill': 'Schedule A Call',
 			},
 			href: {
@@ -569,6 +578,7 @@ const marketingData = {
 				giveaway: '/pricing',
 				'about-us': '/pricing',
 				'contact-us': '/pricing',
+				'health-experts': '/pricing',
 				'business-oriented':
           'https://calendly.com/cole-gogeviti/business-discovery-call',
 				'coffee-chill':
@@ -584,6 +594,7 @@ const marketingData = {
 			giveaway: [],
 			'about-us': [],
 			'contact-us': [],
+			'health-experts': [],
 			'coffee-chill': membershipListVersion3,
 		},
 	},
@@ -598,6 +609,7 @@ const marketingData = {
 			giveaway: stepsListDefault,
 			'about-us': stepsListDefault,
 			'contact-us': stepsListDefault,
+			'health-experts': stepsListDefault,
 			'coffee-chill': stepsListDefault,
 			'business-oriented': stepsListDefault.map(item => {
 				if (item.title === 'Tailored Products') {
@@ -619,6 +631,7 @@ const marketingData = {
 			giveaway: 'black',
 			'about-us': 'black',
 			'contact-us': 'black',
+			'health-experts': 'black',
 			'coffee-chill': 'black',
 		},
 	},
