@@ -12,7 +12,7 @@ interface TextRevealByWordProps {
 
 const TextRevealByWord: FC<TextRevealByWordProps> = ({
 	text,
-	className,
+	className
 }) => {
 	const targetRef = useRef<HTMLDivElement | null>(null);
 
@@ -26,9 +26,7 @@ const TextRevealByWord: FC<TextRevealByWordProps> = ({
 			ref={ targetRef }
 			className={ clsxm('relative z-0 h-[200vh]', className) }>
 			<div
-				className={
-					'sticky top-0 mx-auto px-4 flex h-[50%] max-w-screen-lg  items-center bg-transparent'
-				}
+				className='sticky top-0 mx-auto px-4 flex h-[50%] max-w-screen-lg  items-center bg-transparent'
 			>
 				<p
 					ref={ targetRef }

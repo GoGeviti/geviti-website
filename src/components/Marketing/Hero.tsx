@@ -38,6 +38,7 @@ const Hero: React.FC<HeroProps> = ({ slug = Slug.MEN_WEIGHT_LOSS }) => {
 					slug === Slug.ABOUT_US && 'max-md:object-[70%] lg:object-right',
 				) }
 				quality={ 100 }
+				unoptimized
 				fill
 				sizes='(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw'
 			/>
@@ -111,6 +112,8 @@ const Hero: React.FC<HeroProps> = ({ slug = Slug.MEN_WEIGHT_LOSS }) => {
 				return 'linear-gradient(90deg, #1D1A15 -42.3%, rgba(29, 26, 21, 0.50) 50.33%, rgba(29, 26, 21, 0.00) 92.83%)';
 			case Slug.MEN_HORMONE_THERAPY:
 				return 'linear-gradient(90deg, #120D0A -4.11%, rgba(18, 13, 10, 0.505) 63.56%, rgba(18, 13, 10, 0) 100%)';
+			case Slug.HEALTH_EXPERTS:
+				return 'linear-gradient(90deg, #1D1A1B -21.5%, rgba(29, 26, 27, 0.49) 59.97%, rgba(29, 26, 27, 0.00) 100%)';
 			default:
 				return '';
 		}
@@ -155,6 +158,7 @@ const Hero: React.FC<HeroProps> = ({ slug = Slug.MEN_WEIGHT_LOSS }) => {
 				'bg-primary h-[calc(100svh+14px)] lg:h-[calc(100vh-24px)] w-full overflow-hidden max-lg:rounded-t-none rounded-19px relative pt-11px lg:pt-5',
 				slug === Slug.ABOUT_US &&  'lg:h-[636px]',
 				slug === Slug.CONTACT_US && 'lg:h-[636px]',
+				slug === Slug.HEALTH_EXPERTS && 'lg:h-[636px]',
 			) }>
 				<div
 					className={ clsxm(
@@ -174,6 +178,10 @@ const Hero: React.FC<HeroProps> = ({ slug = Slug.MEN_WEIGHT_LOSS }) => {
               'max-lg:h-[calc(100svh-21.935svh+14px)]',
 						slug === Slug.CONTACT_US &&
               'max-lg:h-[calc(100svh-21.935svh+14px)]',
+						slug === Slug.ABOUT_US &&
+              'max-lg:h-[calc(100svh-21.935svh+14px)]',
+						slug === Slug.HEALTH_EXPERTS &&
+              'max-lg:h-[calc(100svh-21.935svh+14px)]',
 					) }
 				>
 					{ renderImage('desktop') }
@@ -181,7 +189,7 @@ const Hero: React.FC<HeroProps> = ({ slug = Slug.MEN_WEIGHT_LOSS }) => {
 				</div>
 				<div className={ clsxm(
 					'max-lg:hidden absolute right-6 bottom-6 z-30',
-					(slug === Slug.GIVEAWAY || slug === Slug.ABOUT_US || slug === Slug.CONTACT_US) && 'hidden'
+					(slug === Slug.GIVEAWAY || slug === Slug.ABOUT_US || slug === Slug.CONTACT_US || slug === Slug.HEALTH_EXPERTS) && 'hidden'
 				) }>
 					{ renderPopup() }
 				</div>
@@ -207,11 +215,13 @@ const Hero: React.FC<HeroProps> = ({ slug = Slug.MEN_WEIGHT_LOSS }) => {
                 'max-lg:pb-[5.722vh] lg:pt-[220px]',
 							slug === Slug.CONTACT_US &&
               'max-lg:pb-[5.722vh] lg:pt-[200px]',
+							slug === Slug.HEALTH_EXPERTS &&
+              'max-lg:pb-[5.722vh] lg:pt-[200px]',
 						) }
 					>
 						<div className='text-left flex flex-col'>
 							{
-								slug === Slug.CONTACT_US && (
+								(slug === Slug.CONTACT_US || slug === Slug.HEALTH_EXPERTS) && (
 									<span className='text-sm uppercase text-grey-secondary tracking-[1.54px] mb-6'>
 										{ heroData.preTitle[slug] }
 									</span>
@@ -253,7 +263,7 @@ const Hero: React.FC<HeroProps> = ({ slug = Slug.MEN_WEIGHT_LOSS }) => {
 							</div>
 
 							{
-								(slug !== Slug.GIVEAWAY && slug !== Slug.ABOUT_US && slug !== Slug.CONTACT_US) && (
+								(slug !== Slug.GIVEAWAY && slug !== Slug.ABOUT_US && slug !== Slug.CONTACT_US && slug !== Slug.HEALTH_EXPERTS) && (
 									<div className='flex w-full mt-6 overflow-hidden'>
 										<div className='max-sm:w-full flex'>
 											<ButtonCta
@@ -282,17 +292,19 @@ const Hero: React.FC<HeroProps> = ({ slug = Slug.MEN_WEIGHT_LOSS }) => {
 	return (
 		<div className={ clsxm(
 			'lg:px-3 lg:pt-3 overflow-hidden lg:mb-[124px]',
-			Slug.CONTACT_US && 'lg:mb-[30px]'
+			slug === Slug.CONTACT_US && 'lg:mb-[30px]',
+			slug === Slug.HEALTH_EXPERTS && 'lg:mb-0',
 		) }>
 			<Navbar
 				animationProps={ {
 					initial: 'visible',
 				} }
+				// theme={ slug === Slug.HEALTH_EXPERTS ? 'light' : 'dark' }
 			/>
 			{ renderHero() }
 			<div className={ clsxm(
 				'max-lg:px-4 max-lg:pb-[42px] max-lg:mt-[42px] max-w-2xl mx-auto lg:hidden',
-				(slug === Slug.GIVEAWAY || slug === Slug.ABOUT_US || slug === Slug.CONTACT_US) && 'hidden'
+				(slug === Slug.GIVEAWAY || slug === Slug.ABOUT_US || slug === Slug.CONTACT_US || slug === Slug.HEALTH_EXPERTS) && 'hidden'
 			) }>
 				{ renderPopup() }
 			</div>
