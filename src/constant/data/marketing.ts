@@ -536,6 +536,7 @@ const marketingData = {
 			'business-oriented': 'What\'s Included In a<br /><span class="text-grey-primary">Geviti Membership</span>',
 			giveaway: 'What\'s Included In a<br /><span class="text-grey-primary">Geviti Membership</span>',
 			'about-us': 'What\'s Included In a<br /><span class="text-grey-primary">Geviti Membership</span>',
+			'health-experts': 'What\'s Included In a<br /><span class="text-grey-primary">Geviti Membership</span>',
 			'contact-us': 'What\'s Included In a<br /><span class="text-grey-primary">Geviti Membership</span>',
 			'coffee-chill': 'What is included in a<br /><span class="text-grey-primary">Geviti Membership</span>'
 		},
