@@ -206,7 +206,7 @@ const marketingData = {
 				'coffee-chill': '/pricing',
 				'health-experts': '/pricing',
 				'business-oriented':
-          'https://calendly.com/cole-gogeviti/business-discovery-call',
+          'https://calendly.com/naomitabot-gogeviti/geviti-discovery-call',
 			},
 		},
 		image: {
@@ -581,9 +581,9 @@ const marketingData = {
 				'contact-us': '/pricing',
 				'health-experts': '/pricing',
 				'business-oriented':
-          'https://calendly.com/cole-gogeviti/business-discovery-call',
+          'https://calendly.com/naomitabot-gogeviti/geviti-discovery-call',
 				'coffee-chill':
-          'https://calendly.com/cole-gogeviti/business-discovery-call',
+          'https://calendly.com/naomitabot-gogeviti/geviti-discovery-call',
 			},
 		},
 		list: {

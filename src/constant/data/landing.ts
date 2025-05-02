@@ -46,7 +46,7 @@ const landingData = {
 			externalLink: false,
 		},
 		btnCta2: {
-			href: 'https://calendly.com/cole-gogeviti/discovery-call',
+			href: 'https://calendly.com/naomitabot-gogeviti/geviti-discovery-call',
 			externalLink: true,
 			text: 'Schedule a discovery call',
 			textMobile: 'Discovery call',

@@ -134,6 +134,21 @@ export const influencerData = {
 		imageDescription: '',
 		accordionData: []
 	},
+	'girlsgonebible': {
+		title: 'Welcome to Geviti: Science-Based Health Optimization for Living Your Purpose Fully..',
+		description: 'Every body is unique and there is no one-size-fits-all product to heal you. We\'re here to build personalized, longevity-oriented solutions based on the precise needs expressed by your body.',
+		image: '/images/cultureapothecary/hero/girlsgonebible.webp',
+		ogImage: '/images/cultureapothecary/hero/og/girlsgonebible.jpg',
+		imageAlt: 'Girls Gone Bible',
+		popupReview: '',
+		videoUrl: '',
+		solutionReview: '',
+		solutionImage: '',
+		thumbnailVideoUrl: '',
+		imageTitle: '',
+		imageDescription: '',
+		accordionData: []
+	},
 	'onward': {
 		title: 'Peak Performance Starts With Knowing What Your Body Needs.',
 		description: 'Every body is unique and there is no one-size-fits-all product to heal you. We\'re here to build personalized, longevity-oriented solutions based on the precise needs expressed by your body.',
