@@ -101,7 +101,7 @@ const MEMBERSHIP_FEATURES: Feature[] = [
 		available: false
 	},
 	{
-		name: 'Doctor monitored treatments',
+		name: 'Expert monitored treatments',
 		description: 'Get professional medical oversight and guidance for your treatment programs.',
 		available: false
 	},
