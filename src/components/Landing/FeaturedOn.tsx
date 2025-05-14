@@ -14,6 +14,10 @@ const list = [
 		image: '/images/landing/featured-03.png',
 		title: 'meta press',
 	},
+	{
+		image: '/images/landing/featured-04.png',
+		title: 'Fox 5',
+	},
 ]
 
 const FeaturedOn = () => {
