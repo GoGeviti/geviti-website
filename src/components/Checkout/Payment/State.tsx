@@ -176,6 +176,160 @@ export const SuccessIcon = () => {
 	);
 };
 
+export const SecuritySuccessIcon = () => {
+	return (
+		<svg
+			width='102'
+			height='102'
+			viewBox='0 0 102 102'
+			fill='none'
+			xmlns='http://www.w3.org/2000/svg'>
+			<g filter='url(#filter0_i_21155_68629)'>
+				<rect
+					x='1'
+					y='1'
+					width='100'
+					height='100'
+					rx='20'
+					fill='#F3FFF4'/>
+				<rect
+					x='0.5'
+					y='0.5'
+					width='101'
+					height='101'
+					rx='20.5'
+					stroke='#DFFFE1'/>
+				<path
+					d='M52.2048 63.8833C55.8053 62.5239 69.9159 55.7506 70.5403 32.914C70.567 31.9411 70.0593 31.0216 69.233 30.5074C58.2992 23.7042 44.4498 23.7042 33.5161 30.5074C32.6897 31.0216 32.1821 31.9411 32.2087 32.914C32.8332 55.7506 46.9437 62.5239 50.5443 63.8833C51.0818 64.0863 51.6672 64.0863 52.2048 63.8833Z'
+					fill='url(#paint0_linear_21155_68629)'/>
+				<foreignObject
+					x='22.6226'
+					y='27.0545'
+					width='57.5038'
+					height='54.8315'><div
+						style={ {
+							backdropFilter: 'blur(3.2px)',
+							clipPath: 'url(#bgblur_0_21155_68629_clip_path)',
+							height: '100%',
+							width: '100%'
+						} } /></foreignObject><path
+					data-figma-bg-blur-radius='6.39574'
+					d='M32.4142 38.6445C43.9794 32.0358 58.1362 31.9326 69.7823 38.335L70.3351 38.6445L72.0695 39.6357C72.9572 40.143 73.5306 41.0714 73.5695 42.0801L73.5704 42.2832C73.1633 54.6214 68.7337 62.5343 63.9406 67.5215C59.4441 72.1999 54.6204 74.3115 52.4747 75.0781L52.0822 75.2139C51.6714 75.351 51.255 75.3676 50.8429 75.2646L50.6671 75.2139C48.7736 74.5815 43.604 72.5119 38.8077 67.5215C34.1645 62.6901 29.863 55.1128 29.2286 43.4268L29.1788 42.2832C29.1453 41.2653 29.6612 40.3052 30.506 39.7432L30.6798 39.6357L32.4142 38.6445Z'
+					fill='#6AE092'
+					fillOpacity='0.6'
+					stroke='url(#paint1_linear_21155_68629)'
+					strokeWidth='0.317975'/>
+				<path
+					d='M59.3622 46.8066C60.1937 45.9754 61.5093 45.9239 62.4012 46.6514L62.5741 46.8066C63.4056 47.6381 63.4578 48.9546 62.7303 49.8467L62.5741 50.0186L51.3817 61.2119C50.9558 61.6378 50.3776 61.877 49.7753 61.877C49.2482 61.8769 48.74 61.6935 48.3358 61.3623L48.1698 61.2119L41.7733 54.8154C40.9422 53.9838 40.8905 52.6683 41.618 51.7764L41.7733 51.6035C42.6049 50.7719 43.9213 50.7205 44.8134 51.4482L44.9852 51.6035L49.6854 56.3037C49.7092 56.3275 49.7416 56.3408 49.7753 56.3408C49.8089 56.3408 49.8413 56.3275 49.8651 56.3037L59.3622 46.8066Z'
+					fill='url(#paint2_linear_21155_68629)'
+					fillOpacity='0.9'
+					stroke='url(#paint3_linear_21155_68629)'
+					strokeWidth='0.25438'
+					strokeLinecap='round'
+					strokeLinejoin='round'/>
+			</g>
+			<defs>
+				<filter
+					id='filter0_i_21155_68629'
+					x='0'
+					y='0'
+					width='102'
+					height='106'
+					filterUnits='userSpaceOnUse'
+					colorInterpolationFilters='sRGB'>
+					<feFlood
+						floodOpacity='0'
+						result='BackgroundImageFix'/>
+					<feBlend
+						mode='normal'
+						in='SourceGraphic'
+						in2='BackgroundImageFix'
+						result='shape'/>
+					<feColorMatrix
+						in='SourceAlpha'
+						type='matrix'
+						values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0'
+						result='hardAlpha'/>
+					<feMorphology
+						radius='4'
+						operator='erode'
+						in='SourceAlpha'
+						result='effect1_innerShadow_21155_68629'/>
+					<feOffset dy='4'/>
+					<feGaussianBlur stdDeviation='4'/>
+					<feComposite
+						in2='hardAlpha'
+						operator='arithmetic'
+						k2='-1'
+						k3='1'/>
+					<feColorMatrix
+						type='matrix'
+						values='0 0 0 0 0.784314 0 0 0 0 0.654902 0 0 0 0 0.996078 0 0 0 0.04 0'/>
+					<feBlend
+						mode='normal'
+						in2='shape'
+						result='effect1_innerShadow_21155_68629'/>
+				</filter>
+				<clipPath
+					id='bgblur_0_21155_68629_clip_path'
+					transform='translate(-22.6226 -27.0545)'><path d='M32.4142 38.6445C43.9794 32.0358 58.1362 31.9326 69.7823 38.335L70.3351 38.6445L72.0695 39.6357C72.9572 40.143 73.5306 41.0714 73.5695 42.0801L73.5704 42.2832C73.1633 54.6214 68.7337 62.5343 63.9406 67.5215C59.4441 72.1999 54.6204 74.3115 52.4747 75.0781L52.0822 75.2139C51.6714 75.351 51.255 75.3676 50.8429 75.2646L50.6671 75.2139C48.7736 74.5815 43.604 72.5119 38.8077 67.5215C34.1645 62.6901 29.863 55.1128 29.2286 43.4268L29.1788 42.2832C29.1453 41.2653 29.6612 40.3052 30.506 39.7432L30.6798 39.6357L32.4142 38.6445Z'/>
+				</clipPath><linearGradient
+					id='paint0_linear_21155_68629'
+					x1='40.7219'
+					y1='35.3041'
+					x2='82.4209'
+					y2='66.6873'
+					gradientUnits='userSpaceOnUse'>
+					<stop stopColor='#75EDA1'/>
+					<stop
+						offset='1'
+						stopColor='#349256'/>
+				</linearGradient>
+				<linearGradient
+					id='paint1_linear_21155_68629'
+					x1='29.8527'
+					y1='37.8022'
+					x2='85.3548'
+					y2='78.7318'
+					gradientUnits='userSpaceOnUse'>
+					<stop stopColor='white'/>
+					<stop
+						offset='0.734375'
+						stopColor='white'
+						stopOpacity='0'/>
+				</linearGradient>
+				<linearGradient
+					id='paint2_linear_21155_68629'
+					x1='44.4795'
+					y1='52.111'
+					x2='79.4568'
+					y2='56.2447'
+					gradientUnits='userSpaceOnUse'>
+					<stop stopColor='white'/>
+					<stop
+						offset='1'
+						stopColor='white'
+						stopOpacity='0'/>
+				</linearGradient>
+				<linearGradient
+					id='paint3_linear_21155_68629'
+					x1='41.6177'
+					y1='48.2953'
+					x2='55.9266'
+					y2='53.0649'
+					gradientUnits='userSpaceOnUse'>
+					<stop stopColor='white'/>
+					<stop
+						offset='1'
+						stopColor='white'
+						stopOpacity='0'/>
+				</linearGradient>
+			</defs>
+		</svg>
+
+	);
+};
+
 const State: React.FC<StateProps> = ({ type, searchParams }) => {
 	const [externalHref, setExternalHref] = useState('');
 	const router = useRouter();

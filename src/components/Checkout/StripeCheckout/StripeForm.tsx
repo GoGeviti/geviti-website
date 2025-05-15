@@ -22,7 +22,7 @@ import { FormCheckoutSchema } from '@/validator/checkout';
 
 import { createSession, joinWaitListV2, validateState, validateVitalBlood } from '../api/onboarding';
 import CustomDatePicker from '../DatePicker';
-import { ExclamationIcon } from '../Payment/State';
+import { ExclamationIcon, SecuritySuccessIcon } from '../Payment/State';
 import CustomSelect from '../Select';
 import TextField from '../TextField';
 
@@ -64,16 +64,104 @@ const StripeForm: FC<StripeFormProps> = () => {
 	const tokenRef = useRef('');
 	const [formSubmitted, setFormSubmitted] = useState(false);
 	const [isOpenDialogState, setIsOpenDialogState] = useState(false);
+	const [isOpenDialogConfirmAddress, setIsOpenDialogConfirmAddress] = useState(false);
 	const [isOpenDialogNotAvailableState, setIsOpenDialogNotAvailableState] = useState(false);
 	const [isOpenDialogWalkIn, setIsOpenDialogWalkIn] = useState(false);
-	// const [isApprovedWalkIn, setIsApprovedWalkIn] = useState(false);
 	const [isLoading, setIsLoading] = useState(false);
 	const [referral, setReferral] = useState('')
+	const [isLoadingWaitForProvider, setIsLoadingWaitForProvider] = useState(false);
+
+	const restrictedStates = ['CA', 'DE', 'FL', 'IL', 'IN', 'LA', 'MA', 'MD', 'MI', 'MN', 'MO', 'MS', 'NC', 'TN', 'TX', 'VA', 'WI'];
 
 	const formLoading = useMemo(
 		() => stripeResponseLoading || loading,
 		[stripeResponseLoading, loading]
 	);
+
+	const handleWaitForProvider = async() => {
+		try {
+			setIsLoadingWaitForProvider(true);
+			const result = await createKlaviyoProfile({
+				data: {
+					type: 'profile',
+					attributes: {
+						firstName: formik.values.firstName,
+						lastName: formik.values.lastName,
+						location: {
+							city: formik.values.city,
+							region: formik.values.state,
+							address1: formik.values.address_1,
+							address2: formik.values.address_2,
+							zip: formik.values.zip_code,
+						},
+						email: formik.values.email,
+						phoneNumber: formik.values.phone_number,
+					}
+				}
+			}, 'X38cMy');
+			
+			if (result.status === 'OK') {
+				setIsOpenDialogConfirmAddress(false);
+				toast.success('Thank you! We\'ll notify you when provider access is available in your state.');
+			} else {
+				toast.error('Something went wrong. Please try again.');
+			}
+		} catch (error) {
+			toast.error('Something went wrong. Please try again.');
+		} finally {
+			setIsLoadingWaitForProvider(false);
+		}
+	};
+
+	const validateVitalBloodAndHandleResult = async(form: IPrecheckout.BillingInfo) => {
+		try {
+			const vitalBloodAvailability = await validateVitalBlood({
+				userAddress: {
+					line1: form.address_1,
+					line2: form.address_2,
+					city: form.city,
+					state: form.state,
+					zip: form.zip_code,
+				},
+			});
+
+			if (!vitalBloodAvailability.isAddressValid) {
+				setStripeResponseLoading(false);
+				setIsOpenDialogConfirmAddress(false);
+				setIsOpenDialogWalkIn(true);
+				return false;
+			}
+			return true;
+		} catch (error: any) {
+			setStripeResponseLoading(false);
+			if (typeof error === 'string') {
+				if (error.includes('This area is not currently serviceable for blood work')) {
+					setIsOpenDialogWalkIn(true);
+					setIsOpenDialogConfirmAddress(false);
+				} else {
+					toast.error(error);
+				}
+			} else {
+				toast.error('An error occurred');
+			}
+			return false;
+		}
+	};
+
+	const handleProceedWithValidation = async() => {
+		try {
+			setIsLoading(true);
+			const isValid = await validateVitalBloodAndHandleResult(formik.values);
+			if (isValid) {
+				setIsOpenDialogConfirmAddress(false);
+				await proceedWithCheckout();
+			}
+		} catch (error) {
+			toast.error('An error occurred');
+		} finally {
+			setIsLoading(false);
+		}
+	};
 
 	const formik: FormikProps<IPrecheckout.BillingInfo> = useFormik<IPrecheckout.BillingInfo>({
 		validateOnBlur: formSubmitted,
@@ -99,114 +187,29 @@ const StripeForm: FC<StripeFormProps> = () => {
 					zipCode: form.zip_code
 				})
 
-				// console.log('isValidState ==> ', isValidState)
-
 				if (isValidState.token) {
 					setTokenState(isValidState.token);
 					tokenRef.current = isValidState.token;
 				}
 				if (!isValidState.stateExists) {
 					setStripeResponseLoading(false);
-					// setTokenState(isValidState.token)
 					return setIsOpenDialogNotAvailableState(true)
 				}
 
-			  // Validate vital bloodwork availability
-				const vitalBloodAvailability = await validateVitalBlood({
-					userAddress: {
-						line1: form.address_1,
-						line2: form.address_2,
-						city: form.city,
-						state: form.state,
-						zip: form.zip_code,
-					},
-				});
-
-				if (!vitalBloodAvailability.isAddressValid) {
+				// Check if state is in restricted list
+				if (restrictedStates.includes(form.state)) {
 					setStripeResponseLoading(false);
-					// toast.error(
-					// 	vitalBloodAvailability.message ||
-					// 	'Vital bloodwork is not available in your area'
-					// );
-					setIsOpenDialogWalkIn(true);
+					setIsOpenDialogConfirmAddress(true);
 					return;
 				}
-				await proceedWithCheckout();
 
-				// const getFPTid = () => {
-				// 	if (typeof window !== 'undefined') {
-				// 		return (window as any).FPROM?.data?.tid;
-				// 	}
-				// 	return undefined;
-				// };
-
-				// const sessionSecret = await createSession({
-				// 	header: {
-				// 		'Authorization': 'Bearer ' + isValidState.token,
-				// 	},
-				// 	body: {
-				// 		user: {
-				// 			firstName: form.firstName,
-				// 			lastName: form.lastName,
-				// 			email: form.email,
-				// 			addressLine1: form.address_1,
-				// 			addressLine2: form.address_2,
-				// 			city: form.city,
-				// 			dob: form.birthdate,
-				// 			gender: form.gender.toLowerCase(),
-				// 			phoneNumber: form.phone_number,
-				// 			state: form.state,
-				// 			zipCode: form.zip_code
-				// 		},
-				// 		coupon: coupon,
-				// 		referral: referral.length ? referral : undefined,
-				// 		fp_tid: getFPTid(),
-				// 		product: [{
-				// 			productId: selectedProduct?.productId.toString() ?? '',
-				// 			productName: selectedProduct?.productName ?? '',
-				// 			quantity: 1,
-				// 			price: selectedProductPrice?.price ?? 0,
-				// 			price_id: selectedProductPrice?.priceId ?? ''
-				// 		}],
-				// 		// payment_token: isValidState.token
-				// 	}
-				// })
-				// const klaviyo = await createKlaviyoProfile({
-				// 	data: {
-				// 		type: 'profile',
-				// 		attributes: {
-				// 			firstName: form.firstName,
-				// 			lastName: form.lastName,
-				// 			location: {
-				// 				city: form.city,
-				// 				region: form.state,
-				// 				address1: form.address_1,
-				// 				address2: form.address_2,
-				// 				zip: form.zip_code,
-				// 			},
-				// 			email: form.email,
-				// 			phoneNumber: form.phone_number,
-				// 		}
-				// 	}
-				// }, 'UqUaJC')
-				// setKlaviyoRes({
-				// 	profileId: klaviyo.profileId ?? '',
-				// 	listId: klaviyo.listId ?? ''
-				// })
-				// setToken(sessionSecret.token);
-				// setSessionSecret(sessionSecret.clientSecret);
-				// setStripeResponseLoading(false);
+				const isValid = await validateVitalBloodAndHandleResult(form);
+				if (isValid) {
+					await proceedWithCheckout();
+				}
 			} catch (error:any) {
 				setStripeResponseLoading(false);
-				if (typeof error === 'string') {
-					if (error.includes('This area is not currently serviceable for blood work')) {
-						setIsOpenDialogWalkIn(true);
-					} else {
-						toast.error(error);
-					}
-				} else {
-					toast.error('An error occurred');
-				}
+				toast.error('An error occurred');
 			}
 		},
 	});
@@ -760,6 +763,67 @@ const StripeForm: FC<StripeFormProps> = () => {
 							disabled={ isLoading }
 							className='h-[58px] py-3 px-[42px] text-white rounded-[1000px] mt-11 bg-black'
 						>{ isLoading ? 'Loading...' : 'Continue' }</button>
+					</div>
+				</DialogContent>
+			</Dialog>
+			<Dialog
+				open={ isOpenDialogConfirmAddress }
+				modal={ true }
+				data-lenis-prevent
+				onOpenChange={ setIsOpenDialogConfirmAddress }
+			>
+				<DialogContent
+					position='default'
+					className='w-full lg:max-w-screen-sm p-6 max-w-[calc(100vw-32px)] rounded-[20px]'
+					showClose={ false }
+				>
+					<div className='flex text-center flex-col font-Poppins'>
+						<button
+							onClick={ () => setIsOpenDialogConfirmAddress(prev => !prev) }
+							className='p-[10px] self-end rounded-full border border-[#E6E7E7]'>
+							<svg
+								xmlns='http://www.w3.org/2000/svg'
+								width='14'
+								height='14'
+								viewBox='0 0 14 14'
+								fill='none'>
+								<path
+									d='M10.5 11.5L2.5 3.50001C2.22666 3.22667 2.22666 2.77334 2.5 2.5C2.77333 2.22667 3.22667 2.22667 3.5 2.5L11.5 10.5C11.7734 10.7734 11.7734 11.2267 11.5 11.5C11.2267 11.7734 10.7734 11.7734 10.5 11.5Z'
+									fill='#919B9F'/>
+								<path
+									d='M2.49997 11.5C2.22664 11.2267 2.22664 10.7734 2.49997 10.5L10.5 2.5C10.7733 2.22667 11.2267 2.22667 11.5 2.5C11.7733 2.77334 11.7733 3.22667 11.5 3.50001L3.49997 11.5C3.22664 11.7734 2.77331 11.7734 2.49997 11.5Z'
+									fill='#919B9F'/>
+							</svg>
+						</button>
+						<div className='flex items-center justify-center'>
+							<SecuritySuccessIcon/>
+						</div>
+						<p className='text-primary text-2xl mt-6'>Important info about<br/>your state! </p>
+						<p className='text-grey-500 text-xs mt-6 max-w-[422px] mx-auto w-full'>While we&apos;re excited to serve your state, we currently can&apos;t see a medical provider in a clinical capacity (coming very soon). We offer these services today:</p>
+						<div className='flex flex-wrap gap-1.5 mx-auto items-center justify-center mt-6'>
+							{
+								['Bloodwork', 'Health Optimization Plans', 'Wellness Specialist Syncs', 'Speciality Tests', 'Custom Supplements', 'All other Services'].map((item, index) => (
+									<span
+										key={ index }
+										className='text-[#1194E6] text-lg bg-[#F6FCFF] border border-[#D6EDFF] rounded-lg py-2 px-3'>{ item }</span>
+								))
+							}
+						</div>
+						<p className='text-center body-extra-small mt-6'>*We&apos;ll have prescriptive authority in your state very soon!</p>
+						<button
+							type='button'
+							aria-label='Continue'
+							onClick={ handleProceedWithValidation }
+							disabled={ isLoading }
+							className='h-[48px] py-3 px-[42px] text-white rounded-[14px] text-sm mt-6 bg-black'
+						>{ isLoading ? 'Loading...' : 'I understand! Let\'s proceed!' }</button>
+						<button
+							type='button'
+							aria-label="I'll wait for provider access"
+							onClick={ handleWaitForProvider }
+							disabled={ isLoadingWaitForProvider }
+							className='h-[48px] py-3 px-[42px] text-primary rounded-[14px] text-sm mt-3.5 bg-grey-100'
+						>{ isLoadingWaitForProvider ? 'Loading...' : 'I\'ll wait for provider access' }</button>
 					</div>
 				</DialogContent>
 			</Dialog>
