@@ -38,6 +38,41 @@ const HEAD_TAGS = isDevelopment ? null : (
 			name='cometly-domain-verification'
 			content='007df841-addd-4846-93c2-f94f19c48097'
 		/>
+		<script
+			type='application/ld+json'
+			dangerouslySetInnerHTML={ {
+				__html: JSON.stringify({
+					'@context': 'https://schema.org',
+					'@type': 'FAQPage',
+					'mainEntity': [
+						{
+							'@type': 'Question',
+							'name': 'In which states is Geviti available?',
+							'acceptedAnswer': {
+								'@type': 'Answer',
+								'text': 'Geviti is available in 29 states including AZ, CA, CO, DE, FL, GA, IL, IN, KS, LA, MA, MD, MI, MN, MO, MS, NC, NH, NM, NV, OH, OR, PA, TN, TX, UT, VA, WA, WI.'
+							}
+						},
+						{
+							'@type': 'Question',
+							'name': 'What free at-home bloodwork option is included with my membership?',
+							'acceptedAnswer': {
+								'@type': 'Answer',
+								'text': 'As part of your membership, you receive the \'Longeviti Panel\' testing twice a year, evaluating over 90 biomarkers.'
+							}
+						},
+						{
+							'@type': 'Question',
+							'name': 'Are the cost of supplements or prescriptions included in the membership fee?',
+							'acceptedAnswer': {
+								'@type': 'Answer',
+								'text': 'The membership fee provides access to our range of supplements and prescription services; however, the costs for these items are not included and are priced separately.'
+							}
+						}
+					]
+				})
+			} }
+		/>
 		<Script
 			id='sa-dynamic-optimization'
 			src='data:text/javascript;base64,dmFyIHNjcmlwdCA9IGRvY3VtZW50LmNyZWF0ZUVsZW1lbnQoInNjcmlwdCIpO3NjcmlwdC5zZXRBdHRyaWJ1dGUoIm5vd3Byb2NrZXQiLCAiIik7c2NyaXB0LnNldEF0dHJpYnV0ZSgibml0cm8tZXhjbHVkZSIsICIiKTtzY3JpcHQuc3JjID0gImh0dHBzOi8vZGFzaGJvYXJkLnFlcmFtYXJrZXRpbmcuY29tL3NjcmlwdHMvZHluYW1pY19vcHRpbWl6YXRpb24uanMiO3NjcmlwdC5kYXRhc2V0LnV1aWQgPSAiYjc5NmYzNTgtZWY0ZS00NmViLWE4MjEtNzcyYjJmNDNjZjMwIjtzY3JpcHQuaWQgPSAic2EtZHluYW1pYy1vcHRpbWl6YXRpb24tbG9hZGVyIjtkb2N1bWVudC5oZWFkLmFwcGVuZENoaWxkKHNjcmlwdCk7'
