@@ -174,6 +174,8 @@ const longevitiPanelData = {
 							'Protein - Total: Measure overall protein status in the body.',
 							'Albumin: Monitor liver function and nutritional status.',
 							'Globulin - Total: Evaluate immune function and liver health.',
+							'Uric Acid: Screens metabolic disorders; elevation increases cardiovascular, stroke mortality.',
+							'Glutamyl Transferase (GGT): Liver enzyme in glutathione pathway; elevated in liver disease, bile obstruction, oxidative stress.'
 						],
 					},
 					{
@@ -221,6 +223,7 @@ const longevitiPanelData = {
 							'% Testosterone Bioavailable: Assess available testosterone percentage.',
 							'Testosterone Bioavailable: Measure testosterone readily available for use.',
 							'Cortisol : DHEA-S: Evaluate stress response and adrenal health balance.',
+							'Thyroid Peroxidase (TPO) Antibodies: Autoantibody to thyroid enzyme, signals autoimmune thyroid disease.'
 						],
 					},
 					{
@@ -300,6 +303,8 @@ const longevitiPanelData = {
 							'Protein - Total: Measure overall protein status in the body.',
 							'Albumin: Monitor liver function and nutritional status.',
 							'Globulin - Total: Evaluate immune function and liver health.',
+							'Uric Acid: Screens metabolic disorders; elevation increases cardiovascular, stroke mortality.',
+							'Glutamyl Transferase (GGT): Liver enzyme in glutathione pathway; elevated in liver disease, bile obstruction, oxidative stress.'
 						],
 					},
 					{
@@ -349,6 +354,7 @@ const longevitiPanelData = {
 							'Testosterone Bioavailable: Measure testosterone readily available for use.',
 							'Prolactin: Assess reproductive health and potential pituitary or thyroid disorders.',
 							'Cortisol : DHEA-S: Evaluate stress response and adrenal health balance.',
+							'Thyroid Peroxidase (TPO) Antibodies: Autoantibody to thyroid enzyme, signals autoimmune thyroid disease.'
 						],
 					},
 					{

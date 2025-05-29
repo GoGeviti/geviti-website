@@ -185,7 +185,7 @@ const Hero: React.FC<HeroProps> = ({
 					},
 				} }
 			/>
-			<div className='bg-primary h-[calc(100svh+14px)] lg:h-[calc(100vh-24px)] w-full overflow-hidden max-lg:rounded-none rounded-19px relative pt-11px lg:pt-5'>
+			<div className='bg-primary h-[calc(100svh+14px)] lg:min-h-[700px] lg:h-[calc(100vh-24px)] w-full overflow-hidden max-lg:rounded-none rounded-19px relative pt-11px lg:pt-5'>
 				<div className='absolute inset-0 w-full h-full'>
 					<div className='relative overflow-hidden w-full h-full'>
 						{
