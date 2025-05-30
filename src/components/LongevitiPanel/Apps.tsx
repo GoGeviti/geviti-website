@@ -46,7 +46,7 @@ const Apps: React.FC = () => {
 	};
 
 	return (
-		<div className='w-full overflow-hidden container-center relative z-20 -mb-[155px] pb-[102px] lg:pb-[261px] pt-[41px] lg:pt-[163px]'>
+		<div className='w-full overflow-hidden container-center relative z-20 lg:pb-[201px]'>
 			<div className='flex max-lg:flex-col lg:grid lg:grid-cols-12 gap-[42px] lg:gap-[37px]'>
 				<div className='lg:col-span-5 w-full max-w-[494px] mx-auto'>
 					{ renderContent() }
