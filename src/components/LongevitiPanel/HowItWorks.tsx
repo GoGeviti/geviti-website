@@ -66,7 +66,7 @@ const HowItWorks: React.FC = () => {
 	};
 
 	return (
-		<div className='w-full'>
+		<div className='w-full pt-[92px] lg:pt-[164px]'>
 			<div className='w-full container-center'>
 				<div className='max-w-[648px] mx-auto flex flex-col items-center text-center gap-y-3.5'>
 					<h2 className='text-2xl sm:text-3xl lg:text-4xl sm:font-medium text-primary -tracking-0.04em'>

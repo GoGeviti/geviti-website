@@ -11,11 +11,11 @@ const LongevitiPanelPage: NextPage = () => {
 			<LongevitiPanelComponent.Hero
 				{ ...longevitiPanelData.hero }
 				longeviti_type='panel' />
-			<LongevitiPanelComponent.HowItWorks />
-			<LongevitiPanelComponent.BannerParallax />
 			<React.Suspense fallback={ <div className='min-h-[200px]' /> }>
 				<LongevitiPanelComponent.Analyzed />
 			</React.Suspense>
+			<LongevitiPanelComponent.HowItWorks />
+			<LongevitiPanelComponent.BannerParallax />
 			<LongevitiPanelComponent.Apps />
 			<FrequentlyAskedQuestions
 				data={ longevitiPanelData.faq.data }
