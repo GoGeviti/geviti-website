@@ -72,7 +72,7 @@ const pricingData = {
 					description: 'Get science-backed supplements tailored to your unique needs. Based on your bloodwork, these blends ensure you get exactly what your body needs for optimal health and performance.',
 				},
 				{
-					title: 'Doctor monitored treatments',
+					title: 'Expert monitored treatments',
 					description: 'Treatments are overseen by licensed medical providers who monitor progress and adjust plans as needed, ensuring your journey is safe, effective, and aligned with your health goals.',
 				},
 				{

@@ -389,6 +389,24 @@ export const submitWaitlistWithPassword = async(
 	return { status: 'ERROR', message: 'Invalid Password' };
 }
 
+export const submitWaitlistWithoutPassword = async(): Promise<ResponseType> => {
+	const token = await new SignJWT({ authorized: true })
+		.setProtectedHeader({ alg: 'HS256' })
+		.setExpirationTime('24h')
+		.sign(new TextEncoder().encode(process.env.JWT_SECRET));
+
+	const cookieStore = await cookies();
+	cookieStore.set('waitlist-token', token, {
+		path: '/',
+		maxAge: 60 * 60 * 24, // 24 hours
+		httpOnly: true,
+		secure: process.env.NODE_ENV === 'production',
+	});
+
+	return { status: 'OK', message: 'Password is correct' };
+	
+}
+
 let cachedCount = 0;
 let lastFetchTime = 0;
 const CACHE_TTL = 5 * 60 * 1000; // 5 minutes in milliseconds
