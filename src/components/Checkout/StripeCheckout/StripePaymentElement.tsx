@@ -146,6 +146,10 @@ const StripePaymentElement:React.FC<StripePaymentElementProps> = ({
 				);
 			}
 
+			if (typeof window !== 'undefined' && window.vbpx) {
+				window.vbpx('event', 'purchase', { 'price_usd': totalPrice });
+			}
+
 			try {
 				// Wait for Klaviyo operation to complete
 				await deleteKlaviyoProfileFromList(klaviyoRes?.profileId ?? '', klaviyoRes?.listId ?? '');

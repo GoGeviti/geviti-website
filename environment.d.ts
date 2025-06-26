@@ -30,6 +30,7 @@ declare global {
     _rwq: any[];
 		gtag: (...args: any[]) => void;
     MAI?: any;
+    vbpx?: any;
   }
 }
 

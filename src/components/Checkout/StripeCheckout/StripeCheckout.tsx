@@ -87,6 +87,9 @@ const StripeCheckout: FC<PageProps> = ({ searchParams, priceData }) => {
 				}
 				);
 			}
+			if (typeof window !== 'undefined' && window.vbpx) {
+				window.vbpx('event', 'lead');
+			}
 		}
 	}, [priceData]);
 
