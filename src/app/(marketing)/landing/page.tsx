@@ -57,7 +57,7 @@ const HomePage: NextPage = async() => {
 					<React.Suspense fallback={ <div className='min-h-[200px]' /> }>
 						{ /* <TextReveal /> */ }
 						<Steps />
-						<div className='mb-16'>
+						<div className='my-16'>
 							<RunningLogo />
 						</div>
 					</React.Suspense>

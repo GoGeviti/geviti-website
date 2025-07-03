@@ -5,6 +5,7 @@ import InputMask from '@mona-health/react-input-mask'
 import { FormikProps, useFormik } from 'formik'
 import Image from 'next/image'
 
+import { statesData } from '@/constant/data'
 // import { toast } from 'sonner'
 import clsxm from '@/helpers/clsxm'
 import { ContactSubject } from '@/payload/payload-types'
@@ -201,9 +202,9 @@ const ContactForm = ({
 					        </div>
 								</div>
 								<CustomSelect
-									placeholder='Subject'
+									placeholder='State'
 									isLight
-									options={ subject.map(sub => ({ label: sub.title, value: sub.id.toString() })) }
+									options={ statesData.states.options }
 									value={ formik.values.subject }
 									onChange={ val => formik.setFieldValue('subject', val) }
 									isError={ !!formik.errors.subject }

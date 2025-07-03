@@ -8,15 +8,15 @@ import React, {
 import { AnimatePresence, motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
 
+// import { useRouter } from 'next/navigation';
 import { navbarDefaultTransition } from '@/constant/data/navbar';
 import pricingData from '@/constant/data/pricing';
 import clsxm from '@/helpers/clsxm';
 import { ProductMembership } from '@/interfaces/product';
 // import { formatPrice } from '@/lib/formatPrice';
 import { generateStripeNickname } from '@/lib/generateStripeNickname';
-import { submitWaitlistWithoutPassword } from '@/services/checkout';
+// import { submitWaitlistWithoutPassword } from '@/services/checkout';
 import { useCheckoutStore } from '@/store/checkoutStore';
 
 import ButtonCta from '../ButtonCta';
@@ -55,17 +55,16 @@ const HeroPricingWelcome: React.FC<HeroProps> = ({
 
 	const [activeListDropdown, setActiveListDropdown] = useState(-1);
 
-	const router = useRouter()
+	// const router = useRouter()
 
-	const gotoCheckout = async() => {
-		const result = await submitWaitlistWithoutPassword();
-		if (result.status === 'OK') {
-			// toast.success(result.message);
-			return router.push(`/onboarding/payment?product_id=${productMembership?.productId}&price_id=${selectedProductPrice?.priceId}`);
-		} else {
-			throw new Error(result.message || 'An unexpected error occurred');
-		}
-	}
+	// const gotoCheckout = async() => {
+	// 	const result = await submitWaitlistWithoutPassword();
+	// 	if (result.status === 'OK') {
+	// 		return router.push(`/onboarding/payment?product_id=${productMembership?.productId}&price_id=${selectedProductPrice?.priceId}`);
+	// 	} else {
+	// 		throw new Error(result.message || 'An unexpected error occurred');
+	// 	}
+	// }
 
 	return (
 		<React.Fragment>
@@ -269,7 +268,8 @@ const HeroPricingWelcome: React.FC<HeroProps> = ({
 										className='w-full sm:w-fit mt-[25px]'
 									/> */ }
 									 <ButtonCta
-										onClick={ () => gotoCheckout() }
+										// onClick={ () => gotoCheckout() }
+										href={ `/onboarding/payment?product_id=${productMembership?.productId}&price_id=${selectedProductPrice?.priceId}` }
 										text={ item.btnCta.text }
 										theme={ item.mostValue ? 'secondary' : 'primary' }
 										className='w-full sm:w-fit mt-[25px]'
