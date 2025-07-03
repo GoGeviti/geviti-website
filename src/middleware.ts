@@ -3,19 +3,26 @@ import * as jose from 'jose';
 import type { NextRequest } from 'next/server'
 import { NextResponse } from 'next/server'
 
+import { submitWaitlistWithoutPassword } from './services/checkout';
+
 const trackingId = 'G-9NMVVP83JB';
 
 export async function middleware(request: NextRequest) {
 	const { pathname } = new URL(request.url);
 
+	if (pathname === '/landing' || pathname === '/pricing-welcome') {
+		await submitWaitlistWithoutPassword();
+		return NextResponse.next();
+	}
+
 	if (pathname === '/waitlist') {
 		const token = request.cookies.get('waitlist-token');
-		
+
 		if (token?.value) {
 			try {
 				const secret = new TextEncoder().encode(process.env.JWT_SECRET);
 				const { payload } = await jose.jwtVerify(token.value, secret);
-				
+
 				if (payload?.authorized) {
 					// Token is valid, redirect to payment
 					const url = new URL('/onboarding/payment', request.url);
@@ -41,13 +48,13 @@ export async function middleware(request: NextRequest) {
 		try {
 			const secret = new TextEncoder().encode(process.env.JWT_SECRET);
 			const { payload } = await jose.jwtVerify(token.value, secret);
-			
+
 			if (!payload?.authorized) {
 				const url = new URL('/waitlist', request.url);
 				url.search = new URL(request.url).search;
 				return NextResponse.redirect(url);
 			}
-			
+
 			return NextResponse.next();
 		} catch (error) {
 			const url = new URL('/waitlist', request.url);
@@ -55,7 +62,7 @@ export async function middleware(request: NextRequest) {
 			return NextResponse.redirect(url);
 		}
 	}
-    
+
 	// Redirect /pickleballkingdom to /
 	if (pathname === '/pickleballkingdom') {
 		ReactGA.initialize(trackingId);
@@ -77,7 +84,7 @@ export async function middleware(request: NextRequest) {
 
 	return NextResponse.next();
 }
- 
+
 export const config = {
-	matcher: ['/mobile', '/pickleballkingdom', '/onboarding/payment', '/waitlist'],
+	matcher: ['/mobile', '/pickleballkingdom', '/onboarding/payment', '/waitlist', '/landing', '/pricing-welcome'],
 }

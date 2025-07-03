@@ -71,7 +71,7 @@ export const sendSlackNotification = async(contactData: any) => {
 					},
 					{
 						type: 'mrkdwn',
-						text: `*Subject:* ${contactData.subject}`
+						text: `*State:* ${contactData.subject}`
 					},
 					// {
 					// 	type: 'mrkdwn',
