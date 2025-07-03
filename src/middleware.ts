@@ -3,17 +3,17 @@ import * as jose from 'jose';
 import type { NextRequest } from 'next/server'
 import { NextResponse } from 'next/server'
 
-import { submitWaitlistWithoutPassword } from './services/checkout';
+// import { submitWaitlistWithoutPassword } from './services/checkout';
 
 const trackingId = 'G-9NMVVP83JB';
 
 export async function middleware(request: NextRequest) {
 	const { pathname } = new URL(request.url);
 
-	if (pathname === '/landing' || pathname === '/pricing-welcome') {
-		await submitWaitlistWithoutPassword();
-		return NextResponse.next();
-	}
+	// if (pathname === '/landing' || pathname === '/pricing-welcome') {
+	// 	await submitWaitlistWithoutPassword();
+	// 	return NextResponse.next();
+	// }
 
 	if (pathname === '/waitlist') {
 		const token = request.cookies.get('waitlist-token');
@@ -86,5 +86,5 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-	matcher: ['/mobile', '/pickleballkingdom', '/onboarding/payment', '/waitlist', '/landing', '/pricing-welcome'],
+	matcher: ['/mobile', '/pickleballkingdom', '/onboarding/payment', '/waitlist'],
 }
