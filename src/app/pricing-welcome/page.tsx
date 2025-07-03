@@ -7,14 +7,14 @@ import HeroPricingWelcome from '@/components/Pricing/HeroPricingWelcome';
 // import Download from '@/components/Pricing/Download';
 // import PricingBiomarkers from '@/components/Pricing/PricingBiomarkers';
 import pricingData from '@/constant/data/pricing';
-import { submitWaitlistWithoutPassword } from '@/services/checkout';
+// import { submitWaitlistWithoutPassword } from '@/services/checkout';
 
 export const metadata: Metadata = {
 	title: 'Pricing',
 };
 
 const PricingPage = async() => {
-	await submitWaitlistWithoutPassword();
+	// await submitWaitlistWithoutPassword();
 	const productMembership = await getProductMembership();
 
 	return (

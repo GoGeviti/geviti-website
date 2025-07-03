@@ -6,7 +6,6 @@ import { Footer } from '@/components';
 // import { getAllProducts } from '@/components/Checkout/api/onboarding';
 import IntroScreen from '@/components/IntroScreen';
 import { Products } from '@/components/Landing';
-import { submitWaitlistWithoutPassword } from '@/services/checkout';
 import { getCookie } from '@/services/cookies';
 import { getAllCategories } from '@/services/products';
 
@@ -36,7 +35,6 @@ const Innovative = dynamic(() => import('@/components/Landing/Innovative'));
 // const PricingBiomarkers = dynamic(() => import('@/components/Pricing/PricingBiomarkers'));
 
 const HomePage: NextPage = async() => {
-	await submitWaitlistWithoutPassword();
 	const categories = await getAllCategories();
 	const showIntro = await getCookie('show_intro');
 	const showBanner = await getCookie('close_hero_banner');
