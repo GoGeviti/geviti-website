@@ -18,6 +18,11 @@ const footerData = {
 					href: 'https://help.gogeviti.com',
 					externalLink: true
 				},
+    {
+					name: 'Careers',
+					href: 'https://geviti-inc.breezy.hr',
+					externalLink: true
+				},
 				{
 					name: 'Terms & Conditions',
 					href: '/terms-and-conditions',
