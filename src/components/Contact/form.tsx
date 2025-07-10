@@ -73,7 +73,7 @@ const Form: React.FC<FormProps> = ({
 			full_name: firstName,
 			email,
 			message,
-			subject: state,
+			state: state,
 			phone_number: phone,
 			company,
 			role,
@@ -83,7 +83,7 @@ const Form: React.FC<FormProps> = ({
 		setLoading(true);
 		const { status, message: messageResponse } = await createContact(data);
 		if (status === 'OK') {
-			await sendSlackNotification({ ...data, subject: subject.find(sub => sub.id.toString() === state.toString())?.title });
+			await sendSlackNotification({ ...data });
 			toast.success(messageResponse, {
 				icon: <AiFillCheckCircle className='h-5 w-5 text-primary' />,
 			});
