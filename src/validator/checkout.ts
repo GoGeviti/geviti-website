@@ -99,6 +99,6 @@ export const ContactFormSchema = yup.object().shape({
 		.label('Phone number'),
 	message: yup.string().required()
 		.label('Message'),
-	subject: yup.string().required()
-		.label('Subject'),
+	state: yup.string().required()
+		.label('State'),
 });

@@ -8,7 +8,7 @@ import Image from 'next/image'
 import { statesData } from '@/constant/data'
 // import { toast } from 'sonner'
 import clsxm from '@/helpers/clsxm'
-import { ContactSubject } from '@/payload/payload-types'
+// import { ContactSubject } from '@/payload/payload-types'
 import { ContactUsType, createContact, sendSlackNotification } from '@/services/submit'
 import { ContactFormSchema } from '@/validator/checkout'
 
@@ -24,15 +24,11 @@ const initialValues = {
 	email: '',
 	phone_number: undefined,
 	message: '',
-	subject: '',
+	state: '',
 	isPartner: false,
 };
 
-const ContactForm = ({
-	subject,
-}: {
-	subject: ContactSubject[]
-}) => {
+const ContactForm = () => {
 
 	const [enableValidation, setEnableValidation] = useState<boolean>(false);
 	const [isLoading, setIsLoading] = useState(false);
@@ -52,9 +48,10 @@ const ContactForm = ({
     	enableReinitialize: true,
     	onSubmit: async(form: ContactUsType) => {
     		setIsLoading(true);
+    		// return console.log('form ==> ', form)
     		const { status } = await createContact(form);
     		if (status === 'OK') {
-    			await sendSlackNotification({ ...form, subject: subject.find(sub => sub.id.toString() === form.subject.toString())?.title });
+    			await sendSlackNotification({ ...form });
     			formik.resetForm();
     			setIsOpenDialogMessage({
     				status: true,
@@ -69,7 +66,7 @@ const ContactForm = ({
     					email: form.email,
     					phoneNumber: form.phone_number,
     					message: form.message,
-    					subject: subject.find(sub => sub.id.toString() === form.subject.toString())?.title,
+    					state: form.state,
     				})
     			}
     		} else {
@@ -205,10 +202,10 @@ const ContactForm = ({
 									placeholder='State'
 									isLight
 									options={ statesData.states.options }
-									value={ formik.values.subject }
-									onChange={ val => formik.setFieldValue('subject', val) }
-									isError={ !!formik.errors.subject }
-									errorMessage={ formik.errors.subject }
+									value={ formik.values.state }
+									onChange={ val => formik.setFieldValue('state', val) }
+									isError={ !!formik.errors.state }
+									errorMessage={ formik.errors.state }
 								/>
 							</div>
 							<div

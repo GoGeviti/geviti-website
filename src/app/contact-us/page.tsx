@@ -7,7 +7,7 @@ import LongevitiPanelComponent from '@/components/LongevitiPanel';
 import { faqDataDefault } from '@/constant/data/faq';
 import { Slug } from '@/interfaces/marketing';
 import { mergeOpenGraph } from '@/lib/mergeOpenGraph';
-import { getAllContactSubjects } from '@/services/products';
+// import { getAllContactSubjects } from '@/services/products';
 
 export const metadata: Metadata = {
 	title: 'Contact Us',
@@ -20,12 +20,12 @@ export const metadata: Metadata = {
 };
 
 const ContactUsPage: NextPage = async() => {
-	const subjectData = await getAllContactSubjects();
+	// const subjectData = await getAllContactSubjects();
 
 	return (
 		<div className='flex min-h-screen flex-col w-full bg-white font-Poppins'>
 			<MarketingComponent.Hero slug={ Slug.CONTACT_US } />
-			<ContactForm subject={ subjectData.docs } />
+			<ContactForm  />
 			<Benefits />
 			<MarketingComponent.Instagram className='pb-0 lg:pb-0' />
 			<div className='lg:py-10'>

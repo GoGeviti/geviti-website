@@ -9,7 +9,7 @@ type ResponseType = {
 export type ContactUsType = {
   full_name: string;
   email: string;
-  subject: string;
+  state: string;
   message: string;
 	isPartner: boolean;
 	phone_number?: number;
@@ -28,8 +28,7 @@ export const createContact = async(
 				'Content-Type': 'application/json',
 			},
 			body: JSON.stringify({
-				...formData,
-				subject: parseInt(formData.subject)
+				...formData
 			}),
 		});
 		const data = await req.json();
@@ -71,7 +70,7 @@ export const sendSlackNotification = async(contactData: any) => {
 					},
 					{
 						type: 'mrkdwn',
-						text: `*State:* ${contactData.subject}`
+						text: `*State:* ${contactData.state}`
 					},
 					// {
 					// 	type: 'mrkdwn',
