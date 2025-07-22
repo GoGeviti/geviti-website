@@ -145,7 +145,8 @@ const marketingData = {
         'Geviti exists to prevent avoidable<br class="max-lg:hidden"/> disease and to maximize your<br class="max-lg:hidden"/> life’s potential.',
 			'contact-us':
         'We\'re Here to Support Your <br class="max-lg:hidden"/>Journey Toward Longevity, <br class="max-lg:hidden"/>and a Healthier Future',
-			'coffee-chill': ''
+			'coffee-chill': '',
+			'schedule-call': ''
 		},
 		list: {
 			'men-weight-loss': [
@@ -179,6 +180,7 @@ const marketingData = {
 			'about-us': [''],
 			'contact-us': [],
 			'coffee-chill': [],
+			'schedule-call': [],
 		},
 		cta: {
 			text: {
@@ -191,6 +193,7 @@ const marketingData = {
           '<span class="lg:hidden">Join Geviti</span><span class="max-lg:hidden">Get Started</span>',
 				'business-oriented': 'Schedule A Call',
 				'coffee-chill': '',
+				'schedule-call': '',
 			},
 			href: {
 				menopause: '/pricing',
@@ -200,6 +203,7 @@ const marketingData = {
 				giveaway: '/pricing',
 				'about-us': '/pricing',
 				'coffee-chill': '/pricing',
+				'schedule-call': '/pricing',
 				'business-oriented':
           'https://calendly.com/naomitabot-gogeviti/geviti-discovery-call',
 			},
@@ -214,6 +218,7 @@ const marketingData = {
 			'about-us': '/images/about_us/hero.webp',
 			'contact-us': '/images/contact/hero.webp',
 			'coffee-chill': '/images/contact/hero.webp',
+			'schedule-call': '/images/contact/hero.webp',
 		},
 		imageMobile: {
 			'men-hormone-therapy':
@@ -228,6 +233,7 @@ const marketingData = {
 			'about-us': '/images/about_us/hero.webp',
 			'contact-us': '/images/contact/hero-mobile.webp',
 			'coffee-chill': '',
+			'schedule-call': '',
 		},
 		popup: {
 			title: 'HSA/FSA',
@@ -530,7 +536,8 @@ const marketingData = {
 			giveaway: 'What\'s Included In a<br /><span class="text-grey-primary">Geviti Membership</span>',
 			'about-us': 'What\'s Included In a<br /><span class="text-grey-primary">Geviti Membership</span>',
 			'contact-us': 'What\'s Included In a<br /><span class="text-grey-primary">Geviti Membership</span>',
-			'coffee-chill': 'What is included in a<br /><span class="text-grey-primary">Geviti Membership</span>'
+			'coffee-chill': 'What is included in a<br /><span class="text-grey-primary">Geviti Membership</span>',
+			'schedule-call': 'What is included in a<br /><span class="text-grey-primary">Geviti Membership</span>'
 		},
 		description: {
 			menopause:
@@ -548,6 +555,8 @@ const marketingData = {
 			'contact-us': '',
 			'coffee-chill':
         'Experience a new level of wellness you didn’t know was possible. Total health optimization at your fingertips. Future you will thank you.',
+			'schedule-call':
+        'Experience a new level of wellness you didn’t know was possible. Total health optimization at your fingertips. Future you will thank you.',
 		},
 		cta: {
 			text: {
@@ -560,6 +569,7 @@ const marketingData = {
 				'about-us': '',
 				'contact-us': '',
 				'coffee-chill': 'Schedule A Call',
+				'schedule-call': 'Schedule A Call',
 			},
 			href: {
 				menopause: '/pricing',
@@ -573,6 +583,8 @@ const marketingData = {
           'https://calendly.com/naomitabot-gogeviti/geviti-discovery-call',
 				'coffee-chill':
           'https://calendly.com/naomitabot-gogeviti/geviti-discovery-call',
+				'schedule-call':
+          'https://calendly.com/naomitabot-gogeviti/geviti-discovery-call',
 			},
 		},
 		list: {
@@ -585,6 +597,7 @@ const marketingData = {
 			'about-us': [],
 			'contact-us': [],
 			'coffee-chill': membershipListVersion3,
+			'schedule-call': membershipListVersion3,
 		},
 	},
 	steps: {
@@ -599,6 +612,7 @@ const marketingData = {
 			'about-us': stepsListDefault,
 			'contact-us': stepsListDefault,
 			'coffee-chill': stepsListDefault,
+			'schedule-call': stepsListDefault,
 			'business-oriented': stepsListDefault.map(item => {
 				if (item.title === 'Tailored Products') {
 					return {
@@ -620,6 +634,7 @@ const marketingData = {
 			'about-us': 'black',
 			'contact-us': 'black',
 			'coffee-chill': 'black',
+			'schedule-call': 'black',
 		},
 	},
 	faq: {

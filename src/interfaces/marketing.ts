@@ -12,6 +12,7 @@ export enum Slug {
   ABOUT_US = 'about-us',
   CONTACT_US = 'contact-us',
   COFFEE_CHILL = 'coffee-chill',
+  SCHEDULE_CALL = 'schedule-call',
 }
 
 export type SlugOpt = `${Slug}`;

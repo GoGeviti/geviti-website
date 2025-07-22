@@ -15,22 +15,11 @@ import { screens } from '@/helpers/style';
 import { useWindowDimensions } from '@/hooks';
 
 import landingData from '../../constant/data/landing';
-// import { screens } from '@/helpers/style';
-// import { useWindowDimensions } from '@/hooks';
 import ButtonCta from '../ButtonCta';
 import Navbar from '../Navbar/Landing';
 import PopupReview from '../PopupReview';
 
 import { slideUpTransition } from './transition';
-
-// const PopupReview = dynamic(() => import('../PopupReview'), {
-// 	ssr: false,
-// 	loading: () => null,
-// });
-// const HeroBanner = dynamic(() => import('./HeroBanner'), {
-// 	ssr: false,
-// 	loading: () => null,
-// });
 
 const heroData = landingData.hero;
 
@@ -38,6 +27,7 @@ type HeroProps = {
 	showBanner?: boolean;
 	showIntro?: string;
 	isLanding?: boolean;
+	isScheduleCall?: boolean;
 };
 
 const HeroImage = ({ type, isLanding }: { type: 'desktop' | 'mobile', isLanding:boolean }) => {
@@ -72,6 +62,7 @@ const Hero: React.FC<HeroProps> = ({
 	// showBanner = false,
 	isLanding = false,
 	showIntro = 'true',
+	isScheduleCall = false
 }) => {
 	const { ref } = useInView();
 
@@ -107,17 +98,12 @@ const Hero: React.FC<HeroProps> = ({
 		));
 	};
 
-	// const renderImage = (type: 'desktop' | 'mobile') => (
-	// 	<HeroImage
-	// 		type={ type }
-	// 		isLanding={ isLanding } />
-	// );
-
 	const renderMainKeys = () => {
 		return (
 			<div className={ clsxm(
 				'lg:pt-11 w-full flex flex-wrap max-lg:px-4 lg:justify-center gap-4 max-lg:pb-6 pt-11 lg:gap-6 relative z-10',
-				isLanding && 'lg:pt-8'
+				isLanding && 'lg:pt-8',
+				isScheduleCall && 'hidden'
 			) }>
 				{ heroData.mainKeys.map((item, itemIdx) => {
 					return (
@@ -140,7 +126,7 @@ const Hero: React.FC<HeroProps> = ({
 	};
 
 	const renderPopupReview = () => {
-		if (!isMobile) {
+		if (!isMobile && !isScheduleCall) {
 			return (
 				<PopupReview
 					motionProps={ {
@@ -176,7 +162,9 @@ const Hero: React.FC<HeroProps> = ({
 	return (
 		<div
 			ref={ ref }
-			className='lg:px-3 lg:pt-3 overflow-hidden font-Poppins'>
+			className={ clsxm(
+				'lg:px-3 lg:pt-3 overflow-hidden font-Poppins'
+			) }>
 			<Navbar
 				animationProps={ {
 					transition: {
@@ -211,7 +199,10 @@ const Hero: React.FC<HeroProps> = ({
 								{ heroData.banner.show && <HeroBanner showBanner={ showBanner } /> }
 							</div>
 						</Suspense> */ }
-						<div className='lg:pb-[47px] h-full w-full flex flex-col justify-end'>
+						<div className={ clsxm(
+							'lg:pb-[47px] h-full w-full flex flex-col justify-end',
+							isScheduleCall && 'lg:pb-[75px] pb-[75px]'
+						) }>
 							<div className='text-left flex flex-col'>
 								<span className='overflow-hidden inline-flex'>
 									<motion.h2
@@ -246,7 +237,7 @@ const Hero: React.FC<HeroProps> = ({
 									} }
 									className='sm:max-w-[738px] flex flex-col max-sm:hidden'
 								>
-									{ renderTitles(heroData.titles) }
+									{ renderTitles(isScheduleCall ? heroData.titlesScheduleCall : heroData.titles) }
 								</motion.h1>
 								<motion.h1
 									initial='hidden'
@@ -260,7 +251,7 @@ const Hero: React.FC<HeroProps> = ({
 									} }
 									className='sm:hidden flex flex-col mt-5px'
 								>
-									{ renderTitles(heroData.titlesMobile) }
+									{ renderTitles(isScheduleCall ? heroData.titlesScheduleCallMobile : heroData.titlesMobile) }
 								</motion.h1>
 
 								<div className={ clsxm(
@@ -286,52 +277,69 @@ const Hero: React.FC<HeroProps> = ({
 												className='inline-block w-full'
 											>
 												<div className='flex max-sm:w-full max-sm:justify-center'>
-													<ButtonCta
-														href={ heroData.btnCta.href }
-														externalLink={ heroData.btnCta.externalLink }
-														aria-label={ heroData.btnCta.text }
-														text={ heroData.btnCta.text }
-														theme='secondary'
-														className='max-sm:w-full'
-													/>
+													{
+														isScheduleCall ? (
+															<ButtonCta
+																href='https://calendly.com/naomitabot-gogeviti/geviti-discovery-call'
+																externalLink={ true }
+																aria-label={ 'Schedule a call' }
+																text={ 'Schedule a call' }
+																theme='secondary'
+																className='max-sm:w-full'
+															/>
+														) : (
+															<ButtonCta
+																href={ heroData.btnCta.href }
+																externalLink={ heroData.btnCta.externalLink }
+																aria-label={ heroData.btnCta.text }
+																text={ heroData.btnCta.text }
+																theme='secondary'
+																className='max-sm:w-full'
+															/>
+														)
+													}
 												</div>
 											</motion.div>
 										</div>
-										<div className='overflow-hidden inline-block h-full'>
-											<motion.div
-												variants={ {
-													visible: {
-														y: 0,
-														transition: {
-															...slideUpTransition,
-															delay: showIntro === 'true' ? 2.35 : 1.8,
-															duration: 1,
-														},
-													},
-													hidden: { y: '100%' },
-												} }
-												initial='hidden'
-												animate='visible'
-												className='flex flex-col gap-4 w-full h-full'
-											>
-												<span className='text-sm text-grey-secondary max-lg:hidden'>Questions about our membership?</span>
-												<a
-													href={ heroData.btnCta2.href }
-													target='_blank'
-													rel='noopener noreferrer'
-													className='underline font-medium text-lg max-lg:hidden text-grey-secondary'>
-													{ heroData.btnCta2.text }
-												</a>
-												<ButtonCta
-													externalLink={ heroData.btnCta2.externalLink }
-													aria-label={ heroData.btnCta2.text }
-													text={ heroData.btnCta2.textMobile }
-													href={ heroData.btnCta2.href }
-													theme='blur'
-													className='max-sm:w-full lg:hidden'
-												/>
-											</motion.div>
-										</div>
+										{
+											!isScheduleCall && (
+												<div className='overflow-hidden inline-block h-full'>
+													<motion.div
+														variants={ {
+															visible: {
+																y: 0,
+																transition: {
+																	...slideUpTransition,
+																	delay: showIntro === 'true' ? 2.35 : 1.8,
+																	duration: 1,
+																},
+															},
+															hidden: { y: '100%' },
+														} }
+														initial='hidden'
+														animate='visible'
+														className='flex flex-col gap-4 w-full h-full'
+													>
+														<span className='text-sm text-grey-secondary max-lg:hidden'>Questions about our membership?</span>
+														<a
+															href={ heroData.btnCta2.href }
+															target='_blank'
+															rel='noopener noreferrer'
+															className='underline font-medium text-lg max-lg:hidden text-grey-secondary'>
+															{ heroData.btnCta2.text }
+														</a>
+														<ButtonCta
+															externalLink={ heroData.btnCta2.externalLink }
+															aria-label={ heroData.btnCta2.text }
+															text={ heroData.btnCta2.textMobile }
+															href={ heroData.btnCta2.href }
+															theme='blur'
+															className='max-sm:w-full lg:hidden'
+														/>
+													</motion.div>
+												</div>
+											)
+										}
 									</div>
 
 									<Suspense fallback={ null }>
@@ -347,7 +355,8 @@ const Hero: React.FC<HeroProps> = ({
 
 							<div className={ clsxm(
 								'mt-[5.2vh] relative xs:mt-[46px] lg:mt-[9.13vh] xl:mt-[84px]',
-								isLanding && 'lg:mt-8 xl:mt-8'
+								isLanding && 'lg:mt-8 xl:mt-8',
+								isScheduleCall && 'hidden'
 							) }>
 								<motion.div
 									variants={ {
