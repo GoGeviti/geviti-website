@@ -29,6 +29,21 @@ export const influencerData = {
 		imageDescription: '',
 		accordionData: []
 	},
+	'thewellnessprocess': {
+		title: 'Welcome to Geviti: Personalized Health Optimization, Designed for Her Journey.',
+		description: 'Every body is unique and there is no one-size-fits-all product to heal you. We\'re here to build personalized, longevity-oriented solutions based on the precise needs expressed by your body.',
+		image: '/images/cultureapothecary/hero/thewellnessprocess.webp',
+		ogImage: '/images/cultureapothecary/hero/og/thewellnessprocess.png',
+		imageAlt: 'Elizabeth Endres',
+		popupReview: 'Taking charge of your health isn’t just about adding years to your life—it’s about adding life to your years. Geviti makes proactive wellness simple, giving you expert support before issues arise!',
+		videoUrl: '',
+		solutionReview: '',
+		solutionImage: '',
+		thumbnailVideoUrl: '',
+		imageTitle: '',
+		imageDescription: '',
+		accordionData: []
+	},
 	'deargabby': {
 		title: 'Welcome to Geviti, Your Partner in Feeling Younger Every Year.',
 		description: 'Every body is unique and there is no one-size-fits-all product to heal you. We\'re here to build personalized, longevity-oriented solutions based on the precise needs expressed by your body.',

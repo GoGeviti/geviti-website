@@ -32,7 +32,8 @@ const paths = [
 	'1000hoursoutside',
 	'wellnessandwisdom',
 	'onward',
-	'girlsgonebible'
+	'girlsgonebible',
+	'thewellnessprocess'
 ]
 
 type Props = {

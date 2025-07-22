@@ -78,7 +78,7 @@ const Hero: React.FC<HeroProps> = ({ title, description, image, imageAlt, popupR
 				</div>
 				<div className='max-lg:mt-16 lg:flex-none lg:ml-[69px] lg:absolute lg:left-1/2 lg:right-0 xxxl:right-auto'>
 					<div className='relative flex'>
-						<div className={ 'flex-none lg:max-w-[708px] relative w-full aspect-[708/550] overflow-hidden lg:h-[550px]' }>
+						<div className={ 'flex-none h-[391px] lg:w-[708px] relative w-full overflow-hidden lg:h-[616px]' }>
 							{ videoUrl && <VideoButton videoUrl={ videoUrl } /> }
 							<Image
 								alt={ imageAlt }
@@ -96,7 +96,7 @@ const Hero: React.FC<HeroProps> = ({ title, description, image, imageAlt, popupR
 						</div>
 						
 						{ (popupReview && !videoUrl) && (
-							<div className='absolute z-20 -bottom-[60px] lg:-bottom-[42px] left-1/2 max-lg:-translate-x-1/2 lg:-left-[42px] w-full max-w-[calc(100vw-54px)] xs:max-w-[342px] rounded-xl py-3 px-5 flex flex-col gap-y-3 border border-grey-100 bg-white/50 backdrop-blur-lg'>
+							<div className='absolute z-20 -bottom-[90px] lg:-bottom-[102px] left-1/2 max-lg:-translate-x-1/2 lg:-left-[152px] w-full max-w-[calc(100vw-54px)] xs:max-w-[342px] rounded-xl py-3 px-5 flex flex-col gap-y-3 border border-grey-100 bg-white/50 backdrop-blur-lg'>
 								<svg
 									width='17'
 									height='16'
