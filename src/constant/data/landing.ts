@@ -28,6 +28,13 @@ const landingData = {
 			'Your partner in total health',
 			'optimization and longevit<span class="ml-0.5">y<span>.',
 		],
+		titlesScheduleCall: [
+			'The world’s most advanced',
+			'health platform.',
+		],
+		titlesScheduleCallMobile: [
+			'The world’s most advanced health platform.',
+		],
 		titlesMobile: [
 			'Your partner in total health optimization and longevit<span class="ml-0.5">y<span>.',
 		],
@@ -336,6 +343,113 @@ const landingData = {
 					{
 						cheked: true,
 						text: 'Continual health partner',
+					}
+				]
+			},
+		],
+	},
+	benefitsScheduleCall: {
+		preTitle: 'Optimize health & wellness',
+		title: 'Unparalleled Membership Value',
+		description:
+      'A fully integrated health program that brings together advanced diagnostics, expert medical care and coaching, science-backed longevity therapies for optimal well-being and long-term vitality.',
+		list: [
+			{
+				title: '',
+				items: [
+					{
+						cheked: false,
+						text: '95+ biomarker bloodwork',
+					},
+					{
+						cheked: false,
+						text: 'functional wellness consults',
+					},
+					{
+						cheked: false,
+						text: 'Personalized supplements',
+					},
+					{
+						cheked: false,
+						text: 'compounded peptides & rx',
+					},
+					{
+						cheked: false,
+						text: 'nutrition & exercise guidance',
+					},
+					{
+						cheked: false,
+						text: 'specialty health testing',
+					},
+					{
+						cheked: false,
+						text: 'biological age tracking',
+					}
+				]
+			},
+			{
+				title: 'Geviti Membership',
+				items: [
+					{
+						cheked: true,
+						text: 'included in membership',
+					},
+					{
+						cheked: true,
+						text: 'included in membership',
+					},
+					{
+						cheked: true,
+						text: 'avg. $120/mo',
+					},
+					{
+						cheked: true,
+						text: 'Discounted pricing',
+					},
+					{
+						cheked: true,
+						text: 'included in membership',
+					},
+					{
+						cheked: true,
+						text: 'direct purchase access',
+					},
+					{
+						cheked: true,
+						text: 'included in membership',
+					}
+				]
+			},
+			{
+				title: 'Traditional Healthcare',
+				items: [
+					{
+						cheked: false,
+						text: '$2,000+ Per panel',
+					},
+					{
+						cheked: false,
+						text: '$200+ per visit',
+					},
+					{
+						cheked: false,
+						text: 'avg $210/mo',
+					},
+					{
+						cheked: false,
+						text: 'significant markups',
+					},
+					{
+						cheked: false,
+						text: '$400+ for 3 months',
+					},
+					{
+						cheked: false,
+						text: 'requires physician ordering',
+					},
+					{
+						cheked: false,
+						text: 'n/a',
 					}
 				]
 			},

@@ -148,6 +148,7 @@ const marketingData = {
         'We\'re Here to Support Your <br class="max-lg:hidden"/>Journey Toward Longevity, <br class="max-lg:hidden"/>and a Healthier Future',
 			'coffee-chill': '',
 			'health-experts': 'Healthcare professionals <br class="max-lg:hidden"/>dedicated to compassionate, <br class="max-lg:hidden"/>expert care.',
+			'schedule-call': ''
 		},
 		list: {
 			'men-weight-loss': [
@@ -182,6 +183,7 @@ const marketingData = {
 			'contact-us': [],
 			'coffee-chill': [],
 			'health-experts': [],
+			'schedule-call': [],
 		},
 		cta: {
 			text: {
@@ -195,6 +197,7 @@ const marketingData = {
 				'business-oriented': 'Schedule A Call',
 				'coffee-chill': '',
 				'health-experts': '',
+				'schedule-call': '',
 			},
 			href: {
 				menopause: '/pricing',
@@ -205,6 +208,7 @@ const marketingData = {
 				'about-us': '/pricing',
 				'coffee-chill': '/pricing',
 				'health-experts': '/pricing',
+				'schedule-call': '/pricing',
 				'business-oriented':
           'https://calendly.com/naomitabot-gogeviti/geviti-discovery-call',
 			},
@@ -220,6 +224,7 @@ const marketingData = {
 			'contact-us': '/images/contact/hero.webp',
 			'coffee-chill': '/images/contact/hero.webp',
 			'health-experts': '/images/healthexperts/hero.webp',
+			'schedule-call': '/images/contact/hero.webp',
 		},
 		imageMobile: {
 			'men-hormone-therapy':
@@ -235,6 +240,7 @@ const marketingData = {
 			'contact-us': '/images/contact/hero-mobile.webp',
 			'coffee-chill': '',
 			'health-experts': '/images/healthexperts/hero.webp',
+			'schedule-call': '',
 		},
 		popup: {
 			title: 'HSA/FSA',
@@ -538,7 +544,8 @@ const marketingData = {
 			'about-us': 'What\'s Included In a<br /><span class="text-grey-primary">Geviti Membership</span>',
 			'health-experts': 'What\'s Included In a<br /><span class="text-grey-primary">Geviti Membership</span>',
 			'contact-us': 'What\'s Included In a<br /><span class="text-grey-primary">Geviti Membership</span>',
-			'coffee-chill': 'What is included in a<br /><span class="text-grey-primary">Geviti Membership</span>'
+			'coffee-chill': 'What is included in a<br /><span class="text-grey-primary">Geviti Membership</span>',
+			'schedule-call': 'What is included in a<br /><span class="text-grey-primary">Geviti Membership</span>'
 		},
 		description: {
 			menopause:
@@ -557,6 +564,8 @@ const marketingData = {
 			'health-experts': '',
 			'coffee-chill':
         'Experience a new level of wellness you didn’t know was possible. Total health optimization at your fingertips. Future you will thank you.',
+			'schedule-call':
+        'Experience a new level of wellness you didn’t know was possible. Total health optimization at your fingertips. Future you will thank you.',
 		},
 		cta: {
 			text: {
@@ -570,6 +579,7 @@ const marketingData = {
 				'contact-us': '',
 				'health-experts': '',
 				'coffee-chill': 'Schedule A Call',
+				'schedule-call': 'Schedule A Call',
 			},
 			href: {
 				menopause: '/pricing',
@@ -584,6 +594,8 @@ const marketingData = {
           'https://calendly.com/naomitabot-gogeviti/geviti-discovery-call',
 				'coffee-chill':
           'https://calendly.com/naomitabot-gogeviti/geviti-discovery-call',
+				'schedule-call':
+          'https://calendly.com/naomitabot-gogeviti/geviti-discovery-call',
 			},
 		},
 		list: {
@@ -597,6 +609,7 @@ const marketingData = {
 			'contact-us': [],
 			'health-experts': [],
 			'coffee-chill': membershipListVersion3,
+			'schedule-call': membershipListVersion3,
 		},
 	},
 	steps: {
@@ -612,6 +625,7 @@ const marketingData = {
 			'contact-us': stepsListDefault,
 			'health-experts': stepsListDefault,
 			'coffee-chill': stepsListDefault,
+			'schedule-call': stepsListDefault,
 			'business-oriented': stepsListDefault.map(item => {
 				if (item.title === 'Tailored Products') {
 					return {
@@ -634,6 +648,7 @@ const marketingData = {
 			'contact-us': 'black',
 			'health-experts': 'black',
 			'coffee-chill': 'black',
+			'schedule-call': 'black',
 		},
 	},
 	faq: {
