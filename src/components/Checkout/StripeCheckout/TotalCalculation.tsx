@@ -19,17 +19,17 @@ export const TotalCalc: FC<ITotalCalc> = ({
 	const { selectedProductPrice, discount, setTotalPrice } = useCheckoutStore();
 
 	const total = useMemo(
-		() => (selectedProductPrice?.price ?? 0).toFixed(2),
+		() => (Number(selectedProductPrice?.price) ?? 0).toFixed(2),
 		[selectedProductPrice]
 	);
 
 	const calculateDiscountAmount = () => {
 		if (discount?.percent_off) {
-			return ((selectedProductPrice?.price ?? 0) * discount.percent_off) / 100;
+			return ((Number(selectedProductPrice?.price) ?? 0) * discount.percent_off) / 100;
 		}
 		if (discount?.amount_off) {
 			const amountOffDollars = discount.amount_off / 100;
-			return Math.min(amountOffDollars, selectedProductPrice?.price ?? 0);
+			return Math.min(amountOffDollars, Number(selectedProductPrice?.price) ?? 0);
 		}
 		return 0;
 	};
@@ -45,7 +45,7 @@ export const TotalCalc: FC<ITotalCalc> = ({
 	const totalDue = useMemo(() => {
 		if (discount?.id) {
 			const discountAmount = calculateDiscountAmount();
-			const due = ((selectedProductPrice?.price ?? 0) - discountAmount).toFixed(2);
+			const due = ((Number(selectedProductPrice?.price) ?? 0) - discountAmount).toFixed(2);
 			setTotalPrice(Number(due));
 			return due;
 		}
@@ -63,7 +63,7 @@ export const TotalCalc: FC<ITotalCalc> = ({
 				return discount.percent_off;
 			} else if (discount.amount_off) {
 				const discountAmount = calculateDiscountAmount();
-				return calculateEffectivePercentage(discountAmount, selectedProductPrice?.price ?? 0);
+				return calculateEffectivePercentage(discountAmount, Number(selectedProductPrice?.price) ?? 0);
 			}
 		}
 		return '0.00';

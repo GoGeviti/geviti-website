@@ -44,7 +44,7 @@ const CheckoutItem: FC<ICheckoutItem> = ({
 		const params = new URLSearchParams(query);
 		params.set('price_id', newPriceId);
 
-		setSelectedProductPrice(productMembership?.productPrices?.find(e => e.priceId === newPriceId) ?? null);
+		setSelectedProductPrice(productMembership?.prices?.find(e => e.priceId === newPriceId) ?? null);
 		setOpenPopover(false);
 
 		router.push(`${pathname}?${params.toString()}`);
@@ -60,14 +60,14 @@ const CheckoutItem: FC<ICheckoutItem> = ({
 					<Skeleton
 						loading={ loading }
 						className='h-7 w-60'>
-						<h3 className='inline-block text-white text-lg lg:text-2xl'>{ productMembership?.productName }</h3>
+						<h3 className='inline-block text-white text-lg lg:text-2xl'>{ productMembership?.name }</h3>
 					</Skeleton>
 					<Skeleton
 						loading={ loading }
 						className='h-5 w-[50%]'>
 						<div className='relative'>
 							{
-								(productMembership?.productPrices?.length ?? 0) > 1 ? (
+								(productMembership?.prices?.length ?? 0) > 1 ? (
 									<Popover
 										open={ openPopover }
 										onOpenChange={ setOpenPopover }>
@@ -105,7 +105,7 @@ const CheckoutItem: FC<ICheckoutItem> = ({
 											className='border flex flex-col gap-3 rounded-[9px] w-[302px] border-[#3B3C3E] bg-[#252627] shadow-[2px_2px_8px_0px_rgba(0,0,0,0.25)] p-3'
 										>
 											{
-												productMembership?.productPrices?.map(e => {
+												productMembership?.prices?.map(e => {
 													return (
 														<div
 															key={ e.priceId }

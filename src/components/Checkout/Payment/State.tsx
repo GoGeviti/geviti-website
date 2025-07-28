@@ -376,7 +376,7 @@ const State: React.FC<StateProps> = ({ type, searchParams }) => {
 						'transaction_id': tokenParam || '' // Dynamically assign transaction ID
 					});
 				}
-				const dashboardHref = `${process.env.NEXT_PUBLIC_APP_URL}/create-password?reset_token=${token.restKey}`
+				const dashboardHref = `${process.env.NEXT_PUBLIC_APP_URL}/create-password?reset_token=${tokenParam}`
 				setExternalHref(dashboardHref);
 			}
 		}

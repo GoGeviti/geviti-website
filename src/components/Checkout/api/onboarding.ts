@@ -1,15 +1,23 @@
-import { ProductMembership } from '@/interfaces/product';
+import { AccountInfo, AddressInfo, BillingCheckoutParams, VerifyPhoneNumberParams } from '@/interfaces/precheckout';
+import { NewProductMembership } from '@/interfaces/product';
+import { getCookie, setCookie } from '@/services/cookies';
 
 import {
+	AccountInfoResponseType,
+	AddressInfoResponseType,
 	AddressValidationResponseType,
 	AddressValitationParams,
+	BillingCheckoutResponseType,
 	CheckoutParams,
 	CheckoutResponseType,
 	CreateSessionParams,
 	DiscountReturnType,
 	ErrorResponse,
 	InitialOfferingsReturnType,
+	LoginParams,
+	LoginResponseType,
 	MembershipOfferingsReturnType,
+	PatientProfileResponseType,
 	ProductsPriceResponse,
 	ProductsResponse,
 	ReferralCouponReturnType,
@@ -17,15 +25,17 @@ import {
 	TempUserDataParams,
 	TempUserReturnType,
 	ValidateUserStateParams,
+	VerifyPhoneNumberResponseType,
 	WaitListParams,
 } from './types';
 
 const onboardingApiUrl = process.env.NEXT_PUBLIC_ONBOARDING_API_URL || '';
+const emrApiUrl = process.env.NEXT_PUBLIC_EMR_API_URL || '';
 const token = process.env.NEXT_PUBLIC_ONBOARDING_TOKEN;
 
 const headers = { 'Content-Type': 'application/json' };
 
-const processResponse = async <T>(res: Response): Promise<T> => {
+export const processResponse = async <T>(res: Response): Promise<T> => {
 	if (res.ok) {
 		const data = await res.json() as T;
 		return data;
@@ -33,7 +43,7 @@ const processResponse = async <T>(res: Response): Promise<T> => {
 	throw await res.json();
 }
 
-const processError = (error: unknown) => {
+export const processError = (error: unknown) => {
 	const err = error as ErrorResponse;
 	return Promise.reject(err?.message?.toString() || 'Something went wrong');
 }
@@ -230,22 +240,101 @@ export const getAllProducts = async() : Promise<ProductsResponse[]> => {
 	}
 }
 
-export const getProductMembership = async() : Promise<ProductMembership> => {
+export const getProductMembership = async() : Promise<NewProductMembership> => {
 	try {
-		const res = await fetch(
-			`${onboardingApiUrl}/products/membership`,
-			{
-				method: 'GET',
-				headers: {
-					...headers,
+		// const res = await fetch(
+		// 	`${onboardingApiUrl}/products/membership`,
+		// 	{
+		// 		method: 'GET',
+		// 		headers: {
+		// 			...headers,
+		// 		}
+		// 	}
+		// );
+		// const data = await processResponse<ProductMembership>(res);
+
+		const data = {
+			'productId': '7aec029d-a754-4ee9-85c6-3e12f3f2ff11',
+			'name': 'Geviti Membership - DEV',
+			'description': 'Premium Membership - Updated',
+			'productType': 'subscription',
+			'productFamily': 'membership',
+			'defaultAmount': '1319.99',
+			'billingFrequency': 'annually',
+			'interval': 'year',
+			'defaultPriceId': 'price_1QNmnTGBBGmxLhdLCev53AfE',
+			'intervalCount': 1,
+			'stripeProductId': 'prod_QgoGvBsYKsIYqO',
+			'prices': [
+				{
+					'id': '5f2fbed0-4dd7-4a2d-88ce-3355a4e2dde5',
+					'price': '650.00',
+					'priceId': 'price_1PpQdyGBBGmxLhdLvbu7zPfV',
+					'priceType': 'recurring',
+					'nickname': 'Quarterly Membership ($216.67/m, paid every quarter)',
+					'lookupKey': 'membership_3m_v1',
+					'billingFrequency': 'quarterly',
+					'interval': 'month',
+					'intervalCount': 3,
+					'isActive': true,
+					'isDefault': false
+				},
+				{
+					'id': 'b8c3fa93-4640-4d4c-95fe-f5dde1d1e76f',
+					'price': '1319.99',
+					'priceId': 'price_1QNmnTGBBGmxLhdLCev53AfE',
+					'priceType': 'recurring',
+					'nickname': 'Annual Membership ($109.99/m, paid annually)',
+					'lookupKey': 'membership_1y_v1',
+					'billingFrequency': 'annually',
+					'interval': 'year',
+					'intervalCount': 1,
+					'isActive': true,
+					'isDefault': true
 				}
+			],
+			'productMetadata': {
+				'features': [
+					{
+						'free': false,
+						'title': 'Free routine labs',
+						'premium': true,
+						'description': 'At-home testing included'
+					},
+					{
+						'free': false,
+						'title': 'Dedicated care team',
+						'premium': true,
+						'description': 'Your personal health team'
+					},
+					{
+						'free': false,
+						'title': 'Unlimited tele health',
+						'premium': true,
+						'description': 'Free consultations'
+					},
+					{
+						'free': false,
+						'title': 'Member discounts',
+						'premium': true,
+						'description': 'Pharmacy & lab savings'
+					},
+					{
+						'free': false,
+						'title': 'Custom supplements',
+						'premium': true,
+						'description': 'Personalized packs'
+					},
+					{
+						'free': false,
+						'title': 'AI health tools',
+						'premium': true,
+						'description': 'Tracking & monitoring'
+					}
+				]
 			}
-		);
-		const data = await processResponse<ProductMembership>(res);
-		return {
-			...data,
-			productPrices: data.productPrices.filter(it => !it.isHidden)
-		}
+		};
+		return data;
 	} catch (error) {
 		return await processError(error);
 	}
@@ -393,6 +482,167 @@ export const validateVitalBlood = async(params: VitalBloodAddressParams): Promis
 			}
 		);
 		return await processResponse(res);
+	} catch (error) {
+		return await processError(error);
+	}
+}
+
+export const login = async(params: LoginParams): Promise<LoginResponseType> => {
+	try {
+		const res = await fetch(
+			`${emrApiUrl}/v1/users/login`,
+			{
+				method: 'POST',
+				headers: {
+					...headers,
+				},
+				body: JSON.stringify(params),
+			}
+		);
+		const data = await processResponse<LoginResponseType>(res);
+		if (data.token) {
+			await setCookie({ key: 'geviti_token', value: data.token });
+		}
+		return data;
+	} catch (error) {
+		return await processError(error);
+	}
+}
+
+export const addAddressInfo = async(params: AddressInfo): Promise<AddressInfoResponseType> => {
+	try {
+		const geviti_token = await getCookie('geviti_token')
+		const res = await fetch(
+			`${emrApiUrl}/v1/users/address-info`,
+			{
+				method: 'POST',
+				headers: {
+					...headers,
+					Cookie: `geviti_token=${geviti_token ?? ''}`,
+				},
+				body: JSON.stringify(params),
+			}
+		);
+		return await processResponse(res);
+	} catch (error) {
+		return await processError(error);
+	}
+}
+
+export const addToWaitlist = async(params: AddressInfo): Promise<AddressInfoResponseType> => {
+	try {
+		const geviti_token = await getCookie('geviti_token')
+		const res = await fetch(
+			`${emrApiUrl}/v1/users/waitlist`,
+			{
+				method: 'POST',
+				headers: {
+					...headers,
+					Cookie: `geviti_token=${geviti_token ?? ''}`,
+				},
+				body: JSON.stringify(params),
+			}
+		);
+		return await processResponse(res);
+	} catch (error) {
+		return await processError(error);
+	}
+}
+
+export const verifyPhoneNumber = async(params:VerifyPhoneNumberParams): Promise<VerifyPhoneNumberResponseType> => {
+	try {
+		const geviti_token = await getCookie('geviti_token')
+		const res = await fetch(
+			`${emrApiUrl}/v1/identify-verification`,
+			{
+				method: 'POST',
+				headers: {
+					...headers,
+					Cookie: `geviti_token=${geviti_token ?? ''}`,
+				},
+				body: JSON.stringify({
+					'redirectUri': params.redirectUri,
+					'verificationType': 'phone',
+					'prefillFields': {
+						'phone-number': params.phoneNumber
+					}
+				}
+				),
+			}
+		);
+		// console.log('res ==> ', res)
+		return await processResponse(res);
+	} catch (error) {
+		return await processError(error);
+	}
+}
+
+export const addAccountInfo = async(params: AccountInfo): Promise<AccountInfoResponseType> => {
+	try {
+		const geviti_token = await getCookie('geviti_token')
+		const res = await fetch(
+			`${emrApiUrl}/v1/users/account-info`,
+			{
+				method: 'POST',
+				headers: {
+					...headers,
+					...(geviti_token && { Cookie: `geviti_token=${geviti_token ?? ''}` }),
+				},
+				body: JSON.stringify({
+					...params,
+					dob: params.dob ? new Date(params.dob).toISOString()
+						.split('T')[0] : null
+				}),
+			}
+		);
+		const data = await processResponse<AccountInfoResponseType>(res);
+		if (data.token) {
+			await setCookie({ key: 'geviti_token', value: data.token });
+		}
+		return data
+	} catch (error) {
+		return await processError(error);
+	}
+}
+
+export const getStripeSessionSecret = async(params: BillingCheckoutParams): Promise<BillingCheckoutResponseType> => {
+	try {
+		const geviti_token = await getCookie('geviti_token')
+		const res = await fetch(
+			`${emrApiUrl}/v1/billing/checkout`,
+			{
+				method: 'POST',
+				headers: {
+					...headers,
+					Cookie: `geviti_token=${geviti_token ?? ''}`
+				},
+				body: JSON.stringify({
+					...params
+				}),
+			}
+		);
+		const data = await processResponse<BillingCheckoutResponseType>(res);
+		return data
+	} catch (error) {
+		return await processError(error);
+	}
+}
+
+export const getPatientProfile = async(): Promise<PatientProfileResponseType> => {
+	try {
+		const geviti_token = await getCookie('geviti_token')
+		const res = await fetch(
+			`${emrApiUrl}/v1/patients/me/profile`,
+			{
+				method: 'GET',
+				headers: {
+					...headers,
+					Cookie: `geviti_token=${geviti_token ?? ''}`,
+				},
+			}
+		);
+		const data = await processResponse<PatientProfileResponseType>(res);
+		return data
 	} catch (error) {
 		return await processError(error);
 	}

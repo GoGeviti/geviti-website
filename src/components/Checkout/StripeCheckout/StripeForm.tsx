@@ -15,14 +15,19 @@ import { Dialog, DialogContent } from '@/components/Dialog';
 import { Spinner } from '@/components/Icons/Spinner';
 import { statesData } from '@/constant/data';
 import clsxm from '@/helpers/clsxm';
-import { IPrecheckout } from '@/interfaces';
+import { AccountInfo, AddressInfo } from '@/interfaces/precheckout';
+import { removeCookie } from '@/services/cookies';
 import { createKlaviyoProfile } from '@/services/klaviyo';
 import { useCheckoutStore } from '@/store/checkoutStore';
-import { FormCheckoutSchema } from '@/validator/checkout';
+import { AccountInfoSchema, AddressFormSchema, SigninFormSchema } from '@/validator/checkout';
 
-import { createSession, joinWaitListV2, validateState, validateVitalBlood } from '../api/onboarding';
+import { login } from '../api/onboarding';
+import {
+	getPatientProfileAction, postAddAccountInfo, postAddressInfo, postAddToWaitlist, postBillingCheckout, postVerifyPhoneNumber
+} from '../api/patient';
+// import { PatientProfileResponseType } from '../api/types';
 import CustomDatePicker from '../DatePicker';
-import { ExclamationIcon, SecuritySuccessIcon } from '../Payment/State';
+import { ExclamationIcon } from '../Payment/State';
 import CustomSelect from '../Select';
 import TextField from '../TextField';
 
@@ -30,24 +35,13 @@ import StripePaymentElement from './StripePaymentElement';
 
 type StripeFormProps = {
   handleCheckout: () => void;
+	geviti_token?:string
 
 };
 
-const initialValues = {
-	firstName: '',
-	lastName: '',
-	email: '',
-	state: '',
-	address_1: '',
-	address_2: '',
-	city: '',
-	zip_code: '',
-	birthdate: null,
-	gender: '',
-	phone_number: '',
-};
-
-const StripeForm: FC<StripeFormProps> = () => {
+const StripeForm: FC<StripeFormProps> = ({
+	geviti_token
+}) => {
 
 	const { checkoutLoading: loading, promoCode: coupon, productMembership: selectedProduct, selectedProductPrice } = useCheckoutStore();
 
@@ -59,270 +53,366 @@ const StripeForm: FC<StripeFormProps> = () => {
 		profileId: '',
 		listId: ''
 	})
-	const [token, setToken] = useState('');
-	const [tokenState, setTokenState] = useState('');
-	const tokenRef = useRef('');
-	const [formSubmitted, setFormSubmitted] = useState(false);
+	// const [token, setToken] = useState('');
+	// const tokenRef = useRef('');
+	// const [formSubmitted] = useState(false);
 	const [isOpenDialogState, setIsOpenDialogState] = useState(false);
-	const [isOpenDialogConfirmAddress, setIsOpenDialogConfirmAddress] = useState(false);
+	// const [isOpenDialogConfirmAddress, setIsOpenDialogConfirmAddress] = useState(false);
 	const [isOpenDialogNotAvailableState, setIsOpenDialogNotAvailableState] = useState(false);
-	const [isOpenDialogWalkIn, setIsOpenDialogWalkIn] = useState(false);
+	// const [isOpenDialogWalkIn, setIsOpenDialogWalkIn] = useState(false);
 	const [isLoading, setIsLoading] = useState(false);
+	const [formLoadingSignin, setFormLoadingSignin] = useState(false);
+	const [formLoadingAddress, setFormLoadingAddress] = useState(false);
+	const [formLoadingAccount, setFormLoadingAccount] = useState(false);
+	const [isVerifyPhoneNumberLoading, setIsVerifyPhoneNumberLoading] = useState(false);
 	const [referral, setReferral] = useState('')
-	const [isLoadingWaitForProvider, setIsLoadingWaitForProvider] = useState(false);
+	// const [isLoadingWaitForProvider, setIsLoadingWaitForProvider] = useState(false);
+	const [isRegister, setIsRegister] = useState(false);
+	const [nextStep, setNextStep] = useState('');
 
-	const restrictedStates = ['CA', 'DE', 'FL', 'IL', 'IN', 'LA', 'MA', 'MD', 'MI', 'MN', 'MO', 'MS', 'NC', 'TN', 'TX', 'VA', 'WI'];
+	// const restrictedStates = ['CA', 'DE', 'FL', 'IL', 'IN', 'LA', 'MA', 'MD', 'MI', 'MN', 'MO', 'MS', 'NC', 'TN', 'TX', 'VA', 'WI'];
 
 	const formLoading = useMemo(
-		() => stripeResponseLoading || loading,
-		[stripeResponseLoading, loading]
+		() => stripeResponseLoading || loading || formLoadingSignin || formLoadingAddress || formLoadingAccount,
+		[stripeResponseLoading, loading, formLoadingSignin, formLoadingAddress, formLoadingAccount]
 	);
 
-	const handleWaitForProvider = async() => {
-		try {
-			setIsLoadingWaitForProvider(true);
-			const result = await createKlaviyoProfile({
-				data: {
-					type: 'profile',
-					attributes: {
-						firstName: formik.values.firstName,
-						lastName: formik.values.lastName,
-						location: {
-							city: formik.values.city,
-							region: formik.values.state,
-							address1: formik.values.address_1,
-							address2: formik.values.address_2,
-							zip: formik.values.zip_code,
-						},
-						email: formik.values.email,
-						phoneNumber: formik.values.phone_number,
-					}
-				}
-			}, 'X38cMy');
+	// const handleWaitForProvider = async() => {
+	// 	try {
+	// 		setIsLoadingWaitForProvider(true);
+	// 		const result = await createKlaviyoProfile({
+	// 			data: {
+	// 				type: 'profile',
+	// 				attributes: {
+	// 					firstName: formik.values.firstName,
+	// 					lastName: formik.values.lastName,
+	// 					location: {
+	// 						city: formikAddress.values.city,
+	// 						region: formikAddress.values.state,
+	// 						address1: formikAddress.values.line1,
+	// 						address2: formikAddress.values.line2,
+	// 						zip: formikAddress.values.zip,
+	// 					},
+	// 					email: formik.values.email,
+	// 					phoneNumber: formik.values.phone_number,
+	// 				}
+	// 			}
+	// 		}, 'X38cMy');
 			
-			if (result.status === 'OK') {
-				setIsOpenDialogConfirmAddress(false);
-				toast.success('Thank you! We\'ll notify you when provider access is available in your state.');
-			} else {
-				toast.error('Something went wrong. Please try again.');
-			}
-		} catch (error) {
-			toast.error('Something went wrong. Please try again.');
-		} finally {
-			setIsLoadingWaitForProvider(false);
-		}
-	};
+	// 		if (result.status === 'OK') {
+	// 			setIsOpenDialogConfirmAddress(false);
+	// 			toast.success('Thank you! We\'ll notify you when provider access is available in your state.');
+	// 		} else {
+	// 			toast.error('Something went wrong. Please try again.');
+	// 		}
+	// 	} catch (error) {
+	// 		toast.error('Something went wrong. Please try again.');
+	// 	} finally {
+	// 		setIsLoadingWaitForProvider(false);
+	// 	}
+	// };
 
-	const validateVitalBloodAndHandleResult = async(form: IPrecheckout.BillingInfo) => {
-		try {
-			const vitalBloodAvailability = await validateVitalBlood({
-				userAddress: {
-					line1: form.address_1,
-					line2: form.address_2,
-					city: form.city,
-					state: form.state,
-					zip: form.zip_code,
-				},
-			});
+	// const validateVitalBloodAndHandleResult = async() => {
+	// 	try {
+	// 		const vitalBloodAvailability = await validateVitalBlood({
+	// 			userAddress: {
+	// 				line1: formikAddress.values.line1,
+	// 				line2: formikAddress.values.line2,
+	// 				city: formikAddress.values.city,
+	// 				state: formikAddress.values.state,
+	// 				zip: formikAddress.values.zip,
+	// 			},
+	// 		});
 
-			if (!vitalBloodAvailability.isAddressValid) {
-				setStripeResponseLoading(false);
-				setIsOpenDialogConfirmAddress(false);
-				setIsOpenDialogWalkIn(true);
-				return false;
-			}
-			return true;
-		} catch (error: any) {
-			setStripeResponseLoading(false);
-			if (typeof error === 'string') {
-				if (error.includes('This area is not currently serviceable for blood work')) {
-					setIsOpenDialogWalkIn(true);
-					setIsOpenDialogConfirmAddress(false);
-				} else {
-					toast.error(error);
-				}
-			} else {
-				toast.error('An error occurred');
-			}
-			return false;
-		}
-	};
+	// 		if (!vitalBloodAvailability.isAddressValid) {
+	// 			setStripeResponseLoading(false);
+	// 			setIsOpenDialogConfirmAddress(false);
+	// 			setIsOpenDialogWalkIn(true);
+	// 			return false;
+	// 		}
+	// 		return true;
+	// 	} catch (error: any) {
+	// 		setStripeResponseLoading(false);
+	// 		if (typeof error === 'string') {
+	// 			if (error.includes('This area is not currently serviceable for blood work')) {
+	// 				setIsOpenDialogWalkIn(true);
+	// 				setIsOpenDialogConfirmAddress(false);
+	// 			} else {
+	// 				toast.error(error);
+	// 			}
+	// 		} else {
+	// 			toast.error('An error occurred');
+	// 		}
+	// 		return false;
+	// 	}
+	// };
 
-	const handleProceedWithValidation = async() => {
-		try {
-			setIsLoading(true);
-			const isValid = await validateVitalBloodAndHandleResult(formik.values);
-			if (isValid) {
-				setIsOpenDialogConfirmAddress(false);
-				await proceedWithCheckout();
-			}
-		} catch (error) {
-			toast.error('An error occurred');
-		} finally {
-			setIsLoading(false);
-		}
-	};
+	// const handleProceedWithValidation = async() => {
+	// 	try {
+	// 		setIsLoading(true);
+	// 		const isValid = await validateVitalBloodAndHandleResult();
+	// 		if (isValid) {
+	// 			setIsOpenDialogConfirmAddress(false);
+	// 			await proceedWithCheckout();
+	// 		}
+	// 	} catch (error) {
+	// 		toast.error('An error occurred');
+	// 	} finally {
+	// 		setIsLoading(false);
+	// 	}
+	// };
 
-	const formik: FormikProps<IPrecheckout.BillingInfo> = useFormik<IPrecheckout.BillingInfo>({
-		validateOnBlur: formSubmitted,
-		validateOnChange: formSubmitted,
-		validationSchema: FormCheckoutSchema,
-		initialValues: initialValues,
-		enableReinitialize: true,
-		onSubmit: async(form: IPrecheckout.BillingInfo) => {
+	// const formik: FormikProps<IPrecheckout.BillingInfo> = useFormik<IPrecheckout.BillingInfo>({
+	// 	validateOnBlur: formSubmitted,
+	// 	validateOnChange: formSubmitted,
+	// 	validationSchema: FormCheckoutSchema,
+	// 	initialValues: {
+	// 		firstName: '',
+	// 		lastName: '',
+	// 		email: '',
+	// 		phone_number: '',
+	// 		address_1: '',
+	// 		address_2: '',
+	// 		city: '',
+	// 		state: '',
+	// 		zip_code: '',
+	// 		birthdate: null,
+	// 		gender: ''
+	// 	},
+	// 	enableReinitialize: true,
+	// 	onSubmit: async(form: IPrecheckout.BillingInfo) => {
+	// 		try {
+	// 			// setTokenState('')
+	// 			setStripeResponseLoading(true);
+	// 			const isValidState = await validateState({
+	// 				firstName: form.firstName,
+	// 				lastName: form.lastName,
+	// 				email: form.email,
+	// 				addressLine1: form.address_1,
+	// 				addressLine2: form.address_2,
+	// 				city: form.city,
+	// 				dob: form.birthdate,
+	// 				gender: form.gender.toLowerCase(),
+	// 				phoneNumber: form.phone_number,
+	// 				state: form.state,
+	// 				zipCode: form.zip_code
+	// 			})
+
+	// 			if (isValidState.token) {
+	// 				// setTokenState(isValidState.token);
+	// 				tokenRef.current = isValidState.token;
+	// 			}
+	// 			if (!isValidState.stateExists) {
+	// 				setStripeResponseLoading(false);
+	// 				return setIsOpenDialogNotAvailableState(true)
+	// 			}
+
+	// 			// Check if state is in restricted list
+	// 			if (restrictedStates.includes(form.state)) {
+	// 				setStripeResponseLoading(false);
+	// 				setIsOpenDialogConfirmAddress(true);
+	// 				return;
+	// 			}
+
+	// 			const isValid = await validateVitalBloodAndHandleResult();
+	// 			if (isValid) {
+	// 				await proceedWithCheckout();
+	// 			}
+	// 		} catch (error:any) {
+	// 			setStripeResponseLoading(false);
+	// 			toast.error('An error occurred');
+	// 		}
+	// 	},
+	// });
+
+	const formikSignin:FormikProps<{
+		email:string,
+		password:string
+	}> = useFormik<{
+		email:string,
+		password:string
+	}>({
+		initialValues: {
+			email: '',
+			password: ''
+		},
+		validationSchema: SigninFormSchema,
+		onSubmit: async(form: {
+			email:string,
+			password:string
+		}) => {
 			try {
-				setTokenState('')
-				setStripeResponseLoading(true);
-				const isValidState = await validateState({
-					firstName: form.firstName,
-					lastName: form.lastName,
+				await login({
 					email: form.email,
-					addressLine1: form.address_1,
-					addressLine2: form.address_2,
-					city: form.city,
-					dob: form.birthdate,
-					gender: form.gender.toLowerCase(),
-					phoneNumber: form.phone_number,
-					state: form.state,
-					zipCode: form.zip_code
+					password: form.password
 				})
+				setIsRegister(true)
+				toast.success('Login successful')
+			} catch (error) {
+				toast.error(error as string)
+			}
+			setFormLoadingSignin(false);
+		}
+	})
 
-				if (isValidState.token) {
-					setTokenState(isValidState.token);
-					tokenRef.current = isValidState.token;
+	const formikAddress:FormikProps<AddressInfo> = useFormik<AddressInfo>({
+		initialValues: {
+			line1: '',
+			line2: '',
+			city: '',
+			state: '',
+			zip: '',
+			country: 'US'
+		},
+		validationSchema: AddressFormSchema,
+		onSubmit: async(form: AddressInfo) => {
+			setFormLoadingAddress(true)
+			try {
+				const formData = { ...form };
+				if (!formData.line2) {
+					delete formData.line2;
 				}
-				if (!isValidState.stateExists) {
-					setStripeResponseLoading(false);
+				const res = await postAddressInfo(formData)
+				setFormLoadingAddress(false);
+				if (res.success) {
+					setNextStep('purchase.payment')
+				}
+				if (!res.isStateValid || res.alreadyOnWaitlist) {
 					return setIsOpenDialogNotAvailableState(true)
 				}
-
-				// Check if state is in restricted list
-				if (restrictedStates.includes(form.state)) {
-					setStripeResponseLoading(false);
-					setIsOpenDialogConfirmAddress(true);
-					return;
-				}
-
-				const isValid = await validateVitalBloodAndHandleResult(form);
-				if (isValid) {
-					await proceedWithCheckout();
-				}
-			} catch (error:any) {
-				setStripeResponseLoading(false);
-				toast.error('An error occurred');
+			} catch (error) {
+				// console.log('error')
+				const errorMessage = error instanceof Error ? error.message : 'An error occurred'
+				setFormLoadingAddress(false);
+				toast.error(errorMessage)
 			}
-		},
-	});
-
-	const handleContinue = async() => {
-		setIsOpenDialogWalkIn(false);
-		await proceedWithCheckout();
-	};
-
-	const proceedWithCheckout = async() => {
-		try {
-			setStripeResponseLoading(true);
-			const getFPTid = () => {
-				if (typeof window !== 'undefined') {
-					return (window as any).FPROM?.data?.tid;
-				}
-				return undefined;
-			};
-
-			const sessionSecret = await createSession({
-				header: {
-					'Authorization': 'Bearer ' + tokenRef.current,
-				},
-				body: {
-					user: {
-						firstName: formik.values.firstName,
-						lastName: formik.values.lastName,
-						email: formik.values.email,
-						addressLine1: formik.values.address_1,
-						addressLine2: formik.values.address_2,
-						city: formik.values.city,
-						dob: formik.values.birthdate,
-						gender: formik.values.gender.toLowerCase(),
-						phoneNumber: formik.values.phone_number,
-						state: formik.values.state,
-						zipCode: formik.values.zip_code
-					},
-					coupon: coupon,
-					referral: referral.length ? referral : undefined,
-					fp_tid: getFPTid(),
-					product: [{
-						productId: selectedProduct?.productId.toString() ?? '',
-						productName: selectedProduct?.productName ?? '',
-						quantity: 1,
-						price: selectedProductPrice?.price ?? 0,
-						price_id: selectedProductPrice?.priceId ?? ''
-					}],
-				}
-			});
-
-			const klaviyo = await createKlaviyoProfile({
-				data: {
-					type: 'profile',
-					attributes: {
-						firstName: formik.values.firstName,
-						lastName: formik.values.lastName,
-						location: {
-							city: formik.values.city,
-							region: formik.values.state,
-							address1: formik.values.address_1,
-							address2: formik.values.address_2,
-							zip: formik.values.zip_code,
-						},
-						email: formik.values.email,
-						phoneNumber: formik.values.phone_number,
-					}
-				}
-			}, 'UqUaJC');
-
-			setKlaviyoRes({
-				profileId: klaviyo.profileId ?? '',
-				listId: klaviyo.listId ?? ''
-			});
-			setToken(sessionSecret.token);
-			setSessionSecret(sessionSecret.clientSecret);
-			setStripeResponseLoading(false);
-			// if (typeof window !== 'undefined' && window.MAI) {
-			// 	window.MAI.emit('lead', Number(selectedProductPrice?.price), 'USD', {
-			// 		eventType: 'checkout',
-			// 		firstName: formik.values.firstName,
-			// 		lastName: formik.values.lastName,
-			// 		email: formik.values.email,
-			// 		addressLine1: formik.values.address_1,
-			// 		addressLine2: formik.values.address_2,
-			// 		city: formik.values.city,
-			// 		dob: formik.values.birthdate,
-			// 		gender: formik.values.gender.toLowerCase(),
-			// 		phoneNumber: formik.values.phone_number,
-			// 		state: formik.values.state,
-			// 		zipCode: formik.values.zip_code,
-			// 		productID: selectedProduct?.productId.toString() ?? '',
-			// 		quantity: 1,
-			// 		productName: selectedProduct?.productName ?? '',
-			// 		productType: 'membership',
-			// 		productVendor: 'GoGeveti',
-			// 		variantId: selectedProductPrice?.priceId ?? '',
-			// 		variantName: selectedProductPrice?.billingFrequency ?? ''
-			// 	})
-			// }
-		} catch (error: any) {
-			setStripeResponseLoading(false);
-			if (typeof error === 'string') {
-				toast.error(error);
-			} else {
-				toast.error('An error occurred');
-			}
+			setFormLoadingAddress(false);
 		}
-	};
+	})
 
-	const handleSubmit = async(e: React.FormEvent<HTMLFormElement>) => {
+	const formikAccontInfo:FormikProps<AccountInfo> = useFormik<AccountInfo>({
+		initialValues: {
+			firstName: '',
+			lastName: '',
+			email: '',
+			password: '',
+			phoneNumber: '',
+			dob: null,
+			gender: ''
+		},
+		validationSchema: AccountInfoSchema,
+		onSubmit: async(form: AccountInfo) => {
+			setFormLoadingAccount(true);
+			try {
+				const formData = { ...form, gender: form.gender.toLowerCase() };
+				if (!formData.password) {
+					delete formData.password;
+				}
+				const res = await postAddAccountInfo(formData)
+				setFormLoadingAccount(false);
+				setNextStep(res.nextStep)
+				toast.success('Account information added successfully')
+			} catch (error) {
+				const errorMessage = error instanceof Error ? error.message : 'An error occurred'
+				setFormLoadingAccount(false);
+				toast.error(errorMessage)
+			}
+			setFormLoadingAccount(false);
+		}
+	})
+
+	// const handleContinue = async() => {
+	// 	setIsOpenDialogWalkIn(false);
+	// 	await proceedWithCheckout();
+	// };
+
+	// const proceedWithCheckout = async() => {
+	// 	try {
+	// 		setStripeResponseLoading(true);
+	// 		const getFPTid = () => {
+	// 			if (typeof window !== 'undefined') {
+	// 				return (window as any).FPROM?.data?.tid;
+	// 			}
+	// 			return undefined;
+	// 		};
+
+	// 		const sessionSecret = await createSession({
+	// 			header: {
+	// 				'Authorization': 'Bearer ' + tokenRef.current,
+	// 			},
+	// 			body: {
+	// 				user: {
+	// 					firstName: formik.values.firstName,
+	// 					lastName: formik.values.lastName,
+	// 					email: formik.values.email,
+	// 					addressLine1: formikAddress.values.line1,
+	// 					addressLine2: formikAddress.values.line2 ?? '',
+	// 					city: formikAddress.values.city,
+	// 					dob: formik.values.birthdate,
+	// 					gender: formik.values.gender.toLowerCase(),
+	// 					phoneNumber: formik.values.phone_number,
+	// 					state: formikAddress.values.state,
+	// 					zipCode: formikAddress.values.zip
+	// 				},
+	// 				coupon: coupon,
+	// 				referral: referral.length ? referral : undefined,
+	// 				fp_tid: getFPTid(),
+	// 				product: [{
+	// 					productId: selectedProduct?.productId.toString() ?? '',
+	// 					productName: selectedProduct?.name ?? '',
+	// 					quantity: 1,
+	// 					price: Number(selectedProductPrice?.price) ?? 0,
+	// 					price_id: selectedProductPrice?.priceId ?? ''
+	// 				}],
+	// 			}
+	// 		});
+
+	// 		const klaviyo = await createKlaviyoProfile({
+	// 			data: {
+	// 				type: 'profile',
+	// 				attributes: {
+	// 					firstName: formik.values.firstName,
+	// 					lastName: formik.values.lastName,
+	// 					location: {
+	// 						city: formikAddress.values.city,
+	// 						region: formikAddress.values.state,
+	// 						address1: formikAddress.values.line1,
+	// 						address2: formikAddress.values.line2,
+	// 						zip: formikAddress.values.zip,
+	// 					},
+	// 					email: formik.values.email,
+	// 					phoneNumber: formik.values.phone_number,
+	// 				}
+	// 			}
+	// 		}, 'UqUaJC');
+
+	// 		setKlaviyoRes({
+	// 			profileId: klaviyo.profileId ?? '',
+	// 			listId: klaviyo.listId ?? ''
+	// 		});
+	// 		// setToken(sessionSecret.token);
+	// 		setSessionSecret(sessionSecret.clientSecret);
+	// 		setStripeResponseLoading(false);
+	// 	} catch (error: any) {
+	// 		setStripeResponseLoading(false);
+	// 		if (typeof error === 'string') {
+	// 			toast.error(error);
+	// 		} else {
+	// 			toast.error('An error occurred');
+	// 		}
+	// 	}
+	// };
+
+	// const handleSubmit = async(e: React.FormEvent<HTMLFormElement>) => {
+	// 	e.preventDefault();
+	// 	setFormSubmitted(true);
+	// 	formik.handleSubmit();
+	// };
+
+	const handleSubmitSignin = async(e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
-		setFormSubmitted(true);
-		formik.handleSubmit();
+		setFormLoadingSignin(true);
+		formikSignin.handleSubmit();
 	};
 
 	const onPlaceSelected = (place: any) => {
@@ -333,11 +423,11 @@ const StripeForm: FC<StripeFormProps> = () => {
 		const address1 = addressComponents.find((item:any) => item.types.includes('street_number'))?.long_name;
 		const address2 = addressComponents.find((item:any) => item.types.includes('route'))?.long_name;
 
-		formik.setFieldValue('city', city ?? '');
-		formik.setFieldValue('state', state ?? '');
-		formik.setFieldValue('zip_code', zipCode ?? '');
-		formik.setFieldValue('address_1', (address1 ? address1  + ' ' : '') + address2);
-		formik.setFieldValue('address_2', '');
+		formikAddress.setFieldValue('city', city ?? '');
+		formikAddress.setFieldValue('state', state ?? '');
+		formikAddress.setFieldValue('zip', zipCode ?? '');
+		formikAddress.setFieldValue('line1', (address1 ? address1  + ' ' : '') + address2);
+		formikAddress.setFieldValue('line2', '');
 	}
 	const addressRef = useRef<HTMLInputElement>(null);
 
@@ -360,34 +450,94 @@ const StripeForm: FC<StripeFormProps> = () => {
 		}
 	}, [addressRef])
 
+	useEffect(() => {
+		if (geviti_token) {
+			const getPatient = async() => {
+				try {
+					const getPatientProfileResponse = await getPatientProfileAction();
+					setNextStep(getPatientProfileResponse.nextStep)
+					setIsRegister(true)
+					formikAccontInfo.setFieldValue('firstName', getPatientProfileResponse.firstName)
+					formikAccontInfo.setFieldValue('lastName', getPatientProfileResponse.lastName)
+					formikAccontInfo.setFieldValue('email', getPatientProfileResponse.email)
+					formikAccontInfo.setFieldValue('dob', new Date(getPatientProfileResponse.dob))
+					formikAccontInfo.setFieldValue('gender', getPatientProfileResponse.gender === 'male' ? 'Male' : getPatientProfileResponse.gender === 'female' ? 'Female' : '')
+
+					formikAccontInfo.setFieldValue('phoneNumber', getPatientProfileResponse.phone)
+					formikAccontInfo.setFieldValue('password', 'P@ssw0rd')
+
+					formikAccontInfo.setErrors({})
+
+					formikAddress.setFieldValue('line1', getPatientProfileResponse.address.line)
+					formikAddress.setFieldValue('city', getPatientProfileResponse.address.city)
+					formikAddress.setFieldValue('state', getPatientProfileResponse.address.state)
+					formikAddress.setFieldValue('zip', getPatientProfileResponse.address.postalCode)
+				} catch (error) {
+					// console.log('error ==> ', error)
+				}
+			}
+			getPatient();
+		} else {
+			formikAccontInfo.resetForm()
+			formikAddress.resetForm()
+		}
+	}, [geviti_token])
+
 	const onChangeInputRestrictNumber = (key: string, val: string) => {
 		const updatedVal = val.replace(/[^\d]/g, '');
-		formik.setFieldValue(key, updatedVal);
+		formikAddress.setFieldValue(key, updatedVal);
 	};
+
+	const submitOnboardingFlow = () => {
+		// setFormLoadingAddress(true);
+		if (!geviti_token && isRegister) {
+			formikAccontInfo.handleSubmit()
+		}
+		if (nextStep === 'purchase.account-information') {
+			formikAddress.handleSubmit();
+		}
+	}
 
 	const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_TOKEN_STAGING || '');
 	
 	const joinWaitlist = async() => {
 		setIsLoading(true);
-		const res = await joinWaitListV2({
-			firstName: formik.values.firstName,
-			lastName: formik.values.lastName,
-			email: formik.values.email,
-			addressLine1: formik.values.address_1,
-			addressLine2: formik.values.address_2,
-			city: formik.values.city,
-			dob: formik.values.birthdate,
-			gender: formik.values.gender.toLowerCase(),
-			phoneNumber: formik.values.phone_number,
-			state: formik.values.state,
-			zipCode: formik.values.zip_code
-		}, tokenState)
-		setIsLoading(false);
-		if (res) {
+		try {
+			await postAddToWaitlist({
+				line1: formikAddress.values.line1,
+				...(formikAddress.values.line2 && { line2: formikAddress.values.line2 }),
+				city: formikAddress.values.city,
+				state: formikAddress.values.state,
+				zip: formikAddress.values.zip,
+				country: 'US'
+			})
+			setIsLoading(false);
 			toast.success('You have been added to the waitlist');
 			router.replace('/')
-		} else {
-			toast.error('An error occurred');
+		} catch (error: any) {
+			const errorMessage = error instanceof Error ? error.message : 'An error occurred'
+			setIsLoading(false);
+			toast.error(errorMessage);
+		}
+	}
+
+	const verifyPhoneNumber = async() => {
+		setIsVerifyPhoneNumberLoading(true);
+		try {
+			const res = await postVerifyPhoneNumber({
+				phoneNumber: formikAccontInfo.values.phoneNumber.replace(/\s/g, ''),
+				redirectUri: typeof window !== 'undefined' ? window.location.origin + window.location.pathname + `?product_id=${selectedProduct?.productId.toString()}&price_id=${selectedProductPrice?.priceId}` : 'https://gogeviti.com/pricing/onboarding/payment' +  + `?product_id=${selectedProduct?.productId.toString()}&price_id=${selectedProductPrice?.priceId}`
+			})
+			setIsVerifyPhoneNumberLoading(false);
+			toast.success('Phone number verified successfully');
+			if (res.inquiryUrl) {
+				// window.open(res.inquiryUrl, '_blank');
+				window.open(res.inquiryUrl);
+			}
+		} catch (error: any) {
+			const errorMessage = error instanceof Error ? error.message : 'An error occurred'
+			setIsVerifyPhoneNumberLoading(false);
+			toast.error(errorMessage);
 		}
 	}
 
@@ -398,184 +548,326 @@ const StripeForm: FC<StripeFormProps> = () => {
 			});
 		}
 	}, []);
+	
+	const handleCreateSession = async() => {
+		try {
+			setStripeResponseLoading(true);
+			const getFPTid = () => {
+				if (typeof window !== 'undefined') {
+					return (window as any).FPROM?.data?.tid;
+				}
+				return undefined;
+			};
+			const sessionSecret = await postBillingCheckout({
+				'products': [
+					{
+						'productId': selectedProduct?.productId.toString() ?? '',
+						'priceId': selectedProductPrice?.priceId ?? ''
+					}
+				],
+				...(coupon.length && { coupon }),
+				...(referral.length && { referral }),
+				...(getFPTid() && { fp_tid: getFPTid() })
 
-	return (
-		<form
-			onSubmit={ handleSubmit }>
-			<div className='flex flex-col justify-center items-center gap-2 w-full lg:mt-14 lg:pt-9'>
+			})
+
+			const klaviyo = await createKlaviyoProfile({
+				data: {
+					type: 'profile',
+					attributes: {
+						firstName: formikAccontInfo.values.firstName,
+						lastName: formikAccontInfo.values.lastName,
+						location: {
+							city: formikAddress.values.city,
+							region: formikAddress.values.state,
+							address1: formikAddress.values.line1,
+							address2: formikAddress.values.line2,
+							zip: formikAddress.values.zip,
+						},
+						email: formikAccontInfo.values.email,
+						phoneNumber: formikAccontInfo.values.phoneNumber,
+					}
+				}
+			}, 'UqUaJC');
+
+			setKlaviyoRes({
+				profileId: klaviyo.profileId ?? '',
+				listId: klaviyo.listId ?? ''
+			});
+			// setToken(sessionSecret.token);
+			setSessionSecret(sessionSecret.clientSecret);
+			setStripeResponseLoading(false);
+		} catch (error: any) {
+			setStripeResponseLoading(false);
+			if (error instanceof Error) {
+				toast.error(error.message);
+			} else if (typeof error === 'string') {
+				toast.error(error);
+			} else {
+				toast.error('An error occurred');
+			}
+		}
+	}
+
+	const renderFormInformation = () => {
+		const isDisablePersonalInformation = nextStep === 'purchase.phone-validation' || nextStep === 'purchase.account-information' || nextStep === 'purchase.payment'
+		// const isDisablePersonalInformation = false
+		return (
+			<div
+				// onSubmit={ handleSubmit }
+				className='flex flex-col justify-center items-center gap-2 w-full lg:mt-14 lg:pt-9'>
 				<div className={ clsxm('relative flex flex-col lg:w-[70%]') }>
 					<h1 className='text-[28px] font-Poppins'>Personal Information</h1>
 					<div className='mt-3 flex flex-col gap-[14px]'>
 						<div className='grid grid-cols-1 lg:grid-cols-2 gap-3 lg:gap-5'>
 							<TextField
 								isLight
+								disabled={ isDisablePersonalInformation }
 								id='firstName'
 								name='firstName'
 								placeholder='First Name'
-								value={ formik.values.firstName }
-								onChange={ formik.handleChange }
-								isError={ !!formik.errors.firstName }
-								errorMessage={ formik.errors.firstName }
+								value={ formikAccontInfo.values.firstName }
+								onChange={ formikAccontInfo.handleChange }
+								isError={ !!formikAccontInfo.errors.firstName }
+								errorMessage={ formikAccontInfo.errors.firstName }
 								wrapperClassName='w-full'
 								className='h-[54px] lg:h-[63px] lg:text-lg'
 							/>
 							<TextField
 								isLight
+								disabled={ isDisablePersonalInformation }
 								id='lastName'
 								name='lastName'
 								placeholder='Last Name'
-								value={ formik.values.lastName }
-								onChange={ formik.handleChange }
-								isError={ !!formik.errors.lastName }
-								errorMessage={ formik.errors.lastName }
+								value={ formikAccontInfo.values.lastName }
+								onChange={ formikAccontInfo.handleChange }
+								isError={ !!formikAccontInfo.errors.lastName }
+								errorMessage={ formikAccontInfo.errors.lastName }
 								wrapperClassName='w-full'
 								className='h-[54px] lg:h-[63px] lg:text-lg'
 							/>
 						</div>
 						<CustomDatePicker
 							isLight
-							value={ formik.values.birthdate }
-							onSelect={ (date: Date) => formik.setFieldValue('birthdate', date) }
-							isError={ !!formik.errors.birthdate }
-							errorMessage={ formik.errors.birthdate }
+							disabled={ isDisablePersonalInformation }
+							value={ formikAccontInfo.values.dob }
+							onSelect={ (date: Date) => formikAccontInfo.setFieldValue('dob', date) }
+							isError={ !!formikAccontInfo.errors.dob }
+							errorMessage={ formikAccontInfo.errors.dob }
 							placeholder='Date of birth MM/DD/YYYY'
 						/>
 						<TextField
 							isLight
 							id='email'
 							name='email'
+							disabled={ isDisablePersonalInformation }
 							placeholder='Email'
-							value={ formik.values.email }
-							onChange={ formik.handleChange }
-							isError={ !!formik.errors.email }
-							errorMessage={ formik.errors.email }
+							autoComplete='new-password'
+							value={ formikAccontInfo.values.email }
+							onChange={ formikAccontInfo.handleChange }
+							isError={ !!formikAccontInfo.errors.email }
+							errorMessage={ formikAccontInfo.errors.email }
 							wrapperClassName='w-full'
 							className='h-[54px] lg:h-[63px] lg:text-lg'
 						/>
-						<div className='grid grid-cols-1 lg:grid-cols-2 gap-3 lg:gap-5'>
-							<CustomSelect
-								isLight
-								placeholder='Sex'
-								options={ statesData.gender.options }
-								value={ formik.values.gender }
-								onChange={ val => formik.setFieldValue('gender', val) }
-								isError={ !!formik.errors.gender }
-								errorMessage={ formik.errors.gender }
-							/>
-							<div className='flex flex-col'>
+						<CustomSelect
+							isLight
+							disabled={ isDisablePersonalInformation }
+							placeholder='Sex'
+							options={ statesData.gender.options }
+							value={ formikAccontInfo.values.gender }
+							onChange={ val => formikAccontInfo.setFieldValue('gender', val) }
+							isError={ !!formikAccontInfo.errors.gender }
+							errorMessage={ formikAccontInfo.errors.gender }
+						/>
+						<div className='flex flex-col'>
+							<div className='flex items-center gap-2'>
 								<InputMask
 									mask='+1\ 999 999 9999'
 									maskPlaceholder={ null }
 									placeholder='Phone Number'
-									name='phone_number'
-									onChange={ formik.handleChange }
-									value={ formik.values.phone_number }
+									name='phoneNumber'
+									autoComplete='new-password'
+									onChange={ formikAccontInfo.handleChange }
+									disabled={ isDisablePersonalInformation }
+									value={ formikAccontInfo.values.phoneNumber }
 									className={ clsxm(
 										'block w-full h-[54px] lg:h-[63px] border outline-red-600 transform focus:outline-none transition-colors duration-300 rounded-[10px]',
 										'focus:border-[#E6E7E7] bg-white placeholder:text-[#AEB1B2] border-[#E6E7E7] text-primary text-xs lg:text-lg font-normal !leading-normal font-Poppins px-6 py-18px',
-										!!formik.errors.phone_number ? 'ring-1 ring-red-primary focus:ring-1 focus:ring-red-primary' : '!ring-0 focus:!ring-1 !ring-grey-primary',
+										!!formikAccontInfo.errors.phoneNumber ? 'ring-1 ring-red-primary focus:ring-1 focus:ring-red-primary' : '!ring-0 focus:!ring-1 !ring-grey-primary',
+										'disable:bg-grey-50 disabled:text-grey-primary'
+										// nextStep !== 'purchase.phone-validation' && 'bg-grey-50 text-grey-primary'
 									) }
 								/>
-								{ !!formik.errors.phone_number && formik.errors.phone_number && (
-									<p className='text-red-primary text-[10px] mt-1 text-left'>{ formik.errors.phone_number }</p>
-								) }
+								{ /* <button
+									type='button'
+									onClick={ () => verifyPhoneNumber() }
+									disabled={ nextStep !== 'purchase.phone-validation' || isVerifyPhoneNumberLoading }
+									className='h-[58px] py-3 px-5 text-white disabled:bg-black/50 disabled:cursor-not-allowed whitespace-nowrap font-Poppins hover:bg-black/80 rounded-[1000px] bg-black'>{ isVerifyPhoneNumberLoading ? 'Verifying...' : 'Verify phone number' }</button> */ }
 							</div>
-						</div>
-					</div>
-					<h4 className='text-sm mt-6'>Home Address</h4>
-					<div className='mt-3 flex flex-col gap-[14px]'>
-						<div className='flex flex-col relative'>
-							<Autocomplete
-								apiKey={ process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY }
-								onPlaceSelected={ onPlaceSelected }
-								options={ {
-									types: ['address'],
-									componentRestrictions: { country: 'us' }
-								} }
-								ref={ addressRef }
-								id='address'
-								placeholder='Address 1'
-								className={ clsxm(
-									'block w-full h-[54px] lg:h-[63px] border-0 outline-red-600 transform focus:outline-none transition-colors duration-300 rounded-[10px]',
-									'text-primary bg-white border-[#E6E7E7] border placeholder:text-[#AEB1B2] focus:border-[#E6E7E7] text-xs lg:text-lg font-normal !leading-normal font-Poppins px-6 py-18px',
-									!!formik.errors.address_1 ? 'ring-1 ring-red-primary focus:ring-1 focus:ring-red-primary' : '!ring-0 focus:!ring-1 !ring-grey-primary',
-								) }
-								onChange={ (e:any) => formik.setFieldValue('address_1', (e.target as HTMLInputElement)?.value) }
-								value={ formik.values.address_1 }
-							/>
-							{ !!formik.errors.address_1 && formik.errors.address_1 && (
-								<p className='text-red-primary text-[10px] mt-1 text-left'>{ formik.errors.address_1 }</p>
+							{ !!formikAccontInfo.errors.phoneNumber && formikAccontInfo.errors.phoneNumber && (
+								<p className='text-red-primary text-[10px] mt-1 text-left'>{ formikAccontInfo.errors.phoneNumber }</p>
 							) }
 						</div>
 						<TextField
-							id='address_2'
-							name='address_2'
-							type='text'
 							isLight
-							placeholder='Address 2'
-							value={ formik.values.address_2 }
-							onChange={ formik.handleChange }
-							isError={ !!formik.errors.address_2 }
-							errorMessage={ formik.errors.address_2 }
+							id='password'
+							name='password'
+							type='password'
+							autoComplete='new-password'
+							placeholder='Password'
+							disabled={ !!geviti_token }
+							value={ formikAccontInfo.values.password }
+							onChange={ formikAccontInfo.handleChange }
+							isError={ !!formikAccontInfo.errors.password }
+							errorMessage={ formikAccontInfo.errors.password }
+							wrapperClassName={ clsxm(
+								'w-full',
+								geviti_token && 'hidden'
+							) }
 							className='h-[54px] lg:h-[63px] lg:text-lg'
 						/>
-						<div className='grid grid-cols-3 gap-[14px]'>
-							<TextField
-								isLight
-								id='city'
-								name='city'
-								placeholder='City'
-								value={ formik.values.city }
-								onChange={ formik.handleChange }
-								isError={ !!formik.errors.city }
-								errorMessage={ formik.errors.city }
-								wrapperClassName='w-full'
-								className='h-[54px] lg:h-[63px] lg:text-lg'
-							/>
-							<CustomSelect
-								size='default'
-								isLight
-								placeholder='State'
-								options={ statesData.states.options }
-								value={ formik.values.state }
-								onChange={ val => formik.setFieldValue('state', val) }
-								isError={ !!formik.errors.state }
-								errorMessage={ formik.errors.state }
-							/>
-							<TextField
-								isLight
-								id='zip_code'
-								name='zip_code'
-								type='text'
-								inputMode='numeric'
-								placeholder='Zip'
-								autoComplete='cc-csv'
-								value={ formik.values.zip_code }
-								onChange={ e => onChangeInputRestrictNumber('zip_code', e.target.value) }
-								isError={ !!formik.errors.zip_code }
-								errorMessage={ formik.errors.zip_code }
-								className='h-[54px] lg:h-[63px] lg:text-lg'
-							/>
-						</div>
-						<div className='mt-6 flex items-start gap-x-[22px]'>
-							<input
-								id='checkout_state'
-								type='checkbox'
-								title=''
-								className='h-5 w-5 mt-2.5 cursor-pointer rounded-[1px] text-grey-100 checked:text-primary outline outline-offset-2 outline-2 focus:outline-1 focus:text-primary focus:ring-grey-100 ring-black-secondary border-none ml-1'
-								onChange={ (e: React.ChangeEvent<HTMLInputElement>) => setStatesChecked(e.target.checked) }
-								disabled={ formLoading }
-							/>
-							<p>
-								<span className='text-sm text-[#6A6E70] font-Poppins'>I confirm I live in the state mentioned above and recognize that Geviti&apos;s Longeviti Membership is not available in { ' ' }
-									<button
-										type='button'
-										onClick={ () => setIsOpenDialogState(prev => !prev) }
-										className='text-primary underline cursor-pointer font-Poppins'>these states.</button>
-								</span>
-							</p>
-						</div>
+						{ /* {
+							(nextStep === 'purchase.phone-validation' || nextStep === 'purchase.account-information') && (
+							)
+						} */ }
 					</div>
+					{
+						(nextStep === 'purchase.account-information' || nextStep === 'purchase.payment') && (
+							<>
+								<h4 className='text-sm mt-6'>Home Address</h4>
+								<div className='mt-3 flex flex-col gap-[14px]'>
+									<div className='flex flex-col relative'>
+										<Autocomplete
+											apiKey={ process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY }
+											onPlaceSelected={ onPlaceSelected }
+											options={ {
+												types: ['address'],
+												componentRestrictions: { country: 'us' }
+											} }
+											ref={ addressRef }
+											id='address'
+											placeholder='Address 1'
+											disabled={ nextStep !== 'purchase.account-information' && nextStep === 'purchase.payment' }
+											className={ clsxm(
+												'block w-full h-[54px] lg:h-[63px] border-0 outline-red-600 transform focus:outline-none transition-colors duration-300 rounded-[10px]',
+												'text-primary bg-white border-[#E6E7E7] border placeholder:text-[#AEB1B2] focus:border-[#E6E7E7] text-xs lg:text-lg font-normal !leading-normal font-Poppins px-6 py-18px',
+												!!formikAddress.errors.line1 ? 'ring-1 ring-red-primary focus:ring-1 focus:ring-red-primary' : '!ring-0 focus:!ring-1 !ring-grey-primary',
+												'disabled:bg-grey-50 disabled:text-grey-primary'
+											) }
+											onChange={ (e:any) => formikAddress.setFieldValue('line1', (e.target as HTMLInputElement)?.value) }
+											value={ formikAddress.values.line1 }
+										/>
+										{ !!formikAddress.errors.line1 && formikAddress.errors.line1 && (
+											<p className='text-red-primary text-[10px] mt-1 text-left'>{ formikAddress.errors.line1 }</p>
+										) }
+									</div>
+									<TextField
+										id='line2'
+										name='line2'
+										type='text'
+										isLight
+										disabled={ nextStep !== 'purchase.account-information' && nextStep === 'purchase.payment' }
+										placeholder='Address 2'
+										value={ formikAddress.values.line2 }
+										onChange={ formikAddress.handleChange }
+										isError={ !!formikAddress.errors.line2 }
+										errorMessage={ formikAddress.errors.line2 }
+										className='h-[54px] lg:h-[63px] lg:text-lg'
+									/>
+									<div className='grid grid-cols-3 gap-[14px]'>
+										<TextField
+											isLight
+											id='city'
+											name='city'
+											placeholder='City'
+											disabled={ nextStep !== 'purchase.account-information' && nextStep === 'purchase.payment' }
+											value={ formikAddress.values.city }
+											onChange={ formikAddress.handleChange }
+											isError={ !!formikAddress.errors.city }
+											errorMessage={ formikAddress.errors.city }
+											wrapperClassName='w-full'
+											className='h-[54px] lg:h-[63px] lg:text-lg'
+										/>
+										<CustomSelect
+											size='default'
+											isLight
+											placeholder='State'
+											disabled={ nextStep !== 'purchase.account-information' && nextStep === 'purchase.payment' }
+											options={ statesData.states.options }
+											value={ formikAddress.values.state }
+											onChange={ val => formikAddress.setFieldValue('state', val) }
+											isError={ !!formikAddress.errors.state }
+											errorMessage={ formikAddress.errors.state }
+										/>
+										<TextField
+											isLight
+											id='zip'
+											name='zip'
+											type='text'
+											inputMode='numeric'
+											disabled={ nextStep !== 'purchase.account-information' && nextStep === 'purchase.payment' }
+											placeholder='Zip'
+											autoComplete='cc-csv'
+											value={ formikAddress.values.zip }
+											onChange={ e => onChangeInputRestrictNumber('zip', e.target.value) }
+											isError={ !!formikAddress.errors.zip }
+											errorMessage={ formikAddress.errors.zip }
+											className='h-[54px] lg:h-[63px] lg:text-lg'
+										/>
+									</div>
+								</div>
+							</>
+						)
+					}
+					<button
+						type='button'
+						onClick={ () => nextStep === 'purchase.phone-validation' ? verifyPhoneNumber() : submitOnboardingFlow() }
+						disabled={ formLoading || isVerifyPhoneNumberLoading }
+						className={ clsxm(
+							'h-[58px] py-3 px-[42px] text-white font-Poppins rounded-[1000px] my-10 bg-black disabled:bg-grey-700',
+							nextStep === 'purchase.payment' && 'hidden'
+						) }
+					>
+						<div className='flex items-center justify-center'>
+							{ formLoading || isVerifyPhoneNumberLoading ? (
+								<Spinner />
+							) : (
+								<span>
+									{ nextStep === 'purchase.phone-validation' ? 'Verify phone number' : 'Continue' }
+								</span>
+							) }
+						</div>
+					</button>
+					<button
+						type='button'
+						onClick={ () => setIsRegister(false) }
+						className={ clsxm(
+							'text-primary underline text-center mb-5',
+							nextStep === 'purchase.payment' && 'mt-5'
+						) }>Already have an account? Login</button>
+					{
+						nextStep === 'purchase.payment' && (
+							<div className='mt-6 flex items-start gap-x-[22px]'>
+								<input
+									id='checkout_state'
+									type='checkbox'
+									title=''
+									className='h-5 w-5 mt-2.5 cursor-pointer rounded-[1px] text-grey-100 checked:text-primary outline outline-offset-2 outline-2 focus:outline-1 focus:text-primary focus:ring-grey-100 ring-black-secondary border-none ml-1'
+									onChange={ (e: React.ChangeEvent<HTMLInputElement>) => setStatesChecked(e.target.checked) }
+									disabled={ formLoading }
+								/>
+								<p>
+									<span className='text-sm text-[#6A6E70] font-Poppins'>I confirm I live in the state mentioned above and recognize that Geviti&apos;s Longeviti Membership is not available in { ' ' }
+										<button
+											type='button'
+											onClick={ () => setIsOpenDialogState(prev => !prev) }
+											className='text-primary underline cursor-pointer font-Poppins'>these states.</button>
+									</span>
+								</p>
+							</div>
+						)
+					}
 					{ sessionSecretS && (
 						<div className='pb-6'>
 							<h1 className='text-[28px] mt-6 mb-3'>Payment Details</h1>
@@ -598,12 +890,13 @@ const StripeForm: FC<StripeFormProps> = () => {
 										klaviyoRes={ klaviyoRes }
 										// coupon={ coupon }
 										statesChecked={ statesChecked }
-										email={ formik.values.email }
-										token={ token }
+										email={ formikAccontInfo.values.email }
+										token={ geviti_token ?? '' }
 										// discount={ discount }
 										// priceId={ priceId }
 										// products={ selectedProduct }
-										form={ formik.values }
+										formAccontInfo={ formikAccontInfo.values }
+										formAddress={ formikAddress.values }
 										// totalPrice={ totalPrice ?? 0 }
 									/>
 								</Elements>
@@ -611,14 +904,15 @@ const StripeForm: FC<StripeFormProps> = () => {
 						</div>
 					) }
 					{
-						!sessionSecretS && (
+						(!sessionSecretS && nextStep === 'purchase.payment') && (
 							<button
 								type='submit'
 								disabled={ formLoading || !statesChecked }
 								className={ clsxm(
-									'h-[58px] py-3 px-[42px] text-white font-Poppins rounded-[1000px] my-10',
+									'h-[58px] py-3 px-[42px] text-white font-Poppins rounded-[1000px] mt-5 mb-10',
 									statesChecked ? 'bg-black' : 'bg-grey-700',
 								) }
+								onClick={ () => handleCreateSession() }
 							>
 								<div className='flex items-center justify-center'>
 									{ formLoading ? (
@@ -634,6 +928,88 @@ const StripeForm: FC<StripeFormProps> = () => {
 					}
 				</div>
 			</div>
+		)
+	}
+
+	const renderSigninForm = () => {
+		return (
+			<form
+				onSubmit={ handleSubmitSignin }
+				className='flex flex-col justify-center items-center gap-2 w-full lg:mt-14 lg:pt-9'>
+				<div className={ clsxm('relative flex flex-col lg:w-[70%]') }>
+					<h1 className='text-[28px] font-Poppins'>Login to your account</h1>
+					<div className='mt-10 flex flex-col gap-[14px]'>
+						<TextField
+							isLight
+							id='email'
+							name='email'
+							placeholder='Email'
+							value={ formikSignin.values.email }
+							onChange={ formikSignin.handleChange }
+							isError={ !!formikSignin.errors.email }
+							errorMessage={ formikSignin.errors.email }
+							wrapperClassName='w-full'
+							className='h-[54px] lg:h-[63px] lg:text-lg'
+						/>
+						<TextField
+							isLight
+							id='password'
+							name='password'
+							type='password'
+							placeholder='Password'
+							value={ formikSignin.values.password }
+							onChange={ formikSignin.handleChange }
+							isError={ !!formikSignin.errors.password }
+							errorMessage={ formikSignin.errors.password }
+							wrapperClassName='w-full'
+							className='h-[54px] lg:h-[63px] lg:text-lg'
+						/>
+						<div className='flex items-center justify-end'>
+							<button
+								type='button'
+								onClick={ () => {
+									removeCookie('geviti_token');
+									setIsRegister(true);
+									setNextStep('');
+									formikAccontInfo.resetForm()
+									formikAddress.resetForm()
+									formikAccontInfo.setErrors({})
+									formikAddress.setErrors({})
+								} }
+								className='text-primary underline'>Create an account</button>
+						</div>
+						<button
+							type='submit'
+							disabled={ formLoading }
+							className={ clsxm(
+								'h-[58px] py-3 px-[42px] text-white font-Poppins rounded-[1000px] my-5 bg-black disabled:bg-grey-700',
+							) }
+						>
+							<div className='flex items-center justify-center'>
+								{ formLoading ? (
+									<Spinner />
+								) : (
+									<span>
+												Login
+									</span>
+								) }
+							</div>
+						</button>
+					</div>
+				</div>
+			</form>
+		)
+	}
+
+	// const setupPayment = () => {
+
+	// }
+
+	return (
+		<div>
+			{
+				isRegister ? renderFormInformation() : (!isRegister && geviti_token) ? renderSigninForm() : renderSigninForm()
+			}
 			<Dialog
 				open={ isOpenDialogState }
 				modal={ true }
@@ -714,7 +1090,7 @@ const StripeForm: FC<StripeFormProps> = () => {
 						<p className='text-grey-500 text-xs mt-2'>We plan to be live in all 50 states shortly. Join our waitlist to be one of the first notified!</p>
 						<button
 							type='button'
-							aria-label='Get Your Discount'
+							aria-label='Join the waitlist'
 							onClick={ () => joinWaitlist() }
 							disabled={ isLoading }
 							className='h-[58px] py-3 px-[42px] text-white rounded-[1000px] mt-11 bg-black'
@@ -722,7 +1098,7 @@ const StripeForm: FC<StripeFormProps> = () => {
 					</div>
 				</DialogContent>
 			</Dialog>
-			<Dialog
+			{ /* <Dialog
 				open={ isOpenDialogWalkIn }
 				modal={ true }
 				data-lenis-prevent
@@ -765,8 +1141,8 @@ const StripeForm: FC<StripeFormProps> = () => {
 						>{ isLoading ? 'Loading...' : 'Continue' }</button>
 					</div>
 				</DialogContent>
-			</Dialog>
-			<Dialog
+			</Dialog> */ }
+			{ /* <Dialog
 				open={ isOpenDialogConfirmAddress }
 				modal={ true }
 				data-lenis-prevent
@@ -826,8 +1202,8 @@ const StripeForm: FC<StripeFormProps> = () => {
 						>{ isLoadingWaitForProvider ? 'Loading...' : 'I\'ll wait for provider access' }</button>
 					</div>
 				</DialogContent>
-			</Dialog>
-		</form>
+			</Dialog> */ }
+		</div>
 	);
 };
 

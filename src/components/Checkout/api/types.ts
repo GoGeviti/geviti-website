@@ -237,3 +237,68 @@ export interface ValidateUserStateParams {
   state: string;
   zipCode: string;
 }
+
+export interface LoginParams {
+  email: string;
+  password: string;
+}
+export interface LoginResponseType {
+  success:         boolean;
+  token:           string;
+  expiresIn:       number;
+  nextStep:        string;
+  isPhoneVerified: boolean;
+  isIdVerified:    boolean;
+}
+
+export interface AddressInfoResponseType {
+  success:           boolean;
+  isStateValid:      boolean;
+  alreadyOnWaitlist: boolean;
+}
+
+export interface VerifyPhoneNumberResponseType {
+  referenceId: string;
+  inquiryUrl:  string;
+}
+
+export interface AccountInfoResponseType {
+  success:         boolean;
+  token:           string;
+  expiresIn:       number;
+  nextStep:        string;
+  isPhoneVerified: boolean;
+  isIdVerified:    boolean;
+}
+
+export interface PatientProfileResponseType {
+  medplumPatientId:      string;
+  firstName:             string;
+  lastName:              string;
+  email:                 string;
+  phone:                 string;
+  dietitianId:           string;
+  avatarUrl:             string;
+  timeZone:              string;
+  dob:                   Date;
+  gender:                string;
+  patientMembershipTier: string;
+  address:               {
+    line:       string;
+    city:       string;
+    state:      string;
+    postalCode: string;
+  };
+  nextStep:              string;
+  hasJoinedWaitlist:     boolean;
+  profileVerifications:  {
+    phoneVerification: boolean;
+    idVerification:    boolean;
+  };
+  identifiers:   Record<string, string>;
+}
+
+export interface BillingCheckoutResponseType {
+  clientSecret: string;
+  message:      string;
+}

@@ -102,3 +102,53 @@ export const ContactFormSchema = yup.object().shape({
 	state: yup.string().required()
 		.label('State'),
 });
+
+export const SigninFormSchema = yup.object().shape({
+	email: yup.string().email()
+		.required()
+		.label('Email'),
+	password: yup.string().required()
+		.label('Password'),
+});
+
+export const AddressFormSchema = yup.object().shape({
+	line1: yup.string().label('Address')
+		.required(),
+	line2: yup.string(),
+	city: yup.string().required()
+		.label('City'),
+	zip: yup.string().required()
+		.label('Zip code'),
+	state: yup.string().required()
+		.label('State'),
+});
+
+export const AccountInfoSchema = yup.object().shape({
+	firstName: yup.string().label('First Name')
+		.required()
+		.max(40),
+	lastName: yup.string().label('Last name')
+		.required()
+		.max(40),
+	email: yup.string().email()
+		.required()
+		.label('Email'),
+	phoneNumber: yup.string().required()
+		.label('Phone number'),
+	gender: yup.string().required()
+		.label('Sex'),
+	dob: yup
+		.date()
+		.required()
+		.label('Date of birth')
+		.test('birthdate', 'Enter a valid date', value => isValid(value))
+		.test('birthdate', 'Must be 18 years or older', value => differenceInYears(new Date(), new Date(value)) >= 18),
+	password: yup.string()
+		.required('Password is required')
+		.min(8, 'Password must be at least 8 characters')
+		.matches(/[a-z]/, 'Password must contain at least one lowercase letter')
+		.matches(/[A-Z]/, 'Password must contain at least one uppercase letter')
+		.matches(/\d/, 'Password must contain at least one number')
+		.matches(/[!@#$%^&*(),.?":{}|<>]/, 'Password must contain at least one special character')
+		.label('Password'),
+});

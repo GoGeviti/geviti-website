@@ -6,9 +6,11 @@ import StripeForm from './StripeForm';
 
 type BillingFormProps = {
 	handleCheckout: () => void;
+	geviti_token?:string
 };
 const StripeElementsProvider: FC<BillingFormProps> = ({
 	handleCheckout,
+	geviti_token
 }) => {
 	useEffect(() => {
 		setTimeout(() => (document.body.style.pointerEvents = ''), 0);
@@ -16,6 +18,7 @@ const StripeElementsProvider: FC<BillingFormProps> = ({
 
 	return (
 		<StripeForm
+			geviti_token={ geviti_token }
 			handleCheckout={ handleCheckout }
 		/>
 	);

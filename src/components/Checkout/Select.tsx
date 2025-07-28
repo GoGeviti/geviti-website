@@ -54,6 +54,7 @@ const CustomSelect: React.FC<SelectProps> = ({
 								isError ? 'ring-1 ring-red-primary data-[state=open]:ring-red-primary focus:ring-1 focus:ring-red-primary' : 'data-[state=open]:ring-1 data-[state=open]:ring-grey-primary focus:ring-grey-primary',
 								size === 'small' && 'h-auto lg:h-auto py-4 pl-4 border focus:border-[#E6E7E7] pr-[10px] bg-white placeholder:text-[#AEB1B2] text-primary text-xs lg:text-xs w-full border-[#E6E7E7]',
 								isLight && 'border focus:border-[#E6E7E7] bg-white placeholder:text-[#AEB1B2] text-primary border-[#E6E7E7]',
+								disabled && 'bg-gray-50 text-grey-primary'
 							)
 						}>
 						<span className={ clsxm(

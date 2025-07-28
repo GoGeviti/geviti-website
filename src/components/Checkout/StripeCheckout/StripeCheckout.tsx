@@ -8,7 +8,8 @@ import { toast } from 'sonner';
 import TagUserIcon from '@/components/Icons/TagUserIcon';
 import Button from '@/components/Onboarding/Button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/Sheet';
-import { ProductMembership } from '@/interfaces/product';
+import { NewProductMembership } from '@/interfaces/product';
+// import { ProductMembership } from '@/interfaces/product';
 import { useCheckoutStore } from '@/store/checkoutStore';
 
 import { getDiscount, getReferralDiscount, } from '../api/onboarding';
@@ -21,10 +22,11 @@ import { TotalCalc } from './TotalCalculation';
 
 type PageProps = {
 	searchParams: { [key: string]: string | string[] | undefined; };
-	priceData?: ProductMembership;
+	priceData?: NewProductMembership;
+	geviti_token?: string;
 };
 
-const StripeCheckout: FC<PageProps> = ({ searchParams, priceData }) => {
+const StripeCheckout: FC<PageProps> = ({ searchParams, priceData, geviti_token }) => {
 	const router = useRouter();
 	const productId = searchParams?.product_id;
 	const priceId = searchParams?.price_id;
@@ -55,7 +57,7 @@ const StripeCheckout: FC<PageProps> = ({ searchParams, priceData }) => {
 
 	useEffect(() => {
 		if (priceData) {
-			setSelectedProductPrice(priceData.productPrices.find(it => it.priceId === priceId) ?? null);
+			setSelectedProductPrice(priceData.prices.find(it => it.priceId === priceId) ?? null);
 			setProductMembership(priceData)
 
 			const referralCode = getFPRef();
@@ -77,7 +79,7 @@ const StripeCheckout: FC<PageProps> = ({ searchParams, priceData }) => {
 						{
 							quantity: 1,
 							productId: productMembership?.productId.toString() ?? '',
-							productName: productMembership?.productName ?? '',
+							productName: productMembership?.name ?? '',
 							productType: 'membership',
 							productVendor: 'GoGeveti',
 							variantId: selectedProductPrice?.priceId ?? '',
@@ -193,6 +195,7 @@ const StripeCheckout: FC<PageProps> = ({ searchParams, priceData }) => {
 							} }
 						>
 							<StripeElementsProvider
+								geviti_token={ geviti_token }
 								handleCheckout={ handleCheckout }
 							/>
 						</SheetContent>
@@ -201,6 +204,7 @@ const StripeCheckout: FC<PageProps> = ({ searchParams, priceData }) => {
 			</div>
 			<div className='h-full w-full bg-white max-lg:hidden'>
 				<StripeElementsProvider
+					geviti_token={ geviti_token }
 					handleCheckout={ handleCheckout }
 				/>
 			</div>

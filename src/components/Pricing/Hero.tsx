@@ -12,9 +12,9 @@ import Link from 'next/link';
 import { navbarDefaultTransition } from '@/constant/data/navbar';
 import pricingData from '@/constant/data/pricing';
 import clsxm from '@/helpers/clsxm';
-import { ProductMembership } from '@/interfaces/product';
+import { NewProductMembership } from '@/interfaces/product';
 // import { formatPrice } from '@/lib/formatPrice';
-import { generateStripeNickname } from '@/lib/generateStripeNickname';
+import { BillingInterval, generateStripeNickname } from '@/lib/generateStripeNickname';
 import { useCheckoutStore } from '@/store/checkoutStore';
 
 import ButtonCta from '../ButtonCta';
@@ -29,7 +29,7 @@ type HeroProps = {
   navbar?: boolean;
   className?: string;
   isFromHomePage?: boolean;
-  productMembership?: ProductMembership;
+  productMembership?: NewProductMembership;
 };
 const Hero: React.FC<HeroProps> = ({
 	navbar = true,
@@ -43,7 +43,7 @@ const Hero: React.FC<HeroProps> = ({
 
 	useEffect(() => {
 		if (productMembershipProps) {
-			setSelectedProductPrice(productMembershipProps.productPrices[0]);
+			setSelectedProductPrice(productMembershipProps.prices[0]);
 			setProductMembership(productMembershipProps);
 		}
 	}, [productMembershipProps]);
@@ -166,7 +166,7 @@ const Hero: React.FC<HeroProps> = ({
 							>
 								<div>
 									<h3 className='!leading-[28px] text-[5.128vw] xs2:text-xl font-medium'>
-										{ productMembership?.productName }
+										{ productMembership?.name }
 									</h3>
 
 									<AnimatePresence mode='wait'>
@@ -187,8 +187,8 @@ const Hero: React.FC<HeroProps> = ({
 													);
 												}
 												const priceDetails = generateStripeNickname(
-													selectedProductPrice.price,
-													selectedProductPrice.interval || 'month',
+													Number(selectedProductPrice.price),
+													selectedProductPrice.interval as BillingInterval || 'month',
 													selectedProductPrice.intervalCount || 1
 												);
 
@@ -213,8 +213,8 @@ const Hero: React.FC<HeroProps> = ({
 												);
 											}
 											const priceDetails = generateStripeNickname(
-												selectedProductPrice.price,
-												selectedProductPrice.interval || 'month',
+												Number(selectedProductPrice.price),
+												selectedProductPrice.interval as BillingInterval || 'month',
 												selectedProductPrice.intervalCount || 1
 											);
 
