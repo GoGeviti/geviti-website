@@ -463,6 +463,7 @@ const StripeForm: FC<StripeFormProps> = ({
 						removeCookie('geviti_token')
 						setIsRegister(false)
 						setNextStep('')
+						return;
 					}
 					setNextStep(getPatientProfileResponse.nextStep)
 					setIsRegister(true)
