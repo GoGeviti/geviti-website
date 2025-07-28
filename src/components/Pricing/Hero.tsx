@@ -37,6 +37,7 @@ const Hero: React.FC<HeroProps> = ({
 	isFromHomePage = false,
 	productMembership: productMembershipProps,
 }) => {
+	console.log('productMembershipProps ==> ', productMembershipProps)
 	const ref = useRef<HTMLDivElement>(null);
 
 	const { productMembership, setProductMembership, selectedProductPrice, setSelectedProductPrice } = useCheckoutStore();

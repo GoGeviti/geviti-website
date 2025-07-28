@@ -9,7 +9,7 @@ import { checkoutData } from '@/constant/data';
 import { screens } from '@/helpers/style';
 import { useWindowDimensions } from '@/hooks';
 
-import { getResetPasswordToken } from '../api/onboarding';
+// import { getResetPasswordToken } from '../api/onboarding';
 import Band, { BAND_DURATION } from '../Band';
 import NavbarCheckout from '../Navbar';
 import { ButtonWrapper } from '../State';
@@ -357,28 +357,28 @@ const State: React.FC<StateProps> = ({ type, searchParams }) => {
 		
 	useEffect(() => {
 		const getToken = async() => {
-			const token = await getResetPasswordToken(email?.toString() ?? '', tokenParam?.toString() ?? '');
-			if (!token) {
-				setExternalHref(process.env.NEXT_PUBLIC_APP_URL ?? '')
-			} else {
-				if (typeof window !== 'undefined' && window.rewardful) {
-					window.rewardful('convert', {
-						email: email,
-					});
-				}
-
-				// Trigger Google conversion tracking
-				if (typeof window !== 'undefined' && window.gtag) {
-					window.gtag('event', 'conversion', {
-						'send_to': 'AW-11455487187/6DMzCOi2tNkZENO5s9Yq',
-						'value': price, // You can dynamically assign the value here based on the purchase
-						'currency': 'USD', // Dynamically assign the currency
-						'transaction_id': tokenParam || '' // Dynamically assign transaction ID
-					});
-				}
-				const dashboardHref = `${process.env.NEXT_PUBLIC_APP_URL}/create-password?reset_token=${tokenParam}`
-				setExternalHref(dashboardHref);
+			// const token = await getResetPasswordToken(email?.toString() ?? '', tokenParam?.toString() ?? '');
+			// if (!token) {
+			// 	setExternalHref(process.env.NEXT_PUBLIC_APP_URL ?? '')
+			// } else {
+			// }
+			if (typeof window !== 'undefined' && window.rewardful) {
+				window.rewardful('convert', {
+					email: email,
+				});
 			}
+
+			// Trigger Google conversion tracking
+			if (typeof window !== 'undefined' && window.gtag) {
+				window.gtag('event', 'conversion', {
+					'send_to': 'AW-11455487187/6DMzCOi2tNkZENO5s9Yq',
+					'value': price, // You can dynamically assign the value here based on the purchase
+					'currency': 'USD', // Dynamically assign the currency
+					'transaction_id': tokenParam || '' // Dynamically assign transaction ID
+				});
+			}
+			const dashboardHref = `${process.env.NEXT_PUBLIC_APP_URL}/signin`
+			setExternalHref(dashboardHref);
 		}
 		getToken();
 	}, [email])

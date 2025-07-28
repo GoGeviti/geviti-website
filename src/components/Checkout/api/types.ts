@@ -302,3 +302,8 @@ export interface BillingCheckoutResponseType {
   clientSecret: string;
   message:      string;
 }
+
+export interface SkipPaymentResponseType {
+  success:  boolean;
+  nextStep: string;
+}

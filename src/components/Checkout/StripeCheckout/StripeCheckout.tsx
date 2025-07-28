@@ -46,6 +46,9 @@ const StripeCheckout: FC<PageProps> = ({ searchParams, priceData, geviti_token }
 		promoCode,
 	} = useCheckoutStore();
 
+	// Check if this is a free product (no price_id and product_id)
+	const isFreeProduct = !priceId && !productId;
+
 	const getFPRef = () => {
 		if (typeof window !== 'undefined') {
 			// const fprom = (window as any).FPROM?.data?.ref_id;
@@ -164,9 +167,11 @@ const StripeCheckout: FC<PageProps> = ({ searchParams, priceData, geviti_token }
 						/>
 					</div>
 					<div className='mt-11 lg:pl-[71px] lg:ml-6'>
-						<DiscountForm
-							submitCoupon={ handleCouponSubmit }
-						/>
+						{ !isFreeProduct && (
+							<DiscountForm
+								submitCoupon={ handleCouponSubmit }
+							/>
+						) }
 						<TotalCalc />
 					</div>
 					<Sheet >

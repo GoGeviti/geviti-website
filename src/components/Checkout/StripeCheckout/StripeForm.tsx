@@ -8,7 +8,7 @@ import { Elements, } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 import { FormikProps, useFormik } from 'formik';
 import Image from 'next/image';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { toast } from 'sonner';
 
 import { Dialog, DialogContent } from '@/components/Dialog';
@@ -23,7 +23,7 @@ import { AccountInfoSchema, AddressFormSchema, SigninFormSchema } from '@/valida
 
 import { login } from '../api/onboarding';
 import {
-	getPatientProfileAction, postAddAccountInfo, postAddressInfo, postAddToWaitlist, postBillingCheckout, postVerifyPhoneNumber
+	getPatientProfileAction, postAddAccountInfo, postAddressInfo, postAddToWaitlist, postBillingCheckout, postSkipPayment, postVerifyPhoneNumber
 } from '../api/patient';
 // import { PatientProfileResponseType } from '../api/types';
 import CustomDatePicker from '../DatePicker';
@@ -42,6 +42,10 @@ type StripeFormProps = {
 const StripeForm: FC<StripeFormProps> = ({
 	geviti_token
 }) => {
+
+	const searchParams = useSearchParams();
+	const productId = searchParams.get('product_id');
+	const priceId = searchParams.get('price_id');
 
 	const { checkoutLoading: loading, promoCode: coupon, productMembership: selectedProduct, selectedProductPrice } = useCheckoutStore();
 
@@ -457,21 +461,39 @@ const StripeForm: FC<StripeFormProps> = ({
 					const getPatientProfileResponse = await getPatientProfileAction();
 					setNextStep(getPatientProfileResponse.nextStep)
 					setIsRegister(true)
-					formikAccontInfo.setFieldValue('firstName', getPatientProfileResponse.firstName)
-					formikAccontInfo.setFieldValue('lastName', getPatientProfileResponse.lastName)
-					formikAccontInfo.setFieldValue('email', getPatientProfileResponse.email)
-					formikAccontInfo.setFieldValue('dob', new Date(getPatientProfileResponse.dob))
-					formikAccontInfo.setFieldValue('gender', getPatientProfileResponse.gender === 'male' ? 'Male' : getPatientProfileResponse.gender === 'female' ? 'Female' : '')
+					// formikAccontInfo.setFieldValue('firstName', getPatientProfileResponse.firstName)
+					// formikAccontInfo.setFieldValue('lastName', getPatientProfileResponse.lastName)
+					// formikAccontInfo.setFieldValue('email', getPatientProfileResponse.email)
+					// formikAccontInfo.setFieldValue('dob', new Date(getPatientProfileResponse.dob))
+					// formikAccontInfo.setFieldValue('gender', getPatientProfileResponse.gender === 'male' ? 'Male' : getPatientProfileResponse.gender === 'female' ? 'Female' : '')
 
-					formikAccontInfo.setFieldValue('phoneNumber', getPatientProfileResponse.phone)
-					formikAccontInfo.setFieldValue('password', 'P@ssw0rd')
+					// formikAccontInfo.setFieldValue('phoneNumber', getPatientProfileResponse.phone)
+					// formikAccontInfo.setFieldValue('password', 'P@ssw0rd')
+					formikAccontInfo.setValues({
+						firstName: getPatientProfileResponse.firstName,
+						lastName: getPatientProfileResponse.lastName,
+						email: getPatientProfileResponse.email,
+						password: 'P@ssw0rd',
+						phoneNumber: getPatientProfileResponse.phone,
+						dob: new Date(getPatientProfileResponse.dob),
+						gender: getPatientProfileResponse.gender === 'male' ? 'Male' : getPatientProfileResponse.gender === 'female' ? 'Female' : ''
+					}, false)
 
 					formikAccontInfo.setErrors({})
 
-					formikAddress.setFieldValue('line1', getPatientProfileResponse.address.line)
-					formikAddress.setFieldValue('city', getPatientProfileResponse.address.city)
-					formikAddress.setFieldValue('state', getPatientProfileResponse.address.state)
-					formikAddress.setFieldValue('zip', getPatientProfileResponse.address.postalCode)
+					// formikAddress.setFieldValue('line1', getPatientProfileResponse.address.line)
+					// formikAddress.setFieldValue('city', getPatientProfileResponse.address.city)
+					// formikAddress.setFieldValue('state', getPatientProfileResponse.address.state)
+					// formikAddress.setFieldValue('zip', getPatientProfileResponse.address.postalCode)
+
+					formikAddress.setValues({
+						line1: getPatientProfileResponse.address.line,
+						city: getPatientProfileResponse.address.city,
+						state: getPatientProfileResponse.address.state,
+						zip: getPatientProfileResponse.address.postalCode,
+						country: 'US'
+					}, false)
+
 				} catch (error) {
 					// console.log('error ==> ', error)
 				}
@@ -521,18 +543,32 @@ const StripeForm: FC<StripeFormProps> = ({
 		}
 	}
 
+	const isFreeProduct = !productId && !priceId;
+
 	const verifyPhoneNumber = async() => {
 		setIsVerifyPhoneNumberLoading(true);
 		try {
+			// Create query params string if both values exist
+			const queryParams = selectedProduct?.productId && selectedProductPrice?.priceId
+				? `?product_id=${selectedProduct.productId.toString()}&price_id=${selectedProductPrice.priceId}`
+				: '';
+
+			const baseUrl = typeof window !== 'undefined'
+				? window.location.origin + window.location.pathname
+				: 'https://gogeviti.com/pricing/onboarding/payment';
+
+			const redirectUri = baseUrl + queryParams;
+
 			const res = await postVerifyPhoneNumber({
 				phoneNumber: formikAccontInfo.values.phoneNumber.replace(/\s/g, ''),
-				redirectUri: typeof window !== 'undefined' ? window.location.origin + window.location.pathname + `?product_id=${selectedProduct?.productId.toString()}&price_id=${selectedProductPrice?.priceId}` : 'https://gogeviti.com/pricing/onboarding/payment' +  + `?product_id=${selectedProduct?.productId.toString()}&price_id=${selectedProductPrice?.priceId}`
+				redirectUri
 			})
 			setIsVerifyPhoneNumberLoading(false);
 			toast.success('Phone number verified successfully');
 			if (res.inquiryUrl) {
 				// window.open(res.inquiryUrl, '_blank');
-				window.open(res.inquiryUrl);
+				// window.open(res.inquiryUrl);
+				window.location.href = res.inquiryUrl
 			}
 		} catch (error: any) {
 			const errorMessage = error instanceof Error ? error.message : 'An error occurred'
@@ -605,6 +641,26 @@ const StripeForm: FC<StripeFormProps> = ({
 				toast.error(error);
 			} else {
 				toast.error('An error occurred');
+			}
+		}
+	}
+
+	const handleSkipPayment = async() => {
+		try {
+			setStripeResponseLoading(true);
+			const res = await postSkipPayment();
+			if (res.success) {
+				router.push(`/onboarding/payment/success?email=${formikAccontInfo.values.email}&token=${geviti_token}&price=${selectedProductPrice?.price}`)
+			}
+			setStripeResponseLoading(false);
+		} catch (error: any) {
+			setStripeResponseLoading(false);
+			if (error instanceof Error) {
+				toast.error(error.message)
+			} else if (typeof error === 'string') {
+				toast.error(error)
+			} else {
+				toast.error('An error occurred')
 			}
 		}
 	}
@@ -912,14 +968,14 @@ const StripeForm: FC<StripeFormProps> = ({
 									'h-[58px] py-3 px-[42px] text-white font-Poppins rounded-[1000px] mt-5 mb-10',
 									statesChecked ? 'bg-black' : 'bg-grey-700',
 								) }
-								onClick={ () => handleCreateSession() }
+								onClick={ () => isFreeProduct ? handleSkipPayment() : handleCreateSession() }
 							>
 								<div className='flex items-center justify-center'>
 									{ formLoading ? (
 										<Spinner />
 									) : (
 										<span>
-												Continue to Payment
+											 { isFreeProduct ? 'Get Started' : 'Continue to Payment' }
 										</span>
 									) }
 								</div>

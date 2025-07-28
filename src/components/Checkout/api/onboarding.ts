@@ -21,6 +21,7 @@ import {
 	ProductsPriceResponse,
 	ProductsResponse,
 	ReferralCouponReturnType,
+	SkipPaymentResponseType,
 	TempUser,
 	TempUserDataParams,
 	TempUserReturnType,
@@ -242,99 +243,21 @@ export const getAllProducts = async() : Promise<ProductsResponse[]> => {
 
 export const getProductMembership = async() : Promise<NewProductMembership> => {
 	try {
-		// const res = await fetch(
-		// 	`${onboardingApiUrl}/products/membership`,
-		// 	{
-		// 		method: 'GET',
-		// 		headers: {
-		// 			...headers,
-		// 		}
-		// 	}
-		// );
-		// const data = await processResponse<ProductMembership>(res);
-
-		const data = {
-			'productId': '7aec029d-a754-4ee9-85c6-3e12f3f2ff11',
-			'name': 'Geviti Membership - DEV',
-			'description': 'Premium Membership - Updated',
-			'productType': 'subscription',
-			'productFamily': 'membership',
-			'defaultAmount': '1319.99',
-			'billingFrequency': 'annually',
-			'interval': 'year',
-			'defaultPriceId': 'price_1QNmnTGBBGmxLhdLCev53AfE',
-			'intervalCount': 1,
-			'stripeProductId': 'prod_QgoGvBsYKsIYqO',
-			'prices': [
-				{
-					'id': '5f2fbed0-4dd7-4a2d-88ce-3355a4e2dde5',
-					'price': '650.00',
-					'priceId': 'price_1PpQdyGBBGmxLhdLvbu7zPfV',
-					'priceType': 'recurring',
-					'nickname': 'Quarterly Membership ($216.67/m, paid every quarter)',
-					'lookupKey': 'membership_3m_v1',
-					'billingFrequency': 'quarterly',
-					'interval': 'month',
-					'intervalCount': 3,
-					'isActive': true,
-					'isDefault': false
-				},
-				{
-					'id': 'b8c3fa93-4640-4d4c-95fe-f5dde1d1e76f',
-					'price': '1319.99',
-					'priceId': 'price_1QNmnTGBBGmxLhdLCev53AfE',
-					'priceType': 'recurring',
-					'nickname': 'Annual Membership ($109.99/m, paid annually)',
-					'lookupKey': 'membership_1y_v1',
-					'billingFrequency': 'annually',
-					'interval': 'year',
-					'intervalCount': 1,
-					'isActive': true,
-					'isDefault': true
+		const res = await fetch(
+			`${emrApiUrl}/v1/products/membership`,
+			{
+				method: 'GET',
+				headers: {
+					...headers,
 				}
-			],
-			'productMetadata': {
-				'features': [
-					{
-						'free': false,
-						'title': 'Free routine labs',
-						'premium': true,
-						'description': 'At-home testing included'
-					},
-					{
-						'free': false,
-						'title': 'Dedicated care team',
-						'premium': true,
-						'description': 'Your personal health team'
-					},
-					{
-						'free': false,
-						'title': 'Unlimited tele health',
-						'premium': true,
-						'description': 'Free consultations'
-					},
-					{
-						'free': false,
-						'title': 'Member discounts',
-						'premium': true,
-						'description': 'Pharmacy & lab savings'
-					},
-					{
-						'free': false,
-						'title': 'Custom supplements',
-						'premium': true,
-						'description': 'Personalized packs'
-					},
-					{
-						'free': false,
-						'title': 'AI health tools',
-						'premium': true,
-						'description': 'Tracking & monitoring'
-					}
-				]
 			}
-		};
-		return data;
+		);
+		const data = await processResponse<NewProductMembership[]>(res);
+		if (data.length > 0) {
+			return data[0]
+		} else {
+			throw new Error('No product found')
+		}
 	} catch (error) {
 		return await processError(error);
 	}
@@ -642,6 +565,27 @@ export const getPatientProfile = async(): Promise<PatientProfileResponseType> =>
 			}
 		);
 		const data = await processResponse<PatientProfileResponseType>(res);
+		return data
+	} catch (error) {
+		return await processError(error);
+	}
+}
+
+export const skipPayment = async(): Promise<SkipPaymentResponseType> => {
+	try {
+		const geviti_token = await getCookie('geviti_token')
+		const res = await fetch(
+			`${emrApiUrl}/v1/billing/skip-purchase`,
+			{
+				method: 'POST',
+				headers: {
+					...headers,
+					Cookie: `geviti_token=${geviti_token ?? ''}`,
+				},
+				body: JSON.stringify({})
+			}
+		);
+		const data = await processResponse<SkipPaymentResponseType>(res);
 		return data
 	} catch (error) {
 		return await processError(error);

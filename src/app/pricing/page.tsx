@@ -2,6 +2,7 @@ import { Metadata } from 'next';
 
 import { Footer, FrequentlyAskedQuestions } from '@/components';
 import { getProductMembership } from '@/components/Checkout/api/onboarding';
+import { GevitiForFree } from '@/components/Landing';
 import BannerMember from '@/components/Pricing/Banner';
 // import Download from '@/components/Pricing/Download';
 import Hero from '@/components/Pricing/Hero';
@@ -19,6 +20,7 @@ const PricingPage = async() => {
 		<div className='flex min-h-screen flex-col w-full bg-white font-Poppins'>
 			<Hero
 				productMembership={ productMembership } />
+			<GevitiForFree/>
 			{ /* <PricingBiomarkers /> */ }
 			{ /* <PricingComparison />
 			<div className='lg:px-3'>

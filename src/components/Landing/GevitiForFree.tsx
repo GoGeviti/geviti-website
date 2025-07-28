@@ -2,6 +2,7 @@
 'use client'
 import React, { useState } from 'react'
 import { IoChevronDownOutline } from 'react-icons/io5'
+import Link from 'next/link';
 
 import clsxm from '@/helpers/clsxm';
 
@@ -169,9 +170,11 @@ const GevitiForFree = () => {
 						<div className='max-w-[627px] mx-auto'>
 							<p className='body-extra-small text-grey-400 mt-3'>Not ready for the Longeviti Plus membership? No problem. This plan gives you access to doctor-monitored prescriptions, specialty testing, and more—without the commitment.</p>
 						</div>
-						<button className='underline text-lg font-medium mt-6'>
+						<Link
+							href='/onboarding/payment'
+							className='underline text-lg font-medium mt-6'>
 						Join for free
-						</button>
+						</Link>
 					</div>
 					<div className='mt-11 p-6 rounded-2xl bg-white border border-grey-100 grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-10'>
 						<div className='flex flex-col gap-1.5 text-primary'>
