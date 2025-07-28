@@ -459,6 +459,11 @@ const StripeForm: FC<StripeFormProps> = ({
 			const getPatient = async() => {
 				try {
 					const getPatientProfileResponse = await getPatientProfileAction();
+					if (!getPatientProfileResponse.nextStep.includes('purchase')) {
+						removeCookie('geviti_token')
+						setIsRegister(false)
+						setNextStep('')
+					}
 					setNextStep(getPatientProfileResponse.nextStep)
 					setIsRegister(true)
 					// formikAccontInfo.setFieldValue('firstName', getPatientProfileResponse.firstName)
