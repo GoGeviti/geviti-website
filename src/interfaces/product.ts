@@ -44,3 +44,44 @@ export interface ProductPrice {
 	isLegacy:         boolean;
 	isDefault:        boolean;
 }
+
+export interface NewProductMembership {
+	productId:        string;
+	name:             string;
+	description:      string;
+	productType:      string;
+	productFamily:    string;
+	defaultAmount:    string;
+	billingFrequency: string;
+	interval:         string;
+	defaultPriceId:   string;
+	intervalCount:    number;
+	stripeProductId:  string;
+	prices:           Price[];
+	productMetadata:  ProductMetadata;
+}
+
+export interface Price {
+	id:               string;
+	price:            string;
+	priceId:          string;
+	priceType:        string;
+	nickname:         string;
+	lookupKey:        string;
+	billingFrequency: string;
+	interval:         string;
+	intervalCount:    number;
+	isActive:         boolean;
+	isDefault:        boolean;
+}
+
+export interface ProductMetadata {
+	features: Feature[];
+}
+
+export interface Feature {
+	free:        boolean;
+	title:       string;
+	premium:     boolean;
+	description: string;
+}

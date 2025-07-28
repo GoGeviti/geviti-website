@@ -33,6 +33,7 @@ const CheckoutItem: FC<ICheckoutItem> = ({
 	// productPrices
 }) => {
 	const [openPopover, setOpenPopover] = useState(false);
+	const [openPlanSelector, setOpenPlanSelector] = useState(false);
 
 	const router = useRouter();
 	const pathname = usePathname();
@@ -44,9 +45,44 @@ const CheckoutItem: FC<ICheckoutItem> = ({
 		const params = new URLSearchParams(query);
 		params.set('price_id', newPriceId);
 
-		setSelectedProductPrice(productMembership?.productPrices?.find(e => e.priceId === newPriceId) ?? null);
+		setSelectedProductPrice(productMembership?.prices?.find(e => e.priceId === newPriceId) ?? null);
 		setOpenPopover(false);
 
+		router.push(`${pathname}?${params.toString()}`);
+	};
+
+	// Check if we have price_id and product_id from search params
+	const productId = query.get('product_id');
+	const priceId = query.get('price_id');
+	const showFallbackValues = !priceId && !productId;
+
+	// Fallback values when no price_id and product_id
+	const displayProductName = showFallbackValues ? 'Free' : productMembership?.name;
+	const displayBillingFrequency = showFallbackValues ? 'Pay-as-you-go flexibility' : selectedProductPrice?.billingFrequency;
+
+	const handleSelectMembership = () => {
+		if (productMembership && productMembership.prices.length > 0) {
+			const params = new URLSearchParams(query);
+			const defaultPrice = productMembership.prices.find(p => p.isDefault) || productMembership.prices[0];
+			
+			params.set('product_id', productMembership.productId);
+			params.set('price_id', defaultPrice.priceId);
+			
+			setSelectedProductPrice(defaultPrice);
+			setOpenPlanSelector(false);
+			
+			router.push(`${pathname}?${params.toString()}`);
+		}
+	};
+
+	const handleSelectFree = () => {
+		const params = new URLSearchParams(query);
+		params.delete('product_id');
+		params.delete('price_id');
+		
+		setSelectedProductPrice(null);
+		setOpenPlanSelector(false);
+		
 		router.push(`${pathname}?${params.toString()}`);
 	};
 
@@ -60,14 +96,123 @@ const CheckoutItem: FC<ICheckoutItem> = ({
 					<Skeleton
 						loading={ loading }
 						className='h-7 w-60'>
-						<h3 className='inline-block text-white text-lg lg:text-2xl'>{ productMembership?.productName }</h3>
+						<div className='flex items-center gap-2'>
+							<h3 className='inline-block text-white text-lg lg:text-2xl'>{ displayProductName }</h3>
+							{ /* Plan selector dropdown */ }
+							<Popover
+								open={ openPlanSelector }
+								onOpenChange={ setOpenPlanSelector }>
+								<PopoverTrigger
+									onClick={ e => e.preventDefault() }
+									className='flex focus:ring-0 focus:outline-none focus:border-none'
+								>
+									<div
+										onClick={ () => setOpenPlanSelector(!openPlanSelector) }
+										className='flex items-center gap-1 text-grey-primary text-sm hover:text-white transition-colors cursor-pointer'>
+										<svg
+											width='10'
+											height='7'
+											viewBox='0 0 10 7'
+											fill='none'
+											className={ clsxm(
+												'transition-all ease-in-out',
+												!openPlanSelector ? 'rotate-180' : 'rotate-0'
+											) }
+											xmlns='http://www.w3.org/2000/svg'>
+											<path
+												d='M9 5.5L5 1.5L1 5.5'
+												stroke='currentColor'
+												strokeWidth='1.25'
+												strokeLinecap='round'
+												strokeLinejoin='round'/>
+										</svg>
+									</div>
+								</PopoverTrigger>
+								<PopoverContent
+									side='top'
+									align='start'
+									className='border flex flex-col gap-3 rounded-[9px] w-[200px] border-[#3B3C3E] bg-[#252627] shadow-[2px_2px_8px_0px_rgba(0,0,0,0.25)] p-3'
+								>
+									<button
+										onClick={ handleSelectFree }
+										className={ clsxm(
+											'flex items-center justify-between p-2 rounded hover:bg-[#3B3C3E] transition-colors text-left',
+											showFallbackValues && 'bg-[#3B3C3E]'
+										) }>
+										<span className={ clsxm(
+											'font-Poppins text-sm',
+											showFallbackValues ? 'text-[#ECF8FF]' : 'text-grey-primary'
+										) }>Free</span>
+										{ showFallbackValues && (
+											<svg
+												width='16'
+												height='17'
+												viewBox='0 0 16 17'
+												fill='none'
+												xmlns='http://www.w3.org/2000/svg'>
+												<rect
+													x='4'
+													y='4.5'
+													width='8'
+													height='8'
+													rx='4'
+													fill='#99D4FF'/>
+												<rect
+													x='0.5'
+													y='1'
+													width='15'
+													height='15'
+													rx='7.5'
+													stroke='#99D4FF'/>
+											</svg>
+										) }
+									</button>
+									{ productMembership && (
+										<button
+											onClick={ handleSelectMembership }
+											className={ clsxm(
+												'flex items-center justify-between p-2 rounded hover:bg-[#3B3C3E] transition-colors text-left',
+												!showFallbackValues && 'bg-[#3B3C3E]'
+											) }>
+											<span className={ clsxm(
+												'font-Poppins text-sm',
+												!showFallbackValues ? 'text-[#ECF8FF]' : 'text-grey-primary'
+											) }>Membership</span>
+											{ !showFallbackValues && (
+												<svg
+													width='16'
+													height='17'
+													viewBox='0 0 16 17'
+													fill='none'
+													xmlns='http://www.w3.org/2000/svg'>
+													<rect
+														x='4'
+														y='4.5'
+														width='8'
+														height='8'
+														rx='4'
+														fill='#99D4FF'/>
+													<rect
+														x='0.5'
+														y='1'
+														width='15'
+														height='15'
+														rx='7.5'
+														stroke='#99D4FF'/>
+												</svg>
+											) }
+										</button>
+									) }
+								</PopoverContent>
+							</Popover>
+						</div>
 					</Skeleton>
 					<Skeleton
 						loading={ loading }
 						className='h-5 w-[50%]'>
 						<div className='relative'>
 							{
-								(productMembership?.productPrices?.length ?? 0) > 1 ? (
+								!showFallbackValues && (productMembership?.prices?.length ?? 0) > 1 ? (
 									<Popover
 										open={ openPopover }
 										onOpenChange={ setOpenPopover }>
@@ -78,7 +223,7 @@ const CheckoutItem: FC<ICheckoutItem> = ({
 											<div
 												onClick={ () => setOpenPopover(!openPopover) }
 												className='flex items-center gap-2 text-grey-primary capitalize text-sm'>
-												<span>{ `Billed ${selectedProductPrice?.billingFrequency}` } </span>
+												<span>{ `Billed ${displayBillingFrequency}` } </span>
 												<svg
 													width='10'
 													height='7'
@@ -105,7 +250,7 @@ const CheckoutItem: FC<ICheckoutItem> = ({
 											className='border flex flex-col gap-3 rounded-[9px] w-[302px] border-[#3B3C3E] bg-[#252627] shadow-[2px_2px_8px_0px_rgba(0,0,0,0.25)] p-3'
 										>
 											{
-												productMembership?.productPrices?.map(e => {
+												productMembership?.prices?.map(e => {
 													return (
 														<div
 															key={ e.priceId }
@@ -169,7 +314,7 @@ const CheckoutItem: FC<ICheckoutItem> = ({
 									</Popover>
 								) : (
 									<div className='flex items-center gap-2 text-grey-primary capitalize text-sm'>
-										<span>{ `Billed ${selectedProductPrice?.billingFrequency}` }</span>
+										<span>{ showFallbackValues ? displayBillingFrequency : `Billed ${displayBillingFrequency}` }</span>
 									</div>
 								)
 							}
@@ -182,7 +327,7 @@ const CheckoutItem: FC<ICheckoutItem> = ({
 						loading={ loading }
 						className='h-5 w-28'>
 
-						<p className='text-lg'>{ formatPrice(selectedProductPrice?.price.toString() ?? '0') }</p>
+						<p className='text-lg'>{ showFallbackValues ? '$0' : formatPrice(selectedProductPrice?.price.toString() ?? '0') }</p>
 					</Skeleton>
 					<Skeleton
 						loading={ loading }

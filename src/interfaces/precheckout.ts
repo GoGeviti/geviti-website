@@ -56,3 +56,38 @@ export interface BillingInfo {
   gender: string;
   phone_number: string;
 }
+
+export interface AddressInfo {
+  line1: string;
+  line2?: string;
+  city: string;
+  state: string;
+  zip: string;
+  country:string
+}
+
+export interface VerifyPhoneNumberParams {
+  phoneNumber: string;
+  redirectUri:string
+}
+
+export interface AccountInfo {
+  firstName: string;
+  lastName: string;
+  email: string;
+  password?: string;
+  phoneNumber: string;
+  dob: Date | null;
+  gender: string;
+}
+
+export interface BillingCheckoutParams {
+  products: Product[];
+  referral?: string,
+  fp_tid?: string
+}
+
+export interface Product {
+  productId: string;
+  priceId:   string;
+}

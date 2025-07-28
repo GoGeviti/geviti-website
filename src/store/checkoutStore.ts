@@ -2,14 +2,14 @@
 import { create } from 'zustand'
 
 import { DiscountReturnType } from '@/components/Checkout/api/types'
-import { ProductMembership } from '@/interfaces/product'
+import { NewProductMembership } from '@/interfaces/product'
 
 interface CheckoutState {
   loading: boolean
   couponLoading: boolean
   checkoutLoading: boolean
-  productMembership: ProductMembership | null
-  selectedProductPrice: ProductMembership['productPrices'][0] | null
+  productMembership: NewProductMembership | null
+  selectedProductPrice: NewProductMembership['prices'][0] | null
   discount: DiscountReturnType | null
   promoCode: string
   discountApplied: boolean
@@ -19,8 +19,8 @@ interface CheckoutState {
   setLoading: (loading: boolean) => void
   setCouponLoading: (loading: boolean) => void
   setCheckoutLoading: (loading: boolean) => void
-  setProductMembership: (productMembership: ProductMembership) => void
-  setSelectedProductPrice: (productPrice: ProductMembership['productPrices'][0] | null) => void
+  setProductMembership: (productMembership: NewProductMembership) => void
+  setSelectedProductPrice: (productPrice: NewProductMembership['prices'][0] | null) => void
   setDiscount: (discount: DiscountReturnType | null) => void
   setPromoCode: (promoCode: string) => void
   setDiscountApplied: (discountApplied: boolean) => void

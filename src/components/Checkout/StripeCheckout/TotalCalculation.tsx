@@ -1,4 +1,4 @@
-import { FC, Fragment, useMemo } from 'react';
+import { FC, Fragment, useMemo, useEffect } from 'react';
 
 // import { DiscountReturnType } from '../api/types';
 import { useCheckoutStore } from '@/store/checkoutStore';
@@ -19,17 +19,21 @@ export const TotalCalc: FC<ITotalCalc> = ({
 	const { selectedProductPrice, discount, setTotalPrice } = useCheckoutStore();
 
 	const total = useMemo(
-		() => (selectedProductPrice?.price ?? 0).toFixed(2),
+		() => {
+			const price = Number(selectedProductPrice?.price) || 0;
+			return price.toFixed(2);
+		},
 		[selectedProductPrice]
 	);
 
 	const calculateDiscountAmount = () => {
+		const price = Number(selectedProductPrice?.price) || 0;
 		if (discount?.percent_off) {
-			return ((selectedProductPrice?.price ?? 0) * discount.percent_off) / 100;
+			return (price * discount.percent_off) / 100;
 		}
 		if (discount?.amount_off) {
 			const amountOffDollars = discount.amount_off / 100;
-			return Math.min(amountOffDollars, selectedProductPrice?.price ?? 0);
+			return Math.min(amountOffDollars, price);
 		}
 		return 0;
 	};
@@ -39,31 +43,37 @@ export const TotalCalc: FC<ITotalCalc> = ({
 			const discountAmount = calculateDiscountAmount();
 			return discountAmount.toFixed(2);
 		}
-		return 0;
+		return '0.00';
 	}, [discount, selectedProductPrice]);
 
 	const totalDue = useMemo(() => {
+		const price = Number(selectedProductPrice?.price) || 0;
 		if (discount?.id) {
 			const discountAmount = calculateDiscountAmount();
-			const due = ((selectedProductPrice?.price ?? 0) - discountAmount).toFixed(2);
-			setTotalPrice(Number(due));
+			const due = (price - discountAmount).toFixed(2);
 			return due;
 		}
-		setTotalPrice(Number(total));
 		return total;
-	}, [total, discount]);
+	}, [total, discount, selectedProductPrice]);
+
+	// Move setTotalPrice calls to useEffect to avoid setState during render
+	useEffect(() => {
+		setTotalPrice(Number(totalDue));
+	}, [totalDue, setTotalPrice]);
 
 	const calculateEffectivePercentage = (discountAmount: number, price: number) => {
+		if (price === 0) return '0.00';
 		return ((discountAmount / price) * 100).toFixed(2);
 	};
 
 	const displayPercentage = useMemo(() => {
 		if (discount?.id) {
+			const price = Number(selectedProductPrice?.price) || 0;
 			if (discount.percent_off) {
 				return discount.percent_off;
 			} else if (discount.amount_off) {
 				const discountAmount = calculateDiscountAmount();
-				return calculateEffectivePercentage(discountAmount, selectedProductPrice?.price ?? 0);
+				return calculateEffectivePercentage(discountAmount, price);
 			}
 		}
 		return '0.00';

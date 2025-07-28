@@ -49,11 +49,28 @@ export async function middleware(request: NextRequest) {
 	}
 
 	if (pathname === '/onboarding/payment') {
+		const url = new URL(request.url);
+		const geviti_token = url.searchParams.get('geviti_token');
+		
+		// Handle geviti_token parameter by setting it as a cookie
+		if (geviti_token) {
+			const response = NextResponse.redirect(new URL(pathname + (url.search.replace(/[?&]geviti_token=[^&]*/, '').replace(/^&/, '?') || ''), request.url));
+			
+			const threeMonths = 90 * 24 * 60 * 60; // 3 months in seconds
+			response.cookies.set('geviti_token', JSON.stringify(geviti_token), {
+				path: '/',
+				maxAge: threeMonths,
+				secure: process.env.NODE_ENV === 'production',
+			});
+			
+			return response;
+		}
+
 		const token = request.cookies.get('waitlist-token');
 		if (!token?.value) {
-			const url = new URL('/waitlist', request.url);
-			url.search = new URL(request.url).search;
-			return NextResponse.redirect(url);
+			const redirectUrl = new URL('/waitlist', request.url);
+			redirectUrl.search = new URL(request.url).search;
+			return NextResponse.redirect(redirectUrl);
 		}
 
 		try {
@@ -61,16 +78,16 @@ export async function middleware(request: NextRequest) {
 			const { payload } = await jose.jwtVerify(token.value, secret);
 
 			if (!payload?.authorized) {
-				const url = new URL('/waitlist', request.url);
-				url.search = new URL(request.url).search;
-				return NextResponse.redirect(url);
+				const redirectUrl = new URL('/waitlist', request.url);
+				redirectUrl.search = new URL(request.url).search;
+				return NextResponse.redirect(redirectUrl);
 			}
 
 			return NextResponse.next();
 		} catch (error) {
-			const url = new URL('/waitlist', request.url);
-			url.search = new URL(request.url).search;
-			return NextResponse.redirect(url);
+			const redirectUrl = new URL('/waitlist', request.url);
+			redirectUrl.search = new URL(request.url).search;
+			return NextResponse.redirect(redirectUrl);
 		}
 	}
 

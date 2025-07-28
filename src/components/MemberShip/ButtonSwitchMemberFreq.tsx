@@ -4,7 +4,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 
 import clsxm from '@/helpers/clsxm';
-import { ProductMembership } from '@/interfaces/product';
+import { NewProductMembership } from '@/interfaces/product';
 import { useCheckoutStore } from '@/store/checkoutStore';
 
 type ButtonSwitchMemberFreqProps = {
@@ -17,26 +17,26 @@ const ButtonSwitchMemberFreq: React.FC<ButtonSwitchMemberFreqProps> = ({
 }) => {
 	const { setSelectedProductPrice, productMembership, selectedProductPrice } = useCheckoutStore();
 
-	const handleClick = (opt: ProductMembership['productPrices'][0]) => {
+	const handleClick = (opt: NewProductMembership['prices'][0]) => {
 		setSelectedProductPrice(opt);
 	};
 
 	const renderButtonSwitchFrequency = () => {
-		const selectedIndex = productMembership?.productPrices.findIndex(
-			e => e.productPriceId === selectedProductPrice?.productPriceId
+		const selectedIndex = productMembership?.prices.findIndex(
+			e => e.id === selectedProductPrice?.id
 		) ?? 0;
-		const totalOptions = productMembership?.productPrices.length ?? 1;
+		const totalOptions = productMembership?.prices.length ?? 1;
 
 		return (
 			<div className='relative overflow-hidden w-full rounded-[100px] h-[49px] px-1.5 bg-grey-50'>
 				<div
 					className='relative grid h-full'
 					style={ { gridTemplateColumns: `repeat(${totalOptions}, 1fr)` } }>
-					{ productMembership?.productPrices.map(opt => {
-						const isSelected = opt.productPriceId === selectedProductPrice?.productPriceId;
+					{ productMembership?.prices.map(opt => {
+						const isSelected = opt.id === selectedProductPrice?.id;
 						return (
 							<button
-								key={ opt.productPriceId }
+								key={ opt.id }
 								aria-label={ opt.nickname }
 								onClick={ () => handleClick(opt) }
 								className={ clsxm(

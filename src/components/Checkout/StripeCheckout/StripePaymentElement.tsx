@@ -5,7 +5,8 @@ import { toast } from 'sonner'
 
 import { Spinner } from '@/components/Icons/Spinner'
 import clsxm from '@/helpers/clsxm'
-import { IPrecheckout } from '@/interfaces'
+import { AccountInfo, AddressInfo } from '@/interfaces/precheckout'
+// import { IPrecheckout } from '@/interfaces'
 import { deleteKlaviyoProfileFromList } from '@/services/klaviyo'
 import { useCheckoutStore } from '@/store/checkoutStore'
 
@@ -21,11 +22,13 @@ type StripePaymentElementProps = {
 	// products: ProductsResponse[];
 	// priceId: string | string[] | undefined;
 	// discount:DiscountReturnType | null;
-	form: IPrecheckout.BillingInfo,
+	// form: IPrecheckout.BillingInfo,
 	klaviyoRes? : {
 		profileId?: string;
 		listId?: string;
 	}
+	formAddress: AddressInfo
+	formAccontInfo: AccountInfo
 }
 
 const StripePaymentElement:React.FC<StripePaymentElementProps> = ({
@@ -37,8 +40,10 @@ const StripePaymentElement:React.FC<StripePaymentElementProps> = ({
 	// products,
 	// priceId,
 	// discount,
-	form,
-	klaviyoRes
+	// form,
+	klaviyoRes,
+	formAddress,
+	formAccontInfo,
 }) => {
 
 	const { discount, promoCode: coupon, totalPrice, productMembership, selectedProductPrice } = useCheckoutStore();
@@ -83,16 +88,16 @@ const StripePaymentElement:React.FC<StripePaymentElementProps> = ({
 				event: 'purchase',
 				user_data: {
 					user_id: '',
-					email: form.email,
-					phone_number: form.phone_number,
+					email: formAccontInfo.email,
+					phone_number: formAccontInfo.phoneNumber,
 					address: {
-						first_name: form.firstName,
-						last_name: form.lastName,
-						street: form.address_1,
-						city: form.city,
-						region: form.state,
-						region_code: form.state,
-						postal_code: form.zip_code,
+						first_name: formAccontInfo.firstName,
+						last_name: formAccontInfo.lastName,
+						street: formAddress.line1,
+						city: formAddress.city,
+						region: formAddress.state,
+						region_code: formAddress.state,
+						postal_code: formAddress.zip,
 						country: 'us',
 					}
 				},
@@ -107,7 +112,7 @@ const StripePaymentElement:React.FC<StripePaymentElementProps> = ({
 					items: [
 						{
 							item_id: productMembership?.productId.toString() ?? '',
-							item_name: productMembership?.productName ?? '',
+							item_name: productMembership?.name ?? '',
 							affiliation: 'GoGeveti',
 							coupon: coupon || '',
 							currency: 'USD',
@@ -135,7 +140,7 @@ const StripePaymentElement:React.FC<StripePaymentElementProps> = ({
 							{
 								quantity: 1,
 								productId: productMembership?.productId.toString() ?? '',
-								productName: productMembership?.productName ?? '',
+								productName: productMembership?.name ?? '',
 								productType: 'membership',
 								productVendor: 'GoGeveti',
 								variantId: selectedProductPrice?.priceId ?? '',

@@ -1,8 +1,10 @@
 import React from 'react';
 import dynamic from 'next/dynamic';
 
+import { NewProductMembership } from '@/interfaces/product';
+
 // import { ProductsResponse } from '../Checkout/api/types';
-import { ProductMembership } from '@/interfaces/product';
+// import { ProductMembership } from '@/interfaces/product';
 
 const Download = dynamic(() => import('../Pricing/Download'), {
 	// ssr: false,
@@ -18,7 +20,7 @@ const PricingBiomarkers = dynamic(
 );
 
 type PricingProps = {
-  products?: ProductMembership;
+  products?: NewProductMembership;
 };
 
 const Pricing: React.FC<PricingProps> = ({ products }) => {

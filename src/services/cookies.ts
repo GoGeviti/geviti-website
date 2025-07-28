@@ -25,6 +25,10 @@ export const getCookie = async(kasyncey: string) => {
 	const cookiess = await cookies();
 	const cookieStored = cookiess.get(kasyncey);
 	const cookieVal = cookieStored?.value;
-
 	return cookieVal && JSON.parse(cookieVal);
+};
+
+export const removeCookie = async(key: string) => {
+	const cookiess = await cookies();
+	cookiess.delete(key);
 };
