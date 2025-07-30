@@ -8,9 +8,9 @@ const trackingId = 'G-9NMVVP83JB';
 export async function middleware(request: NextRequest) {
 	const { pathname } = new URL(request.url);
 
-	// Redirect /refferals to REFFERAL_REDIRECT_URL with all query parameters
-	if (pathname === '/refferals') {
-		const referralRedirectUrl = process.env.REFFERAL_REDIRECT_URL || '/pricing-welcome';
+	// Redirect /referrals to REFERRALS_REDIRECT_URL with all query parameters
+	if (pathname === '/referrals') {
+		const referralRedirectUrl = process.env.REFERRALS_REDIRECT_URL || '/pricing-welcome';
 		const url = new URL(referralRedirectUrl, request.url);
 			
 		// Copy all query parameters from the original request
@@ -111,5 +111,5 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-	matcher: ['/mobile', '/pickleballkingdom', '/onboarding/payment', '/waitlist', '/landing', '/pricing-welcome', '/schedule-call', '/refferals'],
+	matcher: ['/mobile', '/pickleballkingdom', '/onboarding/payment', '/waitlist', '/landing', '/pricing-welcome', '/schedule-call', '/referrals'],
 }
