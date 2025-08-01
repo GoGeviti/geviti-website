@@ -1,5 +1,5 @@
 import { AccountInfo, AddressInfo, BillingCheckoutParams, VerifyPhoneNumberParams } from '@/interfaces/precheckout';
-import { NewProductMembership } from '@/interfaces/product';
+import { ProductMembership } from '@/interfaces/product';
 import { getCookie, setCookie } from '@/services/cookies';
 
 import {
@@ -241,10 +241,10 @@ export const getAllProducts = async() : Promise<ProductsResponse[]> => {
 	}
 }
 
-export const getProductMembership = async() : Promise<NewProductMembership> => {
+export const getProductMembership = async() : Promise<ProductMembership> => {
 	try {
 		const res = await fetch(
-			`${emrApiUrl}/v1/products/membership`,
+			`${onboardingApiUrl}/products/membership`,
 			{
 				method: 'GET',
 				headers: {
@@ -252,12 +252,19 @@ export const getProductMembership = async() : Promise<NewProductMembership> => {
 				}
 			}
 		);
-		const data = await processResponse<NewProductMembership[]>(res);
-		if (data.length > 0) {
-			return data[0]
-		} else {
-			throw new Error('No product found')
+		const data = await processResponse<ProductMembership>(res);
+		const filtered = {
+			...data,
+			productPrices: data.productPrices.filter(e => !e.isHidden)
 		}
+		// console.log('filtered ==> ', filtered)
+		return filtered
+		// return {
+		// 	...data,
+		// 	productPrices: {
+		// 		...data.productPrices.filter(e => !e.isHidden)
+		// 	}
+		// }
 	} catch (error) {
 		return await processError(error);
 	}

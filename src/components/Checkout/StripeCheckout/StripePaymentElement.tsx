@@ -112,7 +112,7 @@ const StripePaymentElement:React.FC<StripePaymentElementProps> = ({
 					items: [
 						{
 							item_id: productMembership?.productId.toString() ?? '',
-							item_name: productMembership?.name ?? '',
+							item_name: productMembership?.productName ?? '',
 							affiliation: 'GoGeveti',
 							coupon: coupon || '',
 							currency: 'USD',
@@ -140,7 +140,7 @@ const StripePaymentElement:React.FC<StripePaymentElementProps> = ({
 							{
 								quantity: 1,
 								productId: productMembership?.productId.toString() ?? '',
-								productName: productMembership?.name ?? '',
+								productName: productMembership?.productName ?? '',
 								productType: 'membership',
 								productVendor: 'GoGeveti',
 								variantId: selectedProductPrice?.priceId ?? '',

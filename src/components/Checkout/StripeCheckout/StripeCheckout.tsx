@@ -8,8 +8,7 @@ import { toast } from 'sonner';
 import TagUserIcon from '@/components/Icons/TagUserIcon';
 import Button from '@/components/Onboarding/Button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/Sheet';
-import { NewProductMembership } from '@/interfaces/product';
-// import { ProductMembership } from '@/interfaces/product';
+import { ProductMembership } from '@/interfaces/product';
 import { useCheckoutStore } from '@/store/checkoutStore';
 
 import { getDiscount, getReferralDiscount, } from '../api/onboarding';
@@ -22,7 +21,7 @@ import { TotalCalc } from './TotalCalculation';
 
 type PageProps = {
 	searchParams: { [key: string]: string | string[] | undefined; };
-	priceData?: NewProductMembership;
+	priceData?: ProductMembership;
 	geviti_token?: string;
 };
 
@@ -60,7 +59,7 @@ const StripeCheckout: FC<PageProps> = ({ searchParams, priceData, geviti_token }
 
 	useEffect(() => {
 		if (priceData) {
-			setSelectedProductPrice(priceData.prices.find(it => it.priceId === priceId) ?? null);
+			setSelectedProductPrice(priceData.productPrices.find(it => it.priceId === priceId) ?? null);
 			setProductMembership(priceData)
 
 			const referralCode = getFPRef();
@@ -82,7 +81,7 @@ const StripeCheckout: FC<PageProps> = ({ searchParams, priceData, geviti_token }
 						{
 							quantity: 1,
 							productId: productMembership?.productId.toString() ?? '',
-							productName: productMembership?.name ?? '',
+							productName: productMembership?.productName ?? '',
 							productType: 'membership',
 							productVendor: 'GoGeveti',
 							variantId: selectedProductPrice?.priceId ?? '',

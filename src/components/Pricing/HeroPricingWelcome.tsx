@@ -13,8 +13,7 @@ import Link from 'next/link';
 import { navbarDefaultTransition } from '@/constant/data/navbar';
 import pricingData from '@/constant/data/pricing';
 import clsxm from '@/helpers/clsxm';
-import { NewProductMembership } from '@/interfaces/product';
-// import { ProductMembership } from '@/interfaces/product';
+import { ProductMembership } from '@/interfaces/product';
 // import { formatPrice } from '@/lib/formatPrice';
 import { BillingInterval, generateStripeNickname } from '@/lib/generateStripeNickname';
 // import { submitWaitlistWithoutPassword } from '@/services/checkout';
@@ -32,7 +31,7 @@ type HeroProps = {
   navbar?: boolean;
   className?: string;
   isFromHomePage?: boolean;
-  productMembership?: NewProductMembership;
+  productMembership?: ProductMembership;
 };
 const HeroPricingWelcome: React.FC<HeroProps> = ({
 	navbar = true,
@@ -45,7 +44,7 @@ const HeroPricingWelcome: React.FC<HeroProps> = ({
 
 	useEffect(() => {
 		if (productMembershipProps) {
-			setSelectedProductPrice(productMembershipProps.prices[0]);
+			setSelectedProductPrice(productMembershipProps.productPrices[0]);
 			setProductMembership(productMembershipProps);
 		}
 	}, [productMembershipProps]);
@@ -179,7 +178,7 @@ const HeroPricingWelcome: React.FC<HeroProps> = ({
 							>
 								<div>
 									<h3 className='!leading-[28px] text-[5.128vw] xs2:text-xl font-medium'>
-										{ productMembership?.name }
+										{ productMembership?.productName }
 									</h3>
 
 									<AnimatePresence mode='wait'>

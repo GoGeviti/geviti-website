@@ -12,7 +12,7 @@ import Link from 'next/link';
 import { navbarDefaultTransition } from '@/constant/data/navbar';
 import pricingData from '@/constant/data/pricing';
 import clsxm from '@/helpers/clsxm';
-import { NewProductMembership } from '@/interfaces/product';
+import { ProductMembership } from '@/interfaces/product';
 // import { formatPrice } from '@/lib/formatPrice';
 import { BillingInterval, generateStripeNickname } from '@/lib/generateStripeNickname';
 import { useCheckoutStore } from '@/store/checkoutStore';
@@ -29,7 +29,7 @@ type HeroProps = {
   navbar?: boolean;
   className?: string;
   isFromHomePage?: boolean;
-  productMembership?: NewProductMembership;
+  productMembership?: ProductMembership;
 };
 const Hero: React.FC<HeroProps> = ({
 	navbar = true,
@@ -37,14 +37,14 @@ const Hero: React.FC<HeroProps> = ({
 	isFromHomePage = false,
 	productMembership: productMembershipProps,
 }) => {
-	console.log('productMembershipProps ==> ', productMembershipProps)
+	// console.log('productMembershipProps ==> ', productMembershipProps)
 	const ref = useRef<HTMLDivElement>(null);
 
 	const { productMembership, setProductMembership, selectedProductPrice, setSelectedProductPrice } = useCheckoutStore();
 
 	useEffect(() => {
 		if (productMembershipProps) {
-			setSelectedProductPrice(productMembershipProps.prices[0]);
+			setSelectedProductPrice(productMembershipProps.productPrices[0]);
 			setProductMembership(productMembershipProps);
 		}
 	}, [productMembershipProps]);
@@ -167,7 +167,7 @@ const Hero: React.FC<HeroProps> = ({
 							>
 								<div>
 									<h3 className='!leading-[28px] text-[5.128vw] xs2:text-xl font-medium'>
-										{ productMembership?.name }
+										{ productMembership?.productName }
 									</h3>
 
 									<AnimatePresence mode='wait'>

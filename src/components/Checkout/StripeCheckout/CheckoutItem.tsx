@@ -45,7 +45,7 @@ const CheckoutItem: FC<ICheckoutItem> = ({
 		const params = new URLSearchParams(query);
 		params.set('price_id', newPriceId);
 
-		setSelectedProductPrice(productMembership?.prices?.find(e => e.priceId === newPriceId) ?? null);
+		setSelectedProductPrice(productMembership?.productPrices?.find(e => e.priceId === newPriceId) ?? null);
 		setOpenPopover(false);
 
 		router.push(`${pathname}?${params.toString()}`);
@@ -57,15 +57,15 @@ const CheckoutItem: FC<ICheckoutItem> = ({
 	const showFallbackValues = !priceId && !productId;
 
 	// Fallback values when no price_id and product_id
-	const displayProductName = showFallbackValues ? 'Free' : productMembership?.name;
+	const displayProductName = showFallbackValues ? 'Free' : productMembership?.productName;
 	const displayBillingFrequency = showFallbackValues ? 'Pay-as-you-go flexibility' : selectedProductPrice?.billingFrequency;
 
 	const handleSelectMembership = () => {
-		if (productMembership && productMembership.prices.length > 0) {
+		if (productMembership && productMembership.productPrices.length > 0) {
 			const params = new URLSearchParams(query);
-			const defaultPrice = productMembership.prices.find(p => p.isDefault) || productMembership.prices[0];
+			const defaultPrice = productMembership.productPrices.find(p => p.isDefault) || productMembership.productPrices[0];
 			
-			params.set('product_id', productMembership.productId);
+			params.set('product_id', productMembership.productId.toString());
 			params.set('price_id', defaultPrice.priceId);
 			
 			setSelectedProductPrice(defaultPrice);
@@ -212,7 +212,7 @@ const CheckoutItem: FC<ICheckoutItem> = ({
 						className='h-5 w-[50%]'>
 						<div className='relative'>
 							{
-								!showFallbackValues && (productMembership?.prices?.length ?? 0) > 1 ? (
+								!showFallbackValues && (productMembership?.productPrices?.length ?? 0) > 1 ? (
 									<Popover
 										open={ openPopover }
 										onOpenChange={ setOpenPopover }>
@@ -250,7 +250,7 @@ const CheckoutItem: FC<ICheckoutItem> = ({
 											className='border flex flex-col gap-3 rounded-[9px] w-[302px] border-[#3B3C3E] bg-[#252627] shadow-[2px_2px_8px_0px_rgba(0,0,0,0.25)] p-3'
 										>
 											{
-												productMembership?.prices?.map(e => {
+												productMembership?.productPrices?.map(e => {
 													return (
 														<div
 															key={ e.priceId }
