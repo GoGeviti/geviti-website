@@ -17,13 +17,13 @@ import ArrowButtons from '../Marketing/ArrowButtons';
 import 'swiper/css';
 
 const videoData = [
-	{
-		image: 'https://i.ytimg.com/vi/43uaBvS-gfM/maxresdefault.jpg',
-		video: 'https://www.youtube.com/embed/43uaBvS-gfM',
-		description: 'I\'ve had a phenomenal experience so far and am really looking forward to seeing where this goes. I\'m excited to see my next test results and how my biomarkers have changed. I highly recommend it.',
-		author: 'Meet Chris',
-		rating: 5,
-	},
+	// {
+	// 	image: 'https://i.ytimg.com/vi/43uaBvS-gfM/maxresdefault.jpg',
+	// 	video: 'https://www.youtube.com/embed/43uaBvS-gfM',
+	// 	description: 'I\'ve had a phenomenal experience so far and am really looking forward to seeing where this goes. I\'m excited to see my next test results and how my biomarkers have changed. I highly recommend it.',
+	// 	author: 'Meet Chris',
+	// 	rating: 5,
+	// },
 	{
 		image: 'https://i.ytimg.com/vi/LDPoReqyvKI/maxresdefault.jpg',
 		video: 'https://www.youtube.com/embed/LDPoReqyvKI',
@@ -215,6 +215,7 @@ const Video: React.FC<VideoProps> = ({ className }) => {
 				>
 					<div className='aspect-video w-full'>
 						<iframe
+							title='Video Testimonial'
 							width='100%'
 							height='100%'
 							src={ videoData[activeIndex].video }

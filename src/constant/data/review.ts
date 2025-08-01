@@ -1,14 +1,14 @@
 import { TestimonialCardProps } from '@/components/Landing/TestimonialCard';
 
 export const testimonials: TestimonialCardProps[] = [
-	{
-		text: 'I’ve had a phenomenal experience thus far and I am really looking forward to seeing where this goes. I highly recommend.',
-		author: {
-			name: 'Chris Powell',
-			title: 'TV Host for ABC’s “Extreme Weight Loss” ',
-			image: '/images/landing/review-01.webp'
-		}
-	},
+	// {
+	// 	text: 'I’ve had a phenomenal experience thus far and I am really looking forward to seeing where this goes. I highly recommend.',
+	// 	author: {
+	// 		name: 'Chris Powell',
+	// 		title: 'TV Host for ABC’s “Extreme Weight Loss” ',
+	// 		image: '/images/landing/review-01.webp'
+	// 	}
+	// },
 	{
 		text: 'I highly recommend every woman entering in their midlife years get this done. It’s such a fantastic investment in yourself and your health!',
 		author: {
