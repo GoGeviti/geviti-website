@@ -1,5 +1,4 @@
 import ReactGA from 'react-ga4';
-import * as jose from 'jose';
 import type { NextRequest } from 'next/server'
 import { NextResponse } from 'next/server'
 
@@ -7,6 +6,8 @@ const trackingId = 'G-9NMVVP83JB';
 
 export async function middleware(request: NextRequest) {
 	const { pathname } = new URL(request.url);
+
+	    // console.log('Middleware - pathname:', pathname); // Debug log
 
 	// Redirect /referrals to REFERRALS_REDIRECT_URL with all query parameters
 	if (pathname === '/referrals') {
@@ -22,71 +23,71 @@ export async function middleware(request: NextRequest) {
 		return NextResponse.redirect(url);
 	}
 
-	if (pathname === '/landing' || pathname === '/pricing-welcome' || pathname === '/schedule-call') {
-		// Create token directly in middleware
-		const token = await new jose.SignJWT({ authorized: true })
-			.setProtectedHeader({ alg: 'HS256' })
-			.setExpirationTime('24h')
-			.sign(new TextEncoder().encode(process.env.JWT_SECRET));
+	// if (pathname === '/landing' || pathname === '/pricing-welcome' || pathname === '/schedule-call') {
+	// 	// Create token directly in middleware
+	// 	const token = await new jose.SignJWT({ authorized: true })
+	// 		.setProtectedHeader({ alg: 'HS256' })
+	// 		.setExpirationTime('24h')
+	// 		.sign(new TextEncoder().encode(process.env.JWT_SECRET));
 
-		const response = NextResponse.next();
-		response.cookies.set('waitlist-token', token, {
-			path: '/',
-			maxAge: 60 * 60 * 24, // 24 hours
-			httpOnly: true,
-			secure: process.env.NODE_ENV === 'production',
-		});
+	// 	const response = NextResponse.next();
+	// 	response.cookies.set('waitlist-token', token, {
+	// 		path: '/',
+	// 		maxAge: 60 * 60 * 24, // 24 hours
+	// 		httpOnly: true,
+	// 		secure: process.env.NODE_ENV === 'production',
+	// 	});
 
-		return response;
-	}
+	// 	return response;
+	// }
 
-	if (pathname === '/waitlist') {
-		const token = request.cookies.get('waitlist-token');
+	// if (pathname === '/waitlist') {
+	// 	const token = request.cookies.get('waitlist-token');
 
-		if (token?.value) {
-			try {
-				const secret = new TextEncoder().encode(process.env.JWT_SECRET);
-				const { payload } = await jose.jwtVerify(token.value, secret);
+	// 	if (token?.value) {
+	// 		try {
+	// 			const secret = new TextEncoder().encode(process.env.JWT_SECRET);
+	// 			const { payload } = await jose.jwtVerify(token.value, secret);
 
-				if (payload?.authorized) {
-					// Token is valid, redirect to payment
-					const url = new URL('/onboarding/payment', request.url);
-					url.search = new URL(request.url).search;
-					return NextResponse.redirect(url);
-				}
-			} catch (error) {
-				// Invalid token - continue to waitlist page
-				return NextResponse.next();
-			}
-		}
-		return NextResponse.next();
-	}
+	// 			if (payload?.authorized) {
+	// 				// Token is valid, redirect to payment
+	// 				const url = new URL('/onboarding/payment', request.url);
+	// 				url.search = new URL(request.url).search;
+	// 				return NextResponse.redirect(url);
+	// 			}
+	// 		} catch (error) {
+	// 			// Invalid token - continue to waitlist page
+	// 			return NextResponse.next();
+	// 		}
+	// 	}
+	// 	return NextResponse.next();
+	// }
 
-	if (pathname === '/onboarding/payment') {
-		const token = request.cookies.get('waitlist-token');
-		if (!token?.value) {
-			const url = new URL('/waitlist', request.url);
-			url.search = new URL(request.url).search;
-			return NextResponse.redirect(url);
-		}
+	// if (pathname === '/onboarding/payment') {
+	// 	const token = request.cookies.get('waitlist-token');
+	// 	if (!token?.value) {
+	// 		const url = new URL('/waitlist', request.url);
+	// 		url.search = new URL(request.url).search;
+	// 		return NextResponse.redirect(url);
+	// 	}
 
-		try {
-			const secret = new TextEncoder().encode(process.env.JWT_SECRET);
-			const { payload } = await jose.jwtVerify(token.value, secret);
+	// 	try {
+	// 		const secret = new TextEncoder().encode(process.env.JWT_SECRET);
+	// 		const { payload } = await jose.jwtVerify(token.value, secret);
 
-			if (!payload?.authorized) {
-				const url = new URL('/waitlist', request.url);
-				url.search = new URL(request.url).search;
-				return NextResponse.redirect(url);
-			}
+	// 		if (!payload?.authorized) {
+	// 			const url = new URL('/waitlist', request.url);
+	// 			url.search = new URL(request.url).search;
+	// 			return NextResponse.redirect(url);
+	// 		}
 
-			return NextResponse.next();
-		} catch (error) {
-			const url = new URL('/waitlist', request.url);
-			url.search = new URL(request.url).search;
-			return NextResponse.redirect(url);
-		}
-	}
+	// 		return NextResponse.next();
+	// 	} catch (error) {
+	// 		const url = new URL('/waitlist', request.url);
+	// 		url.search = new URL(request.url).search;
+	// 		return NextResponse.redirect(url);
+	// 	}
+	// }
 
 	// Redirect /pickleballkingdom to /
 	if (pathname === '/pickleballkingdom') {
@@ -111,5 +112,13 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-	matcher: ['/mobile', '/pickleballkingdom', '/onboarding/payment', '/waitlist', '/landing', '/pricing-welcome', '/schedule-call', '/referrals'],
+	matcher: [
+		'/mobile',
+		'/pickleballkingdom',
+		// '/onboarding/payment',
+		// '/waitlist',
+		// '/landing',
+		// '/pricing-welcome',
+		// '/schedule-call',
+		'/referrals'],
 }
