@@ -37,14 +37,14 @@ const Review = () => {
 					<div className='max-w-[847px] w-full'>
 						<TestimonialCard
 							contentClassName='max-w-[386px] ml-auto'
-							{ ...testimonials[2] } />
+							{ ...testimonials[1] } />
 					</div>
 					<div className='max-w-[847px] w-full self-end'>
 						<TestimonialCard
 							imageClassName='order-2 ml-auto'
 							contentClassName='order-1 max-w-[420px] pt-10'
 							quoteClassName='left-5'
-							{ ...testimonials[5] } />
+							{ ...testimonials[4] } />
 					</div>
 				</div>
 				<div className='lg:hidden w-full'>
@@ -63,12 +63,12 @@ const Review = () => {
 						<SwiperSlide>
 							<TestimonialCard
 								imageClassName='max-lg:h-[204px]'
-								{ ...testimonials[2] } />
+								{ ...testimonials[1] } />
 						</SwiperSlide>
 						<SwiperSlide>
 							<TestimonialCard
 								imageClassName='max-lg:h-[204px]'
-								{ ...testimonials[5] } />
+								{ ...testimonials[4] } />
 						</SwiperSlide>
 					</Swiper>
 					<ArrowButtons

@@ -1,7 +1,7 @@
 import React, { CSSProperties } from 'react';
 import Image from 'next/image';
 // import { NextPage } from 'next';
-import { notFound } from 'next/navigation';
+import { redirect } from 'next/navigation';
 
 import PopupReview from '../PopupReview';
 
@@ -18,7 +18,7 @@ const Hero = async(props: HeroProps) => {
 	const priceId = searchParams?.price_id;
 	const totalWaitlist = props.totalWaitlist;
 	if (!productId || !priceId) {
-		return notFound();
+		return redirect('/pricing')
 	}
 
 	return (

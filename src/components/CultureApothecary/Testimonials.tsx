@@ -26,13 +26,13 @@ const defaultTestimonialsData: Testimonial[] = [
       'For the first time, I didn’t feel like just a patient. The team took the time to thoroughly explain everything and make sure all my questions were answered.',
 		author: 'Christa Treat',
 	},
-	{
-		image: '/images/cultureapothecary/reviews-chris.webp',
-		video: 'https://www.youtube.com/embed/43uaBvS-gfM',
-		description:
-      'I’ve had a phenomenal experience so far and am really looking forward to seeing where this goes. I’m excited to see my next test results and how my biomarkers have changed. I highly recommend it.',
-		author: 'Chris Powell',
-	},
+	// {
+	// 	image: '/images/cultureapothecary/reviews-chris.webp',
+	// 	video: 'https://www.youtube.com/embed/43uaBvS-gfM',
+	// 	description:
+	//     'I’ve had a phenomenal experience so far and am really looking forward to seeing where this goes. I’m excited to see my next test results and how my biomarkers have changed. I highly recommend it.',
+	// 	author: 'Chris Powell',
+	// },
 	{
 		image: '/images/cultureapothecary/reviews-melissa.webp',
 		imageMobile: '/images/cultureapothecary/reviews-melissa-mobile.webp',
