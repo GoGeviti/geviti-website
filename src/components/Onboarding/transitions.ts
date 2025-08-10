@@ -1,15 +1,13 @@
 import { Variants } from 'framer-motion';
 
 export const slideInCenterToLeftProps = {
-	duration: .5,
-	ease: 'easeOut'
-	// ease: [.15, 1.14, .88, .98]
+	duration: 0.22,
+	ease: 'easeIn'
 };
 
 export const slideInRightToCenterProps = {
-	duration: .6,
-	ease: [0.21, 1, 0.38, 1.04]
-	// ease: [.21, 1.04, .58, 1.15],
+	duration: 0.24,
+	ease: 'easeOut'
 };
 
 export const notifTransitionProps = {
@@ -25,40 +23,52 @@ export const notifTransitionProps = {
 
 export const slideInVariants: Variants = {
 	initial: {
-		x: '100vw',
+		opacity: 0,
+		y: 12,
+		scale: 0.995,
 	},
 	visible: {
-		x: 0,
-		transition: slideInRightToCenterProps
+		opacity: 1,
+		y: 0,
+		scale: 1,
+		transition: slideInRightToCenterProps,
 	},
 	exit: {
-		x: '-100vw',
-		transition: slideInCenterToLeftProps
-	}
+		opacity: 0,
+		y: -12,
+		scale: 0.995,
+		transition: slideInCenterToLeftProps,
+	},
 };
 
 export const slideInVariantsDelay = (delayMultiplier = 1): Variants => ({
 	initial: {
-		x: '100vw',
+		opacity: 0,
+		y: 10,
+		scale: 0.995,
 	},
 	visible: {
-		x: 0,
+		opacity: 1,
+		y: 0,
+		scale: 1,
 		transition: {
 			...slideInRightToCenterProps,
-			delay: (0.08 * delayMultiplier)
-		}
+			delay: 0.05 * delayMultiplier,
+		},
 	},
 	exit: {
-		x: '-100vw',
-		transition: slideInCenterToLeftProps
-	}
+		opacity: 0,
+		y: -10,
+		scale: 0.995,
+		transition: slideInCenterToLeftProps,
+	},
 });
 
 export const wrapperListVariants: Variants = {
 	visible: {
-		transition: { staggerChildren: 0.08, delayChildren: 0.08 }
+		transition: { staggerChildren: 0.05, delayChildren: 0.05 },
 	},
 	exit: {
-		transition: { staggerChildren: 0.08 }
-	}
+		transition: { staggerChildren: 0.05 },
+	},
 };

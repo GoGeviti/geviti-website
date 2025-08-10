@@ -29,8 +29,8 @@ const TextField: React.FC<TextFieldProps> = ({
 				<input
 					className={ clsxm(
 						'block w-full border-0 outline-none transform transition-colors duration-300 rounded-[10px]',
-						'text-primary text-xs font-medium leading-normal font-Poppins placeholder:text-grey-primary px-4 py-3',
-						isError ? 'bg-red-primary-background ring-[1.5px] ring-red-primary focus:ring-[1.5px] focus:ring-red-primary' : 'bg-white ring-0 focus:ring-0',
+						'text-primary text-xs font-medium leading-normal font-Poppins placeholder:!text-grey-primary px-4 py-3',
+						isError ? '!bg-red-primary-background ring-[1.5px] ring-red-primary focus:ring-[1.5px] focus:ring-red-primary' : '!bg-white ring-0 focus:ring-0',
 						className
 					) }
 					autoComplete='off'

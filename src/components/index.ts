@@ -1,6 +1,8 @@
 import * as AboutUsComponent from './AbousUs';
 import AOSInit from './AOSInit';
 import * as ArticleComponent from './Article';
+import * as AssessmentComponent from './Assessment';
+import * as AssessmentFlow from './AssessmentFlow';
 import * as BlogComponent from './Blog';
 import * as CheckoutComponent from './Checkout';
 import * as ContactUsComponent from './Contact';
@@ -27,6 +29,8 @@ export {
 	AboutUsComponent,
 	AOSInit,
 	ArticleComponent,
+	AssessmentComponent,
+	AssessmentFlow,
 	BlogComponent,
 	CheckoutComponent,
 	ContactUsComponent,

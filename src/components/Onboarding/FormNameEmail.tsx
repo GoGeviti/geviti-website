@@ -5,7 +5,7 @@ import { FormikProps, useFormik } from 'formik';
 import { motion } from 'framer-motion';
 
 import { onboardingData } from '@/constant/data';
-import { IPrecheckout } from '@/interfaces';
+// import { IPrecheckout } from '@/interfaces';
 import { FormNameEmailSchema } from '@/validator/onboarding';
 
 import Button from './Button';
@@ -13,22 +13,36 @@ import TextField from './TextField';
 import { slideInVariants, slideInVariantsDelay } from './transitions';
 
 type FormNameEmailProps = {
-	onSubmit: (data: IPrecheckout.FormNameEmailState) => void; // eslint-disable-line no-unused-vars
-	userData : IPrecheckout.UserData
+	onSubmit: (data: {
+		name: string;
+		email: string;
+	}) => void; // eslint-disable-line no-unused-vars
+	userData : {
+		name: string;
+		email: string;
+	}
 };
 
 const FormNameEmail: React.FC<FormNameEmailProps> = ({ onSubmit, userData }) => {
 	const [enableValidation, setEnableValidation] = useState<boolean>(false);
-	const formik: FormikProps<IPrecheckout.FormNameEmailState> = useFormik<IPrecheckout.FormNameEmailState>({
+	const formik: FormikProps<{
+		name: string;
+		email: string;
+	}> = useFormik<{
+		name: string;
+		email: string;
+	}>({
 		validateOnBlur: enableValidation,
 		validateOnChange: enableValidation,
 		validationSchema: FormNameEmailSchema,
 		initialValues: {
-			first_name: userData.first_name,
-			last_name: userData.last_name,
+			name: userData.name,
 			email: userData.email
 		},
-		onSubmit: (form: IPrecheckout.FormNameEmailState) => {
+		onSubmit: (form: {
+			name: string;
+			email: string;
+		}) => {
 			onSubmit(form);
 		},
 	});
@@ -72,14 +86,14 @@ const FormNameEmail: React.FC<FormNameEmailProps> = ({ onSubmit, userData }) => 
 							animate='visible'
 						>
 							<TextField
-								label='First Name'
-								id='first_name'
-								name='first_name'
-								placeholder='First Name'
-								value={ formik.values.first_name }
+								label='Full Name'
+								id='name'
+								name='name'
+								placeholder='Full Name'
+								value={ formik.values.name }
 								onChange={ formik.handleChange }
-								isError={ !!formik.errors.first_name }
-								errorMessage={ formik.errors.first_name }
+								isError={ !!formik.errors.name }
+								errorMessage={ formik.errors.name }
 							/>
 						</motion.div>
 						<motion.div

@@ -69,7 +69,7 @@ const overflowAutoStepOnMobile = [FormStep.FORM_DETAIL, FormStep.PRICING_PLANS, 
 const OrderJourney: React.FC<OrderJourneyProps> = ({ searchParams, state }) => {
 	const router = useRouter();
 
-	const isPrecheckoutWaitlist = process.env.NEXT_PUBLIC_PRECHECKOUT_WAITLIST === 'true';
+	const isPrecheckoutWaitlist = process.env.NEXT_PUBLIC_PRECHECKOUT_WAITLIST === 'false';
 
 	const setInitialFormStep = () => {
 		if (searchParams?.variant && state?.variantID) return FormStep.ORDER_SUMMARY;
@@ -80,9 +80,12 @@ const OrderJourney: React.FC<OrderJourneyProps> = ({ searchParams, state }) => {
 	const [formStep, setFormStep] = useState<string>(setInitialFormStep());
 	const [isAlreadyOnHRT, setIsAlreadyOnHRT] = useState<boolean>(false);
 	const [selectedPlan, setSelectedPlan] = useState<Tier | null>(null);
-	const [userData, setUserData] = useState<IPrecheckout.UserData>({
+	const [userData, setUserData] = useState<IPrecheckout.UserData & {
+		name:string
+	}>({
 		first_name: '',
 		last_name: '',
+		name: '',
 		email: '',
 		gender: '',
 		birthdate: null,
@@ -220,7 +223,7 @@ const OrderJourney: React.FC<OrderJourneyProps> = ({ searchParams, state }) => {
 				setFlowFormSteps(state?.flowFormSteps);
 				setEligibleID(state?.eligibleID);
 				setListQuestionnaire(state?.answerQuestionnaires);
-				setUserData(state?.user);
+				setUserData({ ...state?.user, name: '' });
 				setShowPageTransitionOrderSummary(true);
 			} else {
 				router.replace('/pricing');
@@ -395,15 +398,21 @@ const OrderJourney: React.FC<OrderJourneyProps> = ({ searchParams, state }) => {
 				return (
 					<OnboardingComponent.FormNameEmail
 						key={ onboardingData.formNameEmail.id }
-						onSubmit={ (data: IPrecheckout.FormNameEmailState) => {
+						onSubmit={ (data: {
+							name: string;
+							email: string;
+						}) => {
 							setUserData(prevData => ({
 								...prevData,
-								first_name: data.first_name,
+								name: data.name,
 								email: data.email
 							}));
 							onStepNext(onboardingData.formNameEmail.nextStep);
 						} }
-						userData={ userData }
+						userData={ {
+							name: userData.name,
+							email: userData.email
+						} }
 					/>
 				);
 			case FormStep.FORM_DETAIL:

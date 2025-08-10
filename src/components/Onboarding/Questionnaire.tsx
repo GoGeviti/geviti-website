@@ -2,13 +2,13 @@
 
 import React, { useState } from 'react';
 import { Player } from '@lottiefiles/react-lottie-player';
-import { motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import { AnimationItem } from 'lottie-web';
 
 import type { FormOption } from './Main';
 import { slideInVariants, slideInVariantsDelay } from './transitions';
 
-const AnswerBox: React.FC<{ text: string; index: number; onClick?: () => void; }> = ({ text, index, onClick }) => {
+const AnswerBox: React.FC<{ text: string; description?: string; index: number; onClick?: () => void; }> = ({ text, description, index, onClick }) => {
 	const [lottieRef, setLottieRef] = useState<AnimationItem | null>(null);
 
 	return (
@@ -35,10 +35,19 @@ const AnswerBox: React.FC<{ text: string; index: number; onClick?: () => void; }
 					ease: [.21, 1.04, .58, 1.15]
 				}
 			} }
-			className='bg-white px-6 py-5 sm:py-18px rounded-[10px] flex items-center justify-between gap-1 cursor-pointer relative'
+			className='bg-white px-6 py-5 sm:py-18px rounded-[10px] border border-black/5 flex items-center justify-between gap-1 cursor-pointer relative'
 			onClick={ onClick }
 		>
-			<span className='text-[15px] 2xl:text-[17px] font-medium leading-normal text-left select-none'>{ text }</span>
+			<div className='flex-1 pr-6'>
+				<div className='text-[15px] 2xl:text-[17px] font-medium leading-normal text-left select-none'>
+					{ text }
+				</div>
+				{ description && (
+					<div className='text-xs 2xl:text-sm text-grey-primary mt-1 text-left select-none'>
+						{ description }
+					</div>
+				) }
+			</div>
 			<svg
 				xmlns='http://www.w3.org/2000/svg'
 				width='18'
@@ -63,14 +72,22 @@ const AnswerBox: React.FC<{ text: string; index: number; onClick?: () => void; }
 
 export type QuestionnaireProps = {
 	title?: string;
-	options?: FormOption[];
-	onSelect?: (selected: FormOption) => void; // eslint-disable-line no-unused-vars
+	context?: string;
+	meta?: string;
+	// Accept original FormOption but allow description at runtime for richer options
+	options?: (FormOption & { description?: string })[];
+	onSelect?: (selected: FormOption & { description?: string }) => void; // eslint-disable-line no-unused-vars
+	// When provided, only inner content will re-animate between steps
+	contentKey?: string;
 };
 
 const Questionnaire: React.FC<QuestionnaireProps> = ({
 	title,
+	context,
+	meta,
 	options = [],
-	onSelect
+	onSelect,
+	contentKey,
 }) => {
 	return (
 		<motion.div
@@ -78,30 +95,59 @@ const Questionnaire: React.FC<QuestionnaireProps> = ({
 			initial='initial'
 			animate='visible'
 			exit='exit'
-			className='w-full h-full lg:rounded-[20px] text-center relative'
+			className='w-full h-full lg:rounded-[20px] relative'
 		>
-			<div className='absolute top-[30px] lg:top-[5%] 2xl:top-[10%] left-1/2 -translate-x-1/2 w-full px-4 xs2:px-6 lg:px-0'>
-				<div className='max-w-[430px] mx-auto w-full'>
-					<motion.h1
-						variants={ slideInVariants }
-						initial='initial'
-						animate='visible'
-						className='text-2xl 2xl:text-[36px] leading-normal -tracking-[0.04em] max-lg:font-medium text-center lg:text-left'>
-						{ title }
-					</motion.h1>
-					<div className='mt-[21px]'>
-						<ul className='flex flex-col gap-y-3'>
-							{ options.map((answer, answerIdx) => (
-								<AnswerBox
-									key={ answerIdx }
-									index={ answerIdx }
-									text={ answer.label }
-									onClick={ () => {
-										if (onSelect) onSelect(answer);
-									} }
-								/>
-							)) }
-						</ul>
+			<div className='h-full w-full flex items-center justify-center px-4 xs2:px-6 lg:px-0 py-8'>
+				<div className='w-full max-w-2xl'>
+					<div className='bg-white rounded-[16px] lg:rounded-[20px] shadow-sm border border-black/5 p-6 sm:p-8 lg:p-10'>
+						<AnimatePresence mode='wait'>
+							<motion.div
+								key={ contentKey || 'static' }
+								variants={ slideInVariants }
+								initial='initial'
+								animate='visible'
+								exit='exit'
+							>
+								{ meta && (
+									<div className='text-xs text-blue-primary font-medium mb-2 text-left'>
+										{ meta }
+									</div>
+								) }
+								<motion.h1
+									variants={ slideInVariants }
+									initial='initial'
+									animate='visible'
+									className='text-[22px] lg:text-[30px] font-semibold -tracking-[0.02em] leading-snug text-primary text-left'
+								>
+									{ title }
+								</motion.h1>
+								{ context && (
+									<motion.p
+										variants={ slideInVariants }
+										initial='initial'
+										animate='visible'
+										className='mt-3 font-BRSonoma text-sm leading-normal text-grey-primary text-left'
+									>
+										{ context }
+									</motion.p>
+								) }
+								<div className='mt-5'>
+									<ul className='flex flex-col gap-y-3'>
+										{ options.map((answer, answerIdx) => (
+											<AnswerBox
+												key={ answerIdx }
+												index={ answerIdx }
+												text={ answer.label }
+												description={ (answer as any)?.description }
+												onClick={ () => {
+													if (onSelect) onSelect(answer);
+												} }
+											/>
+										)) }
+									</ul>
+								</div>
+							</motion.div>
+						</AnimatePresence>
 					</div>
 				</div>
 			</div>
