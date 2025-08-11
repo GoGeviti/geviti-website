@@ -128,7 +128,7 @@ const Tip: React.FC<TipProps> = ({
 				exit='exit'
 				className='w-full h-full lg:rounded-[20px] text-center relative'
 			>
-				<div className='absolute top-[40%] -translate-y-[40%] lg:top-1/4 lg:-translate-y-1/4 left-1/2 -translate-x-1/2 w-full px-4 xs2:px-6 lg:px-0'>
+				<div className='absolute top-2/3 -translate-y-2/3 left-1/2 -translate-x-1/2 w-full px-4 xs2:px-6 lg:px-0'>
 					<motion.div
 						initial={ { y: '100vh' } }
 						animate={ {
@@ -157,7 +157,7 @@ const Tip: React.FC<TipProps> = ({
 					>
 						{ title && (
 							<h1
-								className='text-[34px] 2xl:text-[36px] font-medium -tracking-[0.04em] leading-normal mt-2 mb-[7px] lg:mb-2'
+								className='text-3xl 2xl:text-[36px] font-medium -tracking-[0.04em] leading-normal mt-2 mb-[7px] lg:mb-2'
 								dangerouslySetInnerHTML={ { __html: title } }
 							/>
 						) }
@@ -176,7 +176,7 @@ const Tip: React.FC<TipProps> = ({
 						<div className='max-w-[500px] 2xl:max-w-[550px] mx-auto'>
 							{ desc && (
 								<h2
-									className='font-medium -tracking-[0.04em] leading-normal text-2xl 2xl:text-[28px]'
+									className='font-medium -tracking-[0.04em] leading-normal text-xl 2xl:text-[28px]'
 									dangerouslySetInnerHTML={ { __html: desc } } />
 							) }
 

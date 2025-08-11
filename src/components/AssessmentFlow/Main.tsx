@@ -81,11 +81,9 @@ const AssessmentFlowMain: React.FC = () => {
           initial="initial"
           animate="visible"
           exit="exit"
-          className="w-full h-full lg:rounded-[20px] relative"
+          className="flex items-center justify-center h-full"
         >
-          <div className="h-full w-full flex items-center justify-center px-4 xs2:px-6 lg:px-0 py-8">
-            <div className="w-full max-w-3xl">
-              <div className="bg-white rounded-[16px] lg:rounded-[20px] shadow-sm border border-black/5 p-6 sm:p-8 lg:p-10">
+              <div className="bg-white max-w-3xl mx-auto rounded-[16px] lg:rounded-[20px] shadow-sm border border-black/5 p-6 sm:p-8 lg:p-10">
                 <div className="text-center">
                   <div className="inline-flex items-center rounded-full bg-blue-50 text-blue-700 text-[11px] font-medium px-3 py-1 mb-3">
                     5‑minute assessment
@@ -132,8 +130,10 @@ const AssessmentFlowMain: React.FC = () => {
                   </p>
                 </div>
               </div>
+          {/* <div className="h-full w-full flex items-center justify-center px-4 xs2:px-6 lg:px-0 py-8">
+            <div className="w-full max-w-3xl">
             </div>
-          </div>
+          </div> */}
         </motion.div>
       );
     }
@@ -157,7 +157,7 @@ const AssessmentFlowMain: React.FC = () => {
           data-lenis-prevent
         >
           <div
-            className="w-full min-h-full px-4 xs2:px-6 lg:px-0"
+            className="w-full min-h-full lg:px-0"
             data-lenis-prevent
           >
             <div className="h-full w-full flex items-start justify-center py-8">
@@ -225,10 +225,10 @@ const AssessmentFlowMain: React.FC = () => {
                           <span
                             className={
                               res.riskLevel === "High Priority"
-                                ? "px-3 py-1.5 rounded-full bg-red-100 text-red-700 text-xs font-semibold"
+                                ? "px-3 py-1.5 rounded-full bg-red-100 text-red-700 text-xs font-semibold whitespace-nowrap"
                                 : res.riskLevel === "Moderate Priority"
-                                ? "px-3 py-1.5 rounded-full bg-amber-100 text-amber-700 text-xs font-semibold"
-                                : "px-3 py-1.5 rounded-full bg-emerald-100 text-emerald-700 text-xs font-semibold"
+                                ? "px-3 py-1.5 rounded-full bg-amber-100 text-amber-700 text-xs font-semibold whitespace-nowrap"
+                                : "px-3 py-1.5 rounded-full bg-emerald-100 text-emerald-700 text-xs font-semibold whitespace-nowrap"
                             }
                           >
                             {res.riskLevel}
@@ -413,7 +413,7 @@ const AssessmentFlowMain: React.FC = () => {
             exit="exit"
             className="w-full h-full lg:rounded-[20px] relative"
           >
-            <div className="h-full w-full flex items-center justify-center px-4 xs2:px-6 lg:px-0 py-8">
+            <div className="h-full w-full flex items-center justify-center lg:px-0">
               <div className="w-full max-w-2xl">
                 <div className="bg-white rounded-[16px] lg:rounded-[20px] shadow-sm border border-black/5 p-6 sm:p-8 lg:p-10">
                   {/* Meta line: Question 1 of 20 - Demographics */}
@@ -486,7 +486,7 @@ const AssessmentFlowMain: React.FC = () => {
           exit="exit"
           className="w-full h-full lg:rounded-[20px] relative"
         >
-          <div className="h-full w-full flex items-center justify-center px-4 xs2:px-6 lg:px-0 py-8">
+          <div className="h-full w-full flex items-center justify-center lg:px-0 py-8">
             <div className="w-full max-w-2xl">
               <div className="bg-white rounded-[16px] lg:rounded-[20px] shadow-sm border border-black/5 p-6 sm:p-8 lg:p-10">
                 <h1 className="text-[22px] lg:text-[30px] font-semibold -tracking-[0.02em] leading-snug text-primary text-left">
@@ -552,22 +552,24 @@ const AssessmentFlowMain: React.FC = () => {
   return (
     <div
       className={clsxm(
-        "flex flex-col w-full font-Poppins relative h-[calc(100svh)] overflow-hidden bg-grey-background lg:bg-white"
+        "font-Poppins relative flex flex-col h-full min-h-screen bg-grey-background lg:bg-white"
       )}
     >
+      <Navbar theme="light" onStepBack={prev} progress={progress} />
       <motion.div
-        className="w-full h-full flex flex-col"
+        className="h-full w-full flex items-center justify-center flex-col flex-1 px-4 py-5 lg:p-5 "
         initial={{ y: "100%" }}
         animate={{ y: 0 }}
         transition={{ duration: 0.3, ease: [0.15, 1.14, 0.88, 0.98] }}
         layout
       >
-        <Navbar theme="light" onStepBack={prev} progress={progress} />
-        <div className="lg:px-5 lg:pb-[1.5vh] lg:pt-[1.9vh] flex flex-col h-full w-full overflow-hidden">
-          <div className="w-full lg:rounded-[20px] text-center relative bg-grey-background flex-1 overflow-hidden">
-            <AnimatePresence mode="wait">{renderContent()}</AnimatePresence>
-          </div>
+        <div className="lg:rounded-[20px] bg-grey-background w-full h-full flex-1 flex items-center justify-center">
+        <AnimatePresence mode="wait">{renderContent()}</AnimatePresence>
         </div>
+        {/* <div className="lg:px-5 lg:pb-[1.5vh] lg:pt-[1.9vh] flex flex-col h-full w-full overflow-hidden">
+          <div className="w-full lg:rounded-[20px] text-center relative bg-grey-background flex-1 overflow-hidden">
+          </div>
+        </div> */}
       </motion.div>
     </div>
   );

@@ -97,7 +97,7 @@ const Questionnaire: React.FC<QuestionnaireProps> = ({
 			exit='exit'
 			className='w-full h-full lg:rounded-[20px] relative'
 		>
-			<div className='h-full w-full flex items-center justify-center px-4 xs2:px-6 lg:px-0 py-8'>
+			<div className='h-full w-full flex items-center justify-center lg:px-0 py-8'>
 				<div className='w-full max-w-2xl'>
 					<div className='bg-white rounded-[16px] lg:rounded-[20px] shadow-sm border border-black/5 p-6 sm:p-8 lg:p-10'>
 						<AnimatePresence mode='wait'>
