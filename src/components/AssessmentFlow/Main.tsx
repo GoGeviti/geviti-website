@@ -16,6 +16,7 @@ import Questionnaire from "../Onboarding/Questionnaire";
 import TextField from "../Onboarding/TextField";
 import Tip from "../Onboarding/Tip";
 import { slideInVariants } from "../Onboarding/transitions";
+import { createKlaviyoProfile } from "@/services/klaviyo";
 
 const AssessmentFlowMain: React.FC = () => {
   const [index, setIndex] = useState(0);
@@ -83,53 +84,53 @@ const AssessmentFlowMain: React.FC = () => {
           exit="exit"
           className="flex items-center justify-center h-full"
         >
-              <div className="bg-white max-w-3xl mx-auto rounded-[16px] lg:rounded-[20px] shadow-sm border border-black/5 p-6 sm:p-8 lg:p-10">
-                <div className="text-center">
-                  <div className="inline-flex items-center rounded-full bg-blue-50 text-blue-700 text-[11px] font-medium px-3 py-1 mb-3">
-                    5‑minute assessment
-                  </div>
-                  <h1 className="text-[28px] lg:text-[36px] font-semibold -tracking-[0.02em] leading-tight text-primary">
-                    Unlock Your Personalized Longevity Blueprint
-                  </h1>
-                  <p className="mt-3 font-BRSonoma text-grey-primary max-w-2xl mx-auto">
-                    This advanced 5-minute assessment analyzes key health
-                    indicators that our medical team uses to predict biological
-                    age and create optimization protocols for our members.
-                  </p>
-                </div>
-                <div className="mt-6 text-left bg-blue-1/15 rounded-[12px] p-5 sm:p-6">
-                  <p className="text-sm font-medium mb-3">
-                    Your Personalized Report Will Include:
-                  </p>
-                  <ul className="text-sm space-y-2">
-                    <li>
-                      <b>📊 Biological Age Score -</b> See how your cells are
-                      aging compared to your chronological age
-                    </li>
-                    <li>
-                      <b>🔬 Critical Biomarker Priorities -</b> The exact tests
-                      you need based on your risk profile
-                    </li>
-                    <li>
-                      <b>⚡ Optimization Protocol -</b> Specific interventions
-                      for your top 3 health gaps
-                    </li>
-                    <li>
-                      <b>💊 Supplement Recommendations -</b> Evidence-based
-                      nutrients for your profile
-                    </li>
-                  </ul>
-                </div>
-                <div className="mt-8 flex flex-col items-center">
-                  <Button className="w-full max-w-[320px]" onClick={next}>
-                    Start my assessment
-                  </Button>
-                  <p className="text-xs text-grey-600 mt-3">
-                    Based on peer-reviewed longevity research and validated by
-                    our medical team
-                  </p>
-                </div>
+          <div className="bg-white max-w-3xl mx-auto rounded-[16px] lg:rounded-[20px] shadow-sm border border-black/5 p-6 sm:p-8 lg:p-10">
+            <div className="text-center">
+              <div className="inline-flex items-center rounded-full bg-blue-50 text-blue-700 text-[11px] font-medium px-3 py-1 mb-3">
+                5‑minute assessment
               </div>
+              <h1 className="text-[28px] lg:text-[36px] font-semibold -tracking-[0.02em] leading-tight text-primary">
+                Unlock Your Personalized Longevity Blueprint
+              </h1>
+              <p className="mt-3 font-BRSonoma text-grey-primary max-w-2xl mx-auto">
+                This advanced 5-minute assessment analyzes key health indicators
+                that our medical team uses to predict biological age and create
+                optimization protocols for our members.
+              </p>
+            </div>
+            <div className="mt-6 text-left bg-blue-1/15 rounded-[12px] p-5 sm:p-6">
+              <p className="text-sm font-medium mb-3">
+                Your Personalized Report Will Include:
+              </p>
+              <ul className="text-sm space-y-2">
+                <li>
+                  <b>📊 Biological Age Score -</b> See how your cells are aging
+                  compared to your chronological age
+                </li>
+                <li>
+                  <b>🔬 Critical Biomarker Priorities -</b> The exact tests you
+                  need based on your risk profile
+                </li>
+                <li>
+                  <b>⚡ Optimization Protocol -</b> Specific interventions for
+                  your top 3 health gaps
+                </li>
+                <li>
+                  <b>💊 Supplement Recommendations -</b> Evidence-based
+                  nutrients for your profile
+                </li>
+              </ul>
+            </div>
+            <div className="mt-8 flex flex-col items-center">
+              <Button className="w-full max-w-[320px]" onClick={next}>
+                Start my assessment
+              </Button>
+              <p className="text-xs text-grey-600 mt-3">
+                Based on peer-reviewed longevity research and validated by our
+                medical team
+              </p>
+            </div>
+          </div>
           {/* <div className="h-full w-full flex items-center justify-center px-4 xs2:px-6 lg:px-0 py-8">
             <div className="w-full max-w-3xl">
             </div>
@@ -156,10 +157,7 @@ const AssessmentFlowMain: React.FC = () => {
           className="w-full h-full lg:rounded-[20px] relative overflow-y-auto"
           data-lenis-prevent
         >
-          <div
-            className="w-full min-h-full lg:px-0"
-            data-lenis-prevent
-          >
+          <div className="w-full min-h-full lg:px-0" data-lenis-prevent>
             <div className="h-full w-full flex items-start justify-center py-8">
               <div className="w-full max-w-5xl">
                 <div
@@ -460,7 +458,7 @@ const AssessmentFlowMain: React.FC = () => {
       }
 
       // Default: email-only capture form at the end
-      const onSubmitEmail = (e: React.FormEvent<HTMLFormElement>) => {
+      const onSubmitEmail = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         const email = emailValue.trim();
         if (!email) {
@@ -473,8 +471,34 @@ const AssessmentFlowMain: React.FC = () => {
           setEmailError("Please enter a valid email address");
           return;
         }
-        setEmailError(null);
-        onInputSubmit(email);
+        try {
+          const { assessment_email, ...otherAnswers } = answers;
+          const result = await createKlaviyoProfile(
+            {
+              data: {
+                type: "profile",
+                attributes: {
+                  email,
+                  properties: {
+                    ...otherAnswers,
+                  },
+                },
+              },
+            },
+            "TYhZMJ"
+          );
+          if (result.status === "OK") {
+            setEmailError(null);
+            onInputSubmit(email);
+          } else {
+            throw new Error(result.message || "An unexpected error occurred");
+          }
+        } catch (err: any) {
+          return {
+            status: "ERROR",
+            message: err?.message ?? "An unexpected error occurred",
+          };
+        }
       };
 
       return (
@@ -564,7 +588,7 @@ const AssessmentFlowMain: React.FC = () => {
         layout
       >
         <div className="lg:rounded-[20px] bg-grey-background w-full h-full flex-1 flex items-center justify-center">
-        <AnimatePresence mode="wait">{renderContent()}</AnimatePresence>
+          <AnimatePresence mode="wait">{renderContent()}</AnimatePresence>
         </div>
         {/* <div className="lg:px-5 lg:pb-[1.5vh] lg:pt-[1.9vh] flex flex-col h-full w-full overflow-hidden">
           <div className="w-full lg:rounded-[20px] text-center relative bg-grey-background flex-1 overflow-hidden">
