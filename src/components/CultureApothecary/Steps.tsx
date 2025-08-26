@@ -146,7 +146,15 @@ const stepsData = [
 	},
 ];
 
-const Steps: React.FC<{className?: string;}> = ({ className }) => {
+const Steps: React.FC<{
+	className?: string;
+	customStepImages?: {
+		step1: string;
+		step2: string;
+		step3: string;
+		step4: string;
+	};
+}> = ({ className, customStepImages }) => {
 	const [activeCard, setActiveCard] = useState<number>(0);
 	const ref = useRef<HTMLDivElement | null>(null);
 	const { scrollYProgress } = useScroll({
@@ -155,8 +163,56 @@ const Steps: React.FC<{className?: string;}> = ({ className }) => {
 	});
 	const cardLength = stepsData.length;
 
+	// Use custom images if provided, otherwise use default images
+	const getStepImage = (stepIndex: number) => {
+		if (customStepImages) {
+			const stepKeys = ['step1', 'step2', 'step3', 'step4'] as const;
+			return customStepImages[stepKeys[stepIndex]];
+		}
+		return stepsData[stepIndex].image;
+	};
+
+	// Step positioning configuration
+	const stepConfig = [
+		{
+			className: '-bottom-[67px] lg:-bottom-20 lg:-right-[94px]',
+			imageClassName: 'aspect-[397/205]'
+		},
+		{
+			className: '-bottom-11 lg:-bottom-[45.5px] lg:-right-[94px]',
+			imageClassName: 'aspect-[397/123]'
+		},
+		{
+			className: '-bottom-[71px] lg:-bottom-[107px] lg:-right-[94px] lg:!max-w-[445px]',
+			imageClassName: 'aspect-[445/234]'
+		},
+		{
+			className: '-bottom-[69px] lg:-bottom-[106px] lg:-right-[94px]',
+			imageClassName: 'aspect-[397/171]'
+		}
+	];
+
+	// Create dynamic steps data with custom images if provided
+	const dynamicStepsData = stepsData.map((step, index) => ({
+		...step,
+		image: getStepImage(index),
+		content: (
+			<div className='relative flex'>
+				<StepImage
+					src={ getStepImage(index) }
+					alt={ step.title }
+				/>
+				<StepSmallImage
+					src={ step.smallImage }
+					className={ stepConfig[index].className }
+					imageClassName={ stepConfig[index].imageClassName }
+				/>
+			</div>
+		),
+	}));
+
 	useMotionValueEvent(scrollYProgress, 'change', latest => {
-		const cardsBreakpoints = stepsData.map((_, index) => index / cardLength);
+		const cardsBreakpoints = dynamicStepsData.map((_, index) => index / cardLength);
 		const closestBreakpointIndex = cardsBreakpoints.reduce(
 			(acc, breakpoint, index) => {
 				const distance = Math.abs(latest - breakpoint);
@@ -174,14 +230,14 @@ const Steps: React.FC<{className?: string;}> = ({ className }) => {
 	return (
 		<div className={ clsxm('w-full mb-10 lg:mb-[128px] py-[124px] lg:py-[101px] relative', className) }>
 			<div className='lg:min-h-[1840px] relative flex max-lg:flex-col w-full h-full lg:gap-40 xl:gap-[236px] container-center'>
-				<div className='hidden lg:block sticky top-2 self-start max-w-[522px] aspect-[522/659] h-[85.93vh]'>
-					{ stepsData[activeCard].content ?? null }
+				<div className='hidden lg:block sticky top-20 self-start max-w-[522px] aspect-[522/659] h-[85.93vh]'>
+					{ dynamicStepsData[activeCard].content ?? null }
 				</div>
 				<div className='relative flex'>
 					<div
 						ref={ ref }
 						className='max-w-[522px] max-lg:space-y-[109px] flex flex-col lg:h-fit'>
-						{ stepsData.map((item, index) => (
+						{ dynamicStepsData.map((item, index) => (
 							<div
 								key={ item.title + index }
 								className='lg:py-5'>

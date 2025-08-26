@@ -33,7 +33,9 @@ const paths = [
 	'wellnessandwisdom',
 	'onward',
 	'girlsgonebible',
-	'thewellnessprocess'
+	'thewellnessprocess',
+	'biohack-it',
+	'isabel'
 ]
 
 type Props = {
@@ -100,7 +102,18 @@ const CultureApothecary = async(props:{
 			/>
 			<Benefits />
 			<Testimonials />
-			<Steps />
+			<Steps
+				customStepImages={
+					influencer === 'biohack-it' || influencer === 'isabel'
+						? {
+							step1: '/images/cultureapothecary/step1.jpg',
+							step2: '/images/cultureapothecary/step2.jpg',
+							step3: '/images/cultureapothecary/step3.jpg',
+							step4: '/images/cultureapothecary/step4.jpg'
+						}
+						: undefined
+				}
+			/>
 			<Suspense fallback={ <div className='min-h-[200px]' /> }>
 				<Analyzed />
 			</Suspense>
