@@ -14,6 +14,36 @@ export const influencerData = {
 		imageDescription: '',
 		accordionData: []
 	},
+	'biohack-it': {
+		title: 'Welcome to Geviti: Your All-in-One Platform for Personalized Health Optimization',
+		description: 'Every body is unique and there is no one-size-fits-all product to heal you. We\'re here to build personalized, longevity-oriented solutions based on the precise needs expressed by your body.',
+		image: '/images/cultureapothecary/hero/biohack-it.png',
+		solutionImage: '',
+		videoUrl: '',
+		ogImage: '/images/cultureapothecary/hero/biohack-it.png',
+		imageAlt: 'Biohack It',
+		popupReview: '',
+		solutionReview: '',
+		thumbnailVideoUrl: '',
+		imageTitle: '',
+		imageDescription: '',
+		accordionData: []
+	},
+	'isabel': {
+		title: 'Welcome to Geviti: Your All-in-One Platform for Personalized Health Optimization',
+		description: 'Every body is unique and there is no one-size-fits-all product to heal you. We\'re here to build personalized, longevity-oriented solutions based on the precise needs expressed by your body.',
+		image: '/images/cultureapothecary/hero/isabel.png',
+		solutionImage: '',
+		videoUrl: '',
+		ogImage: '/images/cultureapothecary/hero/isabel.png',
+		imageAlt: 'Isabel',
+		popupReview: '',
+		solutionReview: '',
+		thumbnailVideoUrl: '',
+		imageTitle: '',
+		imageDescription: '',
+		accordionData: []
+	},
 	'wellnessherway': {
 		title: 'Welcome to Geviti: Personalized Health Optimization, Designed for Her Journey.',
 		description: 'Every body is unique and there is no one-size-fits-all product to heal you. We\'re here to build personalized, longevity-oriented solutions based on the precise needs expressed by your body.',
