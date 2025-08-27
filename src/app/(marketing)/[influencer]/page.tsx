@@ -1,6 +1,7 @@
 import { Suspense } from 'react';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
+import Script from 'next/script';
 
 import Video from '@/components/AbousUs/Video';
 import BannerImage from '@/components/CultureApothecary/BannerImage';
@@ -35,7 +36,7 @@ const paths = [
 	'girlsgonebible',
 	'thewellnessprocess',
 	'biohack-it',
-	'isabel'
+	'isabelbrown'
 ]
 
 type Props = {
@@ -83,6 +84,12 @@ const CultureApothecary = async(props:{
 
 	return (
 		<div className='flex min-h-screen flex-col w-full bg-white font-Poppins'>
+			<Script
+				id='firstpromoter-tracking'
+				strategy='afterInteractive'
+			>
+				{ '_fprom=window._fprom||[];window._fprom=_fprom;_fprom.push(["url_tracking",true]); if (window.$FPROM){ $FPROM.trackVisitor({url_tracking: true})} else if(window.fpr) fpr("urlTracking");' }
+			</Script>
 			<Navbar theme='light' />
 			<Hero
 				title={ hero.title }
@@ -104,7 +111,7 @@ const CultureApothecary = async(props:{
 			<Testimonials />
 			<Steps
 				customStepImages={
-					influencer === 'biohack-it' || influencer === 'isabel'
+					influencer === 'biohack-it' || influencer === 'isabelbrown'
 						? {
 							step1: '/images/cultureapothecary/step1.jpg',
 							step2: '/images/cultureapothecary/step2.jpg',
