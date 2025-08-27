@@ -235,7 +235,7 @@ const solutionData = {
 			titles: ['Live optimized with'],
 			titlesMobile: ['Live optimized with'],
 			description:
-        'Our platform offers men at-home diagnostics and doctor-supervised treatments covering testosterone therapy, anti-aging peptides, medical weight loss, and more, fostering vitality and longevity.',
+        'Our platform offers men at-home diagnostics and clinician-supervised treatments covering testosterone therapy, anti-aging peptides, medical weight loss, and more, fostering vitality and longevity.',
 			image: '/images/solution_media/compressed/hero-men.webp',
 			imageMobile: '/images/solution_media/compressed/hero-men-mobile.webp',
 			btnCta: {
@@ -251,7 +251,7 @@ const solutionData = {
 			titles: ['Live optimized with'],
 			titlesMobile: ['Live optimized with'],
 			description:
-        'Our platform offers women at-home diagnostics and doctor-supervised treatments covering hormone therapy, anti-aging peptides, medical weight loss, and more, fostering vitality and longevity.',
+        'Our platform offers women at-home diagnostics and clinician-supervised treatments covering hormone therapy, anti-aging peptides, medical weight loss, and more, fostering vitality and longevity.',
 			image: '/images/solution_media/compressed/hero-women.webp',
 			imageMobile: '/images/solution_media/compressed/hero-women-mobile.webp',
 			btnCta: {
