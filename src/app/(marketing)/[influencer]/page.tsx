@@ -67,6 +67,12 @@ export async function generateMetadata(
 			title: hero.title,
 			description: hero.description,
 			image: hero.ogImage,
+			...(hero.videoUrl && {
+				videos: [{
+					url: hero.videoUrl,
+					type: 'video/mp4'
+				}]
+			})
 		}),
 	}
 }
