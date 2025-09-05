@@ -17,10 +17,10 @@ export const influencerData = {
 	'biohack-it': {
 		title: 'Welcome to Geviti: Your All-in-One Platform for Personalized Health Optimization',
 		description: 'Every body is unique and there is no one-size-fits-all product to heal you. We\'re here to build personalized, longevity-oriented solutions based on the precise needs expressed by your body.',
-		image: '/images/cultureapothecary/hero/biohack-it.png',
+		image: '/images/cultureapothecary/hero/biohack-it.jpg',
 		solutionImage: '',
-		videoUrl: '',
-		ogImage: '/images/cultureapothecary/hero/biohack-it.png',
+		videoUrl: 'https://www.youtube.com/watch?v=Wyras6NMEIo',
+		ogImage: '/images/cultureapothecary/hero/biohack-it.jpg',
 		imageAlt: 'Biohack It',
 		popupReview: '',
 		solutionReview: '',
