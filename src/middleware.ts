@@ -79,6 +79,12 @@ export async function middleware(request: NextRequest) {
 		return NextResponse.redirect(new URL('/', request.url));
 	}
 
+	if (pathname === '/megyn') {
+		ReactGA.initialize(trackingId);
+		ReactGA.send({ hitType: 'pageview', page: '/megyn', title: 'Megyn' });
+		return NextResponse.redirect(new URL('/', request.url));
+	}
+
 	const userAgent = request.headers.get('user-agent')?.toLowerCase();
 
 	if (userAgent) {
@@ -98,7 +104,8 @@ export const config = {
 	matcher: [
 		'/mobile',
 		'/pickleballkingdom',
-		'/onboarding/payment',
+		'/megyn',
+		// '/onboarding/payment',
 		// '/waitlist',
 		// '/landing',
 		// '/pricing-welcome',
