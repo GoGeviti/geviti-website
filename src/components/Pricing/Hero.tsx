@@ -261,49 +261,49 @@ const Hero: React.FC<HeroProps> = ({
 
 											<p className='flex flex-row items-center gap-2 mb-1 mt-7'>Health Optimization</p>
 											<div className='flex flex-row items-center gap-2 mt-2'>
-												<RedEx className='w-4 h-4 flex-shrink-0' />
+												<RedEx/>
 												<p className='text-[12px]'>Custom supplements discount</p>
 											</div>
 											<div className='flex flex-row items-center gap-2 mt-2'>
-												<RedEx className='w-4 h-4 flex-shrink-0' />
+												<RedEx/>
 												<p className='text-[12px]'>Discounted specialty test access</p>
 											</div>
 
 											<p className='flex flex-row items-center gap-2 mb-1 mt-7'>Health Support</p>
 											<div className='flex flex-row items-center gap-2 mt-2'>
-												<RedEx className='w-4 h-4 flex-shrink-0' />
+												<RedEx/>
 												<p className='text-[12px]'>Dedicated Functional Wellness Specialist</p>
 											</div>
 											<div className='flex flex-row items-center gap-2 mt-2'>
-												<RedEx className='w-4 h-4 flex-shrink-0' />
+												<RedEx/>
 												<p className='text-[12px]'>Quarterly Functional Wellness Specialist visits</p>
 											</div>
 											<div className='flex flex-row items-center gap-2 mt-2'>
-												<RedEx className='w-4 h-4 flex-shrink-0' />
+												<RedEx/>
 												<p className='text-[12px]'>Nutrition and lifestyle coaching</p>
 											</div>
 
 											<p className='flex flex-row items-center gap-2 mb-1 mt-7'>Clinical Solutions</p>
 											<div className='flex flex-row items-center gap-2 mt-2'>
-												<RedEx className='w-4 h-4 flex-shrink-0' />
+												<RedEx/>
 												<p className='text-[12px]'>Dedicated Longevity Practitioner</p>
 											</div>
 											<div className='flex flex-row items-center gap-2 mt-2'>
-												<RedEx className='w-4 h-4 flex-shrink-0' />
+												<RedEx/>
 												<p className='text-[12px]'>Quarterly Longevity Practitioner visits</p>
 											</div>
 											<div className='flex flex-row items-center gap-2 mt-2'>
-												<RedEx className='w-4 h-4 flex-shrink-0' />
+												<RedEx/>
 												<p className='text-[12px]'>Peptide therapy & regenerative medicine</p>
 											</div>
 											<div className='flex flex-row items-center gap-2 mt-2'>
-												<RedEx className='w-4 h-4 flex-shrink-0' />
+												<RedEx/>
 												<p className='text-[12px]'>Hormone replacement therapy & other rx</p>
 											</div>
 
 											<p className='flex flex-row items-center gap-2 mb-1 mt-7'>Unavailable in</p>
 											<div className='flex flex-row items-center gap-2 mt-2'>
-												<RedEx className='w-4 h-4 flex-shrink-0' />
+												<RedEx/>
 												<p className='text-[12px]'>AK, HI, RI</p>
 											</div>
 										</div>
@@ -449,25 +449,25 @@ const Hero: React.FC<HeroProps> = ({
 
 											<p className='flex flex-row items-center gap-2 mb-1 mt-7'>Clinical Solutions</p>
 											<div className='flex flex-row items-center gap-2 mt-2'>
-												<RedEx className='w-4 h-4 flex-shrink-0' />
+												<RedEx/>
 												<p className='text-[12px]'>Dedicated Longevity Practitioner</p>
 											</div>
 											<div className='flex flex-row items-center gap-2 mt-2'>
-												<RedEx className='w-4 h-4 flex-shrink-0' />
+												<RedEx/>
 												<p className='text-[12px]'>Quarterly Longevity Practitioner visits</p>
 											</div>
 											<div className='flex flex-row items-center gap-2 mt-2'>
-												<RedEx className='w-4 h-4 flex-shrink-0' />
+												<RedEx/>
 												<p className='text-[12px]'>Peptide therapy & regenerative medicine</p>
 											</div>
 											<div className='flex flex-row items-center gap-2 mt-2'>
-												<RedEx className='w-4 h-4 flex-shrink-0' />
+												<RedEx/>
 												<p className='text-[12px]'>Hormone replacement therapy & other rx</p>
 											</div>
 
 											<p className='flex flex-row items-center gap-2 mb-1 mt-7'>Unavailable in</p>
 											<div className='flex flex-row items-center gap-2 mt-2'>
-												<RedEx className='w-4 h-4 flex-shrink-0' />
+												<RedEx/>
 												<p className='text-[12px]'>AK, HI, RI</p>
 											</div>
 										</div>
