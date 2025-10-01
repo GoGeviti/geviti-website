@@ -119,8 +119,8 @@ const Hero: React.FC<HeroProps> = ({
 									className='pt-[42px] pb-[34px] px-6 flex flex-col gap-10 rounded-2xl overflow-hidden w-full h-auto relative bg-[#FCFCFC] border-grey-100 border text-primary'
 								>
 									<div>
-										<h3 className='!leading-[28px] text-[5.128vw] xs2:text-xl font-medium'>
-											Geviti Lite
+										<h3 className='!leading-[28px] text-[5.128vw] xs2:text-lg font-medium'>
+                    Advanced bloodwork twice yearly
 										</h3>
 
 										<div className='font-medium text-5xl whitespace-nowrap !leading-[125%] py-1 h-full'>
@@ -286,8 +286,8 @@ const Hero: React.FC<HeroProps> = ({
 									className='pt-[42px] pb-[34px] px-6 flex flex-col gap-10 rounded-2xl overflow-hidden w-full h-auto relative bg-[#FCFCFC] border-grey-100 border text-primary'
 								>
 									<div>
-										<h3 className='!leading-[28px] text-[5.128vw] xs2:text-xl font-medium'>
-											Geviti Premium
+										<h3 className='!leading-[28px] text-[5.128vw] xs2:text-lg font-medium'>
+                    The Complete Longevity Solution
 										</h3>
 
 										<div className='font-medium text-5xl whitespace-nowrap !leading-[125%] py-1 h-full'>
