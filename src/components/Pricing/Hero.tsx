@@ -44,7 +44,7 @@ const Hero: React.FC<HeroProps> = ({
 	const [premiumFrequency, setPremiumFrequency] = useState<'semi annual' | 'annual'>('semi annual');
 	
 	// Global frequency state for desktop switcher
-	const [globalFrequency, setGlobalFrequency] = useState<'semi annual' | 'annual'>('semi annual');
+	const [, setGlobalFrequency] = useState<'semi annual' | 'annual'>('semi annual');
 
 	// Define pricing tiers for all cards based on frequency
 	const pricingTiers = {
@@ -84,7 +84,7 @@ const Hero: React.FC<HeroProps> = ({
 		return 'semi annual';
 	};
 
-	const currentFrequency = getCurrentFrequency();
+	// const currentFrequency = getCurrentFrequency();
 
 	useEffect(() => {
 		if (productMembershipProps) {
