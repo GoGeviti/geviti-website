@@ -191,7 +191,11 @@ const Hero: React.FC<HeroProps> = ({
 										</div>
 
 										<ButtonCta
-											href='#'
+											href={
+												item.btnCta.href +
+												'?product_id=1' +
+												`&price_id=${currentFrequency === 'semi annual' ? 1 : 2}`
+											}
 											text='Get Started'
 											theme='primary'
 											className='w-full sm:w-fit mt-[25px]'
@@ -263,10 +267,8 @@ const Hero: React.FC<HeroProps> = ({
 										<ButtonCta
 											href={
 												item.btnCta.href +
-												'?product_id=' +
-												productMembership?.productId +
-												'&price_id=' +
-												selectedProductPrice?.priceId
+												'?product_id=1' +
+												`&price_id=${currentFrequency === 'semi annual' ? 3 : 4}`
 											}
 											target={ isFromHomePage ? '_blank' : undefined }
 											text={ item.btnCta.text }
@@ -326,7 +328,11 @@ const Hero: React.FC<HeroProps> = ({
 										</div>
 
 										<ButtonCta
-											href='#'
+											href={
+												item.btnCta.href +
+												'?product_id=1' +
+												`&price_id=${currentFrequency === 'semi annual' ? 5 : 6}`
+											}
 											text='Get Started'
 											theme='primary'
 											className='w-full sm:w-fit mt-[25px]'
