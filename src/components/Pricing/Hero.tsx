@@ -123,11 +123,8 @@ const Hero: React.FC<HeroProps> = ({
 										</h3>
 
 										<div className='font-medium text-5xl whitespace-nowrap !leading-[125%] py-1 h-full'>
-											<span className='font-medium text-5xl !leading-[125%] py-1'>
-												$99
-												<span className='text-xs font-medium whitespace-nowrap'>
-													/mo
-												</span>
+											<span className='victor-serif-medium italic text-5xl !leading-[125%] py-1'>
+												$99/mo
 											</span>
 										</div>
 										<p className='text-xs leading-6'>
@@ -210,11 +207,8 @@ const Hero: React.FC<HeroProps> = ({
 													);
 
 													return (
-														<span className='font-medium text-5xl !leading-[125%] py-1'>
-															{ priceDetails.perMonthPrice || '$0' }
-															<span className='text-xs font-medium whitespace-nowrap'>
-																{ '/mo' }
-															</span>
+														<span className='text-5xl victor-serif-medium italic !leading-[125%] py-1'>
+															{ priceDetails.perMonthPrice || '$0' }/mo
 														</span>
 													);
 												})() }
@@ -296,11 +290,8 @@ const Hero: React.FC<HeroProps> = ({
 										</h3>
 
 										<div className='font-medium text-5xl whitespace-nowrap !leading-[125%] py-1 h-full'>
-											<span className='font-medium text-5xl !leading-[125%] py-1'>
-												$299
-												<span className='text-xs font-medium whitespace-nowrap'>
-													/mo
-												</span>
+											<span className='victor-serif-medium italic text-5xl !leading-[125%] py-1'>
+												$299/mo
 											</span>
 										</div>
 										<p className='text-xs leading-6'>
