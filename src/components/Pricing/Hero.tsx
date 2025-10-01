@@ -43,6 +43,32 @@ const Hero: React.FC<HeroProps> = ({
 
 	const { productMembership, setProductMembership, selectedProductPrice, setSelectedProductPrice } = useCheckoutStore();
 
+	// Define pricing tiers for all cards based on frequency
+	const pricingTiers = {
+		lite: {
+			'semi annual': { monthlyPrice: '$66.67', billedAmount: '$399', period: '6mo' },
+			annual: { monthlyPrice: '$56.52', billedAmount: '$678.3', period: 'yr' }
+		},
+		plus: {
+			'semi annual': { monthlyPrice: '$129.99', billedAmount: '$779.95', period: '6mo' },
+			annual: { monthlyPrice: '$110.50', billedAmount: '$1324.99', period: 'yr' }
+		},
+		premium: {
+			'semi annual': { monthlyPrice: '$149.83', billedAmount: '$899', period: '6mo' },
+			annual: { monthlyPrice: '$127.35', billedAmount: '$1528.30', period: 'yr' }
+		}
+	};
+
+	// Determine current frequency based on selectedProductPrice
+	const getCurrentFrequency = () => {
+		if (!selectedProductPrice) return 'semi annual';
+		// Assuming annual has intervalCount of 12 or interval of 'year'
+		console.log('selectedProductPrice:', selectedProductPrice);
+		return selectedProductPrice.interval;
+	};
+
+	const currentFrequency = getCurrentFrequency();
+
 	useEffect(() => {
 		if (productMembershipProps) {
 			setSelectedProductPrice(productMembershipProps.productPrices[0]);
@@ -123,17 +149,23 @@ const Hero: React.FC<HeroProps> = ({
                     Advanced bloodwork twice yearly
 										</h3>
 
-										<div className='font-medium text-5xl whitespace-nowrap !leading-[125%] py-1 h-full'>
-											<span className='victor-serif-medium italic text-5xl !leading-[125%] py-1'>
-												$66.67
-												<span className='text-2xl font-medium whitespace-nowrap'>
-													/mo
+										<AnimatePresence mode='wait'>
+											<motion.div
+												key={ `lite_price_${currentFrequency}` }
+												initial={ { y: -50, opacity: 0 } }
+												animate={ { y: 0, opacity: 1 } }
+												exit={ { y: 50, opacity: 0 } }
+												transition={ { ease: 'linear', duration: 0.25 } }
+												className='font-medium text-5xl whitespace-nowrap !leading-[125%] py-1 h-full'
+											>
+												<span className='victor-serif-medium italic text-5xl !leading-[125%] py-1'>
+													{ pricingTiers.lite[currentFrequency].monthlyPrice }/mo
 												</span>
-											</span>
-										</div>
+											</motion.div>
+										</AnimatePresence>
 										<p className='text-xs leading-6'>
 											<span className='text-[12px] font-medium whitespace-nowrap'>
-												(billed at $399 every 6mo)
+												(billed at { pricingTiers.lite[currentFrequency].billedAmount } every { pricingTiers.lite[currentFrequency].period })
 											</span>
 											<br/>
 										</p>
@@ -187,57 +219,23 @@ const Hero: React.FC<HeroProps> = ({
 										</h3>
 
 										<AnimatePresence mode='wait'>
-											<motion.span
-												key={ `price_${selectedProductPrice?.priceId}` }
+											<motion.div
+												key={ `plus_price_${currentFrequency}` }
 												initial={ { y: -50, opacity: 0 } }
 												animate={ { y: 0, opacity: 1 } }
 												exit={ { y: 50, opacity: 0 } }
 												transition={ { ease: 'linear', duration: 0.25 } }
 												className='font-medium text-5xl whitespace-nowrap !leading-[125%] py-1 h-full'
 											>
-												{ (() => {
-													if (!selectedProductPrice) {
-														return (
-															<span className='font-medium text-5xl !leading-[125%] py-1'>
-																Loading...
-															</span>
-														);
-													}
-													const priceDetails = generateStripeNickname(
-														selectedProductPrice.price,
-														selectedProductPrice.interval || 'month',
-														selectedProductPrice.intervalCount || 1
-													);
-
-													return (
-														<span className='text-5xl victor-serif-medium italic !leading-[125%] py-1'>
-															{ priceDetails.perMonthPrice || '$0' }/mo
-														</span>
-													);
-												})() }
-											</motion.span>
+												<span className='victor-serif-medium italic text-5xl !leading-[125%] py-1'>
+													{ pricingTiers.plus[currentFrequency].monthlyPrice }/mo
+												</span>
+											</motion.div>
 										</AnimatePresence>
 										<p className='text-xs leading-6'>
-											{ (() => {
-												if (!selectedProductPrice) {
-													return (
-														<span className='text-[10px] font-medium whitespace-nowrap'>
-															Loading...
-														</span>
-													);
-												}
-												const priceDetails = generateStripeNickname(
-													selectedProductPrice.price,
-													selectedProductPrice.interval || 'month',
-													selectedProductPrice.intervalCount || 1
-												);
-
-												return (
-													<span className='text-[10px] font-medium whitespace-nowrap'>
-														{ priceDetails.formattedPrice || '/mo' }
-													</span>
-												);
-											})() }
+											<span className='text-[12px] font-medium whitespace-nowrap'>
+												(billed at { pricingTiers.plus[currentFrequency].billedAmount } every { pricingTiers.plus[currentFrequency].period })
+											</span>
 											<br/>
 										</p>
 
@@ -289,14 +287,23 @@ const Hero: React.FC<HeroProps> = ({
                     The Complete Longevity Solution
 										</h3>
 
-										<div className='font-medium text-5xl whitespace-nowrap !leading-[125%] py-1 h-full'>
-											<span className='victor-serif-medium italic text-5xl !leading-[125%] py-1'>
-												$299/mo
-											</span>
-										</div>
+										<AnimatePresence mode='wait'>
+											<motion.div
+												key={ `premium_price_${currentFrequency}` }
+												initial={ { y: -50, opacity: 0 } }
+												animate={ { y: 0, opacity: 1 } }
+												exit={ { y: 50, opacity: 0 } }
+												transition={ { ease: 'linear', duration: 0.25 } }
+												className='font-medium text-5xl whitespace-nowrap !leading-[125%] py-1 h-full'
+											>
+												<span className='victor-serif-medium italic text-5xl !leading-[125%] py-1'>
+													{ pricingTiers.premium[currentFrequency].monthlyPrice }/mo
+												</span>
+											</motion.div>
+										</AnimatePresence>
 										<p className='text-xs leading-6'>
 											<span className='text-[12px] font-medium whitespace-nowrap'>
-												(billed at $899 every 6mo)
+												(billed at { pricingTiers.premium[currentFrequency].billedAmount } every { pricingTiers.premium[currentFrequency].period })
 											</span>
 											<br/>
 										</p>
