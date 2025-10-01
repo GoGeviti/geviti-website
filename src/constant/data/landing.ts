@@ -134,7 +134,7 @@ const landingData = {
 		list: [
 			{
 				id: 'step-1',
-				title: 'Sign up for our <br />Longeviti <br />Membership',
+				title: 'Sign up for our <br />Geviti <br />Membership',
 				icon: GevitiIcon,
 			},
 			{
