@@ -42,7 +42,7 @@ const HeroVideo = ({ type }: { type: 'desktop' | 'mobile' }) => {
 			playsInline
 			className={ clsxm(
 				'object-cover pointer-events-none w-full h-full',
-				videoMobile ? 'md:hidden object-center' : 'md:block hidden object-right'
+				videoMobile ? 'lg:hidden object-center' : 'lg:block hidden object-right'
 			) }
 		/>
 	);
@@ -108,7 +108,7 @@ const Hero: React.FC<HeroProps> = ({
 						},
 						hidden: { y: '100%' },
 					} }
-					className='inline-flex font-medium text-xl xs:text-2xl sm:text-3xl md:text-4xl lg:text-[5vh] xl:text-[46px] !leading-normal -tracking-0.04em text-grey-secondary'
+					className='inline-flex font-normal text-2xl xs:text-3xl md:text-4xl lg:text-[5vh] xl:text-[46px] !leading-normal -tracking-0.04em text-grey-secondary'
 				>
 					{ isMounted && <span dangerouslySetInnerHTML={ { __html: title } } /> }
 				</motion.span>
@@ -191,7 +191,7 @@ const Hero: React.FC<HeroProps> = ({
 					},
 				} }
 			/>
-			<div className='bg-primary h-[calc(100svh+14px)] sm:h-[calc(100svh+10px)] md:h-[calc(100svh+6px)] lg:min-h-[700px] lg:h-[calc(100vh-24px)] w-full overflow-hidden max-lg:rounded-none rounded-19px relative pt-2 sm:pt-3 md:pt-4 lg:pt-5'>
+			<div className='bg-primary h-[calc(100svh+14px)] sm:h-[calc(100svh+10px)] md:h-[calc(100svh+6px)] lg:min-h-[700px] lg:h-[calc(120vh)] w-full overflow-hidden max-lg:rounded-none rounded-19px relative pt-2 sm:pt-3 md:pt-4 lg:pt-5'>
 				<div className='absolute inset-0 w-full h-full'>
 					<div className='relative overflow-hidden w-full h-full'>
 						{
@@ -200,8 +200,7 @@ const Hero: React.FC<HeroProps> = ({
 									<HeroVideo
 										type='mobile' />
 								) : (
-									<HeroVideo
-										type='desktop' />
+									<HeroVideo type='desktop' />
 								)
 							) : (
 								isMobile ? (
@@ -225,7 +224,7 @@ const Hero: React.FC<HeroProps> = ({
 							</div>
 						</Suspense> */ }
 						<div className={ clsxm(
-							'pb-12 sm:pb-14 md:pb-16 lg:pb-[60px] min-h-[80%] w-full flex flex-col justify-end pt-16 sm:pt-18 md:pt-20 lg:pt-24',
+							'pb-12 sm:pb-14 md:pb-16 lg:pb-[60px] min-h-[100vh] lg:min-h-[120vh] w-full flex flex-col justify-end pt-16 sm:pt-18 md:pt-20 lg:pt-24',
 							isScheduleCall && 'lg:pb-[75px] pb-[75px]'
 						) }>
 							<div className='text-left flex gap-y-6 flex-col'>
@@ -254,7 +253,7 @@ const Hero: React.FC<HeroProps> = ({
 											} }
 											className='inline-flex font-medium text-[#8CD6FE] text-lg xs:text-xl sm:text-2xl md:text-3xl lg:text-[6vh] xl:text-[56px] !leading-normal -tracking-0.04em italic victor-serif-medium'
 										>
-                                            Personalized Longevity
+                      Personalized Longevity
 										</motion.span>
 									</span>
 								</motion.h1>
@@ -268,32 +267,27 @@ const Hero: React.FC<HeroProps> = ({
 											},
 										},
 									} }
-									className='sm:hidden victor-serif-medium text-[4.5vw] xs:text-xl sm:text-2xl md:text-3xl lg:text-[5vh] xl:text-[46px] italic flex flex-col'
+									className='sm:hidden flex flex-col'
 								>
 									{ renderTitles(isScheduleCall ? heroData.titlesScheduleCallMobile : heroData.titlesMobile) }
-								</motion.h1>
-								<span className='overflow-hidden inline-flex'>
-									<motion.h2
-										variants={ {
-											visible: {
-												y: 0,
-												transition: {
-													...slideUpTransition,
-													delay: showIntro === 'true' ? 2.1 : 0.1,
+                  <span className='overflow-hidden inline-flex italic victor-serif-medium sm:max-w-[738px]'>
+										<motion.span
+											variants={ {
+												visible: {
+													y: 0,
+													transition: slideUpTransition,
 												},
-											},
-											hidden: { y: '100%' },
-										} }
-										initial='hidden'
-										animate='visible'
-										className='text-grey-secondary font-Poppins font-normal inline-flex text-xs sm:text-xs lg:text-base !leading-6 tracking-0.11em'
-									>
-										{ heroData.preTitle }
-									</motion.h2>
-								</span>
+												hidden: { y: '100%' },
+											} }
+											className='inline-flex font-medium text-[#8CD6FE] text-2xl xs:text-3xl md:text-4xl lg:text-[6vh] xl:text-[56px] !leading-normal -tracking-0.04em italic victor-serif-medium'
+										>
+                      Personalized Longevity
+										</motion.span>
+									</span>
+								</motion.h1>
 
 								<div className={ clsxm(
-									'flex w-full mt-6 xs:mt-8 sm:mt-10 md:mt-[5vh] xs:mt-[42px] lg:mt-[5.435vh] xl:mt-50px relative',
+									'flex w-full mt-6 xs:mt-8 sm:mt-10 md:mt-[5vh] lg:mt-[5.435vh] xl:mt-50px relative',
 									isLanding && 'sm:mt-6 md:mt-7 lg:mt-8 xl:mt-8'
 								) }>
 									<div className='grid grid-cols-1 auto-rows-fr sm:flex gap-4 xxs:gap-6 lg:gap-[42px] items-center w-full'>
