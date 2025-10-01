@@ -243,7 +243,7 @@ export const getAllProducts = async() : Promise<ProductsResponse[]> => {
 
 export const getProductMembership = async() : Promise<ProductMembership> => {
 	try {
-		// TODO: Mock response for getProductMembership
+		// TODO: Mock response for getProductMembership test
 		const mockResponse: ProductMembership = {
 			productId: 1,
 			productName: 'Geviti Membership',
