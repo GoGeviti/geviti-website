@@ -3,23 +3,18 @@ import React, {
 	CSSProperties,
 	useEffect,
 	useRef,
-	useState,
 } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { collectSegments } from 'next/dist/build/segment-config/app/app-segments';
-import Image from 'next/image';
-import Link from 'next/link';
 
 import { navbarDefaultTransition } from '@/constant/data/navbar';
 import pricingData from '@/constant/data/pricing';
 import clsxm from '@/helpers/clsxm';
 import { ProductMembership } from '@/interfaces/product';
 // import { formatPrice } from '@/lib/formatPrice';
-import { generateStripeNickname } from '@/lib/generateStripeNickname';
 import { useCheckoutStore } from '@/store/checkoutStore';
 
 import ButtonCta from '../ButtonCta';
-import { ChevronDown, GreenCheck, ShieldTick } from '../Icons';
+import { GreenCheck } from '../Icons';
 import ButtonSwitchMemberFreq from '../MemberShip/ButtonSwitchMemberFreq';
 import Navbar from '../Navbar/Landing';
 import PopupReview from '../PopupReview';
@@ -40,7 +35,7 @@ const Hero: React.FC<HeroProps> = ({
 }) => {
 	const ref = useRef<HTMLDivElement>(null);
 
-	const { productMembership, setProductMembership, selectedProductPrice, setSelectedProductPrice } = useCheckoutStore();
+	const { setProductMembership, selectedProductPrice, setSelectedProductPrice } = useCheckoutStore();
 
 	// Define pricing tiers for all cards based on frequency
 	const pricingTiers = {
@@ -78,8 +73,6 @@ const Hero: React.FC<HeroProps> = ({
 	// useEffect(() => {
 	// 	console.log('Hero component re-rendered with selectedProductPrice:', selectedProductPrice); // Add this line
 	// }, [selectedProductPrice]);
-
-	const [activeListDropdown, setActiveListDropdown] = useState(-1);
 
 	return (
 		<React.Fragment>
