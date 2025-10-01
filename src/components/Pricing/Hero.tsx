@@ -3,6 +3,7 @@ import React, {
 	CSSProperties,
 	useEffect,
 	useRef,
+	useState,
 } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 
@@ -36,6 +37,14 @@ const Hero: React.FC<HeroProps> = ({
 	const ref = useRef<HTMLDivElement>(null);
 
 	const { setProductMembership, selectedProductPrice, setSelectedProductPrice } = useCheckoutStore();
+	
+	// Individual frequency state for each card on mobile
+	const [liteFrequency, setLiteFrequency] = useState<'semi annual' | 'annual'>('semi annual');
+	const [plusFrequency, setPlusFrequency] = useState<'semi annual' | 'annual'>('semi annual');
+	const [premiumFrequency, setPremiumFrequency] = useState<'semi annual' | 'annual'>('semi annual');
+	
+	// Global frequency state for desktop switcher
+	const [globalFrequency, setGlobalFrequency] = useState<'semi annual' | 'annual'>('semi annual');
 
 	// Define pricing tiers for all cards based on frequency
 	const pricingTiers = {
@@ -83,6 +92,16 @@ const Hero: React.FC<HeroProps> = ({
 			setProductMembership(productMembershipProps);
 		}
 	}, [productMembershipProps]);
+
+	// Sync global frequency with selectedProductPrice changes
+	useEffect(() => {
+		const frequency = getCurrentFrequency();
+		setGlobalFrequency(frequency);
+		// When global frequency changes, update all card frequencies on desktop
+		setLiteFrequency(frequency);
+		setPlusFrequency(frequency);
+		setPremiumFrequency(frequency);
+	}, [selectedProductPrice]);
 
 	// useEffect(() => {
 	// 	console.log('Hero component re-rendered with selectedProductPrice:', selectedProductPrice); // Add this line
@@ -133,7 +152,7 @@ const Hero: React.FC<HeroProps> = ({
 						</p>
 					</div>
 
-					<div className='w-fit flex flex-col items-center justify-center gap-[14px]'>
+					<div className='hidden md:flex w-fit flex-col items-center justify-center gap-[14px] mx-auto'>
 						<span className='text-center text-[10px] text-[#919B9F] uppercase font-semibold tracking-[1.1px] leading-[15px]'>
               Select Membership Frequency
 						</span>
@@ -157,9 +176,53 @@ const Hero: React.FC<HeroProps> = ({
                     Advanced Bloodwork Done Twice Annually
 										</h3>
 
+										{ /* Mobile frequency switcher for this card */ }
+										<div className='md:hidden w-full flex flex-col items-center justify-center gap-[8px] mb-4'>
+											<span className='text-center text-[9px] text-[#919B9F] uppercase font-semibold tracking-[1px] leading-[12px]'>
+                        Select Frequency
+											</span>
+											<div className='relative overflow-hidden w-full rounded-[100px] h-[40px] px-1 bg-grey-50'>
+												<div className='relative grid h-full grid-cols-2'>
+													<button
+														onClick={ () => setLiteFrequency('semi annual') }
+														className={ clsxm(
+															'text-xs !leading-normal h-full flex items-center justify-center cursor-pointer whitespace-nowrap relative',
+															liteFrequency === 'semi annual' ? 'text-white z-10' : 'text-grey-400'
+														) }
+													>
+														Semi Annual
+													</button>
+													<button
+														onClick={ () => setLiteFrequency('annual') }
+														className={ clsxm(
+															'text-xs !leading-normal h-full flex items-center justify-center cursor-pointer whitespace-nowrap relative',
+															liteFrequency === 'annual' ? 'text-white z-10' : 'text-grey-400'
+														) }
+													>
+														Annual
+														<div className={ clsxm(
+															'absolute px-1 py-0.5 rounded-full font-semibold text-[8px] -right-[-0.3rem]',
+															liteFrequency === 'annual' ? 'bg-white text-black' : 'bg-black text-white'
+														) }>
+															15% off
+														</div>
+													</button>
+													<motion.div
+														initial={ false }
+														transition={ { type: 'spring', duration: 0.5 } }
+														className='bg-primary absolute rounded-[100px] shadow-[0px_4px_8px_0px_rgba(0,0,0,0.1)] h-[32px] top-1'
+														style={ {
+															width: 'calc(50% - 8px)',
+															left: liteFrequency === 'semi annual' ? '4px' : 'calc(50% + 4px)',
+														} }
+													/>
+												</div>
+											</div>
+										</div>
+
 										<AnimatePresence mode='wait'>
 											<motion.div
-												key={ `lite_price_${currentFrequency}` }
+												key={ `lite_price_${liteFrequency}` }
 												initial={ { y: -50, opacity: 0 } }
 												animate={ { y: 0, opacity: 1 } }
 												exit={ { y: 50, opacity: 0 } }
@@ -167,13 +230,13 @@ const Hero: React.FC<HeroProps> = ({
 												className='font-medium text-5xl whitespace-nowrap !leading-[125%] py-1 h-full'
 											>
 												<span className='victor-serif-medium italic text-5xl !leading-[125%] py-1'>
-													{ pricingTiers.lite[currentFrequency].monthlyPrice }/mo
+													{ pricingTiers.lite[liteFrequency].monthlyPrice }/mo
 												</span>
 											</motion.div>
 										</AnimatePresence>
 										<p className='text-xs leading-6'>
 											<span className='text-[12px] font-medium whitespace-nowrap'>
-												(billed at { pricingTiers.lite[currentFrequency].billedAmount } every { pricingTiers.lite[currentFrequency].period })
+												(billed at { pricingTiers.lite[liteFrequency].billedAmount } every { pricingTiers.lite[liteFrequency].period })
 											</span>
 											<br/>
 										</p>
@@ -226,9 +289,56 @@ const Hero: React.FC<HeroProps> = ({
 											A More Hands On Experience
 										</h3>
 
+										{ /* Mobile frequency switcher for this card */ }
+										<div className='md:hidden w-full flex flex-col items-center justify-center gap-[8px] mb-4'>
+											<span className={ clsxm(
+												'text-center text-[9px] uppercase font-semibold tracking-[1px] leading-[12px]',
+												item.mostValue ? 'text-white/80' : 'text-[#919B9F]'
+											) }>
+                        Select Frequency
+											</span>
+											<div className='relative overflow-hidden w-full rounded-[100px] h-[40px] px-1 bg-grey-50'>
+												<div className='relative grid h-full grid-cols-2'>
+													<button
+														onClick={ () => setPlusFrequency('semi annual') }
+														className={ clsxm(
+															'text-xs !leading-normal h-full flex items-center justify-center cursor-pointer whitespace-nowrap relative',
+															plusFrequency === 'semi annual' ? 'text-white z-10' : 'text-grey-400'
+														) }
+													>
+														Semi Annual
+													</button>
+													<button
+														onClick={ () => setPlusFrequency('annual') }
+														className={ clsxm(
+															'text-xs !leading-normal h-full flex items-center justify-center cursor-pointer whitespace-nowrap relative',
+															plusFrequency === 'annual' ? 'text-white z-10' : 'text-grey-400'
+														) }
+													>
+														Annual
+														<div className={ clsxm(
+															'absolute px-1 py-0.5 rounded-full font-semibold text-[8px] -right-[-0.3rem]',
+															plusFrequency === 'annual' ? 'bg-white text-black' : 'bg-black text-white'
+														) }>
+															15% off
+														</div>
+													</button>
+													<motion.div
+														initial={ false }
+														transition={ { type: 'spring', duration: 0.5 } }
+														className='bg-primary absolute rounded-[100px] shadow-[0px_4px_8px_0px_rgba(0,0,0,0.1)] h-[32px] top-1'
+														style={ {
+															width: 'calc(50% - 8px)',
+															left: plusFrequency === 'semi annual' ? '4px' : 'calc(50% + 4px)',
+														} }
+													/>
+												</div>
+											</div>
+										</div>
+
 										<AnimatePresence mode='wait'>
 											<motion.div
-												key={ `plus_price_${currentFrequency}` }
+												key={ `plus_price_${plusFrequency}` }
 												initial={ { y: -50, opacity: 0 } }
 												animate={ { y: 0, opacity: 1 } }
 												exit={ { y: 50, opacity: 0 } }
@@ -236,13 +346,13 @@ const Hero: React.FC<HeroProps> = ({
 												className='font-medium text-5xl whitespace-nowrap !leading-[125%] py-1 h-full'
 											>
 												<span className='victor-serif-medium italic text-5xl !leading-[125%] py-1'>
-													{ pricingTiers.plus[currentFrequency].monthlyPrice }/mo
+													{ pricingTiers.plus[plusFrequency].monthlyPrice }/mo
 												</span>
 											</motion.div>
 										</AnimatePresence>
 										<p className='text-xs leading-6'>
 											<span className='text-[12px] font-medium whitespace-nowrap'>
-												(billed at { pricingTiers.plus[currentFrequency].billedAmount } every { pricingTiers.plus[currentFrequency].period })
+												(billed at { pricingTiers.plus[plusFrequency].billedAmount } every { pricingTiers.plus[plusFrequency].period })
 											</span>
 											<br/>
 										</p>
@@ -289,9 +399,53 @@ const Hero: React.FC<HeroProps> = ({
                     The Complete Longevity Solution
 										</h3>
 
+										{ /* Mobile frequency switcher for this card */ }
+										<div className='md:hidden w-full flex flex-col items-center justify-center gap-[8px] mb-4'>
+											<span className='text-center text-[9px] text-[#919B9F] uppercase font-semibold tracking-[1px] leading-[12px]'>
+                        Select Frequency
+											</span>
+											<div className='relative overflow-hidden w-full rounded-[100px] h-[40px] px-1 bg-grey-50'>
+												<div className='relative grid h-full grid-cols-2'>
+													<button
+														onClick={ () => setPremiumFrequency('semi annual') }
+														className={ clsxm(
+															'text-xs !leading-normal h-full flex items-center justify-center cursor-pointer whitespace-nowrap relative',
+															premiumFrequency === 'semi annual' ? 'text-white z-10' : 'text-grey-400'
+														) }
+													>
+														Semi Annual
+													</button>
+													<button
+														onClick={ () => setPremiumFrequency('annual') }
+														className={ clsxm(
+															'text-xs !leading-normal h-full flex items-center justify-center cursor-pointer whitespace-nowrap relative',
+															premiumFrequency === 'annual' ? 'text-white z-10' : 'text-grey-400'
+														) }
+													>
+														Annual
+														<div className={ clsxm(
+															'absolute px-1 py-0.5 rounded-full font-semibold text-[8px] -right-[-0.3rem]',
+															premiumFrequency === 'annual' ? 'bg-white text-black' : 'bg-black text-white'
+														) }>
+															15% off
+														</div>
+													</button>
+													<motion.div
+														initial={ false }
+														transition={ { type: 'spring', duration: 0.5 } }
+														className='bg-primary absolute rounded-[100px] shadow-[0px_4px_8px_0px_rgba(0,0,0,0.1)] h-[32px] top-1'
+														style={ {
+															width: 'calc(50% - 8px)',
+															left: premiumFrequency === 'semi annual' ? '4px' : 'calc(50% + 4px)',
+														} }
+													/>
+												</div>
+											</div>
+										</div>
+
 										<AnimatePresence mode='wait'>
 											<motion.div
-												key={ `premium_price_${currentFrequency}` }
+												key={ `premium_price_${premiumFrequency}` }
 												initial={ { y: -50, opacity: 0 } }
 												animate={ { y: 0, opacity: 1 } }
 												exit={ { y: 50, opacity: 0 } }
@@ -299,13 +453,13 @@ const Hero: React.FC<HeroProps> = ({
 												className='font-medium text-5xl whitespace-nowrap !leading-[125%] py-1 h-full'
 											>
 												<span className='victor-serif-medium italic text-5xl !leading-[125%] py-1'>
-													{ pricingTiers.premium[currentFrequency].monthlyPrice }/mo
+													{ pricingTiers.premium[premiumFrequency].monthlyPrice }/mo
 												</span>
 											</motion.div>
 										</AnimatePresence>
 										<p className='text-xs leading-6'>
 											<span className='text-[12px] font-medium whitespace-nowrap'>
-												(billed at { pricingTiers.premium[currentFrequency].billedAmount } every { pricingTiers.premium[currentFrequency].period })
+												(billed at { pricingTiers.premium[premiumFrequency].billedAmount } every { pricingTiers.premium[premiumFrequency].period })
 											</span>
 											<br/>
 										</p>
