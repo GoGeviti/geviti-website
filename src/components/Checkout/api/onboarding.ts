@@ -274,7 +274,7 @@ export const getProductMembership = async() : Promise<ProductMembership> => {
 				{
 					productPriceId: 3,
 					nickname: 'Geviti Plus',
-					price: 129.99,
+					price: 779.95,
 					priceId: '3',
 					priceType: 'recurring',
 					billingFrequency: 'Semi Annual',
