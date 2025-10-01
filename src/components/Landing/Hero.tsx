@@ -2,13 +2,13 @@
 import React, { Suspense, useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { motion, useAnimationControls } from 'framer-motion';
-// import dynamic from 'next/dynamic';
-import Image from 'next/image';
 
-import heroImage from '@/assets/landing/hero.webp';
-import heroImageLanding from '@/assets/landing/hero-landing.webp';
-import heroImageLandingMobile from '@/assets/landing/hero-landing-mobile.webp';
-import heroImageMobile from '@/assets/landing/hero-mobile.webp';
+// import dynamic from 'next/dynamic';
+// import Image from 'next/image';
+// import heroImage from '@/assets/landing/hero.webp';
+// import heroImageLanding from '@/assets/landing/hero-landing.webp';
+// import heroImageLandingMobile from '@/assets/landing/hero-landing-mobile.webp';
+// import heroImageMobile from '@/assets/landing/hero-mobile.webp';
 import { navbarDefaultTransition } from '@/constant/data/navbar';
 import clsxm from '@/helpers/clsxm';
 import { screens } from '@/helpers/style';
@@ -48,33 +48,33 @@ const HeroVideo = ({ type }: { type: 'desktop' | 'mobile' }) => {
 	);
 };
 
-const HeroImage = ({ type, isLanding }: { type: 'desktop' | 'mobile', isLanding:boolean }) => {
-	const imageMobile = type === 'mobile';
-	const imageSrc = isLanding
-		? imageMobile
-			? heroImageLandingMobile
-			: heroImageLanding
-		: imageMobile
-			? heroImageMobile
-			: heroImage;
-
-	return (
-		<Image
-			src={ imageSrc }
-			alt='hero'
-			priority={ true }
-			className={ clsxm(
-				'object-cover pointer-events-none',
-				imageMobile ? 'md:hidden object-center' : 'md:block hidden object-right'
-			) }
-			fill
-			quality={ 90 }
-			placeholder='blur'
-			loading={ 'eager' }
-			sizes='100vw'
-		/>
-	);
-};
+// const HeroImage = ({ type, isLanding }: { type: 'desktop' | 'mobile', isLanding:boolean }) => {
+// 	const imageMobile = type === 'mobile';
+// 	const imageSrc = isLanding
+// 		? imageMobile
+// 			? heroImageLandingMobile
+// 			: heroImageLanding
+// 		: imageMobile
+// 			? heroImageMobile
+// 			: heroImage;
+//
+// 	return (
+// 		<Image
+// 			src={ imageSrc }
+// 			alt='hero'
+// 			priority={ true }
+// 			className={ clsxm(
+// 				'object-cover pointer-events-none',
+// 				imageMobile ? 'md:hidden object-center' : 'md:block hidden object-right'
+// 			) }
+// 			fill
+// 			quality={ 90 }
+// 			placeholder='blur'
+// 			loading={ 'eager' }
+// 			sizes='100vw'
+// 		/>
+// 	);
+// };
 
 const Hero: React.FC<HeroProps> = ({
 	// showBanner = false,
@@ -197,18 +197,16 @@ const Hero: React.FC<HeroProps> = ({
 						{
 							isLanding ? (
 								isMobile ? (
-									<HeroImage
-										type='mobile'
-										isLanding={ isLanding } />
+									<HeroVideo
+										type='mobile' />
 								) : (
 									<HeroVideo
 										type='desktop' />
 								)
 							) : (
 								isMobile ? (
-									<HeroImage
-										type='mobile'
-									    isLanding={ isLanding } />
+									<HeroVideo
+										type='mobile'/>
 								) : (
 									<HeroVideo type='desktop' />
 								)
@@ -227,7 +225,7 @@ const Hero: React.FC<HeroProps> = ({
 							</div>
 						</Suspense> */ }
 						<div className={ clsxm(
-							'pb-6 sm:pb-8 md:pb-10 lg:pb-[47px] h-full w-full flex flex-col justify-end pt-16 sm:pt-18 md:pt-20 lg:pt-24',
+							'pb-12 sm:pb-14 md:pb-16 lg:pb-[60px] min-h-[80%] w-full flex flex-col justify-end pt-16 sm:pt-18 md:pt-20 lg:pt-24',
 							isScheduleCall && 'lg:pb-[75px] pb-[75px]'
 						) }>
 							<div className='text-left flex gap-y-6 flex-col'>

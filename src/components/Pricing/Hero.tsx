@@ -154,7 +154,7 @@ const Hero: React.FC<HeroProps> = ({
 								>
 									<div>
 										<h3 className='!leading-[28px] text-[5.128vw] xs2:text-lg font-medium'>
-                    Advanced bloodwork twice yearly
+                    Advanced Bloodwork Done Twice Annually
 										</h3>
 
 										<AnimatePresence mode='wait'>
