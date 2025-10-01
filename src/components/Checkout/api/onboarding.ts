@@ -232,20 +232,53 @@ export const getAllProducts = async() : Promise<ProductsResponse[]> => {
 
 export const getProductMembership = async() : Promise<ProductMembership> => {
 	try {
-		const res = await fetch(
-			`${onboardingApiUrl}/products/membership`,
-			{
-				method: 'GET',
-				headers: {
-					...headers,
+		// TODO: Mock response for getProductMembership
+		const mockResponse: ProductMembership = {
+			productId: 1,
+			productName: 'A More Hands On Experience',
+			productType: 'subscription',
+			productDescription: 'Access to premium features and benefits',
+			defaultPriceId: 'price_1234567890',
+			defaultAmount: '1',
+			defaultInterval: 'mo',
+			defaultIntervalCount: 1,
+			productPrices: [
+				{
+					productPriceId: 1,
+					nickname: 'Semi Annual',
+					price: 1559.9,
+					priceId: 'price_1234567890',
+					priceType: 'recurring',
+					billingFrequency: 'Semi Annual',
+					interval: 'semi annual',
+					intervalCount: 1,
+					isCurrentPrice: true,
+					isHidden: false,
+					isLegacy: false,
+					isDefault: true,
+				},
+				{
+					productPriceId: 2,
+					nickname: 'Annual',
+					price: 990.00,
+					priceId: 'price_0987654321',
+					priceType: 'recurring',
+					billingFrequency: 'Annual',
+					interval: 'annual',
+					intervalCount: 1,
+					isCurrentPrice: false,
+					isHidden: false,
+					isLegacy: false,
+					isDefault: false,
 				}
-			}
-		);
-		const data = await processResponse<ProductMembership>(res);
+			]
+		};
+
+		// Filter out hidden prices as in the original commented code
 		return {
-			...data,
-			productPrices: data.productPrices.filter(it => !it.isHidden)
-		}
+			...mockResponse,
+			productPrices: mockResponse.productPrices.filter(it => !it.isHidden)
+		};
 	} catch (error) {
 		return await processError(error);
 	}

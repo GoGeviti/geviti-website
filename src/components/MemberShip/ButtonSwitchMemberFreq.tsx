@@ -32,19 +32,25 @@ const ButtonSwitchMemberFreq: React.FC<ButtonSwitchMemberFreqProps> = ({
 				<div
 					className='relative grid h-full'
 					style={ { gridTemplateColumns: `repeat(${totalOptions}, 1fr)` } }>
-					{ productMembership?.productPrices.map(opt => {
+					{ productMembership?.productPrices.map((opt, index) => {
 						const isSelected = opt.productPriceId === selectedProductPrice?.productPriceId;
+						const isSecondButton = index === 1;
 						return (
 							<button
 								key={ opt.productPriceId }
 								aria-label={ opt.nickname }
 								onClick={ () => handleClick(opt) }
 								className={ clsxm(
-									'text-sm !leading-normal h-full flex px-10 items-center justify-center cursor-pointer whitespace-nowrap',
+									'text-sm !leading-normal h-full flex px-10 items-center justify-center cursor-pointer whitespace-nowrap relative',
 									isSelected ? 'text-white z-10' : 'text-grey-400'
 								) }
 							>
 								{ opt.billingFrequency.charAt(0).toUpperCase() + opt.billingFrequency.slice(1) }
+								{ isSecondButton && (
+									<div className='absolute -right-0.5 bg-black text-white px-1 py-0.5 rounded-full font-semibold text-[10px]'>
+										15% OFF
+									</div>
+								) }
 							</button>
 						);
 					}) }

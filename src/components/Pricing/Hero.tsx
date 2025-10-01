@@ -6,6 +6,7 @@ import React, {
 	useState,
 } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
+import { collectSegments } from 'next/dist/build/segment-config/app/app-segments';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -108,81 +109,123 @@ const Hero: React.FC<HeroProps> = ({
 
 					<div
 						ref={ ref }
-						className='lg:max-w-[1061px] mx-auto sm:max-w-[392px] lg:grid-cols-9 flex max-lg:flex-col lg:grid gap-6 lg:gap-3.5 items-end w-full pt-[58px] lg:pt-[78px]'
+						className='container-center mx-auto w-full pt-[58px] lg:pt-[78px]'
 					>
-						<div className='w-full max-lg:order-2 relative h-full lg:col-span-3'>
-							<div className='rounded-2xl pt-7 w-full max-lg:h-full max-lg:min-h-[529px] lg:h-[450px] relative overflow-hidden bg-[linear-gradient(0deg,#A7DAFF_0%,#75C5FF_100%)]'>
-								<div className='px-5'>
-									<div className='flex items-center gap-5px mb-3.5'>
-										<ShieldTick className='flex-shrink-0 w-5 h-5 text-primary' />
-
-										<span className='inline-flex items-baseline text-[19px] !leading-[140%] font-semibold text-primary'>
-											{ pricingData.hero.banner.caption.text }
-											<span className='ml-1.5 font-normal text-base'>
-												{ pricingData.hero.banner.caption.textSuffix }
-											</span>
-										</span>
-									</div>
+						<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
+							{ /* Card 1: Geviti Lite */ }
+							<div className='w-full relative h-auto'>
+								<div
+									className='pt-[42px] pb-[34px] px-6 flex flex-col gap-10 rounded-2xl overflow-hidden w-full h-auto relative bg-[#FCFCFC] border-grey-100 border text-primary'
+								>
 									<div>
-										<p className='text-[10px] !leading-6 font-semibold tracking-0.11em text-grey-800 uppercase'>
-											{ pricingData.hero.banner.preTitle }
-										</p>
-										<h3 className='h6 !leading-normal text-black -tracking-0.04em'>
-											<span
-												dangerouslySetInnerHTML={ {
-													__html: pricingData.hero.banner.title,
-												} }
-											/>
+										<h3 className='!leading-[28px] text-[5.128vw] xs2:text-xl font-medium'>
+											Geviti Lite
 										</h3>
+
+										<div className='font-medium text-5xl whitespace-nowrap !leading-[125%] py-1 h-full'>
+											<span className='font-medium text-5xl !leading-[125%] py-1'>
+												$99
+												<span className='text-xs font-medium whitespace-nowrap'>
+													/mo
+												</span>
+											</span>
+										</div>
+										<p className='text-xs leading-6'>
+											<span className='text-[10px] font-medium whitespace-nowrap'>
+												$1,188 billed annually
+											</span>
+											<br/>
+										</p>
+
+										<div className='flex flex-col mt-4'>
+											<h3 className='font-medium text-3xl'>Geviti Lite</h3>
+											<p className='font-normal text-xl text-opacity-90 mt-1'>Basic longevity plan</p>
+											<div className='flex flex-row items-center gap-2 mt-1'>
+												<GreenCheck className='w-4 h-4 text-green-alert flex-shrink-0' />
+												<p>Basic bloodwork panel</p>
+											</div>
+											<div className='flex flex-row items-center gap-2 mt-1'>
+												<GreenCheck className='w-4 h-4 text-green-alert flex-shrink-0' />
+												<p>30 min bloodwork review</p>
+											</div>
+											<div className='flex flex-row items-center gap-2 mt-1'>
+												<GreenCheck className='w-4 h-4 text-green-alert flex-shrink-0' />
+												<p>Personalized health dashboard</p>
+											</div>
+											<div className='flex flex-row items-center gap-2 mt-1'>
+												<GreenCheck className='w-4 h-4 text-green-alert flex-shrink-0' />
+												<p>20% off custom supplement protocol</p>
+											</div>
+										</div>
+
+										<ButtonCta
+											href='#'
+											text='Get Started'
+											theme='primary'
+											className='w-full sm:w-fit mt-[25px]'
+										/>
 									</div>
 								</div>
-								<Image
-									alt=''
-									src={ pricingData.hero.banner.image }
-									width={ 411 }
-									height={ 300 }
-									className='object-contain w-full h-[458px] lg:h-[350px] object-right absolute -bottom-10 lg:-bottom-1.5 lg:right-0'
-								/>
 							</div>
-						</div>
-						<div className='w-full relative h-full lg:h-[450px] lg:col-span-6'>
-							{ item.mostPopular && (
-								<span className='absolute z-10 top-0 right-6 -translate-y-1/2 text-sm !leading-normal text-primary font-medium bg-blue-primary py-2 px-6 rounded-full'>
-                  Most Popular
-								</span>
-							) }
-							{ item.mostValue && (
-								<span className='absolute z-10 top-0 right-6 -translate-y-1/2 text-sm !leading-normal text-primary font-medium bg-blue-primary py-2 px-6 rounded-full'>
-                  Free Bloodwork
-								</span>
-							) }
-							<div
-								className={ clsxm(
-									'pt-[42px] pb-[34px] px-6 grid gap-10 grid-cols-1 lg:grid-cols-2 rounded-2xl overflow-hidden w-full h-full relative',
-									item.mostValue
-										? ' text-white bg-most-value'
-										: 'bg-[#FCFCFC] border-grey-100 border text-primary'
-								) }
-							>
-								<div>
-									<h3 className='!leading-[28px] text-[5.128vw] xs2:text-xl font-medium'>
-										{ productMembership?.productName }
-									</h3>
 
-									<AnimatePresence mode='wait'>
-										<motion.span
-											key={ `price_${selectedProductPrice?.priceId}` }
-											initial={ { y: -50, opacity: 0 } }
-											animate={ { y: 0, opacity: 1 } }
-											exit={ { y: 50, opacity: 0 } }
-											transition={ { ease: 'linear', duration: 0.25 } }
-											className='font-medium text-5xl whitespace-nowrap !leading-[125%] py-1 h-full'
-										>
+							{ /* Card 2: Geviti Plus (Most Popular) */ }
+							<div className='w-full relative h-auto'>
+								<span className='absolute z-10 top-0 right-6 -translate-y-1/2 text-sm !leading-normal text-primary font-medium bg-blue-primary py-2 px-6 rounded-full'>
+									Most Popular
+								</span>
+								<div
+									className={ clsxm(
+										'pt-[42px] pb-[34px] px-6 flex flex-col gap-10 rounded-2xl overflow-hidden w-full h-auto relative',
+										item.mostValue
+											? ' text-white bg-most-value'
+											: 'bg-[#FCFCFC] border-grey-100 border text-primary'
+									) }
+								>
+									<div>
+										<h3 className='!leading-[28px] text-[5.128vw] xs2:text-xl font-medium'>
+											{ productMembership?.productName }
+										</h3>
+
+										<AnimatePresence mode='wait'>
+											<motion.span
+												key={ `price_${selectedProductPrice?.priceId}` }
+												initial={ { y: -50, opacity: 0 } }
+												animate={ { y: 0, opacity: 1 } }
+												exit={ { y: 50, opacity: 0 } }
+												transition={ { ease: 'linear', duration: 0.25 } }
+												className='font-medium text-5xl whitespace-nowrap !leading-[125%] py-1 h-full'
+											>
+												{ (() => {
+													if (!selectedProductPrice) {
+														return (
+															<span className='font-medium text-5xl !leading-[125%] py-1'>
+																Loading...
+															</span>
+														);
+													}
+													const priceDetails = generateStripeNickname(
+														selectedProductPrice.price,
+														selectedProductPrice.interval || 'month',
+														selectedProductPrice.intervalCount || 1
+													);
+
+													return (
+														<span className='font-medium text-5xl !leading-[125%] py-1'>
+															{ priceDetails.perMonthPrice || '$0' }
+															<span className='text-xs font-medium whitespace-nowrap'>
+																{ '/mo' }
+															</span>
+														</span>
+													);
+												})() }
+											</motion.span>
+										</AnimatePresence>
+										<p className='text-xs leading-6'>
 											{ (() => {
 												if (!selectedProductPrice) {
 													return (
-														<span className='font-medium text-5xl !leading-[125%] py-1'>
-                              Loading...
+														<span className='text-[10px] font-medium whitespace-nowrap'>
+															Loading...
 														</span>
 													);
 												}
@@ -193,117 +236,108 @@ const Hero: React.FC<HeroProps> = ({
 												);
 
 												return (
-													<span className='font-medium text-5xl !leading-[125%] py-1'>
-														{ priceDetails.perMonthPrice || '$0' }
-														<span className='text-xs font-medium whitespace-nowrap'>
-															{ priceDetails.suffix || '/month' }
-														</span>
+													<span className='text-[10px] font-medium whitespace-nowrap'>
+														{ priceDetails.formattedPrice || '/mo' }
 													</span>
 												);
 											})() }
-										</motion.span>
-									</AnimatePresence>
-									<p className='text-xs leading-6'>
-										{ (() => {
-											if (!selectedProductPrice) {
-												return (
-													<span className='text-[10px] font-medium whitespace-nowrap'>
-                              Loading...
-													</span>
-												);
+											<br/>
+										</p>
+
+										<div className='flex flex-col mt-4'>
+											<h3 className='font-medium text-3xl'>Geviti Plus</h3>
+											<p className='font-normal text-xl text-opacity-90 mt-1'>Everything in Lite, plus</p>
+											<div className='flex flex-row items-center gap-2 mt-1'>
+												<GreenCheck className='w-4 h-4 text-green-alert flex-shrink-0' />
+												<p>Dedicated Functional Longevity Specialist</p>
+											</div>
+											<div className='flex flex-row items-center gap-2 mt-1'>
+												<GreenCheck className='w-4 h-4 text-green-alert flex-shrink-0' />
+												<p>45 min detailed bloodwork review</p>
+											</div>
+											<div className='flex flex-row items-center gap-2 mt-1'>
+												<GreenCheck className='w-4 h-4 text-green-alert flex-shrink-0' />
+												<p>Quarterly virtual visits</p>
+											</div>
+											<div className='flex flex-row items-center gap-2 mt-1'>
+												<GreenCheck className='w-4 h-4 text-green-alert flex-shrink-0' />
+												<p>40% off custom supplement protocol</p>
+											</div>
+										</div>
+
+										<ButtonCta
+											href={
+												item.btnCta.href +
+												'?product_id=' +
+												productMembership?.productId +
+												'&price_id=' +
+												selectedProductPrice?.priceId
 											}
-											const priceDetails = generateStripeNickname(
-												selectedProductPrice.price,
-												selectedProductPrice.interval || 'month',
-												selectedProductPrice.intervalCount || 1
-											);
-
-											return (
-												<span className='text-[10px] font-medium whitespace-nowrap'>
-													{ priceDetails.formattedPrice || '/month' }
-												</span>
-											);
-										})() }
-										<br/>
-										<span>
-											<span className='font-medium'>
-                        Includes the “
-												<Link
-													href='/longeviti-panel'
-													className='underline'>
-                          Longeviti Panel
-												</Link>
-                        ”
-											</span>{ ' ' }
-                      testing for{ ' ' }
-											<span className='text-xl font-medium'>
-												{ item.biomakers }
-											</span>{ ' ' }
-                      biomarkers at-home by a licensed clinician
-										</span>
-									</p>
-									<ButtonCta
-										href={
-											item.btnCta.href +
-                      '?product_id=' +
-                      productMembership?.productId +
-                      '&price_id=' +
-                      selectedProductPrice?.priceId
-										}
-										target={ isFromHomePage ? '_blank' : undefined }
-										text={ item.btnCta.text }
-										theme={ item.mostValue ? 'secondary' : 'primary' }
-										className='w-full sm:w-fit mt-[25px]'
-									/>
+											target={ isFromHomePage ? '_blank' : undefined }
+											text={ item.btnCta.text }
+											theme={ item.mostValue ? 'secondary' : 'primary' }
+											className='w-full sm:w-fit mt-[25px]'
+										/>
+									</div>
 								</div>
+							</div>
 
-								<div>
-									<span className='text-sm font-medium mb-3 inline-block'>
-										{ item.listTitle }
-									</span>
-									<ul className='flex flex-col gap-y-[11px] mb-6'>
-										{ item.list.map((feature, featureIdx) => (
-											<li
-												key={ `feature-${featureIdx}` }
-												className='text-sm !leading-normal gap-1.5 flex items-start font-medium -tracking-[0.53px]'
-											>
-												<div className='mt-1'>
-													<GreenCheck className='w-4 h-4 text-green-alert' />
-												</div>
-												<button
-													onClick={ () =>
-														setActiveListDropdown(
-															activeListDropdown === featureIdx
-																? -1
-																: featureIdx
-														) }
-													className='flex flex-col cursor-pointer'
-												>
-													<div className='flex items-center gap-2'>
-														<span>{ feature.title }</span>
-														<ChevronDown
-															className={ ` transform ${
-																activeListDropdown === featureIdx
-																	? 'rotate-180'
-																	: 'rotate-0'
-															} transition-transform ease-out duration-300` }
-														/>
-													</div>
-													<p
-														className={ clsxm(
-															'body-extra-small text-left',
-															'max-h-[300px] overflow-hidden transition-all duration-300',
-															activeListDropdown === featureIdx
-																? 'max-h-[300px]'
-																: 'max-h-0'
-														) }
-													>
-														{ feature.description }
-													</p>
-												</button>
-											</li>
-										)) }
-									</ul>
+							{ /* Card 3: Geviti Premium */ }
+							<div className='w-full relative h-auto'>
+								<span className='absolute z-10 top-0 right-6 -translate-y-1/2 text-sm !leading-normal text-primary font-medium bg-blue-primary py-2 px-6 rounded-full'>
+									Premium
+								</span>
+								<div
+									className='pt-[42px] pb-[34px] px-6 flex flex-col gap-10 rounded-2xl overflow-hidden w-full h-auto relative bg-[#FCFCFC] border-grey-100 border text-primary'
+								>
+									<div>
+										<h3 className='!leading-[28px] text-[5.128vw] xs2:text-xl font-medium'>
+											Geviti Premium
+										</h3>
+
+										<div className='font-medium text-5xl whitespace-nowrap !leading-[125%] py-1 h-full'>
+											<span className='font-medium text-5xl !leading-[125%] py-1'>
+												$299
+												<span className='text-xs font-medium whitespace-nowrap'>
+													/mo
+												</span>
+											</span>
+										</div>
+										<p className='text-xs leading-6'>
+											<span className='text-[10px] font-medium whitespace-nowrap'>
+												$3,588 billed annually
+											</span>
+											<br/>
+										</p>
+
+										<div className='flex flex-col mt-4'>
+											<h3 className='font-medium text-3xl'>Geviti Premium</h3>
+											<p className='font-normal text-xl text-opacity-90 mt-1'>Everything in Plus, plus</p>
+											<div className='flex flex-row items-center gap-2 mt-1'>
+												<GreenCheck className='w-4 h-4 text-green-alert flex-shrink-0' />
+												<p>Comprehensive bloodwork panel</p>
+											</div>
+											<div className='flex flex-row items-center gap-2 mt-1'>
+												<GreenCheck className='w-4 h-4 text-green-alert flex-shrink-0' />
+												<p>60 min in-depth analysis</p>
+											</div>
+											<div className='flex flex-row items-center gap-2 mt-1'>
+												<GreenCheck className='w-4 h-4 text-green-alert flex-shrink-0' />
+												<p>Monthly virtual visits</p>
+											</div>
+											<div className='flex flex-row items-center gap-2 mt-1'>
+												<GreenCheck className='w-4 h-4 text-green-alert flex-shrink-0' />
+												<p>60% off custom supplement protocol</p>
+											</div>
+										</div>
+
+										<ButtonCta
+											href='#'
+											text='Get Started'
+											theme='primary'
+											className='w-full sm:w-fit mt-[25px]'
+										/>
+									</div>
 								</div>
 							</div>
 						</div>

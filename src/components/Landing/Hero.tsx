@@ -30,6 +30,24 @@ type HeroProps = {
 	isScheduleCall?: boolean;
 };
 
+const HeroVideo = ({ type }: { type: 'desktop' | 'mobile' }) => {
+	const videoMobile = type === 'mobile';
+
+	return (
+		<video
+			src='/videos/hero-site-header.webm'
+			autoPlay
+			muted
+			loop
+			playsInline
+			className={ clsxm(
+				'object-cover pointer-events-none w-full h-full',
+				videoMobile ? 'md:hidden object-center' : 'md:block hidden object-right'
+			) }
+		/>
+	);
+};
+
 const HeroImage = ({ type, isLanding }: { type: 'desktop' | 'mobile', isLanding:boolean }) => {
 	const imageMobile = type === 'mobile';
 	const imageSrc = isLanding
@@ -177,14 +195,23 @@ const Hero: React.FC<HeroProps> = ({
 				<div className='absolute inset-0 w-full h-full'>
 					<div className='relative overflow-hidden w-full h-full'>
 						{
-							isMobile ? (
-								<HeroImage
-									type='mobile'
-									isLanding={ isLanding } />
+							isLanding ? (
+								isMobile ? (
+									<HeroImage
+										type='mobile'
+										isLanding={ isLanding } />
+								) : (
+									<HeroVideo
+										type='desktop' />
+								)
 							) : (
-								<HeroImage
-									type='desktop'
-									isLanding={ isLanding } />
+								isMobile ? (
+									<HeroImage
+										type='mobile'
+									    isLanding={ isLanding } />
+								) : (
+									<HeroVideo type='desktop' />
+								)
 							)
 						}
 					</div>
