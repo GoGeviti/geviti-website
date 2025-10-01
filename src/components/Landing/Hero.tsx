@@ -35,7 +35,7 @@ const HeroVideo = ({ type }: { type: 'desktop' | 'mobile' }) => {
 
 	return (
 		<video
-			src='/videos/hero-site-header.webm'
+			src='/videos/hero-site-header-optimized.mp4'
 			autoPlay
 			muted
 			loop
