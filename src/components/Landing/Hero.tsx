@@ -191,7 +191,7 @@ const Hero: React.FC<HeroProps> = ({
 					},
 				} }
 			/>
-			<div className='bg-primary h-[calc(100svh+14px)] sm:h-[calc(100svh+10px)] md:h-[calc(100svh+6px)] lg:min-h-[700px] lg:h-[calc(120vh)] w-full overflow-hidden max-lg:rounded-none rounded-19px relative pt-2 sm:pt-3 md:pt-4 lg:pt-5'>
+			<div className='bg-primary h-[calc(100svh+14px)] sm:h-[calc(100svh+10px)] md:h-[calc(100svh+6px)] lg:min-h-[700px] lg:h-[calc(100vh)] w-full overflow-hidden max-lg:rounded-none rounded-19px relative pt-2 sm:pt-3 md:pt-4 lg:pt-5'>
 				<div className='absolute inset-0 w-full h-full'>
 					<div className='relative overflow-hidden w-full h-full'>
 						{
@@ -224,7 +224,7 @@ const Hero: React.FC<HeroProps> = ({
 							</div>
 						</Suspense> */ }
 						<div className={ clsxm(
-							'pb-12 sm:pb-14 md:pb-16 lg:pb-[60px] min-h-[100vh] lg:min-h-[120vh] w-full flex flex-col justify-end pt-16 sm:pt-18 md:pt-20 lg:pt-24',
+							'pb-12 sm:pb-14 md:pb-16 lg:pb-[60px] min-h-[100vh] lg:min-h-[100vh] w-full flex flex-col justify-end pt-16 sm:pt-18 md:pt-20 lg:pt-24',
 							isScheduleCall && 'lg:pb-[75px] pb-[75px]'
 						) }>
 							<div className='text-left flex gap-y-6 flex-col'>
@@ -267,7 +267,7 @@ const Hero: React.FC<HeroProps> = ({
 											},
 										},
 									} }
-									className='sm:hidden flex flex-col'
+									className='sm:hidden flex italic font-VictorSerif flex-col'
 								>
 									{ renderTitles(isScheduleCall ? heroData.titlesScheduleCallMobile : heroData.titlesMobile) }
 								</motion.h1>
