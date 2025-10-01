@@ -41,8 +41,8 @@ const MemberFrequencyPlan: React.FC<MemberFrequencyPlanProps> = ({ setStep }) =>
 		setLoading(true);
 		const getOfferings = async() => {
 			const memberShipOfferings = await getMembershipOfferings();
-			setQuarterlyPrice(((memberShipOfferings?.find(it => it?.billing_frequency === BILLING_FREQ.ANNUAL)?.price || 0) / 3))
-			setMonthlyPrice(memberShipOfferings?.find(it => it?.billing_frequency === BILLING_FREQ.SEMI_ANNUAL)?.price || 0)
+			setQuarterlyPrice(((memberShipOfferings?.find(it => it?.billing_frequency === BILLING_FREQ.QUARTERLY)?.price || 0) / 3))
+			setMonthlyPrice(memberShipOfferings?.find(it => it?.billing_frequency === BILLING_FREQ.MONTHLY)?.price || 0)
 			setOfferings(
 				memberShipOfferings
 					?.map(it => ({

@@ -6,7 +6,6 @@ import React, {
 	useState,
 } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { collectSegments } from 'next/dist/build/segment-config/app/app-segments';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -42,32 +41,6 @@ const Hero: React.FC<HeroProps> = ({
 	const ref = useRef<HTMLDivElement>(null);
 
 	const { productMembership, setProductMembership, selectedProductPrice, setSelectedProductPrice } = useCheckoutStore();
-
-	// Define pricing tiers for all cards based on frequency
-	const pricingTiers = {
-		lite: {
-			'semi annual': { monthlyPrice: '$66.67', billedAmount: '$399', period: '6mo' },
-			annual: { monthlyPrice: '$56.52', billedAmount: '$678.3', period: 'yr' }
-		},
-		plus: {
-			'semi annual': { monthlyPrice: '$129.99', billedAmount: '$779.95', period: '6mo' },
-			annual: { monthlyPrice: '$110.50', billedAmount: '$1324.99', period: 'yr' }
-		},
-		premium: {
-			'semi annual': { monthlyPrice: '$149.83', billedAmount: '$899', period: '6mo' },
-			annual: { monthlyPrice: '$127.35', billedAmount: '$1528.30', period: 'yr' }
-		}
-	};
-
-	// Determine current frequency based on selectedProductPrice
-	const getCurrentFrequency = () => {
-		if (!selectedProductPrice) return 'semi annual';
-		// Assuming annual has intervalCount of 12 or interval of 'year'
-		console.log('selectedProductPrice:', selectedProductPrice);
-		return selectedProductPrice.interval;
-	};
-
-	const currentFrequency = getCurrentFrequency();
 
 	useEffect(() => {
 		if (productMembershipProps) {
@@ -136,208 +109,202 @@ const Hero: React.FC<HeroProps> = ({
 
 					<div
 						ref={ ref }
-						className='container-center mx-auto w-full pt-[58px] lg:pt-[78px]'
+						className='lg:max-w-[1061px] mx-auto sm:max-w-[392px] lg:grid-cols-9 flex max-lg:flex-col lg:grid gap-6 lg:gap-3.5 items-end w-full pt-[58px] lg:pt-[78px]'
 					>
-						<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
-							{ /* Card 1: Geviti Lite */ }
-							<div className='w-full relative h-auto'>
-								<div
-									className='pt-[42px] pb-[34px] px-6 flex flex-col gap-10 rounded-2xl overflow-hidden w-full h-auto relative bg-[#FCFCFC] border-grey-100 border text-primary'
-								>
-									<div>
-										<h3 className='!leading-[28px] text-[5.128vw] xs2:text-lg font-medium'>
-                    Advanced bloodwork twice yearly
-										</h3>
+						<div className='w-full max-lg:order-2 relative h-full lg:col-span-3'>
+							<div className='rounded-2xl pt-7 w-full max-lg:h-full max-lg:min-h-[529px] lg:h-[450px] relative overflow-hidden bg-[linear-gradient(0deg,#A7DAFF_0%,#75C5FF_100%)]'>
+								<div className='px-5'>
+									<div className='flex items-center gap-5px mb-3.5'>
+										<ShieldTick className='flex-shrink-0 w-5 h-5 text-primary' />
 
-										<AnimatePresence mode='wait'>
-											<motion.div
-												key={ `lite_price_${currentFrequency}` }
-												initial={ { y: -50, opacity: 0 } }
-												animate={ { y: 0, opacity: 1 } }
-												exit={ { y: 50, opacity: 0 } }
-												transition={ { ease: 'linear', duration: 0.25 } }
-												className='font-medium text-5xl whitespace-nowrap !leading-[125%] py-1 h-full'
-											>
-												<span className='victor-serif-medium italic text-5xl !leading-[125%] py-1'>
-													{ pricingTiers.lite[currentFrequency].monthlyPrice }/mo
-												</span>
-											</motion.div>
-										</AnimatePresence>
-										<p className='text-xs leading-6'>
-											<span className='text-[12px] font-medium whitespace-nowrap'>
-												(billed at { pricingTiers.lite[currentFrequency].billedAmount } every { pricingTiers.lite[currentFrequency].period })
+										<span className='inline-flex items-baseline text-[19px] !leading-[140%] font-semibold text-primary'>
+											{ pricingData.hero.banner.caption.text }
+											<span className='ml-1.5 font-normal text-base'>
+												{ pricingData.hero.banner.caption.textSuffix }
 											</span>
-											<br/>
+										</span>
+									</div>
+									<div>
+										<p className='text-[10px] !leading-6 font-semibold tracking-0.11em text-grey-800 uppercase'>
+											{ pricingData.hero.banner.preTitle }
 										</p>
-
-										<div className='flex flex-col mt-4'>
-											<h3 className='font-medium text-3xl'>Geviti Lite</h3>
-											<div className='flex flex-row items-center gap-2 mt-2'>
-												<GreenCheck className='w-4 h-4 text-green-alert flex-shrink-0' />
-												<p className='text-[12px]'>100+ biomarker bloodwork panel</p>
-											</div>
-											<div className='flex flex-row items-center gap-2 mt-2'>
-												<GreenCheck className='w-4 h-4 text-green-alert flex-shrink-0' />
-												<p className='text-[12px]'>At-home blood draw included*</p>
-											</div>
-											<div className='flex flex-row items-center gap-2 mt-2'>
-												<GreenCheck className='w-4 h-4 text-green-alert flex-shrink-0' />
-												<p className='text-[12px]'>Personalized health optimization plan</p>
-											</div>
-											<div className='flex flex-row items-center gap-2 mt-2'>
-												<GreenCheck className='w-4 h-4 text-green-alert flex-shrink-0' />
-												<p className='text-[12px]'>Access to custom supplement protocol</p>
-											</div>
-										</div>
-
-										<ButtonCta
-											href={
-												item.btnCta.href +
-												'?product_id=1' +
-												`&price_id=${currentFrequency === 'semi annual' ? 1 : 2}`
-											}
-											text='Get Started'
-											theme='primary'
-											className='w-full sm:w-fit mt-[25px]'
-										/>
+										<h3 className='h6 !leading-normal text-black -tracking-0.04em'>
+											<span
+												dangerouslySetInnerHTML={ {
+													__html: pricingData.hero.banner.title,
+												} }
+											/>
+										</h3>
 									</div>
 								</div>
+								<Image
+									alt=''
+									src={ pricingData.hero.banner.image }
+									width={ 411 }
+									height={ 300 }
+									className='object-contain w-full h-[458px] lg:h-[350px] object-right absolute -bottom-10 lg:-bottom-1.5 lg:right-0'
+								/>
 							</div>
-
-							{ /* Card 2: Geviti Plus (Most Popular) */ }
-							<div className='w-full relative h-auto'>
+						</div>
+						<div className='w-full relative h-full lg:h-[450px] lg:col-span-6'>
+							{ item.mostPopular && (
 								<span className='absolute z-10 top-0 right-6 -translate-y-1/2 text-sm !leading-normal text-primary font-medium bg-blue-primary py-2 px-6 rounded-full'>
-									Most Popular
+                  Most Popular
 								</span>
-								<div
-									className={ clsxm(
-										'pt-[42px] pb-[34px] px-6 flex flex-col gap-10 rounded-2xl overflow-hidden w-full h-auto relative',
-										item.mostValue
-											? ' text-white bg-most-value'
-											: 'bg-[#FCFCFC] border-grey-100 border text-primary'
-									) }
-								>
-									<div>
-										<h3 className='!leading-[28px] text-[5.128vw] xs2:text-xl font-light'>
-											A More Hands On Experience
-										</h3>
+							) }
+							{ item.mostValue && (
+								<span className='absolute z-10 top-0 right-6 -translate-y-1/2 text-sm !leading-normal text-primary font-medium bg-blue-primary py-2 px-6 rounded-full'>
+                  Free Bloodwork
+								</span>
+							) }
+							<div
+								className={ clsxm(
+									'pt-[42px] pb-[34px] px-6 grid gap-10 grid-cols-1 lg:grid-cols-2 rounded-2xl overflow-hidden w-full h-full relative',
+									item.mostValue
+										? ' text-white bg-most-value'
+										: 'bg-[#FCFCFC] border-grey-100 border text-primary'
+								) }
+							>
+								<div>
+									<h3 className='!leading-[28px] text-[5.128vw] xs2:text-xl font-medium'>
+										{ productMembership?.productName }
+									</h3>
 
-										<AnimatePresence mode='wait'>
-											<motion.div
-												key={ `plus_price_${currentFrequency}` }
-												initial={ { y: -50, opacity: 0 } }
-												animate={ { y: 0, opacity: 1 } }
-												exit={ { y: 50, opacity: 0 } }
-												transition={ { ease: 'linear', duration: 0.25 } }
-												className='font-medium text-5xl whitespace-nowrap !leading-[125%] py-1 h-full'
-											>
-												<span className='victor-serif-medium italic text-5xl !leading-[125%] py-1'>
-													{ pricingTiers.plus[currentFrequency].monthlyPrice }/mo
-												</span>
-											</motion.div>
-										</AnimatePresence>
-										<p className='text-xs leading-6'>
-											<span className='text-[12px] font-medium whitespace-nowrap'>
-												(billed at { pricingTiers.plus[currentFrequency].billedAmount } every { pricingTiers.plus[currentFrequency].period })
-											</span>
-											<br/>
-										</p>
+									<AnimatePresence mode='wait'>
+										<motion.span
+											key={ `price_${selectedProductPrice?.priceId}` }
+											initial={ { y: -50, opacity: 0 } }
+											animate={ { y: 0, opacity: 1 } }
+											exit={ { y: 50, opacity: 0 } }
+											transition={ { ease: 'linear', duration: 0.25 } }
+											className='font-medium text-5xl whitespace-nowrap !leading-[125%] py-1 h-full'
+										>
+											{ (() => {
+												if (!selectedProductPrice) {
+													return (
+														<span className='font-medium text-5xl !leading-[125%] py-1'>
+                              Loading...
+														</span>
+													);
+												}
+												const priceDetails = generateStripeNickname(
+													Number(selectedProductPrice.price),
+													selectedProductPrice.interval as BillingInterval || 'month',
+													selectedProductPrice.intervalCount || 1
+												);
 
-										<div className='flex flex-col mt-4'>
-											<h3 className='font-medium text-3xl'>Geviti Plus</h3>
-											<p className='font-normal text-xl text-opacity-90 mt-1'>Everything in Lite, plus</p>
-											<div className='flex flex-row items-center gap-2 mt-2'>
-												<GreenCheck className='w-4 h-4 text-green-alert flex-shrink-0' />
-												<p className='text-[12px]'>Dedicated Functional Longevity Specialist</p>
-											</div>
-											<div className='flex flex-row items-center gap-2 mt-2'>
-												<GreenCheck className='w-4 h-4 text-green-alert flex-shrink-0' />
-												<p className='text-[12px]'>45 min detailed bloodwork review</p>
-											</div>
-											<div className='flex flex-row items-center gap-2 mt-2'>
-												<GreenCheck className='w-4 h-4 text-green-alert flex-shrink-0' />
-												<p className='text-[12px]'>Quarterly virtual visits</p>
-											</div>
-											<div className='flex flex-row items-center gap-2 mt-2'>
-												<GreenCheck className='w-4 h-4 text-green-alert flex-shrink-0' />
-												<p className='text-[12px]'>40% off custom supplement protocol</p>
-											</div>
-										</div>
-
-										<ButtonCta
-											href={
-												item.btnCta.href +
-												'?product_id=1' +
-												`&price_id=${currentFrequency === 'semi annual' ? 3 : 4}`
+												return (
+													<span className='font-medium text-5xl !leading-[125%] py-1'>
+														{ priceDetails.perMonthPrice || '$0' }
+														<span className='text-xs font-medium whitespace-nowrap'>
+															{ priceDetails.suffix || '/month' }
+														</span>
+													</span>
+												);
+											})() }
+										</motion.span>
+									</AnimatePresence>
+									<p className='text-xs leading-6'>
+										{ (() => {
+											if (!selectedProductPrice) {
+												return (
+													<span className='text-[10px] font-medium whitespace-nowrap'>
+                              Loading...
+													</span>
+												);
 											}
-											target={ isFromHomePage ? '_blank' : undefined }
-											text={ item.btnCta.text }
-											theme={ item.mostValue ? 'secondary' : 'primary' }
-											className='w-full sm:w-fit mt-[25px]'
-										/>
-									</div>
+											const priceDetails = generateStripeNickname(
+												Number(selectedProductPrice.price),
+												selectedProductPrice.interval as BillingInterval || 'month',
+												selectedProductPrice.intervalCount || 1
+											);
+
+											return (
+												<span className='text-[10px] font-medium whitespace-nowrap'>
+													{ priceDetails.formattedPrice || '/month' }
+												</span>
+											);
+										})() }
+										<br/>
+										<span>
+											<span className='font-medium'>
+                        Includes the “
+												<Link
+													href='/longeviti-panel'
+													className='underline'>
+                          Longeviti Panel
+												</Link>
+                        ”
+											</span>{ ' ' }
+                      testing for{ ' ' }
+											<span className='text-xl font-medium'>
+												{ item.biomakers }
+											</span>{ ' ' }
+                      biomarkers at-home by a licensed clinician
+										</span>
+									</p>
+									<ButtonCta
+										href={
+											item.btnCta.href +
+                      '?product_id=' +
+                      productMembership?.productId +
+                      '&price_id=' +
+                      selectedProductPrice?.priceId
+										}
+										target={ isFromHomePage ? '_blank' : undefined }
+										text={ item.btnCta.text }
+										theme={ item.mostValue ? 'secondary' : 'primary' }
+										className='w-full sm:w-fit mt-[25px]'
+									/>
 								</div>
-							</div>
 
-							{ /* Card 3: Geviti Premium */ }
-							<div className='w-full relative h-auto'>
-								<div
-									className='pt-[42px] pb-[34px] px-6 flex flex-col gap-10 rounded-2xl overflow-hidden w-full h-auto relative bg-[#FCFCFC] border-grey-100 border text-primary'
-								>
-									<div>
-										<h3 className='!leading-[28px] text-[5.128vw] xs2:text-lg font-medium'>
-                    The Complete Longevity Solution
-										</h3>
-
-										<AnimatePresence mode='wait'>
-											<motion.div
-												key={ `premium_price_${currentFrequency}` }
-												initial={ { y: -50, opacity: 0 } }
-												animate={ { y: 0, opacity: 1 } }
-												exit={ { y: 50, opacity: 0 } }
-												transition={ { ease: 'linear', duration: 0.25 } }
-												className='font-medium text-5xl whitespace-nowrap !leading-[125%] py-1 h-full'
+								<div>
+									<span className='text-sm font-medium mb-3 inline-block'>
+										{ item.listTitle }
+									</span>
+									<ul className='flex flex-col gap-y-[11px] mb-6'>
+										{ item.list.map((feature, featureIdx) => (
+											<li
+												key={ `feature-${featureIdx}` }
+												className='text-sm !leading-normal gap-1.5 flex items-start font-medium -tracking-[0.53px]'
 											>
-												<span className='victor-serif-medium italic text-5xl !leading-[125%] py-1'>
-													{ pricingTiers.premium[currentFrequency].monthlyPrice }/mo
-												</span>
-											</motion.div>
-										</AnimatePresence>
-										<p className='text-xs leading-6'>
-											<span className='text-[12px] font-medium whitespace-nowrap'>
-												(billed at { pricingTiers.premium[currentFrequency].billedAmount } every { pricingTiers.premium[currentFrequency].period })
-											</span>
-											<br/>
-										</p>
-
-										<div className='flex flex-col mt-4'>
-											<h3 className='font-medium text-3xl'>Geviti Premium</h3>
-											<p className='font-normal text-xl text-opacity-90 mt-1'>Everything in Plus, and</p>
-											<div className='flex flex-row items-center gap-2 mt-2'>
-												<GreenCheck className='w-4 h-4 text-green-alert flex-shrink-0' />
-												<p className='text-[12px]'>Quarterly Longevity Practitioner visits</p>
-											</div>
-											<div className='flex flex-row items-center gap-2 mt-2'>
-												<GreenCheck className='w-4 h-4 text-green-alert flex-shrink-0' />
-												<p className='text-[12px]'>Access to compounded prescriptions from top pharmacies</p>
-											</div>
-											<div className='flex flex-row items-center gap-2 mt-2'>
-												<GreenCheck className='w-4 h-4 text-green-alert flex-shrink-0' />
-												<p className='text-[12px]'>Peptide therapy and regenerative medicine monitored by a medical practitioner</p>
-											</div>
-										</div>
-
-										<ButtonCta
-											href={
-												item.btnCta.href +
-												'?product_id=1' +
-												`&price_id=${currentFrequency === 'semi annual' ? 5 : 6}`
-											}
-											text='Get Started'
-											theme='primary'
-											className='w-full sm:w-fit mt-[25px]'
-										/>
-									</div>
+												<div className='mt-1'>
+													<GreenCheck className='w-4 h-4 text-green-alert' />
+												</div>
+												<button
+													onClick={ () =>
+														setActiveListDropdown(
+															activeListDropdown === featureIdx
+																? -1
+																: featureIdx
+														) }
+													className='flex flex-col cursor-pointer'
+												>
+													<div className='flex items-center gap-2'>
+														<span>{ feature.title }</span>
+														<ChevronDown
+															className={ ` transform ${
+																activeListDropdown === featureIdx
+																	? 'rotate-180'
+																	: 'rotate-0'
+															} transition-transform ease-out duration-300` }
+														/>
+													</div>
+													<p
+														className={ clsxm(
+															'body-extra-small text-left',
+															'max-h-[300px] overflow-hidden transition-all duration-300',
+															activeListDropdown === featureIdx
+																? 'max-h-[300px]'
+																: 'max-h-0'
+														) }
+													>
+														{ feature.description }
+													</p>
+												</button>
+											</li>
+										)) }
+									</ul>
 								</div>
 							</div>
 						</div>

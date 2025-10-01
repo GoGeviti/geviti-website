@@ -303,37 +303,38 @@ const config: Config = {
           '0px 188px 53px 0px rgba(158, 158, 158, 0.00), 0px 120px 48px 0px rgba(158, 158, 158, 0.01), 0px 68px 41px 0px rgba(158, 158, 158, 0.05), 0px 30px 30px 0px rgba(158, 158, 158, 0.09), 0px 8px 17px 0px rgba(158, 158, 158, 0.10)',
 				'card-ingredients':
           '0px 96px 27px 0px rgba(7, 77, 100, 0.00), 0px 61px 25px 0px rgba(7, 77, 100, 0.01), 0px 35px 21px 0px rgba(7, 77, 100, 0.05), 0px 15px 15px 0px rgba(7, 77, 100, 0.09), 0px 4px 8px 0px rgba(7, 77, 100, 0.10)',
-      },
-      transitionDuration: {
-        '50': '50ms',
-        '160': '160ms',
-        '400': '400ms',
-        '660': '660ms',
-        '750': '750ms',
-      },
-      transitionTimingFunction: {
-        'slide-in': 'cubic-bezier(0.15, 1.14, 0.88, 0.98)',
-        custom: 'cubic-bezier(0.87, 0, 0.13, 1)',
-      },
-    },
-    fontFamily: {
-      Poppins: ['Poppins', 'sans-serif'],
-      BRSonoma: ['var(--font-BRSonoma)', 'sans-serif'],
-      LibreCaslon: ['var(--font-LibreCaslon)', 'sans-serif'],
-      PlayFairDisplay: ['var(--font-PlayFairDisplay)', 'sans-serif'],
-      VictorSerif: ['var(--font-VictorSerif)', 'serif'],
-    },
-  },
-  plugins: [
-    require('@tailwindcss/forms'),
-    require('tailwindcss-animate'),
-    ({ addComponents }: Config['PluginAPI']) => {
-      addComponents({
-        '.container-center': {
-          '@apply max-w-[1360px] mx-auto px-4 lg:px-10': {},
-        },
-        '.absolute-center': {
-          '@apply absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2':
+				'price-comparison': '0px 474px 133px 0px rgba(189, 189, 189, 0.00), 0px 304px 121px 0px rgba(189, 189, 189, 0.01), 0px 171px 102px 0px rgba(189, 189, 189, 0.05), 0px 76px 76px 0px rgba(189, 189, 189, 0.09), 0px 19px 42px 0px rgba(189, 189, 189, 0.10)',
+
+			},
+			transitionDuration: {
+				'50': '50ms',
+				'160': '160ms',
+				'400': '400ms',
+				'660': '660ms',
+				'750': '750ms',
+			},
+			transitionTimingFunction: {
+				'slide-in': 'cubic-bezier(0.15, 1.14, 0.88, 0.98)',
+				custom: 'cubic-bezier(0.87, 0, 0.13, 1)',
+			},
+		},
+		fontFamily: {
+			Poppins: ['Poppins', 'sans-serif'],
+			BRSonoma: ['var(--font-BRSonoma)', 'sans-serif'],
+			LibreCaslon: ['var(--font-LibreCaslon)', 'sans-serif'],
+			PlayFairDisplay: ['var(--font-PlayFairDisplay)', 'sans-serif'],
+		},
+	},
+	plugins: [
+		require('@tailwindcss/forms'),
+		require('tailwindcss-animate'),
+		({ addComponents }: Config['PluginAPI']) => {
+			addComponents({
+				'.container-center': {
+					'@apply max-w-[1360px] mx-auto px-4 lg:px-10': {},
+				},
+				'.absolute-center': {
+					'@apply absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2':
             {},
 				},
 				'.btn': {
@@ -386,30 +387,6 @@ const config: Config = {
 				},
 				'.body-extra-small': {
 					'@apply font-Poppins text-xs text-grey-primary': {}
-				},
-				'.victor-serif-light': {
-					'@apply font-VictorSerif font-light': {}
-				},
-				'.victor-serif-light-italic': {
-					'@apply font-VictorSerif font-light italic': {}
-				},
-				'.victor-serif-regular': {
-					'@apply font-VictorSerif font-normal': {}
-				},
-				'.victor-serif-regular-italic': {
-					'@apply font-VictorSerif font-normal italic': {}
-				},
-				'.victor-serif-medium': {
-					'@apply font-VictorSerif font-medium': {}
-				},
-				'.victor-serif-medium-italic': {
-					'@apply font-VictorSerif font-medium italic': {}
-				},
-				'.victor-serif-semibold': {
-					'@apply font-VictorSerif font-semibold': {}
-				},
-				'.victor-serif-semibold-italic': {
-					'@apply font-VictorSerif font-semibold italic': {}
 				}
 			});
 		},

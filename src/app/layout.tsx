@@ -6,7 +6,7 @@ import { AOSInit } from '@/components';
 import LenisScroller from '@/components/LenisScroller';
 import Provider from '@/components/Provider';
 import ReactQueryProvider from '@/components/ReactQueryProvider';
-import { brSonoma, victorSerif } from '@/constant/fonts';
+import { brSonoma } from '@/constant/fonts';
 import { mergeOpenGraph } from '@/lib/mergeOpenGraph';
 import StyledComponentsRegistry from '@/lib/registry';
 
@@ -141,7 +141,7 @@ const RootLayout: React.FC<{ children: React.ReactNode; }> = ({ children }) => {
 			
 			<StyledComponentsRegistry>
 				<body
-					className={ `${ brSonoma.variable } ${ victorSerif.variable }` }
+					className={ `${ brSonoma.variable }` }
 					suppressHydrationWarning
 				>
 					<NextTopLoader

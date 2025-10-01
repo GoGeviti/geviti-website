@@ -243,109 +243,28 @@ export const getAllProducts = async() : Promise<ProductsResponse[]> => {
 
 export const getProductMembership = async() : Promise<ProductMembership> => {
 	try {
-		// TODO: Mock response for getProductMembership
-		const mockResponse: ProductMembership = {
-			productId: 1,
-			productName: 'Geviti Membership',
-			productType: 'subscription',
-			productDescription: 'Access to premium features and benefits',
-			defaultPriceId: 'price_1234567890',
-			defaultAmount: '1',
-			defaultInterval: 'mo',
-			defaultIntervalCount: 1,
-			productPrices: [
-				{
-					productPriceId: 1,
-					nickname: 'Geviti Lite',
-					price: 399,
-					priceId: '1',
-					priceType: 'recurring',
-					billingFrequency: 'Semi Annual',
-					interval: 'semi annual',
-					intervalCount: 1,
-					isCurrentPrice: true,
-					isHidden: false,
-					isLegacy: false,
-					isDefault: true,
-				},
-				{
-					productPriceId: 2,
-					nickname: 'Geviti Lite',
-					price: 678.3,
-					priceId: '2',
-					priceType: 'recurring',
-					billingFrequency: 'Annual',
-					interval: 'annual',
-					intervalCount: 1,
-					isCurrentPrice: false,
-					isHidden: false,
-					isLegacy: false,
-					isDefault: false,
-				},
-				{
-					productPriceId: 3,
-					nickname: 'Geviti Plus',
-					price: 779.95,
-					priceId: '3',
-					priceType: 'recurring',
-					billingFrequency: 'Semi Annual',
-					interval: 'semi annual',
-					intervalCount: 1,
-					isCurrentPrice: true,
-					isHidden: false,
-					isLegacy: false,
-					isDefault: false,
-				},
-				{
-					productPriceId: 4,
-					nickname: 'Geviti Plus',
-					price: 1324.99,
-					priceId: '4',
-					priceType: 'recurring',
-					billingFrequency: 'Annual',
-					interval: 'annual',
-					intervalCount: 1,
-					isCurrentPrice: false,
-					isHidden: false,
-					isLegacy: false,
-					isDefault: false,
-				},
-				{
-					productPriceId: 5,
-					nickname: 'Geviti Premium',
-					price: 899,
-					priceId: '5',
-					priceType: 'recurring',
-					billingFrequency: 'Semi Annual',
-					interval: 'semi annual',
-					intervalCount: 1,
-					isCurrentPrice: true,
-					isHidden: false,
-					isLegacy: false,
-					isDefault: false,
-				},
-				{
-					productPriceId: 6,
-					nickname: 'Geviti Premium',
-					price: 1528.30,
-					priceId: '6',
-					priceType: 'recurring',
-					billingFrequency: 'Annual',
-					interval: 'annual',
-					intervalCount: 1,
-					isCurrentPrice: false,
-					isHidden: false,
-					isLegacy: false,
-					isDefault: false,
+		const res = await fetch(
+			`${onboardingApiUrl}/products/membership`,
+			{
+				method: 'GET',
+				headers: {
+					...headers,
 				}
-			]
+			}
+		);
+		const data = await processResponse<ProductMembership>(res);
+		const filtered = {
+			...data,
+			productPrices: data.productPrices.filter(e => !e.isHidden)
 		}
-
-		// Filter out hidden prices as in the original commented code
-		return {
-			...mockResponse,
-			productPrices: mockResponse.productPrices.filter(it => !it.isHidden)
-		};
+		// console.log('filtered ==> ', filtered)
+		return filtered
+		// return {
+		// 	...data,
+		// 	productPrices: {
+		// 		...data.productPrices.filter(e => !e.isHidden)
+		// 	}
+		// }
 	} catch (error) {
 		return await processError(error);
 	}
