@@ -22,17 +22,17 @@ const ButtonSwitchMemberFreq: React.FC<ButtonSwitchMemberFreqProps> = ({
 	};
 
 	const renderButtonSwitchFrequency = () => {
-		const selectedIndex = productMembership?.productPrices.findIndex(
+		const selectedIndex = productMembership?.productPrices.slice(0, 2).findIndex(
 			e => e.productPriceId === selectedProductPrice?.productPriceId
 		) ?? 0;
-		const totalOptions = productMembership?.productPrices.length ?? 1;
+		const totalOptions = 2;
 
 		return (
 			<div className='relative overflow-hidden w-full rounded-[100px] h-[49px] px-1.5 bg-grey-50'>
 				<div
 					className='relative grid h-full'
 					style={ { gridTemplateColumns: `repeat(${totalOptions}, 1fr)` } }>
-					{ productMembership?.productPrices.map((opt, index) => {
+					{ productMembership?.productPrices.slice(0, 2).map((opt, index) => {
 						const isSelected = opt.productPriceId === selectedProductPrice?.productPriceId;
 						const isSecondButton = index === 1;
 						return (
