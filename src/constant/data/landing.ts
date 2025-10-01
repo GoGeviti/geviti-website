@@ -25,8 +25,8 @@ const landingData = {
 		preTitle: 'Science-backed longevity protocols personalized to your biology.',
 		title: 'Your partner in total health optimization and longevit<span class="ml-0.5">y<span>.',
 		titles: [
-			'Your Best Years',
-			'Haven\'t Happened Yet.',
+			'Better Bloodwork',
+			'Smarter Supplements',
 		],
 		titlesScheduleCall: [
 			'The world’s most advanced',
@@ -36,7 +36,8 @@ const landingData = {
 			'The world’s most advanced health platform.',
 		],
 		titlesMobile: [
-			'Your Best Years Haven\'t Happened Yet.',
+			'Better Bloodwork',
+			'Smarter Supplements',
 		],
 		banner: {
 			text: '<span class="font-medium">Geviti Closes Early Stage Seed Financing</span> 🎉 <br/>To Celebrate, Those Who Join Our Beta Before<br/>August 1st Will Be Grandfathered In At $89/M!',

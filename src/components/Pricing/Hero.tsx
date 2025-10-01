@@ -41,15 +41,15 @@ const Hero: React.FC<HeroProps> = ({
 	const pricingTiers = {
 		lite: {
 			'semi annual': { monthlyPrice: '$66.67', billedAmount: '$399', period: '6mo' },
-			annual: { monthlyPrice: '$56.52', billedAmount: '$678.3', period: 'yr' }
+			annual: { monthlyPrice: '$56.67', billedAmount: '$679.89', period: 'yr' }
 		},
 		plus: {
-			'semi annual': { monthlyPrice: '$129.99', billedAmount: '$779.95', period: '6mo' },
-			annual: { monthlyPrice: '$110.50', billedAmount: '$1324.99', period: 'yr' }
+			'semi annual': { monthlyPrice: '$130', billedAmount: '$779', period: '6mo' },
+			annual: { monthlyPrice: '$110.50', billedAmount: '$1325.98', period: 'yr' }
 		},
 		premium: {
-			'semi annual': { monthlyPrice: '$149.83', billedAmount: '$899', period: '6mo' },
-			annual: { monthlyPrice: '$127.35', billedAmount: '$1528.30', period: 'yr' }
+			'semi annual': { monthlyPrice: '$150', billedAmount: '$899', period: '6mo' },
+			annual: { monthlyPrice: '$127.50', billedAmount: '$1529.98', period: 'yr' }
 		}
 	};
 
@@ -108,7 +108,7 @@ const Hero: React.FC<HeroProps> = ({
 				className='font-Poppins relative z-[3]'>
 				<div
 					className={ clsxm(
-						'container-center flex flex-col items-center pt-[129px] lg:pt-[177px]',
+						'container-center flex flex-col items-center pt-20 sm:pt-24 md:pt-28 lg:pt-[177px]',
 						className
 					) }
 				>
@@ -319,11 +319,11 @@ const Hero: React.FC<HeroProps> = ({
 											</div>
 											<div className='flex flex-row items-center gap-2 mt-2'>
 												<GreenCheck className='w-4 h-4 text-green-alert flex-shrink-0' />
-												<p className='text-[12px]'>Access to compounded prescriptions from toppharmacies</p>
+												<p className='text-[12px]'>Access to compounded prescriptions from top pharmacies</p>
 											</div>
 											<div className='flex flex-row items-center gap-2 mt-2'>
 												<GreenCheck className='w-4 h-4 text-green-alert flex-shrink-0' />
-												<p className='text-[12px]'>Peptide therapy and regenerative medicinemonitored by a medical practitioner</p>
+												<p className='text-[12px]'>Peptide therapy and regenerative medicine monitored by a medical practitioner</p>
 											</div>
 										</div>
 
