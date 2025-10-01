@@ -103,6 +103,53 @@ const BDSupperRegular = localFont({
 	src: './fonts/BDSupperRegular.ttf',
 });
 
+const victorSerif = localFont({
+	display: 'swap',
+	src: [
+		{
+			path: './fonts/victorSerif/VictorSerif-30Light.ttf',
+			weight: '300',
+			style: 'normal',
+		},
+		{
+			path: './fonts/victorSerif/VictorSerif-35LightItalic.ttf',
+			weight: '300',
+			style: 'italic',
+		},
+		{
+			path: './fonts/victorSerif/VictorSerif-40Regular.ttf',
+			weight: '400',
+			style: 'normal',
+		},
+		{
+			path: './fonts/victorSerif/VictorSerif-45RegularItalic.ttf',
+			weight: '400',
+			style: 'italic',
+		},
+		{
+			path: './fonts/victorSerif/VictorSerif-50Medium.ttf',
+			weight: '500',
+			style: 'normal',
+		},
+		{
+			path: './fonts/victorSerif/VictorSerif-55MediumItalic.ttf',
+			weight: '500',
+			style: 'italic',
+		},
+		{
+			path: './fonts/victorSerif/VictorSerif-60Semibold.ttf',
+			weight: '600',
+			style: 'normal',
+		},
+		{
+			path: './fonts/victorSerif/VictorSerif-65SemiboldItalic.ttf',
+			weight: '600',
+			style: 'italic',
+		},
+	],
+	variable: '--font-VictorSerif',
+});
+
 export {
-	BDSupperRegular, brSonoma, grifter, libreCaslon, playFairDisplay
+	BDSupperRegular, brSonoma, grifter, libreCaslon, playFairDisplay, victorSerif
 };
