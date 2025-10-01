@@ -99,7 +99,7 @@ const ProductsSection: React.FC<ProductSectionProps> = ({ data }) => {
 					<div className='px-4 lg:px-10 xl:px-20'>
 						<div className='flex flex-col gap-y-[42px] lg:gap-y-6'>
 							<div>
-								<h2 className='text-primary text-2xl md:text-3xl lg:text-4xl leading-[179%] sm:leading-[128%] lg:leading-[119%] -tracking-0.04em'>
+								<h2 className='text-primary text-2xl md:text-3xl lg:text-4xl leading-[179%] sm:leading-[128%] lg:leading-[119%] -tracking-0.04em font-VictorSerif italic font-medium'>
 							Discover Geviti
 								</h2>
 								<p className='text-grey-primary mt-5px text-xs sm:text-sm !leading-5'>

@@ -131,8 +131,8 @@ const Review = () => {
 		<div className='px-3 font-Poppins mb-3.5 lg:mb-6'>
 			<div className='bg-white rounded-[19px] py-16 overflow-hidden'>
 				<div className='px-4 flex lg:items-start justify-between max-lg:flex-col max-lg:gap-3.5 lg:px-16'>
-					<h3 className='text-2xl lg:text-4xl font-medium text-primary whitespace-nowrap'>
-            We are trusted by <br/><span className='text-grey-primary'>some amazing people</span>
+					<h3 className='text-2xl lg:text-4xl font-medium text-primary whitespace-nowrap font-VictorSerif italic'>
+            We Are Trusted By <br/><span className='text-grey-primary'>Some Amazing People</span>
 					</h3>
 					<CustomLink
 						href='/testimonials'

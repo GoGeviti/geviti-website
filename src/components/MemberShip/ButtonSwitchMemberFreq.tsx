@@ -51,7 +51,7 @@ const ButtonSwitchMemberFreq: React.FC<ButtonSwitchMemberFreqProps> = ({
 										'absolute px-1 py-0.5 -top-[-0.5rem] rounded-full font-semibold text-[10px]',
 										isSelected ? 'text-white -right-[-0.5rem]' : 'bg-black text-white -right-0.5'
 									) }>
-										15% OFF
+										15% off
 									</div>
 								) }
 							</button>

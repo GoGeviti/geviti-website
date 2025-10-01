@@ -125,7 +125,7 @@ const landingData = {
 	},
 	steps: {
 		preTitle: 'Your journey begins with a full blood panel',
-		title: 'No more guessing where your health is',
+		title: 'It All Starts With Bloodwork',
 		btnCta: {
 			href: '/pricing',
 			externalLink: false,
@@ -277,7 +277,7 @@ const landingData = {
 	},
 	benefits: {
 		preTitle: 'data driven care based upon bloodwork',
-		title: 'Optimize health & wellness',
+		title: 'Optimize Health & Wellness',
 		description:
       'A fully integrated health program that brings together advanced diagnostics, expert medical care and coaching, science-backed longevity therapies for optimal well-being and long-term vitality.',
 		list: [
@@ -319,7 +319,7 @@ const landingData = {
 				items: [
 					{
 						cheked: true,
-						text: '90+ biomarkers every 6 months',
+						text: '100+ biomarkers every 6 months',
 					},
 					{
 						cheked: true,
@@ -626,7 +626,7 @@ const landingData = {
 		priceSection: {
 			preTitle: 'Personalized plans that are right for you',
 			title:
-        'Memberships start at $129<span class="text-xs sm:text-[20px] lg:text-2xl !leading-normal">/month</span>',
+        'Optimize Your Health For Just $109<span class="text-xs sm:text-[20px] lg:text-2xl !leading-normal">/month</span>',
 			description:
         'Geviti easily integrates into your life with at-home diagnostics and doctor-supervised treatments on your time.',
 			btnCta: {
@@ -685,7 +685,7 @@ const landingData = {
 					reverse: true,
 					list: [
 						{
-							title: 'In-app Doctors',
+							title: 'In-app Specialists',
 							description:
                 'Our mission is to eliminate barriers in healthcare. There should be no need to leave your home for this level of care.',
 						},
@@ -723,7 +723,8 @@ const landingData = {
 		{
 			align: 'left',
 			preTitle: 'Direct access',
-			title: 'Routine bloodwork,<br/>automated.',
+			title: 'Comprehensive Bloodwork.',
+			subtile: 'Routine And Automated.',
 			description:
 				'Geviti provides our users with a comprehensive care team. Instead of being forced to choose between a healthcare provider and a health coach, we offer a solution where the two work in tandem to craft the ultimate longevity regimen.',
 			btnCta: {

@@ -22,7 +22,7 @@ const Membership = () => {
 			<div className='bg-white rounded-19px py-[46px] lg:pb-0'>
 				<div className='px-2 flex flex-col items-center text-center'>
 					<div className='my-2.5 lg:mt-0 lg:mb-3'>
-						<h3 className='text-[5.581vw] !leading-8 xs:text-2xl sm:text-3xl lg:text-4xl lg:!leading-normal -tracking-0.04em text-primary'>
+						<h3 className='text-[5.581vw] !leading-8 xs:text-2xl sm:text-3xl lg:text-4xl lg:!leading-normal -tracking-0.04em text-primary font-VictorSerif italic font-medium'>
 							<span dangerouslySetInnerHTML={ { __html: membershipData.priceSection.title } } />
 						</h3>
 					</div>

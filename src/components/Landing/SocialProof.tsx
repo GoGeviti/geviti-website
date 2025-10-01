@@ -154,8 +154,8 @@ const SocialProof = ({ testimonials = defaultTestimonials, hideSeeMore = false }
 		<div className='px-3 font-Poppins mb-6'>
 			<div className='bg-white rounded-[19px] py-16 overflow-hidden social-proof-container'>
 				<div className='px-3 lg:px-16 flex flex-col lg:flex-row max-lg:gap-3.5 items-start justify-between'>
-					<h3 className='text-2xl lg:text-4xl font-medium text-primary whitespace-nowrap'>
-						What our customers <br/><span className='text-grey-primary'>say about us</span>
+					<h3 className='text-2xl lg:text-4xl font-medium text-primary whitespace-nowrap font-VictorSerif italic'>
+						What Our Customers <br/><span className='text-grey-primary'>Say About Us</span>
 					</h3>
 					{ !hideSeeMore && (
 						<CustomLink

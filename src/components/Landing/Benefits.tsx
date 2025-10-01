@@ -80,7 +80,7 @@ const Benefits: React.FC<BenefitsProps> = ({ preTitle, isScheduleCall = false })
 					<p className='font-semibold text-center w-full text-grey-primary text-[10px] tracking-[1.1px] lg:text-sm uppercase lg:tracking-[1.54px]'>
 						{ preTitle || benefitsData.preTitle }
 					</p>
-					<h2 className='mb-3.5 lg:mb-2 text-center text-2xl md:text-3xl lg:text-[64px] !leading-normal text-primary -tracking-0.04em'>
+					<h2 className='mb-3.5 lg:mb-2 text-center text-2xl md:text-3xl lg:text-[64px] !leading-normal text-primary -tracking-0.04em font-VictorSerif italic font-normal'>
 						{ benefitsData.title }
 					</h2>
 					<p className='text-xs lg:text-sm text-center !leading-5 text-grey-400 max-w-[732px] mx-auto'>
