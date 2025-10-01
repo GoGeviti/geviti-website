@@ -239,23 +239,23 @@ const Hero: React.FC<HeroProps> = ({
 											},
 										},
 									} }
-									className='sm:max-w-[738px] flex flex-col max-sm:hidden'
+									className='sm:max-w-[738px] flex flex-col max-sm:hidden italic victor-serif-medium'
 								>
 									{ renderTitles(isScheduleCall ? heroData.titlesScheduleCall : heroData.titles) }
-									<span className='overflow-hidden inline-flex italic victor-serif-medium sm:max-w-[738px] max-sm:hidden'>
-										<motion.span
-											variants={ {
-												visible: {
-													y: 0,
-													transition: slideUpTransition,
-												},
-												hidden: { y: '100%' },
-											} }
-											className='inline-flex font-medium text-[#8CD6FE] text-lg xs:text-xl sm:text-2xl md:text-3xl lg:text-[6vh] xl:text-[56px] !leading-normal -tracking-0.04em italic victor-serif-medium'
-										>
-                      Personalized Longevity
-										</motion.span>
-									</span>
+									{ /* <span className='overflow-hidden inline-flex italic victor-serif-medium sm:max-w-[738px] max-sm:hidden'> */ }
+									{ /* 	<motion.span */ }
+									{ /* 		variants={ { */ }
+									{ /* 			visible: { */ }
+									{ /* 				y: 0, */ }
+									{ /* 				transition: slideUpTransition, */ }
+									{ /* 			}, */ }
+									{ /* 			hidden: { y: '100%' }, */ }
+									{ /* 		} } */ }
+									{ /* 		className='inline-flex font-medium text-[#8CD6FE] text-lg xs:text-xl sm:text-2xl md:text-3xl lg:text-[6vh] xl:text-[56px] !leading-normal -tracking-0.04em italic victor-serif-medium' */ }
+									{ /* 	> */ }
+									{ /*         Personalized Longevity */ }
+									{ /* 	</motion.span> */ }
+									{ /* </span> */ }
 								</motion.h1>
 								<motion.h1
 									initial='hidden'
@@ -270,21 +270,26 @@ const Hero: React.FC<HeroProps> = ({
 									className='sm:hidden flex flex-col'
 								>
 									{ renderTitles(isScheduleCall ? heroData.titlesScheduleCallMobile : heroData.titlesMobile) }
-                  <span className='overflow-hidden inline-flex italic victor-serif-medium sm:max-w-[738px]'>
-										<motion.span
-											variants={ {
-												visible: {
-													y: 0,
-													transition: slideUpTransition,
-												},
-												hidden: { y: '100%' },
-											} }
-											className='inline-flex font-medium text-[#8CD6FE] text-2xl xs:text-3xl md:text-4xl lg:text-[6vh] xl:text-[56px] !leading-normal -tracking-0.04em italic victor-serif-medium'
-										>
-                      Personalized Longevity
-										</motion.span>
-									</span>
 								</motion.h1>
+								{ /* <span className='overflow-hidden inline-flex'> */ }
+								{ /* 	<motion.h2 */ }
+								{ /* 		variants={ { */ }
+								{ /* 			visible: { */ }
+								{ /* 				y: 0, */ }
+								{ /* 				transition: { */ }
+								{ /* 					...slideUpTransition, */ }
+								{ /* 					delay: showIntro === 'true' ? 2.1 : 0.1, */ }
+								{ /* 				}, */ }
+								{ /* 			}, */ }
+								{ /* 			hidden: { y: '100%' }, */ }
+								{ /* 		} } */ }
+								{ /* 		initial='hidden' */ }
+								{ /* 		animate='visible' */ }
+								{ /* 		className='text-grey-secondary font-Poppins font-normal inline-flex text-xs sm:text-xs lg:text-base !leading-6 tracking-0.11em' */ }
+								{ /* 	> */ }
+								{ /* 		{ heroData.preTitle } */ }
+								{ /* 	</motion.h2> */ }
+								{ /* </span> */ }
 
 								<div className={ clsxm(
 									'flex w-full mt-6 xs:mt-8 sm:mt-10 md:mt-[5vh] lg:mt-[5.435vh] xl:mt-50px relative',

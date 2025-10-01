@@ -25,8 +25,8 @@ const landingData = {
 		preTitle: 'Science-backed longevity protocols personalized to your biology.',
 		title: 'Your partner in total health optimization and longevit<span class="ml-0.5">y<span>.',
 		titles: [
-			'Better Bloodwork',
-			'Smarter Supplements',
+			'Your Best Years',
+			'Haven\'t Happened Yet.',
 		],
 		titlesScheduleCall: [
 			'The world’s most advanced',
@@ -36,8 +36,8 @@ const landingData = {
 			'The world’s most advanced health platform.',
 		],
 		titlesMobile: [
-			'Better Bloodwork',
-			'Smarter Supplements',
+			'Your Best Years',
+			'Haven\'t Happened Yet.',
 		],
 		banner: {
 			text: '<span class="font-medium">Geviti Closes Early Stage Seed Financing</span> 🎉 <br/>To Celebrate, Those Who Join Our Beta Before<br/>August 1st Will Be Grandfathered In At $89/M!',
@@ -742,7 +742,7 @@ const landingData = {
 		{
 			align: 'right',
 			preTitle: 'A holistic approach',
-			title: 'A wellness team, in<br />your pocket.',
+			title: 'A Wellness Team, In<br />Your Pocket.',
 			description:
 				'At Geviti, we bring together the best of both worlds by integrating the wisdom of Eastern practices with the advancements of Western medicine. This holistic approach ensures that your health journey is supported from all angles, promoting optimal balance, healing, and long-term wellness.',
 			card: {
@@ -756,7 +756,7 @@ const landingData = {
 		{
 			align: 'left',
 			preTitle: 'data-driven care',
-			title: 'Custom plans tailored<br />to your needs.',
+			title: 'Custom Plans Tailored<br />To Your Needs.',
 			description:
 				'No two bodies are the same, and your care plan shouldn’t be either. Geviti designs personalized health plans based on your unique biomarkers, lifestyle, and goals. Whether it’s optimizing longevity or improving daily performance, your regimen is crafted just for you.',
 			btnCta: {
@@ -774,7 +774,7 @@ const landingData = {
 		{
 			align: 'right',
 			preTitle: 'Not a one and done approach',
-			title: 'Exclusive membership<br />benefits.',
+			title: 'Exclusive Membership<br />Benefits.',
 			description:
 				'Your health is always evolving, and so is our care. With Geviti’s continuous health tracking and regular check-ins, we ensure that your plan adapts to your progress. From real-time metrics to follow-up lab work, your wellness is in constant focus.',
 			card: {
