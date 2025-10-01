@@ -125,34 +125,36 @@ const Hero: React.FC<HeroProps> = ({
 
 										<div className='font-medium text-5xl whitespace-nowrap !leading-[125%] py-1 h-full'>
 											<span className='victor-serif-medium italic text-5xl !leading-[125%] py-1'>
-												$99/mo
+												$66.67
+												<span className='text-2xl font-medium whitespace-nowrap'>
+													/mo
+												</span>
 											</span>
 										</div>
 										<p className='text-xs leading-6'>
-											<span className='text-[10px] font-medium whitespace-nowrap'>
-												$1,188 billed annually
+											<span className='text-[12px] font-medium whitespace-nowrap'>
+												(billed at $399 every 6mo)
 											</span>
 											<br/>
 										</p>
 
 										<div className='flex flex-col mt-4'>
 											<h3 className='font-medium text-3xl'>Geviti Lite</h3>
-											<p className='font-normal text-xl text-opacity-90 mt-1'>Basic longevity plan</p>
-											<div className='flex flex-row items-center gap-2 mt-1'>
+											<div className='flex flex-row items-center gap-2 mt-2'>
 												<GreenCheck className='w-4 h-4 text-green-alert flex-shrink-0' />
-												<p>Basic bloodwork panel</p>
+												<p className='text-[12px]'>100+ biomarker bloodwork panel</p>
 											</div>
-											<div className='flex flex-row items-center gap-2 mt-1'>
+											<div className='flex flex-row items-center gap-2 mt-2'>
 												<GreenCheck className='w-4 h-4 text-green-alert flex-shrink-0' />
-												<p>30 min bloodwork review</p>
+												<p className='text-[12px]'>At-home blood draw included*</p>
 											</div>
-											<div className='flex flex-row items-center gap-2 mt-1'>
+											<div className='flex flex-row items-center gap-2 mt-2'>
 												<GreenCheck className='w-4 h-4 text-green-alert flex-shrink-0' />
-												<p>Personalized health dashboard</p>
+												<p className='text-[12px]'>Personalized health optimization plan</p>
 											</div>
-											<div className='flex flex-row items-center gap-2 mt-1'>
+											<div className='flex flex-row items-center gap-2 mt-2'>
 												<GreenCheck className='w-4 h-4 text-green-alert flex-shrink-0' />
-												<p>20% off custom supplement protocol</p>
+												<p className='text-[12px]'>Access to custom supplement protocol</p>
 											</div>
 										</div>
 
@@ -180,8 +182,8 @@ const Hero: React.FC<HeroProps> = ({
 									) }
 								>
 									<div>
-										<h3 className='!leading-[28px] text-[5.128vw] xs2:text-xl font-medium'>
-											{ productMembership?.productName }
+										<h3 className='!leading-[28px] text-[5.128vw] xs2:text-xl font-light'>
+											A More Hands On Experience
 										</h3>
 
 										<AnimatePresence mode='wait'>
@@ -242,21 +244,21 @@ const Hero: React.FC<HeroProps> = ({
 										<div className='flex flex-col mt-4'>
 											<h3 className='font-medium text-3xl'>Geviti Plus</h3>
 											<p className='font-normal text-xl text-opacity-90 mt-1'>Everything in Lite, plus</p>
-											<div className='flex flex-row items-center gap-2 mt-1'>
+											<div className='flex flex-row items-center gap-2 mt-2'>
 												<GreenCheck className='w-4 h-4 text-green-alert flex-shrink-0' />
-												<p>Dedicated Functional Longevity Specialist</p>
+												<p className='text-[12px]'>Dedicated Functional Longevity Specialist</p>
 											</div>
-											<div className='flex flex-row items-center gap-2 mt-1'>
+											<div className='flex flex-row items-center gap-2 mt-2'>
 												<GreenCheck className='w-4 h-4 text-green-alert flex-shrink-0' />
-												<p>45 min detailed bloodwork review</p>
+												<p className='text-[12px]'>45 min detailed bloodwork review</p>
 											</div>
-											<div className='flex flex-row items-center gap-2 mt-1'>
+											<div className='flex flex-row items-center gap-2 mt-2'>
 												<GreenCheck className='w-4 h-4 text-green-alert flex-shrink-0' />
-												<p>Quarterly virtual visits</p>
+												<p className='text-[12px]'>Quarterly virtual visits</p>
 											</div>
-											<div className='flex flex-row items-center gap-2 mt-1'>
+											<div className='flex flex-row items-center gap-2 mt-2'>
 												<GreenCheck className='w-4 h-4 text-green-alert flex-shrink-0' />
-												<p>40% off custom supplement protocol</p>
+												<p className='text-[12px]'>40% off custom supplement protocol</p>
 											</div>
 										</div>
 
@@ -279,9 +281,6 @@ const Hero: React.FC<HeroProps> = ({
 
 							{ /* Card 3: Geviti Premium */ }
 							<div className='w-full relative h-auto'>
-								<span className='absolute z-10 top-0 right-6 -translate-y-1/2 text-sm !leading-normal text-primary font-medium bg-blue-primary py-2 px-6 rounded-full'>
-									Premium
-								</span>
 								<div
 									className='pt-[42px] pb-[34px] px-6 flex flex-col gap-10 rounded-2xl overflow-hidden w-full h-auto relative bg-[#FCFCFC] border-grey-100 border text-primary'
 								>
@@ -296,30 +295,26 @@ const Hero: React.FC<HeroProps> = ({
 											</span>
 										</div>
 										<p className='text-xs leading-6'>
-											<span className='text-[10px] font-medium whitespace-nowrap'>
-												$3,588 billed annually
+											<span className='text-[12px] font-medium whitespace-nowrap'>
+												(billed at $899 every 6mo)
 											</span>
 											<br/>
 										</p>
 
 										<div className='flex flex-col mt-4'>
 											<h3 className='font-medium text-3xl'>Geviti Premium</h3>
-											<p className='font-normal text-xl text-opacity-90 mt-1'>Everything in Plus, plus</p>
-											<div className='flex flex-row items-center gap-2 mt-1'>
+											<p className='font-normal text-xl text-opacity-90 mt-1'>Everything in Plus, and</p>
+											<div className='flex flex-row items-center gap-2 mt-2'>
 												<GreenCheck className='w-4 h-4 text-green-alert flex-shrink-0' />
-												<p>Comprehensive bloodwork panel</p>
+												<p className='text-[12px]'>Quarterly Longevity Practitioner visits</p>
 											</div>
-											<div className='flex flex-row items-center gap-2 mt-1'>
+											<div className='flex flex-row items-center gap-2 mt-2'>
 												<GreenCheck className='w-4 h-4 text-green-alert flex-shrink-0' />
-												<p>60 min in-depth analysis</p>
+												<p className='text-[12px]'>Access to compounded prescriptions from top pharmacies</p>
 											</div>
-											<div className='flex flex-row items-center gap-2 mt-1'>
+											<div className='flex flex-row items-center gap-2 mt-2'>
 												<GreenCheck className='w-4 h-4 text-green-alert flex-shrink-0' />
-												<p>Monthly virtual visits</p>
-											</div>
-											<div className='flex flex-row items-center gap-2 mt-1'>
-												<GreenCheck className='w-4 h-4 text-green-alert flex-shrink-0' />
-												<p>60% off custom supplement protocol</p>
+												<p className='text-[12px]'>Peptide therapy and regenerative medicine monitored by a medical practitioner</p>
 											</div>
 										</div>
 
