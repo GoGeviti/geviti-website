@@ -1,4 +1,4 @@
-export type BillingInterval = 'day' | 'week' | 'month' | 'year';
+export type BillingInterval = 'day' | 'week' | 'month' | 'year' | 'semi annual' | 'annual';
 
 function formatPrice(price: number): string {
 	// Round to two decimal places first
@@ -78,13 +78,19 @@ export function generateStripeNickname(price: number, interval: BillingInterval,
 			firstPart = 'Annual';
 			lastPart = '12 months';
 			break;
+		case 'semi annual':
+			perMonthPrice = price / 12;
+			break;
+		case 'annual':
+			perMonthPrice = price;
+			break;
 	}
   
 	const billingFrequency = getBillingFrequency(interval, intervalCount);
 	const suffix = (interval === 'month' || interval === 'year') ? '/month' : `/${interval}`;
 
-	const formattedPrice = `${firstPart} premium ${formatPrice2(price)} billed every ${lastPart}`;
-  
+	const formattedPrice = `(billed at ${formatPrice(price / 2)} every 6mo)`;
+
 	return {
 		suffix,
 		perMonthPrice: formatPrice(perMonthPrice),
