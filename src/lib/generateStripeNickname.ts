@@ -44,6 +44,8 @@ function getBillingFrequency(interval: BillingInterval, intervalCount: number): 
 		case 'year':
 			return `every ${intervalCount} years`;
 	}
+
+  return ''
 }
 
 export function generateStripeNickname(price: number, interval: BillingInterval, intervalCount: number): {
