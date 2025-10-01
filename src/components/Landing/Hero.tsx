@@ -108,7 +108,7 @@ const Hero: React.FC<HeroProps> = ({
 						},
 						hidden: { y: '100%' },
 					} }
-					className='inline-flex font-medium text-[6.667vw] xs:text-3xl md:text-4xl lg:text-[5vh] xl:text-[46px] !leading-normal -tracking-0.04em text-grey-secondary'
+					className='inline-flex font-medium text-3xl xs:text-4xl lg:text-[5vh] xl:text-[46px] !leading-normal -tracking-0.04em text-grey-secondary'
 				>
 					{ isMounted && <span dangerouslySetInnerHTML={ { __html: title } } /> }
 				</motion.span>
@@ -230,8 +230,37 @@ const Hero: React.FC<HeroProps> = ({
 							'lg:pb-[47px] h-full w-full flex flex-col justify-end',
 							isScheduleCall && 'lg:pb-[75px] pb-[75px]'
 						) }>
-							<div className='text-left flex flex-col'>
-								<span className='overflow-hidden inline-flex'>
+							<div className='text-left flex gap-y-6 flex-col'>
+								<motion.h1
+									initial='hidden'
+									animate='visible'
+									variants={ {
+										visible: {
+											transition: {
+												staggerChildren: 0.5,
+												delayChildren: showIntro === 'true' ? 2.1 : 0.1,
+											},
+										},
+									} }
+									className='sm:max-w-[738px] victor-serif-medium italic flex flex-col max-sm:hidden'
+								>
+									{ renderTitles(isScheduleCall ? heroData.titlesScheduleCall : heroData.titles) }
+								</motion.h1>
+								<motion.h1
+                  initial='hidden'
+									animate='visible'
+									variants={ {
+										visible: {
+											transition: {
+												staggerChildren: 0.25,
+											},
+										},
+									} }
+                  className='sm:hidden victor-serif-medium text-[6.667vw] xs:text-3xl md:text-4xl lg:text-[5vh] xl:text-[46px] italic flex flex-col'
+								>
+                  { renderTitles(isScheduleCall ? heroData.titlesScheduleCallMobile : heroData.titlesMobile) }
+								</motion.h1>
+                <span className='overflow-hidden inline-flex'>
 									<motion.h2
 										variants={ {
 											visible: {
@@ -245,41 +274,11 @@ const Hero: React.FC<HeroProps> = ({
 										} }
 										initial='hidden'
 										animate='visible'
-										className='text-grey-secondary font-Poppins inline-flex font-semibold text-[10px] sm:text-xs lg:text-sm !leading-6 uppercase tracking-0.11em'
+										className='text-grey-secondary font-Poppins font-normal inline-flex text-xs sm:text-xs lg:text-base !leading-6 tracking-0.11em'
 									>
 										{ heroData.preTitle }
 									</motion.h2>
 								</span>
-
-								<motion.h1
-									initial='hidden'
-									animate='visible'
-									variants={ {
-										visible: {
-											transition: {
-												staggerChildren: 0.5,
-												delayChildren: showIntro === 'true' ? 2.1 : 0.1,
-											},
-										},
-									} }
-									className='sm:max-w-[738px] flex flex-col max-sm:hidden'
-								>
-									{ renderTitles(isScheduleCall ? heroData.titlesScheduleCall : heroData.titles) }
-								</motion.h1>
-								<motion.h1
-									initial='hidden'
-									animate='visible'
-									variants={ {
-										visible: {
-											transition: {
-												staggerChildren: 0.25,
-											},
-										},
-									} }
-									className='sm:hidden flex flex-col mt-5px'
-								>
-									{ renderTitles(isScheduleCall ? heroData.titlesScheduleCallMobile : heroData.titlesMobile) }
-								</motion.h1>
 
 								<div className={ clsxm(
 									'flex w-full mt-[5vh] xs:mt-[42px] lg:mt-[5.435vh] xl:mt-50px relative',
