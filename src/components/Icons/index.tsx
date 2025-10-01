@@ -205,7 +205,7 @@ export const CrossRed = (props?: React.SVGProps<SVGSVGElement>) => (
 	</svg>
 );
 
-export const RedEx = (props?: React.SVGProps<SVGSVGElement>) => (
+export const RedEx = () => (
 	<svg
 		width='14'
 		height='15'
