@@ -726,7 +726,7 @@ const landingData = {
 			title: 'Comprehensive Bloodwork.',
 			subtile: 'Routine And Automated.',
 			description:
-				'Geviti provides our users with a comprehensive care team. Instead of being forced to choose between a healthcare provider and a health coach, we offer a solution where the two work in tandem to craft the ultimate longevity regimen.',
+				'Get deep insights into your health with 100+ biomarkers tested automatically every 6 months—uncovering hidden patterns in your hormones, metabolic health, inflammation levels, and more, so you can optimize what\'s working and address issues before they become problems.',
 			btnCta: {
 				href: '/pricing',
 				text: 'Join Geviti',
