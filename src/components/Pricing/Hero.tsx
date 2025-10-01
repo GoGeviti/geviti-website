@@ -54,11 +54,25 @@ const Hero: React.FC<HeroProps> = ({
 	};
 
 	// Determine current frequency based on selectedProductPrice
-	const getCurrentFrequency = () => {
+	const getCurrentFrequency = (): 'semi annual' | 'annual' => {
 		if (!selectedProductPrice) return 'semi annual';
-		// Assuming annual has intervalCount of 12 or interval of 'year'
-		console.log('selectedProductPrice:', selectedProductPrice);
-		return selectedProductPrice.interval;
+		
+		// Map different intervals to our pricing tiers
+		const interval = selectedProductPrice.interval;
+		const intervalCount = selectedProductPrice.intervalCount;
+		
+		// If it's explicitly 'annual' or 'year' with intervalCount 1, it's annual
+		if (interval === 'annual' || (interval === 'year' && intervalCount === 1)) {
+			return 'annual';
+		}
+		
+		// If it's 'semi annual' or 'month' with intervalCount 6, it's semi annual
+		if (interval === 'semi annual' || (interval === 'month' && intervalCount === 6)) {
+			return 'semi annual';
+		}
+		
+		// Default to semi annual for any other cases
+		return 'semi annual';
 	};
 
 	const currentFrequency = getCurrentFrequency();
@@ -73,6 +87,8 @@ const Hero: React.FC<HeroProps> = ({
 	// useEffect(() => {
 	// 	console.log('Hero component re-rendered with selectedProductPrice:', selectedProductPrice); // Add this line
 	// }, [selectedProductPrice]);
+
+	// const [activeListDropdown, setActiveListDropdown] = useState(-1);
 
 	return (
 		<React.Fragment>
@@ -303,11 +319,11 @@ const Hero: React.FC<HeroProps> = ({
 											</div>
 											<div className='flex flex-row items-center gap-2 mt-2'>
 												<GreenCheck className='w-4 h-4 text-green-alert flex-shrink-0' />
-												<p className='text-[12px]'>Access to compounded prescriptions from top pharmacies</p>
+												<p className='text-[12px]'>Access to compounded prescriptions from toppharmacies</p>
 											</div>
 											<div className='flex flex-row items-center gap-2 mt-2'>
 												<GreenCheck className='w-4 h-4 text-green-alert flex-shrink-0' />
-												<p className='text-[12px]'>Peptide therapy and regenerative medicine monitored by a medical practitioner</p>
+												<p className='text-[12px]'>Peptide therapy and regenerative medicinemonitored by a medical practitioner</p>
 											</div>
 										</div>
 
