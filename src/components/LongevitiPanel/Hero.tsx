@@ -41,7 +41,7 @@ const Hero: React.FC<HeroProps> = heroData => {
 					<p className='mt-[42px] text-pretitle uppercase text-grey-primary'>
 						{ heroData.preTitle }
 					</p>
-					<h1 className='my-3.5 lg:my-1 text-2xl sm:text-3xl lg:text-[46px] !leading-normal -tracking-0.04em font-normal sm:font-medium text-primary'>
+					<h1 className='my-3.5 lg:my-1 text-2xl sm:text-3xl lg:text-[46px] !leading-normal -tracking-0.04em sm:font-medium text-primary font-VictorSerif italic font-medium'>
 						<span
 							dangerouslySetInnerHTML={ {
 								__html: heroData.title,
@@ -76,7 +76,7 @@ const Hero: React.FC<HeroProps> = heroData => {
 					(heroData.longeviti_type === 'panel' || heroData.longeviti_type === 'blend') && 'max-lg:order-2 '
 				) }>
 					<div className='sm:max-w-[434px] flex flex-col'>
-						<h2 className='text-2xl sm:text-3xl lg:text-4xl !leading-normal sm:font-medium -tracking-0.04em text-primary'>
+						<h2 className='text-2xl sm:text-3xl lg:text-4xl !leading-normal sm:font-medium -tracking-0.04em text-primary font-VictorSerif italic font-medium'>
 							{ heroData.benefits.title }
 						</h2>
 						<p className='mt-3.5 text-xs !leading-normal sm:text-sm text-grey-primary'>

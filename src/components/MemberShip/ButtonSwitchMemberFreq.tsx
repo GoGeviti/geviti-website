@@ -48,8 +48,8 @@ const ButtonSwitchMemberFreq: React.FC<ButtonSwitchMemberFreqProps> = ({
 								{ opt.billingFrequency.charAt(0).toUpperCase() + opt.billingFrequency.slice(1) }
 								{ isSecondButton && (
 									<div className={ clsxm(
-										'absolute px-1 py-0.5 -top-[-0.5rem] rounded-full font-semibold text-[10px]',
-										isSelected ? 'text-white -right-[-0.5rem]' : 'bg-black text-white -right-0.5'
+										'absolute px-1 py-0.5 rounded-full font-semibold text-[10px] -right-[-0.5rem]',
+										isSelected ? 'bg-white text-black' : 'bg-black text-white'
 									) }>
 										15% off
 									</div>

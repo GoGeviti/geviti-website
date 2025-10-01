@@ -27,7 +27,7 @@ const Apps: React.FC = () => {
 					<p className='mb-3.5 sm:mb-2 text-pretitle text-grey-primary'>
 						{ appsData.preTitle }
 					</p>
-					<h2 className='font-medium text-2xl sm:text-3xl lg:text-4xl !leading-normal -tracking-0.04em'>
+					<h2 className='font-VictorSerif italic font-medium text-2xl sm:text-3xl lg:text-4xl !leading-normal -tracking-0.04em'>
 						<span dangerouslySetInnerHTML={ { __html: appsData.title } } />
 					</h2>
 					<p className='mt-3.5 text-grey-primary text-xs sm:text-sm !leading-5 lg:max-w-[423px]'>

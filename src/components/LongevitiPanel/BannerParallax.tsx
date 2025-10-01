@@ -38,7 +38,7 @@ const BannerParallax: React.FC<BannerParallaxProps> = ({ containerClassName, cla
 				className
 			) }>
 				<div className='relative z-10 max-lg:px-3.5 max-w-[682px] mx-auto w-full h-full flex flex-col items-center justify-center text-center text-white'>
-					<h2 className='text-2xl sm:text-3xl lg:text-[46px] sm:font-medium !leading-normal -tracking-0.04em'>
+					<h2 className='text-2xl sm:text-3xl lg:text-[46px] sm:font-medium !leading-normal -tracking-0.04em font-VictorSerif italic font-medium'>
 						{ bannerData.title }
 					</h2>
 					<p className='mt-3.5 text-xs max-lg:!leading-5 lg:text-lg'>

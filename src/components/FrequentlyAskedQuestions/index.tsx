@@ -58,7 +58,7 @@ const FrequentlyAskedQuestions: React.FC<FrequentlyAskedQuestionsProps> = ({
 									</p>
 								) }
 								<div className='lg:max-w-[389px] mt-4 lg:mt-1'>
-									<h2 className='text-[9.3vw] xxs:text-[28px] !leading-[116%] lg:text-4xl lg:!leading-[125%] -tracking-0.04em text-primary'>
+									<h2 className='text-[9.3vw] xxs:text-[28px] !leading-[116%] lg:text-4xl lg:!leading-[125%] -tracking-0.04em text-primary font-VictorSerif italic font-medium'>
                     Frequently asked
 										<br />
                     questions
