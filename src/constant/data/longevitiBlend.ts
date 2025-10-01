@@ -70,7 +70,7 @@ const longevitiBlendData = {
 	},
 	hero: {
 		preTitle: 'Boost Your Health with Custom Packs',
-		title: 'Custom daily supplement<br />packs formulated for you.',
+		title: 'Custom Daily Supplement<br />Packs Formulated For You.',
 		description:
       'Experience the ultimate in personalized health with our Tailored Supplement Packs, expertly crafted using your unique bloodwork data, advanced AI insights, and input from your dedicated care team. We ensure each supplement is perfectly suited to your body\'s specific needs.',
 		image: '/images/longeviti_blend/hero.webp',

@@ -239,7 +239,7 @@ const Hero: React.FC<HeroProps> = ({
 											},
 										},
 									} }
-									className='sm:max-w-[738px] flex flex-col max-sm:hidden italic victor-serif-medium'
+									className='sm:max-w-[738px] flex flex-col max-sm:hidden italic font-VictorSerif font-bold'
 								>
 									{ renderTitles(isScheduleCall ? heroData.titlesScheduleCall : heroData.titles) }
 									{ /* <span className='overflow-hidden inline-flex italic victor-serif-medium sm:max-w-[738px] max-sm:hidden'> */ }
