@@ -1,4 +1,4 @@
-export type BillingInterval = 'day' | 'week' | 'month' | 'year';
+export type BillingInterval = 'day' | 'week' | 'month' | 'year' | 'semi annual' | 'annual';
 
 function formatPrice(price: number): string {
 	// Round to two decimal places first
@@ -12,16 +12,16 @@ function formatPrice(price: number): string {
 	})}`;
 }
 
-function formatPrice2(price: number): string {
-	// Round to two decimal places first
-	// const roundedPrice = Math.floor(price * 100) / 100;
-  
-	// If the price is a whole number, return it without decimal places
-	return `$${price.toLocaleString('en-US', {
-		minimumFractionDigits: 2,
-		maximumFractionDigits: 2
-	})}`;
-}
+// function formatPrice2(price: number): string {
+// 	// Round to two decimal places first
+// 	// const roundedPrice = Math.floor(price * 100) / 100;
+//
+// 	// If the price is a whole number, return it without decimal places
+// 	return `$${price.toLocaleString('en-US', {
+// 		minimumFractionDigits: 2,
+// 		maximumFractionDigits: 2
+// 	})}`;
+// }
 
 function getBillingFrequency(interval: BillingInterval, intervalCount: number): string {
 	if (intervalCount === 1) {
@@ -44,6 +44,8 @@ function getBillingFrequency(interval: BillingInterval, intervalCount: number): 
 		case 'year':
 			return `every ${intervalCount} years`;
 	}
+
+  return ''
 }
 
 export function generateStripeNickname(price: number, interval: BillingInterval, intervalCount: number): {
@@ -55,36 +57,42 @@ export function generateStripeNickname(price: number, interval: BillingInterval,
 } {
 	// Calculate per-month price
 	let perMonthPrice: number;
-	let firstPart: string;
-	let lastPart: string;
+	// let firstPart: string;
+	// let lastPart: string;
 	switch (interval) {
 		case 'day':
 			perMonthPrice = price;
-			firstPart = 'Daily';
-			lastPart = intervalCount + ' day';
+			// firstPart = 'Daily';
+			// lastPart = intervalCount + ' day';
 			break;
 		case 'week':
 			perMonthPrice = price;
-			firstPart = 'Weekly';
-			lastPart = intervalCount + ' week';
+			// firstPart = 'Weekly';
+			// lastPart = intervalCount + ' week';
 			break;
 		case 'month':
 			perMonthPrice = intervalCount === 3 ? price / 3 : price;
-			firstPart = intervalCount === 3 ? 'Quarterly' : 'Monthly';
-			lastPart = intervalCount === 3 ? '3 months' :  intervalCount + ' month';
+			// firstPart = intervalCount === 3 ? 'Quarterly' : 'Monthly';
+			// lastPart = intervalCount === 3 ? '3 months' :  intervalCount + ' month';
 			break;
 		case 'year':
 			perMonthPrice = price / 12;
-			firstPart = 'Annual';
-			lastPart = '12 months';
+			// firstPart = 'Annual';
+			// lastPart = '12 months';
+			break;
+		case 'semi annual':
+			perMonthPrice = price / 12;
+			break;
+		case 'annual':
+			perMonthPrice = price;
 			break;
 	}
-  
+
 	const billingFrequency = getBillingFrequency(interval, intervalCount);
 	const suffix = (interval === 'month' || interval === 'year') ? '/month' : `/${interval}`;
 
-	const formattedPrice = `${firstPart} premium ${formatPrice2(price)} billed every ${lastPart}`;
-  
+	const formattedPrice = `(billed at ${formatPrice(price / 2)} every 6mo)`;
+
 	return {
 		suffix,
 		perMonthPrice: formatPrice(perMonthPrice),

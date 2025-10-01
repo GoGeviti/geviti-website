@@ -2,13 +2,13 @@
 import React, { Suspense, useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { motion, useAnimationControls } from 'framer-motion';
-// import dynamic from 'next/dynamic';
-import Image from 'next/image';
 
-import heroImage from '@/assets/landing/hero.webp';
-import heroImageLanding from '@/assets/landing/hero-landing.webp';
-import heroImageLandingMobile from '@/assets/landing/hero-landing-mobile.webp';
-import heroImageMobile from '@/assets/landing/hero-mobile.webp';
+// import dynamic from 'next/dynamic';
+// import Image from 'next/image';
+// import heroImage from '@/assets/landing/hero.webp';
+// import heroImageLanding from '@/assets/landing/hero-landing.webp';
+// import heroImageLandingMobile from '@/assets/landing/hero-landing-mobile.webp';
+// import heroImageMobile from '@/assets/landing/hero-mobile.webp';
 import { navbarDefaultTransition } from '@/constant/data/navbar';
 import clsxm from '@/helpers/clsxm';
 import { screens } from '@/helpers/style';
@@ -30,33 +30,51 @@ type HeroProps = {
 	isScheduleCall?: boolean;
 };
 
-const HeroImage = ({ type, isLanding }: { type: 'desktop' | 'mobile', isLanding:boolean }) => {
-	const imageMobile = type === 'mobile';
-	const imageSrc = isLanding
-		? imageMobile
-			? heroImageLandingMobile
-			: heroImageLanding
-		: imageMobile
-			? heroImageMobile
-			: heroImage;
+const HeroVideo = ({ type }: { type: 'desktop' | 'mobile' }) => {
+	const videoMobile = type === 'mobile';
 
 	return (
-		<Image
-			src={ imageSrc }
-			alt='hero'
-			priority={ true }
+		<video
+			src='/videos/hero-site-header-optimized.mp4'
+			autoPlay
+			muted
+			loop
+			playsInline
 			className={ clsxm(
-				'object-cover pointer-events-none',
-				imageMobile ? 'md:hidden object-center' : 'md:block hidden object-right'
+				'object-cover pointer-events-none w-full h-full',
+				videoMobile ? 'lg:hidden object-center' : 'lg:block hidden object-right'
 			) }
-			fill
-			quality={ 90 }
-			placeholder='blur'
-			loading={ 'eager' }
-			sizes='100vw'
 		/>
 	);
 };
+
+// const HeroImage = ({ type, isLanding }: { type: 'desktop' | 'mobile', isLanding:boolean }) => {
+// 	const imageMobile = type === 'mobile';
+// 	const imageSrc = isLanding
+// 		? imageMobile
+// 			? heroImageLandingMobile
+// 			: heroImageLanding
+// 		: imageMobile
+// 			? heroImageMobile
+// 			: heroImage;
+//
+// 	return (
+// 		<Image
+// 			src={ imageSrc }
+// 			alt='hero'
+// 			priority={ true }
+// 			className={ clsxm(
+// 				'object-cover pointer-events-none',
+// 				imageMobile ? 'md:hidden object-center' : 'md:block hidden object-right'
+// 			) }
+// 			fill
+// 			quality={ 90 }
+// 			placeholder='blur'
+// 			loading={ 'eager' }
+// 			sizes='100vw'
+// 		/>
+// 	);
+// };
 
 const Hero: React.FC<HeroProps> = ({
 	// showBanner = false,
@@ -90,7 +108,7 @@ const Hero: React.FC<HeroProps> = ({
 						},
 						hidden: { y: '100%' },
 					} }
-					className='inline-flex font-medium text-[6.667vw] xs:text-3xl md:text-4xl lg:text-[5vh] xl:text-[46px] !leading-normal -tracking-0.04em text-grey-secondary'
+					className='inline-flex font-medium text-4xl md:text-5xl lg:text-[5vh] xl:text-[64px] !leading-normal -tracking-0.04em text-grey-secondary'
 				>
 					{ isMounted && <span dangerouslySetInnerHTML={ { __html: title } } /> }
 				</motion.span>
@@ -163,7 +181,7 @@ const Hero: React.FC<HeroProps> = ({
 		<div
 			ref={ ref }
 			className={ clsxm(
-				'lg:px-3 lg:pt-3 overflow-hidden font-Poppins'
+				'px-2 sm:px-3 lg:px-3 pt-2 sm:pt-3 lg:pt-3 overflow-hidden font-Poppins'
 			) }>
 			<Navbar
 				animationProps={ {
@@ -173,18 +191,24 @@ const Hero: React.FC<HeroProps> = ({
 					},
 				} }
 			/>
-			<div className='bg-primary h-[calc(100svh+14px)] lg:min-h-[700px] lg:h-[calc(100vh-24px)] w-full overflow-hidden max-lg:rounded-none rounded-19px relative pt-11px lg:pt-5'>
+			<div className='bg-primary h-[calc(100svh+14px)] sm:h-[calc(100svh+10px)] md:h-[calc(100svh+6px)] lg:min-h-[700px] lg:h-[calc(100vh)] w-full overflow-hidden max-lg:rounded-19px max-lg:rounded-b-none rounded-19px relative pt-2 sm:pt-3 md:pt-4 lg:pt-5'>
 				<div className='absolute inset-0 w-full h-full'>
 					<div className='relative overflow-hidden w-full h-full'>
 						{
-							isMobile ? (
-								<HeroImage
-									type='mobile'
-									isLanding={ isLanding } />
+							isLanding ? (
+								isMobile ? (
+									<HeroVideo
+										type='mobile' />
+								) : (
+									<HeroVideo type='desktop' />
+								)
 							) : (
-								<HeroImage
-									type='desktop'
-									isLanding={ isLanding } />
+								isMobile ? (
+									<HeroVideo
+										type='mobile'/>
+								) : (
+									<HeroVideo type='desktop' />
+								)
 							)
 						}
 					</div>
@@ -200,10 +224,53 @@ const Hero: React.FC<HeroProps> = ({
 							</div>
 						</Suspense> */ }
 						<div className={ clsxm(
-							'lg:pb-[47px] h-full w-full flex flex-col justify-end',
+							'pb-12 sm:pb-14 md:pb-16 lg:pb-[60px] min-h-[100vh] lg:min-h-[100vh] w-full flex flex-col justify-end pt-16 sm:pt-18 md:pt-20 lg:pt-24',
 							isScheduleCall && 'lg:pb-[75px] pb-[75px]'
 						) }>
-							<div className='text-left flex flex-col'>
+							<div className='text-left flex gap-y-6 flex-col'>
+								<motion.h1
+									initial='hidden'
+									animate='visible'
+									variants={ {
+										visible: {
+											transition: {
+												staggerChildren: 0.5,
+												delayChildren: showIntro === 'true' ? 2.1 : 0.1,
+											},
+										},
+									} }
+									className='sm:max-w-[738px] flex flex-col max-sm:hidden italic font-VictorSerif font-bold'
+								>
+									{ renderTitles(isScheduleCall ? heroData.titlesScheduleCall : heroData.titles) }
+									{ /* <span className='overflow-hidden inline-flex italic victor-serif-medium sm:max-w-[738px] max-sm:hidden'> */ }
+									{ /* 	<motion.span */ }
+									{ /* 		variants={ { */ }
+									{ /* 			visible: { */ }
+									{ /* 				y: 0, */ }
+									{ /* 				transition: slideUpTransition, */ }
+									{ /* 			}, */ }
+									{ /* 			hidden: { y: '100%' }, */ }
+									{ /* 		} } */ }
+									{ /* 		className='inline-flex font-medium text-[#8CD6FE] text-lg xs:text-xl sm:text-2xl md:text-3xl lg:text-[6vh] xl:text-[56px] !leading-normal -tracking-0.04em italic victor-serif-medium' */ }
+									{ /* 	> */ }
+									{ /*         Personalized Longevity */ }
+									{ /* 	</motion.span> */ }
+									{ /* </span> */ }
+								</motion.h1>
+								<motion.h1
+									initial='hidden'
+									animate='visible'
+									variants={ {
+										visible: {
+											transition: {
+												staggerChildren: 0.25,
+											},
+										},
+									} }
+									className='sm:hidden flex italic font-VictorSerif flex-col'
+								>
+									{ renderTitles(isScheduleCall ? heroData.titlesScheduleCallMobile : heroData.titlesMobile) }
+								</motion.h1>
 								<span className='overflow-hidden inline-flex'>
 									<motion.h2
 										variants={ {
@@ -218,45 +285,15 @@ const Hero: React.FC<HeroProps> = ({
 										} }
 										initial='hidden'
 										animate='visible'
-										className='text-grey-secondary font-Poppins inline-flex font-semibold text-[10px] sm:text-xs lg:text-sm !leading-6 uppercase tracking-0.11em'
+										className='text-grey-secondary font-Poppins font-normal inline-flex text-xs sm:text-xs lg:text-base !leading-6 tracking-0.11em'
 									>
 										{ heroData.preTitle }
 									</motion.h2>
 								</span>
 
-								<motion.h1
-									initial='hidden'
-									animate='visible'
-									variants={ {
-										visible: {
-											transition: {
-												staggerChildren: 0.5,
-												delayChildren: showIntro === 'true' ? 2.1 : 0.1,
-											},
-										},
-									} }
-									className='sm:max-w-[738px] flex flex-col max-sm:hidden'
-								>
-									{ renderTitles(isScheduleCall ? heroData.titlesScheduleCall : heroData.titles) }
-								</motion.h1>
-								<motion.h1
-									initial='hidden'
-									animate='visible'
-									variants={ {
-										visible: {
-											transition: {
-												staggerChildren: 0.25,
-											},
-										},
-									} }
-									className='sm:hidden flex flex-col mt-5px'
-								>
-									{ renderTitles(isScheduleCall ? heroData.titlesScheduleCallMobile : heroData.titlesMobile) }
-								</motion.h1>
-
 								<div className={ clsxm(
-									'flex w-full mt-[5vh] xs:mt-[42px] lg:mt-[5.435vh] xl:mt-50px relative',
-									isLanding && 'lg:mt-8 xl:mt-8'
+									'flex w-full mt-6 xs:mt-8 sm:mt-10 md:mt-[5vh] lg:mt-[5.435vh] xl:mt-50px relative',
+									isLanding && 'sm:mt-6 md:mt-7 lg:mt-8 xl:mt-8'
 								) }>
 									<div className='grid grid-cols-1 auto-rows-fr sm:flex gap-4 xxs:gap-6 lg:gap-[42px] items-center w-full'>
 										<div className='overflow-hidden inline-block h-full'>
@@ -354,8 +391,8 @@ const Hero: React.FC<HeroProps> = ({
 							</div>
 
 							<div className={ clsxm(
-								'mt-[5.2vh] relative xs:mt-[46px] lg:mt-[9.13vh] xl:mt-[84px]',
-								isLanding && 'lg:mt-8 xl:mt-8',
+								'mt-8 sm:mt-10 md:mt-12 relative xs:mt-[46px] lg:mt-[9.13vh] xl:mt-[84px]',
+								isLanding && 'sm:mt-6 md:mt-7 lg:mt-8 xl:mt-8',
 								isScheduleCall && 'hidden'
 							) }>
 								<motion.div

@@ -3,7 +3,7 @@ import { InitialOfferingType } from '@/components/Checkout/api/types';
 const pricingData = {
 	hero: {
 		preTitle: 'Care based off of biomarkers',
-		title: 'Build a healthier future, today.',
+		title: 'Total Health Management',
 		description:
       'Our membership connects you with health experts, offering data-driven care plans, doctor-monitored treatments, routine labs, custom supplements, and more.',
 		features: [

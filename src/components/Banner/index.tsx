@@ -44,7 +44,7 @@ const Banner: React.FC<BannerProps> = ({
 								</p>
 
 								{ title && (
-									<h2 className='md:max-w-[494px] max-lg:mx-auto mb-2.5 sm:mb-5 font-Poppins font-normal text-[6.1vw] xs2:text-2xl md:text-[32px] lg:text-4xl !leading-[133%] sm:!leading-[125%] -tracking-0.04em text-grey-secondary'>
+									<h2 className='font-VictorSerif italic md:max-w-[494px] max-lg:mx-auto mb-2.5 sm:mb-5 font-medium text-[6.1vw] xs2:text-2xl md:text-[32px] lg:text-4xl !leading-[133%] sm:!leading-[125%] -tracking-0.04em text-grey-secondary'>
 										<span dangerouslySetInnerHTML={ { __html: title } } />
 									</h2>
 								) }

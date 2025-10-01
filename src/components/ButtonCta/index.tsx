@@ -114,6 +114,7 @@ const ButtonCta: React.FC<ButtonCtaProps> = ({
 				href={ href }
 				className={ btnClassName }
 				onClick={ onClick }
+				externalLink={ false }
 				{ ...props }
 			>
 				{ renderChildren() }

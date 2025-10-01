@@ -22,11 +22,11 @@ const landingData = {
 		],
 	},
 	hero: {
-		preTitle: 'FEEL BETTER AND LIVE LONGER',
+		preTitle: 'Science-backed longevity protocols personalized to your biology.',
 		title: 'Your partner in total health optimization and longevit<span class="ml-0.5">y<span>.',
 		titles: [
-			'Your partner in total health',
-			'optimization and longevit<span class="ml-0.5">y<span>.',
+			'Your Best Years',
+			'Haven\'t Happened Yet.',
 		],
 		titlesScheduleCall: [
 			'The world’s most advanced',
@@ -36,7 +36,8 @@ const landingData = {
 			'The world’s most advanced health platform.',
 		],
 		titlesMobile: [
-			'Your partner in total health optimization and longevit<span class="ml-0.5">y<span>.',
+			'Your Best Years',
+			'Haven\'t Happened Yet.',
 		],
 		banner: {
 			text: '<span class="font-medium">Geviti Closes Early Stage Seed Financing</span> 🎉 <br/>To Celebrate, Those Who Join Our Beta Before<br/>August 1st Will Be Grandfathered In At $89/M!',
@@ -124,7 +125,7 @@ const landingData = {
 	},
 	steps: {
 		preTitle: 'Your journey begins with a full blood panel',
-		title: 'No more guessing where your health is',
+		title: 'It All Starts With Bloodwork',
 		btnCta: {
 			href: '/pricing',
 			externalLink: false,
@@ -133,7 +134,7 @@ const landingData = {
 		list: [
 			{
 				id: 'step-1',
-				title: 'Sign up for our <br />Longeviti <br />Membership',
+				title: 'Sign up for our <br />Geviti <br />Membership',
 				icon: GevitiIcon,
 			},
 			{
@@ -276,7 +277,7 @@ const landingData = {
 	},
 	benefits: {
 		preTitle: 'data driven care based upon bloodwork',
-		title: 'Optimize health & wellness',
+		title: 'Optimize Health & Wellness',
 		description:
       'A fully integrated health program that brings together advanced diagnostics, expert medical care and coaching, science-backed longevity therapies for optimal well-being and long-term vitality.',
 		list: [
@@ -318,7 +319,7 @@ const landingData = {
 				items: [
 					{
 						cheked: true,
-						text: '90+ biomarkers every 6 months',
+						text: '100+ biomarkers every 6 months',
 					},
 					{
 						cheked: true,
@@ -625,7 +626,7 @@ const landingData = {
 		priceSection: {
 			preTitle: 'Personalized plans that are right for you',
 			title:
-        'Memberships start at $129<span class="text-xs sm:text-[20px] lg:text-2xl !leading-normal">/month</span>',
+        'Optimize Your Health For Just $109<span class="text-xs sm:text-[20px] lg:text-2xl !leading-normal">/month</span>',
 			description:
         'Geviti easily integrates into your life with at-home diagnostics and doctor-supervised treatments on your time.',
 			btnCta: {
@@ -684,7 +685,7 @@ const landingData = {
 					reverse: true,
 					list: [
 						{
-							title: 'In-app Doctors',
+							title: 'In-app Specialists',
 							description:
                 'Our mission is to eliminate barriers in healthcare. There should be no need to leave your home for this level of care.',
 						},
@@ -722,9 +723,10 @@ const landingData = {
 		{
 			align: 'left',
 			preTitle: 'Direct access',
-			title: 'Routine bloodwork,<br/>automated.',
+			title: 'Comprehensive Bloodwork.',
+			subtile: 'Routine And Automated.',
 			description:
-				'Geviti provides our users with a comprehensive care team. Instead of being forced to choose between a healthcare provider and a health coach, we offer a solution where the two work in tandem to craft the ultimate longevity regimen.',
+				'Get deep insights into your health with 100+ biomarkers tested automatically every 6 months—uncovering hidden patterns in your hormones, metabolic health, inflammation levels, and more, so you can optimize what\'s working and address issues before they become problems.',
 			btnCta: {
 				href: '/pricing',
 				text: 'Join Geviti',
@@ -740,7 +742,7 @@ const landingData = {
 		{
 			align: 'right',
 			preTitle: 'A holistic approach',
-			title: 'A wellness team, in<br />your pocket.',
+			title: 'A Wellness Team, In<br />Your Pocket.',
 			description:
 				'At Geviti, we bring together the best of both worlds by integrating the wisdom of Eastern practices with the advancements of Western medicine. This holistic approach ensures that your health journey is supported from all angles, promoting optimal balance, healing, and long-term wellness.',
 			card: {
@@ -754,7 +756,7 @@ const landingData = {
 		{
 			align: 'left',
 			preTitle: 'data-driven care',
-			title: 'Custom plans tailored<br />to your needs.',
+			title: 'Custom Plans Tailored<br />To Your Needs.',
 			description:
 				'No two bodies are the same, and your care plan shouldn’t be either. Geviti designs personalized health plans based on your unique biomarkers, lifestyle, and goals. Whether it’s optimizing longevity or improving daily performance, your regimen is crafted just for you.',
 			btnCta: {
@@ -772,7 +774,7 @@ const landingData = {
 		{
 			align: 'right',
 			preTitle: 'Not a one and done approach',
-			title: 'Exclusive membership<br />benefits.',
+			title: 'Exclusive Membership<br />Benefits.',
 			description:
 				'Your health is always evolving, and so is our care. With Geviti’s continuous health tracking and regular check-ins, we ensure that your plan adapts to your progress. From real-time metrics to follow-up lab work, your wellness is in constant focus.',
 			card: {

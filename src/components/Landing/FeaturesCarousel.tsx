@@ -33,12 +33,13 @@ const FeaturesCarousel: React.FC = () => {
 									<p className='max-lg:mb-2.5 text-pretitle text-[#5F6D7B] sm:text-grey-300'>
 										{ feature.preTitle }
 									</p>
-									<h2 className='text-white !leading-[133%] text-[6.857vw] xxs:text-[6.154vw] xs2:text-2xl lg:text-[3.853vw] xl:text-[42px] sm:!leading-normal -tracking-0.04em'>
+									<h2 className='text-white !leading-[133%] text-[6.857vw] xxs:text-[6.154vw] xs2:text-2xl lg:text-[3.853vw] xl:text-[42px] sm:!leading-normal -tracking-0.04em font-VictorSerif italic font-medium'>
 										<span
 											dangerouslySetInnerHTML={ {
 												__html: feature.title,
 											} }
 										/>
+										{ feature.subtile && (<p className='h2 text-[#CBF2FF] !leading-[133%] text-[6.857vw] xxs:text-[6.154vw] xs2:text-2xl lg:text-[3.853vw] xl:text-[42px] sm:!leading-normal -tracking-0.04em font-VictorSerif italic'>Routine And Automated.</p>) }
 									</h2>
 									<p className='mt-2.5 lg:mt-3.5 text-grey-400 sm:text-grey-300 text-xs sm:text-sm !leading-5'>
 										{ feature.description }
@@ -62,14 +63,19 @@ const FeaturesCarousel: React.FC = () => {
 											: 'justify-center lg:justify-end'
 									) }
 								>
-									<div className='w-full sm:w-[448px] relative h-[358px] sm:h-[390px]'>
+									<div className={ clsxm(
+										'w-full sm:w-[448px] relative',
+										feature.btnCta
+											? 'h-[358px] sm:h-[390px]'
+											: 'h-[424px] sm:h-[390px]'
+									) }>
 										<span className='text-primary font-Poppins p-3.5 rounded-19px bg-white absolute inset-0 w-full h-full'>
 											<div className='h-full w-full bg-blue-alice rounded-2xl relative overflow-hidden'>
 												<Image
 													alt='card'
 													src={ feature.card.image }
-													width={ 448 }
-													height={ 390 }
+													fill
+													className='object-cover'
 												/>
 											</div>
 										</span>
