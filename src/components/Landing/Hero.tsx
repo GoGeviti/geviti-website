@@ -108,7 +108,7 @@ const Hero: React.FC<HeroProps> = ({
 						},
 						hidden: { y: '100%' },
 					} }
-					className='inline-flex font-normal text-2xl xs:text-3xl md:text-4xl lg:text-[5vh] xl:text-[46px] !leading-normal -tracking-0.04em text-grey-secondary'
+					className='inline-flex font-medium text-4xl md:text-5xl lg:text-[5vh] xl:text-[64px] !leading-normal -tracking-0.04em text-grey-secondary'
 				>
 					{ isMounted && <span dangerouslySetInnerHTML={ { __html: title } } /> }
 				</motion.span>
@@ -271,25 +271,25 @@ const Hero: React.FC<HeroProps> = ({
 								>
 									{ renderTitles(isScheduleCall ? heroData.titlesScheduleCallMobile : heroData.titlesMobile) }
 								</motion.h1>
-								{ /* <span className='overflow-hidden inline-flex'> */ }
-								{ /* 	<motion.h2 */ }
-								{ /* 		variants={ { */ }
-								{ /* 			visible: { */ }
-								{ /* 				y: 0, */ }
-								{ /* 				transition: { */ }
-								{ /* 					...slideUpTransition, */ }
-								{ /* 					delay: showIntro === 'true' ? 2.1 : 0.1, */ }
-								{ /* 				}, */ }
-								{ /* 			}, */ }
-								{ /* 			hidden: { y: '100%' }, */ }
-								{ /* 		} } */ }
-								{ /* 		initial='hidden' */ }
-								{ /* 		animate='visible' */ }
-								{ /* 		className='text-grey-secondary font-Poppins font-normal inline-flex text-xs sm:text-xs lg:text-base !leading-6 tracking-0.11em' */ }
-								{ /* 	> */ }
-								{ /* 		{ heroData.preTitle } */ }
-								{ /* 	</motion.h2> */ }
-								{ /* </span> */ }
+								<span className='overflow-hidden inline-flex'>
+									<motion.h2
+										variants={ {
+											visible: {
+												y: 0,
+												transition: {
+													...slideUpTransition,
+													delay: showIntro === 'true' ? 2.1 : 0.1,
+												},
+											},
+											hidden: { y: '100%' },
+										} }
+										initial='hidden'
+										animate='visible'
+										className='text-grey-secondary font-Poppins font-normal inline-flex text-xs sm:text-xs lg:text-base !leading-6 tracking-0.11em'
+									>
+										{ heroData.preTitle }
+									</motion.h2>
+								</span>
 
 								<div className={ clsxm(
 									'flex w-full mt-6 xs:mt-8 sm:mt-10 md:mt-[5vh] lg:mt-[5.435vh] xl:mt-50px relative',

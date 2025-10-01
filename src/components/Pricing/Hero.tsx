@@ -15,7 +15,7 @@ import { ProductMembership } from '@/interfaces/product';
 import { useCheckoutStore } from '@/store/checkoutStore';
 
 import ButtonCta from '../ButtonCta';
-import { GreenCheck } from '../Icons';
+import { GreenCheck, RedEx } from '../Icons';
 import ButtonSwitchMemberFreq from '../MemberShip/ButtonSwitchMemberFreq';
 import Navbar from '../Navbar/Landing';
 import PopupReview from '../PopupReview';
@@ -53,11 +53,11 @@ const Hero: React.FC<HeroProps> = ({
 			annual: { monthlyPrice: '$56.67', billedAmount: '$679.89', period: 'yr' }
 		},
 		plus: {
-			'semi annual': { monthlyPrice: '$130', billedAmount: '$779', period: '6mo' },
+			'semi annual': { monthlyPrice: '$129.99', billedAmount: '$779', period: '6mo' },
 			annual: { monthlyPrice: '$110.50', billedAmount: '$1325.98', period: 'yr' }
 		},
 		premium: {
-			'semi annual': { monthlyPrice: '$150', billedAmount: '$899', period: '6mo' },
+			'semi annual': { monthlyPrice: '$149.83', billedAmount: '$899', period: '6mo' },
 			annual: { monthlyPrice: '$127.50', billedAmount: '$1529.98', period: 'yr' }
 		}
 	};
@@ -172,10 +172,7 @@ const Hero: React.FC<HeroProps> = ({
 									className='pt-[42px] pb-[34px] px-6 flex flex-col gap-10 rounded-2xl overflow-hidden w-full h-auto relative bg-[#FCFCFC] border-grey-100 border text-primary'
 								>
 									<div>
-										<h3 className='!leading-[28px] text-[5.128vw] xs2:text-lg font-medium'>
-                    Advanced Bloodwork Done Twice Annually
-										</h3>
-
+										<h3 className='font-medium text-3xl pb-3'>Geviti Lite</h3>
 										{ /* Mobile frequency switcher for this card */ }
 										<div className='md:hidden w-full flex flex-col items-center justify-center gap-[8px] mb-4'>
 											<span className='text-center text-[9px] text-[#919B9F] uppercase font-semibold tracking-[1px] leading-[12px]'>
@@ -199,7 +196,9 @@ const Hero: React.FC<HeroProps> = ({
 															liteFrequency === 'annual' ? 'text-white z-10' : 'text-grey-400'
 														) }
 													>
-														Annual
+														<span className='flex items-center justify-center w-full'>
+															Annual
+														</span>
 														<div className={ clsxm(
 															'absolute px-1 py-0.5 rounded-full font-semibold text-[8px] -right-[-0.3rem]',
 															liteFrequency === 'annual' ? 'bg-white text-black' : 'bg-black text-white'
@@ -242,7 +241,7 @@ const Hero: React.FC<HeroProps> = ({
 										</p>
 
 										<div className='flex flex-col mt-4'>
-											<h3 className='font-medium text-3xl'>Geviti Lite</h3>
+											<p className='flex flex-row items-center gap-2 mb-1'>Perfect For Advanced Insights</p>
 											<div className='flex flex-row items-center gap-2 mt-2'>
 												<GreenCheck className='w-4 h-4 text-green-alert flex-shrink-0' />
 												<p className='text-[12px]'>100+ biomarker bloodwork panel</p>
@@ -258,6 +257,54 @@ const Hero: React.FC<HeroProps> = ({
 											<div className='flex flex-row items-center gap-2 mt-2'>
 												<GreenCheck className='w-4 h-4 text-green-alert flex-shrink-0' />
 												<p className='text-[12px]'>Access to custom supplement protocol</p>
+											</div>
+
+											<p className='flex flex-row items-center gap-2 mb-1 mt-7'>Health Optimization</p>
+											<div className='flex flex-row items-center gap-2 mt-2'>
+												<RedEx className='w-4 h-4 flex-shrink-0' />
+												<p className='text-[12px]'>Custom supplements discount</p>
+											</div>
+											<div className='flex flex-row items-center gap-2 mt-2'>
+												<RedEx className='w-4 h-4 flex-shrink-0' />
+												<p className='text-[12px]'>Discounted specialty test access</p>
+											</div>
+
+											<p className='flex flex-row items-center gap-2 mb-1 mt-7'>Health Support</p>
+											<div className='flex flex-row items-center gap-2 mt-2'>
+												<RedEx className='w-4 h-4 flex-shrink-0' />
+												<p className='text-[12px]'>Dedicated Functional Wellness Specialist</p>
+											</div>
+											<div className='flex flex-row items-center gap-2 mt-2'>
+												<RedEx className='w-4 h-4 flex-shrink-0' />
+												<p className='text-[12px]'>Quarterly Functional Wellness Specialist visits</p>
+											</div>
+											<div className='flex flex-row items-center gap-2 mt-2'>
+												<RedEx className='w-4 h-4 flex-shrink-0' />
+												<p className='text-[12px]'>Nutrition and lifestyle coaching</p>
+											</div>
+
+											<p className='flex flex-row items-center gap-2 mb-1 mt-7'>Clinical Solutions</p>
+											<div className='flex flex-row items-center gap-2 mt-2'>
+												<RedEx className='w-4 h-4 flex-shrink-0' />
+												<p className='text-[12px]'>Dedicated Longevity Practitioner</p>
+											</div>
+											<div className='flex flex-row items-center gap-2 mt-2'>
+												<RedEx className='w-4 h-4 flex-shrink-0' />
+												<p className='text-[12px]'>Quarterly Longevity Practitioner visits</p>
+											</div>
+											<div className='flex flex-row items-center gap-2 mt-2'>
+												<RedEx className='w-4 h-4 flex-shrink-0' />
+												<p className='text-[12px]'>Peptide therapy & regenerative medicine</p>
+											</div>
+											<div className='flex flex-row items-center gap-2 mt-2'>
+												<RedEx className='w-4 h-4 flex-shrink-0' />
+												<p className='text-[12px]'>Hormone replacement therapy & other rx</p>
+											</div>
+
+											<p className='flex flex-row items-center gap-2 mb-1 mt-7'>Unavailable in</p>
+											<div className='flex flex-row items-center gap-2 mt-2'>
+												<RedEx className='w-4 h-4 flex-shrink-0' />
+												<p className='text-[12px]'>AK, HI, RI</p>
 											</div>
 										</div>
 
@@ -285,9 +332,7 @@ const Hero: React.FC<HeroProps> = ({
 									) }
 								>
 									<div>
-										<h3 className='!leading-[28px] text-[5.128vw] xs2:text-xl font-light'>
-											A More Hands On Experience
-										</h3>
+										<h3 className='font-medium text-3xl'>Geviti Plus</h3>
 
 										{ /* Mobile frequency switcher for this card */ }
 										<div className='md:hidden w-full flex flex-col items-center justify-center gap-[8px] mb-4'>
@@ -315,7 +360,9 @@ const Hero: React.FC<HeroProps> = ({
 															plusFrequency === 'annual' ? 'text-white z-10' : 'text-grey-400'
 														) }
 													>
-														Annual
+														<span className='flex items-center justify-center w-full'>
+															Annual
+														</span>
 														<div className={ clsxm(
 															'absolute px-1 py-0.5 rounded-full font-semibold text-[8px] -right-[-0.3rem]',
 															plusFrequency === 'annual' ? 'bg-white text-black' : 'bg-black text-white'
@@ -358,23 +405,70 @@ const Hero: React.FC<HeroProps> = ({
 										</p>
 
 										<div className='flex flex-col mt-4'>
-											<h3 className='font-medium text-3xl'>Geviti Plus</h3>
-											<p className='font-normal text-xl text-opacity-90 mt-1'>Everything in Lite, plus</p>
+											<p className='flex flex-row items-center gap-2 mb-1'>Ideal For Wellness Enthusiasts</p>
 											<div className='flex flex-row items-center gap-2 mt-2'>
 												<GreenCheck className='w-4 h-4 text-green-alert flex-shrink-0' />
-												<p className='text-[12px]'>Dedicated Functional Longevity Specialist</p>
+												<p className='text-[12px]'>100+ biomarker bloodwork panel</p>
 											</div>
 											<div className='flex flex-row items-center gap-2 mt-2'>
 												<GreenCheck className='w-4 h-4 text-green-alert flex-shrink-0' />
-												<p className='text-[12px]'>45 min detailed bloodwork review</p>
+												<p className='text-[12px]'>At-home blood draw included*</p>
 											</div>
 											<div className='flex flex-row items-center gap-2 mt-2'>
 												<GreenCheck className='w-4 h-4 text-green-alert flex-shrink-0' />
-												<p className='text-[12px]'>Quarterly virtual visits</p>
+												<p className='text-[12px]'>Personalized health optimization plan</p>
 											</div>
 											<div className='flex flex-row items-center gap-2 mt-2'>
 												<GreenCheck className='w-4 h-4 text-green-alert flex-shrink-0' />
-												<p className='text-[12px]'>40% off custom supplement protocol</p>
+												<p className='text-[12px]'>Access to custom supplement protocol</p>
+											</div>
+
+											<p className='flex flex-row items-center gap-2 mb-1 mt-7'>Exclusive Savings</p>
+											<div className='flex flex-row items-center gap-2 mt-2'>
+												<GreenCheck className='w-4 h-4 text-green-alert flex-shrink-0' />
+												<p className='text-[12px]'>40% Custom supplements discount</p>
+											</div>
+											<div className='flex flex-row items-center gap-2 mt-2'>
+												<GreenCheck className='w-4 h-4 text-green-alert flex-shrink-0' />
+												<p className='text-[12px]'>Discounted specialty test access</p>
+											</div>
+
+											<p className='flex flex-row items-center gap-2 mb-1 mt-7'>Dedicated Support</p>
+											<div className='flex flex-row items-center gap-2 mt-2'>
+												<GreenCheck className='w-4 h-4 text-green-alert flex-shrink-0' />
+												<p className='text-[12px]'>Assigned Functional Longevity Specialist</p>
+											</div>
+											<div className='flex flex-row items-center gap-2 mt-2'>
+												<GreenCheck className='w-4 h-4 text-green-alert flex-shrink-0' />
+												<p className='text-[12px]'>Quarterly Longevity Specialist visits</p>
+											</div>
+											<div className='flex flex-row items-center gap-2 mt-2'>
+												<GreenCheck className='w-4 h-4 text-green-alert flex-shrink-0' />
+												<p className='text-[12px]'>Nutrition and lifestyle coaching</p>
+											</div>
+
+											<p className='flex flex-row items-center gap-2 mb-1 mt-7'>Clinical Solutions</p>
+											<div className='flex flex-row items-center gap-2 mt-2'>
+												<RedEx className='w-4 h-4 flex-shrink-0' />
+												<p className='text-[12px]'>Dedicated Longevity Practitioner</p>
+											</div>
+											<div className='flex flex-row items-center gap-2 mt-2'>
+												<RedEx className='w-4 h-4 flex-shrink-0' />
+												<p className='text-[12px]'>Quarterly Longevity Practitioner visits</p>
+											</div>
+											<div className='flex flex-row items-center gap-2 mt-2'>
+												<RedEx className='w-4 h-4 flex-shrink-0' />
+												<p className='text-[12px]'>Peptide therapy & regenerative medicine</p>
+											</div>
+											<div className='flex flex-row items-center gap-2 mt-2'>
+												<RedEx className='w-4 h-4 flex-shrink-0' />
+												<p className='text-[12px]'>Hormone replacement therapy & other rx</p>
+											</div>
+
+											<p className='flex flex-row items-center gap-2 mb-1 mt-7'>Unavailable in</p>
+											<div className='flex flex-row items-center gap-2 mt-2'>
+												<RedEx className='w-4 h-4 flex-shrink-0' />
+												<p className='text-[12px]'>AK, HI, RI</p>
 											</div>
 										</div>
 
@@ -395,9 +489,7 @@ const Hero: React.FC<HeroProps> = ({
 									className='pt-[42px] pb-[34px] px-6 flex flex-col gap-10 rounded-2xl overflow-hidden w-full h-auto relative bg-[#FCFCFC] border-grey-100 border text-primary'
 								>
 									<div>
-										<h3 className='!leading-[28px] text-[5.128vw] xs2:text-lg font-medium'>
-                    The Complete Longevity Solution
-										</h3>
+										<h3 className='font-medium text-3xl'>Geviti Plus Rx</h3>
 
 										{ /* Mobile frequency switcher for this card */ }
 										<div className='md:hidden w-full flex flex-col items-center justify-center gap-[8px] mb-4'>
@@ -422,7 +514,9 @@ const Hero: React.FC<HeroProps> = ({
 															premiumFrequency === 'annual' ? 'text-white z-10' : 'text-grey-400'
 														) }
 													>
-														Annual
+														<span className='flex items-center justify-center w-full'>
+															Annual
+														</span>
 														<div className={ clsxm(
 															'absolute px-1 py-0.5 rounded-full font-semibold text-[8px] -right-[-0.3rem]',
 															premiumFrequency === 'annual' ? 'bg-white text-black' : 'bg-black text-white'
@@ -465,19 +559,70 @@ const Hero: React.FC<HeroProps> = ({
 										</p>
 
 										<div className='flex flex-col mt-4'>
-											<h3 className='font-medium text-3xl'>Geviti Premium</h3>
-											<p className='font-normal text-xl text-opacity-90 mt-1'>Everything in Plus, and</p>
+											<p className='flex flex-row items-center gap-2 mb-1'>The Complete Longevity Solution</p>
 											<div className='flex flex-row items-center gap-2 mt-2'>
 												<GreenCheck className='w-4 h-4 text-green-alert flex-shrink-0' />
-												<p className='text-[12px]'>Quarterly Longevity Practitioner visits</p>
+												<p className='text-[12px]'>100+ biomarker bloodwork panel</p>
 											</div>
 											<div className='flex flex-row items-center gap-2 mt-2'>
 												<GreenCheck className='w-4 h-4 text-green-alert flex-shrink-0' />
-												<p className='text-[12px]'>Access to compounded prescriptions from top pharmacies</p>
+												<p className='text-[12px]'>At-home blood draw included*</p>
 											</div>
 											<div className='flex flex-row items-center gap-2 mt-2'>
 												<GreenCheck className='w-4 h-4 text-green-alert flex-shrink-0' />
-												<p className='text-[12px]'>Peptide therapy and regenerative medicine monitored by a medical practitioner</p>
+												<p className='text-[12px]'>Personalized health optimization plan</p>
+											</div>
+											<div className='flex flex-row items-center gap-2 mt-2'>
+												<GreenCheck className='w-4 h-4 text-green-alert flex-shrink-0' />
+												<p className='text-[12px]'>Access to custom supplement protocol</p>
+											</div>
+
+											<p className='flex flex-row items-center gap-2 mb-1 mt-7'>Health Optimization</p>
+											<div className='flex flex-row items-center gap-2 mt-2'>
+												<GreenCheck className='w-4 h-4 text-green-alert flex-shrink-0' />
+												<p className='text-[12px]'>40% Custom supplements discount</p>
+											</div>
+											<div className='flex flex-row items-center gap-2 mt-2'>
+												<GreenCheck className='w-4 h-4 text-green-alert flex-shrink-0' />
+												<p className='text-[12px]'>Discounted specialty test access</p>
+											</div>
+
+											<p className='flex flex-row items-center gap-2 mb-1 mt-7'>Health Support</p>
+											<div className='flex flex-row items-center gap-2 mt-2'>
+												<GreenCheck className='w-4 h-4 text-green-alert flex-shrink-0' />
+												<p className='text-[12px]'>Dedicated Functional Wellness Specialist</p>
+											</div>
+											<div className='flex flex-row items-center gap-2 mt-2'>
+												<GreenCheck className='w-4 h-4 text-green-alert flex-shrink-0' />
+												<p className='text-[12px]'>Quarterly Functional Wellness Specialist visits</p>
+											</div>
+											<div className='flex flex-row items-center gap-2 mt-2'>
+												<GreenCheck className='w-4 h-4 text-green-alert flex-shrink-0' />
+												<p className='text-[12px]'>Nutrition and Lifestyle Coaching</p>
+											</div>
+
+											<p className='flex flex-row items-center gap-2 mb-1 mt-7'>Clinical Solutions</p>
+											<div className='flex flex-row items-center gap-2 mt-2'>
+												<GreenCheck className='w-4 h-4 text-green-alert flex-shrink-0' />
+												<p className='text-[12px]'>Dedicated Longevity Practitioner</p>
+											</div>
+											<div className='flex flex-row items-center gap-2 mt-2'>
+												<GreenCheck className='w-4 h-4 text-green-alert flex-shrink-0' />
+												<p className='text-[12px]'>Quarterly Longevity Practitioner Visits</p>
+											</div>
+											<div className='flex flex-row items-center gap-2 mt-2'>
+												<GreenCheck className='w-4 h-4 text-green-alert flex-shrink-0' />
+												<p className='text-[12px]'>Peptide Therapy & Regenerative Medicine</p>
+											</div>
+											<div className='flex flex-row items-center gap-2 mt-2'>
+												<GreenCheck className='w-4 h-4 text-green-alert flex-shrink-0' />
+												<p className='text-[12px]'>Hormone Replacement Therapy & Other Rx</p>
+											</div>
+
+											<p className='flex flex-row items-center gap-2 mb-1 mt-7'>Plus Rx is exclusively available in</p>
+											<div className='flex flex-row items-center gap-2 mt-2'>
+												<GreenCheck className='w-4 h-4 text-green-alert flex-shrink-0' />
+												<p className='text-[12px]'>CA, TX, NY, FL, IL, PA, OH, GA, NC, MI, NJ, VA, WA, AZ, MA, IN, TN, MO, MD, WI</p>
 											</div>
 										</div>
 
