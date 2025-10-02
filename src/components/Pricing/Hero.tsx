@@ -244,7 +244,7 @@ const Hero: React.FC<HeroProps> = ({
 											<p className='flex flex-row items-center gap-2 mb-1'>Perfect For Advanced Insights</p>
 											<div className='flex flex-row items-center gap-2 mt-2'>
 												<GreenCheck className='w-4 h-4 text-green-alert flex-shrink-0' />
-												<p className='text-[12px]'>100+ biomarker bloodwork panel</p>
+												<p className='text-[12px]'>100+ biomarker bloodwork panel every 6mo</p>
 											</div>
 											<div className='flex flex-row items-center gap-2 mt-2'>
 												<GreenCheck className='w-4 h-4 text-green-alert flex-shrink-0' />
@@ -408,7 +408,7 @@ const Hero: React.FC<HeroProps> = ({
 											<p className='flex flex-row items-center gap-2 mb-1'>Ideal For Wellness Enthusiasts</p>
 											<div className='flex flex-row items-center gap-2 mt-2'>
 												<GreenCheck className='w-4 h-4 text-green-alert flex-shrink-0' />
-												<p className='text-[12px]'>100+ biomarker bloodwork panel</p>
+												<p className='text-[12px]'>100+ biomarker bloodwork panel every 6mo</p>
 											</div>
 											<div className='flex flex-row items-center gap-2 mt-2'>
 												<GreenCheck className='w-4 h-4 text-green-alert flex-shrink-0' />
@@ -590,15 +590,15 @@ const Hero: React.FC<HeroProps> = ({
 											<p className='flex flex-row items-center gap-2 mb-1 mt-7'>Dedicated Support</p>
 											<div className='flex flex-row items-center gap-2 mt-2'>
 												<GreenCheck className='w-4 h-4 text-green-alert flex-shrink-0' />
-												<p className='text-[12px]'>Dedicated Functional Wellness Specialist</p>
+												<p className='text-[12px]'>Dedicated Functional Longevity Specialist</p>
 											</div>
 											<div className='flex flex-row items-center gap-2 mt-2'>
 												<GreenCheck className='w-4 h-4 text-green-alert flex-shrink-0' />
-												<p className='text-[12px]'>Quarterly Functional Wellness Specialist visits</p>
+												<p className='text-[12px]'>Quarterly Functional Longevity Specialist visits</p>
 											</div>
 											<div className='flex flex-row items-center gap-2 mt-2'>
 												<GreenCheck className='w-4 h-4 text-green-alert flex-shrink-0' />
-												<p className='text-[12px]'>Nutrition and Lifestyle Coaching</p>
+												<p className='text-[12px]'>Nutrition and lifestyle coaching</p>
 											</div>
 
 											<p className='flex flex-row items-center gap-2 mb-1 mt-7'>Clinical Solutions</p>
@@ -608,15 +608,15 @@ const Hero: React.FC<HeroProps> = ({
 											</div>
 											<div className='flex flex-row items-center gap-2 mt-2'>
 												<GreenCheck className='w-4 h-4 text-green-alert flex-shrink-0' />
-												<p className='text-[12px]'>Quarterly Longevity Practitioner Visits</p>
+												<p className='text-[12px]'>Quarterly Longevity Practitioner visits</p>
 											</div>
 											<div className='flex flex-row items-center gap-2 mt-2'>
 												<GreenCheck className='w-4 h-4 text-green-alert flex-shrink-0' />
-												<p className='text-[12px]'>Peptide Therapy & Regenerative Medicine</p>
+												<p className='text-[12px]'>Peptide therapy & regenerative medicine</p>
 											</div>
 											<div className='flex flex-row items-center gap-2 mt-2'>
 												<GreenCheck className='w-4 h-4 text-green-alert flex-shrink-0' />
-												<p className='text-[12px]'>Hormone Replacement Therapy & Other Rx</p>
+												<p className='text-[12px]'>Hormone replacement therapy & other Rx</p>
 											</div>
 
 											<p className='flex flex-row items-center gap-2 mb-1 mt-7'>Plus Rx is exclusively available in</p>
