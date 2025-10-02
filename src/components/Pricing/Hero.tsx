@@ -259,7 +259,7 @@ const Hero: React.FC<HeroProps> = ({
 												<p className='text-[12px]'>Access to custom supplement protocol</p>
 											</div>
 
-											<p className='flex flex-row items-center gap-2 mb-1 mt-7'>Health Optimization</p>
+											<p className='flex flex-row items-center gap-2 mb-1 mt-7'>Exclusive Savings</p>
 											<div className='flex flex-row items-center gap-2 mt-2'>
 												<RedEx/>
 												<p className='text-[12px]'>Custom supplements discount</p>
@@ -269,7 +269,7 @@ const Hero: React.FC<HeroProps> = ({
 												<p className='text-[12px]'>Discounted specialty test access</p>
 											</div>
 
-											<p className='flex flex-row items-center gap-2 mb-1 mt-7'>Health Support</p>
+											<p className='flex flex-row items-center gap-2 mb-1 mt-7'>Dedicated Support</p>
 											<div className='flex flex-row items-center gap-2 mt-2'>
 												<RedEx/>
 												<p className='text-[12px]'>Dedicated Functional Wellness Specialist</p>
@@ -423,7 +423,7 @@ const Hero: React.FC<HeroProps> = ({
 												<p className='text-[12px]'>Access to custom supplement protocol</p>
 											</div>
 
-											<p className='flex flex-row items-center gap-2 mb-1 mt-7'>Health Optimization</p>
+											<p className='flex flex-row items-center gap-2 mb-1 mt-7'>Exclusive Savings</p>
 											<div className='flex flex-row items-center gap-2 mt-2'>
 												<GreenCheck className='w-4 h-4 text-green-alert flex-shrink-0' />
 												<p className='text-[12px]'>40% Custom supplements discount</p>
@@ -433,7 +433,7 @@ const Hero: React.FC<HeroProps> = ({
 												<p className='text-[12px]'>Discounted specialty test access</p>
 											</div>
 
-											<p className='flex flex-row items-center gap-2 mb-1 mt-7'>Health Support</p>
+											<p className='flex flex-row items-center gap-2 mb-1 mt-7'>Dedicated Support</p>
 											<div className='flex flex-row items-center gap-2 mt-2'>
 												<GreenCheck className='w-4 h-4 text-green-alert flex-shrink-0' />
 												<p className='text-[12px]'>Assigned Functional Longevity Specialist</p>
@@ -577,7 +577,7 @@ const Hero: React.FC<HeroProps> = ({
 												<p className='text-[12px]'>Access to custom supplement protocol</p>
 											</div>
 
-											<p className='flex flex-row items-center gap-2 mb-1 mt-7'>Health Optimization</p>
+											<p className='flex flex-row items-center gap-2 mb-1 mt-7'>Exclusive Savings</p>
 											<div className='flex flex-row items-center gap-2 mt-2'>
 												<GreenCheck className='w-4 h-4 text-green-alert flex-shrink-0' />
 												<p className='text-[12px]'>40% Custom supplements discount</p>
@@ -587,7 +587,7 @@ const Hero: React.FC<HeroProps> = ({
 												<p className='text-[12px]'>Discounted specialty test access</p>
 											</div>
 
-											<p className='flex flex-row items-center gap-2 mb-1 mt-7'>Health Support</p>
+											<p className='flex flex-row items-center gap-2 mb-1 mt-7'>Dedicated Support</p>
 											<div className='flex flex-row items-center gap-2 mt-2'>
 												<GreenCheck className='w-4 h-4 text-green-alert flex-shrink-0' />
 												<p className='text-[12px]'>Dedicated Functional Wellness Specialist</p>
