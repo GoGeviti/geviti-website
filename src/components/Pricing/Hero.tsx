@@ -298,7 +298,7 @@ const Hero: React.FC<HeroProps> = ({
 											</div>
 											<div className='flex flex-row items-center gap-2 mt-2'>
 												<RedEx/>
-												<p className='text-[12px]'>Hormone replacement therapy & other rx</p>
+												<p className='text-[12px]'>Hormone replacement therapy & other Rx</p>
 											</div>
 
 											<p className='flex flex-row items-center gap-2 mb-1 mt-7'>Unavailable in</p>
@@ -462,7 +462,7 @@ const Hero: React.FC<HeroProps> = ({
 											</div>
 											<div className='flex flex-row items-center gap-2 mt-2'>
 												<RedEx/>
-												<p className='text-[12px]'>Hormone replacement therapy & other rx</p>
+												<p className='text-[12px]'>Hormone replacement therapy & other Rx</p>
 											</div>
 
 											<p className='flex flex-row items-center gap-2 mb-1 mt-7'>Unavailable in</p>
