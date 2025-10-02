@@ -132,7 +132,7 @@ const Hero: React.FC<HeroProps> = ({
 					) }
 				>
 					<div className='text-center pb-[42px] lg:pb-6'>
-						<div className='pb-6 lg:pb-3 flex justify-center w-full'>
+						<div className='pb-6 lg:pb-3 flex justify-center items-center w-full'>
 							<PopupReview
 								className='max-sm:w-full max-sm:max-w-[277px]'
 								style={
@@ -141,7 +141,7 @@ const Hero: React.FC<HeroProps> = ({
                       '0px 61px 25px rgba(184, 184, 184, 0.01), 0px 34px 21px rgba(184, 184, 184, 0.05), 0px 15px 15px rgba(184, 184, 184, 0.09), 0px 4px 8px rgba(184, 184, 184, 0.1)',
                   } as CSSProperties
 								}
-								wrapperClassName='[box-shadow:var(--shadow-popup-pricing)] max-sm:w-full lg:w-[274px]'
+								wrapperClassName='[box-shadow:var(--shadow-popup-pricing)] max-sm:w-full lg:w-[274px] mx-auto'
 							/>
 						</div>
 						<h2 className='mb-3.5 lg:mb-3 max-sm:max-w-[323px] mx-auto text-2xl md:text-3xl lg:text-[64px] !leading-normal text-primary -tracking-0.04em font-VictorSerif italic font-medium'>
@@ -312,7 +312,7 @@ const Hero: React.FC<HeroProps> = ({
 											href='https://stage-app.gogeviti.com/onboarding/signup'
 											text='Get Started'
 											theme='primary'
-											className='w-full sm:w-fit mt-[25px]'
+											className='w-full sm:w-fit sm:mx-auto mt-[25px]'
 										/>
 									</div>
 								</div>
@@ -477,7 +477,7 @@ const Hero: React.FC<HeroProps> = ({
 											target={ isFromHomePage ? '_blank' : undefined }
 											text={ item.btnCta.text }
 											theme={ item.mostValue ? 'secondary' : 'primary' }
-											className='w-full sm:w-fit mt-[25px]'
+											className='w-full sm:w-fit sm:mx-auto mt-[25px]'
 										/>
 									</div>
 								</div>
@@ -630,7 +630,7 @@ const Hero: React.FC<HeroProps> = ({
 											href='https://stage-app.gogeviti.com/onboarding/signup'
 											text='Get Started'
 											theme='primary'
-											className='w-full sm:w-fit mt-[25px]'
+											className='w-full sm:w-fit sm:mx-auto mt-[25px]'
 										/>
 									</div>
 								</div>
