@@ -312,7 +312,7 @@ const Hero: React.FC<HeroProps> = ({
 											href='https://stage-app.gogeviti.com/onboarding/signup'
 											text='Get Started'
 											theme='primary'
-											className='w-full sm:w-fit sm:mx-auto mt-[25px]'
+											className='w-full sm:w-fit sm:mx-auto mt-[35px]'
 										/>
 									</div>
 								</div>
@@ -477,7 +477,7 @@ const Hero: React.FC<HeroProps> = ({
 											target={ isFromHomePage ? '_blank' : undefined }
 											text={ item.btnCta.text }
 											theme={ item.mostValue ? 'secondary' : 'primary' }
-											className='w-full sm:w-fit sm:mx-auto mt-[25px]'
+											className='w-full sm:w-fit sm:mx-auto mt-[45px]'
 										/>
 									</div>
 								</div>
