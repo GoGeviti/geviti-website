@@ -63,14 +63,19 @@ const FeaturesCarousel: React.FC = () => {
 											: 'justify-center lg:justify-end'
 									) }
 								>
-									<div className='w-full sm:w-[448px] relative h-[358px] sm:h-[390px]'>
+									<div className={ clsxm(
+										'w-full sm:w-[448px] relative',
+										feature.btnCta
+											? 'h-[358px] sm:h-[390px]'
+											: 'h-[424px] sm:h-[390px]'
+									) }>
 										<span className='text-primary font-Poppins p-3.5 rounded-19px bg-white absolute inset-0 w-full h-full'>
 											<div className='h-full w-full bg-blue-alice rounded-2xl relative overflow-hidden'>
 												<Image
 													alt='card'
 													src={ feature.card.image }
-													width={ 448 }
-													height={ 390 }
+													fill
+													className='object-cover'
 												/>
 											</div>
 										</span>
