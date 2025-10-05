@@ -101,6 +101,11 @@ export async function middleware(request: NextRequest) {
 		ReactGA.send({ hitType: 'pageview', page: '/megyn', title: 'Megyn' });
 		return NextResponse.redirect(new URL('/', request.url));
 	}
+	if (pathname === '/mail') {
+		ReactGA.initialize(trackingId);
+		ReactGA.send({ hitType: 'pageview', page: '/mail', title: 'Mail' });
+		return NextResponse.redirect(new URL('/', request.url));
+	}
 
 	const userAgent = request.headers.get('user-agent')?.toLowerCase();
 
@@ -122,6 +127,7 @@ export const config = {
 		'/mobile',
 		'/pickleballkingdom',
 		'/megyn',
+		'/mail',
 		// '/onboarding/payment',
 		// '/waitlist',
 		// '/landing',
