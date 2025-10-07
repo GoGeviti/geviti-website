@@ -83,10 +83,10 @@ const navigationData = {
 			href: '#',
 			externalLink: false,
 			items: [
-				{
-					name: 'Wellness Blog',
-					href: '/blog',
-				},
+				// {
+				// 	name: 'Wellness Blog',
+				// 	href: '/blog',
+				// },
 				{
 					name: 'Testimonials',
 					href: '/testimonials',
