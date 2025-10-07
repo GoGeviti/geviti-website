@@ -34,10 +34,17 @@ const Innovative = dynamic(() => import('@/components/Landing/Innovative'));
 const HeroPricing = dynamic(() => import('@/components/Pricing/Hero'));
 
 const HomePage: NextPage = async() => {
-	const productMembership = await getProductMembership();
+	let productMembership = null;
+	try {
+		productMembership = await getProductMembership();
+	} catch (error) {
+		// Failed to fetch product membership, continue rendering without it
+	}
+	
 	const categories = await getAllCategories();
 	const showIntro = await getCookie('show_intro');
 	const showBanner = await getCookie('close_hero_banner');
+	// const	productMembership = null;
 	// const showIntro = 'false';
 	// const showBanner = 'false';
 
