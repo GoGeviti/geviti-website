@@ -21,7 +21,23 @@ import Navbar from '../Navbar/Landing';
 import PopupReview from '../PopupReview';
 
 const item = pricingData.hero.list;
-const SIGN_UP_SITE_URL = 'https://app.gogeviti.com/onboarding/signup';
+export const SIGN_UP_SITE_URL = 'https://app.gogeviti.com/onboarding/signup';
+
+// Define pricing tiers for all cards based on frequency
+export const PRICING_TIERS = {
+	lite: {
+		'semi annual': { monthlyPrice: '$66.67', billedAmount: '$399', period: '6mo' },
+		annual: { monthlyPrice: '$56.67', billedAmount: '$679.89', period: 'yr' }
+	},
+	plus: {
+		'semi annual': { monthlyPrice: '$129.99', billedAmount: '$779', period: '6mo' },
+		annual: { monthlyPrice: '$110.50', billedAmount: '$1325.98', period: 'yr' }
+	},
+	premium: {
+		'semi annual': { monthlyPrice: '$149.83', billedAmount: '$899', period: '6mo' },
+		annual: { monthlyPrice: '$127.50', billedAmount: '$1529.98', period: 'yr' }
+	}
+};
 
 type HeroProps = {
   navbar?: boolean;
@@ -46,22 +62,6 @@ const Hero: React.FC<HeroProps> = ({
 	
 	// Global frequency state for desktop switcher
 	const [, setGlobalFrequency] = useState<'semi annual' | 'annual'>('semi annual');
-
-	// Define pricing tiers for all cards based on frequency
-	const pricingTiers = {
-		lite: {
-			'semi annual': { monthlyPrice: '$66.67', billedAmount: '$399', period: '6mo' },
-			annual: { monthlyPrice: '$56.67', billedAmount: '$679.89', period: 'yr' }
-		},
-		plus: {
-			'semi annual': { monthlyPrice: '$129.99', billedAmount: '$779', period: '6mo' },
-			annual: { monthlyPrice: '$110.50', billedAmount: '$1325.98', period: 'yr' }
-		},
-		premium: {
-			'semi annual': { monthlyPrice: '$149.83', billedAmount: '$899', period: '6mo' },
-			annual: { monthlyPrice: '$127.50', billedAmount: '$1529.98', period: 'yr' }
-		}
-	};
 
 	// Determine current frequency based on selectedProductPrice
 	const getCurrentFrequency = (): 'semi annual' | 'annual' => {
@@ -230,13 +230,13 @@ const Hero: React.FC<HeroProps> = ({
 												className='font-medium text-5xl whitespace-nowrap !leading-[125%] py-1 h-full'
 											>
 												<span className='victor-serif-medium italic text-5xl !leading-[125%] py-1'>
-													{ pricingTiers.lite[liteFrequency].monthlyPrice }/mo
+													{ PRICING_TIERS.lite[liteFrequency].monthlyPrice }/mo
 												</span>
 											</motion.div>
 										</AnimatePresence>
 										<p className='text-xs leading-6'>
 											<span className='text-[12px] font-medium whitespace-nowrap'>
-												(billed at { pricingTiers.lite[liteFrequency].billedAmount } every { pricingTiers.lite[liteFrequency].period })
+												(billed at { PRICING_TIERS.lite[liteFrequency].billedAmount } every { PRICING_TIERS.lite[liteFrequency].period })
 											</span>
 											<br/>
 										</p>
@@ -394,13 +394,13 @@ const Hero: React.FC<HeroProps> = ({
 												className='font-medium text-5xl whitespace-nowrap !leading-[125%] py-1 h-full'
 											>
 												<span className='victor-serif-medium italic text-5xl !leading-[125%] py-1'>
-													{ pricingTiers.plus[plusFrequency].monthlyPrice }/mo
+													{ PRICING_TIERS.plus[plusFrequency].monthlyPrice }/mo
 												</span>
 											</motion.div>
 										</AnimatePresence>
 										<p className='text-xs leading-6'>
 											<span className='text-[12px] font-medium whitespace-nowrap'>
-												(billed at { pricingTiers.plus[plusFrequency].billedAmount } every { pricingTiers.plus[plusFrequency].period })
+												(billed at { PRICING_TIERS.plus[plusFrequency].billedAmount } every { PRICING_TIERS.plus[plusFrequency].period })
 											</span>
 											<br/>
 										</p>
@@ -548,13 +548,13 @@ const Hero: React.FC<HeroProps> = ({
 												className='font-medium text-5xl whitespace-nowrap !leading-[125%] py-1 h-full'
 											>
 												<span className='victor-serif-medium italic text-5xl !leading-[125%] py-1'>
-													{ pricingTiers.premium[premiumFrequency].monthlyPrice }/mo
+													{ PRICING_TIERS.premium[premiumFrequency].monthlyPrice }/mo
 												</span>
 											</motion.div>
 										</AnimatePresence>
 										<p className='text-xs leading-6'>
 											<span className='text-[12px] font-medium whitespace-nowrap'>
-												(billed at { pricingTiers.premium[premiumFrequency].billedAmount } every { pricingTiers.premium[premiumFrequency].period })
+												(billed at { PRICING_TIERS.premium[premiumFrequency].billedAmount } every { PRICING_TIERS.premium[premiumFrequency].period })
 											</span>
 											<br/>
 										</p>

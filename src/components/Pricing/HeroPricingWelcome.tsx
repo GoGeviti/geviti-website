@@ -6,21 +6,19 @@ import React, {
 	useState,
 } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import Image from 'next/image';
-import Link from 'next/link';
 
+import { PRICING_TIERS, SIGN_UP_SITE_URL } from '@/components/Pricing/Hero';
 // import { useRouter } from 'next/navigation';
 import { navbarDefaultTransition } from '@/constant/data/navbar';
 import pricingData from '@/constant/data/pricing';
 import clsxm from '@/helpers/clsxm';
 import { ProductMembership } from '@/interfaces/product';
 // import { formatPrice } from '@/lib/formatPrice';
-import { generateStripeNickname } from '@/lib/generateStripeNickname';
 // import { submitWaitlistWithoutPassword } from '@/services/checkout';
 import { useCheckoutStore } from '@/store/checkoutStore';
 
 import ButtonCta from '../ButtonCta';
-import { ChevronDown, GreenCheck, ShieldTick } from '../Icons';
+import { GreenCheck, RedEx } from '../Icons';
 import ButtonSwitchMemberFreq from '../MemberShip/ButtonSwitchMemberFreq';
 import Navbar from '../Navbar/Landing';
 import PopupReview from '../PopupReview';
@@ -40,7 +38,12 @@ const HeroPricingWelcome: React.FC<HeroProps> = ({
 }) => {
 	const ref = useRef<HTMLDivElement>(null);
 
-	const { productMembership, setProductMembership, selectedProductPrice, setSelectedProductPrice } = useCheckoutStore();
+	const { setProductMembership, selectedProductPrice, setSelectedProductPrice } = useCheckoutStore();
+	const [liteFrequency, setLiteFrequency] = useState<'semi annual' | 'annual'>('semi annual');
+	const [plusFrequency, setPlusFrequency] = useState<'semi annual' | 'annual'>('semi annual');
+	const [premiumFrequency, setPremiumFrequency] = useState<'semi annual' | 'annual'>('semi annual');
+	// Global frequency state for desktop switcher
+	const [, setGlobalFrequency] = useState<'semi annual' | 'annual'>('semi annual');
 
 	useEffect(() => {
 		if (productMembershipProps) {
@@ -49,22 +52,35 @@ const HeroPricingWelcome: React.FC<HeroProps> = ({
 		}
 	}, [productMembershipProps]);
 
-	// useEffect(() => {
-	// 	console.log('Hero component re-rendered with selectedProductPrice:', selectedProductPrice); // Add this line
-	// }, [selectedProductPrice]);
+	useEffect(() => {
+		const frequency = getCurrentFrequency();
+		setGlobalFrequency(frequency);
+		// When global frequency changes, update all card frequencies on desktop
+		setLiteFrequency(frequency);
+		setPlusFrequency(frequency);
+		setPremiumFrequency(frequency);
+	}, [selectedProductPrice]);
 
-	const [activeListDropdown, setActiveListDropdown] = useState(-1);
+	const getCurrentFrequency = (): 'semi annual' | 'annual' => {
+		if (!selectedProductPrice) return 'semi annual';
 
-	// const router = useRouter()
+		// Map different intervals to our pricing tiers
+		const interval = selectedProductPrice.interval;
+		const intervalCount = selectedProductPrice.intervalCount;
 
-	// const gotoCheckout = async() => {
-	// 	const result = await submitWaitlistWithoutPassword();
-	// 	if (result.status === 'OK') {
-	// 		return router.push(`/onboarding/payment?product_id=${productMembership?.productId}&price_id=${selectedProductPrice?.priceId}`);
-	// 	} else {
-	// 		throw new Error(result.message || 'An unexpected error occurred');
-	// 	}
-	// }
+		// If it's explicitly 'annual' or 'year' with intervalCount 1, it's annual
+		if (interval === 'annual' || (interval === 'year' && intervalCount === 1)) {
+			return 'annual';
+		}
+
+		// If it's 'semi annual' or 'month' with intervalCount 6, it's semi annual
+		if (interval === 'semi annual' || (interval === 'month' && intervalCount === 6)) {
+			return 'semi annual';
+		}
+
+		// Default to semi annual for any other cases
+		return 'semi annual';
+	};
 
 	return (
 		<React.Fragment>
@@ -117,212 +133,478 @@ const HeroPricingWelcome: React.FC<HeroProps> = ({
 							showHightlightTextOnMobile
 						/>
 					</div>
-
 					<div
 						ref={ ref }
-						className='lg:max-w-[1061px] mx-auto sm:max-w-[392px] lg:grid-cols-9 flex max-lg:flex-col lg:grid gap-6 lg:gap-3.5 items-end w-full pt-[58px] lg:pt-[78px]'
+						className='container-center mx-auto w-full pt-[58px] lg:pt-[78px]'
 					>
-						<div className='w-full max-lg:order-2 relative h-full lg:col-span-3'>
-							<div className='rounded-2xl pt-7 w-full max-lg:h-full max-lg:min-h-[529px] lg:h-[450px] relative overflow-hidden bg-[linear-gradient(0deg,#A7DAFF_0%,#75C5FF_100%)]'>
-								<div className='px-5'>
-									<div className='flex items-center gap-5px mb-3.5'>
-										<ShieldTick className='flex-shrink-0 w-5 h-5 text-primary' />
-
-										<span className='inline-flex items-baseline text-[19px] !leading-[140%] font-semibold text-primary'>
-											{ pricingData.hero.banner.caption.text }
-											<span className='ml-1.5 font-normal text-base'>
-												{ pricingData.hero.banner.caption.textSuffix }
-											</span>
-										</span>
-									</div>
+						<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
+							{ /* Card 1: Geviti Lite */ }
+							<div className='w-full relative h-auto'>
+								<div
+									className='pt-[42px] pb-[34px] px-6 flex flex-col gap-10 rounded-2xl overflow-hidden w-full h-auto relative bg-[#FCFCFC] border-grey-100 border text-primary'
+								>
 									<div>
-										<p className='text-[10px] !leading-6 font-semibold tracking-0.11em text-grey-800 uppercase'>
-											{ pricingData.hero.banner.preTitle }
-										</p>
-										<h3 className='h6 !leading-normal text-black -tracking-0.04em'>
-											<span
-												dangerouslySetInnerHTML={ {
-													__html: pricingData.hero.banner.title,
-												} }
-											/>
-										</h3>
-									</div>
-								</div>
-								<Image
-									alt=''
-									src={ pricingData.hero.banner.image }
-									width={ 411 }
-									height={ 300 }
-									className='object-contain w-full h-[458px] lg:h-[350px] object-right absolute -bottom-10 lg:-bottom-1.5 lg:right-0'
-								/>
-							</div>
-						</div>
-						<div className='w-full relative h-full lg:h-[450px] lg:col-span-6'>
-							{ item.mostPopular && (
-								<span className='absolute z-10 top-0 right-6 -translate-y-1/2 text-sm !leading-normal text-primary font-medium bg-blue-primary py-2 px-6 rounded-full'>
-                  Most Popular
-								</span>
-							) }
-							{ item.mostValue && (
-								<span className='absolute z-10 top-0 right-6 -translate-y-1/2 text-sm !leading-normal text-primary font-medium bg-blue-primary py-2 px-6 rounded-full'>
-                  Free Bloodwork
-								</span>
-							) }
-							<div
-								className={ clsxm(
-									'pt-[42px] pb-[34px] px-6 grid gap-10 grid-cols-1 lg:grid-cols-2 rounded-2xl overflow-hidden w-full h-full relative',
-									item.mostValue
-										? ' text-white bg-most-value'
-										: 'bg-[#FCFCFC] border-grey-100 border text-primary'
-								) }
-							>
-								<div>
-									<h3 className='!leading-[28px] text-[5.128vw] xs2:text-xl font-medium'>
-										{ productMembership?.productName }
-									</h3>
-
-									<AnimatePresence mode='wait'>
-										<motion.span
-											key={ `price_${selectedProductPrice?.priceId}` }
-											initial={ { y: -50, opacity: 0 } }
-											animate={ { y: 0, opacity: 1 } }
-											exit={ { y: 50, opacity: 0 } }
-											transition={ { ease: 'linear', duration: 0.25 } }
-											className='font-medium text-5xl whitespace-nowrap !leading-[125%] py-1 h-full'
-										>
-											{ (() => {
-												if (!selectedProductPrice) {
-													return (
-														<span className='font-medium text-5xl !leading-[125%] py-1'>
-                              Loading...
-														</span>
-													);
-												}
-												const priceDetails = generateStripeNickname(
-													selectedProductPrice.price,
-													selectedProductPrice.interval || 'month',
-													selectedProductPrice.intervalCount || 1
-												);
-
-												return (
-													<span className='font-medium text-5xl !leading-[125%] py-1'>
-														{ priceDetails.perMonthPrice || '$0' }
-														<span className='text-xs font-medium whitespace-nowrap'>
-															{ priceDetails.suffix || '/month' }
-														</span>
-													</span>
-												);
-											})() }
-										</motion.span>
-									</AnimatePresence>
-									<p className='text-xs leading-6'>
-										{ (() => {
-											if (!selectedProductPrice) {
-												return (
-													<span className='text-[10px] font-medium whitespace-nowrap'>
-                              Loading...
-													</span>
-												);
-											}
-											const priceDetails = generateStripeNickname(
-												selectedProductPrice.price,
-												selectedProductPrice.interval || 'month',
-												selectedProductPrice.intervalCount || 1
-											);
-
-											return (
-												<span className='text-[10px] font-medium whitespace-nowrap'>
-													{ priceDetails.formattedPrice || '/month' }
-												</span>
-											);
-										})() }
-										<br/>
-										<span>
-											<span className='font-medium'>
-                        Includes the “
-												<Link
-													href='/longeviti-panel'
-													className='underline'>
-                          Longeviti Panel
-												</Link>
-                        ”
-											</span>{ ' ' }
-                      testing for{ ' ' }
-											<span className='text-xl font-medium'>
-												{ item.biomakers }
-											</span>{ ' ' }
-                      biomarkers at-home by a licensed clinician
-										</span>
-									</p>
-									{ /* <ButtonCta
-										href={
-											item.btnCta.href +
-                      '?product_id=' +
-                      productMembership?.productId +
-                      '&price_id=' +
-                      selectedProductPrice?.priceId
-										}
-										target={ isFromHomePage ? '_blank' : undefined }
-										text={ item.btnCta.text }
-										theme={ item.mostValue ? 'secondary' : 'primary' }
-										className='w-full sm:w-fit mt-[25px]'
-									/> */ }
-									 <ButtonCta
-										// onClick={ () => gotoCheckout() }
-										href={ `/onboarding/payment?product_id=${productMembership?.productId}&price_id=${selectedProductPrice?.priceId}` }
-										text={ item.btnCta.text }
-										theme={ item.mostValue ? 'secondary' : 'primary' }
-										className='w-full sm:w-fit mt-[25px]'
-									/>
-								</div>
-
-								<div>
-									<span className='text-sm font-medium mb-3 inline-block'>
-										{ item.listTitle }
-									</span>
-									<ul className='flex flex-col gap-y-[11px] mb-6'>
-										{ item.list.map((feature, featureIdx) => (
-											<li
-												key={ `feature-${featureIdx}` }
-												className='text-sm !leading-normal gap-1.5 flex items-start font-medium -tracking-[0.53px]'
-											>
-												<div className='mt-1'>
-													<GreenCheck className='w-4 h-4 text-green-alert' />
-												</div>
-												<button
-													onClick={ () =>
-														setActiveListDropdown(
-															activeListDropdown === featureIdx
-																? -1
-																: featureIdx
-														) }
-													className='flex flex-col cursor-pointer'
-												>
-													<div className='flex items-center gap-2'>
-														<span>{ feature.title }</span>
-														<ChevronDown
-															className={ ` transform ${
-																activeListDropdown === featureIdx
-																	? 'rotate-180'
-																	: 'rotate-0'
-															} transition-transform ease-out duration-300` }
-														/>
-													</div>
-													<p
+										<h3 className='font-medium text-3xl pb-3'>Geviti Lite</h3>
+										{ /* Mobile frequency switcher for this card */ }
+										<div className='md:hidden w-full flex flex-col items-center justify-center gap-[8px] mb-4'>
+											<span className='text-center text-[9px] text-[#919B9F] uppercase font-semibold tracking-[1px] leading-[12px]'>
+                        Select Frequency
+											</span>
+											<div className='relative overflow-hidden w-full rounded-[100px] h-[40px] px-1 bg-grey-50'>
+												<div className='relative grid h-full grid-cols-2'>
+													<button
+														onClick={ () => setLiteFrequency('semi annual') }
 														className={ clsxm(
-															'body-extra-small text-left',
-															'max-h-[300px] overflow-hidden transition-all duration-300',
-															activeListDropdown === featureIdx
-																? 'max-h-[300px]'
-																: 'max-h-0'
+															'text-xs !leading-normal h-full flex items-center justify-center cursor-pointer whitespace-nowrap relative',
+															liteFrequency === 'semi annual' ? 'text-white z-10' : 'text-grey-400'
 														) }
 													>
-														{ feature.description }
-													</p>
-												</button>
-											</li>
-										)) }
-									</ul>
+														Semi Annual
+													</button>
+													<button
+														onClick={ () => setLiteFrequency('annual') }
+														className={ clsxm(
+															'text-xs !leading-normal h-full flex items-center justify-center cursor-pointer whitespace-nowrap relative',
+															liteFrequency === 'annual' ? 'text-white z-10' : 'text-grey-400'
+														) }
+													>
+														<span className='flex items-center justify-center w-full'>
+															Annual
+														</span>
+														<div className={ clsxm(
+															'absolute px-1 py-0.5 rounded-full font-semibold text-[8px] -right-[-0.3rem]',
+															liteFrequency === 'annual' ? 'bg-white text-black' : 'bg-black text-white'
+														) }>
+															15% off
+														</div>
+													</button>
+													<motion.div
+														initial={ false }
+														transition={ { type: 'spring', duration: 0.5 } }
+														className='bg-primary absolute rounded-[100px] shadow-[0px_4px_8px_0px_rgba(0,0,0,0.1)] h-[32px] top-1'
+														style={ {
+															width: 'calc(50% - 8px)',
+															left: liteFrequency === 'semi annual' ? '4px' : 'calc(50% + 4px)',
+														} }
+													/>
+												</div>
+											</div>
+										</div>
+
+										<AnimatePresence mode='wait'>
+											<motion.div
+												key={ `lite_price_${liteFrequency}` }
+												initial={ { y: -50, opacity: 0 } }
+												animate={ { y: 0, opacity: 1 } }
+												exit={ { y: 50, opacity: 0 } }
+												transition={ { ease: 'linear', duration: 0.25 } }
+												className='font-medium text-5xl whitespace-nowrap !leading-[125%] py-1 h-full'
+											>
+												<span className='victor-serif-medium italic text-5xl !leading-[125%] py-1'>
+													{ PRICING_TIERS.lite[liteFrequency].monthlyPrice }/mo
+												</span>
+											</motion.div>
+										</AnimatePresence>
+										<p className='text-xs leading-6'>
+											<span className='text-[12px] font-medium whitespace-nowrap'>
+												(billed at { PRICING_TIERS.lite[liteFrequency].billedAmount } every { PRICING_TIERS.lite[liteFrequency].period })
+											</span>
+											<br/>
+										</p>
+
+										<div className='flex flex-col mt-4'>
+											<p className='flex flex-row items-center gap-2 mb-1'>Perfect For Advanced Insights</p>
+											<div className='flex flex-row items-center gap-2 mt-2'>
+												<GreenCheck className='w-4 h-4 text-green-alert flex-shrink-0' />
+												<p className='text-[12px]'>100+ biomarker bloodwork panel every 6mo</p>
+											</div>
+											<div className='flex flex-row items-center gap-2 mt-2'>
+												<GreenCheck className='w-4 h-4 text-green-alert flex-shrink-0' />
+												<p className='text-[12px]'>At-home blood draw included*</p>
+											</div>
+											<div className='flex flex-row items-center gap-2 mt-2'>
+												<GreenCheck className='w-4 h-4 text-green-alert flex-shrink-0' />
+												<p className='text-[12px]'>Personalized health optimization plan</p>
+											</div>
+											<div className='flex flex-row items-center gap-2 mt-2'>
+												<GreenCheck className='w-4 h-4 text-green-alert flex-shrink-0' />
+												<p className='text-[12px]'>Access to custom supplement protocol</p>
+											</div>
+
+											<p className='flex flex-row items-center gap-2 mb-1 mt-7'>Exclusive Savings</p>
+											<div className='flex flex-row items-center gap-2 mt-2'>
+												<RedEx/>
+												<p className='text-[12px]'>Custom supplements discount</p>
+											</div>
+											<div className='flex flex-row items-center gap-2 mt-2'>
+												<RedEx/>
+												<p className='text-[12px]'>Discounted specialty test access</p>
+											</div>
+
+											<p className='flex flex-row items-center gap-2 mb-1 mt-7'>Dedicated Support</p>
+											<div className='flex flex-row items-center gap-2 mt-2'>
+												<RedEx/>
+												<p className='text-[12px]'>Dedicated Functional Wellness Specialist</p>
+											</div>
+											<div className='flex flex-row items-center gap-2 mt-2'>
+												<RedEx/>
+												<p className='text-[12px]'>Quarterly Functional Wellness Specialist visits</p>
+											</div>
+											<div className='flex flex-row items-center gap-2 mt-2'>
+												<RedEx/>
+												<p className='text-[12px]'>Nutrition and lifestyle coaching</p>
+											</div>
+
+											<p className='flex flex-row items-center gap-2 mb-1 mt-7'>Clinical Solutions</p>
+											<div className='flex flex-row items-center gap-2 mt-2'>
+												<RedEx/>
+												<p className='text-[12px]'>Dedicated Longevity Practitioner</p>
+											</div>
+											<div className='flex flex-row items-center gap-2 mt-2'>
+												<RedEx/>
+												<p className='text-[12px]'>Quarterly Longevity Practitioner visits</p>
+											</div>
+											<div className='flex flex-row items-center gap-2 mt-2'>
+												<RedEx/>
+												<p className='text-[12px]'>Peptide therapy & regenerative medicine</p>
+											</div>
+											<div className='flex flex-row items-center gap-2 mt-2'>
+												<RedEx/>
+												<p className='text-[12px]'>Hormone replacement therapy & other Rx</p>
+											</div>
+
+											<p className='flex flex-row items-center gap-2 mb-1 mt-7'>Unavailable in</p>
+											<div className='flex flex-row items-center gap-2 mt-2'>
+												<RedEx/>
+												<p className='text-[12px]'>AK, HI, RI</p>
+											</div>
+										</div>
+
+										<ButtonCta
+											href={ SIGN_UP_SITE_URL }
+											text='Get Started'
+											theme='primary'
+											className='w-full sm:w-fit sm:mx-auto mt-[35px]'
+										/>
+									</div>
+								</div>
+							</div>
+
+							{ /* Card 2: Geviti Plus (Most Popular) */ }
+							<div className='w-full relative h-auto'>
+								<span className='absolute z-10 top-0 right-6 -translate-y-1/2 text-sm !leading-normal text-primary font-medium bg-blue-primary py-2 px-6 rounded-full'>
+									Most Popular
+								</span>
+								<div
+									className={ clsxm(
+										'pt-[42px] pb-[34px] px-6 flex flex-col gap-10 rounded-2xl overflow-hidden w-full h-auto relative',
+										item.mostValue
+											? ' text-white bg-most-value'
+											: 'bg-[#FCFCFC] border-grey-100 border text-primary'
+									) }
+								>
+									<div>
+										<h3 className='font-medium text-3xl'>Geviti Plus</h3>
+
+										{ /* Mobile frequency switcher for this card */ }
+										<div className='md:hidden w-full flex flex-col items-center justify-center gap-[8px] mb-4'>
+											<span className={ clsxm(
+												'text-center text-[9px] uppercase font-semibold tracking-[1px] leading-[12px]',
+												item.mostValue ? 'text-white/80' : 'text-[#919B9F]'
+											) }>
+                        Select Frequency
+											</span>
+											<div className='relative overflow-hidden w-full rounded-[100px] h-[40px] px-1 bg-grey-50'>
+												<div className='relative grid h-full grid-cols-2'>
+													<button
+														onClick={ () => setPlusFrequency('semi annual') }
+														className={ clsxm(
+															'text-xs !leading-normal h-full flex items-center justify-center cursor-pointer whitespace-nowrap relative',
+															plusFrequency === 'semi annual' ? 'text-white z-10' : 'text-grey-400'
+														) }
+													>
+														Semi Annual
+													</button>
+													<button
+														onClick={ () => setPlusFrequency('annual') }
+														className={ clsxm(
+															'text-xs !leading-normal h-full flex items-center justify-center cursor-pointer whitespace-nowrap relative',
+															plusFrequency === 'annual' ? 'text-white z-10' : 'text-grey-400'
+														) }
+													>
+														<span className='flex items-center justify-center w-full'>
+															Annual
+														</span>
+														<div className={ clsxm(
+															'absolute px-1 py-0.5 rounded-full font-semibold text-[8px] -right-[-0.3rem]',
+															plusFrequency === 'annual' ? 'bg-white text-black' : 'bg-black text-white'
+														) }>
+															15% off
+														</div>
+													</button>
+													<motion.div
+														initial={ false }
+														transition={ { type: 'spring', duration: 0.5 } }
+														className='bg-primary absolute rounded-[100px] shadow-[0px_4px_8px_0px_rgba(0,0,0,0.1)] h-[32px] top-1'
+														style={ {
+															width: 'calc(50% - 8px)',
+															left: plusFrequency === 'semi annual' ? '4px' : 'calc(50% + 4px)',
+														} }
+													/>
+												</div>
+											</div>
+										</div>
+
+										<AnimatePresence mode='wait'>
+											<motion.div
+												key={ `plus_price_${plusFrequency}` }
+												initial={ { y: -50, opacity: 0 } }
+												animate={ { y: 0, opacity: 1 } }
+												exit={ { y: 50, opacity: 0 } }
+												transition={ { ease: 'linear', duration: 0.25 } }
+												className='font-medium text-5xl whitespace-nowrap !leading-[125%] py-1 h-full'
+											>
+												<span className='victor-serif-medium italic text-5xl !leading-[125%] py-1'>
+													{ PRICING_TIERS.plus[plusFrequency].monthlyPrice }/mo
+												</span>
+											</motion.div>
+										</AnimatePresence>
+										<p className='text-xs leading-6'>
+											<span className='text-[12px] font-medium whitespace-nowrap'>
+												(billed at { PRICING_TIERS.plus[plusFrequency].billedAmount } every { PRICING_TIERS.plus[plusFrequency].period })
+											</span>
+											<br/>
+										</p>
+
+										<div className='flex flex-col mt-4'>
+											<p className='flex flex-row items-center gap-2 mb-1'>Ideal For Wellness Enthusiasts</p>
+											<div className='flex flex-row items-center gap-2 mt-2'>
+												<GreenCheck className='w-4 h-4 text-green-alert flex-shrink-0' />
+												<p className='text-[12px]'>100+ biomarker bloodwork panel every 6mo</p>
+											</div>
+											<div className='flex flex-row items-center gap-2 mt-2'>
+												<GreenCheck className='w-4 h-4 text-green-alert flex-shrink-0' />
+												<p className='text-[12px]'>At-home blood draw included*</p>
+											</div>
+											<div className='flex flex-row items-center gap-2 mt-2'>
+												<GreenCheck className='w-4 h-4 text-green-alert flex-shrink-0' />
+												<p className='text-[12px]'>Personalized health optimization plan</p>
+											</div>
+											<div className='flex flex-row items-center gap-2 mt-2'>
+												<GreenCheck className='w-4 h-4 text-green-alert flex-shrink-0' />
+												<p className='text-[12px]'>Access to custom supplement protocol</p>
+											</div>
+
+											<p className='flex flex-row items-center gap-2 mb-1 mt-7'>Exclusive Savings</p>
+											<div className='flex flex-row items-center gap-2 mt-2'>
+												<GreenCheck className='w-4 h-4 text-green-alert flex-shrink-0' />
+												<p className='text-[12px]'>40% Custom supplements discount</p>
+											</div>
+											<div className='flex flex-row items-center gap-2 mt-2'>
+												<GreenCheck className='w-4 h-4 text-green-alert flex-shrink-0' />
+												<p className='text-[12px]'>Discounted specialty test access</p>
+											</div>
+
+											<p className='flex flex-row items-center gap-2 mb-1 mt-7'>Dedicated Support</p>
+											<div className='flex flex-row items-center gap-2 mt-2'>
+												<GreenCheck className='w-4 h-4 text-green-alert flex-shrink-0' />
+												<p className='text-[12px]'>Assigned Functional Longevity Specialist</p>
+											</div>
+											<div className='flex flex-row items-center gap-2 mt-2'>
+												<GreenCheck className='w-4 h-4 text-green-alert flex-shrink-0' />
+												<p className='text-[12px]'>Quarterly Longevity Specialist visits</p>
+											</div>
+											<div className='flex flex-row items-center gap-2 mt-2'>
+												<GreenCheck className='w-4 h-4 text-green-alert flex-shrink-0' />
+												<p className='text-[12px]'>Nutrition and lifestyle coaching</p>
+											</div>
+
+											<p className='flex flex-row items-center gap-2 mb-1 mt-7'>Clinical Solutions</p>
+											<div className='flex flex-row items-center gap-2 mt-2'>
+												<RedEx/>
+												<p className='text-[12px]'>Dedicated Longevity Practitioner</p>
+											</div>
+											<div className='flex flex-row items-center gap-2 mt-2'>
+												<RedEx/>
+												<p className='text-[12px]'>Quarterly Longevity Practitioner visits</p>
+											</div>
+											<div className='flex flex-row items-center gap-2 mt-2'>
+												<RedEx/>
+												<p className='text-[12px]'>Peptide therapy & regenerative medicine</p>
+											</div>
+											<div className='flex flex-row items-center gap-2 mt-2'>
+												<RedEx/>
+												<p className='text-[12px]'>Hormone replacement therapy & other Rx</p>
+											</div>
+
+											<p className='flex flex-row items-center gap-2 mb-1 mt-7'>Unavailable in</p>
+											<div className='flex flex-row items-center gap-2 mt-2'>
+												<RedEx/>
+												<p className='text-[12px]'>AK, HI, RI</p>
+											</div>
+										</div>
+
+										<ButtonCta
+											href={ SIGN_UP_SITE_URL }
+											target={ undefined }
+											text={ item.btnCta.text }
+											theme={ item.mostValue ? 'secondary' : 'primary' }
+											className='w-full sm:w-fit sm:mx-auto mt-[45px]'
+										/>
+									</div>
+								</div>
+							</div>
+
+							{ /* Card 3: Geviti Premium */ }
+							<div className='w-full relative h-auto'>
+								<div
+									className='pt-[42px] pb-[34px] px-6 flex flex-col gap-10 rounded-2xl overflow-hidden w-full h-auto relative bg-[#FCFCFC] border-grey-100 border text-primary'
+								>
+									<div>
+										<h3 className='font-medium text-3xl'>Geviti Plus Rx</h3>
+
+										{ /* Mobile frequency switcher for this card */ }
+										<div className='md:hidden w-full flex flex-col items-center justify-center gap-[8px] mb-4'>
+											<span className='text-center text-[9px] text-[#919B9F] uppercase font-semibold tracking-[1px] leading-[12px]'>
+                        Select Frequency
+											</span>
+											<div className='relative overflow-hidden w-full rounded-[100px] h-[40px] px-1 bg-grey-50'>
+												<div className='relative grid h-full grid-cols-2'>
+													<button
+														onClick={ () => setPremiumFrequency('semi annual') }
+														className={ clsxm(
+															'text-xs !leading-normal h-full flex items-center justify-center cursor-pointer whitespace-nowrap relative',
+															premiumFrequency === 'semi annual' ? 'text-white z-10' : 'text-grey-400'
+														) }
+													>
+														Semi Annual
+													</button>
+													<button
+														onClick={ () => setPremiumFrequency('annual') }
+														className={ clsxm(
+															'text-xs !leading-normal h-full flex items-center justify-center cursor-pointer whitespace-nowrap relative',
+															premiumFrequency === 'annual' ? 'text-white z-10' : 'text-grey-400'
+														) }
+													>
+														<span className='flex items-center justify-center w-full'>
+															Annual
+														</span>
+														<div className={ clsxm(
+															'absolute px-1 py-0.5 rounded-full font-semibold text-[8px] -right-[-0.3rem]',
+															premiumFrequency === 'annual' ? 'bg-white text-black' : 'bg-black text-white'
+														) }>
+															15% off
+														</div>
+													</button>
+													<motion.div
+														initial={ false }
+														transition={ { type: 'spring', duration: 0.5 } }
+														className='bg-primary absolute rounded-[100px] shadow-[0px_4px_8px_0px_rgba(0,0,0,0.1)] h-[32px] top-1'
+														style={ {
+															width: 'calc(50% - 8px)',
+															left: premiumFrequency === 'semi annual' ? '4px' : 'calc(50% + 4px)',
+														} }
+													/>
+												</div>
+											</div>
+										</div>
+
+										<AnimatePresence mode='wait'>
+											<motion.div
+												key={ `premium_price_${premiumFrequency}` }
+												initial={ { y: -50, opacity: 0 } }
+												animate={ { y: 0, opacity: 1 } }
+												exit={ { y: 50, opacity: 0 } }
+												transition={ { ease: 'linear', duration: 0.25 } }
+												className='font-medium text-5xl whitespace-nowrap !leading-[125%] py-1 h-full'
+											>
+												<span className='victor-serif-medium italic text-5xl !leading-[125%] py-1'>
+													{ PRICING_TIERS.premium[premiumFrequency].monthlyPrice }/mo
+												</span>
+											</motion.div>
+										</AnimatePresence>
+										<p className='text-xs leading-6'>
+											<span className='text-[12px] font-medium whitespace-nowrap'>
+												(billed at { PRICING_TIERS.premium[premiumFrequency].billedAmount } every { PRICING_TIERS.premium[premiumFrequency].period })
+											</span>
+											<br/>
+										</p>
+
+										<div className='flex flex-col mt-4'>
+											<p className='flex flex-row items-center gap-2 mb-1'>The Complete Longevity Solution</p>
+											<div className='flex flex-row items-center gap-2 mt-2'>
+												<GreenCheck className='w-4 h-4 text-green-alert flex-shrink-0' />
+												<p className='text-[12px]'>100+ biomarker bloodwork panel</p>
+											</div>
+											<div className='flex flex-row items-center gap-2 mt-2'>
+												<GreenCheck className='w-4 h-4 text-green-alert flex-shrink-0' />
+												<p className='text-[12px]'>At-home blood draw included*</p>
+											</div>
+											<div className='flex flex-row items-center gap-2 mt-2'>
+												<GreenCheck className='w-4 h-4 text-green-alert flex-shrink-0' />
+												<p className='text-[12px]'>Personalized health optimization plan</p>
+											</div>
+											<div className='flex flex-row items-center gap-2 mt-2'>
+												<GreenCheck className='w-4 h-4 text-green-alert flex-shrink-0' />
+												<p className='text-[12px]'>Access to custom supplement protocol</p>
+											</div>
+
+											<p className='flex flex-row items-center gap-2 mb-1 mt-7'>Exclusive Savings</p>
+											<div className='flex flex-row items-center gap-2 mt-2'>
+												<GreenCheck className='w-4 h-4 text-green-alert flex-shrink-0' />
+												<p className='text-[12px]'>40% Custom supplements discount</p>
+											</div>
+											<div className='flex flex-row items-center gap-2 mt-2'>
+												<GreenCheck className='w-4 h-4 text-green-alert flex-shrink-0' />
+												<p className='text-[12px]'>Discounted specialty test access</p>
+											</div>
+
+											<p className='flex flex-row items-center gap-2 mb-1 mt-7'>Dedicated Support</p>
+											<div className='flex flex-row items-center gap-2 mt-2'>
+												<GreenCheck className='w-4 h-4 text-green-alert flex-shrink-0' />
+												<p className='text-[12px]'>Dedicated Functional Longevity Specialist</p>
+											</div>
+											<div className='flex flex-row items-center gap-2 mt-2'>
+												<GreenCheck className='w-4 h-4 text-green-alert flex-shrink-0' />
+												<p className='text-[12px]'>Quarterly Functional Longevity Specialist visits</p>
+											</div>
+											<div className='flex flex-row items-center gap-2 mt-2'>
+												<GreenCheck className='w-4 h-4 text-green-alert flex-shrink-0' />
+												<p className='text-[12px]'>Nutrition and lifestyle coaching</p>
+											</div>
+
+											<p className='flex flex-row items-center gap-2 mb-1 mt-7'>Clinical Solutions</p>
+											<div className='flex flex-row items-center gap-2 mt-2'>
+												<GreenCheck className='w-4 h-4 text-green-alert flex-shrink-0' />
+												<p className='text-[12px]'>Dedicated Longevity Practitioner</p>
+											</div>
+											<div className='flex flex-row items-center gap-2 mt-2'>
+												<GreenCheck className='w-4 h-4 text-green-alert flex-shrink-0' />
+												<p className='text-[12px]'>Quarterly Longevity Practitioner visits</p>
+											</div>
+											<div className='flex flex-row items-center gap-2 mt-2'>
+												<GreenCheck className='w-4 h-4 text-green-alert flex-shrink-0' />
+												<p className='text-[12px]'>Peptide therapy & regenerative medicine</p>
+											</div>
+											<div className='flex flex-row items-center gap-2 mt-2'>
+												<GreenCheck className='w-4 h-4 text-green-alert flex-shrink-0' />
+												<p className='text-[12px]'>Hormone replacement therapy & other Rx</p>
+											</div>
+
+											<p className='flex flex-row items-center gap-2 mb-1 mt-7'>Plus Rx is exclusively available in</p>
+											<div className='flex flex-row items-center gap-2 mt-2'>
+												<GreenCheck className='w-4 h-4 text-green-alert flex-shrink-0' />
+												<p className='text-[12px]'>CA, TX, NY, FL, IL, PA, OH, GA, NC, MI, NJ, VA, WA, AZ, MA, IN, TN, MO, MD, WI</p>
+											</div>
+										</div>
+
+										<ButtonCta
+											href={ SIGN_UP_SITE_URL }
+											text='Get Started'
+											theme='primary'
+											className='w-full sm:w-fit sm:mx-auto mt-[25px]'
+										/>
+									</div>
 								</div>
 							</div>
 						</div>
