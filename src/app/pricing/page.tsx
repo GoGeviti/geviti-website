@@ -13,7 +13,12 @@ export const metadata: Metadata = {
 };
 
 const PricingPage = async() => {
-	const productMembership = await getProductMembership();
+	let productMembership = undefined;
+	try {
+		productMembership = await getProductMembership();
+	} catch (error) {
+		// Failed to fetch product membership, continue rendering without it
+	}
 
 	return (
 		<div className='flex min-h-screen flex-col w-full bg-white font-Poppins'>

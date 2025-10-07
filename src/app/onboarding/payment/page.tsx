@@ -11,7 +11,12 @@ type PageProps = {
 const PaymentSuccessPage: NextPage<PageProps> = async props => {
 	const searchParams = await props.searchParams;
 
-	const productMembership = await getProductMembership();
+	let productMembership = undefined;
+	try {
+		productMembership = await getProductMembership();
+	} catch (error) {
+		// Failed to fetch product membership, continue rendering without it
+	}
 
 	return (
 		<IntroScreen type='image'>
