@@ -53,7 +53,7 @@ const Unique: React.FC<UniqueProps> = ({ type = 'nathan', className }) => {
 				</div>
 				<div className='max-lg:-mt-16 flex flex-col gap-3.5'>
 					<p className='text-center font-semibold uppercase tracking-[1.76px] text-primary'>{ type === 'nathan' ? 'See Nathan\'s Blend' : 'See sample Blend' }</p>
-					<h3 className='lg:h3 h5 text-center text-primary font-normal'>Unique blends for your unique needs.</h3>
+					<h3 className='text-4xl text-center text-primary font-VictorSerif italic font-medium'>Unique Blends For Your Unique Needs.</h3>
 					<p className='body-small text-grey-primary text-center'>
 						Designed to optimize your <span className='h-7 rounded-full bg-[#F6FFFC] border px-3 border-[#DDF7ED] w-fit inline-flex items-center justify-center gap-1'>
 							<TickCircle className='w-3 h-3 flex-shrink-0 text-green-alert'/>

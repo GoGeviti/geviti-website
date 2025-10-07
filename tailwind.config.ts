@@ -321,6 +321,7 @@ const config: Config = {
       BRSonoma: ['var(--font-BRSonoma)', 'sans-serif'],
       LibreCaslon: ['var(--font-LibreCaslon)', 'sans-serif'],
       PlayFairDisplay: ['var(--font-PlayFairDisplay)', 'sans-serif'],
+      VictorSerif: ['var(--font-VictorSerif)', 'serif'],
     },
   },
   plugins: [
@@ -385,6 +386,30 @@ const config: Config = {
 				},
 				'.body-extra-small': {
 					'@apply font-Poppins text-xs text-grey-primary': {}
+				},
+				'.victor-serif-light': {
+					'@apply font-VictorSerif font-light': {}
+				},
+				'.victor-serif-light-italic': {
+					'@apply font-VictorSerif font-light italic': {}
+				},
+				'.victor-serif-regular': {
+					'@apply font-VictorSerif font-normal': {}
+				},
+				'.victor-serif-regular-italic': {
+					'@apply font-VictorSerif font-normal italic': {}
+				},
+				'.victor-serif-medium': {
+					'@apply font-VictorSerif font-medium': {}
+				},
+				'.victor-serif-medium-italic': {
+					'@apply font-VictorSerif font-medium italic': {}
+				},
+				'.victor-serif-semibold': {
+					'@apply font-VictorSerif font-semibold': {}
+				},
+				'.victor-serif-semibold-italic': {
+					'@apply font-VictorSerif font-semibold italic': {}
 				}
 			});
 		},

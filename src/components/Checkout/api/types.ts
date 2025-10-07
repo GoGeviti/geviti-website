@@ -51,14 +51,14 @@ export interface InitialOfferingsReturnType {
 }
 
 export enum BILLING_FREQ {
-  MONTHLY = 'Monthly',
-  QUARTERLY = 'Quarterly'
+  SEMI_ANNUAL = 'Semi Annual',
+  ANNUAL = 'Annually'
 }
 export interface MembershipOfferingsReturnType {
   id: string;
-  name: 'Monthly Subscription' | 'Quarterly Subscription';
+  name: 'Semi Annual Subscription' | 'Annual Subscription';
   billing_frequency: BILLING_FREQ;
-  title: 'Monthly' | 'Quarterly';
+  title: 'Semi Annual' | 'Annually';
   currency: string;
   price: number;
   first_time_payment: number;

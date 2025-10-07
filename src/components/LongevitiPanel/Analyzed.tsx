@@ -62,7 +62,7 @@ const Analyzed: React.FC = () => {
 	return (
 		<div className='container-center w-full flex flex-col gap-y-[42px] lg:gap-y-16'>
 			<div className='max-w-[659px] mx-auto flex flex-col items-center text-center'>
-				<h2 className='text-2xl sm:text-3xl lg:text-4xl !leading-normal -tracking-0.04em sm:font-medium text-primary'>
+				<h2 className='text-2xl sm:text-3xl lg:text-4xl !leading-normal -tracking-0.04em sm:font-medium text-primary font-VictorSerif italic font-medium'>
 					{ analyzedData.title }
 				</h2>
 				<p className='mt-[23px] lg:mt-3.5 text-grey-primary text-xs sm:text-sm !leading-5'>

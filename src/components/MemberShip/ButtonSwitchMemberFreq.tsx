@@ -22,29 +22,38 @@ const ButtonSwitchMemberFreq: React.FC<ButtonSwitchMemberFreqProps> = ({
 	};
 
 	const renderButtonSwitchFrequency = () => {
-		const selectedIndex = productMembership?.productPrices.findIndex(
+		const selectedIndex = productMembership?.productPrices.slice(0, 2).findIndex(
 			e => e.productPriceId === selectedProductPrice?.productPriceId
 		) ?? 0;
-		const totalOptions = productMembership?.productPrices.length ?? 1;
+		const totalOptions = 2;
 
 		return (
 			<div className='relative overflow-hidden w-full rounded-[100px] h-[49px] px-1.5 bg-grey-50'>
 				<div
 					className='relative grid h-full'
 					style={ { gridTemplateColumns: `repeat(${totalOptions}, 1fr)` } }>
-					{ productMembership?.productPrices.map(opt => {
+					{ productMembership?.productPrices.slice(0, 2).map((opt, index) => {
 						const isSelected = opt.productPriceId === selectedProductPrice?.productPriceId;
+						const isSecondButton = index === 1;
 						return (
 							<button
 								key={ opt.productPriceId }
 								aria-label={ opt.nickname }
 								onClick={ () => handleClick(opt) }
 								className={ clsxm(
-									'text-sm !leading-normal h-full flex px-10 items-center justify-center cursor-pointer whitespace-nowrap',
+									'text-sm !leading-normal h-full flex px-10 items-center justify-center cursor-pointer whitespace-nowrap relative',
 									isSelected ? 'text-white z-10' : 'text-grey-400'
 								) }
 							>
 								{ opt.billingFrequency.charAt(0).toUpperCase() + opt.billingFrequency.slice(1) }
+								{ isSecondButton && (
+									<div className={ clsxm(
+										'absolute px-1 py-0.5 rounded-full font-semibold text-[10px] -right-[-0.5rem]',
+										isSelected ? 'bg-white text-black' : 'bg-black text-white'
+									) }>
+										15% off
+									</div>
+								) }
 							</button>
 						);
 					}) }

@@ -29,15 +29,15 @@ const cards = [
 		link: '',
 		mobileOrder: 1,
 	},
-	{
-		title: 'Mobile Stem Cell Therapy',
-		desc: 'The most powerful tool to boost regeneration, reduce inflammation, improve energy, and support anti-aging.',
-		image: '/images/landing/card-03.png',
-		list: [],
-		isComingSoon: true,
-		link: '',
-		mobileOrder: 4,
-	},
+	// {
+	// 	title: 'Mobile Stem Cell Therapy',
+	// 	desc: 'The most powerful tool to boost regeneration, reduce inflammation, improve energy, and support anti-aging.',
+	// 	image: '/images/landing/card-03.png',
+	// 	list: [],
+	// 	isComingSoon: true,
+	// 	link: '',
+	// 	mobileOrder: 4,
+	// },
 	{
 		title: 'At-home Health Screening',
 		desc: 'Access cutting edge testing to gather critical insights into your overall health status.',
@@ -163,7 +163,7 @@ const Marketplace = () => {
 		<div className='px-3 py-3.5 lg:py-6'>
 			<div className='bg-white rounded-[20px] overflow-hidden'>
 				<div className='text-center flex flex-col items-center max-lg:px-4 justify-center mx-auto max-w-[730px] pt-7 lg:pt-[66px]'>
-					<h4 className='text-[28px] lg:h3 text-primary lg:whitespace-nowrap'>Step into the only marketplace for longevity</h4>
+					<h4 className='text-[32px] text-primary lg:whitespace-nowrap font-VictorSerif italic font-medium'>The Only All-In-One App For Complete Longevity</h4>
 					<p className='mt-3 body-small'>We connect members with at-home specialty testing, precision medications, customized supplements, and proactive care, empowering them to live optimized.</p>
 					<div className=' w-full lg:w-fit mt-10 relative z-10'>
 						<ButtonCta
