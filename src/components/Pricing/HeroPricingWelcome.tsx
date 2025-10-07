@@ -38,7 +38,7 @@ const HeroPricingWelcome: React.FC<HeroProps> = ({
 }) => {
 	const ref = useRef<HTMLDivElement>(null);
 
-	const { productMembership, setProductMembership, selectedProductPrice, setSelectedProductPrice } = useCheckoutStore();
+	const { setProductMembership, selectedProductPrice, setSelectedProductPrice } = useCheckoutStore();
 	const [liteFrequency, setLiteFrequency] = useState<'semi annual' | 'annual'>('semi annual');
 	const [plusFrequency, setPlusFrequency] = useState<'semi annual' | 'annual'>('semi annual');
 	const [premiumFrequency, setPremiumFrequency] = useState<'semi annual' | 'annual'>('semi annual');
