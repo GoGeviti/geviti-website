@@ -7,7 +7,7 @@ import React, {
 } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 
-import { PRICING_TIERS, SIGN_UP_SITE_URL } from '@/components/Pricing/Hero';
+import { getSignUpUrl, PRICING_TIERS } from '@/components/Pricing/Hero';
 // import { useRouter } from 'next/navigation';
 import { navbarDefaultTransition } from '@/constant/data/navbar';
 import pricingData from '@/constant/data/pricing';
@@ -281,7 +281,7 @@ const HeroPricingWelcome: React.FC<HeroProps> = ({
 										</div>
 
 										<ButtonCta
-											href={ SIGN_UP_SITE_URL }
+											href={ getSignUpUrl() }
 											text='Get Started'
 											theme='primary'
 											className='w-full sm:w-fit sm:mx-auto mt-[35px]'
@@ -445,7 +445,7 @@ const HeroPricingWelcome: React.FC<HeroProps> = ({
 										</div>
 
 										<ButtonCta
-											href={ SIGN_UP_SITE_URL }
+											href={ getSignUpUrl() }
 											target={ undefined }
 											text={ item.btnCta.text }
 											theme={ item.mostValue ? 'secondary' : 'primary' }
@@ -599,7 +599,7 @@ const HeroPricingWelcome: React.FC<HeroProps> = ({
 										</div>
 
 										<ButtonCta
-											href={ SIGN_UP_SITE_URL }
+											href={ getSignUpUrl() }
 											text='Get Started'
 											theme='primary'
 											className='w-full sm:w-fit sm:mx-auto mt-[25px]'
