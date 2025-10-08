@@ -28,7 +28,7 @@ const Provider = () => {
 			const hasClosedDiscount = await getCookie('close_discount') === 'true';
 			
 			if (!hasClosedDiscount) {
-				const timer = setTimeout(() => setOpen(true), 15000);
+				const timer = setTimeout(() => setOpen(false), 15000); // Discount popup disabled. Set to 'true' to enable.
 				return () => clearTimeout(timer);
 			}
 		};
