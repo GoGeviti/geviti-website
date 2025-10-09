@@ -21,19 +21,7 @@ import Navbar from '../Navbar/Landing';
 import PopupReview from '../PopupReview';
 
 const item = pricingData.hero.list;
-
-export const getSignUpUrl = ()  => {
-	const isIOS = (): boolean => {
-		if (typeof window === 'undefined') return false;
-		return /iPad|iPhone|iPod/.test(navigator.userAgent);
-	};
-
-	if (isIOS()) {
-		return 'https://apps.apple.com/us/app/geviti/id6451433757'
-	}
-
-	return 'https://app.gogeviti.com/onboarding/signup';
-}
+export const SIGN_UP_SITE_URL = 'https://app.gogeviti.com/onboarding/signup';
 
 // Define pricing tiers for all cards based on frequency
 export const PRICING_TIERS = {
@@ -322,7 +310,7 @@ const Hero: React.FC<HeroProps> = ({
 										</div>
 
 										<ButtonCta
-											href={ getSignUpUrl() }
+											href={ SIGN_UP_SITE_URL }
 											text='Get Started'
 											theme='primary'
 											className='w-full sm:w-fit sm:mx-auto mt-[35px]'
@@ -486,7 +474,7 @@ const Hero: React.FC<HeroProps> = ({
 										</div>
 
 										<ButtonCta
-											href={ getSignUpUrl() }
+											href={ SIGN_UP_SITE_URL }
 											target={ isFromHomePage ? '_blank' : undefined }
 											text={ item.btnCta.text }
 											theme={ item.mostValue ? 'secondary' : 'primary' }
@@ -640,7 +628,7 @@ const Hero: React.FC<HeroProps> = ({
 										</div>
 
 										<ButtonCta
-											href={ getSignUpUrl() }
+											href={ SIGN_UP_SITE_URL }
 											text='Get Started'
 											theme='primary'
 											className='w-full sm:w-fit sm:mx-auto mt-[25px]'
