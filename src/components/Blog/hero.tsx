@@ -30,7 +30,7 @@ const Hero: React.FC<HeroProps> = ({ hero, classname }) => {
 			<Navbar animationProps={ { variants: { hidden: { y: 0, opacity: 1 }, visible: { y: 0, opacity: 1 } } } } />
 
 			<div className={ clsxm(
-				'bg-primary h-[calc(100vh-30px)] lg:max-h-[636px] w-full rounded-b-[19px] lg:rounded-[19px] overflow-hidden relative',
+				'bg-primary h-[calc(100lvh-30px)] lg:max-h-[636px] w-full rounded-b-[19px] lg:rounded-[19px] overflow-hidden relative',
 				classname
 			) }>
 				<Swiper
