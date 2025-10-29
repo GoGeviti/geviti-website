@@ -127,6 +127,35 @@ const RootLayout: React.FC<{ children: React.ReactNode; }> = ({ children }) => {
 				</Script>
 			) }
 
+			 <Script
+				id='viewport-height-fix'
+				strategy='beforeInteractive'>
+				{ `
+            (function () {
+              var lastWidth = window.innerWidth;
+
+              function setVh() {
+                var vh = window.innerHeight * 0.01;
+                document.documentElement.style.setProperty('--vh', vh + 'px');
+              }
+
+              function handleResize() {
+                var currentWidth = window.innerWidth;
+                // Only update if width changed (orientation/window resize)
+                // Ignore height-only changes (iOS address bar hide/show)
+                if (currentWidth !== lastWidth) {
+                  lastWidth = currentWidth;
+                  setVh();
+                }
+              }
+
+              setVh();
+              window.addEventListener('resize', handleResize);
+              window.addEventListener('orientationchange', setVh);
+            })();
+          ` }
+			</Script>
+
 			{ !isDevelopment && (
 				<Script
 					id='triplepixel-script'
