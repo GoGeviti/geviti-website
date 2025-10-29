@@ -10,6 +10,14 @@ const nextConfig = {
 			},
 		],
 	},
+	experimental: {
+		serverActions: {
+			allowedOrigins: ['*.gogeviti.com'],
+		},
+	},
+	compiler: {
+		removeConsole: process.env.NODE_ENV === 'production',
+	},
 	async rewrites() {
 		return [
 			{
