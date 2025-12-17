@@ -18,7 +18,7 @@ const TermsPage: NextPage<Props> = async({
 	searchParams,
 }) => {
 	const { type } = await searchParams;
-	const data = await getTermsAndConditions(type === 'giveaway' ? 2 : 1);
+	const data = await getTermsAndConditions(type === 'giveaway' ? 2 : type === 'in-person-event-terms' ? 3 : 1);
 	const date = new Date(data.updatedAt);
 	const formattedDate = date.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
 	return (
