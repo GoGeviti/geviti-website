@@ -207,7 +207,7 @@ const renderItem = (data: Post[]) => {
 										) }/>
 									</div>
 								</div>
-								<p className='body-small text-grey-600 line-clamp-3'>Lorem ipsum dolor sit amet consectetur. Ullamcorper egestas nibh massa diam sapien fusce. Nisl tortor turpis maecenas scelerisque aenean sem amet et</p>
+								<p className='body-small text-grey-600 line-clamp-3'>{ item.meta?.description }</p>
 								<p className='body-extra-small text-grey-primary'>
 									<span>{ new Date(item.updatedAt).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }) }</span>
 									<span> • </span>
