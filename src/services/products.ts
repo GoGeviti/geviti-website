@@ -268,9 +268,9 @@ export const getAllPost = async(
 		sort: sort ?? '-updatedAt',
 		draft: false,
 		where: {
-			// _status: {
-			// 	equals: 'published',
-			// },
+			_status: {
+				equals: 'published',
+			},
 			...(categoryId && categoryId !== '0' && {
 				'hero.categories': {
 					equals: categoryId
