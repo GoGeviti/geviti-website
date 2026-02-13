@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { throttle } from 'lodash';
 
 type Dimensions = {
 	width: number;
@@ -20,16 +21,23 @@ const useWindowDimensions = () => {
 	});
 
 	useEffect(() => {
-		if (window) {
+		if (typeof window !== 'undefined') {
 			const handleResize = () => {
 				setWindowDimensions(getWindowDimensions());
 			};
 
+			// Initialize dimensions immediately
 			handleResize();
 
-			window.addEventListener('resize', handleResize);
+			// Throttle subsequent updates to avoid excessive re-renders during resize
+			const throttledHandleResize = throttle(handleResize, 200);
 
-			return () => window.removeEventListener('resize', handleResize);
+			window.addEventListener('resize', throttledHandleResize);
+
+			return () => {
+				window.removeEventListener('resize', throttledHandleResize);
+				throttledHandleResize.cancel();
+			};
 		}
 	}, []);
 
