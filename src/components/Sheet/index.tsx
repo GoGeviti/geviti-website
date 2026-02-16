@@ -29,12 +29,11 @@ const SheetTrigger = SheetPrimitive.Trigger;
 
 const SheetClose = SheetPrimitive.Close;
 
+// Radix UI Portal wrappers must not pass className props to the underlying Radix Primitive Portal, as it causes build errors.
 const SheetPortal = ({
-	className,
 	...props
 }: SheetPrimitive.DialogPortalProps) => (
 	<SheetPrimitive.Portal
-		className={ clsxm(className) }
 		{ ...props } />
 );
 SheetPortal.displayName = SheetPrimitive.Portal.displayName;

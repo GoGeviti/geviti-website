@@ -3,13 +3,13 @@
 import React, { useState } from 'react';
 import { Player } from '@lottiefiles/react-lottie-player';
 import { motion } from 'framer-motion';
-import { AnimationItem } from 'lottie-web';
 
 import type { FormOption } from './Main';
 import { slideInVariants, slideInVariantsDelay } from './transitions';
 
 const AnswerBox: React.FC<{ text: string; index: number; onClick?: () => void; }> = ({ text, index, onClick }) => {
-	const [lottieRef, setLottieRef] = useState<AnimationItem | null>(null);
+	// lottie-web is not installed, so we cannot import the type. Using any to fix build.
+	const [lottieRef, setLottieRef] = useState<any | null>(null);
 
 	return (
 		<motion.li
