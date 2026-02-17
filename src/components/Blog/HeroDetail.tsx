@@ -11,7 +11,7 @@ const HeroDetail = ({ post, readingTime } : { post: Post, readingTime: number })
 			<Navbar theme='light' />
 			<div className='container-center min-h-screen pt-[40%] lg:pt-[13%]'>
 				<h1 className='h5 lg:h2 max-w-[953px]'>{ post.title }</h1>
-				<p className='body-extra-small mt-6 max-w-[840px]'>In the quest for a longer, healthier life, we often look to exercise, nutrition, and mental well-being as primary contributors to our overall health. While these are undeniably important, there’s another critical piece of the puzzle that often gets overlooked—bloodwork and biomarker testing. This powerful tool can unlock insights into your body’s internal health, helping you optimize your lifestyle and prevent chronic illnesses. Here&apos;s why regular bloodwork and biomarker monitoring are essential for achieving longevity.</p>
+				<p className='body-extra-small mt-6 max-w-[840px]'>{ post.meta?.description }</p>
 				<div className='flex items-center gap-3.5 mt-5'>
 					<div className='flex text-[10px] items-center rounded-full px-3 py-2 text-green-alert bg-[#F6FFFC] border border-[#DDF7ED]   ' >
             Topic - { post.hero.categories?.title }
