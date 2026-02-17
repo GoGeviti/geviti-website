@@ -9,12 +9,11 @@ const Dialog = DialogPrimitive.Root;
 
 const DialogTrigger = DialogPrimitive.Trigger;
 
+// Radix UI Portal wrappers must not pass className props to the underlying Radix Primitive Portal, as it causes build errors.
 const DialogPortal = ({
-	className,
 	...props
 }: DialogPrimitive.DialogPortalProps) => (
 	<DialogPrimitive.Portal
-		className={ clsxm(className) }
 		{ ...props } />
 );
 DialogPortal.displayName = DialogPrimitive.Portal.displayName;
