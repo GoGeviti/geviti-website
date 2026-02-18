@@ -2,7 +2,7 @@
 
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { AnimatePresence, motion, useMotionValue } from 'framer-motion';
-import { debounce } from 'lodash';
+import debounce from 'lodash/debounce';
 import Image from 'next/image';
 import Link from 'next/link';
 
