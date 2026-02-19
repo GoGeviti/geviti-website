@@ -8,7 +8,7 @@ import React, {
 	useState,
 } from 'react';
 import { AnimatePresence, motion, MotionProps } from 'framer-motion';
-import { debounce } from 'lodash';
+import debounce from 'lodash/debounce';
 import Image from 'next/image';
 import Link from 'next/link';
 
