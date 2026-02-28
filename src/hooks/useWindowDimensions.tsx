@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import throttle from 'lodash/throttle';
 
 type Dimensions = {
 	width: number;
@@ -25,11 +26,18 @@ const useWindowDimensions = () => {
 				setWindowDimensions(getWindowDimensions());
 			};
 
+			// Optimize performance by throttling resize events
+			// This prevents excessive re-renders during window resizing
+			const throttledResize = throttle(handleResize, 200);
+
 			handleResize();
 
-			window.addEventListener('resize', handleResize);
+			window.addEventListener('resize', throttledResize);
 
-			return () => window.removeEventListener('resize', handleResize);
+			return () => {
+				window.removeEventListener('resize', throttledResize);
+				throttledResize.cancel();
+			};
 		}
 	}, []);
 
