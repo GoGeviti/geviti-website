@@ -218,6 +218,12 @@ const RootLayout: React.FC<{ children: React.ReactNode; }> = ({ children }) => {
 								fpr("click");` }
 							</Script>
 							<Script
+								id='justone-init'
+								strategy='lazyOnload'
+								data-cfasync='false'>
+								{ 'window.ju4_num="3d0ab901cd254e1f917cbdff6d4ffb81";window.ju4_asset_host="https://justone.ai/embed";window.ju4_pApi="https://justone.ai";(function(i,s,o,g,r,a,m){i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)};a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,\'script\',ju4_asset_host+\'/ju_init.js?v=2\',\'ju4app\');' }
+							</Script>
+							<Script
 								src='https://cdn.firstpromoter.com/fpr.js'
 								strategy='lazyOnload'
 								async
