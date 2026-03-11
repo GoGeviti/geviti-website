@@ -8,7 +8,8 @@ import React, {
 	useState,
 } from 'react';
 import { AnimatePresence, motion, MotionProps } from 'framer-motion';
-import { debounce } from 'lodash';
+// Use direct import to reduce bundle size
+import debounce from 'lodash/debounce';
 import Image from 'next/image';
 import Link from 'next/link';
 
