@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import { FC,  useCallback,  useState } from 'react';
-import { debounce } from 'lodash';
+import debounce from 'lodash/debounce';
 
 import { GreenCircleTick } from '@/components/Icons/GreenCircleTick';
 import { Spinner } from '@/components/Icons/Spinner';

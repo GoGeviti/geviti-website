@@ -5,7 +5,7 @@ import { Settings } from 'react-slick';
 import SlickSliderComponent from 'react-slick';
 const SlickSlider = SlickSliderComponent as any;
 
-import { debounce } from 'lodash';
+import debounce from 'lodash/debounce';
 import Image from 'next/image';
 
 import clsxm from '@/helpers/clsxm';
