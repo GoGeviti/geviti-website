@@ -24,10 +24,10 @@ export const useCategories = () => {
 	});
 };
 
-export const usePosts = (categoryId?: number | string, sort?: string) => {
+export const usePosts = (categoryId?: number | string, sort?: string, search?: string) => {
 	return useInfiniteQuery({
-		queryKey: ['posts', categoryId, sort],
-		queryFn: ({ pageParam = 1 }) => getAllPost(6, pageParam, categoryId?.toString(), sort).then(data => ({
+		queryKey: ['posts', categoryId, sort, search],
+		queryFn: ({ pageParam = 1 }) => getAllPost(6, pageParam, categoryId?.toString(), sort, search).then(data => ({
 			...data,
 			page: data.page ?? 1
 		})),

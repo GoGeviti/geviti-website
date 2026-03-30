@@ -259,8 +259,11 @@ export const getAllPost = async(
 	limit?: number,
 	page: number = 1,
 	categoryId?: string,
-	sort?: string
+	sort?: string,
+	search?: string
 ): Promise<PaginatedDocs<Post>> => {
+	const trimmedSearch = search?.trim();
+
 	const stringifiedQuery = qs.stringify({
 		depth: 2, // Changed to depth 2 to get category relationships
 		limit: limit ?? 6,
@@ -271,6 +274,20 @@ export const getAllPost = async(
 			_status: {
 				equals: 'published',
 			},
+			...(trimmedSearch && {
+				or: [
+					{
+						title: {
+							contains: trimmedSearch,
+						},
+					},
+					{
+						'meta.description': {
+							contains: trimmedSearch,
+						},
+					},
+				],
+			}),
 			...(categoryId && categoryId !== '0' && {
 				'hero.categories': {
 					equals: categoryId

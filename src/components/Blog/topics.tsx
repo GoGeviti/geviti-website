@@ -1,5 +1,5 @@
 'use client';
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { CgSpinner } from 'react-icons/cg';
 import { motion } from 'framer-motion';
 // import { Tabs, TabsContent, TabsList, TabsTrigger } from '@radix-ui/react-tabs';
@@ -17,8 +17,19 @@ import CustomSelect from '../Onboarding/InputSelect';
 const Topics = ({ categories } : {categories:PostCategory[]}) => {
 	const [selectedItem, setSelectedItem] = useState(0);
 	const [sort, setSort] = useState('-updatedAt');
+	const [searchInput, setSearchInput] = useState('');
+	const [search, setSearch] = useState('');
+	const observerRef = useRef<IntersectionObserver | null>(null);
 	// const { data: categories = [] } = useCategories();
 	// const selectedCategory = categories.;
+
+	useEffect(() => {
+		const timeoutId = setTimeout(() => {
+			setSearch(searchInput.trim());
+		}, 300);
+
+		return () => clearTimeout(timeoutId);
+	}, [searchInput]);
   
 	const {
 		data,
@@ -26,20 +37,33 @@ const Topics = ({ categories } : {categories:PostCategory[]}) => {
 		hasNextPage,
 		isFetching,
 		isLoading
-	} = usePosts(selectedItem, sort);
+	} = usePosts(selectedItem, sort, search);
 
 	const posts = data?.pages.flatMap(page => page.docs) ?? [];
 
 	const lastPostElementRef = useCallback((node: HTMLDivElement) => {
+		if (observerRef.current) {
+			observerRef.current.disconnect();
+		}
+
 		if (isFetching || !node) return;
-		const observer = new IntersectionObserver(entries => {
+
+		observerRef.current = new IntersectionObserver(entries => {
 			if (entries[0].isIntersecting && hasNextPage) {
 				fetchNextPage();
 			}
 		});
-		observer.observe(node);
-		return () => observer.disconnect();
+
+		observerRef.current.observe(node);
 	}, [isFetching, hasNextPage, fetchNextPage]);
+
+	useEffect(() => {
+		return () => {
+			if (observerRef.current) {
+				observerRef.current.disconnect();
+			}
+		};
+	}, []);
 
 	const handleCategoryChange = (id: number) => {
 		setSelectedItem(id);
@@ -47,6 +71,10 @@ const Topics = ({ categories } : {categories:PostCategory[]}) => {
 
 	const handleSortChange = (value: string) => {
 		setSort(value);
+	};
+
+	const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+		setSearchInput(event.target.value);
 	};
 
 	const renderItem = (item: Post) => {
@@ -106,7 +134,7 @@ const Topics = ({ categories } : {categories:PostCategory[]}) => {
 					className='flex flex-col'>
 					<div className='flex flex-col lg:flex-row lg:items-center lg:justify-between gap-5'>
 						<div
-							className='shrink-0 overflow-x-auto max-lg:order-2 no-scrollbar flex md:space-x-[18px] max-md:justify-between relative'
+							className='shrink-0 overflow-x-auto max-lg:order-2 no-scrollbar flex max-md:justify-between relative'
 						>
 							{ categories?.map((category, id) => (
 								<motion.button
@@ -129,13 +157,28 @@ const Topics = ({ categories } : {categories:PostCategory[]}) => {
 								</motion.button>
 							)) }
 						</div>
-						<div className='flex max-lg:justify-between max-lg:w-full max-lg:order-1 items-center gap-[18px]'>
-							<span className='body-small text-grey-primary'>Sort by</span>
-							<CustomSelect
-								options={ [{ label: 'Newest', value: '-updatedAt' }, { label: 'Oldest', value: 'updatedAt' }] }
-								value={ sort }
-								onChange={ handleSortChange }
-							/>
+						<div className='flex max-lg:w-full max-lg:order-1 items-center gap-[18px]'>
+							<div className='flex items-center gap-3 max-lg:flex-1'>
+								{ /* <span className='body-small text-grey-primary whitespace-nowrap'>Search</span> */ }
+								<input
+									type='text'
+									value={ searchInput }
+									onChange={ handleSearchChange }
+									placeholder='Search blogs...'
+									aria-label='Search blogs'
+									className={ clsxm(
+										'block w-full border-0 h-[40px] outline-none transform transition-colors duration-300 rounded-[10px]',
+										'text-primary text-xs font-medium leading-normal font-Poppins placeholder:text-grey-primary px-4 py-3',
+									) }								/>
+							</div>
+							<div className='flex items-center gap-2 shrink-0 max-lg:flex-1'>
+								{ /* <span className='body-small text-grey-primary whitespace-nowrap'>Sort by</span> */ }
+								<CustomSelect
+									options={ [{ label: 'Newest', value: '-updatedAt' }, { label: 'Oldest', value: 'updatedAt' }] }
+									value={ sort }
+									onChange={ handleSortChange }
+								/>
+							</div>
 						</div>
 					</div>
 					<div className='grid grid-cols-1 max-md:gap-y-11 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8'>
