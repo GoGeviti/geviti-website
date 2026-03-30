@@ -1,6 +1,12 @@
 'use client';
-import React, { memo, useCallback, useEffect, useState } from 'react';
-import { AnimatePresence, motion, MotionProps, useAnimation } from 'framer-motion';
+import React, {
+	memo,
+	useCallback,
+	useEffect,
+	useRef,
+	useState,
+} from 'react';
+import { motion, MotionProps } from 'framer-motion';
 import Image from 'next/image';
 // import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -8,6 +14,7 @@ import { usePathname } from 'next/navigation';
 import { navbarDefaultTransition } from '@/constant/data/navbar';
 import navbarData from '@/constant/data/navigation';
 import clsxm from '@/helpers/clsxm';
+import { useNavbarStore } from '@/store/navbarStore';
 
 import CustomLink from '../../CustomLink';
 import { ArrowUpRightLink, Bars3Icon, ChevronDown } from '../../Icons';
@@ -335,58 +342,63 @@ const Navbar: React.FC<NavbarProps> = ({
 	const [active, setActive] = useState<string | null>(null);
 	const [openSheet, setOpenSheet] = useState<boolean>(false);
 	const [overflow, setOverflow] = useState<string>('hidden');
-	const [isVisible, setIsVisible] = useState(true);
-	const [lastScrollY, setLastScrollY] = useState(0);
-	const [isScrolled, setIsScrolled] = useState(false);
+	const isVisible = useNavbarStore(state => state.isVisible);
+	const setIsVisible = useNavbarStore(state => state.setIsVisible);
+	const isScrolled = useNavbarStore(state => state.isScrolled);
+	const setIsScrolled = useNavbarStore(state => state.setIsScrolled);
+	const lastScrollYRef = useRef(0);
+	const rafRef = useRef<number | null>(null);
 	const pathname = usePathname();
-	const controls = useAnimation();
 
-	// Optimize scroll handler
-	const controlNavbar = useCallback(() => {
-		if (typeof window === 'undefined') return;
-		
-		const currentScrollY = window.scrollY;
-		const scrollDifference = currentScrollY - lastScrollY;
-		
-		// Show navbar when:
-		// 1. At the top of the page (currentScrollY <= 10)
-		// 2. Scrolling up (scrollDifference < 0)
-		// Hide navbar when:
-		// 1. Scrolling down (scrollDifference > 0)
-		// 2. Not at the top of the page
-		if (currentScrollY <= 10) {
-			setIsVisible(true);
-		} else if (scrollDifference > 0) {
-			setIsVisible(false);
-		} else if (scrollDifference < 0) {
-			setIsVisible(true);
-		}
-		
-		setLastScrollY(currentScrollY);
-		setIsScrolled(currentScrollY > 200);
-	}, [lastScrollY]);
-
-	// Add debouncing to smooth out rapid scroll events
 	useEffect(() => {
 		if (typeof window === 'undefined') return;
 
-		let timeoutId: NodeJS.Timeout;
-		
-		const debouncedControlNavbar = () => {
-			clearTimeout(timeoutId);
-			timeoutId = setTimeout(controlNavbar, 16); // Reduced debounce time for smoother response
+		const TOP_OFFSET = 10;
+		const SCROLLED_OFFSET = 200;
+		const DIRECTION_THRESHOLD = 8;
+
+		lastScrollYRef.current = window.scrollY;
+		setIsScrolled(window.scrollY > SCROLLED_OFFSET);
+
+		const onScroll = () => {
+			if (rafRef.current !== null) return;
+
+			rafRef.current = window.requestAnimationFrame(() => {
+				const currentScrollY = window.scrollY;
+				const scrollDifference = currentScrollY - lastScrollYRef.current;
+
+				if (currentScrollY <= TOP_OFFSET) {
+					setIsVisible(true);
+				} else if (Math.abs(scrollDifference) > DIRECTION_THRESHOLD) {
+					setIsVisible(scrollDifference < 0);
+				}
+
+				setIsScrolled(currentScrollY > SCROLLED_OFFSET);
+				lastScrollYRef.current = currentScrollY;
+				rafRef.current = null;
+			});
 		};
 
-		window.addEventListener('scroll', debouncedControlNavbar);
+		window.addEventListener('scroll', onScroll, { passive: true });
 		return () => {
-			window.removeEventListener('scroll', debouncedControlNavbar);
-			clearTimeout(timeoutId);
+			window.removeEventListener('scroll', onScroll);
+			if (rafRef.current !== null) {
+				window.cancelAnimationFrame(rafRef.current);
+				rafRef.current = null;
+			}
 		};
-	}, [controlNavbar]);
+	}, [setIsScrolled, setIsVisible]);
 
 	useEffect(() => {
-		controls.start(isVisible ? 'visible' : 'hidden');
-	}, [isVisible, controls]);
+		setIsVisible(true);
+		if (typeof window !== 'undefined') {
+			setIsScrolled(window.scrollY > 200);
+		}
+	}, [pathname, setIsScrolled, setIsVisible]);
+
+	useEffect(() => {
+		if (openSheet) setIsVisible(true);
+	}, [openSheet, setIsVisible]);
 
 	const handleMenuClose = useCallback(() => {
 		setActive(null);
@@ -457,79 +469,74 @@ const Navbar: React.FC<NavbarProps> = ({
 
 	return (
 		<header>
-			<AnimatePresence>
-				{ isVisible && (
-					<motion.div
-						className={ clsxm(
-							'inset-x-0 top-4 lg:top-[30px] z-50 fixed',
-							className
-						) }
-						initial='hidden'
-						animate={ controls }
-						exit='hidden'
-						variants={ navbarAnimationVariants }
-					>
-						<div
-							className='container-center w-full'
-							style={ { overflow } }>
-							<motion.div
-								variants={ navbarVariants }
-								initial='hidden'
-								animate='visible'
-								className='inline-block w-full border border-white/5 rounded-full'
-								transition={ navbarDefaultTransition }
-								onAnimationComplete={ () => setOverflow('') }
-								// { ...animationProps }
-							>
-								<nav
-									onMouseLeave={ handleMenuClose }
-									className={ clsxm(
-										'relative overflow-visible transition-all duration-300 visible h-[60px] lg:h-[69px] font-Poppins p-18px lg:pl-[42px] lg:py-3 lg:pr-3 rounded-[100px] flex items-center space-x-5 xl:space-x-[50px] w-full justify-between',
-										isScrolled ? 'bg-grey-50 backdrop-blur-none' : 'bg-white/10',
-										theme === 'light' && background
-									) }
-								>
-									<div className='flex items-center lg:space-x-5 xl:space-x-[50px]'>
-										<CustomLink
-											href='/'
-											prefetch={ true }
-											className='focus:ring-0 focus:outline-none'>
-											<GevitiLogo
-												isScrolled={ isScrolled }
-												theme={ theme } />
-										</CustomLink>
-										<div className='hidden lg:flex items-center space-x-5 xl:space-x-[50px]'>
-											{ renderNavigationItems() }
-										</div>
-									</div>
-									<div className='hidden lg:flex items-center space-x-5'>
-										{ /* { renderIconMenuList() } */ }
-										<ActionMenuList
-											isScrolled={ isScrolled }
-											theme={ theme } />
-									</div>
-									<div className='flex lg:hidden'>
-										<button
-											className='focus:outline-none focus:border-0 focus:ring-0'
-											onClick={ handleSheetToggle }
-											aria-label='Toggle Menu'
-										>
-											<Bars3Icon
-												className={ clsxm(
-													'block h-6 w-6 text-grey-50',
-													isScrolled && 'text-primary',
-													theme === 'light' && 'text-white hover:text-grey-50',
-												) }
-												aria-hidden='true'
-											/>
-										</button>
-									</div>
-								</nav>
-							</motion.div>
-						</div>
-					</motion.div>
+			<motion.div
+				className={ clsxm(
+					'inset-x-0 top-4 lg:top-[30px] z-50 fixed',
+					className
 				) }
-			</AnimatePresence>
+				initial='visible'
+				animate={ isVisible ? 'visible' : 'hidden' }
+				variants={ navbarAnimationVariants }
+			>
+				<div
+					className='container-center w-full'
+					style={ { overflow } }>
+					<motion.div
+						variants={ navbarVariants }
+						initial='hidden'
+						animate='visible'
+						className='inline-block w-full border border-white/5 rounded-full'
+						transition={ navbarDefaultTransition }
+						onAnimationComplete={ () => setOverflow('') }
+						// { ...animationProps }
+					>
+						<nav
+							onMouseLeave={ handleMenuClose }
+							className={ clsxm(
+								'relative overflow-visible transition-all duration-300 visible h-[60px] lg:h-[69px] font-Poppins p-18px lg:pl-[42px] lg:py-3 lg:pr-3 rounded-[100px] flex items-center space-x-5 xl:space-x-[50px] w-full justify-between',
+								isScrolled ? 'bg-grey-50 backdrop-blur-none' : 'bg-white/10',
+								theme === 'light' && background
+							) }
+						>
+							<div className='flex items-center lg:space-x-5 xl:space-x-[50px]'>
+								<CustomLink
+									href='/'
+									prefetch={ true }
+									className='focus:ring-0 focus:outline-none'>
+									<GevitiLogo
+										isScrolled={ isScrolled }
+										theme={ theme } />
+								</CustomLink>
+								<div className='hidden lg:flex items-center space-x-5 xl:space-x-[50px]'>
+									{ renderNavigationItems() }
+								</div>
+							</div>
+							<div className='hidden lg:flex items-center space-x-5'>
+								{ /* { renderIconMenuList() } */ }
+								<ActionMenuList
+									isScrolled={ isScrolled }
+									theme={ theme } />
+							</div>
+							<div className='flex lg:hidden'>
+								<button
+									className='focus:outline-none focus:border-0 focus:ring-0'
+									onClick={ handleSheetToggle }
+									aria-label='Toggle Menu'
+								>
+									<Bars3Icon
+										className={ clsxm(
+											'block h-6 w-6 text-grey-50',
+											isScrolled && 'text-primary',
+											theme === 'light' && 'text-white hover:text-grey-50',
+										) }
+										aria-hidden='true'
+									/>
+								</button>
+							</div>
+						</nav>
+					</motion.div>
+				</div>
+			</motion.div>
 
 			<MobileNav
 				open={ openSheet }

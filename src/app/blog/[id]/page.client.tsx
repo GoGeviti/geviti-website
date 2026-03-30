@@ -13,6 +13,7 @@ import { calculateReadingTime } from '@/helpers/calculateReadingTime';
 import clsxm from '@/helpers/clsxm';
 import { Post } from '@/payload/payload-types';
 import { createDiscount } from '@/services/checkout';
+import { useNavbarStore } from '@/store/navbarStore';
 
 export const PageClient: React.FC<{
   post: Post
@@ -21,6 +22,7 @@ export const PageClient: React.FC<{
 	const headingRefs = useRef<{[key: string]: HTMLElement | null}>({});
 	const emailRef = useRef<HTMLInputElement>(null);
 	const [loading, setLoading] = useState(false)
+	const isNavbarVisible = useNavbarStore(state => state.isVisible);
 
 	const scrollToHeading = (id: string) => {
 		const element = headingRefs.current[id];
@@ -85,9 +87,14 @@ export const PageClient: React.FC<{
 				post.relatedPosts?.length === 0 && 'pb-20'
 			) }>
 				<div className='flex items-start justify-between mt-10 lg:mt-[120px]'>
-					<div className='max-w-[325px] max-lg:hidden w-full flex flex-col gap-6 sticky top-[120px]'>
+					<div className={ clsxm(
+						'max-w-[325px] max-lg:hidden w-full flex flex-col gap-6 sticky transition-[top] duration-200',
+						isNavbarVisible ? 'top-[120px]' : 'top-[50px]'
+					) }>
 						<h6>Table of contents</h6>
-						<ul className='flex flex-col gap-6'>
+						<ul
+							data-lenis-prevent
+							className='flex flex-col gap-6 max-h-[50vh] overflow-y-auto'>
 							{ post.layout.map(block => {
 								if (block.blockType === 'content' && block.columns) {
 									return block.columns.map((column:any, colIndex) => {
