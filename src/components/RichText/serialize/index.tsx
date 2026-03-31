@@ -1,4 +1,6 @@
 /* eslint-disable @typescript-eslint/strict-boolean-expressions */
+'use client';
+
 import React, { Fragment, type JSX } from 'react';
 import type { SerializedListItemNode, SerializedListNode } from '@lexical/list';
 import type { SerializedHeadingNode } from '@lexical/rich-text';
@@ -7,7 +9,6 @@ import type {
 	SerializedLinkNode,
 	SerializedUploadNode,
 } from '@payloadcms/richtext-lexical';
-import escapeHTML from 'escape-html';
 import type {
 	SerializedElementNode,
 	SerializedLexicalNode,
@@ -36,16 +37,42 @@ interface Props {
 }
 
 export function serializeLexical({ nodes, headingRefs, blockIndex, columnIndex }: Props): JSX.Element {
+	// NOTE: Hacky fix for
+	// https://github.com/facebook/lexical/blob/d10c4e6e55261b2fdd7d1845aed46151d0f06a8c/packages/lexical-list/src/LexicalListItemNode.ts#L133
+	// which does not return checked: false (only true - i.e. there is no prop for false)
+	const serializedChildrenFn = (
+		node: SerializedElementNode
+	): JSX.Element | null => {
+		if (node.children === null) {
+			return null;
+		} else {
+			if (
+				node?.type === 'list' &&
+				(node as SerializedListNode)?.listType === 'check'
+			) {
+				for (const item of node.children) {
+					if ('checked' in item) {
+						if (!item?.checked) {
+							item.checked = false;
+						}
+					}
+				}
+				return serializeLexical({ nodes: node.children, headingRefs, blockIndex, columnIndex });
+			} else {
+				return serializeLexical({ nodes: node.children, headingRefs, blockIndex, columnIndex });
+			}
+		}
+	};
+
 	return (
 		<Fragment>
 			{ nodes?.map((_node, index): JSX.Element | null => {
 				if (_node.type === 'text') {
 					const node = _node as SerializedTextNode;
 					let text = (
-						<span
-							dangerouslySetInnerHTML={ { __html: escapeHTML(node.text) } }
-							key={ index }
-						/>
+						<span key={ index }>
+							{ node.text }
+						</span>
 					);
 					if (node.format & IS_BOLD) {
 						text = (
@@ -93,33 +120,6 @@ export function serializeLexical({ nodes, headingRefs, blockIndex, columnIndex }
 				if (_node === null) {
 					return null;
 				}
-
-				// NOTE: Hacky fix for
-				// https://github.com/facebook/lexical/blob/d10c4e6e55261b2fdd7d1845aed46151d0f06a8c/packages/lexical-list/src/LexicalListItemNode.ts#L133
-				// which does not return checked: false (only true - i.e. there is no prop for false)
-				const serializedChildrenFn = (
-					node: SerializedElementNode
-				): JSX.Element | null => {
-					if (node.children === null) {
-						return null;
-					} else {
-						if (
-							node?.type === 'list' &&
-							(node as SerializedListNode)?.listType === 'check'
-						) {
-							for (const item of node.children) {
-								if ('checked' in item) {
-									if (!item?.checked) {
-										item.checked = false;
-									}
-								}
-							}
-							return serializeLexical({ nodes: node.children, headingRefs, blockIndex, columnIndex });
-						} else {
-							return serializeLexical({ nodes: node.children, headingRefs, blockIndex, columnIndex });
-						}
-					}
-				};
 
 				const serializedChildren =
 					'children' in _node
@@ -202,7 +202,10 @@ export function serializeLexical({ nodes, headingRefs, blockIndex, columnIndex }
 									alignment === 'right' && 'md:flex-row-reverse'
 								) }>
 									<div className='w-full md:w-[60%]  h-[280px] relative'>
-										<Image { ...imageProps } />
+										<Image
+											{ ...imageProps }
+											sizes='(max-width: 768px) 100vw, 60vw'
+										/>
 									</div>
 									<div className='md:w-[40%] text-primary font-Poppins text-base md:text-xl leading-[30px] md:leading-10 -tracking-[0.64px] md:-tracking-[0.8px]'>
 										<p>{ serializedCaption }</p>
@@ -212,7 +215,10 @@ export function serializeLexical({ nodes, headingRefs, blockIndex, columnIndex }
 						} else {
 							return (
 								<div className='w-full h-[350px] md:h-[340px] relative lg:mt-5 lg:mb-[30px] mt-[10px] mb-5'>
-									<Image { ...imageProps } />
+									<Image
+										{ ...imageProps }
+										sizes='(max-width: 768px) 100vw, 768px'
+									/>
 								</div>
 							);
 						}
@@ -269,7 +275,7 @@ export function serializeLexical({ nodes, headingRefs, blockIndex, columnIndex }
 							return (
 								<Link
 									className='break-all text-[#A3E0FF] underline'
-									href={ escapeHTML(fields.url) }
+									href={ fields.url }
 									key={ index }
 									{ ...(fields?.newTab
 										? {
