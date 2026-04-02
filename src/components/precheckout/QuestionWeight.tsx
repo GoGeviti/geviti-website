@@ -1,6 +1,5 @@
 import { ReactNode, useState } from 'react';
 import { Player } from '@lottiefiles/react-lottie-player';
-import { AnimationItem } from 'lottie-web';
 import styled, { keyframes } from 'styled-components';
 
 import { ViewState } from '@/components/precheckout/WelcomeTransition';
@@ -120,7 +119,8 @@ const ResponseBox = ({
   viewState: ViewState;
   onSelectOption: () => void;
 }) => {
-	const [lottieRef, setLottieRef] = useState<AnimationItem | null>(null);
+	// lottie-web is not installed, so we cannot import the type. Using any to fix build.
+	const [lottieRef, setLottieRef] = useState<any | null>(null);
 
 	return (
 		<AnswerBox
